@@ -1933,6 +1933,7 @@ class BinaryData final :
     kIdFieldNumber = 1,
     kUriFieldNumber = 2,
     kBinaryFieldNumber = 3,
+    kNameFieldNumber = 7,
     kTimeRequestedFieldNumber = 5,
     kTimeReceivedFieldNumber = 6,
     kMetadataIndexFieldNumber = 4,
@@ -1977,6 +1978,20 @@ class BinaryData final :
   const std::string& _internal_binary() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_binary(const std::string& value);
   std::string* _internal_mutable_binary();
+  public:
+
+  // string name = 7 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
   public:
 
   // .google.protobuf.Timestamp time_requested = 5 [json_name = "timeRequested"];
@@ -2035,6 +2050,7 @@ class BinaryData final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uri_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr binary_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* time_requested_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* time_received_;
     int32_t metadata_index_;
@@ -5352,6 +5368,56 @@ inline void BinaryData::set_allocated_time_received(::PROTOBUF_NAMESPACE_ID::Tim
   }
   _impl_.time_received_ = time_received;
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.BinaryData.time_received)
+}
+
+// string name = 7 [json_name = "name"];
+inline void BinaryData::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& BinaryData::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.BinaryData.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void BinaryData::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.BinaryData.name)
+}
+inline std::string* BinaryData::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.BinaryData.name)
+  return _s;
+}
+inline const std::string& BinaryData::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void BinaryData::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* BinaryData::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* BinaryData::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.BinaryData.name)
+  return _impl_.name_.Release();
+}
+inline void BinaryData::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.BinaryData.name)
 }
 
 // -------------------------------------------------------------------

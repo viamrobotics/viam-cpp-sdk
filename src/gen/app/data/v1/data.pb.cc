@@ -164,6 +164,7 @@ PROTOBUF_CONSTEXPR BinaryData::BinaryData(
     /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.binary_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.time_requested_)*/nullptr
   , /*decltype(_impl_.time_received_)*/nullptr
   , /*decltype(_impl_.metadata_index_)*/0
@@ -349,6 +350,7 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryData, _impl_.metadata_index_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryData, _impl_.time_requested_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryData, _impl_.time_received_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryData, _impl_.name_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryDataByFilterRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -395,10 +397,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 73, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterResponse)},
   { 82, -1, -1, sizeof(::viam::app::data::v1::TabularData)},
   { 92, -1, -1, sizeof(::viam::app::data::v1::BinaryData)},
-  { 104, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterRequest)},
-  { 113, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterResponse)},
-  { 122, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsRequest)},
-  { 130, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsResponse)},
+  { 105, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterRequest)},
+  { 114, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterResponse)},
+  { 123, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsRequest)},
+  { 131, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -465,37 +467,38 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "taIndex\022A\n\016time_requested\030\003 \001(\0132\032.google"
   ".protobuf.TimestampR\rtimeRequested\022\?\n\rti"
   "me_received\030\004 \001(\0132\032.google.protobuf.Time"
-  "stampR\014timeReceived\"\361\001\n\nBinaryData\022\016\n\002id"
+  "stampR\014timeReceived\"\205\002\n\nBinaryData\022\016\n\002id"
   "\030\001 \001(\tR\002id\022\020\n\003uri\030\002 \001(\tR\003uri\022\026\n\006binary\030\003"
   " \001(\014R\006binary\022%\n\016metadata_index\030\004 \001(\005R\rme"
   "tadataIndex\022A\n\016time_requested\030\005 \001(\0132\032.go"
   "ogle.protobuf.TimestampR\rtimeRequested\022\?"
   "\n\rtime_received\030\006 \001(\0132\032.google.protobuf."
-  "TimestampR\014timeReceived\"\243\001\n\031BinaryDataBy"
-  "FilterRequest\022@\n\014data_request\030\001 \001(\0132\035.vi"
-  "am.app.data.v1.DataRequestR\013dataRequest\022"
-  "%\n\016include_binary\030\002 \001(\010R\rincludeBinary\022\035"
-  "\n\ncount_only\030\003 \001(\010R\tcountOnly\"\243\001\n\032Binary"
-  "DataByFilterResponse\022=\n\010metadata\030\001 \003(\0132!"
-  ".viam.app.data.v1.CaptureMetadataR\010metad"
-  "ata\0220\n\004data\030\002 \003(\0132\034.viam.app.data.v1.Bin"
-  "aryDataR\004data\022\024\n\005count\030\003 \001(\003R\005count\"Z\n\026B"
-  "inaryDataByIDsRequest\022\031\n\010file_ids\030\001 \003(\tR"
-  "\007fileIds\022%\n\016include_binary\030\002 \001(\010R\rinclud"
-  "eBinary\"\240\001\n\027BinaryDataByIDsResponse\022=\n\010m"
-  "etadata\030\001 \003(\0132!.viam.app.data.v1.Capture"
-  "MetadataR\010metadata\0220\n\004data\030\002 \003(\0132\034.viam."
-  "app.data.v1.BinaryDataR\004data\022\024\n\005count\030\003 "
-  "\001(\003R\005count2\332\002\n\013DataService\022r\n\023TabularDat"
-  "aByFilter\022,.viam.app.data.v1.TabularData"
-  "ByFilterRequest\032-.viam.app.data.v1.Tabul"
-  "arDataByFilterResponse\022o\n\022BinaryDataByFi"
-  "lter\022+.viam.app.data.v1.BinaryDataByFilt"
-  "erRequest\032,.viam.app.data.v1.BinaryDataB"
-  "yFilterResponse\022f\n\017BinaryDataByIDs\022(.via"
-  "m.app.data.v1.BinaryDataByIDsRequest\032).v"
-  "iam.app.data.v1.BinaryDataByIDsResponseB"
-  "\035Z\033go.viam.com/api/app/data/v1b\006proto3"
+  "TimestampR\014timeReceived\022\022\n\004name\030\007 \001(\tR\004n"
+  "ame\"\243\001\n\031BinaryDataByFilterRequest\022@\n\014dat"
+  "a_request\030\001 \001(\0132\035.viam.app.data.v1.DataR"
+  "equestR\013dataRequest\022%\n\016include_binary\030\002 "
+  "\001(\010R\rincludeBinary\022\035\n\ncount_only\030\003 \001(\010R\t"
+  "countOnly\"\243\001\n\032BinaryDataByFilterResponse"
+  "\022=\n\010metadata\030\001 \003(\0132!.viam.app.data.v1.Ca"
+  "ptureMetadataR\010metadata\0220\n\004data\030\002 \003(\0132\034."
+  "viam.app.data.v1.BinaryDataR\004data\022\024\n\005cou"
+  "nt\030\003 \001(\003R\005count\"Z\n\026BinaryDataByIDsReques"
+  "t\022\031\n\010file_ids\030\001 \003(\tR\007fileIds\022%\n\016include_"
+  "binary\030\002 \001(\010R\rincludeBinary\"\240\001\n\027BinaryDa"
+  "taByIDsResponse\022=\n\010metadata\030\001 \003(\0132!.viam"
+  ".app.data.v1.CaptureMetadataR\010metadata\0220"
+  "\n\004data\030\002 \003(\0132\034.viam.app.data.v1.BinaryDa"
+  "taR\004data\022\024\n\005count\030\003 \001(\003R\005count2\332\002\n\013DataS"
+  "ervice\022r\n\023TabularDataByFilter\022,.viam.app"
+  ".data.v1.TabularDataByFilterRequest\032-.vi"
+  "am.app.data.v1.TabularDataByFilterRespon"
+  "se\022o\n\022BinaryDataByFilter\022+.viam.app.data"
+  ".v1.BinaryDataByFilterRequest\032,.viam.app"
+  ".data.v1.BinaryDataByFilterResponse\022f\n\017B"
+  "inaryDataByIDs\022(.viam.app.data.v1.Binary"
+  "DataByIDsRequest\032).viam.app.data.v1.Bina"
+  "ryDataByIDsResponseB\035Z\033go.viam.com/api/a"
+  "pp/data/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -504,7 +507,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 3118, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 3138, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
     &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
@@ -3445,6 +3448,7 @@ BinaryData::BinaryData(const BinaryData& from)
       decltype(_impl_.id_){}
     , decltype(_impl_.uri_){}
     , decltype(_impl_.binary_){}
+    , decltype(_impl_.name_){}
     , decltype(_impl_.time_requested_){nullptr}
     , decltype(_impl_.time_received_){nullptr}
     , decltype(_impl_.metadata_index_){}
@@ -3475,6 +3479,14 @@ BinaryData::BinaryData(const BinaryData& from)
     _this->_impl_.binary_.Set(from._internal_binary(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_time_requested()) {
     _this->_impl_.time_requested_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.time_requested_);
   }
@@ -3493,6 +3505,7 @@ inline void BinaryData::SharedCtor(
       decltype(_impl_.id_){}
     , decltype(_impl_.uri_){}
     , decltype(_impl_.binary_){}
+    , decltype(_impl_.name_){}
     , decltype(_impl_.time_requested_){nullptr}
     , decltype(_impl_.time_received_){nullptr}
     , decltype(_impl_.metadata_index_){0}
@@ -3510,6 +3523,10 @@ inline void BinaryData::SharedCtor(
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.binary_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 BinaryData::~BinaryData() {
@@ -3526,6 +3543,7 @@ inline void BinaryData::SharedDtor() {
   _impl_.id_.Destroy();
   _impl_.uri_.Destroy();
   _impl_.binary_.Destroy();
+  _impl_.name_.Destroy();
   if (this != internal_default_instance()) delete _impl_.time_requested_;
   if (this != internal_default_instance()) delete _impl_.time_received_;
 }
@@ -3543,6 +3561,7 @@ void BinaryData::Clear() {
   _impl_.id_.ClearToEmpty();
   _impl_.uri_.ClearToEmpty();
   _impl_.binary_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.time_requested_ != nullptr) {
     delete _impl_.time_requested_;
   }
@@ -3611,6 +3630,16 @@ const char* BinaryData::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_time_received(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string name = 7 [json_name = "name"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.BinaryData.name"));
         } else
           goto handle_unusual;
         continue;
@@ -3689,6 +3718,16 @@ uint8_t* BinaryData::_InternalSerialize(
         _Internal::time_received(this).GetCachedSize(), target, stream);
   }
 
+  // string name = 7 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.BinaryData.name");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_name(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3724,6 +3763,13 @@ size_t BinaryData::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_binary());
+  }
+
+  // string name = 7 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
   }
 
   // .google.protobuf.Timestamp time_requested = 5 [json_name = "timeRequested"];
@@ -3772,6 +3818,9 @@ void BinaryData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (!from._internal_binary().empty()) {
     _this->_internal_set_binary(from._internal_binary());
   }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
   if (from._internal_has_time_requested()) {
     _this->_internal_mutable_time_requested()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
         from._internal_time_requested());
@@ -3813,6 +3862,10 @@ void BinaryData::InternalSwap(BinaryData* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.binary_, lhs_arena,
       &other->_impl_.binary_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(BinaryData, _impl_.metadata_index_)
