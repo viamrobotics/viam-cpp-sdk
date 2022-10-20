@@ -90,6 +90,8 @@ PROTOBUF_CONSTEXPR CaptureMetadata::CaptureMetadata(
   , /*decltype(_impl_.component_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.method_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.file_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.file_ext_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CaptureMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CaptureMetadataDefaultTypeInternal()
@@ -303,6 +305,8 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CaptureMetadata, _impl_.method_parameters_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CaptureMetadata, _impl_.tags_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CaptureMetadata, _impl_.mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CaptureMetadata, _impl_.file_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CaptureMetadata, _impl_.file_ext_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CaptureInterval, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -392,15 +396,15 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 9, -1, -1, sizeof(::viam::app::data::v1::Filter)},
   { 28, 36, -1, sizeof(::viam::app::data::v1::CaptureMetadata_MethodParametersEntry_DoNotUse)},
   { 38, -1, -1, sizeof(::viam::app::data::v1::CaptureMetadata)},
-  { 57, -1, -1, sizeof(::viam::app::data::v1::CaptureInterval)},
-  { 65, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterRequest)},
-  { 73, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterResponse)},
-  { 82, -1, -1, sizeof(::viam::app::data::v1::TabularData)},
-  { 92, -1, -1, sizeof(::viam::app::data::v1::BinaryData)},
-  { 105, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterRequest)},
-  { 114, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterResponse)},
-  { 123, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsRequest)},
-  { 131, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsResponse)},
+  { 59, -1, -1, sizeof(::viam::app::data::v1::CaptureInterval)},
+  { 67, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterRequest)},
+  { 75, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterResponse)},
+  { 84, -1, -1, sizeof(::viam::app::data::v1::TabularData)},
+  { 94, -1, -1, sizeof(::viam::app::data::v1::BinaryData)},
+  { 107, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterRequest)},
+  { 116, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterResponse)},
+  { 125, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsRequest)},
+  { 133, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -436,7 +440,7 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "artId\022\037\n\013location_id\030\n \001(\tR\nlocationId\022\027"
   "\n\007org_ids\030\013 \003(\tR\006orgIds\022\033\n\tmime_type\030\014 \003"
   "(\tR\010mimeType\022=\n\010interval\030\r \001(\0132!.viam.ap"
-  "p.data.v1.CaptureIntervalR\010interval\"\303\004\n\017"
+  "p.data.v1.CaptureIntervalR\010interval\"\373\004\n\017"
   "CaptureMetadata\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\037"
   "\n\013location_id\030\002 \001(\tR\nlocationId\022\035\n\nrobot"
   "_name\030\003 \001(\tR\trobotName\022\031\n\010robot_id\030\004 \001(\t"
@@ -449,56 +453,57 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "(\01327.viam.app.data.v1.CaptureMetadata.Me"
   "thodParametersEntryR\020methodParameters\022\022\n"
   "\004tags\030\014 \003(\tR\004tags\022\033\n\tmime_type\030\r \001(\tR\010mi"
-  "meType\032Y\n\025MethodParametersEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.google.protob"
-  "uf.AnyR\005value:\0028\001\"q\n\017CaptureInterval\0220\n\005"
-  "start\030\001 \001(\0132\032.google.protobuf.TimestampR"
-  "\005start\022,\n\003end\030\002 \001(\0132\032.google.protobuf.Ti"
-  "mestampR\003end\"}\n\032TabularDataByFilterReque"
-  "st\022@\n\014data_request\030\001 \001(\0132\035.viam.app.data"
-  ".v1.DataRequestR\013dataRequest\022\035\n\ncount_on"
-  "ly\030\002 \001(\010R\tcountOnly\"\245\001\n\033TabularDataByFil"
-  "terResponse\022=\n\010metadata\030\001 \003(\0132!.viam.app"
-  ".data.v1.CaptureMetadataR\010metadata\0221\n\004da"
-  "ta\030\002 \003(\0132\035.viam.app.data.v1.TabularDataR"
-  "\004data\022\024\n\005count\030\003 \001(\003R\005count\"\345\001\n\013TabularD"
-  "ata\022+\n\004data\030\001 \001(\0132\027.google.protobuf.Stru"
-  "ctR\004data\022%\n\016metadata_index\030\002 \001(\005R\rmetada"
-  "taIndex\022A\n\016time_requested\030\003 \001(\0132\032.google"
-  ".protobuf.TimestampR\rtimeRequested\022\?\n\rti"
-  "me_received\030\004 \001(\0132\032.google.protobuf.Time"
-  "stampR\014timeReceived\"\205\002\n\nBinaryData\022\016\n\002id"
-  "\030\001 \001(\tR\002id\022\020\n\003uri\030\002 \001(\tR\003uri\022\026\n\006binary\030\003"
-  " \001(\014R\006binary\022%\n\016metadata_index\030\004 \001(\005R\rme"
-  "tadataIndex\022A\n\016time_requested\030\005 \001(\0132\032.go"
-  "ogle.protobuf.TimestampR\rtimeRequested\022\?"
-  "\n\rtime_received\030\006 \001(\0132\032.google.protobuf."
-  "TimestampR\014timeReceived\022\022\n\004name\030\007 \001(\tR\004n"
-  "ame\"\243\001\n\031BinaryDataByFilterRequest\022@\n\014dat"
-  "a_request\030\001 \001(\0132\035.viam.app.data.v1.DataR"
-  "equestR\013dataRequest\022%\n\016include_binary\030\002 "
-  "\001(\010R\rincludeBinary\022\035\n\ncount_only\030\003 \001(\010R\t"
-  "countOnly\"\243\001\n\032BinaryDataByFilterResponse"
-  "\022=\n\010metadata\030\001 \003(\0132!.viam.app.data.v1.Ca"
-  "ptureMetadataR\010metadata\0220\n\004data\030\002 \003(\0132\034."
-  "viam.app.data.v1.BinaryDataR\004data\022\024\n\005cou"
-  "nt\030\003 \001(\003R\005count\"Z\n\026BinaryDataByIDsReques"
-  "t\022\031\n\010file_ids\030\001 \003(\tR\007fileIds\022%\n\016include_"
-  "binary\030\002 \001(\010R\rincludeBinary\"\240\001\n\027BinaryDa"
-  "taByIDsResponse\022=\n\010metadata\030\001 \003(\0132!.viam"
-  ".app.data.v1.CaptureMetadataR\010metadata\0220"
-  "\n\004data\030\002 \003(\0132\034.viam.app.data.v1.BinaryDa"
-  "taR\004data\022\024\n\005count\030\003 \001(\003R\005count2\332\002\n\013DataS"
-  "ervice\022r\n\023TabularDataByFilter\022,.viam.app"
-  ".data.v1.TabularDataByFilterRequest\032-.vi"
-  "am.app.data.v1.TabularDataByFilterRespon"
-  "se\022o\n\022BinaryDataByFilter\022+.viam.app.data"
-  ".v1.BinaryDataByFilterRequest\032,.viam.app"
-  ".data.v1.BinaryDataByFilterResponse\022f\n\017B"
-  "inaryDataByIDs\022(.viam.app.data.v1.Binary"
-  "DataByIDsRequest\032).viam.app.data.v1.Bina"
-  "ryDataByIDsResponseB\035Z\033go.viam.com/api/a"
-  "pp/data/v1b\006proto3"
+  "meType\022\033\n\tfile_name\030\016 \001(\tR\010fileName\022\031\n\010f"
+  "ile_ext\030\017 \001(\tR\007fileExt\032Y\n\025MethodParamete"
+  "rsEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\013"
+  "2\024.google.protobuf.AnyR\005value:\0028\001\"q\n\017Cap"
+  "tureInterval\0220\n\005start\030\001 \001(\0132\032.google.pro"
+  "tobuf.TimestampR\005start\022,\n\003end\030\002 \001(\0132\032.go"
+  "ogle.protobuf.TimestampR\003end\"}\n\032TabularD"
+  "ataByFilterRequest\022@\n\014data_request\030\001 \001(\013"
+  "2\035.viam.app.data.v1.DataRequestR\013dataReq"
+  "uest\022\035\n\ncount_only\030\002 \001(\010R\tcountOnly\"\245\001\n\033"
+  "TabularDataByFilterResponse\022=\n\010metadata\030"
+  "\001 \003(\0132!.viam.app.data.v1.CaptureMetadata"
+  "R\010metadata\0221\n\004data\030\002 \003(\0132\035.viam.app.data"
+  ".v1.TabularDataR\004data\022\024\n\005count\030\003 \001(\003R\005co"
+  "unt\"\345\001\n\013TabularData\022+\n\004data\030\001 \001(\0132\027.goog"
+  "le.protobuf.StructR\004data\022%\n\016metadata_ind"
+  "ex\030\002 \001(\005R\rmetadataIndex\022A\n\016time_requeste"
+  "d\030\003 \001(\0132\032.google.protobuf.TimestampR\rtim"
+  "eRequested\022\?\n\rtime_received\030\004 \001(\0132\032.goog"
+  "le.protobuf.TimestampR\014timeReceived\"\205\002\n\n"
+  "BinaryData\022\016\n\002id\030\001 \001(\tR\002id\022\020\n\003uri\030\002 \001(\tR"
+  "\003uri\022\026\n\006binary\030\003 \001(\014R\006binary\022%\n\016metadata"
+  "_index\030\004 \001(\005R\rmetadataIndex\022A\n\016time_requ"
+  "ested\030\005 \001(\0132\032.google.protobuf.TimestampR"
+  "\rtimeRequested\022\?\n\rtime_received\030\006 \001(\0132\032."
+  "google.protobuf.TimestampR\014timeReceived\022"
+  "\022\n\004name\030\007 \001(\tR\004name\"\243\001\n\031BinaryDataByFilt"
+  "erRequest\022@\n\014data_request\030\001 \001(\0132\035.viam.a"
+  "pp.data.v1.DataRequestR\013dataRequest\022%\n\016i"
+  "nclude_binary\030\002 \001(\010R\rincludeBinary\022\035\n\nco"
+  "unt_only\030\003 \001(\010R\tcountOnly\"\243\001\n\032BinaryData"
+  "ByFilterResponse\022=\n\010metadata\030\001 \003(\0132!.via"
+  "m.app.data.v1.CaptureMetadataR\010metadata\022"
+  "0\n\004data\030\002 \003(\0132\034.viam.app.data.v1.BinaryD"
+  "ataR\004data\022\024\n\005count\030\003 \001(\003R\005count\"Z\n\026Binar"
+  "yDataByIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fil"
+  "eIds\022%\n\016include_binary\030\002 \001(\010R\rincludeBin"
+  "ary\"\240\001\n\027BinaryDataByIDsResponse\022=\n\010metad"
+  "ata\030\001 \003(\0132!.viam.app.data.v1.CaptureMeta"
+  "dataR\010metadata\0220\n\004data\030\002 \003(\0132\034.viam.app."
+  "data.v1.BinaryDataR\004data\022\024\n\005count\030\003 \001(\003R"
+  "\005count2\332\002\n\013DataService\022r\n\023TabularDataByF"
+  "ilter\022,.viam.app.data.v1.TabularDataByFi"
+  "lterRequest\032-.viam.app.data.v1.TabularDa"
+  "taByFilterResponse\022o\n\022BinaryDataByFilter"
+  "\022+.viam.app.data.v1.BinaryDataByFilterRe"
+  "quest\032,.viam.app.data.v1.BinaryDataByFil"
+  "terResponse\022f\n\017BinaryDataByIDs\022(.viam.ap"
+  "p.data.v1.BinaryDataByIDsRequest\032).viam."
+  "app.data.v1.BinaryDataByIDsResponseB\035Z\033g"
+  "o.viam.com/api/app/data/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -507,7 +512,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 3138, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 3194, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
     &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
@@ -1588,6 +1593,8 @@ CaptureMetadata::CaptureMetadata(const CaptureMetadata& from)
     , decltype(_impl_.component_name_){}
     , decltype(_impl_.method_name_){}
     , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.file_name_){}
+    , decltype(_impl_.file_ext_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1680,6 +1687,22 @@ CaptureMetadata::CaptureMetadata(const CaptureMetadata& from)
     _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.file_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.file_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_file_name().empty()) {
+    _this->_impl_.file_name_.Set(from._internal_file_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.file_ext_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.file_ext_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_file_ext().empty()) {
+    _this->_impl_.file_ext_.Set(from._internal_file_ext(), 
+      _this->GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.CaptureMetadata)
 }
 
@@ -1701,6 +1724,8 @@ inline void CaptureMetadata::SharedCtor(
     , decltype(_impl_.component_name_){}
     , decltype(_impl_.method_name_){}
     , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.file_name_){}
+    , decltype(_impl_.file_ext_){}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.org_id_.InitDefault();
@@ -1747,6 +1772,14 @@ inline void CaptureMetadata::SharedCtor(
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.file_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.file_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.file_ext_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.file_ext_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 CaptureMetadata::~CaptureMetadata() {
@@ -1775,6 +1808,8 @@ inline void CaptureMetadata::SharedDtor() {
   _impl_.component_name_.Destroy();
   _impl_.method_name_.Destroy();
   _impl_.mime_type_.Destroy();
+  _impl_.file_name_.Destroy();
+  _impl_.file_ext_.Destroy();
 }
 
 void CaptureMetadata::ArenaDtor(void* object) {
@@ -1804,6 +1839,8 @@ void CaptureMetadata::Clear() {
   _impl_.component_name_.ClearToEmpty();
   _impl_.method_name_.ClearToEmpty();
   _impl_.mime_type_.ClearToEmpty();
+  _impl_.file_name_.ClearToEmpty();
+  _impl_.file_ext_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1948,6 +1985,26 @@ const char* CaptureMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContex
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.CaptureMetadata.mime_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string file_name = 14 [json_name = "fileName"];
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
+          auto str = _internal_mutable_file_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.CaptureMetadata.file_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string file_ext = 15 [json_name = "fileExt"];
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
+          auto str = _internal_mutable_file_ext();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.CaptureMetadata.file_ext"));
         } else
           goto handle_unusual;
         continue;
@@ -2126,6 +2183,26 @@ uint8_t* CaptureMetadata::_InternalSerialize(
         13, this->_internal_mime_type(), target);
   }
 
+  // string file_name = 14 [json_name = "fileName"];
+  if (!this->_internal_file_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_file_name().data(), static_cast<int>(this->_internal_file_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.CaptureMetadata.file_name");
+    target = stream->WriteStringMaybeAliased(
+        14, this->_internal_file_name(), target);
+  }
+
+  // string file_ext = 15 [json_name = "fileExt"];
+  if (!this->_internal_file_ext().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_file_ext().data(), static_cast<int>(this->_internal_file_ext().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.CaptureMetadata.file_ext");
+    target = stream->WriteStringMaybeAliased(
+        15, this->_internal_file_ext(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2236,6 +2313,20 @@ size_t CaptureMetadata::ByteSizeLong() const {
         this->_internal_mime_type());
   }
 
+  // string file_name = 14 [json_name = "fileName"];
+  if (!this->_internal_file_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_file_name());
+  }
+
+  // string file_ext = 15 [json_name = "fileExt"];
+  if (!this->_internal_file_ext().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_file_ext());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2288,6 +2379,12 @@ void CaptureMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const 
   }
   if (!from._internal_mime_type().empty()) {
     _this->_internal_set_mime_type(from._internal_mime_type());
+  }
+  if (!from._internal_file_name().empty()) {
+    _this->_internal_set_file_name(from._internal_file_name());
+  }
+  if (!from._internal_file_ext().empty()) {
+    _this->_internal_set_file_ext(from._internal_file_ext());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2353,6 +2450,14 @@ void CaptureMetadata::InternalSwap(CaptureMetadata* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.mime_type_, lhs_arena,
       &other->_impl_.mime_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.file_name_, lhs_arena,
+      &other->_impl_.file_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.file_ext_, lhs_arena,
+      &other->_impl_.file_ext_, rhs_arena
   );
 }
 

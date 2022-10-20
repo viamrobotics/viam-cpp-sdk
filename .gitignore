@@ -1,0 +1,9 @@
+# example binaries
+examples/dial/example_dial
+examples/echo/example_echo
+
+# compilation files
+compile_commands.json
+*.o 
+.cache
+

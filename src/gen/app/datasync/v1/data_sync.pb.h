@@ -2557,6 +2557,7 @@ class BinaryCapture final :
     kSessionIdFieldNumber = 15,
     kMimeTypeFieldNumber = 16,
     kFileNameFieldNumber = 17,
+    kFileExtFieldNumber = 18,
     kIntervalFieldNumber = 1,
     kFileSizeBytesFieldNumber = 14,
   };
@@ -2783,6 +2784,20 @@ class BinaryCapture final :
   std::string* _internal_mutable_file_name();
   public:
 
+  // string file_ext = 18 [json_name = "fileExt", (.tagger.v1.tags) = "bson:\"file_ext\" json:\"file_ext\""];
+  void clear_file_ext();
+  const std::string& file_ext() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_file_ext(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_file_ext();
+  PROTOBUF_NODISCARD std::string* release_file_ext();
+  void set_allocated_file_ext(std::string* file_ext);
+  private:
+  const std::string& _internal_file_ext() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_ext(const std::string& value);
+  std::string* _internal_mutable_file_ext();
+  public:
+
   // .viam.app.datasync.v1.CaptureInterval interval = 1 [json_name = "interval", (.tagger.v1.tags) = "bson:\"interval\" json:\"interval\""];
   bool has_interval() const;
   private:
@@ -2837,6 +2852,7 @@ class BinaryCapture final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr session_id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr file_name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr file_ext_;
     ::viam::app::datasync::v1::CaptureInterval* interval_;
     int64_t file_size_bytes_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -6489,6 +6505,56 @@ inline void BinaryCapture::set_allocated_file_name(std::string* file_name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.BinaryCapture.file_name)
+}
+
+// string file_ext = 18 [json_name = "fileExt", (.tagger.v1.tags) = "bson:\"file_ext\" json:\"file_ext\""];
+inline void BinaryCapture::clear_file_ext() {
+  _impl_.file_ext_.ClearToEmpty();
+}
+inline const std::string& BinaryCapture::file_ext() const {
+  // @@protoc_insertion_point(field_get:viam.app.datasync.v1.BinaryCapture.file_ext)
+  return _internal_file_ext();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void BinaryCapture::set_file_ext(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.file_ext_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.datasync.v1.BinaryCapture.file_ext)
+}
+inline std::string* BinaryCapture::mutable_file_ext() {
+  std::string* _s = _internal_mutable_file_ext();
+  // @@protoc_insertion_point(field_mutable:viam.app.datasync.v1.BinaryCapture.file_ext)
+  return _s;
+}
+inline const std::string& BinaryCapture::_internal_file_ext() const {
+  return _impl_.file_ext_.Get();
+}
+inline void BinaryCapture::_internal_set_file_ext(const std::string& value) {
+  
+  _impl_.file_ext_.Set(value, GetArenaForAllocation());
+}
+inline std::string* BinaryCapture::_internal_mutable_file_ext() {
+  
+  return _impl_.file_ext_.Mutable(GetArenaForAllocation());
+}
+inline std::string* BinaryCapture::release_file_ext() {
+  // @@protoc_insertion_point(field_release:viam.app.datasync.v1.BinaryCapture.file_ext)
+  return _impl_.file_ext_.Release();
+}
+inline void BinaryCapture::set_allocated_file_ext(std::string* file_ext) {
+  if (file_ext != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.file_ext_.SetAllocated(file_ext, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.file_ext_.IsDefault()) {
+    _impl_.file_ext_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.BinaryCapture.file_ext)
 }
 
 #ifdef __GNUC__
