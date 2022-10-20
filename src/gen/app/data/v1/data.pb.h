@@ -840,6 +840,8 @@ class CaptureMetadata final :
     kComponentNameFieldNumber = 9,
     kMethodNameFieldNumber = 10,
     kMimeTypeFieldNumber = 13,
+    kFileNameFieldNumber = 14,
+    kFileExtFieldNumber = 15,
   };
   // map<string, .google.protobuf.Any> method_parameters = 11 [json_name = "methodParameters"];
   int method_parameters_size() const;
@@ -1036,6 +1038,34 @@ class CaptureMetadata final :
   std::string* _internal_mutable_mime_type();
   public:
 
+  // string file_name = 14 [json_name = "fileName"];
+  void clear_file_name();
+  const std::string& file_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_file_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_file_name();
+  PROTOBUF_NODISCARD std::string* release_file_name();
+  void set_allocated_file_name(std::string* file_name);
+  private:
+  const std::string& _internal_file_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_name(const std::string& value);
+  std::string* _internal_mutable_file_name();
+  public:
+
+  // string file_ext = 15 [json_name = "fileExt"];
+  void clear_file_ext();
+  const std::string& file_ext() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_file_ext(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_file_ext();
+  PROTOBUF_NODISCARD std::string* release_file_ext();
+  void set_allocated_file_ext(std::string* file_ext);
+  private:
+  const std::string& _internal_file_ext() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_ext(const std::string& value);
+  std::string* _internal_mutable_file_ext();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.data.v1.CaptureMetadata)
  private:
   class _Internal;
@@ -1061,6 +1091,8 @@ class CaptureMetadata final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr method_name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr file_name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr file_ext_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4353,6 +4385,106 @@ inline void CaptureMetadata::set_allocated_mime_type(std::string* mime_type) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CaptureMetadata.mime_type)
+}
+
+// string file_name = 14 [json_name = "fileName"];
+inline void CaptureMetadata::clear_file_name() {
+  _impl_.file_name_.ClearToEmpty();
+}
+inline const std::string& CaptureMetadata::file_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CaptureMetadata.file_name)
+  return _internal_file_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CaptureMetadata::set_file_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.file_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.CaptureMetadata.file_name)
+}
+inline std::string* CaptureMetadata::mutable_file_name() {
+  std::string* _s = _internal_mutable_file_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CaptureMetadata.file_name)
+  return _s;
+}
+inline const std::string& CaptureMetadata::_internal_file_name() const {
+  return _impl_.file_name_.Get();
+}
+inline void CaptureMetadata::_internal_set_file_name(const std::string& value) {
+  
+  _impl_.file_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CaptureMetadata::_internal_mutable_file_name() {
+  
+  return _impl_.file_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CaptureMetadata::release_file_name() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.CaptureMetadata.file_name)
+  return _impl_.file_name_.Release();
+}
+inline void CaptureMetadata::set_allocated_file_name(std::string* file_name) {
+  if (file_name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.file_name_.SetAllocated(file_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.file_name_.IsDefault()) {
+    _impl_.file_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CaptureMetadata.file_name)
+}
+
+// string file_ext = 15 [json_name = "fileExt"];
+inline void CaptureMetadata::clear_file_ext() {
+  _impl_.file_ext_.ClearToEmpty();
+}
+inline const std::string& CaptureMetadata::file_ext() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CaptureMetadata.file_ext)
+  return _internal_file_ext();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CaptureMetadata::set_file_ext(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.file_ext_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.CaptureMetadata.file_ext)
+}
+inline std::string* CaptureMetadata::mutable_file_ext() {
+  std::string* _s = _internal_mutable_file_ext();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CaptureMetadata.file_ext)
+  return _s;
+}
+inline const std::string& CaptureMetadata::_internal_file_ext() const {
+  return _impl_.file_ext_.Get();
+}
+inline void CaptureMetadata::_internal_set_file_ext(const std::string& value) {
+  
+  _impl_.file_ext_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CaptureMetadata::_internal_mutable_file_ext() {
+  
+  return _impl_.file_ext_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CaptureMetadata::release_file_ext() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.CaptureMetadata.file_ext)
+  return _impl_.file_ext_.Release();
+}
+inline void CaptureMetadata::set_allocated_file_ext(std::string* file_ext) {
+  if (file_ext != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.file_ext_.SetAllocated(file_ext, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.file_ext_.IsDefault()) {
+    _impl_.file_ext_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CaptureMetadata.file_ext)
 }
 
 // -------------------------------------------------------------------
