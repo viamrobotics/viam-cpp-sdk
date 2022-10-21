@@ -1,0 +1,21 @@
+name: cpp-linter
+
+on: pull_request
+
+jobs:
+  cpp-linter:
+    if: github.repository_owner == "viamrobotics"
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64
+    steps:
+      - name: Checkout PR/Push/Workflow Dispatch
+        uses: actions/checkout@v3
+      - name: Run linter
+        uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          style: file
+
