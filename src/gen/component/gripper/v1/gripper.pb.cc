@@ -25,9 +25,9 @@ namespace component {
 namespace gripper {
 namespace v1 {
 PROTOBUF_CONSTEXPR OpenRequest::OpenRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct OpenRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR OpenRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,7 +38,7 @@ struct OpenRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OpenRequestDefaultTypeInternal _OpenRequest_default_instance_;
 PROTOBUF_CONSTEXPR OpenResponse::OpenResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct OpenResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR OpenResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -49,9 +49,9 @@ struct OpenResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OpenResponseDefaultTypeInternal _OpenResponse_default_instance_;
 PROTOBUF_CONSTEXPR GrabRequest::GrabRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GrabRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GrabRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -62,9 +62,9 @@ struct GrabRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GrabRequestDefaultTypeInternal _GrabRequest_default_instance_;
 PROTOBUF_CONSTEXPR GrabResponse::GrabResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.success_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : extra_(nullptr)
+  , success_(false){}
 struct GrabResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GrabResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -75,9 +75,9 @@ struct GrabResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GrabResponseDefaultTypeInternal _GrabResponse_default_instance_;
 PROTOBUF_CONSTEXPR StopRequest::StopRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct StopRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StopRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -88,7 +88,7 @@ struct StopRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopRequestDefaultTypeInternal _StopRequest_default_instance_;
 PROTOBUF_CONSTEXPR StopResponse::StopResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct StopResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StopResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -113,7 +113,8 @@ const uint32_t TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets[]
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::OpenRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::OpenRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::OpenRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::OpenResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -126,21 +127,24 @@ const uint32_t TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets[]
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabResponse, _impl_.success_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabResponse, success_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::GrabResponse, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::StopRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::StopRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::StopRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::StopRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::StopResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -150,11 +154,11 @@ const uint32_t TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets[]
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::gripper::v1::OpenRequest)},
-  { 7, -1, -1, sizeof(::viam::component::gripper::v1::OpenResponse)},
-  { 13, -1, -1, sizeof(::viam::component::gripper::v1::GrabRequest)},
-  { 20, -1, -1, sizeof(::viam::component::gripper::v1::GrabResponse)},
-  { 27, -1, -1, sizeof(::viam::component::gripper::v1::StopRequest)},
-  { 34, -1, -1, sizeof(::viam::component::gripper::v1::StopResponse)},
+  { 8, -1, -1, sizeof(::viam::component::gripper::v1::OpenResponse)},
+  { 14, -1, -1, sizeof(::viam::component::gripper::v1::GrabRequest)},
+  { 22, -1, -1, sizeof(::viam::component::gripper::v1::GrabResponse)},
+  { 30, -1, -1, sizeof(::viam::component::gripper::v1::StopRequest)},
+  { 38, -1, -1, sizeof(::viam::component::gripper::v1::StopResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -169,33 +173,40 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\"component/gripper/v1/gripper.proto\022\031vi"
   "am.component.gripper.v1\032\034google/api/anno"
-  "tations.proto\"!\n\013OpenRequest\022\022\n\004name\030\001 \001"
-  "(\tR\004name\"\016\n\014OpenResponse\"!\n\013GrabRequest\022"
-  "\022\n\004name\030\001 \001(\tR\004name\"(\n\014GrabResponse\022\030\n\007s"
-  "uccess\030\001 \001(\010R\007success\"!\n\013StopRequest\022\022\n\004"
-  "name\030\001 \001(\tR\004name\"\016\n\014StopResponse2\272\003\n\016Gri"
-  "pperService\022\213\001\n\004Open\022&.viam.component.gr"
-  "ipper.v1.OpenRequest\032\'.viam.component.gr"
-  "ipper.v1.OpenResponse\"2\202\323\344\223\002,\032*/viam/api"
-  "/v1/component/gripper/{name}/open\022\213\001\n\004Gr"
-  "ab\022&.viam.component.gripper.v1.GrabReque"
-  "st\032\'.viam.component.gripper.v1.GrabRespo"
-  "nse\"2\202\323\344\223\002,\032*/viam/api/v1/component/grip"
-  "per/{name}/grab\022\213\001\n\004Stop\022&.viam.componen"
-  "t.gripper.v1.StopRequest\032\'.viam.componen"
-  "t.gripper.v1.StopResponse\"2\202\323\344\223\002,\"*/viam"
-  "/api/v1/component/gripper/{name}/stopBE\n"
-  "\035com.viam.component.gripper.v1Z$go.viam."
-  "com/api/component/gripper/v1b\006proto3"
+  "tations.proto\032\034google/protobuf/struct.pr"
+  "oto\"P\n\013OpenRequest\022\022\n\004name\030\001 \001(\tR\004name\022-"
+  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
+  "extra\"\016\n\014OpenResponse\"P\n\013GrabRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google"
+  ".protobuf.StructR\005extra\"W\n\014GrabResponse\022"
+  "\030\n\007success\030\001 \001(\010R\007success\022-\n\005extra\030c \001(\013"
+  "2\027.google.protobuf.StructR\005extra\"P\n\013Stop"
+  "Request\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001"
+  "(\0132\027.google.protobuf.StructR\005extra\"\016\n\014St"
+  "opResponse2\272\003\n\016GripperService\022\213\001\n\004Open\022&"
+  ".viam.component.gripper.v1.OpenRequest\032\'"
+  ".viam.component.gripper.v1.OpenResponse\""
+  "2\202\323\344\223\002,\032*/viam/api/v1/component/gripper/"
+  "{name}/open\022\213\001\n\004Grab\022&.viam.component.gr"
+  "ipper.v1.GrabRequest\032\'.viam.component.gr"
+  "ipper.v1.GrabResponse\"2\202\323\344\223\002,\032*/viam/api"
+  "/v1/component/gripper/{name}/grab\022\213\001\n\004St"
+  "op\022&.viam.component.gripper.v1.StopReque"
+  "st\032\'.viam.component.gripper.v1.StopRespo"
+  "nse\"2\202\323\344\223\002,\"*/viam/api/v1/component/grip"
+  "per/{name}/stopBE\n\035com.viam.component.gr"
+  "ipper.v1Z$go.viam.com/api/component/grip"
+  "per/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[1] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[2] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
+  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto = {
-    false, false, 796, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
+    false, false, 1014, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
     "component/gripper/v1/gripper.proto",
-    &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 1, 6,
+    &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 2, 6,
     schemas, file_default_instances, TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets,
     file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto, file_level_enum_descriptors_component_2fgripper_2fv1_2fgripper_2eproto,
     file_level_service_descriptors_component_2fgripper_2fv1_2fgripper_2eproto,
@@ -215,45 +226,50 @@ namespace v1 {
 
 class OpenRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const OpenRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+OpenRequest::_Internal::extra(const OpenRequest* msg) {
+  return *msg->extra_;
+}
+void OpenRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 OpenRequest::OpenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.gripper.v1.OpenRequest)
 }
 OpenRequest::OpenRequest(const OpenRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  OpenRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.OpenRequest)
 }
 
-inline void OpenRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void OpenRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 OpenRequest::~OpenRequest() {
@@ -267,11 +283,12 @@ OpenRequest::~OpenRequest() {
 
 inline void OpenRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void OpenRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void OpenRequest::Clear() {
@@ -280,7 +297,11 @@ void OpenRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -297,6 +318,14 @@ const char* OpenRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.component.gripper.v1.OpenRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -339,6 +368,13 @@ uint8_t* OpenRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -362,28 +398,42 @@ size_t OpenRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData OpenRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     OpenRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*OpenRequest::GetClassData() const { return &_class_data_; }
 
+void OpenRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<OpenRequest *>(to)->MergeFrom(
+      static_cast<const OpenRequest &>(from));
+}
 
-void OpenRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<OpenRequest*>(&to_msg);
-  auto& from = static_cast<const OpenRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.OpenRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void OpenRequest::MergeFrom(const OpenRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.OpenRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void OpenRequest::CopyFrom(const OpenRequest& from) {
@@ -403,9 +453,10 @@ void OpenRequest::InternalSwap(OpenRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata OpenRequest::GetMetadata() const {
@@ -427,7 +478,6 @@ OpenResponse::OpenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 OpenResponse::OpenResponse(const OpenResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  OpenResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.OpenResponse)
 }
@@ -458,45 +508,50 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*OpenResponse::GetClassData() c
 
 class GrabRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GrabRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GrabRequest::_Internal::extra(const GrabRequest* msg) {
+  return *msg->extra_;
+}
+void GrabRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 GrabRequest::GrabRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.gripper.v1.GrabRequest)
 }
 GrabRequest::GrabRequest(const GrabRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GrabRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.GrabRequest)
 }
 
-inline void GrabRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GrabRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GrabRequest::~GrabRequest() {
@@ -510,11 +565,12 @@ GrabRequest::~GrabRequest() {
 
 inline void GrabRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GrabRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void GrabRequest::Clear() {
@@ -523,7 +579,11 @@ void GrabRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -540,6 +600,14 @@ const char* GrabRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.component.gripper.v1.GrabRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -582,6 +650,13 @@ uint8_t* GrabRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -605,28 +680,42 @@ size_t GrabRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GrabRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     GrabRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GrabRequest::GetClassData() const { return &_class_data_; }
 
+void GrabRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GrabRequest *>(to)->MergeFrom(
+      static_cast<const GrabRequest &>(from));
+}
 
-void GrabRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GrabRequest*>(&to_msg);
-  auto& from = static_cast<const GrabRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.GrabRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void GrabRequest::MergeFrom(const GrabRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.GrabRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GrabRequest::CopyFrom(const GrabRequest& from) {
@@ -646,9 +735,10 @@ void GrabRequest::InternalSwap(GrabRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GrabRequest::GetMetadata() const {
@@ -661,34 +751,42 @@ void GrabRequest::InternalSwap(GrabRequest* other) {
 
 class GrabResponse::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GrabResponse* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GrabResponse::_Internal::extra(const GrabResponse* msg) {
+  return *msg->extra_;
+}
+void GrabResponse::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 GrabResponse::GrabResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.gripper.v1.GrabResponse)
 }
 GrabResponse::GrabResponse(const GrabResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GrabResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.success_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.success_ = from._impl_.success_;
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  success_ = from.success_;
   // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.GrabResponse)
 }
 
-inline void GrabResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.success_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void GrabResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&extra_)) + sizeof(success_));
 }
 
 GrabResponse::~GrabResponse() {
@@ -702,10 +800,11 @@ GrabResponse::~GrabResponse() {
 
 inline void GrabResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GrabResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void GrabResponse::Clear() {
@@ -714,7 +813,11 @@ void GrabResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.success_ = false;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  success_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -727,7 +830,15 @@ const char* GrabResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // bool success = 1 [json_name = "success"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -767,6 +878,13 @@ uint8_t* GrabResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -783,33 +901,47 @@ size_t GrabResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
   // bool success = 1 [json_name = "success"];
   if (this->_internal_success() != 0) {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GrabResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     GrabResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GrabResponse::GetClassData() const { return &_class_data_; }
 
+void GrabResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GrabResponse *>(to)->MergeFrom(
+      static_cast<const GrabResponse &>(from));
+}
 
-void GrabResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GrabResponse*>(&to_msg);
-  auto& from = static_cast<const GrabResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.GrabResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void GrabResponse::MergeFrom(const GrabResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.GrabResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_success() != 0) {
-    _this->_internal_set_success(from._internal_success());
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GrabResponse::CopyFrom(const GrabResponse& from) {
@@ -826,7 +958,12 @@ bool GrabResponse::IsInitialized() const {
 void GrabResponse::InternalSwap(GrabResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.success_, other->_impl_.success_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GrabResponse, success_)
+      + sizeof(GrabResponse::success_)
+      - PROTOBUF_FIELD_OFFSET(GrabResponse, extra_)>(
+          reinterpret_cast<char*>(&extra_),
+          reinterpret_cast<char*>(&other->extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GrabResponse::GetMetadata() const {
@@ -839,45 +976,50 @@ void GrabResponse::InternalSwap(GrabResponse* other) {
 
 class StopRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const StopRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+StopRequest::_Internal::extra(const StopRequest* msg) {
+  return *msg->extra_;
+}
+void StopRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 StopRequest::StopRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.gripper.v1.StopRequest)
 }
 StopRequest::StopRequest(const StopRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  StopRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.StopRequest)
 }
 
-inline void StopRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void StopRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 StopRequest::~StopRequest() {
@@ -891,11 +1033,12 @@ StopRequest::~StopRequest() {
 
 inline void StopRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void StopRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void StopRequest::Clear() {
@@ -904,7 +1047,11 @@ void StopRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -921,6 +1068,14 @@ const char* StopRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.component.gripper.v1.StopRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -963,6 +1118,13 @@ uint8_t* StopRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -986,28 +1148,42 @@ size_t StopRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StopRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     StopRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StopRequest::GetClassData() const { return &_class_data_; }
 
+void StopRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<StopRequest *>(to)->MergeFrom(
+      static_cast<const StopRequest &>(from));
+}
 
-void StopRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<StopRequest*>(&to_msg);
-  auto& from = static_cast<const StopRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.StopRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void StopRequest::MergeFrom(const StopRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.StopRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StopRequest::CopyFrom(const StopRequest& from) {
@@ -1027,9 +1203,10 @@ void StopRequest::InternalSwap(StopRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StopRequest::GetMetadata() const {
@@ -1051,7 +1228,6 @@ StopResponse::StopResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 StopResponse::StopResponse(const StopResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  StopResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.StopResponse)
 }
