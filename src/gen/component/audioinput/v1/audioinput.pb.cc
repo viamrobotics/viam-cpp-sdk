@@ -25,10 +25,9 @@ namespace component {
 namespace audioinput {
 namespace v1 {
 PROTOBUF_CONSTEXPR RecordRequest::RecordRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.duration_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , duration_(nullptr){}
 struct RecordRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RecordRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,11 +38,11 @@ struct RecordRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RecordRequestDefaultTypeInternal _RecordRequest_default_instance_;
 PROTOBUF_CONSTEXPR AudioChunkInfo::AudioChunkInfo(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.sample_format_)*/0
-  , /*decltype(_impl_.channels_)*/0u
-  , /*decltype(_impl_.sampling_rate_)*/int64_t{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : sample_format_(0)
+
+  , channels_(0u)
+  , sampling_rate_(int64_t{0}){}
 struct AudioChunkInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AudioChunkInfoDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -54,10 +53,9 @@ struct AudioChunkInfoDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AudioChunkInfoDefaultTypeInternal _AudioChunkInfo_default_instance_;
 PROTOBUF_CONSTEXPR AudioChunk::AudioChunk(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.length_)*/0u
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , length_(0u){}
 struct AudioChunkDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AudioChunkDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -68,10 +66,10 @@ struct AudioChunkDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AudioChunkDefaultTypeInternal _AudioChunk_default_instance_;
 PROTOBUF_CONSTEXPR ChunksRequest::ChunksRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.sample_format_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , sample_format_(0)
+{}
 struct ChunksRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ChunksRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -82,10 +80,8 @@ struct ChunksRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ChunksRequestDefaultTypeInternal _ChunksRequest_default_instance_;
 PROTOBUF_CONSTEXPR ChunksResponse::ChunksResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : _oneof_case_{}{}
 struct ChunksResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ChunksResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -96,9 +92,8 @@ struct ChunksResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ChunksResponseDefaultTypeInternal _ChunksResponse_default_instance_;
 PROTOBUF_CONSTEXPR PropertiesRequest::PropertiesRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct PropertiesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PropertiesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -109,15 +104,14 @@ struct PropertiesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PropertiesRequestDefaultTypeInternal _PropertiesRequest_default_instance_;
 PROTOBUF_CONSTEXPR PropertiesResponse::PropertiesResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.latency_)*/nullptr
-  , /*decltype(_impl_.channel_count_)*/0u
-  , /*decltype(_impl_.sample_rate_)*/0u
-  , /*decltype(_impl_.sample_size_)*/0u
-  , /*decltype(_impl_.is_big_endian_)*/false
-  , /*decltype(_impl_.is_float_)*/false
-  , /*decltype(_impl_.is_interleaved_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : latency_(nullptr)
+  , channel_count_(0u)
+  , sample_rate_(0u)
+  , sample_size_(0u)
+  , is_big_endian_(false)
+  , is_float_(false)
+  , is_interleaved_(false){}
 struct PropertiesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PropertiesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -142,62 +136,62 @@ const uint32_t TableStruct_component_2faudioinput_2fv1_2faudioinput_2eproto::off
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::RecordRequest, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::RecordRequest, _impl_.duration_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::RecordRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::RecordRequest, duration_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, _impl_.sample_format_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, _impl_.channels_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, _impl_.sampling_rate_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, sample_format_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, channels_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunkInfo, sampling_rate_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunk, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunk, _impl_.data_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunk, _impl_.length_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunk, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::AudioChunk, length_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksRequest, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksRequest, _impl_.sample_format_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksRequest, sample_format_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksResponse, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksResponse, _impl_._oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksResponse, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksResponse, _impl_.type_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::ChunksResponse, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesRequest, name_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.channel_count_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.latency_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.sample_rate_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.sample_size_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.is_big_endian_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.is_float_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, _impl_.is_interleaved_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, channel_count_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, latency_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, sample_rate_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, sample_size_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, is_big_endian_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, is_float_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioinput::v1::PropertiesResponse, is_interleaved_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::audioinput::v1::RecordRequest)},
@@ -313,56 +307,45 @@ class RecordRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 RecordRequest::_Internal::duration(const RecordRequest* msg) {
-  return *msg->_impl_.duration_;
+  return *msg->duration_;
 }
 void RecordRequest::clear_duration() {
-  if (GetArenaForAllocation() == nullptr && _impl_.duration_ != nullptr) {
-    delete _impl_.duration_;
+  if (GetArenaForAllocation() == nullptr && duration_ != nullptr) {
+    delete duration_;
   }
-  _impl_.duration_ = nullptr;
+  duration_ = nullptr;
 }
 RecordRequest::RecordRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.RecordRequest)
 }
 RecordRequest::RecordRequest(const RecordRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RecordRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.duration_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_duration()) {
-    _this->_impl_.duration_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.duration_);
+    duration_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.duration_);
+  } else {
+    duration_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.RecordRequest)
 }
 
-inline void RecordRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.duration_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void RecordRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+duration_ = nullptr;
 }
 
 RecordRequest::~RecordRequest() {
@@ -376,12 +359,12 @@ RecordRequest::~RecordRequest() {
 
 inline void RecordRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.duration_;
+  name_.Destroy();
+  if (this != internal_default_instance()) delete duration_;
 }
 
 void RecordRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void RecordRequest::Clear() {
@@ -390,11 +373,11 @@ void RecordRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.duration_ != nullptr) {
-    delete _impl_.duration_;
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && duration_ != nullptr) {
+    delete duration_;
   }
-  _impl_.duration_ = nullptr;
+  duration_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -495,35 +478,38 @@ size_t RecordRequest::ByteSizeLong() const {
   if (this->_internal_has_duration()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.duration_);
+        *duration_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RecordRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     RecordRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RecordRequest::GetClassData() const { return &_class_data_; }
 
+void RecordRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RecordRequest *>(to)->MergeFrom(
+      static_cast<const RecordRequest &>(from));
+}
 
-void RecordRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RecordRequest*>(&to_msg);
-  auto& from = static_cast<const RecordRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.RecordRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void RecordRequest::MergeFrom(const RecordRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.RecordRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (from._internal_has_duration()) {
-    _this->_internal_mutable_duration()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
-        from._internal_duration());
+    _internal_mutable_duration()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_duration());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RecordRequest::CopyFrom(const RecordRequest& from) {
@@ -543,10 +529,10 @@ void RecordRequest::InternalSwap(RecordRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
-  swap(_impl_.duration_, other->_impl_.duration_);
+  swap(duration_, other->duration_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RecordRequest::GetMetadata() const {
@@ -564,35 +550,23 @@ class AudioChunkInfo::_Internal {
 AudioChunkInfo::AudioChunkInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.AudioChunkInfo)
 }
 AudioChunkInfo::AudioChunkInfo(const AudioChunkInfo& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AudioChunkInfo* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.sample_format_){}
-    , decltype(_impl_.channels_){}
-    , decltype(_impl_.sampling_rate_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.sample_format_, &from._impl_.sample_format_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.sampling_rate_) -
-    reinterpret_cast<char*>(&_impl_.sample_format_)) + sizeof(_impl_.sampling_rate_));
+  ::memcpy(&sample_format_, &from.sample_format_,
+    static_cast<size_t>(reinterpret_cast<char*>(&sampling_rate_) -
+    reinterpret_cast<char*>(&sample_format_)) + sizeof(sampling_rate_));
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.AudioChunkInfo)
 }
 
-inline void AudioChunkInfo::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.sample_format_){0}
-    , decltype(_impl_.channels_){0u}
-    , decltype(_impl_.sampling_rate_){int64_t{0}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void AudioChunkInfo::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&sample_format_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&sampling_rate_) -
+    reinterpret_cast<char*>(&sample_format_)) + sizeof(sampling_rate_));
 }
 
 AudioChunkInfo::~AudioChunkInfo() {
@@ -609,7 +583,7 @@ inline void AudioChunkInfo::SharedDtor() {
 }
 
 void AudioChunkInfo::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AudioChunkInfo::Clear() {
@@ -618,9 +592,9 @@ void AudioChunkInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.sample_format_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.sampling_rate_) -
-      reinterpret_cast<char*>(&_impl_.sample_format_)) + sizeof(_impl_.sampling_rate_));
+  ::memset(&sample_format_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&sampling_rate_) -
+      reinterpret_cast<char*>(&sample_format_)) + sizeof(sampling_rate_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -642,7 +616,7 @@ const char* AudioChunkInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // uint32 channels = 2 [json_name = "channels"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.channels_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          channels_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -650,7 +624,7 @@ const char* AudioChunkInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // int64 sampling_rate = 3 [json_name = "samplingRate"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.sampling_rate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          sampling_rate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -735,34 +709,38 @@ size_t AudioChunkInfo::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_sampling_rate());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioChunkInfo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AudioChunkInfo::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioChunkInfo::GetClassData() const { return &_class_data_; }
 
+void AudioChunkInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AudioChunkInfo *>(to)->MergeFrom(
+      static_cast<const AudioChunkInfo &>(from));
+}
 
-void AudioChunkInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AudioChunkInfo*>(&to_msg);
-  auto& from = static_cast<const AudioChunkInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.AudioChunkInfo)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AudioChunkInfo::MergeFrom(const AudioChunkInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.AudioChunkInfo)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_sample_format() != 0) {
-    _this->_internal_set_sample_format(from._internal_sample_format());
+    _internal_set_sample_format(from._internal_sample_format());
   }
   if (from._internal_channels() != 0) {
-    _this->_internal_set_channels(from._internal_channels());
+    _internal_set_channels(from._internal_channels());
   }
   if (from._internal_sampling_rate() != 0) {
-    _this->_internal_set_sampling_rate(from._internal_sampling_rate());
+    _internal_set_sampling_rate(from._internal_sampling_rate());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AudioChunkInfo::CopyFrom(const AudioChunkInfo& from) {
@@ -780,11 +758,11 @@ void AudioChunkInfo::InternalSwap(AudioChunkInfo* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AudioChunkInfo, _impl_.sampling_rate_)
-      + sizeof(AudioChunkInfo::_impl_.sampling_rate_)
-      - PROTOBUF_FIELD_OFFSET(AudioChunkInfo, _impl_.sample_format_)>(
-          reinterpret_cast<char*>(&_impl_.sample_format_),
-          reinterpret_cast<char*>(&other->_impl_.sample_format_));
+      PROTOBUF_FIELD_OFFSET(AudioChunkInfo, sampling_rate_)
+      + sizeof(AudioChunkInfo::sampling_rate_)
+      - PROTOBUF_FIELD_OFFSET(AudioChunkInfo, sample_format_)>(
+          reinterpret_cast<char*>(&sample_format_),
+          reinterpret_cast<char*>(&other->sample_format_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioChunkInfo::GetMetadata() const {
@@ -802,43 +780,30 @@ class AudioChunk::_Internal {
 AudioChunk::AudioChunk(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.AudioChunk)
 }
 AudioChunk::AudioChunk(const AudioChunk& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AudioChunk* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , decltype(_impl_.length_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.data_.InitDefault();
+  data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
+    data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data().empty()) {
-    _this->_impl_.data_.Set(from._internal_data(), 
-      _this->GetArenaForAllocation());
+    data_.Set(from._internal_data(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.length_ = from._impl_.length_;
+  length_ = from.length_;
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.AudioChunk)
 }
 
-inline void AudioChunk::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , decltype(_impl_.length_){0u}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.data_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void AudioChunk::SharedCtor() {
+data_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  data_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+length_ = 0u;
 }
 
 AudioChunk::~AudioChunk() {
@@ -852,11 +817,11 @@ AudioChunk::~AudioChunk() {
 
 inline void AudioChunk::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.data_.Destroy();
+  data_.Destroy();
 }
 
 void AudioChunk::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AudioChunk::Clear() {
@@ -865,8 +830,8 @@ void AudioChunk::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.data_.ClearToEmpty();
-  _impl_.length_ = 0u;
+  data_.ClearToEmpty();
+  length_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -888,7 +853,7 @@ const char* AudioChunk::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // uint32 length = 2 [json_name = "length"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.length_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          length_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -962,31 +927,35 @@ size_t AudioChunk::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_length());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioChunk::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AudioChunk::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioChunk::GetClassData() const { return &_class_data_; }
 
+void AudioChunk::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AudioChunk *>(to)->MergeFrom(
+      static_cast<const AudioChunk &>(from));
+}
 
-void AudioChunk::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AudioChunk*>(&to_msg);
-  auto& from = static_cast<const AudioChunk&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.AudioChunk)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AudioChunk::MergeFrom(const AudioChunk& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.AudioChunk)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data().empty()) {
-    _this->_internal_set_data(from._internal_data());
+    _internal_set_data(from._internal_data());
   }
   if (from._internal_length() != 0) {
-    _this->_internal_set_length(from._internal_length());
+    _internal_set_length(from._internal_length());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AudioChunk::CopyFrom(const AudioChunk& from) {
@@ -1006,10 +975,10 @@ void AudioChunk::InternalSwap(AudioChunk* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.data_, lhs_arena,
-      &other->_impl_.data_, rhs_arena
+      &data_, lhs_arena,
+      &other->data_, rhs_arena
   );
-  swap(_impl_.length_, other->_impl_.length_);
+  swap(length_, other->length_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioChunk::GetMetadata() const {
@@ -1027,43 +996,30 @@ class ChunksRequest::_Internal {
 ChunksRequest::ChunksRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.ChunksRequest)
 }
 ChunksRequest::ChunksRequest(const ChunksRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ChunksRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.sample_format_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.sample_format_ = from._impl_.sample_format_;
+  sample_format_ = from.sample_format_;
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.ChunksRequest)
 }
 
-inline void ChunksRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.sample_format_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ChunksRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+sample_format_ = 0;
 }
 
 ChunksRequest::~ChunksRequest() {
@@ -1077,11 +1033,11 @@ ChunksRequest::~ChunksRequest() {
 
 inline void ChunksRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
+  name_.Destroy();
 }
 
 void ChunksRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ChunksRequest::Clear() {
@@ -1090,8 +1046,8 @@ void ChunksRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.sample_format_ = 0;
+  name_.ClearToEmpty();
+  sample_format_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1195,31 +1151,35 @@ size_t ChunksRequest::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_sample_format());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChunksRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ChunksRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChunksRequest::GetClassData() const { return &_class_data_; }
 
+void ChunksRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ChunksRequest *>(to)->MergeFrom(
+      static_cast<const ChunksRequest &>(from));
+}
 
-void ChunksRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ChunksRequest*>(&to_msg);
-  auto& from = static_cast<const ChunksRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.ChunksRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ChunksRequest::MergeFrom(const ChunksRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.ChunksRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (from._internal_sample_format() != 0) {
-    _this->_internal_set_sample_format(from._internal_sample_format());
+    _internal_set_sample_format(from._internal_sample_format());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ChunksRequest::CopyFrom(const ChunksRequest& from) {
@@ -1239,10 +1199,10 @@ void ChunksRequest::InternalSwap(ChunksRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
-  swap(_impl_.sample_format_, other->_impl_.sample_format_);
+  swap(sample_format_, other->sample_format_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ChunksRequest::GetMetadata() const {
@@ -1261,11 +1221,11 @@ class ChunksResponse::_Internal {
 
 const ::viam::component::audioinput::v1::AudioChunkInfo&
 ChunksResponse::_Internal::info(const ChunksResponse* msg) {
-  return *msg->_impl_.type_.info_;
+  return *msg->type_.info_;
 }
 const ::viam::component::audioinput::v1::AudioChunk&
 ChunksResponse::_Internal::chunk(const ChunksResponse* msg) {
-  return *msg->_impl_.type_.chunk_;
+  return *msg->type_.chunk_;
 }
 void ChunksResponse::set_allocated_info(::viam::component::audioinput::v1::AudioChunkInfo* info) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -1278,7 +1238,7 @@ void ChunksResponse::set_allocated_info(::viam::component::audioinput::v1::Audio
           message_arena, info, submessage_arena);
     }
     set_has_info();
-    _impl_.type_.info_ = info;
+    type_.info_ = info;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.component.audioinput.v1.ChunksResponse.info)
 }
@@ -1293,35 +1253,27 @@ void ChunksResponse::set_allocated_chunk(::viam::component::audioinput::v1::Audi
           message_arena, chunk, submessage_arena);
     }
     set_has_chunk();
-    _impl_.type_.chunk_ = chunk;
+    type_.chunk_ = chunk;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.component.audioinput.v1.ChunksResponse.chunk)
 }
 ChunksResponse::ChunksResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.ChunksResponse)
 }
 ChunksResponse::ChunksResponse(const ChunksResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ChunksResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_type();
   switch (from.type_case()) {
     case kInfo: {
-      _this->_internal_mutable_info()->::viam::component::audioinput::v1::AudioChunkInfo::MergeFrom(
-          from._internal_info());
+      _internal_mutable_info()->::viam::component::audioinput::v1::AudioChunkInfo::MergeFrom(from._internal_info());
       break;
     }
     case kChunk: {
-      _this->_internal_mutable_chunk()->::viam::component::audioinput::v1::AudioChunk::MergeFrom(
-          from._internal_chunk());
+      _internal_mutable_chunk()->::viam::component::audioinput::v1::AudioChunk::MergeFrom(from._internal_chunk());
       break;
     }
     case TYPE_NOT_SET: {
@@ -1331,16 +1283,8 @@ ChunksResponse::ChunksResponse(const ChunksResponse& from)
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.ChunksResponse)
 }
 
-inline void ChunksResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_type();
+inline void ChunksResponse::SharedCtor() {
+clear_has_type();
 }
 
 ChunksResponse::~ChunksResponse() {
@@ -1360,7 +1304,7 @@ inline void ChunksResponse::SharedDtor() {
 }
 
 void ChunksResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ChunksResponse::clear_type() {
@@ -1368,13 +1312,13 @@ void ChunksResponse::clear_type() {
   switch (type_case()) {
     case kInfo: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.type_.info_;
+        delete type_.info_;
       }
       break;
     }
     case kChunk: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.type_.chunk_;
+        delete type_.chunk_;
       }
       break;
     }
@@ -1382,7 +1326,7 @@ void ChunksResponse::clear_type() {
       break;
     }
   }
-  _impl_._oneof_case_[0] = TYPE_NOT_SET;
+  _oneof_case_[0] = TYPE_NOT_SET;
 }
 
 
@@ -1482,54 +1426,56 @@ size_t ChunksResponse::ByteSizeLong() const {
     case kInfo: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.type_.info_);
+          *type_.info_);
       break;
     }
     // .viam.component.audioinput.v1.AudioChunk chunk = 2 [json_name = "chunk"];
     case kChunk: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.type_.chunk_);
+          *type_.chunk_);
       break;
     }
     case TYPE_NOT_SET: {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChunksResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ChunksResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChunksResponse::GetClassData() const { return &_class_data_; }
 
+void ChunksResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ChunksResponse *>(to)->MergeFrom(
+      static_cast<const ChunksResponse &>(from));
+}
 
-void ChunksResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ChunksResponse*>(&to_msg);
-  auto& from = static_cast<const ChunksResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.ChunksResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ChunksResponse::MergeFrom(const ChunksResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.ChunksResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.type_case()) {
     case kInfo: {
-      _this->_internal_mutable_info()->::viam::component::audioinput::v1::AudioChunkInfo::MergeFrom(
-          from._internal_info());
+      _internal_mutable_info()->::viam::component::audioinput::v1::AudioChunkInfo::MergeFrom(from._internal_info());
       break;
     }
     case kChunk: {
-      _this->_internal_mutable_chunk()->::viam::component::audioinput::v1::AudioChunk::MergeFrom(
-          from._internal_chunk());
+      _internal_mutable_chunk()->::viam::component::audioinput::v1::AudioChunk::MergeFrom(from._internal_chunk());
       break;
     }
     case TYPE_NOT_SET: {
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ChunksResponse::CopyFrom(const ChunksResponse& from) {
@@ -1546,8 +1492,8 @@ bool ChunksResponse::IsInitialized() const {
 void ChunksResponse::InternalSwap(ChunksResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.type_, other->_impl_.type_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(type_, other->type_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ChunksResponse::GetMetadata() const {
@@ -1565,40 +1511,28 @@ class PropertiesRequest::_Internal {
 PropertiesRequest::PropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.PropertiesRequest)
 }
 PropertiesRequest::PropertiesRequest(const PropertiesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PropertiesRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.PropertiesRequest)
 }
 
-inline void PropertiesRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void PropertiesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 PropertiesRequest::~PropertiesRequest() {
@@ -1612,11 +1546,11 @@ PropertiesRequest::~PropertiesRequest() {
 
 inline void PropertiesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
+  name_.Destroy();
 }
 
 void PropertiesRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void PropertiesRequest::Clear() {
@@ -1625,7 +1559,7 @@ void PropertiesRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
+  name_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1707,28 +1641,32 @@ size_t PropertiesRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PropertiesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     PropertiesRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PropertiesRequest::GetClassData() const { return &_class_data_; }
 
+void PropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PropertiesRequest *>(to)->MergeFrom(
+      static_cast<const PropertiesRequest &>(from));
+}
 
-void PropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<PropertiesRequest*>(&to_msg);
-  auto& from = static_cast<const PropertiesRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.PropertiesRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void PropertiesRequest::MergeFrom(const PropertiesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.PropertiesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PropertiesRequest::CopyFrom(const PropertiesRequest& from) {
@@ -1748,8 +1686,8 @@ void PropertiesRequest::InternalSwap(PropertiesRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
 }
 
@@ -1768,57 +1706,39 @@ class PropertiesResponse::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 PropertiesResponse::_Internal::latency(const PropertiesResponse* msg) {
-  return *msg->_impl_.latency_;
+  return *msg->latency_;
 }
 void PropertiesResponse::clear_latency() {
-  if (GetArenaForAllocation() == nullptr && _impl_.latency_ != nullptr) {
-    delete _impl_.latency_;
+  if (GetArenaForAllocation() == nullptr && latency_ != nullptr) {
+    delete latency_;
   }
-  _impl_.latency_ = nullptr;
+  latency_ = nullptr;
 }
 PropertiesResponse::PropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.audioinput.v1.PropertiesResponse)
 }
 PropertiesResponse::PropertiesResponse(const PropertiesResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PropertiesResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.latency_){nullptr}
-    , decltype(_impl_.channel_count_){}
-    , decltype(_impl_.sample_rate_){}
-    , decltype(_impl_.sample_size_){}
-    , decltype(_impl_.is_big_endian_){}
-    , decltype(_impl_.is_float_){}
-    , decltype(_impl_.is_interleaved_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_latency()) {
-    _this->_impl_.latency_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.latency_);
+    latency_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.latency_);
+  } else {
+    latency_ = nullptr;
   }
-  ::memcpy(&_impl_.channel_count_, &from._impl_.channel_count_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.is_interleaved_) -
-    reinterpret_cast<char*>(&_impl_.channel_count_)) + sizeof(_impl_.is_interleaved_));
+  ::memcpy(&channel_count_, &from.channel_count_,
+    static_cast<size_t>(reinterpret_cast<char*>(&is_interleaved_) -
+    reinterpret_cast<char*>(&channel_count_)) + sizeof(is_interleaved_));
   // @@protoc_insertion_point(copy_constructor:viam.component.audioinput.v1.PropertiesResponse)
 }
 
-inline void PropertiesResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.latency_){nullptr}
-    , decltype(_impl_.channel_count_){0u}
-    , decltype(_impl_.sample_rate_){0u}
-    , decltype(_impl_.sample_size_){0u}
-    , decltype(_impl_.is_big_endian_){false}
-    , decltype(_impl_.is_float_){false}
-    , decltype(_impl_.is_interleaved_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PropertiesResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&latency_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&is_interleaved_) -
+    reinterpret_cast<char*>(&latency_)) + sizeof(is_interleaved_));
 }
 
 PropertiesResponse::~PropertiesResponse() {
@@ -1832,11 +1752,11 @@ PropertiesResponse::~PropertiesResponse() {
 
 inline void PropertiesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.latency_;
+  if (this != internal_default_instance()) delete latency_;
 }
 
 void PropertiesResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void PropertiesResponse::Clear() {
@@ -1845,13 +1765,13 @@ void PropertiesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.latency_ != nullptr) {
-    delete _impl_.latency_;
+  if (GetArenaForAllocation() == nullptr && latency_ != nullptr) {
+    delete latency_;
   }
-  _impl_.latency_ = nullptr;
-  ::memset(&_impl_.channel_count_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.is_interleaved_) -
-      reinterpret_cast<char*>(&_impl_.channel_count_)) + sizeof(_impl_.is_interleaved_));
+  latency_ = nullptr;
+  ::memset(&channel_count_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&is_interleaved_) -
+      reinterpret_cast<char*>(&channel_count_)) + sizeof(is_interleaved_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1864,7 +1784,7 @@ const char* PropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // uint32 channel_count = 1 [json_name = "channelCount"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.channel_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          channel_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1880,7 +1800,7 @@ const char* PropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // uint32 sample_rate = 3 [json_name = "sampleRate"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.sample_rate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          sample_rate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1888,7 +1808,7 @@ const char* PropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // uint32 sample_size = 4 [json_name = "sampleSize"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.sample_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          sample_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1896,7 +1816,7 @@ const char* PropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // bool is_big_endian = 5 [json_name = "isBigEndian"];
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.is_big_endian_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          is_big_endian_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1904,7 +1824,7 @@ const char* PropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // bool is_float = 6 [json_name = "isFloat"];
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.is_float_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          is_float_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1912,7 +1832,7 @@ const char* PropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // bool is_interleaved = 7 [json_name = "isInterleaved"];
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.is_interleaved_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          is_interleaved_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2009,7 +1929,7 @@ size_t PropertiesResponse::ByteSizeLong() const {
   if (this->_internal_has_latency()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.latency_);
+        *latency_);
   }
 
   // uint32 channel_count = 1 [json_name = "channelCount"];
@@ -2042,47 +1962,50 @@ size_t PropertiesResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PropertiesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     PropertiesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PropertiesResponse::GetClassData() const { return &_class_data_; }
 
+void PropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PropertiesResponse *>(to)->MergeFrom(
+      static_cast<const PropertiesResponse &>(from));
+}
 
-void PropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<PropertiesResponse*>(&to_msg);
-  auto& from = static_cast<const PropertiesResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.PropertiesResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void PropertiesResponse::MergeFrom(const PropertiesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioinput.v1.PropertiesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_latency()) {
-    _this->_internal_mutable_latency()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
-        from._internal_latency());
+    _internal_mutable_latency()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_latency());
   }
   if (from._internal_channel_count() != 0) {
-    _this->_internal_set_channel_count(from._internal_channel_count());
+    _internal_set_channel_count(from._internal_channel_count());
   }
   if (from._internal_sample_rate() != 0) {
-    _this->_internal_set_sample_rate(from._internal_sample_rate());
+    _internal_set_sample_rate(from._internal_sample_rate());
   }
   if (from._internal_sample_size() != 0) {
-    _this->_internal_set_sample_size(from._internal_sample_size());
+    _internal_set_sample_size(from._internal_sample_size());
   }
   if (from._internal_is_big_endian() != 0) {
-    _this->_internal_set_is_big_endian(from._internal_is_big_endian());
+    _internal_set_is_big_endian(from._internal_is_big_endian());
   }
   if (from._internal_is_float() != 0) {
-    _this->_internal_set_is_float(from._internal_is_float());
+    _internal_set_is_float(from._internal_is_float());
   }
   if (from._internal_is_interleaved() != 0) {
-    _this->_internal_set_is_interleaved(from._internal_is_interleaved());
+    _internal_set_is_interleaved(from._internal_is_interleaved());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PropertiesResponse::CopyFrom(const PropertiesResponse& from) {
@@ -2100,11 +2023,11 @@ void PropertiesResponse::InternalSwap(PropertiesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PropertiesResponse, _impl_.is_interleaved_)
-      + sizeof(PropertiesResponse::_impl_.is_interleaved_)
-      - PROTOBUF_FIELD_OFFSET(PropertiesResponse, _impl_.latency_)>(
-          reinterpret_cast<char*>(&_impl_.latency_),
-          reinterpret_cast<char*>(&other->_impl_.latency_));
+      PROTOBUF_FIELD_OFFSET(PropertiesResponse, is_interleaved_)
+      + sizeof(PropertiesResponse::is_interleaved_)
+      - PROTOBUF_FIELD_OFFSET(PropertiesResponse, latency_)>(
+          reinterpret_cast<char*>(&latency_),
+          reinterpret_cast<char*>(&other->latency_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PropertiesResponse::GetMetadata() const {

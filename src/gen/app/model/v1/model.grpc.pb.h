@@ -61,6 +61,13 @@ class ModelService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::DeployResponse>> PrepareAsyncDeploy(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::DeployResponse>>(PrepareAsyncDeployRaw(context, request, cq));
     }
+    virtual ::grpc::Status Info(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::viam::app::model::v1::InfoResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::InfoResponse>> AsyncInfo(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::InfoResponse>>(AsyncInfoRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::InfoResponse>> PrepareAsyncInfo(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::InfoResponse>>(PrepareAsyncInfoRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -69,6 +76,8 @@ class ModelService final {
       virtual void Delete(::grpc::ClientContext* context, const ::viam::app::model::v1::DeleteRequest* request, ::viam::app::model::v1::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Deploy(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest* request, ::viam::app::model::v1::DeployResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Deploy(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest* request, ::viam::app::model::v1::DeployResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Info(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest* request, ::viam::app::model::v1::InfoResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Info(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest* request, ::viam::app::model::v1::InfoResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -81,6 +90,8 @@ class ModelService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::DeleteResponse>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::DeleteRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::DeployResponse>* AsyncDeployRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::DeployResponse>* PrepareAsyncDeployRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::InfoResponse>* AsyncInfoRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::model::v1::InfoResponse>* PrepareAsyncInfoRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -108,6 +119,13 @@ class ModelService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::DeployResponse>> PrepareAsyncDeploy(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::DeployResponse>>(PrepareAsyncDeployRaw(context, request, cq));
     }
+    ::grpc::Status Info(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::viam::app::model::v1::InfoResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::InfoResponse>> AsyncInfo(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::InfoResponse>>(AsyncInfoRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::InfoResponse>> PrepareAsyncInfo(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::InfoResponse>>(PrepareAsyncInfoRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -116,6 +134,8 @@ class ModelService final {
       void Delete(::grpc::ClientContext* context, const ::viam::app::model::v1::DeleteRequest* request, ::viam::app::model::v1::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Deploy(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest* request, ::viam::app::model::v1::DeployResponse* response, std::function<void(::grpc::Status)>) override;
       void Deploy(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest* request, ::viam::app::model::v1::DeployResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Info(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest* request, ::viam::app::model::v1::InfoResponse* response, std::function<void(::grpc::Status)>) override;
+      void Info(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest* request, ::viam::app::model::v1::InfoResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -134,9 +154,12 @@ class ModelService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::DeleteResponse>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::DeleteRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::DeployResponse>* AsyncDeployRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::DeployResponse>* PrepareAsyncDeployRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::DeployRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::InfoResponse>* AsyncInfoRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::model::v1::InfoResponse>* PrepareAsyncInfoRaw(::grpc::ClientContext* context, const ::viam::app::model::v1::InfoRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Upload_;
     const ::grpc::internal::RpcMethod rpcmethod_Delete_;
     const ::grpc::internal::RpcMethod rpcmethod_Deploy_;
+    const ::grpc::internal::RpcMethod rpcmethod_Info_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -147,6 +170,7 @@ class ModelService final {
     virtual ::grpc::Status Upload(::grpc::ServerContext* context, ::grpc::ServerReader< ::viam::app::model::v1::UploadRequest>* reader, ::viam::app::model::v1::UploadResponse* response);
     virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::viam::app::model::v1::DeleteRequest* request, ::viam::app::model::v1::DeleteResponse* response);
     virtual ::grpc::Status Deploy(::grpc::ServerContext* context, const ::viam::app::model::v1::DeployRequest* request, ::viam::app::model::v1::DeployResponse* response);
+    virtual ::grpc::Status Info(::grpc::ServerContext* context, const ::viam::app::model::v1::InfoRequest* request, ::viam::app::model::v1::InfoResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Upload : public BaseClass {
@@ -208,7 +232,27 @@ class ModelService final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Upload<WithAsyncMethod_Delete<WithAsyncMethod_Deploy<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Info : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Info() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Info() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Info(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInfo(::grpc::ServerContext* context, ::viam::app::model::v1::InfoRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::model::v1::InfoResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Upload<WithAsyncMethod_Delete<WithAsyncMethod_Deploy<WithAsyncMethod_Info<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Upload : public BaseClass {
    private:
@@ -285,7 +329,34 @@ class ModelService final {
     virtual ::grpc::ServerUnaryReactor* Deploy(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::model::v1::DeployRequest* /*request*/, ::viam::app::model::v1::DeployResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Upload<WithCallbackMethod_Delete<WithCallbackMethod_Deploy<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Info : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Info() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::model::v1::InfoRequest, ::viam::app::model::v1::InfoResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::model::v1::InfoRequest* request, ::viam::app::model::v1::InfoResponse* response) { return this->Info(context, request, response); }));}
+    void SetMessageAllocatorFor_Info(
+        ::grpc::MessageAllocator< ::viam::app::model::v1::InfoRequest, ::viam::app::model::v1::InfoResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::model::v1::InfoRequest, ::viam::app::model::v1::InfoResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Info() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Info(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Info(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Upload<WithCallbackMethod_Delete<WithCallbackMethod_Deploy<WithCallbackMethod_Info<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Upload : public BaseClass {
@@ -334,6 +405,23 @@ class ModelService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Deploy(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::DeployRequest* /*request*/, ::viam::app::model::v1::DeployResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Info : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Info() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Info() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Info(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -396,6 +484,26 @@ class ModelService final {
     }
     void RequestDeploy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Info : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Info() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Info() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Info(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -465,6 +573,28 @@ class ModelService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_Info : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Info() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Info(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Info() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Info(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Info(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Delete : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -518,9 +648,36 @@ class ModelService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDeploy(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::model::v1::DeployRequest,::viam::app::model::v1::DeployResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Deploy<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Info : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Info() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::model::v1::InfoRequest, ::viam::app::model::v1::InfoResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::model::v1::InfoRequest, ::viam::app::model::v1::InfoResponse>* streamer) {
+                       return this->StreamedInfo(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Info() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Info(::grpc::ServerContext* /*context*/, const ::viam::app::model::v1::InfoRequest* /*request*/, ::viam::app::model::v1::InfoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInfo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::model::v1::InfoRequest,::viam::app::model::v1::InfoResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Deploy<WithStreamedUnaryMethod_Info<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Deploy<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Deploy<WithStreamedUnaryMethod_Info<Service > > > StreamedService;
 };
 
 }  // namespace v1

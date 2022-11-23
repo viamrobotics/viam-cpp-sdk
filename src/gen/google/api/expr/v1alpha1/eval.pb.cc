@@ -25,10 +25,9 @@ namespace api {
 namespace expr {
 namespace v1alpha1 {
 PROTOBUF_CONSTEXPR EvalState_Result::EvalState_Result(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.expr_)*/int64_t{0}
-  , /*decltype(_impl_.value_)*/int64_t{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : expr_(int64_t{0})
+  , value_(int64_t{0}){}
 struct EvalState_ResultDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EvalState_ResultDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,10 +38,9 @@ struct EvalState_ResultDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EvalState_ResultDefaultTypeInternal _EvalState_Result_default_instance_;
 PROTOBUF_CONSTEXPR EvalState::EvalState(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.values_)*/{}
-  , /*decltype(_impl_.results_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : values_()
+  , results_(){}
 struct EvalStateDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EvalStateDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -53,10 +51,8 @@ struct EvalStateDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EvalStateDefaultTypeInternal _EvalState_default_instance_;
 PROTOBUF_CONSTEXPR ExprValue::ExprValue(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.kind_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : _oneof_case_{}{}
 struct ExprValueDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ExprValueDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -67,9 +63,8 @@ struct ExprValueDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExprValueDefaultTypeInternal _ExprValue_default_instance_;
 PROTOBUF_CONSTEXPR ErrorSet::ErrorSet(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.errors_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : errors_(){}
 struct ErrorSetDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ErrorSetDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -80,10 +75,9 @@ struct ErrorSetDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ErrorSetDefaultTypeInternal _ErrorSet_default_instance_;
 PROTOBUF_CONSTEXPR UnknownSet::UnknownSet(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.exprs_)*/{}
-  , /*decltype(_impl_._exprs_cached_byte_size_)*/{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : exprs_()
+  , _exprs_cached_byte_size_(0){}
 struct UnknownSetDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UnknownSetDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -108,40 +102,40 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState_Result, _impl_.expr_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState_Result, _impl_.value_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState_Result, expr_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState_Result, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState, _impl_.values_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState, _impl_.results_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState, values_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::EvalState, results_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ExprValue, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ExprValue, _impl_._oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ExprValue, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ExprValue, _impl_.kind_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ExprValue, kind_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ErrorSet, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ErrorSet, _impl_.errors_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::ErrorSet, errors_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::UnknownSet, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::UnknownSet, _impl_.exprs_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::UnknownSet, exprs_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::expr::v1alpha1::EvalState_Result)},
@@ -213,33 +207,23 @@ class EvalState_Result::_Internal {
 EvalState_Result::EvalState_Result(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.EvalState.Result)
 }
 EvalState_Result::EvalState_Result(const EvalState_Result& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EvalState_Result* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.expr_){}
-    , decltype(_impl_.value_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.expr_, &from._impl_.expr_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.value_) -
-    reinterpret_cast<char*>(&_impl_.expr_)) + sizeof(_impl_.value_));
+  ::memcpy(&expr_, &from.expr_,
+    static_cast<size_t>(reinterpret_cast<char*>(&value_) -
+    reinterpret_cast<char*>(&expr_)) + sizeof(value_));
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.EvalState.Result)
 }
 
-inline void EvalState_Result::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.expr_){int64_t{0}}
-    , decltype(_impl_.value_){int64_t{0}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void EvalState_Result::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&expr_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&value_) -
+    reinterpret_cast<char*>(&expr_)) + sizeof(value_));
 }
 
 EvalState_Result::~EvalState_Result() {
@@ -256,7 +240,7 @@ inline void EvalState_Result::SharedDtor() {
 }
 
 void EvalState_Result::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void EvalState_Result::Clear() {
@@ -265,9 +249,9 @@ void EvalState_Result::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.expr_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.value_) -
-      reinterpret_cast<char*>(&_impl_.expr_)) + sizeof(_impl_.value_));
+  ::memset(&expr_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&value_) -
+      reinterpret_cast<char*>(&expr_)) + sizeof(value_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -280,7 +264,7 @@ const char* EvalState_Result::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // int64 expr = 1 [json_name = "expr"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.expr_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          expr_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -288,7 +272,7 @@ const char* EvalState_Result::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // int64 value = 2 [json_name = "value"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -360,31 +344,35 @@ size_t EvalState_Result::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_value());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EvalState_Result::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     EvalState_Result::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EvalState_Result::GetClassData() const { return &_class_data_; }
 
+void EvalState_Result::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EvalState_Result *>(to)->MergeFrom(
+      static_cast<const EvalState_Result &>(from));
+}
 
-void EvalState_Result::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<EvalState_Result*>(&to_msg);
-  auto& from = static_cast<const EvalState_Result&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.EvalState.Result)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void EvalState_Result::MergeFrom(const EvalState_Result& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.EvalState.Result)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_expr() != 0) {
-    _this->_internal_set_expr(from._internal_expr());
+    _internal_set_expr(from._internal_expr());
   }
   if (from._internal_value() != 0) {
-    _this->_internal_set_value(from._internal_value());
+    _internal_set_value(from._internal_value());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EvalState_Result::CopyFrom(const EvalState_Result& from) {
@@ -402,11 +390,11 @@ void EvalState_Result::InternalSwap(EvalState_Result* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EvalState_Result, _impl_.value_)
-      + sizeof(EvalState_Result::_impl_.value_)
-      - PROTOBUF_FIELD_OFFSET(EvalState_Result, _impl_.expr_)>(
-          reinterpret_cast<char*>(&_impl_.expr_),
-          reinterpret_cast<char*>(&other->_impl_.expr_));
+      PROTOBUF_FIELD_OFFSET(EvalState_Result, value_)
+      + sizeof(EvalState_Result::value_)
+      - PROTOBUF_FIELD_OFFSET(EvalState_Result, expr_)>(
+          reinterpret_cast<char*>(&expr_),
+          reinterpret_cast<char*>(&other->expr_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata EvalState_Result::GetMetadata() const {
@@ -423,31 +411,21 @@ class EvalState::_Internal {
 
 EvalState::EvalState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  values_(arena),
+  results_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.EvalState)
 }
 EvalState::EvalState(const EvalState& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EvalState* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.values_){from._impl_.values_}
-    , decltype(_impl_.results_){from._impl_.results_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      values_(from.values_),
+      results_(from.results_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.EvalState)
 }
 
-inline void EvalState::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.values_){arena}
-    , decltype(_impl_.results_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void EvalState::SharedCtor() {
 }
 
 EvalState::~EvalState() {
@@ -461,12 +439,10 @@ EvalState::~EvalState() {
 
 inline void EvalState::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.values_.~RepeatedPtrField();
-  _impl_.results_.~RepeatedPtrField();
 }
 
 void EvalState::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void EvalState::Clear() {
@@ -475,8 +451,8 @@ void EvalState::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.values_.Clear();
-  _impl_.results_.Clear();
+  values_.Clear();
+  results_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -575,39 +551,43 @@ size_t EvalState::ByteSizeLong() const {
 
   // repeated .google.api.expr.v1alpha1.ExprValue values = 1 [json_name = "values"];
   total_size += 1UL * this->_internal_values_size();
-  for (const auto& msg : this->_impl_.values_) {
+  for (const auto& msg : this->values_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .google.api.expr.v1alpha1.EvalState.Result results = 3 [json_name = "results"];
   total_size += 1UL * this->_internal_results_size();
-  for (const auto& msg : this->_impl_.results_) {
+  for (const auto& msg : this->results_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EvalState::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     EvalState::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EvalState::GetClassData() const { return &_class_data_; }
 
+void EvalState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<EvalState *>(to)->MergeFrom(
+      static_cast<const EvalState &>(from));
+}
 
-void EvalState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<EvalState*>(&to_msg);
-  auto& from = static_cast<const EvalState&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.EvalState)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void EvalState::MergeFrom(const EvalState& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.EvalState)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.values_.MergeFrom(from._impl_.values_);
-  _this->_impl_.results_.MergeFrom(from._impl_.results_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  values_.MergeFrom(from.values_);
+  results_.MergeFrom(from.results_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EvalState::CopyFrom(const EvalState& from) {
@@ -624,8 +604,8 @@ bool EvalState::IsInitialized() const {
 void EvalState::InternalSwap(EvalState* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.values_.InternalSwap(&other->_impl_.values_);
-  _impl_.results_.InternalSwap(&other->_impl_.results_);
+  values_.InternalSwap(&other->values_);
+  results_.InternalSwap(&other->results_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata EvalState::GetMetadata() const {
@@ -645,15 +625,15 @@ class ExprValue::_Internal {
 
 const ::google::api::expr::v1alpha1::Value&
 ExprValue::_Internal::value(const ExprValue* msg) {
-  return *msg->_impl_.kind_.value_;
+  return *msg->kind_.value_;
 }
 const ::google::api::expr::v1alpha1::ErrorSet&
 ExprValue::_Internal::error(const ExprValue* msg) {
-  return *msg->_impl_.kind_.error_;
+  return *msg->kind_.error_;
 }
 const ::google::api::expr::v1alpha1::UnknownSet&
 ExprValue::_Internal::unknown(const ExprValue* msg) {
-  return *msg->_impl_.kind_.unknown_;
+  return *msg->kind_.unknown_;
 }
 void ExprValue::set_allocated_value(::google::api::expr::v1alpha1::Value* value) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -667,14 +647,14 @@ void ExprValue::set_allocated_value(::google::api::expr::v1alpha1::Value* value)
           message_arena, value, submessage_arena);
     }
     set_has_value();
-    _impl_.kind_.value_ = value;
+    kind_.value_ = value;
   }
   // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.ExprValue.value)
 }
 void ExprValue::clear_value() {
   if (_internal_has_value()) {
     if (GetArenaForAllocation() == nullptr) {
-      delete _impl_.kind_.value_;
+      delete kind_.value_;
     }
     clear_has_kind();
   }
@@ -690,7 +670,7 @@ void ExprValue::set_allocated_error(::google::api::expr::v1alpha1::ErrorSet* err
           message_arena, error, submessage_arena);
     }
     set_has_error();
-    _impl_.kind_.error_ = error;
+    kind_.error_ = error;
   }
   // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.ExprValue.error)
 }
@@ -705,40 +685,31 @@ void ExprValue::set_allocated_unknown(::google::api::expr::v1alpha1::UnknownSet*
           message_arena, unknown, submessage_arena);
     }
     set_has_unknown();
-    _impl_.kind_.unknown_ = unknown;
+    kind_.unknown_ = unknown;
   }
   // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.ExprValue.unknown)
 }
 ExprValue::ExprValue(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.ExprValue)
 }
 ExprValue::ExprValue(const ExprValue& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ExprValue* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.kind_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_kind();
   switch (from.kind_case()) {
     case kValue: {
-      _this->_internal_mutable_value()->::google::api::expr::v1alpha1::Value::MergeFrom(
-          from._internal_value());
+      _internal_mutable_value()->::google::api::expr::v1alpha1::Value::MergeFrom(from._internal_value());
       break;
     }
     case kError: {
-      _this->_internal_mutable_error()->::google::api::expr::v1alpha1::ErrorSet::MergeFrom(
-          from._internal_error());
+      _internal_mutable_error()->::google::api::expr::v1alpha1::ErrorSet::MergeFrom(from._internal_error());
       break;
     }
     case kUnknown: {
-      _this->_internal_mutable_unknown()->::google::api::expr::v1alpha1::UnknownSet::MergeFrom(
-          from._internal_unknown());
+      _internal_mutable_unknown()->::google::api::expr::v1alpha1::UnknownSet::MergeFrom(from._internal_unknown());
       break;
     }
     case KIND_NOT_SET: {
@@ -748,16 +719,8 @@ ExprValue::ExprValue(const ExprValue& from)
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.ExprValue)
 }
 
-inline void ExprValue::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.kind_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_kind();
+inline void ExprValue::SharedCtor() {
+clear_has_kind();
 }
 
 ExprValue::~ExprValue() {
@@ -777,7 +740,7 @@ inline void ExprValue::SharedDtor() {
 }
 
 void ExprValue::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ExprValue::clear_kind() {
@@ -785,19 +748,19 @@ void ExprValue::clear_kind() {
   switch (kind_case()) {
     case kValue: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.kind_.value_;
+        delete kind_.value_;
       }
       break;
     }
     case kError: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.kind_.error_;
+        delete kind_.error_;
       }
       break;
     }
     case kUnknown: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.kind_.unknown_;
+        delete kind_.unknown_;
       }
       break;
     }
@@ -805,7 +768,7 @@ void ExprValue::clear_kind() {
       break;
     }
   }
-  _impl_._oneof_case_[0] = KIND_NOT_SET;
+  _oneof_case_[0] = KIND_NOT_SET;
 }
 
 
@@ -920,66 +883,67 @@ size_t ExprValue::ByteSizeLong() const {
     case kValue: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.kind_.value_);
+          *kind_.value_);
       break;
     }
     // .google.api.expr.v1alpha1.ErrorSet error = 2 [json_name = "error"];
     case kError: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.kind_.error_);
+          *kind_.error_);
       break;
     }
     // .google.api.expr.v1alpha1.UnknownSet unknown = 3 [json_name = "unknown"];
     case kUnknown: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.kind_.unknown_);
+          *kind_.unknown_);
       break;
     }
     case KIND_NOT_SET: {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExprValue::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ExprValue::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExprValue::GetClassData() const { return &_class_data_; }
 
+void ExprValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ExprValue *>(to)->MergeFrom(
+      static_cast<const ExprValue &>(from));
+}
 
-void ExprValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ExprValue*>(&to_msg);
-  auto& from = static_cast<const ExprValue&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.ExprValue)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ExprValue::MergeFrom(const ExprValue& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.ExprValue)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.kind_case()) {
     case kValue: {
-      _this->_internal_mutable_value()->::google::api::expr::v1alpha1::Value::MergeFrom(
-          from._internal_value());
+      _internal_mutable_value()->::google::api::expr::v1alpha1::Value::MergeFrom(from._internal_value());
       break;
     }
     case kError: {
-      _this->_internal_mutable_error()->::google::api::expr::v1alpha1::ErrorSet::MergeFrom(
-          from._internal_error());
+      _internal_mutable_error()->::google::api::expr::v1alpha1::ErrorSet::MergeFrom(from._internal_error());
       break;
     }
     case kUnknown: {
-      _this->_internal_mutable_unknown()->::google::api::expr::v1alpha1::UnknownSet::MergeFrom(
-          from._internal_unknown());
+      _internal_mutable_unknown()->::google::api::expr::v1alpha1::UnknownSet::MergeFrom(from._internal_unknown());
       break;
     }
     case KIND_NOT_SET: {
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ExprValue::CopyFrom(const ExprValue& from) {
@@ -996,8 +960,8 @@ bool ExprValue::IsInitialized() const {
 void ExprValue::InternalSwap(ExprValue* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.kind_, other->_impl_.kind_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(kind_, other->kind_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ExprValue::GetMetadata() const {
@@ -1013,33 +977,23 @@ class ErrorSet::_Internal {
 };
 
 void ErrorSet::clear_errors() {
-  _impl_.errors_.Clear();
+  errors_.Clear();
 }
 ErrorSet::ErrorSet(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  errors_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.ErrorSet)
 }
 ErrorSet::ErrorSet(const ErrorSet& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ErrorSet* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.errors_){from._impl_.errors_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      errors_(from.errors_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.ErrorSet)
 }
 
-inline void ErrorSet::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.errors_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ErrorSet::SharedCtor() {
 }
 
 ErrorSet::~ErrorSet() {
@@ -1053,11 +1007,10 @@ ErrorSet::~ErrorSet() {
 
 inline void ErrorSet::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.errors_.~RepeatedPtrField();
 }
 
 void ErrorSet::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ErrorSet::Clear() {
@@ -1066,7 +1019,7 @@ void ErrorSet::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.errors_.Clear();
+  errors_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1144,31 +1097,35 @@ size_t ErrorSet::ByteSizeLong() const {
 
   // repeated .google.rpc.Status errors = 1 [json_name = "errors"];
   total_size += 1UL * this->_internal_errors_size();
-  for (const auto& msg : this->_impl_.errors_) {
+  for (const auto& msg : this->errors_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ErrorSet::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ErrorSet::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ErrorSet::GetClassData() const { return &_class_data_; }
 
+void ErrorSet::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ErrorSet *>(to)->MergeFrom(
+      static_cast<const ErrorSet &>(from));
+}
 
-void ErrorSet::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ErrorSet*>(&to_msg);
-  auto& from = static_cast<const ErrorSet&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.ErrorSet)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ErrorSet::MergeFrom(const ErrorSet& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.ErrorSet)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.errors_.MergeFrom(from._impl_.errors_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  errors_.MergeFrom(from.errors_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ErrorSet::CopyFrom(const ErrorSet& from) {
@@ -1185,7 +1142,7 @@ bool ErrorSet::IsInitialized() const {
 void ErrorSet::InternalSwap(ErrorSet* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.errors_.InternalSwap(&other->_impl_.errors_);
+  errors_.InternalSwap(&other->errors_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ErrorSet::GetMetadata() const {
@@ -1202,31 +1159,19 @@ class UnknownSet::_Internal {
 
 UnknownSet::UnknownSet(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  exprs_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.UnknownSet)
 }
 UnknownSet::UnknownSet(const UnknownSet& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UnknownSet* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.exprs_){from._impl_.exprs_}
-    , /*decltype(_impl_._exprs_cached_byte_size_)*/{0}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      exprs_(from.exprs_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.UnknownSet)
 }
 
-inline void UnknownSet::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.exprs_){arena}
-    , /*decltype(_impl_._exprs_cached_byte_size_)*/{0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void UnknownSet::SharedCtor() {
 }
 
 UnknownSet::~UnknownSet() {
@@ -1240,11 +1185,10 @@ UnknownSet::~UnknownSet() {
 
 inline void UnknownSet::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.exprs_.~RepeatedField();
 }
 
 void UnknownSet::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void UnknownSet::Clear() {
@@ -1253,7 +1197,7 @@ void UnknownSet::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.exprs_.Clear();
+  exprs_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1305,7 +1249,7 @@ uint8_t* UnknownSet::_InternalSerialize(
 
   // repeated int64 exprs = 1 [json_name = "exprs"];
   {
-    int byte_size = _impl_._exprs_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _exprs_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt64Packed(
           1, _internal_exprs(), byte_size, target);
@@ -1331,37 +1275,41 @@ size_t UnknownSet::ByteSizeLong() const {
   // repeated int64 exprs = 1 [json_name = "exprs"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int64Size(this->_impl_.exprs_);
+      Int64Size(this->exprs_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._exprs_cached_byte_size_.store(cached_size,
+    _exprs_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UnknownSet::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     UnknownSet::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UnknownSet::GetClassData() const { return &_class_data_; }
 
+void UnknownSet::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<UnknownSet *>(to)->MergeFrom(
+      static_cast<const UnknownSet &>(from));
+}
 
-void UnknownSet::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UnknownSet*>(&to_msg);
-  auto& from = static_cast<const UnknownSet&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.UnknownSet)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void UnknownSet::MergeFrom(const UnknownSet& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1alpha1.UnknownSet)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.exprs_.MergeFrom(from._impl_.exprs_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  exprs_.MergeFrom(from.exprs_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UnknownSet::CopyFrom(const UnknownSet& from) {
@@ -1378,7 +1326,7 @@ bool UnknownSet::IsInitialized() const {
 void UnknownSet::InternalSwap(UnknownSet* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.exprs_.InternalSwap(&other->_impl_.exprs_);
+  exprs_.InternalSwap(&other->exprs_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UnknownSet::GetMetadata() const {

@@ -28,6 +28,13 @@ static const char* DataService_method_names[] = {
   "/viam.app.data.v1.DataService/TabularDataByFilter",
   "/viam.app.data.v1.DataService/BinaryDataByFilter",
   "/viam.app.data.v1.DataService/BinaryDataByIDs",
+  "/viam.app.data.v1.DataService/DeleteTabularDataByFilter",
+  "/viam.app.data.v1.DataService/DeleteBinaryDataByFilter",
+  "/viam.app.data.v1.DataService/DeleteBinaryDataByIDs",
+  "/viam.app.data.v1.DataService/AddTagsToBinaryDataByFileIDs",
+  "/viam.app.data.v1.DataService/AddTagsToBinaryDataByFilter",
+  "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs",
+  "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter",
 };
 
 std::unique_ptr< DataService::Stub> DataService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -40,6 +47,13 @@ DataService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   : channel_(channel), rpcmethod_TabularDataByFilter_(DataService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_BinaryDataByFilter_(DataService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_BinaryDataByIDs_(DataService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteTabularDataByFilter_(DataService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteBinaryDataByFilter_(DataService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteBinaryDataByIDs_(DataService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddTagsToBinaryDataByFileIDs_(DataService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddTagsToBinaryDataByFilter_(DataService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveTagsFromBinaryDataByFileIDs_(DataService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveTagsFromBinaryDataByFilter_(DataService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DataService::Stub::TabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TabularDataByFilterRequest& request, ::viam::app::data::v1::TabularDataByFilterResponse* response) {
@@ -111,6 +125,167 @@ void DataService::Stub::async::BinaryDataByIDs(::grpc::ClientContext* context, c
   return result;
 }
 
+::grpc::Status DataService::Stub::DeleteTabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteTabularDataByFilterRequest& request, ::viam::app::data::v1::DeleteTabularDataByFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::DeleteTabularDataByFilterRequest, ::viam::app::data::v1::DeleteTabularDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteTabularDataByFilter_, context, request, response);
+}
+
+void DataService::Stub::async::DeleteTabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteTabularDataByFilterRequest* request, ::viam::app::data::v1::DeleteTabularDataByFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::DeleteTabularDataByFilterRequest, ::viam::app::data::v1::DeleteTabularDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteTabularDataByFilter_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::DeleteTabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteTabularDataByFilterRequest* request, ::viam::app::data::v1::DeleteTabularDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteTabularDataByFilter_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteTabularDataByFilterResponse>* DataService::Stub::PrepareAsyncDeleteTabularDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteTabularDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::DeleteTabularDataByFilterResponse, ::viam::app::data::v1::DeleteTabularDataByFilterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteTabularDataByFilter_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteTabularDataByFilterResponse>* DataService::Stub::AsyncDeleteTabularDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteTabularDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteTabularDataByFilterRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::DeleteBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest& request, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::DeleteBinaryDataByFilterRequest, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteBinaryDataByFilter_, context, request, response);
+}
+
+void DataService::Stub::async::DeleteBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest* request, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::DeleteBinaryDataByFilterRequest, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteBinaryDataByFilter_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::DeleteBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest* request, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteBinaryDataByFilter_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteBinaryDataByFilterResponse>* DataService::Stub::PrepareAsyncDeleteBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::DeleteBinaryDataByFilterResponse, ::viam::app::data::v1::DeleteBinaryDataByFilterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteBinaryDataByFilter_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteBinaryDataByFilterResponse>* DataService::Stub::AsyncDeleteBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteBinaryDataByFilterRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::DeleteBinaryDataByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest& request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::DeleteBinaryDataByIDsRequest, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteBinaryDataByIDs_, context, request, response);
+}
+
+void DataService::Stub::async::DeleteBinaryDataByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::DeleteBinaryDataByIDsRequest, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteBinaryDataByIDs_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::DeleteBinaryDataByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteBinaryDataByIDs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteBinaryDataByIDsResponse>* DataService::Stub::PrepareAsyncDeleteBinaryDataByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::DeleteBinaryDataByIDsResponse, ::viam::app::data::v1::DeleteBinaryDataByIDsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteBinaryDataByIDs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteBinaryDataByIDsResponse>* DataService::Stub::AsyncDeleteBinaryDataByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteBinaryDataByIDsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::AddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest& request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddTagsToBinaryDataByFileIDs_, context, request, response);
+}
+
+void DataService::Stub::async::AddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddTagsToBinaryDataByFileIDs_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::AddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddTagsToBinaryDataByFileIDs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse>* DataService::Stub::PrepareAsyncAddTagsToBinaryDataByFileIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddTagsToBinaryDataByFileIDs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse>* DataService::Stub::AsyncAddTagsToBinaryDataByFileIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAddTagsToBinaryDataByFileIDsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::AddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest& request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddTagsToBinaryDataByFilter_, context, request, response);
+}
+
+void DataService::Stub::async::AddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddTagsToBinaryDataByFilter_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::AddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddTagsToBinaryDataByFilter_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse>* DataService::Stub::PrepareAsyncAddTagsToBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse, ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddTagsToBinaryDataByFilter_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse>* DataService::Stub::AsyncAddTagsToBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAddTagsToBinaryDataByFilterRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::RemoveTagsFromBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest& request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveTagsFromBinaryDataByFileIDs_, context, request, response);
+}
+
+void DataService::Stub::async::RemoveTagsFromBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveTagsFromBinaryDataByFileIDs_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::RemoveTagsFromBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveTagsFromBinaryDataByFileIDs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse>* DataService::Stub::PrepareAsyncRemoveTagsFromBinaryDataByFileIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveTagsFromBinaryDataByFileIDs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse>* DataService::Stub::AsyncRemoveTagsFromBinaryDataByFileIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRemoveTagsFromBinaryDataByFileIDsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveTagsFromBinaryDataByFilter_, context, request, response);
+}
+
+void DataService::Stub::async::RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveTagsFromBinaryDataByFilter_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveTagsFromBinaryDataByFilter_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* DataService::Stub::PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveTagsFromBinaryDataByFilter_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* DataService::Stub::AsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 DataService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataService_method_names[0],
@@ -142,6 +317,76 @@ DataService::Service::Service() {
              ::viam::app::data::v1::BinaryDataByIDsResponse* resp) {
                return service->BinaryDataByIDs(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::DeleteTabularDataByFilterRequest, ::viam::app::data::v1::DeleteTabularDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::DeleteTabularDataByFilterRequest* req,
+             ::viam::app::data::v1::DeleteTabularDataByFilterResponse* resp) {
+               return service->DeleteTabularDataByFilter(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::DeleteBinaryDataByFilterRequest, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest* req,
+             ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* resp) {
+               return service->DeleteBinaryDataByFilter(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::DeleteBinaryDataByIDsRequest, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* req,
+             ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* resp) {
+               return service->DeleteBinaryDataByIDs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* req,
+             ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* resp) {
+               return service->AddTagsToBinaryDataByFileIDs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* req,
+             ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* resp) {
+               return service->AddTagsToBinaryDataByFilter(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* req,
+             ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* resp) {
+               return service->RemoveTagsFromBinaryDataByFileIDs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* req,
+             ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* resp) {
+               return service->RemoveTagsFromBinaryDataByFilter(ctx, req, resp);
+             }, this)));
 }
 
 DataService::Service::~Service() {
@@ -162,6 +407,55 @@ DataService::Service::~Service() {
 }
 
 ::grpc::Status DataService::Service::BinaryDataByIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::BinaryDataByIDsRequest* request, ::viam::app::data::v1::BinaryDataByIDsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::DeleteTabularDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteTabularDataByFilterRequest* request, ::viam::app::data::v1::DeleteTabularDataByFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::DeleteBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest* request, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::DeleteBinaryDataByIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::AddTagsToBinaryDataByFileIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::AddTagsToBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::RemoveTagsFromBinaryDataByFileIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::RemoveTagsFromBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response) {
   (void) context;
   (void) request;
   (void) response;

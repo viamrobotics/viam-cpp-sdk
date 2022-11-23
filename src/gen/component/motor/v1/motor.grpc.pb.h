@@ -107,7 +107,6 @@ class MotorService final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::StopResponse>>(PrepareAsyncStopRaw(context, request, cq));
     }
     // IsPowered returns true if the robot's motor off
-    // To Do (FA): This will be deprecated
     virtual ::grpc::Status IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest& request, ::viam::component::motor::v1::IsPoweredResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::IsPoweredResponse>> AsyncIsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::motor::v1::IsPoweredResponse>>(AsyncIsPoweredRaw(context, request, cq));
@@ -151,7 +150,6 @@ class MotorService final {
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // IsPowered returns true if the robot's motor off
-      // To Do (FA): This will be deprecated
       virtual void IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -322,7 +320,6 @@ class MotorService final {
     //
     virtual ::grpc::Status Stop(::grpc::ServerContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response);
     // IsPowered returns true if the robot's motor off
-    // To Do (FA): This will be deprecated
     virtual ::grpc::Status IsPowered(::grpc::ServerContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response);
   };
   template <class BaseClass>
