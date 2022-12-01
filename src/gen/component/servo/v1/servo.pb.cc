@@ -195,43 +195,44 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\036component/servo/v1/servo.proto\022\027viam.c"
-  "omponent.servo.v1\032\034google/api/annotation"
-  "s.proto\032\034google/protobuf/struct.proto\"m\n"
-  "\013MoveRequest\022\022\n\004name\030\001 \001(\tR\004name\022\033\n\tangl"
-  "e_deg\030\002 \001(\rR\010angleDeg\022-\n\005extra\030c \001(\0132\027.g"
-  "oogle.protobuf.StructR\005extra\"\016\n\014MoveResp"
-  "onse\"W\n\022GetPositionRequest\022\022\n\004name\030\001 \001(\t"
-  "R\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf."
-  "StructR\005extra\"8\n\023GetPositionResponse\022!\n\014"
-  "position_deg\030\001 \001(\rR\013positionDeg\"P\n\013StopR"
-  "equest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001("
-  "\0132\027.google.protobuf.StructR\005extra\"\016\n\014Sto"
-  "pResponse\"H\n\006Status\022!\n\014position_deg\030\001 \001("
-  "\rR\013positionDeg\022\033\n\tis_moving\030\002 \001(\010R\010isMov"
-  "ing2\277\003\n\014ServoService\022\205\001\n\004Move\022$.viam.com"
-  "ponent.servo.v1.MoveRequest\032%.viam.compo"
-  "nent.servo.v1.MoveResponse\"0\202\323\344\223\002*\032(/via"
-  "m/api/v1/component/servo/{name}/move\022\236\001\n"
-  "\013GetPosition\022+.viam.component.servo.v1.G"
-  "etPositionRequest\032,.viam.component.servo"
-  ".v1.GetPositionResponse\"4\202\323\344\223\002.\022,/viam/a"
-  "pi/v1/component/servo/{name}/position\022\205\001"
-  "\n\004Stop\022$.viam.component.servo.v1.StopReq"
-  "uest\032%.viam.component.servo.v1.StopRespo"
-  "nse\"0\202\323\344\223\002*\"(/viam/api/v1/component/serv"
-  "o/{name}/stopBA\n\033com.viam.component.serv"
-  "o.v1Z\"go.viam.com/api/component/servo/v1"
-  "b\006proto3"
+  "omponent.servo.v1\032\026common/v1/common.prot"
+  "o\032\034google/api/annotations.proto\032\034google/"
+  "protobuf/struct.proto\"m\n\013MoveRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\022\033\n\tangle_deg\030\002 \001(\rR\010ang"
+  "leDeg\022-\n\005extra\030c \001(\0132\027.google.protobuf.S"
+  "tructR\005extra\"\016\n\014MoveResponse\"W\n\022GetPosit"
+  "ionRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030"
+  "c \001(\0132\027.google.protobuf.StructR\005extra\"8\n"
+  "\023GetPositionResponse\022!\n\014position_deg\030\001 \001"
+  "(\rR\013positionDeg\"P\n\013StopRequest\022\022\n\004name\030\001"
+  " \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.proto"
+  "buf.StructR\005extra\"\016\n\014StopResponse\"H\n\006Sta"
+  "tus\022!\n\014position_deg\030\001 \001(\rR\013positionDeg\022\033"
+  "\n\tis_moving\030\002 \001(\010R\010isMoving2\303\003\n\014ServoSer"
+  "vice\022\211\001\n\004Move\022$.viam.component.servo.v1."
+  "MoveRequest\032%.viam.component.servo.v1.Mo"
+  "veResponse\"4\240\222)\001\202\323\344\223\002*\032(/viam/api/v1/com"
+  "ponent/servo/{name}/move\022\236\001\n\013GetPosition"
+  "\022+.viam.component.servo.v1.GetPositionRe"
+  "quest\032,.viam.component.servo.v1.GetPosit"
+  "ionResponse\"4\202\323\344\223\002.\022,/viam/api/v1/compon"
+  "ent/servo/{name}/position\022\205\001\n\004Stop\022$.via"
+  "m.component.servo.v1.StopRequest\032%.viam."
+  "component.servo.v1.StopResponse\"0\202\323\344\223\002*\""
+  "(/viam/api/v1/component/servo/{name}/sto"
+  "pBA\n\033com.viam.component.servo.v1Z\"go.via"
+  "m.com/api/component/servo/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fservo_2fv1_2fservo_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fservo_2fv1_2fservo_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_component_2fservo_2fv1_2fservo_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fservo_2fv1_2fservo_2eproto = {
-    false, false, 1088, descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto,
+    false, false, 1116, descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto,
     "component/servo/v1/servo.proto",
-    &descriptor_table_component_2fservo_2fv1_2fservo_2eproto_once, descriptor_table_component_2fservo_2fv1_2fservo_2eproto_deps, 2, 7,
+    &descriptor_table_component_2fservo_2fv1_2fservo_2eproto_once, descriptor_table_component_2fservo_2fv1_2fservo_2eproto_deps, 3, 7,
     schemas, file_default_instances, TableStruct_component_2fservo_2fv1_2fservo_2eproto::offsets,
     file_level_metadata_component_2fservo_2fv1_2fservo_2eproto, file_level_enum_descriptors_component_2fservo_2fv1_2fservo_2eproto,
     file_level_service_descriptors_component_2fservo_2fv1_2fservo_2eproto,

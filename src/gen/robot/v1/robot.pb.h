@@ -30,6 +30,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
@@ -92,6 +93,12 @@ extern GetOperationsRequestDefaultTypeInternal _GetOperationsRequest_default_ins
 class GetOperationsResponse;
 struct GetOperationsResponseDefaultTypeInternal;
 extern GetOperationsResponseDefaultTypeInternal _GetOperationsResponse_default_instance_;
+class GetSessionsRequest;
+struct GetSessionsRequestDefaultTypeInternal;
+extern GetSessionsRequestDefaultTypeInternal _GetSessionsRequest_default_instance_;
+class GetSessionsResponse;
+struct GetSessionsResponseDefaultTypeInternal;
+extern GetSessionsResponseDefaultTypeInternal _GetSessionsResponse_default_instance_;
 class GetStatusRequest;
 struct GetStatusRequestDefaultTypeInternal;
 extern GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
@@ -101,6 +108,9 @@ extern GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_
 class Operation;
 struct OperationDefaultTypeInternal;
 extern OperationDefaultTypeInternal _Operation_default_instance_;
+class PeerConnectionInfo;
+struct PeerConnectionInfoDefaultTypeInternal;
+extern PeerConnectionInfoDefaultTypeInternal _PeerConnectionInfo_default_instance_;
 class ResourceNamesRequest;
 struct ResourceNamesRequestDefaultTypeInternal;
 extern ResourceNamesRequestDefaultTypeInternal _ResourceNamesRequest_default_instance_;
@@ -116,6 +126,21 @@ extern ResourceRPCSubtypesRequestDefaultTypeInternal _ResourceRPCSubtypesRequest
 class ResourceRPCSubtypesResponse;
 struct ResourceRPCSubtypesResponseDefaultTypeInternal;
 extern ResourceRPCSubtypesResponseDefaultTypeInternal _ResourceRPCSubtypesResponse_default_instance_;
+class SendSessionHeartbeatRequest;
+struct SendSessionHeartbeatRequestDefaultTypeInternal;
+extern SendSessionHeartbeatRequestDefaultTypeInternal _SendSessionHeartbeatRequest_default_instance_;
+class SendSessionHeartbeatResponse;
+struct SendSessionHeartbeatResponseDefaultTypeInternal;
+extern SendSessionHeartbeatResponseDefaultTypeInternal _SendSessionHeartbeatResponse_default_instance_;
+class Session;
+struct SessionDefaultTypeInternal;
+extern SessionDefaultTypeInternal _Session_default_instance_;
+class StartSessionRequest;
+struct StartSessionRequestDefaultTypeInternal;
+extern StartSessionRequestDefaultTypeInternal _StartSessionRequest_default_instance_;
+class StartSessionResponse;
+struct StartSessionResponseDefaultTypeInternal;
+extern StartSessionResponseDefaultTypeInternal _StartSessionResponse_default_instance_;
 class Status;
 struct StatusDefaultTypeInternal;
 extern StatusDefaultTypeInternal _Status_default_instance_;
@@ -157,14 +182,22 @@ template<> ::viam::robot::v1::FrameSystemConfigRequest* Arena::CreateMaybeMessag
 template<> ::viam::robot::v1::FrameSystemConfigResponse* Arena::CreateMaybeMessage<::viam::robot::v1::FrameSystemConfigResponse>(Arena*);
 template<> ::viam::robot::v1::GetOperationsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetOperationsRequest>(Arena*);
 template<> ::viam::robot::v1::GetOperationsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetOperationsResponse>(Arena*);
+template<> ::viam::robot::v1::GetSessionsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetSessionsRequest>(Arena*);
+template<> ::viam::robot::v1::GetSessionsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetSessionsResponse>(Arena*);
 template<> ::viam::robot::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetStatusRequest>(Arena*);
 template<> ::viam::robot::v1::GetStatusResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetStatusResponse>(Arena*);
 template<> ::viam::robot::v1::Operation* Arena::CreateMaybeMessage<::viam::robot::v1::Operation>(Arena*);
+template<> ::viam::robot::v1::PeerConnectionInfo* Arena::CreateMaybeMessage<::viam::robot::v1::PeerConnectionInfo>(Arena*);
 template<> ::viam::robot::v1::ResourceNamesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceNamesRequest>(Arena*);
 template<> ::viam::robot::v1::ResourceNamesResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceNamesResponse>(Arena*);
 template<> ::viam::robot::v1::ResourceRPCSubtype* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceRPCSubtype>(Arena*);
 template<> ::viam::robot::v1::ResourceRPCSubtypesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceRPCSubtypesRequest>(Arena*);
 template<> ::viam::robot::v1::ResourceRPCSubtypesResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceRPCSubtypesResponse>(Arena*);
+template<> ::viam::robot::v1::SendSessionHeartbeatRequest* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatRequest>(Arena*);
+template<> ::viam::robot::v1::SendSessionHeartbeatResponse* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatResponse>(Arena*);
+template<> ::viam::robot::v1::Session* Arena::CreateMaybeMessage<::viam::robot::v1::Session>(Arena*);
+template<> ::viam::robot::v1::StartSessionRequest* Arena::CreateMaybeMessage<::viam::robot::v1::StartSessionRequest>(Arena*);
+template<> ::viam::robot::v1::StartSessionResponse* Arena::CreateMaybeMessage<::viam::robot::v1::StartSessionResponse>(Arena*);
 template<> ::viam::robot::v1::Status* Arena::CreateMaybeMessage<::viam::robot::v1::Status>(Arena*);
 template<> ::viam::robot::v1::StopAllRequest* Arena::CreateMaybeMessage<::viam::robot::v1::StopAllRequest>(Arena*);
 template<> ::viam::robot::v1::StopAllResponse* Arena::CreateMaybeMessage<::viam::robot::v1::StopAllResponse>(Arena*);
@@ -178,6 +211,32 @@ namespace viam {
 namespace robot {
 namespace v1 {
 
+enum PeerConnectionType : int {
+  PEER_CONNECTION_TYPE_UNSPECIFIED = 0,
+  PEER_CONNECTION_TYPE_GRPC = 1,
+  PEER_CONNECTION_TYPE_WEBRTC = 2,
+  PeerConnectionType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PeerConnectionType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool PeerConnectionType_IsValid(int value);
+constexpr PeerConnectionType PeerConnectionType_MIN = PEER_CONNECTION_TYPE_UNSPECIFIED;
+constexpr PeerConnectionType PeerConnectionType_MAX = PEER_CONNECTION_TYPE_WEBRTC;
+constexpr int PeerConnectionType_ARRAYSIZE = PeerConnectionType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PeerConnectionType_descriptor();
+template<typename T>
+inline const std::string& PeerConnectionType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PeerConnectionType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PeerConnectionType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PeerConnectionType_descriptor(), enum_t_value);
+}
+inline bool PeerConnectionType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PeerConnectionType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PeerConnectionType>(
+    PeerConnectionType_descriptor(), name, value);
+}
 // ===================================================================
 
 class FrameSystemConfig final :
@@ -1833,6 +1892,7 @@ class Operation final :
   enum : int {
     kIdFieldNumber = 1,
     kMethodFieldNumber = 2,
+    kSessionIdFieldNumber = 5,
     kArgumentsFieldNumber = 3,
     kStartedFieldNumber = 4,
   };
@@ -1862,6 +1922,24 @@ class Operation final :
   const std::string& _internal_method() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_method(const std::string& value);
   std::string* _internal_mutable_method();
+  public:
+
+  // optional string session_id = 5 [json_name = "sessionId"];
+  bool has_session_id() const;
+  private:
+  bool _internal_has_session_id() const;
+  public:
+  void clear_session_id();
+  const std::string& session_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_session_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_session_id();
+  PROTOBUF_NODISCARD std::string* release_session_id();
+  void set_allocated_session_id(std::string* session_id);
+  private:
+  const std::string& _internal_session_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(const std::string& value);
+  std::string* _internal_mutable_session_id();
   public:
 
   // .google.protobuf.Struct arguments = 3 [json_name = "arguments"];
@@ -1907,11 +1985,13 @@ class Operation final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr method_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr session_id_;
   ::PROTOBUF_NAMESPACE_ID::Struct* arguments_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* started_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2712,6 +2792,627 @@ class BlockForOperationResponse final :
 };
 // -------------------------------------------------------------------
 
+class PeerConnectionInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.PeerConnectionInfo) */ {
+ public:
+  inline PeerConnectionInfo() : PeerConnectionInfo(nullptr) {}
+  ~PeerConnectionInfo() override;
+  explicit PROTOBUF_CONSTEXPR PeerConnectionInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PeerConnectionInfo(const PeerConnectionInfo& from);
+  PeerConnectionInfo(PeerConnectionInfo&& from) noexcept
+    : PeerConnectionInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline PeerConnectionInfo& operator=(const PeerConnectionInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PeerConnectionInfo& operator=(PeerConnectionInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PeerConnectionInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PeerConnectionInfo* internal_default_instance() {
+    return reinterpret_cast<const PeerConnectionInfo*>(
+               &_PeerConnectionInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(PeerConnectionInfo& a, PeerConnectionInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PeerConnectionInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PeerConnectionInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PeerConnectionInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PeerConnectionInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PeerConnectionInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PeerConnectionInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PeerConnectionInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.PeerConnectionInfo";
+  }
+  protected:
+  explicit PeerConnectionInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRemoteAddressFieldNumber = 2,
+    kLocalAddressFieldNumber = 3,
+    kTypeFieldNumber = 1,
+  };
+  // optional string remote_address = 2 [json_name = "remoteAddress"];
+  bool has_remote_address() const;
+  private:
+  bool _internal_has_remote_address() const;
+  public:
+  void clear_remote_address();
+  const std::string& remote_address() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_remote_address(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_remote_address();
+  PROTOBUF_NODISCARD std::string* release_remote_address();
+  void set_allocated_remote_address(std::string* remote_address);
+  private:
+  const std::string& _internal_remote_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote_address(const std::string& value);
+  std::string* _internal_mutable_remote_address();
+  public:
+
+  // optional string local_address = 3 [json_name = "localAddress"];
+  bool has_local_address() const;
+  private:
+  bool _internal_has_local_address() const;
+  public:
+  void clear_local_address();
+  const std::string& local_address() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_local_address(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_local_address();
+  PROTOBUF_NODISCARD std::string* release_local_address();
+  void set_allocated_local_address(std::string* local_address);
+  private:
+  const std::string& _internal_local_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_local_address(const std::string& value);
+  std::string* _internal_mutable_local_address();
+  public:
+
+  // .viam.robot.v1.PeerConnectionType type = 1 [json_name = "type"];
+  void clear_type();
+  ::viam::robot::v1::PeerConnectionType type() const;
+  void set_type(::viam::robot::v1::PeerConnectionType value);
+  private:
+  ::viam::robot::v1::PeerConnectionType _internal_type() const;
+  void _internal_set_type(::viam::robot::v1::PeerConnectionType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.PeerConnectionInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_address_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr local_address_;
+  int type_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Session final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.Session) */ {
+ public:
+  inline Session() : Session(nullptr) {}
+  ~Session() override;
+  explicit PROTOBUF_CONSTEXPR Session(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Session(const Session& from);
+  Session(Session&& from) noexcept
+    : Session() {
+    *this = ::std::move(from);
+  }
+
+  inline Session& operator=(const Session& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Session& operator=(Session&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Session& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Session* internal_default_instance() {
+    return reinterpret_cast<const Session*>(
+               &_Session_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(Session& a, Session& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Session* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Session* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Session* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Session>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Session& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Session& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Session* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.Session";
+  }
+  protected:
+  explicit Session(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kPeerConnectionInfoFieldNumber = 2,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // optional .viam.robot.v1.PeerConnectionInfo peer_connection_info = 2 [json_name = "peerConnectionInfo"];
+  bool has_peer_connection_info() const;
+  private:
+  bool _internal_has_peer_connection_info() const;
+  public:
+  void clear_peer_connection_info();
+  const ::viam::robot::v1::PeerConnectionInfo& peer_connection_info() const;
+  PROTOBUF_NODISCARD ::viam::robot::v1::PeerConnectionInfo* release_peer_connection_info();
+  ::viam::robot::v1::PeerConnectionInfo* mutable_peer_connection_info();
+  void set_allocated_peer_connection_info(::viam::robot::v1::PeerConnectionInfo* peer_connection_info);
+  private:
+  const ::viam::robot::v1::PeerConnectionInfo& _internal_peer_connection_info() const;
+  ::viam::robot::v1::PeerConnectionInfo* _internal_mutable_peer_connection_info();
+  public:
+  void unsafe_arena_set_allocated_peer_connection_info(
+      ::viam::robot::v1::PeerConnectionInfo* peer_connection_info);
+  ::viam::robot::v1::PeerConnectionInfo* unsafe_arena_release_peer_connection_info();
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.Session)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::viam::robot::v1::PeerConnectionInfo* peer_connection_info_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSessionsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetSessionsRequest) */ {
+ public:
+  inline GetSessionsRequest() : GetSessionsRequest(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR GetSessionsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetSessionsRequest(const GetSessionsRequest& from);
+  GetSessionsRequest(GetSessionsRequest&& from) noexcept
+    : GetSessionsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetSessionsRequest& operator=(const GetSessionsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSessionsRequest& operator=(GetSessionsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetSessionsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetSessionsRequest* internal_default_instance() {
+    return reinterpret_cast<const GetSessionsRequest*>(
+               &_GetSessionsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(GetSessionsRequest& a, GetSessionsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetSessionsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetSessionsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetSessionsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetSessionsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const GetSessionsRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const GetSessionsRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.GetSessionsRequest";
+  }
+  protected:
+  explicit GetSessionsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetSessionsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSessionsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetSessionsResponse) */ {
+ public:
+  inline GetSessionsResponse() : GetSessionsResponse(nullptr) {}
+  ~GetSessionsResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetSessionsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetSessionsResponse(const GetSessionsResponse& from);
+  GetSessionsResponse(GetSessionsResponse&& from) noexcept
+    : GetSessionsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetSessionsResponse& operator=(const GetSessionsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSessionsResponse& operator=(GetSessionsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetSessionsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetSessionsResponse* internal_default_instance() {
+    return reinterpret_cast<const GetSessionsResponse*>(
+               &_GetSessionsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(GetSessionsResponse& a, GetSessionsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetSessionsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetSessionsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetSessionsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetSessionsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetSessionsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetSessionsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetSessionsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.GetSessionsResponse";
+  }
+  protected:
+  explicit GetSessionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSessionsFieldNumber = 1,
+  };
+  // repeated .viam.robot.v1.Session sessions = 1 [json_name = "sessions"];
+  int sessions_size() const;
+  private:
+  int _internal_sessions_size() const;
+  public:
+  void clear_sessions();
+  ::viam::robot::v1::Session* mutable_sessions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Session >*
+      mutable_sessions();
+  private:
+  const ::viam::robot::v1::Session& _internal_sessions(int index) const;
+  ::viam::robot::v1::Session* _internal_add_sessions();
+  public:
+  const ::viam::robot::v1::Session& sessions(int index) const;
+  ::viam::robot::v1::Session* add_sessions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Session >&
+      sessions() const;
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetSessionsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Session > sessions_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class DiscoveryQuery final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.DiscoveryQuery) */ {
  public:
@@ -2760,7 +3461,7 @@ class DiscoveryQuery final :
                &_DiscoveryQuery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    21;
 
   friend void swap(DiscoveryQuery& a, DiscoveryQuery& b) {
     a.Swap(&b);
@@ -2924,7 +3625,7 @@ class Discovery final :
                &_Discovery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    22;
 
   friend void swap(Discovery& a, Discovery& b) {
     a.Swap(&b);
@@ -3096,7 +3797,7 @@ class DiscoverComponentsRequest final :
                &_DiscoverComponentsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    23;
 
   friend void swap(DiscoverComponentsRequest& a, DiscoverComponentsRequest& b) {
     a.Swap(&b);
@@ -3248,7 +3949,7 @@ class DiscoverComponentsResponse final :
                &_DiscoverComponentsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    24;
 
   friend void swap(DiscoverComponentsResponse& a, DiscoverComponentsResponse& b) {
     a.Swap(&b);
@@ -3400,7 +4101,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    25;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -3572,7 +4273,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    26;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -3724,7 +4425,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    27;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -3876,7 +4577,7 @@ class StreamStatusRequest final :
                &_StreamStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    28;
 
   friend void swap(StreamStatusRequest& a, StreamStatusRequest& b) {
     a.Swap(&b);
@@ -4048,7 +4749,7 @@ class StreamStatusResponse final :
                &_StreamStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    29;
 
   friend void swap(StreamStatusResponse& a, StreamStatusResponse& b) {
     a.Swap(&b);
@@ -4200,7 +4901,7 @@ class StopExtraParameters final :
                &_StopExtraParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    30;
 
   friend void swap(StopExtraParameters& a, StopExtraParameters& b) {
     a.Swap(&b);
@@ -4372,7 +5073,7 @@ class StopAllRequest final :
                &_StopAllRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    31;
 
   friend void swap(StopAllRequest& a, StopAllRequest& b) {
     a.Swap(&b);
@@ -4523,7 +5224,7 @@ class StopAllResponse final :
                &_StopAllResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    32;
 
   friend void swap(StopAllResponse& a, StopAllResponse& b) {
     a.Swap(&b);
@@ -4582,6 +5283,586 @@ class StopAllResponse final :
   // accessors -------------------------------------------------------
 
   // @@protoc_insertion_point(class_scope:viam.robot.v1.StopAllResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StartSessionRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.StartSessionRequest) */ {
+ public:
+  inline StartSessionRequest() : StartSessionRequest(nullptr) {}
+  ~StartSessionRequest() override;
+  explicit PROTOBUF_CONSTEXPR StartSessionRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StartSessionRequest(const StartSessionRequest& from);
+  StartSessionRequest(StartSessionRequest&& from) noexcept
+    : StartSessionRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline StartSessionRequest& operator=(const StartSessionRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StartSessionRequest& operator=(StartSessionRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StartSessionRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StartSessionRequest* internal_default_instance() {
+    return reinterpret_cast<const StartSessionRequest*>(
+               &_StartSessionRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(StartSessionRequest& a, StartSessionRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StartSessionRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StartSessionRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StartSessionRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StartSessionRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const StartSessionRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const StartSessionRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StartSessionRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.StartSessionRequest";
+  }
+  protected:
+  explicit StartSessionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResumeFieldNumber = 1,
+  };
+  // string resume = 1 [json_name = "resume"];
+  void clear_resume();
+  const std::string& resume() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resume(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resume();
+  PROTOBUF_NODISCARD std::string* release_resume();
+  void set_allocated_resume(std::string* resume);
+  private:
+  const std::string& _internal_resume() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resume(const std::string& value);
+  std::string* _internal_mutable_resume();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.StartSessionRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resume_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StartSessionResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.StartSessionResponse) */ {
+ public:
+  inline StartSessionResponse() : StartSessionResponse(nullptr) {}
+  ~StartSessionResponse() override;
+  explicit PROTOBUF_CONSTEXPR StartSessionResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StartSessionResponse(const StartSessionResponse& from);
+  StartSessionResponse(StartSessionResponse&& from) noexcept
+    : StartSessionResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline StartSessionResponse& operator=(const StartSessionResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StartSessionResponse& operator=(StartSessionResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StartSessionResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StartSessionResponse* internal_default_instance() {
+    return reinterpret_cast<const StartSessionResponse*>(
+               &_StartSessionResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(StartSessionResponse& a, StartSessionResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StartSessionResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StartSessionResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StartSessionResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StartSessionResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const StartSessionResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const StartSessionResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StartSessionResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.StartSessionResponse";
+  }
+  protected:
+  explicit StartSessionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kHeartbeatWindowFieldNumber = 2,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // .google.protobuf.Duration heartbeat_window = 2 [json_name = "heartbeatWindow"];
+  bool has_heartbeat_window() const;
+  private:
+  bool _internal_has_heartbeat_window() const;
+  public:
+  void clear_heartbeat_window();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& heartbeat_window() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_heartbeat_window();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_heartbeat_window();
+  void set_allocated_heartbeat_window(::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_heartbeat_window() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_heartbeat_window();
+  public:
+  void unsafe_arena_set_allocated_heartbeat_window(
+      ::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_heartbeat_window();
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.StartSessionResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SendSessionHeartbeatRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.SendSessionHeartbeatRequest) */ {
+ public:
+  inline SendSessionHeartbeatRequest() : SendSessionHeartbeatRequest(nullptr) {}
+  ~SendSessionHeartbeatRequest() override;
+  explicit PROTOBUF_CONSTEXPR SendSessionHeartbeatRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SendSessionHeartbeatRequest(const SendSessionHeartbeatRequest& from);
+  SendSessionHeartbeatRequest(SendSessionHeartbeatRequest&& from) noexcept
+    : SendSessionHeartbeatRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SendSessionHeartbeatRequest& operator=(const SendSessionHeartbeatRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SendSessionHeartbeatRequest& operator=(SendSessionHeartbeatRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SendSessionHeartbeatRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SendSessionHeartbeatRequest* internal_default_instance() {
+    return reinterpret_cast<const SendSessionHeartbeatRequest*>(
+               &_SendSessionHeartbeatRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(SendSessionHeartbeatRequest& a, SendSessionHeartbeatRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SendSessionHeartbeatRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SendSessionHeartbeatRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SendSessionHeartbeatRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SendSessionHeartbeatRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SendSessionHeartbeatRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SendSessionHeartbeatRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SendSessionHeartbeatRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.SendSessionHeartbeatRequest";
+  }
+  protected:
+  explicit SendSessionHeartbeatRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.SendSessionHeartbeatRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SendSessionHeartbeatResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.SendSessionHeartbeatResponse) */ {
+ public:
+  inline SendSessionHeartbeatResponse() : SendSessionHeartbeatResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR SendSessionHeartbeatResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SendSessionHeartbeatResponse(const SendSessionHeartbeatResponse& from);
+  SendSessionHeartbeatResponse(SendSessionHeartbeatResponse&& from) noexcept
+    : SendSessionHeartbeatResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SendSessionHeartbeatResponse& operator=(const SendSessionHeartbeatResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SendSessionHeartbeatResponse& operator=(SendSessionHeartbeatResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SendSessionHeartbeatResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SendSessionHeartbeatResponse* internal_default_instance() {
+    return reinterpret_cast<const SendSessionHeartbeatResponse*>(
+               &_SendSessionHeartbeatResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  friend void swap(SendSessionHeartbeatResponse& a, SendSessionHeartbeatResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SendSessionHeartbeatResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SendSessionHeartbeatResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SendSessionHeartbeatResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SendSessionHeartbeatResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SendSessionHeartbeatResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SendSessionHeartbeatResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.SendSessionHeartbeatResponse";
+  }
+  protected:
+  explicit SendSessionHeartbeatResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.SendSessionHeartbeatResponse)
  private:
   class _Internal;
 
@@ -5642,6 +6923,74 @@ inline void Operation::set_allocated_started(::PROTOBUF_NAMESPACE_ID::Timestamp*
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Operation.started)
 }
 
+// optional string session_id = 5 [json_name = "sessionId"];
+inline bool Operation::_internal_has_session_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Operation::has_session_id() const {
+  return _internal_has_session_id();
+}
+inline void Operation::clear_session_id() {
+  session_id_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& Operation::session_id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.Operation.session_id)
+  return _internal_session_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Operation::set_session_id(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ session_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.Operation.session_id)
+}
+inline std::string* Operation::mutable_session_id() {
+  std::string* _s = _internal_mutable_session_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.Operation.session_id)
+  return _s;
+}
+inline const std::string& Operation::_internal_session_id() const {
+  return session_id_.Get();
+}
+inline void Operation::_internal_set_session_id(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  session_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Operation::_internal_mutable_session_id() {
+  _has_bits_[0] |= 0x00000001u;
+  return session_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Operation::release_session_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.Operation.session_id)
+  if (!_internal_has_session_id()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = session_id_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (session_id_.IsDefault()) {
+    session_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void Operation::set_allocated_session_id(std::string* session_id) {
+  if (session_id != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  session_id_.SetAllocated(session_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (session_id_.IsDefault()) {
+    session_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Operation.session_id)
+}
+
 // -------------------------------------------------------------------
 
 // GetOperationsRequest
@@ -5805,6 +7154,358 @@ inline void BlockForOperationRequest::set_allocated_id(std::string* id) {
 // -------------------------------------------------------------------
 
 // BlockForOperationResponse
+
+// -------------------------------------------------------------------
+
+// PeerConnectionInfo
+
+// .viam.robot.v1.PeerConnectionType type = 1 [json_name = "type"];
+inline void PeerConnectionInfo::clear_type() {
+  type_ = 0;
+}
+inline ::viam::robot::v1::PeerConnectionType PeerConnectionInfo::_internal_type() const {
+  return static_cast< ::viam::robot::v1::PeerConnectionType >(type_);
+}
+inline ::viam::robot::v1::PeerConnectionType PeerConnectionInfo::type() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PeerConnectionInfo.type)
+  return _internal_type();
+}
+inline void PeerConnectionInfo::_internal_set_type(::viam::robot::v1::PeerConnectionType value) {
+  
+  type_ = value;
+}
+inline void PeerConnectionInfo::set_type(::viam::robot::v1::PeerConnectionType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PeerConnectionInfo.type)
+}
+
+// optional string remote_address = 2 [json_name = "remoteAddress"];
+inline bool PeerConnectionInfo::_internal_has_remote_address() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool PeerConnectionInfo::has_remote_address() const {
+  return _internal_has_remote_address();
+}
+inline void PeerConnectionInfo::clear_remote_address() {
+  remote_address_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& PeerConnectionInfo::remote_address() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PeerConnectionInfo.remote_address)
+  return _internal_remote_address();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PeerConnectionInfo::set_remote_address(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ remote_address_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PeerConnectionInfo.remote_address)
+}
+inline std::string* PeerConnectionInfo::mutable_remote_address() {
+  std::string* _s = _internal_mutable_remote_address();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.PeerConnectionInfo.remote_address)
+  return _s;
+}
+inline const std::string& PeerConnectionInfo::_internal_remote_address() const {
+  return remote_address_.Get();
+}
+inline void PeerConnectionInfo::_internal_set_remote_address(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  remote_address_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PeerConnectionInfo::_internal_mutable_remote_address() {
+  _has_bits_[0] |= 0x00000001u;
+  return remote_address_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PeerConnectionInfo::release_remote_address() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.PeerConnectionInfo.remote_address)
+  if (!_internal_has_remote_address()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = remote_address_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (remote_address_.IsDefault()) {
+    remote_address_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void PeerConnectionInfo::set_allocated_remote_address(std::string* remote_address) {
+  if (remote_address != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  remote_address_.SetAllocated(remote_address, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (remote_address_.IsDefault()) {
+    remote_address_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.PeerConnectionInfo.remote_address)
+}
+
+// optional string local_address = 3 [json_name = "localAddress"];
+inline bool PeerConnectionInfo::_internal_has_local_address() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool PeerConnectionInfo::has_local_address() const {
+  return _internal_has_local_address();
+}
+inline void PeerConnectionInfo::clear_local_address() {
+  local_address_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& PeerConnectionInfo::local_address() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.PeerConnectionInfo.local_address)
+  return _internal_local_address();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PeerConnectionInfo::set_local_address(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000002u;
+ local_address_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.PeerConnectionInfo.local_address)
+}
+inline std::string* PeerConnectionInfo::mutable_local_address() {
+  std::string* _s = _internal_mutable_local_address();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.PeerConnectionInfo.local_address)
+  return _s;
+}
+inline const std::string& PeerConnectionInfo::_internal_local_address() const {
+  return local_address_.Get();
+}
+inline void PeerConnectionInfo::_internal_set_local_address(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  local_address_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PeerConnectionInfo::_internal_mutable_local_address() {
+  _has_bits_[0] |= 0x00000002u;
+  return local_address_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PeerConnectionInfo::release_local_address() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.PeerConnectionInfo.local_address)
+  if (!_internal_has_local_address()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  auto* p = local_address_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (local_address_.IsDefault()) {
+    local_address_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void PeerConnectionInfo::set_allocated_local_address(std::string* local_address) {
+  if (local_address != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  local_address_.SetAllocated(local_address, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (local_address_.IsDefault()) {
+    local_address_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.PeerConnectionInfo.local_address)
+}
+
+// -------------------------------------------------------------------
+
+// Session
+
+// string id = 1 [json_name = "id"];
+inline void Session::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& Session::id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.Session.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Session::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.Session.id)
+}
+inline std::string* Session::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.Session.id)
+  return _s;
+}
+inline const std::string& Session::_internal_id() const {
+  return id_.Get();
+}
+inline void Session::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Session::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Session::release_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.Session.id)
+  return id_.Release();
+}
+inline void Session::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Session.id)
+}
+
+// optional .viam.robot.v1.PeerConnectionInfo peer_connection_info = 2 [json_name = "peerConnectionInfo"];
+inline bool Session::_internal_has_peer_connection_info() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || peer_connection_info_ != nullptr);
+  return value;
+}
+inline bool Session::has_peer_connection_info() const {
+  return _internal_has_peer_connection_info();
+}
+inline void Session::clear_peer_connection_info() {
+  if (peer_connection_info_ != nullptr) peer_connection_info_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::robot::v1::PeerConnectionInfo& Session::_internal_peer_connection_info() const {
+  const ::viam::robot::v1::PeerConnectionInfo* p = peer_connection_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::robot::v1::PeerConnectionInfo&>(
+      ::viam::robot::v1::_PeerConnectionInfo_default_instance_);
+}
+inline const ::viam::robot::v1::PeerConnectionInfo& Session::peer_connection_info() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.Session.peer_connection_info)
+  return _internal_peer_connection_info();
+}
+inline void Session::unsafe_arena_set_allocated_peer_connection_info(
+    ::viam::robot::v1::PeerConnectionInfo* peer_connection_info) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(peer_connection_info_);
+  }
+  peer_connection_info_ = peer_connection_info;
+  if (peer_connection_info) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.Session.peer_connection_info)
+}
+inline ::viam::robot::v1::PeerConnectionInfo* Session::release_peer_connection_info() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::robot::v1::PeerConnectionInfo* temp = peer_connection_info_;
+  peer_connection_info_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::robot::v1::PeerConnectionInfo* Session::unsafe_arena_release_peer_connection_info() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.Session.peer_connection_info)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::robot::v1::PeerConnectionInfo* temp = peer_connection_info_;
+  peer_connection_info_ = nullptr;
+  return temp;
+}
+inline ::viam::robot::v1::PeerConnectionInfo* Session::_internal_mutable_peer_connection_info() {
+  _has_bits_[0] |= 0x00000001u;
+  if (peer_connection_info_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::robot::v1::PeerConnectionInfo>(GetArenaForAllocation());
+    peer_connection_info_ = p;
+  }
+  return peer_connection_info_;
+}
+inline ::viam::robot::v1::PeerConnectionInfo* Session::mutable_peer_connection_info() {
+  ::viam::robot::v1::PeerConnectionInfo* _msg = _internal_mutable_peer_connection_info();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.Session.peer_connection_info)
+  return _msg;
+}
+inline void Session::set_allocated_peer_connection_info(::viam::robot::v1::PeerConnectionInfo* peer_connection_info) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete peer_connection_info_;
+  }
+  if (peer_connection_info) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(peer_connection_info);
+    if (message_arena != submessage_arena) {
+      peer_connection_info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, peer_connection_info, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  peer_connection_info_ = peer_connection_info;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Session.peer_connection_info)
+}
+
+// -------------------------------------------------------------------
+
+// GetSessionsRequest
+
+// -------------------------------------------------------------------
+
+// GetSessionsResponse
+
+// repeated .viam.robot.v1.Session sessions = 1 [json_name = "sessions"];
+inline int GetSessionsResponse::_internal_sessions_size() const {
+  return sessions_.size();
+}
+inline int GetSessionsResponse::sessions_size() const {
+  return _internal_sessions_size();
+}
+inline void GetSessionsResponse::clear_sessions() {
+  sessions_.Clear();
+}
+inline ::viam::robot::v1::Session* GetSessionsResponse::mutable_sessions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetSessionsResponse.sessions)
+  return sessions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Session >*
+GetSessionsResponse::mutable_sessions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.GetSessionsResponse.sessions)
+  return &sessions_;
+}
+inline const ::viam::robot::v1::Session& GetSessionsResponse::_internal_sessions(int index) const {
+  return sessions_.Get(index);
+}
+inline const ::viam::robot::v1::Session& GetSessionsResponse::sessions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetSessionsResponse.sessions)
+  return _internal_sessions(index);
+}
+inline ::viam::robot::v1::Session* GetSessionsResponse::_internal_add_sessions() {
+  return sessions_.Add();
+}
+inline ::viam::robot::v1::Session* GetSessionsResponse::add_sessions() {
+  ::viam::robot::v1::Session* _add = _internal_add_sessions();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.GetSessionsResponse.sessions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::Session >&
+GetSessionsResponse::sessions() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.GetSessionsResponse.sessions)
+  return sessions_;
+}
 
 // -------------------------------------------------------------------
 
@@ -6828,9 +8529,276 @@ StopAllRequest::extra() const {
 
 // StopAllResponse
 
+// -------------------------------------------------------------------
+
+// StartSessionRequest
+
+// string resume = 1 [json_name = "resume"];
+inline void StartSessionRequest::clear_resume() {
+  resume_.ClearToEmpty();
+}
+inline const std::string& StartSessionRequest::resume() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.StartSessionRequest.resume)
+  return _internal_resume();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StartSessionRequest::set_resume(ArgT0&& arg0, ArgT... args) {
+ 
+ resume_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.StartSessionRequest.resume)
+}
+inline std::string* StartSessionRequest::mutable_resume() {
+  std::string* _s = _internal_mutable_resume();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.StartSessionRequest.resume)
+  return _s;
+}
+inline const std::string& StartSessionRequest::_internal_resume() const {
+  return resume_.Get();
+}
+inline void StartSessionRequest::_internal_set_resume(const std::string& value) {
+  
+  resume_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StartSessionRequest::_internal_mutable_resume() {
+  
+  return resume_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StartSessionRequest::release_resume() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.StartSessionRequest.resume)
+  return resume_.Release();
+}
+inline void StartSessionRequest::set_allocated_resume(std::string* resume) {
+  if (resume != nullptr) {
+    
+  } else {
+    
+  }
+  resume_.SetAllocated(resume, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (resume_.IsDefault()) {
+    resume_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.StartSessionRequest.resume)
+}
+
+// -------------------------------------------------------------------
+
+// StartSessionResponse
+
+// string id = 1 [json_name = "id"];
+inline void StartSessionResponse::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& StartSessionResponse::id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.StartSessionResponse.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StartSessionResponse::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.StartSessionResponse.id)
+}
+inline std::string* StartSessionResponse::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.StartSessionResponse.id)
+  return _s;
+}
+inline const std::string& StartSessionResponse::_internal_id() const {
+  return id_.Get();
+}
+inline void StartSessionResponse::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StartSessionResponse::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StartSessionResponse::release_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.StartSessionResponse.id)
+  return id_.Release();
+}
+inline void StartSessionResponse::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.StartSessionResponse.id)
+}
+
+// .google.protobuf.Duration heartbeat_window = 2 [json_name = "heartbeatWindow"];
+inline bool StartSessionResponse::_internal_has_heartbeat_window() const {
+  return this != internal_default_instance() && heartbeat_window_ != nullptr;
+}
+inline bool StartSessionResponse::has_heartbeat_window() const {
+  return _internal_has_heartbeat_window();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& StartSessionResponse::_internal_heartbeat_window() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = heartbeat_window_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& StartSessionResponse::heartbeat_window() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.StartSessionResponse.heartbeat_window)
+  return _internal_heartbeat_window();
+}
+inline void StartSessionResponse::unsafe_arena_set_allocated_heartbeat_window(
+    ::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(heartbeat_window_);
+  }
+  heartbeat_window_ = heartbeat_window;
+  if (heartbeat_window) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.StartSessionResponse.heartbeat_window)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* StartSessionResponse::release_heartbeat_window() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = heartbeat_window_;
+  heartbeat_window_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* StartSessionResponse::unsafe_arena_release_heartbeat_window() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.StartSessionResponse.heartbeat_window)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = heartbeat_window_;
+  heartbeat_window_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* StartSessionResponse::_internal_mutable_heartbeat_window() {
+  
+  if (heartbeat_window_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    heartbeat_window_ = p;
+  }
+  return heartbeat_window_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* StartSessionResponse::mutable_heartbeat_window() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_heartbeat_window();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.StartSessionResponse.heartbeat_window)
+  return _msg;
+}
+inline void StartSessionResponse::set_allocated_heartbeat_window(::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(heartbeat_window_);
+  }
+  if (heartbeat_window) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(heartbeat_window));
+    if (message_arena != submessage_arena) {
+      heartbeat_window = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, heartbeat_window, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  heartbeat_window_ = heartbeat_window;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.StartSessionResponse.heartbeat_window)
+}
+
+// -------------------------------------------------------------------
+
+// SendSessionHeartbeatRequest
+
+// string id = 1 [json_name = "id"];
+inline void SendSessionHeartbeatRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& SendSessionHeartbeatRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.SendSessionHeartbeatRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SendSessionHeartbeatRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.SendSessionHeartbeatRequest.id)
+}
+inline std::string* SendSessionHeartbeatRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.SendSessionHeartbeatRequest.id)
+  return _s;
+}
+inline const std::string& SendSessionHeartbeatRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void SendSessionHeartbeatRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SendSessionHeartbeatRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SendSessionHeartbeatRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.SendSessionHeartbeatRequest.id)
+  return id_.Release();
+}
+inline void SendSessionHeartbeatRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.SendSessionHeartbeatRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// SendSessionHeartbeatResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -6893,6 +8861,16 @@ StopAllRequest::extra() const {
 }  // namespace v1
 }  // namespace robot
 }  // namespace viam
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::viam::robot::v1::PeerConnectionType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::PeerConnectionType>() {
+  return ::viam::robot::v1::PeerConnectionType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

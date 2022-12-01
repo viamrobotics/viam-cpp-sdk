@@ -43,6 +43,11 @@ class SignalingService final {
     // Call makes an offer to a client that it expects an answer to. The host
     // of the client in question should be identified in the rpc-host metadata
     // field.
+    // Note: Based on how this is a server streaming responnse to the caller,
+    // we do not have a good way of knowing if the caller has disappeared.
+    // Depending on answerer timeouts and concurrency limits, this can result in
+    // hangs on the answerer waiting for a connection to establish, which in turn
+    // can result in the caller waiting for an answerer to be listening.
     std::unique_ptr< ::grpc::ClientReaderInterface< ::proto::rpc::webrtc::v1::CallResponse>> Call(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request) {
       return std::unique_ptr< ::grpc::ClientReaderInterface< ::proto::rpc::webrtc::v1::CallResponse>>(CallRaw(context, request));
     }
@@ -91,6 +96,11 @@ class SignalingService final {
       // Call makes an offer to a client that it expects an answer to. The host
       // of the client in question should be identified in the rpc-host metadata
       // field.
+      // Note: Based on how this is a server streaming responnse to the caller,
+      // we do not have a good way of knowing if the caller has disappeared.
+      // Depending on answerer timeouts and concurrency limits, this can result in
+      // hangs on the answerer waiting for a connection to establish, which in turn
+      // can result in the caller waiting for an answerer to be listening.
       virtual void Call(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) = 0;
       // CallUpdate is used to send additional info in relation to a Call.
       // The host of the client for the call in question should be identified
@@ -202,6 +212,11 @@ class SignalingService final {
     // Call makes an offer to a client that it expects an answer to. The host
     // of the client in question should be identified in the rpc-host metadata
     // field.
+    // Note: Based on how this is a server streaming responnse to the caller,
+    // we do not have a good way of knowing if the caller has disappeared.
+    // Depending on answerer timeouts and concurrency limits, this can result in
+    // hangs on the answerer waiting for a connection to establish, which in turn
+    // can result in the caller waiting for an answerer to be listening.
     virtual ::grpc::Status Call(::grpc::ServerContext* context, const ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::ServerWriter< ::proto::rpc::webrtc::v1::CallResponse>* writer);
     // CallUpdate is used to send additional info in relation to a Call.
     // The host of the client for the call in question should be identified
