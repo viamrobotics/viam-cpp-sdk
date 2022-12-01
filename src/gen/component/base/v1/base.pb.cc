@@ -291,28 +291,29 @@ const char descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto[] PROT
   "(\0132\027.viam.common.v1.Vector3R\006linear\0221\n\007a"
   "ngular\030\003 \001(\0132\027.viam.common.v1.Vector3R\007a"
   "ngular\022-\n\005extra\030c \001(\0132\027.google.protobuf."
-  "StructR\005extra\"\025\n\023SetVelocityResponse2\365\005\n"
-  "\013BaseService\022\243\001\n\014MoveStraight\022+.viam.com"
+  "StructR\005extra\"\025\n\023SetVelocityResponse2\205\006\n"
+  "\013BaseService\022\247\001\n\014MoveStraight\022+.viam.com"
   "ponent.base.v1.MoveStraightRequest\032,.via"
   "m.component.base.v1.MoveStraightResponse"
-  "\"8\202\323\344\223\0022\"0/viam/api/v1/component/base/{n"
-  "ame}/move_straight\022\202\001\n\004Spin\022#.viam.compo"
-  "nent.base.v1.SpinRequest\032$.viam.componen"
-  "t.base.v1.SpinResponse\"/\202\323\344\223\002)\"\'/viam/ap"
-  "i/v1/component/base/{name}/spin\022\223\001\n\010SetP"
-  "ower\022\'.viam.component.base.v1.SetPowerRe"
-  "quest\032(.viam.component.base.v1.SetPowerR"
-  "esponse\"4\202\323\344\223\002.\",/viam/api/v1/component/"
-  "base/{name}/set_power\022\237\001\n\013SetVelocity\022*."
-  "viam.component.base.v1.SetVelocityReques"
-  "t\032+.viam.component.base.v1.SetVelocityRe"
-  "sponse\"7\202\323\344\223\0021\"//viam/api/v1/component/b"
-  "ase/{name}/set_velocity\022\202\001\n\004Stop\022#.viam."
-  "component.base.v1.StopRequest\032$.viam.com"
-  "ponent.base.v1.StopResponse\"/\202\323\344\223\002)\"\'/vi"
-  "am/api/v1/component/base/{name}/stopB\?\n\032"
-  "com.viam.component.base.v1Z!go.viam.com/"
-  "api/component/base/v1b\006proto3"
+  "\"<\240\222)\001\202\323\344\223\0022\"0/viam/api/v1/component/bas"
+  "e/{name}/move_straight\022\206\001\n\004Spin\022#.viam.c"
+  "omponent.base.v1.SpinRequest\032$.viam.comp"
+  "onent.base.v1.SpinResponse\"3\240\222)\001\202\323\344\223\002)\"\'"
+  "/viam/api/v1/component/base/{name}/spin\022"
+  "\227\001\n\010SetPower\022\'.viam.component.base.v1.Se"
+  "tPowerRequest\032(.viam.component.base.v1.S"
+  "etPowerResponse\"8\240\222)\001\202\323\344\223\002.\",/viam/api/v"
+  "1/component/base/{name}/set_power\022\243\001\n\013Se"
+  "tVelocity\022*.viam.component.base.v1.SetVe"
+  "locityRequest\032+.viam.component.base.v1.S"
+  "etVelocityResponse\";\240\222)\001\202\323\344\223\0021\"//viam/ap"
+  "i/v1/component/base/{name}/set_velocity\022"
+  "\202\001\n\004Stop\022#.viam.component.base.v1.StopRe"
+  "quest\032$.viam.component.base.v1.StopRespo"
+  "nse\"/\202\323\344\223\002)\"\'/viam/api/v1/component/base"
+  "/{name}/stopB\?\n\032com.viam.component.base."
+  "v1Z!go.viam.com/api/component/base/v1b\006p"
+  "roto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -321,7 +322,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2f
 };
 static ::_pbi::once_flag descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fbase_2fv1_2fbase_2eproto = {
-    false, false, 1829, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
+    false, false, 1845, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
     "component/base/v1/base.proto",
     &descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once, descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps, 3, 10,
     schemas, file_default_instances, TableStruct_component_2fbase_2fv1_2fbase_2eproto::offsets,

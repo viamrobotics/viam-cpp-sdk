@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
 #include "google/api/annotations.pb.h"
+#include <google/protobuf/timestamp.pb.h>
 #include "google/rpc/status.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -1832,6 +1833,7 @@ class AnswerRequestInitStage final :
   enum : int {
     kSdpFieldNumber = 1,
     kOptionalConfigFieldNumber = 2,
+    kDeadlineFieldNumber = 3,
   };
   // string sdp = 1 [json_name = "sdp"];
   void clear_sdp();
@@ -1865,6 +1867,24 @@ class AnswerRequestInitStage final :
       ::proto::rpc::webrtc::v1::WebRTCConfig* optional_config);
   ::proto::rpc::webrtc::v1::WebRTCConfig* unsafe_arena_release_optional_config();
 
+  // optional .google.protobuf.Timestamp deadline = 3 [json_name = "deadline"];
+  bool has_deadline() const;
+  private:
+  bool _internal_has_deadline() const;
+  public:
+  void clear_deadline();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& deadline() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_deadline();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_deadline();
+  void set_allocated_deadline(::PROTOBUF_NAMESPACE_ID::Timestamp* deadline);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_deadline() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_deadline();
+  public:
+  void unsafe_arena_set_allocated_deadline(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* deadline);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deadline();
+
   // @@protoc_insertion_point(class_scope:proto.rpc.webrtc.v1.AnswerRequestInitStage)
  private:
   class _Internal;
@@ -1872,9 +1892,11 @@ class AnswerRequestInitStage final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sdp_;
   ::proto::rpc::webrtc::v1::WebRTCConfig* optional_config_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* deadline_;
   friend struct ::TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto;
 };
 // -------------------------------------------------------------------
@@ -4923,6 +4945,93 @@ inline void AnswerRequestInitStage::set_allocated_optional_config(::proto::rpc::
   }
   optional_config_ = optional_config;
   // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.AnswerRequestInitStage.optional_config)
+}
+
+// optional .google.protobuf.Timestamp deadline = 3 [json_name = "deadline"];
+inline bool AnswerRequestInitStage::_internal_has_deadline() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || deadline_ != nullptr);
+  return value;
+}
+inline bool AnswerRequestInitStage::has_deadline() const {
+  return _internal_has_deadline();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AnswerRequestInitStage::_internal_deadline() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = deadline_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AnswerRequestInitStage::deadline() const {
+  // @@protoc_insertion_point(field_get:proto.rpc.webrtc.v1.AnswerRequestInitStage.deadline)
+  return _internal_deadline();
+}
+inline void AnswerRequestInitStage::unsafe_arena_set_allocated_deadline(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* deadline) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deadline_);
+  }
+  deadline_ = deadline;
+  if (deadline) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:proto.rpc.webrtc.v1.AnswerRequestInitStage.deadline)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AnswerRequestInitStage::release_deadline() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = deadline_;
+  deadline_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AnswerRequestInitStage::unsafe_arena_release_deadline() {
+  // @@protoc_insertion_point(field_release:proto.rpc.webrtc.v1.AnswerRequestInitStage.deadline)
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = deadline_;
+  deadline_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AnswerRequestInitStage::_internal_mutable_deadline() {
+  _has_bits_[0] |= 0x00000001u;
+  if (deadline_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    deadline_ = p;
+  }
+  return deadline_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AnswerRequestInitStage::mutable_deadline() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_deadline();
+  // @@protoc_insertion_point(field_mutable:proto.rpc.webrtc.v1.AnswerRequestInitStage.deadline)
+  return _msg;
+}
+inline void AnswerRequestInitStage::set_allocated_deadline(::PROTOBUF_NAMESPACE_ID::Timestamp* deadline) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(deadline_);
+  }
+  if (deadline) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deadline));
+    if (message_arena != submessage_arena) {
+      deadline = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deadline, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  deadline_ = deadline;
+  // @@protoc_insertion_point(field_set_allocated:proto.rpc.webrtc.v1.AnswerRequestInitStage.deadline)
 }
 
 // -------------------------------------------------------------------

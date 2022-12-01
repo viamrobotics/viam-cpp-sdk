@@ -143,7 +143,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR AnswerRequestInitStage::AnswerRequestInitStage(
     ::_pbi::ConstantInitialized)
   : sdp_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , optional_config_(nullptr){}
+  , optional_config_(nullptr)
+  , deadline_(nullptr){}
 struct AnswerRequestInitStageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AnswerRequestInitStageDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -373,7 +374,7 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offset
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::WebRTCConfig, additional_ice_servers_),
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::WebRTCConfig, disable_trickle_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -381,6 +382,10 @@ const uint32_t TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offset
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, sdp_),
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, optional_config_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestInitStage, deadline_),
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::webrtc::v1::AnswerRequestUpdateStage, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -476,18 +481,18 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 57, -1, -1, sizeof(::proto::rpc::webrtc::v1::CallUpdateResponse)},
   { 63, -1, -1, sizeof(::proto::rpc::webrtc::v1::ICEServer)},
   { 72, -1, -1, sizeof(::proto::rpc::webrtc::v1::WebRTCConfig)},
-  { 80, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestInitStage)},
-  { 88, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestUpdateStage)},
-  { 95, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestDoneStage)},
-  { 101, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestErrorStage)},
-  { 108, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequest)},
-  { 120, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseInitStage)},
-  { 127, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseUpdateStage)},
-  { 134, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseDoneStage)},
-  { 140, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseErrorStage)},
-  { 147, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponse)},
-  { 159, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest)},
-  { 165, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse)},
+  { 80, 89, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestInitStage)},
+  { 92, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestUpdateStage)},
+  { 99, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestDoneStage)},
+  { 105, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequestErrorStage)},
+  { 112, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerRequest)},
+  { 124, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseInitStage)},
+  { 131, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseUpdateStage)},
+  { 138, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseDoneStage)},
+  { 144, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponseErrorStage)},
+  { 151, -1, -1, sizeof(::proto::rpc::webrtc::v1::AnswerResponse)},
+  { 163, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest)},
+  { 169, -1, -1, sizeof(::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -517,91 +522,95 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n#proto/rpc/webrtc/v1/signaling.proto\022\023p"
   "roto.rpc.webrtc.v1\032\034google/api/annotatio"
-  "ns.proto\032\027google/rpc/status.proto\"\337\001\n\014IC"
-  "ECandidate\022\034\n\tcandidate\030\001 \001(\tR\tcandidate"
-  "\022\034\n\007sdp_mid\030\002 \001(\tH\000R\006sdpMid\210\001\001\022+\n\017sdpm_l"
-  "ine_index\030\003 \001(\rH\001R\rsdpmLineIndex\210\001\001\0220\n\021u"
-  "sername_fragment\030\004 \001(\tH\002R\020usernameFragme"
-  "nt\210\001\001B\n\n\010_sdp_midB\022\n\020_sdpm_line_indexB\024\n"
-  "\022_username_fragment\"H\n\013CallRequest\022\020\n\003sd"
-  "p\030\001 \001(\tR\003sdp\022\'\n\017disable_trickle\030\002 \001(\010R\016d"
-  "isableTrickle\")\n\025CallResponseInitStage\022\020"
-  "\n\003sdp\030\001 \001(\tR\003sdp\"Z\n\027CallResponseUpdateSt"
-  "age\022\?\n\tcandidate\030\001 \001(\0132!.proto.rpc.webrt"
-  "c.v1.ICECandidateR\tcandidate\"\265\001\n\014CallRes"
-  "ponse\022\022\n\004uuid\030\001 \001(\tR\004uuid\022@\n\004init\030\002 \001(\0132"
-  "*.proto.rpc.webrtc.v1.CallResponseInitSt"
-  "ageH\000R\004init\022F\n\006update\030\003 \001(\0132,.proto.rpc."
-  "webrtc.v1.CallResponseUpdateStageH\000R\006upd"
-  "ateB\007\n\005stage\"\266\001\n\021CallUpdateRequest\022\022\n\004uu"
-  "id\030\001 \001(\tR\004uuid\022A\n\tcandidate\030\002 \001(\0132!.prot"
-  "o.rpc.webrtc.v1.ICECandidateH\000R\tcandidat"
-  "e\022\024\n\004done\030\003 \001(\010H\000R\004done\022*\n\005error\030\004 \001(\0132\022"
-  ".google.rpc.StatusH\000R\005errorB\010\n\006update\"\024\n"
-  "\022CallUpdateResponse\"[\n\tICEServer\022\022\n\004urls"
-  "\030\001 \003(\tR\004urls\022\032\n\010username\030\002 \001(\tR\010username"
-  "\022\036\n\ncredential\030\003 \001(\tR\ncredential\"\215\001\n\014Web"
-  "RTCConfig\022T\n\026additional_ice_servers\030\001 \003("
-  "\0132\036.proto.rpc.webrtc.v1.ICEServerR\024addit"
-  "ionalIceServers\022\'\n\017disable_trickle\030\002 \001(\010"
-  "R\016disableTrickle\"v\n\026AnswerRequestInitSta"
-  "ge\022\020\n\003sdp\030\001 \001(\tR\003sdp\022J\n\017optional_config\030"
-  "\002 \001(\0132!.proto.rpc.webrtc.v1.WebRTCConfig"
-  "R\016optionalConfig\"[\n\030AnswerRequestUpdateS"
-  "tage\022\?\n\tcandidate\030\001 \001(\0132!.proto.rpc.webr"
-  "tc.v1.ICECandidateR\tcandidate\"\030\n\026AnswerR"
-  "equestDoneStage\"E\n\027AnswerRequestErrorSta"
-  "ge\022*\n\006status\030\001 \001(\0132\022.google.rpc.StatusR\006"
-  "status\"\301\002\n\rAnswerRequest\022\022\n\004uuid\030\001 \001(\tR\004"
-  "uuid\022A\n\004init\030\002 \001(\0132+.proto.rpc.webrtc.v1"
-  ".AnswerRequestInitStageH\000R\004init\022G\n\006updat"
-  "e\030\003 \001(\0132-.proto.rpc.webrtc.v1.AnswerRequ"
-  "estUpdateStageH\000R\006update\022A\n\004done\030\004 \001(\0132+"
-  ".proto.rpc.webrtc.v1.AnswerRequestDoneSt"
-  "ageH\000R\004done\022D\n\005error\030\005 \001(\0132,.proto.rpc.w"
-  "ebrtc.v1.AnswerRequestErrorStageH\000R\005erro"
-  "rB\007\n\005stage\"+\n\027AnswerResponseInitStage\022\020\n"
-  "\003sdp\030\001 \001(\tR\003sdp\"\\\n\031AnswerResponseUpdateS"
-  "tage\022\?\n\tcandidate\030\001 \001(\0132!.proto.rpc.webr"
-  "tc.v1.ICECandidateR\tcandidate\"\031\n\027AnswerR"
-  "esponseDoneStage\"F\n\030AnswerResponseErrorS"
-  "tage\022*\n\006status\030\001 \001(\0132\022.google.rpc.Status"
-  "R\006status\"\306\002\n\016AnswerResponse\022\022\n\004uuid\030\001 \001("
-  "\tR\004uuid\022B\n\004init\030\002 \001(\0132,.proto.rpc.webrtc"
-  ".v1.AnswerResponseInitStageH\000R\004init\022H\n\006u"
-  "pdate\030\003 \001(\0132..proto.rpc.webrtc.v1.Answer"
-  "ResponseUpdateStageH\000R\006update\022B\n\004done\030\004 "
-  "\001(\0132,.proto.rpc.webrtc.v1.AnswerResponse"
-  "DoneStageH\000R\004done\022E\n\005error\030\005 \001(\0132-.proto"
-  ".rpc.webrtc.v1.AnswerResponseErrorStageH"
-  "\000R\005errorB\007\n\005stage\"\035\n\033OptionalWebRTCConfi"
-  "gRequest\"Y\n\034OptionalWebRTCConfigResponse"
-  "\0229\n\006config\030\001 \001(\0132!.proto.rpc.webrtc.v1.W"
-  "ebRTCConfigR\006config2\206\004\n\020SignalingService"
-  "\022j\n\004Call\022 .proto.rpc.webrtc.v1.CallReque"
-  "st\032!.proto.rpc.webrtc.v1.CallResponse\"\033\202"
-  "\323\344\223\002\025\"\023/rpc/webrtc/v1/call0\001\022\201\001\n\nCallUpd"
-  "ate\022&.proto.rpc.webrtc.v1.CallUpdateRequ"
-  "est\032\'.proto.rpc.webrtc.v1.CallUpdateResp"
-  "onse\"\"\202\323\344\223\002\034\032\032/rpc/webrtc/v1/call_update"
-  "\022U\n\006Answer\022#.proto.rpc.webrtc.v1.AnswerR"
-  "esponse\032\".proto.rpc.webrtc.v1.AnswerRequ"
-  "est(\0010\001\022\252\001\n\024OptionalWebRTCConfig\0220.proto"
-  ".rpc.webrtc.v1.OptionalWebRTCConfigReque"
-  "st\0321.proto.rpc.webrtc.v1.OptionalWebRTCC"
-  "onfigResponse\"-\202\323\344\223\002\'\022%/rpc/webrtc/v1/op"
-  "tional_webrtc_configB\'Z%go.viam.com/util"
-  "s/proto/rpc/webrtc/v1b\006proto3"
+  "ns.proto\032\037google/protobuf/timestamp.prot"
+  "o\032\027google/rpc/status.proto\"\337\001\n\014ICECandid"
+  "ate\022\034\n\tcandidate\030\001 \001(\tR\tcandidate\022\034\n\007sdp"
+  "_mid\030\002 \001(\tH\000R\006sdpMid\210\001\001\022+\n\017sdpm_line_ind"
+  "ex\030\003 \001(\rH\001R\rsdpmLineIndex\210\001\001\0220\n\021username"
+  "_fragment\030\004 \001(\tH\002R\020usernameFragment\210\001\001B\n"
+  "\n\010_sdp_midB\022\n\020_sdpm_line_indexB\024\n\022_usern"
+  "ame_fragment\"H\n\013CallRequest\022\020\n\003sdp\030\001 \001(\t"
+  "R\003sdp\022\'\n\017disable_trickle\030\002 \001(\010R\016disableT"
+  "rickle\")\n\025CallResponseInitStage\022\020\n\003sdp\030\001"
+  " \001(\tR\003sdp\"Z\n\027CallResponseUpdateStage\022\?\n\t"
+  "candidate\030\001 \001(\0132!.proto.rpc.webrtc.v1.IC"
+  "ECandidateR\tcandidate\"\265\001\n\014CallResponse\022\022"
+  "\n\004uuid\030\001 \001(\tR\004uuid\022@\n\004init\030\002 \001(\0132*.proto"
+  ".rpc.webrtc.v1.CallResponseInitStageH\000R\004"
+  "init\022F\n\006update\030\003 \001(\0132,.proto.rpc.webrtc."
+  "v1.CallResponseUpdateStageH\000R\006updateB\007\n\005"
+  "stage\"\266\001\n\021CallUpdateRequest\022\022\n\004uuid\030\001 \001("
+  "\tR\004uuid\022A\n\tcandidate\030\002 \001(\0132!.proto.rpc.w"
+  "ebrtc.v1.ICECandidateH\000R\tcandidate\022\024\n\004do"
+  "ne\030\003 \001(\010H\000R\004done\022*\n\005error\030\004 \001(\0132\022.google"
+  ".rpc.StatusH\000R\005errorB\010\n\006update\"\024\n\022CallUp"
+  "dateResponse\"[\n\tICEServer\022\022\n\004urls\030\001 \003(\tR"
+  "\004urls\022\032\n\010username\030\002 \001(\tR\010username\022\036\n\ncre"
+  "dential\030\003 \001(\tR\ncredential\"\215\001\n\014WebRTCConf"
+  "ig\022T\n\026additional_ice_servers\030\001 \003(\0132\036.pro"
+  "to.rpc.webrtc.v1.ICEServerR\024additionalIc"
+  "eServers\022\'\n\017disable_trickle\030\002 \001(\010R\016disab"
+  "leTrickle\"\300\001\n\026AnswerRequestInitStage\022\020\n\003"
+  "sdp\030\001 \001(\tR\003sdp\022J\n\017optional_config\030\002 \001(\0132"
+  "!.proto.rpc.webrtc.v1.WebRTCConfigR\016opti"
+  "onalConfig\022;\n\010deadline\030\003 \001(\0132\032.google.pr"
+  "otobuf.TimestampH\000R\010deadline\210\001\001B\013\n\t_dead"
+  "line\"[\n\030AnswerRequestUpdateStage\022\?\n\tcand"
+  "idate\030\001 \001(\0132!.proto.rpc.webrtc.v1.ICECan"
+  "didateR\tcandidate\"\030\n\026AnswerRequestDoneSt"
+  "age\"E\n\027AnswerRequestErrorStage\022*\n\006status"
+  "\030\001 \001(\0132\022.google.rpc.StatusR\006status\"\301\002\n\rA"
+  "nswerRequest\022\022\n\004uuid\030\001 \001(\tR\004uuid\022A\n\004init"
+  "\030\002 \001(\0132+.proto.rpc.webrtc.v1.AnswerReque"
+  "stInitStageH\000R\004init\022G\n\006update\030\003 \001(\0132-.pr"
+  "oto.rpc.webrtc.v1.AnswerRequestUpdateSta"
+  "geH\000R\006update\022A\n\004done\030\004 \001(\0132+.proto.rpc.w"
+  "ebrtc.v1.AnswerRequestDoneStageH\000R\004done\022"
+  "D\n\005error\030\005 \001(\0132,.proto.rpc.webrtc.v1.Ans"
+  "werRequestErrorStageH\000R\005errorB\007\n\005stage\"+"
+  "\n\027AnswerResponseInitStage\022\020\n\003sdp\030\001 \001(\tR\003"
+  "sdp\"\\\n\031AnswerResponseUpdateStage\022\?\n\tcand"
+  "idate\030\001 \001(\0132!.proto.rpc.webrtc.v1.ICECan"
+  "didateR\tcandidate\"\031\n\027AnswerResponseDoneS"
+  "tage\"F\n\030AnswerResponseErrorStage\022*\n\006stat"
+  "us\030\001 \001(\0132\022.google.rpc.StatusR\006status\"\306\002\n"
+  "\016AnswerResponse\022\022\n\004uuid\030\001 \001(\tR\004uuid\022B\n\004i"
+  "nit\030\002 \001(\0132,.proto.rpc.webrtc.v1.AnswerRe"
+  "sponseInitStageH\000R\004init\022H\n\006update\030\003 \001(\0132"
+  "..proto.rpc.webrtc.v1.AnswerResponseUpda"
+  "teStageH\000R\006update\022B\n\004done\030\004 \001(\0132,.proto."
+  "rpc.webrtc.v1.AnswerResponseDoneStageH\000R"
+  "\004done\022E\n\005error\030\005 \001(\0132-.proto.rpc.webrtc."
+  "v1.AnswerResponseErrorStageH\000R\005errorB\007\n\005"
+  "stage\"\035\n\033OptionalWebRTCConfigRequest\"Y\n\034"
+  "OptionalWebRTCConfigResponse\0229\n\006config\030\001"
+  " \001(\0132!.proto.rpc.webrtc.v1.WebRTCConfigR"
+  "\006config2\206\004\n\020SignalingService\022j\n\004Call\022 .p"
+  "roto.rpc.webrtc.v1.CallRequest\032!.proto.r"
+  "pc.webrtc.v1.CallResponse\"\033\202\323\344\223\002\025\"\023/rpc/"
+  "webrtc/v1/call0\001\022\201\001\n\nCallUpdate\022&.proto."
+  "rpc.webrtc.v1.CallUpdateRequest\032\'.proto."
+  "rpc.webrtc.v1.CallUpdateResponse\"\"\202\323\344\223\002\034"
+  "\032\032/rpc/webrtc/v1/call_update\022U\n\006Answer\022#"
+  ".proto.rpc.webrtc.v1.AnswerResponse\032\".pr"
+  "oto.rpc.webrtc.v1.AnswerRequest(\0010\001\022\252\001\n\024"
+  "OptionalWebRTCConfig\0220.proto.rpc.webrtc."
+  "v1.OptionalWebRTCConfigRequest\0321.proto.r"
+  "pc.webrtc.v1.OptionalWebRTCConfigRespons"
+  "e\"-\202\323\344\223\002\'\022%/rpc/webrtc/v1/optional_webrt"
+  "c_configB\'Z%go.viam.com/utils/proto/rpc/"
+  "webrtc/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
+  &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
   &::descriptor_table_google_2frpc_2fstatus_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto = {
-    false, false, 3069, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
+    false, false, 3177, descriptor_table_protodef_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
     "proto/rpc/webrtc/v1/signaling.proto",
-    &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once, descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps, 2, 21,
+    &descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_once, descriptor_table_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto_deps, 3, 21,
     schemas, file_default_instances, TableStruct_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto::offsets,
     file_level_metadata_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto, file_level_enum_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
     file_level_service_descriptors_proto_2frpc_2fwebrtc_2fv1_2fsignaling_2eproto,
@@ -2817,12 +2826,25 @@ void WebRTCConfig::InternalSwap(WebRTCConfig* other) {
 
 class AnswerRequestInitStage::_Internal {
  public:
+  using HasBits = decltype(std::declval<AnswerRequestInitStage>()._has_bits_);
   static const ::proto::rpc::webrtc::v1::WebRTCConfig& optional_config(const AnswerRequestInitStage* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deadline(const AnswerRequestInitStage* msg);
+  static void set_has_deadline(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 const ::proto::rpc::webrtc::v1::WebRTCConfig&
 AnswerRequestInitStage::_Internal::optional_config(const AnswerRequestInitStage* msg) {
   return *msg->optional_config_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+AnswerRequestInitStage::_Internal::deadline(const AnswerRequestInitStage* msg) {
+  return *msg->deadline_;
+}
+void AnswerRequestInitStage::clear_deadline() {
+  if (deadline_ != nullptr) deadline_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
 }
 AnswerRequestInitStage::AnswerRequestInitStage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -2831,7 +2853,8 @@ AnswerRequestInitStage::AnswerRequestInitStage(::PROTOBUF_NAMESPACE_ID::Arena* a
   // @@protoc_insertion_point(arena_constructor:proto.rpc.webrtc.v1.AnswerRequestInitStage)
 }
 AnswerRequestInitStage::AnswerRequestInitStage(const AnswerRequestInitStage& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   sdp_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2846,6 +2869,11 @@ AnswerRequestInitStage::AnswerRequestInitStage(const AnswerRequestInitStage& fro
   } else {
     optional_config_ = nullptr;
   }
+  if (from._internal_has_deadline()) {
+    deadline_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.deadline_);
+  } else {
+    deadline_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.webrtc.v1.AnswerRequestInitStage)
 }
 
@@ -2854,7 +2882,10 @@ sdp_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   sdp_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-optional_config_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&optional_config_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&deadline_) -
+    reinterpret_cast<char*>(&optional_config_)) + sizeof(deadline_));
 }
 
 AnswerRequestInitStage::~AnswerRequestInitStage() {
@@ -2870,6 +2901,7 @@ inline void AnswerRequestInitStage::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   sdp_.Destroy();
   if (this != internal_default_instance()) delete optional_config_;
+  if (this != internal_default_instance()) delete deadline_;
 }
 
 void AnswerRequestInitStage::SetCachedSize(int size) const {
@@ -2887,11 +2919,18 @@ void AnswerRequestInitStage::Clear() {
     delete optional_config_;
   }
   optional_config_ = nullptr;
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(deadline_ != nullptr);
+    deadline_->Clear();
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* AnswerRequestInitStage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -2914,6 +2953,14 @@ const char* AnswerRequestInitStage::_InternalParse(const char* ptr, ::_pbi::Pars
         } else
           goto handle_unusual;
         continue;
+      // optional .google.protobuf.Timestamp deadline = 3 [json_name = "deadline"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deadline(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2930,6 +2977,7 @@ const char* AnswerRequestInitStage::_InternalParse(const char* ptr, ::_pbi::Pars
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -2958,6 +3006,13 @@ uint8_t* AnswerRequestInitStage::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::optional_config(this),
         _Internal::optional_config(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .google.protobuf.Timestamp deadline = 3 [json_name = "deadline"];
+  if (_internal_has_deadline()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::deadline(this),
+        _Internal::deadline(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2990,6 +3045,14 @@ size_t AnswerRequestInitStage::ByteSizeLong() const {
         *optional_config_);
   }
 
+  // optional .google.protobuf.Timestamp deadline = 3 [json_name = "deadline"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *deadline_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -3018,6 +3081,9 @@ void AnswerRequestInitStage::MergeFrom(const AnswerRequestInitStage& from) {
   if (from._internal_has_optional_config()) {
     _internal_mutable_optional_config()->::proto::rpc::webrtc::v1::WebRTCConfig::MergeFrom(from._internal_optional_config());
   }
+  if (from._internal_has_deadline()) {
+    _internal_mutable_deadline()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_deadline());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3037,11 +3103,17 @@ void AnswerRequestInitStage::InternalSwap(AnswerRequestInitStage* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &sdp_, lhs_arena,
       &other->sdp_, rhs_arena
   );
-  swap(optional_config_, other->optional_config_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AnswerRequestInitStage, deadline_)
+      + sizeof(AnswerRequestInitStage::deadline_)
+      - PROTOBUF_FIELD_OFFSET(AnswerRequestInitStage, optional_config_)>(
+          reinterpret_cast<char*>(&optional_config_),
+          reinterpret_cast<char*>(&other->optional_config_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AnswerRequestInitStage::GetMetadata() const {

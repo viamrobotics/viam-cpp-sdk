@@ -172,41 +172,43 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\"component/gripper/v1/gripper.proto\022\031vi"
-  "am.component.gripper.v1\032\034google/api/anno"
-  "tations.proto\032\034google/protobuf/struct.pr"
-  "oto\"P\n\013OpenRequest\022\022\n\004name\030\001 \001(\tR\004name\022-"
-  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
-  "extra\"\016\n\014OpenResponse\"P\n\013GrabRequest\022\022\n\004"
-  "name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google"
-  ".protobuf.StructR\005extra\"W\n\014GrabResponse\022"
-  "\030\n\007success\030\001 \001(\010R\007success\022-\n\005extra\030c \001(\013"
-  "2\027.google.protobuf.StructR\005extra\"P\n\013Stop"
-  "Request\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001"
-  "(\0132\027.google.protobuf.StructR\005extra\"\016\n\014St"
-  "opResponse2\272\003\n\016GripperService\022\213\001\n\004Open\022&"
-  ".viam.component.gripper.v1.OpenRequest\032\'"
-  ".viam.component.gripper.v1.OpenResponse\""
-  "2\202\323\344\223\002,\032*/viam/api/v1/component/gripper/"
-  "{name}/open\022\213\001\n\004Grab\022&.viam.component.gr"
-  "ipper.v1.GrabRequest\032\'.viam.component.gr"
-  "ipper.v1.GrabResponse\"2\202\323\344\223\002,\032*/viam/api"
-  "/v1/component/gripper/{name}/grab\022\213\001\n\004St"
-  "op\022&.viam.component.gripper.v1.StopReque"
-  "st\032\'.viam.component.gripper.v1.StopRespo"
-  "nse\"2\202\323\344\223\002,\"*/viam/api/v1/component/grip"
-  "per/{name}/stopBE\n\035com.viam.component.gr"
-  "ipper.v1Z$go.viam.com/api/component/grip"
-  "per/v1b\006proto3"
+  "am.component.gripper.v1\032\026common/v1/commo"
+  "n.proto\032\034google/api/annotations.proto\032\034g"
+  "oogle/protobuf/struct.proto\"P\n\013OpenReque"
+  "st\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027."
+  "google.protobuf.StructR\005extra\"\016\n\014OpenRes"
+  "ponse\"P\n\013GrabRequest\022\022\n\004name\030\001 \001(\tR\004name"
+  "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
+  "R\005extra\"W\n\014GrabResponse\022\030\n\007success\030\001 \001(\010"
+  "R\007success\022-\n\005extra\030c \001(\0132\027.google.protob"
+  "uf.StructR\005extra\"P\n\013StopRequest\022\022\n\004name\030"
+  "\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.prot"
+  "obuf.StructR\005extra\"\016\n\014StopResponse2\302\003\n\016G"
+  "ripperService\022\217\001\n\004Open\022&.viam.component."
+  "gripper.v1.OpenRequest\032\'.viam.component."
+  "gripper.v1.OpenResponse\"6\240\222)\001\202\323\344\223\002,\032*/vi"
+  "am/api/v1/component/gripper/{name}/open\022"
+  "\217\001\n\004Grab\022&.viam.component.gripper.v1.Gra"
+  "bRequest\032\'.viam.component.gripper.v1.Gra"
+  "bResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api/v1/comp"
+  "onent/gripper/{name}/grab\022\213\001\n\004Stop\022&.via"
+  "m.component.gripper.v1.StopRequest\032\'.via"
+  "m.component.gripper.v1.StopResponse\"2\202\323\344"
+  "\223\002,\"*/viam/api/v1/component/gripper/{nam"
+  "e}/stopBE\n\035com.viam.component.gripper.v1"
+  "Z$go.viam.com/api/component/gripper/v1b\006"
+  "proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto = {
-    false, false, 1014, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
+    false, false, 1046, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
     "component/gripper/v1/gripper.proto",
-    &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 2, 6,
+    &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets,
     file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto, file_level_enum_descriptors_component_2fgripper_2fv1_2fgripper_2eproto,
     file_level_service_descriptors_component_2fgripper_2fv1_2fgripper_2eproto,

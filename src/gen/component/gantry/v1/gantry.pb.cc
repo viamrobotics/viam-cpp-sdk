@@ -267,26 +267,26 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   ".google.protobuf.StructR\005extra\"\016\n\014StopRe"
   "sponse\"g\n\006Status\022!\n\014positions_mm\030\001 \003(\001R\013"
   "positionsMm\022\035\n\nlengths_mm\030\002 \003(\001R\tlengths"
-  "Mm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving2\213\005\n\rGant"
+  "Mm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving2\217\005\n\rGant"
   "ryService\022\241\001\n\013GetPosition\022,.viam.compone"
   "nt.gantry.v1.GetPositionRequest\032-.viam.c"
   "omponent.gantry.v1.GetPositionResponse\"5"
   "\202\323\344\223\002/\022-/viam/api/v1/component/gantry/{n"
-  "ame}/position\022\252\001\n\016MoveToPosition\022/.viam."
+  "ame}/position\022\256\001\n\016MoveToPosition\022/.viam."
   "component.gantry.v1.MoveToPositionReques"
   "t\0320.viam.component.gantry.v1.MoveToPosit"
-  "ionResponse\"5\202\323\344\223\002/\032-/viam/api/v1/compon"
-  "ent/gantry/{name}/position\022\235\001\n\nGetLength"
-  "s\022+.viam.component.gantry.v1.GetLengthsR"
-  "equest\032,.viam.component.gantry.v1.GetLen"
-  "gthsResponse\"4\202\323\344\223\002.\022,/viam/api/v1/compo"
-  "nent/gantry/{name}/lengths\022\210\001\n\004Stop\022%.vi"
-  "am.component.gantry.v1.StopRequest\032&.via"
-  "m.component.gantry.v1.StopResponse\"1\202\323\344\223"
-  "\002+\")/viam/api/v1/component/gantry/{name}"
-  "/stopBC\n\034com.viam.component.gantry.v1Z#g"
-  "o.viam.com/api/component/gantry/v1b\006prot"
-  "o3"
+  "ionResponse\"9\240\222)\001\202\323\344\223\002/\032-/viam/api/v1/co"
+  "mponent/gantry/{name}/position\022\235\001\n\nGetLe"
+  "ngths\022+.viam.component.gantry.v1.GetLeng"
+  "thsRequest\032,.viam.component.gantry.v1.Ge"
+  "tLengthsResponse\"4\202\323\344\223\002.\022,/viam/api/v1/c"
+  "omponent/gantry/{name}/lengths\022\210\001\n\004Stop\022"
+  "%.viam.component.gantry.v1.StopRequest\032&"
+  ".viam.component.gantry.v1.StopResponse\"1"
+  "\202\323\344\223\002+\")/viam/api/v1/component/gantry/{n"
+  "ame}/stopBC\n\034com.viam.component.gantry.v"
+  "1Z#go.viam.com/api/component/gantry/v1b\006"
+  "proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -295,7 +295,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_
 };
 static ::_pbi::once_flag descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto = {
-    false, false, 1602, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
+    false, false, 1606, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
     "component/gantry/v1/gantry.proto",
     &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once, descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps, 3, 9,
     schemas, file_default_instances, TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets,

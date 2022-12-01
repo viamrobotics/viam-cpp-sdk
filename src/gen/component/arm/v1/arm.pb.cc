@@ -342,29 +342,30 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "seR\013endPosition\022N\n\017joint_positions\030\002 \001(\013"
   "2%.viam.component.arm.v1.JointPositionsR"
   "\016jointPositions\022\033\n\tis_moving\030\003 \001(\010R\010isMo"
-  "ving2\306\006\n\nArmService\022\241\001\n\016GetEndPosition\022,"
+  "ving2\316\006\n\nArmService\022\241\001\n\016GetEndPosition\022,"
   ".viam.component.arm.v1.GetEndPositionReq"
   "uest\032-.viam.component.arm.v1.GetEndPosit"
   "ionResponse\"2\202\323\344\223\002,\022*/viam/api/v1/compon"
-  "ent/arm/{name}/position\022\241\001\n\016MoveToPositi"
+  "ent/arm/{name}/position\022\245\001\n\016MoveToPositi"
   "on\022,.viam.component.arm.v1.MoveToPositio"
   "nRequest\032-.viam.component.arm.v1.MoveToP"
-  "ositionResponse\"2\202\323\344\223\002,\032*/viam/api/v1/co"
-  "mponent/arm/{name}/position\022\261\001\n\021GetJoint"
-  "Positions\022/.viam.component.arm.v1.GetJoi"
-  "ntPositionsRequest\0320.viam.component.arm."
-  "v1.GetJointPositionsResponse\"9\202\323\344\223\0023\0221/v"
-  "iam/api/v1/component/arm/{name}/joint_po"
-  "sitions\022\272\001\n\024MoveToJointPositions\0222.viam."
-  "component.arm.v1.MoveToJointPositionsReq"
-  "uest\0323.viam.component.arm.v1.MoveToJoint"
-  "PositionsResponse\"9\202\323\344\223\0023\0321/viam/api/v1/"
-  "component/arm/{name}/joint_positions\022\177\n\004"
-  "Stop\022\".viam.component.arm.v1.StopRequest"
-  "\032#.viam.component.arm.v1.StopResponse\".\202"
-  "\323\344\223\002(\"&/viam/api/v1/component/arm/{name}"
-  "/stopB=\n\031com.viam.component.arm.v1Z go.v"
-  "iam.com/api/component/arm/v1b\006proto3"
+  "ositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api/v"
+  "1/component/arm/{name}/position\022\261\001\n\021GetJ"
+  "ointPositions\022/.viam.component.arm.v1.Ge"
+  "tJointPositionsRequest\0320.viam.component."
+  "arm.v1.GetJointPositionsResponse\"9\202\323\344\223\0023"
+  "\0221/viam/api/v1/component/arm/{name}/join"
+  "t_positions\022\276\001\n\024MoveToJointPositions\0222.v"
+  "iam.component.arm.v1.MoveToJointPosition"
+  "sRequest\0323.viam.component.arm.v1.MoveToJ"
+  "ointPositionsResponse\"=\240\222)\001\202\323\344\223\0023\0321/viam"
+  "/api/v1/component/arm/{name}/joint_posit"
+  "ions\022\177\n\004Stop\022\".viam.component.arm.v1.Sto"
+  "pRequest\032#.viam.component.arm.v1.StopRes"
+  "ponse\".\202\323\344\223\002(\"&/viam/api/v1/component/ar"
+  "m/{name}/stopB=\n\031com.viam.component.arm."
+  "v1Z go.viam.com/api/component/arm/v1b\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -373,7 +374,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 2156, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 2164, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 12,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,

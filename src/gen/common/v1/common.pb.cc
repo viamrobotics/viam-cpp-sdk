@@ -493,63 +493,69 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\026common/v1/common.proto\022\016viam.common.v1"
-  "\"n\n\014ResourceName\022\034\n\tnamespace\030\001 \001(\tR\tnam"
-  "espace\022\022\n\004type\030\002 \001(\tR\004type\022\030\n\007subtype\030\003 "
-  "\001(\tR\007subtype\022\022\n\004name\030\004 \001(\tR\004name\"\374\002\n\013Boa"
-  "rdStatus\022B\n\007analogs\030\001 \003(\0132(.viam.common."
-  "v1.BoardStatus.AnalogsEntryR\007analogs\022a\n\022"
-  "digital_interrupts\030\002 \003(\01322.viam.common.v"
-  "1.BoardStatus.DigitalInterruptsEntryR\021di"
-  "gitalInterrupts\032X\n\014AnalogsEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\0222\n\005value\030\002 \001(\0132\034.viam.common.v"
-  "1.AnalogStatusR\005value:\0028\001\032l\n\026DigitalInte"
-  "rruptsEntry\022\020\n\003key\030\001 \001(\tR\003key\022<\n\005value\030\002"
-  " \001(\0132&.viam.common.v1.DigitalInterruptSt"
-  "atusR\005value:\0028\001\"$\n\014AnalogStatus\022\024\n\005value"
-  "\030\001 \001(\005R\005value\".\n\026DigitalInterruptStatus\022"
-  "\024\n\005value\030\001 \001(\003R\005value\"y\n\004Pose\022\014\n\001x\030\001 \001(\001"
-  "R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_x\030\004"
-  " \001(\001R\002oX\022\017\n\003o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002"
-  "oZ\022\024\n\005theta\030\007 \001(\001R\005theta\"V\n\013Orientation\022"
-  "\017\n\003o_x\030\001 \001(\001R\002oX\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z"
-  "\030\003 \001(\001R\002oZ\022\024\n\005theta\030\004 \001(\001R\005theta\"`\n\013Pose"
-  "InFrame\022\'\n\017reference_frame\030\001 \001(\tR\016refere"
-  "nceFrame\022(\n\004pose\030\002 \001(\0132\024.viam.common.v1."
-  "PoseR\004pose\"3\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y"
-  "\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\trad"
-  "ius_mm\030\001 \001(\001R\010radiusMm\"D\n\020RectangularPri"
-  "sm\0220\n\007dims_mm\030\001 \001(\0132\027.viam.common.v1.Vec"
-  "tor3R\006dimsMm\"\307\001\n\010Geometry\022,\n\006center\030\001 \001("
-  "\0132\024.viam.common.v1.PoseR\006center\0220\n\006spher"
-  "e\030\002 \001(\0132\026.viam.common.v1.SphereH\000R\006spher"
-  "e\0224\n\003box\030\003 \001(\0132 .viam.common.v1.Rectangu"
-  "larPrismH\000R\003box\022\024\n\005label\030\004 \001(\tR\005labelB\017\n"
-  "\rgeometry_type\"v\n\021GeometriesInFrame\022\'\n\017r"
-  "eference_frame\030\001 \001(\tR\016referenceFrame\0228\n\n"
-  "geometries\030\002 \003(\0132\030.viam.common.v1.Geomet"
-  "ryR\ngeometries\"v\n\020PointCloudObject\022\037\n\013po"
-  "int_cloud\030\001 \001(\014R\npointCloud\022A\n\ngeometrie"
-  "s\030\002 \001(\0132!.viam.common.v1.GeometriesInFra"
-  "meR\ngeometries\"D\n\010GeoPoint\022\032\n\010latitude\030\001"
-  " \001(\001R\010latitude\022\034\n\tlongitude\030\002 \001(\001R\tlongi"
-  "tude\"\206\001\n\tTransform\022\'\n\017reference_frame\030\001 "
-  "\001(\tR\016referenceFrame\022P\n\026pose_in_observer_"
-  "frame\030\002 \001(\0132\033.viam.common.v1.PoseInFrame"
-  "R\023poseInObserverFrame\"\332\001\n\nWorldState\022\?\n\t"
-  "obstacles\030\001 \003(\0132!.viam.common.v1.Geometr"
-  "iesInFrameR\tobstacles\022P\n\022interaction_spa"
-  "ces\030\002 \003(\0132!.viam.common.v1.GeometriesInF"
-  "rameR\021interactionSpaces\0229\n\ntransforms\030\003 "
-  "\003(\0132\031.viam.common.v1.TransformR\ntransfor"
-  "ms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R"
-  "\010isMovingB/\n\022com.viam.common.v1Z\031go.viam"
-  ".com/api/common/v1b\006proto3"
+  "\032 google/protobuf/descriptor.proto\"n\n\014Re"
+  "sourceName\022\034\n\tnamespace\030\001 \001(\tR\tnamespace"
+  "\022\022\n\004type\030\002 \001(\tR\004type\022\030\n\007subtype\030\003 \001(\tR\007s"
+  "ubtype\022\022\n\004name\030\004 \001(\tR\004name\"\374\002\n\013BoardStat"
+  "us\022B\n\007analogs\030\001 \003(\0132(.viam.common.v1.Boa"
+  "rdStatus.AnalogsEntryR\007analogs\022a\n\022digita"
+  "l_interrupts\030\002 \003(\01322.viam.common.v1.Boar"
+  "dStatus.DigitalInterruptsEntryR\021digitalI"
+  "nterrupts\032X\n\014AnalogsEntry\022\020\n\003key\030\001 \001(\tR\003"
+  "key\0222\n\005value\030\002 \001(\0132\034.viam.common.v1.Anal"
+  "ogStatusR\005value:\0028\001\032l\n\026DigitalInterrupts"
+  "Entry\022\020\n\003key\030\001 \001(\tR\003key\022<\n\005value\030\002 \001(\0132&"
+  ".viam.common.v1.DigitalInterruptStatusR\005"
+  "value:\0028\001\"$\n\014AnalogStatus\022\024\n\005value\030\001 \001(\005"
+  "R\005value\".\n\026DigitalInterruptStatus\022\024\n\005val"
+  "ue\030\001 \001(\003R\005value\"y\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n"
+  "\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002"
+  "oX\022\017\n\003o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005"
+  "theta\030\007 \001(\001R\005theta\"V\n\013Orientation\022\017\n\003o_x"
+  "\030\001 \001(\001R\002oX\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001"
+  "R\002oZ\022\024\n\005theta\030\004 \001(\001R\005theta\"`\n\013PoseInFram"
+  "e\022\'\n\017reference_frame\030\001 \001(\tR\016referenceFra"
+  "me\022(\n\004pose\030\002 \001(\0132\024.viam.common.v1.PoseR\004"
+  "pose\"3\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001"
+  "R\001y\022\014\n\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_mm"
+  "\030\001 \001(\001R\010radiusMm\"D\n\020RectangularPrism\0220\n\007"
+  "dims_mm\030\001 \001(\0132\027.viam.common.v1.Vector3R\006"
+  "dimsMm\"\307\001\n\010Geometry\022,\n\006center\030\001 \001(\0132\024.vi"
+  "am.common.v1.PoseR\006center\0220\n\006sphere\030\002 \001("
+  "\0132\026.viam.common.v1.SphereH\000R\006sphere\0224\n\003b"
+  "ox\030\003 \001(\0132 .viam.common.v1.RectangularPri"
+  "smH\000R\003box\022\024\n\005label\030\004 \001(\tR\005labelB\017\n\rgeome"
+  "try_type\"v\n\021GeometriesInFrame\022\'\n\017referen"
+  "ce_frame\030\001 \001(\tR\016referenceFrame\0228\n\ngeomet"
+  "ries\030\002 \003(\0132\030.viam.common.v1.GeometryR\nge"
+  "ometries\"v\n\020PointCloudObject\022\037\n\013point_cl"
+  "oud\030\001 \001(\014R\npointCloud\022A\n\ngeometries\030\002 \001("
+  "\0132!.viam.common.v1.GeometriesInFrameR\nge"
+  "ometries\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010"
+  "latitude\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"\206"
+  "\001\n\tTransform\022\'\n\017reference_frame\030\001 \001(\tR\016r"
+  "eferenceFrame\022P\n\026pose_in_observer_frame\030"
+  "\002 \001(\0132\033.viam.common.v1.PoseInFrameR\023pose"
+  "InObserverFrame\"\332\001\n\nWorldState\022\?\n\tobstac"
+  "les\030\001 \003(\0132!.viam.common.v1.GeometriesInF"
+  "rameR\tobstacles\022P\n\022interaction_spaces\030\002 "
+  "\003(\0132!.viam.common.v1.GeometriesInFrameR\021"
+  "interactionSpaces\0229\n\ntransforms\030\003 \003(\0132\031."
+  "viam.common.v1.TransformR\ntransforms\"-\n\016"
+  "ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isMov"
+  "ing:a\n\032safety_heartbeat_monitored\022\036.goog"
+  "le.protobuf.MethodOptions\030\244\222\005 \001(\010R\030safet"
+  "yHeartbeatMonitored\210\001\001B/\n\022com.viam.commo"
+  "n.v1Z\031go.viam.com/api/common/v1b\006proto3"
   ;
+static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[1] = {
+  &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
+};
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 2066, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 2199, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, nullptr, 0, 19,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 1, 19,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -4824,6 +4830,9 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
       file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
 }
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
+    ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
+  safety_heartbeat_monitored(kSafetyHeartbeatMonitoredFieldNumber, false, nullptr);
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
