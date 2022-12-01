@@ -87,7 +87,7 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteBinaryDataByIDsResponse>> PrepareAsyncDeleteBinaryDataByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteBinaryDataByIDsResponse>>(PrepareAsyncDeleteBinaryDataByIDsRaw(context, request, cq));
     }
-    // AddTagsToBinaryDataByFileIDs adds string tags to binary data based on given IDs.
+    // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
     virtual ::grpc::Status AddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest& request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse>> AsyncAddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse>>(AsyncAddTagsToBinaryDataByFileIDsRaw(context, request, cq));
@@ -95,7 +95,7 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse>> PrepareAsyncAddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse>>(PrepareAsyncAddTagsToBinaryDataByFileIDsRaw(context, request, cq));
     }
-    // AddTagsToBinaryDataByFilter adds string tags to binary data based on the given filter.
+    // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
     virtual ::grpc::Status AddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest& request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse>> AsyncAddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse>>(AsyncAddTagsToBinaryDataByFilterRaw(context, request, cq));
@@ -140,10 +140,10 @@ class DataService final {
       // DeleteBinaryDataByIDs deletes binary data based on given IDs.
       virtual void DeleteBinaryDataByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DeleteBinaryDataByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // AddTagsToBinaryDataByFileIDs adds string tags to binary data based on given IDs.
+      // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
       virtual void AddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void AddTagsToBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // AddTagsToBinaryDataByFilter adds string tags to binary data based on the given filter.
+      // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
       virtual void AddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void AddTagsToBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
@@ -334,9 +334,9 @@ class DataService final {
     virtual ::grpc::Status DeleteBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteBinaryDataByFilterRequest* request, ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* response);
     // DeleteBinaryDataByIDs deletes binary data based on given IDs.
     virtual ::grpc::Status DeleteBinaryDataByIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteBinaryDataByIDsRequest* request, ::viam::app::data::v1::DeleteBinaryDataByIDsResponse* response);
-    // AddTagsToBinaryDataByFileIDs adds string tags to binary data based on given IDs.
+    // AddTagsToBinaryDataByFileIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
     virtual ::grpc::Status AddTagsToBinaryDataByFileIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse* response);
-    // AddTagsToBinaryDataByFilter adds string tags to binary data based on the given filter.
+    // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
     virtual ::grpc::Status AddTagsToBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* request, ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* response);
     // RemoveTagsToBinaryDataByFileIDs removes string tags from binary data based on given IDs.
     virtual ::grpc::Status RemoveTagsFromBinaryDataByFileIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response);
