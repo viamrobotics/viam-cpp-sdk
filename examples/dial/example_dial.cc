@@ -1,3 +1,4 @@
+#include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
 #include <unistd.h>
 
@@ -5,9 +6,12 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <vector>
 
 #include "../../src/gen/robot/v1/robot.grpc.pb.h"
 #include "../../src/gen/robot/v1/robot.pb.h"
+#include "../../src/robot/client.h"
+#include "../../src/rpc/dial.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -31,7 +35,7 @@ class RobotServiceClient {
 		ResourceNamesRequest req;
 
 		ResourceNamesResponse resp;
-		ClientContext context;
+		grpc::ClientContext context;
 
 		Status status = stub_->ResourceNames(&context, req, &resp);
 		if (!status.ok()) {
@@ -49,24 +53,23 @@ class RobotServiceClient {
 	std::unique_ptr<RobotService::Stub> stub_;
 };
 
-int main(int argc, char *argv[]) {
-	void *ptr = init_rust_runtime();
-	char *path = dial("<your robot uri here>",
-			  "<your robot credentials here>", false, ptr);
-	if (path == NULL) {
-		free_rust_runtime(ptr);
-		return 1;
+int main() {
+	const char *uri = "<your robot uri here>";
+	DialOptions dial_options = DialOptions();
+	std::string payload = "<your robot credentials here>";
+	Credentials credentials(payload);
+	dial_options.credentials = credentials;
+	boost::optional<DialOptions> opts(dial_options);
+	std::string address(uri);
+	Options options = Options(1, opts);
+	std::shared_ptr<RobotClient> robot =
+	    RobotClient::at_address(address, options);
+	robot->refresh();
+	std::vector<ResourceName> *resource_names = robot->resource_names();
+	for (ResourceName &resource : *resource_names) {
+		std::cout << "Resource name: " << resource.name()
+			  << resource.type() << resource.subtype() << std::endl;
 	}
-	std::cout << "Proxy at " << path << std::endl;
-
-	std::string address("unix://");
-	address += path;
-	RobotServiceClient client(
-	    grpc::CreateChannel(address, grpc::InsecureChannelCredentials()));
-
-	client.Resources();
-
-	free_rust_runtime(ptr);
-	free_string(path);
+	robot->close();
 	return 0;
 }
