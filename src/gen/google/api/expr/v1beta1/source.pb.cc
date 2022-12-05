@@ -25,7 +25,7 @@ namespace api {
 namespace expr {
 namespace v1beta1 {
 PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUse::SourceInfo_PositionsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -36,12 +36,11 @@ struct SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfo_PositionsEntry_DoNotUseDefaultTypeInternal _SourceInfo_PositionsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR SourceInfo::SourceInfo(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.line_offsets_)*/{}
-  , /*decltype(_impl_._line_offsets_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.positions_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_.location_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : line_offsets_()
+  , _line_offsets_cached_byte_size_(0)
+  , positions_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , location_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct SourceInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SourceInfoDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -52,12 +51,11 @@ struct SourceInfoDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SourceInfoDefaultTypeInternal _SourceInfo_default_instance_;
 PROTOBUF_CONSTEXPR SourcePosition::SourcePosition(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.location_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.offset_)*/0
-  , /*decltype(_impl_.line_)*/0
-  , /*decltype(_impl_.column_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : location_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , offset_(0)
+  , line_(0)
+  , column_(0){}
 struct SourcePositionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SourcePositionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -92,19 +90,19 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1beta1_2fsource_2eproto::offse
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _impl_.location_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _impl_.line_offsets_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, _impl_.positions_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, location_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, line_offsets_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourceInfo, positions_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.location_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.offset_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.line_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, _impl_.column_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, location_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, offset_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, line_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::SourcePosition, column_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 8, -1, sizeof(::google::api::expr::v1beta1::SourceInfo_PositionsEntry_DoNotUse)},
@@ -175,51 +173,36 @@ class SourceInfo::_Internal {
 
 SourceInfo::SourceInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  line_offsets_(arena),
+  positions_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &SourceInfo::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.SourceInfo)
 }
 SourceInfo::SourceInfo(const SourceInfo& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  SourceInfo* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.line_offsets_){from._impl_.line_offsets_}
-    , /*decltype(_impl_._line_offsets_cached_byte_size_)*/{0}
-    , /*decltype(_impl_.positions_)*/{}
-    , decltype(_impl_.location_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      line_offsets_(from.line_offsets_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.positions_.MergeFrom(from._impl_.positions_);
-  _impl_.location_.InitDefault();
+  positions_.MergeFrom(from.positions_);
+  location_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_.Set("", GetArenaForAllocation());
+    location_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_location().empty()) {
-    _this->_impl_.location_.Set(from._internal_location(), 
-      _this->GetArenaForAllocation());
+    location_.Set(from._internal_location(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.SourceInfo)
 }
 
-inline void SourceInfo::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.line_offsets_){arena}
-    , /*decltype(_impl_._line_offsets_cached_byte_size_)*/{0}
-    , /*decltype(_impl_.positions_)*/{::_pbi::ArenaInitialized(), arena}
-    , decltype(_impl_.location_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.location_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SourceInfo::SharedCtor() {
+location_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  location_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SourceInfo::~SourceInfo() {
@@ -234,18 +217,16 @@ SourceInfo::~SourceInfo() {
 
 inline void SourceInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.line_offsets_.~RepeatedField();
-  _impl_.positions_.Destruct();
-  _impl_.positions_.~MapField();
-  _impl_.location_.Destroy();
+  positions_.Destruct();
+  location_.Destroy();
 }
 
 void SourceInfo::ArenaDtor(void* object) {
   SourceInfo* _this = reinterpret_cast< SourceInfo* >(object);
-  _this->_impl_.positions_.Destruct();
+  _this->positions_.Destruct();
 }
 void SourceInfo::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void SourceInfo::Clear() {
@@ -254,9 +235,9 @@ void SourceInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.line_offsets_.Clear();
-  _impl_.positions_.Clear();
-  _impl_.location_.ClearToEmpty();
+  line_offsets_.Clear();
+  positions_.Clear();
+  location_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -293,7 +274,7 @@ const char* SourceInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.positions_, ptr);
+            ptr = ctx->ParseMessage(&positions_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
@@ -341,7 +322,7 @@ uint8_t* SourceInfo::_InternalSerialize(
 
   // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
   {
-    int byte_size = _impl_._line_offsets_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _line_offsets_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           3, _internal_line_offsets(), byte_size, target);
@@ -384,13 +365,13 @@ size_t SourceInfo::ByteSizeLong() const {
   // repeated int32 line_offsets = 3 [json_name = "lineOffsets"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.line_offsets_);
+      Int32Size(this->line_offsets_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._line_offsets_cached_byte_size_.store(cached_size,
+    _line_offsets_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -411,30 +392,34 @@ size_t SourceInfo::ByteSizeLong() const {
         this->_internal_location());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SourceInfo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     SourceInfo::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SourceInfo::GetClassData() const { return &_class_data_; }
 
+void SourceInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SourceInfo *>(to)->MergeFrom(
+      static_cast<const SourceInfo &>(from));
+}
 
-void SourceInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<SourceInfo*>(&to_msg);
-  auto& from = static_cast<const SourceInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourceInfo)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void SourceInfo::MergeFrom(const SourceInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourceInfo)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.line_offsets_.MergeFrom(from._impl_.line_offsets_);
-  _this->_impl_.positions_.MergeFrom(from._impl_.positions_);
+  line_offsets_.MergeFrom(from.line_offsets_);
+  positions_.MergeFrom(from.positions_);
   if (!from._internal_location().empty()) {
-    _this->_internal_set_location(from._internal_location());
+    _internal_set_location(from._internal_location());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SourceInfo::CopyFrom(const SourceInfo& from) {
@@ -453,11 +438,11 @@ void SourceInfo::InternalSwap(SourceInfo* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.line_offsets_.InternalSwap(&other->_impl_.line_offsets_);
-  _impl_.positions_.InternalSwap(&other->_impl_.positions_);
+  line_offsets_.InternalSwap(&other->line_offsets_);
+  positions_.InternalSwap(&other->positions_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.location_, lhs_arena,
-      &other->_impl_.location_, rhs_arena
+      &location_, lhs_arena,
+      &other->location_, rhs_arena
   );
 }
 
@@ -476,49 +461,35 @@ class SourcePosition::_Internal {
 SourcePosition::SourcePosition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.SourcePosition)
 }
 SourcePosition::SourcePosition(const SourcePosition& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  SourcePosition* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.location_){}
-    , decltype(_impl_.offset_){}
-    , decltype(_impl_.line_){}
-    , decltype(_impl_.column_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.location_.InitDefault();
+  location_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_.Set("", GetArenaForAllocation());
+    location_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_location().empty()) {
-    _this->_impl_.location_.Set(from._internal_location(), 
-      _this->GetArenaForAllocation());
+    location_.Set(from._internal_location(), 
+      GetArenaForAllocation());
   }
-  ::memcpy(&_impl_.offset_, &from._impl_.offset_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.column_) -
-    reinterpret_cast<char*>(&_impl_.offset_)) + sizeof(_impl_.column_));
+  ::memcpy(&offset_, &from.offset_,
+    static_cast<size_t>(reinterpret_cast<char*>(&column_) -
+    reinterpret_cast<char*>(&offset_)) + sizeof(column_));
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.SourcePosition)
 }
 
-inline void SourcePosition::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.location_){}
-    , decltype(_impl_.offset_){0}
-    , decltype(_impl_.line_){0}
-    , decltype(_impl_.column_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.location_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SourcePosition::SharedCtor() {
+location_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  location_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&offset_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&column_) -
+    reinterpret_cast<char*>(&offset_)) + sizeof(column_));
 }
 
 SourcePosition::~SourcePosition() {
@@ -532,11 +503,11 @@ SourcePosition::~SourcePosition() {
 
 inline void SourcePosition::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.location_.Destroy();
+  location_.Destroy();
 }
 
 void SourcePosition::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void SourcePosition::Clear() {
@@ -545,10 +516,10 @@ void SourcePosition::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.location_.ClearToEmpty();
-  ::memset(&_impl_.offset_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.column_) -
-      reinterpret_cast<char*>(&_impl_.offset_)) + sizeof(_impl_.column_));
+  location_.ClearToEmpty();
+  ::memset(&offset_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&column_) -
+      reinterpret_cast<char*>(&offset_)) + sizeof(column_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -571,7 +542,7 @@ const char* SourcePosition::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // int32 offset = 2 [json_name = "offset"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -579,7 +550,7 @@ const char* SourcePosition::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // int32 line = 3 [json_name = "line"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -587,7 +558,7 @@ const char* SourcePosition::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // int32 column = 4 [json_name = "column"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.column_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          column_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -687,37 +658,41 @@ size_t SourcePosition::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_column());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SourcePosition::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     SourcePosition::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SourcePosition::GetClassData() const { return &_class_data_; }
 
+void SourcePosition::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SourcePosition *>(to)->MergeFrom(
+      static_cast<const SourcePosition &>(from));
+}
 
-void SourcePosition::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<SourcePosition*>(&to_msg);
-  auto& from = static_cast<const SourcePosition&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourcePosition)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void SourcePosition::MergeFrom(const SourcePosition& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.SourcePosition)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_location().empty()) {
-    _this->_internal_set_location(from._internal_location());
+    _internal_set_location(from._internal_location());
   }
   if (from._internal_offset() != 0) {
-    _this->_internal_set_offset(from._internal_offset());
+    _internal_set_offset(from._internal_offset());
   }
   if (from._internal_line() != 0) {
-    _this->_internal_set_line(from._internal_line());
+    _internal_set_line(from._internal_line());
   }
   if (from._internal_column() != 0) {
-    _this->_internal_set_column(from._internal_column());
+    _internal_set_column(from._internal_column());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SourcePosition::CopyFrom(const SourcePosition& from) {
@@ -737,15 +712,15 @@ void SourcePosition::InternalSwap(SourcePosition* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.location_, lhs_arena,
-      &other->_impl_.location_, rhs_arena
+      &location_, lhs_arena,
+      &other->location_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.column_)
-      + sizeof(SourcePosition::_impl_.column_)
-      - PROTOBUF_FIELD_OFFSET(SourcePosition, _impl_.offset_)>(
-          reinterpret_cast<char*>(&_impl_.offset_),
-          reinterpret_cast<char*>(&other->_impl_.offset_));
+      PROTOBUF_FIELD_OFFSET(SourcePosition, column_)
+      + sizeof(SourcePosition::column_)
+      - PROTOBUF_FIELD_OFFSET(SourcePosition, offset_)>(
+          reinterpret_cast<char*>(&offset_),
+          reinterpret_cast<char*>(&other->offset_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SourcePosition::GetMetadata() const {

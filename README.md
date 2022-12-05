@@ -84,6 +84,6 @@ Note also that this will attempt to connect over webRTC by default. To override 
 The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to `ShellService::shell()` have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.
 
 ## License 
-Copyright 2021-2022 Viam Inc.
+Copyright 2022 Viam Inc.
 
-Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-rust-sdk/blob/main/LICENSE) file
+Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE) file
