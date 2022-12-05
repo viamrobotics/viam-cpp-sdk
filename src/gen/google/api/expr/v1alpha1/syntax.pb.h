@@ -930,6 +930,7 @@ class Expr_CreateList final :
 
   enum : int {
     kElementsFieldNumber = 1,
+    kOptionalIndicesFieldNumber = 2,
   };
   // repeated .google.api.expr.v1alpha1.Expr elements = 1 [json_name = "elements"];
   int elements_size() const;
@@ -949,6 +950,28 @@ class Expr_CreateList final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::Expr >&
       elements() const;
 
+  // repeated int32 optional_indices = 2 [json_name = "optionalIndices"];
+  int optional_indices_size() const;
+  private:
+  int _internal_optional_indices_size() const;
+  public:
+  void clear_optional_indices();
+  private:
+  int32_t _internal_optional_indices(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_optional_indices() const;
+  void _internal_add_optional_indices(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_optional_indices();
+  public:
+  int32_t optional_indices(int index) const;
+  void set_optional_indices(int index, int32_t value);
+  void add_optional_indices(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      optional_indices() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_optional_indices();
+
   // @@protoc_insertion_point(class_scope:google.api.expr.v1alpha1.Expr.CreateList)
  private:
   class _Internal;
@@ -957,6 +980,8 @@ class Expr_CreateList final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::Expr > elements_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > optional_indices_;
+  mutable std::atomic<int> _optional_indices_cached_byte_size_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto;
 };
@@ -3368,6 +3393,53 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1a
 Expr_CreateList::elements() const {
   // @@protoc_insertion_point(field_list:google.api.expr.v1alpha1.Expr.CreateList.elements)
   return elements_;
+}
+
+// repeated int32 optional_indices = 2 [json_name = "optionalIndices"];
+inline int Expr_CreateList::_internal_optional_indices_size() const {
+  return optional_indices_.size();
+}
+inline int Expr_CreateList::optional_indices_size() const {
+  return _internal_optional_indices_size();
+}
+inline void Expr_CreateList::clear_optional_indices() {
+  optional_indices_.Clear();
+}
+inline int32_t Expr_CreateList::_internal_optional_indices(int index) const {
+  return optional_indices_.Get(index);
+}
+inline int32_t Expr_CreateList::optional_indices(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.Expr.CreateList.optional_indices)
+  return _internal_optional_indices(index);
+}
+inline void Expr_CreateList::set_optional_indices(int index, int32_t value) {
+  optional_indices_.Set(index, value);
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.Expr.CreateList.optional_indices)
+}
+inline void Expr_CreateList::_internal_add_optional_indices(int32_t value) {
+  optional_indices_.Add(value);
+}
+inline void Expr_CreateList::add_optional_indices(int32_t value) {
+  _internal_add_optional_indices(value);
+  // @@protoc_insertion_point(field_add:google.api.expr.v1alpha1.Expr.CreateList.optional_indices)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+Expr_CreateList::_internal_optional_indices() const {
+  return optional_indices_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+Expr_CreateList::optional_indices() const {
+  // @@protoc_insertion_point(field_list:google.api.expr.v1alpha1.Expr.CreateList.optional_indices)
+  return _internal_optional_indices();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+Expr_CreateList::_internal_mutable_optional_indices() {
+  return &optional_indices_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+Expr_CreateList::mutable_optional_indices() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.expr.v1alpha1.Expr.CreateList.optional_indices)
+  return _internal_mutable_optional_indices();
 }
 
 // -------------------------------------------------------------------
