@@ -79,7 +79,9 @@ struct Expr_CallDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Expr_CallDefaultTypeInternal _Expr_Call_default_instance_;
 PROTOBUF_CONSTEXPR Expr_CreateList::Expr_CreateList(
     ::_pbi::ConstantInitialized)
-  : elements_(){}
+  : elements_()
+  , optional_indices_()
+  , _optional_indices_cached_byte_size_(0){}
 struct Expr_CreateListDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Expr_CreateListDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -263,6 +265,7 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offs
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_CreateList, elements_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_CreateList, optional_indices_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Expr_CreateStruct_Entry, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -375,15 +378,15 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 15, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_Select)},
   { 24, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_Call)},
   { 33, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateList)},
-  { 40, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateStruct_Entry)},
-  { 52, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateStruct)},
-  { 60, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_Comprehension)},
-  { 73, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr)},
-  { 88, -1, -1, sizeof(::google::api::expr::v1alpha1::Constant)},
-  { 104, 112, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse)},
-  { 114, 122, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse)},
-  { 124, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo)},
-  { 135, -1, -1, sizeof(::google::api::expr::v1alpha1::SourcePosition)},
+  { 41, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateStruct_Entry)},
+  { 53, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_CreateStruct)},
+  { 61, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr_Comprehension)},
+  { 74, -1, -1, sizeof(::google::api::expr::v1alpha1::Expr)},
+  { 89, -1, -1, sizeof(::google::api::expr::v1alpha1::Constant)},
+  { 105, 113, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_PositionsEntry_DoNotUse)},
+  { 115, 123, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo_MacroCallsEntry_DoNotUse)},
+  { 125, -1, -1, sizeof(::google::api::expr::v1alpha1::SourceInfo)},
+  { 136, -1, -1, sizeof(::google::api::expr::v1alpha1::SourcePosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -411,7 +414,7 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2ep
   "\"\207\001\n\nParsedExpr\0222\n\004expr\030\002 \001(\0132\036.google.a"
   "pi.expr.v1alpha1.ExprR\004expr\022E\n\013source_in"
   "fo\030\003 \001(\0132$.google.api.expr.v1alpha1.Sour"
-  "ceInfoR\nsourceInfo\"\203\r\n\004Expr\022\016\n\002id\030\002 \001(\003R"
+  "ceInfoR\nsourceInfo\"\256\r\n\004Expr\022\016\n\002id\030\002 \001(\003R"
   "\002id\022C\n\nconst_expr\030\003 \001(\0132\".google.api.exp"
   "r.v1alpha1.ConstantH\000R\tconstExpr\022E\n\niden"
   "t_expr\030\004 \001(\0132$.google.api.expr.v1alpha1."
@@ -432,56 +435,57 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2ep
   "ly\032\216\001\n\004Call\0226\n\006target\030\001 \001(\0132\036.google.api"
   ".expr.v1alpha1.ExprR\006target\022\032\n\010function\030"
   "\002 \001(\tR\010function\0222\n\004args\030\003 \003(\0132\036.google.a"
-  "pi.expr.v1alpha1.ExprR\004args\032H\n\nCreateLis"
+  "pi.expr.v1alpha1.ExprR\004args\032s\n\nCreateLis"
   "t\022:\n\010elements\030\001 \003(\0132\036.google.api.expr.v1"
-  "alpha1.ExprR\010elements\032\333\002\n\014CreateStruct\022!"
-  "\n\014message_name\030\001 \001(\tR\013messageName\022K\n\007ent"
-  "ries\030\002 \003(\01321.google.api.expr.v1alpha1.Ex"
-  "pr.CreateStruct.EntryR\007entries\032\332\001\n\005Entry"
-  "\022\016\n\002id\030\001 \001(\003R\002id\022\035\n\tfield_key\030\002 \001(\tH\000R\010f"
-  "ieldKey\0229\n\007map_key\030\003 \001(\0132\036.google.api.ex"
-  "pr.v1alpha1.ExprH\000R\006mapKey\0224\n\005value\030\004 \001("
-  "\0132\036.google.api.expr.v1alpha1.ExprR\005value"
-  "\022%\n\016optional_entry\030\005 \001(\010R\roptionalEntryB"
-  "\n\n\010key_kind\032\375\002\n\rComprehension\022\031\n\010iter_va"
-  "r\030\001 \001(\tR\007iterVar\022=\n\niter_range\030\002 \001(\0132\036.g"
-  "oogle.api.expr.v1alpha1.ExprR\titerRange\022"
-  "\031\n\010accu_var\030\003 \001(\tR\007accuVar\022;\n\taccu_init\030"
-  "\004 \001(\0132\036.google.api.expr.v1alpha1.ExprR\010a"
-  "ccuInit\022E\n\016loop_condition\030\005 \001(\0132\036.google"
-  ".api.expr.v1alpha1.ExprR\rloopCondition\022;"
-  "\n\tloop_step\030\006 \001(\0132\036.google.api.expr.v1al"
-  "pha1.ExprR\010loopStep\0226\n\006result\030\007 \001(\0132\036.go"
-  "ogle.api.expr.v1alpha1.ExprR\006resultB\013\n\te"
-  "xpr_kind\"\301\003\n\010Constant\022;\n\nnull_value\030\001 \001("
-  "\0162\032.google.protobuf.NullValueH\000R\tnullVal"
-  "ue\022\037\n\nbool_value\030\002 \001(\010H\000R\tboolValue\022!\n\013i"
-  "nt64_value\030\003 \001(\003H\000R\nint64Value\022#\n\014uint64"
-  "_value\030\004 \001(\004H\000R\013uint64Value\022#\n\014double_va"
-  "lue\030\005 \001(\001H\000R\013doubleValue\022#\n\014string_value"
-  "\030\006 \001(\tH\000R\013stringValue\022!\n\013bytes_value\030\007 \001"
-  "(\014H\000R\nbytesValue\022F\n\016duration_value\030\010 \001(\013"
-  "2\031.google.protobuf.DurationB\002\030\001H\000R\rdurat"
-  "ionValue\022I\n\017timestamp_value\030\t \001(\0132\032.goog"
-  "le.protobuf.TimestampB\002\030\001H\000R\016timestampVa"
-  "lueB\017\n\rconstant_kind\"\271\003\n\nSourceInfo\022%\n\016s"
-  "yntax_version\030\001 \001(\tR\rsyntaxVersion\022\032\n\010lo"
-  "cation\030\002 \001(\tR\010location\022!\n\014line_offsets\030\003"
-  " \003(\005R\013lineOffsets\022Q\n\tpositions\030\004 \003(\01323.g"
-  "oogle.api.expr.v1alpha1.SourceInfo.Posit"
-  "ionsEntryR\tpositions\022U\n\013macro_calls\030\005 \003("
-  "\01324.google.api.expr.v1alpha1.SourceInfo."
-  "MacroCallsEntryR\nmacroCalls\032<\n\016Positions"
-  "Entry\022\020\n\003key\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001(\005R\005"
-  "value:\0028\001\032]\n\017MacroCallsEntry\022\020\n\003key\030\001 \001("
-  "\003R\003key\0224\n\005value\030\002 \001(\0132\036.google.api.expr."
-  "v1alpha1.ExprR\005value:\0028\001\"p\n\016SourcePositi"
-  "on\022\032\n\010location\030\001 \001(\tR\010location\022\026\n\006offset"
-  "\030\002 \001(\005R\006offset\022\022\n\004line\030\003 \001(\005R\004line\022\026\n\006co"
-  "lumn\030\004 \001(\005R\006columnBn\n\034com.google.api.exp"
-  "r.v1alpha1B\013SyntaxProtoP\001Z<google.golang"
-  ".org/genproto/googleapis/api/expr/v1alph"
-  "a1;expr\370\001\001b\006proto3"
+  "alpha1.ExprR\010elements\022)\n\020optional_indice"
+  "s\030\002 \003(\005R\017optionalIndices\032\333\002\n\014CreateStruc"
+  "t\022!\n\014message_name\030\001 \001(\tR\013messageName\022K\n\007"
+  "entries\030\002 \003(\01321.google.api.expr.v1alpha1"
+  ".Expr.CreateStruct.EntryR\007entries\032\332\001\n\005En"
+  "try\022\016\n\002id\030\001 \001(\003R\002id\022\035\n\tfield_key\030\002 \001(\tH\000"
+  "R\010fieldKey\0229\n\007map_key\030\003 \001(\0132\036.google.api"
+  ".expr.v1alpha1.ExprH\000R\006mapKey\0224\n\005value\030\004"
+  " \001(\0132\036.google.api.expr.v1alpha1.ExprR\005va"
+  "lue\022%\n\016optional_entry\030\005 \001(\010R\roptionalEnt"
+  "ryB\n\n\010key_kind\032\375\002\n\rComprehension\022\031\n\010iter"
+  "_var\030\001 \001(\tR\007iterVar\022=\n\niter_range\030\002 \001(\0132"
+  "\036.google.api.expr.v1alpha1.ExprR\titerRan"
+  "ge\022\031\n\010accu_var\030\003 \001(\tR\007accuVar\022;\n\taccu_in"
+  "it\030\004 \001(\0132\036.google.api.expr.v1alpha1.Expr"
+  "R\010accuInit\022E\n\016loop_condition\030\005 \001(\0132\036.goo"
+  "gle.api.expr.v1alpha1.ExprR\rloopConditio"
+  "n\022;\n\tloop_step\030\006 \001(\0132\036.google.api.expr.v"
+  "1alpha1.ExprR\010loopStep\0226\n\006result\030\007 \001(\0132\036"
+  ".google.api.expr.v1alpha1.ExprR\006resultB\013"
+  "\n\texpr_kind\"\301\003\n\010Constant\022;\n\nnull_value\030\001"
+  " \001(\0162\032.google.protobuf.NullValueH\000R\tnull"
+  "Value\022\037\n\nbool_value\030\002 \001(\010H\000R\tboolValue\022!"
+  "\n\013int64_value\030\003 \001(\003H\000R\nint64Value\022#\n\014uin"
+  "t64_value\030\004 \001(\004H\000R\013uint64Value\022#\n\014double"
+  "_value\030\005 \001(\001H\000R\013doubleValue\022#\n\014string_va"
+  "lue\030\006 \001(\tH\000R\013stringValue\022!\n\013bytes_value\030"
+  "\007 \001(\014H\000R\nbytesValue\022F\n\016duration_value\030\010 "
+  "\001(\0132\031.google.protobuf.DurationB\002\030\001H\000R\rdu"
+  "rationValue\022I\n\017timestamp_value\030\t \001(\0132\032.g"
+  "oogle.protobuf.TimestampB\002\030\001H\000R\016timestam"
+  "pValueB\017\n\rconstant_kind\"\271\003\n\nSourceInfo\022%"
+  "\n\016syntax_version\030\001 \001(\tR\rsyntaxVersion\022\032\n"
+  "\010location\030\002 \001(\tR\010location\022!\n\014line_offset"
+  "s\030\003 \003(\005R\013lineOffsets\022Q\n\tpositions\030\004 \003(\0132"
+  "3.google.api.expr.v1alpha1.SourceInfo.Po"
+  "sitionsEntryR\tpositions\022U\n\013macro_calls\030\005"
+  " \003(\01324.google.api.expr.v1alpha1.SourceIn"
+  "fo.MacroCallsEntryR\nmacroCalls\032<\n\016Positi"
+  "onsEntry\022\020\n\003key\030\001 \001(\003R\003key\022\024\n\005value\030\002 \001("
+  "\005R\005value:\0028\001\032]\n\017MacroCallsEntry\022\020\n\003key\030\001"
+  " \001(\003R\003key\0224\n\005value\030\002 \001(\0132\036.google.api.ex"
+  "pr.v1alpha1.ExprR\005value:\0028\001\"p\n\016SourcePos"
+  "ition\022\032\n\010location\030\001 \001(\tR\010location\022\026\n\006off"
+  "set\030\002 \001(\005R\006offset\022\022\n\004line\030\003 \001(\005R\004line\022\026\n"
+  "\006column\030\004 \001(\005R\006columnBn\n\034com.google.api."
+  "expr.v1alpha1B\013SyntaxProtoP\001Z<google.gol"
+  "ang.org/genproto/googleapis/api/expr/v1a"
+  "lpha1;expr\370\001\001b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -490,7 +494,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto = {
-    false, false, 3098, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
+    false, false, 3141, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
     "google/api/expr/v1alpha1/syntax.proto",
     &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offsets,
@@ -1486,13 +1490,15 @@ class Expr_CreateList::_Internal {
 Expr_CreateList::Expr_CreateList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  elements_(arena) {
+  elements_(arena),
+  optional_indices_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1alpha1.Expr.CreateList)
 }
 Expr_CreateList::Expr_CreateList(const Expr_CreateList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      elements_(from.elements_) {
+      elements_(from.elements_),
+      optional_indices_(from.optional_indices_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.Expr.CreateList)
 }
@@ -1524,6 +1530,7 @@ void Expr_CreateList::Clear() {
   (void) cached_has_bits;
 
   elements_.Clear();
+  optional_indices_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1543,6 +1550,17 @@ const char* Expr_CreateList::_InternalParse(const char* ptr, ::_pbi::ParseContex
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated int32 optional_indices = 2 [json_name = "optionalIndices"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_optional_indices(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 16) {
+          _internal_add_optional_indices(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1583,6 +1601,15 @@ uint8_t* Expr_CreateList::_InternalSerialize(
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // repeated int32 optional_indices = 2 [json_name = "optionalIndices"];
+  {
+    int byte_size = _optional_indices_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(
+          2, _internal_optional_indices(), byte_size, target);
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1604,6 +1631,20 @@ size_t Expr_CreateList::ByteSizeLong() const {
   for (const auto& msg : this->elements_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated int32 optional_indices = 2 [json_name = "optionalIndices"];
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      Int32Size(this->optional_indices_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _optional_indices_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1629,6 +1670,7 @@ void Expr_CreateList::MergeFrom(const Expr_CreateList& from) {
   (void) cached_has_bits;
 
   elements_.MergeFrom(from.elements_);
+  optional_indices_.MergeFrom(from.optional_indices_);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1647,6 +1689,7 @@ void Expr_CreateList::InternalSwap(Expr_CreateList* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   elements_.InternalSwap(&other->elements_);
+  optional_indices_.InternalSwap(&other->optional_indices_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Expr_CreateList::GetMetadata() const {
