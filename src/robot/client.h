@@ -26,6 +26,7 @@ class RobotClient {
 	RobotClient(ViamChannel channel);
 	std::vector<ResourceName> *resource_names();
 	std::unique_ptr<RobotService::Stub> stub_;
+	ComponentBase get_component(ResourceName name);
 
        private:
 	std::atomic<bool> should_refresh;

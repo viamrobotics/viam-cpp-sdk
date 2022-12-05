@@ -26,5 +26,6 @@ void ResourceManager::register_component(ComponentBase component) {
 std::unordered_map<std::string, ComponentBase> ResourceManager::components;
 
 ComponentBase ResourceManager::get_component(std::string name) {
+	// CR erodkin: error handling if we have the wrong type here?
 	return components.at(name);
 }
