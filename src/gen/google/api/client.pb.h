@@ -311,14 +311,14 @@ class CommonLanguageSettings final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& destinations() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_destinations();
 
-  // string reference_docs_uri = 1 [json_name = "referenceDocsUri"];
-  void clear_reference_docs_uri();
-  const std::string& reference_docs_uri() const;
+  // string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_reference_docs_uri();
+  PROTOBUF_DEPRECATED const std::string& reference_docs_uri() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_reference_docs_uri(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_reference_docs_uri();
-  PROTOBUF_NODISCARD std::string* release_reference_docs_uri();
-  void set_allocated_reference_docs_uri(std::string* reference_docs_uri);
+  PROTOBUF_DEPRECATED void set_reference_docs_uri(ArgT0&& arg0, ArgT... args);
+  PROTOBUF_DEPRECATED std::string* mutable_reference_docs_uri();
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_reference_docs_uri();
+  PROTOBUF_DEPRECATED void set_allocated_reference_docs_uri(std::string* reference_docs_uri);
   private:
   const std::string& _internal_reference_docs_uri() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_reference_docs_uri(const std::string& value);
@@ -2639,7 +2639,7 @@ extern ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESP
 #endif  // __GNUC__
 // CommonLanguageSettings
 
-// string reference_docs_uri = 1 [json_name = "referenceDocsUri"];
+// string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
 inline void CommonLanguageSettings::clear_reference_docs_uri() {
   reference_docs_uri_.ClearToEmpty();
 }
