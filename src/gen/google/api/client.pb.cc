@@ -389,84 +389,84 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "\n\027google/api/client.proto\022\ngoogle.api\032\035g"
   "oogle/api/launch_stage.proto\032 google/pro"
   "tobuf/descriptor.proto\032\036google/protobuf/"
-  "duration.proto\"\220\001\n\026CommonLanguageSetting"
-  "s\022,\n\022reference_docs_uri\030\001 \001(\tR\020reference"
-  "DocsUri\022H\n\014destinations\030\002 \003(\0162$.google.a"
-  "pi.ClientLibraryDestinationR\014destination"
-  "s\"\223\005\n\025ClientLibrarySettings\022\030\n\007version\030\001"
-  " \001(\tR\007version\022:\n\014launch_stage\030\002 \001(\0162\027.go"
-  "ogle.api.LaunchStageR\013launchStage\022,\n\022res"
-  "t_numeric_enums\030\003 \001(\010R\020restNumericEnums\022"
-  "=\n\rjava_settings\030\025 \001(\0132\030.google.api.Java"
-  "SettingsR\014javaSettings\022:\n\014cpp_settings\030\026"
-  " \001(\0132\027.google.api.CppSettingsR\013cppSettin"
-  "gs\022:\n\014php_settings\030\027 \001(\0132\027.google.api.Ph"
-  "pSettingsR\013phpSettings\022C\n\017python_setting"
-  "s\030\030 \001(\0132\032.google.api.PythonSettingsR\016pyt"
-  "honSettings\022=\n\rnode_settings\030\031 \001(\0132\030.goo"
-  "gle.api.NodeSettingsR\014nodeSettings\022C\n\017do"
-  "tnet_settings\030\032 \001(\0132\032.google.api.DotnetS"
-  "ettingsR\016dotnetSettings\022=\n\rruby_settings"
-  "\030\033 \001(\0132\030.google.api.RubySettingsR\014rubySe"
-  "ttings\0227\n\013go_settings\030\034 \001(\0132\026.google.api"
-  ".GoSettingsR\ngoSettings\"\340\003\n\nPublishing\022C"
-  "\n\017method_settings\030\002 \003(\0132\032.google.api.Met"
-  "hodSettingsR\016methodSettings\022\"\n\rnew_issue"
-  "_uri\030e \001(\tR\013newIssueUri\022+\n\021documentation"
-  "_uri\030f \001(\tR\020documentationUri\022$\n\016api_shor"
-  "t_name\030g \001(\tR\014apiShortName\022!\n\014github_lab"
-  "el\030h \001(\tR\013githubLabel\0224\n\026codeowner_githu"
-  "b_teams\030i \003(\tR\024codeownerGithubTeams\022$\n\016d"
-  "oc_tag_prefix\030j \001(\tR\014docTagPrefix\022I\n\014org"
-  "anization\030k \001(\0162%.google.api.ClientLibra"
-  "ryOrganizationR\014organization\022L\n\020library_"
-  "settings\030m \003(\0132!.google.api.ClientLibrar"
-  "ySettingsR\017librarySettings\"\232\002\n\014JavaSetti"
-  "ngs\022\'\n\017library_package\030\001 \001(\tR\016libraryPac"
-  "kage\022_\n\023service_class_names\030\002 \003(\0132/.goog"
-  "le.api.JavaSettings.ServiceClassNamesEnt"
-  "ryR\021serviceClassNames\022:\n\006common\030\003 \001(\0132\"."
-  "google.api.CommonLanguageSettingsR\006commo"
-  "n\032D\n\026ServiceClassNamesEntry\022\020\n\003key\030\001 \001(\t"
-  "R\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"I\n\013CppSe"
-  "ttings\022:\n\006common\030\001 \001(\0132\".google.api.Comm"
-  "onLanguageSettingsR\006common\"I\n\013PhpSetting"
-  "s\022:\n\006common\030\001 \001(\0132\".google.api.CommonLan"
-  "guageSettingsR\006common\"L\n\016PythonSettings\022"
+  "duration.proto\"\224\001\n\026CommonLanguageSetting"
+  "s\0220\n\022reference_docs_uri\030\001 \001(\tB\002\030\001R\020refer"
+  "enceDocsUri\022H\n\014destinations\030\002 \003(\0162$.goog"
+  "le.api.ClientLibraryDestinationR\014destina"
+  "tions\"\223\005\n\025ClientLibrarySettings\022\030\n\007versi"
+  "on\030\001 \001(\tR\007version\022:\n\014launch_stage\030\002 \001(\0162"
+  "\027.google.api.LaunchStageR\013launchStage\022,\n"
+  "\022rest_numeric_enums\030\003 \001(\010R\020restNumericEn"
+  "ums\022=\n\rjava_settings\030\025 \001(\0132\030.google.api."
+  "JavaSettingsR\014javaSettings\022:\n\014cpp_settin"
+  "gs\030\026 \001(\0132\027.google.api.CppSettingsR\013cppSe"
+  "ttings\022:\n\014php_settings\030\027 \001(\0132\027.google.ap"
+  "i.PhpSettingsR\013phpSettings\022C\n\017python_set"
+  "tings\030\030 \001(\0132\032.google.api.PythonSettingsR"
+  "\016pythonSettings\022=\n\rnode_settings\030\031 \001(\0132\030"
+  ".google.api.NodeSettingsR\014nodeSettings\022C"
+  "\n\017dotnet_settings\030\032 \001(\0132\032.google.api.Dot"
+  "netSettingsR\016dotnetSettings\022=\n\rruby_sett"
+  "ings\030\033 \001(\0132\030.google.api.RubySettingsR\014ru"
+  "bySettings\0227\n\013go_settings\030\034 \001(\0132\026.google"
+  ".api.GoSettingsR\ngoSettings\"\340\003\n\nPublishi"
+  "ng\022C\n\017method_settings\030\002 \003(\0132\032.google.api"
+  ".MethodSettingsR\016methodSettings\022\"\n\rnew_i"
+  "ssue_uri\030e \001(\tR\013newIssueUri\022+\n\021documenta"
+  "tion_uri\030f \001(\tR\020documentationUri\022$\n\016api_"
+  "short_name\030g \001(\tR\014apiShortName\022!\n\014github"
+  "_label\030h \001(\tR\013githubLabel\0224\n\026codeowner_g"
+  "ithub_teams\030i \003(\tR\024codeownerGithubTeams\022"
+  "$\n\016doc_tag_prefix\030j \001(\tR\014docTagPrefix\022I\n"
+  "\014organization\030k \001(\0162%.google.api.ClientL"
+  "ibraryOrganizationR\014organization\022L\n\020libr"
+  "ary_settings\030m \003(\0132!.google.api.ClientLi"
+  "brarySettingsR\017librarySettings\"\232\002\n\014JavaS"
+  "ettings\022\'\n\017library_package\030\001 \001(\tR\016librar"
+  "yPackage\022_\n\023service_class_names\030\002 \003(\0132/."
+  "google.api.JavaSettings.ServiceClassName"
+  "sEntryR\021serviceClassNames\022:\n\006common\030\003 \001("
+  "\0132\".google.api.CommonLanguageSettingsR\006c"
+  "ommon\032D\n\026ServiceClassNamesEntry\022\020\n\003key\030\001"
+  " \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"I\n\013C"
+  "ppSettings\022:\n\006common\030\001 \001(\0132\".google.api."
+  "CommonLanguageSettingsR\006common\"I\n\013PhpSet"
+  "tings\022:\n\006common\030\001 \001(\0132\".google.api.Commo"
+  "nLanguageSettingsR\006common\"L\n\016PythonSetti"
+  "ngs\022:\n\006common\030\001 \001(\0132\".google.api.CommonL"
+  "anguageSettingsR\006common\"J\n\014NodeSettings\022"
   ":\n\006common\030\001 \001(\0132\".google.api.CommonLangu"
-  "ageSettingsR\006common\"J\n\014NodeSettings\022:\n\006c"
-  "ommon\030\001 \001(\0132\".google.api.CommonLanguageS"
-  "ettingsR\006common\"L\n\016DotnetSettings\022:\n\006com"
+  "ageSettingsR\006common\"L\n\016DotnetSettings\022:\n"
+  "\006common\030\001 \001(\0132\".google.api.CommonLanguag"
+  "eSettingsR\006common\"J\n\014RubySettings\022:\n\006com"
   "mon\030\001 \001(\0132\".google.api.CommonLanguageSet"
-  "tingsR\006common\"J\n\014RubySettings\022:\n\006common\030"
-  "\001 \001(\0132\".google.api.CommonLanguageSetting"
-  "sR\006common\"H\n\nGoSettings\022:\n\006common\030\001 \001(\0132"
-  "\".google.api.CommonLanguageSettingsR\006com"
-  "mon\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001 \001(\t"
-  "R\010selector\022I\n\014long_running\030\002 \001(\0132&.googl"
-  "e.api.MethodSettings.LongRunningR\013longRu"
-  "nning\032\224\002\n\013LongRunning\022G\n\022initial_poll_de"
-  "lay\030\001 \001(\0132\031.google.protobuf.DurationR\020in"
-  "itialPollDelay\0222\n\025poll_delay_multiplier\030"
-  "\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_poll_d"
-  "elay\030\003 \001(\0132\031.google.protobuf.DurationR\014m"
-  "axPollDelay\022G\n\022total_poll_timeout\030\004 \001(\0132"
-  "\031.google.protobuf.DurationR\020totalPollTim"
-  "eout*y\n\031ClientLibraryOrganization\022+\n\'CLI"
-  "ENT_LIBRARY_ORGANIZATION_UNSPECIFIED\020\000\022\t"
-  "\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET"
-  "_VIEW\020\004*g\n\030ClientLibraryDestination\022*\n&C"
-  "LIENT_LIBRARY_DESTINATION_UNSPECIFIED\020\000\022"
-  "\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020meth"
-  "od_signature\022\036.google.protobuf.MethodOpt"
-  "ions\030\233\010 \003(\tR\017methodSignature:C\n\014default_"
-  "host\022\037.google.protobuf.ServiceOptions\030\231\010"
-  " \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037.goog"
-  "le.protobuf.ServiceOptions\030\232\010 \001(\tR\013oauth"
-  "ScopesBi\n\016com.google.apiB\013ClientProtoP\001Z"
-  "Agoogle.golang.org/genproto/googleapis/a"
-  "pi/annotations;annotations\242\002\004GAPIb\006proto"
-  "3"
+  "tingsR\006common\"H\n\nGoSettings\022:\n\006common\030\001 "
+  "\001(\0132\".google.api.CommonLanguageSettingsR"
+  "\006common\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001"
+  " \001(\tR\010selector\022I\n\014long_running\030\002 \001(\0132&.g"
+  "oogle.api.MethodSettings.LongRunningR\013lo"
+  "ngRunning\032\224\002\n\013LongRunning\022G\n\022initial_pol"
+  "l_delay\030\001 \001(\0132\031.google.protobuf.Duration"
+  "R\020initialPollDelay\0222\n\025poll_delay_multipl"
+  "ier\030\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_po"
+  "ll_delay\030\003 \001(\0132\031.google.protobuf.Duratio"
+  "nR\014maxPollDelay\022G\n\022total_poll_timeout\030\004 "
+  "\001(\0132\031.google.protobuf.DurationR\020totalPol"
+  "lTimeout*y\n\031ClientLibraryOrganization\022+\n"
+  "\'CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED"
+  "\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013ST"
+  "REET_VIEW\020\004*g\n\030ClientLibraryDestination\022"
+  "*\n&CLIENT_LIBRARY_DESTINATION_UNSPECIFIE"
+  "D\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020"
+  "method_signature\022\036.google.protobuf.Metho"
+  "dOptions\030\233\010 \003(\tR\017methodSignature:C\n\014defa"
+  "ult_host\022\037.google.protobuf.ServiceOption"
+  "s\030\231\010 \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037."
+  "google.protobuf.ServiceOptions\030\232\010 \001(\tR\013o"
+  "authScopesBi\n\016com.google.apiB\013ClientProt"
+  "oP\001ZAgoogle.golang.org/genproto/googleap"
+  "is/api/annotations;annotations\242\002\004GAPIb\006p"
+  "roto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -475,7 +475,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 3201, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 3205, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -593,7 +593,7 @@ const char* CommonLanguageSettings::_InternalParse(const char* ptr, ::_pbi::Pars
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string reference_docs_uri = 1 [json_name = "referenceDocsUri"];
+      // string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_reference_docs_uri();
@@ -644,7 +644,7 @@ uint8_t* CommonLanguageSettings::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string reference_docs_uri = 1 [json_name = "referenceDocsUri"];
+  // string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
   if (!this->_internal_reference_docs_uri().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_reference_docs_uri().data(), static_cast<int>(this->_internal_reference_docs_uri().length()),
@@ -696,7 +696,7 @@ size_t CommonLanguageSettings::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // string reference_docs_uri = 1 [json_name = "referenceDocsUri"];
+  // string reference_docs_uri = 1 [json_name = "referenceDocsUri", deprecated = true];
   if (!this->_internal_reference_docs_uri().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
