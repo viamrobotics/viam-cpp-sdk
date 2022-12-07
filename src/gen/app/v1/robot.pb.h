@@ -62,6 +62,9 @@ extern AuthConfigDefaultTypeInternal _AuthConfig_default_instance_;
 class AuthHandlerConfig;
 struct AuthHandlerConfigDefaultTypeInternal;
 extern AuthHandlerConfigDefaultTypeInternal _AuthHandlerConfig_default_instance_;
+class AuthHandlerWebOauthConfig;
+struct AuthHandlerWebOauthConfigDefaultTypeInternal;
+extern AuthHandlerWebOauthConfigDefaultTypeInternal _AuthHandlerWebOauthConfig_default_instance_;
 class CertificateRequest;
 struct CertificateRequestDefaultTypeInternal;
 extern CertificateRequestDefaultTypeInternal _CertificateRequest_default_instance_;
@@ -83,6 +86,9 @@ extern ConfigResponseDefaultTypeInternal _ConfigResponse_default_instance_;
 class Frame;
 struct FrameDefaultTypeInternal;
 extern FrameDefaultTypeInternal _Frame_default_instance_;
+class JWKSFile;
+struct JWKSFileDefaultTypeInternal;
+extern JWKSFileDefaultTypeInternal _JWKSFile_default_instance_;
 class LocationSecret;
 struct LocationSecretDefaultTypeInternal;
 extern LocationSecretDefaultTypeInternal _LocationSecret_default_instance_;
@@ -153,6 +159,7 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::app::v1::AgentInfo* Arena::CreateMaybeMessage<::viam::app::v1::AgentInfo>(Arena*);
 template<> ::viam::app::v1::AuthConfig* Arena::CreateMaybeMessage<::viam::app::v1::AuthConfig>(Arena*);
 template<> ::viam::app::v1::AuthHandlerConfig* Arena::CreateMaybeMessage<::viam::app::v1::AuthHandlerConfig>(Arena*);
+template<> ::viam::app::v1::AuthHandlerWebOauthConfig* Arena::CreateMaybeMessage<::viam::app::v1::AuthHandlerWebOauthConfig>(Arena*);
 template<> ::viam::app::v1::CertificateRequest* Arena::CreateMaybeMessage<::viam::app::v1::CertificateRequest>(Arena*);
 template<> ::viam::app::v1::CertificateResponse* Arena::CreateMaybeMessage<::viam::app::v1::CertificateResponse>(Arena*);
 template<> ::viam::app::v1::CloudConfig* Arena::CreateMaybeMessage<::viam::app::v1::CloudConfig>(Arena*);
@@ -160,6 +167,7 @@ template<> ::viam::app::v1::ComponentConfig* Arena::CreateMaybeMessage<::viam::a
 template<> ::viam::app::v1::ConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::ConfigRequest>(Arena*);
 template<> ::viam::app::v1::ConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::ConfigResponse>(Arena*);
 template<> ::viam::app::v1::Frame* Arena::CreateMaybeMessage<::viam::app::v1::Frame>(Arena*);
+template<> ::viam::app::v1::JWKSFile* Arena::CreateMaybeMessage<::viam::app::v1::JWKSFile>(Arena*);
 template<> ::viam::app::v1::LocationSecret* Arena::CreateMaybeMessage<::viam::app::v1::LocationSecret>(Arena*);
 template<> ::viam::app::v1::LogRequest* Arena::CreateMaybeMessage<::viam::app::v1::LogRequest>(Arena*);
 template<> ::viam::app::v1::LogResponse* Arena::CreateMaybeMessage<::viam::app::v1::LogResponse>(Arena*);
@@ -192,12 +200,13 @@ enum CredentialsType : int {
   CREDENTIALS_TYPE_API_KEY = 2,
   CREDENTIALS_TYPE_ROBOT_SECRET = 3,
   CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = 4,
+  CREDENTIALS_TYPE_WEB_OAUTH = 5,
   CredentialsType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   CredentialsType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool CredentialsType_IsValid(int value);
 constexpr CredentialsType CredentialsType_MIN = CREDENTIALS_TYPE_UNSPECIFIED;
-constexpr CredentialsType CredentialsType_MAX = CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET;
+constexpr CredentialsType CredentialsType_MAX = CREDENTIALS_TYPE_WEB_OAUTH;
 constexpr int CredentialsType_ARRAYSIZE = CredentialsType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CredentialsType_descriptor();
@@ -2237,6 +2246,336 @@ class AuthConfig final :
 };
 // -------------------------------------------------------------------
 
+class JWKSFile final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.JWKSFile) */ {
+ public:
+  inline JWKSFile() : JWKSFile(nullptr) {}
+  ~JWKSFile() override;
+  explicit PROTOBUF_CONSTEXPR JWKSFile(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  JWKSFile(const JWKSFile& from);
+  JWKSFile(JWKSFile&& from) noexcept
+    : JWKSFile() {
+    *this = ::std::move(from);
+  }
+
+  inline JWKSFile& operator=(const JWKSFile& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JWKSFile& operator=(JWKSFile&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JWKSFile& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JWKSFile* internal_default_instance() {
+    return reinterpret_cast<const JWKSFile*>(
+               &_JWKSFile_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(JWKSFile& a, JWKSFile& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JWKSFile* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JWKSFile* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JWKSFile* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JWKSFile>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const JWKSFile& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const JWKSFile& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JWKSFile* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.JWKSFile";
+  }
+  protected:
+  explicit JWKSFile(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJsonFieldNumber = 1,
+  };
+  // .google.protobuf.Struct json = 1 [json_name = "json"];
+  bool has_json() const;
+  private:
+  bool _internal_has_json() const;
+  public:
+  void clear_json();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& json() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_json();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_json();
+  void set_allocated_json(::PROTOBUF_NAMESPACE_ID::Struct* json);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_json() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_json();
+  public:
+  void unsafe_arena_set_allocated_json(
+      ::PROTOBUF_NAMESPACE_ID::Struct* json);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_json();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.JWKSFile)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* json_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AuthHandlerWebOauthConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.AuthHandlerWebOauthConfig) */ {
+ public:
+  inline AuthHandlerWebOauthConfig() : AuthHandlerWebOauthConfig(nullptr) {}
+  ~AuthHandlerWebOauthConfig() override;
+  explicit PROTOBUF_CONSTEXPR AuthHandlerWebOauthConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AuthHandlerWebOauthConfig(const AuthHandlerWebOauthConfig& from);
+  AuthHandlerWebOauthConfig(AuthHandlerWebOauthConfig&& from) noexcept
+    : AuthHandlerWebOauthConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline AuthHandlerWebOauthConfig& operator=(const AuthHandlerWebOauthConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AuthHandlerWebOauthConfig& operator=(AuthHandlerWebOauthConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AuthHandlerWebOauthConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AuthHandlerWebOauthConfig* internal_default_instance() {
+    return reinterpret_cast<const AuthHandlerWebOauthConfig*>(
+               &_AuthHandlerWebOauthConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(AuthHandlerWebOauthConfig& a, AuthHandlerWebOauthConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AuthHandlerWebOauthConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AuthHandlerWebOauthConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AuthHandlerWebOauthConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AuthHandlerWebOauthConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AuthHandlerWebOauthConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AuthHandlerWebOauthConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AuthHandlerWebOauthConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.AuthHandlerWebOauthConfig";
+  }
+  protected:
+  explicit AuthHandlerWebOauthConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAllowedAudiencesFieldNumber = 1,
+    kJwksFieldNumber = 2,
+  };
+  // repeated string allowed_audiences = 1 [json_name = "allowedAudiences"];
+  int allowed_audiences_size() const;
+  private:
+  int _internal_allowed_audiences_size() const;
+  public:
+  void clear_allowed_audiences();
+  const std::string& allowed_audiences(int index) const;
+  std::string* mutable_allowed_audiences(int index);
+  void set_allowed_audiences(int index, const std::string& value);
+  void set_allowed_audiences(int index, std::string&& value);
+  void set_allowed_audiences(int index, const char* value);
+  void set_allowed_audiences(int index, const char* value, size_t size);
+  std::string* add_allowed_audiences();
+  void add_allowed_audiences(const std::string& value);
+  void add_allowed_audiences(std::string&& value);
+  void add_allowed_audiences(const char* value);
+  void add_allowed_audiences(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& allowed_audiences() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_allowed_audiences();
+  private:
+  const std::string& _internal_allowed_audiences(int index) const;
+  std::string* _internal_add_allowed_audiences();
+  public:
+
+  // .viam.app.v1.JWKSFile jwks = 2 [json_name = "jwks"];
+  bool has_jwks() const;
+  private:
+  bool _internal_has_jwks() const;
+  public:
+  void clear_jwks();
+  const ::viam::app::v1::JWKSFile& jwks() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::JWKSFile* release_jwks();
+  ::viam::app::v1::JWKSFile* mutable_jwks();
+  void set_allocated_jwks(::viam::app::v1::JWKSFile* jwks);
+  private:
+  const ::viam::app::v1::JWKSFile& _internal_jwks() const;
+  ::viam::app::v1::JWKSFile* _internal_mutable_jwks();
+  public:
+  void unsafe_arena_set_allocated_jwks(
+      ::viam::app::v1::JWKSFile* jwks);
+  ::viam::app::v1::JWKSFile* unsafe_arena_release_jwks();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.AuthHandlerWebOauthConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> allowed_audiences_;
+  ::viam::app::v1::JWKSFile* jwks_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AuthHandlerConfig final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.AuthHandlerConfig) */ {
  public:
@@ -2285,7 +2624,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -2357,6 +2696,7 @@ class AuthHandlerConfig final :
 
   enum : int {
     kConfigFieldNumber = 5,
+    kWebOauthConfigFieldNumber = 6,
     kTypeFieldNumber = 1,
   };
   // .google.protobuf.Struct config = 5 [json_name = "config"];
@@ -2377,6 +2717,24 @@ class AuthHandlerConfig final :
       ::PROTOBUF_NAMESPACE_ID::Struct* config);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_config();
 
+  // optional .viam.app.v1.AuthHandlerWebOauthConfig web_oauth_config = 6 [json_name = "webOauthConfig"];
+  bool has_web_oauth_config() const;
+  private:
+  bool _internal_has_web_oauth_config() const;
+  public:
+  void clear_web_oauth_config();
+  const ::viam::app::v1::AuthHandlerWebOauthConfig& web_oauth_config() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::AuthHandlerWebOauthConfig* release_web_oauth_config();
+  ::viam::app::v1::AuthHandlerWebOauthConfig* mutable_web_oauth_config();
+  void set_allocated_web_oauth_config(::viam::app::v1::AuthHandlerWebOauthConfig* web_oauth_config);
+  private:
+  const ::viam::app::v1::AuthHandlerWebOauthConfig& _internal_web_oauth_config() const;
+  ::viam::app::v1::AuthHandlerWebOauthConfig* _internal_mutable_web_oauth_config();
+  public:
+  void unsafe_arena_set_allocated_web_oauth_config(
+      ::viam::app::v1::AuthHandlerWebOauthConfig* web_oauth_config);
+  ::viam::app::v1::AuthHandlerWebOauthConfig* unsafe_arena_release_web_oauth_config();
+
   // .viam.app.v1.CredentialsType type = 1 [json_name = "type"];
   void clear_type();
   ::viam::app::v1::CredentialsType type() const;
@@ -2393,9 +2751,11 @@ class AuthHandlerConfig final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* config_;
-  int type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* config_;
+  ::viam::app::v1::AuthHandlerWebOauthConfig* web_oauth_config_;
+  int type_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2448,7 +2808,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -2636,7 +2996,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -2800,7 +3160,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -2917,7 +3277,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -3093,7 +3453,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -3269,7 +3629,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -3434,7 +3794,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -3610,7 +3970,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -3796,7 +4156,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -4072,7 +4432,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -4379,7 +4739,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -4538,7 +4898,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -4708,7 +5068,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -4930,7 +5290,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -5099,7 +5459,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -5251,7 +5611,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    27;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -5399,7 +5759,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    28;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -5579,7 +5939,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    29;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -5746,7 +6106,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    30;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -5863,7 +6223,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -6011,7 +6371,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    32;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -8718,6 +9078,264 @@ AuthConfig::mutable_tls_auth_entities() {
 
 // -------------------------------------------------------------------
 
+// JWKSFile
+
+// .google.protobuf.Struct json = 1 [json_name = "json"];
+inline bool JWKSFile::_internal_has_json() const {
+  return this != internal_default_instance() && json_ != nullptr;
+}
+inline bool JWKSFile::has_json() const {
+  return _internal_has_json();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& JWKSFile::_internal_json() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = json_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& JWKSFile::json() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JWKSFile.json)
+  return _internal_json();
+}
+inline void JWKSFile::unsafe_arena_set_allocated_json(
+    ::PROTOBUF_NAMESPACE_ID::Struct* json) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(json_);
+  }
+  json_ = json;
+  if (json) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.JWKSFile.json)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JWKSFile::release_json() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = json_;
+  json_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JWKSFile::unsafe_arena_release_json() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JWKSFile.json)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = json_;
+  json_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JWKSFile::_internal_mutable_json() {
+  
+  if (json_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    json_ = p;
+  }
+  return json_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JWKSFile::mutable_json() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_json();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JWKSFile.json)
+  return _msg;
+}
+inline void JWKSFile::set_allocated_json(::PROTOBUF_NAMESPACE_ID::Struct* json) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(json_);
+  }
+  if (json) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(json));
+    if (message_arena != submessage_arena) {
+      json = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, json, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  json_ = json;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JWKSFile.json)
+}
+
+// -------------------------------------------------------------------
+
+// AuthHandlerWebOauthConfig
+
+// repeated string allowed_audiences = 1 [json_name = "allowedAudiences"];
+inline int AuthHandlerWebOauthConfig::_internal_allowed_audiences_size() const {
+  return allowed_audiences_.size();
+}
+inline int AuthHandlerWebOauthConfig::allowed_audiences_size() const {
+  return _internal_allowed_audiences_size();
+}
+inline void AuthHandlerWebOauthConfig::clear_allowed_audiences() {
+  allowed_audiences_.Clear();
+}
+inline std::string* AuthHandlerWebOauthConfig::add_allowed_audiences() {
+  std::string* _s = _internal_add_allowed_audiences();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+  return _s;
+}
+inline const std::string& AuthHandlerWebOauthConfig::_internal_allowed_audiences(int index) const {
+  return allowed_audiences_.Get(index);
+}
+inline const std::string& AuthHandlerWebOauthConfig::allowed_audiences(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+  return _internal_allowed_audiences(index);
+}
+inline std::string* AuthHandlerWebOauthConfig::mutable_allowed_audiences(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+  return allowed_audiences_.Mutable(index);
+}
+inline void AuthHandlerWebOauthConfig::set_allowed_audiences(int index, const std::string& value) {
+  allowed_audiences_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline void AuthHandlerWebOauthConfig::set_allowed_audiences(int index, std::string&& value) {
+  allowed_audiences_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline void AuthHandlerWebOauthConfig::set_allowed_audiences(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  allowed_audiences_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline void AuthHandlerWebOauthConfig::set_allowed_audiences(int index, const char* value, size_t size) {
+  allowed_audiences_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline std::string* AuthHandlerWebOauthConfig::_internal_add_allowed_audiences() {
+  return allowed_audiences_.Add();
+}
+inline void AuthHandlerWebOauthConfig::add_allowed_audiences(const std::string& value) {
+  allowed_audiences_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline void AuthHandlerWebOauthConfig::add_allowed_audiences(std::string&& value) {
+  allowed_audiences_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline void AuthHandlerWebOauthConfig::add_allowed_audiences(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  allowed_audiences_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline void AuthHandlerWebOauthConfig::add_allowed_audiences(const char* value, size_t size) {
+  allowed_audiences_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+AuthHandlerWebOauthConfig::allowed_audiences() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+  return allowed_audiences_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+AuthHandlerWebOauthConfig::mutable_allowed_audiences() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.AuthHandlerWebOauthConfig.allowed_audiences)
+  return &allowed_audiences_;
+}
+
+// .viam.app.v1.JWKSFile jwks = 2 [json_name = "jwks"];
+inline bool AuthHandlerWebOauthConfig::_internal_has_jwks() const {
+  return this != internal_default_instance() && jwks_ != nullptr;
+}
+inline bool AuthHandlerWebOauthConfig::has_jwks() const {
+  return _internal_has_jwks();
+}
+inline void AuthHandlerWebOauthConfig::clear_jwks() {
+  if (GetArenaForAllocation() == nullptr && jwks_ != nullptr) {
+    delete jwks_;
+  }
+  jwks_ = nullptr;
+}
+inline const ::viam::app::v1::JWKSFile& AuthHandlerWebOauthConfig::_internal_jwks() const {
+  const ::viam::app::v1::JWKSFile* p = jwks_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::JWKSFile&>(
+      ::viam::app::v1::_JWKSFile_default_instance_);
+}
+inline const ::viam::app::v1::JWKSFile& AuthHandlerWebOauthConfig::jwks() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthHandlerWebOauthConfig.jwks)
+  return _internal_jwks();
+}
+inline void AuthHandlerWebOauthConfig::unsafe_arena_set_allocated_jwks(
+    ::viam::app::v1::JWKSFile* jwks) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(jwks_);
+  }
+  jwks_ = jwks;
+  if (jwks) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.AuthHandlerWebOauthConfig.jwks)
+}
+inline ::viam::app::v1::JWKSFile* AuthHandlerWebOauthConfig::release_jwks() {
+  
+  ::viam::app::v1::JWKSFile* temp = jwks_;
+  jwks_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::JWKSFile* AuthHandlerWebOauthConfig::unsafe_arena_release_jwks() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthHandlerWebOauthConfig.jwks)
+  
+  ::viam::app::v1::JWKSFile* temp = jwks_;
+  jwks_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::JWKSFile* AuthHandlerWebOauthConfig::_internal_mutable_jwks() {
+  
+  if (jwks_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::JWKSFile>(GetArenaForAllocation());
+    jwks_ = p;
+  }
+  return jwks_;
+}
+inline ::viam::app::v1::JWKSFile* AuthHandlerWebOauthConfig::mutable_jwks() {
+  ::viam::app::v1::JWKSFile* _msg = _internal_mutable_jwks();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthHandlerWebOauthConfig.jwks)
+  return _msg;
+}
+inline void AuthHandlerWebOauthConfig::set_allocated_jwks(::viam::app::v1::JWKSFile* jwks) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete jwks_;
+  }
+  if (jwks) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(jwks);
+    if (message_arena != submessage_arena) {
+      jwks = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, jwks, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  jwks_ = jwks;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthHandlerWebOauthConfig.jwks)
+}
+
+// -------------------------------------------------------------------
+
 // AuthHandlerConfig
 
 // .viam.app.v1.CredentialsType type = 1 [json_name = "type"];
@@ -8823,6 +9441,96 @@ inline void AuthHandlerConfig::set_allocated_config(::PROTOBUF_NAMESPACE_ID::Str
   }
   config_ = config;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthHandlerConfig.config)
+}
+
+// optional .viam.app.v1.AuthHandlerWebOauthConfig web_oauth_config = 6 [json_name = "webOauthConfig"];
+inline bool AuthHandlerConfig::_internal_has_web_oauth_config() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || web_oauth_config_ != nullptr);
+  return value;
+}
+inline bool AuthHandlerConfig::has_web_oauth_config() const {
+  return _internal_has_web_oauth_config();
+}
+inline void AuthHandlerConfig::clear_web_oauth_config() {
+  if (web_oauth_config_ != nullptr) web_oauth_config_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::AuthHandlerWebOauthConfig& AuthHandlerConfig::_internal_web_oauth_config() const {
+  const ::viam::app::v1::AuthHandlerWebOauthConfig* p = web_oauth_config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::AuthHandlerWebOauthConfig&>(
+      ::viam::app::v1::_AuthHandlerWebOauthConfig_default_instance_);
+}
+inline const ::viam::app::v1::AuthHandlerWebOauthConfig& AuthHandlerConfig::web_oauth_config() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthHandlerConfig.web_oauth_config)
+  return _internal_web_oauth_config();
+}
+inline void AuthHandlerConfig::unsafe_arena_set_allocated_web_oauth_config(
+    ::viam::app::v1::AuthHandlerWebOauthConfig* web_oauth_config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(web_oauth_config_);
+  }
+  web_oauth_config_ = web_oauth_config;
+  if (web_oauth_config) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.AuthHandlerConfig.web_oauth_config)
+}
+inline ::viam::app::v1::AuthHandlerWebOauthConfig* AuthHandlerConfig::release_web_oauth_config() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::AuthHandlerWebOauthConfig* temp = web_oauth_config_;
+  web_oauth_config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::AuthHandlerWebOauthConfig* AuthHandlerConfig::unsafe_arena_release_web_oauth_config() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthHandlerConfig.web_oauth_config)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::AuthHandlerWebOauthConfig* temp = web_oauth_config_;
+  web_oauth_config_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::AuthHandlerWebOauthConfig* AuthHandlerConfig::_internal_mutable_web_oauth_config() {
+  _has_bits_[0] |= 0x00000001u;
+  if (web_oauth_config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::AuthHandlerWebOauthConfig>(GetArenaForAllocation());
+    web_oauth_config_ = p;
+  }
+  return web_oauth_config_;
+}
+inline ::viam::app::v1::AuthHandlerWebOauthConfig* AuthHandlerConfig::mutable_web_oauth_config() {
+  ::viam::app::v1::AuthHandlerWebOauthConfig* _msg = _internal_mutable_web_oauth_config();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthHandlerConfig.web_oauth_config)
+  return _msg;
+}
+inline void AuthHandlerConfig::set_allocated_web_oauth_config(::viam::app::v1::AuthHandlerWebOauthConfig* web_oauth_config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete web_oauth_config_;
+  }
+  if (web_oauth_config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(web_oauth_config);
+    if (message_arena != submessage_arena) {
+      web_oauth_config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, web_oauth_config, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  web_oauth_config_ = web_oauth_config;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthHandlerConfig.web_oauth_config)
 }
 
 // -------------------------------------------------------------------
@@ -11852,6 +12560,10 @@ inline void NeedsRestartResponse::set_allocated_restart_check_interval(::PROTOBU
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
