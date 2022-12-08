@@ -13,7 +13,10 @@
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;
+using viam::common::v1::Transform;
+using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
+using viam::robot::v1::Status;
 
 class RobotClient {
        public:
@@ -27,6 +30,11 @@ class RobotClient {
 	std::vector<ResourceName> *resource_names();
 	std::unique_ptr<RobotService::Stub> stub_;
 	ComponentBase get_component(ResourceName name);
+	std::vector<FrameSystemConfig> get_frame_system_config(
+	    std::vector<Transform> additional_transforms =
+		std::vector<Transform>());
+	std::vector<Status> get_status(
+	    std::vector<ResourceName> components = std::vector<ResourceName>());
 
        private:
 	std::atomic<bool> should_refresh;

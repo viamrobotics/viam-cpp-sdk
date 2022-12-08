@@ -1,3 +1,4 @@
+#include "google/protobuf/struct.pb.h"
 #define BOOST_LOG_DYN_LINK 1
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
@@ -17,20 +18,25 @@
 #include <set>
 #include <string>
 #include <thread>
+#include <tuple>
 #include <vector>
 
+#include "../../src/common/utils.h"
 #include "../components/resource_manager.h"
 #include "../components/service_base.h"
 #include "../registry/registry.h"
 #include "../rpc/dial.h"
 #include "common/v1/common.pb.h"
 #include "grpcpp/channel.h"
-#include "net/proto2/public/repeated_field.h"
 
+using google::protobuf::RepeatedPtrField;
 using grpc::Channel;
 using grpc::ClientContext;
+using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;
 using viam::common::v1::Transform;
+using viam::robot::v1::Discovery;
+using viam::robot::v1::DiscoveryQuery;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
@@ -53,12 +59,22 @@ class RobotClient {
 	    std::vector<Transform> additional_transforms =
 		std::vector<Transform>());
 
-	void cancel_operations(std::string id);
+	void stop_all(
+	    std::vector<std::tuple<ResourceName,
+				   std::unordered_map<std::string, ProtoType>>>
+		extra);
+	void cancel_operation(std::string id);
 	void block_for_operation(std::string id);
 	RobotClient(ViamChannel channel);
 	std::vector<ResourceName> *resource_names();
 	std::unique_ptr<RobotService::Stub> stub_;
 	ComponentBase get_component(ResourceName name);
+	PoseInFrame transform_pose(
+	    PoseInFrame query, std::string destination,
+	    std::vector<Transform> additional_transforms =
+		std::vector<Transform>());
+	std::vector<Discovery> discover_components(
+	    std::vector<DiscoveryQuery> queries);
 
        private:
 	std::atomic<bool> should_refresh;
@@ -87,25 +103,26 @@ std::vector<Status> RobotClient::get_status(
 	viam::robot::v1::GetStatusRequest req;
 	viam::robot::v1::GetStatusResponse resp;
 	ClientContext ctx;
+	RepeatedPtrField<ResourceName> *request_resource_names =
+	    req.mutable_resource_names();
+
+	for (ResourceName name : components) {
+		*request_resource_names->Add() = name;
+	}
 
 	grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
 	if (!response.ok()) {
 		BOOST_LOG_TRIVIAL(error)
-		    << "Error getting status: " << response.error_message();
-		return std::vector<Status>();
+		    << "Error getting status: " << response.error_message()
+		    << response.error_details();
 	}
 
-	google::protobuf::RepeatedPtrField<Status> status = resp.status();
+	RepeatedPtrField<Status> status = resp.status();
 
 	std::vector<Status> statuses = std::vector<Status>();
 
-	std::set<ResourceName> component_set(components.begin(),
-					     components.end());
-	for (int i = 0; i < status.size(); ++i) {
-		Status s = status.at(i);
-		if (component_set.empty() |
-		    component_set.find(s.name()) != component_set.end())
-			statuses.push_back(status.at(i));
+	for (Status s : status) {
+		statuses.push_back(s);
 	}
 
 	return statuses;
@@ -122,7 +139,6 @@ std::vector<Operation> RobotClient::get_operations() {
 	if (!response.ok()) {
 		BOOST_LOG_TRIVIAL(error)
 		    << "Error getting operations: " << response.error_message();
-		return operations;
 	}
 	for (int i = 0; i < resp.operations().size(); ++i) {
 		operations.push_back(resp.operations().at(i));
@@ -130,7 +146,7 @@ std::vector<Operation> RobotClient::get_operations() {
 	return operations;
 }
 
-void RobotClient::cancel_operations(std::string id) {
+void RobotClient::cancel_operation(std::string id) {
 	viam::robot::v1::CancelOperationRequest req;
 	viam::robot::v1::CancelOperationResponse resp;
 	ClientContext ctx;
@@ -165,12 +181,10 @@ void RobotClient::refresh() {
 	if (!response.ok()) {
 		BOOST_LOG_TRIVIAL(error) << "Error getting resource names: "
 					 << response.error_message();
-		return;
 	}
 
 	ResourceManager new_resource_manager;
-	google::protobuf::RepeatedPtrField<ResourceName> resources =
-	    resp.resources();
+	RepeatedPtrField<ResourceName> resources = resp.resources();
 
 	const int num_resources = resources.size();
 	std::vector<ResourceName> current_resources;
@@ -196,9 +210,9 @@ void RobotClient::refresh() {
 			    << ": " << exc.what();
 		}
 	}
-	// TODO: come up with a better equality check here. equality is not
-	// defined for `const ResourceName` unfortunately, but this is pretty
-	// awkward as is.
+	// TODO: come up with a better equality check here. equality is
+	// not defined for `const ResourceName` unfortunately, but this
+	// is pretty awkward as is.
 	bool is_equal = true;
 	if (current_resources.size() != resource_names_.size()) {
 		is_equal = false;
@@ -259,11 +273,12 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
 	return robot;
 };
 
-// Create a robot client that is connected to the robot at the provided address.
+// Create a robot client that is connected to the robot at the provided
+// address.
 //
 // Args:
-// 		address: Address of the robot (IP address, URI, URL, etc.)
-// 		options: Options for connecting and refreshing
+// 		address: Address of the robot (IP address, URI, URL,
+// etc.) 		options: Options for connecting and refreshing
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address,
 						     Options options) {
 	const char *uri = address.c_str();
@@ -281,8 +296,83 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 	viam::robot::v1::FrameSystemConfigResponse resp;
 	ClientContext ctx;
 
-	Transform *t = req.add_supplemental_transforms();
-	t = &additional_transforms.at(0);
+	RepeatedPtrField<Transform> *req_transforms =
+	    req.mutable_supplemental_transforms();
+	// CR erodkin: test that this is right. why aren't we using the mutable
+	// one?
+	for (Transform transform : additional_transforms) {
+		*req_transforms->Add() = transform;
+	}
+
+	grpc::Status response = stub_->FrameSystemConfig(&ctx, req, &resp);
+	if (!response.ok()) {
+		BOOST_LOG_TRIVIAL(error)
+		    << "Error getting frame system config: "
+		    << response.error_message();
+	}
+
+	RepeatedPtrField<FrameSystemConfig> configs =
+	    resp.frame_system_configs();
+
+	std::vector<FrameSystemConfig> fs_configs =
+	    std::vector<FrameSystemConfig>();
+
+	for (FrameSystemConfig fs : configs) {
+		fs_configs.push_back(fs);
+	}
+
+	return fs_configs;
+}
+PoseInFrame RobotClient::transform_pose(
+    PoseInFrame query, std::string destination,
+    std::vector<Transform> additional_transforms) {
+	viam::robot::v1::TransformPoseRequest req;
+	viam::robot::v1::TransformPoseResponse resp;
+	ClientContext ctx;
+
+	*req.mutable_source() = query;
+	*req.mutable_destination() = destination;
+	RepeatedPtrField<Transform> *req_transforms =
+	    req.mutable_supplemental_transforms();
+
+	for (Transform transform : additional_transforms) {
+		*req_transforms->Add() = transform;
+	}
+
+	grpc::Status response = stub_->TransformPose(&ctx, req, &resp);
+	if (!response.ok()) {
+		BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: "
+					 << response.error_message();
+	}
+
+	return resp.pose();
+}
+
+std::vector<Discovery> RobotClient::discover_components(
+    std::vector<DiscoveryQuery> queries) {
+	viam::robot::v1::DiscoverComponentsRequest req;
+	viam::robot::v1::DiscoverComponentsResponse resp;
+	ClientContext ctx;
+
+	RepeatedPtrField<DiscoveryQuery> *req_queries = req.mutable_queries();
+
+	for (DiscoveryQuery query : queries) {
+		*req_queries->Add() = query;
+	}
+
+	grpc::Status response = stub_->DiscoverComponents(&ctx, req, &resp);
+	if (!response.ok()) {
+		BOOST_LOG_TRIVIAL(error) << "Error discovering components: "
+					 << response.error_message();
+	}
+
+	std::vector<Discovery> components = std::vector<Discovery>();
+
+	for (Discovery d : resp.discovery()) {
+		components.push_back(d);
+	}
+
+	return components;
 }
 
 ComponentBase RobotClient::get_component(ResourceName name) {
@@ -293,4 +383,34 @@ ComponentBase RobotClient::get_component(ResourceName name) {
 	}
 	lock.lock();
 	return resource_manager.get_component(name.name());
+}
+//
+void RobotClient::stop_all(
+    std::vector<
+	std::tuple<ResourceName, std::unordered_map<std::string, ProtoType>>>
+	extra) {
+	viam::robot::v1::StopAllRequest req;
+	viam::robot::v1::StopAllResponse resp;
+	ClientContext ctx;
+
+	RepeatedPtrField<viam::robot::v1::StopExtraParameters> *ep =
+	    req.mutable_extra();
+	for (std::tuple<ResourceName,
+			std::unordered_map<std::string, ProtoType>>
+		 xtra : extra) {
+		ResourceName name = std::get<0>(xtra);
+		std::unordered_map<std::string, ProtoType> params =
+		    std::get<1>(xtra);
+		google::protobuf::Struct s = map_to_struct(params);
+		viam::robot::v1::StopExtraParameters stop;
+		*stop.mutable_name() = name;
+		*stop.mutable_params() = s;
+		*ep->Add() = stop;
+	}
+	grpc::Status response = stub_->StopAll(&ctx, req, &resp);
+	if (!response.ok()) {
+		BOOST_LOG_TRIVIAL(error)
+		    << "Error stopping all: " << response.error_message()
+		    << response.error_details();
+	}
 }
