@@ -181,7 +181,7 @@ const char descriptor_table_protodef_proto_2frpc_2fexamples_2fecho_2fv1_2fecho_2
   "\tR\007message2\364\002\n\013EchoService\022\200\001\n\004Echo\022\'.pr"
   "oto.rpc.examples.echo.v1.EchoRequest\032(.p"
   "roto.rpc.examples.echo.v1.EchoResponse\"%"
-  "\202\323\344\223\002\037\"\032/rpc/examples/echo/v1/echo:\001*\022u\n"
+  "\202\323\344\223\002\037:\001*\"\032/rpc/examples/echo/v1/echo\022u\n"
   "\014EchoMultiple\022/.proto.rpc.examples.echo."
   "v1.EchoMultipleRequest\0320.proto.rpc.examp"
   "les.echo.v1.EchoMultipleResponse\"\0000\001\022k\n\010"
