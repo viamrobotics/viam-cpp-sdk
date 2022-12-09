@@ -19,7 +19,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: arduino/setup-protoc@v1
         with:
-          version: '3.21.x'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
         run: make buf
