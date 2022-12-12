@@ -3,7 +3,7 @@
 ## (In)stability Notice
 
 > **Warning**
-> This is a beta release of the Viam C++ SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
+> This is a alpha release of the Viam C++ SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
 ## Repository Layout
 - `src` The implementation of the C++ sdk library
