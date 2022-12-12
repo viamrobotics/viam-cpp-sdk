@@ -24,9 +24,10 @@ namespace viam {
 namespace robot {
 namespace v1 {
 PROTOBUF_CONSTEXPR FrameSystemConfig::FrameSystemConfig(
-    ::_pbi::ConstantInitialized)
-  : frame_(nullptr)
-  , kinematics_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.frame_)*/nullptr
+  , /*decltype(_impl_.kinematics_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FrameSystemConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FrameSystemConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -37,8 +38,9 @@ struct FrameSystemConfigDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FrameSystemConfigDefaultTypeInternal _FrameSystemConfig_default_instance_;
 PROTOBUF_CONSTEXPR FrameSystemConfigRequest::FrameSystemConfigRequest(
-    ::_pbi::ConstantInitialized)
-  : supplemental_transforms_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.supplemental_transforms_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FrameSystemConfigRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FrameSystemConfigRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -49,8 +51,9 @@ struct FrameSystemConfigRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FrameSystemConfigRequestDefaultTypeInternal _FrameSystemConfigRequest_default_instance_;
 PROTOBUF_CONSTEXPR FrameSystemConfigResponse::FrameSystemConfigResponse(
-    ::_pbi::ConstantInitialized)
-  : frame_system_configs_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.frame_system_configs_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FrameSystemConfigResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FrameSystemConfigResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -61,10 +64,11 @@ struct FrameSystemConfigResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FrameSystemConfigResponseDefaultTypeInternal _FrameSystemConfigResponse_default_instance_;
 PROTOBUF_CONSTEXPR TransformPoseRequest::TransformPoseRequest(
-    ::_pbi::ConstantInitialized)
-  : supplemental_transforms_()
-  , destination_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , source_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.supplemental_transforms_)*/{}
+  , /*decltype(_impl_.destination_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.source_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TransformPoseRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TransformPoseRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -75,8 +79,9 @@ struct TransformPoseRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TransformPoseRequestDefaultTypeInternal _TransformPoseRequest_default_instance_;
 PROTOBUF_CONSTEXPR TransformPoseResponse::TransformPoseResponse(
-    ::_pbi::ConstantInitialized)
-  : pose_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.pose_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TransformPoseResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TransformPoseResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -87,7 +92,7 @@ struct TransformPoseResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TransformPoseResponseDefaultTypeInternal _TransformPoseResponse_default_instance_;
 PROTOBUF_CONSTEXPR ResourceNamesRequest::ResourceNamesRequest(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct ResourceNamesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceNamesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -98,8 +103,9 @@ struct ResourceNamesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceNamesRequestDefaultTypeInternal _ResourceNamesRequest_default_instance_;
 PROTOBUF_CONSTEXPR ResourceNamesResponse::ResourceNamesResponse(
-    ::_pbi::ConstantInitialized)
-  : resources_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resources_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ResourceNamesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceNamesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -110,9 +116,10 @@ struct ResourceNamesResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceNamesResponseDefaultTypeInternal _ResourceNamesResponse_default_instance_;
 PROTOBUF_CONSTEXPR ResourceRPCSubtype::ResourceRPCSubtype(
-    ::_pbi::ConstantInitialized)
-  : proto_service_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , subtype_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.proto_service_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.subtype_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ResourceRPCSubtypeDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceRPCSubtypeDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -123,7 +130,7 @@ struct ResourceRPCSubtypeDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceRPCSubtypeDefaultTypeInternal _ResourceRPCSubtype_default_instance_;
 PROTOBUF_CONSTEXPR ResourceRPCSubtypesRequest::ResourceRPCSubtypesRequest(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct ResourceRPCSubtypesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceRPCSubtypesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -134,8 +141,9 @@ struct ResourceRPCSubtypesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceRPCSubtypesRequestDefaultTypeInternal _ResourceRPCSubtypesRequest_default_instance_;
 PROTOBUF_CONSTEXPR ResourceRPCSubtypesResponse::ResourceRPCSubtypesResponse(
-    ::_pbi::ConstantInitialized)
-  : resource_rpc_subtypes_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resource_rpc_subtypes_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ResourceRPCSubtypesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceRPCSubtypesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -146,12 +154,14 @@ struct ResourceRPCSubtypesResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceRPCSubtypesResponseDefaultTypeInternal _ResourceRPCSubtypesResponse_default_instance_;
 PROTOBUF_CONSTEXPR Operation::Operation(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , method_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , session_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , arguments_(nullptr)
-  , started_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.method_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.session_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.arguments_)*/nullptr
+  , /*decltype(_impl_.started_)*/nullptr} {}
 struct OperationDefaultTypeInternal {
   PROTOBUF_CONSTEXPR OperationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -162,7 +172,7 @@ struct OperationDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OperationDefaultTypeInternal _Operation_default_instance_;
 PROTOBUF_CONSTEXPR GetOperationsRequest::GetOperationsRequest(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct GetOperationsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetOperationsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -173,8 +183,9 @@ struct GetOperationsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOperationsRequestDefaultTypeInternal _GetOperationsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetOperationsResponse::GetOperationsResponse(
-    ::_pbi::ConstantInitialized)
-  : operations_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.operations_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetOperationsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetOperationsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -185,8 +196,9 @@ struct GetOperationsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOperationsResponseDefaultTypeInternal _GetOperationsResponse_default_instance_;
 PROTOBUF_CONSTEXPR CancelOperationRequest::CancelOperationRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CancelOperationRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CancelOperationRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -197,7 +209,7 @@ struct CancelOperationRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelOperationRequestDefaultTypeInternal _CancelOperationRequest_default_instance_;
 PROTOBUF_CONSTEXPR CancelOperationResponse::CancelOperationResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct CancelOperationResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CancelOperationResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -208,8 +220,9 @@ struct CancelOperationResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelOperationResponseDefaultTypeInternal _CancelOperationResponse_default_instance_;
 PROTOBUF_CONSTEXPR BlockForOperationRequest::BlockForOperationRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct BlockForOperationRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR BlockForOperationRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -220,7 +233,7 @@ struct BlockForOperationRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BlockForOperationRequestDefaultTypeInternal _BlockForOperationRequest_default_instance_;
 PROTOBUF_CONSTEXPR BlockForOperationResponse::BlockForOperationResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct BlockForOperationResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR BlockForOperationResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -231,11 +244,12 @@ struct BlockForOperationResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BlockForOperationResponseDefaultTypeInternal _BlockForOperationResponse_default_instance_;
 PROTOBUF_CONSTEXPR PeerConnectionInfo::PeerConnectionInfo(
-    ::_pbi::ConstantInitialized)
-  : remote_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , local_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , type_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.remote_address_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.local_address_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.type_)*/0} {}
 struct PeerConnectionInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PeerConnectionInfoDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -246,9 +260,11 @@ struct PeerConnectionInfoDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PeerConnectionInfoDefaultTypeInternal _PeerConnectionInfo_default_instance_;
 PROTOBUF_CONSTEXPR Session::Session(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , peer_connection_info_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.peer_connection_info_)*/nullptr} {}
 struct SessionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SessionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -259,7 +275,7 @@ struct SessionDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SessionDefaultTypeInternal _Session_default_instance_;
 PROTOBUF_CONSTEXPR GetSessionsRequest::GetSessionsRequest(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct GetSessionsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetSessionsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -270,8 +286,9 @@ struct GetSessionsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSessionsRequestDefaultTypeInternal _GetSessionsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetSessionsResponse::GetSessionsResponse(
-    ::_pbi::ConstantInitialized)
-  : sessions_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.sessions_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetSessionsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetSessionsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -282,9 +299,10 @@ struct GetSessionsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSessionsResponseDefaultTypeInternal _GetSessionsResponse_default_instance_;
 PROTOBUF_CONSTEXPR DiscoveryQuery::DiscoveryQuery(
-    ::_pbi::ConstantInitialized)
-  : subtype_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.subtype_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DiscoveryQueryDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DiscoveryQueryDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -295,9 +313,10 @@ struct DiscoveryQueryDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoveryQueryDefaultTypeInternal _DiscoveryQuery_default_instance_;
 PROTOBUF_CONSTEXPR Discovery::Discovery(
-    ::_pbi::ConstantInitialized)
-  : query_(nullptr)
-  , results_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.query_)*/nullptr
+  , /*decltype(_impl_.results_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DiscoveryDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DiscoveryDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -308,8 +327,9 @@ struct DiscoveryDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoveryDefaultTypeInternal _Discovery_default_instance_;
 PROTOBUF_CONSTEXPR DiscoverComponentsRequest::DiscoverComponentsRequest(
-    ::_pbi::ConstantInitialized)
-  : queries_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.queries_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DiscoverComponentsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DiscoverComponentsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -320,8 +340,9 @@ struct DiscoverComponentsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoverComponentsRequestDefaultTypeInternal _DiscoverComponentsRequest_default_instance_;
 PROTOBUF_CONSTEXPR DiscoverComponentsResponse::DiscoverComponentsResponse(
-    ::_pbi::ConstantInitialized)
-  : discovery_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.discovery_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DiscoverComponentsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DiscoverComponentsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -332,9 +353,10 @@ struct DiscoverComponentsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoverComponentsResponseDefaultTypeInternal _DiscoverComponentsResponse_default_instance_;
 PROTOBUF_CONSTEXPR Status::Status(
-    ::_pbi::ConstantInitialized)
-  : name_(nullptr)
-  , status_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/nullptr
+  , /*decltype(_impl_.status_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -345,8 +367,9 @@ struct StatusDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StatusDefaultTypeInternal _Status_default_instance_;
 PROTOBUF_CONSTEXPR GetStatusRequest::GetStatusRequest(
-    ::_pbi::ConstantInitialized)
-  : resource_names_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resource_names_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetStatusRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetStatusRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -357,8 +380,9 @@ struct GetStatusRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetStatusResponse::GetStatusResponse(
-    ::_pbi::ConstantInitialized)
-  : status_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.status_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetStatusResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetStatusResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -369,9 +393,10 @@ struct GetStatusResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_;
 PROTOBUF_CONSTEXPR StreamStatusRequest::StreamStatusRequest(
-    ::_pbi::ConstantInitialized)
-  : resource_names_()
-  , every_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resource_names_)*/{}
+  , /*decltype(_impl_.every_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamStatusRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamStatusRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -382,8 +407,9 @@ struct StreamStatusRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamStatusRequestDefaultTypeInternal _StreamStatusRequest_default_instance_;
 PROTOBUF_CONSTEXPR StreamStatusResponse::StreamStatusResponse(
-    ::_pbi::ConstantInitialized)
-  : status_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.status_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamStatusResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamStatusResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -394,9 +420,10 @@ struct StreamStatusResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamStatusResponseDefaultTypeInternal _StreamStatusResponse_default_instance_;
 PROTOBUF_CONSTEXPR StopExtraParameters::StopExtraParameters(
-    ::_pbi::ConstantInitialized)
-  : name_(nullptr)
-  , params_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/nullptr
+  , /*decltype(_impl_.params_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StopExtraParametersDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StopExtraParametersDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -407,8 +434,9 @@ struct StopExtraParametersDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopExtraParametersDefaultTypeInternal _StopExtraParameters_default_instance_;
 PROTOBUF_CONSTEXPR StopAllRequest::StopAllRequest(
-    ::_pbi::ConstantInitialized)
-  : extra_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.extra_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StopAllRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StopAllRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -419,7 +447,7 @@ struct StopAllRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopAllRequestDefaultTypeInternal _StopAllRequest_default_instance_;
 PROTOBUF_CONSTEXPR StopAllResponse::StopAllResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct StopAllResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StopAllResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -430,8 +458,9 @@ struct StopAllResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopAllResponseDefaultTypeInternal _StopAllResponse_default_instance_;
 PROTOBUF_CONSTEXPR StartSessionRequest::StartSessionRequest(
-    ::_pbi::ConstantInitialized)
-  : resume_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resume_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StartSessionRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StartSessionRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -442,9 +471,10 @@ struct StartSessionRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StartSessionRequestDefaultTypeInternal _StartSessionRequest_default_instance_;
 PROTOBUF_CONSTEXPR StartSessionResponse::StartSessionResponse(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , heartbeat_window_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.heartbeat_window_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StartSessionResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StartSessionResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -455,8 +485,9 @@ struct StartSessionResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StartSessionResponseDefaultTypeInternal _StartSessionResponse_default_instance_;
 PROTOBUF_CONSTEXPR SendSessionHeartbeatRequest::SendSessionHeartbeatRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SendSessionHeartbeatRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SendSessionHeartbeatRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -467,7 +498,7 @@ struct SendSessionHeartbeatRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SendSessionHeartbeatRequestDefaultTypeInternal _SendSessionHeartbeatRequest_default_instance_;
 PROTOBUF_CONSTEXPR SendSessionHeartbeatResponse::SendSessionHeartbeatResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SendSessionHeartbeatResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SendSessionHeartbeatResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -491,38 +522,38 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfig, frame_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfig, kinematics_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfig, _impl_.frame_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfig, _impl_.kinematics_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfigRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfigRequest, supplemental_transforms_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfigRequest, _impl_.supplemental_transforms_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfigResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfigResponse, frame_system_configs_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::FrameSystemConfigResponse, _impl_.frame_system_configs_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, source_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, destination_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, supplemental_transforms_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, _impl_.source_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, _impl_.destination_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseRequest, _impl_.supplemental_transforms_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseResponse, pose_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TransformPoseResponse, _impl_.pose_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceNamesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -535,15 +566,15 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceNamesResponse, resources_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceNamesResponse, _impl_.resources_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtype, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtype, subtype_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtype, proto_service_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtype, _impl_.subtype_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtype, _impl_.proto_service_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtypesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -556,18 +587,18 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtypesResponse, resource_rpc_subtypes_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::ResourceRPCSubtypesResponse, _impl_.resource_rpc_subtypes_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, id_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, method_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, arguments_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, started_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, session_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _impl_.method_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _impl_.arguments_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _impl_.started_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Operation, _impl_.session_id_),
   ~0u,
   ~0u,
   ~0u,
@@ -585,14 +616,14 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetOperationsResponse, operations_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetOperationsResponse, _impl_.operations_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::CancelOperationRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::CancelOperationRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::CancelOperationRequest, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::CancelOperationResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -605,33 +636,33 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::BlockForOperationRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::BlockForOperationRequest, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::BlockForOperationResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, type_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, remote_address_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, local_address_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, _impl_.type_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, _impl_.remote_address_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::PeerConnectionInfo, _impl_.local_address_),
   ~0u,
   0,
   1,
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, id_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, peer_connection_info_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Session, _impl_.peer_connection_info_),
   ~0u,
   0,
   ~0u,  // no _has_bits_
@@ -646,89 +677,89 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetSessionsResponse, sessions_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetSessionsResponse, _impl_.sessions_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, subtype_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, model_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _impl_.subtype_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoveryQuery, _impl_.model_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, query_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, results_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, _impl_.query_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Discovery, _impl_.results_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoverComponentsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoverComponentsRequest, queries_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoverComponentsRequest, _impl_.queries_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoverComponentsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoverComponentsResponse, discovery_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::DiscoverComponentsResponse, _impl_.discovery_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Status, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Status, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Status, status_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Status, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::Status, _impl_.status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetStatusRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetStatusRequest, resource_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetStatusRequest, _impl_.resource_names_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetStatusResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetStatusResponse, status_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetStatusResponse, _impl_.status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusRequest, resource_names_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusRequest, every_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusRequest, _impl_.resource_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusRequest, _impl_.every_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusResponse, status_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StreamStatusResponse, _impl_.status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopExtraParameters, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopExtraParameters, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopExtraParameters, params_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopExtraParameters, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopExtraParameters, _impl_.params_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopAllRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopAllRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopAllRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StopAllResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -741,22 +772,22 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionRequest, resume_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionRequest, _impl_.resume_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionResponse, id_),
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionResponse, heartbeat_window_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionResponse, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::StartSessionResponse, _impl_.heartbeat_window_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendSessionHeartbeatRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendSessionHeartbeatRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendSessionHeartbeatRequest, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendSessionHeartbeatResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1034,51 +1065,57 @@ class FrameSystemConfig::_Internal {
 
 const ::viam::common::v1::Transform&
 FrameSystemConfig::_Internal::frame(const FrameSystemConfig* msg) {
-  return *msg->frame_;
+  return *msg->_impl_.frame_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 FrameSystemConfig::_Internal::kinematics(const FrameSystemConfig* msg) {
-  return *msg->kinematics_;
+  return *msg->_impl_.kinematics_;
 }
 void FrameSystemConfig::clear_frame() {
-  if (GetArenaForAllocation() == nullptr && frame_ != nullptr) {
-    delete frame_;
+  if (GetArenaForAllocation() == nullptr && _impl_.frame_ != nullptr) {
+    delete _impl_.frame_;
   }
-  frame_ = nullptr;
+  _impl_.frame_ = nullptr;
 }
 void FrameSystemConfig::clear_kinematics() {
-  if (GetArenaForAllocation() == nullptr && kinematics_ != nullptr) {
-    delete kinematics_;
+  if (GetArenaForAllocation() == nullptr && _impl_.kinematics_ != nullptr) {
+    delete _impl_.kinematics_;
   }
-  kinematics_ = nullptr;
+  _impl_.kinematics_ = nullptr;
 }
 FrameSystemConfig::FrameSystemConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.FrameSystemConfig)
 }
 FrameSystemConfig::FrameSystemConfig(const FrameSystemConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FrameSystemConfig* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.frame_){nullptr}
+    , decltype(_impl_.kinematics_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_frame()) {
-    frame_ = new ::viam::common::v1::Transform(*from.frame_);
-  } else {
-    frame_ = nullptr;
+    _this->_impl_.frame_ = new ::viam::common::v1::Transform(*from._impl_.frame_);
   }
   if (from._internal_has_kinematics()) {
-    kinematics_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.kinematics_);
-  } else {
-    kinematics_ = nullptr;
+    _this->_impl_.kinematics_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.kinematics_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.FrameSystemConfig)
 }
 
-inline void FrameSystemConfig::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&frame_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&kinematics_) -
-    reinterpret_cast<char*>(&frame_)) + sizeof(kinematics_));
+inline void FrameSystemConfig::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.frame_){nullptr}
+    , decltype(_impl_.kinematics_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FrameSystemConfig::~FrameSystemConfig() {
@@ -1092,12 +1129,12 @@ FrameSystemConfig::~FrameSystemConfig() {
 
 inline void FrameSystemConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete frame_;
-  if (this != internal_default_instance()) delete kinematics_;
+  if (this != internal_default_instance()) delete _impl_.frame_;
+  if (this != internal_default_instance()) delete _impl_.kinematics_;
 }
 
 void FrameSystemConfig::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FrameSystemConfig::Clear() {
@@ -1106,14 +1143,14 @@ void FrameSystemConfig::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && frame_ != nullptr) {
-    delete frame_;
+  if (GetArenaForAllocation() == nullptr && _impl_.frame_ != nullptr) {
+    delete _impl_.frame_;
   }
-  frame_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && kinematics_ != nullptr) {
-    delete kinematics_;
+  _impl_.frame_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.kinematics_ != nullptr) {
+    delete _impl_.kinematics_;
   }
-  kinematics_ = nullptr;
+  _impl_.kinematics_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1202,45 +1239,43 @@ size_t FrameSystemConfig::ByteSizeLong() const {
   if (this->_internal_has_frame()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *frame_);
+        *_impl_.frame_);
   }
 
   // .google.protobuf.Struct kinematics = 2 [json_name = "kinematics"];
   if (this->_internal_has_kinematics()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *kinematics_);
+        *_impl_.kinematics_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FrameSystemConfig::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FrameSystemConfig::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FrameSystemConfig::GetClassData() const { return &_class_data_; }
 
-void FrameSystemConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FrameSystemConfig *>(to)->MergeFrom(
-      static_cast<const FrameSystemConfig &>(from));
-}
 
-
-void FrameSystemConfig::MergeFrom(const FrameSystemConfig& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.FrameSystemConfig)
-  GOOGLE_DCHECK_NE(&from, this);
+void FrameSystemConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FrameSystemConfig*>(&to_msg);
+  auto& from = static_cast<const FrameSystemConfig&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.FrameSystemConfig)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_frame()) {
-    _internal_mutable_frame()->::viam::common::v1::Transform::MergeFrom(from._internal_frame());
+    _this->_internal_mutable_frame()->::viam::common::v1::Transform::MergeFrom(
+        from._internal_frame());
   }
   if (from._internal_has_kinematics()) {
-    _internal_mutable_kinematics()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_kinematics());
+    _this->_internal_mutable_kinematics()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_kinematics());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FrameSystemConfig::CopyFrom(const FrameSystemConfig& from) {
@@ -1258,11 +1293,11 @@ void FrameSystemConfig::InternalSwap(FrameSystemConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(FrameSystemConfig, kinematics_)
-      + sizeof(FrameSystemConfig::kinematics_)
-      - PROTOBUF_FIELD_OFFSET(FrameSystemConfig, frame_)>(
-          reinterpret_cast<char*>(&frame_),
-          reinterpret_cast<char*>(&other->frame_));
+      PROTOBUF_FIELD_OFFSET(FrameSystemConfig, _impl_.kinematics_)
+      + sizeof(FrameSystemConfig::_impl_.kinematics_)
+      - PROTOBUF_FIELD_OFFSET(FrameSystemConfig, _impl_.frame_)>(
+          reinterpret_cast<char*>(&_impl_.frame_),
+          reinterpret_cast<char*>(&other->_impl_.frame_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FrameSystemConfig::GetMetadata() const {
@@ -1278,23 +1313,33 @@ class FrameSystemConfigRequest::_Internal {
 };
 
 void FrameSystemConfigRequest::clear_supplemental_transforms() {
-  supplemental_transforms_.Clear();
+  _impl_.supplemental_transforms_.Clear();
 }
 FrameSystemConfigRequest::FrameSystemConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  supplemental_transforms_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.FrameSystemConfigRequest)
 }
 FrameSystemConfigRequest::FrameSystemConfigRequest(const FrameSystemConfigRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      supplemental_transforms_(from.supplemental_transforms_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FrameSystemConfigRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.supplemental_transforms_){from._impl_.supplemental_transforms_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.FrameSystemConfigRequest)
 }
 
-inline void FrameSystemConfigRequest::SharedCtor() {
+inline void FrameSystemConfigRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.supplemental_transforms_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FrameSystemConfigRequest::~FrameSystemConfigRequest() {
@@ -1308,10 +1353,11 @@ FrameSystemConfigRequest::~FrameSystemConfigRequest() {
 
 inline void FrameSystemConfigRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.supplemental_transforms_.~RepeatedPtrField();
 }
 
 void FrameSystemConfigRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FrameSystemConfigRequest::Clear() {
@@ -1320,7 +1366,7 @@ void FrameSystemConfigRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  supplemental_transforms_.Clear();
+  _impl_.supplemental_transforms_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1398,35 +1444,31 @@ size_t FrameSystemConfigRequest::ByteSizeLong() const {
 
   // repeated .viam.common.v1.Transform supplemental_transforms = 1 [json_name = "supplementalTransforms"];
   total_size += 1UL * this->_internal_supplemental_transforms_size();
-  for (const auto& msg : this->supplemental_transforms_) {
+  for (const auto& msg : this->_impl_.supplemental_transforms_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FrameSystemConfigRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FrameSystemConfigRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FrameSystemConfigRequest::GetClassData() const { return &_class_data_; }
 
-void FrameSystemConfigRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FrameSystemConfigRequest *>(to)->MergeFrom(
-      static_cast<const FrameSystemConfigRequest &>(from));
-}
 
-
-void FrameSystemConfigRequest::MergeFrom(const FrameSystemConfigRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.FrameSystemConfigRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void FrameSystemConfigRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FrameSystemConfigRequest*>(&to_msg);
+  auto& from = static_cast<const FrameSystemConfigRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.FrameSystemConfigRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  supplemental_transforms_.MergeFrom(from.supplemental_transforms_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.supplemental_transforms_.MergeFrom(from._impl_.supplemental_transforms_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FrameSystemConfigRequest::CopyFrom(const FrameSystemConfigRequest& from) {
@@ -1443,7 +1485,7 @@ bool FrameSystemConfigRequest::IsInitialized() const {
 void FrameSystemConfigRequest::InternalSwap(FrameSystemConfigRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  supplemental_transforms_.InternalSwap(&other->supplemental_transforms_);
+  _impl_.supplemental_transforms_.InternalSwap(&other->_impl_.supplemental_transforms_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FrameSystemConfigRequest::GetMetadata() const {
@@ -1460,19 +1502,29 @@ class FrameSystemConfigResponse::_Internal {
 
 FrameSystemConfigResponse::FrameSystemConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  frame_system_configs_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.FrameSystemConfigResponse)
 }
 FrameSystemConfigResponse::FrameSystemConfigResponse(const FrameSystemConfigResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      frame_system_configs_(from.frame_system_configs_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FrameSystemConfigResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.frame_system_configs_){from._impl_.frame_system_configs_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.FrameSystemConfigResponse)
 }
 
-inline void FrameSystemConfigResponse::SharedCtor() {
+inline void FrameSystemConfigResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.frame_system_configs_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FrameSystemConfigResponse::~FrameSystemConfigResponse() {
@@ -1486,10 +1538,11 @@ FrameSystemConfigResponse::~FrameSystemConfigResponse() {
 
 inline void FrameSystemConfigResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.frame_system_configs_.~RepeatedPtrField();
 }
 
 void FrameSystemConfigResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FrameSystemConfigResponse::Clear() {
@@ -1498,7 +1551,7 @@ void FrameSystemConfigResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  frame_system_configs_.Clear();
+  _impl_.frame_system_configs_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1576,35 +1629,31 @@ size_t FrameSystemConfigResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.FrameSystemConfig frame_system_configs = 1 [json_name = "frameSystemConfigs"];
   total_size += 1UL * this->_internal_frame_system_configs_size();
-  for (const auto& msg : this->frame_system_configs_) {
+  for (const auto& msg : this->_impl_.frame_system_configs_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FrameSystemConfigResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FrameSystemConfigResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FrameSystemConfigResponse::GetClassData() const { return &_class_data_; }
 
-void FrameSystemConfigResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FrameSystemConfigResponse *>(to)->MergeFrom(
-      static_cast<const FrameSystemConfigResponse &>(from));
-}
 
-
-void FrameSystemConfigResponse::MergeFrom(const FrameSystemConfigResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.FrameSystemConfigResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void FrameSystemConfigResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FrameSystemConfigResponse*>(&to_msg);
+  auto& from = static_cast<const FrameSystemConfigResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.FrameSystemConfigResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  frame_system_configs_.MergeFrom(from.frame_system_configs_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.frame_system_configs_.MergeFrom(from._impl_.frame_system_configs_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FrameSystemConfigResponse::CopyFrom(const FrameSystemConfigResponse& from) {
@@ -1621,7 +1670,7 @@ bool FrameSystemConfigResponse::IsInitialized() const {
 void FrameSystemConfigResponse::InternalSwap(FrameSystemConfigResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  frame_system_configs_.InternalSwap(&other->frame_system_configs_);
+  _impl_.frame_system_configs_.InternalSwap(&other->_impl_.frame_system_configs_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FrameSystemConfigResponse::GetMetadata() const {
@@ -1639,50 +1688,61 @@ class TransformPoseRequest::_Internal {
 
 const ::viam::common::v1::PoseInFrame&
 TransformPoseRequest::_Internal::source(const TransformPoseRequest* msg) {
-  return *msg->source_;
+  return *msg->_impl_.source_;
 }
 void TransformPoseRequest::clear_source() {
-  if (GetArenaForAllocation() == nullptr && source_ != nullptr) {
-    delete source_;
+  if (GetArenaForAllocation() == nullptr && _impl_.source_ != nullptr) {
+    delete _impl_.source_;
   }
-  source_ = nullptr;
+  _impl_.source_ = nullptr;
 }
 void TransformPoseRequest::clear_supplemental_transforms() {
-  supplemental_transforms_.Clear();
+  _impl_.supplemental_transforms_.Clear();
 }
 TransformPoseRequest::TransformPoseRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  supplemental_transforms_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.TransformPoseRequest)
 }
 TransformPoseRequest::TransformPoseRequest(const TransformPoseRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      supplemental_transforms_(from.supplemental_transforms_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TransformPoseRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.supplemental_transforms_){from._impl_.supplemental_transforms_}
+    , decltype(_impl_.destination_){}
+    , decltype(_impl_.source_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  destination_.InitDefault();
+  _impl_.destination_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    destination_.Set("", GetArenaForAllocation());
+    _impl_.destination_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_destination().empty()) {
-    destination_.Set(from._internal_destination(), 
-      GetArenaForAllocation());
+    _this->_impl_.destination_.Set(from._internal_destination(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_source()) {
-    source_ = new ::viam::common::v1::PoseInFrame(*from.source_);
-  } else {
-    source_ = nullptr;
+    _this->_impl_.source_ = new ::viam::common::v1::PoseInFrame(*from._impl_.source_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.TransformPoseRequest)
 }
 
-inline void TransformPoseRequest::SharedCtor() {
-destination_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  destination_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-source_ = nullptr;
+inline void TransformPoseRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.supplemental_transforms_){arena}
+    , decltype(_impl_.destination_){}
+    , decltype(_impl_.source_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.destination_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.destination_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TransformPoseRequest::~TransformPoseRequest() {
@@ -1696,12 +1756,13 @@ TransformPoseRequest::~TransformPoseRequest() {
 
 inline void TransformPoseRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  destination_.Destroy();
-  if (this != internal_default_instance()) delete source_;
+  _impl_.supplemental_transforms_.~RepeatedPtrField();
+  _impl_.destination_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.source_;
 }
 
 void TransformPoseRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TransformPoseRequest::Clear() {
@@ -1710,12 +1771,12 @@ void TransformPoseRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  supplemental_transforms_.Clear();
-  destination_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && source_ != nullptr) {
-    delete source_;
+  _impl_.supplemental_transforms_.Clear();
+  _impl_.destination_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.source_ != nullptr) {
+    delete _impl_.source_;
   }
-  source_ = nullptr;
+  _impl_.source_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1828,7 +1889,7 @@ size_t TransformPoseRequest::ByteSizeLong() const {
 
   // repeated .viam.common.v1.Transform supplemental_transforms = 3 [json_name = "supplementalTransforms"];
   total_size += 1UL * this->_internal_supplemental_transforms_size();
-  for (const auto& msg : this->supplemental_transforms_) {
+  for (const auto& msg : this->_impl_.supplemental_transforms_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1844,39 +1905,36 @@ size_t TransformPoseRequest::ByteSizeLong() const {
   if (this->_internal_has_source()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *source_);
+        *_impl_.source_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TransformPoseRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TransformPoseRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TransformPoseRequest::GetClassData() const { return &_class_data_; }
 
-void TransformPoseRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TransformPoseRequest *>(to)->MergeFrom(
-      static_cast<const TransformPoseRequest &>(from));
-}
 
-
-void TransformPoseRequest::MergeFrom(const TransformPoseRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.TransformPoseRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void TransformPoseRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TransformPoseRequest*>(&to_msg);
+  auto& from = static_cast<const TransformPoseRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.TransformPoseRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  supplemental_transforms_.MergeFrom(from.supplemental_transforms_);
+  _this->_impl_.supplemental_transforms_.MergeFrom(from._impl_.supplemental_transforms_);
   if (!from._internal_destination().empty()) {
-    _internal_set_destination(from._internal_destination());
+    _this->_internal_set_destination(from._internal_destination());
   }
   if (from._internal_has_source()) {
-    _internal_mutable_source()->::viam::common::v1::PoseInFrame::MergeFrom(from._internal_source());
+    _this->_internal_mutable_source()->::viam::common::v1::PoseInFrame::MergeFrom(
+        from._internal_source());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TransformPoseRequest::CopyFrom(const TransformPoseRequest& from) {
@@ -1895,12 +1953,12 @@ void TransformPoseRequest::InternalSwap(TransformPoseRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  supplemental_transforms_.InternalSwap(&other->supplemental_transforms_);
+  _impl_.supplemental_transforms_.InternalSwap(&other->_impl_.supplemental_transforms_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &destination_, lhs_arena,
-      &other->destination_, rhs_arena
+      &_impl_.destination_, lhs_arena,
+      &other->_impl_.destination_, rhs_arena
   );
-  swap(source_, other->source_);
+  swap(_impl_.source_, other->_impl_.source_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TransformPoseRequest::GetMetadata() const {
@@ -1918,33 +1976,42 @@ class TransformPoseResponse::_Internal {
 
 const ::viam::common::v1::PoseInFrame&
 TransformPoseResponse::_Internal::pose(const TransformPoseResponse* msg) {
-  return *msg->pose_;
+  return *msg->_impl_.pose_;
 }
 void TransformPoseResponse::clear_pose() {
-  if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
-    delete pose_;
+  if (GetArenaForAllocation() == nullptr && _impl_.pose_ != nullptr) {
+    delete _impl_.pose_;
   }
-  pose_ = nullptr;
+  _impl_.pose_ = nullptr;
 }
 TransformPoseResponse::TransformPoseResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.TransformPoseResponse)
 }
 TransformPoseResponse::TransformPoseResponse(const TransformPoseResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TransformPoseResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pose_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_pose()) {
-    pose_ = new ::viam::common::v1::PoseInFrame(*from.pose_);
-  } else {
-    pose_ = nullptr;
+    _this->_impl_.pose_ = new ::viam::common::v1::PoseInFrame(*from._impl_.pose_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.TransformPoseResponse)
 }
 
-inline void TransformPoseResponse::SharedCtor() {
-pose_ = nullptr;
+inline void TransformPoseResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pose_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TransformPoseResponse::~TransformPoseResponse() {
@@ -1958,11 +2025,11 @@ TransformPoseResponse::~TransformPoseResponse() {
 
 inline void TransformPoseResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete pose_;
+  if (this != internal_default_instance()) delete _impl_.pose_;
 }
 
 void TransformPoseResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TransformPoseResponse::Clear() {
@@ -1971,10 +2038,10 @@ void TransformPoseResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
-    delete pose_;
+  if (GetArenaForAllocation() == nullptr && _impl_.pose_ != nullptr) {
+    delete _impl_.pose_;
   }
-  pose_ = nullptr;
+  _impl_.pose_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2048,35 +2115,32 @@ size_t TransformPoseResponse::ByteSizeLong() const {
   if (this->_internal_has_pose()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *pose_);
+        *_impl_.pose_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TransformPoseResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TransformPoseResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TransformPoseResponse::GetClassData() const { return &_class_data_; }
 
-void TransformPoseResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TransformPoseResponse *>(to)->MergeFrom(
-      static_cast<const TransformPoseResponse &>(from));
-}
 
-
-void TransformPoseResponse::MergeFrom(const TransformPoseResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.TransformPoseResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void TransformPoseResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TransformPoseResponse*>(&to_msg);
+  auto& from = static_cast<const TransformPoseResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.TransformPoseResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_pose()) {
-    _internal_mutable_pose()->::viam::common::v1::PoseInFrame::MergeFrom(from._internal_pose());
+    _this->_internal_mutable_pose()->::viam::common::v1::PoseInFrame::MergeFrom(
+        from._internal_pose());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TransformPoseResponse::CopyFrom(const TransformPoseResponse& from) {
@@ -2093,7 +2157,7 @@ bool TransformPoseResponse::IsInitialized() const {
 void TransformPoseResponse::InternalSwap(TransformPoseResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(pose_, other->pose_);
+  swap(_impl_.pose_, other->_impl_.pose_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TransformPoseResponse::GetMetadata() const {
@@ -2115,6 +2179,7 @@ ResourceNamesRequest::ResourceNamesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena
 }
 ResourceNamesRequest::ResourceNamesRequest(const ResourceNamesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  ResourceNamesRequest* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.ResourceNamesRequest)
 }
@@ -2148,23 +2213,33 @@ class ResourceNamesResponse::_Internal {
 };
 
 void ResourceNamesResponse::clear_resources() {
-  resources_.Clear();
+  _impl_.resources_.Clear();
 }
 ResourceNamesResponse::ResourceNamesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  resources_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.ResourceNamesResponse)
 }
 ResourceNamesResponse::ResourceNamesResponse(const ResourceNamesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      resources_(from.resources_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ResourceNamesResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resources_){from._impl_.resources_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.ResourceNamesResponse)
 }
 
-inline void ResourceNamesResponse::SharedCtor() {
+inline void ResourceNamesResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resources_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ResourceNamesResponse::~ResourceNamesResponse() {
@@ -2178,10 +2253,11 @@ ResourceNamesResponse::~ResourceNamesResponse() {
 
 inline void ResourceNamesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.resources_.~RepeatedPtrField();
 }
 
 void ResourceNamesResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ResourceNamesResponse::Clear() {
@@ -2190,7 +2266,7 @@ void ResourceNamesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  resources_.Clear();
+  _impl_.resources_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2268,35 +2344,31 @@ size_t ResourceNamesResponse::ByteSizeLong() const {
 
   // repeated .viam.common.v1.ResourceName resources = 1 [json_name = "resources"];
   total_size += 1UL * this->_internal_resources_size();
-  for (const auto& msg : this->resources_) {
+  for (const auto& msg : this->_impl_.resources_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceNamesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ResourceNamesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceNamesResponse::GetClassData() const { return &_class_data_; }
 
-void ResourceNamesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ResourceNamesResponse *>(to)->MergeFrom(
-      static_cast<const ResourceNamesResponse &>(from));
-}
 
-
-void ResourceNamesResponse::MergeFrom(const ResourceNamesResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ResourceNamesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ResourceNamesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ResourceNamesResponse*>(&to_msg);
+  auto& from = static_cast<const ResourceNamesResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ResourceNamesResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  resources_.MergeFrom(from.resources_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.resources_.MergeFrom(from._impl_.resources_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceNamesResponse::CopyFrom(const ResourceNamesResponse& from) {
@@ -2313,7 +2385,7 @@ bool ResourceNamesResponse::IsInitialized() const {
 void ResourceNamesResponse::InternalSwap(ResourceNamesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  resources_.InternalSwap(&other->resources_);
+  _impl_.resources_.InternalSwap(&other->_impl_.resources_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceNamesResponse::GetMetadata() const {
@@ -2331,45 +2403,56 @@ class ResourceRPCSubtype::_Internal {
 
 const ::viam::common::v1::ResourceName&
 ResourceRPCSubtype::_Internal::subtype(const ResourceRPCSubtype* msg) {
-  return *msg->subtype_;
+  return *msg->_impl_.subtype_;
 }
 void ResourceRPCSubtype::clear_subtype() {
-  if (GetArenaForAllocation() == nullptr && subtype_ != nullptr) {
-    delete subtype_;
+  if (GetArenaForAllocation() == nullptr && _impl_.subtype_ != nullptr) {
+    delete _impl_.subtype_;
   }
-  subtype_ = nullptr;
+  _impl_.subtype_ = nullptr;
 }
 ResourceRPCSubtype::ResourceRPCSubtype(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.ResourceRPCSubtype)
 }
 ResourceRPCSubtype::ResourceRPCSubtype(const ResourceRPCSubtype& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ResourceRPCSubtype* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.proto_service_){}
+    , decltype(_impl_.subtype_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  proto_service_.InitDefault();
+  _impl_.proto_service_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    proto_service_.Set("", GetArenaForAllocation());
+    _impl_.proto_service_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_proto_service().empty()) {
-    proto_service_.Set(from._internal_proto_service(), 
-      GetArenaForAllocation());
+    _this->_impl_.proto_service_.Set(from._internal_proto_service(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_subtype()) {
-    subtype_ = new ::viam::common::v1::ResourceName(*from.subtype_);
-  } else {
-    subtype_ = nullptr;
+    _this->_impl_.subtype_ = new ::viam::common::v1::ResourceName(*from._impl_.subtype_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.ResourceRPCSubtype)
 }
 
-inline void ResourceRPCSubtype::SharedCtor() {
-proto_service_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  proto_service_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-subtype_ = nullptr;
+inline void ResourceRPCSubtype::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.proto_service_){}
+    , decltype(_impl_.subtype_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.proto_service_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.proto_service_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ResourceRPCSubtype::~ResourceRPCSubtype() {
@@ -2383,12 +2466,12 @@ ResourceRPCSubtype::~ResourceRPCSubtype() {
 
 inline void ResourceRPCSubtype::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  proto_service_.Destroy();
-  if (this != internal_default_instance()) delete subtype_;
+  _impl_.proto_service_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.subtype_;
 }
 
 void ResourceRPCSubtype::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ResourceRPCSubtype::Clear() {
@@ -2397,11 +2480,11 @@ void ResourceRPCSubtype::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  proto_service_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && subtype_ != nullptr) {
-    delete subtype_;
+  _impl_.proto_service_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.subtype_ != nullptr) {
+    delete _impl_.subtype_;
   }
-  subtype_ = nullptr;
+  _impl_.subtype_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2502,38 +2585,35 @@ size_t ResourceRPCSubtype::ByteSizeLong() const {
   if (this->_internal_has_subtype()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *subtype_);
+        *_impl_.subtype_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceRPCSubtype::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ResourceRPCSubtype::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceRPCSubtype::GetClassData() const { return &_class_data_; }
 
-void ResourceRPCSubtype::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ResourceRPCSubtype *>(to)->MergeFrom(
-      static_cast<const ResourceRPCSubtype &>(from));
-}
 
-
-void ResourceRPCSubtype::MergeFrom(const ResourceRPCSubtype& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ResourceRPCSubtype)
-  GOOGLE_DCHECK_NE(&from, this);
+void ResourceRPCSubtype::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ResourceRPCSubtype*>(&to_msg);
+  auto& from = static_cast<const ResourceRPCSubtype&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ResourceRPCSubtype)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_proto_service().empty()) {
-    _internal_set_proto_service(from._internal_proto_service());
+    _this->_internal_set_proto_service(from._internal_proto_service());
   }
   if (from._internal_has_subtype()) {
-    _internal_mutable_subtype()->::viam::common::v1::ResourceName::MergeFrom(from._internal_subtype());
+    _this->_internal_mutable_subtype()->::viam::common::v1::ResourceName::MergeFrom(
+        from._internal_subtype());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceRPCSubtype::CopyFrom(const ResourceRPCSubtype& from) {
@@ -2553,10 +2633,10 @@ void ResourceRPCSubtype::InternalSwap(ResourceRPCSubtype* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &proto_service_, lhs_arena,
-      &other->proto_service_, rhs_arena
+      &_impl_.proto_service_, lhs_arena,
+      &other->_impl_.proto_service_, rhs_arena
   );
-  swap(subtype_, other->subtype_);
+  swap(_impl_.subtype_, other->_impl_.subtype_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceRPCSubtype::GetMetadata() const {
@@ -2578,6 +2658,7 @@ ResourceRPCSubtypesRequest::ResourceRPCSubtypesRequest(::PROTOBUF_NAMESPACE_ID::
 }
 ResourceRPCSubtypesRequest::ResourceRPCSubtypesRequest(const ResourceRPCSubtypesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  ResourceRPCSubtypesRequest* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.ResourceRPCSubtypesRequest)
 }
@@ -2612,19 +2693,29 @@ class ResourceRPCSubtypesResponse::_Internal {
 
 ResourceRPCSubtypesResponse::ResourceRPCSubtypesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  resource_rpc_subtypes_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.ResourceRPCSubtypesResponse)
 }
 ResourceRPCSubtypesResponse::ResourceRPCSubtypesResponse(const ResourceRPCSubtypesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      resource_rpc_subtypes_(from.resource_rpc_subtypes_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ResourceRPCSubtypesResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_rpc_subtypes_){from._impl_.resource_rpc_subtypes_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.ResourceRPCSubtypesResponse)
 }
 
-inline void ResourceRPCSubtypesResponse::SharedCtor() {
+inline void ResourceRPCSubtypesResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_rpc_subtypes_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ResourceRPCSubtypesResponse::~ResourceRPCSubtypesResponse() {
@@ -2638,10 +2729,11 @@ ResourceRPCSubtypesResponse::~ResourceRPCSubtypesResponse() {
 
 inline void ResourceRPCSubtypesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.resource_rpc_subtypes_.~RepeatedPtrField();
 }
 
 void ResourceRPCSubtypesResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ResourceRPCSubtypesResponse::Clear() {
@@ -2650,7 +2742,7 @@ void ResourceRPCSubtypesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  resource_rpc_subtypes_.Clear();
+  _impl_.resource_rpc_subtypes_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2728,35 +2820,31 @@ size_t ResourceRPCSubtypesResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.ResourceRPCSubtype resource_rpc_subtypes = 1 [json_name = "resourceRpcSubtypes"];
   total_size += 1UL * this->_internal_resource_rpc_subtypes_size();
-  for (const auto& msg : this->resource_rpc_subtypes_) {
+  for (const auto& msg : this->_impl_.resource_rpc_subtypes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceRPCSubtypesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ResourceRPCSubtypesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceRPCSubtypesResponse::GetClassData() const { return &_class_data_; }
 
-void ResourceRPCSubtypesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ResourceRPCSubtypesResponse *>(to)->MergeFrom(
-      static_cast<const ResourceRPCSubtypesResponse &>(from));
-}
 
-
-void ResourceRPCSubtypesResponse::MergeFrom(const ResourceRPCSubtypesResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ResourceRPCSubtypesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ResourceRPCSubtypesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ResourceRPCSubtypesResponse*>(&to_msg);
+  auto& from = static_cast<const ResourceRPCSubtypesResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.ResourceRPCSubtypesResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  resource_rpc_subtypes_.MergeFrom(from.resource_rpc_subtypes_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.resource_rpc_subtypes_.MergeFrom(from._impl_.resource_rpc_subtypes_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceRPCSubtypesResponse::CopyFrom(const ResourceRPCSubtypesResponse& from) {
@@ -2773,7 +2861,7 @@ bool ResourceRPCSubtypesResponse::IsInitialized() const {
 void ResourceRPCSubtypesResponse::InternalSwap(ResourceRPCSubtypesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  resource_rpc_subtypes_.InternalSwap(&other->resource_rpc_subtypes_);
+  _impl_.resource_rpc_subtypes_.InternalSwap(&other->_impl_.resource_rpc_subtypes_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceRPCSubtypesResponse::GetMetadata() const {
@@ -2786,7 +2874,7 @@ void ResourceRPCSubtypesResponse::InternalSwap(ResourceRPCSubtypesResponse* othe
 
 class Operation::_Internal {
  public:
-  using HasBits = decltype(std::declval<Operation>()._has_bits_);
+  using HasBits = decltype(std::declval<Operation>()._impl_._has_bits_);
   static const ::PROTOBUF_NAMESPACE_ID::Struct& arguments(const Operation* msg);
   static const ::PROTOBUF_NAMESPACE_ID::Timestamp& started(const Operation* msg);
   static void set_has_session_id(HasBits* has_bits) {
@@ -2796,88 +2884,101 @@ class Operation::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 Operation::_Internal::arguments(const Operation* msg) {
-  return *msg->arguments_;
+  return *msg->_impl_.arguments_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 Operation::_Internal::started(const Operation* msg) {
-  return *msg->started_;
+  return *msg->_impl_.started_;
 }
 void Operation::clear_arguments() {
-  if (GetArenaForAllocation() == nullptr && arguments_ != nullptr) {
-    delete arguments_;
+  if (GetArenaForAllocation() == nullptr && _impl_.arguments_ != nullptr) {
+    delete _impl_.arguments_;
   }
-  arguments_ = nullptr;
+  _impl_.arguments_ = nullptr;
 }
 void Operation::clear_started() {
-  if (GetArenaForAllocation() == nullptr && started_ != nullptr) {
-    delete started_;
+  if (GetArenaForAllocation() == nullptr && _impl_.started_ != nullptr) {
+    delete _impl_.started_;
   }
-  started_ = nullptr;
+  _impl_.started_ = nullptr;
 }
 Operation::Operation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.Operation)
 }
 Operation::Operation(const Operation& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Operation* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.method_){}
+    , decltype(_impl_.session_id_){}
+    , decltype(_impl_.arguments_){nullptr}
+    , decltype(_impl_.started_){nullptr}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
-  method_.InitDefault();
+  _impl_.method_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    method_.Set("", GetArenaForAllocation());
+    _impl_.method_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_method().empty()) {
-    method_.Set(from._internal_method(), 
-      GetArenaForAllocation());
+    _this->_impl_.method_.Set(from._internal_method(), 
+      _this->GetArenaForAllocation());
   }
-  session_id_.InitDefault();
+  _impl_.session_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    session_id_.Set("", GetArenaForAllocation());
+    _impl_.session_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_session_id()) {
-    session_id_.Set(from._internal_session_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.session_id_.Set(from._internal_session_id(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_arguments()) {
-    arguments_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.arguments_);
-  } else {
-    arguments_ = nullptr;
+    _this->_impl_.arguments_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.arguments_);
   }
   if (from._internal_has_started()) {
-    started_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.started_);
-  } else {
-    started_ = nullptr;
+    _this->_impl_.started_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.started_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.Operation)
 }
 
-inline void Operation::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-method_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  method_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-session_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  session_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&arguments_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&started_) -
-    reinterpret_cast<char*>(&arguments_)) + sizeof(started_));
+inline void Operation::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.method_){}
+    , decltype(_impl_.session_id_){}
+    , decltype(_impl_.arguments_){nullptr}
+    , decltype(_impl_.started_){nullptr}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.method_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.method_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.session_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.session_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Operation::~Operation() {
@@ -2891,15 +2992,15 @@ Operation::~Operation() {
 
 inline void Operation::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
-  method_.Destroy();
-  session_id_.Destroy();
-  if (this != internal_default_instance()) delete arguments_;
-  if (this != internal_default_instance()) delete started_;
+  _impl_.id_.Destroy();
+  _impl_.method_.Destroy();
+  _impl_.session_id_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.arguments_;
+  if (this != internal_default_instance()) delete _impl_.started_;
 }
 
 void Operation::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Operation::Clear() {
@@ -2908,21 +3009,21 @@ void Operation::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
-  method_.ClearToEmpty();
-  cached_has_bits = _has_bits_[0];
+  _impl_.id_.ClearToEmpty();
+  _impl_.method_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    session_id_.ClearNonDefaultToEmpty();
+    _impl_.session_id_.ClearNonDefaultToEmpty();
   }
-  if (GetArenaForAllocation() == nullptr && arguments_ != nullptr) {
-    delete arguments_;
+  if (GetArenaForAllocation() == nullptr && _impl_.arguments_ != nullptr) {
+    delete _impl_.arguments_;
   }
-  arguments_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && started_ != nullptr) {
-    delete started_;
+  _impl_.arguments_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.started_ != nullptr) {
+    delete _impl_.started_;
   }
-  started_ = nullptr;
-  _has_bits_.Clear();
+  _impl_.started_ = nullptr;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2995,7 +3096,7 @@ const char* Operation::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -3084,7 +3185,7 @@ size_t Operation::ByteSizeLong() const {
   }
 
   // optional string session_id = 5 [json_name = "sessionId"];
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -3095,54 +3196,52 @@ size_t Operation::ByteSizeLong() const {
   if (this->_internal_has_arguments()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *arguments_);
+        *_impl_.arguments_);
   }
 
   // .google.protobuf.Timestamp started = 4 [json_name = "started"];
   if (this->_internal_has_started()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *started_);
+        *_impl_.started_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Operation::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Operation::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Operation::GetClassData() const { return &_class_data_; }
 
-void Operation::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Operation *>(to)->MergeFrom(
-      static_cast<const Operation &>(from));
-}
 
-
-void Operation::MergeFrom(const Operation& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Operation)
-  GOOGLE_DCHECK_NE(&from, this);
+void Operation::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Operation*>(&to_msg);
+  auto& from = static_cast<const Operation&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Operation)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
   if (!from._internal_method().empty()) {
-    _internal_set_method(from._internal_method());
+    _this->_internal_set_method(from._internal_method());
   }
   if (from._internal_has_session_id()) {
-    _internal_set_session_id(from._internal_session_id());
+    _this->_internal_set_session_id(from._internal_session_id());
   }
   if (from._internal_has_arguments()) {
-    _internal_mutable_arguments()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_arguments());
+    _this->_internal_mutable_arguments()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_arguments());
   }
   if (from._internal_has_started()) {
-    _internal_mutable_started()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_started());
+    _this->_internal_mutable_started()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_started());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Operation::CopyFrom(const Operation& from) {
@@ -3161,25 +3260,25 @@ void Operation::InternalSwap(Operation* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &method_, lhs_arena,
-      &other->method_, rhs_arena
+      &_impl_.method_, lhs_arena,
+      &other->_impl_.method_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &session_id_, lhs_arena,
-      &other->session_id_, rhs_arena
+      &_impl_.session_id_, lhs_arena,
+      &other->_impl_.session_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Operation, started_)
-      + sizeof(Operation::started_)
-      - PROTOBUF_FIELD_OFFSET(Operation, arguments_)>(
-          reinterpret_cast<char*>(&arguments_),
-          reinterpret_cast<char*>(&other->arguments_));
+      PROTOBUF_FIELD_OFFSET(Operation, _impl_.started_)
+      + sizeof(Operation::_impl_.started_)
+      - PROTOBUF_FIELD_OFFSET(Operation, _impl_.arguments_)>(
+          reinterpret_cast<char*>(&_impl_.arguments_),
+          reinterpret_cast<char*>(&other->_impl_.arguments_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Operation::GetMetadata() const {
@@ -3201,6 +3300,7 @@ GetOperationsRequest::GetOperationsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena
 }
 GetOperationsRequest::GetOperationsRequest(const GetOperationsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  GetOperationsRequest* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetOperationsRequest)
 }
@@ -3235,19 +3335,29 @@ class GetOperationsResponse::_Internal {
 
 GetOperationsResponse::GetOperationsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  operations_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.GetOperationsResponse)
 }
 GetOperationsResponse::GetOperationsResponse(const GetOperationsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      operations_(from.operations_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetOperationsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.operations_){from._impl_.operations_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetOperationsResponse)
 }
 
-inline void GetOperationsResponse::SharedCtor() {
+inline void GetOperationsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.operations_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetOperationsResponse::~GetOperationsResponse() {
@@ -3261,10 +3371,11 @@ GetOperationsResponse::~GetOperationsResponse() {
 
 inline void GetOperationsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.operations_.~RepeatedPtrField();
 }
 
 void GetOperationsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetOperationsResponse::Clear() {
@@ -3273,7 +3384,7 @@ void GetOperationsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  operations_.Clear();
+  _impl_.operations_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3351,35 +3462,31 @@ size_t GetOperationsResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.Operation operations = 1 [json_name = "operations"];
   total_size += 1UL * this->_internal_operations_size();
-  for (const auto& msg : this->operations_) {
+  for (const auto& msg : this->_impl_.operations_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetOperationsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetOperationsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetOperationsResponse::GetClassData() const { return &_class_data_; }
 
-void GetOperationsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetOperationsResponse *>(to)->MergeFrom(
-      static_cast<const GetOperationsResponse &>(from));
-}
 
-
-void GetOperationsResponse::MergeFrom(const GetOperationsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetOperationsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetOperationsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetOperationsResponse*>(&to_msg);
+  auto& from = static_cast<const GetOperationsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetOperationsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  operations_.MergeFrom(from.operations_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.operations_.MergeFrom(from._impl_.operations_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetOperationsResponse::CopyFrom(const GetOperationsResponse& from) {
@@ -3396,7 +3503,7 @@ bool GetOperationsResponse::IsInitialized() const {
 void GetOperationsResponse::InternalSwap(GetOperationsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  operations_.InternalSwap(&other->operations_);
+  _impl_.operations_.InternalSwap(&other->_impl_.operations_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetOperationsResponse::GetMetadata() const {
@@ -3414,28 +3521,40 @@ class CancelOperationRequest::_Internal {
 CancelOperationRequest::CancelOperationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.CancelOperationRequest)
 }
 CancelOperationRequest::CancelOperationRequest(const CancelOperationRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CancelOperationRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.CancelOperationRequest)
 }
 
-inline void CancelOperationRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void CancelOperationRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 CancelOperationRequest::~CancelOperationRequest() {
@@ -3449,11 +3568,11 @@ CancelOperationRequest::~CancelOperationRequest() {
 
 inline void CancelOperationRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void CancelOperationRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CancelOperationRequest::Clear() {
@@ -3462,7 +3581,7 @@ void CancelOperationRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3544,32 +3663,28 @@ size_t CancelOperationRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CancelOperationRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     CancelOperationRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CancelOperationRequest::GetClassData() const { return &_class_data_; }
 
-void CancelOperationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CancelOperationRequest *>(to)->MergeFrom(
-      static_cast<const CancelOperationRequest &>(from));
-}
 
-
-void CancelOperationRequest::MergeFrom(const CancelOperationRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.CancelOperationRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void CancelOperationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CancelOperationRequest*>(&to_msg);
+  auto& from = static_cast<const CancelOperationRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.CancelOperationRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CancelOperationRequest::CopyFrom(const CancelOperationRequest& from) {
@@ -3589,8 +3704,8 @@ void CancelOperationRequest::InternalSwap(CancelOperationRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -3613,6 +3728,7 @@ CancelOperationResponse::CancelOperationResponse(::PROTOBUF_NAMESPACE_ID::Arena*
 }
 CancelOperationResponse::CancelOperationResponse(const CancelOperationResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  CancelOperationResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.CancelOperationResponse)
 }
@@ -3648,28 +3764,40 @@ class BlockForOperationRequest::_Internal {
 BlockForOperationRequest::BlockForOperationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.BlockForOperationRequest)
 }
 BlockForOperationRequest::BlockForOperationRequest(const BlockForOperationRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  BlockForOperationRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.BlockForOperationRequest)
 }
 
-inline void BlockForOperationRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void BlockForOperationRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 BlockForOperationRequest::~BlockForOperationRequest() {
@@ -3683,11 +3811,11 @@ BlockForOperationRequest::~BlockForOperationRequest() {
 
 inline void BlockForOperationRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void BlockForOperationRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void BlockForOperationRequest::Clear() {
@@ -3696,7 +3824,7 @@ void BlockForOperationRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3778,32 +3906,28 @@ size_t BlockForOperationRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BlockForOperationRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     BlockForOperationRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BlockForOperationRequest::GetClassData() const { return &_class_data_; }
 
-void BlockForOperationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<BlockForOperationRequest *>(to)->MergeFrom(
-      static_cast<const BlockForOperationRequest &>(from));
-}
 
-
-void BlockForOperationRequest::MergeFrom(const BlockForOperationRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.BlockForOperationRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void BlockForOperationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<BlockForOperationRequest*>(&to_msg);
+  auto& from = static_cast<const BlockForOperationRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.BlockForOperationRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void BlockForOperationRequest::CopyFrom(const BlockForOperationRequest& from) {
@@ -3823,8 +3947,8 @@ void BlockForOperationRequest::InternalSwap(BlockForOperationRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -3847,6 +3971,7 @@ BlockForOperationResponse::BlockForOperationResponse(::PROTOBUF_NAMESPACE_ID::Ar
 }
 BlockForOperationResponse::BlockForOperationResponse(const BlockForOperationResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  BlockForOperationResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.BlockForOperationResponse)
 }
@@ -3877,7 +4002,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BlockForOperationResponse::Get
 
 class PeerConnectionInfo::_Internal {
  public:
-  using HasBits = decltype(std::declval<PeerConnectionInfo>()._has_bits_);
+  using HasBits = decltype(std::declval<PeerConnectionInfo>()._impl_._has_bits_);
   static void set_has_remote_address(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -3889,43 +4014,59 @@ class PeerConnectionInfo::_Internal {
 PeerConnectionInfo::PeerConnectionInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.PeerConnectionInfo)
 }
 PeerConnectionInfo::PeerConnectionInfo(const PeerConnectionInfo& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PeerConnectionInfo* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.remote_address_){}
+    , decltype(_impl_.local_address_){}
+    , decltype(_impl_.type_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  remote_address_.InitDefault();
+  _impl_.remote_address_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    remote_address_.Set("", GetArenaForAllocation());
+    _impl_.remote_address_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_remote_address()) {
-    remote_address_.Set(from._internal_remote_address(), 
-      GetArenaForAllocation());
+    _this->_impl_.remote_address_.Set(from._internal_remote_address(), 
+      _this->GetArenaForAllocation());
   }
-  local_address_.InitDefault();
+  _impl_.local_address_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    local_address_.Set("", GetArenaForAllocation());
+    _impl_.local_address_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_local_address()) {
-    local_address_.Set(from._internal_local_address(), 
-      GetArenaForAllocation());
+    _this->_impl_.local_address_.Set(from._internal_local_address(), 
+      _this->GetArenaForAllocation());
   }
-  type_ = from.type_;
+  _this->_impl_.type_ = from._impl_.type_;
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.PeerConnectionInfo)
 }
 
-inline void PeerConnectionInfo::SharedCtor() {
-remote_address_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  remote_address_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-local_address_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  local_address_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-type_ = 0;
+inline void PeerConnectionInfo::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.remote_address_){}
+    , decltype(_impl_.local_address_){}
+    , decltype(_impl_.type_){0}
+  };
+  _impl_.remote_address_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.remote_address_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.local_address_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.local_address_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 PeerConnectionInfo::~PeerConnectionInfo() {
@@ -3939,12 +4080,12 @@ PeerConnectionInfo::~PeerConnectionInfo() {
 
 inline void PeerConnectionInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  remote_address_.Destroy();
-  local_address_.Destroy();
+  _impl_.remote_address_.Destroy();
+  _impl_.local_address_.Destroy();
 }
 
 void PeerConnectionInfo::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PeerConnectionInfo::Clear() {
@@ -3953,17 +4094,17 @@ void PeerConnectionInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      remote_address_.ClearNonDefaultToEmpty();
+      _impl_.remote_address_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
-      local_address_.ClearNonDefaultToEmpty();
+      _impl_.local_address_.ClearNonDefaultToEmpty();
     }
   }
-  type_ = 0;
-  _has_bits_.Clear();
+  _impl_.type_ = 0;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4019,7 +4160,7 @@ const char* PeerConnectionInfo::_InternalParse(const char* ptr, ::_pbi::ParseCon
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -4076,7 +4217,7 @@ size_t PeerConnectionInfo::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     // optional string remote_address = 2 [json_name = "remoteAddress"];
     if (cached_has_bits & 0x00000001u) {
@@ -4099,41 +4240,37 @@ size_t PeerConnectionInfo::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PeerConnectionInfo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PeerConnectionInfo::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PeerConnectionInfo::GetClassData() const { return &_class_data_; }
 
-void PeerConnectionInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PeerConnectionInfo *>(to)->MergeFrom(
-      static_cast<const PeerConnectionInfo &>(from));
-}
 
-
-void PeerConnectionInfo::MergeFrom(const PeerConnectionInfo& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.PeerConnectionInfo)
-  GOOGLE_DCHECK_NE(&from, this);
+void PeerConnectionInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PeerConnectionInfo*>(&to_msg);
+  auto& from = static_cast<const PeerConnectionInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.PeerConnectionInfo)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._has_bits_[0];
+  cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _internal_set_remote_address(from._internal_remote_address());
+      _this->_internal_set_remote_address(from._internal_remote_address());
     }
     if (cached_has_bits & 0x00000002u) {
-      _internal_set_local_address(from._internal_local_address());
+      _this->_internal_set_local_address(from._internal_local_address());
     }
   }
   if (from._internal_type() != 0) {
-    _internal_set_type(from._internal_type());
+    _this->_internal_set_type(from._internal_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PeerConnectionInfo::CopyFrom(const PeerConnectionInfo& from) {
@@ -4152,16 +4289,16 @@ void PeerConnectionInfo::InternalSwap(PeerConnectionInfo* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &remote_address_, lhs_arena,
-      &other->remote_address_, rhs_arena
+      &_impl_.remote_address_, lhs_arena,
+      &other->_impl_.remote_address_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &local_address_, lhs_arena,
-      &other->local_address_, rhs_arena
+      &_impl_.local_address_, lhs_arena,
+      &other->_impl_.local_address_, rhs_arena
   );
-  swap(type_, other->type_);
+  swap(_impl_.type_, other->_impl_.type_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PeerConnectionInfo::GetMetadata() const {
@@ -4174,7 +4311,7 @@ void PeerConnectionInfo::InternalSwap(PeerConnectionInfo* other) {
 
 class Session::_Internal {
  public:
-  using HasBits = decltype(std::declval<Session>()._has_bits_);
+  using HasBits = decltype(std::declval<Session>()._impl_._has_bits_);
   static const ::viam::robot::v1::PeerConnectionInfo& peer_connection_info(const Session* msg);
   static void set_has_peer_connection_info(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -4183,40 +4320,52 @@ class Session::_Internal {
 
 const ::viam::robot::v1::PeerConnectionInfo&
 Session::_Internal::peer_connection_info(const Session* msg) {
-  return *msg->peer_connection_info_;
+  return *msg->_impl_.peer_connection_info_;
 }
 Session::Session(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.Session)
 }
 Session::Session(const Session& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Session* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.peer_connection_info_){nullptr}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_peer_connection_info()) {
-    peer_connection_info_ = new ::viam::robot::v1::PeerConnectionInfo(*from.peer_connection_info_);
-  } else {
-    peer_connection_info_ = nullptr;
+    _this->_impl_.peer_connection_info_ = new ::viam::robot::v1::PeerConnectionInfo(*from._impl_.peer_connection_info_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.Session)
 }
 
-inline void Session::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-peer_connection_info_ = nullptr;
+inline void Session::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.peer_connection_info_){nullptr}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Session::~Session() {
@@ -4230,12 +4379,12 @@ Session::~Session() {
 
 inline void Session::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
-  if (this != internal_default_instance()) delete peer_connection_info_;
+  _impl_.id_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.peer_connection_info_;
 }
 
 void Session::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Session::Clear() {
@@ -4244,13 +4393,13 @@ void Session::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
-  cached_has_bits = _has_bits_[0];
+  _impl_.id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(peer_connection_info_ != nullptr);
-    peer_connection_info_->Clear();
+    GOOGLE_DCHECK(_impl_.peer_connection_info_ != nullptr);
+    _impl_.peer_connection_info_->Clear();
   }
-  _has_bits_.Clear();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4295,7 +4444,7 @@ const char* Session::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -4350,42 +4499,39 @@ size_t Session::ByteSizeLong() const {
   }
 
   // optional .viam.robot.v1.PeerConnectionInfo peer_connection_info = 2 [json_name = "peerConnectionInfo"];
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *peer_connection_info_);
+        *_impl_.peer_connection_info_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Session::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Session::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Session::GetClassData() const { return &_class_data_; }
 
-void Session::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Session *>(to)->MergeFrom(
-      static_cast<const Session &>(from));
-}
 
-
-void Session::MergeFrom(const Session& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Session)
-  GOOGLE_DCHECK_NE(&from, this);
+void Session::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Session*>(&to_msg);
+  auto& from = static_cast<const Session&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Session)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
   if (from._internal_has_peer_connection_info()) {
-    _internal_mutable_peer_connection_info()->::viam::robot::v1::PeerConnectionInfo::MergeFrom(from._internal_peer_connection_info());
+    _this->_internal_mutable_peer_connection_info()->::viam::robot::v1::PeerConnectionInfo::MergeFrom(
+        from._internal_peer_connection_info());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Session::CopyFrom(const Session& from) {
@@ -4404,12 +4550,12 @@ void Session::InternalSwap(Session* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
-  swap(peer_connection_info_, other->peer_connection_info_);
+  swap(_impl_.peer_connection_info_, other->_impl_.peer_connection_info_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Session::GetMetadata() const {
@@ -4431,6 +4577,7 @@ GetSessionsRequest::GetSessionsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 GetSessionsRequest::GetSessionsRequest(const GetSessionsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  GetSessionsRequest* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetSessionsRequest)
 }
@@ -4465,19 +4612,29 @@ class GetSessionsResponse::_Internal {
 
 GetSessionsResponse::GetSessionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  sessions_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.GetSessionsResponse)
 }
 GetSessionsResponse::GetSessionsResponse(const GetSessionsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      sessions_(from.sessions_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetSessionsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.sessions_){from._impl_.sessions_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetSessionsResponse)
 }
 
-inline void GetSessionsResponse::SharedCtor() {
+inline void GetSessionsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.sessions_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetSessionsResponse::~GetSessionsResponse() {
@@ -4491,10 +4648,11 @@ GetSessionsResponse::~GetSessionsResponse() {
 
 inline void GetSessionsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.sessions_.~RepeatedPtrField();
 }
 
 void GetSessionsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetSessionsResponse::Clear() {
@@ -4503,7 +4661,7 @@ void GetSessionsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  sessions_.Clear();
+  _impl_.sessions_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4581,35 +4739,31 @@ size_t GetSessionsResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.Session sessions = 1 [json_name = "sessions"];
   total_size += 1UL * this->_internal_sessions_size();
-  for (const auto& msg : this->sessions_) {
+  for (const auto& msg : this->_impl_.sessions_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetSessionsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetSessionsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetSessionsResponse::GetClassData() const { return &_class_data_; }
 
-void GetSessionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetSessionsResponse *>(to)->MergeFrom(
-      static_cast<const GetSessionsResponse &>(from));
-}
 
-
-void GetSessionsResponse::MergeFrom(const GetSessionsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetSessionsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetSessionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetSessionsResponse*>(&to_msg);
+  auto& from = static_cast<const GetSessionsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetSessionsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  sessions_.MergeFrom(from.sessions_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.sessions_.MergeFrom(from._impl_.sessions_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetSessionsResponse::CopyFrom(const GetSessionsResponse& from) {
@@ -4626,7 +4780,7 @@ bool GetSessionsResponse::IsInitialized() const {
 void GetSessionsResponse::InternalSwap(GetSessionsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  sessions_.InternalSwap(&other->sessions_);
+  _impl_.sessions_.InternalSwap(&other->_impl_.sessions_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSessionsResponse::GetMetadata() const {
@@ -4644,40 +4798,54 @@ class DiscoveryQuery::_Internal {
 DiscoveryQuery::DiscoveryQuery(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.DiscoveryQuery)
 }
 DiscoveryQuery::DiscoveryQuery(const DiscoveryQuery& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DiscoveryQuery* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.subtype_){}
+    , decltype(_impl_.model_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  subtype_.InitDefault();
+  _impl_.subtype_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    subtype_.Set("", GetArenaForAllocation());
+    _impl_.subtype_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_subtype().empty()) {
-    subtype_.Set(from._internal_subtype(), 
-      GetArenaForAllocation());
+    _this->_impl_.subtype_.Set(from._internal_subtype(), 
+      _this->GetArenaForAllocation());
   }
-  model_.InitDefault();
+  _impl_.model_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_.Set("", GetArenaForAllocation());
+    _impl_.model_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model().empty()) {
-    model_.Set(from._internal_model(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_.Set(from._internal_model(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.DiscoveryQuery)
 }
 
-inline void DiscoveryQuery::SharedCtor() {
-subtype_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  subtype_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void DiscoveryQuery::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.subtype_){}
+    , decltype(_impl_.model_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.subtype_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subtype_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 DiscoveryQuery::~DiscoveryQuery() {
@@ -4691,12 +4859,12 @@ DiscoveryQuery::~DiscoveryQuery() {
 
 inline void DiscoveryQuery::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  subtype_.Destroy();
-  model_.Destroy();
+  _impl_.subtype_.Destroy();
+  _impl_.model_.Destroy();
 }
 
 void DiscoveryQuery::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DiscoveryQuery::Clear() {
@@ -4705,8 +4873,8 @@ void DiscoveryQuery::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  subtype_.ClearToEmpty();
-  model_.ClearToEmpty();
+  _impl_.subtype_.ClearToEmpty();
+  _impl_.model_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4815,35 +4983,31 @@ size_t DiscoveryQuery::ByteSizeLong() const {
         this->_internal_model());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DiscoveryQuery::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DiscoveryQuery::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DiscoveryQuery::GetClassData() const { return &_class_data_; }
 
-void DiscoveryQuery::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DiscoveryQuery *>(to)->MergeFrom(
-      static_cast<const DiscoveryQuery &>(from));
-}
 
-
-void DiscoveryQuery::MergeFrom(const DiscoveryQuery& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.DiscoveryQuery)
-  GOOGLE_DCHECK_NE(&from, this);
+void DiscoveryQuery::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DiscoveryQuery*>(&to_msg);
+  auto& from = static_cast<const DiscoveryQuery&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.DiscoveryQuery)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_subtype().empty()) {
-    _internal_set_subtype(from._internal_subtype());
+    _this->_internal_set_subtype(from._internal_subtype());
   }
   if (!from._internal_model().empty()) {
-    _internal_set_model(from._internal_model());
+    _this->_internal_set_model(from._internal_model());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DiscoveryQuery::CopyFrom(const DiscoveryQuery& from) {
@@ -4863,12 +5027,12 @@ void DiscoveryQuery::InternalSwap(DiscoveryQuery* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &subtype_, lhs_arena,
-      &other->subtype_, rhs_arena
+      &_impl_.subtype_, lhs_arena,
+      &other->_impl_.subtype_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_, lhs_arena,
-      &other->model_, rhs_arena
+      &_impl_.model_, lhs_arena,
+      &other->_impl_.model_, rhs_arena
   );
 }
 
@@ -4888,45 +5052,51 @@ class Discovery::_Internal {
 
 const ::viam::robot::v1::DiscoveryQuery&
 Discovery::_Internal::query(const Discovery* msg) {
-  return *msg->query_;
+  return *msg->_impl_.query_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 Discovery::_Internal::results(const Discovery* msg) {
-  return *msg->results_;
+  return *msg->_impl_.results_;
 }
 void Discovery::clear_results() {
-  if (GetArenaForAllocation() == nullptr && results_ != nullptr) {
-    delete results_;
+  if (GetArenaForAllocation() == nullptr && _impl_.results_ != nullptr) {
+    delete _impl_.results_;
   }
-  results_ = nullptr;
+  _impl_.results_ = nullptr;
 }
 Discovery::Discovery(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.Discovery)
 }
 Discovery::Discovery(const Discovery& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Discovery* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.query_){nullptr}
+    , decltype(_impl_.results_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_query()) {
-    query_ = new ::viam::robot::v1::DiscoveryQuery(*from.query_);
-  } else {
-    query_ = nullptr;
+    _this->_impl_.query_ = new ::viam::robot::v1::DiscoveryQuery(*from._impl_.query_);
   }
   if (from._internal_has_results()) {
-    results_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.results_);
-  } else {
-    results_ = nullptr;
+    _this->_impl_.results_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.results_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.Discovery)
 }
 
-inline void Discovery::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&query_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&results_) -
-    reinterpret_cast<char*>(&query_)) + sizeof(results_));
+inline void Discovery::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.query_){nullptr}
+    , decltype(_impl_.results_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 Discovery::~Discovery() {
@@ -4940,12 +5110,12 @@ Discovery::~Discovery() {
 
 inline void Discovery::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete query_;
-  if (this != internal_default_instance()) delete results_;
+  if (this != internal_default_instance()) delete _impl_.query_;
+  if (this != internal_default_instance()) delete _impl_.results_;
 }
 
 void Discovery::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Discovery::Clear() {
@@ -4954,14 +5124,14 @@ void Discovery::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && query_ != nullptr) {
-    delete query_;
+  if (GetArenaForAllocation() == nullptr && _impl_.query_ != nullptr) {
+    delete _impl_.query_;
   }
-  query_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && results_ != nullptr) {
-    delete results_;
+  _impl_.query_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.results_ != nullptr) {
+    delete _impl_.results_;
   }
-  results_ = nullptr;
+  _impl_.results_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5050,45 +5220,43 @@ size_t Discovery::ByteSizeLong() const {
   if (this->_internal_has_query()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *query_);
+        *_impl_.query_);
   }
 
   // .google.protobuf.Struct results = 2 [json_name = "results"];
   if (this->_internal_has_results()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *results_);
+        *_impl_.results_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Discovery::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Discovery::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Discovery::GetClassData() const { return &_class_data_; }
 
-void Discovery::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Discovery *>(to)->MergeFrom(
-      static_cast<const Discovery &>(from));
-}
 
-
-void Discovery::MergeFrom(const Discovery& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Discovery)
-  GOOGLE_DCHECK_NE(&from, this);
+void Discovery::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Discovery*>(&to_msg);
+  auto& from = static_cast<const Discovery&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Discovery)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_query()) {
-    _internal_mutable_query()->::viam::robot::v1::DiscoveryQuery::MergeFrom(from._internal_query());
+    _this->_internal_mutable_query()->::viam::robot::v1::DiscoveryQuery::MergeFrom(
+        from._internal_query());
   }
   if (from._internal_has_results()) {
-    _internal_mutable_results()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_results());
+    _this->_internal_mutable_results()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_results());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Discovery::CopyFrom(const Discovery& from) {
@@ -5106,11 +5274,11 @@ void Discovery::InternalSwap(Discovery* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Discovery, results_)
-      + sizeof(Discovery::results_)
-      - PROTOBUF_FIELD_OFFSET(Discovery, query_)>(
-          reinterpret_cast<char*>(&query_),
-          reinterpret_cast<char*>(&other->query_));
+      PROTOBUF_FIELD_OFFSET(Discovery, _impl_.results_)
+      + sizeof(Discovery::_impl_.results_)
+      - PROTOBUF_FIELD_OFFSET(Discovery, _impl_.query_)>(
+          reinterpret_cast<char*>(&_impl_.query_),
+          reinterpret_cast<char*>(&other->_impl_.query_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Discovery::GetMetadata() const {
@@ -5127,19 +5295,29 @@ class DiscoverComponentsRequest::_Internal {
 
 DiscoverComponentsRequest::DiscoverComponentsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  queries_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.DiscoverComponentsRequest)
 }
 DiscoverComponentsRequest::DiscoverComponentsRequest(const DiscoverComponentsRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      queries_(from.queries_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DiscoverComponentsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.queries_){from._impl_.queries_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.DiscoverComponentsRequest)
 }
 
-inline void DiscoverComponentsRequest::SharedCtor() {
+inline void DiscoverComponentsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.queries_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 DiscoverComponentsRequest::~DiscoverComponentsRequest() {
@@ -5153,10 +5331,11 @@ DiscoverComponentsRequest::~DiscoverComponentsRequest() {
 
 inline void DiscoverComponentsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.queries_.~RepeatedPtrField();
 }
 
 void DiscoverComponentsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DiscoverComponentsRequest::Clear() {
@@ -5165,7 +5344,7 @@ void DiscoverComponentsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  queries_.Clear();
+  _impl_.queries_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5243,35 +5422,31 @@ size_t DiscoverComponentsRequest::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.DiscoveryQuery queries = 1 [json_name = "queries"];
   total_size += 1UL * this->_internal_queries_size();
-  for (const auto& msg : this->queries_) {
+  for (const auto& msg : this->_impl_.queries_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DiscoverComponentsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DiscoverComponentsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DiscoverComponentsRequest::GetClassData() const { return &_class_data_; }
 
-void DiscoverComponentsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DiscoverComponentsRequest *>(to)->MergeFrom(
-      static_cast<const DiscoverComponentsRequest &>(from));
-}
 
-
-void DiscoverComponentsRequest::MergeFrom(const DiscoverComponentsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.DiscoverComponentsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void DiscoverComponentsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DiscoverComponentsRequest*>(&to_msg);
+  auto& from = static_cast<const DiscoverComponentsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.DiscoverComponentsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  queries_.MergeFrom(from.queries_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.queries_.MergeFrom(from._impl_.queries_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DiscoverComponentsRequest::CopyFrom(const DiscoverComponentsRequest& from) {
@@ -5288,7 +5463,7 @@ bool DiscoverComponentsRequest::IsInitialized() const {
 void DiscoverComponentsRequest::InternalSwap(DiscoverComponentsRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  queries_.InternalSwap(&other->queries_);
+  _impl_.queries_.InternalSwap(&other->_impl_.queries_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DiscoverComponentsRequest::GetMetadata() const {
@@ -5305,19 +5480,29 @@ class DiscoverComponentsResponse::_Internal {
 
 DiscoverComponentsResponse::DiscoverComponentsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  discovery_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.DiscoverComponentsResponse)
 }
 DiscoverComponentsResponse::DiscoverComponentsResponse(const DiscoverComponentsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      discovery_(from.discovery_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DiscoverComponentsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.discovery_){from._impl_.discovery_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.DiscoverComponentsResponse)
 }
 
-inline void DiscoverComponentsResponse::SharedCtor() {
+inline void DiscoverComponentsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.discovery_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 DiscoverComponentsResponse::~DiscoverComponentsResponse() {
@@ -5331,10 +5516,11 @@ DiscoverComponentsResponse::~DiscoverComponentsResponse() {
 
 inline void DiscoverComponentsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.discovery_.~RepeatedPtrField();
 }
 
 void DiscoverComponentsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DiscoverComponentsResponse::Clear() {
@@ -5343,7 +5529,7 @@ void DiscoverComponentsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  discovery_.Clear();
+  _impl_.discovery_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5421,35 +5607,31 @@ size_t DiscoverComponentsResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.Discovery discovery = 1 [json_name = "discovery"];
   total_size += 1UL * this->_internal_discovery_size();
-  for (const auto& msg : this->discovery_) {
+  for (const auto& msg : this->_impl_.discovery_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DiscoverComponentsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DiscoverComponentsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DiscoverComponentsResponse::GetClassData() const { return &_class_data_; }
 
-void DiscoverComponentsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DiscoverComponentsResponse *>(to)->MergeFrom(
-      static_cast<const DiscoverComponentsResponse &>(from));
-}
 
-
-void DiscoverComponentsResponse::MergeFrom(const DiscoverComponentsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.DiscoverComponentsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void DiscoverComponentsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DiscoverComponentsResponse*>(&to_msg);
+  auto& from = static_cast<const DiscoverComponentsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.DiscoverComponentsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  discovery_.MergeFrom(from.discovery_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.discovery_.MergeFrom(from._impl_.discovery_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DiscoverComponentsResponse::CopyFrom(const DiscoverComponentsResponse& from) {
@@ -5466,7 +5648,7 @@ bool DiscoverComponentsResponse::IsInitialized() const {
 void DiscoverComponentsResponse::InternalSwap(DiscoverComponentsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  discovery_.InternalSwap(&other->discovery_);
+  _impl_.discovery_.InternalSwap(&other->_impl_.discovery_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DiscoverComponentsResponse::GetMetadata() const {
@@ -5485,51 +5667,57 @@ class Status::_Internal {
 
 const ::viam::common::v1::ResourceName&
 Status::_Internal::name(const Status* msg) {
-  return *msg->name_;
+  return *msg->_impl_.name_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 Status::_Internal::status(const Status* msg) {
-  return *msg->status_;
+  return *msg->_impl_.status_;
 }
 void Status::clear_name() {
-  if (GetArenaForAllocation() == nullptr && name_ != nullptr) {
-    delete name_;
+  if (GetArenaForAllocation() == nullptr && _impl_.name_ != nullptr) {
+    delete _impl_.name_;
   }
-  name_ = nullptr;
+  _impl_.name_ = nullptr;
 }
 void Status::clear_status() {
-  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
-    delete status_;
+  if (GetArenaForAllocation() == nullptr && _impl_.status_ != nullptr) {
+    delete _impl_.status_;
   }
-  status_ = nullptr;
+  _impl_.status_ = nullptr;
 }
 Status::Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.Status)
 }
 Status::Status(const Status& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Status* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){nullptr}
+    , decltype(_impl_.status_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_name()) {
-    name_ = new ::viam::common::v1::ResourceName(*from.name_);
-  } else {
-    name_ = nullptr;
+    _this->_impl_.name_ = new ::viam::common::v1::ResourceName(*from._impl_.name_);
   }
   if (from._internal_has_status()) {
-    status_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.status_);
-  } else {
-    status_ = nullptr;
+    _this->_impl_.status_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.status_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.Status)
 }
 
-inline void Status::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&name_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&status_) -
-    reinterpret_cast<char*>(&name_)) + sizeof(status_));
+inline void Status::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){nullptr}
+    , decltype(_impl_.status_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 Status::~Status() {
@@ -5543,12 +5731,12 @@ Status::~Status() {
 
 inline void Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete name_;
-  if (this != internal_default_instance()) delete status_;
+  if (this != internal_default_instance()) delete _impl_.name_;
+  if (this != internal_default_instance()) delete _impl_.status_;
 }
 
 void Status::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Status::Clear() {
@@ -5557,14 +5745,14 @@ void Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && name_ != nullptr) {
-    delete name_;
+  if (GetArenaForAllocation() == nullptr && _impl_.name_ != nullptr) {
+    delete _impl_.name_;
   }
-  name_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
-    delete status_;
+  _impl_.name_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.status_ != nullptr) {
+    delete _impl_.status_;
   }
-  status_ = nullptr;
+  _impl_.status_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5653,45 +5841,43 @@ size_t Status::ByteSizeLong() const {
   if (this->_internal_has_name()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *name_);
+        *_impl_.name_);
   }
 
   // .google.protobuf.Struct status = 2 [json_name = "status"];
   if (this->_internal_has_status()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *status_);
+        *_impl_.status_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Status::GetClassData() const { return &_class_data_; }
 
-void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Status *>(to)->MergeFrom(
-      static_cast<const Status &>(from));
-}
 
-
-void Status::MergeFrom(const Status& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Status)
-  GOOGLE_DCHECK_NE(&from, this);
+void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Status*>(&to_msg);
+  auto& from = static_cast<const Status&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.Status)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_name()) {
-    _internal_mutable_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_name());
+    _this->_internal_mutable_name()->::viam::common::v1::ResourceName::MergeFrom(
+        from._internal_name());
   }
   if (from._internal_has_status()) {
-    _internal_mutable_status()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_status());
+    _this->_internal_mutable_status()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_status());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Status::CopyFrom(const Status& from) {
@@ -5709,11 +5895,11 @@ void Status::InternalSwap(Status* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Status, status_)
-      + sizeof(Status::status_)
-      - PROTOBUF_FIELD_OFFSET(Status, name_)>(
-          reinterpret_cast<char*>(&name_),
-          reinterpret_cast<char*>(&other->name_));
+      PROTOBUF_FIELD_OFFSET(Status, _impl_.status_)
+      + sizeof(Status::_impl_.status_)
+      - PROTOBUF_FIELD_OFFSET(Status, _impl_.name_)>(
+          reinterpret_cast<char*>(&_impl_.name_),
+          reinterpret_cast<char*>(&other->_impl_.name_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {
@@ -5729,23 +5915,33 @@ class GetStatusRequest::_Internal {
 };
 
 void GetStatusRequest::clear_resource_names() {
-  resource_names_.Clear();
+  _impl_.resource_names_.Clear();
 }
 GetStatusRequest::GetStatusRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  resource_names_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.GetStatusRequest)
 }
 GetStatusRequest::GetStatusRequest(const GetStatusRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      resource_names_(from.resource_names_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetStatusRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_names_){from._impl_.resource_names_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetStatusRequest)
 }
 
-inline void GetStatusRequest::SharedCtor() {
+inline void GetStatusRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_names_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetStatusRequest::~GetStatusRequest() {
@@ -5759,10 +5955,11 @@ GetStatusRequest::~GetStatusRequest() {
 
 inline void GetStatusRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.resource_names_.~RepeatedPtrField();
 }
 
 void GetStatusRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetStatusRequest::Clear() {
@@ -5771,7 +5968,7 @@ void GetStatusRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  resource_names_.Clear();
+  _impl_.resource_names_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5849,35 +6046,31 @@ size_t GetStatusRequest::ByteSizeLong() const {
 
   // repeated .viam.common.v1.ResourceName resource_names = 1 [json_name = "resourceNames"];
   total_size += 1UL * this->_internal_resource_names_size();
-  for (const auto& msg : this->resource_names_) {
+  for (const auto& msg : this->_impl_.resource_names_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetStatusRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetStatusRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetStatusRequest::GetClassData() const { return &_class_data_; }
 
-void GetStatusRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetStatusRequest *>(to)->MergeFrom(
-      static_cast<const GetStatusRequest &>(from));
-}
 
-
-void GetStatusRequest::MergeFrom(const GetStatusRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetStatusRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetStatusRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetStatusRequest*>(&to_msg);
+  auto& from = static_cast<const GetStatusRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetStatusRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  resource_names_.MergeFrom(from.resource_names_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.resource_names_.MergeFrom(from._impl_.resource_names_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetStatusRequest::CopyFrom(const GetStatusRequest& from) {
@@ -5894,7 +6087,7 @@ bool GetStatusRequest::IsInitialized() const {
 void GetStatusRequest::InternalSwap(GetStatusRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  resource_names_.InternalSwap(&other->resource_names_);
+  _impl_.resource_names_.InternalSwap(&other->_impl_.resource_names_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStatusRequest::GetMetadata() const {
@@ -5911,19 +6104,29 @@ class GetStatusResponse::_Internal {
 
 GetStatusResponse::GetStatusResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  status_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.GetStatusResponse)
 }
 GetStatusResponse::GetStatusResponse(const GetStatusResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      status_(from.status_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetStatusResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_){from._impl_.status_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.GetStatusResponse)
 }
 
-inline void GetStatusResponse::SharedCtor() {
+inline void GetStatusResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetStatusResponse::~GetStatusResponse() {
@@ -5937,10 +6140,11 @@ GetStatusResponse::~GetStatusResponse() {
 
 inline void GetStatusResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.status_.~RepeatedPtrField();
 }
 
 void GetStatusResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetStatusResponse::Clear() {
@@ -5949,7 +6153,7 @@ void GetStatusResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  status_.Clear();
+  _impl_.status_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6027,35 +6231,31 @@ size_t GetStatusResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.Status status = 1 [json_name = "status"];
   total_size += 1UL * this->_internal_status_size();
-  for (const auto& msg : this->status_) {
+  for (const auto& msg : this->_impl_.status_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetStatusResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetStatusResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetStatusResponse::GetClassData() const { return &_class_data_; }
 
-void GetStatusResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetStatusResponse *>(to)->MergeFrom(
-      static_cast<const GetStatusResponse &>(from));
-}
 
-
-void GetStatusResponse::MergeFrom(const GetStatusResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetStatusResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetStatusResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetStatusResponse*>(&to_msg);
+  auto& from = static_cast<const GetStatusResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.GetStatusResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  status_.MergeFrom(from.status_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.status_.MergeFrom(from._impl_.status_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetStatusResponse::CopyFrom(const GetStatusResponse& from) {
@@ -6072,7 +6272,7 @@ bool GetStatusResponse::IsInitialized() const {
 void GetStatusResponse::InternalSwap(GetStatusResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  status_.InternalSwap(&other->status_);
+  _impl_.status_.InternalSwap(&other->_impl_.status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStatusResponse::GetMetadata() const {
@@ -6090,38 +6290,47 @@ class StreamStatusRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 StreamStatusRequest::_Internal::every(const StreamStatusRequest* msg) {
-  return *msg->every_;
+  return *msg->_impl_.every_;
 }
 void StreamStatusRequest::clear_resource_names() {
-  resource_names_.Clear();
+  _impl_.resource_names_.Clear();
 }
 void StreamStatusRequest::clear_every() {
-  if (GetArenaForAllocation() == nullptr && every_ != nullptr) {
-    delete every_;
+  if (GetArenaForAllocation() == nullptr && _impl_.every_ != nullptr) {
+    delete _impl_.every_;
   }
-  every_ = nullptr;
+  _impl_.every_ = nullptr;
 }
 StreamStatusRequest::StreamStatusRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  resource_names_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.StreamStatusRequest)
 }
 StreamStatusRequest::StreamStatusRequest(const StreamStatusRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      resource_names_(from.resource_names_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamStatusRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_names_){from._impl_.resource_names_}
+    , decltype(_impl_.every_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_every()) {
-    every_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.every_);
-  } else {
-    every_ = nullptr;
+    _this->_impl_.every_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.every_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StreamStatusRequest)
 }
 
-inline void StreamStatusRequest::SharedCtor() {
-every_ = nullptr;
+inline void StreamStatusRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_names_){arena}
+    , decltype(_impl_.every_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 StreamStatusRequest::~StreamStatusRequest() {
@@ -6135,11 +6344,12 @@ StreamStatusRequest::~StreamStatusRequest() {
 
 inline void StreamStatusRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete every_;
+  _impl_.resource_names_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.every_;
 }
 
 void StreamStatusRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamStatusRequest::Clear() {
@@ -6148,11 +6358,11 @@ void StreamStatusRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  resource_names_.Clear();
-  if (GetArenaForAllocation() == nullptr && every_ != nullptr) {
-    delete every_;
+  _impl_.resource_names_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.every_ != nullptr) {
+    delete _impl_.every_;
   }
-  every_ = nullptr;
+  _impl_.every_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6245,7 +6455,7 @@ size_t StreamStatusRequest::ByteSizeLong() const {
 
   // repeated .viam.common.v1.ResourceName resource_names = 1 [json_name = "resourceNames"];
   total_size += 1UL * this->_internal_resource_names_size();
-  for (const auto& msg : this->resource_names_) {
+  for (const auto& msg : this->_impl_.resource_names_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -6254,36 +6464,33 @@ size_t StreamStatusRequest::ByteSizeLong() const {
   if (this->_internal_has_every()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *every_);
+        *_impl_.every_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamStatusRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamStatusRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamStatusRequest::GetClassData() const { return &_class_data_; }
 
-void StreamStatusRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamStatusRequest *>(to)->MergeFrom(
-      static_cast<const StreamStatusRequest &>(from));
-}
 
-
-void StreamStatusRequest::MergeFrom(const StreamStatusRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StreamStatusRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamStatusRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamStatusRequest*>(&to_msg);
+  auto& from = static_cast<const StreamStatusRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StreamStatusRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  resource_names_.MergeFrom(from.resource_names_);
+  _this->_impl_.resource_names_.MergeFrom(from._impl_.resource_names_);
   if (from._internal_has_every()) {
-    _internal_mutable_every()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_every());
+    _this->_internal_mutable_every()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_every());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamStatusRequest::CopyFrom(const StreamStatusRequest& from) {
@@ -6300,8 +6507,8 @@ bool StreamStatusRequest::IsInitialized() const {
 void StreamStatusRequest::InternalSwap(StreamStatusRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  resource_names_.InternalSwap(&other->resource_names_);
-  swap(every_, other->every_);
+  _impl_.resource_names_.InternalSwap(&other->_impl_.resource_names_);
+  swap(_impl_.every_, other->_impl_.every_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamStatusRequest::GetMetadata() const {
@@ -6318,19 +6525,29 @@ class StreamStatusResponse::_Internal {
 
 StreamStatusResponse::StreamStatusResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  status_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.StreamStatusResponse)
 }
 StreamStatusResponse::StreamStatusResponse(const StreamStatusResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      status_(from.status_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamStatusResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_){from._impl_.status_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StreamStatusResponse)
 }
 
-inline void StreamStatusResponse::SharedCtor() {
+inline void StreamStatusResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 StreamStatusResponse::~StreamStatusResponse() {
@@ -6344,10 +6561,11 @@ StreamStatusResponse::~StreamStatusResponse() {
 
 inline void StreamStatusResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.status_.~RepeatedPtrField();
 }
 
 void StreamStatusResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamStatusResponse::Clear() {
@@ -6356,7 +6574,7 @@ void StreamStatusResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  status_.Clear();
+  _impl_.status_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6434,35 +6652,31 @@ size_t StreamStatusResponse::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.Status status = 1 [json_name = "status"];
   total_size += 1UL * this->_internal_status_size();
-  for (const auto& msg : this->status_) {
+  for (const auto& msg : this->_impl_.status_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamStatusResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamStatusResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamStatusResponse::GetClassData() const { return &_class_data_; }
 
-void StreamStatusResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamStatusResponse *>(to)->MergeFrom(
-      static_cast<const StreamStatusResponse &>(from));
-}
 
-
-void StreamStatusResponse::MergeFrom(const StreamStatusResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StreamStatusResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamStatusResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamStatusResponse*>(&to_msg);
+  auto& from = static_cast<const StreamStatusResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StreamStatusResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  status_.MergeFrom(from.status_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.status_.MergeFrom(from._impl_.status_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamStatusResponse::CopyFrom(const StreamStatusResponse& from) {
@@ -6479,7 +6693,7 @@ bool StreamStatusResponse::IsInitialized() const {
 void StreamStatusResponse::InternalSwap(StreamStatusResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  status_.InternalSwap(&other->status_);
+  _impl_.status_.InternalSwap(&other->_impl_.status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamStatusResponse::GetMetadata() const {
@@ -6498,51 +6712,57 @@ class StopExtraParameters::_Internal {
 
 const ::viam::common::v1::ResourceName&
 StopExtraParameters::_Internal::name(const StopExtraParameters* msg) {
-  return *msg->name_;
+  return *msg->_impl_.name_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 StopExtraParameters::_Internal::params(const StopExtraParameters* msg) {
-  return *msg->params_;
+  return *msg->_impl_.params_;
 }
 void StopExtraParameters::clear_name() {
-  if (GetArenaForAllocation() == nullptr && name_ != nullptr) {
-    delete name_;
+  if (GetArenaForAllocation() == nullptr && _impl_.name_ != nullptr) {
+    delete _impl_.name_;
   }
-  name_ = nullptr;
+  _impl_.name_ = nullptr;
 }
 void StopExtraParameters::clear_params() {
-  if (GetArenaForAllocation() == nullptr && params_ != nullptr) {
-    delete params_;
+  if (GetArenaForAllocation() == nullptr && _impl_.params_ != nullptr) {
+    delete _impl_.params_;
   }
-  params_ = nullptr;
+  _impl_.params_ = nullptr;
 }
 StopExtraParameters::StopExtraParameters(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.StopExtraParameters)
 }
 StopExtraParameters::StopExtraParameters(const StopExtraParameters& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StopExtraParameters* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){nullptr}
+    , decltype(_impl_.params_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_name()) {
-    name_ = new ::viam::common::v1::ResourceName(*from.name_);
-  } else {
-    name_ = nullptr;
+    _this->_impl_.name_ = new ::viam::common::v1::ResourceName(*from._impl_.name_);
   }
   if (from._internal_has_params()) {
-    params_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.params_);
-  } else {
-    params_ = nullptr;
+    _this->_impl_.params_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.params_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StopExtraParameters)
 }
 
-inline void StopExtraParameters::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&name_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&params_) -
-    reinterpret_cast<char*>(&name_)) + sizeof(params_));
+inline void StopExtraParameters::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){nullptr}
+    , decltype(_impl_.params_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 StopExtraParameters::~StopExtraParameters() {
@@ -6556,12 +6776,12 @@ StopExtraParameters::~StopExtraParameters() {
 
 inline void StopExtraParameters::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete name_;
-  if (this != internal_default_instance()) delete params_;
+  if (this != internal_default_instance()) delete _impl_.name_;
+  if (this != internal_default_instance()) delete _impl_.params_;
 }
 
 void StopExtraParameters::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StopExtraParameters::Clear() {
@@ -6570,14 +6790,14 @@ void StopExtraParameters::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && name_ != nullptr) {
-    delete name_;
+  if (GetArenaForAllocation() == nullptr && _impl_.name_ != nullptr) {
+    delete _impl_.name_;
   }
-  name_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && params_ != nullptr) {
-    delete params_;
+  _impl_.name_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.params_ != nullptr) {
+    delete _impl_.params_;
   }
-  params_ = nullptr;
+  _impl_.params_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6666,45 +6886,43 @@ size_t StopExtraParameters::ByteSizeLong() const {
   if (this->_internal_has_name()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *name_);
+        *_impl_.name_);
   }
 
   // .google.protobuf.Struct params = 2 [json_name = "params"];
   if (this->_internal_has_params()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *params_);
+        *_impl_.params_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StopExtraParameters::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StopExtraParameters::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StopExtraParameters::GetClassData() const { return &_class_data_; }
 
-void StopExtraParameters::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StopExtraParameters *>(to)->MergeFrom(
-      static_cast<const StopExtraParameters &>(from));
-}
 
-
-void StopExtraParameters::MergeFrom(const StopExtraParameters& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StopExtraParameters)
-  GOOGLE_DCHECK_NE(&from, this);
+void StopExtraParameters::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StopExtraParameters*>(&to_msg);
+  auto& from = static_cast<const StopExtraParameters&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StopExtraParameters)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_name()) {
-    _internal_mutable_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_name());
+    _this->_internal_mutable_name()->::viam::common::v1::ResourceName::MergeFrom(
+        from._internal_name());
   }
   if (from._internal_has_params()) {
-    _internal_mutable_params()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_params());
+    _this->_internal_mutable_params()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_params());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StopExtraParameters::CopyFrom(const StopExtraParameters& from) {
@@ -6722,11 +6940,11 @@ void StopExtraParameters::InternalSwap(StopExtraParameters* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StopExtraParameters, params_)
-      + sizeof(StopExtraParameters::params_)
-      - PROTOBUF_FIELD_OFFSET(StopExtraParameters, name_)>(
-          reinterpret_cast<char*>(&name_),
-          reinterpret_cast<char*>(&other->name_));
+      PROTOBUF_FIELD_OFFSET(StopExtraParameters, _impl_.params_)
+      + sizeof(StopExtraParameters::_impl_.params_)
+      - PROTOBUF_FIELD_OFFSET(StopExtraParameters, _impl_.name_)>(
+          reinterpret_cast<char*>(&_impl_.name_),
+          reinterpret_cast<char*>(&other->_impl_.name_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StopExtraParameters::GetMetadata() const {
@@ -6743,19 +6961,29 @@ class StopAllRequest::_Internal {
 
 StopAllRequest::StopAllRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  extra_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.StopAllRequest)
 }
 StopAllRequest::StopAllRequest(const StopAllRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      extra_(from.extra_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StopAllRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.extra_){from._impl_.extra_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StopAllRequest)
 }
 
-inline void StopAllRequest::SharedCtor() {
+inline void StopAllRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.extra_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 StopAllRequest::~StopAllRequest() {
@@ -6769,10 +6997,11 @@ StopAllRequest::~StopAllRequest() {
 
 inline void StopAllRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.extra_.~RepeatedPtrField();
 }
 
 void StopAllRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StopAllRequest::Clear() {
@@ -6781,7 +7010,7 @@ void StopAllRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  extra_.Clear();
+  _impl_.extra_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6859,35 +7088,31 @@ size_t StopAllRequest::ByteSizeLong() const {
 
   // repeated .viam.robot.v1.StopExtraParameters extra = 99 [json_name = "extra"];
   total_size += 2UL * this->_internal_extra_size();
-  for (const auto& msg : this->extra_) {
+  for (const auto& msg : this->_impl_.extra_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StopAllRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StopAllRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StopAllRequest::GetClassData() const { return &_class_data_; }
 
-void StopAllRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StopAllRequest *>(to)->MergeFrom(
-      static_cast<const StopAllRequest &>(from));
-}
 
-
-void StopAllRequest::MergeFrom(const StopAllRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StopAllRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void StopAllRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StopAllRequest*>(&to_msg);
+  auto& from = static_cast<const StopAllRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StopAllRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  extra_.MergeFrom(from.extra_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.extra_.MergeFrom(from._impl_.extra_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StopAllRequest::CopyFrom(const StopAllRequest& from) {
@@ -6904,7 +7129,7 @@ bool StopAllRequest::IsInitialized() const {
 void StopAllRequest::InternalSwap(StopAllRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  extra_.InternalSwap(&other->extra_);
+  _impl_.extra_.InternalSwap(&other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StopAllRequest::GetMetadata() const {
@@ -6926,6 +7151,7 @@ StopAllResponse::StopAllResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 StopAllResponse::StopAllResponse(const StopAllResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  StopAllResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StopAllResponse)
 }
@@ -6961,28 +7187,40 @@ class StartSessionRequest::_Internal {
 StartSessionRequest::StartSessionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.StartSessionRequest)
 }
 StartSessionRequest::StartSessionRequest(const StartSessionRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StartSessionRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resume_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  resume_.InitDefault();
+  _impl_.resume_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    resume_.Set("", GetArenaForAllocation());
+    _impl_.resume_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_resume().empty()) {
-    resume_.Set(from._internal_resume(), 
-      GetArenaForAllocation());
+    _this->_impl_.resume_.Set(from._internal_resume(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StartSessionRequest)
 }
 
-inline void StartSessionRequest::SharedCtor() {
-resume_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  resume_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void StartSessionRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resume_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.resume_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resume_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StartSessionRequest::~StartSessionRequest() {
@@ -6996,11 +7234,11 @@ StartSessionRequest::~StartSessionRequest() {
 
 inline void StartSessionRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  resume_.Destroy();
+  _impl_.resume_.Destroy();
 }
 
 void StartSessionRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StartSessionRequest::Clear() {
@@ -7009,7 +7247,7 @@ void StartSessionRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  resume_.ClearToEmpty();
+  _impl_.resume_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -7091,32 +7329,28 @@ size_t StartSessionRequest::ByteSizeLong() const {
         this->_internal_resume());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StartSessionRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StartSessionRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StartSessionRequest::GetClassData() const { return &_class_data_; }
 
-void StartSessionRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StartSessionRequest *>(to)->MergeFrom(
-      static_cast<const StartSessionRequest &>(from));
-}
 
-
-void StartSessionRequest::MergeFrom(const StartSessionRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StartSessionRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void StartSessionRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StartSessionRequest*>(&to_msg);
+  auto& from = static_cast<const StartSessionRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StartSessionRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_resume().empty()) {
-    _internal_set_resume(from._internal_resume());
+    _this->_internal_set_resume(from._internal_resume());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StartSessionRequest::CopyFrom(const StartSessionRequest& from) {
@@ -7136,8 +7370,8 @@ void StartSessionRequest::InternalSwap(StartSessionRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &resume_, lhs_arena,
-      &other->resume_, rhs_arena
+      &_impl_.resume_, lhs_arena,
+      &other->_impl_.resume_, rhs_arena
   );
 }
 
@@ -7156,45 +7390,56 @@ class StartSessionResponse::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 StartSessionResponse::_Internal::heartbeat_window(const StartSessionResponse* msg) {
-  return *msg->heartbeat_window_;
+  return *msg->_impl_.heartbeat_window_;
 }
 void StartSessionResponse::clear_heartbeat_window() {
-  if (GetArenaForAllocation() == nullptr && heartbeat_window_ != nullptr) {
-    delete heartbeat_window_;
+  if (GetArenaForAllocation() == nullptr && _impl_.heartbeat_window_ != nullptr) {
+    delete _impl_.heartbeat_window_;
   }
-  heartbeat_window_ = nullptr;
+  _impl_.heartbeat_window_ = nullptr;
 }
 StartSessionResponse::StartSessionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.StartSessionResponse)
 }
 StartSessionResponse::StartSessionResponse(const StartSessionResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StartSessionResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , decltype(_impl_.heartbeat_window_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_heartbeat_window()) {
-    heartbeat_window_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.heartbeat_window_);
-  } else {
-    heartbeat_window_ = nullptr;
+    _this->_impl_.heartbeat_window_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.heartbeat_window_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.StartSessionResponse)
 }
 
-inline void StartSessionResponse::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-heartbeat_window_ = nullptr;
+inline void StartSessionResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , decltype(_impl_.heartbeat_window_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StartSessionResponse::~StartSessionResponse() {
@@ -7208,12 +7453,12 @@ StartSessionResponse::~StartSessionResponse() {
 
 inline void StartSessionResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
-  if (this != internal_default_instance()) delete heartbeat_window_;
+  _impl_.id_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.heartbeat_window_;
 }
 
 void StartSessionResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StartSessionResponse::Clear() {
@@ -7222,11 +7467,11 @@ void StartSessionResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && heartbeat_window_ != nullptr) {
-    delete heartbeat_window_;
+  _impl_.id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.heartbeat_window_ != nullptr) {
+    delete _impl_.heartbeat_window_;
   }
-  heartbeat_window_ = nullptr;
+  _impl_.heartbeat_window_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -7327,38 +7572,35 @@ size_t StartSessionResponse::ByteSizeLong() const {
   if (this->_internal_has_heartbeat_window()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *heartbeat_window_);
+        *_impl_.heartbeat_window_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StartSessionResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StartSessionResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StartSessionResponse::GetClassData() const { return &_class_data_; }
 
-void StartSessionResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StartSessionResponse *>(to)->MergeFrom(
-      static_cast<const StartSessionResponse &>(from));
-}
 
-
-void StartSessionResponse::MergeFrom(const StartSessionResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StartSessionResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void StartSessionResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StartSessionResponse*>(&to_msg);
+  auto& from = static_cast<const StartSessionResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.StartSessionResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
   if (from._internal_has_heartbeat_window()) {
-    _internal_mutable_heartbeat_window()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_heartbeat_window());
+    _this->_internal_mutable_heartbeat_window()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_heartbeat_window());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StartSessionResponse::CopyFrom(const StartSessionResponse& from) {
@@ -7378,10 +7620,10 @@ void StartSessionResponse::InternalSwap(StartSessionResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
-  swap(heartbeat_window_, other->heartbeat_window_);
+  swap(_impl_.heartbeat_window_, other->_impl_.heartbeat_window_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StartSessionResponse::GetMetadata() const {
@@ -7399,28 +7641,40 @@ class SendSessionHeartbeatRequest::_Internal {
 SendSessionHeartbeatRequest::SendSessionHeartbeatRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.robot.v1.SendSessionHeartbeatRequest)
 }
 SendSessionHeartbeatRequest::SendSessionHeartbeatRequest(const SendSessionHeartbeatRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SendSessionHeartbeatRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.SendSessionHeartbeatRequest)
 }
 
-inline void SendSessionHeartbeatRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SendSessionHeartbeatRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SendSessionHeartbeatRequest::~SendSessionHeartbeatRequest() {
@@ -7434,11 +7688,11 @@ SendSessionHeartbeatRequest::~SendSessionHeartbeatRequest() {
 
 inline void SendSessionHeartbeatRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void SendSessionHeartbeatRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SendSessionHeartbeatRequest::Clear() {
@@ -7447,7 +7701,7 @@ void SendSessionHeartbeatRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -7529,32 +7783,28 @@ size_t SendSessionHeartbeatRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SendSessionHeartbeatRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SendSessionHeartbeatRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SendSessionHeartbeatRequest::GetClassData() const { return &_class_data_; }
 
-void SendSessionHeartbeatRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SendSessionHeartbeatRequest *>(to)->MergeFrom(
-      static_cast<const SendSessionHeartbeatRequest &>(from));
-}
 
-
-void SendSessionHeartbeatRequest::MergeFrom(const SendSessionHeartbeatRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.SendSessionHeartbeatRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SendSessionHeartbeatRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SendSessionHeartbeatRequest*>(&to_msg);
+  auto& from = static_cast<const SendSessionHeartbeatRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.SendSessionHeartbeatRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SendSessionHeartbeatRequest::CopyFrom(const SendSessionHeartbeatRequest& from) {
@@ -7574,8 +7824,8 @@ void SendSessionHeartbeatRequest::InternalSwap(SendSessionHeartbeatRequest* othe
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -7598,6 +7848,7 @@ SendSessionHeartbeatResponse::SendSessionHeartbeatResponse(::PROTOBUF_NAMESPACE_
 }
 SendSessionHeartbeatResponse::SendSessionHeartbeatResponse(const SendSessionHeartbeatResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SendSessionHeartbeatResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.robot.v1.SendSessionHeartbeatResponse)
 }

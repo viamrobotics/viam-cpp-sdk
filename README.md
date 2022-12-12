@@ -14,6 +14,19 @@
 First you may want to build the SDK library, to do so navigate to the root of the repository and run `make build` this should pull all the dependencies and hopefully build the library!
 Lastly you can run one of the examples by navigation to the examples/{dial|echo} folder and run `make example_{dial|echo} && ./example_{dial|echo}`
 
+### Setup
+You will need a few things installed/upgraded to the latest version, which may break compatibility with RDK
+1. Boost `brew install boost`
+1. grpc `brew install grpc`
+1. protobuf `brew {install|upgrade} protobuf` **<< This might break RDK compatibility**
+
+You will then need to add some environment variables. **Take note of the version numbers ane make any necessary changes**
+```
+export CPLUS_INCLUDE_PATH="/opt/homebrew/Cellar/protobuf/21.11/include/:/opt/homebrew/Cellar/boost/1.80.0/lib/:/opt/homebrew/Cellar/boost/1.80.0/include/:$CPLUS_INCLUDE_PATH"
+
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig:/opt/homebrew/opt/re2/lib/pkgconfig:/opt/homebrew/opt/c-ares/lib/pkgconfig:$PKG_CONFIG_PATH"
+```
+
 ### Acquiring the Rust-Utils Binary
 In order to connect over webRTC, you will need the [rust-utils](https://github.com/viamrobotics/rust-utils) binary. Detailed install instructions to come.
 
