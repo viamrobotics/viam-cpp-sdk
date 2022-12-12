@@ -10,6 +10,7 @@ class ComponentType {
 class ComponentBase {
        public:
 	std::string name;
+	ComponentType type;
 
 	// TODO (RSDK-921): implement this
 	ResourceName get_resource_name(std::string name);

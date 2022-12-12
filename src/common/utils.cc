@@ -5,11 +5,15 @@
 #include <tuple>
 #include <unordered_map>
 
+#include "../components/component_base.h"
+#include "../registry/registry.h"
+#include "common/v1/common.pb.h"
 #include "google/protobuf/map.h"
 #include "google/protobuf/struct.pb.h"
 
 using google::protobuf::Struct;
 using google::protobuf::Value;
+using viam::common::v1::ResourceName;
 
 // float, string, struct, array, struct(map from string to any of the above)
 class ProtoType {
@@ -72,4 +76,24 @@ Struct map_to_struct(std::unordered_map<std::string, ProtoType> dict) {
 	}
 
 	return s;
+}
+
+std::vector<ResourceName> resource_names_for_component(
+    ComponentBase component) {
+	std::string component_type;
+	for (auto a : Registry::registered_components()) {
+		ComponentRegistration reg = a.second;
+		if (reg.component_type.name == component.type.name) {
+			component_type = reg.name;
+		}
+	}
+
+	ResourceName r;
+	*r.mutable_namespace_() = "rdk";
+	*r.mutable_type() = "component";
+	*r.mutable_name() = component.name;
+	*r.mutable_subtype() = component_type;
+	std::vector<ResourceName> resource_names;
+	resource_names.push_back(r);
+	return resource_names;
 }

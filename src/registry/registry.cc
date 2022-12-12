@@ -29,6 +29,9 @@ class Registry {
 	void register_component(ComponentRegistration component);
 	static ComponentRegistration lookup(std::string name);
 
+	static std::unordered_map<std::string, ComponentRegistration>
+	registered_components();
+
        private:
 	static std::unordered_map<std::string, ComponentRegistration>
 	    components;
@@ -54,4 +57,13 @@ ComponentRegistration Registry::lookup(std::string name) {
 	}
 
 	return components.at(name);
+}
+
+std::unordered_map<std::string, ComponentRegistration>
+Registry::registered_components() {
+	std::unordered_map<std::string, ComponentRegistration> registry;
+	for (auto component : components) {
+		registry.insert(component);
+	}
+	return registry;
 }
