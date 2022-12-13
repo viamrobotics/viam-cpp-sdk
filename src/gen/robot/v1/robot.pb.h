@@ -358,55 +358,44 @@ class FrameSystemConfig final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 1,
-    kModelJsonFieldNumber = 3,
-    kPoseInParentFrameFieldNumber = 2,
+    kFrameFieldNumber = 1,
+    kKinematicsFieldNumber = 2,
   };
-  // string name = 1 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  // .viam.common.v1.Transform frame = 1 [json_name = "frame"];
+  bool has_frame() const;
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
+  bool _internal_has_frame() const;
   public:
+  void clear_frame();
+  const ::viam::common::v1::Transform& frame() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Transform* release_frame();
+  ::viam::common::v1::Transform* mutable_frame();
+  void set_allocated_frame(::viam::common::v1::Transform* frame);
+  private:
+  const ::viam::common::v1::Transform& _internal_frame() const;
+  ::viam::common::v1::Transform* _internal_mutable_frame();
+  public:
+  void unsafe_arena_set_allocated_frame(
+      ::viam::common::v1::Transform* frame);
+  ::viam::common::v1::Transform* unsafe_arena_release_frame();
 
-  // bytes model_json = 3 [json_name = "modelJson"];
-  void clear_model_json();
-  const std::string& model_json() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_model_json(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_model_json();
-  PROTOBUF_NODISCARD std::string* release_model_json();
-  void set_allocated_model_json(std::string* model_json);
+  // .google.protobuf.Struct kinematics = 2 [json_name = "kinematics"];
+  bool has_kinematics() const;
   private:
-  const std::string& _internal_model_json() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model_json(const std::string& value);
-  std::string* _internal_mutable_model_json();
+  bool _internal_has_kinematics() const;
   public:
-
-  // .viam.common.v1.PoseInFrame pose_in_parent_frame = 2 [json_name = "poseInParentFrame"];
-  bool has_pose_in_parent_frame() const;
+  void clear_kinematics();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& kinematics() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_kinematics();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_kinematics();
+  void set_allocated_kinematics(::PROTOBUF_NAMESPACE_ID::Struct* kinematics);
   private:
-  bool _internal_has_pose_in_parent_frame() const;
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_kinematics() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_kinematics();
   public:
-  void clear_pose_in_parent_frame();
-  const ::viam::common::v1::PoseInFrame& pose_in_parent_frame() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::PoseInFrame* release_pose_in_parent_frame();
-  ::viam::common::v1::PoseInFrame* mutable_pose_in_parent_frame();
-  void set_allocated_pose_in_parent_frame(::viam::common::v1::PoseInFrame* pose_in_parent_frame);
-  private:
-  const ::viam::common::v1::PoseInFrame& _internal_pose_in_parent_frame() const;
-  ::viam::common::v1::PoseInFrame* _internal_mutable_pose_in_parent_frame();
-  public:
-  void unsafe_arena_set_allocated_pose_in_parent_frame(
-      ::viam::common::v1::PoseInFrame* pose_in_parent_frame);
-  ::viam::common::v1::PoseInFrame* unsafe_arena_release_pose_in_parent_frame();
+  void unsafe_arena_set_allocated_kinematics(
+      ::PROTOBUF_NAMESPACE_ID::Struct* kinematics);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_kinematics();
 
   // @@protoc_insertion_point(class_scope:viam.robot.v1.FrameSystemConfig)
  private:
@@ -415,9 +404,8 @@ class FrameSystemConfig final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_json_;
-  ::viam::common::v1::PoseInFrame* pose_in_parent_frame_;
+  ::viam::common::v1::Transform* frame_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* kinematics_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
@@ -5882,89 +5870,39 @@ class SendSessionHeartbeatResponse final :
 #endif  // __GNUC__
 // FrameSystemConfig
 
-// string name = 1 [json_name = "name"];
-inline void FrameSystemConfig::clear_name() {
-  name_.ClearToEmpty();
+// .viam.common.v1.Transform frame = 1 [json_name = "frame"];
+inline bool FrameSystemConfig::_internal_has_frame() const {
+  return this != internal_default_instance() && frame_ != nullptr;
 }
-inline const std::string& FrameSystemConfig::name() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.FrameSystemConfig.name)
-  return _internal_name();
+inline bool FrameSystemConfig::has_frame() const {
+  return _internal_has_frame();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void FrameSystemConfig::set_name(ArgT0&& arg0, ArgT... args) {
- 
- name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.robot.v1.FrameSystemConfig.name)
+inline const ::viam::common::v1::Transform& FrameSystemConfig::_internal_frame() const {
+  const ::viam::common::v1::Transform* p = frame_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Transform&>(
+      ::viam::common::v1::_Transform_default_instance_);
 }
-inline std::string* FrameSystemConfig::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.FrameSystemConfig.name)
-  return _s;
+inline const ::viam::common::v1::Transform& FrameSystemConfig::frame() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.FrameSystemConfig.frame)
+  return _internal_frame();
 }
-inline const std::string& FrameSystemConfig::_internal_name() const {
-  return name_.Get();
-}
-inline void FrameSystemConfig::_internal_set_name(const std::string& value) {
-  
-  name_.Set(value, GetArenaForAllocation());
-}
-inline std::string* FrameSystemConfig::_internal_mutable_name() {
-  
-  return name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* FrameSystemConfig::release_name() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.FrameSystemConfig.name)
-  return name_.Release();
-}
-inline void FrameSystemConfig::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (name_.IsDefault()) {
-    name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.name)
-}
-
-// .viam.common.v1.PoseInFrame pose_in_parent_frame = 2 [json_name = "poseInParentFrame"];
-inline bool FrameSystemConfig::_internal_has_pose_in_parent_frame() const {
-  return this != internal_default_instance() && pose_in_parent_frame_ != nullptr;
-}
-inline bool FrameSystemConfig::has_pose_in_parent_frame() const {
-  return _internal_has_pose_in_parent_frame();
-}
-inline const ::viam::common::v1::PoseInFrame& FrameSystemConfig::_internal_pose_in_parent_frame() const {
-  const ::viam::common::v1::PoseInFrame* p = pose_in_parent_frame_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::PoseInFrame&>(
-      ::viam::common::v1::_PoseInFrame_default_instance_);
-}
-inline const ::viam::common::v1::PoseInFrame& FrameSystemConfig::pose_in_parent_frame() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.FrameSystemConfig.pose_in_parent_frame)
-  return _internal_pose_in_parent_frame();
-}
-inline void FrameSystemConfig::unsafe_arena_set_allocated_pose_in_parent_frame(
-    ::viam::common::v1::PoseInFrame* pose_in_parent_frame) {
+inline void FrameSystemConfig::unsafe_arena_set_allocated_frame(
+    ::viam::common::v1::Transform* frame) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_in_parent_frame_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(frame_);
   }
-  pose_in_parent_frame_ = pose_in_parent_frame;
-  if (pose_in_parent_frame) {
+  frame_ = frame;
+  if (frame) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.FrameSystemConfig.pose_in_parent_frame)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.FrameSystemConfig.frame)
 }
-inline ::viam::common::v1::PoseInFrame* FrameSystemConfig::release_pose_in_parent_frame() {
+inline ::viam::common::v1::Transform* FrameSystemConfig::release_frame() {
   
-  ::viam::common::v1::PoseInFrame* temp = pose_in_parent_frame_;
-  pose_in_parent_frame_ = nullptr;
+  ::viam::common::v1::Transform* temp = frame_;
+  frame_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -5976,95 +5914,130 @@ inline ::viam::common::v1::PoseInFrame* FrameSystemConfig::release_pose_in_paren
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::PoseInFrame* FrameSystemConfig::unsafe_arena_release_pose_in_parent_frame() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.FrameSystemConfig.pose_in_parent_frame)
+inline ::viam::common::v1::Transform* FrameSystemConfig::unsafe_arena_release_frame() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.FrameSystemConfig.frame)
   
-  ::viam::common::v1::PoseInFrame* temp = pose_in_parent_frame_;
-  pose_in_parent_frame_ = nullptr;
+  ::viam::common::v1::Transform* temp = frame_;
+  frame_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::PoseInFrame* FrameSystemConfig::_internal_mutable_pose_in_parent_frame() {
+inline ::viam::common::v1::Transform* FrameSystemConfig::_internal_mutable_frame() {
   
-  if (pose_in_parent_frame_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::PoseInFrame>(GetArenaForAllocation());
-    pose_in_parent_frame_ = p;
+  if (frame_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Transform>(GetArenaForAllocation());
+    frame_ = p;
   }
-  return pose_in_parent_frame_;
+  return frame_;
 }
-inline ::viam::common::v1::PoseInFrame* FrameSystemConfig::mutable_pose_in_parent_frame() {
-  ::viam::common::v1::PoseInFrame* _msg = _internal_mutable_pose_in_parent_frame();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.FrameSystemConfig.pose_in_parent_frame)
+inline ::viam::common::v1::Transform* FrameSystemConfig::mutable_frame() {
+  ::viam::common::v1::Transform* _msg = _internal_mutable_frame();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.FrameSystemConfig.frame)
   return _msg;
 }
-inline void FrameSystemConfig::set_allocated_pose_in_parent_frame(::viam::common::v1::PoseInFrame* pose_in_parent_frame) {
+inline void FrameSystemConfig::set_allocated_frame(::viam::common::v1::Transform* frame) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_in_parent_frame_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(frame_);
   }
-  if (pose_in_parent_frame) {
+  if (frame) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_in_parent_frame));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(frame));
     if (message_arena != submessage_arena) {
-      pose_in_parent_frame = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, pose_in_parent_frame, submessage_arena);
+      frame = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, frame, submessage_arena);
     }
     
   } else {
     
   }
-  pose_in_parent_frame_ = pose_in_parent_frame;
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.pose_in_parent_frame)
+  frame_ = frame;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.frame)
 }
 
-// bytes model_json = 3 [json_name = "modelJson"];
-inline void FrameSystemConfig::clear_model_json() {
-  model_json_.ClearToEmpty();
+// .google.protobuf.Struct kinematics = 2 [json_name = "kinematics"];
+inline bool FrameSystemConfig::_internal_has_kinematics() const {
+  return this != internal_default_instance() && kinematics_ != nullptr;
 }
-inline const std::string& FrameSystemConfig::model_json() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.FrameSystemConfig.model_json)
-  return _internal_model_json();
+inline bool FrameSystemConfig::has_kinematics() const {
+  return _internal_has_kinematics();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void FrameSystemConfig::set_model_json(ArgT0&& arg0, ArgT... args) {
- 
- model_json_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.robot.v1.FrameSystemConfig.model_json)
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& FrameSystemConfig::_internal_kinematics() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = kinematics_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
-inline std::string* FrameSystemConfig::mutable_model_json() {
-  std::string* _s = _internal_mutable_model_json();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.FrameSystemConfig.model_json)
-  return _s;
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& FrameSystemConfig::kinematics() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.FrameSystemConfig.kinematics)
+  return _internal_kinematics();
 }
-inline const std::string& FrameSystemConfig::_internal_model_json() const {
-  return model_json_.Get();
-}
-inline void FrameSystemConfig::_internal_set_model_json(const std::string& value) {
-  
-  model_json_.Set(value, GetArenaForAllocation());
-}
-inline std::string* FrameSystemConfig::_internal_mutable_model_json() {
-  
-  return model_json_.Mutable(GetArenaForAllocation());
-}
-inline std::string* FrameSystemConfig::release_model_json() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.FrameSystemConfig.model_json)
-  return model_json_.Release();
-}
-inline void FrameSystemConfig::set_allocated_model_json(std::string* model_json) {
-  if (model_json != nullptr) {
+inline void FrameSystemConfig::unsafe_arena_set_allocated_kinematics(
+    ::PROTOBUF_NAMESPACE_ID::Struct* kinematics) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(kinematics_);
+  }
+  kinematics_ = kinematics;
+  if (kinematics) {
     
   } else {
     
   }
-  model_json_.SetAllocated(model_json, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (model_json_.IsDefault()) {
-    model_json_.Set("", GetArenaForAllocation());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.FrameSystemConfig.kinematics)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FrameSystemConfig::release_kinematics() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = kinematics_;
+  kinematics_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.model_json)
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FrameSystemConfig::unsafe_arena_release_kinematics() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.FrameSystemConfig.kinematics)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = kinematics_;
+  kinematics_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FrameSystemConfig::_internal_mutable_kinematics() {
+  
+  if (kinematics_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    kinematics_ = p;
+  }
+  return kinematics_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FrameSystemConfig::mutable_kinematics() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_kinematics();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.FrameSystemConfig.kinematics)
+  return _msg;
+}
+inline void FrameSystemConfig::set_allocated_kinematics(::PROTOBUF_NAMESPACE_ID::Struct* kinematics) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(kinematics_);
+  }
+  if (kinematics) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(kinematics));
+    if (message_arena != submessage_arena) {
+      kinematics = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, kinematics, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  kinematics_ = kinematics;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.FrameSystemConfig.kinematics)
 }
 
 // -------------------------------------------------------------------

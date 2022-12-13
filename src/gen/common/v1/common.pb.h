@@ -2704,6 +2704,7 @@ class Transform final :
   enum : int {
     kReferenceFrameFieldNumber = 1,
     kPoseInObserverFrameFieldNumber = 2,
+    kPhysicalObjectFieldNumber = 3,
   };
   // string reference_frame = 1 [json_name = "referenceFrame"];
   void clear_reference_frame();
@@ -2737,6 +2738,24 @@ class Transform final :
       ::viam::common::v1::PoseInFrame* pose_in_observer_frame);
   ::viam::common::v1::PoseInFrame* unsafe_arena_release_pose_in_observer_frame();
 
+  // optional .viam.common.v1.Geometry physical_object = 3 [json_name = "physicalObject"];
+  bool has_physical_object() const;
+  private:
+  bool _internal_has_physical_object() const;
+  public:
+  void clear_physical_object();
+  const ::viam::common::v1::Geometry& physical_object() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Geometry* release_physical_object();
+  ::viam::common::v1::Geometry* mutable_physical_object();
+  void set_allocated_physical_object(::viam::common::v1::Geometry* physical_object);
+  private:
+  const ::viam::common::v1::Geometry& _internal_physical_object() const;
+  ::viam::common::v1::Geometry* _internal_mutable_physical_object();
+  public:
+  void unsafe_arena_set_allocated_physical_object(
+      ::viam::common::v1::Geometry* physical_object);
+  ::viam::common::v1::Geometry* unsafe_arena_release_physical_object();
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.Transform)
  private:
   class _Internal;
@@ -2744,9 +2763,11 @@ class Transform final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reference_frame_;
   ::viam::common::v1::PoseInFrame* pose_in_observer_frame_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::viam::common::v1::Geometry* physical_object_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -4692,6 +4713,96 @@ inline void Transform::set_allocated_pose_in_observer_frame(::viam::common::v1::
   }
   pose_in_observer_frame_ = pose_in_observer_frame;
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Transform.pose_in_observer_frame)
+}
+
+// optional .viam.common.v1.Geometry physical_object = 3 [json_name = "physicalObject"];
+inline bool Transform::_internal_has_physical_object() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || physical_object_ != nullptr);
+  return value;
+}
+inline bool Transform::has_physical_object() const {
+  return _internal_has_physical_object();
+}
+inline void Transform::clear_physical_object() {
+  if (physical_object_ != nullptr) physical_object_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::common::v1::Geometry& Transform::_internal_physical_object() const {
+  const ::viam::common::v1::Geometry* p = physical_object_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Geometry&>(
+      ::viam::common::v1::_Geometry_default_instance_);
+}
+inline const ::viam::common::v1::Geometry& Transform::physical_object() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Transform.physical_object)
+  return _internal_physical_object();
+}
+inline void Transform::unsafe_arena_set_allocated_physical_object(
+    ::viam::common::v1::Geometry* physical_object) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(physical_object_);
+  }
+  physical_object_ = physical_object;
+  if (physical_object) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Transform.physical_object)
+}
+inline ::viam::common::v1::Geometry* Transform::release_physical_object() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::Geometry* temp = physical_object_;
+  physical_object_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Geometry* Transform::unsafe_arena_release_physical_object() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Transform.physical_object)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::Geometry* temp = physical_object_;
+  physical_object_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Geometry* Transform::_internal_mutable_physical_object() {
+  _has_bits_[0] |= 0x00000001u;
+  if (physical_object_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Geometry>(GetArenaForAllocation());
+    physical_object_ = p;
+  }
+  return physical_object_;
+}
+inline ::viam::common::v1::Geometry* Transform::mutable_physical_object() {
+  ::viam::common::v1::Geometry* _msg = _internal_mutable_physical_object();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Transform.physical_object)
+  return _msg;
+}
+inline void Transform::set_allocated_physical_object(::viam::common::v1::Geometry* physical_object) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete physical_object_;
+  }
+  if (physical_object) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(physical_object);
+    if (message_arena != submessage_arena) {
+      physical_object = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, physical_object, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  physical_object_ = physical_object;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Transform.physical_object)
 }
 
 // -------------------------------------------------------------------

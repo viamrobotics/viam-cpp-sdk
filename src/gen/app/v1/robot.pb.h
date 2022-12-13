@@ -33,6 +33,7 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "app/v1/app.pb.h"
+#include "common/v1/common.pb.h"
 #include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include "tagger/v1/tagger.pb.h"
@@ -2882,6 +2883,7 @@ class Frame final :
     kParentFieldNumber = 1,
     kTranslationFieldNumber = 2,
     kOrientationFieldNumber = 3,
+    kGeometryFieldNumber = 4,
   };
   // string parent = 1 [json_name = "parent"];
   void clear_parent();
@@ -2933,6 +2935,24 @@ class Frame final :
       ::viam::app::v1::Orientation* orientation);
   ::viam::app::v1::Orientation* unsafe_arena_release_orientation();
 
+  // .viam.common.v1.Geometry geometry = 4 [json_name = "geometry"];
+  bool has_geometry() const;
+  private:
+  bool _internal_has_geometry() const;
+  public:
+  void clear_geometry();
+  const ::viam::common::v1::Geometry& geometry() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Geometry* release_geometry();
+  ::viam::common::v1::Geometry* mutable_geometry();
+  void set_allocated_geometry(::viam::common::v1::Geometry* geometry);
+  private:
+  const ::viam::common::v1::Geometry& _internal_geometry() const;
+  ::viam::common::v1::Geometry* _internal_mutable_geometry();
+  public:
+  void unsafe_arena_set_allocated_geometry(
+      ::viam::common::v1::Geometry* geometry);
+  ::viam::common::v1::Geometry* unsafe_arena_release_geometry();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.Frame)
  private:
   class _Internal;
@@ -2943,6 +2963,7 @@ class Frame final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_;
   ::viam::app::v1::Translation* translation_;
   ::viam::app::v1::Orientation* orientation_;
+  ::viam::common::v1::Geometry* geometry_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -9765,6 +9786,91 @@ inline void Frame::set_allocated_orientation(::viam::app::v1::Orientation* orien
   }
   orientation_ = orientation;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Frame.orientation)
+}
+
+// .viam.common.v1.Geometry geometry = 4 [json_name = "geometry"];
+inline bool Frame::_internal_has_geometry() const {
+  return this != internal_default_instance() && geometry_ != nullptr;
+}
+inline bool Frame::has_geometry() const {
+  return _internal_has_geometry();
+}
+inline const ::viam::common::v1::Geometry& Frame::_internal_geometry() const {
+  const ::viam::common::v1::Geometry* p = geometry_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Geometry&>(
+      ::viam::common::v1::_Geometry_default_instance_);
+}
+inline const ::viam::common::v1::Geometry& Frame::geometry() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Frame.geometry)
+  return _internal_geometry();
+}
+inline void Frame::unsafe_arena_set_allocated_geometry(
+    ::viam::common::v1::Geometry* geometry) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(geometry_);
+  }
+  geometry_ = geometry;
+  if (geometry) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Frame.geometry)
+}
+inline ::viam::common::v1::Geometry* Frame::release_geometry() {
+  
+  ::viam::common::v1::Geometry* temp = geometry_;
+  geometry_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Geometry* Frame::unsafe_arena_release_geometry() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Frame.geometry)
+  
+  ::viam::common::v1::Geometry* temp = geometry_;
+  geometry_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Geometry* Frame::_internal_mutable_geometry() {
+  
+  if (geometry_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Geometry>(GetArenaForAllocation());
+    geometry_ = p;
+  }
+  return geometry_;
+}
+inline ::viam::common::v1::Geometry* Frame::mutable_geometry() {
+  ::viam::common::v1::Geometry* _msg = _internal_mutable_geometry();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Frame.geometry)
+  return _msg;
+}
+inline void Frame::set_allocated_geometry(::viam::common::v1::Geometry* geometry) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(geometry_);
+  }
+  if (geometry) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(geometry));
+    if (message_arena != submessage_arena) {
+      geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, geometry, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  geometry_ = geometry;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Frame.geometry)
 }
 
 // -------------------------------------------------------------------
