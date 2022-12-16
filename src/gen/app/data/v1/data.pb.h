@@ -143,6 +143,12 @@ extern TabularDataByFilterRequestDefaultTypeInternal _TabularDataByFilterRequest
 class TabularDataByFilterResponse;
 struct TabularDataByFilterResponseDefaultTypeInternal;
 extern TabularDataByFilterResponseDefaultTypeInternal _TabularDataByFilterResponse_default_instance_;
+class TagsByFilterRequest;
+struct TagsByFilterRequestDefaultTypeInternal;
+extern TagsByFilterRequestDefaultTypeInternal _TagsByFilterRequest_default_instance_;
+class TagsByFilterResponse;
+struct TagsByFilterResponseDefaultTypeInternal;
+extern TagsByFilterResponseDefaultTypeInternal _TagsByFilterResponse_default_instance_;
 class TagsFilter;
 struct TagsFilterDefaultTypeInternal;
 extern TagsFilterDefaultTypeInternal _TagsFilter_default_instance_;
@@ -180,6 +186,8 @@ template<> ::viam::app::data::v1::Result* Arena::CreateMaybeMessage<::viam::app:
 template<> ::viam::app::data::v1::TabularData* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularData>(Arena*);
 template<> ::viam::app::data::v1::TabularDataByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularDataByFilterRequest>(Arena*);
 template<> ::viam::app::data::v1::TabularDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularDataByFilterResponse>(Arena*);
+template<> ::viam::app::data::v1::TagsByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::TagsByFilterRequest>(Arena*);
+template<> ::viam::app::data::v1::TagsByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::TagsByFilterResponse>(Arena*);
 template<> ::viam::app::data::v1::TagsFilter* Arena::CreateMaybeMessage<::viam::app::data::v1::TagsFilter>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
@@ -5629,6 +5637,316 @@ class RemoveTagsFromBinaryDataByFilterResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
 };
+// -------------------------------------------------------------------
+
+class TagsByFilterRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.TagsByFilterRequest) */ {
+ public:
+  inline TagsByFilterRequest() : TagsByFilterRequest(nullptr) {}
+  ~TagsByFilterRequest() override;
+  explicit PROTOBUF_CONSTEXPR TagsByFilterRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TagsByFilterRequest(const TagsByFilterRequest& from);
+  TagsByFilterRequest(TagsByFilterRequest&& from) noexcept
+    : TagsByFilterRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TagsByFilterRequest& operator=(const TagsByFilterRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TagsByFilterRequest& operator=(TagsByFilterRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TagsByFilterRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TagsByFilterRequest* internal_default_instance() {
+    return reinterpret_cast<const TagsByFilterRequest*>(
+               &_TagsByFilterRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(TagsByFilterRequest& a, TagsByFilterRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TagsByFilterRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TagsByFilterRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TagsByFilterRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TagsByFilterRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TagsByFilterRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TagsByFilterRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TagsByFilterRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.TagsByFilterRequest";
+  }
+  protected:
+  explicit TagsByFilterRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFilterFieldNumber = 1,
+  };
+  // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+  bool has_filter() const;
+  private:
+  bool _internal_has_filter() const;
+  public:
+  void clear_filter();
+  const ::viam::app::data::v1::Filter& filter() const;
+  PROTOBUF_NODISCARD ::viam::app::data::v1::Filter* release_filter();
+  ::viam::app::data::v1::Filter* mutable_filter();
+  void set_allocated_filter(::viam::app::data::v1::Filter* filter);
+  private:
+  const ::viam::app::data::v1::Filter& _internal_filter() const;
+  ::viam::app::data::v1::Filter* _internal_mutable_filter();
+  public:
+  void unsafe_arena_set_allocated_filter(
+      ::viam::app::data::v1::Filter* filter);
+  ::viam::app::data::v1::Filter* unsafe_arena_release_filter();
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.TagsByFilterRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::data::v1::Filter* filter_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TagsByFilterResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.TagsByFilterResponse) */ {
+ public:
+  inline TagsByFilterResponse() : TagsByFilterResponse(nullptr) {}
+  ~TagsByFilterResponse() override;
+  explicit PROTOBUF_CONSTEXPR TagsByFilterResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TagsByFilterResponse(const TagsByFilterResponse& from);
+  TagsByFilterResponse(TagsByFilterResponse&& from) noexcept
+    : TagsByFilterResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TagsByFilterResponse& operator=(const TagsByFilterResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TagsByFilterResponse& operator=(TagsByFilterResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TagsByFilterResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TagsByFilterResponse* internal_default_instance() {
+    return reinterpret_cast<const TagsByFilterResponse*>(
+               &_TagsByFilterResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(TagsByFilterResponse& a, TagsByFilterResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TagsByFilterResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TagsByFilterResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TagsByFilterResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TagsByFilterResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TagsByFilterResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TagsByFilterResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TagsByFilterResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.TagsByFilterResponse";
+  }
+  protected:
+  explicit TagsByFilterResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagsFieldNumber = 1,
+  };
+  // repeated string tags = 1 [json_name = "tags"];
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  const std::string& tags(int index) const;
+  std::string* mutable_tags(int index);
+  void set_tags(int index, const std::string& value);
+  void set_tags(int index, std::string&& value);
+  void set_tags(int index, const char* value);
+  void set_tags(int index, const char* value, size_t size);
+  std::string* add_tags();
+  void add_tags(const std::string& value);
+  void add_tags(std::string&& value);
+  void add_tags(const char* value);
+  void add_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tags();
+  private:
+  const std::string& _internal_tags(int index) const;
+  std::string* _internal_add_tags();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.TagsByFilterResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
 // ===================================================================
 
 
@@ -10635,9 +10953,186 @@ inline void RemoveTagsFromBinaryDataByFilterResponse::set_deleted_count(uint64_t
   // @@protoc_insertion_point(field_set:viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse.deleted_count)
 }
 
+// -------------------------------------------------------------------
+
+// TagsByFilterRequest
+
+// .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+inline bool TagsByFilterRequest::_internal_has_filter() const {
+  return this != internal_default_instance() && filter_ != nullptr;
+}
+inline bool TagsByFilterRequest::has_filter() const {
+  return _internal_has_filter();
+}
+inline void TagsByFilterRequest::clear_filter() {
+  if (GetArenaForAllocation() == nullptr && filter_ != nullptr) {
+    delete filter_;
+  }
+  filter_ = nullptr;
+}
+inline const ::viam::app::data::v1::Filter& TagsByFilterRequest::_internal_filter() const {
+  const ::viam::app::data::v1::Filter* p = filter_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::data::v1::Filter&>(
+      ::viam::app::data::v1::_Filter_default_instance_);
+}
+inline const ::viam::app::data::v1::Filter& TagsByFilterRequest::filter() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.TagsByFilterRequest.filter)
+  return _internal_filter();
+}
+inline void TagsByFilterRequest::unsafe_arena_set_allocated_filter(
+    ::viam::app::data::v1::Filter* filter) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(filter_);
+  }
+  filter_ = filter;
+  if (filter) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.TagsByFilterRequest.filter)
+}
+inline ::viam::app::data::v1::Filter* TagsByFilterRequest::release_filter() {
+  
+  ::viam::app::data::v1::Filter* temp = filter_;
+  filter_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::data::v1::Filter* TagsByFilterRequest::unsafe_arena_release_filter() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.TagsByFilterRequest.filter)
+  
+  ::viam::app::data::v1::Filter* temp = filter_;
+  filter_ = nullptr;
+  return temp;
+}
+inline ::viam::app::data::v1::Filter* TagsByFilterRequest::_internal_mutable_filter() {
+  
+  if (filter_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::data::v1::Filter>(GetArenaForAllocation());
+    filter_ = p;
+  }
+  return filter_;
+}
+inline ::viam::app::data::v1::Filter* TagsByFilterRequest::mutable_filter() {
+  ::viam::app::data::v1::Filter* _msg = _internal_mutable_filter();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.TagsByFilterRequest.filter)
+  return _msg;
+}
+inline void TagsByFilterRequest::set_allocated_filter(::viam::app::data::v1::Filter* filter) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete filter_;
+  }
+  if (filter) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(filter);
+    if (message_arena != submessage_arena) {
+      filter = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, filter, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  filter_ = filter;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.TagsByFilterRequest.filter)
+}
+
+// -------------------------------------------------------------------
+
+// TagsByFilterResponse
+
+// repeated string tags = 1 [json_name = "tags"];
+inline int TagsByFilterResponse::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int TagsByFilterResponse::tags_size() const {
+  return _internal_tags_size();
+}
+inline void TagsByFilterResponse::clear_tags() {
+  tags_.Clear();
+}
+inline std::string* TagsByFilterResponse::add_tags() {
+  std::string* _s = _internal_add_tags();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.TagsByFilterResponse.tags)
+  return _s;
+}
+inline const std::string& TagsByFilterResponse::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline const std::string& TagsByFilterResponse::tags(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.TagsByFilterResponse.tags)
+  return _internal_tags(index);
+}
+inline std::string* TagsByFilterResponse::mutable_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.TagsByFilterResponse.tags)
+  return tags_.Mutable(index);
+}
+inline void TagsByFilterResponse::set_tags(int index, const std::string& value) {
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline void TagsByFilterResponse::set_tags(int index, std::string&& value) {
+  tags_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline void TagsByFilterResponse::set_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline void TagsByFilterResponse::set_tags(int index, const char* value, size_t size) {
+  tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline std::string* TagsByFilterResponse::_internal_add_tags() {
+  return tags_.Add();
+}
+inline void TagsByFilterResponse::add_tags(const std::string& value) {
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline void TagsByFilterResponse::add_tags(std::string&& value) {
+  tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline void TagsByFilterResponse::add_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline void TagsByFilterResponse::add_tags(const char* value, size_t size) {
+  tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.TagsByFilterResponse.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+TagsByFilterResponse::tags() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.TagsByFilterResponse.tags)
+  return tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+TagsByFilterResponse::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.TagsByFilterResponse.tags)
+  return &tags_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

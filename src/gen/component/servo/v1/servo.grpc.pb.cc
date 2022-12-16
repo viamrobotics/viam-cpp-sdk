@@ -28,6 +28,7 @@ static const char* ServoService_method_names[] = {
   "/viam.component.servo.v1.ServoService/Move",
   "/viam.component.servo.v1.ServoService/GetPosition",
   "/viam.component.servo.v1.ServoService/Stop",
+  "/viam.component.servo.v1.ServoService/IsMoving",
 };
 
 std::unique_ptr< ServoService::Stub> ServoService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -40,6 +41,7 @@ ServoService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   : channel_(channel), rpcmethod_Move_(ServoService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetPosition_(ServoService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(ServoService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(ServoService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ServoService::Stub::Move(::grpc::ClientContext* context, const ::viam::component::servo::v1::MoveRequest& request, ::viam::component::servo::v1::MoveResponse* response) {
@@ -111,6 +113,29 @@ void ServoService::Stub::async::Stop(::grpc::ClientContext* context, const ::via
   return result;
 }
 
+::grpc::Status ServoService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::servo::v1::IsMovingRequest& request, ::viam::component::servo::v1::IsMovingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::servo::v1::IsMovingRequest, ::viam::component::servo::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+}
+
+void ServoService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::servo::v1::IsMovingRequest* request, ::viam::component::servo::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::servo::v1::IsMovingRequest, ::viam::component::servo::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+}
+
+void ServoService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::servo::v1::IsMovingRequest* request, ::viam::component::servo::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::servo::v1::IsMovingResponse>* ServoService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::servo::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::servo::v1::IsMovingResponse, ::viam::component::servo::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::servo::v1::IsMovingResponse>* ServoService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::servo::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ServoService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ServoService_method_names[0],
@@ -142,6 +167,16 @@ ServoService::Service::Service() {
              ::viam::component::servo::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ServoService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ServoService::Service, ::viam::component::servo::v1::IsMovingRequest, ::viam::component::servo::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ServoService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::servo::v1::IsMovingRequest* req,
+             ::viam::component::servo::v1::IsMovingResponse* resp) {
+               return service->IsMoving(ctx, req, resp);
+             }, this)));
 }
 
 ServoService::Service::~Service() {
@@ -162,6 +197,13 @@ ServoService::Service::~Service() {
 }
 
 ::grpc::Status ServoService::Service::Stop(::grpc::ServerContext* context, const ::viam::component::servo::v1::StopRequest* request, ::viam::component::servo::v1::StopResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ServoService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::servo::v1::IsMovingRequest* request, ::viam::component::servo::v1::IsMovingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

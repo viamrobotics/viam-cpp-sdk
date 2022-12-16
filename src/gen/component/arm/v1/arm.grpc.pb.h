@@ -81,6 +81,14 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>> PrepareAsyncStop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>>(PrepareAsyncStopRaw(context, request, cq));
     }
+    // IsMoving reports if a component is in motion
+    virtual ::grpc::Status IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::viam::component::arm::v1::IsMovingResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>> AsyncIsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>>(AsyncIsMovingRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>> PrepareAsyncIsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>>(PrepareAsyncIsMovingRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -101,6 +109,9 @@ class ArmService final {
       // Stop stops a robot's arm
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // IsMoving reports if a component is in motion
+      virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -116,6 +127,8 @@ class ArmService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToJointPositionsResponse>* PrepareAsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>* PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -155,6 +168,13 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>> PrepareAsyncStop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>>(PrepareAsyncStopRaw(context, request, cq));
     }
+    ::grpc::Status IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::viam::component::arm::v1::IsMovingResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>> AsyncIsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>>(AsyncIsMovingRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>> PrepareAsyncIsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>>(PrepareAsyncIsMovingRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -168,6 +188,8 @@ class ArmService final {
       void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) override;
       void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) override;
+      void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -189,11 +211,14 @@ class ArmService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>* PrepareAsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>* PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetEndPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetJointPositions_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToJointPositions_;
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
+    const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -213,6 +238,8 @@ class ArmService final {
     virtual ::grpc::Status MoveToJointPositions(::grpc::ServerContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response);
     // Stop stops a robot's arm
     virtual ::grpc::Status Stop(::grpc::ServerContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response);
+    // IsMoving reports if a component is in motion
+    virtual ::grpc::Status IsMoving(::grpc::ServerContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetEndPosition : public BaseClass {
@@ -314,7 +341,27 @@ class ArmService final {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_Stop<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_IsMoving : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_IsMoving() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_IsMoving() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIsMoving(::grpc::ServerContext* context, ::viam::component::arm::v1::IsMovingRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::IsMovingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<Service > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetEndPosition : public BaseClass {
    private:
@@ -450,7 +497,34 @@ class ArmService final {
     virtual ::grpc::ServerUnaryReactor* Stop(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::StopRequest* /*request*/, ::viam::component::arm::v1::StopResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_Stop<Service > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_IsMoving : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_IsMoving() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response) { return this->IsMoving(context, request, response); }));}
+    void SetMessageAllocatorFor_IsMoving(
+        ::grpc::MessageAllocator< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_IsMoving() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IsMoving(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<Service > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetEndPosition : public BaseClass {
@@ -533,6 +607,23 @@ class ArmService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Stop(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::StopRequest* /*request*/, ::viam::component::arm::v1::StopResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_IsMoving : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_IsMoving() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_IsMoving() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -635,6 +726,26 @@ class ArmService final {
     }
     void RequestStop(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_IsMoving : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_IsMoving() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_IsMoving() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIsMoving(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -745,6 +856,28 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Stop(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_IsMoving : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_IsMoving() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsMoving(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_IsMoving() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IsMoving(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -882,9 +1015,36 @@ class ArmService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedStop(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::StopRequest,::viam::component::arm::v1::StopResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_Stop<Service > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_IsMoving : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_IsMoving() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>* streamer) {
+                       return this->StreamedIsMoving(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_IsMoving() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIsMoving(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::IsMovingRequest,::viam::component::arm::v1::IsMovingResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<Service > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_Stop<Service > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<Service > > > > > > StreamedService;
 };
 
 }  // namespace v1

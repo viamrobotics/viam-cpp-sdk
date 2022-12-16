@@ -29,6 +29,7 @@ static const char* GantryService_method_names[] = {
   "/viam.component.gantry.v1.GantryService/MoveToPosition",
   "/viam.component.gantry.v1.GantryService/GetLengths",
   "/viam.component.gantry.v1.GantryService/Stop",
+  "/viam.component.gantry.v1.GantryService/IsMoving",
 };
 
 std::unique_ptr< GantryService::Stub> GantryService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -42,6 +43,7 @@ GantryService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_MoveToPosition_(GantryService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetLengths_(GantryService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(GantryService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(GantryService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GantryService::Stub::GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::viam::component::gantry::v1::GetPositionResponse* response) {
@@ -136,6 +138,29 @@ void GantryService::Stub::async::Stop(::grpc::ClientContext* context, const ::vi
   return result;
 }
 
+::grpc::Status GantryService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::viam::component::gantry::v1::IsMovingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+}
+
+void GantryService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+}
+
+void GantryService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::IsMovingResponse>* GantryService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gantry::v1::IsMovingResponse, ::viam::component::gantry::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::IsMovingResponse>* GantryService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 GantryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GantryService_method_names[0],
@@ -177,6 +202,16 @@ GantryService::Service::Service() {
              ::viam::component::gantry::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GantryService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GantryService::Service, ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GantryService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gantry::v1::IsMovingRequest* req,
+             ::viam::component::gantry::v1::IsMovingResponse* resp) {
+               return service->IsMoving(ctx, req, resp);
+             }, this)));
 }
 
 GantryService::Service::~Service() {
@@ -204,6 +239,13 @@ GantryService::Service::~Service() {
 }
 
 ::grpc::Status GantryService::Service::Stop(::grpc::ServerContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GantryService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

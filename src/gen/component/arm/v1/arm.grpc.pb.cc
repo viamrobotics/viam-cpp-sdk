@@ -30,6 +30,7 @@ static const char* ArmService_method_names[] = {
   "/viam.component.arm.v1.ArmService/GetJointPositions",
   "/viam.component.arm.v1.ArmService/MoveToJointPositions",
   "/viam.component.arm.v1.ArmService/Stop",
+  "/viam.component.arm.v1.ArmService/IsMoving",
 };
 
 std::unique_ptr< ArmService::Stub> ArmService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -44,6 +45,7 @@ ArmService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_GetJointPositions_(ArmService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveToJointPositions_(ArmService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(ArmService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(ArmService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ArmService::Stub::GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::viam::component::arm::v1::GetEndPositionResponse* response) {
@@ -161,6 +163,29 @@ void ArmService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam:
   return result;
 }
 
+::grpc::Status ArmService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::viam::component::arm::v1::IsMovingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+}
+
+void ArmService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+}
+
+void ArmService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>* ArmService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::arm::v1::IsMovingResponse, ::viam::component::arm::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>* ArmService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ArmService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ArmService_method_names[0],
@@ -212,6 +237,16 @@ ArmService::Service::Service() {
              ::viam::component::arm::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ArmService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ArmService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::arm::v1::IsMovingRequest* req,
+             ::viam::component::arm::v1::IsMovingResponse* resp) {
+               return service->IsMoving(ctx, req, resp);
+             }, this)));
 }
 
 ArmService::Service::~Service() {
@@ -246,6 +281,13 @@ ArmService::Service::~Service() {
 }
 
 ::grpc::Status ArmService::Service::Stop(::grpc::ServerContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ArmService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -443,11 +443,35 @@ struct RemoveTagsFromBinaryDataByFilterResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveTagsFromBinaryDataByFilterResponseDefaultTypeInternal _RemoveTagsFromBinaryDataByFilterResponse_default_instance_;
+PROTOBUF_CONSTEXPR TagsByFilterRequest::TagsByFilterRequest(
+    ::_pbi::ConstantInitialized)
+  : filter_(nullptr){}
+struct TagsByFilterRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TagsByFilterRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TagsByFilterRequestDefaultTypeInternal() {}
+  union {
+    TagsByFilterRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TagsByFilterRequestDefaultTypeInternal _TagsByFilterRequest_default_instance_;
+PROTOBUF_CONSTEXPR TagsByFilterResponse::TagsByFilterResponse(
+    ::_pbi::ConstantInitialized)
+  : tags_(){}
+struct TagsByFilterResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TagsByFilterResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TagsByFilterResponseDefaultTypeInternal() {}
+  union {
+    TagsByFilterResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TagsByFilterResponseDefaultTypeInternal _TagsByFilterResponse_default_instance_;
 }  // namespace v1
 }  // namespace data
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[30];
+static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[32];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto = nullptr;
 
@@ -722,6 +746,20 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse, deleted_count_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TagsByFilterRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TagsByFilterRequest, filter_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TagsByFilterResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TagsByFilterResponse, tags_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::data::v1::Result)},
@@ -754,6 +792,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 248, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse)},
   { 255, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
   { 263, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
+  { 270, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
+  { 277, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -787,6 +827,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::data::v1::_RemoveTagsFromBinaryDataByFileIDsResponse_default_instance_._instance,
   &::viam::app::data::v1::_RemoveTagsFromBinaryDataByFilterRequest_default_instance_._instance,
   &::viam::app::data::v1::_RemoveTagsFromBinaryDataByFilterResponse_default_instance_._instance,
+  &::viam::app::data::v1::_TagsByFilterRequest_default_instance_._instance,
+  &::viam::app::data::v1::_TagsByFilterResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -899,49 +941,54 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "\030.viam.app.data.v1.FilterR\006filter\022\022\n\004tag"
   "s\030\002 \003(\tR\004tags\"O\n(RemoveTagsFromBinaryDat"
   "aByFilterResponse\022#\n\rdeleted_count\030\001 \001(\004"
-  "R\014deletedCount*I\n\005Order\022\025\n\021ORDER_UNSPECI"
-  "FIED\020\000\022\024\n\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_AS"
-  "CENDING\020\002*P\n\006Status\022\026\n\022STATUS_UNSPECIFIE"
-  "D\020\000\022\032\n\026STATUS_PARTIAL_SUCCESS\020\001\022\022\n\016STATU"
-  "S_SUCCESS\020\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_F"
-  "ILTER_TYPE_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_"
-  "TYPE_MATCH_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_T"
-  "AGGED\020\002\022\035\n\031TAGS_FILTER_TYPE_UNTAGGED\020\0032\267"
-  "\n\n\013DataService\022r\n\023TabularDataByFilter\022,."
-  "viam.app.data.v1.TabularDataByFilterRequ"
-  "est\032-.viam.app.data.v1.TabularDataByFilt"
-  "erResponse\022o\n\022BinaryDataByFilter\022+.viam."
-  "app.data.v1.BinaryDataByFilterRequest\032,."
-  "viam.app.data.v1.BinaryDataByFilterRespo"
-  "nse\022f\n\017BinaryDataByIDs\022(.viam.app.data.v"
-  "1.BinaryDataByIDsRequest\032).viam.app.data"
-  ".v1.BinaryDataByIDsResponse\022\204\001\n\031DeleteTa"
-  "bularDataByFilter\0222.viam.app.data.v1.Del"
-  "eteTabularDataByFilterRequest\0323.viam.app"
-  ".data.v1.DeleteTabularDataByFilterRespon"
-  "se\022\201\001\n\030DeleteBinaryDataByFilter\0221.viam.a"
-  "pp.data.v1.DeleteBinaryDataByFilterReque"
-  "st\0322.viam.app.data.v1.DeleteBinaryDataBy"
-  "FilterResponse\022x\n\025DeleteBinaryDataByIDs\022"
-  "..viam.app.data.v1.DeleteBinaryDataByIDs"
-  "Request\032/.viam.app.data.v1.DeleteBinaryD"
-  "ataByIDsResponse\022\215\001\n\034AddTagsToBinaryData"
-  "ByFileIDs\0225.viam.app.data.v1.AddTagsToBi"
-  "naryDataByFileIDsRequest\0326.viam.app.data"
-  ".v1.AddTagsToBinaryDataByFileIDsResponse"
-  "\022\212\001\n\033AddTagsToBinaryDataByFilter\0224.viam."
-  "app.data.v1.AddTagsToBinaryDataByFilterR"
-  "equest\0325.viam.app.data.v1.AddTagsToBinar"
-  "yDataByFilterResponse\022\234\001\n!RemoveTagsFrom"
-  "BinaryDataByFileIDs\022:.viam.app.data.v1.R"
-  "emoveTagsFromBinaryDataByFileIDsRequest\032"
-  ";.viam.app.data.v1.RemoveTagsFromBinaryD"
-  "ataByFileIDsResponse\022\231\001\n RemoveTagsFromB"
-  "inaryDataByFilter\0229.viam.app.data.v1.Rem"
-  "oveTagsFromBinaryDataByFilterRequest\032:.v"
+  "R\014deletedCount\"G\n\023TagsByFilterRequest\0220\n"
+  "\006filter\030\001 \001(\0132\030.viam.app.data.v1.FilterR"
+  "\006filter\"*\n\024TagsByFilterResponse\022\022\n\004tags\030"
+  "\001 \003(\tR\004tags*I\n\005Order\022\025\n\021ORDER_UNSPECIFIE"
+  "D\020\000\022\024\n\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCEN"
+  "DING\020\002*P\n\006Status\022\026\n\022STATUS_UNSPECIFIED\020\000"
+  "\022\032\n\026STATUS_PARTIAL_SUCCESS\020\001\022\022\n\016STATUS_S"
+  "UCCESS\020\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILT"
+  "ER_TYPE_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYP"
+  "E_MATCH_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGG"
+  "ED\020\002\022\035\n\031TAGS_FILTER_TYPE_UNTAGGED\020\0032\226\013\n\013"
+  "DataService\022r\n\023TabularDataByFilter\022,.via"
+  "m.app.data.v1.TabularDataByFilterRequest"
+  "\032-.viam.app.data.v1.TabularDataByFilterR"
+  "esponse\022o\n\022BinaryDataByFilter\022+.viam.app"
+  ".data.v1.BinaryDataByFilterRequest\032,.via"
+  "m.app.data.v1.BinaryDataByFilterResponse"
+  "\022f\n\017BinaryDataByIDs\022(.viam.app.data.v1.B"
+  "inaryDataByIDsRequest\032).viam.app.data.v1"
+  ".BinaryDataByIDsResponse\022\204\001\n\031DeleteTabul"
+  "arDataByFilter\0222.viam.app.data.v1.Delete"
+  "TabularDataByFilterRequest\0323.viam.app.da"
+  "ta.v1.DeleteTabularDataByFilterResponse\022"
+  "\201\001\n\030DeleteBinaryDataByFilter\0221.viam.app."
+  "data.v1.DeleteBinaryDataByFilterRequest\032"
+  "2.viam.app.data.v1.DeleteBinaryDataByFil"
+  "terResponse\022x\n\025DeleteBinaryDataByIDs\022..v"
+  "iam.app.data.v1.DeleteBinaryDataByIDsReq"
+  "uest\032/.viam.app.data.v1.DeleteBinaryData"
+  "ByIDsResponse\022\215\001\n\034AddTagsToBinaryDataByF"
+  "ileIDs\0225.viam.app.data.v1.AddTagsToBinar"
+  "yDataByFileIDsRequest\0326.viam.app.data.v1"
+  ".AddTagsToBinaryDataByFileIDsResponse\022\212\001"
+  "\n\033AddTagsToBinaryDataByFilter\0224.viam.app"
+  ".data.v1.AddTagsToBinaryDataByFilterRequ"
+  "est\0325.viam.app.data.v1.AddTagsToBinaryDa"
+  "taByFilterResponse\022\234\001\n!RemoveTagsFromBin"
+  "aryDataByFileIDs\022:.viam.app.data.v1.Remo"
+  "veTagsFromBinaryDataByFileIDsRequest\032;.v"
   "iam.app.data.v1.RemoveTagsFromBinaryData"
-  "ByFilterResponseB\035Z\033go.viam.com/api/app/"
-  "data/v1b\006proto3"
+  "ByFileIDsResponse\022\231\001\n RemoveTagsFromBina"
+  "ryDataByFilter\0229.viam.app.data.v1.Remove"
+  "TagsFromBinaryDataByFilterRequest\032:.viam"
+  ".app.data.v1.RemoveTagsFromBinaryDataByF"
+  "ilterResponse\022]\n\014TagsByFilter\022%.viam.app"
+  ".data.v1.TagsByFilterRequest\032&.viam.app."
+  "data.v1.TagsByFilterResponseB\035Z\033go.viam."
+  "com/api/app/data/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -950,9 +997,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 6055, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 6267, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
-    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 30,
+    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 32,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
     file_level_metadata_app_2fdata_2fv1_2fdata_2eproto, file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto,
     file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto,
@@ -8584,6 +8631,376 @@ void RemoveTagsFromBinaryDataByFilterResponse::InternalSwap(RemoveTagsFromBinary
       file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[29]);
 }
 
+// ===================================================================
+
+class TagsByFilterRequest::_Internal {
+ public:
+  static const ::viam::app::data::v1::Filter& filter(const TagsByFilterRequest* msg);
+};
+
+const ::viam::app::data::v1::Filter&
+TagsByFilterRequest::_Internal::filter(const TagsByFilterRequest* msg) {
+  return *msg->filter_;
+}
+TagsByFilterRequest::TagsByFilterRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.TagsByFilterRequest)
+}
+TagsByFilterRequest::TagsByFilterRequest(const TagsByFilterRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_filter()) {
+    filter_ = new ::viam::app::data::v1::Filter(*from.filter_);
+  } else {
+    filter_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.TagsByFilterRequest)
+}
+
+inline void TagsByFilterRequest::SharedCtor() {
+filter_ = nullptr;
+}
+
+TagsByFilterRequest::~TagsByFilterRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.TagsByFilterRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void TagsByFilterRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete filter_;
+}
+
+void TagsByFilterRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TagsByFilterRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.TagsByFilterRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && filter_ != nullptr) {
+    delete filter_;
+  }
+  filter_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TagsByFilterRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_filter(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TagsByFilterRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.TagsByFilterRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+  if (this->_internal_has_filter()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::filter(this),
+        _Internal::filter(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.TagsByFilterRequest)
+  return target;
+}
+
+size_t TagsByFilterRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.TagsByFilterRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+  if (this->_internal_has_filter()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *filter_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TagsByFilterRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TagsByFilterRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TagsByFilterRequest::GetClassData() const { return &_class_data_; }
+
+void TagsByFilterRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TagsByFilterRequest *>(to)->MergeFrom(
+      static_cast<const TagsByFilterRequest &>(from));
+}
+
+
+void TagsByFilterRequest::MergeFrom(const TagsByFilterRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.TagsByFilterRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_filter()) {
+    _internal_mutable_filter()->::viam::app::data::v1::Filter::MergeFrom(from._internal_filter());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TagsByFilterRequest::CopyFrom(const TagsByFilterRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.TagsByFilterRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TagsByFilterRequest::IsInitialized() const {
+  return true;
+}
+
+void TagsByFilterRequest::InternalSwap(TagsByFilterRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(filter_, other->filter_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TagsByFilterRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[30]);
+}
+
+// ===================================================================
+
+class TagsByFilterResponse::_Internal {
+ public:
+};
+
+TagsByFilterResponse::TagsByFilterResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  tags_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.TagsByFilterResponse)
+}
+TagsByFilterResponse::TagsByFilterResponse(const TagsByFilterResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      tags_(from.tags_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.TagsByFilterResponse)
+}
+
+inline void TagsByFilterResponse::SharedCtor() {
+}
+
+TagsByFilterResponse::~TagsByFilterResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.TagsByFilterResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void TagsByFilterResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void TagsByFilterResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TagsByFilterResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.TagsByFilterResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  tags_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TagsByFilterResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated string tags = 1 [json_name = "tags"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_tags();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.TagsByFilterResponse.tags"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TagsByFilterResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.TagsByFilterResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string tags = 1 [json_name = "tags"];
+  for (int i = 0, n = this->_internal_tags_size(); i < n; i++) {
+    const auto& s = this->_internal_tags(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.TagsByFilterResponse.tags");
+    target = stream->WriteString(1, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.TagsByFilterResponse)
+  return target;
+}
+
+size_t TagsByFilterResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.TagsByFilterResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string tags = 1 [json_name = "tags"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      tags_.Get(i));
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TagsByFilterResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TagsByFilterResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TagsByFilterResponse::GetClassData() const { return &_class_data_; }
+
+void TagsByFilterResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TagsByFilterResponse *>(to)->MergeFrom(
+      static_cast<const TagsByFilterResponse &>(from));
+}
+
+
+void TagsByFilterResponse::MergeFrom(const TagsByFilterResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.TagsByFilterResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  tags_.MergeFrom(from.tags_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TagsByFilterResponse::CopyFrom(const TagsByFilterResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.TagsByFilterResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TagsByFilterResponse::IsInitialized() const {
+  return true;
+}
+
+void TagsByFilterResponse::InternalSwap(TagsByFilterResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  tags_.InternalSwap(&other->tags_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TagsByFilterResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[31]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace data
@@ -8709,6 +9126,14 @@ Arena::CreateMaybeMessage< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilt
 template<> PROTOBUF_NOINLINE ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse*
 Arena::CreateMaybeMessage< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::TagsByFilterRequest*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::TagsByFilterRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::TagsByFilterRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::TagsByFilterResponse*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::TagsByFilterResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::TagsByFilterResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
