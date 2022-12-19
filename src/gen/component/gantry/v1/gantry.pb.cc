@@ -138,11 +138,35 @@ struct StatusDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StatusDefaultTypeInternal _Status_default_instance_;
+PROTOBUF_CONSTEXPR IsMovingRequest::IsMovingRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct IsMovingRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsMovingRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsMovingRequestDefaultTypeInternal() {}
+  union {
+    IsMovingRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsMovingRequestDefaultTypeInternal _IsMovingRequest_default_instance_;
+PROTOBUF_CONSTEXPR IsMovingResponse::IsMovingResponse(
+    ::_pbi::ConstantInitialized)
+  : is_moving_(false){}
+struct IsMovingResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsMovingResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsMovingResponseDefaultTypeInternal() {}
+  union {
+    IsMovingResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsMovingResponseDefaultTypeInternal _IsMovingResponse_default_instance_;
 }  // namespace v1
 }  // namespace gantry
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2fgantry_2fv1_2fgantry_2eproto[9];
+static ::_pb::Metadata file_level_metadata_component_2fgantry_2fv1_2fgantry_2eproto[11];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fgantry_2fv1_2fgantry_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fgantry_2fv1_2fgantry_2eproto = nullptr;
 
@@ -220,6 +244,20 @@ const uint32_t TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets[] P
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::Status, positions_mm_),
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::Status, lengths_mm_),
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::Status, is_moving_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::IsMovingRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::IsMovingRequest, name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::IsMovingResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::IsMovingResponse, is_moving_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::gantry::v1::GetPositionRequest)},
@@ -231,6 +269,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 50, -1, -1, sizeof(::viam::component::gantry::v1::StopRequest)},
   { 58, -1, -1, sizeof(::viam::component::gantry::v1::StopResponse)},
   { 64, -1, -1, sizeof(::viam::component::gantry::v1::Status)},
+  { 73, -1, -1, sizeof(::viam::component::gantry::v1::IsMovingRequest)},
+  { 80, -1, -1, sizeof(::viam::component::gantry::v1::IsMovingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -243,6 +283,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::gantry::v1::_StopRequest_default_instance_._instance,
   &::viam::component::gantry::v1::_StopResponse_default_instance_._instance,
   &::viam::component::gantry::v1::_Status_default_instance_._instance,
+  &::viam::component::gantry::v1::_IsMovingRequest_default_instance_._instance,
+  &::viam::component::gantry::v1::_IsMovingResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -267,26 +309,32 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   ".google.protobuf.StructR\005extra\"\016\n\014StopRe"
   "sponse\"g\n\006Status\022!\n\014positions_mm\030\001 \003(\001R\013"
   "positionsMm\022\035\n\nlengths_mm\030\002 \003(\001R\tlengths"
-  "Mm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving2\217\005\n\rGant"
-  "ryService\022\241\001\n\013GetPosition\022,.viam.compone"
-  "nt.gantry.v1.GetPositionRequest\032-.viam.c"
-  "omponent.gantry.v1.GetPositionResponse\"5"
-  "\202\323\344\223\002/\022-/viam/api/v1/component/gantry/{n"
-  "ame}/position\022\256\001\n\016MoveToPosition\022/.viam."
-  "component.gantry.v1.MoveToPositionReques"
-  "t\0320.viam.component.gantry.v1.MoveToPosit"
-  "ionResponse\"9\240\222)\001\202\323\344\223\002/\032-/viam/api/v1/co"
-  "mponent/gantry/{name}/position\022\235\001\n\nGetLe"
-  "ngths\022+.viam.component.gantry.v1.GetLeng"
-  "thsRequest\032,.viam.component.gantry.v1.Ge"
-  "tLengthsResponse\"4\202\323\344\223\002.\022,/viam/api/v1/c"
-  "omponent/gantry/{name}/lengths\022\210\001\n\004Stop\022"
-  "%.viam.component.gantry.v1.StopRequest\032&"
-  ".viam.component.gantry.v1.StopResponse\"1"
-  "\202\323\344\223\002+\")/viam/api/v1/component/gantry/{n"
-  "ame}/stopBC\n\034com.viam.component.gantry.v"
-  "1Z#go.viam.com/api/component/gantry/v1b\006"
-  "proto3"
+  "Mm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving\"%\n\017IsMov"
+  "ingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsMovi"
+  "ngResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving2"
+  "\253\006\n\rGantryService\022\241\001\n\013GetPosition\022,.viam"
+  ".component.gantry.v1.GetPositionRequest\032"
+  "-.viam.component.gantry.v1.GetPositionRe"
+  "sponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/g"
+  "antry/{name}/position\022\256\001\n\016MoveToPosition"
+  "\022/.viam.component.gantry.v1.MoveToPositi"
+  "onRequest\0320.viam.component.gantry.v1.Mov"
+  "eToPositionResponse\"9\240\222)\001\202\323\344\223\002/\032-/viam/a"
+  "pi/v1/component/gantry/{name}/position\022\235"
+  "\001\n\nGetLengths\022+.viam.component.gantry.v1"
+  ".GetLengthsRequest\032,.viam.component.gant"
+  "ry.v1.GetLengthsResponse\"4\202\323\344\223\002.\022,/viam/"
+  "api/v1/component/gantry/{name}/lengths\022\210"
+  "\001\n\004Stop\022%.viam.component.gantry.v1.StopR"
+  "equest\032&.viam.component.gantry.v1.StopRe"
+  "sponse\"1\202\323\344\223\002+\")/viam/api/v1/component/g"
+  "antry/{name}/stop\022\231\001\n\010IsMoving\022).viam.co"
+  "mponent.gantry.v1.IsMovingRequest\032*.viam"
+  ".component.gantry.v1.IsMovingResponse\"6\202"
+  "\323\344\223\0020\022./viam/api/v1/component/gantry/{na"
+  "me}/is_movingBC\n\034com.viam.component.gant"
+  "ry.v1Z#go.viam.com/api/component/gantry/"
+  "v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -295,9 +343,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_
 };
 static ::_pbi::once_flag descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto = {
-    false, false, 1606, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
+    false, false, 1850, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
     "component/gantry/v1/gantry.proto",
-    &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once, descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps, 3, 9,
+    &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once, descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps, 3, 11,
     schemas, file_default_instances, TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets,
     file_level_metadata_component_2fgantry_2fv1_2fgantry_2eproto, file_level_enum_descriptors_component_2fgantry_2fv1_2fgantry_2eproto,
     file_level_service_descriptors_component_2fgantry_2fv1_2fgantry_2eproto,
@@ -2047,6 +2095,372 @@ void Status::InternalSwap(Status* other) {
       file_level_metadata_component_2fgantry_2fv1_2fgantry_2eproto[8]);
 }
 
+// ===================================================================
+
+class IsMovingRequest::_Internal {
+ public:
+};
+
+IsMovingRequest::IsMovingRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.gantry.v1.IsMovingRequest)
+}
+IsMovingRequest::IsMovingRequest(const IsMovingRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.gantry.v1.IsMovingRequest)
+}
+
+inline void IsMovingRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+IsMovingRequest::~IsMovingRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.gantry.v1.IsMovingRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IsMovingRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+}
+
+void IsMovingRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void IsMovingRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.gantry.v1.IsMovingRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IsMovingRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.gantry.v1.IsMovingRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IsMovingRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.gantry.v1.IsMovingRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.gantry.v1.IsMovingRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.gantry.v1.IsMovingRequest)
+  return target;
+}
+
+size_t IsMovingRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.gantry.v1.IsMovingRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsMovingRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    IsMovingRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsMovingRequest::GetClassData() const { return &_class_data_; }
+
+void IsMovingRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IsMovingRequest *>(to)->MergeFrom(
+      static_cast<const IsMovingRequest &>(from));
+}
+
+
+void IsMovingRequest::MergeFrom(const IsMovingRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gantry.v1.IsMovingRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IsMovingRequest::CopyFrom(const IsMovingRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.gantry.v1.IsMovingRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IsMovingRequest::IsInitialized() const {
+  return true;
+}
+
+void IsMovingRequest::InternalSwap(IsMovingRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IsMovingRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_getter, &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once,
+      file_level_metadata_component_2fgantry_2fv1_2fgantry_2eproto[9]);
+}
+
+// ===================================================================
+
+class IsMovingResponse::_Internal {
+ public:
+};
+
+IsMovingResponse::IsMovingResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.gantry.v1.IsMovingResponse)
+}
+IsMovingResponse::IsMovingResponse(const IsMovingResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  is_moving_ = from.is_moving_;
+  // @@protoc_insertion_point(copy_constructor:viam.component.gantry.v1.IsMovingResponse)
+}
+
+inline void IsMovingResponse::SharedCtor() {
+is_moving_ = false;
+}
+
+IsMovingResponse::~IsMovingResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.gantry.v1.IsMovingResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IsMovingResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void IsMovingResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void IsMovingResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.gantry.v1.IsMovingResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  is_moving_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IsMovingResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool is_moving = 1 [json_name = "isMoving"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          is_moving_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IsMovingResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.gantry.v1.IsMovingResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool is_moving = 1 [json_name = "isMoving"];
+  if (this->_internal_is_moving() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_is_moving(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.gantry.v1.IsMovingResponse)
+  return target;
+}
+
+size_t IsMovingResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.gantry.v1.IsMovingResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool is_moving = 1 [json_name = "isMoving"];
+  if (this->_internal_is_moving() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsMovingResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    IsMovingResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsMovingResponse::GetClassData() const { return &_class_data_; }
+
+void IsMovingResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IsMovingResponse *>(to)->MergeFrom(
+      static_cast<const IsMovingResponse &>(from));
+}
+
+
+void IsMovingResponse::MergeFrom(const IsMovingResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gantry.v1.IsMovingResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_is_moving() != 0) {
+    _internal_set_is_moving(from._internal_is_moving());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IsMovingResponse::CopyFrom(const IsMovingResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.gantry.v1.IsMovingResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IsMovingResponse::IsInitialized() const {
+  return true;
+}
+
+void IsMovingResponse::InternalSwap(IsMovingResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(is_moving_, other->is_moving_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IsMovingResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_getter, &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once,
+      file_level_metadata_component_2fgantry_2fv1_2fgantry_2eproto[10]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace gantry
@@ -2088,6 +2502,14 @@ Arena::CreateMaybeMessage< ::viam::component::gantry::v1::StopResponse >(Arena* 
 template<> PROTOBUF_NOINLINE ::viam::component::gantry::v1::Status*
 Arena::CreateMaybeMessage< ::viam::component::gantry::v1::Status >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::gantry::v1::Status >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::gantry::v1::IsMovingRequest*
+Arena::CreateMaybeMessage< ::viam::component::gantry::v1::IsMovingRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::gantry::v1::IsMovingRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::gantry::v1::IsMovingResponse*
+Arena::CreateMaybeMessage< ::viam::component::gantry::v1::IsMovingResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::gantry::v1::IsMovingResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

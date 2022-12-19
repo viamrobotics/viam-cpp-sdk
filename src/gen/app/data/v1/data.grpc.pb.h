@@ -119,6 +119,14 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>> PrepareAsyncRemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>>(PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(context, request, cq));
     }
+    // TagsByFilter gets all unique tags from data based on given filter.
+    virtual ::grpc::Status TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::viam::app::data::v1::TagsByFilterResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>> AsyncTagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>>(AsyncTagsByFilterRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>> PrepareAsyncTagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>>(PrepareAsyncTagsByFilterRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -152,6 +160,9 @@ class DataService final {
       // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
       virtual void RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // TagsByFilter gets all unique tags from data based on given filter.
+      virtual void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -177,6 +188,8 @@ class DataService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse>* PrepareAsyncRemoveTagsFromBinaryDataByFileIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* AsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>* AsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>* PrepareAsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -251,6 +264,13 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>> PrepareAsyncRemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>>(PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(context, request, cq));
     }
+    ::grpc::Status TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::viam::app::data::v1::TagsByFilterResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>> AsyncTagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>>(AsyncTagsByFilterRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>> PrepareAsyncTagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>>(PrepareAsyncTagsByFilterRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -274,6 +294,8 @@ class DataService final {
       void RemoveTagsFromBinaryDataByFileIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, std::function<void(::grpc::Status)>) override;
       void RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, std::function<void(::grpc::Status)>) override;
+      void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -305,6 +327,8 @@ class DataService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse>* PrepareAsyncRemoveTagsFromBinaryDataByFileIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* AsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>* AsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>* PrepareAsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_BinaryDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_BinaryDataByIDs_;
@@ -315,6 +339,7 @@ class DataService final {
     const ::grpc::internal::RpcMethod rpcmethod_AddTagsToBinaryDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveTagsFromBinaryDataByFileIDs_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveTagsFromBinaryDataByFilter_;
+    const ::grpc::internal::RpcMethod rpcmethod_TagsByFilter_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -342,6 +367,8 @@ class DataService final {
     virtual ::grpc::Status RemoveTagsFromBinaryDataByFileIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse* response);
     // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
     virtual ::grpc::Status RemoveTagsFromBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response);
+    // TagsByFilter gets all unique tags from data based on given filter.
+    virtual ::grpc::Status TagsByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TabularDataByFilter : public BaseClass {
@@ -543,7 +570,27 @@ class DataService final {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularDataByFilter<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFileIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByFileIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<Service > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_TagsByFilter : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_TagsByFilter() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_TagsByFilter() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTagsByFilter(::grpc::ServerContext* context, ::viam::app::data::v1::TagsByFilterRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::TagsByFilterResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularDataByFilter<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFileIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByFileIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TabularDataByFilter : public BaseClass {
    private:
@@ -814,7 +861,34 @@ class DataService final {
     virtual ::grpc::ServerUnaryReactor* RemoveTagsFromBinaryDataByFilter(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* /*request*/, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularDataByFilter<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFileIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByFileIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<Service > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_TagsByFilter : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_TagsByFilter() {
+      ::grpc::Service::MarkMethodCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::TagsByFilterRequest, ::viam::app::data::v1::TagsByFilterResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response) { return this->TagsByFilter(context, request, response); }));}
+    void SetMessageAllocatorFor_TagsByFilter(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::TagsByFilterRequest, ::viam::app::data::v1::TagsByFilterResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::TagsByFilterRequest, ::viam::app::data::v1::TagsByFilterResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_TagsByFilter() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* TagsByFilter(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularDataByFilter<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFileIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByFileIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<Service > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TabularDataByFilter : public BaseClass {
@@ -982,6 +1056,23 @@ class DataService final {
     }
     // disable synchronous version of this method
     ::grpc::Status RemoveTagsFromBinaryDataByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* /*request*/, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_TagsByFilter : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_TagsByFilter() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_TagsByFilter() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1184,6 +1275,26 @@ class DataService final {
     }
     void RequestRemoveTagsFromBinaryDataByFilter(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_TagsByFilter : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_TagsByFilter() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_TagsByFilter() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTagsByFilter(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1404,6 +1515,28 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* RemoveTagsFromBinaryDataByFilter(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_TagsByFilter : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_TagsByFilter() {
+      ::grpc::Service::MarkMethodRawCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TagsByFilter(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_TagsByFilter() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* TagsByFilter(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1676,9 +1809,36 @@ class DataService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedRemoveTagsFromBinaryDataByFilter(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest,::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<Service > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_TagsByFilter : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_TagsByFilter() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::TagsByFilterRequest, ::viam::app::data::v1::TagsByFilterResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::TagsByFilterRequest, ::viam::app::data::v1::TagsByFilterResponse>* streamer) {
+                       return this->StreamedTagsByFilter(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_TagsByFilter() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedTagsByFilter(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::TagsByFilterRequest,::viam::app::data::v1::TagsByFilterResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<Service > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<Service > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<Service > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

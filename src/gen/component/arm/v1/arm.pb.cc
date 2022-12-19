@@ -175,11 +175,35 @@ struct StatusDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StatusDefaultTypeInternal _Status_default_instance_;
+PROTOBUF_CONSTEXPR IsMovingRequest::IsMovingRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct IsMovingRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsMovingRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsMovingRequestDefaultTypeInternal() {}
+  union {
+    IsMovingRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsMovingRequestDefaultTypeInternal _IsMovingRequest_default_instance_;
+PROTOBUF_CONSTEXPR IsMovingResponse::IsMovingResponse(
+    ::_pbi::ConstantInitialized)
+  : is_moving_(false){}
+struct IsMovingResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsMovingResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsMovingResponseDefaultTypeInternal() {}
+  union {
+    IsMovingResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsMovingResponseDefaultTypeInternal _IsMovingResponse_default_instance_;
 }  // namespace v1
 }  // namespace arm
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2farm_2fv1_2farm_2eproto[12];
+static ::_pb::Metadata file_level_metadata_component_2farm_2fv1_2farm_2eproto[14];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2farm_2fv1_2farm_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2farm_2fv1_2farm_2eproto = nullptr;
 
@@ -279,6 +303,20 @@ const uint32_t TableStruct_component_2farm_2fv1_2farm_2eproto::offsets[] PROTOBU
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::Status, end_position_),
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::Status, joint_positions_),
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::Status, is_moving_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::IsMovingRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::IsMovingRequest, name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::IsMovingResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::IsMovingResponse, is_moving_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::arm::v1::GetEndPositionRequest)},
@@ -293,6 +331,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 72, -1, -1, sizeof(::viam::component::arm::v1::StopRequest)},
   { 80, -1, -1, sizeof(::viam::component::arm::v1::StopResponse)},
   { 86, -1, -1, sizeof(::viam::component::arm::v1::Status)},
+  { 95, -1, -1, sizeof(::viam::component::arm::v1::IsMovingRequest)},
+  { 102, -1, -1, sizeof(::viam::component::arm::v1::IsMovingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -308,6 +348,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::arm::v1::_StopRequest_default_instance_._instance,
   &::viam::component::arm::v1::_StopResponse_default_instance_._instance,
   &::viam::component::arm::v1::_Status_default_instance_._instance,
+  &::viam::component::arm::v1::_IsMovingRequest_default_instance_._instance,
+  &::viam::component::arm::v1::_IsMovingResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -342,30 +384,35 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "seR\013endPosition\022N\n\017joint_positions\030\002 \001(\013"
   "2%.viam.component.arm.v1.JointPositionsR"
   "\016jointPositions\022\033\n\tis_moving\030\003 \001(\010R\010isMo"
-  "ving2\316\006\n\nArmService\022\241\001\n\016GetEndPosition\022,"
-  ".viam.component.arm.v1.GetEndPositionReq"
-  "uest\032-.viam.component.arm.v1.GetEndPosit"
-  "ionResponse\"2\202\323\344\223\002,\022*/viam/api/v1/compon"
-  "ent/arm/{name}/position\022\245\001\n\016MoveToPositi"
-  "on\022,.viam.component.arm.v1.MoveToPositio"
-  "nRequest\032-.viam.component.arm.v1.MoveToP"
-  "ositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api/v"
-  "1/component/arm/{name}/position\022\261\001\n\021GetJ"
-  "ointPositions\022/.viam.component.arm.v1.Ge"
-  "tJointPositionsRequest\0320.viam.component."
-  "arm.v1.GetJointPositionsResponse\"9\202\323\344\223\0023"
-  "\0221/viam/api/v1/component/arm/{name}/join"
-  "t_positions\022\276\001\n\024MoveToJointPositions\0222.v"
-  "iam.component.arm.v1.MoveToJointPosition"
-  "sRequest\0323.viam.component.arm.v1.MoveToJ"
-  "ointPositionsResponse\"=\240\222)\001\202\323\344\223\0023\0321/viam"
-  "/api/v1/component/arm/{name}/joint_posit"
-  "ions\022\177\n\004Stop\022\".viam.component.arm.v1.Sto"
-  "pRequest\032#.viam.component.arm.v1.StopRes"
-  "ponse\".\202\323\344\223\002(\"&/viam/api/v1/component/ar"
-  "m/{name}/stopB=\n\031com.viam.component.arm."
-  "v1Z go.viam.com/api/component/arm/v1b\006pr"
-  "oto3"
+  "ving\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004n"
+  "ame\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001"
+  "(\010R\010isMoving2\341\007\n\nArmService\022\241\001\n\016GetEndPo"
+  "sition\022,.viam.component.arm.v1.GetEndPos"
+  "itionRequest\032-.viam.component.arm.v1.Get"
+  "EndPositionResponse\"2\202\323\344\223\002,\022*/viam/api/v"
+  "1/component/arm/{name}/position\022\245\001\n\016Move"
+  "ToPosition\022,.viam.component.arm.v1.MoveT"
+  "oPositionRequest\032-.viam.component.arm.v1"
+  ".MoveToPositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/vi"
+  "am/api/v1/component/arm/{name}/position\022"
+  "\261\001\n\021GetJointPositions\022/.viam.component.a"
+  "rm.v1.GetJointPositionsRequest\0320.viam.co"
+  "mponent.arm.v1.GetJointPositionsResponse"
+  "\"9\202\323\344\223\0023\0221/viam/api/v1/component/arm/{na"
+  "me}/joint_positions\022\276\001\n\024MoveToJointPosit"
+  "ions\0222.viam.component.arm.v1.MoveToJoint"
+  "PositionsRequest\0323.viam.component.arm.v1"
+  ".MoveToJointPositionsResponse\"=\240\222)\001\202\323\344\223\002"
+  "3\0321/viam/api/v1/component/arm/{name}/joi"
+  "nt_positions\022\177\n\004Stop\022\".viam.component.ar"
+  "m.v1.StopRequest\032#.viam.component.arm.v1"
+  ".StopResponse\".\202\323\344\223\002(\"&/viam/api/v1/comp"
+  "onent/arm/{name}/stop\022\220\001\n\010IsMoving\022&.via"
+  "m.component.arm.v1.IsMovingRequest\032\'.via"
+  "m.component.arm.v1.IsMovingResponse\"3\202\323\344"
+  "\223\002-\022+/viam/api/v1/component/arm/{name}/i"
+  "s_movingB=\n\031com.viam.component.arm.v1Z g"
+  "o.viam.com/api/component/arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -374,9 +421,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 2164, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 2399, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
-    &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 12,
+    &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,
     file_level_metadata_component_2farm_2fv1_2farm_2eproto, file_level_enum_descriptors_component_2farm_2fv1_2farm_2eproto,
     file_level_service_descriptors_component_2farm_2fv1_2farm_2eproto,
@@ -2703,6 +2750,372 @@ void Status::InternalSwap(Status* other) {
       file_level_metadata_component_2farm_2fv1_2farm_2eproto[11]);
 }
 
+// ===================================================================
+
+class IsMovingRequest::_Internal {
+ public:
+};
+
+IsMovingRequest::IsMovingRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.IsMovingRequest)
+}
+IsMovingRequest::IsMovingRequest(const IsMovingRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.IsMovingRequest)
+}
+
+inline void IsMovingRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+IsMovingRequest::~IsMovingRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.IsMovingRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IsMovingRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+}
+
+void IsMovingRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void IsMovingRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.IsMovingRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IsMovingRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.arm.v1.IsMovingRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IsMovingRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.IsMovingRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.arm.v1.IsMovingRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.IsMovingRequest)
+  return target;
+}
+
+size_t IsMovingRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.IsMovingRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsMovingRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    IsMovingRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsMovingRequest::GetClassData() const { return &_class_data_; }
+
+void IsMovingRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IsMovingRequest *>(to)->MergeFrom(
+      static_cast<const IsMovingRequest &>(from));
+}
+
+
+void IsMovingRequest::MergeFrom(const IsMovingRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.IsMovingRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IsMovingRequest::CopyFrom(const IsMovingRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.IsMovingRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IsMovingRequest::IsInitialized() const {
+  return true;
+}
+
+void IsMovingRequest::InternalSwap(IsMovingRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IsMovingRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[12]);
+}
+
+// ===================================================================
+
+class IsMovingResponse::_Internal {
+ public:
+};
+
+IsMovingResponse::IsMovingResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.IsMovingResponse)
+}
+IsMovingResponse::IsMovingResponse(const IsMovingResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  is_moving_ = from.is_moving_;
+  // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.IsMovingResponse)
+}
+
+inline void IsMovingResponse::SharedCtor() {
+is_moving_ = false;
+}
+
+IsMovingResponse::~IsMovingResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.arm.v1.IsMovingResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IsMovingResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void IsMovingResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void IsMovingResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.arm.v1.IsMovingResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  is_moving_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IsMovingResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool is_moving = 1 [json_name = "isMoving"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          is_moving_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IsMovingResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.arm.v1.IsMovingResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool is_moving = 1 [json_name = "isMoving"];
+  if (this->_internal_is_moving() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_is_moving(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.arm.v1.IsMovingResponse)
+  return target;
+}
+
+size_t IsMovingResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.arm.v1.IsMovingResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool is_moving = 1 [json_name = "isMoving"];
+  if (this->_internal_is_moving() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsMovingResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    IsMovingResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsMovingResponse::GetClassData() const { return &_class_data_; }
+
+void IsMovingResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IsMovingResponse *>(to)->MergeFrom(
+      static_cast<const IsMovingResponse &>(from));
+}
+
+
+void IsMovingResponse::MergeFrom(const IsMovingResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.arm.v1.IsMovingResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_is_moving() != 0) {
+    _internal_set_is_moving(from._internal_is_moving());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IsMovingResponse::CopyFrom(const IsMovingResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.arm.v1.IsMovingResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IsMovingResponse::IsInitialized() const {
+  return true;
+}
+
+void IsMovingResponse::InternalSwap(IsMovingResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(is_moving_, other->is_moving_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IsMovingResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2farm_2fv1_2farm_2eproto_getter, &descriptor_table_component_2farm_2fv1_2farm_2eproto_once,
+      file_level_metadata_component_2farm_2fv1_2farm_2eproto[13]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace arm
@@ -2756,6 +3169,14 @@ Arena::CreateMaybeMessage< ::viam::component::arm::v1::StopResponse >(Arena* are
 template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::Status*
 Arena::CreateMaybeMessage< ::viam::component::arm::v1::Status >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::arm::v1::Status >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::IsMovingRequest*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::IsMovingRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::IsMovingRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::arm::v1::IsMovingResponse*
+Arena::CreateMaybeMessage< ::viam::component::arm::v1::IsMovingResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::arm::v1::IsMovingResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
