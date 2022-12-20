@@ -78,10 +78,9 @@ Struct map_to_struct(std::unordered_map<std::string, ProtoType> dict) {
 	return s;
 }
 
+// CR erodkin: hum. why doesn't this work?
 std::unordered_map<std::string, Value> struct_to_map(Struct struct_) {
-	google::protobuf::Map<std::string, google::protobuf::Value>* map =
-	    struct_.mutable_fields();
-	map.return struct_.mutable_fields
+	return struct_.mutable_fields();
 }
 
 std::vector<ResourceName> resource_names_for_component(
