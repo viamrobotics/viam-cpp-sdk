@@ -8,15 +8,19 @@
 class ComponentType {
        public:
 	std::string name;
+	friend bool operator==(ComponentType& lhs, ComponentType& rhs);
 };
 
 class ComponentBase {
        public:
 	std::string name;
 	ComponentType type;
+	std::vector<ComponentType> component_hierarchy;
 
-	// TODO (RSDK-921): implement this
 	viam::common::v1::ResourceName get_resource_name(std::string name);
+	virtual grpc::StatusCode stop(
+	    google::protobuf::Map<std::string, google::protobuf::Value> extra);
+	virtual grpc::StatusCode stop();
 };
 
 #endif

@@ -78,22 +78,32 @@ Struct map_to_struct(std::unordered_map<std::string, ProtoType> dict) {
 	return s;
 }
 
+std::unordered_map<std::string, Value> struct_to_map(Struct struct_) {
+	google::protobuf::Map<std::string, google::protobuf::Value>* map =
+	    struct_.mutable_fields();
+	map.return struct_.mutable_fields
+}
+
 std::vector<ResourceName> resource_names_for_component(
     ComponentBase component) {
-	std::string component_type;
+	// CR erodkin: split on viam.components here?
+	std::string* component_type;
+	std::vector<ResourceName> resource_names;
 	for (auto a : Registry::registered_components()) {
 		ComponentRegistration reg = a.second;
-		if (reg.component_type.name == component.type.name) {
-			component_type = reg.name;
+		if (reg.component_type == component.type) {
+			component_type = &reg.name;
 		}
 	}
 
+	if (component_type == nullptr) {
+		component_type = &component.name;
+	}
 	ResourceName r;
 	*r.mutable_namespace_() = "rdk";
 	*r.mutable_type() = "component";
 	*r.mutable_name() = component.name;
-	*r.mutable_subtype() = component_type;
-	std::vector<ResourceName> resource_names;
+	*r.mutable_subtype() = *component_type;
 	resource_names.push_back(r);
 	return resource_names;
 }

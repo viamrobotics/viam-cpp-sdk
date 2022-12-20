@@ -3,8 +3,10 @@
 
 #include "../components/component_base.h"
 #include "../components/service_base.h"
+#include "google/protobuf/struct.pb.h"
 #include "grpcpp/channel.h"
 #include "robot/v1/robot.pb.h"
+using viam::robot::v1::Status;
 
 class ComponentRegistration {
        public:
@@ -14,7 +16,7 @@ class ComponentRegistration {
 	std::function<ComponentBase(std::string,
 				    std::shared_ptr<grpc::Channel>)>
 	    create_rpc_client;
-	std::function<viam::robot::v1::Status(ComponentBase)> create_status;
+	virtual Status create_status(ComponentBase component);
 };
 
 class Registry {
@@ -66,4 +68,12 @@ Registry::registered_components() {
 		registry.insert(component);
 	}
 	return registry;
+}
+
+Status ComponentRegistration::create_status(ComponentBase component) {
+	Status status;
+	google::protobuf::Struct struct_;
+	*status.mutable_name() = component.get_resource_name(component.name);
+	*status.mutable_status() = struct_;
+	return status;
 }

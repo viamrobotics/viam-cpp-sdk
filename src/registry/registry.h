@@ -4,6 +4,9 @@
 #include <string>
 
 #include "../components/service_base.h"
+#include "grpcpp/channel.h"
+#include "robot/v1/robot.pb.h"
+
 class ComponentRegistration {
        public:
 	ComponentType component_type;
@@ -11,6 +14,7 @@ class ComponentRegistration {
 	std::function<ComponentBase(std::string,
 				    std::shared_ptr<grpc::Channel>)>
 	    create_rpc_client;
+	virtual viam::robot::v1::Status create_status(ComponentBase component);
 };
 
 class Registry {
