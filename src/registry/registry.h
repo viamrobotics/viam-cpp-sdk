@@ -9,6 +9,7 @@
 
 class ComponentRegistration {
        public:
+	ComponentRegistration();
 	ComponentType component_type;
 	std::string name;
 	std::function<ComponentBase(std::string,

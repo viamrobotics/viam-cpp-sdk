@@ -30,6 +30,7 @@ static const char* BaseService_method_names[] = {
   "/viam.component.base.v1.BaseService/SetPower",
   "/viam.component.base.v1.BaseService/SetVelocity",
   "/viam.component.base.v1.BaseService/Stop",
+  "/viam.component.base.v1.BaseService/IsMoving",
 };
 
 std::unique_ptr< BaseService::Stub> BaseService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -44,6 +45,7 @@ BaseService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_SetPower_(BaseService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetVelocity_(BaseService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(BaseService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(BaseService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BaseService::Stub::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest& request, ::viam::component::base::v1::MoveStraightResponse* response) {
@@ -161,6 +163,29 @@ void BaseService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam
   return result;
 }
 
+::grpc::Status BaseService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::viam::component::base::v1::IsMovingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+}
+
+void BaseService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+}
+
+void BaseService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* BaseService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::IsMovingResponse, ::viam::component::base::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* BaseService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[0],
@@ -212,6 +237,16 @@ BaseService::Service::Service() {
              ::viam::component::base::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BaseService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::IsMovingRequest, ::viam::component::base::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BaseService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::base::v1::IsMovingRequest* req,
+             ::viam::component::base::v1::IsMovingResponse* resp) {
+               return service->IsMoving(ctx, req, resp);
+             }, this)));
 }
 
 BaseService::Service::~Service() {
@@ -246,6 +281,13 @@ BaseService::Service::~Service() {
 }
 
 ::grpc::Status BaseService::Service::Stop(::grpc::ServerContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BaseService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

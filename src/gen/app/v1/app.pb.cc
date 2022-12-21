@@ -176,6 +176,56 @@ struct ListLocationsRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListLocationsRequestDefaultTypeInternal _ListLocationsRequest_default_instance_;
+PROTOBUF_CONSTEXPR ShareLocationRequest::ShareLocationRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.location_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.organization_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ShareLocationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ShareLocationRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ShareLocationRequestDefaultTypeInternal() {}
+  union {
+    ShareLocationRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ShareLocationRequestDefaultTypeInternal _ShareLocationRequest_default_instance_;
+PROTOBUF_CONSTEXPR ShareLocationResponse::ShareLocationResponse(
+    ::_pbi::ConstantInitialized) {}
+struct ShareLocationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ShareLocationResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ShareLocationResponseDefaultTypeInternal() {}
+  union {
+    ShareLocationResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ShareLocationResponseDefaultTypeInternal _ShareLocationResponse_default_instance_;
+PROTOBUF_CONSTEXPR UnshareLocationRequest::UnshareLocationRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.location_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.organization_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UnshareLocationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnshareLocationRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UnshareLocationRequestDefaultTypeInternal() {}
+  union {
+    UnshareLocationRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnshareLocationRequestDefaultTypeInternal _UnshareLocationRequest_default_instance_;
+PROTOBUF_CONSTEXPR UnshareLocationResponse::UnshareLocationResponse(
+    ::_pbi::ConstantInitialized) {}
+struct UnshareLocationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnshareLocationResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UnshareLocationResponseDefaultTypeInternal() {}
+  union {
+    UnshareLocationResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnshareLocationResponseDefaultTypeInternal _UnshareLocationResponse_default_instance_;
 PROTOBUF_CONSTEXPR ListLocationsResponse::ListLocationsResponse(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.locations_)*/{}
@@ -756,7 +806,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[53];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[57];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fapp_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fapp_2eproto = nullptr;
 
@@ -855,6 +905,34 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListLocationsRequest, _impl_.organization_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ShareLocationRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ShareLocationRequest, _impl_.location_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ShareLocationRequest, _impl_.organization_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ShareLocationResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UnshareLocationRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UnshareLocationRequest, _impl_.location_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UnshareLocationRequest, _impl_.organization_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UnshareLocationResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListLocationsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1191,49 +1269,53 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 72, -1, -1, sizeof(::viam::app::v1::CreateLocationRequest)},
   { 80, -1, -1, sizeof(::viam::app::v1::CreateLocationResponse)},
   { 87, -1, -1, sizeof(::viam::app::v1::ListLocationsRequest)},
-  { 94, -1, -1, sizeof(::viam::app::v1::ListLocationsResponse)},
-  { 101, -1, -1, sizeof(::viam::app::v1::CreateLocationSecretRequest)},
-  { 108, -1, -1, sizeof(::viam::app::v1::CreateLocationSecretResponse)},
-  { 115, -1, -1, sizeof(::viam::app::v1::DeleteLocationSecretRequest)},
-  { 123, -1, -1, sizeof(::viam::app::v1::DeleteLocationSecretResponse)},
-  { 129, -1, -1, sizeof(::viam::app::v1::LocationAuth)},
-  { 138, -1, -1, sizeof(::viam::app::v1::SharedSecret)},
-  { 148, -1, -1, sizeof(::viam::app::v1::LocationAuthRequest)},
-  { 155, -1, -1, sizeof(::viam::app::v1::LocationAuthResponse)},
-  { 162, -1, -1, sizeof(::viam::app::v1::GetRobotRequest)},
-  { 169, -1, -1, sizeof(::viam::app::v1::GetRobotResponse)},
-  { 176, -1, -1, sizeof(::viam::app::v1::GetRobotPartsRequest)},
-  { 183, -1, -1, sizeof(::viam::app::v1::GetRobotPartsResponse)},
-  { 190, -1, -1, sizeof(::viam::app::v1::GetRobotPartRequest)},
-  { 197, -1, -1, sizeof(::viam::app::v1::GetRobotPartResponse)},
-  { 205, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsRequest)},
-  { 213, -1, -1, sizeof(::viam::app::v1::LogEntry)},
-  { 227, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsResponse)},
-  { 234, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsRequest)},
-  { 242, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsResponse)},
-  { 249, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryRequest)},
-  { 256, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryResponse)},
-  { 263, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartRequest)},
-  { 272, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartResponse)},
-  { 279, -1, -1, sizeof(::viam::app::v1::NewRobotPartRequest)},
-  { 287, -1, -1, sizeof(::viam::app::v1::NewRobotPartResponse)},
-  { 294, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartRequest)},
-  { 301, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartResponse)},
-  { 307, -1, -1, sizeof(::viam::app::v1::Fragment)},
-  { 319, -1, -1, sizeof(::viam::app::v1::FindRobotsRequest)},
-  { 326, -1, -1, sizeof(::viam::app::v1::FindRobotsResponse)},
-  { 333, -1, -1, sizeof(::viam::app::v1::NewRobotRequest)},
-  { 341, -1, -1, sizeof(::viam::app::v1::NewRobotResponse)},
-  { 348, -1, -1, sizeof(::viam::app::v1::UpdateRobotRequest)},
-  { 357, -1, -1, sizeof(::viam::app::v1::UpdateRobotResponse)},
-  { 364, -1, -1, sizeof(::viam::app::v1::DeleteRobotRequest)},
-  { 371, -1, -1, sizeof(::viam::app::v1::DeleteRobotResponse)},
-  { 377, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainRequest)},
-  { 384, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainResponse)},
-  { 390, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretRequest)},
-  { 397, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretResponse)},
-  { 404, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretRequest)},
-  { 412, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretResponse)},
+  { 94, -1, -1, sizeof(::viam::app::v1::ShareLocationRequest)},
+  { 102, -1, -1, sizeof(::viam::app::v1::ShareLocationResponse)},
+  { 108, -1, -1, sizeof(::viam::app::v1::UnshareLocationRequest)},
+  { 116, -1, -1, sizeof(::viam::app::v1::UnshareLocationResponse)},
+  { 122, -1, -1, sizeof(::viam::app::v1::ListLocationsResponse)},
+  { 129, -1, -1, sizeof(::viam::app::v1::CreateLocationSecretRequest)},
+  { 136, -1, -1, sizeof(::viam::app::v1::CreateLocationSecretResponse)},
+  { 143, -1, -1, sizeof(::viam::app::v1::DeleteLocationSecretRequest)},
+  { 151, -1, -1, sizeof(::viam::app::v1::DeleteLocationSecretResponse)},
+  { 157, -1, -1, sizeof(::viam::app::v1::LocationAuth)},
+  { 166, -1, -1, sizeof(::viam::app::v1::SharedSecret)},
+  { 176, -1, -1, sizeof(::viam::app::v1::LocationAuthRequest)},
+  { 183, -1, -1, sizeof(::viam::app::v1::LocationAuthResponse)},
+  { 190, -1, -1, sizeof(::viam::app::v1::GetRobotRequest)},
+  { 197, -1, -1, sizeof(::viam::app::v1::GetRobotResponse)},
+  { 204, -1, -1, sizeof(::viam::app::v1::GetRobotPartsRequest)},
+  { 211, -1, -1, sizeof(::viam::app::v1::GetRobotPartsResponse)},
+  { 218, -1, -1, sizeof(::viam::app::v1::GetRobotPartRequest)},
+  { 225, -1, -1, sizeof(::viam::app::v1::GetRobotPartResponse)},
+  { 233, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsRequest)},
+  { 241, -1, -1, sizeof(::viam::app::v1::LogEntry)},
+  { 255, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsResponse)},
+  { 262, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsRequest)},
+  { 270, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsResponse)},
+  { 277, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryRequest)},
+  { 284, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryResponse)},
+  { 291, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartRequest)},
+  { 300, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartResponse)},
+  { 307, -1, -1, sizeof(::viam::app::v1::NewRobotPartRequest)},
+  { 315, -1, -1, sizeof(::viam::app::v1::NewRobotPartResponse)},
+  { 322, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartRequest)},
+  { 329, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartResponse)},
+  { 335, -1, -1, sizeof(::viam::app::v1::Fragment)},
+  { 347, -1, -1, sizeof(::viam::app::v1::FindRobotsRequest)},
+  { 354, -1, -1, sizeof(::viam::app::v1::FindRobotsResponse)},
+  { 361, -1, -1, sizeof(::viam::app::v1::NewRobotRequest)},
+  { 369, -1, -1, sizeof(::viam::app::v1::NewRobotResponse)},
+  { 376, -1, -1, sizeof(::viam::app::v1::UpdateRobotRequest)},
+  { 385, -1, -1, sizeof(::viam::app::v1::UpdateRobotResponse)},
+  { 392, -1, -1, sizeof(::viam::app::v1::DeleteRobotRequest)},
+  { 399, -1, -1, sizeof(::viam::app::v1::DeleteRobotResponse)},
+  { 405, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainRequest)},
+  { 412, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainResponse)},
+  { 418, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretRequest)},
+  { 425, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretResponse)},
+  { 432, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretRequest)},
+  { 440, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1247,6 +1329,10 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_CreateLocationRequest_default_instance_._instance,
   &::viam::app::v1::_CreateLocationResponse_default_instance_._instance,
   &::viam::app::v1::_ListLocationsRequest_default_instance_._instance,
+  &::viam::app::v1::_ShareLocationRequest_default_instance_._instance,
+  &::viam::app::v1::_ShareLocationResponse_default_instance_._instance,
+  &::viam::app::v1::_UnshareLocationRequest_default_instance_._instance,
+  &::viam::app::v1::_UnshareLocationResponse_default_instance_._instance,
   &::viam::app::v1::_ListLocationsResponse_default_instance_._instance,
   &::viam::app::v1::_CreateLocationSecretRequest_default_instance_._instance,
   &::viam::app::v1::_CreateLocationSecretResponse_default_instance_._instance,
@@ -1350,150 +1436,161 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "\002 \001(\tR\004name\"K\n\026CreateLocationResponse\0221\n"
   "\010location\030\001 \001(\0132\025.viam.app.v1.LocationR\010"
   "location\"\?\n\024ListLocationsRequest\022\'\n\017orga"
-  "nization_id\030\001 \001(\tR\016organizationId\"L\n\025Lis"
-  "tLocationsResponse\0223\n\tlocations\030\001 \003(\0132\025."
-  "viam.app.v1.LocationR\tlocations\">\n\033Creat"
-  "eLocationSecretRequest\022\037\n\013location_id\030\001 "
-  "\001(\tR\nlocationId\"M\n\034CreateLocationSecretR"
-  "esponse\022-\n\004auth\030\001 \001(\0132\031.viam.app.v1.Loca"
-  "tionAuthR\004auth\"[\n\033DeleteLocationSecretRe"
-  "quest\022\037\n\013location_id\030\001 \001(\tR\nlocationId\022\033"
-  "\n\tsecret_id\030\002 \001(\tR\010secretId\"\036\n\034DeleteLoc"
-  "ationSecretResponse\"\200\001\n\014LocationAuth\022\032\n\006"
-  "secret\030\001 \001(\tB\002\030\001R\006secret\022\037\n\013location_id\030"
-  "\002 \001(\tR\nlocationId\0223\n\007secrets\030\003 \003(\0132\031.via"
-  "m.app.v1.SharedSecretR\007secrets\"\320\002\n\014Share"
-  "dSecret\022\036\n\002id\030\001 \001(\tB\016\232\204\236\003\tbson:\"id\"R\002id\022"
-  "*\n\006secret\030\002 \001(\tB\022\232\204\236\003\rbson:\"secret\"R\006sec"
-  "ret\022c\n\ncreated_on\030\003 \001(\0132\032.google.protobu"
-  "f.TimestampB(\232\204\236\003#bson:\"created_on\" json"
-  ":\"created_on\"R\tcreatedOn\022H\n\005state\030\004 \001(\0162"
-  "\037.viam.app.v1.SharedSecret.StateB\021\232\204\236\003\014b"
-  "son:\"state\"R\005state\"E\n\005State\022\025\n\021STATE_UNS"
-  "PECIFIED\020\000\022\021\n\rSTATE_ENABLED\020\001\022\022\n\016STATE_D"
-  "ISABLED\020\002\"6\n\023LocationAuthRequest\022\037\n\013loca"
-  "tion_id\030\001 \001(\tR\nlocationId\"E\n\024LocationAut"
-  "hResponse\022-\n\004auth\030\001 \001(\0132\031.viam.app.v1.Lo"
-  "cationAuthR\004auth\"!\n\017GetRobotRequest\022\016\n\002i"
-  "d\030\001 \001(\tR\002id\"<\n\020GetRobotResponse\022(\n\005robot"
-  "\030\001 \001(\0132\022.viam.app.v1.RobotR\005robot\"1\n\024Get"
-  "RobotPartsRequest\022\031\n\010robot_id\030\001 \001(\tR\007rob"
-  "otId\"E\n\025GetRobotPartsResponse\022,\n\005parts\030\001"
-  " \003(\0132\026.viam.app.v1.RobotPartR\005parts\"%\n\023G"
-  "etRobotPartRequest\022\016\n\002id\030\001 \001(\tR\002id\"c\n\024Ge"
-  "tRobotPartResponse\022*\n\004part\030\001 \001(\0132\026.viam."
-  "app.v1.RobotPartR\004part\022\037\n\013config_json\030\002 "
-  "\001(\tR\nconfigJson\"J\n\027GetRobotPartLogsReque"
+  "nization_id\030\001 \001(\tR\016organizationId\"`\n\024Sha"
+  "reLocationRequest\022\037\n\013location_id\030\001 \001(\tR\n"
+  "locationId\022\'\n\017organization_id\030\002 \001(\tR\016org"
+  "anizationId\"\027\n\025ShareLocationResponse\"b\n\026"
+  "UnshareLocationRequest\022\037\n\013location_id\030\001 "
+  "\001(\tR\nlocationId\022\'\n\017organization_id\030\002 \001(\t"
+  "R\016organizationId\"\031\n\027UnshareLocationRespo"
+  "nse\"L\n\025ListLocationsResponse\0223\n\tlocation"
+  "s\030\001 \003(\0132\025.viam.app.v1.LocationR\tlocation"
+  "s\">\n\033CreateLocationSecretRequest\022\037\n\013loca"
+  "tion_id\030\001 \001(\tR\nlocationId\"M\n\034CreateLocat"
+  "ionSecretResponse\022-\n\004auth\030\001 \001(\0132\031.viam.a"
+  "pp.v1.LocationAuthR\004auth\"[\n\033DeleteLocati"
+  "onSecretRequest\022\037\n\013location_id\030\001 \001(\tR\nlo"
+  "cationId\022\033\n\tsecret_id\030\002 \001(\tR\010secretId\"\036\n"
+  "\034DeleteLocationSecretResponse\"\200\001\n\014Locati"
+  "onAuth\022\032\n\006secret\030\001 \001(\tB\002\030\001R\006secret\022\037\n\013lo"
+  "cation_id\030\002 \001(\tR\nlocationId\0223\n\007secrets\030\003"
+  " \003(\0132\031.viam.app.v1.SharedSecretR\007secrets"
+  "\"\320\002\n\014SharedSecret\022\036\n\002id\030\001 \001(\tB\016\232\204\236\003\tbson"
+  ":\"id\"R\002id\022*\n\006secret\030\002 \001(\tB\022\232\204\236\003\rbson:\"se"
+  "cret\"R\006secret\022c\n\ncreated_on\030\003 \001(\0132\032.goog"
+  "le.protobuf.TimestampB(\232\204\236\003#bson:\"create"
+  "d_on\" json:\"created_on\"R\tcreatedOn\022H\n\005st"
+  "ate\030\004 \001(\0162\037.viam.app.v1.SharedSecret.Sta"
+  "teB\021\232\204\236\003\014bson:\"state\"R\005state\"E\n\005State\022\025\n"
+  "\021STATE_UNSPECIFIED\020\000\022\021\n\rSTATE_ENABLED\020\001\022"
+  "\022\n\016STATE_DISABLED\020\002\"6\n\023LocationAuthReque"
+  "st\022\037\n\013location_id\030\001 \001(\tR\nlocationId\"E\n\024L"
+  "ocationAuthResponse\022-\n\004auth\030\001 \001(\0132\031.viam"
+  ".app.v1.LocationAuthR\004auth\"!\n\017GetRobotRe"
+  "quest\022\016\n\002id\030\001 \001(\tR\002id\"<\n\020GetRobotRespons"
+  "e\022(\n\005robot\030\001 \001(\0132\022.viam.app.v1.RobotR\005ro"
+  "bot\"1\n\024GetRobotPartsRequest\022\031\n\010robot_id\030"
+  "\001 \001(\tR\007robotId\"E\n\025GetRobotPartsResponse\022"
+  ",\n\005parts\030\001 \003(\0132\026.viam.app.v1.RobotPartR\005"
+  "parts\"%\n\023GetRobotPartRequest\022\016\n\002id\030\001 \001(\t"
+  "R\002id\"c\n\024GetRobotPartResponse\022*\n\004part\030\001 \001"
+  "(\0132\026.viam.app.v1.RobotPartR\004part\022\037\n\013conf"
+  "ig_json\030\002 \001(\tR\nconfigJson\"J\n\027GetRobotPar"
+  "tLogsRequest\022\016\n\002id\030\001 \001(\tR\002id\022\037\n\013errors_o"
+  "nly\030\002 \001(\010R\nerrorsOnly\"\227\002\n\010LogEntry\022\022\n\004ho"
+  "st\030\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004"
+  "time\030\003 \001(\0132\032.google.protobuf.TimestampR\004"
+  "time\022\037\n\013logger_name\030\004 \001(\tR\nloggerName\022\030\n"
+  "\007message\030\005 \001(\tR\007message\022/\n\006caller\030\006 \001(\0132"
+  "\027.google.protobuf.StructR\006caller\022\024\n\005stac"
+  "k\030\007 \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027.google."
+  "protobuf.StructR\006fields\"E\n\030GetRobotPartL"
+  "ogsResponse\022)\n\004logs\030\001 \003(\0132\025.viam.app.v1."
+  "LogEntryR\004logs\"K\n\030TailRobotPartLogsReque"
   "st\022\016\n\002id\030\001 \001(\tR\002id\022\037\n\013errors_only\030\002 \001(\010R"
-  "\nerrorsOnly\"\227\002\n\010LogEntry\022\022\n\004host\030\001 \001(\tR\004"
-  "host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004time\030\003 \001(\013"
-  "2\032.google.protobuf.TimestampR\004time\022\037\n\013lo"
-  "gger_name\030\004 \001(\tR\nloggerName\022\030\n\007message\030\005"
-  " \001(\tR\007message\022/\n\006caller\030\006 \001(\0132\027.google.p"
-  "rotobuf.StructR\006caller\022\024\n\005stack\030\007 \001(\tR\005s"
-  "tack\022/\n\006fields\030\010 \003(\0132\027.google.protobuf.S"
-  "tructR\006fields\"E\n\030GetRobotPartLogsRespons"
-  "e\022)\n\004logs\030\001 \003(\0132\025.viam.app.v1.LogEntryR\004"
-  "logs\"K\n\030TailRobotPartLogsRequest\022\016\n\002id\030\001"
-  " \001(\tR\002id\022\037\n\013errors_only\030\002 \001(\010R\nerrorsOnl"
-  "y\"F\n\031TailRobotPartLogsResponse\022)\n\004logs\030\001"
-  " \003(\0132\025.viam.app.v1.LogEntryR\004logs\",\n\032Get"
-  "RobotPartHistoryRequest\022\016\n\002id\030\001 \001(\tR\002id\""
-  "[\n\033GetRobotPartHistoryResponse\022<\n\007histor"
-  "y\030\001 \003(\0132\".viam.app.v1.RobotPartHistoryEn"
-  "tryR\007history\"x\n\026UpdateRobotPartRequest\022\016"
-  "\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004name\022:\n\014ro"
-  "bot_config\030\003 \001(\0132\027.google.protobuf.Struc"
-  "tR\013robotConfig\"E\n\027UpdateRobotPartRespons"
-  "e\022*\n\004part\030\001 \001(\0132\026.viam.app.v1.RobotPartR"
-  "\004part\"M\n\023NewRobotPartRequest\022\031\n\010robot_id"
-  "\030\001 \001(\tR\007robotId\022\033\n\tpart_name\030\002 \001(\tR\010part"
-  "Name\"/\n\024NewRobotPartResponse\022\027\n\007part_id\030"
-  "\001 \001(\tR\006partId\"1\n\026DeleteRobotPartRequest\022"
-  "\027\n\007part_id\030\001 \001(\tR\006partId\"\031\n\027DeleteRobotP"
-  "artResponse\"\265\003\n\010Fragment\0223\n\002id\030\001 \001(\tB#\232\204"
-  "\236\003\036bson:\"_id\" json:\"id,omitempty\"R\002id\0220\n"
-  "\004name\030\002 \001(\tB\034\232\204\236\003\027bson:\"name\" json:\"name"
-  "\"R\004name\022Y\n\010fragment\030\003 \001(\0132\027.google.proto"
-  "buf.StructB$\232\204\236\003\037bson:\"fragment\" json:\"f"
-  "ragment\"R\010fragment\022Z\n\022organization_owner"
-  "\030\004 \001(\tB+\232\204\236\003&bson:\"organization_owner\" j"
-  "son:\"owner\"R\021organizationOwner\0228\n\006public"
-  "\030\005 \001(\010B \232\204\236\003\033bson:\"public\" json:\"public\""
-  "R\006public\022Q\n\ncreated_on\030\006 \001(\0132\032.google.pr"
-  "otobuf.TimestampB\026\232\204\236\003\021bson:\"created_on\""
-  "R\tcreatedOn\"4\n\021FindRobotsRequest\022\037\n\013loca"
-  "tion_id\030\001 \001(\tR\nlocationId\"@\n\022FindRobotsR"
-  "esponse\022*\n\006robots\030\001 \003(\0132\022.viam.app.v1.Ro"
-  "botR\006robots\"A\n\017NewRobotRequest\022\022\n\004name\030\001"
-  " \001(\tR\004name\022\032\n\010location\030\002 \001(\tR\010location\"\""
-  "\n\020NewRobotResponse\022\016\n\002id\030\001 \001(\tR\002id\"T\n\022Up"
-  "dateRobotRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name"
-  "\030\002 \001(\tR\004name\022\032\n\010location\030\003 \001(\tR\010location"
-  "\"\?\n\023UpdateRobotResponse\022(\n\005robot\030\001 \001(\0132\022"
-  ".viam.app.v1.RobotR\005robot\"$\n\022DeleteRobot"
-  "Request\022\016\n\002id\030\001 \001(\tR\002id\"\025\n\023DeleteRobotRe"
-  "sponse\"0\n\025MarkPartAsMainRequest\022\027\n\007part_"
-  "id\030\001 \001(\tR\006partId\"\030\n\026MarkPartAsMainRespon"
-  "se\"7\n\034CreateRobotPartSecretRequest\022\027\n\007pa"
-  "rt_id\030\001 \001(\tR\006partId\"K\n\035CreateRobotPartSe"
-  "cretResponse\022*\n\004part\030\001 \001(\0132\026.viam.app.v1"
-  ".RobotPartR\004part\"T\n\034DeleteRobotPartSecre"
-  "tRequest\022\027\n\007part_id\030\001 \001(\tR\006partId\022\033\n\tsec"
-  "ret_id\030\002 \001(\tR\010secretId\"\037\n\035DeleteRobotPar"
-  "tSecretResponse2\201\020\n\nAppService\022Y\n\016Create"
-  "Location\022\".viam.app.v1.CreateLocationReq"
-  "uest\032#.viam.app.v1.CreateLocationRespons"
-  "e\022b\n\021ListOrganizations\022%.viam.app.v1.Lis"
-  "tOrganizationsRequest\032&.viam.app.v1.List"
-  "OrganizationsResponse\022V\n\rListLocations\022!"
-  ".viam.app.v1.ListLocationsRequest\032\".viam"
-  ".app.v1.ListLocationsResponse\022S\n\014Locatio"
-  "nAuth\022 .viam.app.v1.LocationAuthRequest\032"
-  "!.viam.app.v1.LocationAuthResponse\022k\n\024Cr"
-  "eateLocationSecret\022(.viam.app.v1.CreateL"
-  "ocationSecretRequest\032).viam.app.v1.Creat"
-  "eLocationSecretResponse\022k\n\024DeleteLocatio"
-  "nSecret\022(.viam.app.v1.DeleteLocationSecr"
-  "etRequest\032).viam.app.v1.DeleteLocationSe"
-  "cretResponse\022G\n\010GetRobot\022\034.viam.app.v1.G"
-  "etRobotRequest\032\035.viam.app.v1.GetRobotRes"
-  "ponse\022V\n\rGetRobotParts\022!.viam.app.v1.Get"
-  "RobotPartsRequest\032\".viam.app.v1.GetRobot"
-  "PartsResponse\022S\n\014GetRobotPart\022 .viam.app"
-  ".v1.GetRobotPartRequest\032!.viam.app.v1.Ge"
-  "tRobotPartResponse\022_\n\020GetRobotPartLogs\022$"
-  ".viam.app.v1.GetRobotPartLogsRequest\032%.v"
-  "iam.app.v1.GetRobotPartLogsResponse\022d\n\021T"
-  "ailRobotPartLogs\022%.viam.app.v1.TailRobot"
-  "PartLogsRequest\032&.viam.app.v1.TailRobotP"
-  "artLogsResponse0\001\022h\n\023GetRobotPartHistory"
-  "\022\'.viam.app.v1.GetRobotPartHistoryReques"
-  "t\032(.viam.app.v1.GetRobotPartHistoryRespo"
-  "nse\022\\\n\017UpdateRobotPart\022#.viam.app.v1.Upd"
-  "ateRobotPartRequest\032$.viam.app.v1.Update"
-  "RobotPartResponse\022S\n\014NewRobotPart\022 .viam"
-  ".app.v1.NewRobotPartRequest\032!.viam.app.v"
-  "1.NewRobotPartResponse\022\\\n\017DeleteRobotPar"
-  "t\022#.viam.app.v1.DeleteRobotPartRequest\032$"
-  ".viam.app.v1.DeleteRobotPartResponse\022Y\n\016"
-  "MarkPartAsMain\022\".viam.app.v1.MarkPartAsM"
-  "ainRequest\032#.viam.app.v1.MarkPartAsMainR"
-  "esponse\022n\n\025CreateRobotPartSecret\022).viam."
-  "app.v1.CreateRobotPartSecretRequest\032*.vi"
-  "am.app.v1.CreateRobotPartSecretResponse\022"
-  "n\n\025DeleteRobotPartSecret\022).viam.app.v1.D"
-  "eleteRobotPartSecretRequest\032*.viam.app.v"
-  "1.DeleteRobotPartSecretResponse\022M\n\nFindR"
-  "obots\022\036.viam.app.v1.FindRobotsRequest\032\037."
-  "viam.app.v1.FindRobotsResponse\022G\n\010NewRob"
-  "ot\022\034.viam.app.v1.NewRobotRequest\032\035.viam."
-  "app.v1.NewRobotResponse\022P\n\013UpdateRobot\022\037"
-  ".viam.app.v1.UpdateRobotRequest\032 .viam.a"
-  "pp.v1.UpdateRobotResponse\022P\n\013DeleteRobot"
-  "\022\037.viam.app.v1.DeleteRobotRequest\032 .viam"
-  ".app.v1.DeleteRobotResponseB\030Z\026go.viam.c"
-  "om/api/app/v1b\006proto3"
+  "\nerrorsOnly\"F\n\031TailRobotPartLogsResponse"
+  "\022)\n\004logs\030\001 \003(\0132\025.viam.app.v1.LogEntryR\004l"
+  "ogs\",\n\032GetRobotPartHistoryRequest\022\016\n\002id\030"
+  "\001 \001(\tR\002id\"[\n\033GetRobotPartHistoryResponse"
+  "\022<\n\007history\030\001 \003(\0132\".viam.app.v1.RobotPar"
+  "tHistoryEntryR\007history\"x\n\026UpdateRobotPar"
+  "tRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004"
+  "name\022:\n\014robot_config\030\003 \001(\0132\027.google.prot"
+  "obuf.StructR\013robotConfig\"E\n\027UpdateRobotP"
+  "artResponse\022*\n\004part\030\001 \001(\0132\026.viam.app.v1."
+  "RobotPartR\004part\"M\n\023NewRobotPartRequest\022\031"
+  "\n\010robot_id\030\001 \001(\tR\007robotId\022\033\n\tpart_name\030\002"
+  " \001(\tR\010partName\"/\n\024NewRobotPartResponse\022\027"
+  "\n\007part_id\030\001 \001(\tR\006partId\"1\n\026DeleteRobotPa"
+  "rtRequest\022\027\n\007part_id\030\001 \001(\tR\006partId\"\031\n\027De"
+  "leteRobotPartResponse\"\265\003\n\010Fragment\0223\n\002id"
+  "\030\001 \001(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,omitemp"
+  "ty\"R\002id\0220\n\004name\030\002 \001(\tB\034\232\204\236\003\027bson:\"name\" "
+  "json:\"name\"R\004name\022Y\n\010fragment\030\003 \001(\0132\027.go"
+  "ogle.protobuf.StructB$\232\204\236\003\037bson:\"fragmen"
+  "t\" json:\"fragment\"R\010fragment\022Z\n\022organiza"
+  "tion_owner\030\004 \001(\tB+\232\204\236\003&bson:\"organizatio"
+  "n_owner\" json:\"owner\"R\021organizationOwner"
+  "\0228\n\006public\030\005 \001(\010B \232\204\236\003\033bson:\"public\" jso"
+  "n:\"public\"R\006public\022Q\n\ncreated_on\030\006 \001(\0132\032"
+  ".google.protobuf.TimestampB\026\232\204\236\003\021bson:\"c"
+  "reated_on\"R\tcreatedOn\"4\n\021FindRobotsReque"
+  "st\022\037\n\013location_id\030\001 \001(\tR\nlocationId\"@\n\022F"
+  "indRobotsResponse\022*\n\006robots\030\001 \003(\0132\022.viam"
+  ".app.v1.RobotR\006robots\"A\n\017NewRobotRequest"
+  "\022\022\n\004name\030\001 \001(\tR\004name\022\032\n\010location\030\002 \001(\tR\010"
+  "location\"\"\n\020NewRobotResponse\022\016\n\002id\030\001 \001(\t"
+  "R\002id\"T\n\022UpdateRobotRequest\022\016\n\002id\030\001 \001(\tR\002"
+  "id\022\022\n\004name\030\002 \001(\tR\004name\022\032\n\010location\030\003 \001(\t"
+  "R\010location\"\?\n\023UpdateRobotResponse\022(\n\005rob"
+  "ot\030\001 \001(\0132\022.viam.app.v1.RobotR\005robot\"$\n\022D"
+  "eleteRobotRequest\022\016\n\002id\030\001 \001(\tR\002id\"\025\n\023Del"
+  "eteRobotResponse\"0\n\025MarkPartAsMainReques"
+  "t\022\027\n\007part_id\030\001 \001(\tR\006partId\"\030\n\026MarkPartAs"
+  "MainResponse\"7\n\034CreateRobotPartSecretReq"
+  "uest\022\027\n\007part_id\030\001 \001(\tR\006partId\"K\n\035CreateR"
+  "obotPartSecretResponse\022*\n\004part\030\001 \001(\0132\026.v"
+  "iam.app.v1.RobotPartR\004part\"T\n\034DeleteRobo"
+  "tPartSecretRequest\022\027\n\007part_id\030\001 \001(\tR\006par"
+  "tId\022\033\n\tsecret_id\030\002 \001(\tR\010secretId\"\037\n\035Dele"
+  "teRobotPartSecretResponse2\267\021\n\nAppService"
+  "\022Y\n\016CreateLocation\022\".viam.app.v1.CreateL"
+  "ocationRequest\032#.viam.app.v1.CreateLocat"
+  "ionResponse\022b\n\021ListOrganizations\022%.viam."
+  "app.v1.ListOrganizationsRequest\032&.viam.a"
+  "pp.v1.ListOrganizationsResponse\022V\n\rListL"
+  "ocations\022!.viam.app.v1.ListLocationsRequ"
+  "est\032\".viam.app.v1.ListLocationsResponse\022"
+  "V\n\rShareLocation\022!.viam.app.v1.ShareLoca"
+  "tionRequest\032\".viam.app.v1.ShareLocationR"
+  "esponse\022\\\n\017UnshareLocation\022#.viam.app.v1"
+  ".UnshareLocationRequest\032$.viam.app.v1.Un"
+  "shareLocationResponse\022S\n\014LocationAuth\022 ."
+  "viam.app.v1.LocationAuthRequest\032!.viam.a"
+  "pp.v1.LocationAuthResponse\022k\n\024CreateLoca"
+  "tionSecret\022(.viam.app.v1.CreateLocationS"
+  "ecretRequest\032).viam.app.v1.CreateLocatio"
+  "nSecretResponse\022k\n\024DeleteLocationSecret\022"
+  "(.viam.app.v1.DeleteLocationSecretReques"
+  "t\032).viam.app.v1.DeleteLocationSecretResp"
+  "onse\022G\n\010GetRobot\022\034.viam.app.v1.GetRobotR"
+  "equest\032\035.viam.app.v1.GetRobotResponse\022V\n"
+  "\rGetRobotParts\022!.viam.app.v1.GetRobotPar"
+  "tsRequest\032\".viam.app.v1.GetRobotPartsRes"
+  "ponse\022S\n\014GetRobotPart\022 .viam.app.v1.GetR"
+  "obotPartRequest\032!.viam.app.v1.GetRobotPa"
+  "rtResponse\022_\n\020GetRobotPartLogs\022$.viam.ap"
+  "p.v1.GetRobotPartLogsRequest\032%.viam.app."
+  "v1.GetRobotPartLogsResponse\022d\n\021TailRobot"
+  "PartLogs\022%.viam.app.v1.TailRobotPartLogs"
+  "Request\032&.viam.app.v1.TailRobotPartLogsR"
+  "esponse0\001\022h\n\023GetRobotPartHistory\022\'.viam."
+  "app.v1.GetRobotPartHistoryRequest\032(.viam"
+  ".app.v1.GetRobotPartHistoryResponse\022\\\n\017U"
+  "pdateRobotPart\022#.viam.app.v1.UpdateRobot"
+  "PartRequest\032$.viam.app.v1.UpdateRobotPar"
+  "tResponse\022S\n\014NewRobotPart\022 .viam.app.v1."
+  "NewRobotPartRequest\032!.viam.app.v1.NewRob"
+  "otPartResponse\022\\\n\017DeleteRobotPart\022#.viam"
+  ".app.v1.DeleteRobotPartRequest\032$.viam.ap"
+  "p.v1.DeleteRobotPartResponse\022Y\n\016MarkPart"
+  "AsMain\022\".viam.app.v1.MarkPartAsMainReque"
+  "st\032#.viam.app.v1.MarkPartAsMainResponse\022"
+  "n\n\025CreateRobotPartSecret\022).viam.app.v1.C"
+  "reateRobotPartSecretRequest\032*.viam.app.v"
+  "1.CreateRobotPartSecretResponse\022n\n\025Delet"
+  "eRobotPartSecret\022).viam.app.v1.DeleteRob"
+  "otPartSecretRequest\032*.viam.app.v1.Delete"
+  "RobotPartSecretResponse\022M\n\nFindRobots\022\036."
+  "viam.app.v1.FindRobotsRequest\032\037.viam.app"
+  ".v1.FindRobotsResponse\022G\n\010NewRobot\022\034.via"
+  "m.app.v1.NewRobotRequest\032\035.viam.app.v1.N"
+  "ewRobotResponse\022P\n\013UpdateRobot\022\037.viam.ap"
+  "p.v1.UpdateRobotRequest\032 .viam.app.v1.Up"
+  "dateRobotResponse\022P\n\013DeleteRobot\022\037.viam."
+  "app.v1.DeleteRobotRequest\032 .viam.app.v1."
+  "DeleteRobotResponseB\030Z\026go.viam.com/api/a"
+  "pp/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
@@ -1502,9 +1599,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 8021, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 8453, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
-    &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 53,
+    &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 57,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
     file_level_metadata_app_2fv1_2fapp_2eproto, file_level_enum_descriptors_app_2fv1_2fapp_2eproto,
     file_level_service_descriptors_app_2fv1_2fapp_2eproto,
@@ -4577,6 +4674,592 @@ void ListLocationsRequest::InternalSwap(ListLocationsRequest* other) {
 
 // ===================================================================
 
+class ShareLocationRequest::_Internal {
+ public:
+};
+
+ShareLocationRequest::ShareLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ShareLocationRequest)
+}
+ShareLocationRequest::ShareLocationRequest(const ShareLocationRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ShareLocationRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.location_id_){}
+    , decltype(_impl_.organization_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.location_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.location_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_location_id().empty()) {
+    _this->_impl_.location_id_.Set(from._internal_location_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_organization_id().empty()) {
+    _this->_impl_.organization_id_.Set(from._internal_organization_id(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ShareLocationRequest)
+}
+
+inline void ShareLocationRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.location_id_){}
+    , decltype(_impl_.organization_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.location_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.location_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+ShareLocationRequest::~ShareLocationRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ShareLocationRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ShareLocationRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.location_id_.Destroy();
+  _impl_.organization_id_.Destroy();
+}
+
+void ShareLocationRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ShareLocationRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ShareLocationRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.location_id_.ClearToEmpty();
+  _impl_.organization_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ShareLocationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string location_id = 1 [json_name = "locationId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_location_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ShareLocationRequest.location_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string organization_id = 2 [json_name = "organizationId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_organization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ShareLocationRequest.organization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ShareLocationRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ShareLocationRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_location_id().data(), static_cast<int>(this->_internal_location_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ShareLocationRequest.location_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_location_id(), target);
+  }
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_organization_id().data(), static_cast<int>(this->_internal_organization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ShareLocationRequest.organization_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_organization_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ShareLocationRequest)
+  return target;
+}
+
+size_t ShareLocationRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ShareLocationRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_location_id());
+  }
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_organization_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ShareLocationRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ShareLocationRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ShareLocationRequest::GetClassData() const { return &_class_data_; }
+
+
+void ShareLocationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ShareLocationRequest*>(&to_msg);
+  auto& from = static_cast<const ShareLocationRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ShareLocationRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_location_id().empty()) {
+    _this->_internal_set_location_id(from._internal_location_id());
+  }
+  if (!from._internal_organization_id().empty()) {
+    _this->_internal_set_organization_id(from._internal_organization_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ShareLocationRequest::CopyFrom(const ShareLocationRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ShareLocationRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ShareLocationRequest::IsInitialized() const {
+  return true;
+}
+
+void ShareLocationRequest::InternalSwap(ShareLocationRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.location_id_, lhs_arena,
+      &other->_impl_.location_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.organization_id_, lhs_arena,
+      &other->_impl_.organization_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ShareLocationRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[10]);
+}
+
+// ===================================================================
+
+class ShareLocationResponse::_Internal {
+ public:
+};
+
+ShareLocationResponse::ShareLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ShareLocationResponse)
+}
+ShareLocationResponse::ShareLocationResponse(const ShareLocationResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  ShareLocationResponse* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ShareLocationResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ShareLocationResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ShareLocationResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata ShareLocationResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[11]);
+}
+
+// ===================================================================
+
+class UnshareLocationRequest::_Internal {
+ public:
+};
+
+UnshareLocationRequest::UnshareLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UnshareLocationRequest)
+}
+UnshareLocationRequest::UnshareLocationRequest(const UnshareLocationRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UnshareLocationRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.location_id_){}
+    , decltype(_impl_.organization_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.location_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.location_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_location_id().empty()) {
+    _this->_impl_.location_id_.Set(from._internal_location_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_organization_id().empty()) {
+    _this->_impl_.organization_id_.Set(from._internal_organization_id(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.UnshareLocationRequest)
+}
+
+inline void UnshareLocationRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.location_id_){}
+    , decltype(_impl_.organization_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.location_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.location_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UnshareLocationRequest::~UnshareLocationRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.UnshareLocationRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UnshareLocationRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.location_id_.Destroy();
+  _impl_.organization_id_.Destroy();
+}
+
+void UnshareLocationRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UnshareLocationRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.UnshareLocationRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.location_id_.ClearToEmpty();
+  _impl_.organization_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UnshareLocationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string location_id = 1 [json_name = "locationId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_location_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UnshareLocationRequest.location_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string organization_id = 2 [json_name = "organizationId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_organization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UnshareLocationRequest.organization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UnshareLocationRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.UnshareLocationRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_location_id().data(), static_cast<int>(this->_internal_location_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UnshareLocationRequest.location_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_location_id(), target);
+  }
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_organization_id().data(), static_cast<int>(this->_internal_organization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UnshareLocationRequest.organization_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_organization_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.UnshareLocationRequest)
+  return target;
+}
+
+size_t UnshareLocationRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.UnshareLocationRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_location_id());
+  }
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_organization_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UnshareLocationRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UnshareLocationRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UnshareLocationRequest::GetClassData() const { return &_class_data_; }
+
+
+void UnshareLocationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UnshareLocationRequest*>(&to_msg);
+  auto& from = static_cast<const UnshareLocationRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.UnshareLocationRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_location_id().empty()) {
+    _this->_internal_set_location_id(from._internal_location_id());
+  }
+  if (!from._internal_organization_id().empty()) {
+    _this->_internal_set_organization_id(from._internal_organization_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UnshareLocationRequest::CopyFrom(const UnshareLocationRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.UnshareLocationRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UnshareLocationRequest::IsInitialized() const {
+  return true;
+}
+
+void UnshareLocationRequest::InternalSwap(UnshareLocationRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.location_id_, lhs_arena,
+      &other->_impl_.location_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.organization_id_, lhs_arena,
+      &other->_impl_.organization_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UnshareLocationRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[12]);
+}
+
+// ===================================================================
+
+class UnshareLocationResponse::_Internal {
+ public:
+};
+
+UnshareLocationResponse::UnshareLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UnshareLocationResponse)
+}
+UnshareLocationResponse::UnshareLocationResponse(const UnshareLocationResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  UnshareLocationResponse* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.UnshareLocationResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UnshareLocationResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UnshareLocationResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata UnshareLocationResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[13]);
+}
+
+// ===================================================================
+
 class ListLocationsResponse::_Internal {
  public:
 };
@@ -4757,7 +5440,7 @@ void ListLocationsResponse::InternalSwap(ListLocationsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListLocationsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[10]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[14]);
 }
 
 // ===================================================================
@@ -4960,7 +5643,7 @@ void CreateLocationSecretRequest::InternalSwap(CreateLocationSecretRequest* othe
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateLocationSecretRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[11]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[15]);
 }
 
 // ===================================================================
@@ -5153,7 +5836,7 @@ void CreateLocationSecretResponse::InternalSwap(CreateLocationSecretResponse* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateLocationSecretResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[12]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[16]);
 }
 
 // ===================================================================
@@ -5406,7 +6089,7 @@ void DeleteLocationSecretRequest::InternalSwap(DeleteLocationSecretRequest* othe
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteLocationSecretRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[13]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[17]);
 }
 
 // ===================================================================
@@ -5446,7 +6129,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteLocationSecretResponse::
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteLocationSecretResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[14]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[18]);
 }
 
 // ===================================================================
@@ -5733,7 +6416,7 @@ void LocationAuth::InternalSwap(LocationAuth* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocationAuth::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[15]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[19]);
 }
 
 // ===================================================================
@@ -6068,7 +6751,7 @@ void SharedSecret::InternalSwap(SharedSecret* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SharedSecret::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[16]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[20]);
 }
 
 // ===================================================================
@@ -6271,7 +6954,7 @@ void LocationAuthRequest::InternalSwap(LocationAuthRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocationAuthRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[17]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[21]);
 }
 
 // ===================================================================
@@ -6464,7 +7147,7 @@ void LocationAuthResponse::InternalSwap(LocationAuthResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocationAuthResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[18]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[22]);
 }
 
 // ===================================================================
@@ -6667,7 +7350,7 @@ void GetRobotRequest::InternalSwap(GetRobotRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[19]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[23]);
 }
 
 // ===================================================================
@@ -6860,7 +7543,7 @@ void GetRobotResponse::InternalSwap(GetRobotResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[20]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[24]);
 }
 
 // ===================================================================
@@ -7063,7 +7746,7 @@ void GetRobotPartsRequest::InternalSwap(GetRobotPartsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[21]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[25]);
 }
 
 // ===================================================================
@@ -7248,7 +7931,7 @@ void GetRobotPartsResponse::InternalSwap(GetRobotPartsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[22]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[26]);
 }
 
 // ===================================================================
@@ -7451,7 +8134,7 @@ void GetRobotPartRequest::InternalSwap(GetRobotPartRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[23]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[27]);
 }
 
 // ===================================================================
@@ -7696,7 +8379,7 @@ void GetRobotPartResponse::InternalSwap(GetRobotPartResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[24]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[28]);
 }
 
 // ===================================================================
@@ -7926,7 +8609,7 @@ void GetRobotPartLogsRequest::InternalSwap(GetRobotPartLogsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartLogsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[25]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[29]);
 }
 
 // ===================================================================
@@ -8466,7 +9149,7 @@ void LogEntry::InternalSwap(LogEntry* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogEntry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[26]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[30]);
 }
 
 // ===================================================================
@@ -8651,7 +9334,7 @@ void GetRobotPartLogsResponse::InternalSwap(GetRobotPartLogsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartLogsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[27]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[31]);
 }
 
 // ===================================================================
@@ -8881,7 +9564,7 @@ void TailRobotPartLogsRequest::InternalSwap(TailRobotPartLogsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TailRobotPartLogsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[28]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[32]);
 }
 
 // ===================================================================
@@ -9066,7 +9749,7 @@ void TailRobotPartLogsResponse::InternalSwap(TailRobotPartLogsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TailRobotPartLogsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[29]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[33]);
 }
 
 // ===================================================================
@@ -9269,7 +9952,7 @@ void GetRobotPartHistoryRequest::InternalSwap(GetRobotPartHistoryRequest* other)
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartHistoryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[30]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[34]);
 }
 
 // ===================================================================
@@ -9454,7 +10137,7 @@ void GetRobotPartHistoryResponse::InternalSwap(GetRobotPartHistoryResponse* othe
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRobotPartHistoryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[31]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[35]);
 }
 
 // ===================================================================
@@ -9755,7 +10438,7 @@ void UpdateRobotPartRequest::InternalSwap(UpdateRobotPartRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateRobotPartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[32]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[36]);
 }
 
 // ===================================================================
@@ -9948,7 +10631,7 @@ void UpdateRobotPartResponse::InternalSwap(UpdateRobotPartResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateRobotPartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[33]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[37]);
 }
 
 // ===================================================================
@@ -10201,7 +10884,7 @@ void NewRobotPartRequest::InternalSwap(NewRobotPartRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NewRobotPartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[34]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[38]);
 }
 
 // ===================================================================
@@ -10404,7 +11087,7 @@ void NewRobotPartResponse::InternalSwap(NewRobotPartResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NewRobotPartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[35]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[39]);
 }
 
 // ===================================================================
@@ -10607,7 +11290,7 @@ void DeleteRobotPartRequest::InternalSwap(DeleteRobotPartRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteRobotPartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[36]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[40]);
 }
 
 // ===================================================================
@@ -10647,7 +11330,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteRobotPartResponse::GetCl
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteRobotPartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[37]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[41]);
 }
 
 // ===================================================================
@@ -11076,7 +11759,7 @@ void Fragment::InternalSwap(Fragment* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Fragment::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[38]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[42]);
 }
 
 // ===================================================================
@@ -11279,7 +11962,7 @@ void FindRobotsRequest::InternalSwap(FindRobotsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FindRobotsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[39]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[43]);
 }
 
 // ===================================================================
@@ -11464,7 +12147,7 @@ void FindRobotsResponse::InternalSwap(FindRobotsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FindRobotsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[40]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[44]);
 }
 
 // ===================================================================
@@ -11717,7 +12400,7 @@ void NewRobotRequest::InternalSwap(NewRobotRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NewRobotRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[41]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[45]);
 }
 
 // ===================================================================
@@ -11920,7 +12603,7 @@ void NewRobotResponse::InternalSwap(NewRobotResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NewRobotResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[42]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[46]);
 }
 
 // ===================================================================
@@ -12223,7 +12906,7 @@ void UpdateRobotRequest::InternalSwap(UpdateRobotRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateRobotRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[43]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[47]);
 }
 
 // ===================================================================
@@ -12416,7 +13099,7 @@ void UpdateRobotResponse::InternalSwap(UpdateRobotResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateRobotResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[44]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[48]);
 }
 
 // ===================================================================
@@ -12619,7 +13302,7 @@ void DeleteRobotRequest::InternalSwap(DeleteRobotRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteRobotRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[45]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[49]);
 }
 
 // ===================================================================
@@ -12659,7 +13342,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteRobotResponse::GetClassD
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteRobotResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[46]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[50]);
 }
 
 // ===================================================================
@@ -12862,7 +13545,7 @@ void MarkPartAsMainRequest::InternalSwap(MarkPartAsMainRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MarkPartAsMainRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[47]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[51]);
 }
 
 // ===================================================================
@@ -12902,7 +13585,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MarkPartAsMainResponse::GetCla
 ::PROTOBUF_NAMESPACE_ID::Metadata MarkPartAsMainResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[48]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[52]);
 }
 
 // ===================================================================
@@ -13105,7 +13788,7 @@ void CreateRobotPartSecretRequest::InternalSwap(CreateRobotPartSecretRequest* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateRobotPartSecretRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[49]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[53]);
 }
 
 // ===================================================================
@@ -13298,7 +13981,7 @@ void CreateRobotPartSecretResponse::InternalSwap(CreateRobotPartSecretResponse* 
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateRobotPartSecretResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[50]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[54]);
 }
 
 // ===================================================================
@@ -13551,7 +14234,7 @@ void DeleteRobotPartSecretRequest::InternalSwap(DeleteRobotPartSecretRequest* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteRobotPartSecretRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[51]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[55]);
 }
 
 // ===================================================================
@@ -13591,7 +14274,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteRobotPartSecretResponse:
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteRobotPartSecretResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
-      file_level_metadata_app_2fv1_2fapp_2eproto[52]);
+      file_level_metadata_app_2fv1_2fapp_2eproto[56]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -13638,6 +14321,22 @@ Arena::CreateMaybeMessage< ::viam::app::v1::CreateLocationResponse >(Arena* aren
 template<> PROTOBUF_NOINLINE ::viam::app::v1::ListLocationsRequest*
 Arena::CreateMaybeMessage< ::viam::app::v1::ListLocationsRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::ListLocationsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ShareLocationRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::ShareLocationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ShareLocationRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ShareLocationResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::ShareLocationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ShareLocationResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::UnshareLocationRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::UnshareLocationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::UnshareLocationRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::UnshareLocationResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::UnshareLocationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::UnshareLocationResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::v1::ListLocationsResponse*
 Arena::CreateMaybeMessage< ::viam::app::v1::ListLocationsResponse >(Arena* arena) {

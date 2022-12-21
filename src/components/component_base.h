@@ -1,9 +1,12 @@
 #ifndef COMPONENT_BASE_H
 #define COMPONENT_BASE_H
 
+#include <grpcpp/support/status.h>
+
 #include <string>
 
 #include "common/v1/common.pb.h"
+#include "google/protobuf/struct.pb.h"
 
 class ComponentType {
        public:

@@ -28,6 +28,7 @@ static const char* GripperService_method_names[] = {
   "/viam.component.gripper.v1.GripperService/Open",
   "/viam.component.gripper.v1.GripperService/Grab",
   "/viam.component.gripper.v1.GripperService/Stop",
+  "/viam.component.gripper.v1.GripperService/IsMoving",
 };
 
 std::unique_ptr< GripperService::Stub> GripperService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -40,6 +41,7 @@ GripperService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   : channel_(channel), rpcmethod_Open_(GripperService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Grab_(GripperService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(GripperService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(GripperService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GripperService::Stub::Open(::grpc::ClientContext* context, const ::viam::component::gripper::v1::OpenRequest& request, ::viam::component::gripper::v1::OpenResponse* response) {
@@ -111,6 +113,29 @@ void GripperService::Stub::async::Stop(::grpc::ClientContext* context, const ::v
   return result;
 }
 
+::grpc::Status GripperService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest& request, ::viam::component::gripper::v1::IsMovingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gripper::v1::IsMovingRequest, ::viam::component::gripper::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+}
+
+void GripperService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest* request, ::viam::component::gripper::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gripper::v1::IsMovingRequest, ::viam::component::gripper::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest* request, ::viam::component::gripper::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsMovingResponse>* GripperService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gripper::v1::IsMovingResponse, ::viam::component::gripper::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsMovingResponse>* GripperService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 GripperService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GripperService_method_names[0],
@@ -142,6 +167,16 @@ GripperService::Service::Service() {
              ::viam::component::gripper::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::IsMovingRequest, ::viam::component::gripper::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GripperService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gripper::v1::IsMovingRequest* req,
+             ::viam::component::gripper::v1::IsMovingResponse* resp) {
+               return service->IsMoving(ctx, req, resp);
+             }, this)));
 }
 
 GripperService::Service::~Service() {
@@ -162,6 +197,13 @@ GripperService::Service::~Service() {
 }
 
 ::grpc::Status GripperService::Service::Stop(::grpc::ServerContext* context, const ::viam::component::gripper::v1::StopRequest* request, ::viam::component::gripper::v1::StopResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::gripper::v1::IsMovingRequest* request, ::viam::component::gripper::v1::IsMovingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

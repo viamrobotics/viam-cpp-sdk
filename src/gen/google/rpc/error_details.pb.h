@@ -119,6 +119,229 @@ namespace rpc {
 
 // ===================================================================
 
+class ErrorInfo_MetadataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ErrorInfo_MetadataEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ErrorInfo_MetadataEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  ErrorInfo_MetadataEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR ErrorInfo_MetadataEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit ErrorInfo_MetadataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const ErrorInfo_MetadataEntry_DoNotUse& other);
+  static const ErrorInfo_MetadataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ErrorInfo_MetadataEntry_DoNotUse*>(&_ErrorInfo_MetadataEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.rpc.ErrorInfo.MetadataEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.rpc.ErrorInfo.MetadataEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_google_2frpc_2ferror_5fdetails_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class ErrorInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.rpc.ErrorInfo) */ {
+ public:
+  inline ErrorInfo() : ErrorInfo(nullptr) {}
+  ~ErrorInfo() override;
+  explicit PROTOBUF_CONSTEXPR ErrorInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ErrorInfo(const ErrorInfo& from);
+  ErrorInfo(ErrorInfo&& from) noexcept
+    : ErrorInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ErrorInfo& operator=(const ErrorInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ErrorInfo& operator=(ErrorInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ErrorInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ErrorInfo* internal_default_instance() {
+    return reinterpret_cast<const ErrorInfo*>(
+               &_ErrorInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(ErrorInfo& a, ErrorInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ErrorInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ErrorInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ErrorInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ErrorInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ErrorInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ErrorInfo& from) {
+    ErrorInfo::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ErrorInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "google.rpc.ErrorInfo";
+  }
+  protected:
+  explicit ErrorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMetadataFieldNumber = 3,
+    kReasonFieldNumber = 1,
+    kDomainFieldNumber = 2,
+  };
+  // map<string, string> metadata = 3 [json_name = "metadata"];
+  int metadata_size() const;
+  private:
+  int _internal_metadata_size() const;
+  public:
+  void clear_metadata();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_metadata() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_metadata();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      metadata() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_metadata();
+
+  // string reason = 1 [json_name = "reason"];
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
+  public:
+
+  // string domain = 2 [json_name = "domain"];
+  void clear_domain();
+  const std::string& domain() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_domain(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_domain();
+  PROTOBUF_NODISCARD std::string* release_domain();
+  void set_allocated_domain(std::string* domain);
+  private:
+  const std::string& _internal_domain() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_domain(const std::string& value);
+  std::string* _internal_mutable_domain();
+  public:
+
+  // @@protoc_insertion_point(class_scope:google.rpc.ErrorInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        ErrorInfo_MetadataEntry_DoNotUse,
+        std::string, std::string,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> metadata_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr domain_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_google_2frpc_2ferror_5fdetails_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RetryInfo final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.rpc.RetryInfo) */ {
  public:
@@ -167,7 +390,7 @@ class RetryInfo final :
                &_RetryInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(RetryInfo& a, RetryInfo& b) {
     a.Swap(&b);
@@ -324,7 +547,7 @@ class DebugInfo final :
                &_DebugInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(DebugInfo& a, DebugInfo& b) {
     a.Swap(&b);
@@ -503,7 +726,7 @@ class QuotaFailure_Violation final :
                &_QuotaFailure_Violation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(QuotaFailure_Violation& a, QuotaFailure_Violation& b) {
     a.Swap(&b);
@@ -672,7 +895,7 @@ class QuotaFailure final :
                &_QuotaFailure_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(QuotaFailure& a, QuotaFailure& b) {
     a.Swap(&b);
@@ -776,229 +999,6 @@ class QuotaFailure final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::rpc::QuotaFailure_Violation > violations_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_google_2frpc_2ferror_5fdetails_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ErrorInfo_MetadataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ErrorInfo_MetadataEntry_DoNotUse, 
-    std::string, std::string,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ErrorInfo_MetadataEntry_DoNotUse, 
-    std::string, std::string,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
-  ErrorInfo_MetadataEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR ErrorInfo_MetadataEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit ErrorInfo_MetadataEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const ErrorInfo_MetadataEntry_DoNotUse& other);
-  static const ErrorInfo_MetadataEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ErrorInfo_MetadataEntry_DoNotUse*>(&_ErrorInfo_MetadataEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.rpc.ErrorInfo.MetadataEntry.key");
- }
-  static bool ValidateValue(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.rpc.ErrorInfo.MetadataEntry.value");
- }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_google_2frpc_2ferror_5fdetails_2eproto;
-};
-
-// -------------------------------------------------------------------
-
-class ErrorInfo final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.rpc.ErrorInfo) */ {
- public:
-  inline ErrorInfo() : ErrorInfo(nullptr) {}
-  ~ErrorInfo() override;
-  explicit PROTOBUF_CONSTEXPR ErrorInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  ErrorInfo(const ErrorInfo& from);
-  ErrorInfo(ErrorInfo&& from) noexcept
-    : ErrorInfo() {
-    *this = ::std::move(from);
-  }
-
-  inline ErrorInfo& operator=(const ErrorInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ErrorInfo& operator=(ErrorInfo&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ErrorInfo& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ErrorInfo* internal_default_instance() {
-    return reinterpret_cast<const ErrorInfo*>(
-               &_ErrorInfo_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(ErrorInfo& a, ErrorInfo& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ErrorInfo* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ErrorInfo* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ErrorInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ErrorInfo>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ErrorInfo& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const ErrorInfo& from) {
-    ErrorInfo::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ErrorInfo* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "google.rpc.ErrorInfo";
-  }
-  protected:
-  explicit ErrorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kMetadataFieldNumber = 3,
-    kReasonFieldNumber = 1,
-    kDomainFieldNumber = 2,
-  };
-  // map<string, string> metadata = 3 [json_name = "metadata"];
-  int metadata_size() const;
-  private:
-  int _internal_metadata_size() const;
-  public:
-  void clear_metadata();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-      _internal_metadata() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-      _internal_mutable_metadata();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-      metadata() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-      mutable_metadata();
-
-  // string reason = 1 [json_name = "reason"];
-  void clear_reason();
-  const std::string& reason() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_reason(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_reason();
-  PROTOBUF_NODISCARD std::string* release_reason();
-  void set_allocated_reason(std::string* reason);
-  private:
-  const std::string& _internal_reason() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
-  std::string* _internal_mutable_reason();
-  public:
-
-  // string domain = 2 [json_name = "domain"];
-  void clear_domain();
-  const std::string& domain() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_domain(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_domain();
-  PROTOBUF_NODISCARD std::string* release_domain();
-  void set_allocated_domain(std::string* domain);
-  private:
-  const std::string& _internal_domain() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_domain(const std::string& value);
-  std::string* _internal_mutable_domain();
-  public:
-
-  // @@protoc_insertion_point(class_scope:google.rpc.ErrorInfo)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-        ErrorInfo_MetadataEntry_DoNotUse,
-        std::string, std::string,
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> metadata_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr domain_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2552,6 +2552,141 @@ class LocalizedMessage final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// ErrorInfo
+
+// string reason = 1 [json_name = "reason"];
+inline void ErrorInfo::clear_reason() {
+  _impl_.reason_.ClearToEmpty();
+}
+inline const std::string& ErrorInfo::reason() const {
+  // @@protoc_insertion_point(field_get:google.rpc.ErrorInfo.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ErrorInfo::set_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.rpc.ErrorInfo.reason)
+}
+inline std::string* ErrorInfo::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:google.rpc.ErrorInfo.reason)
+  return _s;
+}
+inline const std::string& ErrorInfo::_internal_reason() const {
+  return _impl_.reason_.Get();
+}
+inline void ErrorInfo::_internal_set_reason(const std::string& value) {
+  
+  _impl_.reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ErrorInfo::_internal_mutable_reason() {
+  
+  return _impl_.reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ErrorInfo::release_reason() {
+  // @@protoc_insertion_point(field_release:google.rpc.ErrorInfo.reason)
+  return _impl_.reason_.Release();
+}
+inline void ErrorInfo::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.reason_.IsDefault()) {
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.rpc.ErrorInfo.reason)
+}
+
+// string domain = 2 [json_name = "domain"];
+inline void ErrorInfo::clear_domain() {
+  _impl_.domain_.ClearToEmpty();
+}
+inline const std::string& ErrorInfo::domain() const {
+  // @@protoc_insertion_point(field_get:google.rpc.ErrorInfo.domain)
+  return _internal_domain();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ErrorInfo::set_domain(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.domain_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.rpc.ErrorInfo.domain)
+}
+inline std::string* ErrorInfo::mutable_domain() {
+  std::string* _s = _internal_mutable_domain();
+  // @@protoc_insertion_point(field_mutable:google.rpc.ErrorInfo.domain)
+  return _s;
+}
+inline const std::string& ErrorInfo::_internal_domain() const {
+  return _impl_.domain_.Get();
+}
+inline void ErrorInfo::_internal_set_domain(const std::string& value) {
+  
+  _impl_.domain_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ErrorInfo::_internal_mutable_domain() {
+  
+  return _impl_.domain_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ErrorInfo::release_domain() {
+  // @@protoc_insertion_point(field_release:google.rpc.ErrorInfo.domain)
+  return _impl_.domain_.Release();
+}
+inline void ErrorInfo::set_allocated_domain(std::string* domain) {
+  if (domain != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.domain_.SetAllocated(domain, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.domain_.IsDefault()) {
+    _impl_.domain_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.rpc.ErrorInfo.domain)
+}
+
+// map<string, string> metadata = 3 [json_name = "metadata"];
+inline int ErrorInfo::_internal_metadata_size() const {
+  return _impl_.metadata_.size();
+}
+inline int ErrorInfo::metadata_size() const {
+  return _internal_metadata_size();
+}
+inline void ErrorInfo::clear_metadata() {
+  _impl_.metadata_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+ErrorInfo::_internal_metadata() const {
+  return _impl_.metadata_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+ErrorInfo::metadata() const {
+  // @@protoc_insertion_point(field_map:google.rpc.ErrorInfo.metadata)
+  return _internal_metadata();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+ErrorInfo::_internal_mutable_metadata() {
+  return _impl_.metadata_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+ErrorInfo::mutable_metadata() {
+  // @@protoc_insertion_point(field_mutable_map:google.rpc.ErrorInfo.metadata)
+  return _internal_mutable_metadata();
+}
+
+// -------------------------------------------------------------------
+
 // RetryInfo
 
 // .google.protobuf.Duration retry_delay = 1 [json_name = "retryDelay"];
@@ -2914,141 +3049,6 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::rpc::QuotaFail
 QuotaFailure::violations() const {
   // @@protoc_insertion_point(field_list:google.rpc.QuotaFailure.violations)
   return _impl_.violations_;
-}
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// ErrorInfo
-
-// string reason = 1 [json_name = "reason"];
-inline void ErrorInfo::clear_reason() {
-  _impl_.reason_.ClearToEmpty();
-}
-inline const std::string& ErrorInfo::reason() const {
-  // @@protoc_insertion_point(field_get:google.rpc.ErrorInfo.reason)
-  return _internal_reason();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ErrorInfo::set_reason(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:google.rpc.ErrorInfo.reason)
-}
-inline std::string* ErrorInfo::mutable_reason() {
-  std::string* _s = _internal_mutable_reason();
-  // @@protoc_insertion_point(field_mutable:google.rpc.ErrorInfo.reason)
-  return _s;
-}
-inline const std::string& ErrorInfo::_internal_reason() const {
-  return _impl_.reason_.Get();
-}
-inline void ErrorInfo::_internal_set_reason(const std::string& value) {
-  
-  _impl_.reason_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ErrorInfo::_internal_mutable_reason() {
-  
-  return _impl_.reason_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ErrorInfo::release_reason() {
-  // @@protoc_insertion_point(field_release:google.rpc.ErrorInfo.reason)
-  return _impl_.reason_.Release();
-}
-inline void ErrorInfo::set_allocated_reason(std::string* reason) {
-  if (reason != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.reason_.SetAllocated(reason, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.reason_.IsDefault()) {
-    _impl_.reason_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:google.rpc.ErrorInfo.reason)
-}
-
-// string domain = 2 [json_name = "domain"];
-inline void ErrorInfo::clear_domain() {
-  _impl_.domain_.ClearToEmpty();
-}
-inline const std::string& ErrorInfo::domain() const {
-  // @@protoc_insertion_point(field_get:google.rpc.ErrorInfo.domain)
-  return _internal_domain();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ErrorInfo::set_domain(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.domain_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:google.rpc.ErrorInfo.domain)
-}
-inline std::string* ErrorInfo::mutable_domain() {
-  std::string* _s = _internal_mutable_domain();
-  // @@protoc_insertion_point(field_mutable:google.rpc.ErrorInfo.domain)
-  return _s;
-}
-inline const std::string& ErrorInfo::_internal_domain() const {
-  return _impl_.domain_.Get();
-}
-inline void ErrorInfo::_internal_set_domain(const std::string& value) {
-  
-  _impl_.domain_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ErrorInfo::_internal_mutable_domain() {
-  
-  return _impl_.domain_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ErrorInfo::release_domain() {
-  // @@protoc_insertion_point(field_release:google.rpc.ErrorInfo.domain)
-  return _impl_.domain_.Release();
-}
-inline void ErrorInfo::set_allocated_domain(std::string* domain) {
-  if (domain != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.domain_.SetAllocated(domain, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.domain_.IsDefault()) {
-    _impl_.domain_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:google.rpc.ErrorInfo.domain)
-}
-
-// map<string, string> metadata = 3 [json_name = "metadata"];
-inline int ErrorInfo::_internal_metadata_size() const {
-  return _impl_.metadata_.size();
-}
-inline int ErrorInfo::metadata_size() const {
-  return _internal_metadata_size();
-}
-inline void ErrorInfo::clear_metadata() {
-  _impl_.metadata_.Clear();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-ErrorInfo::_internal_metadata() const {
-  return _impl_.metadata_.GetMap();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-ErrorInfo::metadata() const {
-  // @@protoc_insertion_point(field_map:google.rpc.ErrorInfo.metadata)
-  return _internal_metadata();
-}
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-ErrorInfo::_internal_mutable_metadata() {
-  return _impl_.metadata_.MutableMap();
-}
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-ErrorInfo::mutable_metadata() {
-  // @@protoc_insertion_point(field_mutable_map:google.rpc.ErrorInfo.metadata)
-  return _internal_mutable_metadata();
 }
 
 // -------------------------------------------------------------------

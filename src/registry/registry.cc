@@ -10,6 +10,7 @@ using viam::robot::v1::Status;
 
 class ComponentRegistration {
        public:
+	ComponentRegistration();
 	ComponentType component_type;
 	std::string name;
 	ComponentServiceBase rpc_service;
@@ -48,7 +49,10 @@ void Registry::register_component(ComponentRegistration component) {
 		throw std::runtime_error(err);
 	}
 
-	components[component.name] = component;
+	std::pair<std::string, ComponentRegistration> pair_(component.name,
+							    component);
+	components.insert(pair_);
+	// components[component.name] = component;
 }
 
 ComponentRegistration Registry::lookup(std::string name) {

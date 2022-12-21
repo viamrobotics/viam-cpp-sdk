@@ -6,7 +6,11 @@
 #include "component/arm/v1/arm.grpc.pb.h"
 #include "component/arm/v1/arm.pb.h"
 #include "google/protobuf/struct.pb.h"
-#include "net/proto2/public/repeated_field.h"
+#include "grpcpp/channel.h"
+#include "grpcpp/client_context.h"
+#include "grpcpp/server.h"
+#include "grpcpp/server_context.h"
+#include "robot/v1/robot.grpc.pb.h"
 #include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
@@ -167,6 +171,9 @@ class TestService : public RobotService_ {
 	    ::grpc::ServerContext* context,
 	    const ::viam::robot::v1::GetOperationsRequest* request,
 	    ::viam::robot::v1::GetOperationsResponse* response) override;
+
+       public:
+	TestService();
 };
 
 ::grpc::Status TestService::FrameSystemConfig(
@@ -203,5 +210,19 @@ class TestService : public RobotService_ {
 
 TestService service() {
 	TestService service;
+	// TODO: add extra components to the manager here once they're defined
+	// in subsequent features
 	return service;
+}
+
+int test_resource_names(TestService service) {
+	grpc::testing::DefaultReactorTestPeer p;
+
+	RobotService::Stub mock_stub = RobotService::NewStub();
+	// RobotService::StubInterface(service) r;
+	// service.
+	//  service.ResourceNames()
+	//  grpc::testing::ChannelTestPeer test_channel;
+	//  grpc::testing
+	//  RobotService::NewStub(grpc::testing::ChannelTestPeer()) stub_;
 }

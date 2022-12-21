@@ -79,9 +79,10 @@ Struct map_to_struct(std::unordered_map<std::string, ProtoType> dict) {
 }
 
 // CR erodkin: hum. why doesn't this work?
-std::unordered_map<std::string, Value> struct_to_map(Struct struct_) {
-	return struct_.mutable_fields();
-}
+// std::unordered_map<std::string, Value> struct_to_map(Struct struct_) {
+// struct_.mutable_fields();
+// return struct_.mutable_fields();
+//}
 
 std::vector<ResourceName> resource_names_for_component(
     ComponentBase component) {

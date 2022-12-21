@@ -26,34 +26,6 @@ extern "C" void free_string(char *s);
 extern "C" char *dial(const char *uri, const char *payload, bool allow_insecure,
 		      void *ptr);
 
-class RobotServiceClient {
-       public:
-	RobotServiceClient(std::shared_ptr<Channel> channel)
-	    : stub_(RobotService::NewStub(channel)) {}
-
-	void Resources() {
-		ResourceNamesRequest req;
-
-		ResourceNamesResponse resp;
-		grpc::ClientContext context;
-
-		grpc::Status status =
-		    stub_->ResourceNames(&context, req, &resp);
-		if (!status.ok()) {
-			std::cout << "Rpc failed " << status.error_code()
-				  << status.error_message() << std::endl;
-			return;
-		}
-		for (auto i = 0; i < resp.resources_size(); i++) {
-			std::cout << "Resource " << i << " "
-				  << resp.resources(i).type() << std::endl;
-		}
-	}
-
-       private:
-	std::unique_ptr<RobotService::Stub> stub_;
-};
-
 int main() {
 	const char *uri = "webrtc-test-main.jkek76kqnh.viam.cloud";
 	DialOptions dial_options = DialOptions();

@@ -33,6 +33,7 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "app/v1/app.pb.h"
+#include "common/v1/common.pb.h"
 #include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include "tagger/v1/tagger.pb.h"
@@ -98,6 +99,9 @@ extern LogRequestDefaultTypeInternal _LogRequest_default_instance_;
 class LogResponse;
 struct LogResponseDefaultTypeInternal;
 extern LogResponseDefaultTypeInternal _LogResponse_default_instance_;
+class ModuleConfig;
+struct ModuleConfigDefaultTypeInternal;
+extern ModuleConfigDefaultTypeInternal _ModuleConfig_default_instance_;
 class NeedsRestartRequest;
 struct NeedsRestartRequestDefaultTypeInternal;
 extern NeedsRestartRequestDefaultTypeInternal _NeedsRestartRequest_default_instance_;
@@ -171,6 +175,7 @@ template<> ::viam::app::v1::JWKSFile* Arena::CreateMaybeMessage<::viam::app::v1:
 template<> ::viam::app::v1::LocationSecret* Arena::CreateMaybeMessage<::viam::app::v1::LocationSecret>(Arena*);
 template<> ::viam::app::v1::LogRequest* Arena::CreateMaybeMessage<::viam::app::v1::LogRequest>(Arena*);
 template<> ::viam::app::v1::LogResponse* Arena::CreateMaybeMessage<::viam::app::v1::LogResponse>(Arena*);
+template<> ::viam::app::v1::ModuleConfig* Arena::CreateMaybeMessage<::viam::app::v1::ModuleConfig>(Arena*);
 template<> ::viam::app::v1::NeedsRestartRequest* Arena::CreateMaybeMessage<::viam::app::v1::NeedsRestartRequest>(Arena*);
 template<> ::viam::app::v1::NeedsRestartResponse* Arena::CreateMaybeMessage<::viam::app::v1::NeedsRestartResponse>(Arena*);
 template<> ::viam::app::v1::NetworkConfig* Arena::CreateMaybeMessage<::viam::app::v1::NetworkConfig>(Arena*);
@@ -350,6 +355,7 @@ class RobotConfig final :
     kComponentsFieldNumber = 3,
     kProcessesFieldNumber = 4,
     kServicesFieldNumber = 5,
+    kModulesFieldNumber = 9,
     kCloudFieldNumber = 1,
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
@@ -426,6 +432,24 @@ class RobotConfig final :
   ::viam::app::v1::ServiceConfig* add_services();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ServiceConfig >&
       services() const;
+
+  // repeated .viam.app.v1.ModuleConfig modules = 9 [json_name = "modules"];
+  int modules_size() const;
+  private:
+  int _internal_modules_size() const;
+  public:
+  void clear_modules();
+  ::viam::app::v1::ModuleConfig* mutable_modules(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig >*
+      mutable_modules();
+  private:
+  const ::viam::app::v1::ModuleConfig& _internal_modules(int index) const;
+  ::viam::app::v1::ModuleConfig* _internal_add_modules();
+  public:
+  const ::viam::app::v1::ModuleConfig& modules(int index) const;
+  ::viam::app::v1::ModuleConfig* add_modules();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig >&
+      modules() const;
 
   // .viam.app.v1.CloudConfig cloud = 1 [json_name = "cloud"];
   bool has_cloud() const;
@@ -508,6 +532,7 @@ class RobotConfig final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ComponentConfig > components_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ProcessConfig > processes_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ServiceConfig > services_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig > modules_;
     ::viam::app::v1::CloudConfig* cloud_;
     ::viam::app::v1::NetworkConfig* network_;
     ::viam::app::v1::AuthConfig* auth_;
@@ -1094,6 +1119,7 @@ class ComponentConfig final :
     kNamespaceFieldNumber = 2,
     kTypeFieldNumber = 3,
     kModelFieldNumber = 4,
+    kApiFieldNumber = 9,
     kFrameFieldNumber = 5,
     kAttributesFieldNumber = 8,
   };
@@ -1195,6 +1221,20 @@ class ComponentConfig final :
   std::string* _internal_mutable_model();
   public:
 
+  // string api = 9 [json_name = "api"];
+  void clear_api();
+  const std::string& api() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_api(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_api();
+  PROTOBUF_NODISCARD std::string* release_api();
+  void set_allocated_api(std::string* api);
+  private:
+  const std::string& _internal_api() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_api(const std::string& value);
+  std::string* _internal_mutable_api();
+  public:
+
   // .viam.app.v1.Frame frame = 5 [json_name = "frame"];
   bool has_frame() const;
   private:
@@ -1245,6 +1285,7 @@ class ComponentConfig final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_;
     ::viam::app::v1::Frame* frame_;
     ::PROTOBUF_NAMESPACE_ID::Struct* attributes_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2944,6 +2985,7 @@ class Frame final :
     kParentFieldNumber = 1,
     kTranslationFieldNumber = 2,
     kOrientationFieldNumber = 3,
+    kGeometryFieldNumber = 4,
   };
   // string parent = 1 [json_name = "parent"];
   void clear_parent();
@@ -2995,6 +3037,24 @@ class Frame final :
       ::viam::app::v1::Orientation* orientation);
   ::viam::app::v1::Orientation* unsafe_arena_release_orientation();
 
+  // .viam.common.v1.Geometry geometry = 4 [json_name = "geometry"];
+  bool has_geometry() const;
+  private:
+  bool _internal_has_geometry() const;
+  public:
+  void clear_geometry();
+  const ::viam::common::v1::Geometry& geometry() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Geometry* release_geometry();
+  ::viam::common::v1::Geometry* mutable_geometry();
+  void set_allocated_geometry(::viam::common::v1::Geometry* geometry);
+  private:
+  const ::viam::common::v1::Geometry& _internal_geometry() const;
+  ::viam::common::v1::Geometry* _internal_mutable_geometry();
+  public:
+  void unsafe_arena_set_allocated_geometry(
+      ::viam::common::v1::Geometry* geometry);
+  ::viam::common::v1::Geometry* unsafe_arena_release_geometry();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.Frame)
  private:
   class _Internal;
@@ -3006,6 +3066,7 @@ class Frame final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_;
     ::viam::app::v1::Translation* translation_;
     ::viam::app::v1::Orientation* orientation_;
+    ::viam::common::v1::Geometry* geometry_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -6659,6 +6720,175 @@ class NeedsRestartResponse final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ModuleConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ModuleConfig) */ {
+ public:
+  inline ModuleConfig() : ModuleConfig(nullptr) {}
+  ~ModuleConfig() override;
+  explicit PROTOBUF_CONSTEXPR ModuleConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ModuleConfig(const ModuleConfig& from);
+  ModuleConfig(ModuleConfig&& from) noexcept
+    : ModuleConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline ModuleConfig& operator=(const ModuleConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleConfig& operator=(ModuleConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModuleConfig* internal_default_instance() {
+    return reinterpret_cast<const ModuleConfig*>(
+               &_ModuleConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(ModuleConfig& a, ModuleConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModuleConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModuleConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ModuleConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ModuleConfig& from) {
+    ModuleConfig::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModuleConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ModuleConfig";
+  }
+  protected:
+  explicit ModuleConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kPathFieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string path = 2 [json_name = "path"];
+  void clear_path();
+  const std::string& path() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_path(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_path();
+  PROTOBUF_NODISCARD std::string* release_path();
+  void set_allocated_path(std::string* path);
+  private:
+  const std::string& _internal_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(const std::string& value);
+  std::string* _internal_mutable_path();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
 // ===================================================================
 
 
@@ -7126,6 +7356,46 @@ inline void RobotConfig::_internal_set_debug(bool value) {
 inline void RobotConfig::set_debug(bool value) {
   _internal_set_debug(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.RobotConfig.debug)
+}
+
+// repeated .viam.app.v1.ModuleConfig modules = 9 [json_name = "modules"];
+inline int RobotConfig::_internal_modules_size() const {
+  return _impl_.modules_.size();
+}
+inline int RobotConfig::modules_size() const {
+  return _internal_modules_size();
+}
+inline void RobotConfig::clear_modules() {
+  _impl_.modules_.Clear();
+}
+inline ::viam::app::v1::ModuleConfig* RobotConfig::mutable_modules(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.modules)
+  return _impl_.modules_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig >*
+RobotConfig::mutable_modules() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RobotConfig.modules)
+  return &_impl_.modules_;
+}
+inline const ::viam::app::v1::ModuleConfig& RobotConfig::_internal_modules(int index) const {
+  return _impl_.modules_.Get(index);
+}
+inline const ::viam::app::v1::ModuleConfig& RobotConfig::modules(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.modules)
+  return _internal_modules(index);
+}
+inline ::viam::app::v1::ModuleConfig* RobotConfig::_internal_add_modules() {
+  return _impl_.modules_.Add();
+}
+inline ::viam::app::v1::ModuleConfig* RobotConfig::add_modules() {
+  ::viam::app::v1::ModuleConfig* _add = _internal_add_modules();
+  // @@protoc_insertion_point(field_add:viam.app.v1.RobotConfig.modules)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleConfig >&
+RobotConfig::modules() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.modules)
+  return _impl_.modules_;
 }
 
 // -------------------------------------------------------------------
@@ -8138,6 +8408,56 @@ inline void ComponentConfig::set_allocated_attributes(::PROTOBUF_NAMESPACE_ID::S
   }
   _impl_.attributes_ = attributes;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ComponentConfig.attributes)
+}
+
+// string api = 9 [json_name = "api"];
+inline void ComponentConfig::clear_api() {
+  _impl_.api_.ClearToEmpty();
+}
+inline const std::string& ComponentConfig::api() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ComponentConfig.api)
+  return _internal_api();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ComponentConfig::set_api(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.api_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ComponentConfig.api)
+}
+inline std::string* ComponentConfig::mutable_api() {
+  std::string* _s = _internal_mutable_api();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ComponentConfig.api)
+  return _s;
+}
+inline const std::string& ComponentConfig::_internal_api() const {
+  return _impl_.api_.Get();
+}
+inline void ComponentConfig::_internal_set_api(const std::string& value) {
+  
+  _impl_.api_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ComponentConfig::_internal_mutable_api() {
+  
+  return _impl_.api_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ComponentConfig::release_api() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ComponentConfig.api)
+  return _impl_.api_.Release();
+}
+inline void ComponentConfig::set_allocated_api(std::string* api) {
+  if (api != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.api_.SetAllocated(api, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.api_.IsDefault()) {
+    _impl_.api_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ComponentConfig.api)
 }
 
 // -------------------------------------------------------------------
@@ -9924,6 +10244,91 @@ inline void Frame::set_allocated_orientation(::viam::app::v1::Orientation* orien
   }
   _impl_.orientation_ = orientation;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Frame.orientation)
+}
+
+// .viam.common.v1.Geometry geometry = 4 [json_name = "geometry"];
+inline bool Frame::_internal_has_geometry() const {
+  return this != internal_default_instance() && _impl_.geometry_ != nullptr;
+}
+inline bool Frame::has_geometry() const {
+  return _internal_has_geometry();
+}
+inline const ::viam::common::v1::Geometry& Frame::_internal_geometry() const {
+  const ::viam::common::v1::Geometry* p = _impl_.geometry_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Geometry&>(
+      ::viam::common::v1::_Geometry_default_instance_);
+}
+inline const ::viam::common::v1::Geometry& Frame::geometry() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Frame.geometry)
+  return _internal_geometry();
+}
+inline void Frame::unsafe_arena_set_allocated_geometry(
+    ::viam::common::v1::Geometry* geometry) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.geometry_);
+  }
+  _impl_.geometry_ = geometry;
+  if (geometry) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Frame.geometry)
+}
+inline ::viam::common::v1::Geometry* Frame::release_geometry() {
+  
+  ::viam::common::v1::Geometry* temp = _impl_.geometry_;
+  _impl_.geometry_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Geometry* Frame::unsafe_arena_release_geometry() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Frame.geometry)
+  
+  ::viam::common::v1::Geometry* temp = _impl_.geometry_;
+  _impl_.geometry_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Geometry* Frame::_internal_mutable_geometry() {
+  
+  if (_impl_.geometry_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Geometry>(GetArenaForAllocation());
+    _impl_.geometry_ = p;
+  }
+  return _impl_.geometry_;
+}
+inline ::viam::common::v1::Geometry* Frame::mutable_geometry() {
+  ::viam::common::v1::Geometry* _msg = _internal_mutable_geometry();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Frame.geometry)
+  return _msg;
+}
+inline void Frame::set_allocated_geometry(::viam::common::v1::Geometry* geometry) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.geometry_);
+  }
+  if (geometry) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(geometry));
+    if (message_arena != submessage_arena) {
+      geometry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, geometry, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.geometry_ = geometry;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Frame.geometry)
 }
 
 // -------------------------------------------------------------------
@@ -12716,9 +13121,115 @@ inline void NeedsRestartResponse::set_allocated_restart_check_interval(::PROTOBU
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.NeedsRestartResponse.restart_check_interval)
 }
 
+// -------------------------------------------------------------------
+
+// ModuleConfig
+
+// string name = 1 [json_name = "name"];
+inline void ModuleConfig::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& ModuleConfig::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleConfig.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleConfig::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleConfig.name)
+}
+inline std::string* ModuleConfig::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleConfig.name)
+  return _s;
+}
+inline const std::string& ModuleConfig::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void ModuleConfig::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleConfig::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleConfig::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleConfig.name)
+  return _impl_.name_.Release();
+}
+inline void ModuleConfig::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.name)
+}
+
+// string path = 2 [json_name = "path"];
+inline void ModuleConfig::clear_path() {
+  _impl_.path_.ClearToEmpty();
+}
+inline const std::string& ModuleConfig::path() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleConfig.path)
+  return _internal_path();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleConfig::set_path(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.path_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleConfig.path)
+}
+inline std::string* ModuleConfig::mutable_path() {
+  std::string* _s = _internal_mutable_path();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleConfig.path)
+  return _s;
+}
+inline const std::string& ModuleConfig::_internal_path() const {
+  return _impl_.path_.Get();
+}
+inline void ModuleConfig::_internal_set_path(const std::string& value) {
+  
+  _impl_.path_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleConfig::_internal_mutable_path() {
+  
+  return _impl_.path_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleConfig::release_path() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleConfig.path)
+  return _impl_.path_.Release();
+}
+inline void ModuleConfig::set_allocated_path(std::string* path) {
+  if (path != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.path_.SetAllocated(path, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.path_.IsDefault()) {
+    _impl_.path_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.path)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

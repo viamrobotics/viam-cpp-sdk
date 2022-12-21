@@ -33,6 +33,7 @@ static const char* MotorService_method_names[] = {
   "/viam.component.motor.v1.MotorService/GetProperties",
   "/viam.component.motor.v1.MotorService/Stop",
   "/viam.component.motor.v1.MotorService/IsPowered",
+  "/viam.component.motor.v1.MotorService/IsMoving",
 };
 
 std::unique_ptr< MotorService::Stub> MotorService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -50,6 +51,7 @@ MotorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_GetProperties_(MotorService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(MotorService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_IsPowered_(MotorService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(MotorService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotorService::Stub::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest& request, ::viam::component::motor::v1::SetPowerResponse* response) {
@@ -236,6 +238,29 @@ void MotorService::Stub::async::IsPowered(::grpc::ClientContext* context, const 
   return result;
 }
 
+::grpc::Status MotorService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::viam::component::motor::v1::IsMovingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+}
+
+void MotorService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+}
+
+void MotorService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsMovingResponse>* MotorService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::IsMovingResponse, ::viam::component::motor::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsMovingResponse>* MotorService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[0],
@@ -317,6 +342,16 @@ MotorService::Service::Service() {
              ::viam::component::motor::v1::IsPoweredResponse* resp) {
                return service->IsPowered(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotorService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotorService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::motor::v1::IsMovingRequest* req,
+             ::viam::component::motor::v1::IsMovingResponse* resp) {
+               return service->IsMoving(ctx, req, resp);
+             }, this)));
 }
 
 MotorService::Service::~Service() {
@@ -372,6 +407,13 @@ MotorService::Service::~Service() {
 }
 
 ::grpc::Status MotorService::Service::IsPowered(::grpc::ServerContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotorService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -251,9 +251,11 @@ struct GeoPointDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
 PROTOBUF_CONSTEXPR Transform::Transform(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.reference_frame_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.reference_frame_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.pose_in_observer_frame_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+  , /*decltype(_impl_.physical_object_)*/nullptr} {}
 struct TransformDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TransformDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -440,7 +442,7 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, _impl_.latitude_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, _impl_.longitude_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -448,6 +450,10 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _impl_.reference_frame_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _impl_.pose_in_observer_frame_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _impl_.physical_object_),
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::WorldState, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -482,9 +488,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 117, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
   { 125, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
   { 133, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-  { 141, -1, -1, sizeof(::viam::common::v1::Transform)},
-  { 149, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 158, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 141, 150, -1, sizeof(::viam::common::v1::Transform)},
+  { 153, -1, -1, sizeof(::viam::common::v1::WorldState)},
+  { 162, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -550,28 +556,31 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "oud\030\001 \001(\014R\npointCloud\022A\n\ngeometries\030\002 \001("
   "\0132!.viam.common.v1.GeometriesInFrameR\nge"
   "ometries\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010"
-  "latitude\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"\206"
+  "latitude\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"\342"
   "\001\n\tTransform\022\'\n\017reference_frame\030\001 \001(\tR\016r"
   "eferenceFrame\022P\n\026pose_in_observer_frame\030"
   "\002 \001(\0132\033.viam.common.v1.PoseInFrameR\023pose"
-  "InObserverFrame\"\332\001\n\nWorldState\022\?\n\tobstac"
-  "les\030\001 \003(\0132!.viam.common.v1.GeometriesInF"
-  "rameR\tobstacles\022P\n\022interaction_spaces\030\002 "
-  "\003(\0132!.viam.common.v1.GeometriesInFrameR\021"
-  "interactionSpaces\0229\n\ntransforms\030\003 \003(\0132\031."
-  "viam.common.v1.TransformR\ntransforms\"-\n\016"
-  "ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isMov"
-  "ing:a\n\032safety_heartbeat_monitored\022\036.goog"
-  "le.protobuf.MethodOptions\030\244\222\005 \001(\010R\030safet"
-  "yHeartbeatMonitored\210\001\001B/\n\022com.viam.commo"
-  "n.v1Z\031go.viam.com/api/common/v1b\006proto3"
+  "InObserverFrame\022F\n\017physical_object\030\003 \001(\013"
+  "2\030.viam.common.v1.GeometryH\000R\016physicalOb"
+  "ject\210\001\001B\022\n\020_physical_object\"\332\001\n\nWorldSta"
+  "te\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1.G"
+  "eometriesInFrameR\tobstacles\022P\n\022interacti"
+  "on_spaces\030\002 \003(\0132!.viam.common.v1.Geometr"
+  "iesInFrameR\021interactionSpaces\0229\n\ntransfo"
+  "rms\030\003 \003(\0132\031.viam.common.v1.TransformR\ntr"
+  "ansforms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030"
+  "\001 \001(\010R\010isMoving:a\n\032safety_heartbeat_moni"
+  "tored\022\036.google.protobuf.MethodOptions\030\244\222"
+  "\005 \001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022co"
+  "m.viam.common.v1Z\031go.viam.com/api/common"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 2199, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 2291, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
     &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 1, 19,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
@@ -4333,12 +4342,21 @@ void GeoPoint::InternalSwap(GeoPoint* other) {
 
 class Transform::_Internal {
  public:
+  using HasBits = decltype(std::declval<Transform>()._impl_._has_bits_);
   static const ::viam::common::v1::PoseInFrame& pose_in_observer_frame(const Transform* msg);
+  static const ::viam::common::v1::Geometry& physical_object(const Transform* msg);
+  static void set_has_physical_object(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 const ::viam::common::v1::PoseInFrame&
 Transform::_Internal::pose_in_observer_frame(const Transform* msg) {
   return *msg->_impl_.pose_in_observer_frame_;
+}
+const ::viam::common::v1::Geometry&
+Transform::_Internal::physical_object(const Transform* msg) {
+  return *msg->_impl_.physical_object_;
 }
 Transform::Transform(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -4350,9 +4368,11 @@ Transform::Transform(const Transform& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   Transform* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.reference_frame_){}
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.reference_frame_){}
     , decltype(_impl_.pose_in_observer_frame_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+    , decltype(_impl_.physical_object_){nullptr}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   _impl_.reference_frame_.InitDefault();
@@ -4366,6 +4386,9 @@ Transform::Transform(const Transform& from)
   if (from._internal_has_pose_in_observer_frame()) {
     _this->_impl_.pose_in_observer_frame_ = new ::viam::common::v1::PoseInFrame(*from._impl_.pose_in_observer_frame_);
   }
+  if (from._internal_has_physical_object()) {
+    _this->_impl_.physical_object_ = new ::viam::common::v1::Geometry(*from._impl_.physical_object_);
+  }
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.Transform)
 }
 
@@ -4374,9 +4397,11 @@ inline void Transform::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.reference_frame_){}
-    , decltype(_impl_.pose_in_observer_frame_){nullptr}
+      decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.reference_frame_){}
+    , decltype(_impl_.pose_in_observer_frame_){nullptr}
+    , decltype(_impl_.physical_object_){nullptr}
   };
   _impl_.reference_frame_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4397,6 +4422,7 @@ inline void Transform::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.reference_frame_.Destroy();
   if (this != internal_default_instance()) delete _impl_.pose_in_observer_frame_;
+  if (this != internal_default_instance()) delete _impl_.physical_object_;
 }
 
 void Transform::SetCachedSize(int size) const {
@@ -4414,11 +4440,18 @@ void Transform::Clear() {
     delete _impl_.pose_in_observer_frame_;
   }
   _impl_.pose_in_observer_frame_ = nullptr;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.physical_object_ != nullptr);
+    _impl_.physical_object_->Clear();
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Transform::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -4441,6 +4474,14 @@ const char* Transform::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
         } else
           goto handle_unusual;
         continue;
+      // optional .viam.common.v1.Geometry physical_object = 3 [json_name = "physicalObject"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_physical_object(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -4457,6 +4498,7 @@ const char* Transform::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -4485,6 +4527,13 @@ uint8_t* Transform::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::pose_in_observer_frame(this),
         _Internal::pose_in_observer_frame(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .viam.common.v1.Geometry physical_object = 3 [json_name = "physicalObject"];
+  if (_internal_has_physical_object()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::physical_object(this),
+        _Internal::physical_object(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -4517,6 +4566,14 @@ size_t Transform::ByteSizeLong() const {
         *_impl_.pose_in_observer_frame_);
   }
 
+  // optional .viam.common.v1.Geometry physical_object = 3 [json_name = "physicalObject"];
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.physical_object_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -4542,6 +4599,10 @@ void Transform::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
     _this->_internal_mutable_pose_in_observer_frame()->::viam::common::v1::PoseInFrame::MergeFrom(
         from._internal_pose_in_observer_frame());
   }
+  if (from._internal_has_physical_object()) {
+    _this->_internal_mutable_physical_object()->::viam::common::v1::Geometry::MergeFrom(
+        from._internal_physical_object());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -4561,11 +4622,17 @@ void Transform::InternalSwap(Transform* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.reference_frame_, lhs_arena,
       &other->_impl_.reference_frame_, rhs_arena
   );
-  swap(_impl_.pose_in_observer_frame_, other->_impl_.pose_in_observer_frame_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Transform, _impl_.physical_object_)
+      + sizeof(Transform::_impl_.physical_object_)
+      - PROTOBUF_FIELD_OFFSET(Transform, _impl_.pose_in_observer_frame_)>(
+          reinterpret_cast<char*>(&_impl_.pose_in_observer_frame_),
+          reinterpret_cast<char*>(&other->_impl_.pose_in_observer_frame_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Transform::GetMetadata() const {
