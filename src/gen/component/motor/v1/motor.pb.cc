@@ -230,7 +230,6 @@ PROTOBUF_CONSTEXPR Status::Status(
     ::_pbi::ConstantInitialized)
   : position_(0)
   , is_powered_(false)
-  , position_reporting_(false)
   , is_moving_(false){}
 struct StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StatusDefaultTypeInternal()
@@ -403,7 +402,6 @@ const uint32_t TableStruct_component_2fmotor_2fv1_2fmotor_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::Status, is_powered_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::Status, position_reporting_),
   PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::Status, position_),
   PROTOBUF_FIELD_OFFSET(::viam::component::motor::v1::Status, is_moving_),
   ~0u,  // no _has_bits_
@@ -439,8 +437,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 107, -1, -1, sizeof(::viam::component::motor::v1::GetPropertiesRequest)},
   { 115, -1, -1, sizeof(::viam::component::motor::v1::GetPropertiesResponse)},
   { 122, -1, -1, sizeof(::viam::component::motor::v1::Status)},
-  { 132, -1, -1, sizeof(::viam::component::motor::v1::IsMovingRequest)},
-  { 139, -1, -1, sizeof(::viam::component::motor::v1::IsMovingResponse)},
+  { 131, -1, -1, sizeof(::viam::component::motor::v1::IsMovingRequest)},
+  { 138, -1, -1, sizeof(::viam::component::motor::v1::IsMovingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -498,50 +496,49 @@ const char descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto[] PR
   "quest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\013"
   "2\027.google.protobuf.StructR\005extra\"F\n\025GetP"
   "ropertiesResponse\022-\n\022position_reporting\030"
-  "\001 \001(\010R\021positionReporting\"\217\001\n\006Status\022\035\n\ni"
-  "s_powered\030\001 \001(\010R\tisPowered\022-\n\022position_r"
-  "eporting\030\002 \001(\010R\021positionReporting\022\032\n\010pos"
-  "ition\030\003 \001(\001R\010position\022\033\n\tis_moving\030\004 \001(\010"
-  "R\010isMoving\"%\n\017IsMovingRequest\022\022\n\004name\030\001 "
-  "\001(\tR\004name\"/\n\020IsMovingResponse\022\033\n\tis_movi"
-  "ng\030\001 \001(\010R\010isMoving2\367\n\n\014MotorService\022\226\001\n\010"
-  "SetPower\022(.viam.component.motor.v1.SetPo"
-  "werRequest\032).viam.component.motor.v1.Set"
-  "PowerResponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/api/v1/"
-  "component/motor/{name}/power\022\216\001\n\005GoFor\022%"
-  ".viam.component.motor.v1.GoForRequest\032&."
-  "viam.component.motor.v1.GoForResponse\"6\240"
-  "\222)\001\202\323\344\223\002,\032*/viam/api/v1/component/motor/"
-  "{name}/go_for\022\212\001\n\004GoTo\022$.viam.component."
-  "motor.v1.GoToRequest\032%.viam.component.mo"
-  "tor.v1.GoToResponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/a"
-  "pi/v1/component/motor/{name}/go_to\022\254\001\n\021R"
-  "esetZeroPosition\0221.viam.component.motor."
-  "v1.ResetZeroPositionRequest\0322.viam.compo"
-  "nent.motor.v1.ResetZeroPositionResponse\""
-  "0\202\323\344\223\002*\032(/viam/api/v1/component/motor/{n"
-  "ame}/zero\022\236\001\n\013GetPosition\022+.viam.compone"
-  "nt.motor.v1.GetPositionRequest\032,.viam.co"
-  "mponent.motor.v1.GetPositionResponse\"4\202\323"
-  "\344\223\002.\022,/viam/api/v1/component/motor/{name"
-  "}/position\022\244\001\n\rGetProperties\022-.viam.comp"
-  "onent.motor.v1.GetPropertiesRequest\032..vi"
-  "am.component.motor.v1.GetPropertiesRespo"
-  "nse\"4\202\323\344\223\002.\022,/viam/api/v1/component/moto"
-  "r/{name}/features\022\205\001\n\004Stop\022$.viam.compon"
-  "ent.motor.v1.StopRequest\032%.viam.componen"
-  "t.motor.v1.StopResponse\"0\202\323\344\223\002*\032(/viam/a"
-  "pi/v1/component/motor/{name}/stop\022\227\001\n\tIs"
-  "Powered\022).viam.component.motor.v1.IsPowe"
-  "redRequest\032*.viam.component.motor.v1.IsP"
-  "oweredResponse\"3\202\323\344\223\002-\022+/viam/api/v1/com"
-  "ponent/motor/{name}/powered\022\226\001\n\010IsMoving"
-  "\022(.viam.component.motor.v1.IsMovingReque"
-  "st\032).viam.component.motor.v1.IsMovingRes"
-  "ponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/mo"
-  "tor/{name}/is_movingBA\n\033com.viam.compone"
-  "nt.motor.v1Z\"go.viam.com/api/component/m"
-  "otor/v1b\006proto3"
+  "\001 \001(\010R\021positionReporting\"`\n\006Status\022\035\n\nis"
+  "_powered\030\001 \001(\010R\tisPowered\022\032\n\010position\030\003 "
+  "\001(\001R\010position\022\033\n\tis_moving\030\004 \001(\010R\010isMovi"
+  "ng\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001(\010"
+  "R\010isMoving2\367\n\n\014MotorService\022\226\001\n\010SetPower"
+  "\022(.viam.component.motor.v1.SetPowerReque"
+  "st\032).viam.component.motor.v1.SetPowerRes"
+  "ponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/api/v1/componen"
+  "t/motor/{name}/power\022\216\001\n\005GoFor\022%.viam.co"
+  "mponent.motor.v1.GoForRequest\032&.viam.com"
+  "ponent.motor.v1.GoForResponse\"6\240\222)\001\202\323\344\223\002"
+  ",\032*/viam/api/v1/component/motor/{name}/g"
+  "o_for\022\212\001\n\004GoTo\022$.viam.component.motor.v1"
+  ".GoToRequest\032%.viam.component.motor.v1.G"
+  "oToResponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/api/v1/co"
+  "mponent/motor/{name}/go_to\022\254\001\n\021ResetZero"
+  "Position\0221.viam.component.motor.v1.Reset"
+  "ZeroPositionRequest\0322.viam.component.mot"
+  "or.v1.ResetZeroPositionResponse\"0\202\323\344\223\002*\032"
+  "(/viam/api/v1/component/motor/{name}/zer"
+  "o\022\236\001\n\013GetPosition\022+.viam.component.motor"
+  ".v1.GetPositionRequest\032,.viam.component."
+  "motor.v1.GetPositionResponse\"4\202\323\344\223\002.\022,/v"
+  "iam/api/v1/component/motor/{name}/positi"
+  "on\022\244\001\n\rGetProperties\022-.viam.component.mo"
+  "tor.v1.GetPropertiesRequest\032..viam.compo"
+  "nent.motor.v1.GetPropertiesResponse\"4\202\323\344"
+  "\223\002.\022,/viam/api/v1/component/motor/{name}"
+  "/features\022\205\001\n\004Stop\022$.viam.component.moto"
+  "r.v1.StopRequest\032%.viam.component.motor."
+  "v1.StopResponse\"0\202\323\344\223\002*\032(/viam/api/v1/co"
+  "mponent/motor/{name}/stop\022\227\001\n\tIsPowered\022"
+  ").viam.component.motor.v1.IsPoweredReque"
+  "st\032*.viam.component.motor.v1.IsPoweredRe"
+  "sponse\"3\202\323\344\223\002-\022+/viam/api/v1/component/m"
+  "otor/{name}/powered\022\226\001\n\010IsMoving\022(.viam."
+  "component.motor.v1.IsMovingRequest\032).via"
+  "m.component.motor.v1.IsMovingResponse\"5\202"
+  "\323\344\223\002/\022-/viam/api/v1/component/motor/{nam"
+  "e}/is_movingBA\n\033com.viam.component.motor"
+  ".v1Z\"go.viam.com/api/component/motor/v1b"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -550,7 +547,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmotor_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto = {
-    false, false, 3015, descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto,
+    false, false, 2967, descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto,
     "component/motor/v1/motor.proto",
     &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once, descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps, 3, 19,
     schemas, file_default_instances, TableStruct_component_2fmotor_2fv1_2fmotor_2eproto::offsets,
@@ -3601,14 +3598,6 @@ const char* Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // bool position_reporting = 2 [json_name = "positionReporting"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          position_reporting_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
       // double position = 3 [json_name = "position"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
@@ -3660,12 +3649,6 @@ uint8_t* Status::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_is_powered(), target);
   }
 
-  // bool position_reporting = 2 [json_name = "positionReporting"];
-  if (this->_internal_position_reporting() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_position_reporting(), target);
-  }
-
   // double position = 3 [json_name = "position"];
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_position = this->_internal_position();
@@ -3712,11 +3695,6 @@ size_t Status::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  // bool position_reporting = 2 [json_name = "positionReporting"];
-  if (this->_internal_position_reporting() != 0) {
-    total_size += 1 + 1;
-  }
-
   // bool is_moving = 4 [json_name = "isMoving"];
   if (this->_internal_is_moving() != 0) {
     total_size += 1 + 1;
@@ -3753,9 +3731,6 @@ void Status::MergeFrom(const Status& from) {
   }
   if (from._internal_is_powered() != 0) {
     _internal_set_is_powered(from._internal_is_powered());
-  }
-  if (from._internal_position_reporting() != 0) {
-    _internal_set_position_reporting(from._internal_position_reporting());
   }
   if (from._internal_is_moving() != 0) {
     _internal_set_is_moving(from._internal_is_moving());

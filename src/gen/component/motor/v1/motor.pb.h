@@ -2692,7 +2692,6 @@ class Status final :
   enum : int {
     kPositionFieldNumber = 3,
     kIsPoweredFieldNumber = 1,
-    kPositionReportingFieldNumber = 2,
     kIsMovingFieldNumber = 4,
   };
   // double position = 3 [json_name = "position"];
@@ -2713,15 +2712,6 @@ class Status final :
   void _internal_set_is_powered(bool value);
   public:
 
-  // bool position_reporting = 2 [json_name = "positionReporting"];
-  void clear_position_reporting();
-  bool position_reporting() const;
-  void set_position_reporting(bool value);
-  private:
-  bool _internal_position_reporting() const;
-  void _internal_set_position_reporting(bool value);
-  public:
-
   // bool is_moving = 4 [json_name = "isMoving"];
   void clear_is_moving();
   bool is_moving() const;
@@ -2740,7 +2730,6 @@ class Status final :
   typedef void DestructorSkippable_;
   double position_;
   bool is_powered_;
-  bool position_reporting_;
   bool is_moving_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fmotor_2fv1_2fmotor_2eproto;
@@ -4409,26 +4398,6 @@ inline void Status::_internal_set_is_powered(bool value) {
 inline void Status::set_is_powered(bool value) {
   _internal_set_is_powered(value);
   // @@protoc_insertion_point(field_set:viam.component.motor.v1.Status.is_powered)
-}
-
-// bool position_reporting = 2 [json_name = "positionReporting"];
-inline void Status::clear_position_reporting() {
-  position_reporting_ = false;
-}
-inline bool Status::_internal_position_reporting() const {
-  return position_reporting_;
-}
-inline bool Status::position_reporting() const {
-  // @@protoc_insertion_point(field_get:viam.component.motor.v1.Status.position_reporting)
-  return _internal_position_reporting();
-}
-inline void Status::_internal_set_position_reporting(bool value) {
-  
-  position_reporting_ = value;
-}
-inline void Status::set_position_reporting(bool value) {
-  _internal_set_position_reporting(value);
-  // @@protoc_insertion_point(field_set:viam.component.motor.v1.Status.position_reporting)
 }
 
 // double position = 3 [json_name = "position"];
