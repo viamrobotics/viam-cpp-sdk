@@ -1593,8 +1593,10 @@ class ProcessConfig final :
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kCwdFieldNumber = 4,
+    kStopTimeoutFieldNumber = 8,
     kOneShotFieldNumber = 5,
     kLogFieldNumber = 6,
+    kStopSignalFieldNumber = 7,
   };
   // repeated string args = 3 [json_name = "args"];
   int args_size() const;
@@ -1662,6 +1664,24 @@ class ProcessConfig final :
   std::string* _internal_mutable_cwd();
   public:
 
+  // .google.protobuf.Duration stop_timeout = 8 [json_name = "stopTimeout"];
+  bool has_stop_timeout() const;
+  private:
+  bool _internal_has_stop_timeout() const;
+  public:
+  void clear_stop_timeout();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& stop_timeout() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_stop_timeout();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_stop_timeout();
+  void set_allocated_stop_timeout(::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_stop_timeout() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_stop_timeout();
+  public:
+  void unsafe_arena_set_allocated_stop_timeout(
+      ::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_stop_timeout();
+
   // bool one_shot = 5 [json_name = "oneShot"];
   void clear_one_shot();
   bool one_shot() const;
@@ -1680,6 +1700,15 @@ class ProcessConfig final :
   void _internal_set_log(bool value);
   public:
 
+  // int32 stop_signal = 7 [json_name = "stopSignal"];
+  void clear_stop_signal();
+  int32_t stop_signal() const;
+  void set_stop_signal(int32_t value);
+  private:
+  int32_t _internal_stop_signal() const;
+  void _internal_set_stop_signal(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ProcessConfig)
  private:
   class _Internal;
@@ -1692,8 +1721,10 @@ class ProcessConfig final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr cwd_;
+    ::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout_;
     bool one_shot_;
     bool log_;
+    int32_t stop_signal_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -8866,6 +8897,111 @@ inline void ProcessConfig::_internal_set_log(bool value) {
 inline void ProcessConfig::set_log(bool value) {
   _internal_set_log(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.ProcessConfig.log)
+}
+
+// int32 stop_signal = 7 [json_name = "stopSignal"];
+inline void ProcessConfig::clear_stop_signal() {
+  _impl_.stop_signal_ = 0;
+}
+inline int32_t ProcessConfig::_internal_stop_signal() const {
+  return _impl_.stop_signal_;
+}
+inline int32_t ProcessConfig::stop_signal() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ProcessConfig.stop_signal)
+  return _internal_stop_signal();
+}
+inline void ProcessConfig::_internal_set_stop_signal(int32_t value) {
+  
+  _impl_.stop_signal_ = value;
+}
+inline void ProcessConfig::set_stop_signal(int32_t value) {
+  _internal_set_stop_signal(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ProcessConfig.stop_signal)
+}
+
+// .google.protobuf.Duration stop_timeout = 8 [json_name = "stopTimeout"];
+inline bool ProcessConfig::_internal_has_stop_timeout() const {
+  return this != internal_default_instance() && _impl_.stop_timeout_ != nullptr;
+}
+inline bool ProcessConfig::has_stop_timeout() const {
+  return _internal_has_stop_timeout();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& ProcessConfig::_internal_stop_timeout() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = _impl_.stop_timeout_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& ProcessConfig::stop_timeout() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ProcessConfig.stop_timeout)
+  return _internal_stop_timeout();
+}
+inline void ProcessConfig::unsafe_arena_set_allocated_stop_timeout(
+    ::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.stop_timeout_);
+  }
+  _impl_.stop_timeout_ = stop_timeout;
+  if (stop_timeout) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ProcessConfig.stop_timeout)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::release_stop_timeout() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = _impl_.stop_timeout_;
+  _impl_.stop_timeout_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::unsafe_arena_release_stop_timeout() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ProcessConfig.stop_timeout)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = _impl_.stop_timeout_;
+  _impl_.stop_timeout_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::_internal_mutable_stop_timeout() {
+  
+  if (_impl_.stop_timeout_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    _impl_.stop_timeout_ = p;
+  }
+  return _impl_.stop_timeout_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::mutable_stop_timeout() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_stop_timeout();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ProcessConfig.stop_timeout)
+  return _msg;
+}
+inline void ProcessConfig::set_allocated_stop_timeout(::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.stop_timeout_);
+  }
+  if (stop_timeout) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(stop_timeout));
+    if (message_arena != submessage_arena) {
+      stop_timeout = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, stop_timeout, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.stop_timeout_ = stop_timeout;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ProcessConfig.stop_timeout)
 }
 
 // -------------------------------------------------------------------

@@ -1,6 +1,7 @@
-#include <array>
+#include <memory>
 #include <utility>
 
+#include "../gen/mock/robot_mock.grpc.pb.h"
 #include "../src/robot/service.h"
 #include "common/v1/common.pb.h"
 #include "component/arm/v1/arm.grpc.pb.h"
@@ -8,14 +9,49 @@
 #include "google/protobuf/struct.pb.h"
 #include "grpcpp/channel.h"
 #include "grpcpp/client_context.h"
+#include "grpcpp/create_channel.h"
+#include "grpcpp/impl/channel_interface.h"
+#include "grpcpp/security/credentials.h"
 #include "grpcpp/server.h"
+#include "grpcpp/server_builder.h"
 #include "grpcpp/server_context.h"
+#include "grpcpp/support/server_callback.h"
+#include "grpcpp/support/stub_options.h"
 #include "robot/v1/robot.grpc.pb.h"
 #include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;
+class TestService : public RobotService_ {
+       public:
+	::grpc::Status FrameSystemConfig(
+	    ::grpc::ServerContext* context,
+	    const ::viam::robot::v1::FrameSystemConfigRequest* request,
+	    ::viam::robot::v1::FrameSystemConfigResponse* response) override;
+
+	::grpc::Status TransformPose(
+	    ::grpc::ServerContext* context,
+	    const ::viam::robot::v1::TransformPoseRequest* request,
+	    ::viam::robot::v1::TransformPoseResponse* response) override;
+
+	::grpc::Status DiscoverComponents(
+	    ::grpc::ServerContext* context,
+	    const ::viam::robot::v1::DiscoverComponentsRequest* request,
+	    ::viam::robot::v1::DiscoverComponentsResponse* response) override;
+
+	::grpc::Status GetOperations(
+	    ::grpc::ServerContext* context,
+	    const ::viam::robot::v1::GetOperationsRequest* request,
+	    ::viam::robot::v1::GetOperationsResponse* response) override;
+
+	TestService();
+};
+
+class MockStub : public RobotService::StubInterface {
+	MockStub(TestService service){};
+};
+
 std::vector<ResourceName> names_for_testing() {
 	std::vector<ResourceName> vec;
 	ResourceName arm1;
@@ -151,31 +187,6 @@ viam::component::arm::v1::Status default_status() {
 	return status;
 }
 
-class TestService : public RobotService_ {
-	::grpc::Status FrameSystemConfig(
-	    ::grpc::ServerContext* context,
-	    const ::viam::robot::v1::FrameSystemConfigRequest* request,
-	    ::viam::robot::v1::FrameSystemConfigResponse* response) override;
-
-	::grpc::Status TransformPose(
-	    ::grpc::ServerContext* context,
-	    const ::viam::robot::v1::TransformPoseRequest* request,
-	    ::viam::robot::v1::TransformPoseResponse* response) override;
-
-	::grpc::Status DiscoverComponents(
-	    ::grpc::ServerContext* context,
-	    const ::viam::robot::v1::DiscoverComponentsRequest* request,
-	    ::viam::robot::v1::DiscoverComponentsResponse* response) override;
-
-	::grpc::Status GetOperations(
-	    ::grpc::ServerContext* context,
-	    const ::viam::robot::v1::GetOperationsRequest* request,
-	    ::viam::robot::v1::GetOperationsResponse* response) override;
-
-       public:
-	TestService();
-};
-
 ::grpc::Status TestService::FrameSystemConfig(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::FrameSystemConfigRequest* request,
@@ -184,7 +195,7 @@ class TestService : public RobotService_ {
 	return ::grpc::Status();
 }
 
-::grpc::Status TransformPose(
+::grpc::Status TestService::TransformPose(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::TransformPoseRequest* request,
     ::viam::robot::v1::TransformPoseResponse* response) {
@@ -192,7 +203,7 @@ class TestService : public RobotService_ {
 	return ::grpc::Status();
 }
 
-::grpc::Status DiscoverComponents(
+::grpc::Status TestService::DiscoverComponents(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::DiscoverComponentsRequest* request,
     ::viam::robot::v1::DiscoverComponentsResponse* response) {
@@ -200,7 +211,7 @@ class TestService : public RobotService_ {
 	return ::grpc::Status();
 }
 
-::grpc::Status GetOperations(
+::grpc::Status TestService::GetOperations(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::GetOperationsRequest* request,
     ::viam::robot::v1::GetOperationsResponse* response) {
@@ -212,17 +223,22 @@ TestService service() {
 	TestService service;
 	// TODO: add extra components to the manager here once they're defined
 	// in subsequent features
+
 	return service;
 }
 
 int test_resource_names(TestService service) {
-	grpc::testing::DefaultReactorTestPeer p;
+	viam::robot::v1::MockRobotServiceStub mock;
+	std::shared_ptr<grpc::Channel> c = grpc::CreateChannel(
+	    "0.0.0.0:50051", grpc::InsecureChannelCredentials());
+	// std::unique_ptr<RobotService::Stub> stub_ = foo.NewStub(c);
+	// RobotService::Stub stub_();
 
-	RobotService::Stub mock_stub = RobotService::NewStub();
-	// RobotService::StubInterface(service) r;
-	// service.
-	//  service.ResourceNames()
-	//  grpc::testing::ChannelTestPeer test_channel;
-	//  grpc::testing
-	//  RobotService::NewStub(grpc::testing::ChannelTestPeer()) stub_;
+	std::unique_ptr<RobotService::Stub> stub_ = RobotService::NewStub(c);
+	//  RobotService::StubInterface(service) r;
+	//  service.
+	//   service.ResourceNames()
+	//   grpc::testing::ChannelTestPeer test_channel;
+	//   grpc::testing
+	//   RobotService::NewStub(grpc::testing::ChannelTestPeer()) stub_;
 }
