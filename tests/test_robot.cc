@@ -227,6 +227,10 @@ TestService service() {
 	return service;
 }
 
+// CR erodkin: the question is: how do we generate a stub that calls our
+// TestService version of the function specifically that isn't just us defining
+// a stub type that serves as an intermediary for a call to the TestService
+// function?
 int test_resource_names(TestService service) {
 	viam::robot::v1::MockRobotServiceStub mock;
 	std::shared_ptr<grpc::Channel> c = grpc::CreateChannel(
