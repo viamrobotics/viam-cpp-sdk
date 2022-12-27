@@ -96,6 +96,15 @@ Note also that this will attempt to connect over webRTC by default. To override 
 
 The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to `ShellService::shell()` have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.
 
+## Troubleshooting
+Common problems and how to solve them
+
+<details>
+<summary>'google/protobuf/port_def.inf' file not found</summary>
+
+You need to add `protobuf` do your `CPLUS_INCLUDE_PATH` (e.g. `export CPLUS_INCLUDE_PATH="/opt/homebrew/Cellar/protobuf/21.11/include/:$CPLUS_INCLUDE_PATH"`)
+</details>
+
 ## License 
 Copyright 2022 Viam Inc.
 

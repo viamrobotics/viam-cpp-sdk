@@ -10,7 +10,7 @@
 #include <rpc/rpc.h>
 #include <unistd.h>
 
-// #include <boost/log/trivial.hpp>
+#include <boost/log/trivial.hpp>
 #include <chrono>
 #include <cstddef>
 #include <iostream>
@@ -75,8 +75,8 @@ void RobotClient::refresh() {
 	ClientContext ctx;
 	Status response = stub_->ResourceNames(&ctx, req, &resp);
 	if (!response.ok()) {
-		// BOOST_LOG_TRIVIAL(error) << "Error getting resource names: "
-		// 			 << response.error_message();
+		BOOST_LOG_TRIVIAL(error) << "Error getting resource names: "
+					 << response.error_message();
 		return;
 	}
 
@@ -103,9 +103,9 @@ void RobotClient::refresh() {
 				.create_rpc_client(name.name(), channel);
 			new_resource_manager.register_component(rpc_client);
 		} catch (std::exception &exc) {
-			// BOOST_LOG_TRIVIAL(debug)
-			//     << "Error registering component " << name.subtype()
-			//     << ": " << exc.what();
+			BOOST_LOG_TRIVIAL(debug)
+			    << "Error registering component " << name.subtype()
+			    << ": " << exc.what();
 		}
 	}
 	// TODO: come up with a better equality check here. equality is not

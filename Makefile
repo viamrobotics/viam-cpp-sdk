@@ -15,3 +15,6 @@ buf:	buf-clean
 	buf generate buf.build/viamrobotics/api --template buf.gen.yaml
 buf-clean:
 	rm -rf src/gen/*
+
+clean:
+	find ./src -name '*.o' | xargs rm -rf
