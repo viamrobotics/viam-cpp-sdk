@@ -14,7 +14,15 @@
 First you may want to build the SDK library, to do so navigate to the root of the repository and run `make build` this should pull all the dependencies and hopefully build the library!
 Lastly you can run one of the examples by navigation to the examples/{dial|echo} folder and run `make example_{dial|echo} && ./example_{dial|echo}`
 
-### Setup
+### Setup with Docker
+1. Create a new docker image from the provided docker file. From the root directory of this project (where this README is located), run `docker build -t cpp .` 
+1. Run the new image in a container that has your local project directory mounted to the filesystem. This will ensure that you can continue to develop locally on your machine, and all files will be automatically synced into the docker environment. To create the environment and open a shell to it, run the command `docker run --rm -it -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash`
+1. Start developing! You can develop as you normally would, using the files on your local filesystem. When it comes time to testing/building/running the program, do so inside the docker environment you opened in the previous step. 
+
+### Setup without Docker
+> **Note**
+> These instructions are for macOS on Apple Silicon machines. They are not guaranteed to work. Linking brew libraries is very finicky, particularly Boost. You may have to install some packages from source.
+
 You will need a few things installed/upgraded to the latest version, which may break compatibility with RDK
 1. Boost `brew install boost`
 1. grpc `brew install grpc`
