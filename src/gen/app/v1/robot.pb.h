@@ -358,6 +358,7 @@ class RobotConfig final :
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
     kDebugFieldNumber = 8,
+    kDisablePartialStartFieldNumber = 10,
   };
   // repeated .viam.app.v1.RemoteConfig remotes = 2 [json_name = "remotes"];
   int remotes_size() const;
@@ -516,6 +517,19 @@ class RobotConfig final :
   void _internal_set_debug(bool value);
   public:
 
+  // optional bool disable_partial_start = 10 [json_name = "disablePartialStart"];
+  bool has_disable_partial_start() const;
+  private:
+  bool _internal_has_disable_partial_start() const;
+  public:
+  void clear_disable_partial_start();
+  bool disable_partial_start() const;
+  void set_disable_partial_start(bool value);
+  private:
+  bool _internal_disable_partial_start() const;
+  void _internal_set_disable_partial_start(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.RobotConfig)
  private:
   class _Internal;
@@ -534,6 +548,7 @@ class RobotConfig final :
   ::viam::app::v1::NetworkConfig* network_;
   ::viam::app::v1::AuthConfig* auth_;
   bool debug_;
+  bool disable_partial_start_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1566,8 +1581,10 @@ class ProcessConfig final :
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kCwdFieldNumber = 4,
+    kStopTimeoutFieldNumber = 8,
     kOneShotFieldNumber = 5,
     kLogFieldNumber = 6,
+    kStopSignalFieldNumber = 7,
   };
   // repeated string args = 3 [json_name = "args"];
   int args_size() const;
@@ -1635,6 +1652,24 @@ class ProcessConfig final :
   std::string* _internal_mutable_cwd();
   public:
 
+  // .google.protobuf.Duration stop_timeout = 8 [json_name = "stopTimeout"];
+  bool has_stop_timeout() const;
+  private:
+  bool _internal_has_stop_timeout() const;
+  public:
+  void clear_stop_timeout();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& stop_timeout() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_stop_timeout();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_stop_timeout();
+  void set_allocated_stop_timeout(::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_stop_timeout() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_stop_timeout();
+  public:
+  void unsafe_arena_set_allocated_stop_timeout(
+      ::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_stop_timeout();
+
   // bool one_shot = 5 [json_name = "oneShot"];
   void clear_one_shot();
   bool one_shot() const;
@@ -1653,6 +1688,15 @@ class ProcessConfig final :
   void _internal_set_log(bool value);
   public:
 
+  // int32 stop_signal = 7 [json_name = "stopSignal"];
+  void clear_stop_signal();
+  int32_t stop_signal() const;
+  void set_stop_signal(int32_t value);
+  private:
+  int32_t _internal_stop_signal() const;
+  void _internal_set_stop_signal(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ProcessConfig)
  private:
   class _Internal;
@@ -1664,8 +1708,10 @@ class ProcessConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr cwd_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout_;
   bool one_shot_;
   bool log_;
+  int32_t stop_signal_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -7234,6 +7280,34 @@ RobotConfig::modules() const {
   return modules_;
 }
 
+// optional bool disable_partial_start = 10 [json_name = "disablePartialStart"];
+inline bool RobotConfig::_internal_has_disable_partial_start() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool RobotConfig::has_disable_partial_start() const {
+  return _internal_has_disable_partial_start();
+}
+inline void RobotConfig::clear_disable_partial_start() {
+  disable_partial_start_ = false;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline bool RobotConfig::_internal_disable_partial_start() const {
+  return disable_partial_start_;
+}
+inline bool RobotConfig::disable_partial_start() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.disable_partial_start)
+  return _internal_disable_partial_start();
+}
+inline void RobotConfig::_internal_set_disable_partial_start(bool value) {
+  _has_bits_[0] |= 0x00000008u;
+  disable_partial_start_ = value;
+}
+inline void RobotConfig::set_disable_partial_start(bool value) {
+  _internal_set_disable_partial_start(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RobotConfig.disable_partial_start)
+}
+
 // -------------------------------------------------------------------
 
 // LocationSecret
@@ -8702,6 +8776,111 @@ inline void ProcessConfig::_internal_set_log(bool value) {
 inline void ProcessConfig::set_log(bool value) {
   _internal_set_log(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.ProcessConfig.log)
+}
+
+// int32 stop_signal = 7 [json_name = "stopSignal"];
+inline void ProcessConfig::clear_stop_signal() {
+  stop_signal_ = 0;
+}
+inline int32_t ProcessConfig::_internal_stop_signal() const {
+  return stop_signal_;
+}
+inline int32_t ProcessConfig::stop_signal() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ProcessConfig.stop_signal)
+  return _internal_stop_signal();
+}
+inline void ProcessConfig::_internal_set_stop_signal(int32_t value) {
+  
+  stop_signal_ = value;
+}
+inline void ProcessConfig::set_stop_signal(int32_t value) {
+  _internal_set_stop_signal(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ProcessConfig.stop_signal)
+}
+
+// .google.protobuf.Duration stop_timeout = 8 [json_name = "stopTimeout"];
+inline bool ProcessConfig::_internal_has_stop_timeout() const {
+  return this != internal_default_instance() && stop_timeout_ != nullptr;
+}
+inline bool ProcessConfig::has_stop_timeout() const {
+  return _internal_has_stop_timeout();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& ProcessConfig::_internal_stop_timeout() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = stop_timeout_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& ProcessConfig::stop_timeout() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ProcessConfig.stop_timeout)
+  return _internal_stop_timeout();
+}
+inline void ProcessConfig::unsafe_arena_set_allocated_stop_timeout(
+    ::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(stop_timeout_);
+  }
+  stop_timeout_ = stop_timeout;
+  if (stop_timeout) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ProcessConfig.stop_timeout)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::release_stop_timeout() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = stop_timeout_;
+  stop_timeout_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::unsafe_arena_release_stop_timeout() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ProcessConfig.stop_timeout)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = stop_timeout_;
+  stop_timeout_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::_internal_mutable_stop_timeout() {
+  
+  if (stop_timeout_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    stop_timeout_ = p;
+  }
+  return stop_timeout_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* ProcessConfig::mutable_stop_timeout() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_stop_timeout();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ProcessConfig.stop_timeout)
+  return _msg;
+}
+inline void ProcessConfig::set_allocated_stop_timeout(::PROTOBUF_NAMESPACE_ID::Duration* stop_timeout) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(stop_timeout_);
+  }
+  if (stop_timeout) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(stop_timeout));
+    if (message_arena != submessage_arena) {
+      stop_timeout = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, stop_timeout, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  stop_timeout_ = stop_timeout;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ProcessConfig.stop_timeout)
 }
 
 // -------------------------------------------------------------------

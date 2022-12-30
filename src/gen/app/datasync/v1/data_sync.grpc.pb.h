@@ -38,44 +38,64 @@ class DataSyncService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>> Upload(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>>(UploadRaw(context));
+    virtual ::grpc::Status DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::datasync::v1::DataCaptureUploadResponse>> AsyncDataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::datasync::v1::DataCaptureUploadResponse>>(AsyncDataCaptureUploadRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>> AsyncUpload(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>>(AsyncUploadRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::datasync::v1::DataCaptureUploadResponse>> PrepareAsyncDataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::datasync::v1::DataCaptureUploadResponse>>(PrepareAsyncDataCaptureUploadRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>>(PrepareAsyncUploadRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>> FileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response) {
+      return std::unique_ptr< ::grpc::ClientWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>>(FileUploadRaw(context, response));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>> AsyncFileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>>(AsyncFileUploadRaw(context, response, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>> PrepareAsyncFileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>>(PrepareAsyncFileUploadRaw(context, response, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Upload(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::app::datasync::v1::UploadRequest,::viam::app::datasync::v1::UploadResponse>* reactor) = 0;
+      virtual void DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void FileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::ClientWriteReactor< ::viam::app::datasync::v1::FileUploadRequest>* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* UploadRaw(::grpc::ClientContext* context) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::datasync::v1::DataCaptureUploadResponse>* AsyncDataCaptureUploadRaw(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::datasync::v1::DataCaptureUploadResponse>* PrepareAsyncDataCaptureUploadRaw(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>* FileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>* AsyncFileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::viam::app::datasync::v1::FileUploadRequest>* PrepareAsyncFileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>> Upload(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>>(UploadRaw(context));
+    ::grpc::Status DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>> AsyncDataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>>(AsyncDataCaptureUploadRaw(context, request, cq));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>> AsyncUpload(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>>(AsyncUploadRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>> PrepareAsyncDataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>>(PrepareAsyncDataCaptureUploadRaw(context, request, cq));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>>(PrepareAsyncUploadRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientWriter< ::viam::app::datasync::v1::FileUploadRequest>> FileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response) {
+      return std::unique_ptr< ::grpc::ClientWriter< ::viam::app::datasync::v1::FileUploadRequest>>(FileUploadRaw(context, response));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>> AsyncFileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>>(AsyncFileUploadRaw(context, response, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>> PrepareAsyncFileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>>(PrepareAsyncFileUploadRaw(context, response, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Upload(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::app::datasync::v1::UploadRequest,::viam::app::datasync::v1::UploadResponse>* reactor) override;
+      void DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response, std::function<void(::grpc::Status)>) override;
+      void DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void FileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::ClientWriteReactor< ::viam::app::datasync::v1::FileUploadRequest>* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -87,10 +107,13 @@ class DataSyncService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* UploadRaw(::grpc::ClientContext* context) override;
-    ::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_Upload_;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>* AsyncDataCaptureUploadRaw(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>* PrepareAsyncDataCaptureUploadRaw(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientWriter< ::viam::app::datasync::v1::FileUploadRequest>* FileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response) override;
+    ::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>* AsyncFileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>* PrepareAsyncFileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_DataCaptureUpload_;
+    const ::grpc::internal::RpcMethod rpcmethod_FileUpload_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -98,117 +121,249 @@ class DataSyncService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Upload(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* stream);
+    virtual ::grpc::Status DataCaptureUpload(::grpc::ServerContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response);
+    virtual ::grpc::Status FileUpload(::grpc::ServerContext* context, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* reader, ::viam::app::datasync::v1::FileUploadResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_Upload : public BaseClass {
+  class WithAsyncMethod_DataCaptureUpload : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Upload() {
+    WithAsyncMethod_DataCaptureUpload() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_Upload() override {
+    ~WithAsyncMethod_DataCaptureUpload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* /*stream*/)  override {
+    ::grpc::Status DataCaptureUpload(::grpc::ServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
+    void RequestDataCaptureUpload(::grpc::ServerContext* context, ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::datasync::v1::DataCaptureUploadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Upload<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_Upload : public BaseClass {
+  class WithAsyncMethod_FileUpload : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Upload() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackBidiHandler< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context) { return this->Upload(context); }));
+    WithAsyncMethod_FileUpload() {
+      ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithCallbackMethod_Upload() override {
+    ~WithAsyncMethod_FileUpload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* /*stream*/)  override {
+    ::grpc::Status FileUpload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* /*reader*/, ::viam::app::datasync::v1::FileUploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerBidiReactor< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* Upload(
-      ::grpc::CallbackServerContext* /*context*/)
-      { return nullptr; }
+    void RequestFileUpload(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::viam::app::datasync::v1::FileUploadResponse, ::viam::app::datasync::v1::FileUploadRequest>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(1, context, reader, new_call_cq, notification_cq, tag);
+    }
   };
-  typedef WithCallbackMethod_Upload<Service > CallbackService;
+  typedef WithAsyncMethod_DataCaptureUpload<WithAsyncMethod_FileUpload<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_DataCaptureUpload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DataCaptureUpload() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response) { return this->DataCaptureUpload(context, request, response); }));}
+    void SetMessageAllocatorFor_DataCaptureUpload(
+        ::grpc::MessageAllocator< ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DataCaptureUpload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DataCaptureUpload(::grpc::ServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DataCaptureUpload(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_FileUpload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_FileUpload() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackClientStreamingHandler< ::viam::app::datasync::v1::FileUploadRequest, ::viam::app::datasync::v1::FileUploadResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, ::viam::app::datasync::v1::FileUploadResponse* response) { return this->FileUpload(context, response); }));
+    }
+    ~WithCallbackMethod_FileUpload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status FileUpload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* /*reader*/, ::viam::app::datasync::v1::FileUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerReadReactor< ::viam::app::datasync::v1::FileUploadRequest>* FileUpload(
+      ::grpc::CallbackServerContext* /*context*/, ::viam::app::datasync::v1::FileUploadResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_DataCaptureUpload<WithCallbackMethod_FileUpload<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_Upload : public BaseClass {
+  class WithGenericMethod_DataCaptureUpload : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Upload() {
+    WithGenericMethod_DataCaptureUpload() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_Upload() override {
+    ~WithGenericMethod_DataCaptureUpload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* /*stream*/)  override {
+    ::grpc::Status DataCaptureUpload(::grpc::ServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Upload : public BaseClass {
+  class WithGenericMethod_FileUpload : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_Upload() {
+    WithGenericMethod_FileUpload() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_FileUpload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status FileUpload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* /*reader*/, ::viam::app::datasync::v1::FileUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DataCaptureUpload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DataCaptureUpload() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_Upload() override {
+    ~WithRawMethod_DataCaptureUpload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* /*stream*/)  override {
+    ::grpc::Status DataCaptureUpload(::grpc::ServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
+    void RequestDataCaptureUpload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Upload : public BaseClass {
+  class WithRawMethod_FileUpload : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Upload() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context) { return this->Upload(context); }));
+    WithRawMethod_FileUpload() {
+      ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawCallbackMethod_Upload() override {
+    ~WithRawMethod_FileUpload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* /*stream*/)  override {
+    ::grpc::Status FileUpload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* /*reader*/, ::viam::app::datasync::v1::FileUploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Upload(
-      ::grpc::CallbackServerContext* /*context*/)
-      { return nullptr; }
+    void RequestFileUpload(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(1, context, reader, new_call_cq, notification_cq, tag);
+    }
   };
-  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class WithRawCallbackMethod_DataCaptureUpload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DataCaptureUpload() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DataCaptureUpload(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DataCaptureUpload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DataCaptureUpload(::grpc::ServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DataCaptureUpload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_FileUpload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_FileUpload() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) { return this->FileUpload(context, response); }));
+    }
+    ~WithRawCallbackMethod_FileUpload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status FileUpload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* /*reader*/, ::viam::app::datasync::v1::FileUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerReadReactor< ::grpc::ByteBuffer>* FileUpload(
+      ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DataCaptureUpload : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DataCaptureUpload() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse>* streamer) {
+                       return this->StreamedDataCaptureUpload(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DataCaptureUpload() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DataCaptureUpload(::grpc::ServerContext* /*context*/, const ::viam::app::datasync::v1::DataCaptureUploadRequest* /*request*/, ::viam::app::datasync::v1::DataCaptureUploadResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDataCaptureUpload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::datasync::v1::DataCaptureUploadRequest,::viam::app::datasync::v1::DataCaptureUploadResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_DataCaptureUpload<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef Service StreamedService;
+  typedef WithStreamedUnaryMethod_DataCaptureUpload<Service > StreamedService;
 };
 
 }  // namespace v1
