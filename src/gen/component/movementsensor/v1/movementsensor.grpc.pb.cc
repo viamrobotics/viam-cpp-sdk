@@ -32,6 +32,7 @@ static const char* MovementSensorService_method_names[] = {
   "/viam.component.movementsensor.v1.MovementSensorService/GetPosition",
   "/viam.component.movementsensor.v1.MovementSensorService/GetProperties",
   "/viam.component.movementsensor.v1.MovementSensorService/GetAccuracy",
+  "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration",
 };
 
 std::unique_ptr< MovementSensorService::Stub> MovementSensorService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -48,6 +49,7 @@ MovementSensorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterfac
   , rpcmethod_GetPosition_(MovementSensorService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetProperties_(MovementSensorService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAccuracy_(MovementSensorService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLinearAcceleration_(MovementSensorService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MovementSensorService::Stub::GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) {
@@ -211,6 +213,29 @@ void MovementSensorService::Stub::async::GetAccuracy(::grpc::ClientContext* cont
   return result;
 }
 
+::grpc::Status MovementSensorService::Stub::GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetLinearAcceleration_, context, request, response);
+}
+
+void MovementSensorService::Stub::async::GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLinearAcceleration_, context, request, response, std::move(f));
+}
+
+void MovementSensorService::Stub::async::GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLinearAcceleration_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* MovementSensorService::Stub::PrepareAsyncGetLinearAccelerationRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse, ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetLinearAcceleration_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* MovementSensorService::Stub::AsyncGetLinearAccelerationRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetLinearAccelerationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MovementSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MovementSensorService_method_names[0],
@@ -282,6 +307,16 @@ MovementSensorService::Service::Service() {
              ::viam::component::movementsensor::v1::GetAccuracyResponse* resp) {
                return service->GetAccuracy(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MovementSensorService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MovementSensorService::Service, ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MovementSensorService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* req,
+             ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* resp) {
+               return service->GetLinearAcceleration(ctx, req, resp);
+             }, this)));
 }
 
 MovementSensorService::Service::~Service() {
@@ -330,6 +365,13 @@ MovementSensorService::Service::~Service() {
 }
 
 ::grpc::Status MovementSensorService::Service::GetAccuracy(::grpc::ServerContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MovementSensorService::Service::GetLinearAcceleration(::grpc::ServerContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) {
   (void) context;
   (void) request;
   (void) response;

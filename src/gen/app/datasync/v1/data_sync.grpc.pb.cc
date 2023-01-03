@@ -25,7 +25,8 @@ namespace datasync {
 namespace v1 {
 
 static const char* DataSyncService_method_names[] = {
-  "/viam.app.datasync.v1.DataSyncService/Upload",
+  "/viam.app.datasync.v1.DataSyncService/DataCaptureUpload",
+  "/viam.app.datasync.v1.DataSyncService/FileUpload",
 };
 
 std::unique_ptr< DataSyncService::Stub> DataSyncService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,44 +36,86 @@ std::unique_ptr< DataSyncService::Stub> DataSyncService::NewStub(const std::shar
 }
 
 DataSyncService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Upload_(DataSyncService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  : channel_(channel), rpcmethod_DataCaptureUpload_(DataSyncService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_FileUpload_(DataSyncService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
   {}
 
-::grpc::ClientReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* DataSyncService::Stub::UploadRaw(::grpc::ClientContext* context) {
-  return ::grpc::internal::ClientReaderWriterFactory< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>::Create(channel_.get(), rpcmethod_Upload_, context);
+::grpc::Status DataSyncService::Stub::DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DataCaptureUpload_, context, request, response);
 }
 
-void DataSyncService::Stub::async::Upload(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::app::datasync::v1::UploadRequest,::viam::app::datasync::v1::UploadResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderWriterFactory< ::viam::app::datasync::v1::UploadRequest,::viam::app::datasync::v1::UploadResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, reactor);
+void DataSyncService::Stub::async::DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DataCaptureUpload_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* DataSyncService::Stub::AsyncUploadRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>::Create(channel_.get(), cq, rpcmethod_Upload_, context, true, tag);
+void DataSyncService::Stub::async::DataCaptureUpload(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DataCaptureUpload_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncReaderWriter< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>* DataSyncService::Stub::PrepareAsyncUploadRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>::Create(channel_.get(), cq, rpcmethod_Upload_, context, false, nullptr);
+::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>* DataSyncService::Stub::PrepareAsyncDataCaptureUploadRaw(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::datasync::v1::DataCaptureUploadResponse, ::viam::app::datasync::v1::DataCaptureUploadRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DataCaptureUpload_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::datasync::v1::DataCaptureUploadResponse>* DataSyncService::Stub::AsyncDataCaptureUploadRaw(::grpc::ClientContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDataCaptureUploadRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::ClientWriter< ::viam::app::datasync::v1::FileUploadRequest>* DataSyncService::Stub::FileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response) {
+  return ::grpc::internal::ClientWriterFactory< ::viam::app::datasync::v1::FileUploadRequest>::Create(channel_.get(), rpcmethod_FileUpload_, context, response);
+}
+
+void DataSyncService::Stub::async::FileUpload(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::ClientWriteReactor< ::viam::app::datasync::v1::FileUploadRequest>* reactor) {
+  ::grpc::internal::ClientCallbackWriterFactory< ::viam::app::datasync::v1::FileUploadRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_FileUpload_, context, response, reactor);
+}
+
+::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>* DataSyncService::Stub::AsyncFileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::viam::app::datasync::v1::FileUploadRequest>::Create(channel_.get(), cq, rpcmethod_FileUpload_, context, response, true, tag);
+}
+
+::grpc::ClientAsyncWriter< ::viam::app::datasync::v1::FileUploadRequest>* DataSyncService::Stub::PrepareAsyncFileUploadRaw(::grpc::ClientContext* context, ::viam::app::datasync::v1::FileUploadResponse* response, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::viam::app::datasync::v1::FileUploadRequest>::Create(channel_.get(), cq, rpcmethod_FileUpload_, context, response, false, nullptr);
 }
 
 DataSyncService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataSyncService_method_names[0],
-      ::grpc::internal::RpcMethod::BIDI_STREAMING,
-      new ::grpc::internal::BidiStreamingHandler< DataSyncService::Service, ::viam::app::datasync::v1::UploadRequest, ::viam::app::datasync::v1::UploadResponse>(
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataSyncService::Service, ::viam::app::datasync::v1::DataCaptureUploadRequest, ::viam::app::datasync::v1::DataCaptureUploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataSyncService::Service* service,
              ::grpc::ServerContext* ctx,
-             ::grpc::ServerReaderWriter<::viam::app::datasync::v1::UploadResponse,
-             ::viam::app::datasync::v1::UploadRequest>* stream) {
-               return service->Upload(ctx, stream);
+             const ::viam::app::datasync::v1::DataCaptureUploadRequest* req,
+             ::viam::app::datasync::v1::DataCaptureUploadResponse* resp) {
+               return service->DataCaptureUpload(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataSyncService_method_names[1],
+      ::grpc::internal::RpcMethod::CLIENT_STREAMING,
+      new ::grpc::internal::ClientStreamingHandler< DataSyncService::Service, ::viam::app::datasync::v1::FileUploadRequest, ::viam::app::datasync::v1::FileUploadResponse>(
+          [](DataSyncService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReader<::viam::app::datasync::v1::FileUploadRequest>* reader,
+             ::viam::app::datasync::v1::FileUploadResponse* resp) {
+               return service->FileUpload(ctx, reader, resp);
              }, this)));
 }
 
 DataSyncService::Service::~Service() {
 }
 
-::grpc::Status DataSyncService::Service::Upload(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::app::datasync::v1::UploadResponse, ::viam::app::datasync::v1::UploadRequest>* stream) {
+::grpc::Status DataSyncService::Service::DataCaptureUpload(::grpc::ServerContext* context, const ::viam::app::datasync::v1::DataCaptureUploadRequest* request, ::viam::app::datasync::v1::DataCaptureUploadResponse* response) {
   (void) context;
-  (void) stream;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataSyncService::Service::FileUpload(::grpc::ServerContext* context, ::grpc::ServerReader< ::viam::app::datasync::v1::FileUploadRequest>* reader, ::viam::app::datasync::v1::FileUploadResponse* response) {
+  (void) context;
+  (void) reader;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
