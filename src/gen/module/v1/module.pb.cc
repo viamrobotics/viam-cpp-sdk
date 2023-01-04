@@ -24,10 +24,9 @@ namespace viam {
 namespace module {
 namespace v1 {
 PROTOBUF_CONSTEXPR AddResourceRequest::AddResourceRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.dependencies_)*/{}
-  , /*decltype(_impl_.config_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : dependencies_()
+  , config_(nullptr){}
 struct AddResourceRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AddResourceRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,7 +37,7 @@ struct AddResourceRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddResourceRequestDefaultTypeInternal _AddResourceRequest_default_instance_;
 PROTOBUF_CONSTEXPR AddResourceResponse::AddResourceResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct AddResourceResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AddResourceResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -49,10 +48,9 @@ struct AddResourceResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddResourceResponseDefaultTypeInternal _AddResourceResponse_default_instance_;
 PROTOBUF_CONSTEXPR ReconfigureResourceRequest::ReconfigureResourceRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.dependencies_)*/{}
-  , /*decltype(_impl_.config_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : dependencies_()
+  , config_(nullptr){}
 struct ReconfigureResourceRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReconfigureResourceRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -63,7 +61,7 @@ struct ReconfigureResourceRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReconfigureResourceRequestDefaultTypeInternal _ReconfigureResourceRequest_default_instance_;
 PROTOBUF_CONSTEXPR ReconfigureResourceResponse::ReconfigureResourceResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct ReconfigureResourceResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReconfigureResourceResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -74,9 +72,8 @@ struct ReconfigureResourceResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReconfigureResourceResponseDefaultTypeInternal _ReconfigureResourceResponse_default_instance_;
 PROTOBUF_CONSTEXPR RemoveResourceRequest::RemoveResourceRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct RemoveResourceRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RemoveResourceRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -87,7 +84,7 @@ struct RemoveResourceRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveResourceRequestDefaultTypeInternal _RemoveResourceRequest_default_instance_;
 PROTOBUF_CONSTEXPR RemoveResourceResponse::RemoveResourceResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct RemoveResourceResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RemoveResourceResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -98,10 +95,9 @@ struct RemoveResourceResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveResourceResponseDefaultTypeInternal _RemoveResourceResponse_default_instance_;
 PROTOBUF_CONSTEXPR HandlerDefinition::HandlerDefinition(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.models_)*/{}
-  , /*decltype(_impl_.subtype_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : models_()
+  , subtype_(nullptr){}
 struct HandlerDefinitionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR HandlerDefinitionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -112,9 +108,8 @@ struct HandlerDefinitionDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HandlerDefinitionDefaultTypeInternal _HandlerDefinition_default_instance_;
 PROTOBUF_CONSTEXPR HandlerMap::HandlerMap(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.handlers_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : handlers_(){}
 struct HandlerMapDefaultTypeInternal {
   PROTOBUF_CONSTEXPR HandlerMapDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -125,9 +120,8 @@ struct HandlerMapDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HandlerMapDefaultTypeInternal _HandlerMap_default_instance_;
 PROTOBUF_CONSTEXPR ReadyRequest::ReadyRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.parent_address_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : parent_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct ReadyRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReadyRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -138,10 +132,9 @@ struct ReadyRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadyRequestDefaultTypeInternal _ReadyRequest_default_instance_;
 PROTOBUF_CONSTEXPR ReadyResponse::ReadyResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.handlermap_)*/nullptr
-  , /*decltype(_impl_.ready_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : handlermap_(nullptr)
+  , ready_(false){}
 struct ReadyResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReadyResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -165,8 +158,8 @@ const uint32_t TableStruct_module_2fv1_2fmodule_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::AddResourceRequest, _impl_.config_),
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::AddResourceRequest, _impl_.dependencies_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::AddResourceRequest, config_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::AddResourceRequest, dependencies_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::AddResourceResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -179,8 +172,8 @@ const uint32_t TableStruct_module_2fv1_2fmodule_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReconfigureResourceRequest, _impl_.config_),
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReconfigureResourceRequest, _impl_.dependencies_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReconfigureResourceRequest, config_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReconfigureResourceRequest, dependencies_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReconfigureResourceResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -193,7 +186,7 @@ const uint32_t TableStruct_module_2fv1_2fmodule_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::RemoveResourceRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::RemoveResourceRequest, name_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::RemoveResourceResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -206,30 +199,30 @@ const uint32_t TableStruct_module_2fv1_2fmodule_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerDefinition, _impl_.subtype_),
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerDefinition, _impl_.models_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerDefinition, subtype_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerDefinition, models_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerMap, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerMap, _impl_.handlers_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::HandlerMap, handlers_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyRequest, _impl_.parent_address_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyRequest, parent_address_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyResponse, _impl_.ready_),
-  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyResponse, _impl_.handlermap_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyResponse, ready_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyResponse, handlermap_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::module::v1::AddResourceRequest)},
@@ -321,44 +314,35 @@ class AddResourceRequest::_Internal {
 
 const ::viam::app::v1::ComponentConfig&
 AddResourceRequest::_Internal::config(const AddResourceRequest* msg) {
-  return *msg->_impl_.config_;
+  return *msg->config_;
 }
 void AddResourceRequest::clear_config() {
-  if (GetArenaForAllocation() == nullptr && _impl_.config_ != nullptr) {
-    delete _impl_.config_;
+  if (GetArenaForAllocation() == nullptr && config_ != nullptr) {
+    delete config_;
   }
-  _impl_.config_ = nullptr;
+  config_ = nullptr;
 }
 AddResourceRequest::AddResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  dependencies_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.AddResourceRequest)
 }
 AddResourceRequest::AddResourceRequest(const AddResourceRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AddResourceRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.dependencies_){from._impl_.dependencies_}
-    , decltype(_impl_.config_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      dependencies_(from.dependencies_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_config()) {
-    _this->_impl_.config_ = new ::viam::app::v1::ComponentConfig(*from._impl_.config_);
+    config_ = new ::viam::app::v1::ComponentConfig(*from.config_);
+  } else {
+    config_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.AddResourceRequest)
 }
 
-inline void AddResourceRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.dependencies_){arena}
-    , decltype(_impl_.config_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void AddResourceRequest::SharedCtor() {
+config_ = nullptr;
 }
 
 AddResourceRequest::~AddResourceRequest() {
@@ -372,12 +356,11 @@ AddResourceRequest::~AddResourceRequest() {
 
 inline void AddResourceRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.dependencies_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.config_;
+  if (this != internal_default_instance()) delete config_;
 }
 
 void AddResourceRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AddResourceRequest::Clear() {
@@ -386,11 +369,11 @@ void AddResourceRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.dependencies_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.config_ != nullptr) {
-    delete _impl_.config_;
+  dependencies_.Clear();
+  if (GetArenaForAllocation() == nullptr && config_ != nullptr) {
+    delete config_;
   }
-  _impl_.config_ = nullptr;
+  config_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -487,43 +470,46 @@ size_t AddResourceRequest::ByteSizeLong() const {
 
   // repeated string dependencies = 2 [json_name = "dependencies"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.dependencies_.size());
-  for (int i = 0, n = _impl_.dependencies_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(dependencies_.size());
+  for (int i = 0, n = dependencies_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.dependencies_.Get(i));
+      dependencies_.Get(i));
   }
 
   // .viam.app.v1.ComponentConfig config = 1 [json_name = "config"];
   if (this->_internal_has_config()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.config_);
+        *config_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AddResourceRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AddResourceRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddResourceRequest::GetClassData() const { return &_class_data_; }
 
+void AddResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AddResourceRequest *>(to)->MergeFrom(
+      static_cast<const AddResourceRequest &>(from));
+}
 
-void AddResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AddResourceRequest*>(&to_msg);
-  auto& from = static_cast<const AddResourceRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.AddResourceRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AddResourceRequest::MergeFrom(const AddResourceRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.AddResourceRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.dependencies_.MergeFrom(from._impl_.dependencies_);
+  dependencies_.MergeFrom(from.dependencies_);
   if (from._internal_has_config()) {
-    _this->_internal_mutable_config()->::viam::app::v1::ComponentConfig::MergeFrom(
-        from._internal_config());
+    _internal_mutable_config()->::viam::app::v1::ComponentConfig::MergeFrom(from._internal_config());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AddResourceRequest::CopyFrom(const AddResourceRequest& from) {
@@ -540,8 +526,8 @@ bool AddResourceRequest::IsInitialized() const {
 void AddResourceRequest::InternalSwap(AddResourceRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.dependencies_.InternalSwap(&other->_impl_.dependencies_);
-  swap(_impl_.config_, other->_impl_.config_);
+  dependencies_.InternalSwap(&other->dependencies_);
+  swap(config_, other->config_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AddResourceRequest::GetMetadata() const {
@@ -563,7 +549,6 @@ AddResourceResponse::AddResourceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 AddResourceResponse::AddResourceResponse(const AddResourceResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  AddResourceResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.AddResourceResponse)
 }
@@ -599,44 +584,35 @@ class ReconfigureResourceRequest::_Internal {
 
 const ::viam::app::v1::ComponentConfig&
 ReconfigureResourceRequest::_Internal::config(const ReconfigureResourceRequest* msg) {
-  return *msg->_impl_.config_;
+  return *msg->config_;
 }
 void ReconfigureResourceRequest::clear_config() {
-  if (GetArenaForAllocation() == nullptr && _impl_.config_ != nullptr) {
-    delete _impl_.config_;
+  if (GetArenaForAllocation() == nullptr && config_ != nullptr) {
+    delete config_;
   }
-  _impl_.config_ = nullptr;
+  config_ = nullptr;
 }
 ReconfigureResourceRequest::ReconfigureResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  dependencies_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.ReconfigureResourceRequest)
 }
 ReconfigureResourceRequest::ReconfigureResourceRequest(const ReconfigureResourceRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ReconfigureResourceRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.dependencies_){from._impl_.dependencies_}
-    , decltype(_impl_.config_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      dependencies_(from.dependencies_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_config()) {
-    _this->_impl_.config_ = new ::viam::app::v1::ComponentConfig(*from._impl_.config_);
+    config_ = new ::viam::app::v1::ComponentConfig(*from.config_);
+  } else {
+    config_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.ReconfigureResourceRequest)
 }
 
-inline void ReconfigureResourceRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.dependencies_){arena}
-    , decltype(_impl_.config_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ReconfigureResourceRequest::SharedCtor() {
+config_ = nullptr;
 }
 
 ReconfigureResourceRequest::~ReconfigureResourceRequest() {
@@ -650,12 +626,11 @@ ReconfigureResourceRequest::~ReconfigureResourceRequest() {
 
 inline void ReconfigureResourceRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.dependencies_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.config_;
+  if (this != internal_default_instance()) delete config_;
 }
 
 void ReconfigureResourceRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ReconfigureResourceRequest::Clear() {
@@ -664,11 +639,11 @@ void ReconfigureResourceRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.dependencies_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.config_ != nullptr) {
-    delete _impl_.config_;
+  dependencies_.Clear();
+  if (GetArenaForAllocation() == nullptr && config_ != nullptr) {
+    delete config_;
   }
-  _impl_.config_ = nullptr;
+  config_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -765,43 +740,46 @@ size_t ReconfigureResourceRequest::ByteSizeLong() const {
 
   // repeated string dependencies = 2 [json_name = "dependencies"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.dependencies_.size());
-  for (int i = 0, n = _impl_.dependencies_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(dependencies_.size());
+  for (int i = 0, n = dependencies_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.dependencies_.Get(i));
+      dependencies_.Get(i));
   }
 
   // .viam.app.v1.ComponentConfig config = 1 [json_name = "config"];
   if (this->_internal_has_config()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.config_);
+        *config_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReconfigureResourceRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ReconfigureResourceRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReconfigureResourceRequest::GetClassData() const { return &_class_data_; }
 
+void ReconfigureResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ReconfigureResourceRequest *>(to)->MergeFrom(
+      static_cast<const ReconfigureResourceRequest &>(from));
+}
 
-void ReconfigureResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ReconfigureResourceRequest*>(&to_msg);
-  auto& from = static_cast<const ReconfigureResourceRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.ReconfigureResourceRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ReconfigureResourceRequest::MergeFrom(const ReconfigureResourceRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.ReconfigureResourceRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.dependencies_.MergeFrom(from._impl_.dependencies_);
+  dependencies_.MergeFrom(from.dependencies_);
   if (from._internal_has_config()) {
-    _this->_internal_mutable_config()->::viam::app::v1::ComponentConfig::MergeFrom(
-        from._internal_config());
+    _internal_mutable_config()->::viam::app::v1::ComponentConfig::MergeFrom(from._internal_config());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ReconfigureResourceRequest::CopyFrom(const ReconfigureResourceRequest& from) {
@@ -818,8 +796,8 @@ bool ReconfigureResourceRequest::IsInitialized() const {
 void ReconfigureResourceRequest::InternalSwap(ReconfigureResourceRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.dependencies_.InternalSwap(&other->_impl_.dependencies_);
-  swap(_impl_.config_, other->_impl_.config_);
+  dependencies_.InternalSwap(&other->dependencies_);
+  swap(config_, other->config_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ReconfigureResourceRequest::GetMetadata() const {
@@ -841,7 +819,6 @@ ReconfigureResourceResponse::ReconfigureResourceResponse(::PROTOBUF_NAMESPACE_ID
 }
 ReconfigureResourceResponse::ReconfigureResourceResponse(const ReconfigureResourceResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  ReconfigureResourceResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.ReconfigureResourceResponse)
 }
@@ -877,40 +854,28 @@ class RemoveResourceRequest::_Internal {
 RemoveResourceRequest::RemoveResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.RemoveResourceRequest)
 }
 RemoveResourceRequest::RemoveResourceRequest(const RemoveResourceRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RemoveResourceRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.RemoveResourceRequest)
 }
 
-inline void RemoveResourceRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void RemoveResourceRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 RemoveResourceRequest::~RemoveResourceRequest() {
@@ -924,11 +889,11 @@ RemoveResourceRequest::~RemoveResourceRequest() {
 
 inline void RemoveResourceRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
+  name_.Destroy();
 }
 
 void RemoveResourceRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void RemoveResourceRequest::Clear() {
@@ -937,7 +902,7 @@ void RemoveResourceRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
+  name_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1019,28 +984,32 @@ size_t RemoveResourceRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveResourceRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     RemoveResourceRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveResourceRequest::GetClassData() const { return &_class_data_; }
 
+void RemoveResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RemoveResourceRequest *>(to)->MergeFrom(
+      static_cast<const RemoveResourceRequest &>(from));
+}
 
-void RemoveResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RemoveResourceRequest*>(&to_msg);
-  auto& from = static_cast<const RemoveResourceRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.RemoveResourceRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void RemoveResourceRequest::MergeFrom(const RemoveResourceRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.RemoveResourceRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RemoveResourceRequest::CopyFrom(const RemoveResourceRequest& from) {
@@ -1060,8 +1029,8 @@ void RemoveResourceRequest::InternalSwap(RemoveResourceRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
 }
 
@@ -1084,7 +1053,6 @@ RemoveResourceResponse::RemoveResourceResponse(::PROTOBUF_NAMESPACE_ID::Arena* a
 }
 RemoveResourceResponse::RemoveResourceResponse(const RemoveResourceResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  RemoveResourceResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.RemoveResourceResponse)
 }
@@ -1120,44 +1088,35 @@ class HandlerDefinition::_Internal {
 
 const ::viam::robot::v1::ResourceRPCSubtype&
 HandlerDefinition::_Internal::subtype(const HandlerDefinition* msg) {
-  return *msg->_impl_.subtype_;
+  return *msg->subtype_;
 }
 void HandlerDefinition::clear_subtype() {
-  if (GetArenaForAllocation() == nullptr && _impl_.subtype_ != nullptr) {
-    delete _impl_.subtype_;
+  if (GetArenaForAllocation() == nullptr && subtype_ != nullptr) {
+    delete subtype_;
   }
-  _impl_.subtype_ = nullptr;
+  subtype_ = nullptr;
 }
 HandlerDefinition::HandlerDefinition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  models_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.HandlerDefinition)
 }
 HandlerDefinition::HandlerDefinition(const HandlerDefinition& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  HandlerDefinition* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.models_){from._impl_.models_}
-    , decltype(_impl_.subtype_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      models_(from.models_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_subtype()) {
-    _this->_impl_.subtype_ = new ::viam::robot::v1::ResourceRPCSubtype(*from._impl_.subtype_);
+    subtype_ = new ::viam::robot::v1::ResourceRPCSubtype(*from.subtype_);
+  } else {
+    subtype_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.HandlerDefinition)
 }
 
-inline void HandlerDefinition::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.models_){arena}
-    , decltype(_impl_.subtype_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void HandlerDefinition::SharedCtor() {
+subtype_ = nullptr;
 }
 
 HandlerDefinition::~HandlerDefinition() {
@@ -1171,12 +1130,11 @@ HandlerDefinition::~HandlerDefinition() {
 
 inline void HandlerDefinition::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.models_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.subtype_;
+  if (this != internal_default_instance()) delete subtype_;
 }
 
 void HandlerDefinition::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void HandlerDefinition::Clear() {
@@ -1185,11 +1143,11 @@ void HandlerDefinition::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.models_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.subtype_ != nullptr) {
-    delete _impl_.subtype_;
+  models_.Clear();
+  if (GetArenaForAllocation() == nullptr && subtype_ != nullptr) {
+    delete subtype_;
   }
-  _impl_.subtype_ = nullptr;
+  subtype_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1286,43 +1244,46 @@ size_t HandlerDefinition::ByteSizeLong() const {
 
   // repeated string models = 2 [json_name = "models"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.models_.size());
-  for (int i = 0, n = _impl_.models_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(models_.size());
+  for (int i = 0, n = models_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.models_.Get(i));
+      models_.Get(i));
   }
 
   // .viam.robot.v1.ResourceRPCSubtype subtype = 1 [json_name = "subtype"];
   if (this->_internal_has_subtype()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.subtype_);
+        *subtype_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData HandlerDefinition::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     HandlerDefinition::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*HandlerDefinition::GetClassData() const { return &_class_data_; }
 
+void HandlerDefinition::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<HandlerDefinition *>(to)->MergeFrom(
+      static_cast<const HandlerDefinition &>(from));
+}
 
-void HandlerDefinition::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<HandlerDefinition*>(&to_msg);
-  auto& from = static_cast<const HandlerDefinition&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.HandlerDefinition)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void HandlerDefinition::MergeFrom(const HandlerDefinition& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.HandlerDefinition)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.models_.MergeFrom(from._impl_.models_);
+  models_.MergeFrom(from.models_);
   if (from._internal_has_subtype()) {
-    _this->_internal_mutable_subtype()->::viam::robot::v1::ResourceRPCSubtype::MergeFrom(
-        from._internal_subtype());
+    _internal_mutable_subtype()->::viam::robot::v1::ResourceRPCSubtype::MergeFrom(from._internal_subtype());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void HandlerDefinition::CopyFrom(const HandlerDefinition& from) {
@@ -1339,8 +1300,8 @@ bool HandlerDefinition::IsInitialized() const {
 void HandlerDefinition::InternalSwap(HandlerDefinition* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.models_.InternalSwap(&other->_impl_.models_);
-  swap(_impl_.subtype_, other->_impl_.subtype_);
+  models_.InternalSwap(&other->models_);
+  swap(subtype_, other->subtype_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata HandlerDefinition::GetMetadata() const {
@@ -1357,29 +1318,19 @@ class HandlerMap::_Internal {
 
 HandlerMap::HandlerMap(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  handlers_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.HandlerMap)
 }
 HandlerMap::HandlerMap(const HandlerMap& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  HandlerMap* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.handlers_){from._impl_.handlers_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      handlers_(from.handlers_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.HandlerMap)
 }
 
-inline void HandlerMap::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.handlers_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void HandlerMap::SharedCtor() {
 }
 
 HandlerMap::~HandlerMap() {
@@ -1393,11 +1344,10 @@ HandlerMap::~HandlerMap() {
 
 inline void HandlerMap::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.handlers_.~RepeatedPtrField();
 }
 
 void HandlerMap::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void HandlerMap::Clear() {
@@ -1406,7 +1356,7 @@ void HandlerMap::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.handlers_.Clear();
+  handlers_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1484,31 +1434,35 @@ size_t HandlerMap::ByteSizeLong() const {
 
   // repeated .viam.module.v1.HandlerDefinition handlers = 1 [json_name = "handlers"];
   total_size += 1UL * this->_internal_handlers_size();
-  for (const auto& msg : this->_impl_.handlers_) {
+  for (const auto& msg : this->handlers_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData HandlerMap::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     HandlerMap::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*HandlerMap::GetClassData() const { return &_class_data_; }
 
+void HandlerMap::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<HandlerMap *>(to)->MergeFrom(
+      static_cast<const HandlerMap &>(from));
+}
 
-void HandlerMap::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<HandlerMap*>(&to_msg);
-  auto& from = static_cast<const HandlerMap&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.HandlerMap)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void HandlerMap::MergeFrom(const HandlerMap& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.HandlerMap)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.handlers_.MergeFrom(from._impl_.handlers_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  handlers_.MergeFrom(from.handlers_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void HandlerMap::CopyFrom(const HandlerMap& from) {
@@ -1525,7 +1479,7 @@ bool HandlerMap::IsInitialized() const {
 void HandlerMap::InternalSwap(HandlerMap* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.handlers_.InternalSwap(&other->_impl_.handlers_);
+  handlers_.InternalSwap(&other->handlers_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata HandlerMap::GetMetadata() const {
@@ -1543,40 +1497,28 @@ class ReadyRequest::_Internal {
 ReadyRequest::ReadyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.ReadyRequest)
 }
 ReadyRequest::ReadyRequest(const ReadyRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ReadyRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.parent_address_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.parent_address_.InitDefault();
+  parent_address_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.parent_address_.Set("", GetArenaForAllocation());
+    parent_address_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_parent_address().empty()) {
-    _this->_impl_.parent_address_.Set(from._internal_parent_address(), 
-      _this->GetArenaForAllocation());
+    parent_address_.Set(from._internal_parent_address(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.ReadyRequest)
 }
 
-inline void ReadyRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.parent_address_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.parent_address_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.parent_address_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ReadyRequest::SharedCtor() {
+parent_address_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  parent_address_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ReadyRequest::~ReadyRequest() {
@@ -1590,11 +1532,11 @@ ReadyRequest::~ReadyRequest() {
 
 inline void ReadyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.parent_address_.Destroy();
+  parent_address_.Destroy();
 }
 
 void ReadyRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ReadyRequest::Clear() {
@@ -1603,7 +1545,7 @@ void ReadyRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.parent_address_.ClearToEmpty();
+  parent_address_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1685,28 +1627,32 @@ size_t ReadyRequest::ByteSizeLong() const {
         this->_internal_parent_address());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReadyRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ReadyRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReadyRequest::GetClassData() const { return &_class_data_; }
 
+void ReadyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ReadyRequest *>(to)->MergeFrom(
+      static_cast<const ReadyRequest &>(from));
+}
 
-void ReadyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ReadyRequest*>(&to_msg);
-  auto& from = static_cast<const ReadyRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.ReadyRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ReadyRequest::MergeFrom(const ReadyRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.ReadyRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_parent_address().empty()) {
-    _this->_internal_set_parent_address(from._internal_parent_address());
+    _internal_set_parent_address(from._internal_parent_address());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ReadyRequest::CopyFrom(const ReadyRequest& from) {
@@ -1726,8 +1672,8 @@ void ReadyRequest::InternalSwap(ReadyRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.parent_address_, lhs_arena,
-      &other->_impl_.parent_address_, rhs_arena
+      &parent_address_, lhs_arena,
+      &other->parent_address_, rhs_arena
   );
 }
 
@@ -1746,39 +1692,31 @@ class ReadyResponse::_Internal {
 
 const ::viam::module::v1::HandlerMap&
 ReadyResponse::_Internal::handlermap(const ReadyResponse* msg) {
-  return *msg->_impl_.handlermap_;
+  return *msg->handlermap_;
 }
 ReadyResponse::ReadyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.ReadyResponse)
 }
 ReadyResponse::ReadyResponse(const ReadyResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ReadyResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.handlermap_){nullptr}
-    , decltype(_impl_.ready_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_handlermap()) {
-    _this->_impl_.handlermap_ = new ::viam::module::v1::HandlerMap(*from._impl_.handlermap_);
+    handlermap_ = new ::viam::module::v1::HandlerMap(*from.handlermap_);
+  } else {
+    handlermap_ = nullptr;
   }
-  _this->_impl_.ready_ = from._impl_.ready_;
+  ready_ = from.ready_;
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.ReadyResponse)
 }
 
-inline void ReadyResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.handlermap_){nullptr}
-    , decltype(_impl_.ready_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ReadyResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&handlermap_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&ready_) -
+    reinterpret_cast<char*>(&handlermap_)) + sizeof(ready_));
 }
 
 ReadyResponse::~ReadyResponse() {
@@ -1792,11 +1730,11 @@ ReadyResponse::~ReadyResponse() {
 
 inline void ReadyResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.handlermap_;
+  if (this != internal_default_instance()) delete handlermap_;
 }
 
 void ReadyResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ReadyResponse::Clear() {
@@ -1805,11 +1743,11 @@ void ReadyResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.handlermap_ != nullptr) {
-    delete _impl_.handlermap_;
+  if (GetArenaForAllocation() == nullptr && handlermap_ != nullptr) {
+    delete handlermap_;
   }
-  _impl_.handlermap_ = nullptr;
-  _impl_.ready_ = false;
+  handlermap_ = nullptr;
+  ready_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1822,7 +1760,7 @@ const char* ReadyResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // bool ready = 1 [json_name = "ready"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.ready_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          ready_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1897,7 +1835,7 @@ size_t ReadyResponse::ByteSizeLong() const {
   if (this->_internal_has_handlermap()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.handlermap_);
+        *handlermap_);
   }
 
   // bool ready = 1 [json_name = "ready"];
@@ -1905,32 +1843,35 @@ size_t ReadyResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReadyResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ReadyResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReadyResponse::GetClassData() const { return &_class_data_; }
 
+void ReadyResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ReadyResponse *>(to)->MergeFrom(
+      static_cast<const ReadyResponse &>(from));
+}
 
-void ReadyResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ReadyResponse*>(&to_msg);
-  auto& from = static_cast<const ReadyResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.ReadyResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ReadyResponse::MergeFrom(const ReadyResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.module.v1.ReadyResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_handlermap()) {
-    _this->_internal_mutable_handlermap()->::viam::module::v1::HandlerMap::MergeFrom(
-        from._internal_handlermap());
+    _internal_mutable_handlermap()->::viam::module::v1::HandlerMap::MergeFrom(from._internal_handlermap());
   }
   if (from._internal_ready() != 0) {
-    _this->_internal_set_ready(from._internal_ready());
+    _internal_set_ready(from._internal_ready());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ReadyResponse::CopyFrom(const ReadyResponse& from) {
@@ -1948,11 +1889,11 @@ void ReadyResponse::InternalSwap(ReadyResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ReadyResponse, _impl_.ready_)
-      + sizeof(ReadyResponse::_impl_.ready_)
-      - PROTOBUF_FIELD_OFFSET(ReadyResponse, _impl_.handlermap_)>(
-          reinterpret_cast<char*>(&_impl_.handlermap_),
-          reinterpret_cast<char*>(&other->_impl_.handlermap_));
+      PROTOBUF_FIELD_OFFSET(ReadyResponse, ready_)
+      + sizeof(ReadyResponse::ready_)
+      - PROTOBUF_FIELD_OFFSET(ReadyResponse, handlermap_)>(
+          reinterpret_cast<char*>(&handlermap_),
+          reinterpret_cast<char*>(&other->handlermap_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ReadyResponse::GetMetadata() const {
