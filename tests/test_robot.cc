@@ -1,7 +1,6 @@
 #include <memory>
 #include <utility>
 
-#include "../gen/mock/robot_mock.grpc.pb.h"
 #include "../src/robot/service.h"
 #include "common/v1/common.pb.h"
 #include "component/arm/v1/arm.grpc.pb.h"
@@ -48,9 +47,10 @@ class TestService : public RobotService_ {
 	TestService();
 };
 
-// CR erodkin: if we really have to include all these functions then this should
-// be a separate file
+// TODO(RSDK-1629): when we flesh out the tests here, move MockStub into its own
+// file.
 class MockStub : public RobotService::StubInterface {
+       public:
 	TestService service;
 	MockStub(TestService service) { service = service; };
 
@@ -303,24 +303,21 @@ TestService service() {
 	return service;
 }
 
-// CR erodkin: the question is: how do we generate a stub that calls our
-// TestService version of the function specifically that isn't just us defining
-// a stub type that serves as an intermediary for a call to the TestService
-// function?
 int test_resource_names(TestService service) {
 	MockStub mock_(service);
+	grpc::ClientContext ctx;
+	viam::robot::v1::ResourceNamesRequest req;
+	viam::robot::v1::ResourceNamesResponse resp;
+	grpc::Status status = mock_.ResourceNames(&ctx, req, &resp);
 
-	viam::robot::v1::MockRobotServiceStub mock;
-	std::shared_ptr<grpc::Channel> c = grpc::CreateChannel(
-	    "0.0.0.0:50051", grpc::InsecureChannelCredentials());
-	// std::unique_ptr<RobotService::Stub> stub_ = foo.NewStub(c);
-	// RobotService::Stub stub_();
+	RepeatedPtrField<ResourceName> resources = resp.resources();
+	std::vector<ResourceName> from_call;
+	for (auto resource : resources) {
+		from_call.push_back(resource);
+	}
 
-	std::unique_ptr<RobotService::Stub> stub_ = RobotService::NewStub(c);
-	//  RobotService::StubInterface(service) r;
-	//  service.
-	//   service.ResourceNames()
-	//   grpc::testing::ChannelTestPeer test_channel;
-	//   grpc::testing
-	//   RobotService::NewStub(grpc::testing::ChannelTestPeer()) stub_;
+	if (from_call == names_for_testing()) {
+		return 0;
+	}
+	return 1;
 }

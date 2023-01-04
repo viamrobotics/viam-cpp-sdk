@@ -10,6 +10,8 @@ class ComponentType {
        public:
 	std::string name;
 	friend bool operator==(ComponentType& lhs, ComponentType& rhs);
+	ComponentType(std::string name) { name = name; }
+	ComponentType() { name = "ComponentBase"; }
 };
 
 class ComponentBase {
@@ -21,6 +23,7 @@ class ComponentBase {
 	virtual grpc::StatusCode stop(
 	    std::unordered_map<std::string, ProtoType> extra);
 	virtual grpc::StatusCode stop();
+	ComponentBase();
 };
 
 bool operator==(ComponentType& lhs, ComponentType& rhs) {
@@ -28,7 +31,7 @@ bool operator==(ComponentType& lhs, ComponentType& rhs) {
 }
 
 ResourceName ComponentBase::get_resource_name(std::string name_) {
-	// TODO (ethan): test, confirm whether we need to split on
+	// TODO (RSDK-1631): test, confirm whether we need to split on
 	// "viam.components" here
 	ResourceName r;
 	*r.mutable_namespace_() = "rdk";

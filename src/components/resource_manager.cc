@@ -15,12 +15,10 @@ class ResourceManager {
 	// 	std::string name: the name of the component
 	//
 	// Raises:
-	// 	If the name is not within the ResourceManager then
-	// register_component will throw an error.
-	//
-	// TODO(ethan): pass expected type to this function, raise if it's not
-	// what we receive.
-	ComponentBase get_component(std::string name);
+	// 	If the name is not within the ResourceManager or the registered
+	// component's type is not the expected type, then register_component
+	// will throw an error.
+	ComponentBase get_component(std::string name, ComponentType of_type);
 	ResourceManager(std::vector<ComponentBase> components);
 	ResourceManager();
 };
@@ -46,9 +44,22 @@ void ResourceManager::register_component(ComponentBase component) {
 
 std::unordered_map<std::string, ComponentBase> ResourceManager::components;
 
-ComponentBase ResourceManager::get_component(std::string name) {
+ComponentBase ResourceManager::get_component(std::string name,
+					     ComponentType of_type) {
 	if (components.find(name) == components.end()) {
 		throw "Component name " + name + " doesn't exist!";
 	}
-	return components.at(name);
+
+	ComponentBase component = components.at(name);
+	if (component.type == of_type) {
+		return component;
+	}
+
+	ComponentType base = ComponentType("ComponentBase");
+	if (of_type == base) {
+		return component;
+	}
+	throw "Component name " + name +
+	    " was found, but it has the wrong type! Expected type: " +
+	    of_type.name + ". Actual type: " + component.type.name;
 }

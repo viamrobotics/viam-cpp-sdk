@@ -27,6 +27,9 @@ class ResourceNameEqual {
 		return !(
 		    t1.SerializeAsString().compare(t2.SerializeAsString()));
 	}
+	static bool check_equal(const ResourceName r1, const ResourceName r2) {
+		return r1.SerializeAsString().compare(r2.SerializeAsString());
+	}
 };
 
 #endif

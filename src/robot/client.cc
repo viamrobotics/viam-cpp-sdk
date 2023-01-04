@@ -1,3 +1,4 @@
+#include <algorithm>
 #define BOOST_LOG_DYN_LINK 1
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
@@ -212,24 +213,17 @@ void RobotClient::refresh() {
 			    << ": " << exc.what();
 		}
 	}
-	// TODO: come up with a better equality check here. equality is
-	// not defined for `const ResourceName` unfortunately, but this
-	// is pretty awkward as is.
-	bool is_equal = true;
-	if (current_resources.size() != resource_names_.size()) {
-		is_equal = false;
-	}
+	bool is_equal = current_resources.size() == resource_names_.size();
 	if (is_equal) {
 		for (int i = 0; i < current_resources.size(); ++i) {
-			ResourceName r1, r2;
-			r1 = current_resources.at(i);
-			r2 = resource_names_.at(i);
-			if (r1.namespace_() != r2.namespace_()) {
+			if (!ResourceNameEqual::check_equal(
+				resource_names_.at(i),
+				current_resources.at(i))) {
 				is_equal = false;
 				break;
 			}
 		}
-	};
+	}
 	if (is_equal) {
 		return;
 	}
@@ -384,7 +378,8 @@ ComponentBase RobotClient::get_component(ResourceName name) {
 		throw error;
 	}
 	lock.lock();
-	return resource_manager.get_component(name.name());
+	return resource_manager.get_component(name.name(),
+					      ComponentType("ComponentBase"));
 }
 
 void RobotClient::stop_all() {

@@ -12,7 +12,7 @@ class ResourceManager {
 	ResourceManager();
 	static std::unordered_map<std::string, ComponentBase> components;
 	void register_component(ComponentBase component);
-	ComponentBase get_component(std::string name);
+	ComponentBase get_component(std::string name, ComponentType of_type);
 };
 
 #endif

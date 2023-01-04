@@ -27,8 +27,8 @@ std::vector<ResourceName> resource_names_for_component(
 		component_type = &component.name;
 	}
 
-	// TODO (ethan): make sure we split properly on "viam.components."
-	// within component_type
+	// TODO (RSDK-1631): make sure we split properly on "viam.components."
+	// within component_type as needed
 
 	ResourceName r;
 	*r.mutable_namespace_() = "rdk";
@@ -36,6 +36,8 @@ std::vector<ResourceName> resource_names_for_component(
 	*r.mutable_name() = component.name;
 	*r.mutable_subtype() = *component_type;
 	resource_names.push_back(r);
+	std::cout << "called to get resource names! " << r.SerializeAsString()
+		  << std::endl;
 	return resource_names;
 }
 
@@ -49,5 +51,10 @@ class ResourceNameEqual {
 	bool operator()(ResourceName const& t1, ResourceName const& t2) const {
 		return !(
 		    t1.SerializeAsString().compare(t2.SerializeAsString()));
+	}
+
+	static bool check_equal(ResourceName const& r1,
+				ResourceName const& r2) {
+		return r1.SerializeAsString().compare(r2.SerializeAsString());
 	}
 };

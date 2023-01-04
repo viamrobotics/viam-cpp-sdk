@@ -12,6 +12,8 @@
 class ComponentType {
        public:
 	std::string name;
+	ComponentType(){};
+	ComponentType(std::string name) { name = name; }
 	friend bool operator==(ComponentType& lhs, ComponentType& rhs);
 };
 
