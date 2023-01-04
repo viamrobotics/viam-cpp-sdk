@@ -297,8 +297,8 @@ viam::component::arm::v1::Status default_status() {
 
 TestService service() {
 	TestService service;
-	// TODO: add extra components to the manager here once they're defined
-	// in subsequent features
+	// TODO(RSDK-1629): add extra components to the manager here once
+	// they're defined in subsequent features
 
 	return service;
 }
