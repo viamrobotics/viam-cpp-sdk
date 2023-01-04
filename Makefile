@@ -13,6 +13,6 @@ buf:	buf-clean
 	buf generate buf.build/viamrobotics/goutils --template buf.gen.yaml 
 	buf generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api 
 	buf generate buf.build/viamrobotics/api --template buf.gen.yaml
-	ls src/gen/robot/v1/*.grpc.pb.cc | while read l; do mockgen -source="$$l" -destination=src/gen/robot/mock_v1/mock_`basename "$$l"`; done
+	#ls src/gen/robot/v1/*.grpc.pb.cc | while read l; do mockgen -source="$$l" -destination=src/gen/robot/mock_v1/mock_`basename "$$l"`; done
 buf-clean:
 	rm -rf src/gen/*

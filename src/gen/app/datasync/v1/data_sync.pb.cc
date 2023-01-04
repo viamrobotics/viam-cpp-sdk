@@ -24,6 +24,56 @@ namespace viam {
 namespace app {
 namespace datasync {
 namespace v1 {
+PROTOBUF_CONSTEXPR DataCaptureUploadRequest::DataCaptureUploadRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.sensor_contents_)*/{}
+  , /*decltype(_impl_.metadata_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct DataCaptureUploadRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DataCaptureUploadRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DataCaptureUploadRequestDefaultTypeInternal() {}
+  union {
+    DataCaptureUploadRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DataCaptureUploadRequestDefaultTypeInternal _DataCaptureUploadRequest_default_instance_;
+PROTOBUF_CONSTEXPR DataCaptureUploadResponse::DataCaptureUploadResponse(
+    ::_pbi::ConstantInitialized) {}
+struct DataCaptureUploadResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DataCaptureUploadResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DataCaptureUploadResponseDefaultTypeInternal() {}
+  union {
+    DataCaptureUploadResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DataCaptureUploadResponseDefaultTypeInternal _DataCaptureUploadResponse_default_instance_;
+PROTOBUF_CONSTEXPR FileUploadRequest::FileUploadRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.upload_packet_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
+struct FileUploadRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileUploadRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileUploadRequestDefaultTypeInternal() {}
+  union {
+    FileUploadRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileUploadRequestDefaultTypeInternal _FileUploadRequest_default_instance_;
+PROTOBUF_CONSTEXPR FileUploadResponse::FileUploadResponse(
+    ::_pbi::ConstantInitialized) {}
+struct FileUploadResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileUploadResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileUploadResponseDefaultTypeInternal() {}
+  union {
+    FileUploadResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileUploadResponseDefaultTypeInternal _FileUploadResponse_default_instance_;
 PROTOBUF_CONSTEXPR SensorMetadata::SensorMetadata(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.time_requested_)*/nullptr
@@ -100,33 +150,6 @@ struct UploadMetadataDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadMetadataDefaultTypeInternal _UploadMetadata_default_instance_;
-PROTOBUF_CONSTEXPR UploadRequest::UploadRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.upload_packet_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
-struct UploadRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UploadRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UploadRequestDefaultTypeInternal() {}
-  union {
-    UploadRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadRequestDefaultTypeInternal _UploadRequest_default_instance_;
-PROTOBUF_CONSTEXPR UploadResponse::UploadResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.requests_written_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct UploadResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UploadResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UploadResponseDefaultTypeInternal() {}
-  union {
-    UploadResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadResponseDefaultTypeInternal _UploadResponse_default_instance_;
 PROTOBUF_CONSTEXPR CaptureInterval::CaptureInterval(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.start_)*/nullptr
@@ -261,11 +284,40 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace datasync
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[14];
+static ::_pb::Metadata file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[16];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fdatasync_2fv1_2fdata_5fsync_2eproto = nullptr;
 
 const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, _impl_.metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, _impl_.sensor_contents_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _impl_._oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _impl_.upload_packet_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorMetadata, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -318,23 +370,6 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.file_extension_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.tags_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.session_id_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadRequest, _impl_._oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadRequest, _impl_.upload_packet_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadResponse, _impl_.requests_written_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::CaptureInterval, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -440,30 +475,34 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.id_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::app::datasync::v1::SensorMetadata)},
-  { 8, -1, -1, sizeof(::viam::app::datasync::v1::SensorData)},
-  { 18, -1, -1, sizeof(::viam::app::datasync::v1::FileData)},
-  { 25, 33, -1, sizeof(::viam::app::datasync::v1::UploadMetadata_MethodParametersEntry_DoNotUse)},
-  { 35, -1, -1, sizeof(::viam::app::datasync::v1::UploadMetadata)},
-  { 52, -1, -1, sizeof(::viam::app::datasync::v1::UploadRequest)},
-  { 62, -1, -1, sizeof(::viam::app::datasync::v1::UploadResponse)},
-  { 69, -1, -1, sizeof(::viam::app::datasync::v1::CaptureInterval)},
-  { 77, 85, -1, sizeof(::viam::app::datasync::v1::DataCaptureMetadata_MethodParametersEntry_DoNotUse)},
-  { 87, -1, -1, sizeof(::viam::app::datasync::v1::DataCaptureMetadata)},
-  { 102, 110, -1, sizeof(::viam::app::datasync::v1::TabularCapture_MethodParametersEntry_DoNotUse)},
-  { 112, -1, -1, sizeof(::viam::app::datasync::v1::TabularCapture)},
-  { 137, 145, -1, sizeof(::viam::app::datasync::v1::BinaryCapture_MethodParametersEntry_DoNotUse)},
-  { 147, -1, -1, sizeof(::viam::app::datasync::v1::BinaryCapture)},
+  { 0, -1, -1, sizeof(::viam::app::datasync::v1::DataCaptureUploadRequest)},
+  { 8, -1, -1, sizeof(::viam::app::datasync::v1::DataCaptureUploadResponse)},
+  { 14, -1, -1, sizeof(::viam::app::datasync::v1::FileUploadRequest)},
+  { 23, -1, -1, sizeof(::viam::app::datasync::v1::FileUploadResponse)},
+  { 29, -1, -1, sizeof(::viam::app::datasync::v1::SensorMetadata)},
+  { 37, -1, -1, sizeof(::viam::app::datasync::v1::SensorData)},
+  { 47, -1, -1, sizeof(::viam::app::datasync::v1::FileData)},
+  { 54, 62, -1, sizeof(::viam::app::datasync::v1::UploadMetadata_MethodParametersEntry_DoNotUse)},
+  { 64, -1, -1, sizeof(::viam::app::datasync::v1::UploadMetadata)},
+  { 81, -1, -1, sizeof(::viam::app::datasync::v1::CaptureInterval)},
+  { 89, 97, -1, sizeof(::viam::app::datasync::v1::DataCaptureMetadata_MethodParametersEntry_DoNotUse)},
+  { 99, -1, -1, sizeof(::viam::app::datasync::v1::DataCaptureMetadata)},
+  { 114, 122, -1, sizeof(::viam::app::datasync::v1::TabularCapture_MethodParametersEntry_DoNotUse)},
+  { 124, -1, -1, sizeof(::viam::app::datasync::v1::TabularCapture)},
+  { 149, 157, -1, sizeof(::viam::app::datasync::v1::BinaryCapture_MethodParametersEntry_DoNotUse)},
+  { 159, -1, -1, sizeof(::viam::app::datasync::v1::BinaryCapture)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
+  &::viam::app::datasync::v1::_DataCaptureUploadRequest_default_instance_._instance,
+  &::viam::app::datasync::v1::_DataCaptureUploadResponse_default_instance_._instance,
+  &::viam::app::datasync::v1::_FileUploadRequest_default_instance_._instance,
+  &::viam::app::datasync::v1::_FileUploadResponse_default_instance_._instance,
   &::viam::app::datasync::v1::_SensorMetadata_default_instance_._instance,
   &::viam::app::datasync::v1::_SensorData_default_instance_._instance,
   &::viam::app::datasync::v1::_FileData_default_instance_._instance,
   &::viam::app::datasync::v1::_UploadMetadata_MethodParametersEntry_DoNotUse_default_instance_._instance,
   &::viam::app::datasync::v1::_UploadMetadata_default_instance_._instance,
-  &::viam::app::datasync::v1::_UploadRequest_default_instance_._instance,
-  &::viam::app::datasync::v1::_UploadResponse_default_instance_._instance,
   &::viam::app::datasync::v1::_CaptureInterval_default_instance_._instance,
   &::viam::app::datasync::v1::_DataCaptureMetadata_MethodParametersEntry_DoNotUse_default_instance_._instance,
   &::viam::app::datasync::v1::_DataCaptureMetadata_default_instance_._instance,
@@ -478,140 +517,145 @@ const char descriptor_table_protodef_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[]
   "app.datasync.v1\032\031google/protobuf/any.pro"
   "to\032\034google/protobuf/struct.proto\032\037google"
   "/protobuf/timestamp.proto\032\026tagger/v1/tag"
-  "ger.proto\"\224\001\n\016SensorMetadata\022A\n\016time_req"
-  "uested\030\001 \001(\0132\032.google.protobuf.Timestamp"
-  "R\rtimeRequested\022\?\n\rtime_received\030\002 \001(\0132\032"
-  ".google.protobuf.TimestampR\014timeReceived"
-  "\"\243\001\n\nSensorData\022@\n\010metadata\030\001 \001(\0132$.viam"
-  ".app.datasync.v1.SensorMetadataR\010metadat"
-  "a\0221\n\006struct\030\002 \001(\0132\027.google.protobuf.Stru"
-  "ctH\000R\006struct\022\030\n\006binary\030\003 \001(\014H\000R\006binaryB\006"
-  "\n\004data\"\036\n\010FileData\022\022\n\004data\030\001 \001(\014R\004data\"\260"
-  "\004\n\016UploadMetadata\022\027\n\007part_id\030\001 \001(\tR\006part"
-  "Id\022%\n\016component_type\030\002 \001(\tR\rcomponentTyp"
-  "e\022%\n\016component_name\030\003 \001(\tR\rcomponentName"
-  "\022\'\n\017component_model\030\004 \001(\tR\016componentMode"
-  "l\022\037\n\013method_name\030\005 \001(\tR\nmethodName\0222\n\004ty"
-  "pe\030\006 \001(\0162\036.viam.app.datasync.v1.DataType"
-  "R\004type\022\033\n\tfile_name\030\007 \001(\tR\010fileName\022g\n\021m"
-  "ethod_parameters\030\010 \003(\0132:.viam.app.datasy"
-  "nc.v1.UploadMetadata.MethodParametersEnt"
-  "ryR\020methodParameters\022%\n\016file_extension\030\t"
-  " \001(\tR\rfileExtension\022\022\n\004tags\030\n \003(\tR\004tags\022"
-  "\035\n\nsession_id\030\013 \001(\tR\tsessionId\032Y\n\025Method"
-  "ParametersEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005val"
-  "ue\030\002 \001(\0132\024.google.protobuf.AnyR\005value:\0028"
-  "\001\"\370\001\n\rUploadRequest\022B\n\010metadata\030\001 \001(\0132$."
-  "viam.app.datasync.v1.UploadMetadataH\000R\010m"
-  "etadata\022K\n\017sensor_contents\030\002 \001(\0132 .viam."
-  "app.datasync.v1.SensorDataH\000R\016sensorCont"
-  "ents\022E\n\rfile_contents\030\003 \001(\0132\036.viam.app.d"
-  "atasync.v1.FileDataH\000R\014fileContentsB\017\n\ru"
-  "pload_packet\";\n\016UploadResponse\022)\n\020reques"
-  "ts_written\030\001 \001(\005R\017requestsWritten\"q\n\017Cap"
-  "tureInterval\0220\n\005start\030\001 \001(\0132\032.google.pro"
-  "tobuf.TimestampR\005start\022,\n\003end\030\002 \001(\0132\032.go"
-  "ogle.protobuf.TimestampR\003end\"\204\004\n\023DataCap"
-  "tureMetadata\022%\n\016component_type\030\001 \001(\tR\rco"
-  "mponentType\022%\n\016component_name\030\002 \001(\tR\rcom"
-  "ponentName\022\'\n\017component_model\030\003 \001(\tR\016com"
-  "ponentModel\022\037\n\013method_name\030\004 \001(\tR\nmethod"
-  "Name\0222\n\004type\030\005 \001(\0162\036.viam.app.datasync.v"
-  "1.DataTypeR\004type\022l\n\021method_parameters\030\006 "
-  "\003(\0132\?.viam.app.datasync.v1.DataCaptureMe"
-  "tadata.MethodParametersEntryR\020methodPara"
-  "meters\022%\n\016file_extension\030\007 \001(\tR\rfileExte"
-  "nsion\022\022\n\004tags\030\010 \003(\tR\004tags\022\035\n\nsession_id\030"
-  "\t \001(\tR\tsessionId\032Y\n\025MethodParametersEntr"
-  "y\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.goo"
-  "gle.protobuf.AnyR\005value:\0028\001\"\317\014\n\016TabularC"
-  "apture\022g\n\010interval\030\001 \001(\0132%.viam.app.data"
-  "sync.v1.CaptureIntervalB$\232\204\236\003\037bson:\"inte"
-  "rval\" json:\"interval\"R\010interval\0227\n\006org_i"
-  "d\030\002 \001(\tB \232\204\236\003\033bson:\"org_id\" json:\"org_id"
-  "\"R\005orgId\022\?\n\010robot_id\030\003 \001(\tB$\232\204\236\003\037bson:\"r"
-  "obot_id\" json:\"robot_id\"R\007robotId\022;\n\007par"
-  "t_id\030\004 \001(\tB\"\232\204\236\003\035bson:\"part_id\" json:\"pa"
-  "rt_id\"R\006partId\022K\n\013location_id\030\005 \001(\tB*\232\204\236"
-  "\003%bson:\"location_id\" json:\"location_id\"R"
-  "\nlocationId\022W\n\016component_name\030\006 \001(\tB0\232\204\236"
-  "\003+bson:\"component_name\" json:\"component_"
-  "name\"R\rcomponentName\022W\n\016component_type\030\007"
-  " \001(\tB0\232\204\236\003+bson:\"component_type\" json:\"c"
-  "omponent_type\"R\rcomponentType\022[\n\017compone"
-  "nt_model\030\010 \001(\tB2\232\204\236\003-bson:\"component_mod"
-  "el\" json:\"component_model\"R\016componentMod"
-  "el\022K\n\013method_name\030\t \001(\tB*\232\204\236\003%bson:\"meth"
-  "od_name\" json:\"method_name\"R\nmethodName\022"
-  "C\n\tblob_path\030\n \001(\tB&\232\204\236\003!bson:\"blob_path"
-  "\" json:\"blob_path\"R\010blobPath\022O\n\014column_n"
-  "ames\030\013 \003(\tB,\232\204\236\003\'bson:\"column_names\" jso"
-  "n:\"column_names\"R\013columnNames\022\237\001\n\021method"
-  "_parameters\030\014 \003(\0132:.viam.app.datasync.v1"
-  ".TabularCapture.MethodParametersEntryB6\232"
-  "\204\236\0031bson:\"method_parameters\" json:\"metho"
-  "d_parameters\"R\020methodParameters\022;\n\007file_"
-  "id\030\r \001(\tB\"\232\204\236\003\035bson:\"file_id\" json:\"file"
-  "_id\"R\006fileId\0220\n\004tags\030\016 \003(\tB\034\232\204\236\003\027bson:\"t"
-  "ags\" json:\"tags\"R\004tags\022S\n\rmessage_count\030"
-  "\017 \001(\005B.\232\204\236\003)bson:\"message_count\" json:\"m"
-  "essage_count\"R\014messageCount\022Z\n\017file_size"
-  "_bytes\030\020 \001(\003B2\232\204\236\003-bson:\"file_size_bytes"
-  "\" json:\"file_size_bytes\"R\rfileSizeBytes\022"
-  "G\n\nsession_id\030\021 \001(\tB(\232\204\236\003#bson:\"session_"
-  "id\" json:\"session_id\"R\tsessionId\022C\n\tmime"
-  "_type\030\022 \001(\tB&\232\204\236\003!bson:\"mime_type\" json:"
-  "\"mime_type\"R\010mimeType\0223\n\002id\030\023 \001(\tB#\232\204\236\003\036"
-  "bson:\"_id\" json:\"id,omitempty\"R\002id\032Y\n\025Me"
-  "thodParametersEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n"
-  "\005value\030\002 \001(\0132\024.google.protobuf.AnyR\005valu"
-  "e:\0028\001\"\255\014\n\rBinaryCapture\022g\n\010interval\030\001 \001("
-  "\0132%.viam.app.datasync.v1.CaptureInterval"
-  "B$\232\204\236\003\037bson:\"interval\" json:\"interval\"R\010"
-  "interval\0227\n\006org_id\030\002 \001(\tB \232\204\236\003\033bson:\"org"
-  "_id\" json:\"org_id\"R\005orgId\022\?\n\010robot_id\030\003 "
-  "\001(\tB$\232\204\236\003\037bson:\"robot_id\" json:\"robot_id"
-  "\"R\007robotId\022;\n\007part_id\030\004 \001(\tB\"\232\204\236\003\035bson:\""
-  "part_id\" json:\"part_id\"R\006partId\022K\n\013locat"
-  "ion_id\030\005 \001(\tB*\232\204\236\003%bson:\"location_id\" js"
-  "on:\"location_id\"R\nlocationId\022W\n\016componen"
-  "t_name\030\006 \001(\tB0\232\204\236\003+bson:\"component_name\""
-  " json:\"component_name\"R\rcomponentName\022W\n"
-  "\016component_type\030\007 \001(\tB0\232\204\236\003+bson:\"compon"
-  "ent_type\" json:\"component_type\"R\rcompone"
-  "ntType\022[\n\017component_model\030\010 \001(\tB2\232\204\236\003-bs"
-  "on:\"component_model\" json:\"component_mod"
-  "el\"R\016componentModel\022K\n\013method_name\030\t \001(\t"
-  "B*\232\204\236\003%bson:\"method_name\" json:\"method_n"
-  "ame\"R\nmethodName\022C\n\tblob_path\030\n \001(\tB&\232\204\236"
-  "\003!bson:\"blob_path\" json:\"blob_path\"R\010blo"
-  "bPath\022\236\001\n\021method_parameters\030\013 \003(\01329.viam"
-  ".app.datasync.v1.BinaryCapture.MethodPar"
-  "ametersEntryB6\232\204\236\0031bson:\"method_paramete"
-  "rs\" json:\"method_parameters\"R\020methodPara"
-  "meters\022;\n\007file_id\030\014 \001(\tB\"\232\204\236\003\035bson:\"file"
-  "_id\" json:\"file_id\"R\006fileId\0220\n\004tags\030\r \003("
-  "\tB\034\232\204\236\003\027bson:\"tags\" json:\"tags\"R\004tags\022Z\n"
-  "\017file_size_bytes\030\016 \001(\003B2\232\204\236\003-bson:\"file_"
-  "size_bytes\" json:\"file_size_bytes\"R\rfile"
-  "SizeBytes\022G\n\nsession_id\030\017 \001(\tB(\232\204\236\003#bson"
-  ":\"session_id\" json:\"session_id\"R\tsession"
-  "Id\022C\n\tmime_type\030\020 \001(\tB&\232\204\236\003!bson:\"mime_t"
-  "ype\" json:\"mime_type\"R\010mimeType\022C\n\tfile_"
-  "name\030\021 \001(\tB&\232\204\236\003!bson:\"file_name\" json:\""
-  "file_name\"R\010fileName\022\?\n\010file_ext\030\022 \001(\tB$"
-  "\232\204\236\003\037bson:\"file_ext\" json:\"file_ext\"R\007fi"
-  "leExt\0223\n\002id\030\023 \001(\tB#\232\204\236\003\036bson:\"_id\" json:"
-  "\"id,omitempty\"R\002id\032Y\n\025MethodParametersEn"
-  "try\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.g"
-  "oogle.protobuf.AnyR\005value:\0028\001*t\n\010DataTyp"
-  "e\022\031\n\025DATA_TYPE_UNSPECIFIED\020\000\022\033\n\027DATA_TYP"
-  "E_BINARY_SENSOR\020\001\022\034\n\030DATA_TYPE_TABULAR_S"
-  "ENSOR\020\002\022\022\n\016DATA_TYPE_FILE\020\0032j\n\017DataSyncS"
-  "ervice\022W\n\006Upload\022#.viam.app.datasync.v1."
-  "UploadRequest\032$.viam.app.datasync.v1.Upl"
-  "oadResponse(\0010\001B!Z\037go.viam.com/api/app/d"
-  "atasync/v1b\006proto3"
+  "ger.proto\"\247\001\n\030DataCaptureUploadRequest\022@"
+  "\n\010metadata\030\001 \001(\0132$.viam.app.datasync.v1."
+  "UploadMetadataR\010metadata\022I\n\017sensor_conte"
+  "nts\030\002 \003(\0132 .viam.app.datasync.v1.SensorD"
+  "ataR\016sensorContents\"\033\n\031DataCaptureUpload"
+  "Response\"\257\001\n\021FileUploadRequest\022B\n\010metada"
+  "ta\030\001 \001(\0132$.viam.app.datasync.v1.UploadMe"
+  "tadataH\000R\010metadata\022E\n\rfile_contents\030\002 \001("
+  "\0132\036.viam.app.datasync.v1.FileDataH\000R\014fil"
+  "eContentsB\017\n\rupload_packet\"\024\n\022FileUpload"
+  "Response\"\224\001\n\016SensorMetadata\022A\n\016time_requ"
+  "ested\030\001 \001(\0132\032.google.protobuf.TimestampR"
+  "\rtimeRequested\022\?\n\rtime_received\030\002 \001(\0132\032."
+  "google.protobuf.TimestampR\014timeReceived\""
+  "\243\001\n\nSensorData\022@\n\010metadata\030\001 \001(\0132$.viam."
+  "app.datasync.v1.SensorMetadataR\010metadata"
+  "\0221\n\006struct\030\002 \001(\0132\027.google.protobuf.Struc"
+  "tH\000R\006struct\022\030\n\006binary\030\003 \001(\014H\000R\006binaryB\006\n"
+  "\004data\"\036\n\010FileData\022\022\n\004data\030\001 \001(\014R\004data\"\260\004"
+  "\n\016UploadMetadata\022\027\n\007part_id\030\001 \001(\tR\006partI"
+  "d\022%\n\016component_type\030\002 \001(\tR\rcomponentType"
+  "\022%\n\016component_name\030\003 \001(\tR\rcomponentName\022"
+  "\'\n\017component_model\030\004 \001(\tR\016componentModel"
+  "\022\037\n\013method_name\030\005 \001(\tR\nmethodName\0222\n\004typ"
+  "e\030\006 \001(\0162\036.viam.app.datasync.v1.DataTypeR"
+  "\004type\022\033\n\tfile_name\030\007 \001(\tR\010fileName\022g\n\021me"
+  "thod_parameters\030\010 \003(\0132:.viam.app.datasyn"
+  "c.v1.UploadMetadata.MethodParametersEntr"
+  "yR\020methodParameters\022%\n\016file_extension\030\t "
+  "\001(\tR\rfileExtension\022\022\n\004tags\030\n \003(\tR\004tags\022\035"
+  "\n\nsession_id\030\013 \001(\tR\tsessionId\032Y\n\025MethodP"
+  "arametersEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005valu"
+  "e\030\002 \001(\0132\024.google.protobuf.AnyR\005value:\0028\001"
+  "\"q\n\017CaptureInterval\0220\n\005start\030\001 \001(\0132\032.goo"
+  "gle.protobuf.TimestampR\005start\022,\n\003end\030\002 \001"
+  "(\0132\032.google.protobuf.TimestampR\003end\"\204\004\n\023"
+  "DataCaptureMetadata\022%\n\016component_type\030\001 "
+  "\001(\tR\rcomponentType\022%\n\016component_name\030\002 \001"
+  "(\tR\rcomponentName\022\'\n\017component_model\030\003 \001"
+  "(\tR\016componentModel\022\037\n\013method_name\030\004 \001(\tR"
+  "\nmethodName\0222\n\004type\030\005 \001(\0162\036.viam.app.dat"
+  "async.v1.DataTypeR\004type\022l\n\021method_parame"
+  "ters\030\006 \003(\0132\?.viam.app.datasync.v1.DataCa"
+  "ptureMetadata.MethodParametersEntryR\020met"
+  "hodParameters\022%\n\016file_extension\030\007 \001(\tR\rf"
+  "ileExtension\022\022\n\004tags\030\010 \003(\tR\004tags\022\035\n\nsess"
+  "ion_id\030\t \001(\tR\tsessionId\032Y\n\025MethodParamet"
+  "ersEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001("
+  "\0132\024.google.protobuf.AnyR\005value:\0028\001\"\317\014\n\016T"
+  "abularCapture\022g\n\010interval\030\001 \001(\0132%.viam.a"
+  "pp.datasync.v1.CaptureIntervalB$\232\204\236\003\037bso"
+  "n:\"interval\" json:\"interval\"R\010interval\0227"
+  "\n\006org_id\030\002 \001(\tB \232\204\236\003\033bson:\"org_id\" json:"
+  "\"org_id\"R\005orgId\022\?\n\010robot_id\030\003 \001(\tB$\232\204\236\003\037"
+  "bson:\"robot_id\" json:\"robot_id\"R\007robotId"
+  "\022;\n\007part_id\030\004 \001(\tB\"\232\204\236\003\035bson:\"part_id\" j"
+  "son:\"part_id\"R\006partId\022K\n\013location_id\030\005 \001"
+  "(\tB*\232\204\236\003%bson:\"location_id\" json:\"locati"
+  "on_id\"R\nlocationId\022W\n\016component_name\030\006 \001"
+  "(\tB0\232\204\236\003+bson:\"component_name\" json:\"com"
+  "ponent_name\"R\rcomponentName\022W\n\016component"
+  "_type\030\007 \001(\tB0\232\204\236\003+bson:\"component_type\" "
+  "json:\"component_type\"R\rcomponentType\022[\n\017"
+  "component_model\030\010 \001(\tB2\232\204\236\003-bson:\"compon"
+  "ent_model\" json:\"component_model\"R\016compo"
+  "nentModel\022K\n\013method_name\030\t \001(\tB*\232\204\236\003%bso"
+  "n:\"method_name\" json:\"method_name\"R\nmeth"
+  "odName\022C\n\tblob_path\030\n \001(\tB&\232\204\236\003!bson:\"bl"
+  "ob_path\" json:\"blob_path\"R\010blobPath\022O\n\014c"
+  "olumn_names\030\013 \003(\tB,\232\204\236\003\'bson:\"column_nam"
+  "es\" json:\"column_names\"R\013columnNames\022\237\001\n"
+  "\021method_parameters\030\014 \003(\0132:.viam.app.data"
+  "sync.v1.TabularCapture.MethodParametersE"
+  "ntryB6\232\204\236\0031bson:\"method_parameters\" json"
+  ":\"method_parameters\"R\020methodParameters\022;"
+  "\n\007file_id\030\r \001(\tB\"\232\204\236\003\035bson:\"file_id\" jso"
+  "n:\"file_id\"R\006fileId\0220\n\004tags\030\016 \003(\tB\034\232\204\236\003\027"
+  "bson:\"tags\" json:\"tags\"R\004tags\022S\n\rmessage"
+  "_count\030\017 \001(\005B.\232\204\236\003)bson:\"message_count\" "
+  "json:\"message_count\"R\014messageCount\022Z\n\017fi"
+  "le_size_bytes\030\020 \001(\003B2\232\204\236\003-bson:\"file_siz"
+  "e_bytes\" json:\"file_size_bytes\"R\rfileSiz"
+  "eBytes\022G\n\nsession_id\030\021 \001(\tB(\232\204\236\003#bson:\"s"
+  "ession_id\" json:\"session_id\"R\tsessionId\022"
+  "C\n\tmime_type\030\022 \001(\tB&\232\204\236\003!bson:\"mime_type"
+  "\" json:\"mime_type\"R\010mimeType\0223\n\002id\030\023 \001(\t"
+  "B#\232\204\236\003\036bson:\"_id\" json:\"id,omitempty\"R\002i"
+  "d\032Y\n\025MethodParametersEntry\022\020\n\003key\030\001 \001(\tR"
+  "\003key\022*\n\005value\030\002 \001(\0132\024.google.protobuf.An"
+  "yR\005value:\0028\001\"\255\014\n\rBinaryCapture\022g\n\010interv"
+  "al\030\001 \001(\0132%.viam.app.datasync.v1.CaptureI"
+  "ntervalB$\232\204\236\003\037bson:\"interval\" json:\"inte"
+  "rval\"R\010interval\0227\n\006org_id\030\002 \001(\tB \232\204\236\003\033bs"
+  "on:\"org_id\" json:\"org_id\"R\005orgId\022\?\n\010robo"
+  "t_id\030\003 \001(\tB$\232\204\236\003\037bson:\"robot_id\" json:\"r"
+  "obot_id\"R\007robotId\022;\n\007part_id\030\004 \001(\tB\"\232\204\236\003"
+  "\035bson:\"part_id\" json:\"part_id\"R\006partId\022K"
+  "\n\013location_id\030\005 \001(\tB*\232\204\236\003%bson:\"location"
+  "_id\" json:\"location_id\"R\nlocationId\022W\n\016c"
+  "omponent_name\030\006 \001(\tB0\232\204\236\003+bson:\"componen"
+  "t_name\" json:\"component_name\"R\rcomponent"
+  "Name\022W\n\016component_type\030\007 \001(\tB0\232\204\236\003+bson:"
+  "\"component_type\" json:\"component_type\"R\r"
+  "componentType\022[\n\017component_model\030\010 \001(\tB2"
+  "\232\204\236\003-bson:\"component_model\" json:\"compon"
+  "ent_model\"R\016componentModel\022K\n\013method_nam"
+  "e\030\t \001(\tB*\232\204\236\003%bson:\"method_name\" json:\"m"
+  "ethod_name\"R\nmethodName\022C\n\tblob_path\030\n \001"
+  "(\tB&\232\204\236\003!bson:\"blob_path\" json:\"blob_pat"
+  "h\"R\010blobPath\022\236\001\n\021method_parameters\030\013 \003(\013"
+  "29.viam.app.datasync.v1.BinaryCapture.Me"
+  "thodParametersEntryB6\232\204\236\0031bson:\"method_p"
+  "arameters\" json:\"method_parameters\"R\020met"
+  "hodParameters\022;\n\007file_id\030\014 \001(\tB\"\232\204\236\003\035bso"
+  "n:\"file_id\" json:\"file_id\"R\006fileId\0220\n\004ta"
+  "gs\030\r \003(\tB\034\232\204\236\003\027bson:\"tags\" json:\"tags\"R\004"
+  "tags\022Z\n\017file_size_bytes\030\016 \001(\003B2\232\204\236\003-bson"
+  ":\"file_size_bytes\" json:\"file_size_bytes"
+  "\"R\rfileSizeBytes\022G\n\nsession_id\030\017 \001(\tB(\232\204"
+  "\236\003#bson:\"session_id\" json:\"session_id\"R\t"
+  "sessionId\022C\n\tmime_type\030\020 \001(\tB&\232\204\236\003!bson:"
+  "\"mime_type\" json:\"mime_type\"R\010mimeType\022C"
+  "\n\tfile_name\030\021 \001(\tB&\232\204\236\003!bson:\"file_name\""
+  " json:\"file_name\"R\010fileName\022\?\n\010file_ext\030"
+  "\022 \001(\tB$\232\204\236\003\037bson:\"file_ext\" json:\"file_e"
+  "xt\"R\007fileExt\0223\n\002id\030\023 \001(\tB#\232\204\236\003\036bson:\"_id"
+  "\" json:\"id,omitempty\"R\002id\032Y\n\025MethodParam"
+  "etersEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 "
+  "\001(\0132\024.google.protobuf.AnyR\005value:\0028\001*t\n\010"
+  "DataType\022\031\n\025DATA_TYPE_UNSPECIFIED\020\000\022\033\n\027D"
+  "ATA_TYPE_BINARY_SENSOR\020\001\022\034\n\030DATA_TYPE_TA"
+  "BULAR_SENSOR\020\002\022\022\n\016DATA_TYPE_FILE\020\0032\352\001\n\017D"
+  "ataSyncService\022t\n\021DataCaptureUpload\022..vi"
+  "am.app.datasync.v1.DataCaptureUploadRequ"
+  "est\032/.viam.app.datasync.v1.DataCaptureUp"
+  "loadResponse\022a\n\nFileUpload\022\'.viam.app.da"
+  "tasync.v1.FileUploadRequest\032(.viam.app.d"
+  "atasync.v1.FileUploadResponse(\001B!Z\037go.vi"
+  "am.com/api/app/datasync/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -621,9 +665,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdatasync_2fv1
 };
 static ::_pbi::once_flag descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto = {
-    false, false, 5498, descriptor_table_protodef_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
+    false, false, 5714, descriptor_table_protodef_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
     "app/datasync/v1/data_sync.proto",
-    &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once, descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_deps, 4, 14,
+    &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once, descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_deps, 4, 16,
     schemas, file_default_instances, TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets,
     file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto, file_level_enum_descriptors_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
     file_level_service_descriptors_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
@@ -654,6 +698,618 @@ bool DataType_IsValid(int value) {
   }
 }
 
+
+// ===================================================================
+
+class DataCaptureUploadRequest::_Internal {
+ public:
+  static const ::viam::app::datasync::v1::UploadMetadata& metadata(const DataCaptureUploadRequest* msg);
+};
+
+const ::viam::app::datasync::v1::UploadMetadata&
+DataCaptureUploadRequest::_Internal::metadata(const DataCaptureUploadRequest* msg) {
+  return *msg->_impl_.metadata_;
+}
+DataCaptureUploadRequest::DataCaptureUploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.DataCaptureUploadRequest)
+}
+DataCaptureUploadRequest::DataCaptureUploadRequest(const DataCaptureUploadRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DataCaptureUploadRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.sensor_contents_){from._impl_.sensor_contents_}
+    , decltype(_impl_.metadata_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_metadata()) {
+    _this->_impl_.metadata_ = new ::viam::app::datasync::v1::UploadMetadata(*from._impl_.metadata_);
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.DataCaptureUploadRequest)
+}
+
+inline void DataCaptureUploadRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.sensor_contents_){arena}
+    , decltype(_impl_.metadata_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+DataCaptureUploadRequest::~DataCaptureUploadRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.datasync.v1.DataCaptureUploadRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DataCaptureUploadRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.sensor_contents_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.metadata_;
+}
+
+void DataCaptureUploadRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void DataCaptureUploadRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.datasync.v1.DataCaptureUploadRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.sensor_contents_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
+  }
+  _impl_.metadata_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DataCaptureUploadRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_sensor_contents(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DataCaptureUploadRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.datasync.v1.DataCaptureUploadRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
+  if (this->_internal_has_metadata()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_sensor_contents_size()); i < n; i++) {
+    const auto& repfield = this->_internal_sensor_contents(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.datasync.v1.DataCaptureUploadRequest)
+  return target;
+}
+
+size_t DataCaptureUploadRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.datasync.v1.DataCaptureUploadRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
+  total_size += 1UL * this->_internal_sensor_contents_size();
+  for (const auto& msg : this->_impl_.sensor_contents_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
+  if (this->_internal_has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.metadata_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DataCaptureUploadRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    DataCaptureUploadRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DataCaptureUploadRequest::GetClassData() const { return &_class_data_; }
+
+
+void DataCaptureUploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DataCaptureUploadRequest*>(&to_msg);
+  auto& from = static_cast<const DataCaptureUploadRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.DataCaptureUploadRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.sensor_contents_.MergeFrom(from._impl_.sensor_contents_);
+  if (from._internal_has_metadata()) {
+    _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
+        from._internal_metadata());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DataCaptureUploadRequest::CopyFrom(const DataCaptureUploadRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.datasync.v1.DataCaptureUploadRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DataCaptureUploadRequest::IsInitialized() const {
+  return true;
+}
+
+void DataCaptureUploadRequest::InternalSwap(DataCaptureUploadRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.sensor_contents_.InternalSwap(&other->_impl_.sensor_contents_);
+  swap(_impl_.metadata_, other->_impl_.metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DataCaptureUploadRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[0]);
+}
+
+// ===================================================================
+
+class DataCaptureUploadResponse::_Internal {
+ public:
+};
+
+DataCaptureUploadResponse::DataCaptureUploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.DataCaptureUploadResponse)
+}
+DataCaptureUploadResponse::DataCaptureUploadResponse(const DataCaptureUploadResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  DataCaptureUploadResponse* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.DataCaptureUploadResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DataCaptureUploadResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DataCaptureUploadResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata DataCaptureUploadResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[1]);
+}
+
+// ===================================================================
+
+class FileUploadRequest::_Internal {
+ public:
+  static const ::viam::app::datasync::v1::UploadMetadata& metadata(const FileUploadRequest* msg);
+  static const ::viam::app::datasync::v1::FileData& file_contents(const FileUploadRequest* msg);
+};
+
+const ::viam::app::datasync::v1::UploadMetadata&
+FileUploadRequest::_Internal::metadata(const FileUploadRequest* msg) {
+  return *msg->_impl_.upload_packet_.metadata_;
+}
+const ::viam::app::datasync::v1::FileData&
+FileUploadRequest::_Internal::file_contents(const FileUploadRequest* msg) {
+  return *msg->_impl_.upload_packet_.file_contents_;
+}
+void FileUploadRequest::set_allocated_metadata(::viam::app::datasync::v1::UploadMetadata* metadata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_upload_packet();
+  if (metadata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(metadata);
+    if (message_arena != submessage_arena) {
+      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, metadata, submessage_arena);
+    }
+    set_has_metadata();
+    _impl_.upload_packet_.metadata_ = metadata;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.FileUploadRequest.metadata)
+}
+void FileUploadRequest::set_allocated_file_contents(::viam::app::datasync::v1::FileData* file_contents) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_upload_packet();
+  if (file_contents) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(file_contents);
+    if (message_arena != submessage_arena) {
+      file_contents = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, file_contents, submessage_arena);
+    }
+    set_has_file_contents();
+    _impl_.upload_packet_.file_contents_ = file_contents;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.FileUploadRequest.file_contents)
+}
+FileUploadRequest::FileUploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.FileUploadRequest)
+}
+FileUploadRequest::FileUploadRequest(const FileUploadRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FileUploadRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.upload_packet_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  clear_has_upload_packet();
+  switch (from.upload_packet_case()) {
+    case kMetadata: {
+      _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
+          from._internal_metadata());
+      break;
+    }
+    case kFileContents: {
+      _this->_internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(
+          from._internal_file_contents());
+      break;
+    }
+    case UPLOAD_PACKET_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.FileUploadRequest)
+}
+
+inline void FileUploadRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.upload_packet_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
+  };
+  clear_has_upload_packet();
+}
+
+FileUploadRequest::~FileUploadRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.datasync.v1.FileUploadRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void FileUploadRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (has_upload_packet()) {
+    clear_upload_packet();
+  }
+}
+
+void FileUploadRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void FileUploadRequest::clear_upload_packet() {
+// @@protoc_insertion_point(one_of_clear_start:viam.app.datasync.v1.FileUploadRequest)
+  switch (upload_packet_case()) {
+    case kMetadata: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete _impl_.upload_packet_.metadata_;
+      }
+      break;
+    }
+    case kFileContents: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete _impl_.upload_packet_.file_contents_;
+      }
+      break;
+    }
+    case UPLOAD_PACKET_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = UPLOAD_PACKET_NOT_SET;
+}
+
+
+void FileUploadRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.datasync.v1.FileUploadRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_upload_packet();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* FileUploadRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.datasync.v1.FileData file_contents = 2 [json_name = "fileContents"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_file_contents(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* FileUploadRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.datasync.v1.FileUploadRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
+  if (_internal_has_metadata()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.app.datasync.v1.FileData file_contents = 2 [json_name = "fileContents"];
+  if (_internal_has_file_contents()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::file_contents(this),
+        _Internal::file_contents(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.datasync.v1.FileUploadRequest)
+  return target;
+}
+
+size_t FileUploadRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.datasync.v1.FileUploadRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  switch (upload_packet_case()) {
+    // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
+    case kMetadata: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.upload_packet_.metadata_);
+      break;
+    }
+    // .viam.app.datasync.v1.FileData file_contents = 2 [json_name = "fileContents"];
+    case kFileContents: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.upload_packet_.file_contents_);
+      break;
+    }
+    case UPLOAD_PACKET_NOT_SET: {
+      break;
+    }
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FileUploadRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    FileUploadRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FileUploadRequest::GetClassData() const { return &_class_data_; }
+
+
+void FileUploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FileUploadRequest*>(&to_msg);
+  auto& from = static_cast<const FileUploadRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.FileUploadRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  switch (from.upload_packet_case()) {
+    case kMetadata: {
+      _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
+          from._internal_metadata());
+      break;
+    }
+    case kFileContents: {
+      _this->_internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(
+          from._internal_file_contents());
+      break;
+    }
+    case UPLOAD_PACKET_NOT_SET: {
+      break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void FileUploadRequest::CopyFrom(const FileUploadRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.datasync.v1.FileUploadRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FileUploadRequest::IsInitialized() const {
+  return true;
+}
+
+void FileUploadRequest::InternalSwap(FileUploadRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.upload_packet_, other->_impl_.upload_packet_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata FileUploadRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[2]);
+}
+
+// ===================================================================
+
+class FileUploadResponse::_Internal {
+ public:
+};
+
+FileUploadResponse::FileUploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.FileUploadResponse)
+}
+FileUploadResponse::FileUploadResponse(const FileUploadResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  FileUploadResponse* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.FileUploadResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FileUploadResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FileUploadResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata FileUploadResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[3]);
+}
 
 // ===================================================================
 
@@ -903,7 +1559,7 @@ void SensorMetadata::InternalSwap(SensorMetadata* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SensorMetadata::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[0]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[4]);
 }
 
 // ===================================================================
@@ -1235,7 +1891,7 @@ void SensorData::InternalSwap(SensorData* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SensorData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[1]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[5]);
 }
 
 // ===================================================================
@@ -1433,7 +2089,7 @@ void FileData::InternalSwap(FileData* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FileData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[2]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[6]);
 }
 
 // ===================================================================
@@ -1447,7 +2103,7 @@ void UploadMetadata_MethodParametersEntry_DoNotUse::MergeFrom(const UploadMetada
 ::PROTOBUF_NAMESPACE_ID::Metadata UploadMetadata_MethodParametersEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[3]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[7]);
 }
 
 // ===================================================================
@@ -2136,548 +2792,7 @@ void UploadMetadata::InternalSwap(UploadMetadata* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UploadMetadata::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[4]);
-}
-
-// ===================================================================
-
-class UploadRequest::_Internal {
- public:
-  static const ::viam::app::datasync::v1::UploadMetadata& metadata(const UploadRequest* msg);
-  static const ::viam::app::datasync::v1::SensorData& sensor_contents(const UploadRequest* msg);
-  static const ::viam::app::datasync::v1::FileData& file_contents(const UploadRequest* msg);
-};
-
-const ::viam::app::datasync::v1::UploadMetadata&
-UploadRequest::_Internal::metadata(const UploadRequest* msg) {
-  return *msg->_impl_.upload_packet_.metadata_;
-}
-const ::viam::app::datasync::v1::SensorData&
-UploadRequest::_Internal::sensor_contents(const UploadRequest* msg) {
-  return *msg->_impl_.upload_packet_.sensor_contents_;
-}
-const ::viam::app::datasync::v1::FileData&
-UploadRequest::_Internal::file_contents(const UploadRequest* msg) {
-  return *msg->_impl_.upload_packet_.file_contents_;
-}
-void UploadRequest::set_allocated_metadata(::viam::app::datasync::v1::UploadMetadata* metadata) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  clear_upload_packet();
-  if (metadata) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(metadata);
-    if (message_arena != submessage_arena) {
-      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, metadata, submessage_arena);
-    }
-    set_has_metadata();
-    _impl_.upload_packet_.metadata_ = metadata;
-  }
-  // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.UploadRequest.metadata)
-}
-void UploadRequest::set_allocated_sensor_contents(::viam::app::datasync::v1::SensorData* sensor_contents) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  clear_upload_packet();
-  if (sensor_contents) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(sensor_contents);
-    if (message_arena != submessage_arena) {
-      sensor_contents = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, sensor_contents, submessage_arena);
-    }
-    set_has_sensor_contents();
-    _impl_.upload_packet_.sensor_contents_ = sensor_contents;
-  }
-  // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.UploadRequest.sensor_contents)
-}
-void UploadRequest::set_allocated_file_contents(::viam::app::datasync::v1::FileData* file_contents) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  clear_upload_packet();
-  if (file_contents) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(file_contents);
-    if (message_arena != submessage_arena) {
-      file_contents = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, file_contents, submessage_arena);
-    }
-    set_has_file_contents();
-    _impl_.upload_packet_.file_contents_ = file_contents;
-  }
-  // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.UploadRequest.file_contents)
-}
-UploadRequest::UploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.UploadRequest)
-}
-UploadRequest::UploadRequest(const UploadRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.upload_packet_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  clear_has_upload_packet();
-  switch (from.upload_packet_case()) {
-    case kMetadata: {
-      _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
-          from._internal_metadata());
-      break;
-    }
-    case kSensorContents: {
-      _this->_internal_mutable_sensor_contents()->::viam::app::datasync::v1::SensorData::MergeFrom(
-          from._internal_sensor_contents());
-      break;
-    }
-    case kFileContents: {
-      _this->_internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(
-          from._internal_file_contents());
-      break;
-    }
-    case UPLOAD_PACKET_NOT_SET: {
-      break;
-    }
-  }
-  // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.UploadRequest)
-}
-
-inline void UploadRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.upload_packet_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_upload_packet();
-}
-
-UploadRequest::~UploadRequest() {
-  // @@protoc_insertion_point(destructor:viam.app.datasync.v1.UploadRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void UploadRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_upload_packet()) {
-    clear_upload_packet();
-  }
-}
-
-void UploadRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UploadRequest::clear_upload_packet() {
-// @@protoc_insertion_point(one_of_clear_start:viam.app.datasync.v1.UploadRequest)
-  switch (upload_packet_case()) {
-    case kMetadata: {
-      if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.upload_packet_.metadata_;
-      }
-      break;
-    }
-    case kSensorContents: {
-      if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.upload_packet_.sensor_contents_;
-      }
-      break;
-    }
-    case kFileContents: {
-      if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.upload_packet_.file_contents_;
-      }
-      break;
-    }
-    case UPLOAD_PACKET_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = UPLOAD_PACKET_NOT_SET;
-}
-
-
-void UploadRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.app.datasync.v1.UploadRequest)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  clear_upload_packet();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* UploadRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_sensor_contents(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .viam.app.datasync.v1.FileData file_contents = 3 [json_name = "fileContents"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_file_contents(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* UploadRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.app.datasync.v1.UploadRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
-  if (_internal_has_metadata()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::metadata(this),
-        _Internal::metadata(this).GetCachedSize(), target, stream);
-  }
-
-  // .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
-  if (_internal_has_sensor_contents()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::sensor_contents(this),
-        _Internal::sensor_contents(this).GetCachedSize(), target, stream);
-  }
-
-  // .viam.app.datasync.v1.FileData file_contents = 3 [json_name = "fileContents"];
-  if (_internal_has_file_contents()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::file_contents(this),
-        _Internal::file_contents(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.app.datasync.v1.UploadRequest)
-  return target;
-}
-
-size_t UploadRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.app.datasync.v1.UploadRequest)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  switch (upload_packet_case()) {
-    // .viam.app.datasync.v1.UploadMetadata metadata = 1 [json_name = "metadata"];
-    case kMetadata: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.upload_packet_.metadata_);
-      break;
-    }
-    // .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
-    case kSensorContents: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.upload_packet_.sensor_contents_);
-      break;
-    }
-    // .viam.app.datasync.v1.FileData file_contents = 3 [json_name = "fileContents"];
-    case kFileContents: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.upload_packet_.file_contents_);
-      break;
-    }
-    case UPLOAD_PACKET_NOT_SET: {
-      break;
-    }
-  }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UploadRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadRequest::GetClassData() const { return &_class_data_; }
-
-
-void UploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UploadRequest*>(&to_msg);
-  auto& from = static_cast<const UploadRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.UploadRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  switch (from.upload_packet_case()) {
-    case kMetadata: {
-      _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
-          from._internal_metadata());
-      break;
-    }
-    case kSensorContents: {
-      _this->_internal_mutable_sensor_contents()->::viam::app::datasync::v1::SensorData::MergeFrom(
-          from._internal_sensor_contents());
-      break;
-    }
-    case kFileContents: {
-      _this->_internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(
-          from._internal_file_contents());
-      break;
-    }
-    case UPLOAD_PACKET_NOT_SET: {
-      break;
-    }
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void UploadRequest::CopyFrom(const UploadRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.datasync.v1.UploadRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool UploadRequest::IsInitialized() const {
-  return true;
-}
-
-void UploadRequest::InternalSwap(UploadRequest* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.upload_packet_, other->_impl_.upload_packet_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata UploadRequest::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[5]);
-}
-
-// ===================================================================
-
-class UploadResponse::_Internal {
- public:
-};
-
-UploadResponse::UploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.UploadResponse)
-}
-UploadResponse::UploadResponse(const UploadResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.requests_written_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.requests_written_ = from._impl_.requests_written_;
-  // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.UploadResponse)
-}
-
-inline void UploadResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.requests_written_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-UploadResponse::~UploadResponse() {
-  // @@protoc_insertion_point(destructor:viam.app.datasync.v1.UploadResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void UploadResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void UploadResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UploadResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.app.datasync.v1.UploadResponse)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.requests_written_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* UploadResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 requests_written = 1 [json_name = "requestsWritten"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.requests_written_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* UploadResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.app.datasync.v1.UploadResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 requests_written = 1 [json_name = "requestsWritten"];
-  if (this->_internal_requests_written() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_requests_written(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.app.datasync.v1.UploadResponse)
-  return target;
-}
-
-size_t UploadResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.app.datasync.v1.UploadResponse)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // int32 requests_written = 1 [json_name = "requestsWritten"];
-  if (this->_internal_requests_written() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_requests_written());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UploadResponse::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadResponse::GetClassData() const { return &_class_data_; }
-
-
-void UploadResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UploadResponse*>(&to_msg);
-  auto& from = static_cast<const UploadResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.UploadResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_requests_written() != 0) {
-    _this->_internal_set_requests_written(from._internal_requests_written());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void UploadResponse::CopyFrom(const UploadResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.datasync.v1.UploadResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool UploadResponse::IsInitialized() const {
-  return true;
-}
-
-void UploadResponse::InternalSwap(UploadResponse* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.requests_written_, other->_impl_.requests_written_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata UploadResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[6]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[8]);
 }
 
 // ===================================================================
@@ -2928,7 +3043,7 @@ void CaptureInterval::InternalSwap(CaptureInterval* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CaptureInterval::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[7]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[9]);
 }
 
 // ===================================================================
@@ -2942,7 +3057,7 @@ void DataCaptureMetadata_MethodParametersEntry_DoNotUse::MergeFrom(const DataCap
 ::PROTOBUF_NAMESPACE_ID::Metadata DataCaptureMetadata_MethodParametersEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[8]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[10]);
 }
 
 // ===================================================================
@@ -3531,7 +3646,7 @@ void DataCaptureMetadata::InternalSwap(DataCaptureMetadata* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DataCaptureMetadata::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[9]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[11]);
 }
 
 // ===================================================================
@@ -3545,7 +3660,7 @@ void TabularCapture_MethodParametersEntry_DoNotUse::MergeFrom(const TabularCaptu
 ::PROTOBUF_NAMESPACE_ID::Metadata TabularCapture_MethodParametersEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[10]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[12]);
 }
 
 // ===================================================================
@@ -4596,7 +4711,7 @@ void TabularCapture::InternalSwap(TabularCapture* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TabularCapture::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[11]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[13]);
 }
 
 // ===================================================================
@@ -4610,7 +4725,7 @@ void BinaryCapture_MethodParametersEntry_DoNotUse::MergeFrom(const BinaryCapture
 ::PROTOBUF_NAMESPACE_ID::Metadata BinaryCapture_MethodParametersEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[12]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[14]);
 }
 
 // ===================================================================
@@ -5692,7 +5807,7 @@ void BinaryCapture::InternalSwap(BinaryCapture* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BinaryCapture::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_getter, &descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto_once,
-      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[13]);
+      file_level_metadata_app_2fdatasync_2fv1_2fdata_5fsync_2eproto[15]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -5701,6 +5816,22 @@ void BinaryCapture::InternalSwap(BinaryCapture* other) {
 }  // namespace app
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::DataCaptureUploadRequest*
+Arena::CreateMaybeMessage< ::viam::app::datasync::v1::DataCaptureUploadRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::datasync::v1::DataCaptureUploadRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::DataCaptureUploadResponse*
+Arena::CreateMaybeMessage< ::viam::app::datasync::v1::DataCaptureUploadResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::datasync::v1::DataCaptureUploadResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::FileUploadRequest*
+Arena::CreateMaybeMessage< ::viam::app::datasync::v1::FileUploadRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::datasync::v1::FileUploadRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::FileUploadResponse*
+Arena::CreateMaybeMessage< ::viam::app::datasync::v1::FileUploadResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::datasync::v1::FileUploadResponse >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::SensorMetadata*
 Arena::CreateMaybeMessage< ::viam::app::datasync::v1::SensorMetadata >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::datasync::v1::SensorMetadata >(arena);
@@ -5720,14 +5851,6 @@ Arena::CreateMaybeMessage< ::viam::app::datasync::v1::UploadMetadata_MethodParam
 template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::UploadMetadata*
 Arena::CreateMaybeMessage< ::viam::app::datasync::v1::UploadMetadata >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::datasync::v1::UploadMetadata >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::UploadRequest*
-Arena::CreateMaybeMessage< ::viam::app::datasync::v1::UploadRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::app::datasync::v1::UploadRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::UploadResponse*
-Arena::CreateMaybeMessage< ::viam::app::datasync::v1::UploadResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::app::datasync::v1::UploadResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::datasync::v1::CaptureInterval*
 Arena::CreateMaybeMessage< ::viam::app::datasync::v1::CaptureInterval >(Arena* arena) {

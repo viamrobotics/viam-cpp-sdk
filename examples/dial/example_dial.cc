@@ -22,10 +22,9 @@ extern "C" char *dial(const char *uri, const char *payload, bool allow_insecure,
 		      void *ptr);
 
 int main() {
-	const char *uri = "webrtc-test-main.jkek76kqnh.viam.cloud";
+	const char *uri = "<your robot URI here>";
 	DialOptions dial_options = DialOptions();
-	std::string payload =
-	    "ytexnwei4fu1xv9csoqxfv4ckl3htsb49mzzey5t15xo9swy";
+	std::string payload = "<your payload here>";
 	Credentials credentials(payload);
 	dial_options.credentials = credentials;
 	boost::optional<DialOptions> opts(dial_options);
