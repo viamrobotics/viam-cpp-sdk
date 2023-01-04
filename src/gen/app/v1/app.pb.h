@@ -5268,7 +5268,11 @@ class GetRobotPartLogsRequest final :
   std::string* _internal_mutable_id();
   public:
 
-  // string filter = 3 [json_name = "filter"];
+  // optional string filter = 3 [json_name = "filter"];
+  bool has_filter() const;
+  private:
+  bool _internal_has_filter() const;
+  public:
   void clear_filter();
   const std::string& filter() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -5298,10 +5302,11 @@ class GetRobotPartLogsRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filter_;
   bool errors_only_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -13161,9 +13166,17 @@ inline void GetRobotPartLogsRequest::set_errors_only(bool value) {
   // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.errors_only)
 }
 
-// string filter = 3 [json_name = "filter"];
+// optional string filter = 3 [json_name = "filter"];
+inline bool GetRobotPartLogsRequest::_internal_has_filter() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetRobotPartLogsRequest::has_filter() const {
+  return _internal_has_filter();
+}
 inline void GetRobotPartLogsRequest::clear_filter() {
   filter_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& GetRobotPartLogsRequest::filter() const {
   // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.filter)
@@ -13172,7 +13185,7 @@ inline const std::string& GetRobotPartLogsRequest::filter() const {
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void GetRobotPartLogsRequest::set_filter(ArgT0&& arg0, ArgT... args) {
- 
+ _has_bits_[0] |= 0x00000001u;
  filter_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.filter)
 }
@@ -13185,22 +13198,32 @@ inline const std::string& GetRobotPartLogsRequest::_internal_filter() const {
   return filter_.Get();
 }
 inline void GetRobotPartLogsRequest::_internal_set_filter(const std::string& value) {
-  
+  _has_bits_[0] |= 0x00000001u;
   filter_.Set(value, GetArenaForAllocation());
 }
 inline std::string* GetRobotPartLogsRequest::_internal_mutable_filter() {
-  
+  _has_bits_[0] |= 0x00000001u;
   return filter_.Mutable(GetArenaForAllocation());
 }
 inline std::string* GetRobotPartLogsRequest::release_filter() {
   // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.filter)
-  return filter_.Release();
+  if (!_internal_has_filter()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = filter_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (filter_.IsDefault()) {
+    filter_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
 }
 inline void GetRobotPartLogsRequest::set_allocated_filter(std::string* filter) {
   if (filter != nullptr) {
-    
+    _has_bits_[0] |= 0x00000001u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000001u;
   }
   filter_.SetAllocated(filter, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING

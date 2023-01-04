@@ -36,6 +36,8 @@ static const char* DataService_method_names[] = {
   "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFileIDs",
   "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter",
   "/viam.app.data.v1.DataService/TagsByFilter",
+  "/viam.app.data.v1.DataService/SubmitTrainingJob",
+  "/viam.app.data.v1.DataService/GetTrainingJob",
 };
 
 std::unique_ptr< DataService::Stub> DataService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -56,6 +58,8 @@ DataService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_RemoveTagsFromBinaryDataByFileIDs_(DataService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveTagsFromBinaryDataByFilter_(DataService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TagsByFilter_(DataService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SubmitTrainingJob_(DataService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTrainingJob_(DataService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DataService::Stub::TabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TabularDataByFilterRequest& request, ::viam::app::data::v1::TabularDataByFilterResponse* response) {
@@ -311,6 +315,52 @@ void DataService::Stub::async::TagsByFilter(::grpc::ClientContext* context, cons
   return result;
 }
 
+::grpc::Status DataService::Stub::SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::viam::app::data::v1::SubmitTrainingJobResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SubmitTrainingJob_, context, request, response);
+}
+
+void DataService::Stub::async::SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SubmitTrainingJob_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SubmitTrainingJob_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>* DataService::Stub::PrepareAsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::SubmitTrainingJobResponse, ::viam::app::data::v1::SubmitTrainingJobRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SubmitTrainingJob_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>* DataService::Stub::AsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSubmitTrainingJobRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::viam::app::data::v1::GetTrainingJobResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTrainingJob_, context, request, response);
+}
+
+void DataService::Stub::async::GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTrainingJob_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTrainingJob_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>* DataService::Stub::PrepareAsyncGetTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::GetTrainingJobResponse, ::viam::app::data::v1::GetTrainingJobRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTrainingJob_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>* DataService::Stub::AsyncGetTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTrainingJobRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 DataService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataService_method_names[0],
@@ -422,6 +472,26 @@ DataService::Service::Service() {
              ::viam::app::data::v1::TagsByFilterResponse* resp) {
                return service->TagsByFilter(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::SubmitTrainingJobRequest* req,
+             ::viam::app::data::v1::SubmitTrainingJobResponse* resp) {
+               return service->SubmitTrainingJob(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::GetTrainingJobRequest* req,
+             ::viam::app::data::v1::GetTrainingJobResponse* resp) {
+               return service->GetTrainingJob(ctx, req, resp);
+             }, this)));
 }
 
 DataService::Service::~Service() {
@@ -498,6 +568,20 @@ DataService::Service::~Service() {
 }
 
 ::grpc::Status DataService::Service::TagsByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::SubmitTrainingJob(::grpc::ServerContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::GetTrainingJob(::grpc::ServerContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response) {
   (void) context;
   (void) request;
   (void) response;

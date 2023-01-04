@@ -997,7 +997,7 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartResponse, part_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartResponse, config_json_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartLogsRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartLogsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -1006,6 +1006,9 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartLogsRequest, id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartLogsRequest, errors_only_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetRobotPartLogsRequest, filter_),
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::LogEntry, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1242,34 +1245,34 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 211, -1, -1, sizeof(::viam::app::v1::GetRobotPartsResponse)},
   { 218, -1, -1, sizeof(::viam::app::v1::GetRobotPartRequest)},
   { 225, -1, -1, sizeof(::viam::app::v1::GetRobotPartResponse)},
-  { 233, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsRequest)},
-  { 242, -1, -1, sizeof(::viam::app::v1::LogEntry)},
-  { 256, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsResponse)},
-  { 263, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsRequest)},
-  { 271, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsResponse)},
-  { 278, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryRequest)},
-  { 285, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryResponse)},
-  { 292, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartRequest)},
-  { 301, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartResponse)},
-  { 308, -1, -1, sizeof(::viam::app::v1::NewRobotPartRequest)},
-  { 316, -1, -1, sizeof(::viam::app::v1::NewRobotPartResponse)},
-  { 323, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartRequest)},
-  { 330, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartResponse)},
-  { 336, -1, -1, sizeof(::viam::app::v1::Fragment)},
-  { 348, -1, -1, sizeof(::viam::app::v1::FindRobotsRequest)},
-  { 355, -1, -1, sizeof(::viam::app::v1::FindRobotsResponse)},
-  { 362, -1, -1, sizeof(::viam::app::v1::NewRobotRequest)},
-  { 370, -1, -1, sizeof(::viam::app::v1::NewRobotResponse)},
-  { 377, -1, -1, sizeof(::viam::app::v1::UpdateRobotRequest)},
-  { 386, -1, -1, sizeof(::viam::app::v1::UpdateRobotResponse)},
-  { 393, -1, -1, sizeof(::viam::app::v1::DeleteRobotRequest)},
-  { 400, -1, -1, sizeof(::viam::app::v1::DeleteRobotResponse)},
-  { 406, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainRequest)},
-  { 413, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainResponse)},
-  { 419, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretRequest)},
-  { 426, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretResponse)},
-  { 433, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretRequest)},
-  { 441, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretResponse)},
+  { 233, 242, -1, sizeof(::viam::app::v1::GetRobotPartLogsRequest)},
+  { 245, -1, -1, sizeof(::viam::app::v1::LogEntry)},
+  { 259, -1, -1, sizeof(::viam::app::v1::GetRobotPartLogsResponse)},
+  { 266, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsRequest)},
+  { 274, -1, -1, sizeof(::viam::app::v1::TailRobotPartLogsResponse)},
+  { 281, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryRequest)},
+  { 288, -1, -1, sizeof(::viam::app::v1::GetRobotPartHistoryResponse)},
+  { 295, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartRequest)},
+  { 304, -1, -1, sizeof(::viam::app::v1::UpdateRobotPartResponse)},
+  { 311, -1, -1, sizeof(::viam::app::v1::NewRobotPartRequest)},
+  { 319, -1, -1, sizeof(::viam::app::v1::NewRobotPartResponse)},
+  { 326, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartRequest)},
+  { 333, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartResponse)},
+  { 339, -1, -1, sizeof(::viam::app::v1::Fragment)},
+  { 351, -1, -1, sizeof(::viam::app::v1::FindRobotsRequest)},
+  { 358, -1, -1, sizeof(::viam::app::v1::FindRobotsResponse)},
+  { 365, -1, -1, sizeof(::viam::app::v1::NewRobotRequest)},
+  { 373, -1, -1, sizeof(::viam::app::v1::NewRobotResponse)},
+  { 380, -1, -1, sizeof(::viam::app::v1::UpdateRobotRequest)},
+  { 389, -1, -1, sizeof(::viam::app::v1::UpdateRobotResponse)},
+  { 396, -1, -1, sizeof(::viam::app::v1::DeleteRobotRequest)},
+  { 403, -1, -1, sizeof(::viam::app::v1::DeleteRobotResponse)},
+  { 409, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainRequest)},
+  { 416, -1, -1, sizeof(::viam::app::v1::MarkPartAsMainResponse)},
+  { 422, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretRequest)},
+  { 429, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretResponse)},
+  { 436, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretRequest)},
+  { 444, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1429,122 +1432,123 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "parts\"%\n\023GetRobotPartRequest\022\016\n\002id\030\001 \001(\t"
   "R\002id\"c\n\024GetRobotPartResponse\022*\n\004part\030\001 \001"
   "(\0132\026.viam.app.v1.RobotPartR\004part\022\037\n\013conf"
-  "ig_json\030\002 \001(\tR\nconfigJson\"b\n\027GetRobotPar"
+  "ig_json\030\002 \001(\tR\nconfigJson\"r\n\027GetRobotPar"
   "tLogsRequest\022\016\n\002id\030\001 \001(\tR\002id\022\037\n\013errors_o"
-  "nly\030\002 \001(\010R\nerrorsOnly\022\026\n\006filter\030\003 \001(\tR\006f"
-  "ilter\"\227\002\n\010LogEntry\022\022\n\004host\030\001 \001(\tR\004host\022\024"
-  "\n\005level\030\002 \001(\tR\005level\022.\n\004time\030\003 \001(\0132\032.goo"
-  "gle.protobuf.TimestampR\004time\022\037\n\013logger_n"
-  "ame\030\004 \001(\tR\nloggerName\022\030\n\007message\030\005 \001(\tR\007"
-  "message\022/\n\006caller\030\006 \001(\0132\027.google.protobu"
-  "f.StructR\006caller\022\024\n\005stack\030\007 \001(\tR\005stack\022/"
-  "\n\006fields\030\010 \003(\0132\027.google.protobuf.StructR"
-  "\006fields\"E\n\030GetRobotPartLogsResponse\022)\n\004l"
-  "ogs\030\001 \003(\0132\025.viam.app.v1.LogEntryR\004logs\"K"
-  "\n\030TailRobotPartLogsRequest\022\016\n\002id\030\001 \001(\tR\002"
-  "id\022\037\n\013errors_only\030\002 \001(\010R\nerrorsOnly\"F\n\031T"
-  "ailRobotPartLogsResponse\022)\n\004logs\030\001 \003(\0132\025"
-  ".viam.app.v1.LogEntryR\004logs\",\n\032GetRobotP"
-  "artHistoryRequest\022\016\n\002id\030\001 \001(\tR\002id\"[\n\033Get"
-  "RobotPartHistoryResponse\022<\n\007history\030\001 \003("
-  "\0132\".viam.app.v1.RobotPartHistoryEntryR\007h"
-  "istory\"x\n\026UpdateRobotPartRequest\022\016\n\002id\030\001"
-  " \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004name\022:\n\014robot_co"
-  "nfig\030\003 \001(\0132\027.google.protobuf.StructR\013rob"
-  "otConfig\"E\n\027UpdateRobotPartResponse\022*\n\004p"
-  "art\030\001 \001(\0132\026.viam.app.v1.RobotPartR\004part\""
-  "M\n\023NewRobotPartRequest\022\031\n\010robot_id\030\001 \001(\t"
-  "R\007robotId\022\033\n\tpart_name\030\002 \001(\tR\010partName\"/"
-  "\n\024NewRobotPartResponse\022\027\n\007part_id\030\001 \001(\tR"
-  "\006partId\"1\n\026DeleteRobotPartRequest\022\027\n\007par"
-  "t_id\030\001 \001(\tR\006partId\"\031\n\027DeleteRobotPartRes"
-  "ponse\"\265\003\n\010Fragment\0223\n\002id\030\001 \001(\tB#\232\204\236\003\036bso"
-  "n:\"_id\" json:\"id,omitempty\"R\002id\0220\n\004name\030"
-  "\002 \001(\tB\034\232\204\236\003\027bson:\"name\" json:\"name\"R\004nam"
-  "e\022Y\n\010fragment\030\003 \001(\0132\027.google.protobuf.St"
-  "ructB$\232\204\236\003\037bson:\"fragment\" json:\"fragmen"
-  "t\"R\010fragment\022Z\n\022organization_owner\030\004 \001(\t"
-  "B+\232\204\236\003&bson:\"organization_owner\" json:\"o"
-  "wner\"R\021organizationOwner\0228\n\006public\030\005 \001(\010"
-  "B \232\204\236\003\033bson:\"public\" json:\"public\"R\006publ"
-  "ic\022Q\n\ncreated_on\030\006 \001(\0132\032.google.protobuf"
-  ".TimestampB\026\232\204\236\003\021bson:\"created_on\"R\tcrea"
-  "tedOn\"4\n\021FindRobotsRequest\022\037\n\013location_i"
-  "d\030\001 \001(\tR\nlocationId\"@\n\022FindRobotsRespons"
-  "e\022*\n\006robots\030\001 \003(\0132\022.viam.app.v1.RobotR\006r"
-  "obots\"A\n\017NewRobotRequest\022\022\n\004name\030\001 \001(\tR\004"
-  "name\022\032\n\010location\030\002 \001(\tR\010location\"\"\n\020NewR"
-  "obotResponse\022\016\n\002id\030\001 \001(\tR\002id\"T\n\022UpdateRo"
-  "botRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\t"
-  "R\004name\022\032\n\010location\030\003 \001(\tR\010location\"\?\n\023Up"
-  "dateRobotResponse\022(\n\005robot\030\001 \001(\0132\022.viam."
-  "app.v1.RobotR\005robot\"$\n\022DeleteRobotReques"
-  "t\022\016\n\002id\030\001 \001(\tR\002id\"\025\n\023DeleteRobotResponse"
-  "\"0\n\025MarkPartAsMainRequest\022\027\n\007part_id\030\001 \001"
-  "(\tR\006partId\"\030\n\026MarkPartAsMainResponse\"7\n\034"
-  "CreateRobotPartSecretRequest\022\027\n\007part_id\030"
-  "\001 \001(\tR\006partId\"K\n\035CreateRobotPartSecretRe"
-  "sponse\022*\n\004part\030\001 \001(\0132\026.viam.app.v1.Robot"
-  "PartR\004part\"T\n\034DeleteRobotPartSecretReque"
-  "st\022\027\n\007part_id\030\001 \001(\tR\006partId\022\033\n\tsecret_id"
-  "\030\002 \001(\tR\010secretId\"\037\n\035DeleteRobotPartSecre"
-  "tResponse2\267\021\n\nAppService\022Y\n\016CreateLocati"
-  "on\022\".viam.app.v1.CreateLocationRequest\032#"
-  ".viam.app.v1.CreateLocationResponse\022b\n\021L"
-  "istOrganizations\022%.viam.app.v1.ListOrgan"
-  "izationsRequest\032&.viam.app.v1.ListOrgani"
-  "zationsResponse\022V\n\rListLocations\022!.viam."
-  "app.v1.ListLocationsRequest\032\".viam.app.v"
-  "1.ListLocationsResponse\022V\n\rShareLocation"
-  "\022!.viam.app.v1.ShareLocationRequest\032\".vi"
-  "am.app.v1.ShareLocationResponse\022\\\n\017Unsha"
-  "reLocation\022#.viam.app.v1.UnshareLocation"
-  "Request\032$.viam.app.v1.UnshareLocationRes"
-  "ponse\022S\n\014LocationAuth\022 .viam.app.v1.Loca"
-  "tionAuthRequest\032!.viam.app.v1.LocationAu"
-  "thResponse\022k\n\024CreateLocationSecret\022(.via"
-  "m.app.v1.CreateLocationSecretRequest\032).v"
-  "iam.app.v1.CreateLocationSecretResponse\022"
-  "k\n\024DeleteLocationSecret\022(.viam.app.v1.De"
-  "leteLocationSecretRequest\032).viam.app.v1."
-  "DeleteLocationSecretResponse\022G\n\010GetRobot"
-  "\022\034.viam.app.v1.GetRobotRequest\032\035.viam.ap"
-  "p.v1.GetRobotResponse\022V\n\rGetRobotParts\022!"
-  ".viam.app.v1.GetRobotPartsRequest\032\".viam"
-  ".app.v1.GetRobotPartsResponse\022S\n\014GetRobo"
-  "tPart\022 .viam.app.v1.GetRobotPartRequest\032"
-  "!.viam.app.v1.GetRobotPartResponse\022_\n\020Ge"
-  "tRobotPartLogs\022$.viam.app.v1.GetRobotPar"
-  "tLogsRequest\032%.viam.app.v1.GetRobotPartL"
-  "ogsResponse\022d\n\021TailRobotPartLogs\022%.viam."
-  "app.v1.TailRobotPartLogsRequest\032&.viam.a"
-  "pp.v1.TailRobotPartLogsResponse0\001\022h\n\023Get"
-  "RobotPartHistory\022\'.viam.app.v1.GetRobotP"
-  "artHistoryRequest\032(.viam.app.v1.GetRobot"
-  "PartHistoryResponse\022\\\n\017UpdateRobotPart\022#"
-  ".viam.app.v1.UpdateRobotPartRequest\032$.vi"
-  "am.app.v1.UpdateRobotPartResponse\022S\n\014New"
-  "RobotPart\022 .viam.app.v1.NewRobotPartRequ"
-  "est\032!.viam.app.v1.NewRobotPartResponse\022\\"
-  "\n\017DeleteRobotPart\022#.viam.app.v1.DeleteRo"
-  "botPartRequest\032$.viam.app.v1.DeleteRobot"
-  "PartResponse\022Y\n\016MarkPartAsMain\022\".viam.ap"
-  "p.v1.MarkPartAsMainRequest\032#.viam.app.v1"
-  ".MarkPartAsMainResponse\022n\n\025CreateRobotPa"
-  "rtSecret\022).viam.app.v1.CreateRobotPartSe"
-  "cretRequest\032*.viam.app.v1.CreateRobotPar"
-  "tSecretResponse\022n\n\025DeleteRobotPartSecret"
-  "\022).viam.app.v1.DeleteRobotPartSecretRequ"
-  "est\032*.viam.app.v1.DeleteRobotPartSecretR"
-  "esponse\022M\n\nFindRobots\022\036.viam.app.v1.Find"
-  "RobotsRequest\032\037.viam.app.v1.FindRobotsRe"
-  "sponse\022G\n\010NewRobot\022\034.viam.app.v1.NewRobo"
-  "tRequest\032\035.viam.app.v1.NewRobotResponse\022"
-  "P\n\013UpdateRobot\022\037.viam.app.v1.UpdateRobot"
-  "Request\032 .viam.app.v1.UpdateRobotRespons"
-  "e\022P\n\013DeleteRobot\022\037.viam.app.v1.DeleteRob"
-  "otRequest\032 .viam.app.v1.DeleteRobotRespo"
-  "nseB\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "nly\030\002 \001(\010R\nerrorsOnly\022\033\n\006filter\030\003 \001(\tH\000R"
+  "\006filter\210\001\001B\t\n\007_filter\"\227\002\n\010LogEntry\022\022\n\004ho"
+  "st\030\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004"
+  "time\030\003 \001(\0132\032.google.protobuf.TimestampR\004"
+  "time\022\037\n\013logger_name\030\004 \001(\tR\nloggerName\022\030\n"
+  "\007message\030\005 \001(\tR\007message\022/\n\006caller\030\006 \001(\0132"
+  "\027.google.protobuf.StructR\006caller\022\024\n\005stac"
+  "k\030\007 \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027.google."
+  "protobuf.StructR\006fields\"E\n\030GetRobotPartL"
+  "ogsResponse\022)\n\004logs\030\001 \003(\0132\025.viam.app.v1."
+  "LogEntryR\004logs\"K\n\030TailRobotPartLogsReque"
+  "st\022\016\n\002id\030\001 \001(\tR\002id\022\037\n\013errors_only\030\002 \001(\010R"
+  "\nerrorsOnly\"F\n\031TailRobotPartLogsResponse"
+  "\022)\n\004logs\030\001 \003(\0132\025.viam.app.v1.LogEntryR\004l"
+  "ogs\",\n\032GetRobotPartHistoryRequest\022\016\n\002id\030"
+  "\001 \001(\tR\002id\"[\n\033GetRobotPartHistoryResponse"
+  "\022<\n\007history\030\001 \003(\0132\".viam.app.v1.RobotPar"
+  "tHistoryEntryR\007history\"x\n\026UpdateRobotPar"
+  "tRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004"
+  "name\022:\n\014robot_config\030\003 \001(\0132\027.google.prot"
+  "obuf.StructR\013robotConfig\"E\n\027UpdateRobotP"
+  "artResponse\022*\n\004part\030\001 \001(\0132\026.viam.app.v1."
+  "RobotPartR\004part\"M\n\023NewRobotPartRequest\022\031"
+  "\n\010robot_id\030\001 \001(\tR\007robotId\022\033\n\tpart_name\030\002"
+  " \001(\tR\010partName\"/\n\024NewRobotPartResponse\022\027"
+  "\n\007part_id\030\001 \001(\tR\006partId\"1\n\026DeleteRobotPa"
+  "rtRequest\022\027\n\007part_id\030\001 \001(\tR\006partId\"\031\n\027De"
+  "leteRobotPartResponse\"\265\003\n\010Fragment\0223\n\002id"
+  "\030\001 \001(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,omitemp"
+  "ty\"R\002id\0220\n\004name\030\002 \001(\tB\034\232\204\236\003\027bson:\"name\" "
+  "json:\"name\"R\004name\022Y\n\010fragment\030\003 \001(\0132\027.go"
+  "ogle.protobuf.StructB$\232\204\236\003\037bson:\"fragmen"
+  "t\" json:\"fragment\"R\010fragment\022Z\n\022organiza"
+  "tion_owner\030\004 \001(\tB+\232\204\236\003&bson:\"organizatio"
+  "n_owner\" json:\"owner\"R\021organizationOwner"
+  "\0228\n\006public\030\005 \001(\010B \232\204\236\003\033bson:\"public\" jso"
+  "n:\"public\"R\006public\022Q\n\ncreated_on\030\006 \001(\0132\032"
+  ".google.protobuf.TimestampB\026\232\204\236\003\021bson:\"c"
+  "reated_on\"R\tcreatedOn\"4\n\021FindRobotsReque"
+  "st\022\037\n\013location_id\030\001 \001(\tR\nlocationId\"@\n\022F"
+  "indRobotsResponse\022*\n\006robots\030\001 \003(\0132\022.viam"
+  ".app.v1.RobotR\006robots\"A\n\017NewRobotRequest"
+  "\022\022\n\004name\030\001 \001(\tR\004name\022\032\n\010location\030\002 \001(\tR\010"
+  "location\"\"\n\020NewRobotResponse\022\016\n\002id\030\001 \001(\t"
+  "R\002id\"T\n\022UpdateRobotRequest\022\016\n\002id\030\001 \001(\tR\002"
+  "id\022\022\n\004name\030\002 \001(\tR\004name\022\032\n\010location\030\003 \001(\t"
+  "R\010location\"\?\n\023UpdateRobotResponse\022(\n\005rob"
+  "ot\030\001 \001(\0132\022.viam.app.v1.RobotR\005robot\"$\n\022D"
+  "eleteRobotRequest\022\016\n\002id\030\001 \001(\tR\002id\"\025\n\023Del"
+  "eteRobotResponse\"0\n\025MarkPartAsMainReques"
+  "t\022\027\n\007part_id\030\001 \001(\tR\006partId\"\030\n\026MarkPartAs"
+  "MainResponse\"7\n\034CreateRobotPartSecretReq"
+  "uest\022\027\n\007part_id\030\001 \001(\tR\006partId\"K\n\035CreateR"
+  "obotPartSecretResponse\022*\n\004part\030\001 \001(\0132\026.v"
+  "iam.app.v1.RobotPartR\004part\"T\n\034DeleteRobo"
+  "tPartSecretRequest\022\027\n\007part_id\030\001 \001(\tR\006par"
+  "tId\022\033\n\tsecret_id\030\002 \001(\tR\010secretId\"\037\n\035Dele"
+  "teRobotPartSecretResponse2\267\021\n\nAppService"
+  "\022Y\n\016CreateLocation\022\".viam.app.v1.CreateL"
+  "ocationRequest\032#.viam.app.v1.CreateLocat"
+  "ionResponse\022b\n\021ListOrganizations\022%.viam."
+  "app.v1.ListOrganizationsRequest\032&.viam.a"
+  "pp.v1.ListOrganizationsResponse\022V\n\rListL"
+  "ocations\022!.viam.app.v1.ListLocationsRequ"
+  "est\032\".viam.app.v1.ListLocationsResponse\022"
+  "V\n\rShareLocation\022!.viam.app.v1.ShareLoca"
+  "tionRequest\032\".viam.app.v1.ShareLocationR"
+  "esponse\022\\\n\017UnshareLocation\022#.viam.app.v1"
+  ".UnshareLocationRequest\032$.viam.app.v1.Un"
+  "shareLocationResponse\022S\n\014LocationAuth\022 ."
+  "viam.app.v1.LocationAuthRequest\032!.viam.a"
+  "pp.v1.LocationAuthResponse\022k\n\024CreateLoca"
+  "tionSecret\022(.viam.app.v1.CreateLocationS"
+  "ecretRequest\032).viam.app.v1.CreateLocatio"
+  "nSecretResponse\022k\n\024DeleteLocationSecret\022"
+  "(.viam.app.v1.DeleteLocationSecretReques"
+  "t\032).viam.app.v1.DeleteLocationSecretResp"
+  "onse\022G\n\010GetRobot\022\034.viam.app.v1.GetRobotR"
+  "equest\032\035.viam.app.v1.GetRobotResponse\022V\n"
+  "\rGetRobotParts\022!.viam.app.v1.GetRobotPar"
+  "tsRequest\032\".viam.app.v1.GetRobotPartsRes"
+  "ponse\022S\n\014GetRobotPart\022 .viam.app.v1.GetR"
+  "obotPartRequest\032!.viam.app.v1.GetRobotPa"
+  "rtResponse\022_\n\020GetRobotPartLogs\022$.viam.ap"
+  "p.v1.GetRobotPartLogsRequest\032%.viam.app."
+  "v1.GetRobotPartLogsResponse\022d\n\021TailRobot"
+  "PartLogs\022%.viam.app.v1.TailRobotPartLogs"
+  "Request\032&.viam.app.v1.TailRobotPartLogsR"
+  "esponse0\001\022h\n\023GetRobotPartHistory\022\'.viam."
+  "app.v1.GetRobotPartHistoryRequest\032(.viam"
+  ".app.v1.GetRobotPartHistoryResponse\022\\\n\017U"
+  "pdateRobotPart\022#.viam.app.v1.UpdateRobot"
+  "PartRequest\032$.viam.app.v1.UpdateRobotPar"
+  "tResponse\022S\n\014NewRobotPart\022 .viam.app.v1."
+  "NewRobotPartRequest\032!.viam.app.v1.NewRob"
+  "otPartResponse\022\\\n\017DeleteRobotPart\022#.viam"
+  ".app.v1.DeleteRobotPartRequest\032$.viam.ap"
+  "p.v1.DeleteRobotPartResponse\022Y\n\016MarkPart"
+  "AsMain\022\".viam.app.v1.MarkPartAsMainReque"
+  "st\032#.viam.app.v1.MarkPartAsMainResponse\022"
+  "n\n\025CreateRobotPartSecret\022).viam.app.v1.C"
+  "reateRobotPartSecretRequest\032*.viam.app.v"
+  "1.CreateRobotPartSecretResponse\022n\n\025Delet"
+  "eRobotPartSecret\022).viam.app.v1.DeleteRob"
+  "otPartSecretRequest\032*.viam.app.v1.Delete"
+  "RobotPartSecretResponse\022M\n\nFindRobots\022\036."
+  "viam.app.v1.FindRobotsRequest\032\037.viam.app"
+  ".v1.FindRobotsResponse\022G\n\010NewRobot\022\034.via"
+  "m.app.v1.NewRobotRequest\032\035.viam.app.v1.N"
+  "ewRobotResponse\022P\n\013UpdateRobot\022\037.viam.ap"
+  "p.v1.UpdateRobotRequest\032 .viam.app.v1.Up"
+  "dateRobotResponse\022P\n\013DeleteRobot\022\037.viam."
+  "app.v1.DeleteRobotRequest\032 .viam.app.v1."
+  "DeleteRobotResponseB\030Z\026go.viam.com/api/a"
+  "pp/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
@@ -1553,7 +1557,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 8477, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 8493, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
     &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 57,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
@@ -8112,6 +8116,10 @@ void GetRobotPartResponse::InternalSwap(GetRobotPartResponse* other) {
 
 class GetRobotPartLogsRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetRobotPartLogsRequest>()._has_bits_);
+  static void set_has_filter(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 GetRobotPartLogsRequest::GetRobotPartLogsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -8121,7 +8129,8 @@ GetRobotPartLogsRequest::GetRobotPartLogsRequest(::PROTOBUF_NAMESPACE_ID::Arena*
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetRobotPartLogsRequest)
 }
 GetRobotPartLogsRequest::GetRobotPartLogsRequest(const GetRobotPartLogsRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -8135,7 +8144,7 @@ GetRobotPartLogsRequest::GetRobotPartLogsRequest(const GetRobotPartLogsRequest& 
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     filter_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_filter().empty()) {
+  if (from._internal_has_filter()) {
     filter_.Set(from._internal_filter(), 
       GetArenaForAllocation());
   }
@@ -8181,13 +8190,18 @@ void GetRobotPartLogsRequest::Clear() {
   (void) cached_has_bits;
 
   id_.ClearToEmpty();
-  filter_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    filter_.ClearNonDefaultToEmpty();
+  }
   errors_only_ = false;
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GetRobotPartLogsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -8210,7 +8224,7 @@ const char* GetRobotPartLogsRequest::_InternalParse(const char* ptr, ::_pbi::Par
         } else
           goto handle_unusual;
         continue;
-      // string filter = 3 [json_name = "filter"];
+      // optional string filter = 3 [json_name = "filter"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_filter();
@@ -8236,6 +8250,7 @@ const char* GetRobotPartLogsRequest::_InternalParse(const char* ptr, ::_pbi::Par
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -8265,8 +8280,8 @@ uint8_t* GetRobotPartLogsRequest::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_errors_only(), target);
   }
 
-  // string filter = 3 [json_name = "filter"];
-  if (!this->_internal_filter().empty()) {
+  // optional string filter = 3 [json_name = "filter"];
+  if (_internal_has_filter()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_filter().data(), static_cast<int>(this->_internal_filter().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -8298,8 +8313,9 @@ size_t GetRobotPartLogsRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  // string filter = 3 [json_name = "filter"];
-  if (!this->_internal_filter().empty()) {
+  // optional string filter = 3 [json_name = "filter"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_filter());
@@ -8335,7 +8351,7 @@ void GetRobotPartLogsRequest::MergeFrom(const GetRobotPartLogsRequest& from) {
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
-  if (!from._internal_filter().empty()) {
+  if (from._internal_has_filter()) {
     _internal_set_filter(from._internal_filter());
   }
   if (from._internal_errors_only() != 0) {
@@ -8360,6 +8376,7 @@ void GetRobotPartLogsRequest::InternalSwap(GetRobotPartLogsRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &id_, lhs_arena,
       &other->id_, rhs_arena

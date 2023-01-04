@@ -127,6 +127,22 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>> PrepareAsyncTagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>>(PrepareAsyncTagsByFilterRaw(context, request, cq));
     }
+    // SubmitTrainingJob submits a request to train and save an ml model.
+    virtual ::grpc::Status SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::viam::app::data::v1::SubmitTrainingJobResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SubmitTrainingJobResponse>> AsyncSubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SubmitTrainingJobResponse>>(AsyncSubmitTrainingJobRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SubmitTrainingJobResponse>> PrepareAsyncSubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SubmitTrainingJobResponse>>(PrepareAsyncSubmitTrainingJobRaw(context, request, cq));
+    }
+    // GetTrainingJob returns the metadata associated with the requested TrainingJob.
+    virtual ::grpc::Status GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::viam::app::data::v1::GetTrainingJobResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetTrainingJobResponse>> AsyncGetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetTrainingJobResponse>>(AsyncGetTrainingJobRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetTrainingJobResponse>> PrepareAsyncGetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetTrainingJobResponse>>(PrepareAsyncGetTrainingJobRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -163,6 +179,12 @@ class DataService final {
       // TagsByFilter gets all unique tags from data based on given filter.
       virtual void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // SubmitTrainingJob submits a request to train and save an ml model.
+      virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetTrainingJob returns the metadata associated with the requested TrainingJob.
+      virtual void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -190,6 +212,10 @@ class DataService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>* AsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::TagsByFilterResponse>* PrepareAsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SubmitTrainingJobResponse>* AsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SubmitTrainingJobResponse>* PrepareAsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetTrainingJobResponse>* AsyncGetTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetTrainingJobResponse>* PrepareAsyncGetTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -271,6 +297,20 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>> PrepareAsyncTagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>>(PrepareAsyncTagsByFilterRaw(context, request, cq));
     }
+    ::grpc::Status SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::viam::app::data::v1::SubmitTrainingJobResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>> AsyncSubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>>(AsyncSubmitTrainingJobRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>> PrepareAsyncSubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>>(PrepareAsyncSubmitTrainingJobRaw(context, request, cq));
+    }
+    ::grpc::Status GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::viam::app::data::v1::GetTrainingJobResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>> AsyncGetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>>(AsyncGetTrainingJobRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>> PrepareAsyncGetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>>(PrepareAsyncGetTrainingJobRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -296,6 +336,10 @@ class DataService final {
       void RemoveTagsFromBinaryDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, std::function<void(::grpc::Status)>) override;
       void TagsByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
+      void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -329,6 +373,10 @@ class DataService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>* PrepareAsyncRemoveTagsFromBinaryDataByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>* AsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::TagsByFilterResponse>* PrepareAsyncTagsByFilterRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::TagsByFilterRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>* AsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SubmitTrainingJobResponse>* PrepareAsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>* AsyncGetTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetTrainingJobResponse>* PrepareAsyncGetTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_BinaryDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_BinaryDataByIDs_;
@@ -340,6 +388,8 @@ class DataService final {
     const ::grpc::internal::RpcMethod rpcmethod_RemoveTagsFromBinaryDataByFileIDs_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveTagsFromBinaryDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_TagsByFilter_;
+    const ::grpc::internal::RpcMethod rpcmethod_SubmitTrainingJob_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTrainingJob_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -369,6 +419,10 @@ class DataService final {
     virtual ::grpc::Status RemoveTagsFromBinaryDataByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* request, ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* response);
     // TagsByFilter gets all unique tags from data based on given filter.
     virtual ::grpc::Status TagsByFilter(::grpc::ServerContext* context, const ::viam::app::data::v1::TagsByFilterRequest* request, ::viam::app::data::v1::TagsByFilterResponse* response);
+    // SubmitTrainingJob submits a request to train and save an ml model.
+    virtual ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response);
+    // GetTrainingJob returns the metadata associated with the requested TrainingJob.
+    virtual ::grpc::Status GetTrainingJob(::grpc::ServerContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TabularDataByFilter : public BaseClass {
@@ -590,7 +644,47 @@ class DataService final {
       ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularDataByFilter<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFileIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByFileIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<Service > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SubmitTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodAsync(11);
+    }
+    ~WithAsyncMethod_SubmitTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSubmitTrainingJob(::grpc::ServerContext* context, ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::SubmitTrainingJobResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodAsync(12);
+    }
+    ~WithAsyncMethod_GetTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTrainingJob(::grpc::ServerContext* context, ::viam::app::data::v1::GetTrainingJobRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::GetTrainingJobResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularDataByFilter<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFileIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByFileIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_SubmitTrainingJob<WithAsyncMethod_GetTrainingJob<Service > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TabularDataByFilter : public BaseClass {
    private:
@@ -888,7 +982,61 @@ class DataService final {
     virtual ::grpc::ServerUnaryReactor* TagsByFilter(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularDataByFilter<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFileIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByFileIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<Service > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SubmitTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::SubmitTrainingJobRequest* request, ::viam::app::data::v1::SubmitTrainingJobResponse* response) { return this->SubmitTrainingJob(context, request, response); }));}
+    void SetMessageAllocatorFor_SubmitTrainingJob(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SubmitTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SubmitTrainingJob(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::GetTrainingJobRequest* request, ::viam::app::data::v1::GetTrainingJobResponse* response) { return this->GetTrainingJob(context, request, response); }));}
+    void SetMessageAllocatorFor_GetTrainingJob(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetTrainingJob(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularDataByFilter<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFileIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByFileIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_SubmitTrainingJob<WithCallbackMethod_GetTrainingJob<Service > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TabularDataByFilter : public BaseClass {
@@ -1073,6 +1221,40 @@ class DataService final {
     }
     // disable synchronous version of this method
     ::grpc::Status TagsByFilter(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::TagsByFilterRequest* /*request*/, ::viam::app::data::v1::TagsByFilterResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SubmitTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodGeneric(11);
+    }
+    ~WithGenericMethod_SubmitTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodGeneric(12);
+    }
+    ~WithGenericMethod_GetTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1295,6 +1477,46 @@ class DataService final {
     }
     void RequestTagsByFilter(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SubmitTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodRaw(11);
+    }
+    ~WithRawMethod_SubmitTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSubmitTrainingJob(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodRaw(12);
+    }
+    ~WithRawMethod_GetTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTrainingJob(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1537,6 +1759,50 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* TagsByFilter(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SubmitTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SubmitTrainingJob(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SubmitTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SubmitTrainingJob(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTrainingJob(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetTrainingJob(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1836,9 +2102,63 @@ class DataService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTagsByFilter(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::TagsByFilterRequest,::viam::app::data::v1::TagsByFilterResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<Service > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SubmitTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodStreamed(11,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::SubmitTrainingJobRequest, ::viam::app::data::v1::SubmitTrainingJobResponse>* streamer) {
+                       return this->StreamedSubmitTrainingJob(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SubmitTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SubmitTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::data::v1::SubmitTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSubmitTrainingJob(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::SubmitTrainingJobRequest,::viam::app::data::v1::SubmitTrainingJobResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetTrainingJob : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodStreamed(12,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::GetTrainingJobRequest, ::viam::app::data::v1::GetTrainingJobResponse>* streamer) {
+                       return this->StreamedGetTrainingJob(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetTrainingJob() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetTrainingJob(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetTrainingJobRequest* /*request*/, ::viam::app::data::v1::GetTrainingJobResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetTrainingJob(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::GetTrainingJobRequest,::viam::app::data::v1::GetTrainingJobResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<Service > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFileIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFileIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<Service > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
