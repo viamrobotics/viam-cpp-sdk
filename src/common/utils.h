@@ -8,23 +8,25 @@
 
 #include "../components/component_base.h"
 #include "common/v1/common.pb.h"
-#include "google/protobuf/struct.pb.h"
+#include "proto_type.h"
 
-using google::protobuf::Struct;
-using google::protobuf::Value;
+using viam::common::v1::ResourceName;
 
-class ProtoType {
-       public:
-	boost::variant<bool, std::string> proto_type;
-	ProtoType(std::string s) { proto_type = s; }
-	ProtoType(bool b) { proto_type = b; }
-
-       private:
-	Value proto_value();
-};
-
-Struct map_to_struct(std::unordered_map<std::string, Value> dict);
 std::vector<viam::common::v1::ResourceName> resource_names_for_component(
     ComponentBase component);
+
+class ResourceNameHasher {
+       public:
+	size_t operator()(ResourceName const& key) const {
+		return std::hash<std::string>()(key.SerializeAsString());
+	}
+};
+class ResourceNameEqual {
+       public:
+	bool operator()(ResourceName const& t1, ResourceName const& t2) const {
+		return !(
+		    t1.SerializeAsString().compare(t2.SerializeAsString()));
+	}
+};
 
 #endif

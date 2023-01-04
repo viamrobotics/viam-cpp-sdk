@@ -1,4 +1,3 @@
-#include "google/protobuf/struct.pb.h"
 #define BOOST_LOG_DYN_LINK 1
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
@@ -21,7 +20,8 @@
 #include <tuple>
 #include <vector>
 
-#include "../../src/common/utils.h"
+#include "../common/proto_type.h"
+#include "../common/utils.h"
 #include "../components/resource_manager.h"
 #include "../components/service_base.h"
 #include "../registry/registry.h"
@@ -59,10 +59,12 @@ class RobotClient {
 	    std::vector<Transform> additional_transforms =
 		std::vector<Transform>());
 
-	void stop_all(
-	    std::vector<std::tuple<ResourceName,
-				   std::unordered_map<std::string, ProtoType>>>
-		extra);
+	void stop_all(std::unordered_map<
+		      ResourceName, std::unordered_map<std::string, ProtoType>,
+		      ResourceNameHasher, ResourceNameEqual>
+			  extra);
+
+	void stop_all();
 	void cancel_operation(std::string id);
 	void block_for_operation(std::string id);
 	RobotClient(ViamChannel channel);
@@ -90,8 +92,8 @@ class RobotClient {
 };
 
 void RobotClient::close() {
-	// CR erodkin: have this close all tasks
 	should_refresh.store(false);
+	stop_all();
 	viam_channel.close();
 }
 
@@ -253,7 +255,9 @@ RobotClient::RobotClient(ViamChannel vc) : viam_channel(vc) {
 
 std::vector<ResourceName> *RobotClient::resource_names() {
 	lock.lock();
-	return &resource_names_;
+	std::vector<ResourceName> *resources = &resource_names_;
+	lock.unlock();
+	return resources;
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
@@ -298,8 +302,6 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
 	RepeatedPtrField<Transform> *req_transforms =
 	    req.mutable_supplemental_transforms();
-	// CR erodkin: test that this is right. why aren't we using the mutable
-	// one?
 	for (Transform transform : additional_transforms) {
 		*req_transforms->Add() = transform;
 	}
@@ -384,10 +386,25 @@ ComponentBase RobotClient::get_component(ResourceName name) {
 	lock.lock();
 	return resource_manager.get_component(name.name());
 }
-//
+
+void RobotClient::stop_all() {
+	std::unordered_map<ResourceName,
+			   std::unordered_map<std::string, ProtoType>,
+			   ResourceNameHasher, ResourceNameEqual>
+	    map;
+	for (ResourceName name : *resource_names()) {
+		std::unordered_map<std::string, ProtoType> val;
+		std::pair<ResourceName,
+			  std::unordered_map<std::string, ProtoType>>
+		    pair(name, val);
+		map.insert(pair);
+	}
+	stop_all(map);
+}
+
 void RobotClient::stop_all(
-    std::vector<
-	std::tuple<ResourceName, std::unordered_map<std::string, ProtoType>>>
+    std::unordered_map<ResourceName, std::unordered_map<std::string, ProtoType>,
+		       ResourceNameHasher, ResourceNameEqual>
 	extra) {
 	viam::robot::v1::StopAllRequest req;
 	viam::robot::v1::StopAllResponse resp;
@@ -395,12 +412,9 @@ void RobotClient::stop_all(
 
 	RepeatedPtrField<viam::robot::v1::StopExtraParameters> *ep =
 	    req.mutable_extra();
-	for (std::tuple<ResourceName,
-			std::unordered_map<std::string, ProtoType>>
-		 xtra : extra) {
-		ResourceName name = std::get<0>(xtra);
-		std::unordered_map<std::string, ProtoType> params =
-		    std::get<1>(xtra);
+	for (auto xtra : extra) {
+		ResourceName name = xtra.first;
+		std::unordered_map<std::string, ProtoType> params = xtra.second;
 		google::protobuf::Struct s = map_to_struct(params);
 		viam::robot::v1::StopExtraParameters stop;
 		*stop.mutable_name() = name;

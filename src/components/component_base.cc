@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "../common/proto_type.h"
 #include "common/v1/common.pb.h"
 using viam::common::v1::ResourceName;
 class ComponentType {
@@ -18,7 +19,7 @@ class ComponentBase {
 	std::vector<ComponentType> component_hierarchy;
 	ResourceName get_resource_name(std::string name);
 	virtual grpc::StatusCode stop(
-	    google::protobuf::Map<std::string, google::protobuf::Value> extra);
+	    std::unordered_map<std::string, ProtoType> extra);
 	virtual grpc::StatusCode stop();
 };
 
@@ -26,22 +27,22 @@ bool operator==(ComponentType& lhs, ComponentType& rhs) {
 	return lhs.name == rhs.name;
 }
 
-// CR erodkin: consider having a version of this that takes no argument and
-// assumes this.name
 ResourceName ComponentBase::get_resource_name(std::string name_) {
-	// CR erodkin: we don't have mro or split on viam.components in here,
-	// unlike python.
+	// TODO (ethan): test, confirm whether we need to split on
+	// "viam.components" here
 	ResourceName r;
 	*r.mutable_namespace_() = "rdk";
 	*r.mutable_type() = "component";
 	*r.mutable_subtype() = name;
 	*r.mutable_name() = name_;
+	std::cout << "calling get_resource_name! " << r.SerializeAsString()
+		  << std::endl;
 
 	return r;
 }
 
 grpc::StatusCode ComponentBase::stop(
-    google::protobuf::Map<std::string, google::protobuf::Value> ex) {
+    std::unordered_map<std::string, ProtoType> ex) {
 	return stop();
 }
 

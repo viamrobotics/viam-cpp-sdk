@@ -72,7 +72,6 @@ std::vector<Status> RobotService_::generate_status(
 			if (registration.component_type == component.type) {
 				bool component_present = false;
 				ResourceName component_name =
-				    // CR erodkin: implement get_resource_name
 				    component.get_resource_name(component.name);
 				for (auto resource_name : resource_names) {
 					if (&resource_name == &component_name) {
@@ -94,8 +93,8 @@ std::vector<Status> RobotService_::generate_status(
 	for (auto status : statuses) {
 		bool status_name_is_known = false;
 		for (auto resource_name : resource_names) {
-			// CR erodkin: test, make sure this works
-			if (&status.name() == &resource_name) {
+			if (status.name().SerializeAsString() ==
+			    resource_name.SerializeAsString()) {
 				status_name_is_known = true;
 				break;
 			}
@@ -179,27 +178,22 @@ void RobotService_::stream_status(
 	return ::grpc::Status();
 }
 
-// CR erodkin: we aren't using the response here at all! is that right?
 ::grpc::Status RobotService_::StopAll(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::StopAllRequest* request,
     ::viam::robot::v1::StopAllResponse* response) {
-	// CR erodkin: do we want to use protobuf Value here, or our custom
-	// type?
 	ResourceName r;
-	std::unordered_map<
-	    std::string,
-	    google::protobuf::Map<std::string, google::protobuf::Value>>
+	std::unordered_map<std::string,
+			   std::unordered_map<std::string, ProtoType>>
 	    extra;
 	grpc::StatusCode status = grpc::StatusCode::OK;
 	for (auto ex : request->extra()) {
 		google::protobuf::Struct struct_ = ex.params();
-		google::protobuf::Map<std::string, google::protobuf::Value>
-		    value_map = *struct_.mutable_fields();
+		std::unordered_map<std::string, ProtoType> value_map =
+		    struct_to_map(struct_);
 		std::string name = ex.name().SerializeAsString();
-		std::pair<
-		    std::string,
-		    google::protobuf::Map<std::string, google::protobuf::Value>>
+		std::pair<std::string,
+			  std::unordered_map<std::string, ProtoType>>
 		    pair_(name, value_map);
 		extra.insert(pair_);
 
@@ -209,7 +203,6 @@ void RobotService_::stream_status(
 			    component.get_resource_name(component.name);
 			std::string rn_ = rn.SerializeAsString();
 			if (extra.find(rn_) != extra.end()) {
-				// CR erodkin: figure this out
 				grpc::StatusCode status =
 				    component.stop(extra.at(rn_));
 				if (status != grpc::StatusCode::OK) {

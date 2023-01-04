@@ -6,6 +6,7 @@
 
 #include <string>
 
+#include "../common/utils.h"
 #include "../components/resource_manager.h"
 #include "../registry/registry.h"
 #include "../rpc/dial.h"
@@ -37,6 +38,11 @@ class RobotClient {
 	    std::vector<ResourceName> components = std::vector<ResourceName>());
 
        private:
+	void stop_all();
+	void stop_all(std::unordered_map<
+		      ResourceName, std::unordered_map<std::string, ProtoType>,
+		      ResourceNameHasher, ResourceNameEqual>
+			  extra);
 	std::atomic<bool> should_refresh;
 	unsigned int refresh_interval;
 	bool should_close_channel;

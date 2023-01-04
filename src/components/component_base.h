@@ -5,6 +5,7 @@
 
 #include <string>
 
+#include "../common/proto_type.h"
 #include "common/v1/common.pb.h"
 #include "google/protobuf/struct.pb.h"
 
@@ -22,7 +23,7 @@ class ComponentBase {
 
 	viam::common::v1::ResourceName get_resource_name(std::string name);
 	virtual grpc::StatusCode stop(
-	    google::protobuf::Map<std::string, google::protobuf::Value> extra);
+	    std::unordered_map<std::string, ProtoType> extra);
 	virtual grpc::StatusCode stop();
 };
 

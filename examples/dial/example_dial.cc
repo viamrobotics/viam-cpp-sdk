@@ -13,11 +13,6 @@
 #include "../../src/robot/client.h"
 #include "../../src/rpc/dial.h"
 
-using grpc::Channel;
-using grpc::ClientContext;
-using viam::robot::v1::ResourceNamesRequest;
-using viam::robot::v1::ResourceNamesResponse;
-using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
 
 extern "C" void *init_rust_runtime();
@@ -40,10 +35,8 @@ int main() {
 	    RobotClient::at_address(address, options);
 	robot->refresh();
 	std::vector<ResourceName> *resource_names = robot->resource_names();
-	ResourceName the_one_we_care_about;
-	// CR erodkin: clean this up
-	for (ResourceName &resource : *resource_names) {
-		the_one_we_care_about = resource;
+	ResourceName the_one_we_care_about = resource_names->at(0);
+	for (ResourceName resource : *resource_names) {
 		std::cout << "Resource name: " << resource.name()
 			  << resource.type() << resource.subtype() << std::endl;
 	}
