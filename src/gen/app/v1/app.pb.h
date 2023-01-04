@@ -5251,6 +5251,7 @@ class GetRobotPartLogsRequest final :
 
   enum : int {
     kIdFieldNumber = 1,
+    kFilterFieldNumber = 3,
     kErrorsOnlyFieldNumber = 2,
   };
   // string id = 1 [json_name = "id"];
@@ -5265,6 +5266,20 @@ class GetRobotPartLogsRequest final :
   const std::string& _internal_id() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
   std::string* _internal_mutable_id();
+  public:
+
+  // string filter = 3 [json_name = "filter"];
+  void clear_filter();
+  const std::string& filter() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filter(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filter();
+  PROTOBUF_NODISCARD std::string* release_filter();
+  void set_allocated_filter(std::string* filter);
+  private:
+  const std::string& _internal_filter() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filter(const std::string& value);
+  std::string* _internal_mutable_filter();
   public:
 
   // bool errors_only = 2 [json_name = "errorsOnly"];
@@ -5284,6 +5299,7 @@ class GetRobotPartLogsRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filter_;
   bool errors_only_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -13143,6 +13159,56 @@ inline void GetRobotPartLogsRequest::_internal_set_errors_only(bool value) {
 inline void GetRobotPartLogsRequest::set_errors_only(bool value) {
   _internal_set_errors_only(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.errors_only)
+}
+
+// string filter = 3 [json_name = "filter"];
+inline void GetRobotPartLogsRequest::clear_filter() {
+  filter_.ClearToEmpty();
+}
+inline const std::string& GetRobotPartLogsRequest::filter() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.filter)
+  return _internal_filter();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetRobotPartLogsRequest::set_filter(ArgT0&& arg0, ArgT... args) {
+ 
+ filter_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.filter)
+}
+inline std::string* GetRobotPartLogsRequest::mutable_filter() {
+  std::string* _s = _internal_mutable_filter();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartLogsRequest.filter)
+  return _s;
+}
+inline const std::string& GetRobotPartLogsRequest::_internal_filter() const {
+  return filter_.Get();
+}
+inline void GetRobotPartLogsRequest::_internal_set_filter(const std::string& value) {
+  
+  filter_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetRobotPartLogsRequest::_internal_mutable_filter() {
+  
+  return filter_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetRobotPartLogsRequest::release_filter() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartLogsRequest.filter)
+  return filter_.Release();
+}
+inline void GetRobotPartLogsRequest::set_allocated_filter(std::string* filter) {
+  if (filter != nullptr) {
+    
+  } else {
+    
+  }
+  filter_.SetAllocated(filter, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (filter_.IsDefault()) {
+    filter_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.filter)
 }
 
 // -------------------------------------------------------------------

@@ -34,6 +34,7 @@
 #include "app/data/v1/data.pb.h"
 #include <google/protobuf/struct.pb.h>
 #include <google/protobuf/timestamp.pb.h>
+#include "tagger/v1/tagger.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_app_2fmltraining_2fv1_2fml_5ftraining_2eproto
@@ -119,12 +120,13 @@ enum TrainingStatus : int {
   TRAINING_STATUS_IN_PROGRESS = 2,
   TRAINING_STATUS_COMPLETED = 3,
   TRAINING_STATUS_FAILED = 4,
+  TRAINING_STATUS_SUBMITTING = 5,
   TrainingStatus_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   TrainingStatus_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool TrainingStatus_IsValid(int value);
 constexpr TrainingStatus TrainingStatus_MIN = TRAINING_STATUS_UNSPECIFIED;
-constexpr TrainingStatus TrainingStatus_MAX = TRAINING_STATUS_FAILED;
+constexpr TrainingStatus TrainingStatus_MAX = TRAINING_STATUS_SUBMITTING;
 constexpr int TrainingStatus_ARRAYSIZE = TrainingStatus_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TrainingStatus_descriptor();
@@ -1188,7 +1190,7 @@ class TrainingJob final :
     kMetadataFieldNumber = 2,
     kModelMetadataFieldNumber = 5,
   };
-  // string id = 1 [json_name = "id"];
+  // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   void clear_id();
   const std::string& id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1202,7 +1204,7 @@ class TrainingJob final :
   std::string* _internal_mutable_id();
   public:
 
-  // string output_path = 3 [json_name = "outputPath"];
+  // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
   void clear_output_path();
   const std::string& output_path() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1216,7 +1218,7 @@ class TrainingJob final :
   std::string* _internal_mutable_output_path();
   public:
 
-  // string vertex_job_id = 4 [json_name = "vertexJobId"];
+  // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
   void clear_vertex_job_id();
   const std::string& vertex_job_id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1230,7 +1232,7 @@ class TrainingJob final :
   std::string* _internal_mutable_vertex_job_id();
   public:
 
-  // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+  // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
   bool has_metadata() const;
   private:
   bool _internal_has_metadata() const;
@@ -1248,7 +1250,7 @@ class TrainingJob final :
       ::viam::app::mltraining::v1::TrainingJobMetadata* metadata);
   ::viam::app::mltraining::v1::TrainingJobMetadata* unsafe_arena_release_metadata();
 
-  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata"];
+  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
   bool has_model_metadata() const;
   private:
   bool _internal_has_model_metadata() const;
@@ -2212,7 +2214,7 @@ inline void TrainingJobMetadata::set_allocated_synced_model_id(std::string* sync
 
 // TrainingJob
 
-// string id = 1 [json_name = "id"];
+// string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
 inline void TrainingJob::clear_id() {
   id_.ClearToEmpty();
 }
@@ -2262,7 +2264,7 @@ inline void TrainingJob::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJob.id)
 }
 
-// .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+// .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
 inline bool TrainingJob::_internal_has_metadata() const {
   return this != internal_default_instance() && metadata_ != nullptr;
 }
@@ -2352,7 +2354,7 @@ inline void TrainingJob::set_allocated_metadata(::viam::app::mltraining::v1::Tra
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJob.metadata)
 }
 
-// string output_path = 3 [json_name = "outputPath"];
+// string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
 inline void TrainingJob::clear_output_path() {
   output_path_.ClearToEmpty();
 }
@@ -2402,7 +2404,7 @@ inline void TrainingJob::set_allocated_output_path(std::string* output_path) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJob.output_path)
 }
 
-// string vertex_job_id = 4 [json_name = "vertexJobId"];
+// string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
 inline void TrainingJob::clear_vertex_job_id() {
   vertex_job_id_.ClearToEmpty();
 }
@@ -2452,7 +2454,7 @@ inline void TrainingJob::set_allocated_vertex_job_id(std::string* vertex_job_id)
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJob.vertex_job_id)
 }
 
-// .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata"];
+// .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
 inline bool TrainingJob::_internal_has_model_metadata() const {
   return this != internal_default_instance() && model_metadata_ != nullptr;
 }
