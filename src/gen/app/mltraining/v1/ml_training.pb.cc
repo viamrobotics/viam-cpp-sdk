@@ -200,59 +200,67 @@ const char descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2epro
   "\n#app/mltraining/v1/ml_training.proto\022\026v"
   "iam.app.mltraining.v1\032\026app/data/v1/data."
   "proto\032\034google/protobuf/struct.proto\032\037goo"
-  "gle/protobuf/timestamp.proto\"\217\002\n\030SubmitT"
-  "rainingJobRequest\0220\n\006filter\030\001 \001(\0132\030.viam"
-  ".app.data.v1.FilterR\006filter\022\'\n\017organizat"
-  "ion_id\030\002 \001(\tR\016organizationId\022\035\n\nmodel_na"
-  "me\030\003 \001(\tR\tmodelName\022#\n\rmodel_version\030\004 \001"
-  "(\tR\014modelVersion\022@\n\nmodel_type\030\005 \001(\0162!.v"
-  "iam.app.mltraining.v1.ModelTypeR\tmodelTy"
-  "pe\022\022\n\004tags\030\006 \003(\tR\004tags\"+\n\031SubmitTraining"
-  "JobResponse\022\016\n\002id\030\001 \001(\tR\002id\"\'\n\025GetTraini"
-  "ngJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"q\n\026GetTrain"
-  "ingJobResponse\022\016\n\002id\030\001 \001(\tR\002id\022G\n\010metada"
-  "ta\030\002 \001(\0132+.viam.app.mltraining.v1.Traini"
-  "ngJobMetadataR\010metadata\"\305\002\n\023TrainingJobM"
-  "etadata\022J\n\007request\030\001 \001(\01320.viam.app.mltr"
-  "aining.v1.SubmitTrainingJobRequestR\007requ"
-  "est\022>\n\006status\030\002 \001(\0162&.viam.app.mltrainin"
-  "g.v1.TrainingStatusR\006status\0229\n\ncreated_o"
-  "n\030\003 \001(\0132\032.google.protobuf.TimestampR\tcre"
-  "atedOn\022\?\n\rlast_modified\030\004 \001(\0132\032.google.p"
-  "rotobuf.TimestampR\014lastModified\022&\n\017synce"
-  "d_model_id\030\005 \001(\tR\rsyncedModelId\"\353\001\n\013Trai"
-  "ningJob\022\016\n\002id\030\001 \001(\tR\002id\022G\n\010metadata\030\002 \001("
-  "\0132+.viam.app.mltraining.v1.TrainingJobMe"
-  "tadataR\010metadata\022\037\n\013output_path\030\003 \001(\tR\no"
-  "utputPath\022\"\n\rvertex_job_id\030\004 \001(\tR\013vertex"
-  "JobId\022>\n\016model_metadata\030\005 \001(\0132\027.google.p"
-  "rotobuf.StructR\rmodelMetadata*~\n\tModelTy"
-  "pe\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_"
-  "TYPE_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MO"
-  "DEL_TYPE_MULTI_LABEL_CLASSIFICATION\020\002*\252\001"
-  "\n\016TrainingStatus\022\037\n\033TRAINING_STATUS_UNSP"
-  "ECIFIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037"
-  "\n\033TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAIN"
-  "ING_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STATU"
-  "S_FAILED\020\0042\376\001\n\021MLTrainingService\022x\n\021Subm"
-  "itTrainingJob\0220.viam.app.mltraining.v1.S"
-  "ubmitTrainingJobRequest\0321.viam.app.mltra"
-  "ining.v1.SubmitTrainingJobResponse\022o\n\016Ge"
-  "tTrainingJob\022-.viam.app.mltraining.v1.Ge"
-  "tTrainingJobRequest\032..viam.app.mltrainin"
-  "g.v1.GetTrainingJobResponseB#Z!go.viam.c"
-  "om/api/app/mltraining/v1b\006proto3"
+  "gle/protobuf/timestamp.proto\032\026tagger/v1/"
+  "tagger.proto\"\217\002\n\030SubmitTrainingJobReques"
+  "t\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Fil"
+  "terR\006filter\022\'\n\017organization_id\030\002 \001(\tR\016or"
+  "ganizationId\022\035\n\nmodel_name\030\003 \001(\tR\tmodelN"
+  "ame\022#\n\rmodel_version\030\004 \001(\tR\014modelVersion"
+  "\022@\n\nmodel_type\030\005 \001(\0162!.viam.app.mltraini"
+  "ng.v1.ModelTypeR\tmodelType\022\022\n\004tags\030\006 \003(\t"
+  "R\004tags\"+\n\031SubmitTrainingJobResponse\022\016\n\002i"
+  "d\030\001 \001(\tR\002id\"\'\n\025GetTrainingJobRequest\022\016\n\002"
+  "id\030\001 \001(\tR\002id\"q\n\026GetTrainingJobResponse\022\016"
+  "\n\002id\030\001 \001(\tR\002id\022G\n\010metadata\030\002 \001(\0132+.viam."
+  "app.mltraining.v1.TrainingJobMetadataR\010m"
+  "etadata\"\305\002\n\023TrainingJobMetadata\022J\n\007reque"
+  "st\030\001 \001(\01320.viam.app.mltraining.v1.Submit"
+  "TrainingJobRequestR\007request\022>\n\006status\030\002 "
+  "\001(\0162&.viam.app.mltraining.v1.TrainingSta"
+  "tusR\006status\0229\n\ncreated_on\030\003 \001(\0132\032.google"
+  ".protobuf.TimestampR\tcreatedOn\022\?\n\rlast_m"
+  "odified\030\004 \001(\0132\032.google.protobuf.Timestam"
+  "pR\014lastModified\022&\n\017synced_model_id\030\005 \001(\t"
+  "R\rsyncedModelId\"\304\003\n\013TrainingJob\0223\n\002id\030\001 "
+  "\001(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,omitempty\""
+  "R\002id\022m\n\010metadata\030\002 \001(\0132+.viam.app.mltrai"
+  "ning.v1.TrainingJobMetadataB$\232\204\236\003\037bson:\""
+  "metadata\" json:\"metadata\"R\010metadata\022K\n\013o"
+  "utput_path\030\003 \001(\tB*\232\204\236\003%bson:\"output_path"
+  "\" json:\"output_path\"R\noutputPath\022R\n\rvert"
+  "ex_job_id\030\004 \001(\tB.\232\204\236\003)bson:\"vertex_job_i"
+  "d\" json:\"vertex_job_id\"R\013vertexJobId\022p\n\016"
+  "model_metadata\030\005 \001(\0132\027.google.protobuf.S"
+  "tructB0\232\204\236\003+bson:\"model_metadata\" json:\""
+  "model_metadata\"R\rmodelMetadata*~\n\tModelT"
+  "ype\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL"
+  "_TYPE_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%M"
+  "ODEL_TYPE_MULTI_LABEL_CLASSIFICATION\020\002*\312"
+  "\001\n\016TrainingStatus\022\037\n\033TRAINING_STATUS_UNS"
+  "PECIFIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022"
+  "\037\n\033TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAI"
+  "NING_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STAT"
+  "US_FAILED\020\004\022\036\n\032TRAINING_STATUS_SUBMITTIN"
+  "G\020\0052\376\001\n\021MLTrainingService\022x\n\021SubmitTrain"
+  "ingJob\0220.viam.app.mltraining.v1.SubmitTr"
+  "ainingJobRequest\0321.viam.app.mltraining.v"
+  "1.SubmitTrainingJobResponse\022o\n\016GetTraini"
+  "ngJob\022-.viam.app.mltraining.v1.GetTraini"
+  "ngJobRequest\032..viam.app.mltraining.v1.Ge"
+  "tTrainingJobResponseB#Z!go.viam.com/api/"
+  "app/mltraining/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps[4] = {
   &::descriptor_table_app_2fdata_2fv1_2fdata_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+  &::descriptor_table_tagger_2fv1_2ftagger_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto = {
-    false, false, 1792, descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
+    false, false, 2065, descriptor_table_protodef_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     "app/mltraining/v1/ml_training.proto",
-    &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once, descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps, 3, 6,
+    &descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_once, descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto_deps, 4, 6,
     schemas, file_default_instances, TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offsets,
     file_level_metadata_app_2fmltraining_2fv1_2fml_5ftraining_2eproto, file_level_enum_descriptors_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
     file_level_service_descriptors_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
@@ -293,6 +301,7 @@ bool TrainingStatus_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -1838,7 +1847,7 @@ const char* TrainingJob::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string id = 1 [json_name = "id"];
+      // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_id();
@@ -1848,7 +1857,7 @@ const char* TrainingJob::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+      // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
@@ -1856,7 +1865,7 @@ const char* TrainingJob::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // string output_path = 3 [json_name = "outputPath"];
+      // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_output_path();
@@ -1866,7 +1875,7 @@ const char* TrainingJob::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // string vertex_job_id = 4 [json_name = "vertexJobId"];
+      // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           auto str = _internal_mutable_vertex_job_id();
@@ -1876,7 +1885,7 @@ const char* TrainingJob::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata"];
+      // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_model_metadata(), ptr);
@@ -1913,7 +1922,7 @@ uint8_t* TrainingJob::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string id = 1 [json_name = "id"];
+  // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   if (!this->_internal_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
@@ -1923,14 +1932,14 @@ uint8_t* TrainingJob::_InternalSerialize(
         1, this->_internal_id(), target);
   }
 
-  // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+  // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
   if (this->_internal_has_metadata()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::metadata(this),
         _Internal::metadata(this).GetCachedSize(), target, stream);
   }
 
-  // string output_path = 3 [json_name = "outputPath"];
+  // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
   if (!this->_internal_output_path().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_output_path().data(), static_cast<int>(this->_internal_output_path().length()),
@@ -1940,7 +1949,7 @@ uint8_t* TrainingJob::_InternalSerialize(
         3, this->_internal_output_path(), target);
   }
 
-  // string vertex_job_id = 4 [json_name = "vertexJobId"];
+  // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
   if (!this->_internal_vertex_job_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_vertex_job_id().data(), static_cast<int>(this->_internal_vertex_job_id().length()),
@@ -1950,7 +1959,7 @@ uint8_t* TrainingJob::_InternalSerialize(
         4, this->_internal_vertex_job_id(), target);
   }
 
-  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata"];
+  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
   if (this->_internal_has_model_metadata()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(5, _Internal::model_metadata(this),
@@ -1973,35 +1982,35 @@ size_t TrainingJob::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string id = 1 [json_name = "id"];
+  // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   if (!this->_internal_id().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_id());
   }
 
-  // string output_path = 3 [json_name = "outputPath"];
+  // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
   if (!this->_internal_output_path().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_output_path());
   }
 
-  // string vertex_job_id = 4 [json_name = "vertexJobId"];
+  // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
   if (!this->_internal_vertex_job_id().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_vertex_job_id());
   }
 
-  // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+  // .viam.app.mltraining.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
   if (this->_internal_has_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *metadata_);
   }
 
-  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata"];
+  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
   if (this->_internal_has_model_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
