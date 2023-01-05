@@ -70,6 +70,12 @@ extern CreateRobotPartSecretRequestDefaultTypeInternal _CreateRobotPartSecretReq
 class CreateRobotPartSecretResponse;
 struct CreateRobotPartSecretResponseDefaultTypeInternal;
 extern CreateRobotPartSecretResponseDefaultTypeInternal _CreateRobotPartSecretResponse_default_instance_;
+class DeleteLocationRequest;
+struct DeleteLocationRequestDefaultTypeInternal;
+extern DeleteLocationRequestDefaultTypeInternal _DeleteLocationRequest_default_instance_;
+class DeleteLocationResponse;
+struct DeleteLocationResponseDefaultTypeInternal;
+extern DeleteLocationResponseDefaultTypeInternal _DeleteLocationResponse_default_instance_;
 class DeleteLocationSecretRequest;
 struct DeleteLocationSecretRequestDefaultTypeInternal;
 extern DeleteLocationSecretRequestDefaultTypeInternal _DeleteLocationSecretRequest_default_instance_;
@@ -103,6 +109,12 @@ extern FindRobotsResponseDefaultTypeInternal _FindRobotsResponse_default_instanc
 class Fragment;
 struct FragmentDefaultTypeInternal;
 extern FragmentDefaultTypeInternal _Fragment_default_instance_;
+class GetLocationRequest;
+struct GetLocationRequestDefaultTypeInternal;
+extern GetLocationRequestDefaultTypeInternal _GetLocationRequest_default_instance_;
+class GetLocationResponse;
+struct GetLocationResponseDefaultTypeInternal;
+extern GetLocationResponseDefaultTypeInternal _GetLocationResponse_default_instance_;
 class GetRobotPartHistoryRequest;
 struct GetRobotPartHistoryRequestDefaultTypeInternal;
 extern GetRobotPartHistoryRequestDefaultTypeInternal _GetRobotPartHistoryRequest_default_instance_;
@@ -145,6 +157,12 @@ extern ListOrganizationsRequestDefaultTypeInternal _ListOrganizationsRequest_def
 class ListOrganizationsResponse;
 struct ListOrganizationsResponseDefaultTypeInternal;
 extern ListOrganizationsResponseDefaultTypeInternal _ListOrganizationsResponse_default_instance_;
+class ListRobotsRequest;
+struct ListRobotsRequestDefaultTypeInternal;
+extern ListRobotsRequestDefaultTypeInternal _ListRobotsRequest_default_instance_;
+class ListRobotsResponse;
+struct ListRobotsResponseDefaultTypeInternal;
+extern ListRobotsResponseDefaultTypeInternal _ListRobotsResponse_default_instance_;
 class Location;
 struct LocationDefaultTypeInternal;
 extern LocationDefaultTypeInternal _Location_default_instance_;
@@ -157,6 +175,9 @@ extern LocationAuthRequestDefaultTypeInternal _LocationAuthRequest_default_insta
 class LocationAuthResponse;
 struct LocationAuthResponseDefaultTypeInternal;
 extern LocationAuthResponseDefaultTypeInternal _LocationAuthResponse_default_instance_;
+class LocationOrganization;
+struct LocationOrganizationDefaultTypeInternal;
+extern LocationOrganizationDefaultTypeInternal _LocationOrganization_default_instance_;
 class LogEntry;
 struct LogEntryDefaultTypeInternal;
 extern LogEntryDefaultTypeInternal _LogEntry_default_instance_;
@@ -211,6 +232,12 @@ extern UnshareLocationRequestDefaultTypeInternal _UnshareLocationRequest_default
 class UnshareLocationResponse;
 struct UnshareLocationResponseDefaultTypeInternal;
 extern UnshareLocationResponseDefaultTypeInternal _UnshareLocationResponse_default_instance_;
+class UpdateLocationRequest;
+struct UpdateLocationRequestDefaultTypeInternal;
+extern UpdateLocationRequestDefaultTypeInternal _UpdateLocationRequest_default_instance_;
+class UpdateLocationResponse;
+struct UpdateLocationResponseDefaultTypeInternal;
+extern UpdateLocationResponseDefaultTypeInternal _UpdateLocationResponse_default_instance_;
 class UpdateRobotPartRequest;
 struct UpdateRobotPartRequestDefaultTypeInternal;
 extern UpdateRobotPartRequestDefaultTypeInternal _UpdateRobotPartRequest_default_instance_;
@@ -233,6 +260,8 @@ template<> ::viam::app::v1::CreateLocationSecretRequest* Arena::CreateMaybeMessa
 template<> ::viam::app::v1::CreateLocationSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationSecretResponse>(Arena*);
 template<> ::viam::app::v1::CreateRobotPartSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretRequest>(Arena*);
 template<> ::viam::app::v1::CreateRobotPartSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretResponse>(Arena*);
+template<> ::viam::app::v1::DeleteLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationRequest>(Arena*);
+template<> ::viam::app::v1::DeleteLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationResponse>(Arena*);
 template<> ::viam::app::v1::DeleteLocationSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationSecretRequest>(Arena*);
 template<> ::viam::app::v1::DeleteLocationSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationSecretResponse>(Arena*);
 template<> ::viam::app::v1::DeleteRobotPartRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotPartRequest>(Arena*);
@@ -244,6 +273,8 @@ template<> ::viam::app::v1::DeleteRobotResponse* Arena::CreateMaybeMessage<::via
 template<> ::viam::app::v1::FindRobotsRequest* Arena::CreateMaybeMessage<::viam::app::v1::FindRobotsRequest>(Arena*);
 template<> ::viam::app::v1::FindRobotsResponse* Arena::CreateMaybeMessage<::viam::app::v1::FindRobotsResponse>(Arena*);
 template<> ::viam::app::v1::Fragment* Arena::CreateMaybeMessage<::viam::app::v1::Fragment>(Arena*);
+template<> ::viam::app::v1::GetLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationRequest>(Arena*);
+template<> ::viam::app::v1::GetLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartHistoryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartHistoryRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotPartHistoryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartHistoryResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartLogsRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartLogsRequest>(Arena*);
@@ -258,10 +289,13 @@ template<> ::viam::app::v1::ListLocationsRequest* Arena::CreateMaybeMessage<::vi
 template<> ::viam::app::v1::ListLocationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsResponse>(Arena*);
 template<> ::viam::app::v1::ListOrganizationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationsRequest>(Arena*);
 template<> ::viam::app::v1::ListOrganizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationsResponse>(Arena*);
+template<> ::viam::app::v1::ListRobotsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListRobotsRequest>(Arena*);
+template<> ::viam::app::v1::ListRobotsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListRobotsResponse>(Arena*);
 template<> ::viam::app::v1::Location* Arena::CreateMaybeMessage<::viam::app::v1::Location>(Arena*);
 template<> ::viam::app::v1::LocationAuth* Arena::CreateMaybeMessage<::viam::app::v1::LocationAuth>(Arena*);
 template<> ::viam::app::v1::LocationAuthRequest* Arena::CreateMaybeMessage<::viam::app::v1::LocationAuthRequest>(Arena*);
 template<> ::viam::app::v1::LocationAuthResponse* Arena::CreateMaybeMessage<::viam::app::v1::LocationAuthResponse>(Arena*);
+template<> ::viam::app::v1::LocationOrganization* Arena::CreateMaybeMessage<::viam::app::v1::LocationOrganization>(Arena*);
 template<> ::viam::app::v1::LogEntry* Arena::CreateMaybeMessage<::viam::app::v1::LogEntry>(Arena*);
 template<> ::viam::app::v1::MarkPartAsMainRequest* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartAsMainRequest>(Arena*);
 template<> ::viam::app::v1::MarkPartAsMainResponse* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartAsMainResponse>(Arena*);
@@ -280,6 +314,8 @@ template<> ::viam::app::v1::TailRobotPartLogsRequest* Arena::CreateMaybeMessage<
 template<> ::viam::app::v1::TailRobotPartLogsResponse* Arena::CreateMaybeMessage<::viam::app::v1::TailRobotPartLogsResponse>(Arena*);
 template<> ::viam::app::v1::UnshareLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UnshareLocationRequest>(Arena*);
 template<> ::viam::app::v1::UnshareLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UnshareLocationResponse>(Arena*);
+template<> ::viam::app::v1::UpdateLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationRequest>(Arena*);
+template<> ::viam::app::v1::UpdateLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartRequest>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotRequest>(Arena*);
@@ -1564,24 +1600,24 @@ class ListOrganizationsResponse final :
 };
 // -------------------------------------------------------------------
 
-class Location final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Location) */ {
+class LocationOrganization final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LocationOrganization) */ {
  public:
-  inline Location() : Location(nullptr) {}
-  ~Location() override;
-  explicit PROTOBUF_CONSTEXPR Location(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline LocationOrganization() : LocationOrganization(nullptr) {}
+  ~LocationOrganization() override;
+  explicit PROTOBUF_CONSTEXPR LocationOrganization(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  Location(const Location& from);
-  Location(Location&& from) noexcept
-    : Location() {
+  LocationOrganization(const LocationOrganization& from);
+  LocationOrganization(LocationOrganization&& from) noexcept
+    : LocationOrganization() {
     *this = ::std::move(from);
   }
 
-  inline Location& operator=(const Location& from) {
+  inline LocationOrganization& operator=(const LocationOrganization& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Location& operator=(Location&& from) noexcept {
+  inline LocationOrganization& operator=(LocationOrganization&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1604,20 +1640,20 @@ class Location final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Location& default_instance() {
+  static const LocationOrganization& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Location* internal_default_instance() {
-    return reinterpret_cast<const Location*>(
-               &_Location_default_instance_);
+  static inline const LocationOrganization* internal_default_instance() {
+    return reinterpret_cast<const LocationOrganization*>(
+               &_LocationOrganization_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     6;
 
-  friend void swap(Location& a, Location& b) {
+  friend void swap(LocationOrganization& a, LocationOrganization& b) {
     a.Swap(&b);
   }
-  inline void Swap(Location* other) {
+  inline void Swap(LocationOrganization* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1630,7 +1666,7 @@ class Location final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Location* other) {
+  void UnsafeArenaSwap(LocationOrganization* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1638,13 +1674,13 @@ class Location final :
 
   // implements Message ----------------------------------------------
 
-  Location* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Location>(arena);
+  LocationOrganization* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LocationOrganization>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Location& from);
+  void CopyFrom(const LocationOrganization& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const Location& from);
+  void MergeFrom(const LocationOrganization& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -1661,199 +1697,15 @@ class Location final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Location* other);
+  void InternalSwap(LocationOrganization* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.Location";
+    return "viam.app.v1.LocationOrganization";
   }
   protected:
-  explicit Location(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIdFieldNumber = 1,
-    kNameFieldNumber = 2,
-    kCreatedOnFieldNumber = 3,
-  };
-  // string id = 1 [json_name = "id"];
-  void clear_id();
-  const std::string& id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* id);
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
-  std::string* _internal_mutable_id();
-  public:
-
-  // string name = 2 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
-  public:
-
-  // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
-  bool has_created_on() const;
-  private:
-  bool _internal_has_created_on() const;
-  public:
-  void clear_created_on();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_on() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_on();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_on();
-  void set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestamp* created_on);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_on() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_on();
-  public:
-  void unsafe_arena_set_allocated_created_on(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_on();
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.Location)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CreateLocationRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationRequest) */ {
- public:
-  inline CreateLocationRequest() : CreateLocationRequest(nullptr) {}
-  ~CreateLocationRequest() override;
-  explicit PROTOBUF_CONSTEXPR CreateLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CreateLocationRequest(const CreateLocationRequest& from);
-  CreateLocationRequest(CreateLocationRequest&& from) noexcept
-    : CreateLocationRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline CreateLocationRequest& operator=(const CreateLocationRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CreateLocationRequest& operator=(CreateLocationRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CreateLocationRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CreateLocationRequest* internal_default_instance() {
-    return reinterpret_cast<const CreateLocationRequest*>(
-               &_CreateLocationRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    7;
-
-  friend void swap(CreateLocationRequest& a, CreateLocationRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CreateLocationRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CreateLocationRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CreateLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CreateLocationRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CreateLocationRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const CreateLocationRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CreateLocationRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.CreateLocationRequest";
-  }
-  protected:
-  explicit CreateLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit LocationOrganization(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1868,7 +1720,7 @@ class CreateLocationRequest final :
 
   enum : int {
     kOrganizationIdFieldNumber = 1,
-    kNameFieldNumber = 2,
+    kPrimaryFieldNumber = 2,
   };
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
@@ -1884,21 +1736,16 @@ class CreateLocationRequest final :
   std::string* _internal_mutable_organization_id();
   public:
 
-  // string name = 2 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  // bool primary = 2 [json_name = "primary"];
+  void clear_primary();
+  bool primary() const;
+  void set_primary(bool value);
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
+  bool _internal_primary() const;
+  void _internal_set_primary(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationRequest)
+  // @@protoc_insertion_point(class_scope:viam.app.v1.LocationOrganization)
  private:
   class _Internal;
 
@@ -1906,1600 +1753,8 @@ class CreateLocationRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  bool primary_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CreateLocationResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationResponse) */ {
- public:
-  inline CreateLocationResponse() : CreateLocationResponse(nullptr) {}
-  ~CreateLocationResponse() override;
-  explicit PROTOBUF_CONSTEXPR CreateLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CreateLocationResponse(const CreateLocationResponse& from);
-  CreateLocationResponse(CreateLocationResponse&& from) noexcept
-    : CreateLocationResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline CreateLocationResponse& operator=(const CreateLocationResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CreateLocationResponse& operator=(CreateLocationResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CreateLocationResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CreateLocationResponse* internal_default_instance() {
-    return reinterpret_cast<const CreateLocationResponse*>(
-               &_CreateLocationResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    8;
-
-  friend void swap(CreateLocationResponse& a, CreateLocationResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CreateLocationResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CreateLocationResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CreateLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CreateLocationResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CreateLocationResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const CreateLocationResponse& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CreateLocationResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.CreateLocationResponse";
-  }
-  protected:
-  explicit CreateLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationFieldNumber = 1,
-  };
-  // .viam.app.v1.Location location = 1 [json_name = "location"];
-  bool has_location() const;
-  private:
-  bool _internal_has_location() const;
-  public:
-  void clear_location();
-  const ::viam::app::v1::Location& location() const;
-  PROTOBUF_NODISCARD ::viam::app::v1::Location* release_location();
-  ::viam::app::v1::Location* mutable_location();
-  void set_allocated_location(::viam::app::v1::Location* location);
-  private:
-  const ::viam::app::v1::Location& _internal_location() const;
-  ::viam::app::v1::Location* _internal_mutable_location();
-  public:
-  void unsafe_arena_set_allocated_location(
-      ::viam::app::v1::Location* location);
-  ::viam::app::v1::Location* unsafe_arena_release_location();
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::viam::app::v1::Location* location_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ListLocationsRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListLocationsRequest) */ {
- public:
-  inline ListLocationsRequest() : ListLocationsRequest(nullptr) {}
-  ~ListLocationsRequest() override;
-  explicit PROTOBUF_CONSTEXPR ListLocationsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  ListLocationsRequest(const ListLocationsRequest& from);
-  ListLocationsRequest(ListLocationsRequest&& from) noexcept
-    : ListLocationsRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline ListLocationsRequest& operator=(const ListLocationsRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ListLocationsRequest& operator=(ListLocationsRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ListLocationsRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ListLocationsRequest* internal_default_instance() {
-    return reinterpret_cast<const ListLocationsRequest*>(
-               &_ListLocationsRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    9;
-
-  friend void swap(ListLocationsRequest& a, ListLocationsRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ListLocationsRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ListLocationsRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ListLocationsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ListLocationsRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ListLocationsRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ListLocationsRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ListLocationsRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.ListLocationsRequest";
-  }
-  protected:
-  explicit ListLocationsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kOrganizationIdFieldNumber = 1,
-  };
-  // string organization_id = 1 [json_name = "organizationId"];
-  void clear_organization_id();
-  const std::string& organization_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_organization_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_organization_id();
-  PROTOBUF_NODISCARD std::string* release_organization_id();
-  void set_allocated_organization_id(std::string* organization_id);
-  private:
-  const std::string& _internal_organization_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
-  std::string* _internal_mutable_organization_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.ListLocationsRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ShareLocationRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ShareLocationRequest) */ {
- public:
-  inline ShareLocationRequest() : ShareLocationRequest(nullptr) {}
-  ~ShareLocationRequest() override;
-  explicit PROTOBUF_CONSTEXPR ShareLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  ShareLocationRequest(const ShareLocationRequest& from);
-  ShareLocationRequest(ShareLocationRequest&& from) noexcept
-    : ShareLocationRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline ShareLocationRequest& operator=(const ShareLocationRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ShareLocationRequest& operator=(ShareLocationRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ShareLocationRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ShareLocationRequest* internal_default_instance() {
-    return reinterpret_cast<const ShareLocationRequest*>(
-               &_ShareLocationRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    10;
-
-  friend void swap(ShareLocationRequest& a, ShareLocationRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ShareLocationRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ShareLocationRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ShareLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ShareLocationRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ShareLocationRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ShareLocationRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ShareLocationRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.ShareLocationRequest";
-  }
-  protected:
-  explicit ShareLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationIdFieldNumber = 1,
-    kOrganizationIdFieldNumber = 2,
-  };
-  // string location_id = 1 [json_name = "locationId"];
-  void clear_location_id();
-  const std::string& location_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_location_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_location_id();
-  PROTOBUF_NODISCARD std::string* release_location_id();
-  void set_allocated_location_id(std::string* location_id);
-  private:
-  const std::string& _internal_location_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
-  std::string* _internal_mutable_location_id();
-  public:
-
-  // string organization_id = 2 [json_name = "organizationId"];
-  void clear_organization_id();
-  const std::string& organization_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_organization_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_organization_id();
-  PROTOBUF_NODISCARD std::string* release_organization_id();
-  void set_allocated_organization_id(std::string* organization_id);
-  private:
-  const std::string& _internal_organization_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
-  std::string* _internal_mutable_organization_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.ShareLocationRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ShareLocationResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.ShareLocationResponse) */ {
- public:
-  inline ShareLocationResponse() : ShareLocationResponse(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR ShareLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  ShareLocationResponse(const ShareLocationResponse& from);
-  ShareLocationResponse(ShareLocationResponse&& from) noexcept
-    : ShareLocationResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline ShareLocationResponse& operator=(const ShareLocationResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ShareLocationResponse& operator=(ShareLocationResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ShareLocationResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ShareLocationResponse* internal_default_instance() {
-    return reinterpret_cast<const ShareLocationResponse*>(
-               &_ShareLocationResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    11;
-
-  friend void swap(ShareLocationResponse& a, ShareLocationResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ShareLocationResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ShareLocationResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ShareLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ShareLocationResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const ShareLocationResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const ShareLocationResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.ShareLocationResponse";
-  }
-  protected:
-  explicit ShareLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.ShareLocationResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class UnshareLocationRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UnshareLocationRequest) */ {
- public:
-  inline UnshareLocationRequest() : UnshareLocationRequest(nullptr) {}
-  ~UnshareLocationRequest() override;
-  explicit PROTOBUF_CONSTEXPR UnshareLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  UnshareLocationRequest(const UnshareLocationRequest& from);
-  UnshareLocationRequest(UnshareLocationRequest&& from) noexcept
-    : UnshareLocationRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline UnshareLocationRequest& operator=(const UnshareLocationRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UnshareLocationRequest& operator=(UnshareLocationRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const UnshareLocationRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const UnshareLocationRequest* internal_default_instance() {
-    return reinterpret_cast<const UnshareLocationRequest*>(
-               &_UnshareLocationRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    12;
-
-  friend void swap(UnshareLocationRequest& a, UnshareLocationRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(UnshareLocationRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(UnshareLocationRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  UnshareLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UnshareLocationRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const UnshareLocationRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const UnshareLocationRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(UnshareLocationRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.UnshareLocationRequest";
-  }
-  protected:
-  explicit UnshareLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationIdFieldNumber = 1,
-    kOrganizationIdFieldNumber = 2,
-  };
-  // string location_id = 1 [json_name = "locationId"];
-  void clear_location_id();
-  const std::string& location_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_location_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_location_id();
-  PROTOBUF_NODISCARD std::string* release_location_id();
-  void set_allocated_location_id(std::string* location_id);
-  private:
-  const std::string& _internal_location_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
-  std::string* _internal_mutable_location_id();
-  public:
-
-  // string organization_id = 2 [json_name = "organizationId"];
-  void clear_organization_id();
-  const std::string& organization_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_organization_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_organization_id();
-  PROTOBUF_NODISCARD std::string* release_organization_id();
-  void set_allocated_organization_id(std::string* organization_id);
-  private:
-  const std::string& _internal_organization_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
-  std::string* _internal_mutable_organization_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.UnshareLocationRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class UnshareLocationResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.UnshareLocationResponse) */ {
- public:
-  inline UnshareLocationResponse() : UnshareLocationResponse(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR UnshareLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  UnshareLocationResponse(const UnshareLocationResponse& from);
-  UnshareLocationResponse(UnshareLocationResponse&& from) noexcept
-    : UnshareLocationResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline UnshareLocationResponse& operator=(const UnshareLocationResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UnshareLocationResponse& operator=(UnshareLocationResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const UnshareLocationResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const UnshareLocationResponse* internal_default_instance() {
-    return reinterpret_cast<const UnshareLocationResponse*>(
-               &_UnshareLocationResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    13;
-
-  friend void swap(UnshareLocationResponse& a, UnshareLocationResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(UnshareLocationResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(UnshareLocationResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  UnshareLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UnshareLocationResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const UnshareLocationResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const UnshareLocationResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.UnshareLocationResponse";
-  }
-  protected:
-  explicit UnshareLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.UnshareLocationResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ListLocationsResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListLocationsResponse) */ {
- public:
-  inline ListLocationsResponse() : ListLocationsResponse(nullptr) {}
-  ~ListLocationsResponse() override;
-  explicit PROTOBUF_CONSTEXPR ListLocationsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  ListLocationsResponse(const ListLocationsResponse& from);
-  ListLocationsResponse(ListLocationsResponse&& from) noexcept
-    : ListLocationsResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline ListLocationsResponse& operator=(const ListLocationsResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ListLocationsResponse& operator=(ListLocationsResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ListLocationsResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ListLocationsResponse* internal_default_instance() {
-    return reinterpret_cast<const ListLocationsResponse*>(
-               &_ListLocationsResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    14;
-
-  friend void swap(ListLocationsResponse& a, ListLocationsResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ListLocationsResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ListLocationsResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ListLocationsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ListLocationsResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ListLocationsResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ListLocationsResponse& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ListLocationsResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.ListLocationsResponse";
-  }
-  protected:
-  explicit ListLocationsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationsFieldNumber = 1,
-  };
-  // repeated .viam.app.v1.Location locations = 1 [json_name = "locations"];
-  int locations_size() const;
-  private:
-  int _internal_locations_size() const;
-  public:
-  void clear_locations();
-  ::viam::app::v1::Location* mutable_locations(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Location >*
-      mutable_locations();
-  private:
-  const ::viam::app::v1::Location& _internal_locations(int index) const;
-  ::viam::app::v1::Location* _internal_add_locations();
-  public:
-  const ::viam::app::v1::Location& locations(int index) const;
-  ::viam::app::v1::Location* add_locations();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Location >&
-      locations() const;
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.ListLocationsResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Location > locations_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CreateLocationSecretRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationSecretRequest) */ {
- public:
-  inline CreateLocationSecretRequest() : CreateLocationSecretRequest(nullptr) {}
-  ~CreateLocationSecretRequest() override;
-  explicit PROTOBUF_CONSTEXPR CreateLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CreateLocationSecretRequest(const CreateLocationSecretRequest& from);
-  CreateLocationSecretRequest(CreateLocationSecretRequest&& from) noexcept
-    : CreateLocationSecretRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline CreateLocationSecretRequest& operator=(const CreateLocationSecretRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CreateLocationSecretRequest& operator=(CreateLocationSecretRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CreateLocationSecretRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CreateLocationSecretRequest* internal_default_instance() {
-    return reinterpret_cast<const CreateLocationSecretRequest*>(
-               &_CreateLocationSecretRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    15;
-
-  friend void swap(CreateLocationSecretRequest& a, CreateLocationSecretRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CreateLocationSecretRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CreateLocationSecretRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CreateLocationSecretRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CreateLocationSecretRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CreateLocationSecretRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const CreateLocationSecretRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CreateLocationSecretRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.CreateLocationSecretRequest";
-  }
-  protected:
-  explicit CreateLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationIdFieldNumber = 1,
-  };
-  // string location_id = 1 [json_name = "locationId"];
-  void clear_location_id();
-  const std::string& location_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_location_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_location_id();
-  PROTOBUF_NODISCARD std::string* release_location_id();
-  void set_allocated_location_id(std::string* location_id);
-  private:
-  const std::string& _internal_location_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
-  std::string* _internal_mutable_location_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationSecretRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CreateLocationSecretResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationSecretResponse) */ {
- public:
-  inline CreateLocationSecretResponse() : CreateLocationSecretResponse(nullptr) {}
-  ~CreateLocationSecretResponse() override;
-  explicit PROTOBUF_CONSTEXPR CreateLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CreateLocationSecretResponse(const CreateLocationSecretResponse& from);
-  CreateLocationSecretResponse(CreateLocationSecretResponse&& from) noexcept
-    : CreateLocationSecretResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline CreateLocationSecretResponse& operator=(const CreateLocationSecretResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CreateLocationSecretResponse& operator=(CreateLocationSecretResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CreateLocationSecretResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CreateLocationSecretResponse* internal_default_instance() {
-    return reinterpret_cast<const CreateLocationSecretResponse*>(
-               &_CreateLocationSecretResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    16;
-
-  friend void swap(CreateLocationSecretResponse& a, CreateLocationSecretResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CreateLocationSecretResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CreateLocationSecretResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CreateLocationSecretResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CreateLocationSecretResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CreateLocationSecretResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const CreateLocationSecretResponse& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CreateLocationSecretResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.CreateLocationSecretResponse";
-  }
-  protected:
-  explicit CreateLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kAuthFieldNumber = 1,
-  };
-  // .viam.app.v1.LocationAuth auth = 1 [json_name = "auth"];
-  bool has_auth() const;
-  private:
-  bool _internal_has_auth() const;
-  public:
-  void clear_auth();
-  const ::viam::app::v1::LocationAuth& auth() const;
-  PROTOBUF_NODISCARD ::viam::app::v1::LocationAuth* release_auth();
-  ::viam::app::v1::LocationAuth* mutable_auth();
-  void set_allocated_auth(::viam::app::v1::LocationAuth* auth);
-  private:
-  const ::viam::app::v1::LocationAuth& _internal_auth() const;
-  ::viam::app::v1::LocationAuth* _internal_mutable_auth();
-  public:
-  void unsafe_arena_set_allocated_auth(
-      ::viam::app::v1::LocationAuth* auth);
-  ::viam::app::v1::LocationAuth* unsafe_arena_release_auth();
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationSecretResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::viam::app::v1::LocationAuth* auth_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class DeleteLocationSecretRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteLocationSecretRequest) */ {
- public:
-  inline DeleteLocationSecretRequest() : DeleteLocationSecretRequest(nullptr) {}
-  ~DeleteLocationSecretRequest() override;
-  explicit PROTOBUF_CONSTEXPR DeleteLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DeleteLocationSecretRequest(const DeleteLocationSecretRequest& from);
-  DeleteLocationSecretRequest(DeleteLocationSecretRequest&& from) noexcept
-    : DeleteLocationSecretRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline DeleteLocationSecretRequest& operator=(const DeleteLocationSecretRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DeleteLocationSecretRequest& operator=(DeleteLocationSecretRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DeleteLocationSecretRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DeleteLocationSecretRequest* internal_default_instance() {
-    return reinterpret_cast<const DeleteLocationSecretRequest*>(
-               &_DeleteLocationSecretRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    17;
-
-  friend void swap(DeleteLocationSecretRequest& a, DeleteLocationSecretRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DeleteLocationSecretRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DeleteLocationSecretRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DeleteLocationSecretRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DeleteLocationSecretRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DeleteLocationSecretRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DeleteLocationSecretRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(DeleteLocationSecretRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.DeleteLocationSecretRequest";
-  }
-  protected:
-  explicit DeleteLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationIdFieldNumber = 1,
-    kSecretIdFieldNumber = 2,
-  };
-  // string location_id = 1 [json_name = "locationId"];
-  void clear_location_id();
-  const std::string& location_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_location_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_location_id();
-  PROTOBUF_NODISCARD std::string* release_location_id();
-  void set_allocated_location_id(std::string* location_id);
-  private:
-  const std::string& _internal_location_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
-  std::string* _internal_mutable_location_id();
-  public:
-
-  // string secret_id = 2 [json_name = "secretId"];
-  void clear_secret_id();
-  const std::string& secret_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_secret_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_secret_id();
-  PROTOBUF_NODISCARD std::string* release_secret_id();
-  void set_allocated_secret_id(std::string* secret_id);
-  private:
-  const std::string& _internal_secret_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_secret_id(const std::string& value);
-  std::string* _internal_mutable_secret_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteLocationSecretRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secret_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class DeleteLocationSecretResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteLocationSecretResponse) */ {
- public:
-  inline DeleteLocationSecretResponse() : DeleteLocationSecretResponse(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR DeleteLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  DeleteLocationSecretResponse(const DeleteLocationSecretResponse& from);
-  DeleteLocationSecretResponse(DeleteLocationSecretResponse&& from) noexcept
-    : DeleteLocationSecretResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline DeleteLocationSecretResponse& operator=(const DeleteLocationSecretResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DeleteLocationSecretResponse& operator=(DeleteLocationSecretResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DeleteLocationSecretResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const DeleteLocationSecretResponse* internal_default_instance() {
-    return reinterpret_cast<const DeleteLocationSecretResponse*>(
-               &_DeleteLocationSecretResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    18;
-
-  friend void swap(DeleteLocationSecretResponse& a, DeleteLocationSecretResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(DeleteLocationSecretResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DeleteLocationSecretResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DeleteLocationSecretResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DeleteLocationSecretResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const DeleteLocationSecretResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const DeleteLocationSecretResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.DeleteLocationSecretResponse";
-  }
-  protected:
-  explicit DeleteLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteLocationSecretResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -3552,7 +1807,7 @@ class LocationAuth final :
                &_LocationAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    7;
 
   friend void swap(LocationAuth& a, LocationAuth& b) {
     a.Swap(&b);
@@ -3688,6 +1943,246 @@ class LocationAuth final :
 };
 // -------------------------------------------------------------------
 
+class Location final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Location) */ {
+ public:
+  inline Location() : Location(nullptr) {}
+  ~Location() override;
+  explicit PROTOBUF_CONSTEXPR Location(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Location(const Location& from);
+  Location(Location&& from) noexcept
+    : Location() {
+    *this = ::std::move(from);
+  }
+
+  inline Location& operator=(const Location& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Location& operator=(Location&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Location& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Location* internal_default_instance() {
+    return reinterpret_cast<const Location*>(
+               &_Location_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(Location& a, Location& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Location* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Location* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Location* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Location>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Location& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Location& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Location* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.Location";
+  }
+  protected:
+  explicit Location(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationsFieldNumber = 6,
+    kIdFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kParentLocationIdFieldNumber = 4,
+    kCreatedOnFieldNumber = 3,
+    kAuthFieldNumber = 5,
+  };
+  // repeated .viam.app.v1.LocationOrganization organizations = 6 [json_name = "organizations"];
+  int organizations_size() const;
+  private:
+  int _internal_organizations_size() const;
+  public:
+  void clear_organizations();
+  ::viam::app::v1::LocationOrganization* mutable_organizations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization >*
+      mutable_organizations();
+  private:
+  const ::viam::app::v1::LocationOrganization& _internal_organizations(int index) const;
+  ::viam::app::v1::LocationOrganization* _internal_add_organizations();
+  public:
+  const ::viam::app::v1::LocationOrganization& organizations(int index) const;
+  ::viam::app::v1::LocationOrganization* add_organizations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization >&
+      organizations() const;
+
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string name = 2 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string parent_location_id = 4 [json_name = "parentLocationId"];
+  void clear_parent_location_id();
+  const std::string& parent_location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_parent_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_parent_location_id();
+  PROTOBUF_NODISCARD std::string* release_parent_location_id();
+  void set_allocated_parent_location_id(std::string* parent_location_id);
+  private:
+  const std::string& _internal_parent_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_parent_location_id(const std::string& value);
+  std::string* _internal_mutable_parent_location_id();
+  public:
+
+  // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
+  bool has_created_on() const;
+  private:
+  bool _internal_has_created_on() const;
+  public:
+  void clear_created_on();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_on() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_on();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_on();
+  void set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestamp* created_on);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_on() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_on();
+  public:
+  void unsafe_arena_set_allocated_created_on(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_on();
+
+  // .viam.app.v1.LocationAuth auth = 5 [json_name = "auth"];
+  bool has_auth() const;
+  private:
+  bool _internal_has_auth() const;
+  public:
+  void clear_auth();
+  const ::viam::app::v1::LocationAuth& auth() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::LocationAuth* release_auth();
+  ::viam::app::v1::LocationAuth* mutable_auth();
+  void set_allocated_auth(::viam::app::v1::LocationAuth* auth);
+  private:
+  const ::viam::app::v1::LocationAuth& _internal_auth() const;
+  ::viam::app::v1::LocationAuth* _internal_mutable_auth();
+  public:
+  void unsafe_arena_set_allocated_auth(
+      ::viam::app::v1::LocationAuth* auth);
+  ::viam::app::v1::LocationAuth* unsafe_arena_release_auth();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.Location)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization > organizations_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_location_id_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
+  ::viam::app::v1::LocationAuth* auth_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SharedSecret final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.SharedSecret) */ {
  public:
@@ -3736,7 +2231,7 @@ class SharedSecret final :
                &_SharedSecret_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    9;
 
   friend void swap(SharedSecret& a, SharedSecret& b) {
     a.Swap(&b);
@@ -3915,6 +2410,2688 @@ class SharedSecret final :
 };
 // -------------------------------------------------------------------
 
+class CreateLocationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationRequest) */ {
+ public:
+  inline CreateLocationRequest() : CreateLocationRequest(nullptr) {}
+  ~CreateLocationRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateLocationRequest(const CreateLocationRequest& from);
+  CreateLocationRequest(CreateLocationRequest&& from) noexcept
+    : CreateLocationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateLocationRequest& operator=(const CreateLocationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateLocationRequest& operator=(CreateLocationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateLocationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateLocationRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateLocationRequest*>(
+               &_CreateLocationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(CreateLocationRequest& a, CreateLocationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateLocationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateLocationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateLocationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateLocationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateLocationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateLocationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateLocationRequest";
+  }
+  protected:
+  explicit CreateLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationIdFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kParentLocationIdFieldNumber = 3,
+  };
+  // string organization_id = 1 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // string name = 2 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional string parent_location_id = 3 [json_name = "parentLocationId"];
+  bool has_parent_location_id() const;
+  private:
+  bool _internal_has_parent_location_id() const;
+  public:
+  void clear_parent_location_id();
+  const std::string& parent_location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_parent_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_parent_location_id();
+  PROTOBUF_NODISCARD std::string* release_parent_location_id();
+  void set_allocated_parent_location_id(std::string* parent_location_id);
+  private:
+  const std::string& _internal_parent_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_parent_location_id(const std::string& value);
+  std::string* _internal_mutable_parent_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_location_id_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateLocationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationResponse) */ {
+ public:
+  inline CreateLocationResponse() : CreateLocationResponse(nullptr) {}
+  ~CreateLocationResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateLocationResponse(const CreateLocationResponse& from);
+  CreateLocationResponse(CreateLocationResponse&& from) noexcept
+    : CreateLocationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateLocationResponse& operator=(const CreateLocationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateLocationResponse& operator=(CreateLocationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateLocationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateLocationResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateLocationResponse*>(
+               &_CreateLocationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(CreateLocationResponse& a, CreateLocationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateLocationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateLocationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateLocationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateLocationResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateLocationResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateLocationResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateLocationResponse";
+  }
+  protected:
+  explicit CreateLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationFieldNumber = 1,
+  };
+  // .viam.app.v1.Location location = 1 [json_name = "location"];
+  bool has_location() const;
+  private:
+  bool _internal_has_location() const;
+  public:
+  void clear_location();
+  const ::viam::app::v1::Location& location() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Location* release_location();
+  ::viam::app::v1::Location* mutable_location();
+  void set_allocated_location(::viam::app::v1::Location* location);
+  private:
+  const ::viam::app::v1::Location& _internal_location() const;
+  ::viam::app::v1::Location* _internal_mutable_location();
+  public:
+  void unsafe_arena_set_allocated_location(
+      ::viam::app::v1::Location* location);
+  ::viam::app::v1::Location* unsafe_arena_release_location();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::Location* location_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetLocationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetLocationRequest) */ {
+ public:
+  inline GetLocationRequest() : GetLocationRequest(nullptr) {}
+  ~GetLocationRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetLocationRequest(const GetLocationRequest& from);
+  GetLocationRequest(GetLocationRequest&& from) noexcept
+    : GetLocationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetLocationRequest& operator=(const GetLocationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetLocationRequest& operator=(GetLocationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetLocationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetLocationRequest* internal_default_instance() {
+    return reinterpret_cast<const GetLocationRequest*>(
+               &_GetLocationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(GetLocationRequest& a, GetLocationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetLocationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetLocationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetLocationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetLocationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetLocationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetLocationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetLocationRequest";
+  }
+  protected:
+  explicit GetLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetLocationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetLocationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetLocationResponse) */ {
+ public:
+  inline GetLocationResponse() : GetLocationResponse(nullptr) {}
+  ~GetLocationResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetLocationResponse(const GetLocationResponse& from);
+  GetLocationResponse(GetLocationResponse&& from) noexcept
+    : GetLocationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetLocationResponse& operator=(const GetLocationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetLocationResponse& operator=(GetLocationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetLocationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetLocationResponse* internal_default_instance() {
+    return reinterpret_cast<const GetLocationResponse*>(
+               &_GetLocationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(GetLocationResponse& a, GetLocationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetLocationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetLocationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetLocationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetLocationResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetLocationResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetLocationResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetLocationResponse";
+  }
+  protected:
+  explicit GetLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationFieldNumber = 1,
+  };
+  // .viam.app.v1.Location location = 1 [json_name = "location"];
+  bool has_location() const;
+  private:
+  bool _internal_has_location() const;
+  public:
+  void clear_location();
+  const ::viam::app::v1::Location& location() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Location* release_location();
+  ::viam::app::v1::Location* mutable_location();
+  void set_allocated_location(::viam::app::v1::Location* location);
+  private:
+  const ::viam::app::v1::Location& _internal_location() const;
+  ::viam::app::v1::Location* _internal_mutable_location();
+  public:
+  void unsafe_arena_set_allocated_location(
+      ::viam::app::v1::Location* location);
+  ::viam::app::v1::Location* unsafe_arena_release_location();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetLocationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::Location* location_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateLocationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateLocationRequest) */ {
+ public:
+  inline UpdateLocationRequest() : UpdateLocationRequest(nullptr) {}
+  ~UpdateLocationRequest() override;
+  explicit PROTOBUF_CONSTEXPR UpdateLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateLocationRequest(const UpdateLocationRequest& from);
+  UpdateLocationRequest(UpdateLocationRequest&& from) noexcept
+    : UpdateLocationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateLocationRequest& operator=(const UpdateLocationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateLocationRequest& operator=(UpdateLocationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateLocationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateLocationRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateLocationRequest*>(
+               &_UpdateLocationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(UpdateLocationRequest& a, UpdateLocationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateLocationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateLocationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateLocationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateLocationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateLocationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateLocationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateLocationRequest";
+  }
+  protected:
+  explicit UpdateLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kParentLocationIdFieldNumber = 3,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // optional string name = 2 [json_name = "name"];
+  bool has_name() const;
+  private:
+  bool _internal_has_name() const;
+  public:
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional string parent_location_id = 3 [json_name = "parentLocationId"];
+  bool has_parent_location_id() const;
+  private:
+  bool _internal_has_parent_location_id() const;
+  public:
+  void clear_parent_location_id();
+  const std::string& parent_location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_parent_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_parent_location_id();
+  PROTOBUF_NODISCARD std::string* release_parent_location_id();
+  void set_allocated_parent_location_id(std::string* parent_location_id);
+  private:
+  const std::string& _internal_parent_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_parent_location_id(const std::string& value);
+  std::string* _internal_mutable_parent_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateLocationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_location_id_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateLocationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateLocationResponse) */ {
+ public:
+  inline UpdateLocationResponse() : UpdateLocationResponse(nullptr) {}
+  ~UpdateLocationResponse() override;
+  explicit PROTOBUF_CONSTEXPR UpdateLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateLocationResponse(const UpdateLocationResponse& from);
+  UpdateLocationResponse(UpdateLocationResponse&& from) noexcept
+    : UpdateLocationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateLocationResponse& operator=(const UpdateLocationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateLocationResponse& operator=(UpdateLocationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateLocationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateLocationResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateLocationResponse*>(
+               &_UpdateLocationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(UpdateLocationResponse& a, UpdateLocationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateLocationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateLocationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateLocationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateLocationResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateLocationResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateLocationResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateLocationResponse";
+  }
+  protected:
+  explicit UpdateLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationFieldNumber = 1,
+  };
+  // .viam.app.v1.Location location = 1 [json_name = "location"];
+  bool has_location() const;
+  private:
+  bool _internal_has_location() const;
+  public:
+  void clear_location();
+  const ::viam::app::v1::Location& location() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Location* release_location();
+  ::viam::app::v1::Location* mutable_location();
+  void set_allocated_location(::viam::app::v1::Location* location);
+  private:
+  const ::viam::app::v1::Location& _internal_location() const;
+  ::viam::app::v1::Location* _internal_mutable_location();
+  public:
+  void unsafe_arena_set_allocated_location(
+      ::viam::app::v1::Location* location);
+  ::viam::app::v1::Location* unsafe_arena_release_location();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateLocationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::Location* location_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteLocationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteLocationRequest) */ {
+ public:
+  inline DeleteLocationRequest() : DeleteLocationRequest(nullptr) {}
+  ~DeleteLocationRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteLocationRequest(const DeleteLocationRequest& from);
+  DeleteLocationRequest(DeleteLocationRequest&& from) noexcept
+    : DeleteLocationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteLocationRequest& operator=(const DeleteLocationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteLocationRequest& operator=(DeleteLocationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteLocationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteLocationRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteLocationRequest*>(
+               &_DeleteLocationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(DeleteLocationRequest& a, DeleteLocationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteLocationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteLocationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteLocationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteLocationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteLocationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteLocationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteLocationRequest";
+  }
+  protected:
+  explicit DeleteLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteLocationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteLocationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteLocationResponse) */ {
+ public:
+  inline DeleteLocationResponse() : DeleteLocationResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteLocationResponse(const DeleteLocationResponse& from);
+  DeleteLocationResponse(DeleteLocationResponse&& from) noexcept
+    : DeleteLocationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteLocationResponse& operator=(const DeleteLocationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteLocationResponse& operator=(DeleteLocationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteLocationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteLocationResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteLocationResponse*>(
+               &_DeleteLocationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(DeleteLocationResponse& a, DeleteLocationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteLocationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteLocationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteLocationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteLocationResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteLocationResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteLocationResponse";
+  }
+  protected:
+  explicit DeleteLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteLocationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListLocationsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListLocationsRequest) */ {
+ public:
+  inline ListLocationsRequest() : ListLocationsRequest(nullptr) {}
+  ~ListLocationsRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListLocationsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListLocationsRequest(const ListLocationsRequest& from);
+  ListLocationsRequest(ListLocationsRequest&& from) noexcept
+    : ListLocationsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListLocationsRequest& operator=(const ListLocationsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListLocationsRequest& operator=(ListLocationsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListLocationsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListLocationsRequest* internal_default_instance() {
+    return reinterpret_cast<const ListLocationsRequest*>(
+               &_ListLocationsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(ListLocationsRequest& a, ListLocationsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListLocationsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListLocationsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListLocationsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListLocationsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListLocationsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListLocationsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListLocationsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListLocationsRequest";
+  }
+  protected:
+  explicit ListLocationsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationIdFieldNumber = 1,
+  };
+  // string organization_id = 1 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListLocationsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ShareLocationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ShareLocationRequest) */ {
+ public:
+  inline ShareLocationRequest() : ShareLocationRequest(nullptr) {}
+  ~ShareLocationRequest() override;
+  explicit PROTOBUF_CONSTEXPR ShareLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ShareLocationRequest(const ShareLocationRequest& from);
+  ShareLocationRequest(ShareLocationRequest&& from) noexcept
+    : ShareLocationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ShareLocationRequest& operator=(const ShareLocationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShareLocationRequest& operator=(ShareLocationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ShareLocationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ShareLocationRequest* internal_default_instance() {
+    return reinterpret_cast<const ShareLocationRequest*>(
+               &_ShareLocationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(ShareLocationRequest& a, ShareLocationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShareLocationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShareLocationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ShareLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ShareLocationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ShareLocationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ShareLocationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ShareLocationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ShareLocationRequest";
+  }
+  protected:
+  explicit ShareLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+    kOrganizationIdFieldNumber = 2,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ShareLocationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ShareLocationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.ShareLocationResponse) */ {
+ public:
+  inline ShareLocationResponse() : ShareLocationResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR ShareLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ShareLocationResponse(const ShareLocationResponse& from);
+  ShareLocationResponse(ShareLocationResponse&& from) noexcept
+    : ShareLocationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ShareLocationResponse& operator=(const ShareLocationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShareLocationResponse& operator=(ShareLocationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ShareLocationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ShareLocationResponse* internal_default_instance() {
+    return reinterpret_cast<const ShareLocationResponse*>(
+               &_ShareLocationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(ShareLocationResponse& a, ShareLocationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShareLocationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShareLocationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ShareLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ShareLocationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ShareLocationResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ShareLocationResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ShareLocationResponse";
+  }
+  protected:
+  explicit ShareLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ShareLocationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UnshareLocationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UnshareLocationRequest) */ {
+ public:
+  inline UnshareLocationRequest() : UnshareLocationRequest(nullptr) {}
+  ~UnshareLocationRequest() override;
+  explicit PROTOBUF_CONSTEXPR UnshareLocationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UnshareLocationRequest(const UnshareLocationRequest& from);
+  UnshareLocationRequest(UnshareLocationRequest&& from) noexcept
+    : UnshareLocationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UnshareLocationRequest& operator=(const UnshareLocationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UnshareLocationRequest& operator=(UnshareLocationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UnshareLocationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UnshareLocationRequest* internal_default_instance() {
+    return reinterpret_cast<const UnshareLocationRequest*>(
+               &_UnshareLocationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(UnshareLocationRequest& a, UnshareLocationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UnshareLocationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UnshareLocationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UnshareLocationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UnshareLocationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UnshareLocationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UnshareLocationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UnshareLocationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UnshareLocationRequest";
+  }
+  protected:
+  explicit UnshareLocationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+    kOrganizationIdFieldNumber = 2,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UnshareLocationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UnshareLocationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.UnshareLocationResponse) */ {
+ public:
+  inline UnshareLocationResponse() : UnshareLocationResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UnshareLocationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UnshareLocationResponse(const UnshareLocationResponse& from);
+  UnshareLocationResponse(UnshareLocationResponse&& from) noexcept
+    : UnshareLocationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UnshareLocationResponse& operator=(const UnshareLocationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UnshareLocationResponse& operator=(UnshareLocationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UnshareLocationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UnshareLocationResponse* internal_default_instance() {
+    return reinterpret_cast<const UnshareLocationResponse*>(
+               &_UnshareLocationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(UnshareLocationResponse& a, UnshareLocationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UnshareLocationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UnshareLocationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UnshareLocationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UnshareLocationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UnshareLocationResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UnshareLocationResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UnshareLocationResponse";
+  }
+  protected:
+  explicit UnshareLocationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UnshareLocationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListLocationsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListLocationsResponse) */ {
+ public:
+  inline ListLocationsResponse() : ListLocationsResponse(nullptr) {}
+  ~ListLocationsResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListLocationsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListLocationsResponse(const ListLocationsResponse& from);
+  ListLocationsResponse(ListLocationsResponse&& from) noexcept
+    : ListLocationsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListLocationsResponse& operator=(const ListLocationsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListLocationsResponse& operator=(ListLocationsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListLocationsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListLocationsResponse* internal_default_instance() {
+    return reinterpret_cast<const ListLocationsResponse*>(
+               &_ListLocationsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(ListLocationsResponse& a, ListLocationsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListLocationsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListLocationsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListLocationsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListLocationsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListLocationsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListLocationsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListLocationsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListLocationsResponse";
+  }
+  protected:
+  explicit ListLocationsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationsFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.Location locations = 1 [json_name = "locations"];
+  int locations_size() const;
+  private:
+  int _internal_locations_size() const;
+  public:
+  void clear_locations();
+  ::viam::app::v1::Location* mutable_locations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Location >*
+      mutable_locations();
+  private:
+  const ::viam::app::v1::Location& _internal_locations(int index) const;
+  ::viam::app::v1::Location* _internal_add_locations();
+  public:
+  const ::viam::app::v1::Location& locations(int index) const;
+  ::viam::app::v1::Location* add_locations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Location >&
+      locations() const;
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListLocationsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Location > locations_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateLocationSecretRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationSecretRequest) */ {
+ public:
+  inline CreateLocationSecretRequest() : CreateLocationSecretRequest(nullptr) {}
+  ~CreateLocationSecretRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateLocationSecretRequest(const CreateLocationSecretRequest& from);
+  CreateLocationSecretRequest(CreateLocationSecretRequest&& from) noexcept
+    : CreateLocationSecretRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateLocationSecretRequest& operator=(const CreateLocationSecretRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateLocationSecretRequest& operator=(CreateLocationSecretRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateLocationSecretRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateLocationSecretRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateLocationSecretRequest*>(
+               &_CreateLocationSecretRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  friend void swap(CreateLocationSecretRequest& a, CreateLocationSecretRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateLocationSecretRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateLocationSecretRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateLocationSecretRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateLocationSecretRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateLocationSecretRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateLocationSecretRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateLocationSecretRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateLocationSecretRequest";
+  }
+  protected:
+  explicit CreateLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationSecretRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateLocationSecretResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateLocationSecretResponse) */ {
+ public:
+  inline CreateLocationSecretResponse() : CreateLocationSecretResponse(nullptr) {}
+  ~CreateLocationSecretResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateLocationSecretResponse(const CreateLocationSecretResponse& from);
+  CreateLocationSecretResponse(CreateLocationSecretResponse&& from) noexcept
+    : CreateLocationSecretResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateLocationSecretResponse& operator=(const CreateLocationSecretResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateLocationSecretResponse& operator=(CreateLocationSecretResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateLocationSecretResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateLocationSecretResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateLocationSecretResponse*>(
+               &_CreateLocationSecretResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(CreateLocationSecretResponse& a, CreateLocationSecretResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateLocationSecretResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateLocationSecretResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateLocationSecretResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateLocationSecretResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateLocationSecretResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateLocationSecretResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateLocationSecretResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateLocationSecretResponse";
+  }
+  protected:
+  explicit CreateLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAuthFieldNumber = 1,
+  };
+  // .viam.app.v1.LocationAuth auth = 1 [json_name = "auth"];
+  bool has_auth() const;
+  private:
+  bool _internal_has_auth() const;
+  public:
+  void clear_auth();
+  const ::viam::app::v1::LocationAuth& auth() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::LocationAuth* release_auth();
+  ::viam::app::v1::LocationAuth* mutable_auth();
+  void set_allocated_auth(::viam::app::v1::LocationAuth* auth);
+  private:
+  const ::viam::app::v1::LocationAuth& _internal_auth() const;
+  ::viam::app::v1::LocationAuth* _internal_mutable_auth();
+  public:
+  void unsafe_arena_set_allocated_auth(
+      ::viam::app::v1::LocationAuth* auth);
+  ::viam::app::v1::LocationAuth* unsafe_arena_release_auth();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateLocationSecretResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::LocationAuth* auth_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteLocationSecretRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteLocationSecretRequest) */ {
+ public:
+  inline DeleteLocationSecretRequest() : DeleteLocationSecretRequest(nullptr) {}
+  ~DeleteLocationSecretRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteLocationSecretRequest(const DeleteLocationSecretRequest& from);
+  DeleteLocationSecretRequest(DeleteLocationSecretRequest&& from) noexcept
+    : DeleteLocationSecretRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteLocationSecretRequest& operator=(const DeleteLocationSecretRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteLocationSecretRequest& operator=(DeleteLocationSecretRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteLocationSecretRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteLocationSecretRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteLocationSecretRequest*>(
+               &_DeleteLocationSecretRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  friend void swap(DeleteLocationSecretRequest& a, DeleteLocationSecretRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteLocationSecretRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteLocationSecretRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteLocationSecretRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteLocationSecretRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteLocationSecretRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteLocationSecretRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteLocationSecretRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteLocationSecretRequest";
+  }
+  protected:
+  explicit DeleteLocationSecretRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+    kSecretIdFieldNumber = 2,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // string secret_id = 2 [json_name = "secretId"];
+  void clear_secret_id();
+  const std::string& secret_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_secret_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_secret_id();
+  PROTOBUF_NODISCARD std::string* release_secret_id();
+  void set_allocated_secret_id(std::string* secret_id);
+  private:
+  const std::string& _internal_secret_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_secret_id(const std::string& value);
+  std::string* _internal_mutable_secret_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteLocationSecretRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secret_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteLocationSecretResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteLocationSecretResponse) */ {
+ public:
+  inline DeleteLocationSecretResponse() : DeleteLocationSecretResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteLocationSecretResponse(const DeleteLocationSecretResponse& from);
+  DeleteLocationSecretResponse(DeleteLocationSecretResponse&& from) noexcept
+    : DeleteLocationSecretResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteLocationSecretResponse& operator=(const DeleteLocationSecretResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteLocationSecretResponse& operator=(DeleteLocationSecretResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteLocationSecretResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteLocationSecretResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteLocationSecretResponse*>(
+               &_DeleteLocationSecretResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(DeleteLocationSecretResponse& a, DeleteLocationSecretResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteLocationSecretResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteLocationSecretResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteLocationSecretResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteLocationSecretResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteLocationSecretResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteLocationSecretResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteLocationSecretResponse";
+  }
+  protected:
+  explicit DeleteLocationSecretResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteLocationSecretResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class LocationAuthRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LocationAuthRequest) */ {
  public:
@@ -3963,7 +5140,7 @@ class LocationAuthRequest final :
                &_LocationAuthRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    28;
 
   friend void swap(LocationAuthRequest& a, LocationAuthRequest& b) {
     a.Swap(&b);
@@ -4111,7 +5288,7 @@ class LocationAuthResponse final :
                &_LocationAuthResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    29;
 
   friend void swap(LocationAuthResponse& a, LocationAuthResponse& b) {
     a.Swap(&b);
@@ -4263,7 +5440,7 @@ class GetRobotRequest final :
                &_GetRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    30;
 
   friend void swap(GetRobotRequest& a, GetRobotRequest& b) {
     a.Swap(&b);
@@ -4411,7 +5588,7 @@ class GetRobotResponse final :
                &_GetRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    31;
 
   friend void swap(GetRobotResponse& a, GetRobotResponse& b) {
     a.Swap(&b);
@@ -4563,7 +5740,7 @@ class GetRobotPartsRequest final :
                &_GetRobotPartsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    32;
 
   friend void swap(GetRobotPartsRequest& a, GetRobotPartsRequest& b) {
     a.Swap(&b);
@@ -4711,7 +5888,7 @@ class GetRobotPartsResponse final :
                &_GetRobotPartsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    33;
 
   friend void swap(GetRobotPartsResponse& a, GetRobotPartsResponse& b) {
     a.Swap(&b);
@@ -4863,7 +6040,7 @@ class GetRobotPartRequest final :
                &_GetRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    34;
 
   friend void swap(GetRobotPartRequest& a, GetRobotPartRequest& b) {
     a.Swap(&b);
@@ -5011,7 +6188,7 @@ class GetRobotPartResponse final :
                &_GetRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    35;
 
   friend void swap(GetRobotPartResponse& a, GetRobotPartResponse& b) {
     a.Swap(&b);
@@ -5179,7 +6356,7 @@ class GetRobotPartLogsRequest final :
                &_GetRobotPartLogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    36;
 
   friend void swap(GetRobotPartLogsRequest& a, GetRobotPartLogsRequest& b) {
     a.Swap(&b);
@@ -5359,7 +6536,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    37;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -5631,7 +6808,7 @@ class GetRobotPartLogsResponse final :
                &_GetRobotPartLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    38;
 
   friend void swap(GetRobotPartLogsResponse& a, GetRobotPartLogsResponse& b) {
     a.Swap(&b);
@@ -5783,7 +6960,7 @@ class TailRobotPartLogsRequest final :
                &_TailRobotPartLogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    39;
 
   friend void swap(TailRobotPartLogsRequest& a, TailRobotPartLogsRequest& b) {
     a.Swap(&b);
@@ -5942,7 +7119,7 @@ class TailRobotPartLogsResponse final :
                &_TailRobotPartLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    40;
 
   friend void swap(TailRobotPartLogsResponse& a, TailRobotPartLogsResponse& b) {
     a.Swap(&b);
@@ -6094,7 +7271,7 @@ class GetRobotPartHistoryRequest final :
                &_GetRobotPartHistoryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    41;
 
   friend void swap(GetRobotPartHistoryRequest& a, GetRobotPartHistoryRequest& b) {
     a.Swap(&b);
@@ -6242,7 +7419,7 @@ class GetRobotPartHistoryResponse final :
                &_GetRobotPartHistoryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    42;
 
   friend void swap(GetRobotPartHistoryResponse& a, GetRobotPartHistoryResponse& b) {
     a.Swap(&b);
@@ -6394,7 +7571,7 @@ class UpdateRobotPartRequest final :
                &_UpdateRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    43;
 
   friend void swap(UpdateRobotPartRequest& a, UpdateRobotPartRequest& b) {
     a.Swap(&b);
@@ -6578,7 +7755,7 @@ class UpdateRobotPartResponse final :
                &_UpdateRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    44;
 
   friend void swap(UpdateRobotPartResponse& a, UpdateRobotPartResponse& b) {
     a.Swap(&b);
@@ -6730,7 +7907,7 @@ class NewRobotPartRequest final :
                &_NewRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    45;
 
   friend void swap(NewRobotPartRequest& a, NewRobotPartRequest& b) {
     a.Swap(&b);
@@ -6894,7 +8071,7 @@ class NewRobotPartResponse final :
                &_NewRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    46;
 
   friend void swap(NewRobotPartResponse& a, NewRobotPartResponse& b) {
     a.Swap(&b);
@@ -7042,7 +8219,7 @@ class DeleteRobotPartRequest final :
                &_DeleteRobotPartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    47;
 
   friend void swap(DeleteRobotPartRequest& a, DeleteRobotPartRequest& b) {
     a.Swap(&b);
@@ -7189,7 +8366,7 @@ class DeleteRobotPartResponse final :
                &_DeleteRobotPartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    48;
 
   friend void swap(DeleteRobotPartResponse& a, DeleteRobotPartResponse& b) {
     a.Swap(&b);
@@ -7306,7 +8483,7 @@ class Fragment final :
                &_Fragment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    49;
 
   friend void swap(Fragment& a, Fragment& b) {
     a.Swap(&b);
@@ -7489,6 +8666,306 @@ class Fragment final :
 };
 // -------------------------------------------------------------------
 
+class ListRobotsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListRobotsRequest) */ {
+ public:
+  inline ListRobotsRequest() : ListRobotsRequest(nullptr) {}
+  ~ListRobotsRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListRobotsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListRobotsRequest(const ListRobotsRequest& from);
+  ListRobotsRequest(ListRobotsRequest&& from) noexcept
+    : ListRobotsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListRobotsRequest& operator=(const ListRobotsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListRobotsRequest& operator=(ListRobotsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListRobotsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListRobotsRequest* internal_default_instance() {
+    return reinterpret_cast<const ListRobotsRequest*>(
+               &_ListRobotsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    50;
+
+  friend void swap(ListRobotsRequest& a, ListRobotsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListRobotsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListRobotsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListRobotsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListRobotsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListRobotsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListRobotsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListRobotsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListRobotsRequest";
+  }
+  protected:
+  explicit ListRobotsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdFieldNumber = 1,
+  };
+  // string location_id = 1 [json_name = "locationId"];
+  void clear_location_id();
+  const std::string& location_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_location_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_location_id();
+  PROTOBUF_NODISCARD std::string* release_location_id();
+  void set_allocated_location_id(std::string* location_id);
+  private:
+  const std::string& _internal_location_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
+  std::string* _internal_mutable_location_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListRobotsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListRobotsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListRobotsResponse) */ {
+ public:
+  inline ListRobotsResponse() : ListRobotsResponse(nullptr) {}
+  ~ListRobotsResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListRobotsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListRobotsResponse(const ListRobotsResponse& from);
+  ListRobotsResponse(ListRobotsResponse&& from) noexcept
+    : ListRobotsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListRobotsResponse& operator=(const ListRobotsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListRobotsResponse& operator=(ListRobotsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListRobotsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListRobotsResponse* internal_default_instance() {
+    return reinterpret_cast<const ListRobotsResponse*>(
+               &_ListRobotsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    51;
+
+  friend void swap(ListRobotsResponse& a, ListRobotsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListRobotsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListRobotsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListRobotsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListRobotsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListRobotsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListRobotsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListRobotsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListRobotsResponse";
+  }
+  protected:
+  explicit ListRobotsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRobotsFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.Robot robots = 1 [json_name = "robots"];
+  int robots_size() const;
+  private:
+  int _internal_robots_size() const;
+  public:
+  void clear_robots();
+  ::viam::app::v1::Robot* mutable_robots(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >*
+      mutable_robots();
+  private:
+  const ::viam::app::v1::Robot& _internal_robots(int index) const;
+  ::viam::app::v1::Robot* _internal_add_robots();
+  public:
+  const ::viam::app::v1::Robot& robots(int index) const;
+  ::viam::app::v1::Robot* add_robots();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >&
+      robots() const;
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListRobotsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot > robots_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class FindRobotsRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FindRobotsRequest) */ {
  public:
@@ -7537,7 +9014,7 @@ class FindRobotsRequest final :
                &_FindRobotsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    52;
 
   friend void swap(FindRobotsRequest& a, FindRobotsRequest& b) {
     a.Swap(&b);
@@ -7685,7 +9162,7 @@ class FindRobotsResponse final :
                &_FindRobotsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    53;
 
   friend void swap(FindRobotsResponse& a, FindRobotsResponse& b) {
     a.Swap(&b);
@@ -7837,7 +9314,7 @@ class NewRobotRequest final :
                &_NewRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    54;
 
   friend void swap(NewRobotRequest& a, NewRobotRequest& b) {
     a.Swap(&b);
@@ -8001,7 +9478,7 @@ class NewRobotResponse final :
                &_NewRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    55;
 
   friend void swap(NewRobotResponse& a, NewRobotResponse& b) {
     a.Swap(&b);
@@ -8149,7 +9626,7 @@ class UpdateRobotRequest final :
                &_UpdateRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    56;
 
   friend void swap(UpdateRobotRequest& a, UpdateRobotRequest& b) {
     a.Swap(&b);
@@ -8329,7 +9806,7 @@ class UpdateRobotResponse final :
                &_UpdateRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    57;
 
   friend void swap(UpdateRobotResponse& a, UpdateRobotResponse& b) {
     a.Swap(&b);
@@ -8481,7 +9958,7 @@ class DeleteRobotRequest final :
                &_DeleteRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    58;
 
   friend void swap(DeleteRobotRequest& a, DeleteRobotRequest& b) {
     a.Swap(&b);
@@ -8628,7 +10105,7 @@ class DeleteRobotResponse final :
                &_DeleteRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    59;
 
   friend void swap(DeleteRobotResponse& a, DeleteRobotResponse& b) {
     a.Swap(&b);
@@ -8745,7 +10222,7 @@ class MarkPartAsMainRequest final :
                &_MarkPartAsMainRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    60;
 
   friend void swap(MarkPartAsMainRequest& a, MarkPartAsMainRequest& b) {
     a.Swap(&b);
@@ -8892,7 +10369,7 @@ class MarkPartAsMainResponse final :
                &_MarkPartAsMainResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    61;
 
   friend void swap(MarkPartAsMainResponse& a, MarkPartAsMainResponse& b) {
     a.Swap(&b);
@@ -9009,7 +10486,7 @@ class CreateRobotPartSecretRequest final :
                &_CreateRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    62;
 
   friend void swap(CreateRobotPartSecretRequest& a, CreateRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -9157,7 +10634,7 @@ class CreateRobotPartSecretResponse final :
                &_CreateRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    63;
 
   friend void swap(CreateRobotPartSecretResponse& a, CreateRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -9309,7 +10786,7 @@ class DeleteRobotPartSecretRequest final :
                &_DeleteRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    64;
 
   friend void swap(DeleteRobotPartSecretRequest& a, DeleteRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -9472,7 +10949,7 @@ class DeleteRobotPartSecretResponse final :
                &_DeleteRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    65;
 
   friend void swap(DeleteRobotPartSecretResponse& a, DeleteRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -11192,6 +12669,224 @@ ListOrganizationsResponse::organizations() const {
 
 // -------------------------------------------------------------------
 
+// LocationOrganization
+
+// string organization_id = 1 [json_name = "organizationId"];
+inline void LocationOrganization::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& LocationOrganization::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LocationOrganization.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LocationOrganization::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.LocationOrganization.organization_id)
+}
+inline std::string* LocationOrganization::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationOrganization.organization_id)
+  return _s;
+}
+inline const std::string& LocationOrganization::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void LocationOrganization::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* LocationOrganization::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* LocationOrganization::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.LocationOrganization.organization_id)
+  return organization_id_.Release();
+}
+inline void LocationOrganization::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LocationOrganization.organization_id)
+}
+
+// bool primary = 2 [json_name = "primary"];
+inline void LocationOrganization::clear_primary() {
+  primary_ = false;
+}
+inline bool LocationOrganization::_internal_primary() const {
+  return primary_;
+}
+inline bool LocationOrganization::primary() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LocationOrganization.primary)
+  return _internal_primary();
+}
+inline void LocationOrganization::_internal_set_primary(bool value) {
+  
+  primary_ = value;
+}
+inline void LocationOrganization::set_primary(bool value) {
+  _internal_set_primary(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.LocationOrganization.primary)
+}
+
+// -------------------------------------------------------------------
+
+// LocationAuth
+
+// string secret = 1 [json_name = "secret", deprecated = true];
+inline void LocationAuth::clear_secret() {
+  secret_.ClearToEmpty();
+}
+inline const std::string& LocationAuth::secret() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LocationAuth.secret)
+  return _internal_secret();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LocationAuth::set_secret(ArgT0&& arg0, ArgT... args) {
+ 
+ secret_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.LocationAuth.secret)
+}
+inline std::string* LocationAuth::mutable_secret() {
+  std::string* _s = _internal_mutable_secret();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationAuth.secret)
+  return _s;
+}
+inline const std::string& LocationAuth::_internal_secret() const {
+  return secret_.Get();
+}
+inline void LocationAuth::_internal_set_secret(const std::string& value) {
+  
+  secret_.Set(value, GetArenaForAllocation());
+}
+inline std::string* LocationAuth::_internal_mutable_secret() {
+  
+  return secret_.Mutable(GetArenaForAllocation());
+}
+inline std::string* LocationAuth::release_secret() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.LocationAuth.secret)
+  return secret_.Release();
+}
+inline void LocationAuth::set_allocated_secret(std::string* secret) {
+  if (secret != nullptr) {
+    
+  } else {
+    
+  }
+  secret_.SetAllocated(secret, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (secret_.IsDefault()) {
+    secret_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LocationAuth.secret)
+}
+
+// string location_id = 2 [json_name = "locationId"];
+inline void LocationAuth::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& LocationAuth::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LocationAuth.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LocationAuth::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.LocationAuth.location_id)
+}
+inline std::string* LocationAuth::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationAuth.location_id)
+  return _s;
+}
+inline const std::string& LocationAuth::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void LocationAuth::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* LocationAuth::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* LocationAuth::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.LocationAuth.location_id)
+  return location_id_.Release();
+}
+inline void LocationAuth::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LocationAuth.location_id)
+}
+
+// repeated .viam.app.v1.SharedSecret secrets = 3 [json_name = "secrets"];
+inline int LocationAuth::_internal_secrets_size() const {
+  return secrets_.size();
+}
+inline int LocationAuth::secrets_size() const {
+  return _internal_secrets_size();
+}
+inline void LocationAuth::clear_secrets() {
+  secrets_.Clear();
+}
+inline ::viam::app::v1::SharedSecret* LocationAuth::mutable_secrets(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationAuth.secrets)
+  return secrets_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::SharedSecret >*
+LocationAuth::mutable_secrets() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.LocationAuth.secrets)
+  return &secrets_;
+}
+inline const ::viam::app::v1::SharedSecret& LocationAuth::_internal_secrets(int index) const {
+  return secrets_.Get(index);
+}
+inline const ::viam::app::v1::SharedSecret& LocationAuth::secrets(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.LocationAuth.secrets)
+  return _internal_secrets(index);
+}
+inline ::viam::app::v1::SharedSecret* LocationAuth::_internal_add_secrets() {
+  return secrets_.Add();
+}
+inline ::viam::app::v1::SharedSecret* LocationAuth::add_secrets() {
+  ::viam::app::v1::SharedSecret* _add = _internal_add_secrets();
+  // @@protoc_insertion_point(field_add:viam.app.v1.LocationAuth.secrets)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::SharedSecret >&
+LocationAuth::secrets() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.LocationAuth.secrets)
+  return secrets_;
+}
+
+// -------------------------------------------------------------------
+
 // Location
 
 // string id = 1 [json_name = "id"];
@@ -11294,6 +12989,186 @@ inline void Location::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.name)
 }
 
+// string parent_location_id = 4 [json_name = "parentLocationId"];
+inline void Location::clear_parent_location_id() {
+  parent_location_id_.ClearToEmpty();
+}
+inline const std::string& Location::parent_location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Location.parent_location_id)
+  return _internal_parent_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Location::set_parent_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ parent_location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Location.parent_location_id)
+}
+inline std::string* Location::mutable_parent_location_id() {
+  std::string* _s = _internal_mutable_parent_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Location.parent_location_id)
+  return _s;
+}
+inline const std::string& Location::_internal_parent_location_id() const {
+  return parent_location_id_.Get();
+}
+inline void Location::_internal_set_parent_location_id(const std::string& value) {
+  
+  parent_location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Location::_internal_mutable_parent_location_id() {
+  
+  return parent_location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Location::release_parent_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Location.parent_location_id)
+  return parent_location_id_.Release();
+}
+inline void Location::set_allocated_parent_location_id(std::string* parent_location_id) {
+  if (parent_location_id != nullptr) {
+    
+  } else {
+    
+  }
+  parent_location_id_.SetAllocated(parent_location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_location_id_.IsDefault()) {
+    parent_location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.parent_location_id)
+}
+
+// .viam.app.v1.LocationAuth auth = 5 [json_name = "auth"];
+inline bool Location::_internal_has_auth() const {
+  return this != internal_default_instance() && auth_ != nullptr;
+}
+inline bool Location::has_auth() const {
+  return _internal_has_auth();
+}
+inline void Location::clear_auth() {
+  if (GetArenaForAllocation() == nullptr && auth_ != nullptr) {
+    delete auth_;
+  }
+  auth_ = nullptr;
+}
+inline const ::viam::app::v1::LocationAuth& Location::_internal_auth() const {
+  const ::viam::app::v1::LocationAuth* p = auth_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::LocationAuth&>(
+      ::viam::app::v1::_LocationAuth_default_instance_);
+}
+inline const ::viam::app::v1::LocationAuth& Location::auth() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Location.auth)
+  return _internal_auth();
+}
+inline void Location::unsafe_arena_set_allocated_auth(
+    ::viam::app::v1::LocationAuth* auth) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(auth_);
+  }
+  auth_ = auth;
+  if (auth) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Location.auth)
+}
+inline ::viam::app::v1::LocationAuth* Location::release_auth() {
+  
+  ::viam::app::v1::LocationAuth* temp = auth_;
+  auth_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::LocationAuth* Location::unsafe_arena_release_auth() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Location.auth)
+  
+  ::viam::app::v1::LocationAuth* temp = auth_;
+  auth_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::LocationAuth* Location::_internal_mutable_auth() {
+  
+  if (auth_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::LocationAuth>(GetArenaForAllocation());
+    auth_ = p;
+  }
+  return auth_;
+}
+inline ::viam::app::v1::LocationAuth* Location::mutable_auth() {
+  ::viam::app::v1::LocationAuth* _msg = _internal_mutable_auth();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Location.auth)
+  return _msg;
+}
+inline void Location::set_allocated_auth(::viam::app::v1::LocationAuth* auth) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete auth_;
+  }
+  if (auth) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(auth);
+    if (message_arena != submessage_arena) {
+      auth = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, auth, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  auth_ = auth;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.auth)
+}
+
+// repeated .viam.app.v1.LocationOrganization organizations = 6 [json_name = "organizations"];
+inline int Location::_internal_organizations_size() const {
+  return organizations_.size();
+}
+inline int Location::organizations_size() const {
+  return _internal_organizations_size();
+}
+inline void Location::clear_organizations() {
+  organizations_.Clear();
+}
+inline ::viam::app::v1::LocationOrganization* Location::mutable_organizations(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Location.organizations)
+  return organizations_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization >*
+Location::mutable_organizations() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Location.organizations)
+  return &organizations_;
+}
+inline const ::viam::app::v1::LocationOrganization& Location::_internal_organizations(int index) const {
+  return organizations_.Get(index);
+}
+inline const ::viam::app::v1::LocationOrganization& Location::organizations(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Location.organizations)
+  return _internal_organizations(index);
+}
+inline ::viam::app::v1::LocationOrganization* Location::_internal_add_organizations() {
+  return organizations_.Add();
+}
+inline ::viam::app::v1::LocationOrganization* Location::add_organizations() {
+  ::viam::app::v1::LocationOrganization* _add = _internal_add_organizations();
+  // @@protoc_insertion_point(field_add:viam.app.v1.Location.organizations)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LocationOrganization >&
+Location::organizations() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.Location.organizations)
+  return organizations_;
+}
+
 // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
 inline bool Location::_internal_has_created_on() const {
   return this != internal_default_instance() && created_on_ != nullptr;
@@ -11377,6 +13252,215 @@ inline void Location::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestam
   }
   created_on_ = created_on;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Location.created_on)
+}
+
+// -------------------------------------------------------------------
+
+// SharedSecret
+
+// string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"id\""];
+inline void SharedSecret::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& SharedSecret::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SharedSecret::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.SharedSecret.id)
+}
+inline std::string* SharedSecret::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SharedSecret.id)
+  return _s;
+}
+inline const std::string& SharedSecret::_internal_id() const {
+  return id_.Get();
+}
+inline void SharedSecret::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SharedSecret::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SharedSecret::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SharedSecret.id)
+  return id_.Release();
+}
+inline void SharedSecret::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SharedSecret.id)
+}
+
+// string secret = 2 [json_name = "secret", (.tagger.v1.tags) = "bson:\"secret\""];
+inline void SharedSecret::clear_secret() {
+  secret_.ClearToEmpty();
+}
+inline const std::string& SharedSecret::secret() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.secret)
+  return _internal_secret();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SharedSecret::set_secret(ArgT0&& arg0, ArgT... args) {
+ 
+ secret_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.SharedSecret.secret)
+}
+inline std::string* SharedSecret::mutable_secret() {
+  std::string* _s = _internal_mutable_secret();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SharedSecret.secret)
+  return _s;
+}
+inline const std::string& SharedSecret::_internal_secret() const {
+  return secret_.Get();
+}
+inline void SharedSecret::_internal_set_secret(const std::string& value) {
+  
+  secret_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SharedSecret::_internal_mutable_secret() {
+  
+  return secret_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SharedSecret::release_secret() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SharedSecret.secret)
+  return secret_.Release();
+}
+inline void SharedSecret::set_allocated_secret(std::string* secret) {
+  if (secret != nullptr) {
+    
+  } else {
+    
+  }
+  secret_.SetAllocated(secret, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (secret_.IsDefault()) {
+    secret_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SharedSecret.secret)
+}
+
+// .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
+inline bool SharedSecret::_internal_has_created_on() const {
+  return this != internal_default_instance() && created_on_ != nullptr;
+}
+inline bool SharedSecret::has_created_on() const {
+  return _internal_has_created_on();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& SharedSecret::_internal_created_on() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = created_on_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& SharedSecret::created_on() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.created_on)
+  return _internal_created_on();
+}
+inline void SharedSecret::unsafe_arena_set_allocated_created_on(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_on_);
+  }
+  created_on_ = created_on;
+  if (created_on) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.SharedSecret.created_on)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::release_created_on() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_on_;
+  created_on_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::unsafe_arena_release_created_on() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SharedSecret.created_on)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_on_;
+  created_on_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::_internal_mutable_created_on() {
+  
+  if (created_on_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    created_on_ = p;
+  }
+  return created_on_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::mutable_created_on() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_on();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SharedSecret.created_on)
+  return _msg;
+}
+inline void SharedSecret::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestamp* created_on) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_on_);
+  }
+  if (created_on) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_on));
+    if (message_arena != submessage_arena) {
+      created_on = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, created_on, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  created_on_ = created_on;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SharedSecret.created_on)
+}
+
+// .viam.app.v1.SharedSecret.State state = 4 [json_name = "state", (.tagger.v1.tags) = "bson:\"state\""];
+inline void SharedSecret::clear_state() {
+  state_ = 0;
+}
+inline ::viam::app::v1::SharedSecret_State SharedSecret::_internal_state() const {
+  return static_cast< ::viam::app::v1::SharedSecret_State >(state_);
+}
+inline ::viam::app::v1::SharedSecret_State SharedSecret::state() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.state)
+  return _internal_state();
+}
+inline void SharedSecret::_internal_set_state(::viam::app::v1::SharedSecret_State value) {
+  
+  state_ = value;
+}
+inline void SharedSecret::set_state(::viam::app::v1::SharedSecret_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.SharedSecret.state)
 }
 
 // -------------------------------------------------------------------
@@ -11483,6 +13567,74 @@ inline void CreateLocationRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateLocationRequest.name)
 }
 
+// optional string parent_location_id = 3 [json_name = "parentLocationId"];
+inline bool CreateLocationRequest::_internal_has_parent_location_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool CreateLocationRequest::has_parent_location_id() const {
+  return _internal_has_parent_location_id();
+}
+inline void CreateLocationRequest::clear_parent_location_id() {
+  parent_location_id_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& CreateLocationRequest::parent_location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateLocationRequest.parent_location_id)
+  return _internal_parent_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateLocationRequest::set_parent_location_id(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ parent_location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateLocationRequest.parent_location_id)
+}
+inline std::string* CreateLocationRequest::mutable_parent_location_id() {
+  std::string* _s = _internal_mutable_parent_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateLocationRequest.parent_location_id)
+  return _s;
+}
+inline const std::string& CreateLocationRequest::_internal_parent_location_id() const {
+  return parent_location_id_.Get();
+}
+inline void CreateLocationRequest::_internal_set_parent_location_id(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateLocationRequest::_internal_mutable_parent_location_id() {
+  _has_bits_[0] |= 0x00000001u;
+  return parent_location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateLocationRequest::release_parent_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateLocationRequest.parent_location_id)
+  if (!_internal_has_parent_location_id()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = parent_location_id_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_location_id_.IsDefault()) {
+    parent_location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void CreateLocationRequest::set_allocated_parent_location_id(std::string* parent_location_id) {
+  if (parent_location_id != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  parent_location_id_.SetAllocated(parent_location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_location_id_.IsDefault()) {
+    parent_location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateLocationRequest.parent_location_id)
+}
+
 // -------------------------------------------------------------------
 
 // CreateLocationResponse
@@ -11576,6 +13728,496 @@ inline void CreateLocationResponse::set_allocated_location(::viam::app::v1::Loca
   location_ = location;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateLocationResponse.location)
 }
+
+// -------------------------------------------------------------------
+
+// GetLocationRequest
+
+// string location_id = 1 [json_name = "locationId"];
+inline void GetLocationRequest::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& GetLocationRequest::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetLocationRequest.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetLocationRequest::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetLocationRequest.location_id)
+}
+inline std::string* GetLocationRequest::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetLocationRequest.location_id)
+  return _s;
+}
+inline const std::string& GetLocationRequest::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void GetLocationRequest::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetLocationRequest::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetLocationRequest::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetLocationRequest.location_id)
+  return location_id_.Release();
+}
+inline void GetLocationRequest::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetLocationRequest.location_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetLocationResponse
+
+// .viam.app.v1.Location location = 1 [json_name = "location"];
+inline bool GetLocationResponse::_internal_has_location() const {
+  return this != internal_default_instance() && location_ != nullptr;
+}
+inline bool GetLocationResponse::has_location() const {
+  return _internal_has_location();
+}
+inline void GetLocationResponse::clear_location() {
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+}
+inline const ::viam::app::v1::Location& GetLocationResponse::_internal_location() const {
+  const ::viam::app::v1::Location* p = location_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::Location&>(
+      ::viam::app::v1::_Location_default_instance_);
+}
+inline const ::viam::app::v1::Location& GetLocationResponse::location() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetLocationResponse.location)
+  return _internal_location();
+}
+inline void GetLocationResponse::unsafe_arena_set_allocated_location(
+    ::viam::app::v1::Location* location) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(location_);
+  }
+  location_ = location;
+  if (location) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetLocationResponse.location)
+}
+inline ::viam::app::v1::Location* GetLocationResponse::release_location() {
+  
+  ::viam::app::v1::Location* temp = location_;
+  location_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::Location* GetLocationResponse::unsafe_arena_release_location() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetLocationResponse.location)
+  
+  ::viam::app::v1::Location* temp = location_;
+  location_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::Location* GetLocationResponse::_internal_mutable_location() {
+  
+  if (location_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::Location>(GetArenaForAllocation());
+    location_ = p;
+  }
+  return location_;
+}
+inline ::viam::app::v1::Location* GetLocationResponse::mutable_location() {
+  ::viam::app::v1::Location* _msg = _internal_mutable_location();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetLocationResponse.location)
+  return _msg;
+}
+inline void GetLocationResponse::set_allocated_location(::viam::app::v1::Location* location) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete location_;
+  }
+  if (location) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(location);
+    if (message_arena != submessage_arena) {
+      location = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, location, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  location_ = location;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetLocationResponse.location)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateLocationRequest
+
+// string location_id = 1 [json_name = "locationId"];
+inline void UpdateLocationRequest::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& UpdateLocationRequest::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateLocationRequest.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateLocationRequest::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateLocationRequest.location_id)
+}
+inline std::string* UpdateLocationRequest::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateLocationRequest.location_id)
+  return _s;
+}
+inline const std::string& UpdateLocationRequest::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void UpdateLocationRequest::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateLocationRequest::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateLocationRequest::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateLocationRequest.location_id)
+  return location_id_.Release();
+}
+inline void UpdateLocationRequest::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateLocationRequest.location_id)
+}
+
+// optional string name = 2 [json_name = "name"];
+inline bool UpdateLocationRequest::_internal_has_name() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateLocationRequest::has_name() const {
+  return _internal_has_name();
+}
+inline void UpdateLocationRequest::clear_name() {
+  name_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UpdateLocationRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateLocationRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateLocationRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateLocationRequest.name)
+}
+inline std::string* UpdateLocationRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateLocationRequest.name)
+  return _s;
+}
+inline const std::string& UpdateLocationRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void UpdateLocationRequest::_internal_set_name(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateLocationRequest::_internal_mutable_name() {
+  _has_bits_[0] |= 0x00000001u;
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateLocationRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateLocationRequest.name)
+  if (!_internal_has_name()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = name_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void UpdateLocationRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateLocationRequest.name)
+}
+
+// optional string parent_location_id = 3 [json_name = "parentLocationId"];
+inline bool UpdateLocationRequest::_internal_has_parent_location_id() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool UpdateLocationRequest::has_parent_location_id() const {
+  return _internal_has_parent_location_id();
+}
+inline void UpdateLocationRequest::clear_parent_location_id() {
+  parent_location_id_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& UpdateLocationRequest::parent_location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateLocationRequest.parent_location_id)
+  return _internal_parent_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateLocationRequest::set_parent_location_id(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000002u;
+ parent_location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateLocationRequest.parent_location_id)
+}
+inline std::string* UpdateLocationRequest::mutable_parent_location_id() {
+  std::string* _s = _internal_mutable_parent_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateLocationRequest.parent_location_id)
+  return _s;
+}
+inline const std::string& UpdateLocationRequest::_internal_parent_location_id() const {
+  return parent_location_id_.Get();
+}
+inline void UpdateLocationRequest::_internal_set_parent_location_id(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  parent_location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateLocationRequest::_internal_mutable_parent_location_id() {
+  _has_bits_[0] |= 0x00000002u;
+  return parent_location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateLocationRequest::release_parent_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateLocationRequest.parent_location_id)
+  if (!_internal_has_parent_location_id()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  auto* p = parent_location_id_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_location_id_.IsDefault()) {
+    parent_location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void UpdateLocationRequest::set_allocated_parent_location_id(std::string* parent_location_id) {
+  if (parent_location_id != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  parent_location_id_.SetAllocated(parent_location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (parent_location_id_.IsDefault()) {
+    parent_location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateLocationRequest.parent_location_id)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateLocationResponse
+
+// .viam.app.v1.Location location = 1 [json_name = "location"];
+inline bool UpdateLocationResponse::_internal_has_location() const {
+  return this != internal_default_instance() && location_ != nullptr;
+}
+inline bool UpdateLocationResponse::has_location() const {
+  return _internal_has_location();
+}
+inline void UpdateLocationResponse::clear_location() {
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+}
+inline const ::viam::app::v1::Location& UpdateLocationResponse::_internal_location() const {
+  const ::viam::app::v1::Location* p = location_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::Location&>(
+      ::viam::app::v1::_Location_default_instance_);
+}
+inline const ::viam::app::v1::Location& UpdateLocationResponse::location() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateLocationResponse.location)
+  return _internal_location();
+}
+inline void UpdateLocationResponse::unsafe_arena_set_allocated_location(
+    ::viam::app::v1::Location* location) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(location_);
+  }
+  location_ = location;
+  if (location) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateLocationResponse.location)
+}
+inline ::viam::app::v1::Location* UpdateLocationResponse::release_location() {
+  
+  ::viam::app::v1::Location* temp = location_;
+  location_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::Location* UpdateLocationResponse::unsafe_arena_release_location() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateLocationResponse.location)
+  
+  ::viam::app::v1::Location* temp = location_;
+  location_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::Location* UpdateLocationResponse::_internal_mutable_location() {
+  
+  if (location_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::Location>(GetArenaForAllocation());
+    location_ = p;
+  }
+  return location_;
+}
+inline ::viam::app::v1::Location* UpdateLocationResponse::mutable_location() {
+  ::viam::app::v1::Location* _msg = _internal_mutable_location();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateLocationResponse.location)
+  return _msg;
+}
+inline void UpdateLocationResponse::set_allocated_location(::viam::app::v1::Location* location) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete location_;
+  }
+  if (location) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(location);
+    if (message_arena != submessage_arena) {
+      location = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, location, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  location_ = location;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateLocationResponse.location)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteLocationRequest
+
+// string location_id = 1 [json_name = "locationId"];
+inline void DeleteLocationRequest::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& DeleteLocationRequest::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteLocationRequest.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteLocationRequest::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteLocationRequest.location_id)
+}
+inline std::string* DeleteLocationRequest::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteLocationRequest.location_id)
+  return _s;
+}
+inline const std::string& DeleteLocationRequest::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void DeleteLocationRequest::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteLocationRequest::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteLocationRequest::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteLocationRequest.location_id)
+  return location_id_.Release();
+}
+inline void DeleteLocationRequest::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteLocationRequest.location_id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteLocationResponse
 
 // -------------------------------------------------------------------
 
@@ -12146,359 +14788,6 @@ inline void DeleteLocationSecretRequest::set_allocated_secret_id(std::string* se
 // -------------------------------------------------------------------
 
 // DeleteLocationSecretResponse
-
-// -------------------------------------------------------------------
-
-// LocationAuth
-
-// string secret = 1 [json_name = "secret", deprecated = true];
-inline void LocationAuth::clear_secret() {
-  secret_.ClearToEmpty();
-}
-inline const std::string& LocationAuth::secret() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.LocationAuth.secret)
-  return _internal_secret();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LocationAuth::set_secret(ArgT0&& arg0, ArgT... args) {
- 
- secret_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.LocationAuth.secret)
-}
-inline std::string* LocationAuth::mutable_secret() {
-  std::string* _s = _internal_mutable_secret();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationAuth.secret)
-  return _s;
-}
-inline const std::string& LocationAuth::_internal_secret() const {
-  return secret_.Get();
-}
-inline void LocationAuth::_internal_set_secret(const std::string& value) {
-  
-  secret_.Set(value, GetArenaForAllocation());
-}
-inline std::string* LocationAuth::_internal_mutable_secret() {
-  
-  return secret_.Mutable(GetArenaForAllocation());
-}
-inline std::string* LocationAuth::release_secret() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.LocationAuth.secret)
-  return secret_.Release();
-}
-inline void LocationAuth::set_allocated_secret(std::string* secret) {
-  if (secret != nullptr) {
-    
-  } else {
-    
-  }
-  secret_.SetAllocated(secret, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (secret_.IsDefault()) {
-    secret_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LocationAuth.secret)
-}
-
-// string location_id = 2 [json_name = "locationId"];
-inline void LocationAuth::clear_location_id() {
-  location_id_.ClearToEmpty();
-}
-inline const std::string& LocationAuth::location_id() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.LocationAuth.location_id)
-  return _internal_location_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LocationAuth::set_location_id(ArgT0&& arg0, ArgT... args) {
- 
- location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.LocationAuth.location_id)
-}
-inline std::string* LocationAuth::mutable_location_id() {
-  std::string* _s = _internal_mutable_location_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationAuth.location_id)
-  return _s;
-}
-inline const std::string& LocationAuth::_internal_location_id() const {
-  return location_id_.Get();
-}
-inline void LocationAuth::_internal_set_location_id(const std::string& value) {
-  
-  location_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* LocationAuth::_internal_mutable_location_id() {
-  
-  return location_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* LocationAuth::release_location_id() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.LocationAuth.location_id)
-  return location_id_.Release();
-}
-inline void LocationAuth::set_allocated_location_id(std::string* location_id) {
-  if (location_id != nullptr) {
-    
-  } else {
-    
-  }
-  location_id_.SetAllocated(location_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (location_id_.IsDefault()) {
-    location_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LocationAuth.location_id)
-}
-
-// repeated .viam.app.v1.SharedSecret secrets = 3 [json_name = "secrets"];
-inline int LocationAuth::_internal_secrets_size() const {
-  return secrets_.size();
-}
-inline int LocationAuth::secrets_size() const {
-  return _internal_secrets_size();
-}
-inline void LocationAuth::clear_secrets() {
-  secrets_.Clear();
-}
-inline ::viam::app::v1::SharedSecret* LocationAuth::mutable_secrets(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.LocationAuth.secrets)
-  return secrets_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::SharedSecret >*
-LocationAuth::mutable_secrets() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.LocationAuth.secrets)
-  return &secrets_;
-}
-inline const ::viam::app::v1::SharedSecret& LocationAuth::_internal_secrets(int index) const {
-  return secrets_.Get(index);
-}
-inline const ::viam::app::v1::SharedSecret& LocationAuth::secrets(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.LocationAuth.secrets)
-  return _internal_secrets(index);
-}
-inline ::viam::app::v1::SharedSecret* LocationAuth::_internal_add_secrets() {
-  return secrets_.Add();
-}
-inline ::viam::app::v1::SharedSecret* LocationAuth::add_secrets() {
-  ::viam::app::v1::SharedSecret* _add = _internal_add_secrets();
-  // @@protoc_insertion_point(field_add:viam.app.v1.LocationAuth.secrets)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::SharedSecret >&
-LocationAuth::secrets() const {
-  // @@protoc_insertion_point(field_list:viam.app.v1.LocationAuth.secrets)
-  return secrets_;
-}
-
-// -------------------------------------------------------------------
-
-// SharedSecret
-
-// string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"id\""];
-inline void SharedSecret::clear_id() {
-  id_.ClearToEmpty();
-}
-inline const std::string& SharedSecret::id() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.id)
-  return _internal_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void SharedSecret::set_id(ArgT0&& arg0, ArgT... args) {
- 
- id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.SharedSecret.id)
-}
-inline std::string* SharedSecret::mutable_id() {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.SharedSecret.id)
-  return _s;
-}
-inline const std::string& SharedSecret::_internal_id() const {
-  return id_.Get();
-}
-inline void SharedSecret::_internal_set_id(const std::string& value) {
-  
-  id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SharedSecret::_internal_mutable_id() {
-  
-  return id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* SharedSecret::release_id() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.SharedSecret.id)
-  return id_.Release();
-}
-inline void SharedSecret::set_allocated_id(std::string* id) {
-  if (id != nullptr) {
-    
-  } else {
-    
-  }
-  id_.SetAllocated(id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (id_.IsDefault()) {
-    id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SharedSecret.id)
-}
-
-// string secret = 2 [json_name = "secret", (.tagger.v1.tags) = "bson:\"secret\""];
-inline void SharedSecret::clear_secret() {
-  secret_.ClearToEmpty();
-}
-inline const std::string& SharedSecret::secret() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.secret)
-  return _internal_secret();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void SharedSecret::set_secret(ArgT0&& arg0, ArgT... args) {
- 
- secret_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.SharedSecret.secret)
-}
-inline std::string* SharedSecret::mutable_secret() {
-  std::string* _s = _internal_mutable_secret();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.SharedSecret.secret)
-  return _s;
-}
-inline const std::string& SharedSecret::_internal_secret() const {
-  return secret_.Get();
-}
-inline void SharedSecret::_internal_set_secret(const std::string& value) {
-  
-  secret_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SharedSecret::_internal_mutable_secret() {
-  
-  return secret_.Mutable(GetArenaForAllocation());
-}
-inline std::string* SharedSecret::release_secret() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.SharedSecret.secret)
-  return secret_.Release();
-}
-inline void SharedSecret::set_allocated_secret(std::string* secret) {
-  if (secret != nullptr) {
-    
-  } else {
-    
-  }
-  secret_.SetAllocated(secret, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (secret_.IsDefault()) {
-    secret_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SharedSecret.secret)
-}
-
-// .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
-inline bool SharedSecret::_internal_has_created_on() const {
-  return this != internal_default_instance() && created_on_ != nullptr;
-}
-inline bool SharedSecret::has_created_on() const {
-  return _internal_has_created_on();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& SharedSecret::_internal_created_on() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = created_on_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
-      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& SharedSecret::created_on() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.created_on)
-  return _internal_created_on();
-}
-inline void SharedSecret::unsafe_arena_set_allocated_created_on(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_on_);
-  }
-  created_on_ = created_on;
-  if (created_on) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.SharedSecret.created_on)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::release_created_on() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_on_;
-  created_on_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::unsafe_arena_release_created_on() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.SharedSecret.created_on)
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_on_;
-  created_on_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::_internal_mutable_created_on() {
-  
-  if (created_on_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    created_on_ = p;
-  }
-  return created_on_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* SharedSecret::mutable_created_on() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_on();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.SharedSecret.created_on)
-  return _msg;
-}
-inline void SharedSecret::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestamp* created_on) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_on_);
-  }
-  if (created_on) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_on));
-    if (message_arena != submessage_arena) {
-      created_on = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, created_on, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  created_on_ = created_on;
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SharedSecret.created_on)
-}
-
-// .viam.app.v1.SharedSecret.State state = 4 [json_name = "state", (.tagger.v1.tags) = "bson:\"state\""];
-inline void SharedSecret::clear_state() {
-  state_ = 0;
-}
-inline ::viam::app::v1::SharedSecret_State SharedSecret::_internal_state() const {
-  return static_cast< ::viam::app::v1::SharedSecret_State >(state_);
-}
-inline ::viam::app::v1::SharedSecret_State SharedSecret::state() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.SharedSecret.state)
-  return _internal_state();
-}
-inline void SharedSecret::_internal_set_state(::viam::app::v1::SharedSecret_State value) {
-  
-  state_ = value;
-}
-inline void SharedSecret::set_state(::viam::app::v1::SharedSecret_State value) {
-  _internal_set_state(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.SharedSecret.state)
-}
 
 // -------------------------------------------------------------------
 
@@ -14800,6 +17089,104 @@ inline void Fragment::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestam
 
 // -------------------------------------------------------------------
 
+// ListRobotsRequest
+
+// string location_id = 1 [json_name = "locationId"];
+inline void ListRobotsRequest::clear_location_id() {
+  location_id_.ClearToEmpty();
+}
+inline const std::string& ListRobotsRequest::location_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListRobotsRequest.location_id)
+  return _internal_location_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListRobotsRequest::set_location_id(ArgT0&& arg0, ArgT... args) {
+ 
+ location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListRobotsRequest.location_id)
+}
+inline std::string* ListRobotsRequest::mutable_location_id() {
+  std::string* _s = _internal_mutable_location_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListRobotsRequest.location_id)
+  return _s;
+}
+inline const std::string& ListRobotsRequest::_internal_location_id() const {
+  return location_id_.Get();
+}
+inline void ListRobotsRequest::_internal_set_location_id(const std::string& value) {
+  
+  location_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListRobotsRequest::_internal_mutable_location_id() {
+  
+  return location_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListRobotsRequest::release_location_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ListRobotsRequest.location_id)
+  return location_id_.Release();
+}
+inline void ListRobotsRequest::set_allocated_location_id(std::string* location_id) {
+  if (location_id != nullptr) {
+    
+  } else {
+    
+  }
+  location_id_.SetAllocated(location_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (location_id_.IsDefault()) {
+    location_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListRobotsRequest.location_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListRobotsResponse
+
+// repeated .viam.app.v1.Robot robots = 1 [json_name = "robots"];
+inline int ListRobotsResponse::_internal_robots_size() const {
+  return robots_.size();
+}
+inline int ListRobotsResponse::robots_size() const {
+  return _internal_robots_size();
+}
+inline void ListRobotsResponse::clear_robots() {
+  robots_.Clear();
+}
+inline ::viam::app::v1::Robot* ListRobotsResponse::mutable_robots(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListRobotsResponse.robots)
+  return robots_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >*
+ListRobotsResponse::mutable_robots() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListRobotsResponse.robots)
+  return &robots_;
+}
+inline const ::viam::app::v1::Robot& ListRobotsResponse::_internal_robots(int index) const {
+  return robots_.Get(index);
+}
+inline const ::viam::app::v1::Robot& ListRobotsResponse::robots(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListRobotsResponse.robots)
+  return _internal_robots(index);
+}
+inline ::viam::app::v1::Robot* ListRobotsResponse::_internal_add_robots() {
+  return robots_.Add();
+}
+inline ::viam::app::v1::Robot* ListRobotsResponse::add_robots() {
+  ::viam::app::v1::Robot* _add = _internal_add_robots();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListRobotsResponse.robots)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >&
+ListRobotsResponse::robots() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListRobotsResponse.robots)
+  return robots_;
+}
+
+// -------------------------------------------------------------------
+
 // FindRobotsRequest
 
 // string location_id = 1 [json_name = "locationId"];
@@ -15677,6 +18064,24 @@ inline void DeleteRobotPartSecretRequest::set_allocated_secret_id(std::string* s
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
