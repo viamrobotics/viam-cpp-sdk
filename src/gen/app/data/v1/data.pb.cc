@@ -467,12 +467,100 @@ struct TagsByFilterResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TagsByFilterResponseDefaultTypeInternal _TagsByFilterResponse_default_instance_;
+PROTOBUF_CONSTEXPR SubmitTrainingJobRequest::SubmitTrainingJobRequest(
+    ::_pbi::ConstantInitialized)
+  : tags_()
+  , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , model_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , filter_(nullptr)
+  , model_type_(0)
+{}
+struct SubmitTrainingJobRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SubmitTrainingJobRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SubmitTrainingJobRequestDefaultTypeInternal() {}
+  union {
+    SubmitTrainingJobRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitTrainingJobRequestDefaultTypeInternal _SubmitTrainingJobRequest_default_instance_;
+PROTOBUF_CONSTEXPR SubmitTrainingJobResponse::SubmitTrainingJobResponse(
+    ::_pbi::ConstantInitialized)
+  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct SubmitTrainingJobResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SubmitTrainingJobResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SubmitTrainingJobResponseDefaultTypeInternal() {}
+  union {
+    SubmitTrainingJobResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitTrainingJobResponseDefaultTypeInternal _SubmitTrainingJobResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetTrainingJobRequest::GetTrainingJobRequest(
+    ::_pbi::ConstantInitialized)
+  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetTrainingJobRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetTrainingJobRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetTrainingJobRequestDefaultTypeInternal() {}
+  union {
+    GetTrainingJobRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobRequestDefaultTypeInternal _GetTrainingJobRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetTrainingJobResponse::GetTrainingJobResponse(
+    ::_pbi::ConstantInitialized)
+  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , metadata_(nullptr){}
+struct GetTrainingJobResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetTrainingJobResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetTrainingJobResponseDefaultTypeInternal() {}
+  union {
+    GetTrainingJobResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobResponseDefaultTypeInternal _GetTrainingJobResponse_default_instance_;
+PROTOBUF_CONSTEXPR TrainingJobMetadata::TrainingJobMetadata(
+    ::_pbi::ConstantInitialized)
+  : synced_model_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , request_(nullptr)
+  , created_on_(nullptr)
+  , last_modified_(nullptr)
+  , status_(0)
+{}
+struct TrainingJobMetadataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TrainingJobMetadataDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TrainingJobMetadataDefaultTypeInternal() {}
+  union {
+    TrainingJobMetadata _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobMetadataDefaultTypeInternal _TrainingJobMetadata_default_instance_;
+PROTOBUF_CONSTEXPR TrainingJob::TrainingJob(
+    ::_pbi::ConstantInitialized)
+  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , output_path_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , vertex_job_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , metadata_(nullptr)
+  , model_metadata_(nullptr){}
+struct TrainingJobDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TrainingJobDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TrainingJobDefaultTypeInternal() {}
+  union {
+    TrainingJob _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobDefaultTypeInternal _TrainingJob_default_instance_;
 }  // namespace v1
 }  // namespace data
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[32];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[3];
+static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[38];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto = nullptr;
 
 const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -760,6 +848,62 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TagsByFilterResponse, tags_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, filter_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, organization_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, model_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, model_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, model_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobRequest, tags_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SubmitTrainingJobResponse, id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::GetTrainingJobRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::GetTrainingJobRequest, id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::GetTrainingJobResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::GetTrainingJobResponse, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::GetTrainingJobResponse, metadata_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJobMetadata, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJobMetadata, request_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJobMetadata, status_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJobMetadata, created_on_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJobMetadata, last_modified_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJobMetadata, synced_model_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJob, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJob, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJob, metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJob, output_path_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJob, vertex_job_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TrainingJob, model_metadata_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::data::v1::Result)},
@@ -794,6 +938,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 263, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
   { 270, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
   { 277, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
+  { 284, -1, -1, sizeof(::viam::app::data::v1::SubmitTrainingJobRequest)},
+  { 296, -1, -1, sizeof(::viam::app::data::v1::SubmitTrainingJobResponse)},
+  { 303, -1, -1, sizeof(::viam::app::data::v1::GetTrainingJobRequest)},
+  { 310, -1, -1, sizeof(::viam::app::data::v1::GetTrainingJobResponse)},
+  { 318, -1, -1, sizeof(::viam::app::data::v1::TrainingJobMetadata)},
+  { 329, -1, -1, sizeof(::viam::app::data::v1::TrainingJob)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -829,177 +979,229 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::data::v1::_RemoveTagsFromBinaryDataByFilterResponse_default_instance_._instance,
   &::viam::app::data::v1::_TagsByFilterRequest_default_instance_._instance,
   &::viam::app::data::v1::_TagsByFilterResponse_default_instance_._instance,
+  &::viam::app::data::v1::_SubmitTrainingJobRequest_default_instance_._instance,
+  &::viam::app::data::v1::_SubmitTrainingJobResponse_default_instance_._instance,
+  &::viam::app::data::v1::_GetTrainingJobRequest_default_instance_._instance,
+  &::viam::app::data::v1::_GetTrainingJobResponse_default_instance_._instance,
+  &::viam::app::data::v1::_TrainingJobMetadata_default_instance_._instance,
+  &::viam::app::data::v1::_TrainingJob_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\026app/data/v1/data.proto\022\020viam.app.data."
   "v1\032\031google/protobuf/any.proto\032\034google/pr"
   "otobuf/struct.proto\032\037google/protobuf/tim"
-  "estamp.proto\"T\n\006Result\0220\n\006status\030\001 \001(\0162\030"
-  ".viam.app.data.v1.StatusR\006status\022\030\n\007mess"
-  "age\030\002 \001(\tR\007message\"\241\001\n\013DataRequest\0220\n\006fi"
-  "lter\030\001 \001(\0132\030.viam.app.data.v1.FilterR\006fi"
-  "lter\022\024\n\005limit\030\002 \001(\004R\005limit\022\022\n\004last\030\003 \001(\t"
-  "R\004last\0226\n\nsort_order\030\004 \001(\0162\027.viam.app.da"
-  "ta.v1.OrderR\tsortOrder\"\366\003\n\006Filter\022%\n\016com"
-  "ponent_name\030\001 \001(\tR\rcomponentName\022%\n\016comp"
-  "onent_type\030\002 \001(\tR\rcomponentType\022\'\n\017compo"
-  "nent_model\030\003 \001(\tR\016componentModel\022\026\n\006meth"
-  "od\030\004 \001(\tR\006method\022\035\n\nrobot_name\030\006 \001(\tR\tro"
-  "botName\022\031\n\010robot_id\030\007 \001(\tR\007robotId\022\033\n\tpa"
-  "rt_name\030\010 \001(\tR\010partName\022\027\n\007part_id\030\t \001(\t"
-  "R\006partId\022!\n\014location_ids\030\n \003(\tR\013location"
-  "Ids\022\027\n\007org_ids\030\013 \003(\tR\006orgIds\022\033\n\tmime_typ"
-  "e\030\014 \003(\tR\010mimeType\022=\n\010interval\030\r \001(\0132!.vi"
-  "am.app.data.v1.CaptureIntervalR\010interval"
-  "\022=\n\013tags_filter\030\016 \001(\0132\034.viam.app.data.v1"
-  ".TagsFilterR\ntagsFilter\022\026\n\004tags\030\005 \003(\tB\002\030"
-  "\001R\004tags\"V\n\nTagsFilter\0224\n\004type\030\001 \001(\0162 .vi"
-  "am.app.data.v1.TagsFilterTypeR\004type\022\022\n\004t"
-  "ags\030\002 \003(\tR\004tags\"\303\004\n\017CaptureMetadata\022\025\n\006o"
-  "rg_id\030\001 \001(\tR\005orgId\022\037\n\013location_id\030\002 \001(\tR"
-  "\nlocationId\022\035\n\nrobot_name\030\003 \001(\tR\trobotNa"
-  "me\022\031\n\010robot_id\030\004 \001(\tR\007robotId\022\033\n\tpart_na"
-  "me\030\005 \001(\tR\010partName\022\027\n\007part_id\030\006 \001(\tR\006par"
-  "tId\022%\n\016component_type\030\007 \001(\tR\rcomponentTy"
-  "pe\022\'\n\017component_model\030\010 \001(\tR\016componentMo"
-  "del\022%\n\016component_name\030\t \001(\tR\rcomponentNa"
-  "me\022\037\n\013method_name\030\n \001(\tR\nmethodName\022d\n\021m"
-  "ethod_parameters\030\013 \003(\01327.viam.app.data.v"
-  "1.CaptureMetadata.MethodParametersEntryR"
-  "\020methodParameters\022\022\n\004tags\030\014 \003(\tR\004tags\022\033\n"
-  "\tmime_type\030\r \001(\tR\010mimeType\032Y\n\025MethodPara"
-  "metersEntry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002"
-  " \001(\0132\024.google.protobuf.AnyR\005value:\0028\001\"q\n"
-  "\017CaptureInterval\0220\n\005start\030\001 \001(\0132\032.google"
-  ".protobuf.TimestampR\005start\022,\n\003end\030\002 \001(\0132"
-  "\032.google.protobuf.TimestampR\003end\"}\n\032Tabu"
-  "larDataByFilterRequest\022@\n\014data_request\030\001"
-  " \001(\0132\035.viam.app.data.v1.DataRequestR\013dat"
-  "aRequest\022\035\n\ncount_only\030\002 \001(\010R\tcountOnly\""
-  "\271\001\n\033TabularDataByFilterResponse\022=\n\010metad"
-  "ata\030\001 \003(\0132!.viam.app.data.v1.CaptureMeta"
-  "dataR\010metadata\0221\n\004data\030\002 \003(\0132\035.viam.app."
-  "data.v1.TabularDataR\004data\022\024\n\005count\030\003 \001(\003"
-  "R\005count\022\022\n\004last\030\004 \001(\tR\004last\"\345\001\n\013TabularD"
-  "ata\022+\n\004data\030\001 \001(\0132\027.google.protobuf.Stru"
-  "ctR\004data\022%\n\016metadata_index\030\002 \001(\005R\rmetada"
-  "taIndex\022A\n\016time_requested\030\003 \001(\0132\032.google"
-  ".protobuf.TimestampR\rtimeRequested\022\?\n\rti"
-  "me_received\030\004 \001(\0132\032.google.protobuf.Time"
-  "stampR\014timeReceived\"b\n\nBinaryData\022\026\n\006bin"
-  "ary\030\001 \001(\014R\006binary\022<\n\010metadata\030\002 \001(\0132 .vi"
-  "am.app.data.v1.BinaryMetadataR\010metadata\""
-  "\243\001\n\031BinaryDataByFilterRequest\022@\n\014data_re"
-  "quest\030\001 \001(\0132\035.viam.app.data.v1.DataReque"
-  "stR\013dataRequest\022%\n\016include_binary\030\002 \001(\010R"
-  "\rincludeBinary\022\035\n\ncount_only\030\003 \001(\010R\tcoun"
-  "tOnly\"x\n\032BinaryDataByFilterResponse\0220\n\004d"
-  "ata\030\001 \003(\0132\034.viam.app.data.v1.BinaryDataR"
-  "\004data\022\024\n\005count\030\002 \001(\004R\005count\022\022\n\004last\030\003 \001("
-  "\tR\004last\"Z\n\026BinaryDataByIDsRequest\022\031\n\010fil"
-  "e_ids\030\001 \003(\tR\007fileIds\022%\n\016include_binary\030\002"
-  " \001(\010R\rincludeBinary\"u\n\027BinaryDataByIDsRe"
-  "sponse\0220\n\004data\030\001 \003(\0132\034.viam.app.data.v1."
-  "BinaryDataR\004data\022\024\n\005count\030\002 \001(\004R\005count\022\022"
-  "\n\004last\030\003 \001(\tR\004last\"\274\002\n\016BinaryMetadata\022\016\n"
-  "\002id\030\001 \001(\tR\002id\022L\n\020capture_metadata\030\002 \001(\0132"
-  "!.viam.app.data.v1.CaptureMetadataR\017capt"
-  "ureMetadata\022A\n\016time_requested\030\003 \001(\0132\032.go"
-  "ogle.protobuf.TimestampR\rtimeRequested\022\?"
-  "\n\rtime_received\030\004 \001(\0132\032.google.protobuf."
-  "TimestampR\014timeReceived\022\033\n\tfile_name\030\005 \001"
-  "(\tR\010fileName\022\031\n\010file_ext\030\006 \001(\tR\007fileExt\022"
-  "\020\n\003uri\030\007 \001(\tR\003uri\"T\n DeleteTabularDataBy"
-  "FilterRequest\0220\n\006filter\030\001 \001(\0132\030.viam.app"
-  ".data.v1.FilterR\006filter\"z\n!DeleteTabular"
-  "DataByFilterResponse\022#\n\rdeleted_count\030\001 "
-  "\001(\004R\014deletedCount\0220\n\006result\030\002 \001(\0132\030.viam"
-  ".app.data.v1.ResultR\006result\"S\n\037DeleteBin"
-  "aryDataByFilterRequest\0220\n\006filter\030\001 \001(\0132\030"
-  ".viam.app.data.v1.FilterR\006filter\"y\n Dele"
-  "teBinaryDataByFilterResponse\022#\n\rdeleted_"
-  "count\030\001 \001(\004R\014deletedCount\0220\n\006result\030\002 \001("
-  "\0132\030.viam.app.data.v1.ResultR\006result\"9\n\034D"
-  "eleteBinaryDataByIDsRequest\022\031\n\010file_ids\030"
-  "\001 \003(\tR\007fileIds\"v\n\035DeleteBinaryDataByIDsR"
-  "esponse\022#\n\rdeleted_count\030\001 \001(\004R\014deletedC"
-  "ount\0220\n\006result\030\002 \001(\0132\030.viam.app.data.v1."
-  "ResultR\006result\"T\n#AddTagsToBinaryDataByF"
-  "ileIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fileIds"
-  "\022\022\n\004tags\030\002 \003(\tR\004tags\"&\n$AddTagsToBinaryD"
-  "ataByFileIDsResponse\"j\n\"AddTagsToBinaryD"
-  "ataByFilterRequest\0220\n\006filter\030\001 \001(\0132\030.via"
-  "m.app.data.v1.FilterR\006filter\022\022\n\004tags\030\002 \003"
-  "(\tR\004tags\"%\n#AddTagsToBinaryDataByFilterR"
-  "esponse\"Y\n(RemoveTagsFromBinaryDataByFil"
-  "eIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fileIds\022\022"
-  "\n\004tags\030\002 \003(\tR\004tags\"P\n)RemoveTagsFromBina"
-  "ryDataByFileIDsResponse\022#\n\rdeleted_count"
-  "\030\001 \001(\004R\014deletedCount\"o\n\'RemoveTagsFromBi"
-  "naryDataByFilterRequest\0220\n\006filter\030\001 \001(\0132"
-  "\030.viam.app.data.v1.FilterR\006filter\022\022\n\004tag"
-  "s\030\002 \003(\tR\004tags\"O\n(RemoveTagsFromBinaryDat"
-  "aByFilterResponse\022#\n\rdeleted_count\030\001 \001(\004"
-  "R\014deletedCount\"G\n\023TagsByFilterRequest\0220\n"
+  "estamp.proto\032\026tagger/v1/tagger.proto\"T\n\006"
+  "Result\0220\n\006status\030\001 \001(\0162\030.viam.app.data.v"
+  "1.StatusR\006status\022\030\n\007message\030\002 \001(\tR\007messa"
+  "ge\"\241\001\n\013DataRequest\0220\n\006filter\030\001 \001(\0132\030.via"
+  "m.app.data.v1.FilterR\006filter\022\024\n\005limit\030\002 "
+  "\001(\004R\005limit\022\022\n\004last\030\003 \001(\tR\004last\0226\n\nsort_o"
+  "rder\030\004 \001(\0162\027.viam.app.data.v1.OrderR\tsor"
+  "tOrder\"\366\003\n\006Filter\022%\n\016component_name\030\001 \001("
+  "\tR\rcomponentName\022%\n\016component_type\030\002 \001(\t"
+  "R\rcomponentType\022\'\n\017component_model\030\003 \001(\t"
+  "R\016componentModel\022\026\n\006method\030\004 \001(\tR\006method"
+  "\022\035\n\nrobot_name\030\006 \001(\tR\trobotName\022\031\n\010robot"
+  "_id\030\007 \001(\tR\007robotId\022\033\n\tpart_name\030\010 \001(\tR\010p"
+  "artName\022\027\n\007part_id\030\t \001(\tR\006partId\022!\n\014loca"
+  "tion_ids\030\n \003(\tR\013locationIds\022\027\n\007org_ids\030\013"
+  " \003(\tR\006orgIds\022\033\n\tmime_type\030\014 \003(\tR\010mimeTyp"
+  "e\022=\n\010interval\030\r \001(\0132!.viam.app.data.v1.C"
+  "aptureIntervalR\010interval\022=\n\013tags_filter\030"
+  "\016 \001(\0132\034.viam.app.data.v1.TagsFilterR\ntag"
+  "sFilter\022\026\n\004tags\030\005 \003(\tB\002\030\001R\004tags\"V\n\nTagsF"
+  "ilter\0224\n\004type\030\001 \001(\0162 .viam.app.data.v1.T"
+  "agsFilterTypeR\004type\022\022\n\004tags\030\002 \003(\tR\004tags\""
+  "\303\004\n\017CaptureMetadata\022\025\n\006org_id\030\001 \001(\tR\005org"
+  "Id\022\037\n\013location_id\030\002 \001(\tR\nlocationId\022\035\n\nr"
+  "obot_name\030\003 \001(\tR\trobotName\022\031\n\010robot_id\030\004"
+  " \001(\tR\007robotId\022\033\n\tpart_name\030\005 \001(\tR\010partNa"
+  "me\022\027\n\007part_id\030\006 \001(\tR\006partId\022%\n\016component"
+  "_type\030\007 \001(\tR\rcomponentType\022\'\n\017component_"
+  "model\030\010 \001(\tR\016componentModel\022%\n\016component"
+  "_name\030\t \001(\tR\rcomponentName\022\037\n\013method_nam"
+  "e\030\n \001(\tR\nmethodName\022d\n\021method_parameters"
+  "\030\013 \003(\01327.viam.app.data.v1.CaptureMetadat"
+  "a.MethodParametersEntryR\020methodParameter"
+  "s\022\022\n\004tags\030\014 \003(\tR\004tags\022\033\n\tmime_type\030\r \001(\t"
+  "R\010mimeType\032Y\n\025MethodParametersEntry\022\020\n\003k"
+  "ey\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.google.pr"
+  "otobuf.AnyR\005value:\0028\001\"q\n\017CaptureInterval"
+  "\0220\n\005start\030\001 \001(\0132\032.google.protobuf.Timest"
+  "ampR\005start\022,\n\003end\030\002 \001(\0132\032.google.protobu"
+  "f.TimestampR\003end\"}\n\032TabularDataByFilterR"
+  "equest\022@\n\014data_request\030\001 \001(\0132\035.viam.app."
+  "data.v1.DataRequestR\013dataRequest\022\035\n\ncoun"
+  "t_only\030\002 \001(\010R\tcountOnly\"\271\001\n\033TabularDataB"
+  "yFilterResponse\022=\n\010metadata\030\001 \003(\0132!.viam"
+  ".app.data.v1.CaptureMetadataR\010metadata\0221"
+  "\n\004data\030\002 \003(\0132\035.viam.app.data.v1.TabularD"
+  "ataR\004data\022\024\n\005count\030\003 \001(\003R\005count\022\022\n\004last\030"
+  "\004 \001(\tR\004last\"\345\001\n\013TabularData\022+\n\004data\030\001 \001("
+  "\0132\027.google.protobuf.StructR\004data\022%\n\016meta"
+  "data_index\030\002 \001(\005R\rmetadataIndex\022A\n\016time_"
+  "requested\030\003 \001(\0132\032.google.protobuf.Timest"
+  "ampR\rtimeRequested\022\?\n\rtime_received\030\004 \001("
+  "\0132\032.google.protobuf.TimestampR\014timeRecei"
+  "ved\"b\n\nBinaryData\022\026\n\006binary\030\001 \001(\014R\006binar"
+  "y\022<\n\010metadata\030\002 \001(\0132 .viam.app.data.v1.B"
+  "inaryMetadataR\010metadata\"\243\001\n\031BinaryDataBy"
+  "FilterRequest\022@\n\014data_request\030\001 \001(\0132\035.vi"
+  "am.app.data.v1.DataRequestR\013dataRequest\022"
+  "%\n\016include_binary\030\002 \001(\010R\rincludeBinary\022\035"
+  "\n\ncount_only\030\003 \001(\010R\tcountOnly\"x\n\032BinaryD"
+  "ataByFilterResponse\0220\n\004data\030\001 \003(\0132\034.viam"
+  ".app.data.v1.BinaryDataR\004data\022\024\n\005count\030\002"
+  " \001(\004R\005count\022\022\n\004last\030\003 \001(\tR\004last\"Z\n\026Binar"
+  "yDataByIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fil"
+  "eIds\022%\n\016include_binary\030\002 \001(\010R\rincludeBin"
+  "ary\"u\n\027BinaryDataByIDsResponse\0220\n\004data\030\001"
+  " \003(\0132\034.viam.app.data.v1.BinaryDataR\004data"
+  "\022\024\n\005count\030\002 \001(\004R\005count\022\022\n\004last\030\003 \001(\tR\004la"
+  "st\"\274\002\n\016BinaryMetadata\022\016\n\002id\030\001 \001(\tR\002id\022L\n"
+  "\020capture_metadata\030\002 \001(\0132!.viam.app.data."
+  "v1.CaptureMetadataR\017captureMetadata\022A\n\016t"
+  "ime_requested\030\003 \001(\0132\032.google.protobuf.Ti"
+  "mestampR\rtimeRequested\022\?\n\rtime_received\030"
+  "\004 \001(\0132\032.google.protobuf.TimestampR\014timeR"
+  "eceived\022\033\n\tfile_name\030\005 \001(\tR\010fileName\022\031\n\010"
+  "file_ext\030\006 \001(\tR\007fileExt\022\020\n\003uri\030\007 \001(\tR\003ur"
+  "i\"T\n DeleteTabularDataByFilterRequest\0220\n"
   "\006filter\030\001 \001(\0132\030.viam.app.data.v1.FilterR"
-  "\006filter\"*\n\024TagsByFilterResponse\022\022\n\004tags\030"
-  "\001 \003(\tR\004tags*I\n\005Order\022\025\n\021ORDER_UNSPECIFIE"
-  "D\020\000\022\024\n\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCEN"
-  "DING\020\002*P\n\006Status\022\026\n\022STATUS_UNSPECIFIED\020\000"
-  "\022\032\n\026STATUS_PARTIAL_SUCCESS\020\001\022\022\n\016STATUS_S"
-  "UCCESS\020\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILT"
-  "ER_TYPE_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYP"
-  "E_MATCH_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGG"
-  "ED\020\002\022\035\n\031TAGS_FILTER_TYPE_UNTAGGED\020\0032\226\013\n\013"
-  "DataService\022r\n\023TabularDataByFilter\022,.via"
-  "m.app.data.v1.TabularDataByFilterRequest"
-  "\032-.viam.app.data.v1.TabularDataByFilterR"
-  "esponse\022o\n\022BinaryDataByFilter\022+.viam.app"
-  ".data.v1.BinaryDataByFilterRequest\032,.via"
-  "m.app.data.v1.BinaryDataByFilterResponse"
-  "\022f\n\017BinaryDataByIDs\022(.viam.app.data.v1.B"
-  "inaryDataByIDsRequest\032).viam.app.data.v1"
-  ".BinaryDataByIDsResponse\022\204\001\n\031DeleteTabul"
-  "arDataByFilter\0222.viam.app.data.v1.Delete"
-  "TabularDataByFilterRequest\0323.viam.app.da"
-  "ta.v1.DeleteTabularDataByFilterResponse\022"
-  "\201\001\n\030DeleteBinaryDataByFilter\0221.viam.app."
-  "data.v1.DeleteBinaryDataByFilterRequest\032"
-  "2.viam.app.data.v1.DeleteBinaryDataByFil"
-  "terResponse\022x\n\025DeleteBinaryDataByIDs\022..v"
-  "iam.app.data.v1.DeleteBinaryDataByIDsReq"
-  "uest\032/.viam.app.data.v1.DeleteBinaryData"
-  "ByIDsResponse\022\215\001\n\034AddTagsToBinaryDataByF"
-  "ileIDs\0225.viam.app.data.v1.AddTagsToBinar"
-  "yDataByFileIDsRequest\0326.viam.app.data.v1"
-  ".AddTagsToBinaryDataByFileIDsResponse\022\212\001"
-  "\n\033AddTagsToBinaryDataByFilter\0224.viam.app"
-  ".data.v1.AddTagsToBinaryDataByFilterRequ"
-  "est\0325.viam.app.data.v1.AddTagsToBinaryDa"
-  "taByFilterResponse\022\234\001\n!RemoveTagsFromBin"
-  "aryDataByFileIDs\022:.viam.app.data.v1.Remo"
-  "veTagsFromBinaryDataByFileIDsRequest\032;.v"
-  "iam.app.data.v1.RemoveTagsFromBinaryData"
-  "ByFileIDsResponse\022\231\001\n RemoveTagsFromBina"
-  "ryDataByFilter\0229.viam.app.data.v1.Remove"
-  "TagsFromBinaryDataByFilterRequest\032:.viam"
-  ".app.data.v1.RemoveTagsFromBinaryDataByF"
-  "ilterResponse\022]\n\014TagsByFilter\022%.viam.app"
-  ".data.v1.TagsByFilterRequest\032&.viam.app."
-  "data.v1.TagsByFilterResponseB\035Z\033go.viam."
-  "com/api/app/data/v1b\006proto3"
+  "\006filter\"z\n!DeleteTabularDataByFilterResp"
+  "onse\022#\n\rdeleted_count\030\001 \001(\004R\014deletedCoun"
+  "t\0220\n\006result\030\002 \001(\0132\030.viam.app.data.v1.Res"
+  "ultR\006result\"S\n\037DeleteBinaryDataByFilterR"
+  "equest\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v"
+  "1.FilterR\006filter\"y\n DeleteBinaryDataByFi"
+  "lterResponse\022#\n\rdeleted_count\030\001 \001(\004R\014del"
+  "etedCount\0220\n\006result\030\002 \001(\0132\030.viam.app.dat"
+  "a.v1.ResultR\006result\"9\n\034DeleteBinaryDataB"
+  "yIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fileIds\"v"
+  "\n\035DeleteBinaryDataByIDsResponse\022#\n\rdelet"
+  "ed_count\030\001 \001(\004R\014deletedCount\0220\n\006result\030\002"
+  " \001(\0132\030.viam.app.data.v1.ResultR\006result\"T"
+  "\n#AddTagsToBinaryDataByFileIDsRequest\022\031\n"
+  "\010file_ids\030\001 \003(\tR\007fileIds\022\022\n\004tags\030\002 \003(\tR\004"
+  "tags\"&\n$AddTagsToBinaryDataByFileIDsResp"
+  "onse\"j\n\"AddTagsToBinaryDataByFilterReque"
+  "st\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Fi"
+  "lterR\006filter\022\022\n\004tags\030\002 \003(\tR\004tags\"%\n#AddT"
+  "agsToBinaryDataByFilterResponse\"Y\n(Remov"
+  "eTagsFromBinaryDataByFileIDsRequest\022\031\n\010f"
+  "ile_ids\030\001 \003(\tR\007fileIds\022\022\n\004tags\030\002 \003(\tR\004ta"
+  "gs\"P\n)RemoveTagsFromBinaryDataByFileIDsR"
+  "esponse\022#\n\rdeleted_count\030\001 \001(\004R\014deletedC"
+  "ount\"o\n\'RemoveTagsFromBinaryDataByFilter"
+  "Request\0220\n\006filter\030\001 \001(\0132\030.viam.app.data."
+  "v1.FilterR\006filter\022\022\n\004tags\030\002 \003(\tR\004tags\"O\n"
+  "(RemoveTagsFromBinaryDataByFilterRespons"
+  "e\022#\n\rdeleted_count\030\001 \001(\004R\014deletedCount\"G"
+  "\n\023TagsByFilterRequest\0220\n\006filter\030\001 \001(\0132\030."
+  "viam.app.data.v1.FilterR\006filter\"*\n\024TagsB"
+  "yFilterResponse\022\022\n\004tags\030\001 \003(\tR\004tags\"\211\002\n\030"
+  "SubmitTrainingJobRequest\0220\n\006filter\030\001 \001(\013"
+  "2\030.viam.app.data.v1.FilterR\006filter\022\'\n\017or"
+  "ganization_id\030\002 \001(\tR\016organizationId\022\035\n\nm"
+  "odel_name\030\003 \001(\tR\tmodelName\022#\n\rmodel_vers"
+  "ion\030\004 \001(\tR\014modelVersion\022:\n\nmodel_type\030\005 "
+  "\001(\0162\033.viam.app.data.v1.ModelTypeR\tmodelT"
+  "ype\022\022\n\004tags\030\006 \003(\tR\004tags\"+\n\031SubmitTrainin"
+  "gJobResponse\022\016\n\002id\030\001 \001(\tR\002id\"\'\n\025GetTrain"
+  "ingJobRequest\022\016\n\002id\030\001 \001(\tR\002id\"k\n\026GetTrai"
+  "ningJobResponse\022\016\n\002id\030\001 \001(\tR\002id\022A\n\010metad"
+  "ata\030\002 \001(\0132%.viam.app.data.v1.TrainingJob"
+  "MetadataR\010metadata\"\271\002\n\023TrainingJobMetada"
+  "ta\022D\n\007request\030\001 \001(\0132*.viam.app.data.v1.S"
+  "ubmitTrainingJobRequestR\007request\0228\n\006stat"
+  "us\030\002 \001(\0162 .viam.app.data.v1.TrainingStat"
+  "usR\006status\0229\n\ncreated_on\030\003 \001(\0132\032.google."
+  "protobuf.TimestampR\tcreatedOn\022\?\n\rlast_mo"
+  "dified\030\004 \001(\0132\032.google.protobuf.Timestamp"
+  "R\014lastModified\022&\n\017synced_model_id\030\005 \001(\tR"
+  "\rsyncedModelId\"\276\003\n\013TrainingJob\0223\n\002id\030\001 \001"
+  "(\tB#\232\204\236\003\036bson:\"_id\" json:\"id,omitempty\"R"
+  "\002id\022g\n\010metadata\030\002 \001(\0132%.viam.app.data.v1"
+  ".TrainingJobMetadataB$\232\204\236\003\037bson:\"metadat"
+  "a\" json:\"metadata\"R\010metadata\022K\n\013output_p"
+  "ath\030\003 \001(\tB*\232\204\236\003%bson:\"output_path\" json:"
+  "\"output_path\"R\noutputPath\022R\n\rvertex_job_"
+  "id\030\004 \001(\tB.\232\204\236\003)bson:\"vertex_job_id\" json"
+  ":\"vertex_job_id\"R\013vertexJobId\022p\n\016model_m"
+  "etadata\030\005 \001(\0132\027.google.protobuf.StructB0"
+  "\232\204\236\003+bson:\"model_metadata\" json:\"model_m"
+  "etadata\"R\rmodelMetadata*I\n\005Order\022\025\n\021ORDE"
+  "R_UNSPECIFIED\020\000\022\024\n\020ORDER_DESCENDING\020\001\022\023\n"
+  "\017ORDER_ASCENDING\020\002*P\n\006Status\022\026\n\022STATUS_U"
+  "NSPECIFIED\020\000\022\032\n\026STATUS_PARTIAL_SUCCESS\020\001"
+  "\022\022\n\016STATUS_SUCCESS\020\002*\220\001\n\016TagsFilterType\022"
+  " \n\034TAGS_FILTER_TYPE_UNSPECIFIED\020\000\022 \n\034TAG"
+  "S_FILTER_TYPE_MATCH_BY_OR\020\001\022\033\n\027TAGS_FILT"
+  "ER_TYPE_TAGGED\020\002\022\035\n\031TAGS_FILTER_TYPE_UNT"
+  "AGGED\020\003*~\n\tModelType\022\032\n\026MODEL_TYPE_UNSPE"
+  "CIFIED\020\000\022*\n&MODEL_TYPE_SINGLE_LABEL_CLAS"
+  "SIFICATION\020\001\022)\n%MODEL_TYPE_MULTI_LABEL_C"
+  "LASSIFICATION\020\002*\312\001\n\016TrainingStatus\022\037\n\033TR"
+  "AINING_STATUS_UNSPECIFIED\020\000\022\033\n\027TRAINING_"
+  "STATUS_PENDING\020\001\022\037\n\033TRAINING_STATUS_IN_P"
+  "ROGRESS\020\002\022\035\n\031TRAINING_STATUS_COMPLETED\020\003"
+  "\022\032\n\026TRAINING_STATUS_FAILED\020\004\022\036\n\032TRAINING"
+  "_STATUS_SUBMITTING\020\0052\351\014\n\013DataService\022r\n\023"
+  "TabularDataByFilter\022,.viam.app.data.v1.T"
+  "abularDataByFilterRequest\032-.viam.app.dat"
+  "a.v1.TabularDataByFilterResponse\022o\n\022Bina"
+  "ryDataByFilter\022+.viam.app.data.v1.Binary"
+  "DataByFilterRequest\032,.viam.app.data.v1.B"
+  "inaryDataByFilterResponse\022f\n\017BinaryDataB"
+  "yIDs\022(.viam.app.data.v1.BinaryDataByIDsR"
+  "equest\032).viam.app.data.v1.BinaryDataByID"
+  "sResponse\022\204\001\n\031DeleteTabularDataByFilter\022"
+  "2.viam.app.data.v1.DeleteTabularDataByFi"
+  "lterRequest\0323.viam.app.data.v1.DeleteTab"
+  "ularDataByFilterResponse\022\201\001\n\030DeleteBinar"
+  "yDataByFilter\0221.viam.app.data.v1.DeleteB"
+  "inaryDataByFilterRequest\0322.viam.app.data"
+  ".v1.DeleteBinaryDataByFilterResponse\022x\n\025"
+  "DeleteBinaryDataByIDs\022..viam.app.data.v1"
+  ".DeleteBinaryDataByIDsRequest\032/.viam.app"
+  ".data.v1.DeleteBinaryDataByIDsResponse\022\215"
+  "\001\n\034AddTagsToBinaryDataByFileIDs\0225.viam.a"
+  "pp.data.v1.AddTagsToBinaryDataByFileIDsR"
+  "equest\0326.viam.app.data.v1.AddTagsToBinar"
+  "yDataByFileIDsResponse\022\212\001\n\033AddTagsToBina"
+  "ryDataByFilter\0224.viam.app.data.v1.AddTag"
+  "sToBinaryDataByFilterRequest\0325.viam.app."
+  "data.v1.AddTagsToBinaryDataByFilterRespo"
+  "nse\022\234\001\n!RemoveTagsFromBinaryDataByFileID"
+  "s\022:.viam.app.data.v1.RemoveTagsFromBinar"
+  "yDataByFileIDsRequest\032;.viam.app.data.v1"
+  ".RemoveTagsFromBinaryDataByFileIDsRespon"
+  "se\022\231\001\n RemoveTagsFromBinaryDataByFilter\022"
+  "9.viam.app.data.v1.RemoveTagsFromBinaryD"
+  "ataByFilterRequest\032:.viam.app.data.v1.Re"
+  "moveTagsFromBinaryDataByFilterResponse\022]"
+  "\n\014TagsByFilter\022%.viam.app.data.v1.TagsBy"
+  "FilterRequest\032&.viam.app.data.v1.TagsByF"
+  "ilterResponse\022l\n\021SubmitTrainingJob\022*.via"
+  "m.app.data.v1.SubmitTrainingJobRequest\032+"
+  ".viam.app.data.v1.SubmitTrainingJobRespo"
+  "nse\022c\n\016GetTrainingJob\022\'.viam.app.data.v1"
+  ".GetTrainingJobRequest\032(.viam.app.data.v"
+  "1.GetTrainingJobResponseB\035Z\033go.viam.com/"
+  "api/app/data/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+  &::descriptor_table_tagger_2fv1_2ftagger_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 6267, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 8063, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
-    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 32,
+    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 4, 38,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
     file_level_metadata_app_2fdata_2fv1_2fdata_2eproto, file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto,
     file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto,
@@ -1054,6 +1256,39 @@ bool TagsFilterType_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModelType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fdata_2fv1_2fdata_2eproto);
+  return file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[3];
+}
+bool ModelType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TrainingStatus_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fdata_2fv1_2fdata_2eproto);
+  return file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[4];
+}
+bool TrainingStatus_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -9001,6 +9236,1790 @@ void TagsByFilterResponse::InternalSwap(TagsByFilterResponse* other) {
       file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[31]);
 }
 
+// ===================================================================
+
+class SubmitTrainingJobRequest::_Internal {
+ public:
+  static const ::viam::app::data::v1::Filter& filter(const SubmitTrainingJobRequest* msg);
+};
+
+const ::viam::app::data::v1::Filter&
+SubmitTrainingJobRequest::_Internal::filter(const SubmitTrainingJobRequest* msg) {
+  return *msg->filter_;
+}
+SubmitTrainingJobRequest::SubmitTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  tags_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.SubmitTrainingJobRequest)
+}
+SubmitTrainingJobRequest::SubmitTrainingJobRequest(const SubmitTrainingJobRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      tags_(from.tags_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_organization_id().empty()) {
+    organization_id_.Set(from._internal_organization_id(), 
+      GetArenaForAllocation());
+  }
+  model_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    model_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_model_name().empty()) {
+    model_name_.Set(from._internal_model_name(), 
+      GetArenaForAllocation());
+  }
+  model_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    model_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_model_version().empty()) {
+    model_version_.Set(from._internal_model_version(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_filter()) {
+    filter_ = new ::viam::app::data::v1::Filter(*from.filter_);
+  } else {
+    filter_ = nullptr;
+  }
+  model_type_ = from.model_type_;
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.SubmitTrainingJobRequest)
+}
+
+inline void SubmitTrainingJobRequest::SharedCtor() {
+organization_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  organization_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+model_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  model_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+model_version_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  model_version_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&filter_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&model_type_) -
+    reinterpret_cast<char*>(&filter_)) + sizeof(model_type_));
+}
+
+SubmitTrainingJobRequest::~SubmitTrainingJobRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.SubmitTrainingJobRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SubmitTrainingJobRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  organization_id_.Destroy();
+  model_name_.Destroy();
+  model_version_.Destroy();
+  if (this != internal_default_instance()) delete filter_;
+}
+
+void SubmitTrainingJobRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SubmitTrainingJobRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.SubmitTrainingJobRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  tags_.Clear();
+  organization_id_.ClearToEmpty();
+  model_name_.ClearToEmpty();
+  model_version_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && filter_ != nullptr) {
+    delete filter_;
+  }
+  filter_ = nullptr;
+  model_type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SubmitTrainingJobRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_filter(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string organization_id = 2 [json_name = "organizationId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_organization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SubmitTrainingJobRequest.organization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string model_name = 3 [json_name = "modelName"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_model_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SubmitTrainingJobRequest.model_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string model_version = 4 [json_name = "modelVersion"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_model_version();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SubmitTrainingJobRequest.model_version"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.data.v1.ModelType model_type = 5 [json_name = "modelType"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_model_type(static_cast<::viam::app::data::v1::ModelType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string tags = 6 [json_name = "tags"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_tags();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SubmitTrainingJobRequest.tags"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SubmitTrainingJobRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.SubmitTrainingJobRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+  if (this->_internal_has_filter()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::filter(this),
+        _Internal::filter(this).GetCachedSize(), target, stream);
+  }
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_organization_id().data(), static_cast<int>(this->_internal_organization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SubmitTrainingJobRequest.organization_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_organization_id(), target);
+  }
+
+  // string model_name = 3 [json_name = "modelName"];
+  if (!this->_internal_model_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_model_name().data(), static_cast<int>(this->_internal_model_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SubmitTrainingJobRequest.model_name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_model_name(), target);
+  }
+
+  // string model_version = 4 [json_name = "modelVersion"];
+  if (!this->_internal_model_version().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_model_version().data(), static_cast<int>(this->_internal_model_version().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SubmitTrainingJobRequest.model_version");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_model_version(), target);
+  }
+
+  // .viam.app.data.v1.ModelType model_type = 5 [json_name = "modelType"];
+  if (this->_internal_model_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_model_type(), target);
+  }
+
+  // repeated string tags = 6 [json_name = "tags"];
+  for (int i = 0, n = this->_internal_tags_size(); i < n; i++) {
+    const auto& s = this->_internal_tags(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SubmitTrainingJobRequest.tags");
+    target = stream->WriteString(6, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.SubmitTrainingJobRequest)
+  return target;
+}
+
+size_t SubmitTrainingJobRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.SubmitTrainingJobRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string tags = 6 [json_name = "tags"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      tags_.Get(i));
+  }
+
+  // string organization_id = 2 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_organization_id());
+  }
+
+  // string model_name = 3 [json_name = "modelName"];
+  if (!this->_internal_model_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_model_name());
+  }
+
+  // string model_version = 4 [json_name = "modelVersion"];
+  if (!this->_internal_model_version().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_model_version());
+  }
+
+  // .viam.app.data.v1.Filter filter = 1 [json_name = "filter"];
+  if (this->_internal_has_filter()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *filter_);
+  }
+
+  // .viam.app.data.v1.ModelType model_type = 5 [json_name = "modelType"];
+  if (this->_internal_model_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_model_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubmitTrainingJobRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SubmitTrainingJobRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubmitTrainingJobRequest::GetClassData() const { return &_class_data_; }
+
+void SubmitTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SubmitTrainingJobRequest *>(to)->MergeFrom(
+      static_cast<const SubmitTrainingJobRequest &>(from));
+}
+
+
+void SubmitTrainingJobRequest::MergeFrom(const SubmitTrainingJobRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.SubmitTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  tags_.MergeFrom(from.tags_);
+  if (!from._internal_organization_id().empty()) {
+    _internal_set_organization_id(from._internal_organization_id());
+  }
+  if (!from._internal_model_name().empty()) {
+    _internal_set_model_name(from._internal_model_name());
+  }
+  if (!from._internal_model_version().empty()) {
+    _internal_set_model_version(from._internal_model_version());
+  }
+  if (from._internal_has_filter()) {
+    _internal_mutable_filter()->::viam::app::data::v1::Filter::MergeFrom(from._internal_filter());
+  }
+  if (from._internal_model_type() != 0) {
+    _internal_set_model_type(from._internal_model_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SubmitTrainingJobRequest::CopyFrom(const SubmitTrainingJobRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.SubmitTrainingJobRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SubmitTrainingJobRequest::IsInitialized() const {
+  return true;
+}
+
+void SubmitTrainingJobRequest::InternalSwap(SubmitTrainingJobRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  tags_.InternalSwap(&other->tags_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &organization_id_, lhs_arena,
+      &other->organization_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &model_name_, lhs_arena,
+      &other->model_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &model_version_, lhs_arena,
+      &other->model_version_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SubmitTrainingJobRequest, model_type_)
+      + sizeof(SubmitTrainingJobRequest::model_type_)
+      - PROTOBUF_FIELD_OFFSET(SubmitTrainingJobRequest, filter_)>(
+          reinterpret_cast<char*>(&filter_),
+          reinterpret_cast<char*>(&other->filter_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SubmitTrainingJobRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[32]);
+}
+
+// ===================================================================
+
+class SubmitTrainingJobResponse::_Internal {
+ public:
+};
+
+SubmitTrainingJobResponse::SubmitTrainingJobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.SubmitTrainingJobResponse)
+}
+SubmitTrainingJobResponse::SubmitTrainingJobResponse(const SubmitTrainingJobResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.SubmitTrainingJobResponse)
+}
+
+inline void SubmitTrainingJobResponse::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SubmitTrainingJobResponse::~SubmitTrainingJobResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.SubmitTrainingJobResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SubmitTrainingJobResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+}
+
+void SubmitTrainingJobResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SubmitTrainingJobResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.SubmitTrainingJobResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SubmitTrainingJobResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SubmitTrainingJobResponse.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SubmitTrainingJobResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.SubmitTrainingJobResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SubmitTrainingJobResponse.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.SubmitTrainingJobResponse)
+  return target;
+}
+
+size_t SubmitTrainingJobResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.SubmitTrainingJobResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubmitTrainingJobResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SubmitTrainingJobResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubmitTrainingJobResponse::GetClassData() const { return &_class_data_; }
+
+void SubmitTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SubmitTrainingJobResponse *>(to)->MergeFrom(
+      static_cast<const SubmitTrainingJobResponse &>(from));
+}
+
+
+void SubmitTrainingJobResponse::MergeFrom(const SubmitTrainingJobResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.SubmitTrainingJobResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SubmitTrainingJobResponse::CopyFrom(const SubmitTrainingJobResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.SubmitTrainingJobResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SubmitTrainingJobResponse::IsInitialized() const {
+  return true;
+}
+
+void SubmitTrainingJobResponse::InternalSwap(SubmitTrainingJobResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SubmitTrainingJobResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[33]);
+}
+
+// ===================================================================
+
+class GetTrainingJobRequest::_Internal {
+ public:
+};
+
+GetTrainingJobRequest::GetTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.GetTrainingJobRequest)
+}
+GetTrainingJobRequest::GetTrainingJobRequest(const GetTrainingJobRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.GetTrainingJobRequest)
+}
+
+inline void GetTrainingJobRequest::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetTrainingJobRequest::~GetTrainingJobRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.GetTrainingJobRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetTrainingJobRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+}
+
+void GetTrainingJobRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetTrainingJobRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.GetTrainingJobRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetTrainingJobRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.GetTrainingJobRequest.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetTrainingJobRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.GetTrainingJobRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.GetTrainingJobRequest.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.GetTrainingJobRequest)
+  return target;
+}
+
+size_t GetTrainingJobRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.GetTrainingJobRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTrainingJobRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetTrainingJobRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTrainingJobRequest::GetClassData() const { return &_class_data_; }
+
+void GetTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetTrainingJobRequest *>(to)->MergeFrom(
+      static_cast<const GetTrainingJobRequest &>(from));
+}
+
+
+void GetTrainingJobRequest::MergeFrom(const GetTrainingJobRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.GetTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetTrainingJobRequest::CopyFrom(const GetTrainingJobRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.GetTrainingJobRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetTrainingJobRequest::IsInitialized() const {
+  return true;
+}
+
+void GetTrainingJobRequest::InternalSwap(GetTrainingJobRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetTrainingJobRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[34]);
+}
+
+// ===================================================================
+
+class GetTrainingJobResponse::_Internal {
+ public:
+  static const ::viam::app::data::v1::TrainingJobMetadata& metadata(const GetTrainingJobResponse* msg);
+};
+
+const ::viam::app::data::v1::TrainingJobMetadata&
+GetTrainingJobResponse::_Internal::metadata(const GetTrainingJobResponse* msg) {
+  return *msg->metadata_;
+}
+GetTrainingJobResponse::GetTrainingJobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.GetTrainingJobResponse)
+}
+GetTrainingJobResponse::GetTrainingJobResponse(const GetTrainingJobResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_metadata()) {
+    metadata_ = new ::viam::app::data::v1::TrainingJobMetadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.GetTrainingJobResponse)
+}
+
+inline void GetTrainingJobResponse::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+metadata_ = nullptr;
+}
+
+GetTrainingJobResponse::~GetTrainingJobResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.GetTrainingJobResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetTrainingJobResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+  if (this != internal_default_instance()) delete metadata_;
+}
+
+void GetTrainingJobResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetTrainingJobResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.GetTrainingJobResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetTrainingJobResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.GetTrainingJobResponse.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.data.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetTrainingJobResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.GetTrainingJobResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.GetTrainingJobResponse.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // .viam.app.data.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+  if (this->_internal_has_metadata()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.GetTrainingJobResponse)
+  return target;
+}
+
+size_t GetTrainingJobResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.GetTrainingJobResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // .viam.app.data.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata"];
+  if (this->_internal_has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *metadata_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTrainingJobResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetTrainingJobResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTrainingJobResponse::GetClassData() const { return &_class_data_; }
+
+void GetTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetTrainingJobResponse *>(to)->MergeFrom(
+      static_cast<const GetTrainingJobResponse &>(from));
+}
+
+
+void GetTrainingJobResponse::MergeFrom(const GetTrainingJobResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.GetTrainingJobResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (from._internal_has_metadata()) {
+    _internal_mutable_metadata()->::viam::app::data::v1::TrainingJobMetadata::MergeFrom(from._internal_metadata());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetTrainingJobResponse::CopyFrom(const GetTrainingJobResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.GetTrainingJobResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetTrainingJobResponse::IsInitialized() const {
+  return true;
+}
+
+void GetTrainingJobResponse::InternalSwap(GetTrainingJobResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+  swap(metadata_, other->metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetTrainingJobResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[35]);
+}
+
+// ===================================================================
+
+class TrainingJobMetadata::_Internal {
+ public:
+  static const ::viam::app::data::v1::SubmitTrainingJobRequest& request(const TrainingJobMetadata* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_on(const TrainingJobMetadata* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_modified(const TrainingJobMetadata* msg);
+};
+
+const ::viam::app::data::v1::SubmitTrainingJobRequest&
+TrainingJobMetadata::_Internal::request(const TrainingJobMetadata* msg) {
+  return *msg->request_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+TrainingJobMetadata::_Internal::created_on(const TrainingJobMetadata* msg) {
+  return *msg->created_on_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+TrainingJobMetadata::_Internal::last_modified(const TrainingJobMetadata* msg) {
+  return *msg->last_modified_;
+}
+void TrainingJobMetadata::clear_created_on() {
+  if (GetArenaForAllocation() == nullptr && created_on_ != nullptr) {
+    delete created_on_;
+  }
+  created_on_ = nullptr;
+}
+void TrainingJobMetadata::clear_last_modified() {
+  if (GetArenaForAllocation() == nullptr && last_modified_ != nullptr) {
+    delete last_modified_;
+  }
+  last_modified_ = nullptr;
+}
+TrainingJobMetadata::TrainingJobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.TrainingJobMetadata)
+}
+TrainingJobMetadata::TrainingJobMetadata(const TrainingJobMetadata& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  synced_model_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    synced_model_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_synced_model_id().empty()) {
+    synced_model_id_.Set(from._internal_synced_model_id(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_request()) {
+    request_ = new ::viam::app::data::v1::SubmitTrainingJobRequest(*from.request_);
+  } else {
+    request_ = nullptr;
+  }
+  if (from._internal_has_created_on()) {
+    created_on_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.created_on_);
+  } else {
+    created_on_ = nullptr;
+  }
+  if (from._internal_has_last_modified()) {
+    last_modified_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.last_modified_);
+  } else {
+    last_modified_ = nullptr;
+  }
+  status_ = from.status_;
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.TrainingJobMetadata)
+}
+
+inline void TrainingJobMetadata::SharedCtor() {
+synced_model_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  synced_model_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&request_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&status_) -
+    reinterpret_cast<char*>(&request_)) + sizeof(status_));
+}
+
+TrainingJobMetadata::~TrainingJobMetadata() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.TrainingJobMetadata)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void TrainingJobMetadata::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  synced_model_id_.Destroy();
+  if (this != internal_default_instance()) delete request_;
+  if (this != internal_default_instance()) delete created_on_;
+  if (this != internal_default_instance()) delete last_modified_;
+}
+
+void TrainingJobMetadata::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TrainingJobMetadata::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.TrainingJobMetadata)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  synced_model_id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && request_ != nullptr) {
+    delete request_;
+  }
+  request_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && created_on_ != nullptr) {
+    delete created_on_;
+  }
+  created_on_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && last_modified_ != nullptr) {
+    delete last_modified_;
+  }
+  last_modified_ = nullptr;
+  status_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TrainingJobMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.app.data.v1.SubmitTrainingJobRequest request = 1 [json_name = "request"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_request(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.data.v1.TrainingStatus status = 2 [json_name = "status"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_status(static_cast<::viam::app::data::v1::TrainingStatus>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_created_on(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_last_modified(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string synced_model_id = 5 [json_name = "syncedModelId"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_synced_model_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.TrainingJobMetadata.synced_model_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TrainingJobMetadata::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.TrainingJobMetadata)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.app.data.v1.SubmitTrainingJobRequest request = 1 [json_name = "request"];
+  if (this->_internal_has_request()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::request(this),
+        _Internal::request(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.app.data.v1.TrainingStatus status = 2 [json_name = "status"];
+  if (this->_internal_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_status(), target);
+  }
+
+  // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
+  if (this->_internal_has_created_on()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::created_on(this),
+        _Internal::created_on(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified"];
+  if (this->_internal_has_last_modified()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::last_modified(this),
+        _Internal::last_modified(this).GetCachedSize(), target, stream);
+  }
+
+  // string synced_model_id = 5 [json_name = "syncedModelId"];
+  if (!this->_internal_synced_model_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_synced_model_id().data(), static_cast<int>(this->_internal_synced_model_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.TrainingJobMetadata.synced_model_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_synced_model_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.TrainingJobMetadata)
+  return target;
+}
+
+size_t TrainingJobMetadata::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.TrainingJobMetadata)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string synced_model_id = 5 [json_name = "syncedModelId"];
+  if (!this->_internal_synced_model_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_synced_model_id());
+  }
+
+  // .viam.app.data.v1.SubmitTrainingJobRequest request = 1 [json_name = "request"];
+  if (this->_internal_has_request()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *request_);
+  }
+
+  // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
+  if (this->_internal_has_created_on()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *created_on_);
+  }
+
+  // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified"];
+  if (this->_internal_has_last_modified()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *last_modified_);
+  }
+
+  // .viam.app.data.v1.TrainingStatus status = 2 [json_name = "status"];
+  if (this->_internal_status() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TrainingJobMetadata::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TrainingJobMetadata::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TrainingJobMetadata::GetClassData() const { return &_class_data_; }
+
+void TrainingJobMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TrainingJobMetadata *>(to)->MergeFrom(
+      static_cast<const TrainingJobMetadata &>(from));
+}
+
+
+void TrainingJobMetadata::MergeFrom(const TrainingJobMetadata& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.TrainingJobMetadata)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_synced_model_id().empty()) {
+    _internal_set_synced_model_id(from._internal_synced_model_id());
+  }
+  if (from._internal_has_request()) {
+    _internal_mutable_request()->::viam::app::data::v1::SubmitTrainingJobRequest::MergeFrom(from._internal_request());
+  }
+  if (from._internal_has_created_on()) {
+    _internal_mutable_created_on()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_created_on());
+  }
+  if (from._internal_has_last_modified()) {
+    _internal_mutable_last_modified()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_last_modified());
+  }
+  if (from._internal_status() != 0) {
+    _internal_set_status(from._internal_status());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TrainingJobMetadata::CopyFrom(const TrainingJobMetadata& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.TrainingJobMetadata)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TrainingJobMetadata::IsInitialized() const {
+  return true;
+}
+
+void TrainingJobMetadata::InternalSwap(TrainingJobMetadata* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &synced_model_id_, lhs_arena,
+      &other->synced_model_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, status_)
+      + sizeof(TrainingJobMetadata::status_)
+      - PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, request_)>(
+          reinterpret_cast<char*>(&request_),
+          reinterpret_cast<char*>(&other->request_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TrainingJobMetadata::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[36]);
+}
+
+// ===================================================================
+
+class TrainingJob::_Internal {
+ public:
+  static const ::viam::app::data::v1::TrainingJobMetadata& metadata(const TrainingJob* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& model_metadata(const TrainingJob* msg);
+};
+
+const ::viam::app::data::v1::TrainingJobMetadata&
+TrainingJob::_Internal::metadata(const TrainingJob* msg) {
+  return *msg->metadata_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+TrainingJob::_Internal::model_metadata(const TrainingJob* msg) {
+  return *msg->model_metadata_;
+}
+void TrainingJob::clear_model_metadata() {
+  if (GetArenaForAllocation() == nullptr && model_metadata_ != nullptr) {
+    delete model_metadata_;
+  }
+  model_metadata_ = nullptr;
+}
+TrainingJob::TrainingJob(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.TrainingJob)
+}
+TrainingJob::TrainingJob(const TrainingJob& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  output_path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    output_path_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_output_path().empty()) {
+    output_path_.Set(from._internal_output_path(), 
+      GetArenaForAllocation());
+  }
+  vertex_job_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    vertex_job_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_vertex_job_id().empty()) {
+    vertex_job_id_.Set(from._internal_vertex_job_id(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_metadata()) {
+    metadata_ = new ::viam::app::data::v1::TrainingJobMetadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
+  }
+  if (from._internal_has_model_metadata()) {
+    model_metadata_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.model_metadata_);
+  } else {
+    model_metadata_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.TrainingJob)
+}
+
+inline void TrainingJob::SharedCtor() {
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+output_path_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  output_path_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+vertex_job_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  vertex_job_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&metadata_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&model_metadata_) -
+    reinterpret_cast<char*>(&metadata_)) + sizeof(model_metadata_));
+}
+
+TrainingJob::~TrainingJob() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.TrainingJob)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void TrainingJob::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.Destroy();
+  output_path_.Destroy();
+  vertex_job_id_.Destroy();
+  if (this != internal_default_instance()) delete metadata_;
+  if (this != internal_default_instance()) delete model_metadata_;
+}
+
+void TrainingJob::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TrainingJob::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.TrainingJob)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  output_path_.ClearToEmpty();
+  vertex_job_id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && model_metadata_ != nullptr) {
+    delete model_metadata_;
+  }
+  model_metadata_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TrainingJob::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.TrainingJob.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.data.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_output_path();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.TrainingJob.output_path"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_vertex_job_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.TrainingJob.vertex_job_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_model_metadata(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TrainingJob::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.TrainingJob)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.TrainingJob.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // .viam.app.data.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
+  if (this->_internal_has_metadata()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
+  }
+
+  // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
+  if (!this->_internal_output_path().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_output_path().data(), static_cast<int>(this->_internal_output_path().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.TrainingJob.output_path");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_output_path(), target);
+  }
+
+  // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
+  if (!this->_internal_vertex_job_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_vertex_job_id().data(), static_cast<int>(this->_internal_vertex_job_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.TrainingJob.vertex_job_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_vertex_job_id(), target);
+  }
+
+  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
+  if (this->_internal_has_model_metadata()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::model_metadata(this),
+        _Internal::model_metadata(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.TrainingJob)
+  return target;
+}
+
+size_t TrainingJob::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.TrainingJob)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string output_path = 3 [json_name = "outputPath", (.tagger.v1.tags) = "bson:\"output_path\" json:\"output_path\""];
+  if (!this->_internal_output_path().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_output_path());
+  }
+
+  // string vertex_job_id = 4 [json_name = "vertexJobId", (.tagger.v1.tags) = "bson:\"vertex_job_id\" json:\"vertex_job_id\""];
+  if (!this->_internal_vertex_job_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_vertex_job_id());
+  }
+
+  // .viam.app.data.v1.TrainingJobMetadata metadata = 2 [json_name = "metadata", (.tagger.v1.tags) = "bson:\"metadata\" json:\"metadata\""];
+  if (this->_internal_has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *metadata_);
+  }
+
+  // .google.protobuf.Struct model_metadata = 5 [json_name = "modelMetadata", (.tagger.v1.tags) = "bson:\"model_metadata\" json:\"model_metadata\""];
+  if (this->_internal_has_model_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *model_metadata_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TrainingJob::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TrainingJob::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TrainingJob::GetClassData() const { return &_class_data_; }
+
+void TrainingJob::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TrainingJob *>(to)->MergeFrom(
+      static_cast<const TrainingJob &>(from));
+}
+
+
+void TrainingJob::MergeFrom(const TrainingJob& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.TrainingJob)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from._internal_output_path().empty()) {
+    _internal_set_output_path(from._internal_output_path());
+  }
+  if (!from._internal_vertex_job_id().empty()) {
+    _internal_set_vertex_job_id(from._internal_vertex_job_id());
+  }
+  if (from._internal_has_metadata()) {
+    _internal_mutable_metadata()->::viam::app::data::v1::TrainingJobMetadata::MergeFrom(from._internal_metadata());
+  }
+  if (from._internal_has_model_metadata()) {
+    _internal_mutable_model_metadata()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_model_metadata());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TrainingJob::CopyFrom(const TrainingJob& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.TrainingJob)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TrainingJob::IsInitialized() const {
+  return true;
+}
+
+void TrainingJob::InternalSwap(TrainingJob* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &output_path_, lhs_arena,
+      &other->output_path_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &vertex_job_id_, lhs_arena,
+      &other->vertex_job_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TrainingJob, model_metadata_)
+      + sizeof(TrainingJob::model_metadata_)
+      - PROTOBUF_FIELD_OFFSET(TrainingJob, metadata_)>(
+          reinterpret_cast<char*>(&metadata_),
+          reinterpret_cast<char*>(&other->metadata_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TrainingJob::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[37]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace data
@@ -9134,6 +11153,30 @@ Arena::CreateMaybeMessage< ::viam::app::data::v1::TagsByFilterRequest >(Arena* a
 template<> PROTOBUF_NOINLINE ::viam::app::data::v1::TagsByFilterResponse*
 Arena::CreateMaybeMessage< ::viam::app::data::v1::TagsByFilterResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::data::v1::TagsByFilterResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::SubmitTrainingJobRequest*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::SubmitTrainingJobRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::SubmitTrainingJobRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::SubmitTrainingJobResponse*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::SubmitTrainingJobResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::SubmitTrainingJobResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::GetTrainingJobRequest*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::GetTrainingJobRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::GetTrainingJobRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::GetTrainingJobResponse*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::GetTrainingJobResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::GetTrainingJobResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::TrainingJobMetadata*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::TrainingJobMetadata >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::TrainingJobMetadata >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::TrainingJob*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::TrainingJob >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::TrainingJob >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
