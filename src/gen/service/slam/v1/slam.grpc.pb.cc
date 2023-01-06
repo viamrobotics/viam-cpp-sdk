@@ -27,6 +27,9 @@ namespace v1 {
 static const char* SLAMService_method_names[] = {
   "/viam.service.slam.v1.SLAMService/GetPosition",
   "/viam.service.slam.v1.SLAMService/GetMap",
+  "/viam.service.slam.v1.SLAMService/GetPositionNew",
+  "/viam.service.slam.v1.SLAMService/GetPointCloudMap",
+  "/viam.service.slam.v1.SLAMService/GetInternalState",
 };
 
 std::unique_ptr< SLAMService::Stub> SLAMService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -38,6 +41,9 @@ std::unique_ptr< SLAMService::Stub> SLAMService::NewStub(const std::shared_ptr< 
 SLAMService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_GetPosition_(SLAMService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetMap_(SLAMService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPositionNew_(SLAMService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPointCloudMap_(SLAMService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInternalState_(SLAMService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status SLAMService::Stub::GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::viam::service::slam::v1::GetPositionResponse* response) {
@@ -86,6 +92,75 @@ void SLAMService::Stub::async::GetMap(::grpc::ClientContext* context, const ::vi
   return result;
 }
 
+::grpc::Status SLAMService::Stub::GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::viam::service::slam::v1::GetPositionNewResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPositionNew_, context, request, response);
+}
+
+void SLAMService::Stub::async::GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPositionNew_, context, request, response, std::move(f));
+}
+
+void SLAMService::Stub::async::GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPositionNew_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>* SLAMService::Stub::PrepareAsyncGetPositionNewRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::slam::v1::GetPositionNewResponse, ::viam::service::slam::v1::GetPositionNewRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPositionNew_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>* SLAMService::Stub::AsyncGetPositionNewRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPositionNewRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status SLAMService::Stub::GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::viam::service::slam::v1::GetPointCloudMapResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPointCloudMap_, context, request, response);
+}
+
+void SLAMService::Stub::async::GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPointCloudMap_, context, request, response, std::move(f));
+}
+
+void SLAMService::Stub::async::GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPointCloudMap_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* SLAMService::Stub::PrepareAsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::slam::v1::GetPointCloudMapResponse, ::viam::service::slam::v1::GetPointCloudMapRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPointCloudMap_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* SLAMService::Stub::AsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPointCloudMapRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status SLAMService::Stub::GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::viam::service::slam::v1::GetInternalStateResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInternalState_, context, request, response);
+}
+
+void SLAMService::Stub::async::GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInternalState_, context, request, response, std::move(f));
+}
+
+void SLAMService::Stub::async::GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInternalState_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>* SLAMService::Stub::PrepareAsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::slam::v1::GetInternalStateResponse, ::viam::service::slam::v1::GetInternalStateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInternalState_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>* SLAMService::Stub::AsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetInternalStateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 SLAMService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SLAMService_method_names[0],
@@ -107,6 +182,36 @@ SLAMService::Service::Service() {
              ::viam::service::slam::v1::GetMapResponse* resp) {
                return service->GetMap(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SLAMService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SLAMService::Service, ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](SLAMService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::slam::v1::GetPositionNewRequest* req,
+             ::viam::service::slam::v1::GetPositionNewResponse* resp) {
+               return service->GetPositionNew(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SLAMService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SLAMService::Service, ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](SLAMService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::slam::v1::GetPointCloudMapRequest* req,
+             ::viam::service::slam::v1::GetPointCloudMapResponse* resp) {
+               return service->GetPointCloudMap(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SLAMService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SLAMService::Service, ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](SLAMService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::slam::v1::GetInternalStateRequest* req,
+             ::viam::service::slam::v1::GetInternalStateResponse* resp) {
+               return service->GetInternalState(ctx, req, resp);
+             }, this)));
 }
 
 SLAMService::Service::~Service() {
@@ -120,6 +225,27 @@ SLAMService::Service::~Service() {
 }
 
 ::grpc::Status SLAMService::Service::GetMap(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SLAMService::Service::GetPositionNew(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SLAMService::Service::GetPointCloudMap(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SLAMService::Service::GetInternalState(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response) {
   (void) context;
   (void) request;
   (void) response;
