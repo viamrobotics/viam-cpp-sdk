@@ -87,6 +87,13 @@ class MovementSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetAccuracyResponse>> PrepareAsyncGetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetAccuracyResponse>>(PrepareAsyncGetAccuracyRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>> AsyncGetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>>(AsyncGetLinearAccelerationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>> PrepareAsyncGetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>>(PrepareAsyncGetLinearAccelerationRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -104,6 +111,8 @@ class MovementSensorService final {
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -123,6 +132,8 @@ class MovementSensorService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetAccuracyResponse>* AsyncGetAccuracyRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetAccuracyResponse>* PrepareAsyncGetAccuracyRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* AsyncGetLinearAccelerationRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* PrepareAsyncGetLinearAccelerationRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -176,6 +187,13 @@ class MovementSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetAccuracyResponse>> PrepareAsyncGetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetAccuracyResponse>>(PrepareAsyncGetAccuracyRaw(context, request, cq));
     }
+    ::grpc::Status GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>> AsyncGetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>>(AsyncGetLinearAccelerationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>> PrepareAsyncGetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>>(PrepareAsyncGetLinearAccelerationRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -193,6 +211,8 @@ class MovementSensorService final {
       void GetProperties(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, std::function<void(::grpc::Status)>) override;
       void GetAccuracy(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetLinearAcceleration(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -218,6 +238,8 @@ class MovementSensorService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetAccuracyResponse>* AsyncGetAccuracyRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetAccuracyResponse>* PrepareAsyncGetAccuracyRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* AsyncGetLinearAccelerationRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* PrepareAsyncGetLinearAccelerationRaw(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetLinearVelocity_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAngularVelocity_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCompassHeading_;
@@ -225,6 +247,7 @@ class MovementSensorService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAccuracy_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetLinearAcceleration_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -239,6 +262,7 @@ class MovementSensorService final {
     virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::component::movementsensor::v1::GetPositionRequest* request, ::viam::component::movementsensor::v1::GetPositionResponse* response);
     virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::component::movementsensor::v1::GetPropertiesRequest* request, ::viam::component::movementsensor::v1::GetPropertiesResponse* response);
     virtual ::grpc::Status GetAccuracy(::grpc::ServerContext* context, const ::viam::component::movementsensor::v1::GetAccuracyRequest* request, ::viam::component::movementsensor::v1::GetAccuracyResponse* response);
+    virtual ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetLinearVelocity : public BaseClass {
@@ -380,7 +404,27 @@ class MovementSensorService final {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetLinearVelocity<WithAsyncMethod_GetAngularVelocity<WithAsyncMethod_GetCompassHeading<WithAsyncMethod_GetOrientation<WithAsyncMethod_GetPosition<WithAsyncMethod_GetProperties<WithAsyncMethod_GetAccuracy<Service > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetLinearAcceleration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetLinearAcceleration() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_GetLinearAcceleration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetLinearAcceleration(::grpc::ServerContext* context, ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetLinearVelocity<WithAsyncMethod_GetAngularVelocity<WithAsyncMethod_GetCompassHeading<WithAsyncMethod_GetOrientation<WithAsyncMethod_GetPosition<WithAsyncMethod_GetProperties<WithAsyncMethod_GetAccuracy<WithAsyncMethod_GetLinearAcceleration<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetLinearVelocity : public BaseClass {
    private:
@@ -570,7 +614,34 @@ class MovementSensorService final {
     virtual ::grpc::ServerUnaryReactor* GetAccuracy(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAccuracyRequest* /*request*/, ::viam::component::movementsensor::v1::GetAccuracyResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetLinearVelocity<WithCallbackMethod_GetAngularVelocity<WithCallbackMethod_GetCompassHeading<WithCallbackMethod_GetOrientation<WithCallbackMethod_GetPosition<WithCallbackMethod_GetProperties<WithCallbackMethod_GetAccuracy<Service > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetLinearAcceleration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetLinearAcceleration() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) { return this->GetLinearAcceleration(context, request, response); }));}
+    void SetMessageAllocatorFor_GetLinearAcceleration(
+        ::grpc::MessageAllocator< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetLinearAcceleration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetLinearAcceleration(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetLinearVelocity<WithCallbackMethod_GetAngularVelocity<WithCallbackMethod_GetCompassHeading<WithCallbackMethod_GetOrientation<WithCallbackMethod_GetPosition<WithCallbackMethod_GetProperties<WithCallbackMethod_GetAccuracy<WithCallbackMethod_GetLinearAcceleration<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetLinearVelocity : public BaseClass {
@@ -687,6 +758,23 @@ class MovementSensorService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetAccuracy(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetAccuracyRequest* /*request*/, ::viam::component::movementsensor::v1::GetAccuracyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetLinearAcceleration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetLinearAcceleration() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_GetLinearAcceleration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -829,6 +917,26 @@ class MovementSensorService final {
     }
     void RequestGetAccuracy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetLinearAcceleration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetLinearAcceleration() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_GetLinearAcceleration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetLinearAcceleration(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -983,6 +1091,28 @@ class MovementSensorService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetAccuracy(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetLinearAcceleration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetLinearAcceleration() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLinearAcceleration(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetLinearAcceleration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetLinearAcceleration(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1174,9 +1304,36 @@ class MovementSensorService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetAccuracy(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::movementsensor::v1::GetAccuracyRequest,::viam::component::movementsensor::v1::GetAccuracyResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetLinearVelocity<WithStreamedUnaryMethod_GetAngularVelocity<WithStreamedUnaryMethod_GetCompassHeading<WithStreamedUnaryMethod_GetOrientation<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetAccuracy<Service > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetLinearAcceleration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetLinearAcceleration() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::movementsensor::v1::GetLinearAccelerationRequest, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* streamer) {
+                       return this->StreamedGetLinearAcceleration(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetLinearAcceleration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetLinearAcceleration(::grpc::ServerContext* /*context*/, const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* /*request*/, ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetLinearAcceleration(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::movementsensor::v1::GetLinearAccelerationRequest,::viam::component::movementsensor::v1::GetLinearAccelerationResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetLinearVelocity<WithStreamedUnaryMethod_GetAngularVelocity<WithStreamedUnaryMethod_GetCompassHeading<WithStreamedUnaryMethod_GetOrientation<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetAccuracy<WithStreamedUnaryMethod_GetLinearAcceleration<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetLinearVelocity<WithStreamedUnaryMethod_GetAngularVelocity<WithStreamedUnaryMethod_GetCompassHeading<WithStreamedUnaryMethod_GetOrientation<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetAccuracy<Service > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetLinearVelocity<WithStreamedUnaryMethod_GetAngularVelocity<WithStreamedUnaryMethod_GetCompassHeading<WithStreamedUnaryMethod_GetOrientation<WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_GetAccuracy<WithStreamedUnaryMethod_GetLinearAcceleration<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

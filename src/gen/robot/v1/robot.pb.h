@@ -159,6 +159,12 @@ extern StreamStatusRequestDefaultTypeInternal _StreamStatusRequest_default_insta
 class StreamStatusResponse;
 struct StreamStatusResponseDefaultTypeInternal;
 extern StreamStatusResponseDefaultTypeInternal _StreamStatusResponse_default_instance_;
+class TransformPCDRequest;
+struct TransformPCDRequestDefaultTypeInternal;
+extern TransformPCDRequestDefaultTypeInternal _TransformPCDRequest_default_instance_;
+class TransformPCDResponse;
+struct TransformPCDResponseDefaultTypeInternal;
+extern TransformPCDResponseDefaultTypeInternal _TransformPCDResponse_default_instance_;
 class TransformPoseRequest;
 struct TransformPoseRequestDefaultTypeInternal;
 extern TransformPoseRequestDefaultTypeInternal _TransformPoseRequest_default_instance_;
@@ -204,6 +210,8 @@ template<> ::viam::robot::v1::StopAllResponse* Arena::CreateMaybeMessage<::viam:
 template<> ::viam::robot::v1::StopExtraParameters* Arena::CreateMaybeMessage<::viam::robot::v1::StopExtraParameters>(Arena*);
 template<> ::viam::robot::v1::StreamStatusRequest* Arena::CreateMaybeMessage<::viam::robot::v1::StreamStatusRequest>(Arena*);
 template<> ::viam::robot::v1::StreamStatusResponse* Arena::CreateMaybeMessage<::viam::robot::v1::StreamStatusResponse>(Arena*);
+template<> ::viam::robot::v1::TransformPCDRequest* Arena::CreateMaybeMessage<::viam::robot::v1::TransformPCDRequest>(Arena*);
+template<> ::viam::robot::v1::TransformPCDResponse* Arena::CreateMaybeMessage<::viam::robot::v1::TransformPCDResponse>(Arena*);
 template<> ::viam::robot::v1::TransformPoseRequest* Arena::CreateMaybeMessage<::viam::robot::v1::TransformPoseRequest>(Arena*);
 template<> ::viam::robot::v1::TransformPoseResponse* Arena::CreateMaybeMessage<::viam::robot::v1::TransformPoseResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -1080,6 +1088,344 @@ class TransformPoseResponse final :
 };
 // -------------------------------------------------------------------
 
+class TransformPCDRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.TransformPCDRequest) */ {
+ public:
+  inline TransformPCDRequest() : TransformPCDRequest(nullptr) {}
+  ~TransformPCDRequest() override;
+  explicit PROTOBUF_CONSTEXPR TransformPCDRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TransformPCDRequest(const TransformPCDRequest& from);
+  TransformPCDRequest(TransformPCDRequest&& from) noexcept
+    : TransformPCDRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TransformPCDRequest& operator=(const TransformPCDRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TransformPCDRequest& operator=(TransformPCDRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TransformPCDRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TransformPCDRequest* internal_default_instance() {
+    return reinterpret_cast<const TransformPCDRequest*>(
+               &_TransformPCDRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(TransformPCDRequest& a, TransformPCDRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TransformPCDRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TransformPCDRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TransformPCDRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TransformPCDRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TransformPCDRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const TransformPCDRequest& from) {
+    TransformPCDRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TransformPCDRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.TransformPCDRequest";
+  }
+  protected:
+  explicit TransformPCDRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPointCloudPcdFieldNumber = 1,
+    kSourceFieldNumber = 2,
+    kDestinationFieldNumber = 3,
+  };
+  // bytes point_cloud_pcd = 1 [json_name = "pointCloudPcd"];
+  void clear_point_cloud_pcd();
+  const std::string& point_cloud_pcd() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_point_cloud_pcd(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_point_cloud_pcd();
+  PROTOBUF_NODISCARD std::string* release_point_cloud_pcd();
+  void set_allocated_point_cloud_pcd(std::string* point_cloud_pcd);
+  private:
+  const std::string& _internal_point_cloud_pcd() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_point_cloud_pcd(const std::string& value);
+  std::string* _internal_mutable_point_cloud_pcd();
+  public:
+
+  // string source = 2 [json_name = "source"];
+  void clear_source();
+  const std::string& source() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_source(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_source();
+  PROTOBUF_NODISCARD std::string* release_source();
+  void set_allocated_source(std::string* source);
+  private:
+  const std::string& _internal_source() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(const std::string& value);
+  std::string* _internal_mutable_source();
+  public:
+
+  // string destination = 3 [json_name = "destination"];
+  void clear_destination();
+  const std::string& destination() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_destination(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_destination();
+  PROTOBUF_NODISCARD std::string* release_destination();
+  void set_allocated_destination(std::string* destination);
+  private:
+  const std::string& _internal_destination() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination(const std::string& value);
+  std::string* _internal_mutable_destination();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.TransformPCDRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr point_cloud_pcd_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr source_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr destination_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TransformPCDResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.TransformPCDResponse) */ {
+ public:
+  inline TransformPCDResponse() : TransformPCDResponse(nullptr) {}
+  ~TransformPCDResponse() override;
+  explicit PROTOBUF_CONSTEXPR TransformPCDResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TransformPCDResponse(const TransformPCDResponse& from);
+  TransformPCDResponse(TransformPCDResponse&& from) noexcept
+    : TransformPCDResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TransformPCDResponse& operator=(const TransformPCDResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TransformPCDResponse& operator=(TransformPCDResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TransformPCDResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TransformPCDResponse* internal_default_instance() {
+    return reinterpret_cast<const TransformPCDResponse*>(
+               &_TransformPCDResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(TransformPCDResponse& a, TransformPCDResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TransformPCDResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TransformPCDResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TransformPCDResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TransformPCDResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TransformPCDResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const TransformPCDResponse& from) {
+    TransformPCDResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TransformPCDResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.TransformPCDResponse";
+  }
+  protected:
+  explicit TransformPCDResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPointCloudPcdFieldNumber = 1,
+  };
+  // bytes point_cloud_pcd = 1 [json_name = "pointCloudPcd"];
+  void clear_point_cloud_pcd();
+  const std::string& point_cloud_pcd() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_point_cloud_pcd(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_point_cloud_pcd();
+  PROTOBUF_NODISCARD std::string* release_point_cloud_pcd();
+  void set_allocated_point_cloud_pcd(std::string* point_cloud_pcd);
+  private:
+  const std::string& _internal_point_cloud_pcd() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_point_cloud_pcd(const std::string& value);
+  std::string* _internal_mutable_point_cloud_pcd();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.TransformPCDResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr point_cloud_pcd_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class ResourceNamesRequest final :
     public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.ResourceNamesRequest) */ {
  public:
@@ -1127,7 +1473,7 @@ class ResourceNamesRequest final :
                &_ResourceNamesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(ResourceNamesRequest& a, ResourceNamesRequest& b) {
     a.Swap(&b);
@@ -1246,7 +1592,7 @@ class ResourceNamesResponse final :
                &_ResourceNamesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(ResourceNamesResponse& a, ResourceNamesResponse& b) {
     a.Swap(&b);
@@ -1403,7 +1749,7 @@ class ResourceRPCSubtype final :
                &_ResourceRPCSubtype_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(ResourceRPCSubtype& a, ResourceRPCSubtype& b) {
     a.Swap(&b);
@@ -1575,7 +1921,7 @@ class ResourceRPCSubtypesRequest final :
                &_ResourceRPCSubtypesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(ResourceRPCSubtypesRequest& a, ResourceRPCSubtypesRequest& b) {
     a.Swap(&b);
@@ -1694,7 +2040,7 @@ class ResourceRPCSubtypesResponse final :
                &_ResourceRPCSubtypesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(ResourceRPCSubtypesResponse& a, ResourceRPCSubtypesResponse& b) {
     a.Swap(&b);
@@ -1851,7 +2197,7 @@ class Operation final :
                &_Operation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(Operation& a, Operation& b) {
     a.Swap(&b);
@@ -2080,7 +2426,7 @@ class GetOperationsRequest final :
                &_GetOperationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(GetOperationsRequest& a, GetOperationsRequest& b) {
     a.Swap(&b);
@@ -2199,7 +2545,7 @@ class GetOperationsResponse final :
                &_GetOperationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(GetOperationsResponse& a, GetOperationsResponse& b) {
     a.Swap(&b);
@@ -2356,7 +2702,7 @@ class CancelOperationRequest final :
                &_CancelOperationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(CancelOperationRequest& a, CancelOperationRequest& b) {
     a.Swap(&b);
@@ -2508,7 +2854,7 @@ class CancelOperationResponse final :
                &_CancelOperationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(CancelOperationResponse& a, CancelOperationResponse& b) {
     a.Swap(&b);
@@ -2627,7 +2973,7 @@ class BlockForOperationRequest final :
                &_BlockForOperationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(BlockForOperationRequest& a, BlockForOperationRequest& b) {
     a.Swap(&b);
@@ -2779,7 +3125,7 @@ class BlockForOperationResponse final :
                &_BlockForOperationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(BlockForOperationResponse& a, BlockForOperationResponse& b) {
     a.Swap(&b);
@@ -2898,7 +3244,7 @@ class PeerConnectionInfo final :
                &_PeerConnectionInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(PeerConnectionInfo& a, PeerConnectionInfo& b) {
     a.Swap(&b);
@@ -3087,7 +3433,7 @@ class Session final :
                &_Session_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(Session& a, Session& b) {
     a.Swap(&b);
@@ -3260,7 +3606,7 @@ class GetSessionsRequest final :
                &_GetSessionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(GetSessionsRequest& a, GetSessionsRequest& b) {
     a.Swap(&b);
@@ -3379,7 +3725,7 @@ class GetSessionsResponse final :
                &_GetSessionsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(GetSessionsResponse& a, GetSessionsResponse& b) {
     a.Swap(&b);
@@ -3536,7 +3882,7 @@ class DiscoveryQuery final :
                &_DiscoveryQuery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(DiscoveryQuery& a, DiscoveryQuery& b) {
     a.Swap(&b);
@@ -3705,7 +4051,7 @@ class Discovery final :
                &_Discovery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(Discovery& a, Discovery& b) {
     a.Swap(&b);
@@ -3882,7 +4228,7 @@ class DiscoverComponentsRequest final :
                &_DiscoverComponentsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(DiscoverComponentsRequest& a, DiscoverComponentsRequest& b) {
     a.Swap(&b);
@@ -4039,7 +4385,7 @@ class DiscoverComponentsResponse final :
                &_DiscoverComponentsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(DiscoverComponentsResponse& a, DiscoverComponentsResponse& b) {
     a.Swap(&b);
@@ -4196,7 +4542,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    27;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -4373,7 +4719,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    28;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -4530,7 +4876,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    29;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -4687,7 +5033,7 @@ class StreamStatusRequest final :
                &_StreamStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    30;
 
   friend void swap(StreamStatusRequest& a, StreamStatusRequest& b) {
     a.Swap(&b);
@@ -4864,7 +5210,7 @@ class StreamStatusResponse final :
                &_StreamStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   friend void swap(StreamStatusResponse& a, StreamStatusResponse& b) {
     a.Swap(&b);
@@ -5021,7 +5367,7 @@ class StopExtraParameters final :
                &_StopExtraParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    32;
 
   friend void swap(StopExtraParameters& a, StopExtraParameters& b) {
     a.Swap(&b);
@@ -5198,7 +5544,7 @@ class StopAllRequest final :
                &_StopAllRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    33;
 
   friend void swap(StopAllRequest& a, StopAllRequest& b) {
     a.Swap(&b);
@@ -5354,7 +5700,7 @@ class StopAllResponse final :
                &_StopAllResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    34;
 
   friend void swap(StopAllResponse& a, StopAllResponse& b) {
     a.Swap(&b);
@@ -5473,7 +5819,7 @@ class StartSessionRequest final :
                &_StartSessionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    35;
 
   friend void swap(StartSessionRequest& a, StartSessionRequest& b) {
     a.Swap(&b);
@@ -5626,7 +5972,7 @@ class StartSessionResponse final :
                &_StartSessionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    36;
 
   friend void swap(StartSessionResponse& a, StartSessionResponse& b) {
     a.Swap(&b);
@@ -5799,7 +6145,7 @@ class SendSessionHeartbeatRequest final :
                &_SendSessionHeartbeatRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    37;
 
   friend void swap(SendSessionHeartbeatRequest& a, SendSessionHeartbeatRequest& b) {
     a.Swap(&b);
@@ -5951,7 +6297,7 @@ class SendSessionHeartbeatResponse final :
                &_SendSessionHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    38;
 
   friend void swap(SendSessionHeartbeatResponse& a, SendSessionHeartbeatResponse& b) {
     a.Swap(&b);
@@ -6549,6 +6895,214 @@ inline void TransformPoseResponse::set_allocated_pose(::viam::common::v1::PoseIn
   }
   _impl_.pose_ = pose;
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.TransformPoseResponse.pose)
+}
+
+// -------------------------------------------------------------------
+
+// TransformPCDRequest
+
+// bytes point_cloud_pcd = 1 [json_name = "pointCloudPcd"];
+inline void TransformPCDRequest::clear_point_cloud_pcd() {
+  _impl_.point_cloud_pcd_.ClearToEmpty();
+}
+inline const std::string& TransformPCDRequest::point_cloud_pcd() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.TransformPCDRequest.point_cloud_pcd)
+  return _internal_point_cloud_pcd();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TransformPCDRequest::set_point_cloud_pcd(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.point_cloud_pcd_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.TransformPCDRequest.point_cloud_pcd)
+}
+inline std::string* TransformPCDRequest::mutable_point_cloud_pcd() {
+  std::string* _s = _internal_mutable_point_cloud_pcd();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.TransformPCDRequest.point_cloud_pcd)
+  return _s;
+}
+inline const std::string& TransformPCDRequest::_internal_point_cloud_pcd() const {
+  return _impl_.point_cloud_pcd_.Get();
+}
+inline void TransformPCDRequest::_internal_set_point_cloud_pcd(const std::string& value) {
+  
+  _impl_.point_cloud_pcd_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TransformPCDRequest::_internal_mutable_point_cloud_pcd() {
+  
+  return _impl_.point_cloud_pcd_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TransformPCDRequest::release_point_cloud_pcd() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.TransformPCDRequest.point_cloud_pcd)
+  return _impl_.point_cloud_pcd_.Release();
+}
+inline void TransformPCDRequest::set_allocated_point_cloud_pcd(std::string* point_cloud_pcd) {
+  if (point_cloud_pcd != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.point_cloud_pcd_.SetAllocated(point_cloud_pcd, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.point_cloud_pcd_.IsDefault()) {
+    _impl_.point_cloud_pcd_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.TransformPCDRequest.point_cloud_pcd)
+}
+
+// string source = 2 [json_name = "source"];
+inline void TransformPCDRequest::clear_source() {
+  _impl_.source_.ClearToEmpty();
+}
+inline const std::string& TransformPCDRequest::source() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.TransformPCDRequest.source)
+  return _internal_source();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TransformPCDRequest::set_source(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.source_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.TransformPCDRequest.source)
+}
+inline std::string* TransformPCDRequest::mutable_source() {
+  std::string* _s = _internal_mutable_source();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.TransformPCDRequest.source)
+  return _s;
+}
+inline const std::string& TransformPCDRequest::_internal_source() const {
+  return _impl_.source_.Get();
+}
+inline void TransformPCDRequest::_internal_set_source(const std::string& value) {
+  
+  _impl_.source_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TransformPCDRequest::_internal_mutable_source() {
+  
+  return _impl_.source_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TransformPCDRequest::release_source() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.TransformPCDRequest.source)
+  return _impl_.source_.Release();
+}
+inline void TransformPCDRequest::set_allocated_source(std::string* source) {
+  if (source != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.source_.SetAllocated(source, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.source_.IsDefault()) {
+    _impl_.source_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.TransformPCDRequest.source)
+}
+
+// string destination = 3 [json_name = "destination"];
+inline void TransformPCDRequest::clear_destination() {
+  _impl_.destination_.ClearToEmpty();
+}
+inline const std::string& TransformPCDRequest::destination() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.TransformPCDRequest.destination)
+  return _internal_destination();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TransformPCDRequest::set_destination(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.destination_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.TransformPCDRequest.destination)
+}
+inline std::string* TransformPCDRequest::mutable_destination() {
+  std::string* _s = _internal_mutable_destination();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.TransformPCDRequest.destination)
+  return _s;
+}
+inline const std::string& TransformPCDRequest::_internal_destination() const {
+  return _impl_.destination_.Get();
+}
+inline void TransformPCDRequest::_internal_set_destination(const std::string& value) {
+  
+  _impl_.destination_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TransformPCDRequest::_internal_mutable_destination() {
+  
+  return _impl_.destination_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TransformPCDRequest::release_destination() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.TransformPCDRequest.destination)
+  return _impl_.destination_.Release();
+}
+inline void TransformPCDRequest::set_allocated_destination(std::string* destination) {
+  if (destination != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.destination_.SetAllocated(destination, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.destination_.IsDefault()) {
+    _impl_.destination_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.TransformPCDRequest.destination)
+}
+
+// -------------------------------------------------------------------
+
+// TransformPCDResponse
+
+// bytes point_cloud_pcd = 1 [json_name = "pointCloudPcd"];
+inline void TransformPCDResponse::clear_point_cloud_pcd() {
+  _impl_.point_cloud_pcd_.ClearToEmpty();
+}
+inline const std::string& TransformPCDResponse::point_cloud_pcd() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.TransformPCDResponse.point_cloud_pcd)
+  return _internal_point_cloud_pcd();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TransformPCDResponse::set_point_cloud_pcd(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.point_cloud_pcd_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.TransformPCDResponse.point_cloud_pcd)
+}
+inline std::string* TransformPCDResponse::mutable_point_cloud_pcd() {
+  std::string* _s = _internal_mutable_point_cloud_pcd();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.TransformPCDResponse.point_cloud_pcd)
+  return _s;
+}
+inline const std::string& TransformPCDResponse::_internal_point_cloud_pcd() const {
+  return _impl_.point_cloud_pcd_.Get();
+}
+inline void TransformPCDResponse::_internal_set_point_cloud_pcd(const std::string& value) {
+  
+  _impl_.point_cloud_pcd_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TransformPCDResponse::_internal_mutable_point_cloud_pcd() {
+  
+  return _impl_.point_cloud_pcd_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TransformPCDResponse::release_point_cloud_pcd() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.TransformPCDResponse.point_cloud_pcd)
+  return _impl_.point_cloud_pcd_.Release();
+}
+inline void TransformPCDResponse::set_allocated_point_cloud_pcd(std::string* point_cloud_pcd) {
+  if (point_cloud_pcd != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.point_cloud_pcd_.SetAllocated(point_cloud_pcd, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.point_cloud_pcd_.IsDefault()) {
+    _impl_.point_cloud_pcd_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.TransformPCDResponse.point_cloud_pcd)
 }
 
 // -------------------------------------------------------------------
@@ -8917,6 +9471,10 @@ inline void SendSessionHeartbeatRequest::set_allocated_id(std::string* id) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
