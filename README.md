@@ -108,9 +108,9 @@ The rust webRTC implementation (which C++ relies on via rust's foreign function 
 Common problems and how to solve them
 
 <details>
-<summary>'google/protobuf/port_def.inf' file not found</summary>
+<summary>'google/protobuf/port_def.inc' file not found</summary>
 
-You need to add `protobuf` do your `CPLUS_INCLUDE_PATH` (e.g. `export CPLUS_INCLUDE_PATH="/opt/homebrew/Cellar/protobuf/21.11/include/:$CPLUS_INCLUDE_PATH"`)
+You need to add `protobuf` to your `CPLUS_INCLUDE_PATH` (e.g. `export CPLUS_INCLUDE_PATH="/opt/homebrew/Cellar/protobuf/21.11/include/:$CPLUS_INCLUDE_PATH"`)
 </details>
 
 ## License 
