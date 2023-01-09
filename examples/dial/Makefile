@@ -1,7 +1,7 @@
 ## TODO(RSDK-803): stop relying on a relative path here
-LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++ re2 libcares`\
--ldl -L../../../rust-utils/target/debug -lviam_rust_utils \
--ldl -L/usr/local/boost_1_80_0/stage/lib/ -lboost_log  
+LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++ re2 libcares` \
+-ldl -lviam_rust_utils \
+-ldl -lboost_log
 
 GEN = ../../src/gen
 CXX = g++

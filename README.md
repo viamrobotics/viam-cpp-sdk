@@ -14,6 +14,27 @@
 First you may want to build the SDK library, to do so navigate to the root of the repository and run `make build` this should pull all the dependencies and hopefully build the library!
 Lastly you can run one of the examples by navigation to the examples/{dial|echo} folder and run `make example_{dial|echo} && ./example_{dial|echo}`
 
+### Setup with Docker
+1. Create a new docker image from the provided docker file. From the root directory of this project (where this README is located), run `docker build -t cpp .` 
+1. Run the new image in a container that has your local project directory mounted to the filesystem. This will ensure that you can continue to develop locally on your machine, and all files will be automatically synced into the docker environment. To create the environment and open a shell to it, run the command `docker run --rm -it -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash`
+1. Start developing! You can develop as you normally would, using the files on your local filesystem. When it comes time to testing/building/running the program, do so inside the docker environment you opened in the previous step. 
+
+### Setup without Docker
+> **Note**
+> These instructions are for macOS on Apple Silicon machines. They are not guaranteed to work. Linking brew libraries is very finicky, particularly Boost. You may have to install some packages from source.
+
+You will need a few things installed/upgraded to the latest version, which may break compatibility with RDK
+1. Boost `brew install boost`
+1. grpc `brew install grpc`
+1. protobuf `brew {install|upgrade} protobuf` **<< This might break RDK compatibility**
+
+You will then need to add some environment variables. **Take note of the version numbers ane make any necessary changes**
+```
+export CPLUS_INCLUDE_PATH="/opt/homebrew/Cellar/protobuf/21.11/include/:/opt/homebrew/Cellar/boost/1.80.0/lib/:/opt/homebrew/Cellar/boost/1.80.0/include/:$CPLUS_INCLUDE_PATH"
+
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig:/opt/homebrew/opt/re2/lib/pkgconfig:/opt/homebrew/opt/c-ares/lib/pkgconfig:$PKG_CONFIG_PATH"
+```
+
 ### Acquiring the Rust-Utils Binary
 In order to connect over webRTC, you will need the [rust-utils](https://github.com/viamrobotics/rust-utils) binary. Detailed install instructions to come.
 
@@ -82,6 +103,15 @@ Note also that this will attempt to connect over webRTC by default. To override 
 ## A Note on Connectivity and webRTC Functionality
 
 The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to `ShellService::shell()` have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.
+
+## Troubleshooting
+Common problems and how to solve them
+
+<details>
+<summary>'google/protobuf/port_def.inc' file not found</summary>
+
+You need to add `protobuf` to your `CPLUS_INCLUDE_PATH` (e.g. `export CPLUS_INCLUDE_PATH="/opt/homebrew/Cellar/protobuf/21.11/include/:$CPLUS_INCLUDE_PATH"`)
+</details>
 
 ## License 
 Copyright 2022 Viam Inc.

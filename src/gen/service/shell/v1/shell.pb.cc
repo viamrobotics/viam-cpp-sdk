@@ -25,10 +25,11 @@ namespace service {
 namespace shell {
 namespace v1 {
 PROTOBUF_CONSTEXPR ShellRequest::ShellRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , data_in_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.data_in_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ShellRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ShellRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,10 +40,11 @@ struct ShellRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ShellRequestDefaultTypeInternal _ShellRequest_default_instance_;
 PROTOBUF_CONSTEXPR ShellResponse::ShellResponse(
-    ::_pbi::ConstantInitialized)
-  : data_out_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , data_err_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , eof_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_out_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.data_err_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.eof_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ShellResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ShellResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -67,18 +69,18 @@ const uint32_t TableStruct_service_2fshell_2fv1_2fshell_2eproto::offsets[] PROTO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellRequest, data_in_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellRequest, _impl_.data_in_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, data_out_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, data_err_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, eof_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, _impl_.data_out_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, _impl_.data_err_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::shell::v1::ShellResponse, _impl_.eof_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::shell::v1::ShellRequest)},
@@ -136,57 +138,70 @@ class ShellRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 ShellRequest::_Internal::extra(const ShellRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void ShellRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 ShellRequest::ShellRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.shell.v1.ShellRequest)
 }
 ShellRequest::ShellRequest(const ShellRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ShellRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.data_in_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  data_in_.InitDefault();
+  _impl_.data_in_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_in_.Set("", GetArenaForAllocation());
+    _impl_.data_in_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data_in().empty()) {
-    data_in_.Set(from._internal_data_in(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_in_.Set(from._internal_data_in(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.shell.v1.ShellRequest)
 }
 
-inline void ShellRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-data_in_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_in_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void ShellRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.data_in_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.data_in_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_in_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ShellRequest::~ShellRequest() {
@@ -200,13 +215,13 @@ ShellRequest::~ShellRequest() {
 
 inline void ShellRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  data_in_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.data_in_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void ShellRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ShellRequest::Clear() {
@@ -215,12 +230,12 @@ void ShellRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  data_in_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.data_in_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -348,41 +363,38 @@ size_t ShellRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ShellRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ShellRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ShellRequest::GetClassData() const { return &_class_data_; }
 
-void ShellRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ShellRequest *>(to)->MergeFrom(
-      static_cast<const ShellRequest &>(from));
-}
 
-
-void ShellRequest::MergeFrom(const ShellRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.shell.v1.ShellRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void ShellRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ShellRequest*>(&to_msg);
+  auto& from = static_cast<const ShellRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.shell.v1.ShellRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_data_in().empty()) {
-    _internal_set_data_in(from._internal_data_in());
+    _this->_internal_set_data_in(from._internal_data_in());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ShellRequest::CopyFrom(const ShellRequest& from) {
@@ -402,14 +414,14 @@ void ShellRequest::InternalSwap(ShellRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_in_, lhs_arena,
-      &other->data_in_, rhs_arena
+      &_impl_.data_in_, lhs_arena,
+      &other->_impl_.data_in_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ShellRequest::GetMetadata() const {
@@ -427,42 +439,57 @@ class ShellResponse::_Internal {
 ShellResponse::ShellResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.shell.v1.ShellResponse)
 }
 ShellResponse::ShellResponse(const ShellResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ShellResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_out_){}
+    , decltype(_impl_.data_err_){}
+    , decltype(_impl_.eof_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  data_out_.InitDefault();
+  _impl_.data_out_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_out_.Set("", GetArenaForAllocation());
+    _impl_.data_out_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data_out().empty()) {
-    data_out_.Set(from._internal_data_out(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_out_.Set(from._internal_data_out(), 
+      _this->GetArenaForAllocation());
   }
-  data_err_.InitDefault();
+  _impl_.data_err_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_err_.Set("", GetArenaForAllocation());
+    _impl_.data_err_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data_err().empty()) {
-    data_err_.Set(from._internal_data_err(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_err_.Set(from._internal_data_err(), 
+      _this->GetArenaForAllocation());
   }
-  eof_ = from.eof_;
+  _this->_impl_.eof_ = from._impl_.eof_;
   // @@protoc_insertion_point(copy_constructor:viam.service.shell.v1.ShellResponse)
 }
 
-inline void ShellResponse::SharedCtor() {
-data_out_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_out_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-data_err_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_err_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-eof_ = false;
+inline void ShellResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_out_){}
+    , decltype(_impl_.data_err_){}
+    , decltype(_impl_.eof_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.data_out_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_out_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.data_err_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_err_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ShellResponse::~ShellResponse() {
@@ -476,12 +503,12 @@ ShellResponse::~ShellResponse() {
 
 inline void ShellResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  data_out_.Destroy();
-  data_err_.Destroy();
+  _impl_.data_out_.Destroy();
+  _impl_.data_err_.Destroy();
 }
 
 void ShellResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ShellResponse::Clear() {
@@ -490,9 +517,9 @@ void ShellResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_out_.ClearToEmpty();
-  data_err_.ClearToEmpty();
-  eof_ = false;
+  _impl_.data_out_.ClearToEmpty();
+  _impl_.data_err_.ClearToEmpty();
+  _impl_.eof_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -525,7 +552,7 @@ const char* ShellResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // bool eof = 3 [json_name = "eof"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          eof_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.eof_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -620,38 +647,34 @@ size_t ShellResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ShellResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ShellResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ShellResponse::GetClassData() const { return &_class_data_; }
 
-void ShellResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ShellResponse *>(to)->MergeFrom(
-      static_cast<const ShellResponse &>(from));
-}
 
-
-void ShellResponse::MergeFrom(const ShellResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.shell.v1.ShellResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ShellResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ShellResponse*>(&to_msg);
+  auto& from = static_cast<const ShellResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.shell.v1.ShellResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data_out().empty()) {
-    _internal_set_data_out(from._internal_data_out());
+    _this->_internal_set_data_out(from._internal_data_out());
   }
   if (!from._internal_data_err().empty()) {
-    _internal_set_data_err(from._internal_data_err());
+    _this->_internal_set_data_err(from._internal_data_err());
   }
   if (from._internal_eof() != 0) {
-    _internal_set_eof(from._internal_eof());
+    _this->_internal_set_eof(from._internal_eof());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ShellResponse::CopyFrom(const ShellResponse& from) {
@@ -671,14 +694,14 @@ void ShellResponse::InternalSwap(ShellResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_out_, lhs_arena,
-      &other->data_out_, rhs_arena
+      &_impl_.data_out_, lhs_arena,
+      &other->_impl_.data_out_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_err_, lhs_arena,
-      &other->data_err_, rhs_arena
+      &_impl_.data_err_, lhs_arena,
+      &other->_impl_.data_err_, rhs_arena
   );
-  swap(eof_, other->eof_);
+  swap(_impl_.eof_, other->_impl_.eof_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ShellResponse::GetMetadata() const {

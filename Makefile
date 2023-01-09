@@ -8,10 +8,14 @@ CXXFLAGS += -std=c++11 -I src/gen/ -I src/gen/proto/
 
 all: buf 
 
-buf:	buf-clean
+buf: buf-clean
 	@mkdir -p src/gen
 	buf generate buf.build/viamrobotics/goutils --template buf.gen.yaml
 	buf generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api 
-	buf generate buf.build/viamrobotics/api --template buf.gen.yaml
+	buf generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module
+
 buf-clean:
 	rm -rf src/gen/*
+
+clean:
+	find ./src -name '*.o' | xargs rm -rf
