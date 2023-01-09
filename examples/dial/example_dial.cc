@@ -54,9 +54,9 @@ class RobotServiceClient {
 };
 
 int main() {
-	const char *uri = "naveed-pi-main.60758fe0f6.viam.cloud";
+	const char *uri = "<your robot uri here>";
 	DialOptions dial_options = DialOptions();
-	std::string payload = "pem1epjv07fq2cz2z5723gq6ntuyhue5t30boohkiz3iqht4";
+	std::string payload = "<your robot credentials here>";
 	Credentials credentials(payload);
 	dial_options.credentials = credentials;
 	boost::optional<DialOptions> opts(dial_options);
