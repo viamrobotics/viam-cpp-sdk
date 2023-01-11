@@ -60,10 +60,11 @@ class RobotClient {
 	    std::vector<Transform> additional_transforms =
 		std::vector<Transform>());
 
-	void stop_all(std::unordered_map<
-		      ResourceName, std::unordered_map<std::string, ProtoType>,
-		      ResourceNameHasher, ResourceNameEqual>
-			  extra);
+	void stop_all(
+	    std::unordered_map<ResourceName,
+			       std::unordered_map<std::string, ProtoType *>,
+			       ResourceNameHasher, ResourceNameEqual>
+		extra);
 
 	void stop_all();
 	void cancel_operation(std::string id);
@@ -384,21 +385,19 @@ ComponentBase RobotClient::get_component(ResourceName name) {
 
 void RobotClient::stop_all() {
 	std::unordered_map<ResourceName,
-			   std::unordered_map<std::string, ProtoType>,
+			   std::unordered_map<std::string, ProtoType *>,
 			   ResourceNameHasher, ResourceNameEqual>
 	    map;
 	for (ResourceName name : *resource_names()) {
-		std::unordered_map<std::string, ProtoType> val;
-		std::pair<ResourceName,
-			  std::unordered_map<std::string, ProtoType>>
-		    pair(name, val);
-		map.insert(pair);
+		std::unordered_map<std::string, ProtoType *> val;
+		map.emplace(name, val);
 	}
 	stop_all(map);
 }
 
 void RobotClient::stop_all(
-    std::unordered_map<ResourceName, std::unordered_map<std::string, ProtoType>,
+    std::unordered_map<ResourceName,
+		       std::unordered_map<std::string, ProtoType *>,
 		       ResourceNameHasher, ResourceNameEqual>
 	extra) {
 	viam::robot::v1::StopAllRequest req;
@@ -409,7 +408,8 @@ void RobotClient::stop_all(
 	    req.mutable_extra();
 	for (auto xtra : extra) {
 		ResourceName name = xtra.first;
-		std::unordered_map<std::string, ProtoType> params = xtra.second;
+		std::unordered_map<std::string, ProtoType *> params =
+		    xtra.second;
 		google::protobuf::Struct s = map_to_struct(params);
 		viam::robot::v1::StopExtraParameters stop;
 		*stop.mutable_name() = name;
