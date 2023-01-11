@@ -1,18 +1,17 @@
+#include <common/utils.h>
+#include <common/v1/common.pb.h>
+#include <components/component_base.h>
+#include <components/service_base.h>
 #include <google/protobuf/struct.pb.h>
+#include <grpcpp/server_context.h>
 #include <grpcpp/support/status.h>
+#include <robot/client.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
 
 #include <string>
 #include <thread>
 #include <unordered_map>
-
-#include "../common/utils.h"
-#include "../components/component_base.h"
-#include "../components/service_base.h"
-#include "../robot/client.h"
-#include "common/v1/common.pb.h"
-#include "grpcpp/server_context.h"
-#include "robot/v1/robot.grpc.pb.h"
-#include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
@@ -192,10 +191,7 @@ void RobotService_::stream_status(
 		std::unordered_map<std::string, ProtoType> value_map =
 		    struct_to_map(struct_);
 		std::string name = ex.name().SerializeAsString();
-		std::pair<std::string,
-			  std::unordered_map<std::string, ProtoType>>
-		    pair_(name, value_map);
-		extra.insert(pair_);
+		extra.emplace(name, value_map);
 
 		for (auto comp : manager.components) {
 			ComponentBase component = comp.second;

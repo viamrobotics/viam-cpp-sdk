@@ -1,9 +1,9 @@
+#include <components/component_base.h>
+
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <vector>
-
-#include "component_base.h"
 
 class ResourceManager {
        public:

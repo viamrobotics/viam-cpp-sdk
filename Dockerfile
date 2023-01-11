@@ -82,3 +82,4 @@ RUN curl -sL -o /usr/local/lib/libviam_rust_utils.so \
 
 ENV PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig/
 ENV CPLUS_INCLUDE_PATH=$HOME/.local/lib/:$HOME/.local/include/
+

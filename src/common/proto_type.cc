@@ -1,10 +1,10 @@
+#include <google/protobuf/struct.pb.h>
+
 #include <boost/blank.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
 #include <unordered_map>
 #include <vector>
-
-#include "google/protobuf/struct.pb.h"
 
 using google::protobuf::Struct;
 using google::protobuf::Value;
@@ -55,7 +55,7 @@ ProtoType::ProtoType(Value value) {
 				ProtoType p = ProtoType(val);
 				vec.push_back(&p);
 			}
-			proto_type = &vec;
+			proto_type = vec;
 			break;
 		}
 		case Value::KindCase::kStructValue: {
@@ -90,8 +90,7 @@ std::unordered_map<std::string, ProtoType*> struct_to_map(Struct struct_) {
 	for (auto val : struct_.fields()) {
 		std::string key = val.first;
 		ProtoType value(val.second);
-		std::pair<std::string, ProtoType*> pair(key, &value);
-		map.insert(pair);
+		map.emplace(key, &value);
 	}
 
 	return map;
