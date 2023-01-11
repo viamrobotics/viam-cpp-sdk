@@ -1,14 +1,13 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
 
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
 #include <istream>
 #include <string>
-
-#include "../../src/gen/robot/v1/robot.grpc.pb.h"
-#include "../../src/gen/robot/v1/robot.pb.h"
 
 class Credentials {
    public:

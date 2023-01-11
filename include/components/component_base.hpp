@@ -1,13 +1,12 @@
 #ifndef COMPONENT_BASE_H
 #define COMPONENT_BASE_H
 
+#include <common/proto_type.h>
+#include <common/v1/common.pb.h>
+#include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
 
 #include <string>
-
-#include "../common/proto_type.hpp"
-#include "common/v1/common.pb.h"
-#include "google/protobuf/struct.pb.h"
 
 class ComponentType {
    public:

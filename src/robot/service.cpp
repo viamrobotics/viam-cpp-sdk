@@ -1,18 +1,17 @@
+#include <common/utils.h>
+#include <common/v1/common.pb.h>
+#include <components/component_base.h>
+#include <components/service_base.h>
 #include <google/protobuf/struct.pb.h>
+#include <grpcpp/server_context.h>
 #include <grpcpp/support/status.h>
+#include <robot/client.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
 
 #include <string>
 #include <thread>
 #include <unordered_map>
-
-#include "../common/utils.hpp"
-#include "../components/component_base.hpp"
-#include "../components/service_base.hpp"
-#include "../robot/client.hpp"
-#include "common/v1/common.pb.h"
-#include "grpcpp/server_context.h"
-#include "robot/v1/robot.grpc.pb.h"
-#include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
@@ -156,18 +155,21 @@ void RobotService_::stream_status(
     return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::StopAll(::grpc::ServerContext* context,
-                                      const ::viam::robot::v1::StopAllRequest* request,
-                                      ::viam::robot::v1::StopAllResponse* response) {
-    ResourceName r;
-    std::unordered_map<std::string, std::unordered_map<std::string, ProtoType>> extra;
-    grpc::StatusCode status = grpc::StatusCode::OK;
-    for (auto ex : request->extra()) {
-        google::protobuf::Struct struct_ = ex.params();
-        std::unordered_map<std::string, ProtoType*> value_map = struct_to_map(struct_);
-        std::string name = ex.name().SerializeAsString();
-        std::pair<std::string, std::unordered_map<std::string, ProtoType*>> pair_(name, value_map);
-        extra.emplace(pair_);
+::grpc::Status RobotService_::StopAll(
+    ::grpc::ServerContext* context,
+    const ::viam::robot::v1::StopAllRequest* request,
+    ::viam::robot::v1::StopAllResponse* response) {
+	ResourceName r;
+	std::unordered_map<std::string,
+			   std::unordered_map<std::string, ProtoType>>
+	    extra;
+	grpc::StatusCode status = grpc::StatusCode::OK;
+	for (auto ex : request->extra()) {
+		google::protobuf::Struct struct_ = ex.params();
+		std::unordered_map<std::string, ProtoType> value_map =
+		    struct_to_map(struct_);
+		std::string name = ex.name().SerializeAsString();
+		extra.emplace(name, value_map);
 
         for (auto comp : manager.components) {
             ComponentBase component = comp.second;

@@ -1,16 +1,15 @@
 #ifndef ROBOTCLIENT_H
 #define ROBOTCLIENT_H
 
+#include <common/utils.h>
+#include <components/resource_manager.h>
+#include <grpcpp/channel.h>
+#include <registry/registry.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
+#include <rpc/dial.h>
 
 #include <string>
-
-#include "../common/utils.hpp"
-#include "../components/resource_manager.hpp"
-#include "../registry/registry.hpp"
-#include "../rpc/dial.hpp"
-#include "grpcpp/channel.h"
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;

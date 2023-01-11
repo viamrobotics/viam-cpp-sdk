@@ -1,11 +1,11 @@
+#include <components/component_base.h>
+#include <components/service_base.h>
+#include <google/protobuf/struct.pb.h>
+#include <grpcpp/channel.h>
+#include <robot/v1/robot.pb.h>
+
 #include <string>
 #include <unordered_map>
-
-#include "../components/component_base.hpp"
-#include "../components/service_base.hpp"
-#include "google/protobuf/struct.pb.h"
-#include "grpcpp/channel.h"
-#include "robot/v1/robot.pb.h"
 using viam::robot::v1::Status;
 
 class ComponentRegistration {
@@ -45,9 +45,7 @@ void Registry::register_component(ComponentRegistration component) {
         throw std::runtime_error(err);
     }
 
-    std::pair<std::string, ComponentRegistration> pair_(component.name, component);
-    components.insert(pair_);
-    // components[component.name] = component;
+	components.emplace(component.name, component);
 }
 
 ComponentRegistration Registry::lookup(std::string name) {

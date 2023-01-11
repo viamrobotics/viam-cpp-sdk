@@ -1,14 +1,14 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <common/proto_type.h>
+#include <common/v1/common.pb.h>
+#include <components/component_base.h>
+
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
 #include <unordered_map>
-
-#include "../components/component_base.hpp"
-#include "common/v1/common.pb.h"
-#include "proto_type.hpp"
 
 using viam::common::v1::ResourceName;
 

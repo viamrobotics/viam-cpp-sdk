@@ -1,13 +1,12 @@
 #include <grpcpp/grpcpp.h>
+#include <proto/rpc/examples/echo/v1/echo.grpc.pb.h>
+#include <proto/rpc/examples/echo/v1/echo.pb.h>
 #include <unistd.h>
 
 #include <cstddef>
 #include <iostream>
 #include <ostream>
 #include <string>
-
-#include "proto/rpc/examples/echo/v1/echo.grpc.pb.h"
-#include "proto/rpc/examples/echo/v1/echo.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;

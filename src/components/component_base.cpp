@@ -1,10 +1,9 @@
+#include <common/proto_type.h>
+#include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
 
 #include <string>
-
-#include "../common/proto_type.hpp"
-#include "common/v1/common.pb.h"
 using viam::common::v1::ResourceName;
 class ComponentType {
    public:

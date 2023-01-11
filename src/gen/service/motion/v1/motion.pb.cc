@@ -108,11 +108,36 @@ struct GetPoseResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPoseResponseDefaultTypeInternal _GetPoseResponse_default_instance_;
+PROTOBUF_CONSTEXPR ExportPointCloudRequest::ExportPointCloudRequest(
+    ::_pbi::ConstantInitialized)
+  : world_state_(nullptr)
+  , extra_(nullptr){}
+struct ExportPointCloudRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ExportPointCloudRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ExportPointCloudRequestDefaultTypeInternal() {}
+  union {
+    ExportPointCloudRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExportPointCloudRequestDefaultTypeInternal _ExportPointCloudRequest_default_instance_;
+PROTOBUF_CONSTEXPR ExportPointCloudResponse::ExportPointCloudResponse(
+    ::_pbi::ConstantInitialized)
+  : world_state_pcd_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct ExportPointCloudResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ExportPointCloudResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ExportPointCloudResponseDefaultTypeInternal() {}
+  union {
+    ExportPointCloudResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExportPointCloudResponseDefaultTypeInternal _ExportPointCloudResponse_default_instance_;
 }  // namespace v1
 }  // namespace motion
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[6];
+static ::_pb::Metadata file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[8];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_service_2fmotion_2fv1_2fmotion_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fmotion_2fv1_2fmotion_2eproto = nullptr;
 
@@ -181,6 +206,23 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseResponse, pose_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ExportPointCloudRequest, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ExportPointCloudRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ExportPointCloudRequest, world_state_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ExportPointCloudRequest, extra_),
+  0,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ExportPointCloudResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ExportPointCloudResponse, world_state_pcd_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 11, -1, sizeof(::viam::service::motion::v1::MoveRequest)},
@@ -189,6 +231,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 39, -1, -1, sizeof(::viam::service::motion::v1::MoveSingleComponentResponse)},
   { 46, -1, -1, sizeof(::viam::service::motion::v1::GetPoseRequest)},
   { 57, -1, -1, sizeof(::viam::service::motion::v1::GetPoseResponse)},
+  { 64, 72, -1, sizeof(::viam::service::motion::v1::ExportPointCloudRequest)},
+  { 74, -1, -1, sizeof(::viam::service::motion::v1::ExportPointCloudResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -198,6 +242,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::motion::v1::_MoveSingleComponentResponse_default_instance_._instance,
   &::viam::service::motion::v1::_GetPoseRequest_default_instance_._instance,
   &::viam::service::motion::v1::_GetPoseResponse_default_instance_._instance,
+  &::viam::service::motion::v1::_ExportPointCloudRequest_default_instance_._instance,
+  &::viam::service::motion::v1::_ExportPointCloudResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -231,21 +277,31 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "forms\022-\n\005extra\030c \001(\0132\027.google.protobuf.S"
   "tructR\005extra\"B\n\017GetPoseResponse\022/\n\004pose\030"
   "\001 \001(\0132\033.viam.common.v1.PoseInFrameR\004pose"
-  "2\345\003\n\rMotionService\022\202\001\n\004Move\022#.viam.servi"
-  "ce.motion.v1.MoveRequest\032$.viam.service."
-  "motion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/viam/ap"
-  "i/v1/service/motion/{name}/move\022\300\001\n\023Move"
-  "SingleComponent\0222.viam.service.motion.v1"
-  ".MoveSingleComponentRequest\0323.viam.servi"
-  "ce.motion.v1.MoveSingleComponentResponse"
-  "\"@\202\323\344\223\002:\"8/viam/api/v1/service/motion/{n"
-  "ame}/move_single_component\022\213\001\n\007GetPose\022&"
-  ".viam.service.motion.v1.GetPoseRequest\032\'"
-  ".viam.service.motion.v1.GetPoseResponse\""
-  "/\202\323\344\223\002)\022\'/viam/api/v1/service/motion/{na"
-  "me}/poseB\?\n\032com.viam.service.motion.v1Z!"
-  "go.viam.com/api/service/motion/v1b\006proto"
-  "3"
+  "\"\232\001\n\027ExportPointCloudRequest\022@\n\013world_st"
+  "ate\030\001 \001(\0132\032.viam.common.v1.WorldStateH\000R"
+  "\nworldState\210\001\001\022-\n\005extra\030c \001(\0132\027.google.p"
+  "rotobuf.StructR\005extraB\016\n\014_world_state\"B\n"
+  "\030ExportPointCloudResponse\022&\n\017world_state"
+  "_pcd\030\001 \001(\014R\rworldStatePcd2\225\005\n\rMotionServ"
+  "ice\022\202\001\n\004Move\022#.viam.service.motion.v1.Mo"
+  "veRequest\032$.viam.service.motion.v1.MoveR"
+  "esponse\"/\202\323\344\223\002)\"\'/viam/api/v1/service/mo"
+  "tion/{name}/move\022\300\001\n\023MoveSingleComponent"
+  "\0222.viam.service.motion.v1.MoveSingleComp"
+  "onentRequest\0323.viam.service.motion.v1.Mo"
+  "veSingleComponentResponse\"@\202\323\344\223\002:\"8/viam"
+  "/api/v1/service/motion/{name}/move_singl"
+  "e_component\022\213\001\n\007GetPose\022&.viam.service.m"
+  "otion.v1.GetPoseRequest\032\'.viam.service.m"
+  "otion.v1.GetPoseResponse\"/\202\323\344\223\002)\022\'/viam/"
+  "api/v1/service/motion/{name}/pose\022\255\001\n\020Ex"
+  "portPointCloud\022/.viam.service.motion.v1."
+  "ExportPointCloudRequest\0320.viam.service.m"
+  "otion.v1.ExportPointCloudResponse\"6\202\323\344\223\002"
+  "0\022./viam/api/v1/service/motion/export_po"
+  "int_cloudB\?\n\032com.viam.service.motion.v1Z"
+  "!go.viam.com/api/service/motion/v1b\006prot"
+  "o3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -254,9 +310,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto = {
-    false, false, 1761, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
+    false, false, 2162, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
     "service/motion/v1/motion.proto",
-    &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 3, 6,
+    &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 3, 8,
     schemas, file_default_instances, TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets,
     file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto, file_level_enum_descriptors_service_2fmotion_2fv1_2fmotion_2eproto,
     file_level_service_descriptors_service_2fmotion_2fv1_2fmotion_2eproto,
@@ -1984,6 +2040,452 @@ void GetPoseResponse::InternalSwap(GetPoseResponse* other) {
       file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[5]);
 }
 
+// ===================================================================
+
+class ExportPointCloudRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ExportPointCloudRequest>()._has_bits_);
+  static const ::viam::common::v1::WorldState& world_state(const ExportPointCloudRequest* msg);
+  static void set_has_world_state(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const ExportPointCloudRequest* msg);
+};
+
+const ::viam::common::v1::WorldState&
+ExportPointCloudRequest::_Internal::world_state(const ExportPointCloudRequest* msg) {
+  return *msg->world_state_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+ExportPointCloudRequest::_Internal::extra(const ExportPointCloudRequest* msg) {
+  return *msg->extra_;
+}
+void ExportPointCloudRequest::clear_world_state() {
+  if (world_state_ != nullptr) world_state_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+void ExportPointCloudRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+ExportPointCloudRequest::ExportPointCloudRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.ExportPointCloudRequest)
+}
+ExportPointCloudRequest::ExportPointCloudRequest(const ExportPointCloudRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_world_state()) {
+    world_state_ = new ::viam::common::v1::WorldState(*from.world_state_);
+  } else {
+    world_state_ = nullptr;
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.ExportPointCloudRequest)
+}
+
+inline void ExportPointCloudRequest::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&world_state_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
+    reinterpret_cast<char*>(&world_state_)) + sizeof(extra_));
+}
+
+ExportPointCloudRequest::~ExportPointCloudRequest() {
+  // @@protoc_insertion_point(destructor:viam.service.motion.v1.ExportPointCloudRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ExportPointCloudRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete world_state_;
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void ExportPointCloudRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ExportPointCloudRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.motion.v1.ExportPointCloudRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(world_state_ != nullptr);
+    world_state_->Clear();
+  }
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ExportPointCloudRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .viam.common.v1.WorldState world_state = 1 [json_name = "worldState"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_world_state(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ExportPointCloudRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.motion.v1.ExportPointCloudRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .viam.common.v1.WorldState world_state = 1 [json_name = "worldState"];
+  if (_internal_has_world_state()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::world_state(this),
+        _Internal::world_state(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.motion.v1.ExportPointCloudRequest)
+  return target;
+}
+
+size_t ExportPointCloudRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.motion.v1.ExportPointCloudRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .viam.common.v1.WorldState world_state = 1 [json_name = "worldState"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *world_state_);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExportPointCloudRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ExportPointCloudRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExportPointCloudRequest::GetClassData() const { return &_class_data_; }
+
+void ExportPointCloudRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ExportPointCloudRequest *>(to)->MergeFrom(
+      static_cast<const ExportPointCloudRequest &>(from));
+}
+
+
+void ExportPointCloudRequest::MergeFrom(const ExportPointCloudRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.motion.v1.ExportPointCloudRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_world_state()) {
+    _internal_mutable_world_state()->::viam::common::v1::WorldState::MergeFrom(from._internal_world_state());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ExportPointCloudRequest::CopyFrom(const ExportPointCloudRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.motion.v1.ExportPointCloudRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ExportPointCloudRequest::IsInitialized() const {
+  return true;
+}
+
+void ExportPointCloudRequest::InternalSwap(ExportPointCloudRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ExportPointCloudRequest, extra_)
+      + sizeof(ExportPointCloudRequest::extra_)
+      - PROTOBUF_FIELD_OFFSET(ExportPointCloudRequest, world_state_)>(
+          reinterpret_cast<char*>(&world_state_),
+          reinterpret_cast<char*>(&other->world_state_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ExportPointCloudRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[6]);
+}
+
+// ===================================================================
+
+class ExportPointCloudResponse::_Internal {
+ public:
+};
+
+ExportPointCloudResponse::ExportPointCloudResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.ExportPointCloudResponse)
+}
+ExportPointCloudResponse::ExportPointCloudResponse(const ExportPointCloudResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  world_state_pcd_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    world_state_pcd_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_world_state_pcd().empty()) {
+    world_state_pcd_.Set(from._internal_world_state_pcd(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.ExportPointCloudResponse)
+}
+
+inline void ExportPointCloudResponse::SharedCtor() {
+world_state_pcd_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  world_state_pcd_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+ExportPointCloudResponse::~ExportPointCloudResponse() {
+  // @@protoc_insertion_point(destructor:viam.service.motion.v1.ExportPointCloudResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ExportPointCloudResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  world_state_pcd_.Destroy();
+}
+
+void ExportPointCloudResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ExportPointCloudResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.motion.v1.ExportPointCloudResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  world_state_pcd_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ExportPointCloudResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bytes world_state_pcd = 1 [json_name = "worldStatePcd"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_world_state_pcd();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ExportPointCloudResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.motion.v1.ExportPointCloudResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes world_state_pcd = 1 [json_name = "worldStatePcd"];
+  if (!this->_internal_world_state_pcd().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_world_state_pcd(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.motion.v1.ExportPointCloudResponse)
+  return target;
+}
+
+size_t ExportPointCloudResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.motion.v1.ExportPointCloudResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes world_state_pcd = 1 [json_name = "worldStatePcd"];
+  if (!this->_internal_world_state_pcd().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_world_state_pcd());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExportPointCloudResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ExportPointCloudResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExportPointCloudResponse::GetClassData() const { return &_class_data_; }
+
+void ExportPointCloudResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ExportPointCloudResponse *>(to)->MergeFrom(
+      static_cast<const ExportPointCloudResponse &>(from));
+}
+
+
+void ExportPointCloudResponse::MergeFrom(const ExportPointCloudResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.motion.v1.ExportPointCloudResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_world_state_pcd().empty()) {
+    _internal_set_world_state_pcd(from._internal_world_state_pcd());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ExportPointCloudResponse::CopyFrom(const ExportPointCloudResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.motion.v1.ExportPointCloudResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ExportPointCloudResponse::IsInitialized() const {
+  return true;
+}
+
+void ExportPointCloudResponse::InternalSwap(ExportPointCloudResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &world_state_pcd_, lhs_arena,
+      &other->world_state_pcd_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ExportPointCloudResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[7]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace motion
@@ -2013,6 +2515,14 @@ Arena::CreateMaybeMessage< ::viam::service::motion::v1::GetPoseRequest >(Arena* 
 template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::GetPoseResponse*
 Arena::CreateMaybeMessage< ::viam::service::motion::v1::GetPoseResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::motion::v1::GetPoseResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::ExportPointCloudRequest*
+Arena::CreateMaybeMessage< ::viam::service::motion::v1::ExportPointCloudRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::motion::v1::ExportPointCloudRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::ExportPointCloudResponse*
+Arena::CreateMaybeMessage< ::viam::service::motion::v1::ExportPointCloudResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::motion::v1::ExportPointCloudResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

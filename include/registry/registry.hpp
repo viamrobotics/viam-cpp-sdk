@@ -1,11 +1,11 @@
 #ifndef REGISTRY_H
 #define REGISTRY_H
 
-#include <string>
+#include <components/service_base.h>
+#include <grpcpp/channel.h>
+#include <robot/v1/robot.pb.h>
 
-#include "../components/service_base.hpp"
-#include "grpcpp/channel.h"
-#include "robot/v1/robot.pb.h"
+#include <string>
 
 class ComponentRegistration {
    public:

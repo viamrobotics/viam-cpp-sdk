@@ -1,23 +1,23 @@
+#include <common/v1/common.pb.h>
+#include <component/arm/v1/arm.grpc.pb.h>
+#include <component/arm/v1/arm.pb.h>
+#include <google/protobuf/struct.pb.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/security/credentials.h>
+#include <grpcpp/server.h>
+#include <grpcpp/server_builder.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/support/stub_options.h>
+#include <robot/service.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
+
 #include <memory>
 #include <utility>
-
-#include "../src/robot/service.hpp"
-#include "common/v1/common.pb.h"
-#include "component/arm/v1/arm.grpc.pb.h"
-#include "component/arm/v1/arm.pb.h"
-#include "google/protobuf/struct.pb.h"
-#include "grpcpp/channel.h"
-#include "grpcpp/client_context.h"
-#include "grpcpp/create_channel.h"
-#include "grpcpp/impl/channel_interface.h"
-#include "grpcpp/security/credentials.h"
-#include "grpcpp/server.h"
-#include "grpcpp/server_builder.h"
-#include "grpcpp/server_context.h"
-#include "grpcpp/support/server_callback.h"
-#include "grpcpp/support/stub_options.h"
-#include "robot/v1/robot.grpc.pb.h"
-#include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::PoseInFrame;
@@ -213,16 +213,18 @@ RepeatedPtrField<viam::robot::v1::Discovery> discovery_response() {
 	google::protobuf::Struct results;
 	google::protobuf::Value str;
 	*str.mutable_string_value() = "bar";
-	std::pair<std::string, google::protobuf::Value> str_pair("foo", str);
+	google::protobuf::MapPair<std::string, google::protobuf::Value>
+	    str_pair("foo", str);
 
 	google::protobuf::Value i;
 	i.set_number_value(1);
-	std::pair<std::string, google::protobuf::Value> int_pair("one", i);
+	google::protobuf::MapPair<std::string, google::protobuf::Value>
+	    int_pair("one", i);
 
 	google::protobuf::Map<std::string, google::protobuf::Value>* map =
 	    results.mutable_fields();
-	map->emplace(str_pair);
-	map->emplace(int_pair);
+	map->insert(str_pair);
+	map->insert(int_pair);
 
 	viam::robot::v1::Discovery discovery;
 	*discovery.mutable_query() = query;

@@ -1,20 +1,19 @@
 #ifndef ROBOTSERVICE_H
 #define ROBOTSERVICE_H
+#include <common/utils.h>
+#include <common/v1/common.pb.h>
+#include <components/component_base.h>
+#include <components/service_base.h>
 #include <google/protobuf/struct.pb.h>
+#include <grpcpp/server_context.h>
 #include <grpcpp/support/status.h>
+#include <robot/client.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
 
 #include <string>
 #include <thread>
 #include <unordered_map>
-
-#include "../common/utils.hpp"
-#include "../components/component_base.hpp"
-#include "../components/service_base.hpp"
-#include "../robot/client.hpp"
-#include "common/v1/common.pb.h"
-#include "grpcpp/server_context.h"
-#include "robot/v1/robot.grpc.pb.h"
-#include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;

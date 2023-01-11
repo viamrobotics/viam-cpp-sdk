@@ -1,10 +1,18 @@
 #include <algorithm>
 #define BOOST_LOG_DYN_LINK 1
+#include <common/proto_type.h>
+#include <common/utils.h>
+#include <common/v1/common.pb.h>
+#include <components/resource_manager.h>
+#include <components/service_base.h>
+#include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
+#include <registry/registry.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
+#include <rpc/dial.h>
 #include <rpc/rpc.h>
 #include <unistd.h>
 
@@ -20,15 +28,6 @@
 #include <thread>
 #include <tuple>
 #include <vector>
-
-#include "../common/proto_type.hpp"
-#include "../common/utils.hpp"
-#include "../components/resource_manager.hpp"
-#include "../components/service_base.hpp"
-#include "../registry/registry.hpp"
-#include "../rpc/dial.hpp"
-#include "common/v1/common.pb.h"
-#include "grpcpp/channel.h"
 
 using google::protobuf::RepeatedPtrField;
 using grpc::Channel;
@@ -238,15 +237,16 @@ std::vector<ResourceName>* RobotClient::resource_names() {
     return resources;
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Options options) {
-    std::unique_ptr<RobotService::Stub> s = RobotService::NewStub(channel.channel);
-    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
-    robot->refresh_interval = options.refresh_interval;
-    robot->should_refresh = (robot->refresh_interval > 0);
-    if (robot->should_refresh) {
-        std::thread t(&RobotClient::refresh_every, robot);
-        t.detach();
-    };
+std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
+						       Options options) {
+	std::shared_ptr<RobotClient> robot =
+	    std::make_shared<RobotClient>(channel);
+	robot->refresh_interval = options.refresh_interval;
+	robot->should_refresh = (robot->refresh_interval > 0);
+	if (robot->should_refresh) {
+		std::thread t(&RobotClient::refresh_every, robot);
+		t.detach();
+	};
 
     robot->refresh();
     return robot;
@@ -343,12 +343,16 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 }
 
 ComponentBase RobotClient::get_component(ResourceName name) {
-    if (name.type() != "component") {
-        std::string error = "Expected resource type 'component' but got " + name.type();
-        throw error;
-    }
-    lock.lock();
-    return resource_manager.get_component(name.name(), ComponentType("ComponentBase"));
+	if (name.type() != "component") {
+		std::string error =
+		    "Expected resource type 'component' but got " + name.type();
+		throw error;
+	}
+	lock.lock();
+	ComponentBase component = resource_manager.get_component(
+	    name.name(), ComponentType("ComponentBase"));
+	lock.unlock();
+	return component;
 }
 
 void RobotClient::stop_all() {

@@ -1,10 +1,10 @@
 #ifndef PROTOTYPE_H
 #define PROTOTYPE_H
 
+#include <google/protobuf/struct.pb.h>
+
 #include <boost/variant/variant.hpp>
 #include <unordered_map>
-
-#include "google/protobuf/struct.pb.h"
 
 class ProtoType {
    public:
