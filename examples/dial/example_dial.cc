@@ -13,12 +13,7 @@
 #include "../../src/robot/client.h"
 #include "../../src/rpc/dial.h"
 
-using grpc::Channel;
-using grpc::ClientContext;
-using grpc::Status;
-using viam::robot::v1::ResourceNamesRequest;
-using viam::robot::v1::ResourceNamesResponse;
-using viam::robot::v1::RobotService;
+using viam::robot::v1::Status;
 
 extern "C" void *init_rust_runtime();
 extern "C" int free_rust_runtime(void *ptr);
@@ -26,37 +21,10 @@ extern "C" void free_string(char *s);
 extern "C" char *dial(const char *uri, const char *payload, bool allow_insecure,
 		      void *ptr);
 
-class RobotServiceClient {
-       public:
-	RobotServiceClient(std::shared_ptr<Channel> channel)
-	    : stub_(RobotService::NewStub(channel)) {}
-
-	void Resources() {
-		ResourceNamesRequest req;
-
-		ResourceNamesResponse resp;
-		grpc::ClientContext context;
-
-		Status status = stub_->ResourceNames(&context, req, &resp);
-		if (!status.ok()) {
-			std::cout << "Rpc failed " << status.error_code()
-				  << status.error_message() << std::endl;
-			return;
-		}
-		for (auto i = 0; i < resp.resources_size(); i++) {
-			std::cout << "Resource " << i << " "
-				  << resp.resources(i).type() << std::endl;
-		}
-	}
-
-       private:
-	std::unique_ptr<RobotService::Stub> stub_;
-};
-
 int main() {
-	const char *uri = "<your robot uri here>";
+	const char *uri = "<your robot URI here>";
 	DialOptions dial_options = DialOptions();
-	std::string payload = "<your robot credentials here>";
+	std::string payload = "<your payload here>";
 	Credentials credentials(payload);
 	dial_options.credentials = credentials;
 	boost::optional<DialOptions> opts(dial_options);
@@ -66,10 +34,26 @@ int main() {
 	    RobotClient::at_address(address, options);
 	robot->refresh();
 	std::vector<ResourceName> *resource_names = robot->resource_names();
-	for (ResourceName &resource : *resource_names) {
+	ResourceName the_one_we_care_about = resource_names->at(0);
+	for (ResourceName resource : *resource_names) {
 		std::cout << "Resource name: " << resource.name()
 			  << resource.type() << resource.subtype() << std::endl;
 	}
+	std::vector<Status> status_plural = robot->get_status();
+	std::cout << "Status plural len " << status_plural.size() << std::endl;
+	for (Status s : status_plural) {
+		std::cout << " Status! " << s.name().subtype() << std::endl;
+	}
+
+	std::vector<ResourceName> just_one = std::vector<ResourceName>();
+	just_one.push_back(the_one_we_care_about);
+	std::vector<Status> status_singular = robot->get_status(just_one);
+	std::cout << "Status singular len " << status_singular.size()
+		  << std::endl;
+	for (Status s : status_singular) {
+		std::cout << " Status! " << s.name().subtype() << std::endl;
+	}
+
 	robot->close();
 	return 0;
 }

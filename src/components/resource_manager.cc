@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "component_base.h"
 
@@ -8,11 +9,29 @@ class ResourceManager {
        public:
 	static std::unordered_map<std::string, ComponentBase> components;
 	void register_component(ComponentBase component);
-	ComponentBase get_component(std::string name);
+
+	// returns a component from the registry.
+	// Args:
+	// 	std::string name: the name of the component
+	//
+	// Raises:
+	// 	If the name is not within the ResourceManager or the registered
+	// component's type is not the expected type, then register_component
+	// will throw an error.
+	ComponentBase get_component(std::string name, ComponentType of_type);
+	ResourceManager(std::vector<ComponentBase> components);
+	ResourceManager();
 };
+
+ResourceManager::ResourceManager() {}
 
 // Register a new component with the registry.
 // Components may not have the same name.
+ResourceManager::ResourceManager(std::vector<ComponentBase> components) {
+	for (auto component : components) {
+		register_component(component);
+	}
+}
 void ResourceManager::register_component(ComponentBase component) {
 	if (components.find(component.name) != components.end()) {
 		std::string err = "Cannot add component with name " +
@@ -25,6 +44,22 @@ void ResourceManager::register_component(ComponentBase component) {
 
 std::unordered_map<std::string, ComponentBase> ResourceManager::components;
 
-ComponentBase ResourceManager::get_component(std::string name) {
-	return components.at(name);
+ComponentBase ResourceManager::get_component(std::string name,
+					     ComponentType of_type) {
+	if (components.find(name) == components.end()) {
+		throw "Component name " + name + " doesn't exist!";
+	}
+
+	ComponentBase component = components.at(name);
+	if (component.type == of_type) {
+		return component;
+	}
+
+	ComponentType base = ComponentType("ComponentBase");
+	if (of_type == base) {
+		return component;
+	}
+	throw "Component name " + name +
+	    " was found, but it has the wrong type! Expected type: " +
+	    of_type.name + ". Actual type: " + component.type.name;
 }

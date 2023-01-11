@@ -11,7 +11,7 @@ CXXFLAGS += -std=c++11 -I $(GEN)/ -I $(GEN)/proto/ -I ../../src/robot/ -I ../../
 
 all: example_dial 
 
-example_dial: $(GEN)/google/api/http.pb.o $(GEN)/google/api/annotations.pb.o $(GEN)/robot/v1/robot.pb.o $(GEN)/robot/v1/robot.grpc.pb.o $(GEN)/common/v1/common.pb.o $(GEN)/common/v1/common.grpc.pb.o ../../src/robot/client.o ../../src/rpc/dial.o ../../src/components/resource_manager.o ../../src/components/component_base.o ../../src/registry/registry.o example_dial.o
+example_dial: $(GEN)/google/api/http.pb.o $(GEN)/google/api/annotations.pb.o $(GEN)/robot/v1/robot.pb.o $(GEN)/robot/v1/robot.grpc.pb.o $(GEN)/common/v1/common.pb.o $(GEN)/common/v1/common.grpc.pb.o ../../src/robot/client.o ../../src/rpc/dial.o ../../src/components/resource_manager.o ../../src/components/component_base.o ../../src/common/utils.o ../../src/registry/registry.o ../../src/common/proto_type.o example_dial.o 
 	$(CXX) $(CXXFLAGS1) $^ $(CXXFLAGS) $(LDFLAGS) -o $@ 
 
 clean:
