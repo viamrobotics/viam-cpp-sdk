@@ -1,5 +1,10 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
+#include <module/server.h>
+#include <robot/client.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
+#include <rpc/dial.h>
 #include <unistd.h>
 
 #include <cstddef>
@@ -7,11 +12,6 @@
 #include <ostream>
 #include <string>
 #include <vector>
-
-#include "../../src/gen/robot/v1/robot.grpc.pb.h"
-#include "../../src/gen/robot/v1/robot.pb.h"
-#include "../../src/robot/client.h"
-#include "../../src/rpc/dial.h"
 
 using viam::robot::v1::Status;
 
@@ -22,6 +22,7 @@ extern "C" char *dial(const char *uri, const char *payload, bool allow_insecure,
 		      void *ptr);
 
 int main() {
+	ModuleServer foo;
 	const char *uri = "<your robot URI here>";
 	DialOptions dial_options = DialOptions();
 	std::string payload = "<your payload here>";
