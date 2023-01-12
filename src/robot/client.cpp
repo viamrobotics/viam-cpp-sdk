@@ -14,6 +14,7 @@
 #include <robot/v1/robot.pb.h>
 #include <rpc/dial.h>
 #include <rpc/rpc.h>
+#include <spatialmath/orientation.h>
 #include <unistd.h>
 
 #include <boost/log/trivial.hpp>
@@ -357,38 +358,30 @@ ComponentBase RobotClient::get_component(ResourceName name) {
 
 void RobotClient::stop_all() {
     std::unordered_map<ResourceName,
-                       std::unordered_map<std::string, ProtoType*>,
-                       ResourceNameHasher,
-                       ResourceNameEqual>
-        map;
-    for (ResourceName name : *resource_names()) {
-        std::unordered_map<std::string, ProtoType*> val;
-        map.emplace(name, val);
-    }
-    stop_all(map);
-}
+		       std::unordered_map<std::string, ProtoType *>,
+		       ResourceNameHasher, ResourceNameEqual>
+	extra) {
+	viam::robot::v1::StopAllRequest req;
+	viam::robot::v1::StopAllResponse resp;
+	ClientContext ctx;
+	OrientationConfig o;
 
-void RobotClient::stop_all(std::unordered_map<ResourceName,
-                                              std::unordered_map<std::string, ProtoType*>,
-                                              ResourceNameHasher,
-                                              ResourceNameEqual> extra) {
-    viam::robot::v1::StopAllRequest req;
-    viam::robot::v1::StopAllResponse resp;
-    ClientContext ctx;
-
-    RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
-    for (auto xtra : extra) {
-        ResourceName name = xtra.first;
-        std::unordered_map<std::string, ProtoType*> params = xtra.second;
-        google::protobuf::Struct s = map_to_struct(params);
-        viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = name;
-        *stop.mutable_params() = s;
-        *ep->Add() = stop;
-    }
-    grpc::Status response = stub_->StopAll(&ctx, req, &resp);
-    if (!response.ok()) {
-        BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
-                                 << response.error_details();
-    }
+	RepeatedPtrField<viam::robot::v1::StopExtraParameters> *ep =
+	    req.mutable_extra();
+	for (auto xtra : extra) {
+		ResourceName name = xtra.first;
+		std::unordered_map<std::string, ProtoType *> params =
+		    xtra.second;
+		google::protobuf::Struct s = map_to_struct(params);
+		viam::robot::v1::StopExtraParameters stop;
+		*stop.mutable_name() = name;
+		*stop.mutable_params() = s;
+		*ep->Add() = stop;
+	}
+	grpc::Status response = stub_->StopAll(&ctx, req, &resp);
+	if (!response.ok()) {
+		BOOST_LOG_TRIVIAL(error)
+		    << "Error stopping all: " << response.error_message()
+		    << response.error_details();
+	}
 }

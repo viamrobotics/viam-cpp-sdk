@@ -161,12 +161,12 @@ void RobotService_::stream_status(
     ::viam::robot::v1::StopAllResponse* response) {
 	ResourceName r;
 	std::unordered_map<std::string,
-			   std::unordered_map<std::string, ProtoType>>
+			   std::unordered_map<std::string, ProtoType*>>
 	    extra;
 	grpc::StatusCode status = grpc::StatusCode::OK;
 	for (auto ex : request->extra()) {
 		google::protobuf::Struct struct_ = ex.params();
-		std::unordered_map<std::string, ProtoType> value_map =
+		std::unordered_map<std::string, ProtoType*> value_map =
 		    struct_to_map(struct_);
 		std::string name = ex.name().SerializeAsString();
 		extra.emplace(name, value_map);

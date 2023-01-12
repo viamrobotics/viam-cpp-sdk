@@ -18,14 +18,15 @@ class ComponentType {
 };
 
 class ComponentBase {
-   public:
-    std::string name;
-    ComponentType type;
-    std::vector<ComponentType> component_hierarchy;
-    ResourceName get_resource_name(std::string name);
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType> extra);
-    virtual grpc::StatusCode stop();
-    ComponentBase();
+       public:
+	std::string name;
+	ComponentType type;
+	std::vector<ComponentType> component_hierarchy;
+	ResourceName get_resource_name(std::string name);
+	virtual grpc::StatusCode stop(
+	    std::unordered_map<std::string, ProtoType*> extra);
+	virtual grpc::StatusCode stop();
+	ComponentBase();
 };
 
 bool operator==(ComponentType& lhs, ComponentType& rhs) {
@@ -45,8 +46,9 @@ ResourceName ComponentBase::get_resource_name(std::string name_) {
     return r;
 }
 
-grpc::StatusCode ComponentBase::stop(std::unordered_map<std::string, ProtoType> ex) {
-    return stop();
+grpc::StatusCode ComponentBase::stop(
+    std::unordered_map<std::string, ProtoType*> ex) {
+	return stop();
 }
 
 grpc::StatusCode ComponentBase::stop() {

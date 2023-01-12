@@ -8,7 +8,7 @@
 
 #include "app/v1/robot.pb.h"
 
-typedef std::unordered_map<std::string, ProtoType> AttributeMap;
+typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
 
 class ResourceLevelServiceConfig {
        public:

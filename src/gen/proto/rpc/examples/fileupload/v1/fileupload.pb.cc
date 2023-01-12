@@ -26,8 +26,10 @@ namespace examples {
 namespace fileupload {
 namespace v1 {
 PROTOBUF_CONSTEXPR UploadFileRequest::UploadFileRequest(
-    ::_pbi::ConstantInitialized)
-  : _oneof_case_{}{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct UploadFileRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UploadFileRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,9 +40,10 @@ struct UploadFileRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadFileRequestDefaultTypeInternal _UploadFileRequest_default_instance_;
 PROTOBUF_CONSTEXPR UploadFileResponse::UploadFileResponse(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , size_(int64_t{0}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.size_)*/int64_t{0}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct UploadFileResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UploadFileResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -63,20 +66,20 @@ const uint32_t TableStruct_proto_2frpc_2fexamples_2ffileupload_2fv1_2ffileupload
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileRequest, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileRequest, _oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileRequest, _impl_._oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileRequest, data_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileRequest, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileResponse, name_),
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileResponse, size_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileResponse, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::examples::fileupload::v1::UploadFileResponse, _impl_.size_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::proto::rpc::examples::fileupload::v1::UploadFileRequest)},
@@ -132,20 +135,26 @@ class UploadFileRequest::_Internal {
 UploadFileRequest::UploadFileRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.fileupload.v1.UploadFileRequest)
 }
 UploadFileRequest::UploadFileRequest(const UploadFileRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UploadFileRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_data();
   switch (from.data_case()) {
     case kName: {
-      _internal_set_name(from._internal_name());
+      _this->_internal_set_name(from._internal_name());
       break;
     }
     case kChunkData: {
-      _internal_set_chunk_data(from._internal_chunk_data());
+      _this->_internal_set_chunk_data(from._internal_chunk_data());
       break;
     }
     case DATA_NOT_SET: {
@@ -155,8 +164,16 @@ UploadFileRequest::UploadFileRequest(const UploadFileRequest& from)
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.fileupload.v1.UploadFileRequest)
 }
 
-inline void UploadFileRequest::SharedCtor() {
-clear_has_data();
+inline void UploadFileRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
+  };
+  clear_has_data();
 }
 
 UploadFileRequest::~UploadFileRequest() {
@@ -176,25 +193,25 @@ inline void UploadFileRequest::SharedDtor() {
 }
 
 void UploadFileRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void UploadFileRequest::clear_data() {
 // @@protoc_insertion_point(one_of_clear_start:proto.rpc.examples.fileupload.v1.UploadFileRequest)
   switch (data_case()) {
     case kName: {
-      data_.name_.Destroy();
+      _impl_.data_.name_.Destroy();
       break;
     }
     case kChunkData: {
-      data_.chunk_data_.Destroy();
+      _impl_.data_.chunk_data_.Destroy();
       break;
     }
     case DATA_NOT_SET: {
       break;
     }
   }
-  _oneof_case_[0] = DATA_NOT_SET;
+  _impl_._oneof_case_[0] = DATA_NOT_SET;
 }
 
 
@@ -313,42 +330,38 @@ size_t UploadFileRequest::ByteSizeLong() const {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadFileRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     UploadFileRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadFileRequest::GetClassData() const { return &_class_data_; }
 
-void UploadFileRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UploadFileRequest *>(to)->MergeFrom(
-      static_cast<const UploadFileRequest &>(from));
-}
 
-
-void UploadFileRequest::MergeFrom(const UploadFileRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.fileupload.v1.UploadFileRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void UploadFileRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UploadFileRequest*>(&to_msg);
+  auto& from = static_cast<const UploadFileRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.fileupload.v1.UploadFileRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.data_case()) {
     case kName: {
-      _internal_set_name(from._internal_name());
+      _this->_internal_set_name(from._internal_name());
       break;
     }
     case kChunkData: {
-      _internal_set_chunk_data(from._internal_chunk_data());
+      _this->_internal_set_chunk_data(from._internal_chunk_data());
       break;
     }
     case DATA_NOT_SET: {
       break;
     }
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UploadFileRequest::CopyFrom(const UploadFileRequest& from) {
@@ -365,8 +378,8 @@ bool UploadFileRequest::IsInitialized() const {
 void UploadFileRequest::InternalSwap(UploadFileRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(data_, other->data_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
+  swap(_impl_.data_, other->_impl_.data_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UploadFileRequest::GetMetadata() const {
@@ -384,30 +397,43 @@ class UploadFileResponse::_Internal {
 UploadFileResponse::UploadFileResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:proto.rpc.examples.fileupload.v1.UploadFileResponse)
 }
 UploadFileResponse::UploadFileResponse(const UploadFileResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UploadFileResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.size_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  size_ = from.size_;
+  _this->_impl_.size_ = from._impl_.size_;
   // @@protoc_insertion_point(copy_constructor:proto.rpc.examples.fileupload.v1.UploadFileResponse)
 }
 
-inline void UploadFileResponse::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-size_ = int64_t{0};
+inline void UploadFileResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.size_){int64_t{0}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 UploadFileResponse::~UploadFileResponse() {
@@ -421,11 +447,11 @@ UploadFileResponse::~UploadFileResponse() {
 
 inline void UploadFileResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
+  _impl_.name_.Destroy();
 }
 
 void UploadFileResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void UploadFileResponse::Clear() {
@@ -434,8 +460,8 @@ void UploadFileResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  size_ = int64_t{0};
+  _impl_.name_.ClearToEmpty();
+  _impl_.size_ = int64_t{0};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -458,7 +484,7 @@ const char* UploadFileResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // int64 size = 2 [json_name = "size"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -536,35 +562,31 @@ size_t UploadFileResponse::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_size());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadFileResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     UploadFileResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadFileResponse::GetClassData() const { return &_class_data_; }
 
-void UploadFileResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UploadFileResponse *>(to)->MergeFrom(
-      static_cast<const UploadFileResponse &>(from));
-}
 
-
-void UploadFileResponse::MergeFrom(const UploadFileResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.fileupload.v1.UploadFileResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void UploadFileResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UploadFileResponse*>(&to_msg);
+  auto& from = static_cast<const UploadFileResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.examples.fileupload.v1.UploadFileResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_size() != 0) {
-    _internal_set_size(from._internal_size());
+    _this->_internal_set_size(from._internal_size());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UploadFileResponse::CopyFrom(const UploadFileResponse& from) {
@@ -584,10 +606,10 @@ void UploadFileResponse::InternalSwap(UploadFileResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(size_, other->size_);
+  swap(_impl_.size_, other->_impl_.size_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UploadFileResponse::GetMetadata() const {

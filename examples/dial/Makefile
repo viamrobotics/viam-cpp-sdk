@@ -1,13 +1,13 @@
 ## TODO(RSDK-803): stop relying on a relative path here
 LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++ re2 libcares` \
--ldl -lviam_rust_utils \
--ldl -lboost_log
+-ldl -L../../../rust-utils/target/debug -lviam_rust_utils \
+-ldl -L/usr/local/boost_1_80_0/stage/lib/ -lboost_log
 
 GEN = ../../src/gen
 CXX = g++
 CXXFLAGS1 += -Wall -Wextra
 CXXFLAGS += `pkg-config --cflags protobuf grpc`
-CXXFLAGS += -std=c++11 -I $(GEN)/ -I $(GEN)/proto/ -I ../../src/robot/ -I ../../src/rpc/ 
+CXXFLAGS += -std=c++11 -I $(GEN)/ -I $(GEN)/proto/ -I ../../src/robot/ -I ../../src/rpc/ -I ../../include/
 
 all: example_dial 
 

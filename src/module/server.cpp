@@ -4,6 +4,8 @@
 #include <module/v1/module.grpc.pb.h>
 #include <resource/resource.h>
 
+#include <string>
+
 struct Resource {
 	std::vector<std::string> dependencies;
 	viam::app::v1::ComponentConfig cfg;
