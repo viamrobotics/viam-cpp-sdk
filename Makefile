@@ -19,3 +19,7 @@ buf-clean:
 
 clean:
 	find ./src -name '*.o' | xargs rm -rf
+
+format:
+	find ./src -not -path "*/gen/*" -type f \( -name \*.cc -o -name \*.h \) | xargs clang-format -style=file -i -fallback-style=none
+	
