@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     wget \
     protobuf-compiler \
     libprotobuf-dev \
-    autoconf \ 
+    autoconf \
     automake \
     libtool \
     curl \
@@ -21,7 +21,9 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     unzip \
     pkg-config \
     git \
-    libssl-dev
+    libssl-dev \
+    clang-format \
+    doxygen
 
 RUN cd ${HOME} && \
     wget --quiet \
@@ -53,7 +55,7 @@ RUN cd ${HOME} && \
 
 RUN cd ${HOME} && \
     git clone https://github.com/google/re2 && \
-    cd re2 && \ 
+    cd re2 && \
     make && \
     make test && \
     make install && \
