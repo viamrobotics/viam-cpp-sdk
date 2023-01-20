@@ -15,6 +15,7 @@ class LinkConfig {
 	std::string parent;
 
 	viam::app::v1::Frame to_proto();
+	static LinkConfig from_proto(viam::app::v1::Frame proto);
 };
 
 #endif

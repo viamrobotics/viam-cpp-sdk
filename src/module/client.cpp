@@ -9,9 +9,8 @@
 
 #include <boost/log/trivial.hpp>
 
-#include "net/proto2/public/repeated_field.h"
-
 using viam::module::v1::ModuleService;
+using Viam::SDK::ViamChannel;
 class ModuleClient {
        public:
 	std::mutex lock;

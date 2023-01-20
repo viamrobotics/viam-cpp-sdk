@@ -1,3 +1,4 @@
+#include <app/v1/robot.pb.h>
 #include <common/proto_type.h>
 #include <referenceframe/frame.h>
 #include <resource/resource.h>
@@ -5,8 +6,6 @@
 
 #include <string>
 #include <unordered_map>
-
-#include "app/v1/robot.pb.h"
 
 typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
 
@@ -17,12 +16,13 @@ class ResourceLevelServiceConfig {
 	ProtoType converted_attributes;
 };
 
+// CR erodkin: should this inherit from ComponentBase?
 class Component {
        public:
 	std::string name;
 	std::string namespace_;
 	std::string type;
-	viam::robot::v1::ResourceRPCSubtype api;
+	Subtype api;
 	Model model;
 	LinkConfig frame;
 	std::vector<std::string> depends_on;
@@ -33,9 +33,63 @@ class Component {
 
 	static Component from_proto(viam::app::v1::ComponentConfig proto_cfg);
 	viam::app::v1::ComponentConfig to_proto();
+	Component();
+
+       private:
+	void fix_api();
 };
 
-Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg){};
+void Component::fix_api() {
+	if (this->api.namespace_ == "" && this->namespace_ == "") {
+		// CR erodkin: make "rdk" a const somewhere
+		this->namespace_ = "rdk";
+		this->api.namespace_ = "rdk";
+	} else if (this->api.namespace_ == "") {
+		this->api.namespace_ = this->namespace_;
+	} else {
+		this->namespace_ = this->api.namespace_;
+	}
+
+	if (this->api.resource_type == "") {
+		this->api.resource_type = "component";
+	}
+
+	if (this->api.resource_subtype == "") {
+		this->api.resource_subtype = this->type;
+	} else if (this->type == "") {
+		this->type = this->api.resource_subtype;
+	}
+
+	// This shouldn't be able to happen except with directly instantiated
+	// config structs
+	if (this->api.namespace_ != this->namespace_ ||
+	    this->api.resource_subtype != this->type) {
+		throw "component namespace and/or type do not match component api field";
+	}
+}
+
+Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
+	Component component;
+	component.name = proto_cfg.name();
+	component.namespace_ = proto_cfg.namespace_();
+	component.type = proto_cfg.type();
+	std::string api = proto_cfg.api();
+	if (api.find(":") != std::string::npos) {
+		component.api = Subtype(api);
+	}
+
+	try {
+		component.fix_api();
+	} catch (std::string err) {
+		throw err;
+	}
+
+	if (proto_cfg.has_frame()) {
+		LinkConfig lc = LinkConfig::from_proto(proto_cfg.frame());
+	}
+
+	return component;
+};
 
 viam::app::v1::ComponentConfig Component::to_proto() {
 	viam::app::v1::ComponentConfig proto_cfg;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <google/protobuf/descriptor.h>
 
 #include <string>
@@ -14,8 +16,8 @@ class Subtype : public Type {
        public:
 	std::string resource_subtype;
 
-       public:
 	std::string to_string();
+	Subtype(std::string subtype);
 	Subtype(std::string namespace_, std::string resource_type,
 		std::string resource_subtype);
 	Subtype(Type type, std::string resource_subtype);

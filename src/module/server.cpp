@@ -1,23 +1,27 @@
 #include <app/v1/robot.pb.h>
 #include <components/service_base.h>
+#include <config/resource.h>
 #include <grpcpp/grpcpp.h>
 #include <module/v1/module.grpc.pb.h>
 #include <resource/resource.h>
 
 #include <string>
 
+#include "robot/client.h"
+
 struct Resource {
 	std::vector<std::string> dependencies;
-	viam::app::v1::ComponentConfig cfg;
+	Component cfg;
 
-	Resource(std::vector<std::string> dependencies,
-		 viam::app::v1::ComponentConfig cfg) {
+	Resource(std::vector<std::string> dependencies, Component cfg) {
 		dependencies = dependencies;
 		cfg = cfg;
 	}
 };
 
 class Module {
+	// CR erodkin: do we need parent?
+	RobotService *parent;
 	std::string name;
 	std::string exe;
 	std::string addr;
@@ -50,18 +54,23 @@ class ModuleServer : public ComponentServiceBase,
 	    ::viam::module::v1::ReadyResponse *response) override;
 };
 
+// CR erodkin: you need to get a better high-level sense of what it is we're
+// trying to do here. Ask around.
 ::grpc::Status ModuleServer::AddResource(
     ::grpc::ServerContext *context,
     const ::viam::module::v1::AddResourceRequest *request,
     ::viam::module::v1::AddResourceResponse *response) {
-	viam::app::v1::ComponentConfig cfg = request->config();
-	google::protobuf::RepeatedPtrField<std::string> dependencies =
-	    request->dependencies();
 	std::vector<std::string> deps;
-	for (auto dep : dependencies) {
+	// CR erodkin: should dependencies be a map? I think it is in
+	// module/module.go
+	for (auto dep : request->dependencies()) {
 		deps.push_back(dep);
 	}
+	viam::app::v1::ComponentConfig proto = request->config();
+	Component cfg = Component::from_proto(proto);
 	Resource resource(deps, cfg);
+	resources.emplace(cfg.name, resource);
+	return ::grpc::Status();
 };
 
 ::grpc::Status ReconfigureResource(

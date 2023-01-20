@@ -42,6 +42,8 @@ using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
+using Viam::SDK::Options;
+using Viam::SDK::ViamChannel;
 
 // gRPC client for a robot. This class should be used for all interactions with
 // a robot.
@@ -246,6 +248,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
 	robot->should_refresh = (robot->refresh_interval > 0);
 	if (robot->should_refresh) {
 		std::thread t(&RobotClient::refresh_every, robot);
+		// TODO(RSDK-1743): this is leaking, find a way to handle
+		// shutdown gracefully. See also address sanitizer, UB sanitizer
 		t.detach();
 	};
 

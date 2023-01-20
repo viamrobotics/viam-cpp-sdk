@@ -16,6 +16,7 @@ class Subtype : public Type {
        public:
 	std::string resource_subtype;
 	std::string to_string();
+	Subtype(std::string subtype);
 	Subtype(Type type, std::string resource_subtype);
 	Subtype(std::string namespace_, std::string resource_type,
 		std::string resource_subtype);
@@ -26,7 +27,7 @@ class Name : public Subtype {
 	std::string remote;
 	std::string name;
 
-	std::string const to_string();
+	std::string to_string();
 };
 
 class RPCSubtype {
@@ -63,6 +64,9 @@ class Model : public ModelFamily {
 	Model(std::string model);
 	std::string to_string();
 };
+const std::regex MODEL_REGEX(
+    "^([a-zA-Z_0-9-]+):([a-zA-Z_0-9-]+):([a-zA-Z_0-9-]+)$");
+std::regex SINGLE_FIELD_REGEX("^([a-zA-Z_0-9-]+)$");
 
 template <>
 struct std::hash<Name> {
@@ -89,6 +93,18 @@ std::string Type::to_string() { return namespace_ + ":" + resource_type; }
 
 std::string Subtype::to_string() {
 	return Type::to_string() + ":" + resource_subtype;
+}
+
+Subtype::Subtype(std::string subtype) {
+	if (std::regex_match(subtype, MODEL_REGEX)) {
+		std::vector<std::string> subtype_parts;
+		boost::split(subtype_parts, subtype, boost::is_any_of(":"));
+		this->namespace_ = subtype_parts.at(0);
+		this->resource_type = subtype_parts.at(1);
+		this->resource_subtype = subtype_parts.at(2);
+	} else {
+		throw "string " + subtype + " is not a valid subtype name";
+	}
 }
 
 std::string Name::to_string() {
@@ -150,24 +166,20 @@ Model::Model(std::string namespace_, std::string family,
 	model_name = model_name;
 }
 
-// Parses a single model string into a Model. If only a model_name is included,
-// then default values will be used for namespace and family.
+// Parses a single model string into a Model. If only a model_name is
+// included, then default values will be used for namespace and family.
 //
 // Raises:
-// 	Will throw an error if an invalid model string is passed (i.e., using
-// non-word characters)
+// 	Will throw an error if an invalid model string is passed (i.e.,
+// using non-word characters)
 Model::Model(std::string model) {
-	std::regex model_regex(
-	    "^([a-zA-Z_0-9-]+):([a-zA-Z_0-9-]+):([a-zA-Z_0-9-]+)$");
-	std::regex single_field_regex("^([a-zA-Z_0-9-]+)$");
-
-	if (std::regex_match(model, model_regex)) {
+	if (std::regex_match(model, MODEL_REGEX)) {
 		std::vector<std::string> model_parts;
 		boost::split(model_parts, model, boost::is_any_of(":"));
 		namespace_ = model_parts.at(0);
 		family = model_parts.at(1);
 		model_name = model_parts.at(2);
-	} else if (std::regex_match(model, single_field_regex)) {
+	} else if (std::regex_match(model, SINGLE_FIELD_REGEX)) {
 		namespace_ = "rdk";
 		family = "builtin";
 		model_name = model;

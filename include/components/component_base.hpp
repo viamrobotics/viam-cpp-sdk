@@ -19,10 +19,11 @@ class ComponentType {
 };
 
 class ComponentBase {
-   public:
-    std::string name;
-    ComponentType type;
-    std::vector<ComponentType> component_hierarchy;
+       public:
+	std::string name;
+	ComponentType type;
+	// CR erodkin: is component hierarchy necessary?
+	std::vector<ComponentType> component_hierarchy;
 
     viam::common::v1::ResourceName get_resource_name(std::string name);
     virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType> extra);

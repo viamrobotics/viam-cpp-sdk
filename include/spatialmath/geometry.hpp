@@ -16,6 +16,7 @@ struct GeometryConfig {
 	OrientationConfig orientation_config;
 	std::string label;
 	viam::common::v1::Geometry to_proto();
+	static GeometryConfig from_proto(viam::common::v1::Geometry proto);
 };
 
 #endif

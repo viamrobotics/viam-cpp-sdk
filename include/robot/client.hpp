@@ -17,6 +17,8 @@ using viam::common::v1::Transform;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
+using Viam::SDK::Options;
+using Viam::SDK::ViamChannel;
 
 class RobotClient {
    public:

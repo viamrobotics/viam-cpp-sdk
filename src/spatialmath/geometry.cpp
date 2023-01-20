@@ -28,6 +28,7 @@ struct GeometryConfig {
 	viam::common::v1::RectangularPrism box_proto();
 	viam::common::v1::Sphere sphere_proto();
 	viam::common::v1::Pose pose_proto();
+	static GeometryConfig from_proto(viam::common::v1::Geometry proto);
 };
 
 viam::common::v1::Sphere GeometryConfig::sphere_proto() {
@@ -56,6 +57,36 @@ viam::common::v1::Pose GeometryConfig::pose_proto() {
 	pose.set_o_z(1);
 	pose.set_theta(0);
 	return pose;
+}
+
+GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
+	GeometryConfig cfg;
+	switch (proto.geometry_type_case()) {
+		case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
+			cfg.geometry_type = box;
+			// CR erodkin: here and other from_proto methods,
+			// probably grab `dims_mm` or equivalent and put it in a
+			// variable to avoid calling to access it over and over
+			cfg.x = proto.box().dims_mm().x();
+			cfg.y = proto.box().dims_mm().y();
+			cfg.z = proto.box().dims_mm().z();
+			return cfg;
+		}
+		case viam::common::v1::Geometry::GeometryTypeCase::kSphere: {
+			cfg.r = proto.sphere().radius_mm();
+			if (cfg.r == 0) {
+				cfg.geometry_type = point;
+			} else {
+				cfg.geometry_type = sphere;
+			}
+			return cfg;
+		}
+		case viam::common::v1::Geometry::GeometryTypeCase::
+		    GEOMETRY_TYPE_NOT_SET:
+		default: {
+			throw "Geometry type is not supported";
+		}
+	}
 }
 
 viam::common::v1::Geometry GeometryConfig::to_proto() {
