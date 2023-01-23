@@ -66,6 +66,9 @@ extern BoardStatus_AnalogsEntry_DoNotUseDefaultTypeInternal _BoardStatus_Analogs
 class BoardStatus_DigitalInterruptsEntry_DoNotUse;
 struct BoardStatus_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal;
 extern BoardStatus_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal _BoardStatus_DigitalInterruptsEntry_DoNotUse_default_instance_;
+class Capsule;
+struct CapsuleDefaultTypeInternal;
+extern CapsuleDefaultTypeInternal _Capsule_default_instance_;
 class DigitalInterruptStatus;
 struct DigitalInterruptStatusDefaultTypeInternal;
 extern DigitalInterruptStatusDefaultTypeInternal _DigitalInterruptStatus_default_instance_;
@@ -117,6 +120,7 @@ template<> ::viam::common::v1::AnalogStatus* Arena::CreateMaybeMessage<::viam::c
 template<> ::viam::common::v1::BoardStatus* Arena::CreateMaybeMessage<::viam::common::v1::BoardStatus>(Arena*);
 template<> ::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::BoardStatus_AnalogsEntry_DoNotUse>(Arena*);
 template<> ::viam::common::v1::BoardStatus_DigitalInterruptsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::BoardStatus_DigitalInterruptsEntry_DoNotUse>(Arena*);
+template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common::v1::Capsule>(Arena*);
 template<> ::viam::common::v1::DigitalInterruptStatus* Arena::CreateMaybeMessage<::viam::common::v1::DigitalInterruptStatus>(Arena*);
 template<> ::viam::common::v1::GeoPoint* Arena::CreateMaybeMessage<::viam::common::v1::GeoPoint>(Arena*);
 template<> ::viam::common::v1::GeometriesInFrame* Arena::CreateMaybeMessage<::viam::common::v1::GeometriesInFrame>(Arena*);
@@ -1714,6 +1718,160 @@ class Sphere final :
 };
 // -------------------------------------------------------------------
 
+class Capsule final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Capsule) */ {
+ public:
+  inline Capsule() : Capsule(nullptr) {}
+  ~Capsule() override;
+  explicit PROTOBUF_CONSTEXPR Capsule(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Capsule(const Capsule& from);
+  Capsule(Capsule&& from) noexcept
+    : Capsule() {
+    *this = ::std::move(from);
+  }
+
+  inline Capsule& operator=(const Capsule& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Capsule& operator=(Capsule&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Capsule& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Capsule* internal_default_instance() {
+    return reinterpret_cast<const Capsule*>(
+               &_Capsule_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(Capsule& a, Capsule& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Capsule* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Capsule* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Capsule* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Capsule>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Capsule& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Capsule& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Capsule* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.Capsule";
+  }
+  protected:
+  explicit Capsule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRadiusMmFieldNumber = 1,
+    kLengthMmFieldNumber = 2,
+  };
+  // double radius_mm = 1 [json_name = "radiusMm"];
+  void clear_radius_mm();
+  double radius_mm() const;
+  void set_radius_mm(double value);
+  private:
+  double _internal_radius_mm() const;
+  void _internal_set_radius_mm(double value);
+  public:
+
+  // double length_mm = 2 [json_name = "lengthMm"];
+  void clear_length_mm();
+  double length_mm() const;
+  void set_length_mm(double value);
+  private:
+  double _internal_length_mm() const;
+  void _internal_set_length_mm(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.Capsule)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double radius_mm_;
+  double length_mm_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RectangularPrism final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.RectangularPrism) */ {
  public:
@@ -1762,7 +1920,7 @@ class RectangularPrism final :
                &_RectangularPrism_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(RectangularPrism& a, RectangularPrism& b) {
     a.Swap(&b);
@@ -1912,6 +2070,7 @@ class Geometry final :
   enum GeometryTypeCase {
     kSphere = 2,
     kBox = 3,
+    kCapsule = 5,
     GEOMETRY_TYPE_NOT_SET = 0,
   };
 
@@ -1920,7 +2079,7 @@ class Geometry final :
                &_Geometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(Geometry& a, Geometry& b) {
     a.Swap(&b);
@@ -1995,6 +2154,7 @@ class Geometry final :
     kCenterFieldNumber = 1,
     kSphereFieldNumber = 2,
     kBoxFieldNumber = 3,
+    kCapsuleFieldNumber = 5,
   };
   // string label = 4 [json_name = "label"];
   void clear_label();
@@ -2064,6 +2224,24 @@ class Geometry final :
       ::viam::common::v1::RectangularPrism* box);
   ::viam::common::v1::RectangularPrism* unsafe_arena_release_box();
 
+  // .viam.common.v1.Capsule capsule = 5 [json_name = "capsule"];
+  bool has_capsule() const;
+  private:
+  bool _internal_has_capsule() const;
+  public:
+  void clear_capsule();
+  const ::viam::common::v1::Capsule& capsule() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Capsule* release_capsule();
+  ::viam::common::v1::Capsule* mutable_capsule();
+  void set_allocated_capsule(::viam::common::v1::Capsule* capsule);
+  private:
+  const ::viam::common::v1::Capsule& _internal_capsule() const;
+  ::viam::common::v1::Capsule* _internal_mutable_capsule();
+  public:
+  void unsafe_arena_set_allocated_capsule(
+      ::viam::common::v1::Capsule* capsule);
+  ::viam::common::v1::Capsule* unsafe_arena_release_capsule();
+
   void clear_geometry_type();
   GeometryTypeCase geometry_type_case() const;
   // @@protoc_insertion_point(class_scope:viam.common.v1.Geometry)
@@ -2071,6 +2249,7 @@ class Geometry final :
   class _Internal;
   void set_has_sphere();
   void set_has_box();
+  void set_has_capsule();
 
   inline bool has_geometry_type() const;
   inline void clear_has_geometry_type();
@@ -2085,6 +2264,7 @@ class Geometry final :
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
     ::viam::common::v1::Sphere* sphere_;
     ::viam::common::v1::RectangularPrism* box_;
+    ::viam::common::v1::Capsule* capsule_;
   } geometry_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -2141,7 +2321,7 @@ class GeometriesInFrame final :
                &_GeometriesInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(GeometriesInFrame& a, GeometriesInFrame& b) {
     a.Swap(&b);
@@ -2309,7 +2489,7 @@ class PointCloudObject final :
                &_PointCloudObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(PointCloudObject& a, PointCloudObject& b) {
     a.Swap(&b);
@@ -2477,7 +2657,7 @@ class GeoPoint final :
                &_GeoPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(GeoPoint& a, GeoPoint& b) {
     a.Swap(&b);
@@ -2631,7 +2811,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -2820,7 +3000,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3012,7 +3192,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -3896,6 +4076,50 @@ inline void Sphere::set_radius_mm(double value) {
 
 // -------------------------------------------------------------------
 
+// Capsule
+
+// double radius_mm = 1 [json_name = "radiusMm"];
+inline void Capsule::clear_radius_mm() {
+  radius_mm_ = 0;
+}
+inline double Capsule::_internal_radius_mm() const {
+  return radius_mm_;
+}
+inline double Capsule::radius_mm() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Capsule.radius_mm)
+  return _internal_radius_mm();
+}
+inline void Capsule::_internal_set_radius_mm(double value) {
+  
+  radius_mm_ = value;
+}
+inline void Capsule::set_radius_mm(double value) {
+  _internal_set_radius_mm(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Capsule.radius_mm)
+}
+
+// double length_mm = 2 [json_name = "lengthMm"];
+inline void Capsule::clear_length_mm() {
+  length_mm_ = 0;
+}
+inline double Capsule::_internal_length_mm() const {
+  return length_mm_;
+}
+inline double Capsule::length_mm() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Capsule.length_mm)
+  return _internal_length_mm();
+}
+inline void Capsule::_internal_set_length_mm(double value) {
+  
+  length_mm_ = value;
+}
+inline void Capsule::set_length_mm(double value) {
+  _internal_set_length_mm(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.Capsule.length_mm)
+}
+
+// -------------------------------------------------------------------
+
 // RectangularPrism
 
 // .viam.common.v1.Vector3 dims_mm = 1 [json_name = "dimsMm"];
@@ -4227,6 +4451,80 @@ inline ::viam::common::v1::RectangularPrism* Geometry::_internal_mutable_box() {
 inline ::viam::common::v1::RectangularPrism* Geometry::mutable_box() {
   ::viam::common::v1::RectangularPrism* _msg = _internal_mutable_box();
   // @@protoc_insertion_point(field_mutable:viam.common.v1.Geometry.box)
+  return _msg;
+}
+
+// .viam.common.v1.Capsule capsule = 5 [json_name = "capsule"];
+inline bool Geometry::_internal_has_capsule() const {
+  return geometry_type_case() == kCapsule;
+}
+inline bool Geometry::has_capsule() const {
+  return _internal_has_capsule();
+}
+inline void Geometry::set_has_capsule() {
+  _oneof_case_[0] = kCapsule;
+}
+inline void Geometry::clear_capsule() {
+  if (_internal_has_capsule()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete geometry_type_.capsule_;
+    }
+    clear_has_geometry_type();
+  }
+}
+inline ::viam::common::v1::Capsule* Geometry::release_capsule() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Geometry.capsule)
+  if (_internal_has_capsule()) {
+    clear_has_geometry_type();
+    ::viam::common::v1::Capsule* temp = geometry_type_.capsule_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    geometry_type_.capsule_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::Capsule& Geometry::_internal_capsule() const {
+  return _internal_has_capsule()
+      ? *geometry_type_.capsule_
+      : reinterpret_cast< ::viam::common::v1::Capsule&>(::viam::common::v1::_Capsule_default_instance_);
+}
+inline const ::viam::common::v1::Capsule& Geometry::capsule() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Geometry.capsule)
+  return _internal_capsule();
+}
+inline ::viam::common::v1::Capsule* Geometry::unsafe_arena_release_capsule() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.Geometry.capsule)
+  if (_internal_has_capsule()) {
+    clear_has_geometry_type();
+    ::viam::common::v1::Capsule* temp = geometry_type_.capsule_;
+    geometry_type_.capsule_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Geometry::unsafe_arena_set_allocated_capsule(::viam::common::v1::Capsule* capsule) {
+  clear_geometry_type();
+  if (capsule) {
+    set_has_capsule();
+    geometry_type_.capsule_ = capsule;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Geometry.capsule)
+}
+inline ::viam::common::v1::Capsule* Geometry::_internal_mutable_capsule() {
+  if (!_internal_has_capsule()) {
+    clear_geometry_type();
+    set_has_capsule();
+    geometry_type_.capsule_ = CreateMaybeMessage< ::viam::common::v1::Capsule >(GetArenaForAllocation());
+  }
+  return geometry_type_.capsule_;
+}
+inline ::viam::common::v1::Capsule* Geometry::mutable_capsule() {
+  ::viam::common::v1::Capsule* _msg = _internal_mutable_capsule();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Geometry.capsule)
   return _msg;
 }
 
@@ -4956,6 +5254,8 @@ inline void ActuatorStatus::set_is_moving(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
