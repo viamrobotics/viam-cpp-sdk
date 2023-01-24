@@ -7,10 +7,10 @@
 #include <thread>
 #include <unordered_map>
 
-#include "../common/utils.h"
-#include "../components/component_base.h"
-#include "../components/service_base.h"
-#include "../robot/client.h"
+#include "../common/utils.hpp"
+#include "../components/component_base.hpp"
+#include "../components/service_base.hpp"
+#include "../robot/client.hpp"
 #include "common/v1/common.pb.h"
 #include "grpcpp/server_context.h"
 #include "robot/v1/robot.grpc.pb.h"

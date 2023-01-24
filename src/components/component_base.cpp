@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../common/proto_type.h"
+#include "../common/proto_type.hpp"
 #include "common/v1/common.pb.h"
 using viam::common::v1::ResourceName;
 class ComponentType {

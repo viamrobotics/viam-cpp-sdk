@@ -6,10 +6,10 @@
 
 #include <string>
 
-#include "../common/utils.h"
-#include "../components/resource_manager.h"
-#include "../registry/registry.h"
-#include "../rpc/dial.h"
+#include "../common/utils.hpp"
+#include "../components/resource_manager.hpp"
+#include "../registry/registry.hpp"
+#include "../rpc/dial.hpp"
 #include "grpcpp/channel.h"
 
 using grpc::Channel;

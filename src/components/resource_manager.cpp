@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "component_base.h"
+#include "component_base.hpp"
 
 class ResourceManager {
    public:

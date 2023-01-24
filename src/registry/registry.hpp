@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../components/service_base.h"
+#include "../components/service_base.hpp"
 #include "grpcpp/channel.h"
 #include "robot/v1/robot.pb.h"
 
