@@ -6,9 +6,9 @@
 #include <boost/variant/variant.hpp>
 #include <unordered_map>
 
-#include "../components/component_base.h"
+#include "../components/component_base.hpp"
 #include "common/v1/common.pb.h"
-#include "proto_type.h"
+#include "proto_type.hpp"
 
 using viam::common::v1::ResourceName;
 

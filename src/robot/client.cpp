@@ -21,12 +21,12 @@
 #include <tuple>
 #include <vector>
 
-#include "../common/proto_type.h"
-#include "../common/utils.h"
-#include "../components/resource_manager.h"
-#include "../components/service_base.h"
-#include "../registry/registry.h"
-#include "../rpc/dial.h"
+#include "../common/proto_type.hpp"
+#include "../common/utils.hpp"
+#include "../components/resource_manager.hpp"
+#include "../components/service_base.hpp"
+#include "../registry/registry.hpp"
+#include "../rpc/dial.hpp"
 #include "common/v1/common.pb.h"
 #include "grpcpp/channel.h"
 

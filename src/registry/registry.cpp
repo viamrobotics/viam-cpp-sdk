@@ -1,8 +1,8 @@
 #include <string>
 #include <unordered_map>
 
-#include "../components/component_base.h"
-#include "../components/service_base.h"
+#include "../components/component_base.hpp"
+#include "../components/service_base.hpp"
 #include "google/protobuf/struct.pb.h"
 #include "grpcpp/channel.h"
 #include "robot/v1/robot.pb.h"

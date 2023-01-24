@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "component_base.h"
+#include "component_base.hpp"
 class ResourceManager {
    public:
     // registers provided components
