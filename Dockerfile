@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
     build-essential \
-    clang \
+    clang \aaa
     cmake \
     gdb \
     ca-certificates \
