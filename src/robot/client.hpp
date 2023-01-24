@@ -15,9 +15,13 @@
 using grpc::Channel;
 using viam::common::v1::ResourceName;
 using viam::common::v1::Transform;
+using viam::common::v1::PoseInFrame;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
+using viam::robot::v1::Operation;
+using viam::robot::v1::Discovery;
+using viam::robot::v1::DiscoveryQuery;
 
 class RobotClient {
    public:
@@ -28,16 +32,27 @@ class RobotClient {
     RobotClient(ViamChannel channel);
     std::vector<ResourceName>* resource_names();
     std::unique_ptr<RobotService::Stub> stub_;
-    ComponentBase get_component(ResourceName name);
+    std::shared_ptr<ComponentBase> get_component(ResourceName name);
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<Status> get_status(
         std::vector<ResourceName> components = std::vector<ResourceName>());
 
+    std::vector<Operation> get_operations();
+    void cancel_operation(std::string id);
+    void block_for_operation(std::string id);
+
+
+    PoseInFrame transform_pose(
+        PoseInFrame query,
+        std::string destination,
+        std::vector<Transform> additional_transforms = std::vector<Transform>());
+    std::vector<Discovery> discover_components(std::vector<DiscoveryQuery> queries);
+
    private:
     void stop_all();
     void stop_all(std::unordered_map<ResourceName,
-                                     std::unordered_map<std::string, ProtoType>,
+                                     std::unordered_map<std::string, ProtoType*>,
                                      ResourceNameHasher,
                                      ResourceNameEqual> extra);
     std::atomic<bool> should_refresh;
@@ -49,6 +64,7 @@ class RobotClient {
     std::vector<ResourceName> resource_names_;
     ResourceManager resource_manager;
     void refresh_every();
+    void register_components();
 };
 
 #endif

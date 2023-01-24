@@ -22,10 +22,10 @@ class ComponentType {
 class ComponentBase {
    public:
     std::string name;
-    ComponentType type;
+    static ComponentType type;
     std::vector<ComponentType> component_hierarchy;
 
-    viam::common::v1::ResourceName get_resource_name(std::string name);
+    static viam::common::v1::ResourceName get_resource_name(std::string name);
     virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType> extra);
     virtual grpc::StatusCode stop();
 };

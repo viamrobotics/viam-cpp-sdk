@@ -25,9 +25,10 @@ namespace component {
 namespace generic {
 namespace v1 {
 PROTOBUF_CONSTEXPR DoCommandRequest::DoCommandRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , command_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.command_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DoCommandRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DoCommandRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,8 +39,9 @@ struct DoCommandRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
 PROTOBUF_CONSTEXPR DoCommandResponse::DoCommandResponse(
-    ::_pbi::ConstantInitialized)
-  : result_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.result_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DoCommandResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DoCommandResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -64,15 +66,15 @@ const uint32_t TableStruct_component_2fgeneric_2fv1_2fgeneric_2eproto::offsets[]
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandRequest, command_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandRequest, _impl_.command_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandResponse, result_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::generic::v1::DoCommandResponse, _impl_.result_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::generic::v1::DoCommandRequest)},
@@ -133,45 +135,56 @@ class DoCommandRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 DoCommandRequest::_Internal::command(const DoCommandRequest* msg) {
-  return *msg->command_;
+  return *msg->_impl_.command_;
 }
 void DoCommandRequest::clear_command() {
-  if (GetArenaForAllocation() == nullptr && command_ != nullptr) {
-    delete command_;
+  if (GetArenaForAllocation() == nullptr && _impl_.command_ != nullptr) {
+    delete _impl_.command_;
   }
-  command_ = nullptr;
+  _impl_.command_ = nullptr;
 }
 DoCommandRequest::DoCommandRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.generic.v1.DoCommandRequest)
 }
 DoCommandRequest::DoCommandRequest(const DoCommandRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DoCommandRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.command_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_command()) {
-    command_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.command_);
-  } else {
-    command_ = nullptr;
+    _this->_impl_.command_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.command_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.generic.v1.DoCommandRequest)
 }
 
-inline void DoCommandRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-command_ = nullptr;
+inline void DoCommandRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.command_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 DoCommandRequest::~DoCommandRequest() {
@@ -185,12 +198,12 @@ DoCommandRequest::~DoCommandRequest() {
 
 inline void DoCommandRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete command_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.command_;
 }
 
 void DoCommandRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DoCommandRequest::Clear() {
@@ -199,11 +212,11 @@ void DoCommandRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && command_ != nullptr) {
-    delete command_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.command_ != nullptr) {
+    delete _impl_.command_;
   }
-  command_ = nullptr;
+  _impl_.command_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -304,38 +317,35 @@ size_t DoCommandRequest::ByteSizeLong() const {
   if (this->_internal_has_command()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *command_);
+        *_impl_.command_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DoCommandRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DoCommandRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DoCommandRequest::GetClassData() const { return &_class_data_; }
 
-void DoCommandRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DoCommandRequest *>(to)->MergeFrom(
-      static_cast<const DoCommandRequest &>(from));
-}
 
-
-void DoCommandRequest::MergeFrom(const DoCommandRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.generic.v1.DoCommandRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void DoCommandRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DoCommandRequest*>(&to_msg);
+  auto& from = static_cast<const DoCommandRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.generic.v1.DoCommandRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_command()) {
-    _internal_mutable_command()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_command());
+    _this->_internal_mutable_command()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_command());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DoCommandRequest::CopyFrom(const DoCommandRequest& from) {
@@ -355,10 +365,10 @@ void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(command_, other->command_);
+  swap(_impl_.command_, other->_impl_.command_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
@@ -376,33 +386,42 @@ class DoCommandResponse::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 DoCommandResponse::_Internal::result(const DoCommandResponse* msg) {
-  return *msg->result_;
+  return *msg->_impl_.result_;
 }
 void DoCommandResponse::clear_result() {
-  if (GetArenaForAllocation() == nullptr && result_ != nullptr) {
-    delete result_;
+  if (GetArenaForAllocation() == nullptr && _impl_.result_ != nullptr) {
+    delete _impl_.result_;
   }
-  result_ = nullptr;
+  _impl_.result_ = nullptr;
 }
 DoCommandResponse::DoCommandResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.generic.v1.DoCommandResponse)
 }
 DoCommandResponse::DoCommandResponse(const DoCommandResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DoCommandResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.result_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_result()) {
-    result_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.result_);
-  } else {
-    result_ = nullptr;
+    _this->_impl_.result_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.result_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.generic.v1.DoCommandResponse)
 }
 
-inline void DoCommandResponse::SharedCtor() {
-result_ = nullptr;
+inline void DoCommandResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.result_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 DoCommandResponse::~DoCommandResponse() {
@@ -416,11 +435,11 @@ DoCommandResponse::~DoCommandResponse() {
 
 inline void DoCommandResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete result_;
+  if (this != internal_default_instance()) delete _impl_.result_;
 }
 
 void DoCommandResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DoCommandResponse::Clear() {
@@ -429,10 +448,10 @@ void DoCommandResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && result_ != nullptr) {
-    delete result_;
+  if (GetArenaForAllocation() == nullptr && _impl_.result_ != nullptr) {
+    delete _impl_.result_;
   }
-  result_ = nullptr;
+  _impl_.result_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -506,35 +525,32 @@ size_t DoCommandResponse::ByteSizeLong() const {
   if (this->_internal_has_result()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *result_);
+        *_impl_.result_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DoCommandResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DoCommandResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DoCommandResponse::GetClassData() const { return &_class_data_; }
 
-void DoCommandResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DoCommandResponse *>(to)->MergeFrom(
-      static_cast<const DoCommandResponse &>(from));
-}
 
-
-void DoCommandResponse::MergeFrom(const DoCommandResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.generic.v1.DoCommandResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void DoCommandResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DoCommandResponse*>(&to_msg);
+  auto& from = static_cast<const DoCommandResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.generic.v1.DoCommandResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_result()) {
-    _internal_mutable_result()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_result());
+    _this->_internal_mutable_result()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_result());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DoCommandResponse::CopyFrom(const DoCommandResponse& from) {
@@ -551,7 +567,7 @@ bool DoCommandResponse::IsInitialized() const {
 void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(result_, other->result_);
+  swap(_impl_.result_, other->_impl_.result_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {

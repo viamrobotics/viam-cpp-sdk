@@ -30,6 +30,9 @@
 #include "common/v1/common.pb.h"
 #include "grpcpp/channel.h"
 
+#include "client.hpp"
+#include "../components/servo/client.hpp"
+
 using google::protobuf::RepeatedPtrField;
 using grpc::Channel;
 using grpc::ClientContext;
@@ -45,48 +48,49 @@ using viam::robot::v1::Status;
 
 // gRPC client for a robot. This class should be used for all interactions with
 // a robot.
-class RobotClient {
-   public:
-    void refresh();
-    void close();
-    static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
-    static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, Options options);
-    std::vector<Status> get_status(
-        std::vector<ResourceName> components = std::vector<ResourceName>());
-    std::vector<Operation> get_operations();
-    std::vector<FrameSystemConfig> get_frame_system_config(
-        std::vector<Transform> additional_transforms = std::vector<Transform>());
+// class RobotClient {
+//    public:
+//     void refresh();
+//     void close();
+//     static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
+//     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, Options options);
+//     std::vector<Status> get_status(
+//         std::vector<ResourceName> components = std::vector<ResourceName>());
+//     std::vector<Operation> get_operations();
+//     std::vector<FrameSystemConfig> get_frame_system_config(
+//         std::vector<Transform> additional_transforms = std::vector<Transform>());
 
-    void stop_all(std::unordered_map<ResourceName,
-                                     std::unordered_map<std::string, ProtoType*>,
-                                     ResourceNameHasher,
-                                     ResourceNameEqual> extra);
+    // void stop_all(std::unordered_map<ResourceName,
+    //                                  std::unordered_map<std::string, ProtoType*>,
+    //                                  ResourceNameHasher,
+    //                                  ResourceNameEqual> extra);
 
-    void stop_all();
-    void cancel_operation(std::string id);
-    void block_for_operation(std::string id);
-    RobotClient(ViamChannel channel);
-    std::vector<ResourceName>* resource_names();
-    std::unique_ptr<RobotService::Stub> stub_;
-    ComponentBase get_component(ResourceName name);
-    PoseInFrame transform_pose(
-        PoseInFrame query,
-        std::string destination,
-        std::vector<Transform> additional_transforms = std::vector<Transform>());
-    std::vector<Discovery> discover_components(std::vector<DiscoveryQuery> queries);
+//     void stop_all();
+    // void cancel_operation(std::string id);
+    // void block_for_operation(std::string id);
+//     RobotClient(ViamChannel channel);
+//     std::vector<ResourceName>* resource_names();
+//     std::unique_ptr<RobotService::Stub> stub_;
+//     std::shared_ptr<ComponentBase> get_component(ResourceName name);
+//     PoseInFrame transform_pose(
+//         PoseInFrame query,
+//         std::string destination,
+//         std::vector<Transform> additional_transforms = std::vector<Transform>());
+//     std::vector<Discovery> discover_components(std::vector<DiscoveryQuery> queries);
 
-   private:
-    std::atomic<bool> should_refresh;
-    unsigned int refresh_interval;
-    // (RSDK-919): make use of should_close_channel
-    bool should_close_channel;
-    std::shared_ptr<Channel> channel;
-    ViamChannel viam_channel;
-    std::mutex lock;
-    std::vector<ResourceName> resource_names_;
-    ResourceManager resource_manager;
-    void refresh_every();
-};
+//    private:
+//     std::atomic<bool> should_refresh;
+//     unsigned int refresh_interval;
+//     // (RSDK-919): make use of should_close_channel
+//     bool should_close_channel;
+//     std::shared_ptr<Channel> channel;
+//     ViamChannel viam_channel;
+//     std::mutex lock;
+//     std::vector<ResourceName> resource_names_;
+//     ResourceManager resource_manager;
+//     void refresh_every();
+//     void register_components();
+// };
 
 void RobotClient::close() {
     should_refresh.store(false);
@@ -192,7 +196,7 @@ void RobotClient::refresh() {
         }
 
         try {
-            ComponentBase rpc_client =
+            std::shared_ptr<ComponentBase> rpc_client =
                 Registry::lookup(name.subtype()).create_rpc_client(name.name(), channel);
             new_resource_manager.register_component(rpc_client);
         } catch (std::exception& exc) {
@@ -247,6 +251,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
         std::thread t(&RobotClient::refresh_every, robot);
         t.detach();
     };
+
+    robot->register_components();
 
     robot->refresh();
     return robot;
@@ -342,7 +348,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     return components;
 }
 
-ComponentBase RobotClient::get_component(ResourceName name) {
+std::shared_ptr<ComponentBase> RobotClient::get_component(ResourceName name) {
     if (name.type() != "component") {
         std::string error = "Expected resource type 'component' but got " + name.type();
         throw error;
@@ -387,4 +393,12 @@ void RobotClient::stop_all(std::unordered_map<ResourceName,
         BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
                                  << response.error_details();
     }
+}
+
+void RobotClient::register_components() {
+    ComponentRegistration servo; // = ComponentRegistration();
+    servo.component_type = ComponentType("servo");
+    servo.name = "servo";
+    servo.create_rpc_client = ServoClient::create;
+    Registry::register_component(servo);
 }

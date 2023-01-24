@@ -10,8 +10,9 @@
 
 #include "../../src/gen/robot/v1/robot.grpc.pb.h"
 #include "../../src/gen/robot/v1/robot.pb.h"
-#include "../../src/robot/client.h"
-#include "../../src/rpc/dial.h"
+#include "../../src/robot/client.hpp"
+#include "../../src/rpc/dial.hpp"
+#include "../../src/components/servo/servo.hpp"
 
 using viam::robot::v1::Status;
 
@@ -22,9 +23,9 @@ extern "C" char *dial(const char *uri, const char *payload, bool allow_insecure,
 		      void *ptr);
 
 int main() {
-	const char *uri = "<your robot URI here>";
+	const char *uri = "naveed-pi-main.60758fe0f6.viam.cloud";
 	DialOptions dial_options = DialOptions();
-	std::string payload = "<your payload here>";
+	std::string payload = "pem1epjv07fq2cz2z5723gq6ntuyhue5t30boohkiz3iqht4";
 	Credentials credentials(payload);
 	dial_options.credentials = credentials;
 	boost::optional<DialOptions> opts(dial_options);
@@ -53,6 +54,8 @@ int main() {
 	for (Status s : status_singular) {
 		std::cout << " Status! " << s.name().subtype() << std::endl;
 	}
+
+	std::shared_ptr<Servo> servo = Servo::from_robot(robot, "servo");
 
 	robot->close();
 	return 0;
