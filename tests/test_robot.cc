@@ -1,7 +1,7 @@
 #include <memory>
 #include <utility>
 
-#include "../src/robot/service.h"
+#include "../src/robot/service.hpp"
 #include "common/v1/common.pb.h"
 #include "component/arm/v1/arm.grpc.pb.h"
 #include "component/arm/v1/arm.pb.h"
