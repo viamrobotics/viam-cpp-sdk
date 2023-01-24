@@ -4,8 +4,15 @@
 #include <resource/resource.h>
 #include <robot/v1/robot.pb.h>
 
+#include <boost/algorithm/string.hpp>
+#include <numeric>
 #include <string>
 #include <unordered_map>
+
+// CR erodkin: confirm we don't use similar consts somewhere else. if we do,
+// move this to a shared space
+const std::string COMPONENT = "component";
+const std::string RDK = "rdk";
 
 typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
 
@@ -16,7 +23,8 @@ class ResourceLevelServiceConfig {
 	ProtoType converted_attributes;
 };
 
-// CR erodkin: should this inherit from ComponentBase?
+// CR erodkin: should this inherit from ComponentBase? Probably not since it's a
+// config and not an actual component, but confirm
 class Component {
        public:
 	std::string name;
@@ -31,6 +39,8 @@ class Component {
 	ProtoType converted_attributes;
 	std::vector<std::string> implicit_depends_on;
 
+	Name resource_name();
+
 	static Component from_proto(viam::app::v1::ComponentConfig proto_cfg);
 	viam::app::v1::ComponentConfig to_proto();
 	Component();
@@ -39,11 +49,28 @@ class Component {
 	void fix_api();
 };
 
+Name Component::resource_name() {
+	try {
+		this->fix_api();
+	} catch (std::string err) {
+		throw err;
+	}
+	std::vector<std::string> remotes;
+	boost::split(remotes, this->name, boost::is_any_of(":"));
+	if (remotes.size() > 1) {
+		std::string str_name = remotes.at(remotes.size() - 1);
+		remotes.pop_back();
+		std::string remote =
+		    std::accumulate(remotes.begin(), remotes.end(), ":");
+		return Name(this->api, remote, str_name);
+	}
+	return Name(this->api, "", remotes.at(0));
+}
+
 void Component::fix_api() {
 	if (this->api.namespace_ == "" && this->namespace_ == "") {
-		// CR erodkin: make "rdk" a const somewhere
-		this->namespace_ = "rdk";
-		this->api.namespace_ = "rdk";
+		this->namespace_ = RDK;
+		this->api.namespace_ = RDK;
 	} else if (this->api.namespace_ == "") {
 		this->api.namespace_ = this->namespace_;
 	} else {
@@ -51,7 +78,7 @@ void Component::fix_api() {
 	}
 
 	if (this->api.resource_type == "") {
-		this->api.resource_type = "component";
+		this->api.resource_type = COMPONENT;
 	}
 
 	if (this->api.resource_subtype == "") {
@@ -108,7 +135,7 @@ viam::app::v1::ComponentConfig Component::to_proto() {
 	*proto_cfg.mutable_name() = name;
 	*proto_cfg.mutable_namespace_() = namespace_;
 	*proto_cfg.mutable_type() = type;
-	*proto_cfg.mutable_api() = api.SerializeAsString();
+	*proto_cfg.mutable_api() = api.to_string();
 	*proto_cfg.mutable_model() = model.to_string();
 	*proto_cfg.mutable_attributes() = map_to_struct(attributes);
 	for (auto dep : depends_on) {

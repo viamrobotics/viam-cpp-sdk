@@ -193,27 +193,31 @@ void RobotClient::refresh() {
             continue;
         }
 
-        try {
-            ComponentBase rpc_client =
-                Registry::lookup(name.subtype()).create_rpc_client(name.name(), channel);
-            new_resource_manager.register_component(rpc_client);
-        } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(debug)
-                << "Error registering component " << name.subtype() << ": " << exc.what();
-        }
-    }
-    bool is_equal = current_resources.size() == resource_names_.size();
-    if (is_equal) {
-        for (int i = 0; i < current_resources.size(); ++i) {
-            if (!ResourceNameEqual::check_equal(resource_names_.at(i), current_resources.at(i))) {
-                is_equal = false;
-                break;
-            }
-        }
-    }
-    if (is_equal) {
-        return;
-    }
+		try {
+			ComponentBase rpc_client =
+			    Registry::lookup_component(name.subtype())
+				.create_rpc_client(name.name(), channel);
+			new_resource_manager.register_component(rpc_client);
+		} catch (std::exception &exc) {
+			BOOST_LOG_TRIVIAL(debug)
+			    << "Error registering component " << name.subtype()
+			    << ": " << exc.what();
+		}
+	}
+	bool is_equal = current_resources.size() == resource_names_.size();
+	if (is_equal) {
+		for (int i = 0; i < current_resources.size(); ++i) {
+			if (!ResourceNameEqual::check_equal(
+				resource_names_.at(i),
+				current_resources.at(i))) {
+				is_equal = false;
+				break;
+			}
+		}
+	}
+	if (is_equal) {
+		return;
+	}
 
     lock.lock();
     resource_names_ = current_resources;

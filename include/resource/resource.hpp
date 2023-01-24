@@ -16,19 +16,24 @@ class Subtype : public Type {
        public:
 	std::string resource_subtype;
 
-	std::string to_string();
+	const std::string to_string();
 	Subtype(std::string subtype);
 	Subtype(std::string namespace_, std::string resource_type,
 		std::string resource_subtype);
 	Subtype(Type type, std::string resource_subtype);
+	friend bool operator==(const Subtype& lhs, const Subtype& rhs);
 };
 
 class Name : public Subtype {
+       public:
 	std::string remote_name;
 	std::string name;
 
-       public:
 	std::string to_string();
+	Subtype to_subtype();
+	Name(std::string name);
+	Name(Subtype subtype, std::string remote_name, std::string name);
+	Name();
 	friend bool operator==(Name& lhs, Name& rhs);
 };
 
@@ -69,6 +74,7 @@ class Model : public ModelFamily {
 	Model(ModelFamily model, std::string model_name);
 	Model(std::string model);
 	std::string to_string();
+	friend bool operator==(Model& lhs, Model& rhs);
 };
 
 template <>
@@ -79,4 +85,9 @@ struct std::hash<Name> {
 template <>
 struct std::hash<RPCSubtype> {
 	size_t operator()(RPCSubtype const& key) const noexcept;
+};
+
+template <>
+struct std::hash<Subtype> {
+	size_t operator()(const Subtype& key) const noexcept;
 };

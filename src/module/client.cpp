@@ -1,5 +1,6 @@
 #include <app/v1/robot.pb.h>
 #include <common/v1/common.pb.h>
+#include <config/resource.h>
 #include <grpcpp/support/status.h>
 #include <module/v1/module.grpc.pb.h>
 #include <module/v1/module.pb.h>
@@ -18,10 +19,9 @@ class ModuleClient {
 	std::unordered_map<RPCSubtype, std::vector<Model>> handles;
 
 	ModuleClient(ViamChannel channel);
-	void add_resource(viam::app::v1::ComponentConfig cfg,
-			  std::vector<std::string> dependencies);
+	void add_resource(Component cfg, std::vector<std::string> dependencies);
 
-	void reconfigure_resource(viam::app::v1::ComponentConfig cfg,
+	void reconfigure_resource(Component cfg,
 				  std::vector<std::string> dependencies);
 	void remove_resource(Name name);
 
@@ -32,16 +32,16 @@ ModuleClient::ModuleClient(ViamChannel channel) {
 	stub_ = std::move(ModuleService::NewStub(channel.channel));
 }
 
-// CR erodkin: we should custom define the config type here instead of forcing
-// folks to work with the proto-defined version
-void ModuleClient::add_resource(viam::app::v1::ComponentConfig cfg,
+void ModuleClient::add_resource(Component cfg,
 				std::vector<std::string> dependencies) {
 	viam::module::v1::AddResourceRequest req;
 	viam::module::v1::AddResourceResponse resp;
 	grpc::ClientContext ctx;
+
+	viam::app::v1::ComponentConfig proto_cfg = cfg.to_proto();
 	google::protobuf::RepeatedPtrField<
 	    viam::app::v1::ResourceLevelServiceConfig> *rs =
-	    cfg.mutable_service_configs();
+	    proto_cfg.mutable_service_configs();
 
 	viam::app::v1::ResourceLevelServiceConfig rp;
 
@@ -50,7 +50,7 @@ void ModuleClient::add_resource(viam::app::v1::ComponentConfig cfg,
 	for (auto dep : dependencies) {
 		*req.mutable_dependencies()->Add() = dep;
 	}
-	*req.mutable_config() = cfg;
+	*req.mutable_config() = proto_cfg;
 
 	grpc::Status response = stub_->AddResource(&ctx, req, &resp);
 	if (!response.ok()) {
@@ -60,7 +60,7 @@ void ModuleClient::add_resource(viam::app::v1::ComponentConfig cfg,
 	}
 }
 
-void ModuleClient::reconfigure_resource(viam::app::v1::ComponentConfig cfg,
+void ModuleClient::reconfigure_resource(Component cfg,
 					std::vector<std::string> dependencies) {
 	viam::module::v1::ReconfigureResourceRequest req;
 	viam::module::v1::ReconfigureResourceResponse resp;
@@ -69,7 +69,7 @@ void ModuleClient::reconfigure_resource(viam::app::v1::ComponentConfig cfg,
 	for (auto dep : dependencies) {
 		*req.mutable_dependencies()->Add() = dep;
 	}
-	*req.mutable_config() = cfg;
+	*req.mutable_config() = cfg.to_proto();
 
 	grpc::Status response = stub_->ReconfigureResource(&ctx, req, &resp);
 	if (!response.ok()) {

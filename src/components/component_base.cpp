@@ -3,6 +3,7 @@
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
 
+#include <resource/resource_base.hpp>
 #include <string>
 using viam::common::v1::ResourceName;
 class ComponentType {
@@ -17,7 +18,7 @@ class ComponentType {
     }
 };
 
-class ComponentBase {
+class ComponentBase : public ResourceBase {
        public:
 	std::string name;
 	ComponentType type;

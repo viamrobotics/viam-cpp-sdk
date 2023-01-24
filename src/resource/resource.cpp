@@ -9,17 +9,19 @@ class Type {
        public:
 	std::string namespace_;
 	std::string resource_type;
-	std::string to_string();
+	std::string to_string() const;
 };
 
 class Subtype : public Type {
        public:
 	std::string resource_subtype;
-	std::string to_string();
+	std::string to_string() const;
 	Subtype(std::string subtype);
 	Subtype(Type type, std::string resource_subtype);
 	Subtype(std::string namespace_, std::string resource_type,
 		std::string resource_subtype);
+	friend bool operator==(Subtype& lhs, Subtype& rhs);
+	Subtype();
 };
 
 class Name : public Subtype {
@@ -28,6 +30,16 @@ class Name : public Subtype {
 	std::string name;
 
 	std::string to_string();
+	Subtype* to_subtype();
+	Name(std::string name);
+	Name(Subtype subtype, std::string remote, std::string name);
+};
+
+class Reconfigurable {
+       public:
+	virtual Name name();
+	// CR erodkin: should new_resource be a pointer?
+	virtual void reconfigure(Reconfigurable new_resource);
 };
 
 class RPCSubtype {
@@ -63,16 +75,28 @@ class Model : public ModelFamily {
 	Model(ModelFamily model, std::string model_name);
 	Model(std::string model);
 	std::string to_string();
+	friend bool operator==(const Model& lhs, const Model& rhs);
 };
-const std::regex MODEL_REGEX(
-    "^([a-zA-Z_0-9-]+):([a-zA-Z_0-9-]+):([a-zA-Z_0-9-]+)$");
-std::regex SINGLE_FIELD_REGEX("^([a-zA-Z_0-9-]+)$");
+
+const std::regex NAME_REGEX(
+    "^([\\w-]+:[\\w-]+:(?:[\\w-]+))\\/?([\\w-]+:(?:[\\w-]+:)*)?(.+)?$");
+
+const std::regex MODEL_REGEX("^([\\w-]+):([\\w-]+):([\\w-]+)$");
+std::regex SINGLE_FIELD_REGEX("^([\\w-]+)$");
 
 template <>
 struct std::hash<Name> {
 	size_t operator()(Name const& key) const noexcept {
 		std::string hash = key.namespace_ + key.resource_type +
 				   key.resource_subtype + key.name + key.remote;
+		return std::hash<std::string>()(hash);
+	}
+};
+
+template <>
+struct std::hash<Subtype> {
+	size_t operator()(const Subtype& key) const noexcept {
+		std::string const hash = key.to_string();
 		return std::hash<std::string>()(hash);
 	}
 };
@@ -89,9 +113,9 @@ struct std::hash<RPCSubtype> {
 	}
 };
 
-std::string Type::to_string() { return namespace_ + ":" + resource_type; }
+std::string Type::to_string() const { return namespace_ + ":" + resource_type; }
 
-std::string Subtype::to_string() {
+std::string Subtype::to_string() const {
 	return Type::to_string() + ":" + resource_subtype;
 }
 
@@ -107,6 +131,8 @@ Subtype::Subtype(std::string subtype) {
 	}
 }
 
+Subtype* Name::to_subtype() { return this; }
+
 std::string Name::to_string() {
 	std::string subtype_name = Subtype::to_string();
 	if (remote == "") {
@@ -115,6 +141,39 @@ std::string Name::to_string() {
 	return subtype_name + "/" + remote + ":" + name;
 }
 
+Name::Name(std::string name) {
+	if (!std::regex_match(name, NAME_REGEX)) {
+		throw "Received invalid Name string: " + name;
+	}
+	std::vector<std::string> matches;
+	boost::split(matches, name, boost::is_any_of(":"));
+
+	std::vector<std::string> subtype_parts;
+	boost::split(subtype_parts, matches.at(1), boost::is_any_of(":"));
+
+	std::string remote = matches.at(2);
+	if (remote.size() > 0) {
+		remote.pop_back();
+	}
+
+	this->remote = remote;
+	this->namespace_ = subtype_parts.at(0);
+	this->resource_type = subtype_parts.at(1);
+	this->resource_subtype = subtype_parts.at(2);
+	this->name = matches.at(3);
+}
+
+Name::Name(Subtype subtype, std::string remote, std::string name) {
+	this->remote = remote;
+	this->name = name;
+	this->resource_subtype = subtype.resource_subtype;
+	this->namespace_ = subtype.namespace_;
+	this->resource_type = subtype.resource_type;
+}
+
+bool operator==(Subtype& lhs, Subtype& rhs) {
+	return lhs.to_string() == rhs.to_string();
+}
 bool operator==(Name& lhs, Name& rhs) {
 	return lhs.to_string() == rhs.to_string();
 }
@@ -123,6 +182,10 @@ bool operator==(RPCSubtype& lhs, RPCSubtype& rhs) {
 	return lhs.subtype.to_string() == rhs.subtype.to_string() &&
 	       lhs.proto_service_name == rhs.proto_service_name &&
 	       lhs.descriptor.DebugString() == rhs.descriptor.DebugString();
+}
+
+bool operator==(Model& lhs, Model& rhs) {
+	return lhs.to_string() == rhs.to_string();
 }
 
 Subtype::Subtype(Type type, std::string resource_subtype) {

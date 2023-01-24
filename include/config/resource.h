@@ -35,6 +35,7 @@ class Component {
 	static Component from_proto(viam::app::v1::ComponentConfig proto_cfg);
 	viam::app::v1::ComponentConfig to_proto();
 	Component();
+	Name resource_name();
 
        private:
 	void fix_api();
