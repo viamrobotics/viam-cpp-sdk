@@ -7,18 +7,13 @@
 #include "component/servo/v1/servo.grpc.pb.h"
 
 using grpc::Channel;
-// using grpc::ClientAsyncResponseReader;
 using grpc::ClientContext;
-// using grpc::CompletionQueue;
-// using grpc::Status;
-// using viam::component::servo::v1::ResourceName;
-// using helloworld::HelloReply;
-// using helloworld::HelloRequest;
 using viam::component::servo::v1::ServoService;
 
 class ServoClient: public Servo {
     public:
         explicit ServoClient(std::string name_, std::shared_ptr<Channel> channel);
+        static std::shared_ptr<ServoClient> from_robot(std::shared_ptr<RobotClient> robot, std::string name);
         void move(int angle);
         int get_position();
         // void stop() = 0;

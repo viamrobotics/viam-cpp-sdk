@@ -10,6 +10,7 @@
 class ComponentRegistration {
    public:
     ComponentRegistration();
+    ComponentRegistration(ComponentType component_type_, std::string name_, std::function<std::shared_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client_);
     ComponentType component_type;
     std::string name;
     std::function<std::shared_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;

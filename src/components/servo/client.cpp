@@ -7,13 +7,7 @@
 #include "component/servo/v1/servo.grpc.pb.h"
 
 using grpc::Channel;
-// using grpc::ClientAsyncResponseReader;
 using grpc::ClientContext;
-// using grpc::CompletionQueue;
-// using grpc::Status;
-// using viam::component::servo::v1::ResourceName;
-// using helloworld::HelloReply;
-// using helloworld::HelloRequest;
 using viam::component::servo::v1::ServoService;
 using viam::component::servo::v1::MoveRequest;
 using viam::component::servo::v1::MoveResponse;
@@ -22,6 +16,11 @@ ServoClient::ServoClient(std::string name_, std::shared_ptr<Channel> channel)
     : stub_(ServoService::NewStub(channel)) {
         name = name_;
     };
+
+std::shared_ptr<ServoClient> ServoClient::from_robot(std::shared_ptr<RobotClient> robot, std::string name) {
+    std::shared_ptr<ComponentBase> component = robot->get_component(Servo::get_resource_name(name));
+    return std::dynamic_pointer_cast<ServoClient>(component);
+};
 
 void ServoClient::move(int angle) {
     MoveRequest req;

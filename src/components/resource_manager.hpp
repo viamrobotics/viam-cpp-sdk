@@ -10,7 +10,7 @@ class ResourceManager {
     // registers provided components
     ResourceManager(std::vector<std::shared_ptr<ComponentBase>> components);
     ResourceManager();
-    static std::unordered_map<std::string, std::shared_ptr<ComponentBase>> components;
+    std::unordered_map<std::string, std::shared_ptr<ComponentBase>> components;
     void register_component(std::shared_ptr<ComponentBase> component);
     std::shared_ptr<ComponentBase> get_component(std::string name, ComponentType of_type);
 };

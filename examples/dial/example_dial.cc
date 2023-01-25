@@ -12,7 +12,7 @@
 #include "../../src/gen/robot/v1/robot.pb.h"
 #include "../../src/robot/client.hpp"
 #include "../../src/rpc/dial.hpp"
-#include "../../src/components/servo/servo.hpp"
+#include "../../src/components/servo/client.hpp"
 
 using viam::robot::v1::Status;
 
@@ -30,7 +30,7 @@ int main() {
 	dial_options.credentials = credentials;
 	boost::optional<DialOptions> opts(dial_options);
 	std::string address(uri);
-	Options options = Options(1, opts);
+	Options options = Options(0, opts);
 	std::shared_ptr<RobotClient> robot =
 	    RobotClient::at_address(address, options);
 	robot->refresh();
@@ -55,7 +55,8 @@ int main() {
 		std::cout << " Status! " << s.name().subtype() << std::endl;
 	}
 
-	std::shared_ptr<Servo> servo = Servo::from_robot(robot, "servo");
+	std::shared_ptr<ServoClient> servo = ServoClient::from_robot(robot, "servo");
+	std::cout << "SERVO POSITION " << servo->get_position() << std::endl;
 
 	robot->close();
 	return 0;

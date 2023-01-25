@@ -64,7 +64,6 @@ class RobotClient {
     std::vector<ResourceName> resource_names_;
     ResourceManager resource_manager;
     void refresh_every();
-    void register_components();
 };
 
 #endif

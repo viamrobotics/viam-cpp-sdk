@@ -6,30 +6,13 @@
 #include "component_base.hpp"
 #include "resource_manager.hpp"
 
-// class ResourceManager {
-//    public:
-//     static std::unordered_map<std::string, ComponentBase> components;
-//     void register_component(ComponentBase component);
-
-//     // returns a component from the registry.
-//     // Args:
-//     // 	std::string name: the name of the component
-//     //
-//     // Raises:
-//     // 	If the name is not within the ResourceManager or the registered
-//     // component's type is not the expected type, then register_component
-//     // will throw an error.
-//     ComponentBase get_component(std::string name, ComponentType of_type);
-//     ResourceManager(std::vector<ComponentBase> components);
-//     ResourceManager();
-// };
-
 ResourceManager::ResourceManager() {}
 
 // Register a new component with the registry.
 // Components may not have the same name.
 ResourceManager::ResourceManager(std::vector<std::shared_ptr<ComponentBase>> components) {
     for (auto component : components) {
+        std::cout << "CALLING REGISTER COMPONENTS FROM INIT" <<std::endl;
         register_component(component);
     }
 }
@@ -43,7 +26,7 @@ void ResourceManager::register_component(std::shared_ptr<ComponentBase> componen
     components[component->name] = component;
 }
 
-std::unordered_map<std::string, std::shared_ptr<ComponentBase>> ResourceManager::components;
+// std::unordered_map<std::string, std::shared_ptr<ComponentBase>> ResourceManager::components;
 
 std::shared_ptr<ComponentBase> ResourceManager::get_component(std::string name, ComponentType of_type) {
     if (components.find(name) == components.end()) {

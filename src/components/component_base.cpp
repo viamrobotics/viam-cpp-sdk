@@ -5,29 +5,11 @@
 
 #include "../common/proto_type.hpp"
 #include "common/v1/common.pb.h"
-using viam::common::v1::ResourceName;
-class ComponentType {
-   public:
-    std::string name;
-    friend bool operator==(ComponentType& lhs, ComponentType& rhs);
-    ComponentType(std::string name) {
-        name = name;
-    }
-    ComponentType() {
-        name = "ComponentBase";
-    }
-};
+#include "component_base.hpp"
 
-class ComponentBase {
-   public:
-    std::string name;
-    static ComponentType type;
-    std::vector<ComponentType> component_hierarchy;
-    static ResourceName get_resource_name(std::string name);
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType> extra);
-    virtual grpc::StatusCode stop();
-    ComponentBase();
-};
+using viam::common::v1::ResourceName;
+
+ComponentBase::ComponentBase() {}
 
 ComponentType ComponentBase::type = ComponentType();
 

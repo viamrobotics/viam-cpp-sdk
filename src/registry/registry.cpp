@@ -9,35 +9,12 @@
 #include "registry.hpp"
 using viam::robot::v1::Status;
 
-// class ComponentRegistration {
-//    public:
-//     ComponentRegistration();
-//     ComponentType component_type;
-//     std::string name;
-//     ComponentServiceBase rpc_service;
-//     std::function<ComponentBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
-//     virtual Status create_status(ComponentBase component);
-// };
-
 ComponentRegistration::ComponentRegistration() {}
-
-// class Registry {
-//    public:
-//     // Registers a component with the Registry
-//     // Args:
-//     // 	component (ComponentRegistration): object containing component
-//     // 	registration data
-//     //
-//     // Raises:
-//     // 	throws error if component already exists in the registry
-//     static void register_component(ComponentRegistration component);
-//     static ComponentRegistration lookup(std::string name);
-
-//     static std::unordered_map<std::string, ComponentRegistration> registered_components();
-
-//    private:
-//     static std::unordered_map<std::string, ComponentRegistration> components;
-// };
+ComponentRegistration::ComponentRegistration(ComponentType component_type_, std::string name_, std::function<std::shared_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client_) {
+    component_type = component_type_;
+    name = name_;
+    create_rpc_client = create_rpc_client_;
+}
 
 std::unordered_map<std::string, ComponentRegistration> Registry::components;
 
@@ -54,7 +31,7 @@ void Registry::register_component(ComponentRegistration component) {
 
 ComponentRegistration Registry::lookup(std::string name) {
     if (components.find(name) == components.end()) {
-        std::string err = "Component " + name + "not found.";
+        std::string err = "Component " + name + " not found.";
         err += " " + name;
         throw std::runtime_error(err);
     }
