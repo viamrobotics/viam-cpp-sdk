@@ -29,6 +29,9 @@ void ServoClient::move(int angle) {
     grpc::ClientContext context;
 
     grpc::Status status = stub_->Move(&context, req, &resp);
+    if (!status.ok()) {
+        std::cout << "Error moving servo: " << status.error_message() << status.error_details() << std::endl;
+    }
 };
 
 int ServoClient::get_position() { return 0; };

@@ -56,7 +56,9 @@ int main() {
 	}
 
 	std::shared_ptr<ServoClient> servo = ServoClient::from_robot(robot, "servo");
-	std::cout << "SERVO POSITION " << servo->get_position() << std::endl;
+	std::cout << "OLD SERVO POSITION " << servo->get_position() << std::endl;
+	servo->move(45);
+	std::cout << "NEW SERVO POSITION " << servo->get_position() << std::endl;
 
 	robot->close();
 	return 0;
