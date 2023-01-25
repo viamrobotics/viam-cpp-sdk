@@ -130,12 +130,6 @@ extern DeleteRobotRequestDefaultTypeInternal _DeleteRobotRequest_default_instanc
 class DeleteRobotResponse;
 struct DeleteRobotResponseDefaultTypeInternal;
 extern DeleteRobotResponseDefaultTypeInternal _DeleteRobotResponse_default_instance_;
-class FindRobotsRequest;
-struct FindRobotsRequestDefaultTypeInternal;
-extern FindRobotsRequestDefaultTypeInternal _FindRobotsRequest_default_instance_;
-class FindRobotsResponse;
-struct FindRobotsResponseDefaultTypeInternal;
-extern FindRobotsResponseDefaultTypeInternal _FindRobotsResponse_default_instance_;
 class Fragment;
 struct FragmentDefaultTypeInternal;
 extern FragmentDefaultTypeInternal _Fragment_default_instance_;
@@ -340,8 +334,6 @@ template<> ::viam::app::v1::DeleteRobotPartSecretRequest* Arena::CreateMaybeMess
 template<> ::viam::app::v1::DeleteRobotPartSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotPartSecretResponse>(Arena*);
 template<> ::viam::app::v1::DeleteRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotRequest>(Arena*);
 template<> ::viam::app::v1::DeleteRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotResponse>(Arena*);
-template<> ::viam::app::v1::FindRobotsRequest* Arena::CreateMaybeMessage<::viam::app::v1::FindRobotsRequest>(Arena*);
-template<> ::viam::app::v1::FindRobotsResponse* Arena::CreateMaybeMessage<::viam::app::v1::FindRobotsResponse>(Arena*);
 template<> ::viam::app::v1::Fragment* Arena::CreateMaybeMessage<::viam::app::v1::Fragment>(Arena*);
 template<> ::viam::app::v1::GetLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationRequest>(Arena*);
 template<> ::viam::app::v1::GetLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationResponse>(Arena*);
@@ -12522,316 +12514,6 @@ class ListRobotsResponse final :
 };
 // -------------------------------------------------------------------
 
-class FindRobotsRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FindRobotsRequest) */ {
- public:
-  inline FindRobotsRequest() : FindRobotsRequest(nullptr) {}
-  ~FindRobotsRequest() override;
-  explicit PROTOBUF_CONSTEXPR FindRobotsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  FindRobotsRequest(const FindRobotsRequest& from);
-  FindRobotsRequest(FindRobotsRequest&& from) noexcept
-    : FindRobotsRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline FindRobotsRequest& operator=(const FindRobotsRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline FindRobotsRequest& operator=(FindRobotsRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const FindRobotsRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const FindRobotsRequest* internal_default_instance() {
-    return reinterpret_cast<const FindRobotsRequest*>(
-               &_FindRobotsRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    72;
-
-  friend void swap(FindRobotsRequest& a, FindRobotsRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(FindRobotsRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(FindRobotsRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  FindRobotsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<FindRobotsRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const FindRobotsRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const FindRobotsRequest& from) {
-    FindRobotsRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(FindRobotsRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.FindRobotsRequest";
-  }
-  protected:
-  explicit FindRobotsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLocationIdFieldNumber = 1,
-  };
-  // string location_id = 1 [json_name = "locationId"];
-  void clear_location_id();
-  const std::string& location_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_location_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_location_id();
-  PROTOBUF_NODISCARD std::string* release_location_id();
-  void set_allocated_location_id(std::string* location_id);
-  private:
-  const std::string& _internal_location_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_location_id(const std::string& value);
-  std::string* _internal_mutable_location_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.FindRobotsRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
-class FindRobotsResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.FindRobotsResponse) */ {
- public:
-  inline FindRobotsResponse() : FindRobotsResponse(nullptr) {}
-  ~FindRobotsResponse() override;
-  explicit PROTOBUF_CONSTEXPR FindRobotsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  FindRobotsResponse(const FindRobotsResponse& from);
-  FindRobotsResponse(FindRobotsResponse&& from) noexcept
-    : FindRobotsResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline FindRobotsResponse& operator=(const FindRobotsResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline FindRobotsResponse& operator=(FindRobotsResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const FindRobotsResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const FindRobotsResponse* internal_default_instance() {
-    return reinterpret_cast<const FindRobotsResponse*>(
-               &_FindRobotsResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    73;
-
-  friend void swap(FindRobotsResponse& a, FindRobotsResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(FindRobotsResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(FindRobotsResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  FindRobotsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<FindRobotsResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const FindRobotsResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const FindRobotsResponse& from) {
-    FindRobotsResponse::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(FindRobotsResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.app.v1.FindRobotsResponse";
-  }
-  protected:
-  explicit FindRobotsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kRobotsFieldNumber = 1,
-  };
-  // repeated .viam.app.v1.Robot robots = 1 [json_name = "robots"];
-  int robots_size() const;
-  private:
-  int _internal_robots_size() const;
-  public:
-  void clear_robots();
-  ::viam::app::v1::Robot* mutable_robots(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >*
-      mutable_robots();
-  private:
-  const ::viam::app::v1::Robot& _internal_robots(int index) const;
-  ::viam::app::v1::Robot* _internal_add_robots();
-  public:
-  const ::viam::app::v1::Robot& robots(int index) const;
-  ::viam::app::v1::Robot* add_robots();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >&
-      robots() const;
-
-  // @@protoc_insertion_point(class_scope:viam.app.v1.FindRobotsResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot > robots_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
-};
-// -------------------------------------------------------------------
-
 class NewRobotRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.NewRobotRequest) */ {
  public:
@@ -12880,7 +12562,7 @@ class NewRobotRequest final :
                &_NewRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    72;
 
   friend void swap(NewRobotRequest& a, NewRobotRequest& b) {
     a.Swap(&b);
@@ -13049,7 +12731,7 @@ class NewRobotResponse final :
                &_NewRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    73;
 
   friend void swap(NewRobotResponse& a, NewRobotResponse& b) {
     a.Swap(&b);
@@ -13202,7 +12884,7 @@ class UpdateRobotRequest final :
                &_UpdateRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    74;
 
   friend void swap(UpdateRobotRequest& a, UpdateRobotRequest& b) {
     a.Swap(&b);
@@ -13387,7 +13069,7 @@ class UpdateRobotResponse final :
                &_UpdateRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    75;
 
   friend void swap(UpdateRobotResponse& a, UpdateRobotResponse& b) {
     a.Swap(&b);
@@ -13544,7 +13226,7 @@ class DeleteRobotRequest final :
                &_DeleteRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    76;
 
   friend void swap(DeleteRobotRequest& a, DeleteRobotRequest& b) {
     a.Swap(&b);
@@ -13696,7 +13378,7 @@ class DeleteRobotResponse final :
                &_DeleteRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    77;
 
   friend void swap(DeleteRobotResponse& a, DeleteRobotResponse& b) {
     a.Swap(&b);
@@ -13815,7 +13497,7 @@ class MarkPartAsMainRequest final :
                &_MarkPartAsMainRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    78;
 
   friend void swap(MarkPartAsMainRequest& a, MarkPartAsMainRequest& b) {
     a.Swap(&b);
@@ -13967,7 +13649,7 @@ class MarkPartAsMainResponse final :
                &_MarkPartAsMainResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    79;
 
   friend void swap(MarkPartAsMainResponse& a, MarkPartAsMainResponse& b) {
     a.Swap(&b);
@@ -14086,7 +13768,7 @@ class CreateRobotPartSecretRequest final :
                &_CreateRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    80;
 
   friend void swap(CreateRobotPartSecretRequest& a, CreateRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -14239,7 +13921,7 @@ class CreateRobotPartSecretResponse final :
                &_CreateRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    83;
+    81;
 
   friend void swap(CreateRobotPartSecretResponse& a, CreateRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -14396,7 +14078,7 @@ class DeleteRobotPartSecretRequest final :
                &_DeleteRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    84;
+    82;
 
   friend void swap(DeleteRobotPartSecretRequest& a, DeleteRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -14564,7 +14246,7 @@ class DeleteRobotPartSecretResponse final :
                &_DeleteRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    85;
+    83;
 
   friend void swap(DeleteRobotPartSecretResponse& a, DeleteRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -22745,104 +22427,6 @@ ListRobotsResponse::robots() const {
 
 // -------------------------------------------------------------------
 
-// FindRobotsRequest
-
-// string location_id = 1 [json_name = "locationId"];
-inline void FindRobotsRequest::clear_location_id() {
-  _impl_.location_id_.ClearToEmpty();
-}
-inline const std::string& FindRobotsRequest::location_id() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.FindRobotsRequest.location_id)
-  return _internal_location_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void FindRobotsRequest::set_location_id(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.location_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.FindRobotsRequest.location_id)
-}
-inline std::string* FindRobotsRequest::mutable_location_id() {
-  std::string* _s = _internal_mutable_location_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.FindRobotsRequest.location_id)
-  return _s;
-}
-inline const std::string& FindRobotsRequest::_internal_location_id() const {
-  return _impl_.location_id_.Get();
-}
-inline void FindRobotsRequest::_internal_set_location_id(const std::string& value) {
-  
-  _impl_.location_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* FindRobotsRequest::_internal_mutable_location_id() {
-  
-  return _impl_.location_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* FindRobotsRequest::release_location_id() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.FindRobotsRequest.location_id)
-  return _impl_.location_id_.Release();
-}
-inline void FindRobotsRequest::set_allocated_location_id(std::string* location_id) {
-  if (location_id != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.location_id_.SetAllocated(location_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.location_id_.IsDefault()) {
-    _impl_.location_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FindRobotsRequest.location_id)
-}
-
-// -------------------------------------------------------------------
-
-// FindRobotsResponse
-
-// repeated .viam.app.v1.Robot robots = 1 [json_name = "robots"];
-inline int FindRobotsResponse::_internal_robots_size() const {
-  return _impl_.robots_.size();
-}
-inline int FindRobotsResponse::robots_size() const {
-  return _internal_robots_size();
-}
-inline void FindRobotsResponse::clear_robots() {
-  _impl_.robots_.Clear();
-}
-inline ::viam::app::v1::Robot* FindRobotsResponse::mutable_robots(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.FindRobotsResponse.robots)
-  return _impl_.robots_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >*
-FindRobotsResponse::mutable_robots() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.FindRobotsResponse.robots)
-  return &_impl_.robots_;
-}
-inline const ::viam::app::v1::Robot& FindRobotsResponse::_internal_robots(int index) const {
-  return _impl_.robots_.Get(index);
-}
-inline const ::viam::app::v1::Robot& FindRobotsResponse::robots(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.FindRobotsResponse.robots)
-  return _internal_robots(index);
-}
-inline ::viam::app::v1::Robot* FindRobotsResponse::_internal_add_robots() {
-  return _impl_.robots_.Add();
-}
-inline ::viam::app::v1::Robot* FindRobotsResponse::add_robots() {
-  ::viam::app::v1::Robot* _add = _internal_add_robots();
-  // @@protoc_insertion_point(field_add:viam.app.v1.FindRobotsResponse.robots)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Robot >&
-FindRobotsResponse::robots() const {
-  // @@protoc_insertion_point(field_list:viam.app.v1.FindRobotsResponse.robots)
-  return _impl_.robots_;
-}
-
-// -------------------------------------------------------------------
-
 // NewRobotRequest
 
 // string name = 1 [json_name = "name"];
@@ -23622,10 +23206,6 @@ inline void DeleteRobotPartSecretRequest::set_allocated_secret_id(std::string* s
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

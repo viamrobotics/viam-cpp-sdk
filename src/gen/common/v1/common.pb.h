@@ -1843,9 +1843,11 @@ class Capsule final :
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
   void CopyFrom(const Capsule& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const Capsule& from);
+  void MergeFrom( const Capsule& from) {
+    Capsule::MergeImpl(*this, from);
+  }
   private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
@@ -1854,10 +1856,10 @@ class Capsule final :
   const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
   uint8_t* _InternalSerialize(
       uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
 
   private:
-  void SharedCtor();
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
   void InternalSwap(Capsule* other);
@@ -1910,9 +1912,12 @@ class Capsule final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  double radius_mm_;
-  double length_mm_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  struct Impl_ {
+    double radius_mm_;
+    double length_mm_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2309,19 +2314,6 @@ class Geometry final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-<<<<<<< HEAD
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr label_;
-  ::viam::common::v1::Pose* center_;
-  union GeometryTypeUnion {
-    constexpr GeometryTypeUnion() : _constinit_{} {}
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-    ::viam::common::v1::Sphere* sphere_;
-    ::viam::common::v1::RectangularPrism* box_;
-    ::viam::common::v1::Capsule* capsule_;
-  } geometry_type_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  uint32_t _oneof_case_[1];
-=======
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr label_;
     ::viam::common::v1::Pose* center_;
@@ -2330,10 +2322,10 @@ class Geometry final :
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
       ::viam::common::v1::Sphere* sphere_;
       ::viam::common::v1::RectangularPrism* box_;
+      ::viam::common::v1::Capsule* capsule_;
     } geometry_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     uint32_t _oneof_case_[1];
->>>>>>> f2cf8ca (orientation to proto work)
 
   };
   union { Impl_ _impl_; };
@@ -4178,10 +4170,10 @@ inline void Sphere::set_radius_mm(double value) {
 
 // double radius_mm = 1 [json_name = "radiusMm"];
 inline void Capsule::clear_radius_mm() {
-  radius_mm_ = 0;
+  _impl_.radius_mm_ = 0;
 }
 inline double Capsule::_internal_radius_mm() const {
-  return radius_mm_;
+  return _impl_.radius_mm_;
 }
 inline double Capsule::radius_mm() const {
   // @@protoc_insertion_point(field_get:viam.common.v1.Capsule.radius_mm)
@@ -4189,7 +4181,7 @@ inline double Capsule::radius_mm() const {
 }
 inline void Capsule::_internal_set_radius_mm(double value) {
   
-  radius_mm_ = value;
+  _impl_.radius_mm_ = value;
 }
 inline void Capsule::set_radius_mm(double value) {
   _internal_set_radius_mm(value);
@@ -4198,10 +4190,10 @@ inline void Capsule::set_radius_mm(double value) {
 
 // double length_mm = 2 [json_name = "lengthMm"];
 inline void Capsule::clear_length_mm() {
-  length_mm_ = 0;
+  _impl_.length_mm_ = 0;
 }
 inline double Capsule::_internal_length_mm() const {
-  return length_mm_;
+  return _impl_.length_mm_;
 }
 inline double Capsule::length_mm() const {
   // @@protoc_insertion_point(field_get:viam.common.v1.Capsule.length_mm)
@@ -4209,7 +4201,7 @@ inline double Capsule::length_mm() const {
 }
 inline void Capsule::_internal_set_length_mm(double value) {
   
-  length_mm_ = value;
+  _impl_.length_mm_ = value;
 }
 inline void Capsule::set_length_mm(double value) {
   _internal_set_length_mm(value);
@@ -4560,12 +4552,12 @@ inline bool Geometry::has_capsule() const {
   return _internal_has_capsule();
 }
 inline void Geometry::set_has_capsule() {
-  _oneof_case_[0] = kCapsule;
+  _impl_._oneof_case_[0] = kCapsule;
 }
 inline void Geometry::clear_capsule() {
   if (_internal_has_capsule()) {
     if (GetArenaForAllocation() == nullptr) {
-      delete geometry_type_.capsule_;
+      delete _impl_.geometry_type_.capsule_;
     }
     clear_has_geometry_type();
   }
@@ -4574,11 +4566,11 @@ inline ::viam::common::v1::Capsule* Geometry::release_capsule() {
   // @@protoc_insertion_point(field_release:viam.common.v1.Geometry.capsule)
   if (_internal_has_capsule()) {
     clear_has_geometry_type();
-    ::viam::common::v1::Capsule* temp = geometry_type_.capsule_;
+    ::viam::common::v1::Capsule* temp = _impl_.geometry_type_.capsule_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
-    geometry_type_.capsule_ = nullptr;
+    _impl_.geometry_type_.capsule_ = nullptr;
     return temp;
   } else {
     return nullptr;
@@ -4586,7 +4578,7 @@ inline ::viam::common::v1::Capsule* Geometry::release_capsule() {
 }
 inline const ::viam::common::v1::Capsule& Geometry::_internal_capsule() const {
   return _internal_has_capsule()
-      ? *geometry_type_.capsule_
+      ? *_impl_.geometry_type_.capsule_
       : reinterpret_cast< ::viam::common::v1::Capsule&>(::viam::common::v1::_Capsule_default_instance_);
 }
 inline const ::viam::common::v1::Capsule& Geometry::capsule() const {
@@ -4597,8 +4589,8 @@ inline ::viam::common::v1::Capsule* Geometry::unsafe_arena_release_capsule() {
   // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.Geometry.capsule)
   if (_internal_has_capsule()) {
     clear_has_geometry_type();
-    ::viam::common::v1::Capsule* temp = geometry_type_.capsule_;
-    geometry_type_.capsule_ = nullptr;
+    ::viam::common::v1::Capsule* temp = _impl_.geometry_type_.capsule_;
+    _impl_.geometry_type_.capsule_ = nullptr;
     return temp;
   } else {
     return nullptr;
@@ -4608,7 +4600,7 @@ inline void Geometry::unsafe_arena_set_allocated_capsule(::viam::common::v1::Cap
   clear_geometry_type();
   if (capsule) {
     set_has_capsule();
-    geometry_type_.capsule_ = capsule;
+    _impl_.geometry_type_.capsule_ = capsule;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Geometry.capsule)
 }
@@ -4616,9 +4608,9 @@ inline ::viam::common::v1::Capsule* Geometry::_internal_mutable_capsule() {
   if (!_internal_has_capsule()) {
     clear_geometry_type();
     set_has_capsule();
-    geometry_type_.capsule_ = CreateMaybeMessage< ::viam::common::v1::Capsule >(GetArenaForAllocation());
+    _impl_.geometry_type_.capsule_ = CreateMaybeMessage< ::viam::common::v1::Capsule >(GetArenaForAllocation());
   }
-  return geometry_type_.capsule_;
+  return _impl_.geometry_type_.capsule_;
 }
 inline ::viam::common::v1::Capsule* Geometry::mutable_capsule() {
   ::viam::common::v1::Capsule* _msg = _internal_mutable_capsule();

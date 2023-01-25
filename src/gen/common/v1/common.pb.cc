@@ -179,9 +179,10 @@ struct SphereDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SphereDefaultTypeInternal _Sphere_default_instance_;
 PROTOBUF_CONSTEXPR Capsule::Capsule(
-    ::_pbi::ConstantInitialized)
-  : radius_mm_(0)
-  , length_mm_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.radius_mm_)*/0
+  , /*decltype(_impl_.length_mm_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CapsuleDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CapsuleDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -419,8 +420,8 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Capsule, radius_mm_),
-  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Capsule, length_mm_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Capsule, _impl_.radius_mm_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Capsule, _impl_.length_mm_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::RectangularPrism, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -437,14 +438,9 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Geometry, _impl_.center_),
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-<<<<<<< HEAD
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Geometry, label_),
-  PROTOBUF_FIELD_OFFSET(::viam::common::v1::Geometry, geometry_type_),
-=======
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Geometry, _impl_.label_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Geometry, _impl_.geometry_type_),
->>>>>>> f2cf8ca (orientation to proto work)
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeometriesInFrame, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3075,23 +3071,33 @@ class Capsule::_Internal {
 Capsule::Capsule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.common.v1.Capsule)
 }
 Capsule::Capsule(const Capsule& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Capsule* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.radius_mm_){}
+    , decltype(_impl_.length_mm_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&radius_mm_, &from.radius_mm_,
-    static_cast<size_t>(reinterpret_cast<char*>(&length_mm_) -
-    reinterpret_cast<char*>(&radius_mm_)) + sizeof(length_mm_));
+  ::memcpy(&_impl_.radius_mm_, &from._impl_.radius_mm_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.length_mm_) -
+    reinterpret_cast<char*>(&_impl_.radius_mm_)) + sizeof(_impl_.length_mm_));
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.Capsule)
 }
 
-inline void Capsule::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&radius_mm_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&length_mm_) -
-    reinterpret_cast<char*>(&radius_mm_)) + sizeof(length_mm_));
+inline void Capsule::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.radius_mm_){0}
+    , decltype(_impl_.length_mm_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 Capsule::~Capsule() {
@@ -3108,7 +3114,7 @@ inline void Capsule::SharedDtor() {
 }
 
 void Capsule::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Capsule::Clear() {
@@ -3117,9 +3123,9 @@ void Capsule::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&radius_mm_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&length_mm_) -
-      reinterpret_cast<char*>(&radius_mm_)) + sizeof(length_mm_));
+  ::memset(&_impl_.radius_mm_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.length_mm_) -
+      reinterpret_cast<char*>(&_impl_.radius_mm_)) + sizeof(_impl_.length_mm_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3132,7 +3138,7 @@ const char* Capsule::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // double radius_mm = 1 [json_name = "radiusMm"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          radius_mm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.radius_mm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -3140,7 +3146,7 @@ const char* Capsule::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // double length_mm = 2 [json_name = "lengthMm"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
-          length_mm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.length_mm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -3228,25 +3234,21 @@ size_t Capsule::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Capsule::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Capsule::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Capsule::GetClassData() const { return &_class_data_; }
 
-void Capsule::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Capsule *>(to)->MergeFrom(
-      static_cast<const Capsule &>(from));
-}
 
-
-void Capsule::MergeFrom(const Capsule& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.Capsule)
-  GOOGLE_DCHECK_NE(&from, this);
+void Capsule::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Capsule*>(&to_msg);
+  auto& from = static_cast<const Capsule&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.Capsule)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -3255,16 +3257,16 @@ void Capsule::MergeFrom(const Capsule& from) {
   uint64_t raw_radius_mm;
   memcpy(&raw_radius_mm, &tmp_radius_mm, sizeof(tmp_radius_mm));
   if (raw_radius_mm != 0) {
-    _internal_set_radius_mm(from._internal_radius_mm());
+    _this->_internal_set_radius_mm(from._internal_radius_mm());
   }
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_length_mm = from._internal_length_mm();
   uint64_t raw_length_mm;
   memcpy(&raw_length_mm, &tmp_length_mm, sizeof(tmp_length_mm));
   if (raw_length_mm != 0) {
-    _internal_set_length_mm(from._internal_length_mm());
+    _this->_internal_set_length_mm(from._internal_length_mm());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Capsule::CopyFrom(const Capsule& from) {
@@ -3282,11 +3284,11 @@ void Capsule::InternalSwap(Capsule* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Capsule, length_mm_)
-      + sizeof(Capsule::length_mm_)
-      - PROTOBUF_FIELD_OFFSET(Capsule, radius_mm_)>(
-          reinterpret_cast<char*>(&radius_mm_),
-          reinterpret_cast<char*>(&other->radius_mm_));
+      PROTOBUF_FIELD_OFFSET(Capsule, _impl_.length_mm_)
+      + sizeof(Capsule::_impl_.length_mm_)
+      - PROTOBUF_FIELD_OFFSET(Capsule, _impl_.radius_mm_)>(
+          reinterpret_cast<char*>(&_impl_.radius_mm_),
+          reinterpret_cast<char*>(&other->_impl_.radius_mm_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Capsule::GetMetadata() const {
@@ -3512,7 +3514,7 @@ Geometry::_Internal::box(const Geometry* msg) {
 }
 const ::viam::common::v1::Capsule&
 Geometry::_Internal::capsule(const Geometry* msg) {
-  return *msg->geometry_type_.capsule_;
+  return *msg->_impl_.geometry_type_.capsule_;
 }
 void Geometry::set_allocated_sphere(::viam::common::v1::Sphere* sphere) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -3555,7 +3557,7 @@ void Geometry::set_allocated_capsule(::viam::common::v1::Capsule* capsule) {
           message_arena, capsule, submessage_arena);
     }
     set_has_capsule();
-    geometry_type_.capsule_ = capsule;
+    _impl_.geometry_type_.capsule_ = capsule;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Geometry.capsule)
 }
@@ -3600,7 +3602,8 @@ Geometry::Geometry(const Geometry& from)
       break;
     }
     case kCapsule: {
-      _internal_mutable_capsule()->::viam::common::v1::Capsule::MergeFrom(from._internal_capsule());
+      _this->_internal_mutable_capsule()->::viam::common::v1::Capsule::MergeFrom(
+          from._internal_capsule());
       break;
     }
     case GEOMETRY_TYPE_NOT_SET: {
@@ -3667,7 +3670,7 @@ void Geometry::clear_geometry_type() {
     }
     case kCapsule: {
       if (GetArenaForAllocation() == nullptr) {
-        delete geometry_type_.capsule_;
+        delete _impl_.geometry_type_.capsule_;
       }
       break;
     }
@@ -3858,7 +3861,7 @@ size_t Geometry::ByteSizeLong() const {
     case kCapsule: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *geometry_type_.capsule_);
+          *_impl_.geometry_type_.capsule_);
       break;
     }
     case GEOMETRY_TYPE_NOT_SET: {
@@ -3902,7 +3905,8 @@ void Geometry::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
       break;
     }
     case kCapsule: {
-      _internal_mutable_capsule()->::viam::common::v1::Capsule::MergeFrom(from._internal_capsule());
+      _this->_internal_mutable_capsule()->::viam::common::v1::Capsule::MergeFrom(
+          from._internal_capsule());
       break;
     }
     case GEOMETRY_TYPE_NOT_SET: {

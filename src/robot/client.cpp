@@ -1,30 +1,30 @@
 #include <algorithm>
 #define BOOST_LOG_DYN_LINK 1
-#include <common/proto_type.h>
-#include <common/utils.h>
 #include <common/v1/common.pb.h>
-#include <components/resource_manager.h>
-#include <components/service_base.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
-#include <registry/registry.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
-#include <rpc/dial.h>
 #include <rpc/rpc.h>
-#include <spatialmath/orientation.h>
 #include <unistd.h>
 
 #include <boost/log/trivial.hpp>
 #include <chrono>
+#include <common/proto_type.hpp>
+#include <common/utils.hpp>
+#include <components/resource_manager.hpp>
+#include <components/service_base.hpp>
 #include <cstddef>
 #include <iostream>
 #include <memory>
 #include <mutex>
 #include <ostream>
+#include <registry/registry.hpp>
+#include <rpc/dial.hpp>
 #include <set>
+#include <spatialmath/orientation.hpp>
 #include <string>
 #include <thread>
 #include <tuple>

@@ -1,14 +1,14 @@
 #include <app/v1/robot.pb.h>
 #include <common/v1/common.pb.h>
-#include <config/resource.h>
 #include <grpcpp/support/status.h>
 #include <module/v1/module.grpc.pb.h>
 #include <module/v1/module.pb.h>
-#include <resource/resource.h>
 #include <robot/v1/robot.pb.h>
-#include <rpc/dial.h>
 
 #include <boost/log/trivial.hpp>
+#include <config/resource.hpp>
+#include <resource/resource.hpp>
+#include <rpc/dial.hpp>
 
 using viam::module::v1::ModuleService;
 using Viam::SDK::ViamChannel;

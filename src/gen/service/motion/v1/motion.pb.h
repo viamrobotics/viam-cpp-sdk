@@ -1326,9 +1326,11 @@ class ExportPointCloudRequest final :
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
   void CopyFrom(const ExportPointCloudRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ExportPointCloudRequest& from);
+  void MergeFrom( const ExportPointCloudRequest& from) {
+    ExportPointCloudRequest::MergeImpl(*this, from);
+  }
   private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
@@ -1337,10 +1339,10 @@ class ExportPointCloudRequest final :
   const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
   uint8_t* _InternalSerialize(
       uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
 
   private:
-  void SharedCtor();
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
   void InternalSwap(ExportPointCloudRequest* other);
@@ -1411,10 +1413,13 @@ class ExportPointCloudRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::viam::common::v1::WorldState* world_state_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::viam::common::v1::WorldState* world_state_;
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1499,9 +1504,11 @@ class ExportPointCloudResponse final :
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
   void CopyFrom(const ExportPointCloudResponse& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ExportPointCloudResponse& from);
+  void MergeFrom( const ExportPointCloudResponse& from) {
+    ExportPointCloudResponse::MergeImpl(*this, from);
+  }
   private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
@@ -1510,10 +1517,10 @@ class ExportPointCloudResponse final :
   const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
   uint8_t* _InternalSerialize(
       uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
 
   private:
-  void SharedCtor();
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
   void InternalSwap(ExportPointCloudResponse* other);
@@ -1561,8 +1568,11 @@ class ExportPointCloudResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr world_state_pcd_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr world_state_pcd_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
 // ===================================================================
@@ -2818,15 +2828,15 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 
 // optional .viam.common.v1.WorldState world_state = 1 [json_name = "worldState"];
 inline bool ExportPointCloudRequest::_internal_has_world_state() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || world_state_ != nullptr);
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.world_state_ != nullptr);
   return value;
 }
 inline bool ExportPointCloudRequest::has_world_state() const {
   return _internal_has_world_state();
 }
 inline const ::viam::common::v1::WorldState& ExportPointCloudRequest::_internal_world_state() const {
-  const ::viam::common::v1::WorldState* p = world_state_;
+  const ::viam::common::v1::WorldState* p = _impl_.world_state_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::WorldState&>(
       ::viam::common::v1::_WorldState_default_instance_);
 }
@@ -2837,20 +2847,20 @@ inline const ::viam::common::v1::WorldState& ExportPointCloudRequest::world_stat
 inline void ExportPointCloudRequest::unsafe_arena_set_allocated_world_state(
     ::viam::common::v1::WorldState* world_state) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(world_state_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.world_state_);
   }
-  world_state_ = world_state;
+  _impl_.world_state_ = world_state;
   if (world_state) {
-    _has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ExportPointCloudRequest.world_state)
 }
 inline ::viam::common::v1::WorldState* ExportPointCloudRequest::release_world_state() {
-  _has_bits_[0] &= ~0x00000001u;
-  ::viam::common::v1::WorldState* temp = world_state_;
-  world_state_ = nullptr;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::WorldState* temp = _impl_.world_state_;
+  _impl_.world_state_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -2864,18 +2874,18 @@ inline ::viam::common::v1::WorldState* ExportPointCloudRequest::release_world_st
 }
 inline ::viam::common::v1::WorldState* ExportPointCloudRequest::unsafe_arena_release_world_state() {
   // @@protoc_insertion_point(field_release:viam.service.motion.v1.ExportPointCloudRequest.world_state)
-  _has_bits_[0] &= ~0x00000001u;
-  ::viam::common::v1::WorldState* temp = world_state_;
-  world_state_ = nullptr;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::WorldState* temp = _impl_.world_state_;
+  _impl_.world_state_ = nullptr;
   return temp;
 }
 inline ::viam::common::v1::WorldState* ExportPointCloudRequest::_internal_mutable_world_state() {
-  _has_bits_[0] |= 0x00000001u;
-  if (world_state_ == nullptr) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.world_state_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::WorldState>(GetArenaForAllocation());
-    world_state_ = p;
+    _impl_.world_state_ = p;
   }
-  return world_state_;
+  return _impl_.world_state_;
 }
 inline ::viam::common::v1::WorldState* ExportPointCloudRequest::mutable_world_state() {
   ::viam::common::v1::WorldState* _msg = _internal_mutable_world_state();
@@ -2885,7 +2895,7 @@ inline ::viam::common::v1::WorldState* ExportPointCloudRequest::mutable_world_st
 inline void ExportPointCloudRequest::set_allocated_world_state(::viam::common::v1::WorldState* world_state) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(world_state_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.world_state_);
   }
   if (world_state) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -2895,23 +2905,23 @@ inline void ExportPointCloudRequest::set_allocated_world_state(::viam::common::v
       world_state = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, world_state, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  world_state_ = world_state;
+  _impl_.world_state_ = world_state;
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ExportPointCloudRequest.world_state)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
 inline bool ExportPointCloudRequest::_internal_has_extra() const {
-  return this != internal_default_instance() && extra_ != nullptr;
+  return this != internal_default_instance() && _impl_.extra_ != nullptr;
 }
 inline bool ExportPointCloudRequest::has_extra() const {
   return _internal_has_extra();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::Struct& ExportPointCloudRequest::_internal_extra() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = _impl_.extra_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
       ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
 }
@@ -2922,9 +2932,9 @@ inline const ::PROTOBUF_NAMESPACE_ID::Struct& ExportPointCloudRequest::extra() c
 inline void ExportPointCloudRequest::unsafe_arena_set_allocated_extra(
     ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.extra_);
   }
-  extra_ = extra;
+  _impl_.extra_ = extra;
   if (extra) {
     
   } else {
@@ -2934,8 +2944,8 @@ inline void ExportPointCloudRequest::unsafe_arena_set_allocated_extra(
 }
 inline ::PROTOBUF_NAMESPACE_ID::Struct* ExportPointCloudRequest::release_extra() {
   
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = _impl_.extra_;
+  _impl_.extra_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -2950,17 +2960,17 @@ inline ::PROTOBUF_NAMESPACE_ID::Struct* ExportPointCloudRequest::release_extra()
 inline ::PROTOBUF_NAMESPACE_ID::Struct* ExportPointCloudRequest::unsafe_arena_release_extra() {
   // @@protoc_insertion_point(field_release:viam.service.motion.v1.ExportPointCloudRequest.extra)
   
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = _impl_.extra_;
+  _impl_.extra_ = nullptr;
   return temp;
 }
 inline ::PROTOBUF_NAMESPACE_ID::Struct* ExportPointCloudRequest::_internal_mutable_extra() {
   
-  if (extra_ == nullptr) {
+  if (_impl_.extra_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    extra_ = p;
+    _impl_.extra_ = p;
   }
-  return extra_;
+  return _impl_.extra_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::Struct* ExportPointCloudRequest::mutable_extra() {
   ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
@@ -2970,7 +2980,7 @@ inline ::PROTOBUF_NAMESPACE_ID::Struct* ExportPointCloudRequest::mutable_extra()
 inline void ExportPointCloudRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.extra_);
   }
   if (extra) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
@@ -2984,7 +2994,7 @@ inline void ExportPointCloudRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID
   } else {
     
   }
-  extra_ = extra;
+  _impl_.extra_ = extra;
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ExportPointCloudRequest.extra)
 }
 
@@ -2994,7 +3004,7 @@ inline void ExportPointCloudRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID
 
 // bytes world_state_pcd = 1 [json_name = "worldStatePcd"];
 inline void ExportPointCloudResponse::clear_world_state_pcd() {
-  world_state_pcd_.ClearToEmpty();
+  _impl_.world_state_pcd_.ClearToEmpty();
 }
 inline const std::string& ExportPointCloudResponse::world_state_pcd() const {
   // @@protoc_insertion_point(field_get:viam.service.motion.v1.ExportPointCloudResponse.world_state_pcd)
@@ -3004,7 +3014,7 @@ template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void ExportPointCloudResponse::set_world_state_pcd(ArgT0&& arg0, ArgT... args) {
  
- world_state_pcd_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+ _impl_.world_state_pcd_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:viam.service.motion.v1.ExportPointCloudResponse.world_state_pcd)
 }
 inline std::string* ExportPointCloudResponse::mutable_world_state_pcd() {
@@ -3013,19 +3023,19 @@ inline std::string* ExportPointCloudResponse::mutable_world_state_pcd() {
   return _s;
 }
 inline const std::string& ExportPointCloudResponse::_internal_world_state_pcd() const {
-  return world_state_pcd_.Get();
+  return _impl_.world_state_pcd_.Get();
 }
 inline void ExportPointCloudResponse::_internal_set_world_state_pcd(const std::string& value) {
   
-  world_state_pcd_.Set(value, GetArenaForAllocation());
+  _impl_.world_state_pcd_.Set(value, GetArenaForAllocation());
 }
 inline std::string* ExportPointCloudResponse::_internal_mutable_world_state_pcd() {
   
-  return world_state_pcd_.Mutable(GetArenaForAllocation());
+  return _impl_.world_state_pcd_.Mutable(GetArenaForAllocation());
 }
 inline std::string* ExportPointCloudResponse::release_world_state_pcd() {
   // @@protoc_insertion_point(field_release:viam.service.motion.v1.ExportPointCloudResponse.world_state_pcd)
-  return world_state_pcd_.Release();
+  return _impl_.world_state_pcd_.Release();
 }
 inline void ExportPointCloudResponse::set_allocated_world_state_pcd(std::string* world_state_pcd) {
   if (world_state_pcd != nullptr) {
@@ -3033,10 +3043,10 @@ inline void ExportPointCloudResponse::set_allocated_world_state_pcd(std::string*
   } else {
     
   }
-  world_state_pcd_.SetAllocated(world_state_pcd, GetArenaForAllocation());
+  _impl_.world_state_pcd_.SetAllocated(world_state_pcd, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (world_state_pcd_.IsDefault()) {
-    world_state_pcd_.Set("", GetArenaForAllocation());
+  if (_impl_.world_state_pcd_.IsDefault()) {
+    _impl_.world_state_pcd_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ExportPointCloudResponse.world_state_pcd)

@@ -57,7 +57,6 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/CreateRobotPartSecret",
   "/viam.app.v1.AppService/DeleteRobotPartSecret",
   "/viam.app.v1.AppService/ListRobots",
-  "/viam.app.v1.AppService/FindRobots",
   "/viam.app.v1.AppService/NewRobot",
   "/viam.app.v1.AppService/UpdateRobot",
   "/viam.app.v1.AppService/DeleteRobot",
@@ -103,10 +102,9 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_CreateRobotPartSecret_(AppService_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteRobotPartSecret_(AppService_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListRobots_(AppService_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_FindRobots_(AppService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_NewRobot_(AppService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateRobot_(AppService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRobot_(AppService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NewRobot_(AppService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRobot_(AppService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRobot_(AppService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::viam::app::v1::CreateOrganizationResponse* response) {
@@ -861,29 +859,6 @@ void AppService::Stub::async::ListRobots(::grpc::ClientContext* context, const :
   return result;
 }
 
-::grpc::Status AppService::Stub::FindRobots(::grpc::ClientContext* context, const ::viam::app::v1::FindRobotsRequest& request, ::viam::app::v1::FindRobotsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::FindRobotsRequest, ::viam::app::v1::FindRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_FindRobots_, context, request, response);
-}
-
-void AppService::Stub::async::FindRobots(::grpc::ClientContext* context, const ::viam::app::v1::FindRobotsRequest* request, ::viam::app::v1::FindRobotsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::FindRobotsRequest, ::viam::app::v1::FindRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_FindRobots_, context, request, response, std::move(f));
-}
-
-void AppService::Stub::async::FindRobots(::grpc::ClientContext* context, const ::viam::app::v1::FindRobotsRequest* request, ::viam::app::v1::FindRobotsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_FindRobots_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::FindRobotsResponse>* AppService::Stub::PrepareAsyncFindRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::FindRobotsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::FindRobotsResponse, ::viam::app::v1::FindRobotsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_FindRobots_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::app::v1::FindRobotsResponse>* AppService::Stub::AsyncFindRobotsRaw(::grpc::ClientContext* context, const ::viam::app::v1::FindRobotsRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncFindRobotsRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
 ::grpc::Status AppService::Stub::NewRobot(::grpc::ClientContext* context, const ::viam::app::v1::NewRobotRequest& request, ::viam::app::v1::NewRobotResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NewRobot_, context, request, response);
 }
@@ -1287,16 +1262,6 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::FindRobotsRequest, ::viam::app::v1::FindRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](AppService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::app::v1::FindRobotsRequest* req,
-             ::viam::app::v1::FindRobotsResponse* resp) {
-               return service->FindRobots(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[34],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1305,7 +1270,7 @@ AppService::Service::Service() {
                return service->NewRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[35],
+      AppService_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1315,7 +1280,7 @@ AppService::Service::Service() {
                return service->UpdateRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[36],
+      AppService_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1554,13 +1519,6 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::ListRobots(::grpc::ServerContext* context, const ::viam::app::v1::ListRobotsRequest* request, ::viam::app::v1::ListRobotsResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status AppService::Service::FindRobots(::grpc::ServerContext* context, const ::viam::app::v1::FindRobotsRequest* request, ::viam::app::v1::FindRobotsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

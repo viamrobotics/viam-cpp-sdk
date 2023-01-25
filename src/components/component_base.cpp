@@ -1,8 +1,8 @@
-#include <common/proto_type.h>
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
 
+#include <common/proto_type.hpp>
 #include <resource/resource_base.hpp>
 #include <string>
 using viam::common::v1::ResourceName;

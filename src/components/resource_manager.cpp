@@ -1,5 +1,4 @@
-#include <components/component_base.h>
-
+#include <components/component_base.hpp>
 #include <services/service_base.hpp>
 #include <stdexcept>
 #include <string>

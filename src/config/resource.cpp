@@ -1,11 +1,11 @@
 #include <app/v1/robot.pb.h>
-#include <common/proto_type.h>
-#include <referenceframe/frame.h>
-#include <resource/resource.h>
 #include <robot/v1/robot.pb.h>
 
 #include <boost/algorithm/string.hpp>
+#include <common/proto_type.hpp>
 #include <numeric>
+#include <referenceframe/frame.hpp>
+#include <resource/resource.hpp>
 #include <string>
 #include <unordered_map>
 

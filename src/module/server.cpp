@@ -1,29 +1,28 @@
 #include <app/v1/robot.pb.h>
-#include <common/utils.h>
-#include <components/component_base.h>
-#include <components/service_base.h>
-#include <config/resource.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/security/credentials.h>
 #include <grpcpp/support/status.h>
 #include <module/v1/module.grpc.pb.h>
-#include <resource/resource.h>
-#include <robot/client.h>
-#include <robot/service.h>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/file_status.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/none.hpp>
+#include <common/utils.hpp>
+#include <components/component_base.hpp>
+#include <components/service_base.hpp>
+#include <config/resource.hpp>
 #include <memory>
+#include <registry/registry.hpp>
+#include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
+#include <robot/client.hpp>
+#include <robot/service.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
-
-#include "registry/registry.h"
 
 // CR erodkin: probably just use class everywhere? or be more precise with when
 // we use struct

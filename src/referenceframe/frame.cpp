@@ -1,9 +1,9 @@
 #include <app/v1/robot.pb.h>
 #include <common/v1/common.pb.h>
-#include <spatialmath/geometry.h>
-#include <spatialmath/orientation.h>
-#include <spatialmath/orientation_types.h>
 
+#include <spatialmath/geometry.hpp>
+#include <spatialmath/orientation.hpp>
+#include <spatialmath/orientation_types.hpp>
 #include <string>
 
 class LinkConfig {

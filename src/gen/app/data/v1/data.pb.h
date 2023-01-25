@@ -3278,7 +3278,6 @@ class BinaryDataByIDsResponse final :
 
   enum : int {
     kDataFieldNumber = 1,
-    kLastFieldNumber = 3,
     kCountFieldNumber = 2,
   };
   // repeated .viam.app.data.v1.BinaryData data = 1 [json_name = "data"];
@@ -3299,20 +3298,6 @@ class BinaryDataByIDsResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::BinaryData >&
       data() const;
 
-  // string last = 3 [json_name = "last"];
-  void clear_last();
-  const std::string& last() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_last(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_last();
-  PROTOBUF_NODISCARD std::string* release_last();
-  void set_allocated_last(std::string* last);
-  private:
-  const std::string& _internal_last() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last(const std::string& value);
-  std::string* _internal_mutable_last();
-  public:
-
   // uint64 count = 2 [json_name = "count"];
   void clear_count();
   uint64_t count() const;
@@ -3331,7 +3316,6 @@ class BinaryDataByIDsResponse final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::BinaryData > data_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_;
     uint64_t count_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -10525,56 +10509,6 @@ inline void BinaryDataByIDsResponse::_internal_set_count(uint64_t value) {
 inline void BinaryDataByIDsResponse::set_count(uint64_t value) {
   _internal_set_count(value);
   // @@protoc_insertion_point(field_set:viam.app.data.v1.BinaryDataByIDsResponse.count)
-}
-
-// string last = 3 [json_name = "last"];
-inline void BinaryDataByIDsResponse::clear_last() {
-  _impl_.last_.ClearToEmpty();
-}
-inline const std::string& BinaryDataByIDsResponse::last() const {
-  // @@protoc_insertion_point(field_get:viam.app.data.v1.BinaryDataByIDsResponse.last)
-  return _internal_last();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void BinaryDataByIDsResponse::set_last(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.last_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.data.v1.BinaryDataByIDsResponse.last)
-}
-inline std::string* BinaryDataByIDsResponse::mutable_last() {
-  std::string* _s = _internal_mutable_last();
-  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.BinaryDataByIDsResponse.last)
-  return _s;
-}
-inline const std::string& BinaryDataByIDsResponse::_internal_last() const {
-  return _impl_.last_.Get();
-}
-inline void BinaryDataByIDsResponse::_internal_set_last(const std::string& value) {
-  
-  _impl_.last_.Set(value, GetArenaForAllocation());
-}
-inline std::string* BinaryDataByIDsResponse::_internal_mutable_last() {
-  
-  return _impl_.last_.Mutable(GetArenaForAllocation());
-}
-inline std::string* BinaryDataByIDsResponse::release_last() {
-  // @@protoc_insertion_point(field_release:viam.app.data.v1.BinaryDataByIDsResponse.last)
-  return _impl_.last_.Release();
-}
-inline void BinaryDataByIDsResponse::set_allocated_last(std::string* last) {
-  if (last != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.last_.SetAllocated(last, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.last_.IsDefault()) {
-    _impl_.last_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.BinaryDataByIDsResponse.last)
 }
 
 // -------------------------------------------------------------------

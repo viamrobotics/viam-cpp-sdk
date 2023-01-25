@@ -1,15 +1,14 @@
-#include <components/component_base.h>
-#include <components/service_base.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>
-#include <resource/resource.h>
 #include <robot/v1/robot.pb.h>
 
+#include <components/component_base.hpp>
+#include <components/service_base.hpp>
+#include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
+#include <services/service_base.hpp>
 #include <string>
 #include <unordered_map>
-
-#include "services/service_base.hpp"
 
 using viam::robot::v1::Status;
 

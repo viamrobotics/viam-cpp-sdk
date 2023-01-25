@@ -1,7 +1,6 @@
-#include <spatialmath/orientation_types.h>
-
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <spatialmath/orientation_types.hpp>
 #include <string>
 #include <vector>
 

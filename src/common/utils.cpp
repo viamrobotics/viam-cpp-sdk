@@ -1,11 +1,11 @@
 #include <common/v1/common.pb.h>
-#include <components/component_base.h>
-#include <registry/registry.h>
 
 #include <boost/blank.hpp>
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <components/component_base.hpp>
+#include <registry/registry.hpp>
 #include <tuple>
 #include <unordered_map>
 #include <vector>

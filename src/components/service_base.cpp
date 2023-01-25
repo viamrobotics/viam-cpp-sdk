@@ -1,4 +1,4 @@
-#include <components/resource_manager.h>
+#include <components/resource_manager.hpp>
 
 class ComponentServiceBase {
    public:

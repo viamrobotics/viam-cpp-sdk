@@ -1,6 +1,6 @@
 #include <common/v1/common.pb.h>
-#include <spatialmath/orientation.h>
 
+#include <spatialmath/orientation.hpp>
 #include <string>
 #include <tuple>
 
