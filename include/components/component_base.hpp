@@ -6,6 +6,7 @@
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
 
+#include <resource/resource_base.hpp>
 #include <string>
 
 class ComponentType {
@@ -18,7 +19,7 @@ class ComponentType {
     friend bool operator==(ComponentType& lhs, ComponentType& rhs);
 };
 
-class ComponentBase {
+class ComponentBase : public ResourceBase {
        public:
 	std::string name;
 	ComponentType type;

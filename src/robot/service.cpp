@@ -62,43 +62,74 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
     return metadata;
 }
 
-std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
-    std::vector<Status> statuses;
-    for (auto cmp : manager.components) {
-        ComponentBase component = cmp.second;
-        for (auto registry : Registry::registered_components()) {
-            ComponentRegistration registration = registry.second;
-            if (registration.component_type == component.type) {
-                bool component_present = false;
-                ResourceName component_name = component.get_resource_name(component.name);
-                for (auto resource_name : resource_names) {
-                    if (&resource_name == &component_name) {
-                        component_present = true;
-                        break;
-                    }
-                }
+std::vector<Status> RobotService_::generate_status(
+    RepeatedPtrField<ResourceName> resource_names) {
+	std::vector<Status> statuses;
+	// CR erodkin: add service version to this generate_status func
+	for (auto cmp : manager.components) {
+		ComponentBase component = cmp.second;
+		for (auto registry : Registry::registered_components()) {
+			ComponentRegistration registration = registry.second;
+			if (registration.component_type == component.type) {
+				bool component_present = false;
+				ResourceName component_name =
+				    component.get_resource_name(component.name);
+				for (auto resource_name : resource_names) {
+					if (&resource_name == &component_name) {
+						component_present = true;
+						break;
+					}
+				}
 
-                if (component_present) {
-                    Status status = registration.create_status(component);
-                    statuses.push_back(status);
-                }
-            }
-        }
-    }
-    std::vector<Status> returnable_statuses;
-    for (auto status : statuses) {
-        bool status_name_is_known = false;
-        for (auto resource_name : resource_names) {
-            if (status.name().SerializeAsString() == resource_name.SerializeAsString()) {
-                status_name_is_known = true;
-                break;
-            }
-        }
-        if (status_name_is_known) {
-            returnable_statuses.push_back(status);
-        }
-    }
-    return returnable_statuses;
+				if (component_present) {
+					Status status =
+					    registration.create_status(
+						component);
+					statuses.push_back(status);
+				}
+			}
+		}
+	}
+
+	for (auto svc : manager.services) {
+		ServiceBase service = svc.second;
+		for (auto registry : Registry::registered_services()) {
+			ServiceRegistration registration = registry.second;
+			if (registration.service_type == service.type) {
+				bool service_present = false;
+				ResourceName service_name =
+				    service.get_resource_name(service.name);
+				for (auto resource_name : resource_names) {
+					if (&resource_name == &service_name) {
+						service_present = true;
+						break;
+					}
+				}
+
+				if (service_present) {
+					Status status =
+					    registration.create_status(service);
+					statuses.push_back(status);
+				}
+			}
+		}
+	}
+
+	std::vector<Status> returnable_statuses;
+	for (auto status : statuses) {
+		bool status_name_is_known = false;
+		for (auto resource_name : resource_names) {
+			if (status.name().SerializeAsString() ==
+			    resource_name.SerializeAsString()) {
+				status_name_is_known = true;
+				break;
+			}
+		}
+		if (status_name_is_known) {
+			returnable_statuses.push_back(status);
+		}
+	}
+	return returnable_statuses;
 }
 
 ::grpc::Status RobotService_::ResourceNames(::grpc::ServerContext* context,

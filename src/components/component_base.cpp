@@ -35,14 +35,13 @@ bool operator==(ComponentType& lhs, ComponentType& rhs) {
 }
 
 ResourceName ComponentBase::get_resource_name(std::string name_) {
-    // TODO (RSDK-1631): test, confirm whether we need to split on
-    // "viam.components" here
-    ResourceName r;
-    *r.mutable_namespace_() = "rdk";
-    *r.mutable_type() = "component";
-    *r.mutable_subtype() = name;
-    *r.mutable_name() = name_;
-    std::cout << "calling get_resource_name! " << r.SerializeAsString() << std::endl;
+	// TODO (RSDK-1631): test, confirm whether we need to split on
+	// "viam.components" here
+	ResourceName r;
+	*r.mutable_namespace_() = "rdk";
+	*r.mutable_type() = "component";
+	*r.mutable_subtype() = name;
+	*r.mutable_name() = name_;
 
     return r;
 }

@@ -7,6 +7,8 @@
 
 #include <string>
 
+#include "resource/resource.h"
+
 class ComponentRegistration {
        public:
 	ComponentRegistration();
@@ -18,10 +20,29 @@ class ComponentRegistration {
 	viam::robot::v1::Status create_status(ComponentBase component);
 };
 
+class ServiceRegistration {
+       public:
+	ServiceRegistration();
+	ServiceType service_type;
+	std::string name;
+	ResourceManager resource_manager;
+	std::function<ServiceBase(std::string, std::shared_ptr<grpc::Channel>)>
+	    create_rpc_client;
+
+	viam::robot::v1::Status create_status(ServiceBase service);
+};
+
 class Registry {
        public:
 	void register_component(ComponentRegistration component);
+	static ServiceRegistration lookup_service(std::string name);
+	static ServiceRegistration lookup_service(Subtype subtype, Model model);
 	static ComponentRegistration lookup_component(std::string name);
+	static ComponentRegistration lookup_component(Subtype subtype,
+						      Model model);
+	static std::unordered_map<Subtype, ServiceRegistration>
+	registered_services();
+
 	static std::unordered_map<std::string, ComponentRegistration>
 	registered_components();
 };

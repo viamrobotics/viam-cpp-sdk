@@ -22,6 +22,8 @@ class Subtype : public Type {
 		std::string resource_subtype);
 	friend bool operator==(Subtype& lhs, Subtype& rhs);
 	Subtype();
+	bool is_component_type();
+	bool is_service_type();
 };
 
 class Name : public Subtype {
@@ -131,6 +133,25 @@ Subtype::Subtype(std::string subtype) {
 	}
 }
 
+Subtype::Subtype(Type type, std::string resource_subtype) {
+	namespace_ = type.namespace_;
+	resource_type = type.resource_type;
+	resource_subtype = resource_subtype;
+}
+
+Subtype::Subtype(std::string namespace_, std::string resource_type,
+		 std::string resource_subtype) {
+	namespace_ = namespace_;
+	resource_type = resource_type;
+	resource_subtype = resource_subtype;
+}
+
+bool Subtype::is_service_type() { return (this->resource_type == "service"); }
+
+bool Subtype::is_component_type() {
+	return (this->resource_type == "component");
+}
+
 Subtype* Name::to_subtype() { return this; }
 
 std::string Name::to_string() {
@@ -186,19 +207,6 @@ bool operator==(RPCSubtype& lhs, RPCSubtype& rhs) {
 
 bool operator==(Model& lhs, Model& rhs) {
 	return lhs.to_string() == rhs.to_string();
-}
-
-Subtype::Subtype(Type type, std::string resource_subtype) {
-	namespace_ = type.namespace_;
-	resource_type = type.resource_type;
-	resource_subtype = resource_subtype;
-}
-
-Subtype::Subtype(std::string namespace_, std::string resource_type,
-		 std::string resource_subtype) {
-	namespace_ = namespace_;
-	resource_type = resource_type;
-	resource_subtype = resource_subtype;
 }
 
 RPCSubtype::RPCSubtype(Subtype subtype, std::string proto_service_name,

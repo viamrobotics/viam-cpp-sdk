@@ -16,7 +16,6 @@ class ResourceManager {
 
 	void register_service(ServiceBase service);
 
-       private:
 	static std::unordered_map<std::string, ComponentBase> components;
 	static std::unordered_map<std::string, ServiceBase> services;
 };

@@ -32,6 +32,7 @@ ModuleClient::ModuleClient(ViamChannel channel) {
 	stub_ = std::move(ModuleService::NewStub(channel.channel));
 }
 
+// CR erodkin: should dependencies here be a map?
 void ModuleClient::add_resource(Component cfg,
 				std::vector<std::string> dependencies) {
 	viam::module::v1::AddResourceRequest req;

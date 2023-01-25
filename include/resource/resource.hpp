@@ -21,6 +21,8 @@ class Subtype : public Type {
 	Subtype(std::string namespace_, std::string resource_type,
 		std::string resource_subtype);
 	Subtype(Type type, std::string resource_subtype);
+	bool is_component_type();
+	bool is_service_type();
 	friend bool operator==(const Subtype& lhs, const Subtype& rhs);
 };
 
