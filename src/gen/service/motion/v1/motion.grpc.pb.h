@@ -60,6 +60,13 @@ class MotionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::GetPoseResponse>> PrepareAsyncGetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::GetPoseResponse>>(PrepareAsyncGetPoseRaw(context, request, cq));
     }
+    virtual ::grpc::Status ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::viam::service::motion::v1::ExportPointCloudResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::ExportPointCloudResponse>> AsyncExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::ExportPointCloudResponse>>(AsyncExportPointCloudRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::ExportPointCloudResponse>> PrepareAsyncExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::ExportPointCloudResponse>>(PrepareAsyncExportPointCloudRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -69,6 +76,8 @@ class MotionService final {
       virtual void MoveSingleComponent(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveSingleComponentRequest* request, ::viam::service::motion::v1::MoveSingleComponentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -80,6 +89,8 @@ class MotionService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::MoveSingleComponentResponse>* PrepareAsyncMoveSingleComponentRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveSingleComponentRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::GetPoseResponse>* AsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::GetPoseResponse>* PrepareAsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::ExportPointCloudResponse>* AsyncExportPointCloudRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::motion::v1::ExportPointCloudResponse>* PrepareAsyncExportPointCloudRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -105,6 +116,13 @@ class MotionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>> PrepareAsyncGetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>>(PrepareAsyncGetPoseRaw(context, request, cq));
     }
+    ::grpc::Status ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::viam::service::motion::v1::ExportPointCloudResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>> AsyncExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>>(AsyncExportPointCloudRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>> PrepareAsyncExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>>(PrepareAsyncExportPointCloudRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -114,6 +132,8 @@ class MotionService final {
       void MoveSingleComponent(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveSingleComponentRequest* request, ::viam::service::motion::v1::MoveSingleComponentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, std::function<void(::grpc::Status)>) override;
       void GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response, std::function<void(::grpc::Status)>) override;
+      void ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -131,9 +151,12 @@ class MotionService final {
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveSingleComponentResponse>* PrepareAsyncMoveSingleComponentRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveSingleComponentRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* AsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* PrepareAsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>* AsyncExportPointCloudRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>* PrepareAsyncExportPointCloudRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Move_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveSingleComponent_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPose_;
+    const ::grpc::internal::RpcMethod rpcmethod_ExportPointCloud_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -144,6 +167,7 @@ class MotionService final {
     virtual ::grpc::Status Move(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response);
     virtual ::grpc::Status MoveSingleComponent(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveSingleComponentRequest* request, ::viam::service::motion::v1::MoveSingleComponentResponse* response);
     virtual ::grpc::Status GetPose(::grpc::ServerContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response);
+    virtual ::grpc::Status ExportPointCloud(::grpc::ServerContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Move : public BaseClass {
@@ -205,7 +229,27 @@ class MotionService final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Move<WithAsyncMethod_MoveSingleComponent<WithAsyncMethod_GetPose<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_ExportPointCloud : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ExportPointCloud() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_ExportPointCloud() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExportPointCloud(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestExportPointCloud(::grpc::ServerContext* context, ::viam::service::motion::v1::ExportPointCloudRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::motion::v1::ExportPointCloudResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Move<WithAsyncMethod_MoveSingleComponent<WithAsyncMethod_GetPose<WithAsyncMethod_ExportPointCloud<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Move : public BaseClass {
    private:
@@ -287,7 +331,34 @@ class MotionService final {
     virtual ::grpc::ServerUnaryReactor* GetPose(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::motion::v1::GetPoseRequest* /*request*/, ::viam::service::motion::v1::GetPoseResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Move<WithCallbackMethod_MoveSingleComponent<WithCallbackMethod_GetPose<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_ExportPointCloud : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ExportPointCloud() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response) { return this->ExportPointCloud(context, request, response); }));}
+    void SetMessageAllocatorFor_ExportPointCloud(
+        ::grpc::MessageAllocator< ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ExportPointCloud() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExportPointCloud(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ExportPointCloud(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Move<WithCallbackMethod_MoveSingleComponent<WithCallbackMethod_GetPose<WithCallbackMethod_ExportPointCloud<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Move : public BaseClass {
@@ -336,6 +407,23 @@ class MotionService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetPose(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::GetPoseRequest* /*request*/, ::viam::service::motion::v1::GetPoseResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ExportPointCloud : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ExportPointCloud() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_ExportPointCloud() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExportPointCloud(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -398,6 +486,26 @@ class MotionService final {
     }
     void RequestGetPose(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ExportPointCloud : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ExportPointCloud() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_ExportPointCloud() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExportPointCloud(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestExportPointCloud(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -464,6 +572,28 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetPose(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ExportPointCloud : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ExportPointCloud() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ExportPointCloud(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ExportPointCloud() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ExportPointCloud(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ExportPointCloud(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -547,9 +677,36 @@ class MotionService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetPose(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::motion::v1::GetPoseRequest,::viam::service::motion::v1::GetPoseResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveSingleComponent<WithStreamedUnaryMethod_GetPose<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ExportPointCloud : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ExportPointCloud() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse>* streamer) {
+                       return this->StreamedExportPointCloud(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ExportPointCloud() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ExportPointCloud(::grpc::ServerContext* /*context*/, const ::viam::service::motion::v1::ExportPointCloudRequest* /*request*/, ::viam::service::motion::v1::ExportPointCloudResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedExportPointCloud(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::motion::v1::ExportPointCloudRequest,::viam::service::motion::v1::ExportPointCloudResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveSingleComponent<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_ExportPointCloud<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveSingleComponent<WithStreamedUnaryMethod_GetPose<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Move<WithStreamedUnaryMethod_MoveSingleComponent<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_ExportPointCloud<Service > > > > StreamedService;
 };
 
 }  // namespace v1

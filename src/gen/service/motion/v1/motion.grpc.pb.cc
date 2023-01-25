@@ -28,6 +28,7 @@ static const char* MotionService_method_names[] = {
   "/viam.service.motion.v1.MotionService/Move",
   "/viam.service.motion.v1.MotionService/MoveSingleComponent",
   "/viam.service.motion.v1.MotionService/GetPose",
+  "/viam.service.motion.v1.MotionService/ExportPointCloud",
 };
 
 std::unique_ptr< MotionService::Stub> MotionService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -40,6 +41,7 @@ MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   : channel_(channel), rpcmethod_Move_(MotionService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveSingleComponent_(MotionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetPose_(MotionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ExportPointCloud_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotionService::Stub::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::viam::service::motion::v1::MoveResponse* response) {
@@ -111,6 +113,29 @@ void MotionService::Stub::async::GetPose(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::Status MotionService::Stub::ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::viam::service::motion::v1::ExportPointCloudResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ExportPointCloud_, context, request, response);
+}
+
+void MotionService::Stub::async::ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExportPointCloud_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::ExportPointCloud(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExportPointCloud_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>* MotionService::Stub::PrepareAsyncExportPointCloudRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::ExportPointCloudResponse, ::viam::service::motion::v1::ExportPointCloudRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ExportPointCloud_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ExportPointCloudResponse>* MotionService::Stub::AsyncExportPointCloudRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncExportPointCloudRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[0],
@@ -142,6 +167,16 @@ MotionService::Service::Service() {
              ::viam::service::motion::v1::GetPoseResponse* resp) {
                return service->GetPose(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::ExportPointCloudRequest, ::viam::service::motion::v1::ExportPointCloudResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::motion::v1::ExportPointCloudRequest* req,
+             ::viam::service::motion::v1::ExportPointCloudResponse* resp) {
+               return service->ExportPointCloud(ctx, req, resp);
+             }, this)));
 }
 
 MotionService::Service::~Service() {
@@ -162,6 +197,13 @@ MotionService::Service::~Service() {
 }
 
 ::grpc::Status MotionService::Service::GetPose(::grpc::ServerContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::ExportPointCloud(::grpc::ServerContext* context, const ::viam::service::motion::v1::ExportPointCloudRequest* request, ::viam::service::motion::v1::ExportPointCloudResponse* response) {
   (void) context;
   (void) request;
   (void) response;
