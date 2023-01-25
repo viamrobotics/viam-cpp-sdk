@@ -193,31 +193,27 @@ void RobotClient::refresh() {
             continue;
         }
 
-		try {
-			ComponentBase rpc_client =
-			    Registry::lookup_component(name.subtype())
-				.create_rpc_client(name.name(), channel);
-			new_resource_manager.register_component(rpc_client);
-		} catch (std::exception &exc) {
-			BOOST_LOG_TRIVIAL(debug)
-			    << "Error registering component " << name.subtype()
-			    << ": " << exc.what();
-		}
-	}
-	bool is_equal = current_resources.size() == resource_names_.size();
-	if (is_equal) {
-		for (int i = 0; i < current_resources.size(); ++i) {
-			if (!ResourceNameEqual::check_equal(
-				resource_names_.at(i),
-				current_resources.at(i))) {
-				is_equal = false;
-				break;
-			}
-		}
-	}
-	if (is_equal) {
-		return;
-	}
+        try {
+            ComponentBase rpc_client =
+                Registry::lookup_component(name.subtype()).create_rpc_client(name.name(), channel);
+            new_resource_manager.register_component(rpc_client);
+        } catch (std::exception& exc) {
+            BOOST_LOG_TRIVIAL(debug)
+                << "Error registering component " << name.subtype() << ": " << exc.what();
+        }
+    }
+    bool is_equal = current_resources.size() == resource_names_.size();
+    if (is_equal) {
+        for (int i = 0; i < current_resources.size(); ++i) {
+            if (!ResourceNameEqual::check_equal(resource_names_.at(i), current_resources.at(i))) {
+                is_equal = false;
+                break;
+            }
+        }
+    }
+    if (is_equal) {
+        return;
+    }
 
     lock.lock();
     resource_names_ = current_resources;
@@ -244,18 +240,16 @@ std::vector<ResourceName>* RobotClient::resource_names() {
     return resources;
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
-						       Options options) {
-	std::shared_ptr<RobotClient> robot =
-	    std::make_shared<RobotClient>(channel);
-	robot->refresh_interval = options.refresh_interval;
-	robot->should_refresh = (robot->refresh_interval > 0);
-	if (robot->should_refresh) {
-		std::thread t(&RobotClient::refresh_every, robot);
-		// TODO(RSDK-1743): this is leaking, find a way to handle
-		// shutdown gracefully. See also address sanitizer, UB sanitizer
-		t.detach();
-	};
+std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Options options) {
+    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
+    robot->refresh_interval = options.refresh_interval;
+    robot->should_refresh = (robot->refresh_interval > 0);
+    if (robot->should_refresh) {
+        std::thread t(&RobotClient::refresh_every, robot);
+        // TODO(RSDK-1743): this is leaking, find a way to handle
+        // shutdown gracefully. See also address sanitizer, UB sanitizer
+        t.detach();
+    };
 
     robot->refresh();
     return robot;
@@ -352,44 +346,52 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 }
 
 ComponentBase RobotClient::get_component(ResourceName name) {
-	if (name.type() != "component") {
-		std::string error =
-		    "Expected resource type 'component' but got " + name.type();
-		throw error;
-	}
-	lock.lock();
-	ComponentBase component = resource_manager.get_component(
-	    name.name(), ComponentType("ComponentBase"));
-	lock.unlock();
-	return component;
+    if (name.type() != "component") {
+        std::string error = "Expected resource type 'component' but got " + name.type();
+        throw error;
+    }
+    lock.lock();
+    ComponentBase component =
+        resource_manager.get_component(name.name(), ComponentType("ComponentBase"));
+    lock.unlock();
+    return component;
 }
 
 void RobotClient::stop_all() {
     std::unordered_map<ResourceName,
-		       std::unordered_map<std::string, ProtoType *>,
-		       ResourceNameHasher, ResourceNameEqual>
-	extra) {
-	viam::robot::v1::StopAllRequest req;
-	viam::robot::v1::StopAllResponse resp;
-	ClientContext ctx;
-	OrientationConfig o;
+                       std::unordered_map<std::string, ProtoType*>,
+                       ResourceNameHasher,
+                       ResourceNameEqual>
+        map;
+    for (ResourceName name : *resource_names()) {
+        std::unordered_map<std::string, ProtoType*> val;
+        map.emplace(name, val);
+    }
+    stop_all(map);
+}
 
-	RepeatedPtrField<viam::robot::v1::StopExtraParameters> *ep =
-	    req.mutable_extra();
-	for (auto xtra : extra) {
-		ResourceName name = xtra.first;
-		std::unordered_map<std::string, ProtoType *> params =
-		    xtra.second;
-		google::protobuf::Struct s = map_to_struct(params);
-		viam::robot::v1::StopExtraParameters stop;
-		*stop.mutable_name() = name;
-		*stop.mutable_params() = s;
-		*ep->Add() = stop;
-	}
-	grpc::Status response = stub_->StopAll(&ctx, req, &resp);
-	if (!response.ok()) {
-		BOOST_LOG_TRIVIAL(error)
-		    << "Error stopping all: " << response.error_message()
-		    << response.error_details();
-	}
+void RobotClient::stop_all(std::unordered_map<ResourceName,
+                                              std::unordered_map<std::string, ProtoType*>,
+                                              ResourceNameHasher,
+                                              ResourceNameEqual> extra) {
+    viam::robot::v1::StopAllRequest req;
+    viam::robot::v1::StopAllResponse resp;
+    ClientContext ctx;
+    OrientationConfig o;
+
+    RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
+    for (auto xtra : extra) {
+        ResourceName name = xtra.first;
+        std::unordered_map<std::string, ProtoType*> params = xtra.second;
+        google::protobuf::Struct s = map_to_struct(params);
+        viam::robot::v1::StopExtraParameters stop;
+        *stop.mutable_name() = name;
+        *stop.mutable_params() = s;
+        *ep->Add() = stop;
+    }
+    grpc::Status response = stub_->StopAll(&ctx, req, &resp);
+    if (!response.ok()) {
+        BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
+                                 << response.error_details();
+    }
 }

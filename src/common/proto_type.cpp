@@ -50,42 +50,40 @@ class ProtoType {
 };
 
 ProtoType::ProtoType(Value value) {
-	switch (value.kind_case()) {
-		case Value::KindCase::kBoolValue: {
-			proto_type = value.bool_value();
-			break;
-		}
-		case Value::KindCase::kStringValue: {
-			proto_type = value.string_value();
-			break;
-		}
-		case Value::KindCase::kNumberValue: {
-			proto_type = value.number_value();
-			break;
-		}
-		case Value::KindCase::kListValue: {
-			std::vector<ProtoType*> vec;
-			google::protobuf::ListValue list_val =
-			    value.list_value();
-			for (auto val : value.list_value().values()) {
-				ProtoType p = ProtoType(val);
-				vec.push_back(&p);
-			}
-			proto_type = vec;
-			break;
-		}
-		case Value::KindCase::kStructValue: {
-			std::unordered_map<std::string, ProtoType*> map =
-			    struct_to_map(value.struct_value());
-			proto_type = map;
-			break;
-		}
-		case Value::KindCase::KIND_NOT_SET:
-		case Value::KindCase::kNullValue: {
-			proto_type = boost::blank();
-			break;
-		}
-	}
+    switch (value.kind_case()) {
+        case Value::KindCase::kBoolValue: {
+            proto_type = value.bool_value();
+            break;
+        }
+        case Value::KindCase::kStringValue: {
+            proto_type = value.string_value();
+            break;
+        }
+        case Value::KindCase::kNumberValue: {
+            proto_type = value.number_value();
+            break;
+        }
+        case Value::KindCase::kListValue: {
+            std::vector<ProtoType*> vec;
+            google::protobuf::ListValue list_val = value.list_value();
+            for (auto val : value.list_value().values()) {
+                ProtoType p = ProtoType(val);
+                vec.push_back(&p);
+            }
+            proto_type = vec;
+            break;
+        }
+        case Value::KindCase::kStructValue: {
+            std::unordered_map<std::string, ProtoType*> map = struct_to_map(value.struct_value());
+            proto_type = map;
+            break;
+        }
+        case Value::KindCase::KIND_NOT_SET:
+        case Value::KindCase::kNullValue: {
+            proto_type = boost::blank();
+            break;
+        }
+    }
 };
 
 Struct map_to_struct(std::unordered_map<std::string, ProtoType*> dict) {
@@ -101,13 +99,13 @@ Struct map_to_struct(std::unordered_map<std::string, ProtoType*> dict) {
 }
 
 std::unordered_map<std::string, ProtoType*> struct_to_map(Struct struct_) {
-	google::protobuf::Map<std::string, Value> struct_map = struct_.fields();
-	std::unordered_map<std::string, ProtoType*> map;
-	for (auto val : struct_.fields()) {
-		std::string key = val.first;
-		ProtoType value(val.second);
-		map.emplace(key, &value);
-	}
+    google::protobuf::Map<std::string, Value> struct_map = struct_.fields();
+    std::unordered_map<std::string, ProtoType*> map;
+    for (auto val : struct_.fields()) {
+        std::string key = val.first;
+        ProtoType value(val.second);
+        map.emplace(key, &value);
+    }
 
     return map;
 };

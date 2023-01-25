@@ -19,15 +19,14 @@ class ComponentType {
 };
 
 class ComponentBase : public ResourceBase {
-       public:
-	std::string name;
-	ComponentType type;
-	std::vector<ComponentType> component_hierarchy;
-	ResourceName get_resource_name(std::string name);
-	virtual grpc::StatusCode stop(
-	    std::unordered_map<std::string, ProtoType*> extra);
-	virtual grpc::StatusCode stop();
-	ComponentBase();
+   public:
+    std::string name;
+    ComponentType type;
+    std::vector<ComponentType> component_hierarchy;
+    ResourceName get_resource_name(std::string name);
+    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> extra);
+    virtual grpc::StatusCode stop();
+    ComponentBase();
 };
 
 bool operator==(ComponentType& lhs, ComponentType& rhs) {
@@ -35,20 +34,19 @@ bool operator==(ComponentType& lhs, ComponentType& rhs) {
 }
 
 ResourceName ComponentBase::get_resource_name(std::string name_) {
-	// TODO (RSDK-1631): test, confirm whether we need to split on
-	// "viam.components" here
-	ResourceName r;
-	*r.mutable_namespace_() = "rdk";
-	*r.mutable_type() = "component";
-	*r.mutable_subtype() = name;
-	*r.mutable_name() = name_;
+    // TODO (RSDK-1631): test, confirm whether we need to split on
+    // "viam.components" here
+    ResourceName r;
+    *r.mutable_namespace_() = "rdk";
+    *r.mutable_type() = "component";
+    *r.mutable_subtype() = name;
+    *r.mutable_name() = name_;
 
     return r;
 }
 
-grpc::StatusCode ComponentBase::stop(
-    std::unordered_map<std::string, ProtoType*> ex) {
-	return stop();
+grpc::StatusCode ComponentBase::stop(std::unordered_map<std::string, ProtoType*> ex) {
+    return stop();
 }
 
 grpc::StatusCode ComponentBase::stop() {

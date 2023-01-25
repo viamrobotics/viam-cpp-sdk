@@ -14,61 +14,54 @@
 using viam::robot::v1::Status;
 
 class ComponentRegistration {
-       public:
-	ComponentRegistration();
-	ComponentType component_type;
-	std::string name;
-	ResourceManager resource_manager;
-	std::function<ComponentBase(std::string,
-				    std::shared_ptr<grpc::Channel>)>
-	    create_rpc_client;
-	// CR erodkin: this was listed as virtual but I don't think it needs to
-	// be? confirm
-	Status create_status(ComponentBase component);
+   public:
+    ComponentRegistration();
+    ComponentType component_type;
+    std::string name;
+    ResourceManager resource_manager;
+    std::function<ComponentBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
+    // CR erodkin: this was listed as virtual but I don't think it needs to
+    // be? confirm
+    Status create_status(ComponentBase component);
 };
 
 class ServiceRegistration {
-       public:
-	ServiceRegistration();
-	std::string resource_type;
-	std::string name;
-	ResourceManager resource_manager;
-	std::function<ServiceBase(std::string, std::shared_ptr<grpc::Channel>)>
-	    create_rpc_client;
+   public:
+    ServiceRegistration();
+    std::string resource_type;
+    std::string name;
+    ResourceManager resource_manager;
+    std::function<ServiceBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
 
-	Status create_status(ServiceBase service);
+    Status create_status(ServiceBase service);
 };
 
 class Registry {
-       public:
-	/// Registers a component with the Registry
-	/// Args:
-	/// 	component (ComponentRegistration): object containing component
-	/// 	registration data
-	///
-	/// Raises:
-	/// 	throws error if component already exists in the registry
-	void register_component(ComponentRegistration component);
-	static ServiceRegistration lookup_service(std::string name);
-	static ServiceRegistration lookup_service(Subtype subtype, Model model);
+   public:
+    /// Registers a component with the Registry
+    /// Args:
+    /// 	component (ComponentRegistration): object containing component
+    /// 	registration data
+    ///
+    /// Raises:
+    /// 	throws error if component already exists in the registry
+    void register_component(ComponentRegistration component);
+    static ServiceRegistration lookup_service(std::string name);
+    static ServiceRegistration lookup_service(Subtype subtype, Model model);
 
-	static ComponentRegistration lookup_component(std::string name);
-	static ComponentRegistration lookup_component(Subtype subtype,
-						      Model model);
+    static ComponentRegistration lookup_component(std::string name);
+    static ComponentRegistration lookup_component(Subtype subtype, Model model);
 
-	static std::unordered_map<Subtype, ServiceRegistration>
-	registered_services();
+    static std::unordered_map<Subtype, ServiceRegistration> registered_services();
 
-	// CR erodkin: this being string key while services is subtype key is
-	// not great. pick one and stick to it.
-	static std::unordered_map<std::string, ComponentRegistration>
-	registered_components();
+    // CR erodkin: this being string key while services is subtype key is
+    // not great. pick one and stick to it.
+    static std::unordered_map<std::string, ComponentRegistration> registered_components();
 
-       private:
-	static std::unordered_map<std::string, ComponentRegistration>
-	    components;
+   private:
+    static std::unordered_map<std::string, ComponentRegistration> components;
 
-	static std::unordered_map<Subtype, ServiceRegistration> services;
+    static std::unordered_map<Subtype, ServiceRegistration> services;
 };
 
 std::unordered_map<std::string, ComponentRegistration> Registry::components;
@@ -80,55 +73,53 @@ void Registry::register_component(ComponentRegistration component) {
         throw std::runtime_error(err);
     }
 
-	components.emplace(component.name, component);
+    components.emplace(component.name, component);
 }
 
 ServiceRegistration Registry::lookup_service(std::string name) {
-	if (services.find(name) == services.end()) {
-		std::string err = "Service " + name + "not found.";
-		err += name;
-		throw std::runtime_error(err);
-	}
+    if (services.find(name) == services.end()) {
+        std::string err = "Service " + name + "not found.";
+        err += name;
+        throw std::runtime_error(err);
+    }
 
-	return services.at(name);
+    return services.at(name);
 }
 
 ServiceRegistration Registry::lookup_service(Subtype subtype, Model model) {
-	std::string name = subtype.to_string() + model.to_string();
-	return lookup_service(name);
+    std::string name = subtype.to_string() + model.to_string();
+    return lookup_service(name);
 }
 
 ComponentRegistration Registry::lookup_component(std::string name) {
-	if (components.find(name) == components.end()) {
-		std::string err = "Component " + name + "not found.";
-		err += name;
-		throw std::runtime_error(err);
-	}
+    if (components.find(name) == components.end()) {
+        std::string err = "Component " + name + "not found.";
+        err += name;
+        throw std::runtime_error(err);
+    }
 
     return components.at(name);
 }
 
 ComponentRegistration Registry::lookup_component(Subtype subtype, Model model) {
-	std::string name = subtype.to_string() + model.to_string();
-	return lookup_component(name);
+    std::string name = subtype.to_string() + model.to_string();
+    return lookup_component(name);
 }
 
-std::unordered_map<std::string, ServiceRegistration>
-Registry::registered_services() {
-	std::unordered_map<std::string, ServiceRegistration> registry;
-	for (auto service : services) {
-		registry.insert(service);
-	}
-	return registry;
+std::unordered_map<std::string, ServiceRegistration> Registry::registered_services() {
+    std::unordered_map<std::string, ServiceRegistration> registry;
+    for (auto service : services) {
+        registry.insert(service);
+    }
+    return registry;
 }
 
-std::unordered_map<std::string, ComponentRegistration>
-Registry::registered_components() {
-	std::unordered_map<std::string, ComponentRegistration> registry;
-	for (auto component : components) {
-		registry.insert(component);
-	}
-	return registry;
+std::unordered_map<std::string, ComponentRegistration> Registry::registered_components() {
+    std::unordered_map<std::string, ComponentRegistration> registry;
+    for (auto component : components) {
+        registry.insert(component);
+    }
+    return registry;
 }
 
 Status ComponentRegistration::create_status(ComponentBase component) {
@@ -140,10 +131,9 @@ Status ComponentRegistration::create_status(ComponentBase component) {
 }
 
 Status ServiceRegistration::create_status(ServiceBase service) {
-	Status status;
-	google::protobuf::Struct struct_;
-	*status.mutable_name() = service.get_resource_name(service.name);
-	*status.mutable_status() = struct_;
-	return status;
+    Status status;
+    google::protobuf::Struct struct_;
+    *status.mutable_name() = service.get_resource_name(service.name);
+    *status.mutable_status() = struct_;
+    return status;
 }
-
