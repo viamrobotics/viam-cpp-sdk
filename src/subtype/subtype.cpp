@@ -13,6 +13,6 @@ class SubtypeService : public ServiceBase {
 
    private:
     std::mutex lock;
-    std::unordered_map<Name, ResourceBase> resources;
+    std::unordered_map<std::string, ResourceBase> resources;
     std::unordered_map<std::string, std::string> short_names;
 };

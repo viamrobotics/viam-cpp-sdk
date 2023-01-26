@@ -41,3 +41,19 @@ class Component {
     void fix_api();
 };
 
+class Service {
+   public:
+    std::string name;
+    std::string namespace_;
+    std::string type;
+    Model model;
+    std::vector<std::string> depends_on;
+
+    AttributeMap attributes;
+    ProtoType converted_attributes;
+    std::vector<std::string> implicit_depends_on;
+
+    static Service from_component_config(Component cfg);
+    Service();
+};
+

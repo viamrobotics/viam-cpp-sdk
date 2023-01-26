@@ -21,8 +21,6 @@ class ServiceBase : public ResourceBase {
     std::string name;
     ResourceName get_resource_name(std::string name);
     ServiceBase();
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> ex);
-    virtual grpc::StatusCode stop();
 };
 
 ResourceName ServiceBase::get_resource_name(std::string name_) {
@@ -37,10 +35,3 @@ ResourceName ServiceBase::get_resource_name(std::string name_) {
     return r;
 }
 
-grpc::StatusCode ServiceBase::stop(std::unordered_map<std::string, ProtoType*> ex) {
-    return stop();
-}
-
-grpc::StatusCode ServiceBase::stop() {
-    return grpc::StatusCode::UNIMPLEMENTED;
-}

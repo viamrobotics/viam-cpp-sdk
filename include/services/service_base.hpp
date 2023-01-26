@@ -1,9 +1,7 @@
 #pragma once
 
 #include <common/v1/common.pb.h>
-#include <grpcpp/support/status.h>
 
-#include <common/proto_type.hpp>
 #include <resource/resource_base.hpp>
 #include <string>
 
@@ -25,7 +23,5 @@ class ServiceBase : public ResourceBase {
     // CR erodkin: is component hierarchy necessary?
     std::vector<ServiceType> service_hierarchy;
     viam::common::v1::ResourceName get_resource_name(std::string name);
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> extra);
-    virtual grpc::StatusCode stop();
 };
 

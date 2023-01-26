@@ -3,9 +3,7 @@
 
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
-#include <grpcpp/support/status.h>
 
-#include <common/proto_type.hpp>
 #include <resource/resource_base.hpp>
 #include <string>
 
@@ -27,8 +25,6 @@ class ComponentBase : public ResourceBase {
     std::vector<ComponentType> component_hierarchy;
 
     viam::common::v1::ResourceName get_resource_name(std::string name);
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> extra);
-    virtual grpc::StatusCode stop();
 };
 
 #endif

@@ -28,6 +28,8 @@ class ServiceRegistration {
     viam::robot::v1::Status create_status(ServiceBase service);
 };
 
+typedef std::unordered_map<Name, ResourceBase> Dependencies;
+
 class Registry {
    public:
     void register_component(ComponentRegistration component);

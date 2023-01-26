@@ -35,6 +35,8 @@ class ServiceRegistration {
     Status create_status(ServiceBase service);
 };
 
+typedef std::unordered_map<Name, ResourceBase> Dependencies;
+
 class Registry {
    public:
     /// Registers a component with the Registry
@@ -105,6 +107,7 @@ ComponentRegistration Registry::lookup_component(Subtype subtype, Model model) {
     return lookup_component(name);
 }
 
+// CR erodkin: fix this. type issues with registry, key I suspect? std::string vs Name
 std::unordered_map<std::string, ServiceRegistration> Registry::registered_services() {
     std::unordered_map<std::string, ServiceRegistration> registry;
     for (auto service : services) {

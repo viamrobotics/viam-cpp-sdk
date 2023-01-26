@@ -23,8 +23,6 @@ class ResourceLevelServiceConfig {
     ProtoType converted_attributes;
 };
 
-// CR erodkin: should this inherit from ComponentBase? Probably not since it's a
-// config and not an actual component, but confirm
 class Component {
    public:
     std::string name;
@@ -47,6 +45,22 @@ class Component {
 
    private:
     void fix_api();
+};
+
+class Service {
+   public:
+    std::string name;
+    std::string namespace_;
+    std::string type;
+    Model model;
+    std::vector<std::string> depends_on;
+
+    AttributeMap attributes;
+    ProtoType converted_attributes;
+    std::vector<std::string> implicit_depends_on;
+
+    static Service from_component_config(Component cfg);
+    Service();
 };
 
 Name Component::resource_name() {
@@ -140,4 +154,17 @@ viam::app::v1::ComponentConfig Component::to_proto() {
     *proto_cfg.mutable_frame() = frame.to_proto();
 
     return proto_cfg;
+}
+
+Service Service::from_component_config(Component cfg) {
+    Service svc;
+    svc.name = cfg.name;
+    svc.namespace_ = cfg.namespace_;
+    svc.type = cfg.type;
+    svc.model = cfg.model;
+    svc.depends_on = cfg.depends_on;
+    svc.attributes = cfg.attributes;
+    svc.converted_attributes = cfg.converted_attributes;
+    svc.implicit_depends_on = cfg.implicit_depends_on;
+    return svc;
 }

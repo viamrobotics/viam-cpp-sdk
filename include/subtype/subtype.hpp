@@ -8,13 +8,13 @@
 class SubtypeService : public ServiceBase {
    public:
     ResourceBase resource(std::string name);
-    void replace_all(std::unordered_map<Name, ResourceBase> resources);
+    void replace_all(std::unordered_map<std::string, ResourceBase> resources);
     void add(Name name, ResourceBase resource);
     void remove(Name name);
     void replace_one(Name name, ResourceBase resource);
 
    private:
     std::mutex lock;
-    std::unordered_map<Name, ResourceBase> resources;
+    std::unordered_map<std::string, ResourceBase> resources;
     std::unordered_map<std::string, std::string> short_names;
 };

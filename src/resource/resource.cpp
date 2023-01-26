@@ -1,6 +1,7 @@
 #include <google/protobuf/descriptor.h>
 
 #include <boost/algorithm/string.hpp>
+#include <components/component_base.hpp>
 #include <regex>
 #include <sstream>
 #include <string>
@@ -34,13 +35,6 @@ class Name : public Subtype {
     Subtype* to_subtype();
     Name(std::string name);
     Name(Subtype subtype, std::string remote, std::string name);
-};
-
-class Reconfigurable {
-   public:
-    virtual Name name();
-    // CR erodkin: should new_resource be a pointer?
-    virtual void reconfigure(Reconfigurable new_resource);
 };
 
 class RPCSubtype {
