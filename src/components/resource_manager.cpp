@@ -10,7 +10,6 @@ class ResourceManager {
     static std::unordered_map<std::string, ComponentBase> components;
     static std::unordered_map<std::string, ServiceBase> services;
     void register_component(ComponentBase component);
-    // CR erodkin: need to actually define register_service and get_service
     void register_service(ServiceBase service);
 
     /// returns a component from the registry.
@@ -36,6 +35,16 @@ ResourceManager::ResourceManager(std::vector<ComponentBase> components) {
         register_component(component);
     }
 }
+
+void ResourceManager::register_service(ServiceBase service) {
+    if (services.find(service.name) != services.end()) {
+        std::string err = "Cannot add service with name " + service.name + " as it already exists.";
+        throw std::runtime_error(err);
+    }
+
+    services[service.name] = service;
+}
+
 void ResourceManager::register_component(ComponentBase component) {
     if (components.find(component.name) != components.end()) {
         std::string err =
@@ -47,6 +56,25 @@ void ResourceManager::register_component(ComponentBase component) {
 }
 
 std::unordered_map<std::string, ComponentBase> ResourceManager::components;
+
+ServiceBase ResourceManager::get_service(std::string name, ServiceType of_type) {
+    if (services.find(name) == services.end()) {
+        throw "Service name " + name + " doesn't exist!";
+    }
+
+    ServiceBase service = services.at(name);
+    if (service.type == of_type) {
+        return service;
+    }
+
+    ServiceType base = ServiceType("ServiceBase");
+    if (of_type == base) {
+        return service;
+    }
+    throw "Service name " + name +
+        " was found, but it has the wrong type! Expected type: " + of_type.name +
+        ". Actual type: " + service.type.name;
+}
 
 ComponentBase ResourceManager::get_component(std::string name, ComponentType of_type) {
     if (components.find(name) == components.end()) {

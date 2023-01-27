@@ -8,14 +8,6 @@
 namespace SDK = Viam::SDK;
 namespace proto = viam::app::v1;
 
-enum OrientationType {
-    AxisAngles,
-    OrientationVector,
-    OrientationVectorDegrees,
-    EulerAngles,
-    Quaternion,
-};
-
 typedef boost::variant<SDK::axis_angles,
                        SDK::euler_angles,
                        SDK::orientation_vector,
@@ -24,7 +16,7 @@ typedef boost::variant<SDK::axis_angles,
     orientation;
 
 class OrientationConfig {
-    OrientationType type;
+    SDK::OrientationType type;
     orientation orientation_;
 
     std::vector<std::uint8_t> value;
@@ -36,7 +28,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     OrientationConfig cfg;
     switch (proto.type_case()) {
         case proto::Orientation::TypeCase::kAxisAngles: {
-            cfg.type = AxisAngles;
+            cfg.type = SDK::AxisAngles;
             SDK::axis_angles aa;
             aa.x = proto.axis_angles().x();
             aa.y = proto.axis_angles().y();
@@ -46,7 +38,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kEulerAngles: {
-            cfg.type = EulerAngles;
+            cfg.type = SDK::EulerAngles;
             SDK::euler_angles ea;
             ea.yaw = proto.euler_angles().yaw();
             ea.pitch = proto.euler_angles().pitch();
@@ -55,7 +47,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kQuaternion: {
-            cfg.type = Quaternion;
+            cfg.type = SDK::Quaternion;
             SDK::quaternion quat;
             quat.w = proto.quaternion().w();
             quat.x = proto.quaternion().x();
@@ -65,7 +57,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kVectorDegrees: {
-            cfg.type = OrientationVectorDegrees;
+            cfg.type = SDK::OrientationVectorDegrees;
             SDK::orientation_vector_degrees ovd;
             ovd.x = proto.vector_degrees().x();
             ovd.y = proto.vector_degrees().y();
@@ -75,7 +67,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kVectorRadians: {
-            cfg.type = OrientationVector;
+            cfg.type = SDK::OrientationVector;
             SDK::orientation_vector ov;
             ov.x = proto.vector_radians().x();
             ov.y = proto.vector_radians().y();
@@ -87,7 +79,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
         case proto::Orientation::TypeCase::kNoOrientation: {
             // if type is NoOrientation, we put a sentinel
             // orientation that indicates no rotation
-            cfg.type = Quaternion;
+            cfg.type = SDK::Quaternion;
             SDK::quaternion quat;
             quat.w = 1;
             quat.x = 0;
@@ -104,9 +96,9 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
 proto::Orientation OrientationConfig::to_proto() {
     proto::Orientation orientation;
     switch (type) {
-        case AxisAngles: {
+        case SDK::AxisAngles: {
             proto::Orientation_AxisAngles aa;
-            SDK::axis_angles a = boost::get<SDK::axis_angles>(orientation_.orientation_);
+            SDK::axis_angles a = boost::get<SDK::axis_angles>(orientation_);
             aa.set_x(a.x);
             aa.set_y(a.y);
             aa.set_z(a.z);
@@ -114,10 +106,9 @@ proto::Orientation OrientationConfig::to_proto() {
             orientation.set_allocated_axis_angles(&aa);
             return orientation;
         };
-        case OrientationVector: {
+        case SDK::OrientationVector: {
             proto::Orientation_OrientationVectorRadians ovec;
-            SDK::orientation_vector ov =
-                boost::get<SDK::orientation_vector>(orientation_.orientation_);
+            SDK::orientation_vector ov = boost::get<SDK::orientation_vector>(orientation_);
             ovec.set_x(ov.x);
             ovec.set_y(ov.y);
             ovec.set_z(ov.z);
@@ -125,10 +116,10 @@ proto::Orientation OrientationConfig::to_proto() {
             orientation.set_allocated_vector_radians(&ovec);
             return orientation;
         };
-        case OrientationVectorDegrees: {
+        case SDK::OrientationVectorDegrees: {
             proto::Orientation_OrientationVectorDegrees ovec;
             SDK::orientation_vector_degrees ovd =
-                boost::get<SDK::orientation_vector_degrees>(orientation_.orientation_);
+                boost::get<SDK::orientation_vector_degrees>(orientation_);
             ovec.set_x(ovd.x);
             ovec.set_y(ovd.y);
             ovec.set_z(ovd.z);
@@ -136,18 +127,18 @@ proto::Orientation OrientationConfig::to_proto() {
             orientation.set_allocated_vector_degrees(&ovec);
             return orientation;
         };
-        case EulerAngles: {
+        case SDK::EulerAngles: {
             proto::Orientation_EulerAngles euler;
-            SDK::euler_angles ea = boost::get<SDK::euler_angles>(orientation_.orientation_);
+            SDK::euler_angles ea = boost::get<SDK::euler_angles>(orientation_);
             euler.set_pitch(ea.pitch);
             euler.set_roll(ea.roll);
             euler.set_yaw(ea.yaw);
             orientation.set_allocated_euler_angles(&euler);
             return orientation;
         };
-        case Quaternion: {
+        case SDK::Quaternion: {
             proto::Orientation_Quaternion quat;
-            SDK::quaternion q = boost::get<SDK::quaternion>(orientation_.orientation_);
+            SDK::quaternion q = boost::get<SDK::quaternion>(orientation_);
             quat.set_w(q.w);
             quat.set_x(q.x);
             quat.set_y(q.y);

@@ -1,5 +1,13 @@
 #include <app/v1/robot.pb.h>
 
+enum OrientationType {
+    AxisAngles,
+    OrientationVector,
+    OrientationVectorDegrees,
+    EulerAngles,
+    Quaternion,
+};
+
 class axis_angles {
     double x, y, z, theta;
 };

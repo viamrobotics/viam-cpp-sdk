@@ -15,6 +15,7 @@
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
 
+#include <common/utils.hpp>
 #include <memory>
 #include <robot/service.hpp>
 #include <utility>
@@ -123,20 +124,20 @@ class MockStub : public RobotService::StubInterface {
 std::vector<ResourceName> names_for_testing() {
     std::vector<ResourceName> vec;
     ResourceName arm1;
-    *arm1.mutable_namespace_() = "rdk";
-    *arm1.mutable_type() = "component";
+    *arm1.mutable_namespace_() = RDK;
+    *arm1.mutable_type() = COMPONENT;
     *arm1.mutable_name() = "arm";
     *arm1.mutable_subtype() = "arm1";
 
     ResourceName camera1;
-    *camera1.mutable_namespace_() = "rdk";
-    *camera1.mutable_type() = "component";
+    *camera1.mutable_namespace_() = RDK;
+    *camera1.mutable_type() = COMPONENT;
     *camera1.mutable_name() = "camera";
     *camera1.mutable_subtype() = "camera1";
 
     ResourceName motor1;
-    *motor1.mutable_namespace_() = "rdk";
-    *motor1.mutable_type() = "component";
+    *motor1.mutable_namespace_() = RDK;
+    *motor1.mutable_type() = COMPONENT;
     *motor1.mutable_name() = "motor";
     *motor1.mutable_subtype() = "motor1";
 

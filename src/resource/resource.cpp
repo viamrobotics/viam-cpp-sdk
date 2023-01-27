@@ -1,3 +1,4 @@
+#include <common/v1/common.pb.h>
 #include <google/protobuf/descriptor.h>
 
 #include <boost/algorithm/string.hpp>
@@ -31,26 +32,24 @@ class Name : public Subtype {
     std::string remote;
     std::string name;
 
-    std::string to_string();
-    Subtype* to_subtype();
+    const std::string to_string() const;
+    const Subtype* to_subtype() const;
     Name(std::string name);
     Name(Subtype subtype, std::string remote, std::string name);
+    viam::common::v1::ResourceName to_proto();
 };
 
 class RPCSubtype {
    public:
     Subtype subtype;
     std::string proto_service_name;
-    // CR erodkin: should this be ServiceDescriptor? looks like it is in Go,
-    // but ServiceDescriptor doesn't exist for a handler in cpp (see
-    // module/client.cc)
-    const google::protobuf::Descriptor& descriptor;
-    RPCSubtype(Subtype subtype, const google::protobuf::Descriptor& descriptor);
+    google::protobuf::ServiceDescriptor& descriptor;
+    RPCSubtype(Subtype subtype, google::protobuf::ServiceDescriptor& descriptor);
     RPCSubtype(Subtype subtype,
                std::string proto_service_name,
-               google::protobuf::Descriptor& descriptor);
+               google::protobuf::ServiceDescriptor& descriptor);
 
-    friend bool operator==(RPCSubtype& lhs, RPCSubtype& rhs);
+    friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
 };
 
 class ModelFamily {
@@ -145,16 +144,25 @@ bool Subtype::is_component_type() {
     return (this->resource_type == "component");
 }
 
-Subtype* Name::to_subtype() {
+const Subtype* Name::to_subtype() const {
     return this;
 }
 
-std::string Name::to_string() {
+const std::string Name::to_string() const {
     std::string subtype_name = Subtype::to_string();
     if (remote == "") {
         return subtype_name + "/" + name;
     }
     return subtype_name + "/" + remote + ":" + name;
+}
+
+viam::common::v1::ResourceName Name::to_proto() {
+    viam::common::v1::ResourceName rn;
+    *rn.mutable_namespace_() = this->namespace_;
+    *rn.mutable_name() = this->name;
+    *rn.mutable_type() = this->resource_type;
+    *rn.mutable_subtype() = this->resource_subtype;
+    return rn;
 }
 
 Name::Name(std::string name) {
@@ -206,12 +214,12 @@ bool operator==(Model& lhs, Model& rhs) {
 
 RPCSubtype::RPCSubtype(Subtype subtype,
                        std::string proto_service_name,
-                       google::protobuf::Descriptor& descriptor)
+                       google::protobuf::ServiceDescriptor& descriptor)
     : subtype(subtype), descriptor(descriptor) {
     proto_service_name = proto_service_name;
 }
 
-RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::Descriptor& descriptor)
+RPCSubtype::RPCSubtype(Subtype subtype, google::protobuf::ServiceDescriptor& descriptor)
     : subtype(subtype), descriptor(descriptor) {}
 
 ModelFamily::ModelFamily(std::string namespace_, std::string family) {

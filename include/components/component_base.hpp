@@ -21,7 +21,6 @@ class ComponentBase : public ResourceBase {
    public:
     std::string name;
     ComponentType type;
-    // CR erodkin: is component hierarchy necessary?
     std::vector<ComponentType> component_hierarchy;
 
     viam::common::v1::ResourceName get_resource_name(std::string name);

@@ -164,6 +164,7 @@ PROTOBUF_CONSTEXPR TabularDataByFilterResponse::TabularDataByFilterResponse(
   , /*decltype(_impl_.data_)*/{}
   , /*decltype(_impl_.last_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.count_)*/int64_t{0}
+  , /*decltype(_impl_.total_size_bytes_)*/uint64_t{0u}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TabularDataByFilterResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TabularDataByFilterResponseDefaultTypeInternal()
@@ -694,6 +695,7 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TabularDataByFilterResponse, _impl_.data_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TabularDataByFilterResponse, _impl_.count_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TabularDataByFilterResponse, _impl_.last_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TabularDataByFilterResponse, _impl_.total_size_bytes_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::TabularData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -943,35 +945,35 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 75, -1, -1, sizeof(::viam::app::data::v1::CaptureInterval)},
   { 83, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterRequest)},
   { 91, -1, -1, sizeof(::viam::app::data::v1::TabularDataByFilterResponse)},
-  { 101, -1, -1, sizeof(::viam::app::data::v1::TabularData)},
-  { 111, -1, -1, sizeof(::viam::app::data::v1::BinaryData)},
-  { 119, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterRequest)},
-  { 128, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterResponse)},
-  { 137, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsRequest)},
-  { 145, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsResponse)},
-  { 153, -1, -1, sizeof(::viam::app::data::v1::BinaryMetadata)},
-  { 166, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataByFilterRequest)},
-  { 173, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataByFilterResponse)},
-  { 181, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterRequest)},
-  { 188, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterResponse)},
-  { 196, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsRequest)},
-  { 203, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsResponse)},
-  { 211, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest)},
-  { 219, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse)},
-  { 225, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest)},
-  { 233, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse)},
-  { 239, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest)},
-  { 247, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse)},
-  { 254, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
-  { 262, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
-  { 269, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
-  { 276, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
-  { 283, -1, -1, sizeof(::viam::app::data::v1::SubmitTrainingJobRequest)},
-  { 295, -1, -1, sizeof(::viam::app::data::v1::SubmitTrainingJobResponse)},
-  { 302, -1, -1, sizeof(::viam::app::data::v1::GetTrainingJobRequest)},
-  { 309, -1, -1, sizeof(::viam::app::data::v1::GetTrainingJobResponse)},
-  { 317, -1, -1, sizeof(::viam::app::data::v1::TrainingJobMetadata)},
-  { 328, -1, -1, sizeof(::viam::app::data::v1::TrainingJob)},
+  { 102, -1, -1, sizeof(::viam::app::data::v1::TabularData)},
+  { 112, -1, -1, sizeof(::viam::app::data::v1::BinaryData)},
+  { 120, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterRequest)},
+  { 129, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByFilterResponse)},
+  { 138, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsRequest)},
+  { 146, -1, -1, sizeof(::viam::app::data::v1::BinaryDataByIDsResponse)},
+  { 154, -1, -1, sizeof(::viam::app::data::v1::BinaryMetadata)},
+  { 167, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataByFilterRequest)},
+  { 174, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataByFilterResponse)},
+  { 182, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterRequest)},
+  { 189, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterResponse)},
+  { 197, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsRequest)},
+  { 204, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsResponse)},
+  { 212, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFileIDsRequest)},
+  { 220, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFileIDsResponse)},
+  { 226, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest)},
+  { 234, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse)},
+  { 240, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsRequest)},
+  { 248, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFileIDsResponse)},
+  { 255, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
+  { 263, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
+  { 270, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
+  { 277, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
+  { 284, -1, -1, sizeof(::viam::app::data::v1::SubmitTrainingJobRequest)},
+  { 296, -1, -1, sizeof(::viam::app::data::v1::SubmitTrainingJobResponse)},
+  { 303, -1, -1, sizeof(::viam::app::data::v1::GetTrainingJobRequest)},
+  { 310, -1, -1, sizeof(::viam::app::data::v1::GetTrainingJobResponse)},
+  { 318, -1, -1, sizeof(::viam::app::data::v1::TrainingJobMetadata)},
+  { 329, -1, -1, sizeof(::viam::app::data::v1::TrainingJob)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1061,163 +1063,164 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "f.TimestampR\003end\"}\n\032TabularDataByFilterR"
   "equest\022@\n\014data_request\030\001 \001(\0132\035.viam.app."
   "data.v1.DataRequestR\013dataRequest\022\035\n\ncoun"
-  "t_only\030\002 \001(\010R\tcountOnly\"\271\001\n\033TabularDataB"
+  "t_only\030\002 \001(\010R\tcountOnly\"\343\001\n\033TabularDataB"
   "yFilterResponse\022=\n\010metadata\030\001 \003(\0132!.viam"
   ".app.data.v1.CaptureMetadataR\010metadata\0221"
   "\n\004data\030\002 \003(\0132\035.viam.app.data.v1.TabularD"
   "ataR\004data\022\024\n\005count\030\003 \001(\003R\005count\022\022\n\004last\030"
-  "\004 \001(\tR\004last\"\345\001\n\013TabularData\022+\n\004data\030\001 \001("
-  "\0132\027.google.protobuf.StructR\004data\022%\n\016meta"
-  "data_index\030\002 \001(\005R\rmetadataIndex\022A\n\016time_"
-  "requested\030\003 \001(\0132\032.google.protobuf.Timest"
-  "ampR\rtimeRequested\022\?\n\rtime_received\030\004 \001("
-  "\0132\032.google.protobuf.TimestampR\014timeRecei"
-  "ved\"b\n\nBinaryData\022\026\n\006binary\030\001 \001(\014R\006binar"
-  "y\022<\n\010metadata\030\002 \001(\0132 .viam.app.data.v1.B"
-  "inaryMetadataR\010metadata\"\243\001\n\031BinaryDataBy"
-  "FilterRequest\022@\n\014data_request\030\001 \001(\0132\035.vi"
-  "am.app.data.v1.DataRequestR\013dataRequest\022"
-  "%\n\016include_binary\030\002 \001(\010R\rincludeBinary\022\035"
-  "\n\ncount_only\030\003 \001(\010R\tcountOnly\"x\n\032BinaryD"
-  "ataByFilterResponse\0220\n\004data\030\001 \003(\0132\034.viam"
-  ".app.data.v1.BinaryDataR\004data\022\024\n\005count\030\002"
-  " \001(\004R\005count\022\022\n\004last\030\003 \001(\tR\004last\"Z\n\026Binar"
-  "yDataByIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fil"
-  "eIds\022%\n\016include_binary\030\002 \001(\010R\rincludeBin"
-  "ary\"a\n\027BinaryDataByIDsResponse\0220\n\004data\030\001"
-  " \003(\0132\034.viam.app.data.v1.BinaryDataR\004data"
-  "\022\024\n\005count\030\002 \001(\004R\005count\"\274\002\n\016BinaryMetadat"
-  "a\022\016\n\002id\030\001 \001(\tR\002id\022L\n\020capture_metadata\030\002 "
-  "\001(\0132!.viam.app.data.v1.CaptureMetadataR\017"
-  "captureMetadata\022A\n\016time_requested\030\003 \001(\0132"
-  "\032.google.protobuf.TimestampR\rtimeRequest"
-  "ed\022\?\n\rtime_received\030\004 \001(\0132\032.google.proto"
-  "buf.TimestampR\014timeReceived\022\033\n\tfile_name"
-  "\030\005 \001(\tR\010fileName\022\031\n\010file_ext\030\006 \001(\tR\007file"
-  "Ext\022\020\n\003uri\030\007 \001(\tR\003uri\"T\n DeleteTabularDa"
-  "taByFilterRequest\0220\n\006filter\030\001 \001(\0132\030.viam"
-  ".app.data.v1.FilterR\006filter\"z\n!DeleteTab"
-  "ularDataByFilterResponse\022#\n\rdeleted_coun"
-  "t\030\001 \001(\004R\014deletedCount\0220\n\006result\030\002 \001(\0132\030."
-  "viam.app.data.v1.ResultR\006result\"S\n\037Delet"
-  "eBinaryDataByFilterRequest\0220\n\006filter\030\001 \001"
-  "(\0132\030.viam.app.data.v1.FilterR\006filter\"y\n "
-  "DeleteBinaryDataByFilterResponse\022#\n\rdele"
-  "ted_count\030\001 \001(\004R\014deletedCount\0220\n\006result\030"
-  "\002 \001(\0132\030.viam.app.data.v1.ResultR\006result\""
-  "9\n\034DeleteBinaryDataByIDsRequest\022\031\n\010file_"
-  "ids\030\001 \003(\tR\007fileIds\"v\n\035DeleteBinaryDataBy"
-  "IDsResponse\022#\n\rdeleted_count\030\001 \001(\004R\014dele"
-  "tedCount\0220\n\006result\030\002 \001(\0132\030.viam.app.data"
-  ".v1.ResultR\006result\"T\n#AddTagsToBinaryDat"
+  "\004 \001(\tR\004last\022(\n\020total_size_bytes\030\005 \001(\004R\016t"
+  "otalSizeBytes\"\345\001\n\013TabularData\022+\n\004data\030\001 "
+  "\001(\0132\027.google.protobuf.StructR\004data\022%\n\016me"
+  "tadata_index\030\002 \001(\005R\rmetadataIndex\022A\n\016tim"
+  "e_requested\030\003 \001(\0132\032.google.protobuf.Time"
+  "stampR\rtimeRequested\022\?\n\rtime_received\030\004 "
+  "\001(\0132\032.google.protobuf.TimestampR\014timeRec"
+  "eived\"b\n\nBinaryData\022\026\n\006binary\030\001 \001(\014R\006bin"
+  "ary\022<\n\010metadata\030\002 \001(\0132 .viam.app.data.v1"
+  ".BinaryMetadataR\010metadata\"\243\001\n\031BinaryData"
+  "ByFilterRequest\022@\n\014data_request\030\001 \001(\0132\035."
+  "viam.app.data.v1.DataRequestR\013dataReques"
+  "t\022%\n\016include_binary\030\002 \001(\010R\rincludeBinary"
+  "\022\035\n\ncount_only\030\003 \001(\010R\tcountOnly\"x\n\032Binar"
+  "yDataByFilterResponse\0220\n\004data\030\001 \003(\0132\034.vi"
+  "am.app.data.v1.BinaryDataR\004data\022\024\n\005count"
+  "\030\002 \001(\004R\005count\022\022\n\004last\030\003 \001(\tR\004last\"Z\n\026Bin"
+  "aryDataByIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007f"
+  "ileIds\022%\n\016include_binary\030\002 \001(\010R\rincludeB"
+  "inary\"a\n\027BinaryDataByIDsResponse\0220\n\004data"
+  "\030\001 \003(\0132\034.viam.app.data.v1.BinaryDataR\004da"
+  "ta\022\024\n\005count\030\002 \001(\004R\005count\"\274\002\n\016BinaryMetad"
+  "ata\022\016\n\002id\030\001 \001(\tR\002id\022L\n\020capture_metadata\030"
+  "\002 \001(\0132!.viam.app.data.v1.CaptureMetadata"
+  "R\017captureMetadata\022A\n\016time_requested\030\003 \001("
+  "\0132\032.google.protobuf.TimestampR\rtimeReque"
+  "sted\022\?\n\rtime_received\030\004 \001(\0132\032.google.pro"
+  "tobuf.TimestampR\014timeReceived\022\033\n\tfile_na"
+  "me\030\005 \001(\tR\010fileName\022\031\n\010file_ext\030\006 \001(\tR\007fi"
+  "leExt\022\020\n\003uri\030\007 \001(\tR\003uri\"T\n DeleteTabular"
+  "DataByFilterRequest\0220\n\006filter\030\001 \001(\0132\030.vi"
+  "am.app.data.v1.FilterR\006filter\"z\n!DeleteT"
+  "abularDataByFilterResponse\022#\n\rdeleted_co"
+  "unt\030\001 \001(\004R\014deletedCount\0220\n\006result\030\002 \001(\0132"
+  "\030.viam.app.data.v1.ResultR\006result\"S\n\037Del"
+  "eteBinaryDataByFilterRequest\0220\n\006filter\030\001"
+  " \001(\0132\030.viam.app.data.v1.FilterR\006filter\"y"
+  "\n DeleteBinaryDataByFilterResponse\022#\n\rde"
+  "leted_count\030\001 \001(\004R\014deletedCount\0220\n\006resul"
+  "t\030\002 \001(\0132\030.viam.app.data.v1.ResultR\006resul"
+  "t\"9\n\034DeleteBinaryDataByIDsRequest\022\031\n\010fil"
+  "e_ids\030\001 \003(\tR\007fileIds\"v\n\035DeleteBinaryData"
+  "ByIDsResponse\022#\n\rdeleted_count\030\001 \001(\004R\014de"
+  "letedCount\0220\n\006result\030\002 \001(\0132\030.viam.app.da"
+  "ta.v1.ResultR\006result\"T\n#AddTagsToBinaryD"
+  "ataByFileIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007f"
+  "ileIds\022\022\n\004tags\030\002 \003(\tR\004tags\"&\n$AddTagsToB"
+  "inaryDataByFileIDsResponse\"j\n\"AddTagsToB"
+  "inaryDataByFilterRequest\0220\n\006filter\030\001 \001(\013"
+  "2\030.viam.app.data.v1.FilterR\006filter\022\022\n\004ta"
+  "gs\030\002 \003(\tR\004tags\"%\n#AddTagsToBinaryDataByF"
+  "ilterResponse\"Y\n(RemoveTagsFromBinaryDat"
   "aByFileIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fil"
-  "eIds\022\022\n\004tags\030\002 \003(\tR\004tags\"&\n$AddTagsToBin"
-  "aryDataByFileIDsResponse\"j\n\"AddTagsToBin"
-  "aryDataByFilterRequest\0220\n\006filter\030\001 \001(\0132\030"
-  ".viam.app.data.v1.FilterR\006filter\022\022\n\004tags"
-  "\030\002 \003(\tR\004tags\"%\n#AddTagsToBinaryDataByFil"
-  "terResponse\"Y\n(RemoveTagsFromBinaryDataB"
-  "yFileIDsRequest\022\031\n\010file_ids\030\001 \003(\tR\007fileI"
-  "ds\022\022\n\004tags\030\002 \003(\tR\004tags\"P\n)RemoveTagsFrom"
-  "BinaryDataByFileIDsResponse\022#\n\rdeleted_c"
-  "ount\030\001 \001(\004R\014deletedCount\"o\n\'RemoveTagsFr"
-  "omBinaryDataByFilterRequest\0220\n\006filter\030\001 "
-  "\001(\0132\030.viam.app.data.v1.FilterR\006filter\022\022\n"
-  "\004tags\030\002 \003(\tR\004tags\"O\n(RemoveTagsFromBinar"
-  "yDataByFilterResponse\022#\n\rdeleted_count\030\001"
-  " \001(\004R\014deletedCount\"G\n\023TagsByFilterReques"
-  "t\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Fil"
-  "terR\006filter\"*\n\024TagsByFilterResponse\022\022\n\004t"
-  "ags\030\001 \003(\tR\004tags\"\211\002\n\030SubmitTrainingJobReq"
-  "uest\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1."
-  "FilterR\006filter\022\'\n\017organization_id\030\002 \001(\tR"
-  "\016organizationId\022\035\n\nmodel_name\030\003 \001(\tR\tmod"
-  "elName\022#\n\rmodel_version\030\004 \001(\tR\014modelVers"
-  "ion\022:\n\nmodel_type\030\005 \001(\0162\033.viam.app.data."
-  "v1.ModelTypeR\tmodelType\022\022\n\004tags\030\006 \003(\tR\004t"
-  "ags\"+\n\031SubmitTrainingJobResponse\022\016\n\002id\030\001"
-  " \001(\tR\002id\"\'\n\025GetTrainingJobRequest\022\016\n\002id\030"
-  "\001 \001(\tR\002id\"k\n\026GetTrainingJobResponse\022\016\n\002i"
-  "d\030\001 \001(\tR\002id\022A\n\010metadata\030\002 \001(\0132%.viam.app"
-  ".data.v1.TrainingJobMetadataR\010metadata\"\271"
-  "\002\n\023TrainingJobMetadata\022D\n\007request\030\001 \001(\0132"
-  "*.viam.app.data.v1.SubmitTrainingJobRequ"
-  "estR\007request\0228\n\006status\030\002 \001(\0162 .viam.app."
-  "data.v1.TrainingStatusR\006status\0229\n\ncreate"
-  "d_on\030\003 \001(\0132\032.google.protobuf.TimestampR\t"
-  "createdOn\022\?\n\rlast_modified\030\004 \001(\0132\032.googl"
-  "e.protobuf.TimestampR\014lastModified\022&\n\017sy"
-  "nced_model_id\030\005 \001(\tR\rsyncedModelId\"\276\003\n\013T"
-  "rainingJob\0223\n\002id\030\001 \001(\tB#\232\204\236\003\036bson:\"_id\" "
-  "json:\"id,omitempty\"R\002id\022g\n\010metadata\030\002 \001("
-  "\0132%.viam.app.data.v1.TrainingJobMetadata"
-  "B$\232\204\236\003\037bson:\"metadata\" json:\"metadata\"R\010"
-  "metadata\022K\n\013output_path\030\003 \001(\tB*\232\204\236\003%bson"
-  ":\"output_path\" json:\"output_path\"R\noutpu"
-  "tPath\022R\n\rvertex_job_id\030\004 \001(\tB.\232\204\236\003)bson:"
-  "\"vertex_job_id\" json:\"vertex_job_id\"R\013ve"
-  "rtexJobId\022p\n\016model_metadata\030\005 \001(\0132\027.goog"
-  "le.protobuf.StructB0\232\204\236\003+bson:\"model_met"
-  "adata\" json:\"model_metadata\"R\rmodelMetad"
-  "ata*I\n\005Order\022\025\n\021ORDER_UNSPECIFIED\020\000\022\024\n\020O"
-  "RDER_DESCENDING\020\001\022\023\n\017ORDER_ASCENDING\020\002*P"
-  "\n\006Status\022\026\n\022STATUS_UNSPECIFIED\020\000\022\032\n\026STAT"
-  "US_PARTIAL_SUCCESS\020\001\022\022\n\016STATUS_SUCCESS\020\002"
-  "*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILTER_TYPE_"
-  "UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYPE_MATCH_"
-  "BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGGED\020\002\022\035\n\031"
-  "TAGS_FILTER_TYPE_UNTAGGED\020\003*~\n\tModelType"
-  "\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_TY"
-  "PE_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MODE"
-  "L_TYPE_MULTI_LABEL_CLASSIFICATION\020\002*\312\001\n\016"
-  "TrainingStatus\022\037\n\033TRAINING_STATUS_UNSPEC"
-  "IFIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037\n\033"
-  "TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAININ"
-  "G_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STATUS_"
-  "FAILED\020\004\022\036\n\032TRAINING_STATUS_SUBMITTING\020\005"
-  "2\351\014\n\013DataService\022r\n\023TabularDataByFilter\022"
-  ",.viam.app.data.v1.TabularDataByFilterRe"
-  "quest\032-.viam.app.data.v1.TabularDataByFi"
-  "lterResponse\022o\n\022BinaryDataByFilter\022+.via"
-  "m.app.data.v1.BinaryDataByFilterRequest\032"
-  ",.viam.app.data.v1.BinaryDataByFilterRes"
-  "ponse\022f\n\017BinaryDataByIDs\022(.viam.app.data"
-  ".v1.BinaryDataByIDsRequest\032).viam.app.da"
-  "ta.v1.BinaryDataByIDsResponse\022\204\001\n\031Delete"
-  "TabularDataByFilter\0222.viam.app.data.v1.D"
-  "eleteTabularDataByFilterRequest\0323.viam.a"
-  "pp.data.v1.DeleteTabularDataByFilterResp"
-  "onse\022\201\001\n\030DeleteBinaryDataByFilter\0221.viam"
-  ".app.data.v1.DeleteBinaryDataByFilterReq"
-  "uest\0322.viam.app.data.v1.DeleteBinaryData"
-  "ByFilterResponse\022x\n\025DeleteBinaryDataByID"
-  "s\022..viam.app.data.v1.DeleteBinaryDataByI"
-  "DsRequest\032/.viam.app.data.v1.DeleteBinar"
-  "yDataByIDsResponse\022\215\001\n\034AddTagsToBinaryDa"
-  "taByFileIDs\0225.viam.app.data.v1.AddTagsTo"
-  "BinaryDataByFileIDsRequest\0326.viam.app.da"
-  "ta.v1.AddTagsToBinaryDataByFileIDsRespon"
-  "se\022\212\001\n\033AddTagsToBinaryDataByFilter\0224.via"
-  "m.app.data.v1.AddTagsToBinaryDataByFilte"
-  "rRequest\0325.viam.app.data.v1.AddTagsToBin"
-  "aryDataByFilterResponse\022\234\001\n!RemoveTagsFr"
-  "omBinaryDataByFileIDs\022:.viam.app.data.v1"
-  ".RemoveTagsFromBinaryDataByFileIDsReques"
-  "t\032;.viam.app.data.v1.RemoveTagsFromBinar"
-  "yDataByFileIDsResponse\022\231\001\n RemoveTagsFro"
-  "mBinaryDataByFilter\0229.viam.app.data.v1.R"
-  "emoveTagsFromBinaryDataByFilterRequest\032:"
-  ".viam.app.data.v1.RemoveTagsFromBinaryDa"
-  "taByFilterResponse\022]\n\014TagsByFilter\022%.via"
-  "m.app.data.v1.TagsByFilterRequest\032&.viam"
-  ".app.data.v1.TagsByFilterResponse\022l\n\021Sub"
-  "mitTrainingJob\022*.viam.app.data.v1.Submit"
-  "TrainingJobRequest\032+.viam.app.data.v1.Su"
-  "bmitTrainingJobResponse\022c\n\016GetTrainingJo"
-  "b\022\'.viam.app.data.v1.GetTrainingJobReque"
-  "st\032(.viam.app.data.v1.GetTrainingJobResp"
-  "onseB\035Z\033go.viam.com/api/app/data/v1b\006pro"
-  "to3"
+  "eIds\022\022\n\004tags\030\002 \003(\tR\004tags\"P\n)RemoveTagsFr"
+  "omBinaryDataByFileIDsResponse\022#\n\rdeleted"
+  "_count\030\001 \001(\004R\014deletedCount\"o\n\'RemoveTags"
+  "FromBinaryDataByFilterRequest\0220\n\006filter\030"
+  "\001 \001(\0132\030.viam.app.data.v1.FilterR\006filter\022"
+  "\022\n\004tags\030\002 \003(\tR\004tags\"O\n(RemoveTagsFromBin"
+  "aryDataByFilterResponse\022#\n\rdeleted_count"
+  "\030\001 \001(\004R\014deletedCount\"G\n\023TagsByFilterRequ"
+  "est\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.F"
+  "ilterR\006filter\"*\n\024TagsByFilterResponse\022\022\n"
+  "\004tags\030\001 \003(\tR\004tags\"\211\002\n\030SubmitTrainingJobR"
+  "equest\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v"
+  "1.FilterR\006filter\022\'\n\017organization_id\030\002 \001("
+  "\tR\016organizationId\022\035\n\nmodel_name\030\003 \001(\tR\tm"
+  "odelName\022#\n\rmodel_version\030\004 \001(\tR\014modelVe"
+  "rsion\022:\n\nmodel_type\030\005 \001(\0162\033.viam.app.dat"
+  "a.v1.ModelTypeR\tmodelType\022\022\n\004tags\030\006 \003(\tR"
+  "\004tags\"+\n\031SubmitTrainingJobResponse\022\016\n\002id"
+  "\030\001 \001(\tR\002id\"\'\n\025GetTrainingJobRequest\022\016\n\002i"
+  "d\030\001 \001(\tR\002id\"k\n\026GetTrainingJobResponse\022\016\n"
+  "\002id\030\001 \001(\tR\002id\022A\n\010metadata\030\002 \001(\0132%.viam.a"
+  "pp.data.v1.TrainingJobMetadataR\010metadata"
+  "\"\271\002\n\023TrainingJobMetadata\022D\n\007request\030\001 \001("
+  "\0132*.viam.app.data.v1.SubmitTrainingJobRe"
+  "questR\007request\0228\n\006status\030\002 \001(\0162 .viam.ap"
+  "p.data.v1.TrainingStatusR\006status\0229\n\ncrea"
+  "ted_on\030\003 \001(\0132\032.google.protobuf.Timestamp"
+  "R\tcreatedOn\022\?\n\rlast_modified\030\004 \001(\0132\032.goo"
+  "gle.protobuf.TimestampR\014lastModified\022&\n\017"
+  "synced_model_id\030\005 \001(\tR\rsyncedModelId\"\276\003\n"
+  "\013TrainingJob\0223\n\002id\030\001 \001(\tB#\232\204\236\003\036bson:\"_id"
+  "\" json:\"id,omitempty\"R\002id\022g\n\010metadata\030\002 "
+  "\001(\0132%.viam.app.data.v1.TrainingJobMetada"
+  "taB$\232\204\236\003\037bson:\"metadata\" json:\"metadata\""
+  "R\010metadata\022K\n\013output_path\030\003 \001(\tB*\232\204\236\003%bs"
+  "on:\"output_path\" json:\"output_path\"R\nout"
+  "putPath\022R\n\rvertex_job_id\030\004 \001(\tB.\232\204\236\003)bso"
+  "n:\"vertex_job_id\" json:\"vertex_job_id\"R\013"
+  "vertexJobId\022p\n\016model_metadata\030\005 \001(\0132\027.go"
+  "ogle.protobuf.StructB0\232\204\236\003+bson:\"model_m"
+  "etadata\" json:\"model_metadata\"R\rmodelMet"
+  "adata*I\n\005Order\022\025\n\021ORDER_UNSPECIFIED\020\000\022\024\n"
+  "\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCENDING\020\002"
+  "*P\n\006Status\022\026\n\022STATUS_UNSPECIFIED\020\000\022\032\n\026ST"
+  "ATUS_PARTIAL_SUCCESS\020\001\022\022\n\016STATUS_SUCCESS"
+  "\020\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILTER_TYP"
+  "E_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYPE_MATC"
+  "H_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGGED\020\002\022\035"
+  "\n\031TAGS_FILTER_TYPE_UNTAGGED\020\003*~\n\tModelTy"
+  "pe\022\032\n\026MODEL_TYPE_UNSPECIFIED\020\000\022*\n&MODEL_"
+  "TYPE_SINGLE_LABEL_CLASSIFICATION\020\001\022)\n%MO"
+  "DEL_TYPE_MULTI_LABEL_CLASSIFICATION\020\002*\312\001"
+  "\n\016TrainingStatus\022\037\n\033TRAINING_STATUS_UNSP"
+  "ECIFIED\020\000\022\033\n\027TRAINING_STATUS_PENDING\020\001\022\037"
+  "\n\033TRAINING_STATUS_IN_PROGRESS\020\002\022\035\n\031TRAIN"
+  "ING_STATUS_COMPLETED\020\003\022\032\n\026TRAINING_STATU"
+  "S_FAILED\020\004\022\036\n\032TRAINING_STATUS_SUBMITTING"
+  "\020\0052\351\014\n\013DataService\022r\n\023TabularDataByFilte"
+  "r\022,.viam.app.data.v1.TabularDataByFilter"
+  "Request\032-.viam.app.data.v1.TabularDataBy"
+  "FilterResponse\022o\n\022BinaryDataByFilter\022+.v"
+  "iam.app.data.v1.BinaryDataByFilterReques"
+  "t\032,.viam.app.data.v1.BinaryDataByFilterR"
+  "esponse\022f\n\017BinaryDataByIDs\022(.viam.app.da"
+  "ta.v1.BinaryDataByIDsRequest\032).viam.app."
+  "data.v1.BinaryDataByIDsResponse\022\204\001\n\031Dele"
+  "teTabularDataByFilter\0222.viam.app.data.v1"
+  ".DeleteTabularDataByFilterRequest\0323.viam"
+  ".app.data.v1.DeleteTabularDataByFilterRe"
+  "sponse\022\201\001\n\030DeleteBinaryDataByFilter\0221.vi"
+  "am.app.data.v1.DeleteBinaryDataByFilterR"
+  "equest\0322.viam.app.data.v1.DeleteBinaryDa"
+  "taByFilterResponse\022x\n\025DeleteBinaryDataBy"
+  "IDs\022..viam.app.data.v1.DeleteBinaryDataB"
+  "yIDsRequest\032/.viam.app.data.v1.DeleteBin"
+  "aryDataByIDsResponse\022\215\001\n\034AddTagsToBinary"
+  "DataByFileIDs\0225.viam.app.data.v1.AddTags"
+  "ToBinaryDataByFileIDsRequest\0326.viam.app."
+  "data.v1.AddTagsToBinaryDataByFileIDsResp"
+  "onse\022\212\001\n\033AddTagsToBinaryDataByFilter\0224.v"
+  "iam.app.data.v1.AddTagsToBinaryDataByFil"
+  "terRequest\0325.viam.app.data.v1.AddTagsToB"
+  "inaryDataByFilterResponse\022\234\001\n!RemoveTags"
+  "FromBinaryDataByFileIDs\022:.viam.app.data."
+  "v1.RemoveTagsFromBinaryDataByFileIDsRequ"
+  "est\032;.viam.app.data.v1.RemoveTagsFromBin"
+  "aryDataByFileIDsResponse\022\231\001\n RemoveTagsF"
+  "romBinaryDataByFilter\0229.viam.app.data.v1"
+  ".RemoveTagsFromBinaryDataByFilterRequest"
+  "\032:.viam.app.data.v1.RemoveTagsFromBinary"
+  "DataByFilterResponse\022]\n\014TagsByFilter\022%.v"
+  "iam.app.data.v1.TagsByFilterRequest\032&.vi"
+  "am.app.data.v1.TagsByFilterResponse\022l\n\021S"
+  "ubmitTrainingJob\022*.viam.app.data.v1.Subm"
+  "itTrainingJobRequest\032+.viam.app.data.v1."
+  "SubmitTrainingJobResponse\022c\n\016GetTraining"
+  "Job\022\'.viam.app.data.v1.GetTrainingJobReq"
+  "uest\032(.viam.app.data.v1.GetTrainingJobRe"
+  "sponseB\035Z\033go.viam.com/api/app/data/v1b\006p"
+  "roto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -1227,7 +1230,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 8043, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 8085, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
     &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 4, 38,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
@@ -4199,6 +4202,7 @@ TabularDataByFilterResponse::TabularDataByFilterResponse(const TabularDataByFilt
     , decltype(_impl_.data_){from._impl_.data_}
     , decltype(_impl_.last_){}
     , decltype(_impl_.count_){}
+    , decltype(_impl_.total_size_bytes_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -4210,7 +4214,9 @@ TabularDataByFilterResponse::TabularDataByFilterResponse(const TabularDataByFilt
     _this->_impl_.last_.Set(from._internal_last(), 
       _this->GetArenaForAllocation());
   }
-  _this->_impl_.count_ = from._impl_.count_;
+  ::memcpy(&_impl_.count_, &from._impl_.count_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.total_size_bytes_) -
+    reinterpret_cast<char*>(&_impl_.count_)) + sizeof(_impl_.total_size_bytes_));
   // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.TabularDataByFilterResponse)
 }
 
@@ -4223,6 +4229,7 @@ inline void TabularDataByFilterResponse::SharedCtor(
     , decltype(_impl_.data_){arena}
     , decltype(_impl_.last_){}
     , decltype(_impl_.count_){int64_t{0}}
+    , decltype(_impl_.total_size_bytes_){uint64_t{0u}}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.last_.InitDefault();
@@ -4260,7 +4267,9 @@ void TabularDataByFilterResponse::Clear() {
   _impl_.metadata_.Clear();
   _impl_.data_.Clear();
   _impl_.last_.ClearToEmpty();
-  _impl_.count_ = int64_t{0};
+  ::memset(&_impl_.count_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.total_size_bytes_) -
+      reinterpret_cast<char*>(&_impl_.count_)) + sizeof(_impl_.total_size_bytes_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4311,6 +4320,14 @@ const char* TabularDataByFilterResponse::_InternalParse(const char* ptr, ::_pbi:
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.TabularDataByFilterResponse.last"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total_size_bytes = 5 [json_name = "totalSizeBytes"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.total_size_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -4375,6 +4392,12 @@ uint8_t* TabularDataByFilterResponse::_InternalSerialize(
         4, this->_internal_last(), target);
   }
 
+  // uint64 total_size_bytes = 5 [json_name = "totalSizeBytes"];
+  if (this->_internal_total_size_bytes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(5, this->_internal_total_size_bytes(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4417,6 +4440,11 @@ size_t TabularDataByFilterResponse::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_count());
   }
 
+  // uint64 total_size_bytes = 5 [json_name = "totalSizeBytes"];
+  if (this->_internal_total_size_bytes() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total_size_bytes());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -4443,6 +4471,9 @@ void TabularDataByFilterResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to
   if (from._internal_count() != 0) {
     _this->_internal_set_count(from._internal_count());
   }
+  if (from._internal_total_size_bytes() != 0) {
+    _this->_internal_set_total_size_bytes(from._internal_total_size_bytes());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -4468,7 +4499,12 @@ void TabularDataByFilterResponse::InternalSwap(TabularDataByFilterResponse* othe
       &_impl_.last_, lhs_arena,
       &other->_impl_.last_, rhs_arena
   );
-  swap(_impl_.count_, other->_impl_.count_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TabularDataByFilterResponse, _impl_.total_size_bytes_)
+      + sizeof(TabularDataByFilterResponse::_impl_.total_size_bytes_)
+      - PROTOBUF_FIELD_OFFSET(TabularDataByFilterResponse, _impl_.count_)>(
+          reinterpret_cast<char*>(&_impl_.count_),
+          reinterpret_cast<char*>(&other->_impl_.count_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TabularDataByFilterResponse::GetMetadata() const {

@@ -12,6 +12,7 @@ class SubtypeService : public ServiceBase {
     void add(Name name, ResourceBase resource);
     void remove(Name name);
     void replace_one(Name name, ResourceBase resource);
+    SubtypeService();
 
    private:
     std::mutex lock;

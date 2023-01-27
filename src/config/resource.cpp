@@ -3,16 +3,12 @@
 
 #include <boost/algorithm/string.hpp>
 #include <common/proto_type.hpp>
+#include <common/utils.hpp>
 #include <numeric>
 #include <referenceframe/frame.hpp>
 #include <resource/resource.hpp>
 #include <string>
 #include <unordered_map>
-
-// CR erodkin: confirm we don't use similar consts somewhere else. if we do,
-// move this to a shared space
-const std::string COMPONENT = "component";
-const std::string RDK = "rdk";
 
 typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
 

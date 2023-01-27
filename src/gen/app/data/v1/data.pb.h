@@ -2159,6 +2159,7 @@ class TabularDataByFilterResponse final :
     kDataFieldNumber = 2,
     kLastFieldNumber = 4,
     kCountFieldNumber = 3,
+    kTotalSizeBytesFieldNumber = 5,
   };
   // repeated .viam.app.data.v1.CaptureMetadata metadata = 1 [json_name = "metadata"];
   int metadata_size() const;
@@ -2219,6 +2220,15 @@ class TabularDataByFilterResponse final :
   void _internal_set_count(int64_t value);
   public:
 
+  // uint64 total_size_bytes = 5 [json_name = "totalSizeBytes"];
+  void clear_total_size_bytes();
+  uint64_t total_size_bytes() const;
+  void set_total_size_bytes(uint64_t value);
+  private:
+  uint64_t _internal_total_size_bytes() const;
+  void _internal_set_total_size_bytes(uint64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.data.v1.TabularDataByFilterResponse)
  private:
   class _Internal;
@@ -2231,6 +2241,7 @@ class TabularDataByFilterResponse final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::TabularData > data_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_;
     int64_t count_;
+    uint64_t total_size_bytes_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -9675,6 +9686,26 @@ inline void TabularDataByFilterResponse::set_allocated_last(std::string* last) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.TabularDataByFilterResponse.last)
+}
+
+// uint64 total_size_bytes = 5 [json_name = "totalSizeBytes"];
+inline void TabularDataByFilterResponse::clear_total_size_bytes() {
+  _impl_.total_size_bytes_ = uint64_t{0u};
+}
+inline uint64_t TabularDataByFilterResponse::_internal_total_size_bytes() const {
+  return _impl_.total_size_bytes_;
+}
+inline uint64_t TabularDataByFilterResponse::total_size_bytes() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.TabularDataByFilterResponse.total_size_bytes)
+  return _internal_total_size_bytes();
+}
+inline void TabularDataByFilterResponse::_internal_set_total_size_bytes(uint64_t value) {
+  
+  _impl_.total_size_bytes_ = value;
+}
+inline void TabularDataByFilterResponse::set_total_size_bytes(uint64_t value) {
+  _internal_set_total_size_bytes(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.TabularDataByFilterResponse.total_size_bytes)
 }
 
 // -------------------------------------------------------------------

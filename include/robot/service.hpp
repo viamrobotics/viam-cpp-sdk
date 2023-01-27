@@ -1,5 +1,5 @@
-#ifndef ROBOTSERVICE_H
-#define ROBOTSERVICE_H
+#pragma once
+
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/server_context.h>
@@ -10,6 +10,7 @@
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
 #include <components/service_base.hpp>
+#include <module/manager.hpp>
 #include <resource/resource.hpp>
 #include <robot/client.hpp>
 #include <string>
@@ -22,6 +23,10 @@ using viam::robot::v1::Status;
 
 class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
    public:
+    RobotService_();
+    RobotService_(std::shared_ptr<ModuleManager> mm);
+    static std::shared_ptr<RobotService_> create();
+    std::shared_ptr<ModuleManager> mod_manager;
     ComponentBase resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
@@ -38,6 +43,7 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                            ::viam::robot::v1::StopAllResponse* response) override;
 
    private:
+    std::mutex lock;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);
 
@@ -46,4 +52,3 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                        int interval);
 };
 
-#endif

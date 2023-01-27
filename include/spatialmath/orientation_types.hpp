@@ -4,6 +4,14 @@
 namespace Viam {
 namespace SDK {
 
+enum OrientationType {
+    AxisAngles,
+    OrientationVector,
+    OrientationVectorDegrees,
+    EulerAngles,
+    Quaternion,
+};
+
 class axis_angles {
    public:
     double x, y, z, theta;

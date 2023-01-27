@@ -3,65 +3,51 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/security/credentials.h>
+#include <grpcpp/server_context.h>
 #include <grpcpp/support/status.h>
 #include <module/v1/module.grpc.pb.h>
+#include <module/v1/module.pb.h>
 
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/file_status.hpp>
-#include <boost/filesystem/operations.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/none.hpp>
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
+#include <components/generic.hpp>
 #include <components/reconfigurable_component.hpp>
 #include <components/service_base.hpp>
 #include <config/resource.hpp>
 #include <memory>
+#include <module/handler_map.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <robot/client.hpp>
-#include <robot/service.hpp>
+// #include <robot/service.hpp>
 #include <services/reconfigurable_service.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
-// CR erodkin: probably just use class everywhere? or be more precise with when
-// we use struct
-struct Resource : public ResourceBase {
-    Dependencies dependencies;
-    Component cfg;
-
-    Resource(Dependencies dependencies, Component cfg) {
-        dependencies = dependencies;
-        cfg = cfg;
-    }
-};
-
 class Module {
    public:
-    std::shared_ptr<RobotService_>* parent;
+    // std::shared_ptr<RobotService_>* parent;
     std::mutex lock;
     std::string name;
     std::string exe;
     std::string addr;
-    // CR erodkin: I don't think we need parent_addr? parent doesn't need to
-    // be dialed right?
-    std::string parent_addr;
     bool ready;
-    std::unordered_map<RPCSubtype, std::vector<Model>> handles;
-    // CR erodkin: do we need resources here? do we actually use it?
-    std::unordered_map<std::string, Resource> resources;
+    HandlerMap handles;
     std::shared_ptr<Channel> channel;
     std::unordered_map<Subtype, SubtypeService> services;
     void dial();
-    void connect_parent();
     ResourceBase get_parent_resource(Name name);
+    void set_ready();
+    Module();
+    // Module(std::shared_ptr<RobotService_>* parent);
 };
 
-class ModuleServer : public ComponentServiceBase, public viam::module::v1::ModuleService::Service {
+class ModuleService_ : public ComponentServiceBase,
+                       public viam::module::v1::ModuleService::Service {
    public:
-    std::unordered_map<Name, Module> resources;
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse* response) override;
@@ -79,29 +65,19 @@ class ModuleServer : public ComponentServiceBase, public viam::module::v1::Modul
                          const ::viam::module::v1::ReadyRequest* request,
                          ::viam::module::v1::ReadyResponse* response) override;
 
-   private:
-    boost::optional<Module> get_module(Component cfg);
+    std::shared_ptr<Module> module;
 };
+Module::Module(){};
 
-boost::optional<Module> ModuleServer::get_module(Component cfg) {
-    // CR erodkin: this is so ugly and nested! break it up. see
-    // modmanager/manager.go get_module
-    for (auto& ms : resources) {
-        Module& module = ms.second;
-        for (auto& api : module.handles) {
-            const Subtype cfg_subtype = cfg.resource_name();
+// Module::Module(std::shared_ptr<RobotService_>* parent) : parent(parent) {
+// this->services.emplace(GENERIC_SUBTYPE, SubtypeService());
+//}
 
-            if (api.first.subtype == cfg_subtype) {
-                for (auto model : module.handles.at(api.first)) {
-                    if (cfg.model == model) {
-                        return module;
-                    }
-                }
-            }
-        }
-    }
-    return boost::none;
-};
+void Module::set_ready() {
+    this->lock.lock();
+    this->ready = true;
+    this->lock.unlock();
+}
 
 void Module::dial() {
     if (this->channel != nullptr) {
@@ -115,31 +91,13 @@ void Module::dial() {
     this->channel = grpc::CreateChannel(address, grpc::InsecureChannelCredentials());
 }
 
-// CR erodkin: Flesh this out. define get_parent_resource, and probably
-// change it to return a ResourceBase rather than a ComponentBase. Actually, we
-// should also just make sure we need connect_parent at all. since this is
-// functioning as a service, don't we just need to have a parent, and have a
-// connection from our module server to the service?
-void Module::connect_parent() {
-    this->lock.lock();
-    if (this->parent == nullptr) {
-        boost::filesystem::file_status fs = boost::filesystem::status(this->parent_addr);
-        fs.type();
-    }
-}
-
-ResourceBase Module::get_parent_resource(Name name) {
-    try {
-        this->connect_parent();
-    } catch (std::string err) {
-        throw err;
-    }
-
-    return this->parent->get()->resource_by_name(name);
-}
+//// CR erodkin: fix
+// ResourceBase Module::get_parent_resource(Name name) {
+// return this->parent->get()->resource_by_name(name);
+//}
 
 std::unordered_map<Name, ResourceBase> get_dependencies(
-    google::protobuf::RepeatedPtrField<std::string> proto, Module* module) {
+    google::protobuf::RepeatedPtrField<std::string> proto, std::shared_ptr<Module> module) {
     Dependencies deps;
     for (auto dep : proto) {
         Name name(dep);
@@ -149,34 +107,22 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
     return deps;
 }
 
-::grpc::Status ModuleServer::AddResource(::grpc::ServerContext* context,
-                                         const ::viam::module::v1::AddResourceRequest* request,
-                                         ::viam::module::v1::AddResourceResponse* response) {
+::grpc::Status ModuleService_::AddResource(::grpc::ServerContext* context,
+                                           const ::viam::module::v1::AddResourceRequest* request,
+                                           ::viam::module::v1::AddResourceResponse* response) {
     viam::app::v1::ComponentConfig proto = request->config();
     Component cfg = Component::from_proto(proto);
-    boost::optional<Module> module = get_module(cfg);
-    if (module == boost::none) {
-        std::string err_message = "no module registered to serve resource api " +
-                                  cfg.resource_name().to_subtype().to_string() + " and model " +
-                                  cfg.model.to_string();
-        return grpc::Status(grpc::UNKNOWN, err_message);
-    }
+    std::shared_ptr<Module> module = this->module;
+    module->lock.lock();
 
-    module.get().lock.lock();
-
-    Dependencies deps = get_dependencies(request->dependencies(), module.get_ptr());
-
-    // CR erodkin: unclear that we actually use module->resources ever.
-    // confirm, remove if not
-    Resource resource(deps, cfg);
-    module->resources.emplace(cfg.name, resource);
+    Dependencies deps = get_dependencies(request->dependencies(), module);
 
     ResourceBase res;
     if (cfg.api.is_component_type()) {
         ComponentRegistration reg;
         try {
             reg = Registry::lookup_component(cfg.api, cfg.model);
-            module.get().dial();
+            module->dial();
             res = reg.create_rpc_client(module->name, module->channel);
         } catch (std::string err) {
             BOOST_LOG_TRIVIAL(error) << err;
@@ -185,7 +131,7 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
         ServiceRegistration reg;
         try {
             reg = Registry::lookup_service(cfg.api, cfg.model);
-            module.get().dial();
+            module->dial();
             res = reg.create_rpc_client(module->name, module->channel);
         } catch (std::string err) {
             BOOST_LOG_TRIVIAL(error) << err;
@@ -199,29 +145,28 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
     }
 
     SubtypeService& sub_svc = module->services.at(cfg.api);
-    // CR erodkin: in module/module.go:277-285, there's an adding of
-    // components to the generic service in certain cases. see if we need to
-    // do something similar.
+    if (cfg.api.is_component_type() && !(cfg.api == GENERIC_SUBTYPE)) {
+        if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
+            throw "module cannot service the generic API";
+        }
+        SubtypeService& generic_service = module->services.at(GENERIC_SUBTYPE);
+        generic_service.add(cfg.resource_name(), res);
+    }
     sub_svc.add(cfg.resource_name(), res);
 
-    module.get().lock.unlock();
+    module->lock.unlock();
     return grpc::Status();
 };
 
-::grpc::Status ModuleServer::ReconfigureResource(
+::grpc::Status ModuleService_::ReconfigureResource(
     ::grpc::ServerContext* context,
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse* response) {
     viam::app::v1::ComponentConfig proto = request->config();
     Component cfg = Component::from_proto(proto);
-    boost::optional<Module> module = get_module(cfg);
+    std::shared_ptr<Module> module = this->module;
 
-    if (module == boost::none) {
-        throw "no module registered to serve resource api " +
-            cfg.resource_name().to_subtype().to_string() + " and model " + cfg.model.to_string();
-    }
-
-    Dependencies deps = get_dependencies(request->dependencies(), module.get_ptr());
+    Dependencies deps = get_dependencies(request->dependencies(), module);
 
     if (module->services.find(cfg.api) == module->services.end()) {
         throw "no rpc service for config: " + cfg.api.to_string();
@@ -256,9 +201,13 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
         try {
             reg = Registry::lookup_component(cfg.api, cfg.model);
             ComponentBase comp = reg.create_rpc_client(module->name, module->channel);
-            // CR erodkin: in module/module.go:346-354, there's an adding of
-            // components to the generic service in certain cases. see if we need to
-            // do something similar.
+            if (!(cfg.api == GENERIC_SUBTYPE)) {
+                if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
+                    throw "no generic service";
+                }
+                SubtypeService& generic_service = module->services.at(GENERIC_SUBTYPE);
+                generic_service.replace_one(cfg.resource_name(), res);
+            }
             sub_svc.replace_one(cfg.resource_name(), comp);
         } catch (std::string error) {
         }
@@ -277,21 +226,17 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
     return grpc::Status();
 };
 
-::grpc::Status ModuleServer::RemoveResource(
+::grpc::Status ModuleService_::RemoveResource(
     ::grpc::ServerContext* context,
     const ::viam::module::v1::RemoveResourceRequest* request,
     ::viam::module::v1::RemoveResourceResponse* response) {
+    std::shared_ptr<Module> m = this->module;
     Name name(request->name());
-    if (this->resources.find(name) == resources.end()) {
-        throw "no module found with name " + name.to_string();
-    }
-
-    Module& m = resources.at(name);
     Subtype subtype = name.to_subtype();
-    if (m.services.find(subtype) == m.services.end()) {
+    if (m->services.find(subtype) == m->services.end()) {
         throw "no grpc service for " + subtype.to_string();
     }
-    SubtypeService& svc = m.services.at(name.to_subtype());
+    SubtypeService& svc = m->services.at(name.to_subtype());
     ResourceBase res = svc.resource(name.name);
 
     try {
@@ -300,20 +245,22 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
-    // CR erodkin: do the generic handling thing here, see module/module.go, 395-403
+    if (name.resource_type == COMPONENT && !(name.to_subtype() == GENERIC_SUBTYPE)) {
+        if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
+            throw "no generic service";
+        }
+        SubtypeService& generic_service = module->services.at(GENERIC_SUBTYPE);
+        generic_service.remove(name);
+    }
     svc.remove(name);
     return grpc::Status();
 };
 
-::grpc::Status Ready(::grpc::ServerContext* context,
-                     const ::viam::module::v1::ReadyRequest* request,
-                     ::viam::module::v1::ReadyResponse* response) {
-    // CR erodkin: this ain't great! but I don't see a way to figure out which Module we care about
-    // based on the request. Unfortunately this means we're never setting the handler map... what
-    // can be done here?
-    BOOST_LOG_TRIVIAL(info) << "called to ModuleServer::Ready, which is currently unimplemented; "
-                               "returning `true` as a default";
-
-    response->set_ready(true);
+::grpc::Status ModuleService_::Ready(::grpc::ServerContext* context,
+                                     const ::viam::module::v1::ReadyRequest* request,
+                                     ::viam::module::v1::ReadyResponse* response) {
+    response->set_ready(this->module->ready);
+    viam::module::v1::HandlerMap hm = this->module->handles.to_proto();
+    response->set_allocated_handlermap(&hm);
     return grpc::Status();
 };

@@ -1,5 +1,3 @@
-// CR erodkin: do we need anything else in here?
-
 #include <grpcpp/support/status.h>
 
 #include <common/proto_type.hpp>

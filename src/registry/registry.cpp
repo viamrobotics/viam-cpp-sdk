@@ -19,8 +19,6 @@ class ComponentRegistration {
     std::string name;
     ResourceManager resource_manager;
     std::function<ComponentBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
-    // CR erodkin: this was listed as virtual but I don't think it needs to
-    // be? confirm
     Status create_status(ComponentBase component);
 };
 
@@ -54,18 +52,15 @@ class Registry {
     static ComponentRegistration lookup_component(Subtype subtype, Model model);
 
     static std::unordered_map<Subtype, ServiceRegistration> registered_services();
-
-    // CR erodkin: this being string key while services is subtype key is
-    // not great. pick one and stick to it.
-    static std::unordered_map<std::string, ComponentRegistration> registered_components();
+    static std::unordered_map<Subtype, ComponentRegistration> registered_components();
 
    private:
-    static std::unordered_map<std::string, ComponentRegistration> components;
-
+    static std::unordered_map<Subtype, ComponentRegistration> components;
     static std::unordered_map<Subtype, ServiceRegistration> services;
 };
 
-std::unordered_map<std::string, ComponentRegistration> Registry::components;
+std::unordered_map<Subtype, ServiceRegistration> services;
+std::unordered_map<Subtype, ComponentRegistration> Registry::components;
 
 void Registry::register_component(ComponentRegistration component) {
     if (components.find(component.name) != components.end()) {
@@ -107,17 +102,16 @@ ComponentRegistration Registry::lookup_component(Subtype subtype, Model model) {
     return lookup_component(name);
 }
 
-// CR erodkin: fix this. type issues with registry, key I suspect? std::string vs Name
-std::unordered_map<std::string, ServiceRegistration> Registry::registered_services() {
-    std::unordered_map<std::string, ServiceRegistration> registry;
+std::unordered_map<Subtype, ServiceRegistration> Registry::registered_services() {
+    std::unordered_map<Subtype, ServiceRegistration> registry;
     for (auto service : services) {
         registry.insert(service);
     }
     return registry;
 }
 
-std::unordered_map<std::string, ComponentRegistration> Registry::registered_components() {
-    std::unordered_map<std::string, ComponentRegistration> registry;
+std::unordered_map<Subtype, ComponentRegistration> Registry::registered_components() {
+    std::unordered_map<Subtype, ComponentRegistration> registry;
     for (auto component : components) {
         registry.insert(component);
     }

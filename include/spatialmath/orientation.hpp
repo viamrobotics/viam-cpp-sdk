@@ -10,15 +10,6 @@
 
 namespace SDK = Viam::SDK;
 
-// CR erodkin: this should be in orientation_types, not in orientation
-enum OrientationType {
-    AxisAngles,
-    OrientationVector,
-    OrientationVectorDegrees,
-    EulerAngles,
-    Quaternion,
-};
-
 class orientation {
    public:
     boost::variant<SDK::axis_angles,
@@ -31,7 +22,7 @@ class orientation {
 
 class OrientationConfig {
    public:
-    OrientationType type;
+    SDK::OrientationType type;
     std::vector<std::uint8_t> value;
     orientation orientation_;
     viam::app::v1::Orientation to_proto();

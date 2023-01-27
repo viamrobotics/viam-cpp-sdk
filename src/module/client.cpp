@@ -7,6 +7,7 @@
 
 #include <boost/log/trivial.hpp>
 #include <config/resource.hpp>
+#include <module/handler_map.hpp>
 #include <resource/resource.hpp>
 #include <rpc/dial.hpp>
 
@@ -16,7 +17,7 @@ class ModuleClient {
    public:
     std::mutex lock;
     std::unique_ptr<ModuleService::Stub> stub_;
-    std::unordered_map<RPCSubtype, std::vector<Model>> handles;
+    HandlerMap handles;
 
     ModuleClient(ViamChannel channel);
     void add_resource(Component cfg, std::vector<std::string> dependencies);
@@ -31,19 +32,12 @@ ModuleClient::ModuleClient(ViamChannel channel) {
     stub_ = std::move(ModuleService::NewStub(channel.channel));
 }
 
-// CR erodkin: should dependencies here be a map?
 void ModuleClient::add_resource(Component cfg, std::vector<std::string> dependencies) {
     viam::module::v1::AddResourceRequest req;
     viam::module::v1::AddResourceResponse resp;
     grpc::ClientContext ctx;
 
     viam::app::v1::ComponentConfig proto_cfg = cfg.to_proto();
-    google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig>* rs =
-        proto_cfg.mutable_service_configs();
-
-    viam::app::v1::ResourceLevelServiceConfig rp;
-
-    viam::app::v1::ResourceLevelServiceConfig r = rs->at(0);
 
     for (auto dep : dependencies) {
         *req.mutable_dependencies()->Add() = dep;
@@ -101,34 +95,10 @@ void ModuleClient::ready(std::string address) {
                                  << response.error_details();
     }
 
-    viam::module::v1::HandlerMap handler_map = resp.handlermap();
-    google::protobuf::RepeatedPtrField<viam::module::v1::HandlerDefinition> handlers =
-        handler_map.handlers();
-    std::unordered_map<RPCSubtype, std::vector<Model>> new_handles;
+    viam::module::v1::HandlerMap proto = resp.handlermap();
+    HandlerMap handler_map = HandlerMap::from_proto(proto);
 
-    viam::module::v1::HandlerDefinition first = handlers.at(0);
-    const google::protobuf::Descriptor* desc = first.descriptor();
-    for (auto handler : handlers) {
-        std::vector<Model> models;
-        viam::robot::v1::ResourceRPCSubtype rpc_subtype = handler.subtype();
-        viam::common::v1::ResourceName name = rpc_subtype.subtype();
-        std::string namespace_ = name.namespace_();
-        std::string resource_type = name.type();
-        std::string resource_subtype = name.subtype();
-        Subtype subtype(namespace_, resource_type, resource_subtype);
-        const google::protobuf::Descriptor* descriptor = handler.GetDescriptor();
-        RPCSubtype handle(subtype, *descriptor);
-        for (auto mod : handler.models()) {
-            try {
-                Model model(mod);
-                models.push_back(model);
-            } catch (std::string error) {
-                BOOST_LOG_TRIVIAL(error) << "Error processing model " + mod;
-            }
-        }
-        new_handles.emplace(handle, models);
-    }
     lock.lock();
-    handles = new_handles;
+    handles = handler_map;
     lock.unlock();
 };

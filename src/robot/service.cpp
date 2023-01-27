@@ -8,12 +8,14 @@
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
 #include <components/service_base.hpp>
+#include <memory>
+#include <module/manager.hpp>
+#include <mutex>
+#include <resource/resource.hpp>
 #include <robot/client.hpp>
 #include <string>
 #include <thread>
 #include <unordered_map>
-
-#include "resource/resource.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
@@ -21,6 +23,10 @@ using viam::robot::v1::Status;
 
 class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
    public:
+    RobotService_();
+    RobotService_(std::shared_ptr<ModuleManager> mm);
+    static std::shared_ptr<RobotService_> create();
+    std::shared_ptr<ModuleManager> mod_manager;
     ComponentBase resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
@@ -37,7 +43,7 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                            ::viam::robot::v1::StopAllResponse* response) override;
 
    private:
-    std::mutex lock;
+    std::unique_lock<std::mutex> lock;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);
 
@@ -58,7 +64,6 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
-    // CR erodkin: add service version to this generate_status func
     for (auto cmp : manager.components) {
         ComponentBase component = cmp.second;
         for (auto registry : Registry::registered_components()) {
@@ -216,6 +221,15 @@ void RobotService_::stream_status(
 ComponentBase RobotService_::resource_by_name(Name name) {
     this->lock.lock();
     ComponentBase component = manager.components.at(name.name);
-    lock.unlock();
+    this->lock.unlock();
     return component;
 }
+
+RobotService_::RobotService_(std::shared_ptr<ModuleManager> mm) : mod_manager(mm){};
+
+std::shared_ptr<RobotService_> RobotService_::create() {
+    ModuleManager mm;
+    std::shared_ptr<ModuleManager> mgr = std::make_shared<ModuleManager>(mm);
+    return std::make_shared<RobotService_>(mgr);
+};
+

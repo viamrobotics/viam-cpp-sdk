@@ -4,16 +4,16 @@
 
 const std::string RESERVED_MODULE_NAME = "parent";
 
-class Module {
+class ModuleConfig {
     std::string name;
     std::string exe_path;
 
     void validate(std::string path);
 
-    Module(std::string name, std::string exe_path);
+    ModuleConfig(std::string name, std::string exe_path);
 };
 
-void Module::validate(std::string path) {
+void ModuleConfig::validate(std::string path) {
     if (!std::__fs::filesystem::exists(exe_path)) {
         throw "module " + path + " executable path error. Module's listed exe_path: " + exe_path;
     }
@@ -32,7 +32,7 @@ void Module::validate(std::string path) {
     }
 }
 
-Module::Module(std::string name, std::string exe_path) {
+ModuleConfig::ModuleConfig(std::string name, std::string exe_path) {
     validate(exe_path);
     name = name;
     exe_path = exe_path;

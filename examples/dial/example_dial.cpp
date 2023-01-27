@@ -4,18 +4,20 @@
 #include <robot/v1/robot.pb.h>
 #include <unistd.h>
 
+#include <boost/optional.hpp>
 #include <cstddef>
 #include <iostream>
-#include <module/server.hpp>
+#include <module/service.hpp>
 #include <ostream>
 #include <robot/client.hpp>
+#include <robot/service.hpp>
 #include <rpc/dial.hpp>
 #include <string>
 #include <vector>
 
 using viam::robot::v1::Status;
 using Viam::SDK::Credentials;
-using Viam::SDK::DialOptions;
+// using Viam::SDK::DialOptions;
 using Viam::SDK::Options;
 
 extern "C" void* init_rust_runtime();
@@ -24,13 +26,12 @@ extern "C" void free_string(char* s);
 extern "C" char* dial(const char* uri, const char* payload, bool allow_insecure, void* ptr);
 
 int main() {
-    ModuleServer foo;
     const char* uri = "<your robot URI here>";
-    DialOptions dial_options = DialOptions();
+    Viam::SDK::DialOptions dial_options = Viam::SDK::DialOptions();
     std::string payload = "<your payload here>";
     Credentials credentials(payload);
     dial_options.credentials = credentials;
-    boost::optional<DialOptions> opts(dial_options);
+    boost::optional<Viam::SDK::DialOptions> opts(dial_options);
     std::string address(uri);
     Options options = Options(1, opts);
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
@@ -54,6 +55,9 @@ int main() {
     for (Status s : status_singular) {
         std::cout << " Status! " << s.name().subtype() << std::endl;
     }
+
+    std::shared_ptr<RobotService_> robot_service = RobotService_::create();
+    std::shared_ptr<ModuleManager> mm = robot_service->mod_manager;
 
     robot->close();
     return 0;

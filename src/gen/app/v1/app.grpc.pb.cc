@@ -60,6 +60,11 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/NewRobot",
   "/viam.app.v1.AppService/UpdateRobot",
   "/viam.app.v1.AppService/DeleteRobot",
+  "/viam.app.v1.AppService/ListFragments",
+  "/viam.app.v1.AppService/GetFragment",
+  "/viam.app.v1.AppService/CreateFragment",
+  "/viam.app.v1.AppService/UpdateFragment",
+  "/viam.app.v1.AppService/DeleteFragment",
 };
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -105,6 +110,11 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_NewRobot_(AppService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateRobot_(AppService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteRobot_(AppService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListFragments_(AppService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFragment_(AppService_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateFragment_(AppService_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateFragment_(AppService_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteFragment_(AppService_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::viam::app::v1::CreateOrganizationResponse* response) {
@@ -928,6 +938,121 @@ void AppService::Stub::async::DeleteRobot(::grpc::ClientContext* context, const 
   return result;
 }
 
+::grpc::Status AppService::Stub::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::viam::app::v1::ListFragmentsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListFragments_, context, request, response);
+}
+
+void AppService::Stub::async::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::ListFragments(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListFragments_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListFragmentsResponse>* AppService::Stub::PrepareAsyncListFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListFragmentsResponse, ::viam::app::v1::ListFragmentsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListFragments_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListFragmentsResponse>* AppService::Stub::AsyncListFragmentsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListFragmentsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListFragmentsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::viam::app::v1::GetFragmentResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFragment_, context, request, response);
+}
+
+void AppService::Stub::async::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::GetFragment(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFragment_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentResponse>* AppService::Stub::PrepareAsyncGetFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetFragmentResponse, ::viam::app::v1::GetFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFragment_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFragmentResponse>* AppService::Stub::AsyncGetFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetFragmentRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::viam::app::v1::CreateFragmentResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateFragment_, context, request, response);
+}
+
+void AppService::Stub::async::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::CreateFragment(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateFragment_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateFragmentResponse>* AppService::Stub::PrepareAsyncCreateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateFragmentResponse, ::viam::app::v1::CreateFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateFragment_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateFragmentResponse>* AppService::Stub::AsyncCreateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateFragmentRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::viam::app::v1::UpdateFragmentResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateFragment_, context, request, response);
+}
+
+void AppService::Stub::async::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateFragment_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateFragmentResponse>* AppService::Stub::PrepareAsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateFragmentResponse, ::viam::app::v1::UpdateFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateFragment_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateFragmentResponse>* AppService::Stub::AsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateFragmentRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::viam::app::v1::DeleteFragmentResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteFragment_, context, request, response);
+}
+
+void AppService::Stub::async::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFragment_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* AppService::Stub::PrepareAsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteFragmentResponse, ::viam::app::v1::DeleteFragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteFragment_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* AppService::Stub::AsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteFragmentRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[0],
@@ -1289,6 +1414,56 @@ AppService::Service::Service() {
              ::viam::app::v1::DeleteRobotResponse* resp) {
                return service->DeleteRobot(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[36],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::ListFragmentsRequest* req,
+             ::viam::app::v1::ListFragmentsResponse* resp) {
+               return service->ListFragments(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[37],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::GetFragmentRequest* req,
+             ::viam::app::v1::GetFragmentResponse* resp) {
+               return service->GetFragment(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[38],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::CreateFragmentRequest* req,
+             ::viam::app::v1::CreateFragmentResponse* resp) {
+               return service->CreateFragment(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[39],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::UpdateFragmentRequest* req,
+             ::viam::app::v1::UpdateFragmentResponse* resp) {
+               return service->UpdateFragment(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[40],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::DeleteFragmentRequest* req,
+             ::viam::app::v1::DeleteFragmentResponse* resp) {
+               return service->DeleteFragment(ctx, req, resp);
+             }, this)));
 }
 
 AppService::Service::~Service() {
@@ -1540,6 +1715,41 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::DeleteRobot(::grpc::ServerContext* context, const ::viam::app::v1::DeleteRobotRequest* request, ::viam::app::v1::DeleteRobotResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::ListFragments(::grpc::ServerContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetFragment(::grpc::ServerContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::CreateFragment(::grpc::ServerContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::UpdateFragment(::grpc::ServerContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DeleteFragment(::grpc::ServerContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response) {
   (void) context;
   (void) request;
   (void) response;

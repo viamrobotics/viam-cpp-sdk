@@ -31,12 +31,13 @@ class Name : public Subtype {
     std::string remote_name;
     std::string name;
 
-    std::string to_string();
-    Subtype to_subtype();
+    const std::string to_string() const;
+    const Subtype to_subtype() const;
+    viam::common::v1::ResourceName to_proto();
     Name(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();
-    friend bool operator==(Name& lhs, Name& rhs);
+    friend bool operator==(const Name& lhs, const Name& rhs);
 };
 
 class RPCSubtype {
@@ -44,7 +45,6 @@ class RPCSubtype {
     Subtype subtype;
     std::string proto_service_name;
     google::protobuf::Descriptor descriptor;
-    // CR erodkin: are these other operators necessary?
     size_t operator()(RPCSubtype const& key) const {
         Subtype subtype = key.subtype;
         std::string hash = subtype.to_string() + proto_service_name;
@@ -55,7 +55,7 @@ class RPCSubtype {
     RPCSubtype(Subtype subtype,
                std::string proto_service_name,
                google::protobuf::Descriptor& descriptor);
-    friend bool operator==(RPCSubtype& lhs, RPCSubtype& rhs);
+    friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
 };
 
 class ModelFamily {

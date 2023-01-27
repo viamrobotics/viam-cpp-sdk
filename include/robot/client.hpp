@@ -1,5 +1,4 @@
-#ifndef ROBOTCLIENT_H
-#define ROBOTCLIENT_H
+#pragma once
 
 #include <grpcpp/channel.h>
 #include <robot/v1/robot.grpc.pb.h>
@@ -52,4 +51,3 @@ class RobotClient {
     void refresh_every();
 };
 
-#endif

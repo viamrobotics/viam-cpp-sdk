@@ -11,6 +11,8 @@
 #include <unordered_map>
 
 using viam::common::v1::ResourceName;
+const std::string COMPONENT;
+const std::string RDK;
 
 std::vector<viam::common::v1::ResourceName> resource_names_for_component(ComponentBase component);
 

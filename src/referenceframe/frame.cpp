@@ -17,8 +17,6 @@ class LinkConfig {
 };
 
 viam::app::v1::Frame LinkConfig::to_proto() {
-    // CR erodkin: fix this. geometry, orientation, translation all need to
-    // be fleshed out
     viam::app::v1::Frame frame;
 
     *frame.mutable_parent() = parent;

@@ -16,7 +16,6 @@ class ServiceType {
 };
 
 class ServiceBase : public ResourceBase {
-    // CR erodkin: do we need more? see ComponentBase for model
     ServiceType type;
     std::string name;
     ResourceName get_resource_name(std::string name);

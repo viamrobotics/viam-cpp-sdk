@@ -64,9 +64,6 @@ GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
             cfg.geometry_type = box;
-            // CR erodkin: here and other from_proto methods,
-            // probably grab `dims_mm` or equivalent and put it in a
-            // variable to avoid calling to access it over and over
             cfg.x = proto.box().dims_mm().x();
             cfg.y = proto.box().dims_mm().y();
             cfg.z = proto.box().dims_mm().z();

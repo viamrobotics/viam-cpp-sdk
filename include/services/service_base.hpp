@@ -6,6 +6,7 @@
 #include <string>
 
 class ServiceType {
+   public:
     std::string name;
     friend bool operator==(ServiceType& lhs, ServiceType& rhs);
     ServiceType(std::string name) {
@@ -20,7 +21,6 @@ class ServiceBase : public ResourceBase {
    public:
     std::string name;
     ServiceType type;
-    // CR erodkin: is component hierarchy necessary?
     std::vector<ServiceType> service_hierarchy;
     viam::common::v1::ResourceName get_resource_name(std::string name);
 };

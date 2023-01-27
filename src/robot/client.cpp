@@ -186,7 +186,7 @@ void RobotClient::refresh() {
     for (int i = 0; i < num_resources; i++) {
         ResourceName name = resources.at(i);
         current_resources.push_back(name);
-        if (name.type() != "component") {
+        if (name.type() != COMPONENT) {
             continue;
         }
         if (name.subtype() == "remote") {
@@ -346,7 +346,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 }
 
 ComponentBase RobotClient::get_component(ResourceName name) {
-    if (name.type() != "component") {
+    if (name.type() != COMPONENT) {
         std::string error = "Expected resource type 'component' but got " + name.type();
         throw error;
     }

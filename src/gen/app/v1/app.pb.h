@@ -52,6 +52,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace viam {
 namespace app {
 namespace v1 {
+class CreateFragmentRequest;
+struct CreateFragmentRequestDefaultTypeInternal;
+extern CreateFragmentRequestDefaultTypeInternal _CreateFragmentRequest_default_instance_;
+class CreateFragmentResponse;
+struct CreateFragmentResponseDefaultTypeInternal;
+extern CreateFragmentResponseDefaultTypeInternal _CreateFragmentResponse_default_instance_;
 class CreateLocationRequest;
 struct CreateLocationRequestDefaultTypeInternal;
 extern CreateLocationRequestDefaultTypeInternal _CreateLocationRequest_default_instance_;
@@ -82,6 +88,12 @@ extern CreateRobotPartSecretRequestDefaultTypeInternal _CreateRobotPartSecretReq
 class CreateRobotPartSecretResponse;
 struct CreateRobotPartSecretResponseDefaultTypeInternal;
 extern CreateRobotPartSecretResponseDefaultTypeInternal _CreateRobotPartSecretResponse_default_instance_;
+class DeleteFragmentRequest;
+struct DeleteFragmentRequestDefaultTypeInternal;
+extern DeleteFragmentRequestDefaultTypeInternal _DeleteFragmentRequest_default_instance_;
+class DeleteFragmentResponse;
+struct DeleteFragmentResponseDefaultTypeInternal;
+extern DeleteFragmentResponseDefaultTypeInternal _DeleteFragmentResponse_default_instance_;
 class DeleteLocationRequest;
 struct DeleteLocationRequestDefaultTypeInternal;
 extern DeleteLocationRequestDefaultTypeInternal _DeleteLocationRequest_default_instance_;
@@ -133,6 +145,12 @@ extern DeleteRobotResponseDefaultTypeInternal _DeleteRobotResponse_default_insta
 class Fragment;
 struct FragmentDefaultTypeInternal;
 extern FragmentDefaultTypeInternal _Fragment_default_instance_;
+class GetFragmentRequest;
+struct GetFragmentRequestDefaultTypeInternal;
+extern GetFragmentRequestDefaultTypeInternal _GetFragmentRequest_default_instance_;
+class GetFragmentResponse;
+struct GetFragmentResponseDefaultTypeInternal;
+extern GetFragmentResponseDefaultTypeInternal _GetFragmentResponse_default_instance_;
 class GetLocationRequest;
 struct GetLocationRequestDefaultTypeInternal;
 extern GetLocationRequestDefaultTypeInternal _GetLocationRequest_default_instance_;
@@ -175,6 +193,12 @@ extern GetRobotRequestDefaultTypeInternal _GetRobotRequest_default_instance_;
 class GetRobotResponse;
 struct GetRobotResponseDefaultTypeInternal;
 extern GetRobotResponseDefaultTypeInternal _GetRobotResponse_default_instance_;
+class ListFragmentsRequest;
+struct ListFragmentsRequestDefaultTypeInternal;
+extern ListFragmentsRequestDefaultTypeInternal _ListFragmentsRequest_default_instance_;
+class ListFragmentsResponse;
+struct ListFragmentsResponseDefaultTypeInternal;
+extern ListFragmentsResponseDefaultTypeInternal _ListFragmentsResponse_default_instance_;
 class ListLocationsRequest;
 struct ListLocationsRequestDefaultTypeInternal;
 extern ListLocationsRequestDefaultTypeInternal _ListLocationsRequest_default_instance_;
@@ -280,6 +304,12 @@ extern UnshareLocationRequestDefaultTypeInternal _UnshareLocationRequest_default
 class UnshareLocationResponse;
 struct UnshareLocationResponseDefaultTypeInternal;
 extern UnshareLocationResponseDefaultTypeInternal _UnshareLocationResponse_default_instance_;
+class UpdateFragmentRequest;
+struct UpdateFragmentRequestDefaultTypeInternal;
+extern UpdateFragmentRequestDefaultTypeInternal _UpdateFragmentRequest_default_instance_;
+class UpdateFragmentResponse;
+struct UpdateFragmentResponseDefaultTypeInternal;
+extern UpdateFragmentResponseDefaultTypeInternal _UpdateFragmentResponse_default_instance_;
 class UpdateLocationRequest;
 struct UpdateLocationRequestDefaultTypeInternal;
 extern UpdateLocationRequestDefaultTypeInternal _UpdateLocationRequest_default_instance_;
@@ -308,6 +338,8 @@ extern UpdateRobotResponseDefaultTypeInternal _UpdateRobotResponse_default_insta
 }  // namespace app
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> ::viam::app::v1::CreateFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateFragmentRequest>(Arena*);
+template<> ::viam::app::v1::CreateFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateFragmentResponse>(Arena*);
 template<> ::viam::app::v1::CreateLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationRequest>(Arena*);
 template<> ::viam::app::v1::CreateLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationResponse>(Arena*);
 template<> ::viam::app::v1::CreateLocationSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationSecretRequest>(Arena*);
@@ -318,6 +350,8 @@ template<> ::viam::app::v1::CreateOrganizationRequest* Arena::CreateMaybeMessage
 template<> ::viam::app::v1::CreateOrganizationResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationResponse>(Arena*);
 template<> ::viam::app::v1::CreateRobotPartSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretRequest>(Arena*);
 template<> ::viam::app::v1::CreateRobotPartSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretResponse>(Arena*);
+template<> ::viam::app::v1::DeleteFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentRequest>(Arena*);
+template<> ::viam::app::v1::DeleteFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentResponse>(Arena*);
 template<> ::viam::app::v1::DeleteLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationRequest>(Arena*);
 template<> ::viam::app::v1::DeleteLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationResponse>(Arena*);
 template<> ::viam::app::v1::DeleteLocationSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationSecretRequest>(Arena*);
@@ -335,6 +369,8 @@ template<> ::viam::app::v1::DeleteRobotPartSecretResponse* Arena::CreateMaybeMes
 template<> ::viam::app::v1::DeleteRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotRequest>(Arena*);
 template<> ::viam::app::v1::DeleteRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotResponse>(Arena*);
 template<> ::viam::app::v1::Fragment* Arena::CreateMaybeMessage<::viam::app::v1::Fragment>(Arena*);
+template<> ::viam::app::v1::GetFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentRequest>(Arena*);
+template<> ::viam::app::v1::GetFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentResponse>(Arena*);
 template<> ::viam::app::v1::GetLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationRequest>(Arena*);
 template<> ::viam::app::v1::GetLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationResponse>(Arena*);
 template<> ::viam::app::v1::GetOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationRequest>(Arena*);
@@ -349,6 +385,8 @@ template<> ::viam::app::v1::GetRobotPartsRequest* Arena::CreateMaybeMessage<::vi
 template<> ::viam::app::v1::GetRobotPartsResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartsResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotRequest>(Arena*);
 template<> ::viam::app::v1::GetRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotResponse>(Arena*);
+template<> ::viam::app::v1::ListFragmentsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListFragmentsRequest>(Arena*);
+template<> ::viam::app::v1::ListFragmentsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListFragmentsResponse>(Arena*);
 template<> ::viam::app::v1::ListLocationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsRequest>(Arena*);
 template<> ::viam::app::v1::ListLocationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsResponse>(Arena*);
 template<> ::viam::app::v1::ListOrganizationMembersRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationMembersRequest>(Arena*);
@@ -384,6 +422,8 @@ template<> ::viam::app::v1::TailRobotPartLogsRequest* Arena::CreateMaybeMessage<
 template<> ::viam::app::v1::TailRobotPartLogsResponse* Arena::CreateMaybeMessage<::viam::app::v1::TailRobotPartLogsResponse>(Arena*);
 template<> ::viam::app::v1::UnshareLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UnshareLocationRequest>(Arena*);
 template<> ::viam::app::v1::UnshareLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UnshareLocationResponse>(Arena*);
+template<> ::viam::app::v1::UpdateFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateFragmentRequest>(Arena*);
+template<> ::viam::app::v1::UpdateFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateFragmentResponse>(Arena*);
 template<> ::viam::app::v1::UpdateLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationRequest>(Arena*);
 template<> ::viam::app::v1::UpdateLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationResponse>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationRequest>(Arena*);
@@ -9845,7 +9885,7 @@ class GetRobotPartLogsRequest final :
   enum : int {
     kIdFieldNumber = 1,
     kFilterFieldNumber = 3,
-    kPageTokenFieldNumber = 5,
+    kPageTokenFieldNumber = 4,
     kErrorsOnlyFieldNumber = 2,
   };
   // string id = 1 [json_name = "id"];
@@ -9880,7 +9920,7 @@ class GetRobotPartLogsRequest final :
   std::string* _internal_mutable_filter();
   public:
 
-  // optional string page_token = 5 [json_name = "pageToken"];
+  // optional string page_token = 4 [json_name = "pageToken"];
   bool has_page_token() const;
   private:
   bool _internal_has_page_token() const;
@@ -10326,7 +10366,7 @@ class GetRobotPartLogsResponse final :
 
   enum : int {
     kLogsFieldNumber = 1,
-    kNextPageTokenFieldNumber = 5,
+    kNextPageTokenFieldNumber = 2,
   };
   // repeated .viam.app.v1.LogEntry logs = 1 [json_name = "logs"];
   int logs_size() const;
@@ -10346,7 +10386,7 @@ class GetRobotPartLogsResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogEntry >&
       logs() const;
 
-  // string next_page_token = 5 [json_name = "nextPageToken"];
+  // string next_page_token = 2 [json_name = "nextPageToken"];
   void clear_next_page_token();
   const std::string& next_page_token() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -12092,9 +12132,11 @@ class Fragment final :
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kOrganizationOwnerFieldNumber = 4,
+    kOrganizationNameFieldNumber = 7,
     kFragmentFieldNumber = 3,
     kCreatedOnFieldNumber = 6,
     kPublicFieldNumber = 5,
+    kReadonlyFieldNumber = 8,
   };
   // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   void clear_id();
@@ -12136,6 +12178,20 @@ class Fragment final :
   const std::string& _internal_organization_owner() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_owner(const std::string& value);
   std::string* _internal_mutable_organization_owner();
+  public:
+
+  // string organization_name = 7 [json_name = "organizationName"];
+  void clear_organization_name();
+  const std::string& organization_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_name();
+  PROTOBUF_NODISCARD std::string* release_organization_name();
+  void set_allocated_organization_name(std::string* organization_name);
+  private:
+  const std::string& _internal_organization_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_name(const std::string& value);
+  std::string* _internal_mutable_organization_name();
   public:
 
   // .google.protobuf.Struct fragment = 3 [json_name = "fragment", (.tagger.v1.tags) = "bson:\"fragment\" json:\"fragment\""];
@@ -12183,6 +12239,15 @@ class Fragment final :
   void _internal_set_public_(bool value);
   public:
 
+  // bool readonly = 8 [json_name = "readonly"];
+  void clear_readonly();
+  bool readonly() const;
+  void set_readonly(bool value);
+  private:
+  bool _internal_readonly() const;
+  void _internal_set_readonly(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.Fragment)
  private:
   class _Internal;
@@ -12194,12 +12259,1592 @@ class Fragment final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_owner_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_name_;
     ::PROTOBUF_NAMESPACE_ID::Struct* fragment_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
     bool public__;
+    bool readonly_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListFragmentsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListFragmentsRequest) */ {
+ public:
+  inline ListFragmentsRequest() : ListFragmentsRequest(nullptr) {}
+  ~ListFragmentsRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListFragmentsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListFragmentsRequest(const ListFragmentsRequest& from);
+  ListFragmentsRequest(ListFragmentsRequest&& from) noexcept
+    : ListFragmentsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListFragmentsRequest& operator=(const ListFragmentsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListFragmentsRequest& operator=(ListFragmentsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListFragmentsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListFragmentsRequest* internal_default_instance() {
+    return reinterpret_cast<const ListFragmentsRequest*>(
+               &_ListFragmentsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    70;
+
+  friend void swap(ListFragmentsRequest& a, ListFragmentsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListFragmentsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListFragmentsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListFragmentsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListFragmentsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListFragmentsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ListFragmentsRequest& from) {
+    ListFragmentsRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListFragmentsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListFragmentsRequest";
+  }
+  protected:
+  explicit ListFragmentsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationIdFieldNumber = 1,
+    kShowPublicFieldNumber = 2,
+  };
+  // string organization_id = 1 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // bool show_public = 2 [json_name = "showPublic"];
+  void clear_show_public();
+  bool show_public() const;
+  void set_show_public(bool value);
+  private:
+  bool _internal_show_public() const;
+  void _internal_set_show_public(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListFragmentsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+    bool show_public_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListFragmentsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListFragmentsResponse) */ {
+ public:
+  inline ListFragmentsResponse() : ListFragmentsResponse(nullptr) {}
+  ~ListFragmentsResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListFragmentsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListFragmentsResponse(const ListFragmentsResponse& from);
+  ListFragmentsResponse(ListFragmentsResponse&& from) noexcept
+    : ListFragmentsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListFragmentsResponse& operator=(const ListFragmentsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListFragmentsResponse& operator=(ListFragmentsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListFragmentsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListFragmentsResponse* internal_default_instance() {
+    return reinterpret_cast<const ListFragmentsResponse*>(
+               &_ListFragmentsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    71;
+
+  friend void swap(ListFragmentsResponse& a, ListFragmentsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListFragmentsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListFragmentsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListFragmentsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListFragmentsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListFragmentsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ListFragmentsResponse& from) {
+    ListFragmentsResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListFragmentsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListFragmentsResponse";
+  }
+  protected:
+  explicit ListFragmentsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFragmentsFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.Fragment fragments = 1 [json_name = "fragments"];
+  int fragments_size() const;
+  private:
+  int _internal_fragments_size() const;
+  public:
+  void clear_fragments();
+  ::viam::app::v1::Fragment* mutable_fragments(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Fragment >*
+      mutable_fragments();
+  private:
+  const ::viam::app::v1::Fragment& _internal_fragments(int index) const;
+  ::viam::app::v1::Fragment* _internal_add_fragments();
+  public:
+  const ::viam::app::v1::Fragment& fragments(int index) const;
+  ::viam::app::v1::Fragment* add_fragments();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Fragment >&
+      fragments() const;
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListFragmentsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Fragment > fragments_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetFragmentRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetFragmentRequest) */ {
+ public:
+  inline GetFragmentRequest() : GetFragmentRequest(nullptr) {}
+  ~GetFragmentRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetFragmentRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetFragmentRequest(const GetFragmentRequest& from);
+  GetFragmentRequest(GetFragmentRequest&& from) noexcept
+    : GetFragmentRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetFragmentRequest& operator=(const GetFragmentRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetFragmentRequest& operator=(GetFragmentRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetFragmentRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetFragmentRequest* internal_default_instance() {
+    return reinterpret_cast<const GetFragmentRequest*>(
+               &_GetFragmentRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    72;
+
+  friend void swap(GetFragmentRequest& a, GetFragmentRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetFragmentRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetFragmentRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetFragmentRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetFragmentRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetFragmentRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const GetFragmentRequest& from) {
+    GetFragmentRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetFragmentRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetFragmentRequest";
+  }
+  protected:
+  explicit GetFragmentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetFragmentRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetFragmentResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetFragmentResponse) */ {
+ public:
+  inline GetFragmentResponse() : GetFragmentResponse(nullptr) {}
+  ~GetFragmentResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetFragmentResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetFragmentResponse(const GetFragmentResponse& from);
+  GetFragmentResponse(GetFragmentResponse&& from) noexcept
+    : GetFragmentResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetFragmentResponse& operator=(const GetFragmentResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetFragmentResponse& operator=(GetFragmentResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetFragmentResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetFragmentResponse* internal_default_instance() {
+    return reinterpret_cast<const GetFragmentResponse*>(
+               &_GetFragmentResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    73;
+
+  friend void swap(GetFragmentResponse& a, GetFragmentResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetFragmentResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetFragmentResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetFragmentResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetFragmentResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetFragmentResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const GetFragmentResponse& from) {
+    GetFragmentResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetFragmentResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetFragmentResponse";
+  }
+  protected:
+  explicit GetFragmentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFragmentFieldNumber = 1,
+  };
+  // .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
+  bool has_fragment() const;
+  private:
+  bool _internal_has_fragment() const;
+  public:
+  void clear_fragment();
+  const ::viam::app::v1::Fragment& fragment() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Fragment* release_fragment();
+  ::viam::app::v1::Fragment* mutable_fragment();
+  void set_allocated_fragment(::viam::app::v1::Fragment* fragment);
+  private:
+  const ::viam::app::v1::Fragment& _internal_fragment() const;
+  ::viam::app::v1::Fragment* _internal_mutable_fragment();
+  public:
+  void unsafe_arena_set_allocated_fragment(
+      ::viam::app::v1::Fragment* fragment);
+  ::viam::app::v1::Fragment* unsafe_arena_release_fragment();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetFragmentResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::viam::app::v1::Fragment* fragment_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateFragmentRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateFragmentRequest) */ {
+ public:
+  inline CreateFragmentRequest() : CreateFragmentRequest(nullptr) {}
+  ~CreateFragmentRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateFragmentRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateFragmentRequest(const CreateFragmentRequest& from);
+  CreateFragmentRequest(CreateFragmentRequest&& from) noexcept
+    : CreateFragmentRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateFragmentRequest& operator=(const CreateFragmentRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateFragmentRequest& operator=(CreateFragmentRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateFragmentRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateFragmentRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateFragmentRequest*>(
+               &_CreateFragmentRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    74;
+
+  friend void swap(CreateFragmentRequest& a, CreateFragmentRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateFragmentRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateFragmentRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateFragmentRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateFragmentRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateFragmentRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CreateFragmentRequest& from) {
+    CreateFragmentRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateFragmentRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateFragmentRequest";
+  }
+  protected:
+  explicit CreateFragmentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kConfigFieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct config = 2 [json_name = "config"];
+  bool has_config() const;
+  private:
+  bool _internal_has_config() const;
+  public:
+  void clear_config();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& config() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_config();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_config();
+  void set_allocated_config(::PROTOBUF_NAMESPACE_ID::Struct* config);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_config() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_config();
+  public:
+  void unsafe_arena_set_allocated_config(
+      ::PROTOBUF_NAMESPACE_ID::Struct* config);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_config();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateFragmentRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::PROTOBUF_NAMESPACE_ID::Struct* config_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateFragmentResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateFragmentResponse) */ {
+ public:
+  inline CreateFragmentResponse() : CreateFragmentResponse(nullptr) {}
+  ~CreateFragmentResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateFragmentResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateFragmentResponse(const CreateFragmentResponse& from);
+  CreateFragmentResponse(CreateFragmentResponse&& from) noexcept
+    : CreateFragmentResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateFragmentResponse& operator=(const CreateFragmentResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateFragmentResponse& operator=(CreateFragmentResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateFragmentResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateFragmentResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateFragmentResponse*>(
+               &_CreateFragmentResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    75;
+
+  friend void swap(CreateFragmentResponse& a, CreateFragmentResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateFragmentResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateFragmentResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateFragmentResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateFragmentResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateFragmentResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CreateFragmentResponse& from) {
+    CreateFragmentResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateFragmentResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateFragmentResponse";
+  }
+  protected:
+  explicit CreateFragmentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFragmentFieldNumber = 1,
+  };
+  // .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
+  bool has_fragment() const;
+  private:
+  bool _internal_has_fragment() const;
+  public:
+  void clear_fragment();
+  const ::viam::app::v1::Fragment& fragment() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Fragment* release_fragment();
+  ::viam::app::v1::Fragment* mutable_fragment();
+  void set_allocated_fragment(::viam::app::v1::Fragment* fragment);
+  private:
+  const ::viam::app::v1::Fragment& _internal_fragment() const;
+  ::viam::app::v1::Fragment* _internal_mutable_fragment();
+  public:
+  void unsafe_arena_set_allocated_fragment(
+      ::viam::app::v1::Fragment* fragment);
+  ::viam::app::v1::Fragment* unsafe_arena_release_fragment();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateFragmentResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::viam::app::v1::Fragment* fragment_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateFragmentRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateFragmentRequest) */ {
+ public:
+  inline UpdateFragmentRequest() : UpdateFragmentRequest(nullptr) {}
+  ~UpdateFragmentRequest() override;
+  explicit PROTOBUF_CONSTEXPR UpdateFragmentRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateFragmentRequest(const UpdateFragmentRequest& from);
+  UpdateFragmentRequest(UpdateFragmentRequest&& from) noexcept
+    : UpdateFragmentRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateFragmentRequest& operator=(const UpdateFragmentRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateFragmentRequest& operator=(UpdateFragmentRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateFragmentRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateFragmentRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateFragmentRequest*>(
+               &_UpdateFragmentRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    76;
+
+  friend void swap(UpdateFragmentRequest& a, UpdateFragmentRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateFragmentRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateFragmentRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateFragmentRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateFragmentRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateFragmentRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const UpdateFragmentRequest& from) {
+    UpdateFragmentRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateFragmentRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateFragmentRequest";
+  }
+  protected:
+  explicit UpdateFragmentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kConfigFieldNumber = 3,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string name = 2 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct config = 3 [json_name = "config"];
+  bool has_config() const;
+  private:
+  bool _internal_has_config() const;
+  public:
+  void clear_config();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& config() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_config();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_config();
+  void set_allocated_config(::PROTOBUF_NAMESPACE_ID::Struct* config);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_config() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_config();
+  public:
+  void unsafe_arena_set_allocated_config(
+      ::PROTOBUF_NAMESPACE_ID::Struct* config);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_config();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateFragmentRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::PROTOBUF_NAMESPACE_ID::Struct* config_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateFragmentResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateFragmentResponse) */ {
+ public:
+  inline UpdateFragmentResponse() : UpdateFragmentResponse(nullptr) {}
+  ~UpdateFragmentResponse() override;
+  explicit PROTOBUF_CONSTEXPR UpdateFragmentResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateFragmentResponse(const UpdateFragmentResponse& from);
+  UpdateFragmentResponse(UpdateFragmentResponse&& from) noexcept
+    : UpdateFragmentResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateFragmentResponse& operator=(const UpdateFragmentResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateFragmentResponse& operator=(UpdateFragmentResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateFragmentResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateFragmentResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateFragmentResponse*>(
+               &_UpdateFragmentResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    77;
+
+  friend void swap(UpdateFragmentResponse& a, UpdateFragmentResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateFragmentResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateFragmentResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateFragmentResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateFragmentResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateFragmentResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const UpdateFragmentResponse& from) {
+    UpdateFragmentResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateFragmentResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateFragmentResponse";
+  }
+  protected:
+  explicit UpdateFragmentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFragmentFieldNumber = 1,
+  };
+  // .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
+  bool has_fragment() const;
+  private:
+  bool _internal_has_fragment() const;
+  public:
+  void clear_fragment();
+  const ::viam::app::v1::Fragment& fragment() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Fragment* release_fragment();
+  ::viam::app::v1::Fragment* mutable_fragment();
+  void set_allocated_fragment(::viam::app::v1::Fragment* fragment);
+  private:
+  const ::viam::app::v1::Fragment& _internal_fragment() const;
+  ::viam::app::v1::Fragment* _internal_mutable_fragment();
+  public:
+  void unsafe_arena_set_allocated_fragment(
+      ::viam::app::v1::Fragment* fragment);
+  ::viam::app::v1::Fragment* unsafe_arena_release_fragment();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateFragmentResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::viam::app::v1::Fragment* fragment_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteFragmentRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteFragmentRequest) */ {
+ public:
+  inline DeleteFragmentRequest() : DeleteFragmentRequest(nullptr) {}
+  ~DeleteFragmentRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteFragmentRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteFragmentRequest(const DeleteFragmentRequest& from);
+  DeleteFragmentRequest(DeleteFragmentRequest&& from) noexcept
+    : DeleteFragmentRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteFragmentRequest& operator=(const DeleteFragmentRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteFragmentRequest& operator=(DeleteFragmentRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteFragmentRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteFragmentRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteFragmentRequest*>(
+               &_DeleteFragmentRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    78;
+
+  friend void swap(DeleteFragmentRequest& a, DeleteFragmentRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteFragmentRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteFragmentRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteFragmentRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteFragmentRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteFragmentRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const DeleteFragmentRequest& from) {
+    DeleteFragmentRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteFragmentRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteFragmentRequest";
+  }
+  protected:
+  explicit DeleteFragmentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteFragmentRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteFragmentResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteFragmentResponse) */ {
+ public:
+  inline DeleteFragmentResponse() : DeleteFragmentResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteFragmentResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteFragmentResponse(const DeleteFragmentResponse& from);
+  DeleteFragmentResponse(DeleteFragmentResponse&& from) noexcept
+    : DeleteFragmentResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteFragmentResponse& operator=(const DeleteFragmentResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteFragmentResponse& operator=(DeleteFragmentResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteFragmentResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteFragmentResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteFragmentResponse*>(
+               &_DeleteFragmentResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    79;
+
+  friend void swap(DeleteFragmentResponse& a, DeleteFragmentResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteFragmentResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteFragmentResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteFragmentResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteFragmentResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteFragmentResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteFragmentResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteFragmentResponse";
+  }
+  protected:
+  explicit DeleteFragmentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteFragmentResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -12252,7 +13897,7 @@ class ListRobotsRequest final :
                &_ListRobotsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    80;
 
   friend void swap(ListRobotsRequest& a, ListRobotsRequest& b) {
     a.Swap(&b);
@@ -12405,7 +14050,7 @@ class ListRobotsResponse final :
                &_ListRobotsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    81;
 
   friend void swap(ListRobotsResponse& a, ListRobotsResponse& b) {
     a.Swap(&b);
@@ -12562,7 +14207,7 @@ class NewRobotRequest final :
                &_NewRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    82;
 
   friend void swap(NewRobotRequest& a, NewRobotRequest& b) {
     a.Swap(&b);
@@ -12731,7 +14376,7 @@ class NewRobotResponse final :
                &_NewRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    83;
 
   friend void swap(NewRobotResponse& a, NewRobotResponse& b) {
     a.Swap(&b);
@@ -12884,7 +14529,7 @@ class UpdateRobotRequest final :
                &_UpdateRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    84;
 
   friend void swap(UpdateRobotRequest& a, UpdateRobotRequest& b) {
     a.Swap(&b);
@@ -13069,7 +14714,7 @@ class UpdateRobotResponse final :
                &_UpdateRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    85;
 
   friend void swap(UpdateRobotResponse& a, UpdateRobotResponse& b) {
     a.Swap(&b);
@@ -13226,7 +14871,7 @@ class DeleteRobotRequest final :
                &_DeleteRobotRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    86;
 
   friend void swap(DeleteRobotRequest& a, DeleteRobotRequest& b) {
     a.Swap(&b);
@@ -13378,7 +15023,7 @@ class DeleteRobotResponse final :
                &_DeleteRobotResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    87;
 
   friend void swap(DeleteRobotResponse& a, DeleteRobotResponse& b) {
     a.Swap(&b);
@@ -13497,7 +15142,7 @@ class MarkPartAsMainRequest final :
                &_MarkPartAsMainRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    88;
 
   friend void swap(MarkPartAsMainRequest& a, MarkPartAsMainRequest& b) {
     a.Swap(&b);
@@ -13649,7 +15294,7 @@ class MarkPartAsMainResponse final :
                &_MarkPartAsMainResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    89;
 
   friend void swap(MarkPartAsMainResponse& a, MarkPartAsMainResponse& b) {
     a.Swap(&b);
@@ -13768,7 +15413,7 @@ class CreateRobotPartSecretRequest final :
                &_CreateRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    90;
 
   friend void swap(CreateRobotPartSecretRequest& a, CreateRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -13921,7 +15566,7 @@ class CreateRobotPartSecretResponse final :
                &_CreateRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    91;
 
   friend void swap(CreateRobotPartSecretResponse& a, CreateRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -14078,7 +15723,7 @@ class DeleteRobotPartSecretRequest final :
                &_DeleteRobotPartSecretRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    92;
 
   friend void swap(DeleteRobotPartSecretRequest& a, DeleteRobotPartSecretRequest& b) {
     a.Swap(&b);
@@ -14246,7 +15891,7 @@ class DeleteRobotPartSecretResponse final :
                &_DeleteRobotPartSecretResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    83;
+    93;
 
   friend void swap(DeleteRobotPartSecretResponse& a, DeleteRobotPartSecretResponse& b) {
     a.Swap(&b);
@@ -20577,7 +22222,7 @@ inline void GetRobotPartLogsRequest::set_allocated_filter(std::string* filter) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.filter)
 }
 
-// optional string page_token = 5 [json_name = "pageToken"];
+// optional string page_token = 4 [json_name = "pageToken"];
 inline bool GetRobotPartLogsRequest::_internal_has_page_token() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
@@ -21150,7 +22795,7 @@ GetRobotPartLogsResponse::logs() const {
   return _impl_.logs_;
 }
 
-// string next_page_token = 5 [json_name = "nextPageToken"];
+// string next_page_token = 2 [json_name = "nextPageToken"];
 inline void GetRobotPartLogsResponse::clear_next_page_token() {
   _impl_.next_page_token_.ClearToEmpty();
 }
@@ -22327,6 +23972,916 @@ inline void Fragment::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestam
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Fragment.created_on)
 }
 
+// string organization_name = 7 [json_name = "organizationName"];
+inline void Fragment::clear_organization_name() {
+  _impl_.organization_name_.ClearToEmpty();
+}
+inline const std::string& Fragment::organization_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Fragment.organization_name)
+  return _internal_organization_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Fragment::set_organization_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.organization_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Fragment.organization_name)
+}
+inline std::string* Fragment::mutable_organization_name() {
+  std::string* _s = _internal_mutable_organization_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Fragment.organization_name)
+  return _s;
+}
+inline const std::string& Fragment::_internal_organization_name() const {
+  return _impl_.organization_name_.Get();
+}
+inline void Fragment::_internal_set_organization_name(const std::string& value) {
+  
+  _impl_.organization_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Fragment::_internal_mutable_organization_name() {
+  
+  return _impl_.organization_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Fragment::release_organization_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Fragment.organization_name)
+  return _impl_.organization_name_.Release();
+}
+inline void Fragment::set_allocated_organization_name(std::string* organization_name) {
+  if (organization_name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.organization_name_.SetAllocated(organization_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.organization_name_.IsDefault()) {
+    _impl_.organization_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Fragment.organization_name)
+}
+
+// bool readonly = 8 [json_name = "readonly"];
+inline void Fragment::clear_readonly() {
+  _impl_.readonly_ = false;
+}
+inline bool Fragment::_internal_readonly() const {
+  return _impl_.readonly_;
+}
+inline bool Fragment::readonly() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Fragment.readonly)
+  return _internal_readonly();
+}
+inline void Fragment::_internal_set_readonly(bool value) {
+  
+  _impl_.readonly_ = value;
+}
+inline void Fragment::set_readonly(bool value) {
+  _internal_set_readonly(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Fragment.readonly)
+}
+
+// -------------------------------------------------------------------
+
+// ListFragmentsRequest
+
+// string organization_id = 1 [json_name = "organizationId"];
+inline void ListFragmentsRequest::clear_organization_id() {
+  _impl_.organization_id_.ClearToEmpty();
+}
+inline const std::string& ListFragmentsRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListFragmentsRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListFragmentsRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListFragmentsRequest.organization_id)
+}
+inline std::string* ListFragmentsRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListFragmentsRequest.organization_id)
+  return _s;
+}
+inline const std::string& ListFragmentsRequest::_internal_organization_id() const {
+  return _impl_.organization_id_.Get();
+}
+inline void ListFragmentsRequest::_internal_set_organization_id(const std::string& value) {
+  
+  _impl_.organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListFragmentsRequest::_internal_mutable_organization_id() {
+  
+  return _impl_.organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListFragmentsRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ListFragmentsRequest.organization_id)
+  return _impl_.organization_id_.Release();
+}
+inline void ListFragmentsRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.organization_id_.IsDefault()) {
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListFragmentsRequest.organization_id)
+}
+
+// bool show_public = 2 [json_name = "showPublic"];
+inline void ListFragmentsRequest::clear_show_public() {
+  _impl_.show_public_ = false;
+}
+inline bool ListFragmentsRequest::_internal_show_public() const {
+  return _impl_.show_public_;
+}
+inline bool ListFragmentsRequest::show_public() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListFragmentsRequest.show_public)
+  return _internal_show_public();
+}
+inline void ListFragmentsRequest::_internal_set_show_public(bool value) {
+  
+  _impl_.show_public_ = value;
+}
+inline void ListFragmentsRequest::set_show_public(bool value) {
+  _internal_set_show_public(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListFragmentsRequest.show_public)
+}
+
+// -------------------------------------------------------------------
+
+// ListFragmentsResponse
+
+// repeated .viam.app.v1.Fragment fragments = 1 [json_name = "fragments"];
+inline int ListFragmentsResponse::_internal_fragments_size() const {
+  return _impl_.fragments_.size();
+}
+inline int ListFragmentsResponse::fragments_size() const {
+  return _internal_fragments_size();
+}
+inline void ListFragmentsResponse::clear_fragments() {
+  _impl_.fragments_.Clear();
+}
+inline ::viam::app::v1::Fragment* ListFragmentsResponse::mutable_fragments(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListFragmentsResponse.fragments)
+  return _impl_.fragments_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Fragment >*
+ListFragmentsResponse::mutable_fragments() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListFragmentsResponse.fragments)
+  return &_impl_.fragments_;
+}
+inline const ::viam::app::v1::Fragment& ListFragmentsResponse::_internal_fragments(int index) const {
+  return _impl_.fragments_.Get(index);
+}
+inline const ::viam::app::v1::Fragment& ListFragmentsResponse::fragments(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListFragmentsResponse.fragments)
+  return _internal_fragments(index);
+}
+inline ::viam::app::v1::Fragment* ListFragmentsResponse::_internal_add_fragments() {
+  return _impl_.fragments_.Add();
+}
+inline ::viam::app::v1::Fragment* ListFragmentsResponse::add_fragments() {
+  ::viam::app::v1::Fragment* _add = _internal_add_fragments();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListFragmentsResponse.fragments)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Fragment >&
+ListFragmentsResponse::fragments() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListFragmentsResponse.fragments)
+  return _impl_.fragments_;
+}
+
+// -------------------------------------------------------------------
+
+// GetFragmentRequest
+
+// string id = 1 [json_name = "id"];
+inline void GetFragmentRequest::clear_id() {
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& GetFragmentRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFragmentRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetFragmentRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetFragmentRequest.id)
+}
+inline std::string* GetFragmentRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFragmentRequest.id)
+  return _s;
+}
+inline const std::string& GetFragmentRequest::_internal_id() const {
+  return _impl_.id_.Get();
+}
+inline void GetFragmentRequest::_internal_set_id(const std::string& value) {
+  
+  _impl_.id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetFragmentRequest::_internal_mutable_id() {
+  
+  return _impl_.id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetFragmentRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetFragmentRequest.id)
+  return _impl_.id_.Release();
+}
+inline void GetFragmentRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFragmentRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// GetFragmentResponse
+
+// .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
+inline bool GetFragmentResponse::_internal_has_fragment() const {
+  return this != internal_default_instance() && _impl_.fragment_ != nullptr;
+}
+inline bool GetFragmentResponse::has_fragment() const {
+  return _internal_has_fragment();
+}
+inline void GetFragmentResponse::clear_fragment() {
+  if (GetArenaForAllocation() == nullptr && _impl_.fragment_ != nullptr) {
+    delete _impl_.fragment_;
+  }
+  _impl_.fragment_ = nullptr;
+}
+inline const ::viam::app::v1::Fragment& GetFragmentResponse::_internal_fragment() const {
+  const ::viam::app::v1::Fragment* p = _impl_.fragment_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::Fragment&>(
+      ::viam::app::v1::_Fragment_default_instance_);
+}
+inline const ::viam::app::v1::Fragment& GetFragmentResponse::fragment() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFragmentResponse.fragment)
+  return _internal_fragment();
+}
+inline void GetFragmentResponse::unsafe_arena_set_allocated_fragment(
+    ::viam::app::v1::Fragment* fragment) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.fragment_);
+  }
+  _impl_.fragment_ = fragment;
+  if (fragment) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetFragmentResponse.fragment)
+}
+inline ::viam::app::v1::Fragment* GetFragmentResponse::release_fragment() {
+  
+  ::viam::app::v1::Fragment* temp = _impl_.fragment_;
+  _impl_.fragment_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::Fragment* GetFragmentResponse::unsafe_arena_release_fragment() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetFragmentResponse.fragment)
+  
+  ::viam::app::v1::Fragment* temp = _impl_.fragment_;
+  _impl_.fragment_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::Fragment* GetFragmentResponse::_internal_mutable_fragment() {
+  
+  if (_impl_.fragment_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::Fragment>(GetArenaForAllocation());
+    _impl_.fragment_ = p;
+  }
+  return _impl_.fragment_;
+}
+inline ::viam::app::v1::Fragment* GetFragmentResponse::mutable_fragment() {
+  ::viam::app::v1::Fragment* _msg = _internal_mutable_fragment();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFragmentResponse.fragment)
+  return _msg;
+}
+inline void GetFragmentResponse::set_allocated_fragment(::viam::app::v1::Fragment* fragment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.fragment_;
+  }
+  if (fragment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(fragment);
+    if (message_arena != submessage_arena) {
+      fragment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, fragment, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.fragment_ = fragment;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFragmentResponse.fragment)
+}
+
+// -------------------------------------------------------------------
+
+// CreateFragmentRequest
+
+// string name = 1 [json_name = "name"];
+inline void CreateFragmentRequest::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& CreateFragmentRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateFragmentRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateFragmentRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateFragmentRequest.name)
+}
+inline std::string* CreateFragmentRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateFragmentRequest.name)
+  return _s;
+}
+inline const std::string& CreateFragmentRequest::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void CreateFragmentRequest::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateFragmentRequest::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateFragmentRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateFragmentRequest.name)
+  return _impl_.name_.Release();
+}
+inline void CreateFragmentRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateFragmentRequest.name)
+}
+
+// .google.protobuf.Struct config = 2 [json_name = "config"];
+inline bool CreateFragmentRequest::_internal_has_config() const {
+  return this != internal_default_instance() && _impl_.config_ != nullptr;
+}
+inline bool CreateFragmentRequest::has_config() const {
+  return _internal_has_config();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& CreateFragmentRequest::_internal_config() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = _impl_.config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& CreateFragmentRequest::config() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateFragmentRequest.config)
+  return _internal_config();
+}
+inline void CreateFragmentRequest::unsafe_arena_set_allocated_config(
+    ::PROTOBUF_NAMESPACE_ID::Struct* config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.config_);
+  }
+  _impl_.config_ = config;
+  if (config) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.CreateFragmentRequest.config)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* CreateFragmentRequest::release_config() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = _impl_.config_;
+  _impl_.config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* CreateFragmentRequest::unsafe_arena_release_config() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateFragmentRequest.config)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = _impl_.config_;
+  _impl_.config_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* CreateFragmentRequest::_internal_mutable_config() {
+  
+  if (_impl_.config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    _impl_.config_ = p;
+  }
+  return _impl_.config_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* CreateFragmentRequest::mutable_config() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_config();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateFragmentRequest.config)
+  return _msg;
+}
+inline void CreateFragmentRequest::set_allocated_config(::PROTOBUF_NAMESPACE_ID::Struct* config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.config_);
+  }
+  if (config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(config));
+    if (message_arena != submessage_arena) {
+      config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, config, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.config_ = config;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateFragmentRequest.config)
+}
+
+// -------------------------------------------------------------------
+
+// CreateFragmentResponse
+
+// .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
+inline bool CreateFragmentResponse::_internal_has_fragment() const {
+  return this != internal_default_instance() && _impl_.fragment_ != nullptr;
+}
+inline bool CreateFragmentResponse::has_fragment() const {
+  return _internal_has_fragment();
+}
+inline void CreateFragmentResponse::clear_fragment() {
+  if (GetArenaForAllocation() == nullptr && _impl_.fragment_ != nullptr) {
+    delete _impl_.fragment_;
+  }
+  _impl_.fragment_ = nullptr;
+}
+inline const ::viam::app::v1::Fragment& CreateFragmentResponse::_internal_fragment() const {
+  const ::viam::app::v1::Fragment* p = _impl_.fragment_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::Fragment&>(
+      ::viam::app::v1::_Fragment_default_instance_);
+}
+inline const ::viam::app::v1::Fragment& CreateFragmentResponse::fragment() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateFragmentResponse.fragment)
+  return _internal_fragment();
+}
+inline void CreateFragmentResponse::unsafe_arena_set_allocated_fragment(
+    ::viam::app::v1::Fragment* fragment) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.fragment_);
+  }
+  _impl_.fragment_ = fragment;
+  if (fragment) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.CreateFragmentResponse.fragment)
+}
+inline ::viam::app::v1::Fragment* CreateFragmentResponse::release_fragment() {
+  
+  ::viam::app::v1::Fragment* temp = _impl_.fragment_;
+  _impl_.fragment_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::Fragment* CreateFragmentResponse::unsafe_arena_release_fragment() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateFragmentResponse.fragment)
+  
+  ::viam::app::v1::Fragment* temp = _impl_.fragment_;
+  _impl_.fragment_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::Fragment* CreateFragmentResponse::_internal_mutable_fragment() {
+  
+  if (_impl_.fragment_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::Fragment>(GetArenaForAllocation());
+    _impl_.fragment_ = p;
+  }
+  return _impl_.fragment_;
+}
+inline ::viam::app::v1::Fragment* CreateFragmentResponse::mutable_fragment() {
+  ::viam::app::v1::Fragment* _msg = _internal_mutable_fragment();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateFragmentResponse.fragment)
+  return _msg;
+}
+inline void CreateFragmentResponse::set_allocated_fragment(::viam::app::v1::Fragment* fragment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.fragment_;
+  }
+  if (fragment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(fragment);
+    if (message_arena != submessage_arena) {
+      fragment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, fragment, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.fragment_ = fragment;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateFragmentResponse.fragment)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateFragmentRequest
+
+// string id = 1 [json_name = "id"];
+inline void UpdateFragmentRequest::clear_id() {
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& UpdateFragmentRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateFragmentRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateFragmentRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateFragmentRequest.id)
+}
+inline std::string* UpdateFragmentRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateFragmentRequest.id)
+  return _s;
+}
+inline const std::string& UpdateFragmentRequest::_internal_id() const {
+  return _impl_.id_.Get();
+}
+inline void UpdateFragmentRequest::_internal_set_id(const std::string& value) {
+  
+  _impl_.id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateFragmentRequest::_internal_mutable_id() {
+  
+  return _impl_.id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateFragmentRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateFragmentRequest.id)
+  return _impl_.id_.Release();
+}
+inline void UpdateFragmentRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateFragmentRequest.id)
+}
+
+// string name = 2 [json_name = "name"];
+inline void UpdateFragmentRequest::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& UpdateFragmentRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateFragmentRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateFragmentRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateFragmentRequest.name)
+}
+inline std::string* UpdateFragmentRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateFragmentRequest.name)
+  return _s;
+}
+inline const std::string& UpdateFragmentRequest::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void UpdateFragmentRequest::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateFragmentRequest::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateFragmentRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateFragmentRequest.name)
+  return _impl_.name_.Release();
+}
+inline void UpdateFragmentRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateFragmentRequest.name)
+}
+
+// .google.protobuf.Struct config = 3 [json_name = "config"];
+inline bool UpdateFragmentRequest::_internal_has_config() const {
+  return this != internal_default_instance() && _impl_.config_ != nullptr;
+}
+inline bool UpdateFragmentRequest::has_config() const {
+  return _internal_has_config();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateFragmentRequest::_internal_config() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = _impl_.config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UpdateFragmentRequest::config() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateFragmentRequest.config)
+  return _internal_config();
+}
+inline void UpdateFragmentRequest::unsafe_arena_set_allocated_config(
+    ::PROTOBUF_NAMESPACE_ID::Struct* config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.config_);
+  }
+  _impl_.config_ = config;
+  if (config) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateFragmentRequest.config)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateFragmentRequest::release_config() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = _impl_.config_;
+  _impl_.config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateFragmentRequest::unsafe_arena_release_config() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateFragmentRequest.config)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = _impl_.config_;
+  _impl_.config_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateFragmentRequest::_internal_mutable_config() {
+  
+  if (_impl_.config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    _impl_.config_ = p;
+  }
+  return _impl_.config_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UpdateFragmentRequest::mutable_config() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_config();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateFragmentRequest.config)
+  return _msg;
+}
+inline void UpdateFragmentRequest::set_allocated_config(::PROTOBUF_NAMESPACE_ID::Struct* config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.config_);
+  }
+  if (config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(config));
+    if (message_arena != submessage_arena) {
+      config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, config, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.config_ = config;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateFragmentRequest.config)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateFragmentResponse
+
+// .viam.app.v1.Fragment fragment = 1 [json_name = "fragment"];
+inline bool UpdateFragmentResponse::_internal_has_fragment() const {
+  return this != internal_default_instance() && _impl_.fragment_ != nullptr;
+}
+inline bool UpdateFragmentResponse::has_fragment() const {
+  return _internal_has_fragment();
+}
+inline void UpdateFragmentResponse::clear_fragment() {
+  if (GetArenaForAllocation() == nullptr && _impl_.fragment_ != nullptr) {
+    delete _impl_.fragment_;
+  }
+  _impl_.fragment_ = nullptr;
+}
+inline const ::viam::app::v1::Fragment& UpdateFragmentResponse::_internal_fragment() const {
+  const ::viam::app::v1::Fragment* p = _impl_.fragment_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::Fragment&>(
+      ::viam::app::v1::_Fragment_default_instance_);
+}
+inline const ::viam::app::v1::Fragment& UpdateFragmentResponse::fragment() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateFragmentResponse.fragment)
+  return _internal_fragment();
+}
+inline void UpdateFragmentResponse::unsafe_arena_set_allocated_fragment(
+    ::viam::app::v1::Fragment* fragment) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.fragment_);
+  }
+  _impl_.fragment_ = fragment;
+  if (fragment) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateFragmentResponse.fragment)
+}
+inline ::viam::app::v1::Fragment* UpdateFragmentResponse::release_fragment() {
+  
+  ::viam::app::v1::Fragment* temp = _impl_.fragment_;
+  _impl_.fragment_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::Fragment* UpdateFragmentResponse::unsafe_arena_release_fragment() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateFragmentResponse.fragment)
+  
+  ::viam::app::v1::Fragment* temp = _impl_.fragment_;
+  _impl_.fragment_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::Fragment* UpdateFragmentResponse::_internal_mutable_fragment() {
+  
+  if (_impl_.fragment_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::Fragment>(GetArenaForAllocation());
+    _impl_.fragment_ = p;
+  }
+  return _impl_.fragment_;
+}
+inline ::viam::app::v1::Fragment* UpdateFragmentResponse::mutable_fragment() {
+  ::viam::app::v1::Fragment* _msg = _internal_mutable_fragment();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateFragmentResponse.fragment)
+  return _msg;
+}
+inline void UpdateFragmentResponse::set_allocated_fragment(::viam::app::v1::Fragment* fragment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.fragment_;
+  }
+  if (fragment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(fragment);
+    if (message_arena != submessage_arena) {
+      fragment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, fragment, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.fragment_ = fragment;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateFragmentResponse.fragment)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteFragmentRequest
+
+// string id = 1 [json_name = "id"];
+inline void DeleteFragmentRequest::clear_id() {
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& DeleteFragmentRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteFragmentRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteFragmentRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteFragmentRequest.id)
+}
+inline std::string* DeleteFragmentRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteFragmentRequest.id)
+  return _s;
+}
+inline const std::string& DeleteFragmentRequest::_internal_id() const {
+  return _impl_.id_.Get();
+}
+inline void DeleteFragmentRequest::_internal_set_id(const std::string& value) {
+  
+  _impl_.id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteFragmentRequest::_internal_mutable_id() {
+  
+  return _impl_.id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteFragmentRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteFragmentRequest.id)
+  return _impl_.id_.Release();
+}
+inline void DeleteFragmentRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteFragmentRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteFragmentResponse
+
 // -------------------------------------------------------------------
 
 // ListRobotsRequest
@@ -23206,6 +25761,26 @@ inline void DeleteRobotPartSecretRequest::set_allocated_secret_id(std::string* s
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

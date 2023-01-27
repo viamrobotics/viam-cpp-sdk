@@ -1497,6 +1497,7 @@ class InternalPackage final :
     kMetadataFieldNumber = 6,
     kCreatedOnFieldNumber = 8,
     kTypeFieldNumber = 4,
+    kLatestFieldNumber = 10,
   };
   // repeated .viam.app.packages.v1.FileInfo files = 5 [json_name = "files", (.tagger.v1.tags) = "bson:\"files\" json:\"files\""];
   int files_size() const;
@@ -1631,6 +1632,15 @@ class InternalPackage final :
   void _internal_set_type(::viam::app::packages::v1::PackageType value);
   public:
 
+  // bool latest = 10 [json_name = "latest", (.tagger.v1.tags) = "bson:\"latest\" json:\"latest\""];
+  void clear_latest();
+  bool latest() const;
+  void set_latest(bool value);
+  private:
+  bool _internal_latest() const;
+  void _internal_set_latest(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.packages.v1.InternalPackage)
  private:
   class _Internal;
@@ -1648,6 +1658,7 @@ class InternalPackage final :
     ::PROTOBUF_NAMESPACE_ID::Struct* metadata_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
     int type_;
+    bool latest_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3828,6 +3839,26 @@ inline void InternalPackage::set_allocated_checksum(std::string* checksum) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.packages.v1.InternalPackage.checksum)
+}
+
+// bool latest = 10 [json_name = "latest", (.tagger.v1.tags) = "bson:\"latest\" json:\"latest\""];
+inline void InternalPackage::clear_latest() {
+  _impl_.latest_ = false;
+}
+inline bool InternalPackage::_internal_latest() const {
+  return _impl_.latest_;
+}
+inline bool InternalPackage::latest() const {
+  // @@protoc_insertion_point(field_get:viam.app.packages.v1.InternalPackage.latest)
+  return _internal_latest();
+}
+inline void InternalPackage::_internal_set_latest(bool value) {
+  
+  _impl_.latest_ = value;
+}
+inline void InternalPackage::set_latest(bool value) {
+  _internal_set_latest(value);
+  // @@protoc_insertion_point(field_set:viam.app.packages.v1.InternalPackage.latest)
 }
 
 // -------------------------------------------------------------------

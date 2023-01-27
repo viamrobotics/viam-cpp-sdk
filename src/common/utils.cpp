@@ -11,6 +11,8 @@
 #include <vector>
 
 using viam::common::v1::ResourceName;
+const std::string COMPONENT = "component";
+const std::string RDK = "rdk";
 
 std::vector<ResourceName> resource_names_for_component(ComponentBase component) {
     std::string* component_type;
@@ -30,8 +32,8 @@ std::vector<ResourceName> resource_names_for_component(ComponentBase component) 
     // within component_type as needed
 
     ResourceName r;
-    *r.mutable_namespace_() = "rdk";
-    *r.mutable_type() = "component";
+    *r.mutable_namespace_() = RDK;
+    *r.mutable_type() = COMPONENT;
     *r.mutable_name() = component.name;
     *r.mutable_subtype() = *component_type;
     resource_names.push_back(r);
