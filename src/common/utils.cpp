@@ -17,7 +17,7 @@ const std::string RDK = "rdk";
 std::vector<ResourceName> resource_names_for_component(ComponentBase component) {
     std::string* component_type;
     std::vector<ResourceName> resource_names;
-    for (auto a : Registry::registered_components()) {
+    for (auto& a : Registry::registered_components()) {
         ComponentRegistration reg = a.second;
         if (reg.component_type == component.type) {
             component_type = &reg.name;

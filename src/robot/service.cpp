@@ -64,14 +64,14 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
-    for (auto cmp : manager.components) {
+    for (auto& cmp : manager.components) {
         ComponentBase component = cmp.second;
-        for (auto registry : Registry::registered_components()) {
+        for (auto& registry : Registry::registered_components()) {
             ComponentRegistration registration = registry.second;
             if (registration.component_type == component.type) {
                 bool component_present = false;
                 ResourceName component_name = component.get_resource_name(component.name);
-                for (auto resource_name : resource_names) {
+                for (auto& resource_name : resource_names) {
                     if (&resource_name == &component_name) {
                         component_present = true;
                         break;
@@ -86,14 +86,14 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
         }
     }
 
-    for (auto svc : manager.services) {
+    for (auto& svc : manager.services) {
         ServiceBase service = svc.second;
-        for (auto registry : Registry::registered_services()) {
+        for (auto& registry : Registry::registered_services()) {
             ServiceRegistration registration = registry.second;
             if (registration.service_type == service.type) {
                 bool service_present = false;
                 ResourceName service_name = service.get_resource_name(service.name);
-                for (auto resource_name : resource_names) {
+                for (auto& resource_name : resource_names) {
                     if (&resource_name == &service_name) {
                         service_present = true;
                         break;
@@ -109,9 +109,9 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     }
 
     std::vector<Status> returnable_statuses;
-    for (auto status : statuses) {
+    for (auto& status : statuses) {
         bool status_name_is_known = false;
-        for (auto resource_name : resource_names) {
+        for (auto& resource_name : resource_names) {
             if (status.name().SerializeAsString() == resource_name.SerializeAsString()) {
                 status_name_is_known = true;
                 break;
@@ -194,13 +194,13 @@ void RobotService_::stream_status(
     ResourceName r;
     std::unordered_map<std::string, std::unordered_map<std::string, ProtoType*>> extra;
     grpc::StatusCode status = grpc::StatusCode::OK;
-    for (auto ex : request->extra()) {
+    for (auto& ex : request->extra()) {
         google::protobuf::Struct struct_ = ex.params();
         std::unordered_map<std::string, ProtoType*> value_map = struct_to_map(struct_);
         std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
 
-        for (auto comp : manager.components) {
+        for (auto& comp : manager.components) {
             ComponentBase component = comp.second;
             ResourceName rn = component.get_resource_name(component.name);
             std::string rn_ = rn.SerializeAsString();

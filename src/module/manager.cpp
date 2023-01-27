@@ -17,7 +17,7 @@ void ModuleManager::reconfigure_resource(Component cfg, std::vector<std::string>
     viam::module::v1::ReconfigureResourceResponse resp;
     grpc::ServerContext ctx;
 
-    for (auto dep : dependencies) {
+    for (auto& dep : dependencies) {
         *req.mutable_dependencies()->Add() = dep;
     }
     *req.mutable_config() = cfg.to_proto();
@@ -48,7 +48,7 @@ std::shared_ptr<ModuleService_> ModuleManager::get_module(Component cfg) {
             if (!(api.first.subtype == cfg_subtype)) {
                 continue;
             }
-            for (auto model : module->handles.handles.at(api.first)) {
+            for (auto& model : module->handles.handles.at(api.first)) {
                 if (cfg.model == model) {
                     return ms;
                 }
@@ -67,7 +67,7 @@ void ModuleManager::add_resource(Component cfg, std::vector<std::string> depende
 
     viam::app::v1::ComponentConfig proto_cfg = cfg.to_proto();
 
-    for (auto dep : dependencies) {
+    for (auto& dep : dependencies) {
         *req.mutable_dependencies()->Add() = dep;
     }
     *req.mutable_config() = proto_cfg;

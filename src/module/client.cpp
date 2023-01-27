@@ -39,7 +39,7 @@ void ModuleClient::add_resource(Component cfg, std::vector<std::string> dependen
 
     viam::app::v1::ComponentConfig proto_cfg = cfg.to_proto();
 
-    for (auto dep : dependencies) {
+    for (auto& dep : dependencies) {
         *req.mutable_dependencies()->Add() = dep;
     }
     *req.mutable_config() = proto_cfg;
@@ -56,7 +56,7 @@ void ModuleClient::reconfigure_resource(Component cfg, std::vector<std::string> 
     viam::module::v1::ReconfigureResourceResponse resp;
     grpc::ClientContext ctx;
 
-    for (auto dep : dependencies) {
+    for (auto& dep : dependencies) {
         *req.mutable_dependencies()->Add() = dep;
     }
     *req.mutable_config() = cfg.to_proto();

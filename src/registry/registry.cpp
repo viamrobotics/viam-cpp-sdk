@@ -104,7 +104,7 @@ ComponentRegistration Registry::lookup_component(Subtype subtype, Model model) {
 
 std::unordered_map<Subtype, ServiceRegistration> Registry::registered_services() {
     std::unordered_map<Subtype, ServiceRegistration> registry;
-    for (auto service : services) {
+    for (auto& service : services) {
         registry.insert(service);
     }
     return registry;
@@ -112,7 +112,7 @@ std::unordered_map<Subtype, ServiceRegistration> Registry::registered_services()
 
 std::unordered_map<Subtype, ComponentRegistration> Registry::registered_components() {
     std::unordered_map<Subtype, ComponentRegistration> registry;
-    for (auto component : components) {
+    for (auto& component : components) {
         registry.insert(component);
     }
     return registry;

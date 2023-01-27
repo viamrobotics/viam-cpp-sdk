@@ -99,7 +99,7 @@ void Module::dial() {
 std::unordered_map<Name, ResourceBase> get_dependencies(
     google::protobuf::RepeatedPtrField<std::string> proto, std::shared_ptr<Module> module) {
     Dependencies deps;
-    for (auto dep : proto) {
+    for (auto& dep : proto) {
         Name name(dep);
         ResourceBase resource = module->get_parent_resource(name);
         deps.emplace(name, resource);

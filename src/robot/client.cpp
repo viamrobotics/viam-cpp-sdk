@@ -380,7 +380,7 @@ void RobotClient::stop_all(std::unordered_map<ResourceName,
     OrientationConfig o;
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
-    for (auto xtra : extra) {
+    for (auto& xtra : extra) {
         ResourceName name = xtra.first;
         std::unordered_map<std::string, ProtoType*> params = xtra.second;
         google::protobuf::Struct s = map_to_struct(params);

@@ -66,7 +66,7 @@ ProtoType::ProtoType(Value value) {
         case Value::KindCase::kListValue: {
             std::vector<ProtoType*> vec;
             google::protobuf::ListValue list_val = value.list_value();
-            for (auto val : value.list_value().values()) {
+            for (auto& val : value.list_value().values()) {
                 ProtoType p = ProtoType(val);
                 vec.push_back(&p);
             }
@@ -101,7 +101,7 @@ Struct map_to_struct(std::unordered_map<std::string, ProtoType*> dict) {
 std::unordered_map<std::string, ProtoType*> struct_to_map(Struct struct_) {
     google::protobuf::Map<std::string, Value> struct_map = struct_.fields();
     std::unordered_map<std::string, ProtoType*> map;
-    for (auto val : struct_.fields()) {
+    for (auto& val : struct_.fields()) {
         std::string key = val.first;
         ProtoType value(val.second);
         map.emplace(key, &value);
@@ -149,7 +149,7 @@ Value ProtoType::proto_value() {
             ::google::protobuf::ListValue l = *v.mutable_list_value();
             google::protobuf::RepeatedPtrField<Value>* values = l.mutable_values();
             std::vector<ProtoType*> vec = boost::get<std::vector<ProtoType*>>(proto_type);
-            for (auto val : vec) {
+            for (auto& val : vec) {
                 *values->Add() = val->proto_value();
             }
             break;

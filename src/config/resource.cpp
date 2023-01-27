@@ -131,7 +131,7 @@ viam::app::v1::ComponentConfig Component::to_proto() {
     google::protobuf::Struct s = map_to_struct(attributes);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
 
-    for (auto svc_cfg : service_config) {
+    for (auto& svc_cfg : service_config) {
         viam::app::v1::ResourceLevelServiceConfig cfg;
         *cfg.mutable_type() = svc_cfg.type;
         *cfg.mutable_attributes() = map_to_struct(svc_cfg.attributes);
@@ -144,7 +144,7 @@ viam::app::v1::ComponentConfig Component::to_proto() {
     *proto_cfg.mutable_api() = api.to_string();
     *proto_cfg.mutable_model() = model.to_string();
     *proto_cfg.mutable_attributes() = map_to_struct(attributes);
-    for (auto dep : depends_on) {
+    for (auto& dep : depends_on) {
         *proto_cfg.mutable_depends_on()->Add() = dep;
     }
     *proto_cfg.mutable_frame() = frame.to_proto();

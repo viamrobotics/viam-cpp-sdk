@@ -7,6 +7,7 @@
 #include "robot/v1/robot.pb.h"
 
 class HandlerMap {
+    HandlerMap();
     std::unordered_map<RPCSubtype, std::vector<Model>> handles;
 
     viam::module::v1::HandlerMap to_proto();
@@ -32,23 +33,25 @@ viam::module::v1::HandlerMap HandlerMap::to_proto() {
     return proto;
 };
 
+HandlerMap::HandlerMap(){};
+
 HandlerMap HandlerMap::from_proto(viam::module::v1::HandlerMap proto) {
     HandlerMap hm;
 
     google::protobuf::RepeatedPtrField<viam::module::v1::HandlerDefinition> handlers =
         proto.handlers();
 
-    for (auto handler : handlers) {
+    for (auto& handler : handlers) {
         std::vector<Model> models;
         viam::robot::v1::ResourceRPCSubtype rpc_subtype = handler.subtype();
         viam::common::v1::ResourceName name = rpc_subtype.subtype();
-        std::string namespace_ = name.namespace_();
-        std::string resource_type = name.type();
-        std::string resource_subtype = name.subtype();
+        std::string namespace_ = handler.subtype().subtype().namespace_();
+        std::string resource_type = handler.subtype().subtype().type();
+        std::string resource_subtype = handler.subtype().subtype().subtype();
         Subtype subtype(namespace_, resource_type, resource_subtype);
         const google::protobuf::Descriptor* descriptor = handler.GetDescriptor();
         RPCSubtype handle(subtype, *descriptor);
-        for (auto mod : handler.models()) {
+        for (auto& mod : handler.models()) {
             try {
                 Model model(mod);
                 models.push_back(model);

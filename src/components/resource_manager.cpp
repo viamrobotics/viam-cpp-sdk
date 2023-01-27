@@ -31,7 +31,7 @@ ResourceManager::ResourceManager() {}
 /// Register a new component with the registry.
 /// Components may not have the same name.
 ResourceManager::ResourceManager(std::vector<ComponentBase> components) {
-    for (auto component : components) {
+    for (auto& component : components) {
         register_component(component);
     }
 }

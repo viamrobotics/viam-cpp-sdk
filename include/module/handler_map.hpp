@@ -4,6 +4,7 @@
 
 class HandlerMap {
    public:
+    HandlerMap();
     std::unordered_map<RPCSubtype, std::vector<Model>> handles;
 
     viam::module::v1::HandlerMap to_proto();

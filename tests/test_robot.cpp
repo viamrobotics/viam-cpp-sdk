@@ -302,7 +302,7 @@ int test_resource_names(TestService service) {
 
     RepeatedPtrField<ResourceName> resources = resp.resources();
     std::vector<ResourceName> from_call;
-    for (auto resource : resources) {
+    for (auto& resource : resources) {
         from_call.push_back(resource);
     }
 

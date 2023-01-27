@@ -10,14 +10,14 @@ class Type {
     std::string namespace_;
     std::string resource_type;
 
-    std::string to_string();
+    virtual std::string to_string() const;
 };
 
 class Subtype : public Type {
    public:
     std::string resource_subtype;
 
-    const std::string to_string();
+    std::string to_string() const;
     Subtype(std::string subtype);
     Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype);
     Subtype(Type type, std::string resource_subtype);
@@ -31,8 +31,9 @@ class Name : public Subtype {
     std::string remote_name;
     std::string name;
 
-    const std::string to_string() const;
-    const Subtype to_subtype() const;
+    std::string to_string() const;
+    // CR erodkin: this isn't necessary, instead this->Subtype::to_string();
+    const Subtype* to_subtype() const;
     viam::common::v1::ResourceName to_proto();
     Name(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
@@ -44,12 +45,17 @@ class RPCSubtype {
    public:
     Subtype subtype;
     std::string proto_service_name;
-    google::protobuf::Descriptor descriptor;
+    const google::protobuf::Descriptor* descriptor;
     size_t operator()(RPCSubtype const& key) const {
         Subtype subtype = key.subtype;
         std::string hash = subtype.to_string() + proto_service_name;
         return std::hash<std::string>()(hash);
     }
+
+    bool operator<(const RPCSubtype& rhs) const {
+        return (subtype.to_string() + proto_service_name + descriptor->DebugString()) <
+               (rhs.subtype.to_string() + rhs.proto_service_name + rhs.descriptor->DebugString());
+    };
 
     RPCSubtype(Subtype subtype, const google::protobuf::Descriptor& descriptor);
     RPCSubtype(Subtype subtype,
@@ -67,12 +73,14 @@ class ModelFamily {
     std::string to_string();
 };
 
-class Model : public ModelFamily {
+class Model {
    public:
+    ModelFamily model_family;
     std::string model_name;
 
     Model(std::string namespace_, std::string family, std::string model_name);
     Model(ModelFamily model, std::string model_name);
+    static Model from_str(std::string model);
     Model(std::string model);
     std::string to_string();
     friend bool operator==(Model& lhs, Model& rhs);
