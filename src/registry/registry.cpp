@@ -61,8 +61,8 @@ std::unordered_map<Subtype, ServiceRegistration> Registry::registered_services()
     return registry;
 }
 
-std::unordered_map<Subtype, ComponentRegistration> Registry::registered_components() {
-    std::unordered_map<Subtype, ComponentRegistration> registry;
+std::unordered_map<std::string, ComponentRegistration> Registry::registered_components() {
+    std::unordered_map<std::string, ComponentRegistration> registry;
     for (auto& component : components) {
         registry.insert(component);
     }

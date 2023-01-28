@@ -63,7 +63,7 @@ std::unordered_map<std::string, ProtoType*> struct_to_map(Struct struct_) {
     std::unordered_map<std::string, ProtoType*> map;
     for (auto& val : struct_.fields()) {
         std::string key = val.first;
-        ProtoType value(val.second);
+        ProtoType value = ProtoType::of_value(val.second);
         map.emplace(key, &value);
     }
 

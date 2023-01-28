@@ -48,7 +48,7 @@ class RobotClient {
     void block_for_operation(std::string id);
     void stop_all();
     void stop_all(std::unordered_map<ResourceName,
-                                     std::unordered_map<std::string, ProtoType>,
+                                     std::unordered_map<std::string, ProtoType*>,
                                      ResourceNameHasher,
                                      ResourceNameEqual> extra);
     void cancel_operation(std::string id);

@@ -48,7 +48,7 @@ class Registry {
     static std::unordered_map<std::string, ComponentRegistration> registered_components();
 
    private:
-    static std::unordered_map<Subtype, ComponentRegistration> components;
-    static std::unordered_map<Subtype, ServiceRegistration> services;
+    static std::unordered_map<std::string, ComponentRegistration> components;
+    static std::unordered_map<std::string, ServiceRegistration> services;
 };
 
