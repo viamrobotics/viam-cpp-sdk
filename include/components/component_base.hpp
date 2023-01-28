@@ -1,20 +1,20 @@
-#ifndef COMPONENT_BASE_H
-#define COMPONENT_BASE_H
+#pragma once
 
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 
 #include <resource/resource_base.hpp>
 #include <string>
-
 class ComponentType {
    public:
     std::string name;
-    ComponentType(){};
+    friend bool operator==(ComponentType& lhs, ComponentType& rhs);
     ComponentType(std::string name) {
         name = name;
     }
-    friend bool operator==(ComponentType& lhs, ComponentType& rhs);
+    ComponentType() {
+        name = "ComponentBase";
+    }
 };
 
 class ComponentBase : public ResourceBase {
@@ -24,6 +24,6 @@ class ComponentBase : public ResourceBase {
     std::vector<ComponentType> component_hierarchy;
 
     viam::common::v1::ResourceName get_resource_name(std::string name);
+    ComponentBase();
 };
 
-#endif

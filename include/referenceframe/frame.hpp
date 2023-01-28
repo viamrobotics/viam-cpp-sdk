@@ -1,21 +1,17 @@
-#ifndef FRAME_H
-#define FRAME_H
+#pragma once
+#include <app/v1/robot.pb.h>
 
 #include <spatialmath/geometry.hpp>
 #include <spatialmath/orientation.hpp>
 #include <string>
 
-#include "app/v1/robot.pb.h"
 class LinkConfig {
-   public:
     std::string id;
-    std::tuple<double, double, double> translation;
+    Viam::SDK::translation translation;
     OrientationConfig orientation;
+    GeometryConfig geometry;
     std::string parent;
-
     viam::app::v1::Frame to_proto();
     static LinkConfig from_proto(viam::app::v1::Frame proto);
 };
-
-#endif
 

@@ -1,29 +1,11 @@
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 
+#include <components/component_base.hpp>
 #include <resource/resource_base.hpp>
 #include <string>
-using viam::common::v1::ResourceName;
-class ComponentType {
-   public:
-    std::string name;
-    friend bool operator==(ComponentType& lhs, ComponentType& rhs);
-    ComponentType(std::string name) {
-        name = name;
-    }
-    ComponentType() {
-        name = "ComponentBase";
-    }
-};
 
-class ComponentBase : public ResourceBase {
-   public:
-    std::string name;
-    ComponentType type;
-    std::vector<ComponentType> component_hierarchy;
-    ResourceName get_resource_name(std::string name);
-    ComponentBase();
-};
+using viam::common::v1::ResourceName;
 
 bool operator==(ComponentType& lhs, ComponentType& rhs) {
     return lhs.name == rhs.name;

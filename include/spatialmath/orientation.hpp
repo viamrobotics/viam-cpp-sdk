@@ -1,5 +1,4 @@
-#ifndef ORIENTATION_H
-#define ORIENTATION_H
+#pragma once
 
 #include <app/v1/robot.pb.h>
 
@@ -8,21 +7,16 @@
 #include <string>
 #include <vector>
 
-namespace SDK = Viam::SDK;
-
-class orientation {
-   public:
-    boost::variant<SDK::axis_angles,
-                   SDK::euler_angles,
-                   SDK::orientation_vector,
-                   SDK::orientation_vector_degrees,
-                   SDK::quaternion>
-        orientation_;
-};
+typedef boost::variant<Viam::SDK::axis_angles,
+                       Viam::SDK::euler_angles,
+                       Viam::SDK::orientation_vector,
+                       Viam::SDK::orientation_vector_degrees,
+                       Viam::SDK::quaternion>
+    orientation;
 
 class OrientationConfig {
    public:
-    SDK::OrientationType type;
+    Viam::SDK::OrientationType type;
     std::vector<std::uint8_t> value;
     orientation orientation_;
     viam::app::v1::Orientation to_proto();
@@ -30,4 +24,3 @@ class OrientationConfig {
     static OrientationConfig from_proto(viam::app::v1::Orientation proto);
 };
 
-#endif

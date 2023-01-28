@@ -23,50 +23,11 @@
 #include <resource/resource_base.hpp>
 #include <robot/client.hpp>
 // #include <robot/service.hpp>
+#include <module/service.hpp>
 #include <services/reconfigurable_service.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
-class Module {
-   public:
-    // std::shared_ptr<RobotService_>* parent;
-    std::mutex lock;
-    std::string name;
-    std::string exe;
-    std::string addr;
-    bool ready;
-    HandlerMap handles;
-    std::shared_ptr<Channel> channel;
-    std::unordered_map<Subtype, SubtypeService> services;
-    void dial();
-    ResourceBase get_parent_resource(Name name);
-    void set_ready();
-    Module();
-    // Module(std::shared_ptr<RobotService_>* parent);
-};
-
-class ModuleService_ : public ComponentServiceBase,
-                       public viam::module::v1::ModuleService::Service {
-   public:
-    ::grpc::Status AddResource(::grpc::ServerContext* context,
-                               const ::viam::module::v1::AddResourceRequest* request,
-                               ::viam::module::v1::AddResourceResponse* response) override;
-
-    ::grpc::Status ReconfigureResource(
-        ::grpc::ServerContext* context,
-        const ::viam::module::v1::ReconfigureResourceRequest* request,
-        ::viam::module::v1::ReconfigureResourceResponse* response) override;
-
-    ::grpc::Status RemoveResource(::grpc::ServerContext* context,
-                                  const ::viam::module::v1::RemoveResourceRequest* request,
-                                  ::viam::module::v1::RemoveResourceResponse* response) override;
-
-    ::grpc::Status Ready(::grpc::ServerContext* context,
-                         const ::viam::module::v1::ReadyRequest* request,
-                         ::viam::module::v1::ReadyResponse* response) override;
-
-    std::shared_ptr<Module> module;
-};
 Module::Module(){};
 
 // Module::Module(std::shared_ptr<RobotService_>* parent) : parent(parent) {
@@ -232,11 +193,11 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
     ::viam::module::v1::RemoveResourceResponse* response) {
     std::shared_ptr<Module> m = this->module;
     Name name(request->name());
-    Subtype subtype = name.to_subtype();
-    if (m->services.find(subtype) == m->services.end()) {
-        throw "no grpc service for " + subtype.to_string();
+    const Subtype* subtype = name.to_subtype();
+    if (m->services.find(*subtype) == m->services.end()) {
+        throw "no grpc service for " + subtype->to_string();
     }
-    SubtypeService& svc = m->services.at(name.to_subtype());
+    SubtypeService& svc = m->services.at(*name.to_subtype());
     ResourceBase res = svc.resource(name.name);
 
     try {
@@ -245,7 +206,7 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
-    if (name.resource_type == COMPONENT && !(name.to_subtype() == GENERIC_SUBTYPE)) {
+    if (name.resource_type == COMPONENT && !(name.to_subtype() == &GENERIC_SUBTYPE)) {
         if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
             throw "no generic service";
         }

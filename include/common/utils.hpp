@@ -1,5 +1,4 @@
-#ifndef UTILS_H
-#define UTILS_H
+#pragma once
 
 #include <common/v1/common.pb.h>
 
@@ -11,8 +10,8 @@
 #include <unordered_map>
 
 using viam::common::v1::ResourceName;
-const std::string COMPONENT;
-const std::string RDK;
+const std::string COMPONENT = "component";
+const std::string RDK = "rdk";
 
 std::vector<viam::common::v1::ResourceName> resource_names_for_component(ComponentBase component);
 
@@ -32,4 +31,3 @@ class ResourceNameEqual {
     }
 };
 
-#endif

@@ -2,25 +2,8 @@
 
 #include <common/utils.hpp>
 #include <resource/resource_base.hpp>
+#include <services/service_base.hpp>
 #include <string>
-
-class ServiceType {
-    std::string name;
-    friend bool operator==(ServiceType& lhs, ServiceType& rhs);
-    ServiceType(std::string name) {
-        name = name;
-    }
-    ServiceType() {
-        name = "ServiceBase";
-    }
-};
-
-class ServiceBase : public ResourceBase {
-    ServiceType type;
-    std::string name;
-    ResourceName get_resource_name(std::string name);
-    ServiceBase();
-};
 
 ResourceName ServiceBase::get_resource_name(std::string name_) {
     // TODO (RSDK-1631): test, confirm whether we need to split on

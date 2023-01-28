@@ -22,6 +22,6 @@ class ServiceBase : public ResourceBase {
     std::string name;
     ServiceType type;
     std::vector<ServiceType> service_hierarchy;
-    viam::common::v1::ResourceName get_resource_name(std::string name);
+    virtual viam::common::v1::ResourceName get_resource_name(std::string name);
 };
 

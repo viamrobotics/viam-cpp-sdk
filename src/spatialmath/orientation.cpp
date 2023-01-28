@@ -1,28 +1,14 @@
+#include <app/v1/robot.pb.h>
+
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <spatialmath/orientation.hpp>
 #include <spatialmath/orientation_types.hpp>
 #include <string>
 #include <vector>
 
-#include "app/v1/robot.pb.h"
 namespace SDK = Viam::SDK;
 namespace proto = viam::app::v1;
-
-typedef boost::variant<SDK::axis_angles,
-                       SDK::euler_angles,
-                       SDK::orientation_vector,
-                       SDK::orientation_vector_degrees,
-                       SDK::quaternion>
-    orientation;
-
-class OrientationConfig {
-    SDK::OrientationType type;
-    orientation orientation_;
-
-    std::vector<std::uint8_t> value;
-    proto::Orientation to_proto();
-    static OrientationConfig from_proto(proto::Orientation proto);
-};
 
 OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     OrientationConfig cfg;

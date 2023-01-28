@@ -7,26 +7,13 @@
 
 #include <boost/log/trivial.hpp>
 #include <config/resource.hpp>
+#include <module/client.hpp>
 #include <module/handler_map.hpp>
 #include <resource/resource.hpp>
 #include <rpc/dial.hpp>
 
 using viam::module::v1::ModuleService;
 using Viam::SDK::ViamChannel;
-class ModuleClient {
-   public:
-    std::mutex lock;
-    std::unique_ptr<ModuleService::Stub> stub_;
-    HandlerMap handles;
-
-    ModuleClient(ViamChannel channel);
-    void add_resource(Component cfg, std::vector<std::string> dependencies);
-
-    void reconfigure_resource(Component cfg, std::vector<std::string> dependencies);
-    void remove_resource(Name name);
-
-    void ready(std::string address);
-};
 
 ModuleClient::ModuleClient(ViamChannel channel) {
     stub_ = std::move(ModuleService::NewStub(channel.channel));
@@ -96,7 +83,7 @@ void ModuleClient::ready(std::string address) {
     }
 
     viam::module::v1::HandlerMap proto = resp.handlermap();
-    HandlerMap handler_map = HandlerMap::from_proto(proto);
+    HandlerMap_ handler_map = HandlerMap_::from_proto(proto);
 
     lock.lock();
     handles = handler_map;

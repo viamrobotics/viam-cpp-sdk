@@ -26,6 +26,8 @@ class Subtype : public Type {
     friend bool operator==(const Subtype& lhs, const Subtype& rhs);
 };
 
+// CR erodkin: instead of inheriting from Subtype probably this should just have a Subtype as a
+// member
 class Name : public Subtype {
    public:
     std::string remote_name;

@@ -26,7 +26,6 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
     RobotService_();
     RobotService_(std::shared_ptr<ModuleManager> mm);
     static std::shared_ptr<RobotService_> create();
-    std::shared_ptr<ModuleManager> mod_manager;
     ComponentBase resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
@@ -43,6 +42,7 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                            ::viam::robot::v1::StopAllResponse* response) override;
 
    private:
+    std::shared_ptr<ModuleManager> mod_manager;
     std::mutex lock;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);

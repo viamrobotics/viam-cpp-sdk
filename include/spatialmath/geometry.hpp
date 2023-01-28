@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_H
-#define GEOMETRY_H
+#pragma once
+
 #include <common/v1/common.pb.h>
 
 #include <spatialmath/orientation.hpp>
@@ -19,4 +19,3 @@ struct GeometryConfig {
     static GeometryConfig from_proto(viam::common::v1::Geometry proto);
 };
 
-#endif

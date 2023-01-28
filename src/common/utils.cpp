@@ -4,6 +4,7 @@
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <common/utils.hpp>
 #include <components/component_base.hpp>
 #include <registry/registry.hpp>
 #include <tuple>
@@ -11,8 +12,6 @@
 #include <vector>
 
 using viam::common::v1::ResourceName;
-const std::string COMPONENT = "component";
-const std::string RDK = "rdk";
 
 std::vector<ResourceName> resource_names_for_component(ComponentBase component) {
     std::string* component_type;
@@ -41,18 +40,3 @@ std::vector<ResourceName> resource_names_for_component(ComponentBase component) 
     return resource_names;
 }
 
-class ResourceNameHasher {
-    size_t operator()(ResourceName const& key) const {
-        return std::hash<std::string>()(key.SerializeAsString());
-    }
-};
-
-class ResourceNameEqual {
-    bool operator()(ResourceName const& t1, ResourceName const& t2) const {
-        return !(t1.SerializeAsString().compare(t2.SerializeAsString()));
-    }
-
-    static bool check_equal(ResourceName const& r1, ResourceName const& r2) {
-        return r1.SerializeAsString().compare(r2.SerializeAsString());
-    }
-};

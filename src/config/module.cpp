@@ -1,17 +1,9 @@
+#include <config/module.hpp>
 #include <filesystem>
 #include <regex>
 #include <string>
 
 const std::string RESERVED_MODULE_NAME = "parent";
-
-class ModuleConfig {
-    std::string name;
-    std::string exe_path;
-
-    void validate(std::string path);
-
-    ModuleConfig(std::string name, std::string exe_path);
-};
 
 void ModuleConfig::validate(std::string path) {
     if (!std::__fs::filesystem::exists(exe_path)) {

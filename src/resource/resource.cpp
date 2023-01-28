@@ -178,3 +178,13 @@ std::string Model::to_string() {
     return mf + ":" + model_name;
 }
 
+// CR erodkin: delete these
+Model foo() {
+    ModelFamily mf{"my namespace", "my family"};
+    Model m{mf, "my name"};
+    return m;
+}
+
+Model bar() {
+    return {{"my namespace", "my family"}, "my name"};
+}

@@ -10,19 +10,21 @@
 
 class Module {
    public:
+    // // CR erodkin: fix
     // std::shared_ptr<RobotService_>* parent;
     std::mutex lock;
     std::string name;
     std::string exe;
     std::string addr;
     bool ready;
-    HandlerMap handles;
+    HandlerMap_ handles;
     std::shared_ptr<grpc::Channel> channel;
     std::unordered_map<Subtype, SubtypeService> services;
     void dial();
     ResourceBase get_parent_resource(Name name);
     void set_ready();
     Module();
+    // // CR erodkin: fix
     // Module(std::shared_ptr<RobotService_>* parent);
 };
 

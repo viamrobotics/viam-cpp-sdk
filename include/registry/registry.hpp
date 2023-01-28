@@ -1,5 +1,4 @@
-#ifndef REGISTRY_H
-#define REGISTRY_H
+#pragma once
 
 #include <grpcpp/channel.h>
 #include <robot/v1/robot.pb.h>
@@ -32,6 +31,13 @@ typedef std::unordered_map<Name, ResourceBase> Dependencies;
 
 class Registry {
    public:
+    /// Registers a component with the Registry
+    /// Args:
+    /// 	component (ComponentRegistration): object containing component
+    /// 	registration data
+    ///
+    /// Raises:
+    /// 	throws error if component already exists in the registry
     void register_component(ComponentRegistration component);
     static ServiceRegistration lookup_service(std::string name);
     static ServiceRegistration lookup_service(Subtype subtype, Model model);
@@ -40,6 +46,9 @@ class Registry {
     static std::unordered_map<Subtype, ServiceRegistration> registered_services();
 
     static std::unordered_map<std::string, ComponentRegistration> registered_components();
+
+   private:
+    static std::unordered_map<Subtype, ComponentRegistration> components;
+    static std::unordered_map<Subtype, ServiceRegistration> services;
 };
 
-#endif

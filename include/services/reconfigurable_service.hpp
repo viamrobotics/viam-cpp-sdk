@@ -1,3 +1,5 @@
+#pragma once
+
 #include <config/resource.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>

@@ -1,20 +1,12 @@
+#include <common/v1/common.pb.h>
 #include <module/v1/module.pb.h>
+#include <robot/v1/robot.pb.h>
 
 #include <boost/log/trivial.hpp>
+#include <module/handler_map.hpp>
 #include <resource/resource.hpp>
 
-#include "common/v1/common.pb.h"
-#include "robot/v1/robot.pb.h"
-
-class HandlerMap {
-    HandlerMap();
-    std::unordered_map<RPCSubtype, std::vector<Model>> handles;
-
-    viam::module::v1::HandlerMap to_proto();
-    static HandlerMap from_proto(viam::module::v1::HandlerMap proto);
-};
-
-viam::module::v1::HandlerMap HandlerMap::to_proto() {
+viam::module::v1::HandlerMap HandlerMap_::to_proto() {
     viam::module::v1::HandlerMap proto;
     for (auto& h : this->handles) {
         viam::module::v1::HandlerDefinition hd;
@@ -33,10 +25,10 @@ viam::module::v1::HandlerMap HandlerMap::to_proto() {
     return proto;
 };
 
-HandlerMap::HandlerMap(){};
+HandlerMap_::HandlerMap_(){};
 
-HandlerMap HandlerMap::from_proto(viam::module::v1::HandlerMap proto) {
-    HandlerMap hm;
+HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
+    HandlerMap_ hm;
 
     google::protobuf::RepeatedPtrField<viam::module::v1::HandlerDefinition> handlers =
         proto.handlers();

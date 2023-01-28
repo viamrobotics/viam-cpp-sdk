@@ -3,85 +3,45 @@
 #include <boost/blank.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <common/proto_type.hpp>
 #include <unordered_map>
 #include <vector>
 
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
-class ProtoType;
 Struct map_to_struct(std::unordered_map<std::string, ProtoType*> dict);
 std::unordered_map<std::string, ProtoType*> struct_to_map(Struct struct_);
 
 // float, string, struct, array, struct(map from string to any of the above)
-class ProtoType {
-   public:
-    boost::variant<boost::blank,
-                   bool,
-                   std::string,
-                   int,
-                   double,
-                   std::unordered_map<std::string, ProtoType*>,
-                   std::vector<ProtoType*>>
-        proto_type;
-    ProtoType() {
-        proto_type = boost::blank();
-    }
-    ProtoType(bool b) {
-        proto_type = b;
-    }
-    ProtoType(std::string s) {
-        proto_type = s;
-    }
-    ProtoType(int i) {
-        proto_type = i;
-    }
-    ProtoType(double d) {
-        proto_type = d;
-    }
-    ProtoType(std::unordered_map<std::string, ProtoType*> m) {
-        proto_type = m;
-    }
-    ProtoType(std::vector<ProtoType*> v) {
-        proto_type = v;
-    }
-    ProtoType(Value value);
-    Value proto_value();
-};
 
-ProtoType::ProtoType(Value value) {
+ProtoType ProtoType::of_value(Value value) {
     switch (value.kind_case()) {
         case Value::KindCase::kBoolValue: {
-            proto_type = value.bool_value();
-            break;
+            return ProtoType(value.bool_value());
         }
         case Value::KindCase::kStringValue: {
-            proto_type = value.string_value();
-            break;
+            return ProtoType(value.string_value());
         }
         case Value::KindCase::kNumberValue: {
-            proto_type = value.number_value();
-            break;
+            return ProtoType(value.number_value());
         }
         case Value::KindCase::kListValue: {
             std::vector<ProtoType*> vec;
             google::protobuf::ListValue list_val = value.list_value();
             for (auto& val : value.list_value().values()) {
-                ProtoType p = ProtoType(val);
+                ProtoType p = ProtoType::of_value(val);
                 vec.push_back(&p);
             }
-            proto_type = vec;
-            break;
+            return ProtoType(vec);
         }
         case Value::KindCase::kStructValue: {
             std::unordered_map<std::string, ProtoType*> map = struct_to_map(value.struct_value());
-            proto_type = map;
-            break;
+            return ProtoType(map);
         }
         case Value::KindCase::KIND_NOT_SET:
         case Value::KindCase::kNullValue: {
-            proto_type = boost::blank();
-            break;
+            return ProtoType();
         }
     }
 };

@@ -1,5 +1,4 @@
-#ifndef PROTOTYPE_H
-#define PROTOTYPE_H
+#pragma once
 
 #include <google/protobuf/struct.pb.h>
 
@@ -38,6 +37,8 @@ class ProtoType {
         proto_type = v;
     }
 
+    static ProtoType of_value(google::protobuf::Value value);
+
     google::protobuf::Value proto_value();
 };
 
@@ -45,4 +46,3 @@ std::unordered_map<std::string, ProtoType*> struct_to_map(google::protobuf::Stru
 
 google::protobuf::Struct map_to_struct(std::unordered_map<std::string, ProtoType*> dict);
 
-#endif

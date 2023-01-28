@@ -1,3 +1,5 @@
+#pragma once
+
 #include <common/utils.hpp>
 #include <resource/resource.hpp>
 

@@ -1,16 +1,6 @@
+#include <module/manager.hpp>
 #include <module/service.hpp>
 #include <resource/resource.hpp>
-
-class ModuleManager {
-   public:
-    ModuleManager();
-    std::unordered_map<Name, std::shared_ptr<ModuleService_>> modules;
-
-    std::shared_ptr<ModuleService_> get_module(Component cfg);
-    void add_resource(Component cfg, std::vector<std::string> dependencies);
-    void reconfigure_resource(Component cfg, std::vector<std::string> dependencies);
-    void remove_resource(Name name);
-};
 
 void ModuleManager::reconfigure_resource(Component cfg, std::vector<std::string> dependencies) {
     viam::module::v1::ReconfigureResourceRequest req;
