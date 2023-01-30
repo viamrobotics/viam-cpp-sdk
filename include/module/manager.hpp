@@ -3,6 +3,7 @@
 #include <module/service.hpp>
 #include <unordered_map>
 
+class ModuleService_;
 class ModuleManager {
    public:
     ModuleManager();

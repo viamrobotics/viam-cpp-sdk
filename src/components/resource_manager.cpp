@@ -7,6 +7,8 @@
 #include <vector>
 
 ResourceManager::ResourceManager() {}
+std::unordered_map<std::string, ServiceBase> ResourceManager::services;
+std::unordered_map<std::string, ComponentBase> ResourceManager::components;
 
 /// Register a new component with the registry.
 /// Components may not have the same name.
@@ -34,8 +36,6 @@ void ResourceManager::register_component(ComponentBase component) {
 
     components[component.name] = component;
 }
-
-std::unordered_map<std::string, ComponentBase> ResourceManager::components;
 
 ServiceBase ResourceManager::get_service(std::string name, ServiceType of_type) {
     if (services.find(name) == services.end()) {

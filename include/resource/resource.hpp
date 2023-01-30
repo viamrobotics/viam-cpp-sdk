@@ -23,7 +23,8 @@ class Subtype : public Type {
     Subtype(Type type, std::string resource_subtype);
     bool is_component_type();
     bool is_service_type();
-    friend bool operator==(const Subtype& lhs, const Subtype& rhs);
+    friend bool operator==(Subtype const& lhs, Subtype const& rhs);
+    friend bool operator<(const Subtype& lhs, const Subtype& rhs);
 };
 
 // CR erodkin: instead of inheriting from Subtype probably this should just have a Subtype as a
@@ -33,6 +34,7 @@ class Name : public Subtype {
     std::string remote_name;
     std::string name;
 
+    std::string short_name() const;
     std::string to_string() const;
     // CR erodkin: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
@@ -40,6 +42,9 @@ class Name : public Subtype {
     Name(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();
+    // size_t operator()(Name const& key) const {
+    // return std::hash<std::string>()(key.to_string());
+    //}
     friend bool operator==(const Name& lhs, const Name& rhs);
 };
 
@@ -48,11 +53,11 @@ class RPCSubtype {
     Subtype subtype;
     std::string proto_service_name;
     const google::protobuf::Descriptor* descriptor;
-    size_t operator()(RPCSubtype const& key) const {
-        Subtype subtype = key.subtype;
-        std::string hash = subtype.to_string() + proto_service_name;
-        return std::hash<std::string>()(hash);
-    }
+    // size_t operator()(RPCSubtype const& key) const {
+    // Subtype subtype = key.subtype;
+    // std::string hash = subtype.to_string() + proto_service_name;
+    // return std::hash<std::string>()(hash);
+    //}
 
     bool operator<(const RPCSubtype& rhs) const {
         return (subtype.to_string() + proto_service_name + descriptor->DebugString()) <
@@ -72,33 +77,41 @@ class ModelFamily {
     std::string family;
 
     ModelFamily(std::string namespace_, std::string family);
-    std::string to_string();
+    std::string to_string() const;
 };
 
 class Model {
    public:
     ModelFamily model_family;
     std::string model_name;
+    std::string to_string() const;
 
     Model(std::string namespace_, std::string family, std::string model_name);
     Model(ModelFamily model, std::string model_name);
+    Model();
     static Model from_str(std::string model);
-    Model(std::string model);
-    std::string to_string();
-    friend bool operator==(Model& lhs, Model& rhs);
+    friend bool operator==(const Model& lhs, const Model& rhs);
 };
 
 template <>
 struct std::hash<Name> {
-    size_t operator()(Name const& key) const noexcept;
+    size_t operator()(Name const& key) const noexcept {
+        return std::hash<std::string>()(key.to_string());
+    }
 };
 
 template <>
 struct std::hash<RPCSubtype> {
-    size_t operator()(RPCSubtype const& key) const noexcept;
+    size_t operator()(RPCSubtype const& key) const noexcept {
+        Subtype subtype = key.subtype;
+        std::string hash = subtype.to_string() + key.proto_service_name;
+        return std::hash<std::string>()(hash);
+    };
 };
 
 template <>
 struct std::hash<Subtype> {
-    size_t operator()(const Subtype& key) const noexcept;
+    size_t operator()(const Subtype& key) const noexcept {
+        return std::hash<std::string>()(key.to_string());
+    };
 };

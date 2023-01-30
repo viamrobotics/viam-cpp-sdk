@@ -24,7 +24,7 @@ Name Component::resource_name() {
     if (remotes.size() > 1) {
         std::string str_name = remotes.at(remotes.size() - 1);
         remotes.pop_back();
-        std::string remote = std::accumulate(remotes.begin(), remotes.end(), ":");
+        std::string remote = std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
         return Name(this->api, remote, str_name);
     }
     return Name(this->api, "", remotes.at(0));
@@ -96,7 +96,8 @@ viam::app::v1::ComponentConfig Component::to_proto() {
     *proto_cfg.mutable_namespace_() = namespace_;
     *proto_cfg.mutable_type() = type;
     *proto_cfg.mutable_api() = api.to_string();
-    *proto_cfg.mutable_model() = model.to_string();
+    const std::string mm = model.to_string();
+    *proto_cfg.mutable_model() = mm;
     *proto_cfg.mutable_attributes() = map_to_struct(attributes);
     for (auto& dep : depends_on) {
         *proto_cfg.mutable_depends_on()->Add() = dep;
@@ -118,4 +119,7 @@ Service Service::from_component_config(Component cfg) {
     svc.implicit_depends_on = cfg.implicit_depends_on;
     return svc;
 }
+
+Service::Service(){};
+Component::Component() : api(Subtype(RDK, "component", "")){};
 

@@ -7,11 +7,14 @@
 #include <string>
 namespace Viam {
 namespace SDK {
+
+class DialOptions;
 class ViamChannel {
    public:
     std::shared_ptr<grpc::Channel> channel;
     void close();
     ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime);
+    static ViamChannel dial(const char* uri, boost::optional<DialOptions> options);
 
    private:
     const char* path;
@@ -75,8 +78,6 @@ class Options {
         dial_options = dial_options_;
     }
 };
-
-ViamChannel dial(const char* uri, boost::optional<DialOptions> options);
 
 }  // namespace SDK
 }  // namespace Viam

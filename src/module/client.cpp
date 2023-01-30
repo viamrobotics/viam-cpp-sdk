@@ -1,3 +1,4 @@
+#define BOOST_LOG_DYN_LINK 1
 #include <app/v1/robot.pb.h>
 #include <common/v1/common.pb.h>
 #include <grpcpp/support/status.h>

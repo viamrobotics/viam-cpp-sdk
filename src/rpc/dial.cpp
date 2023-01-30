@@ -28,7 +28,14 @@ void ViamChannel::close() {
     free_rust_runtime(rust_runtime);
 };
 
-ViamChannel dial(const char* uri, boost::optional<DialOptions> options) {
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime) {
+    this->channel = channel;
+    this->path = path;
+    this->closed = false;
+    this->rust_runtime = runtime;
+}
+
+ViamChannel ViamChannel::dial(const char* uri, boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();
     DialOptions opts = options.get_value_or(DialOptions());
     const char* payload;
@@ -36,7 +43,7 @@ ViamChannel dial(const char* uri, boost::optional<DialOptions> options) {
     if (opts.credentials) {
         payload = opts.credentials->payload.c_str();
     }
-    char* socket_path = dial(uri, payload, opts.allow_insecure_downgrade, ptr);
+    char* socket_path = ::dial(uri, payload, opts.allow_insecure_downgrade, ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         throw "Unable to establish connecting path!";

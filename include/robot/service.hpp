@@ -21,6 +21,8 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
+class ModuleManager;
+
 class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
    public:
     RobotService_();
@@ -40,9 +42,9 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
     ::grpc::Status StopAll(::grpc::ServerContext* context,
                            const ::viam::robot::v1::StopAllRequest* request,
                            ::viam::robot::v1::StopAllResponse* response) override;
+    std::shared_ptr<ModuleManager> mod_manager;
 
    private:
-    std::shared_ptr<ModuleManager> mod_manager;
     std::mutex lock;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);

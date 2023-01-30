@@ -17,3 +17,6 @@ ResourceName ServiceBase::get_resource_name(std::string name_) {
     return r;
 }
 
+bool operator==(ServiceType& lhs, ServiceType& rhs) {
+    return lhs.name == rhs.name;
+}

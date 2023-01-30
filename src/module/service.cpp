@@ -1,3 +1,4 @@
+#define BOOST_LOG_DYN_LINK 1
 #include <app/v1/robot.pb.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
@@ -18,21 +19,23 @@
 #include <config/resource.hpp>
 #include <memory>
 #include <module/handler_map.hpp>
+#include <module/service.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <robot/client.hpp>
-// #include <robot/service.hpp>
-#include <module/service.hpp>
+#include <robot/service.hpp>
 #include <services/reconfigurable_service.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
 Module::Module(){};
 
-// Module::Module(std::shared_ptr<RobotService_>* parent) : parent(parent) {
-// this->services.emplace(GENERIC_SUBTYPE, SubtypeService());
-//}
+Module::Module(std::shared_ptr<RobotService_>* parent) : parent(parent) {
+    Subtype generic(RDK, COMPONENT, GENERIC);
+    SubtypeService sub_svc;
+    this->services.emplace(generic, sub_svc);
+}
 
 void Module::set_ready() {
     this->lock.lock();
@@ -53,9 +56,9 @@ void Module::dial() {
 }
 
 //// CR erodkin: fix
-// ResourceBase Module::get_parent_resource(Name name) {
-// return this->parent->get()->resource_by_name(name);
-//}
+ResourceBase Module::get_parent_resource(Name name) {
+    return this->parent->get()->resource_by_name(name);
+}
 
 std::unordered_map<Name, ResourceBase> get_dependencies(
     google::protobuf::RepeatedPtrField<std::string> proto, std::shared_ptr<Module> module) {
@@ -135,7 +138,15 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
     SubtypeService& sub_svc = module->services.at(cfg.api);
 
     // see if our resource is reconfigurable. if it is, reconfigure
-    ResourceBase res = sub_svc.resource(cfg.resource_name().name);
+    boost::optional<ResourceBase&> res_opt = sub_svc.resource(cfg.resource_name().name);
+    ResourceBase res;
+    try {
+        res = res_opt.get();
+    } catch (std::exception& exc) {
+        BOOST_LOG_TRIVIAL(error) << "unable to reconfigure resource " << cfg.resource_name().name
+                                 << " as it doesn't exist.";
+        return grpc::Status();
+    }
     try {
         ReconfigurableComponent* rc = static_cast<ReconfigurableComponent*>(&res);
         rc->reconfigure(cfg, deps);
@@ -198,7 +209,15 @@ std::unordered_map<Name, ResourceBase> get_dependencies(
         throw "no grpc service for " + subtype->to_string();
     }
     SubtypeService& svc = m->services.at(*name.to_subtype());
-    ResourceBase res = svc.resource(name.name);
+    boost::optional<ResourceBase&> res_opt = svc.resource(name.name);
+    ResourceBase res;
+    try {
+        res = res_opt.get();
+    } catch (std::exception& exc) {
+        BOOST_LOG_TRIVIAL(error) << "unable to remove resource " << name.to_string()
+                                 << " as it doesn't exist.";
+        return grpc::Status();
+    }
 
     try {
         res.stop();

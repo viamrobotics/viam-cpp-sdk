@@ -38,7 +38,7 @@ std::shared_ptr<ModuleService_> ModuleManager::get_module(Component cfg) {
             if (!(api.first.subtype == cfg_subtype)) {
                 continue;
             }
-            for (auto& model : module->handles.handles.at(api.first)) {
+            for (Model& model : module->handles.handles.at(api.first)) {
                 if (cfg.model == model) {
                     return ms;
                 }

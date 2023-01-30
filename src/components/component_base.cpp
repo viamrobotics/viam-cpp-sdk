@@ -23,3 +23,4 @@ ResourceName ComponentBase::get_resource_name(std::string name_) {
     return r;
 }
 
+ComponentBase::ComponentBase(){};

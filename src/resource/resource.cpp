@@ -2,6 +2,7 @@
 #include <google/protobuf/descriptor.h>
 
 #include <boost/algorithm/string.hpp>
+#include <common/utils.hpp>
 #include <components/component_base.hpp>
 #include <regex>
 #include <resource/resource.hpp>
@@ -65,6 +66,13 @@ std::string Name::to_string() const {
     return subtype_name + "/" + remote_name + ":" + name;
 }
 
+std::string Name::short_name() const {
+    if (remote_name == "") {
+        return remote_name + ":" + name;
+    }
+    return name;
+}
+
 viam::common::v1::ResourceName Name::to_proto() {
     viam::common::v1::ResourceName rn;
     *rn.mutable_namespace_() = this->namespace_;
@@ -104,20 +112,25 @@ Name::Name(Subtype subtype, std::string remote, std::string name) : Subtype("") 
     this->resource_type = subtype.resource_type;
 }
 
-bool operator==(Subtype& lhs, Subtype& rhs) {
-    return lhs.to_string() == rhs.to_string();
-}
-bool operator==(Name& lhs, Name& rhs) {
+bool operator==(const Subtype& lhs, const Subtype& rhs) {
     return lhs.to_string() == rhs.to_string();
 }
 
-bool operator==(RPCSubtype& lhs, RPCSubtype& rhs) {
+bool operator<(const Subtype& lhs, const Subtype& rhs) {
+    return lhs.to_string() < rhs.to_string();
+}
+
+bool operator==(const Name& lhs, const Name& rhs) {
+    return lhs.to_string() == rhs.to_string();
+}
+
+bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {
     return lhs.subtype.to_string() == rhs.subtype.to_string() &&
            lhs.proto_service_name == rhs.proto_service_name &&
            lhs.descriptor->DebugString() == rhs.descriptor->DebugString();
 }
 
-bool operator==(Model& lhs, Model& rhs) {
+bool operator==(const Model& lhs, const Model& rhs) {
     return lhs.to_string() == rhs.to_string();
 }
 
@@ -163,20 +176,22 @@ Model Model::from_str(std::string model) {
     }
 }
 
-std::string ModelFamily::to_string() {
+std::string ModelFamily::to_string() const {
     if (namespace_ == "") {
         return family;
     }
     return namespace_ + ":" + family;
 }
 
-std::string Model::to_string() {
-    std::string mf = model_family.to_string();
+std::string Model::to_string() const {
+    const std::string mf = model_family.to_string();
     if (mf == "") {
         return model_name;
     }
     return mf + ":" + model_name;
 }
+
+Model::Model() : Model(ModelFamily(RDK, BUILTIN), BUILTIN) {}
 
 // CR erodkin: delete these
 Model foo() {

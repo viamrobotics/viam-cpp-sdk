@@ -17,7 +17,6 @@
 
 using viam::robot::v1::Status;
 using Viam::SDK::Credentials;
-// using Viam::SDK::DialOptions;
 using Viam::SDK::Options;
 
 extern "C" void* init_rust_runtime();

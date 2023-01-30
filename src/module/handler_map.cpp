@@ -1,3 +1,4 @@
+#define BOOST_LOG_DYN_LINK 1
 #include <common/v1/common.pb.h>
 #include <module/v1/module.pb.h>
 #include <robot/v1/robot.pb.h>
@@ -11,7 +12,8 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() {
     for (auto& h : this->handles) {
         viam::module::v1::HandlerDefinition hd;
         for (auto& model : h.second) {
-            *hd.mutable_models()->Add() = model.to_string();
+            const std::string m = model.to_string();
+            *hd.mutable_models()->Add() = m;
         }
         viam::robot::v1::ResourceRPCSubtype rpc_subtype;
         viam::common::v1::ResourceName resource_name = Name(h.first.subtype, "", "").to_proto();
@@ -45,7 +47,7 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
         RPCSubtype handle(subtype, *descriptor);
         for (auto& mod : handler.models()) {
             try {
-                Model model(mod);
+                Model model = Model::from_str(mod);
                 models.push_back(model);
             } catch (std::string error) {
                 BOOST_LOG_TRIVIAL(error) << "Error processing model " + mod;

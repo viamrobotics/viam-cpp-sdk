@@ -34,7 +34,7 @@ ServiceRegistration Registry::lookup_service(std::string name) {
 }
 
 ServiceRegistration Registry::lookup_service(Subtype subtype, Model model) {
-    std::string name = subtype.to_string() + model.to_string();
+    const std::string name = subtype.to_string() + model.to_string();
     return lookup_service(name);
 }
 
@@ -49,7 +49,7 @@ ComponentRegistration Registry::lookup_component(std::string name) {
 }
 
 ComponentRegistration Registry::lookup_component(Subtype subtype, Model model) {
-    std::string name = subtype.to_string() + model.to_string();
+    const std::string name = subtype.to_string() + model.to_string();
     return lookup_component(name);
 }
 
@@ -84,3 +84,9 @@ Status ServiceRegistration::create_status(ServiceBase service) {
     *status.mutable_status() = struct_;
     return status;
 }
+
+std::unordered_map<std::string, ComponentRegistration> Registry::components;
+std::unordered_map<std::string, ServiceRegistration> Registry::services;
+
+ServiceRegistration::ServiceRegistration(){};
+ComponentRegistration::ComponentRegistration(){};

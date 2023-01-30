@@ -1,5 +1,6 @@
 #pragma once
 
+#include <boost/optional/optional.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <services/service_base.hpp>
@@ -7,8 +8,8 @@
 
 class SubtypeService : public ServiceBase {
    public:
-    ResourceBase resource(std::string name);
-    void replace_all(std::unordered_map<std::string, ResourceBase> resources);
+    boost::optional<ResourceBase&> resource(std::string name);
+    void replace_all(std::unordered_map<Name, ResourceBase> resources);
     void add(Name name, ResourceBase resource);
     void remove(Name name);
     void replace_one(Name name, ResourceBase resource);
@@ -18,4 +19,6 @@ class SubtypeService : public ServiceBase {
     std::mutex lock;
     std::unordered_map<std::string, ResourceBase> resources;
     std::unordered_map<std::string, std::string> short_names;
+    void do_add(Name name, ResourceBase resource);
+    void do_remove(Name name);
 };

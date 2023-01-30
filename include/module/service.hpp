@@ -2,16 +2,17 @@
 
 #include <module/v1/module.grpc.pb.h>
 
+#include <components/service_base.hpp>
 #include <config/resource.hpp>
 #include <module/handler_map.hpp>
-// #include <robot/service.hpp>
-#include <components/service_base.hpp>
+#include <robot/service.hpp>
 #include <subtype/subtype.hpp>
+
+class RobotService_;
 
 class Module {
    public:
-    // // CR erodkin: fix
-    // std::shared_ptr<RobotService_>* parent;
+    std::shared_ptr<RobotService_>* parent;
     std::mutex lock;
     std::string name;
     std::string exe;
@@ -19,13 +20,12 @@ class Module {
     bool ready;
     HandlerMap_ handles;
     std::shared_ptr<grpc::Channel> channel;
-    std::unordered_map<Subtype, SubtypeService> services;
+    std::unordered_map<Subtype, SubtypeService&> services;
     void dial();
     ResourceBase get_parent_resource(Name name);
     void set_ready();
     Module();
-    // // CR erodkin: fix
-    // Module(std::shared_ptr<RobotService_>* parent);
+    Module(std::shared_ptr<RobotService_>* parent);
 };
 
 class ModuleService_ : public ComponentServiceBase,

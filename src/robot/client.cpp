@@ -219,7 +219,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
 // etc.) 		options: Options for connecting and refreshing
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
     const char* uri = address.c_str();
-    ViamChannel channel = dial(uri, options.dial_options);
+    ViamChannel channel = ViamChannel::dial(uri, options.dial_options);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
     robot->should_close_channel = true;
 
