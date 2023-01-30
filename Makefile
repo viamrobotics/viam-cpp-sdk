@@ -12,8 +12,7 @@ buf: buf-clean
 	@mkdir -p src/gen
 	buf generate buf.build/viamrobotics/goutils --template buf.gen.yaml 
 	buf generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api 
-	buf generate buf.build/viamrobotics/api --template buf.gen.yaml 
-	#buf generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module,app
+	buf generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module,tagger,app
 
 buf-clean:
 	rm -rf src/gen/*

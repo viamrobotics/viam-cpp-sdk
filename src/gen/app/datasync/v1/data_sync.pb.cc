@@ -25,10 +25,9 @@ namespace app {
 namespace datasync {
 namespace v1 {
 PROTOBUF_CONSTEXPR DataCaptureUploadRequest::DataCaptureUploadRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.sensor_contents_)*/{}
-  , /*decltype(_impl_.metadata_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : sensor_contents_()
+  , metadata_(nullptr){}
 struct DataCaptureUploadRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DataCaptureUploadRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,7 +38,7 @@ struct DataCaptureUploadRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DataCaptureUploadRequestDefaultTypeInternal _DataCaptureUploadRequest_default_instance_;
 PROTOBUF_CONSTEXPR DataCaptureUploadResponse::DataCaptureUploadResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct DataCaptureUploadResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DataCaptureUploadResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -50,10 +49,8 @@ struct DataCaptureUploadResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DataCaptureUploadResponseDefaultTypeInternal _DataCaptureUploadResponse_default_instance_;
 PROTOBUF_CONSTEXPR FileUploadRequest::FileUploadRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.upload_packet_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : _oneof_case_{}{}
 struct FileUploadRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FileUploadRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -64,7 +61,7 @@ struct FileUploadRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileUploadRequestDefaultTypeInternal _FileUploadRequest_default_instance_;
 PROTOBUF_CONSTEXPR FileUploadResponse::FileUploadResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct FileUploadResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FileUploadResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -75,10 +72,9 @@ struct FileUploadResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileUploadResponseDefaultTypeInternal _FileUploadResponse_default_instance_;
 PROTOBUF_CONSTEXPR SensorMetadata::SensorMetadata(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.time_requested_)*/nullptr
-  , /*decltype(_impl_.time_received_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : time_requested_(nullptr)
+  , time_received_(nullptr){}
 struct SensorMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SensorMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -89,11 +85,9 @@ struct SensorMetadataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SensorMetadataDefaultTypeInternal _SensorMetadata_default_instance_;
 PROTOBUF_CONSTEXPR SensorData::SensorData(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.metadata_)*/nullptr
-  , /*decltype(_impl_.data_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : metadata_(nullptr)
+  , _oneof_case_{}{}
 struct SensorDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SensorDataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -104,9 +98,8 @@ struct SensorDataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SensorDataDefaultTypeInternal _SensorData_default_instance_;
 PROTOBUF_CONSTEXPR FileData::FileData(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct FileDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FileDataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -117,7 +110,7 @@ struct FileDataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileDataDefaultTypeInternal _FileData_default_instance_;
 PROTOBUF_CONSTEXPR UploadMetadata_MethodParametersEntry_DoNotUse::UploadMetadata_MethodParametersEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct UploadMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UploadMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -128,19 +121,19 @@ struct UploadMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal _UploadMetadata_MethodParametersEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR UploadMetadata::UploadMetadata(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.method_parameters_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_.tags_)*/{}
-  , /*decltype(_impl_.part_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_model_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.method_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_extension_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.session_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : method_parameters_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , tags_()
+  , part_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_model_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , method_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_extension_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , session_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , type_(0)
+{}
 struct UploadMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UploadMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -151,10 +144,9 @@ struct UploadMetadataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadMetadataDefaultTypeInternal _UploadMetadata_default_instance_;
 PROTOBUF_CONSTEXPR CaptureInterval::CaptureInterval(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.start_)*/nullptr
-  , /*decltype(_impl_.end_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : start_(nullptr)
+  , end_(nullptr){}
 struct CaptureIntervalDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CaptureIntervalDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -165,7 +157,7 @@ struct CaptureIntervalDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureIntervalDefaultTypeInternal _CaptureInterval_default_instance_;
 PROTOBUF_CONSTEXPR DataCaptureMetadata_MethodParametersEntry_DoNotUse::DataCaptureMetadata_MethodParametersEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct DataCaptureMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DataCaptureMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -176,17 +168,17 @@ struct DataCaptureMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DataCaptureMetadata_MethodParametersEntry_DoNotUseDefaultTypeInternal _DataCaptureMetadata_MethodParametersEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR DataCaptureMetadata::DataCaptureMetadata(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.method_parameters_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_.tags_)*/{}
-  , /*decltype(_impl_.component_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_model_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.method_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_extension_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.session_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : method_parameters_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , tags_()
+  , component_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_model_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , method_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_extension_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , session_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , type_(0)
+{}
 struct DataCaptureMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DataCaptureMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -197,7 +189,7 @@ struct DataCaptureMetadataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DataCaptureMetadataDefaultTypeInternal _DataCaptureMetadata_default_instance_;
 PROTOBUF_CONSTEXPR TabularCapture_MethodParametersEntry_DoNotUse::TabularCapture_MethodParametersEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct TabularCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TabularCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -208,27 +200,26 @@ struct TabularCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TabularCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal _TabularCapture_MethodParametersEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR TabularCapture::TabularCapture(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.column_names_)*/{}
-  , /*decltype(_impl_.method_parameters_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_.tags_)*/{}
-  , /*decltype(_impl_.org_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.robot_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.part_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.location_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_model_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.method_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.blob_path_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.session_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.interval_)*/nullptr
-  , /*decltype(_impl_.file_size_bytes_)*/int64_t{0}
-  , /*decltype(_impl_.message_count_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : column_names_()
+  , method_parameters_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , tags_()
+  , org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , robot_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , part_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , location_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_model_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , method_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , blob_path_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , session_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , interval_(nullptr)
+  , file_size_bytes_(int64_t{0})
+  , message_count_(0){}
 struct TabularCaptureDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TabularCaptureDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -239,7 +230,7 @@ struct TabularCaptureDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TabularCaptureDefaultTypeInternal _TabularCapture_default_instance_;
 PROTOBUF_CONSTEXPR BinaryCapture_MethodParametersEntry_DoNotUse::BinaryCapture_MethodParametersEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct BinaryCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR BinaryCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -250,27 +241,26 @@ struct BinaryCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BinaryCapture_MethodParametersEntry_DoNotUseDefaultTypeInternal _BinaryCapture_MethodParametersEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR BinaryCapture::BinaryCapture(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.method_parameters_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_.tags_)*/{}
-  , /*decltype(_impl_.org_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.robot_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.part_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.location_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.component_model_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.method_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.blob_path_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.session_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.file_ext_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.interval_)*/nullptr
-  , /*decltype(_impl_.file_size_bytes_)*/int64_t{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : method_parameters_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , tags_()
+  , org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , robot_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , part_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , location_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_model_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , method_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , blob_path_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , session_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , file_ext_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , interval_(nullptr)
+  , file_size_bytes_(int64_t{0}){}
 struct BinaryCaptureDefaultTypeInternal {
   PROTOBUF_CONSTEXPR BinaryCaptureDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -295,8 +285,8 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, _impl_.metadata_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, _impl_.sensor_contents_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadRequest, sensor_contents_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureUploadResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -306,12 +296,12 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _impl_._oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, _impl_.upload_packet_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadRequest, upload_packet_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileUploadResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -324,25 +314,25 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorMetadata, _impl_.time_requested_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorMetadata, _impl_.time_received_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorMetadata, time_requested_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorMetadata, time_received_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, _impl_._oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, _impl_.metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, metadata_),
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, _impl_.data_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::SensorData, data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileData, _impl_.data_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::FileData, data_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata_MethodParametersEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata_MethodParametersEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -359,25 +349,25 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.part_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.component_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.component_model_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.method_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.file_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.method_parameters_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.file_extension_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.tags_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, _impl_.session_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, part_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, component_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, component_model_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, method_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, file_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, method_parameters_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, file_extension_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::UploadMetadata, session_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::CaptureInterval, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::CaptureInterval, _impl_.start_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::CaptureInterval, _impl_.end_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::CaptureInterval, start_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::CaptureInterval, end_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata_MethodParametersEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata_MethodParametersEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -394,15 +384,15 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.component_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.component_model_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.method_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.method_parameters_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.file_extension_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.tags_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, _impl_.session_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, component_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, component_model_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, method_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, method_parameters_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, file_extension_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::DataCaptureMetadata, session_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture_MethodParametersEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture_MethodParametersEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -419,25 +409,25 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.interval_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.org_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.part_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.location_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.component_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.component_model_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.method_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.blob_path_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.column_names_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.method_parameters_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.file_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.tags_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.message_count_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.file_size_bytes_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.session_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, interval_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, org_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, part_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, location_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, component_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, component_model_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, method_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, blob_path_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, column_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, method_parameters_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, file_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, message_count_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, file_size_bytes_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, session_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::TabularCapture, id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture_MethodParametersEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture_MethodParametersEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -454,25 +444,25 @@ const uint32_t TableStruct_app_2fdatasync_2fv1_2fdata_5fsync_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.interval_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.org_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.part_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.location_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.component_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.component_model_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.method_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.blob_path_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.method_parameters_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.file_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.tags_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.file_size_bytes_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.session_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.file_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.file_ext_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, interval_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, org_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, part_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, location_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, component_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, component_model_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, method_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, blob_path_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, method_parameters_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, file_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, file_size_bytes_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, session_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, file_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, file_ext_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::datasync::v1::BinaryCapture, id_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::datasync::v1::DataCaptureUploadRequest)},
@@ -708,38 +698,29 @@ class DataCaptureUploadRequest::_Internal {
 
 const ::viam::app::datasync::v1::UploadMetadata&
 DataCaptureUploadRequest::_Internal::metadata(const DataCaptureUploadRequest* msg) {
-  return *msg->_impl_.metadata_;
+  return *msg->metadata_;
 }
 DataCaptureUploadRequest::DataCaptureUploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sensor_contents_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.DataCaptureUploadRequest)
 }
 DataCaptureUploadRequest::DataCaptureUploadRequest(const DataCaptureUploadRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  DataCaptureUploadRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.sensor_contents_){from._impl_.sensor_contents_}
-    , decltype(_impl_.metadata_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      sensor_contents_(from.sensor_contents_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_metadata()) {
-    _this->_impl_.metadata_ = new ::viam::app::datasync::v1::UploadMetadata(*from._impl_.metadata_);
+    metadata_ = new ::viam::app::datasync::v1::UploadMetadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.DataCaptureUploadRequest)
 }
 
-inline void DataCaptureUploadRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.sensor_contents_){arena}
-    , decltype(_impl_.metadata_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void DataCaptureUploadRequest::SharedCtor() {
+metadata_ = nullptr;
 }
 
 DataCaptureUploadRequest::~DataCaptureUploadRequest() {
@@ -753,12 +734,11 @@ DataCaptureUploadRequest::~DataCaptureUploadRequest() {
 
 inline void DataCaptureUploadRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.sensor_contents_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.metadata_;
+  if (this != internal_default_instance()) delete metadata_;
 }
 
 void DataCaptureUploadRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void DataCaptureUploadRequest::Clear() {
@@ -767,11 +747,11 @@ void DataCaptureUploadRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.sensor_contents_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
-    delete _impl_.metadata_;
+  sensor_contents_.Clear();
+  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
   }
-  _impl_.metadata_ = nullptr;
+  metadata_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -864,7 +844,7 @@ size_t DataCaptureUploadRequest::ByteSizeLong() const {
 
   // repeated .viam.app.datasync.v1.SensorData sensor_contents = 2 [json_name = "sensorContents"];
   total_size += 1UL * this->_internal_sensor_contents_size();
-  for (const auto& msg : this->_impl_.sensor_contents_) {
+  for (const auto& msg : this->sensor_contents_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -873,33 +853,36 @@ size_t DataCaptureUploadRequest::ByteSizeLong() const {
   if (this->_internal_has_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.metadata_);
+        *metadata_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DataCaptureUploadRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     DataCaptureUploadRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DataCaptureUploadRequest::GetClassData() const { return &_class_data_; }
 
+void DataCaptureUploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DataCaptureUploadRequest *>(to)->MergeFrom(
+      static_cast<const DataCaptureUploadRequest &>(from));
+}
 
-void DataCaptureUploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<DataCaptureUploadRequest*>(&to_msg);
-  auto& from = static_cast<const DataCaptureUploadRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.DataCaptureUploadRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void DataCaptureUploadRequest::MergeFrom(const DataCaptureUploadRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.DataCaptureUploadRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.sensor_contents_.MergeFrom(from._impl_.sensor_contents_);
+  sensor_contents_.MergeFrom(from.sensor_contents_);
   if (from._internal_has_metadata()) {
-    _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
-        from._internal_metadata());
+    _internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(from._internal_metadata());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DataCaptureUploadRequest::CopyFrom(const DataCaptureUploadRequest& from) {
@@ -916,8 +899,8 @@ bool DataCaptureUploadRequest::IsInitialized() const {
 void DataCaptureUploadRequest::InternalSwap(DataCaptureUploadRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.sensor_contents_.InternalSwap(&other->_impl_.sensor_contents_);
-  swap(_impl_.metadata_, other->_impl_.metadata_);
+  sensor_contents_.InternalSwap(&other->sensor_contents_);
+  swap(metadata_, other->metadata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DataCaptureUploadRequest::GetMetadata() const {
@@ -939,7 +922,6 @@ DataCaptureUploadResponse::DataCaptureUploadResponse(::PROTOBUF_NAMESPACE_ID::Ar
 }
 DataCaptureUploadResponse::DataCaptureUploadResponse(const DataCaptureUploadResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  DataCaptureUploadResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.DataCaptureUploadResponse)
 }
@@ -976,11 +958,11 @@ class FileUploadRequest::_Internal {
 
 const ::viam::app::datasync::v1::UploadMetadata&
 FileUploadRequest::_Internal::metadata(const FileUploadRequest* msg) {
-  return *msg->_impl_.upload_packet_.metadata_;
+  return *msg->upload_packet_.metadata_;
 }
 const ::viam::app::datasync::v1::FileData&
 FileUploadRequest::_Internal::file_contents(const FileUploadRequest* msg) {
-  return *msg->_impl_.upload_packet_.file_contents_;
+  return *msg->upload_packet_.file_contents_;
 }
 void FileUploadRequest::set_allocated_metadata(::viam::app::datasync::v1::UploadMetadata* metadata) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -993,7 +975,7 @@ void FileUploadRequest::set_allocated_metadata(::viam::app::datasync::v1::Upload
           message_arena, metadata, submessage_arena);
     }
     set_has_metadata();
-    _impl_.upload_packet_.metadata_ = metadata;
+    upload_packet_.metadata_ = metadata;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.FileUploadRequest.metadata)
 }
@@ -1008,35 +990,27 @@ void FileUploadRequest::set_allocated_file_contents(::viam::app::datasync::v1::F
           message_arena, file_contents, submessage_arena);
     }
     set_has_file_contents();
-    _impl_.upload_packet_.file_contents_ = file_contents;
+    upload_packet_.file_contents_ = file_contents;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.FileUploadRequest.file_contents)
 }
 FileUploadRequest::FileUploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.FileUploadRequest)
 }
 FileUploadRequest::FileUploadRequest(const FileUploadRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  FileUploadRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.upload_packet_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_upload_packet();
   switch (from.upload_packet_case()) {
     case kMetadata: {
-      _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
-          from._internal_metadata());
+      _internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(from._internal_metadata());
       break;
     }
     case kFileContents: {
-      _this->_internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(
-          from._internal_file_contents());
+      _internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(from._internal_file_contents());
       break;
     }
     case UPLOAD_PACKET_NOT_SET: {
@@ -1046,16 +1020,8 @@ FileUploadRequest::FileUploadRequest(const FileUploadRequest& from)
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.FileUploadRequest)
 }
 
-inline void FileUploadRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.upload_packet_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_upload_packet();
+inline void FileUploadRequest::SharedCtor() {
+clear_has_upload_packet();
 }
 
 FileUploadRequest::~FileUploadRequest() {
@@ -1075,7 +1041,7 @@ inline void FileUploadRequest::SharedDtor() {
 }
 
 void FileUploadRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void FileUploadRequest::clear_upload_packet() {
@@ -1083,13 +1049,13 @@ void FileUploadRequest::clear_upload_packet() {
   switch (upload_packet_case()) {
     case kMetadata: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.upload_packet_.metadata_;
+        delete upload_packet_.metadata_;
       }
       break;
     }
     case kFileContents: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.upload_packet_.file_contents_;
+        delete upload_packet_.file_contents_;
       }
       break;
     }
@@ -1097,7 +1063,7 @@ void FileUploadRequest::clear_upload_packet() {
       break;
     }
   }
-  _impl_._oneof_case_[0] = UPLOAD_PACKET_NOT_SET;
+  _oneof_case_[0] = UPLOAD_PACKET_NOT_SET;
 }
 
 
@@ -1197,54 +1163,56 @@ size_t FileUploadRequest::ByteSizeLong() const {
     case kMetadata: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.upload_packet_.metadata_);
+          *upload_packet_.metadata_);
       break;
     }
     // .viam.app.datasync.v1.FileData file_contents = 2 [json_name = "fileContents"];
     case kFileContents: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.upload_packet_.file_contents_);
+          *upload_packet_.file_contents_);
       break;
     }
     case UPLOAD_PACKET_NOT_SET: {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FileUploadRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     FileUploadRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FileUploadRequest::GetClassData() const { return &_class_data_; }
 
+void FileUploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<FileUploadRequest *>(to)->MergeFrom(
+      static_cast<const FileUploadRequest &>(from));
+}
 
-void FileUploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<FileUploadRequest*>(&to_msg);
-  auto& from = static_cast<const FileUploadRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.FileUploadRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void FileUploadRequest::MergeFrom(const FileUploadRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.FileUploadRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.upload_packet_case()) {
     case kMetadata: {
-      _this->_internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(
-          from._internal_metadata());
+      _internal_mutable_metadata()->::viam::app::datasync::v1::UploadMetadata::MergeFrom(from._internal_metadata());
       break;
     }
     case kFileContents: {
-      _this->_internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(
-          from._internal_file_contents());
+      _internal_mutable_file_contents()->::viam::app::datasync::v1::FileData::MergeFrom(from._internal_file_contents());
       break;
     }
     case UPLOAD_PACKET_NOT_SET: {
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FileUploadRequest::CopyFrom(const FileUploadRequest& from) {
@@ -1261,8 +1229,8 @@ bool FileUploadRequest::IsInitialized() const {
 void FileUploadRequest::InternalSwap(FileUploadRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.upload_packet_, other->_impl_.upload_packet_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(upload_packet_, other->upload_packet_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FileUploadRequest::GetMetadata() const {
@@ -1284,7 +1252,6 @@ FileUploadResponse::FileUploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 FileUploadResponse::FileUploadResponse(const FileUploadResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  FileUploadResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.FileUploadResponse)
 }
@@ -1321,57 +1288,51 @@ class SensorMetadata::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 SensorMetadata::_Internal::time_requested(const SensorMetadata* msg) {
-  return *msg->_impl_.time_requested_;
+  return *msg->time_requested_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 SensorMetadata::_Internal::time_received(const SensorMetadata* msg) {
-  return *msg->_impl_.time_received_;
+  return *msg->time_received_;
 }
 void SensorMetadata::clear_time_requested() {
-  if (GetArenaForAllocation() == nullptr && _impl_.time_requested_ != nullptr) {
-    delete _impl_.time_requested_;
+  if (GetArenaForAllocation() == nullptr && time_requested_ != nullptr) {
+    delete time_requested_;
   }
-  _impl_.time_requested_ = nullptr;
+  time_requested_ = nullptr;
 }
 void SensorMetadata::clear_time_received() {
-  if (GetArenaForAllocation() == nullptr && _impl_.time_received_ != nullptr) {
-    delete _impl_.time_received_;
+  if (GetArenaForAllocation() == nullptr && time_received_ != nullptr) {
+    delete time_received_;
   }
-  _impl_.time_received_ = nullptr;
+  time_received_ = nullptr;
 }
 SensorMetadata::SensorMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.SensorMetadata)
 }
 SensorMetadata::SensorMetadata(const SensorMetadata& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  SensorMetadata* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.time_requested_){nullptr}
-    , decltype(_impl_.time_received_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_time_requested()) {
-    _this->_impl_.time_requested_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.time_requested_);
+    time_requested_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.time_requested_);
+  } else {
+    time_requested_ = nullptr;
   }
   if (from._internal_has_time_received()) {
-    _this->_impl_.time_received_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.time_received_);
+    time_received_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.time_received_);
+  } else {
+    time_received_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.SensorMetadata)
 }
 
-inline void SensorMetadata::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.time_requested_){nullptr}
-    , decltype(_impl_.time_received_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void SensorMetadata::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&time_requested_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&time_received_) -
+    reinterpret_cast<char*>(&time_requested_)) + sizeof(time_received_));
 }
 
 SensorMetadata::~SensorMetadata() {
@@ -1385,12 +1346,12 @@ SensorMetadata::~SensorMetadata() {
 
 inline void SensorMetadata::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.time_requested_;
-  if (this != internal_default_instance()) delete _impl_.time_received_;
+  if (this != internal_default_instance()) delete time_requested_;
+  if (this != internal_default_instance()) delete time_received_;
 }
 
 void SensorMetadata::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void SensorMetadata::Clear() {
@@ -1399,14 +1360,14 @@ void SensorMetadata::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.time_requested_ != nullptr) {
-    delete _impl_.time_requested_;
+  if (GetArenaForAllocation() == nullptr && time_requested_ != nullptr) {
+    delete time_requested_;
   }
-  _impl_.time_requested_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.time_received_ != nullptr) {
-    delete _impl_.time_received_;
+  time_requested_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && time_received_ != nullptr) {
+    delete time_received_;
   }
-  _impl_.time_received_ = nullptr;
+  time_received_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1495,43 +1456,45 @@ size_t SensorMetadata::ByteSizeLong() const {
   if (this->_internal_has_time_requested()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.time_requested_);
+        *time_requested_);
   }
 
   // .google.protobuf.Timestamp time_received = 2 [json_name = "timeReceived"];
   if (this->_internal_has_time_received()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.time_received_);
+        *time_received_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SensorMetadata::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     SensorMetadata::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SensorMetadata::GetClassData() const { return &_class_data_; }
 
+void SensorMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SensorMetadata *>(to)->MergeFrom(
+      static_cast<const SensorMetadata &>(from));
+}
 
-void SensorMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<SensorMetadata*>(&to_msg);
-  auto& from = static_cast<const SensorMetadata&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.SensorMetadata)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void SensorMetadata::MergeFrom(const SensorMetadata& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.SensorMetadata)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_time_requested()) {
-    _this->_internal_mutable_time_requested()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-        from._internal_time_requested());
+    _internal_mutable_time_requested()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_time_requested());
   }
   if (from._internal_has_time_received()) {
-    _this->_internal_mutable_time_received()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-        from._internal_time_received());
+    _internal_mutable_time_received()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_time_received());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SensorMetadata::CopyFrom(const SensorMetadata& from) {
@@ -1549,11 +1512,11 @@ void SensorMetadata::InternalSwap(SensorMetadata* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SensorMetadata, _impl_.time_received_)
-      + sizeof(SensorMetadata::_impl_.time_received_)
-      - PROTOBUF_FIELD_OFFSET(SensorMetadata, _impl_.time_requested_)>(
-          reinterpret_cast<char*>(&_impl_.time_requested_),
-          reinterpret_cast<char*>(&other->_impl_.time_requested_));
+      PROTOBUF_FIELD_OFFSET(SensorMetadata, time_received_)
+      + sizeof(SensorMetadata::time_received_)
+      - PROTOBUF_FIELD_OFFSET(SensorMetadata, time_requested_)>(
+          reinterpret_cast<char*>(&time_requested_),
+          reinterpret_cast<char*>(&other->time_requested_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SensorMetadata::GetMetadata() const {
@@ -1572,11 +1535,11 @@ class SensorData::_Internal {
 
 const ::viam::app::datasync::v1::SensorMetadata&
 SensorData::_Internal::metadata(const SensorData* msg) {
-  return *msg->_impl_.metadata_;
+  return *msg->metadata_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SensorData::_Internal::struct_(const SensorData* msg) {
-  return *msg->_impl_.data_.struct__;
+  return *msg->data_.struct__;
 }
 void SensorData::set_allocated_struct_(::PROTOBUF_NAMESPACE_ID::Struct* struct_) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -1590,14 +1553,14 @@ void SensorData::set_allocated_struct_(::PROTOBUF_NAMESPACE_ID::Struct* struct_)
           message_arena, struct_, submessage_arena);
     }
     set_has_struct_();
-    _impl_.data_.struct__ = struct_;
+    data_.struct__ = struct_;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.app.datasync.v1.SensorData.struct)
 }
 void SensorData::clear_struct_() {
   if (_internal_has_struct_()) {
     if (GetArenaForAllocation() == nullptr) {
-      delete _impl_.data_.struct__;
+      delete data_.struct__;
     }
     clear_has_data();
   }
@@ -1605,31 +1568,25 @@ void SensorData::clear_struct_() {
 SensorData::SensorData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.SensorData)
 }
 SensorData::SensorData(const SensorData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  SensorData* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.metadata_){nullptr}
-    , decltype(_impl_.data_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_metadata()) {
-    _this->_impl_.metadata_ = new ::viam::app::datasync::v1::SensorMetadata(*from._impl_.metadata_);
+    metadata_ = new ::viam::app::datasync::v1::SensorMetadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
   }
   clear_has_data();
   switch (from.data_case()) {
     case kStruct: {
-      _this->_internal_mutable_struct_()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
-          from._internal_struct_());
+      _internal_mutable_struct_()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_struct_());
       break;
     }
     case kBinary: {
-      _this->_internal_set_binary(from._internal_binary());
+      _internal_set_binary(from._internal_binary());
       break;
     }
     case DATA_NOT_SET: {
@@ -1639,17 +1596,9 @@ SensorData::SensorData(const SensorData& from)
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.SensorData)
 }
 
-inline void SensorData::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.metadata_){nullptr}
-    , decltype(_impl_.data_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_data();
+inline void SensorData::SharedCtor() {
+metadata_ = nullptr;
+clear_has_data();
 }
 
 SensorData::~SensorData() {
@@ -1663,14 +1612,14 @@ SensorData::~SensorData() {
 
 inline void SensorData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.metadata_;
+  if (this != internal_default_instance()) delete metadata_;
   if (has_data()) {
     clear_data();
   }
 }
 
 void SensorData::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void SensorData::clear_data() {
@@ -1678,19 +1627,19 @@ void SensorData::clear_data() {
   switch (data_case()) {
     case kStruct: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.data_.struct__;
+        delete data_.struct__;
       }
       break;
     }
     case kBinary: {
-      _impl_.data_.binary_.Destroy();
+      data_.binary_.Destroy();
       break;
     }
     case DATA_NOT_SET: {
       break;
     }
   }
-  _impl_._oneof_case_[0] = DATA_NOT_SET;
+  _oneof_case_[0] = DATA_NOT_SET;
 }
 
 
@@ -1700,10 +1649,10 @@ void SensorData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
-    delete _impl_.metadata_;
+  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
   }
-  _impl_.metadata_ = nullptr;
+  metadata_ = nullptr;
   clear_data();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1808,7 +1757,7 @@ size_t SensorData::ByteSizeLong() const {
   if (this->_internal_has_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.metadata_);
+        *metadata_);
   }
 
   switch (data_case()) {
@@ -1816,7 +1765,7 @@ size_t SensorData::ByteSizeLong() const {
     case kStruct: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.data_.struct__);
+          *data_.struct__);
       break;
     }
     // bytes binary = 3 [json_name = "binary"];
@@ -1830,43 +1779,45 @@ size_t SensorData::ByteSizeLong() const {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SensorData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     SensorData::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SensorData::GetClassData() const { return &_class_data_; }
 
+void SensorData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SensorData *>(to)->MergeFrom(
+      static_cast<const SensorData &>(from));
+}
 
-void SensorData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<SensorData*>(&to_msg);
-  auto& from = static_cast<const SensorData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.SensorData)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void SensorData::MergeFrom(const SensorData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.SensorData)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_metadata()) {
-    _this->_internal_mutable_metadata()->::viam::app::datasync::v1::SensorMetadata::MergeFrom(
-        from._internal_metadata());
+    _internal_mutable_metadata()->::viam::app::datasync::v1::SensorMetadata::MergeFrom(from._internal_metadata());
   }
   switch (from.data_case()) {
     case kStruct: {
-      _this->_internal_mutable_struct_()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
-          from._internal_struct_());
+      _internal_mutable_struct_()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_struct_());
       break;
     }
     case kBinary: {
-      _this->_internal_set_binary(from._internal_binary());
+      _internal_set_binary(from._internal_binary());
       break;
     }
     case DATA_NOT_SET: {
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SensorData::CopyFrom(const SensorData& from) {
@@ -1883,9 +1834,9 @@ bool SensorData::IsInitialized() const {
 void SensorData::InternalSwap(SensorData* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.metadata_, other->_impl_.metadata_);
-  swap(_impl_.data_, other->_impl_.data_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(metadata_, other->metadata_);
+  swap(data_, other->data_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SensorData::GetMetadata() const {
@@ -1903,40 +1854,28 @@ class FileData::_Internal {
 FileData::FileData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.FileData)
 }
 FileData::FileData(const FileData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  FileData* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.data_.InitDefault();
+  data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
+    data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data().empty()) {
-    _this->_impl_.data_.Set(from._internal_data(), 
-      _this->GetArenaForAllocation());
+    data_.Set(from._internal_data(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.FileData)
 }
 
-inline void FileData::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.data_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void FileData::SharedCtor() {
+data_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  data_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 FileData::~FileData() {
@@ -1950,11 +1889,11 @@ FileData::~FileData() {
 
 inline void FileData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.data_.Destroy();
+  data_.Destroy();
 }
 
 void FileData::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void FileData::Clear() {
@@ -1963,7 +1902,7 @@ void FileData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.data_.ClearToEmpty();
+  data_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2040,28 +1979,32 @@ size_t FileData::ByteSizeLong() const {
         this->_internal_data());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FileData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     FileData::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FileData::GetClassData() const { return &_class_data_; }
 
+void FileData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<FileData *>(to)->MergeFrom(
+      static_cast<const FileData &>(from));
+}
 
-void FileData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<FileData*>(&to_msg);
-  auto& from = static_cast<const FileData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.FileData)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void FileData::MergeFrom(const FileData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.FileData)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data().empty()) {
-    _this->_internal_set_data(from._internal_data());
+    _internal_set_data(from._internal_data());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FileData::CopyFrom(const FileData& from) {
@@ -2081,8 +2024,8 @@ void FileData::InternalSwap(FileData* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.data_, lhs_arena,
-      &other->_impl_.data_, rhs_arena
+      &data_, lhs_arena,
+      &other->data_, rhs_arena
   );
 }
 
@@ -2113,154 +2056,126 @@ class UploadMetadata::_Internal {
 };
 
 void UploadMetadata::clear_method_parameters() {
-  _impl_.method_parameters_.Clear();
+  method_parameters_.Clear();
 }
 UploadMetadata::UploadMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  method_parameters_(arena),
+  tags_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &UploadMetadata::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.UploadMetadata)
 }
 UploadMetadata::UploadMetadata(const UploadMetadata& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadMetadata* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.method_parameters_)*/{}
-    , decltype(_impl_.tags_){from._impl_.tags_}
-    , decltype(_impl_.part_id_){}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.file_name_){}
-    , decltype(_impl_.file_extension_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _impl_.part_id_.InitDefault();
+  method_parameters_.MergeFrom(from.method_parameters_);
+  part_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.part_id_.Set("", GetArenaForAllocation());
+    part_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_part_id().empty()) {
-    _this->_impl_.part_id_.Set(from._internal_part_id(), 
-      _this->GetArenaForAllocation());
+    part_id_.Set(from._internal_part_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_type_.InitDefault();
+  component_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
+    component_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_type().empty()) {
-    _this->_impl_.component_type_.Set(from._internal_component_type(), 
-      _this->GetArenaForAllocation());
+    component_type_.Set(from._internal_component_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_name_.InitDefault();
+  component_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
+    component_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_name().empty()) {
-    _this->_impl_.component_name_.Set(from._internal_component_name(), 
-      _this->GetArenaForAllocation());
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_model_.InitDefault();
+  component_model_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
+    component_model_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_model().empty()) {
-    _this->_impl_.component_model_.Set(from._internal_component_model(), 
-      _this->GetArenaForAllocation());
+    component_model_.Set(from._internal_component_model(), 
+      GetArenaForAllocation());
   }
-  _impl_.method_name_.InitDefault();
+  method_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
+    method_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_method_name().empty()) {
-    _this->_impl_.method_name_.Set(from._internal_method_name(), 
-      _this->GetArenaForAllocation());
+    method_name_.Set(from._internal_method_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_name_.InitDefault();
+  file_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_name_.Set("", GetArenaForAllocation());
+    file_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_name().empty()) {
-    _this->_impl_.file_name_.Set(from._internal_file_name(), 
-      _this->GetArenaForAllocation());
+    file_name_.Set(from._internal_file_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_extension_.InitDefault();
+  file_extension_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_extension_.Set("", GetArenaForAllocation());
+    file_extension_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_extension().empty()) {
-    _this->_impl_.file_extension_.Set(from._internal_file_extension(), 
-      _this->GetArenaForAllocation());
+    file_extension_.Set(from._internal_file_extension(), 
+      GetArenaForAllocation());
   }
-  _impl_.session_id_.InitDefault();
+  session_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
+    session_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_session_id().empty()) {
-    _this->_impl_.session_id_.Set(from._internal_session_id(), 
-      _this->GetArenaForAllocation());
+    session_id_.Set(from._internal_session_id(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.type_ = from._impl_.type_;
+  type_ = from.type_;
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.UploadMetadata)
 }
 
-inline void UploadMetadata::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.method_parameters_)*/{::_pbi::ArenaInitialized(), arena}
-    , decltype(_impl_.tags_){arena}
-    , decltype(_impl_.part_id_){}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.file_name_){}
-    , decltype(_impl_.file_extension_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.part_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.part_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_model_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.method_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_extension_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_extension_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.session_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void UploadMetadata::SharedCtor() {
+part_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  part_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_model_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_model_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+method_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  method_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_extension_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_extension_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+session_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  session_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+type_ = 0;
 }
 
 UploadMetadata::~UploadMetadata() {
@@ -2275,25 +2190,23 @@ UploadMetadata::~UploadMetadata() {
 
 inline void UploadMetadata::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.method_parameters_.Destruct();
-  _impl_.method_parameters_.~MapField();
-  _impl_.tags_.~RepeatedPtrField();
-  _impl_.part_id_.Destroy();
-  _impl_.component_type_.Destroy();
-  _impl_.component_name_.Destroy();
-  _impl_.component_model_.Destroy();
-  _impl_.method_name_.Destroy();
-  _impl_.file_name_.Destroy();
-  _impl_.file_extension_.Destroy();
-  _impl_.session_id_.Destroy();
+  method_parameters_.Destruct();
+  part_id_.Destroy();
+  component_type_.Destroy();
+  component_name_.Destroy();
+  component_model_.Destroy();
+  method_name_.Destroy();
+  file_name_.Destroy();
+  file_extension_.Destroy();
+  session_id_.Destroy();
 }
 
 void UploadMetadata::ArenaDtor(void* object) {
   UploadMetadata* _this = reinterpret_cast< UploadMetadata* >(object);
-  _this->_impl_.method_parameters_.Destruct();
+  _this->method_parameters_.Destruct();
 }
 void UploadMetadata::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void UploadMetadata::Clear() {
@@ -2302,17 +2215,17 @@ void UploadMetadata::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.method_parameters_.Clear();
-  _impl_.tags_.Clear();
-  _impl_.part_id_.ClearToEmpty();
-  _impl_.component_type_.ClearToEmpty();
-  _impl_.component_name_.ClearToEmpty();
-  _impl_.component_model_.ClearToEmpty();
-  _impl_.method_name_.ClearToEmpty();
-  _impl_.file_name_.ClearToEmpty();
-  _impl_.file_extension_.ClearToEmpty();
-  _impl_.session_id_.ClearToEmpty();
-  _impl_.type_ = 0;
+  method_parameters_.Clear();
+  tags_.Clear();
+  part_id_.ClearToEmpty();
+  component_type_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  component_model_.ClearToEmpty();
+  method_name_.ClearToEmpty();
+  file_name_.ClearToEmpty();
+  file_extension_.ClearToEmpty();
+  session_id_.ClearToEmpty();
+  type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2397,7 +2310,7 @@ const char* UploadMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContext
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.method_parameters_, ptr);
+            ptr = ctx->ParseMessage(&method_parameters_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<66>(ptr));
@@ -2618,10 +2531,10 @@ size_t UploadMetadata::ByteSizeLong() const {
 
   // repeated string tags = 10 [json_name = "tags"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
-  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.tags_.Get(i));
+      tags_.Get(i));
   }
 
   // string part_id = 1 [json_name = "partId"];
@@ -2686,54 +2599,58 @@ size_t UploadMetadata::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadMetadata::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     UploadMetadata::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadMetadata::GetClassData() const { return &_class_data_; }
 
+void UploadMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<UploadMetadata *>(to)->MergeFrom(
+      static_cast<const UploadMetadata &>(from));
+}
 
-void UploadMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UploadMetadata*>(&to_msg);
-  auto& from = static_cast<const UploadMetadata&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.UploadMetadata)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void UploadMetadata::MergeFrom(const UploadMetadata& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.UploadMetadata)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
+  method_parameters_.MergeFrom(from.method_parameters_);
+  tags_.MergeFrom(from.tags_);
   if (!from._internal_part_id().empty()) {
-    _this->_internal_set_part_id(from._internal_part_id());
+    _internal_set_part_id(from._internal_part_id());
   }
   if (!from._internal_component_type().empty()) {
-    _this->_internal_set_component_type(from._internal_component_type());
+    _internal_set_component_type(from._internal_component_type());
   }
   if (!from._internal_component_name().empty()) {
-    _this->_internal_set_component_name(from._internal_component_name());
+    _internal_set_component_name(from._internal_component_name());
   }
   if (!from._internal_component_model().empty()) {
-    _this->_internal_set_component_model(from._internal_component_model());
+    _internal_set_component_model(from._internal_component_model());
   }
   if (!from._internal_method_name().empty()) {
-    _this->_internal_set_method_name(from._internal_method_name());
+    _internal_set_method_name(from._internal_method_name());
   }
   if (!from._internal_file_name().empty()) {
-    _this->_internal_set_file_name(from._internal_file_name());
+    _internal_set_file_name(from._internal_file_name());
   }
   if (!from._internal_file_extension().empty()) {
-    _this->_internal_set_file_extension(from._internal_file_extension());
+    _internal_set_file_extension(from._internal_file_extension());
   }
   if (!from._internal_session_id().empty()) {
-    _this->_internal_set_session_id(from._internal_session_id());
+    _internal_set_session_id(from._internal_session_id());
   }
   if (from._internal_type() != 0) {
-    _this->_internal_set_type(from._internal_type());
+    _internal_set_type(from._internal_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UploadMetadata::CopyFrom(const UploadMetadata& from) {
@@ -2752,41 +2669,41 @@ void UploadMetadata::InternalSwap(UploadMetadata* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.method_parameters_.InternalSwap(&other->_impl_.method_parameters_);
-  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
+  method_parameters_.InternalSwap(&other->method_parameters_);
+  tags_.InternalSwap(&other->tags_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.part_id_, lhs_arena,
-      &other->_impl_.part_id_, rhs_arena
+      &part_id_, lhs_arena,
+      &other->part_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_type_, lhs_arena,
-      &other->_impl_.component_type_, rhs_arena
+      &component_type_, lhs_arena,
+      &other->component_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_name_, lhs_arena,
-      &other->_impl_.component_name_, rhs_arena
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_model_, lhs_arena,
-      &other->_impl_.component_model_, rhs_arena
+      &component_model_, lhs_arena,
+      &other->component_model_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.method_name_, lhs_arena,
-      &other->_impl_.method_name_, rhs_arena
+      &method_name_, lhs_arena,
+      &other->method_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_name_, lhs_arena,
-      &other->_impl_.file_name_, rhs_arena
+      &file_name_, lhs_arena,
+      &other->file_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_extension_, lhs_arena,
-      &other->_impl_.file_extension_, rhs_arena
+      &file_extension_, lhs_arena,
+      &other->file_extension_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.session_id_, lhs_arena,
-      &other->_impl_.session_id_, rhs_arena
+      &session_id_, lhs_arena,
+      &other->session_id_, rhs_arena
   );
-  swap(_impl_.type_, other->_impl_.type_);
+  swap(type_, other->type_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UploadMetadata::GetMetadata() const {
@@ -2805,57 +2722,51 @@ class CaptureInterval::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 CaptureInterval::_Internal::start(const CaptureInterval* msg) {
-  return *msg->_impl_.start_;
+  return *msg->start_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 CaptureInterval::_Internal::end(const CaptureInterval* msg) {
-  return *msg->_impl_.end_;
+  return *msg->end_;
 }
 void CaptureInterval::clear_start() {
-  if (GetArenaForAllocation() == nullptr && _impl_.start_ != nullptr) {
-    delete _impl_.start_;
+  if (GetArenaForAllocation() == nullptr && start_ != nullptr) {
+    delete start_;
   }
-  _impl_.start_ = nullptr;
+  start_ = nullptr;
 }
 void CaptureInterval::clear_end() {
-  if (GetArenaForAllocation() == nullptr && _impl_.end_ != nullptr) {
-    delete _impl_.end_;
+  if (GetArenaForAllocation() == nullptr && end_ != nullptr) {
+    delete end_;
   }
-  _impl_.end_ = nullptr;
+  end_ = nullptr;
 }
 CaptureInterval::CaptureInterval(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.CaptureInterval)
 }
 CaptureInterval::CaptureInterval(const CaptureInterval& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CaptureInterval* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.start_){nullptr}
-    , decltype(_impl_.end_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_start()) {
-    _this->_impl_.start_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.start_);
+    start_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.start_);
+  } else {
+    start_ = nullptr;
   }
   if (from._internal_has_end()) {
-    _this->_impl_.end_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.end_);
+    end_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.end_);
+  } else {
+    end_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.CaptureInterval)
 }
 
-inline void CaptureInterval::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.start_){nullptr}
-    , decltype(_impl_.end_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CaptureInterval::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&start_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&end_) -
+    reinterpret_cast<char*>(&start_)) + sizeof(end_));
 }
 
 CaptureInterval::~CaptureInterval() {
@@ -2869,12 +2780,12 @@ CaptureInterval::~CaptureInterval() {
 
 inline void CaptureInterval::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.start_;
-  if (this != internal_default_instance()) delete _impl_.end_;
+  if (this != internal_default_instance()) delete start_;
+  if (this != internal_default_instance()) delete end_;
 }
 
 void CaptureInterval::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CaptureInterval::Clear() {
@@ -2883,14 +2794,14 @@ void CaptureInterval::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.start_ != nullptr) {
-    delete _impl_.start_;
+  if (GetArenaForAllocation() == nullptr && start_ != nullptr) {
+    delete start_;
   }
-  _impl_.start_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.end_ != nullptr) {
-    delete _impl_.end_;
+  start_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && end_ != nullptr) {
+    delete end_;
   }
-  _impl_.end_ = nullptr;
+  end_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2979,43 +2890,45 @@ size_t CaptureInterval::ByteSizeLong() const {
   if (this->_internal_has_start()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.start_);
+        *start_);
   }
 
   // .google.protobuf.Timestamp end = 2 [json_name = "end"];
   if (this->_internal_has_end()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.end_);
+        *end_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CaptureInterval::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CaptureInterval::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CaptureInterval::GetClassData() const { return &_class_data_; }
 
+void CaptureInterval::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CaptureInterval *>(to)->MergeFrom(
+      static_cast<const CaptureInterval &>(from));
+}
 
-void CaptureInterval::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CaptureInterval*>(&to_msg);
-  auto& from = static_cast<const CaptureInterval&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.CaptureInterval)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CaptureInterval::MergeFrom(const CaptureInterval& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.CaptureInterval)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_start()) {
-    _this->_internal_mutable_start()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-        from._internal_start());
+    _internal_mutable_start()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_start());
   }
   if (from._internal_has_end()) {
-    _this->_internal_mutable_end()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-        from._internal_end());
+    _internal_mutable_end()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_end());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CaptureInterval::CopyFrom(const CaptureInterval& from) {
@@ -3033,11 +2946,11 @@ void CaptureInterval::InternalSwap(CaptureInterval* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CaptureInterval, _impl_.end_)
-      + sizeof(CaptureInterval::_impl_.end_)
-      - PROTOBUF_FIELD_OFFSET(CaptureInterval, _impl_.start_)>(
-          reinterpret_cast<char*>(&_impl_.start_),
-          reinterpret_cast<char*>(&other->_impl_.start_));
+      PROTOBUF_FIELD_OFFSET(CaptureInterval, end_)
+      + sizeof(CaptureInterval::end_)
+      - PROTOBUF_FIELD_OFFSET(CaptureInterval, start_)>(
+          reinterpret_cast<char*>(&start_),
+          reinterpret_cast<char*>(&other->start_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CaptureInterval::GetMetadata() const {
@@ -3067,126 +2980,102 @@ class DataCaptureMetadata::_Internal {
 };
 
 void DataCaptureMetadata::clear_method_parameters() {
-  _impl_.method_parameters_.Clear();
+  method_parameters_.Clear();
 }
 DataCaptureMetadata::DataCaptureMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  method_parameters_(arena),
+  tags_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &DataCaptureMetadata::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.DataCaptureMetadata)
 }
 DataCaptureMetadata::DataCaptureMetadata(const DataCaptureMetadata& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  DataCaptureMetadata* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.method_parameters_)*/{}
-    , decltype(_impl_.tags_){from._impl_.tags_}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.file_extension_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _impl_.component_type_.InitDefault();
+  method_parameters_.MergeFrom(from.method_parameters_);
+  component_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
+    component_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_type().empty()) {
-    _this->_impl_.component_type_.Set(from._internal_component_type(), 
-      _this->GetArenaForAllocation());
+    component_type_.Set(from._internal_component_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_name_.InitDefault();
+  component_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
+    component_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_name().empty()) {
-    _this->_impl_.component_name_.Set(from._internal_component_name(), 
-      _this->GetArenaForAllocation());
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_model_.InitDefault();
+  component_model_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
+    component_model_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_model().empty()) {
-    _this->_impl_.component_model_.Set(from._internal_component_model(), 
-      _this->GetArenaForAllocation());
+    component_model_.Set(from._internal_component_model(), 
+      GetArenaForAllocation());
   }
-  _impl_.method_name_.InitDefault();
+  method_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
+    method_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_method_name().empty()) {
-    _this->_impl_.method_name_.Set(from._internal_method_name(), 
-      _this->GetArenaForAllocation());
+    method_name_.Set(from._internal_method_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_extension_.InitDefault();
+  file_extension_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_extension_.Set("", GetArenaForAllocation());
+    file_extension_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_extension().empty()) {
-    _this->_impl_.file_extension_.Set(from._internal_file_extension(), 
-      _this->GetArenaForAllocation());
+    file_extension_.Set(from._internal_file_extension(), 
+      GetArenaForAllocation());
   }
-  _impl_.session_id_.InitDefault();
+  session_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
+    session_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_session_id().empty()) {
-    _this->_impl_.session_id_.Set(from._internal_session_id(), 
-      _this->GetArenaForAllocation());
+    session_id_.Set(from._internal_session_id(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.type_ = from._impl_.type_;
+  type_ = from.type_;
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.DataCaptureMetadata)
 }
 
-inline void DataCaptureMetadata::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.method_parameters_)*/{::_pbi::ArenaInitialized(), arena}
-    , decltype(_impl_.tags_){arena}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.file_extension_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.component_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_model_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.method_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_extension_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_extension_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.session_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void DataCaptureMetadata::SharedCtor() {
+component_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_model_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_model_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+method_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  method_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_extension_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_extension_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+session_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  session_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+type_ = 0;
 }
 
 DataCaptureMetadata::~DataCaptureMetadata() {
@@ -3201,23 +3090,21 @@ DataCaptureMetadata::~DataCaptureMetadata() {
 
 inline void DataCaptureMetadata::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.method_parameters_.Destruct();
-  _impl_.method_parameters_.~MapField();
-  _impl_.tags_.~RepeatedPtrField();
-  _impl_.component_type_.Destroy();
-  _impl_.component_name_.Destroy();
-  _impl_.component_model_.Destroy();
-  _impl_.method_name_.Destroy();
-  _impl_.file_extension_.Destroy();
-  _impl_.session_id_.Destroy();
+  method_parameters_.Destruct();
+  component_type_.Destroy();
+  component_name_.Destroy();
+  component_model_.Destroy();
+  method_name_.Destroy();
+  file_extension_.Destroy();
+  session_id_.Destroy();
 }
 
 void DataCaptureMetadata::ArenaDtor(void* object) {
   DataCaptureMetadata* _this = reinterpret_cast< DataCaptureMetadata* >(object);
-  _this->_impl_.method_parameters_.Destruct();
+  _this->method_parameters_.Destruct();
 }
 void DataCaptureMetadata::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void DataCaptureMetadata::Clear() {
@@ -3226,15 +3113,15 @@ void DataCaptureMetadata::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.method_parameters_.Clear();
-  _impl_.tags_.Clear();
-  _impl_.component_type_.ClearToEmpty();
-  _impl_.component_name_.ClearToEmpty();
-  _impl_.component_model_.ClearToEmpty();
-  _impl_.method_name_.ClearToEmpty();
-  _impl_.file_extension_.ClearToEmpty();
-  _impl_.session_id_.ClearToEmpty();
-  _impl_.type_ = 0;
+  method_parameters_.Clear();
+  tags_.Clear();
+  component_type_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  component_model_.ClearToEmpty();
+  method_name_.ClearToEmpty();
+  file_extension_.ClearToEmpty();
+  session_id_.ClearToEmpty();
+  type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3299,7 +3186,7 @@ const char* DataCaptureMetadata::_InternalParse(const char* ptr, ::_pbi::ParseCo
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.method_parameters_, ptr);
+            ptr = ctx->ParseMessage(&method_parameters_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
@@ -3500,10 +3387,10 @@ size_t DataCaptureMetadata::ByteSizeLong() const {
 
   // repeated string tags = 8 [json_name = "tags"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
-  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.tags_.Get(i));
+      tags_.Get(i));
   }
 
   // string component_type = 1 [json_name = "componentType"];
@@ -3554,48 +3441,52 @@ size_t DataCaptureMetadata::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DataCaptureMetadata::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     DataCaptureMetadata::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DataCaptureMetadata::GetClassData() const { return &_class_data_; }
 
+void DataCaptureMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DataCaptureMetadata *>(to)->MergeFrom(
+      static_cast<const DataCaptureMetadata &>(from));
+}
 
-void DataCaptureMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<DataCaptureMetadata*>(&to_msg);
-  auto& from = static_cast<const DataCaptureMetadata&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.DataCaptureMetadata)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void DataCaptureMetadata::MergeFrom(const DataCaptureMetadata& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.DataCaptureMetadata)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
+  method_parameters_.MergeFrom(from.method_parameters_);
+  tags_.MergeFrom(from.tags_);
   if (!from._internal_component_type().empty()) {
-    _this->_internal_set_component_type(from._internal_component_type());
+    _internal_set_component_type(from._internal_component_type());
   }
   if (!from._internal_component_name().empty()) {
-    _this->_internal_set_component_name(from._internal_component_name());
+    _internal_set_component_name(from._internal_component_name());
   }
   if (!from._internal_component_model().empty()) {
-    _this->_internal_set_component_model(from._internal_component_model());
+    _internal_set_component_model(from._internal_component_model());
   }
   if (!from._internal_method_name().empty()) {
-    _this->_internal_set_method_name(from._internal_method_name());
+    _internal_set_method_name(from._internal_method_name());
   }
   if (!from._internal_file_extension().empty()) {
-    _this->_internal_set_file_extension(from._internal_file_extension());
+    _internal_set_file_extension(from._internal_file_extension());
   }
   if (!from._internal_session_id().empty()) {
-    _this->_internal_set_session_id(from._internal_session_id());
+    _internal_set_session_id(from._internal_session_id());
   }
   if (from._internal_type() != 0) {
-    _this->_internal_set_type(from._internal_type());
+    _internal_set_type(from._internal_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DataCaptureMetadata::CopyFrom(const DataCaptureMetadata& from) {
@@ -3614,33 +3505,33 @@ void DataCaptureMetadata::InternalSwap(DataCaptureMetadata* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.method_parameters_.InternalSwap(&other->_impl_.method_parameters_);
-  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
+  method_parameters_.InternalSwap(&other->method_parameters_);
+  tags_.InternalSwap(&other->tags_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_type_, lhs_arena,
-      &other->_impl_.component_type_, rhs_arena
+      &component_type_, lhs_arena,
+      &other->component_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_name_, lhs_arena,
-      &other->_impl_.component_name_, rhs_arena
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_model_, lhs_arena,
-      &other->_impl_.component_model_, rhs_arena
+      &component_model_, lhs_arena,
+      &other->component_model_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.method_name_, lhs_arena,
-      &other->_impl_.method_name_, rhs_arena
+      &method_name_, lhs_arena,
+      &other->method_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_extension_, lhs_arena,
-      &other->_impl_.file_extension_, rhs_arena
+      &file_extension_, lhs_arena,
+      &other->file_extension_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.session_id_, lhs_arena,
-      &other->_impl_.session_id_, rhs_arena
+      &session_id_, lhs_arena,
+      &other->session_id_, rhs_arena
   );
-  swap(_impl_.type_, other->_impl_.type_);
+  swap(type_, other->type_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DataCaptureMetadata::GetMetadata() const {
@@ -3672,238 +3563,201 @@ class TabularCapture::_Internal {
 
 const ::viam::app::datasync::v1::CaptureInterval&
 TabularCapture::_Internal::interval(const TabularCapture* msg) {
-  return *msg->_impl_.interval_;
+  return *msg->interval_;
 }
 void TabularCapture::clear_method_parameters() {
-  _impl_.method_parameters_.Clear();
+  method_parameters_.Clear();
 }
 TabularCapture::TabularCapture(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  column_names_(arena),
+  method_parameters_(arena),
+  tags_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &TabularCapture::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.TabularCapture)
 }
 TabularCapture::TabularCapture(const TabularCapture& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  TabularCapture* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.column_names_){from._impl_.column_names_}
-    , /*decltype(_impl_.method_parameters_)*/{}
-    , decltype(_impl_.tags_){from._impl_.tags_}
-    , decltype(_impl_.org_id_){}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.part_id_){}
-    , decltype(_impl_.location_id_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.blob_path_){}
-    , decltype(_impl_.file_id_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.mime_type_){}
-    , decltype(_impl_.id_){}
-    , decltype(_impl_.interval_){nullptr}
-    , decltype(_impl_.file_size_bytes_){}
-    , decltype(_impl_.message_count_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      column_names_(from.column_names_),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _impl_.org_id_.InitDefault();
+  method_parameters_.MergeFrom(from.method_parameters_);
+  org_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.org_id_.Set("", GetArenaForAllocation());
+    org_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_org_id().empty()) {
-    _this->_impl_.org_id_.Set(from._internal_org_id(), 
-      _this->GetArenaForAllocation());
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.robot_id_.InitDefault();
+  robot_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.robot_id_.Set("", GetArenaForAllocation());
+    robot_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_robot_id().empty()) {
-    _this->_impl_.robot_id_.Set(from._internal_robot_id(), 
-      _this->GetArenaForAllocation());
+    robot_id_.Set(from._internal_robot_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.part_id_.InitDefault();
+  part_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.part_id_.Set("", GetArenaForAllocation());
+    part_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_part_id().empty()) {
-    _this->_impl_.part_id_.Set(from._internal_part_id(), 
-      _this->GetArenaForAllocation());
+    part_id_.Set(from._internal_part_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.location_id_.InitDefault();
+  location_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_id_.Set("", GetArenaForAllocation());
+    location_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_location_id().empty()) {
-    _this->_impl_.location_id_.Set(from._internal_location_id(), 
-      _this->GetArenaForAllocation());
+    location_id_.Set(from._internal_location_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_name_.InitDefault();
+  component_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
+    component_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_name().empty()) {
-    _this->_impl_.component_name_.Set(from._internal_component_name(), 
-      _this->GetArenaForAllocation());
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_type_.InitDefault();
+  component_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
+    component_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_type().empty()) {
-    _this->_impl_.component_type_.Set(from._internal_component_type(), 
-      _this->GetArenaForAllocation());
+    component_type_.Set(from._internal_component_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_model_.InitDefault();
+  component_model_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
+    component_model_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_model().empty()) {
-    _this->_impl_.component_model_.Set(from._internal_component_model(), 
-      _this->GetArenaForAllocation());
+    component_model_.Set(from._internal_component_model(), 
+      GetArenaForAllocation());
   }
-  _impl_.method_name_.InitDefault();
+  method_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
+    method_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_method_name().empty()) {
-    _this->_impl_.method_name_.Set(from._internal_method_name(), 
-      _this->GetArenaForAllocation());
+    method_name_.Set(from._internal_method_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.blob_path_.InitDefault();
+  blob_path_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.blob_path_.Set("", GetArenaForAllocation());
+    blob_path_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_blob_path().empty()) {
-    _this->_impl_.blob_path_.Set(from._internal_blob_path(), 
-      _this->GetArenaForAllocation());
+    blob_path_.Set(from._internal_blob_path(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_id_.InitDefault();
+  file_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_id_.Set("", GetArenaForAllocation());
+    file_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_id().empty()) {
-    _this->_impl_.file_id_.Set(from._internal_file_id(), 
-      _this->GetArenaForAllocation());
+    file_id_.Set(from._internal_file_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.session_id_.InitDefault();
+  session_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
+    session_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_session_id().empty()) {
-    _this->_impl_.session_id_.Set(from._internal_session_id(), 
-      _this->GetArenaForAllocation());
+    session_id_.Set(from._internal_session_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.mime_type_.InitDefault();
+  mime_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mime_type_.Set("", GetArenaForAllocation());
+    mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_mime_type().empty()) {
-    _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
-      _this->GetArenaForAllocation());
+    mime_type_.Set(from._internal_mime_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.id_.InitDefault();
+  id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.id_.Set("", GetArenaForAllocation());
+    id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    _this->_impl_.id_.Set(from._internal_id(), 
-      _this->GetArenaForAllocation());
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_interval()) {
-    _this->_impl_.interval_ = new ::viam::app::datasync::v1::CaptureInterval(*from._impl_.interval_);
+    interval_ = new ::viam::app::datasync::v1::CaptureInterval(*from.interval_);
+  } else {
+    interval_ = nullptr;
   }
-  ::memcpy(&_impl_.file_size_bytes_, &from._impl_.file_size_bytes_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.message_count_) -
-    reinterpret_cast<char*>(&_impl_.file_size_bytes_)) + sizeof(_impl_.message_count_));
+  ::memcpy(&file_size_bytes_, &from.file_size_bytes_,
+    static_cast<size_t>(reinterpret_cast<char*>(&message_count_) -
+    reinterpret_cast<char*>(&file_size_bytes_)) + sizeof(message_count_));
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.TabularCapture)
 }
 
-inline void TabularCapture::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.column_names_){arena}
-    , /*decltype(_impl_.method_parameters_)*/{::_pbi::ArenaInitialized(), arena}
-    , decltype(_impl_.tags_){arena}
-    , decltype(_impl_.org_id_){}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.part_id_){}
-    , decltype(_impl_.location_id_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.blob_path_){}
-    , decltype(_impl_.file_id_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.mime_type_){}
-    , decltype(_impl_.id_){}
-    , decltype(_impl_.interval_){nullptr}
-    , decltype(_impl_.file_size_bytes_){int64_t{0}}
-    , decltype(_impl_.message_count_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.org_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.org_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.robot_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.robot_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.part_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.part_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.location_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_model_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.method_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.blob_path_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.blob_path_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.session_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.mime_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mime_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void TabularCapture::SharedCtor() {
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+robot_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  robot_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+part_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  part_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+location_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  location_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_model_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_model_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+method_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  method_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+blob_path_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  blob_path_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+session_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  session_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+mime_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  mime_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&interval_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&message_count_) -
+    reinterpret_cast<char*>(&interval_)) + sizeof(message_count_));
 }
 
 TabularCapture::~TabularCapture() {
@@ -3918,32 +3772,29 @@ TabularCapture::~TabularCapture() {
 
 inline void TabularCapture::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.column_names_.~RepeatedPtrField();
-  _impl_.method_parameters_.Destruct();
-  _impl_.method_parameters_.~MapField();
-  _impl_.tags_.~RepeatedPtrField();
-  _impl_.org_id_.Destroy();
-  _impl_.robot_id_.Destroy();
-  _impl_.part_id_.Destroy();
-  _impl_.location_id_.Destroy();
-  _impl_.component_name_.Destroy();
-  _impl_.component_type_.Destroy();
-  _impl_.component_model_.Destroy();
-  _impl_.method_name_.Destroy();
-  _impl_.blob_path_.Destroy();
-  _impl_.file_id_.Destroy();
-  _impl_.session_id_.Destroy();
-  _impl_.mime_type_.Destroy();
-  _impl_.id_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.interval_;
+  method_parameters_.Destruct();
+  org_id_.Destroy();
+  robot_id_.Destroy();
+  part_id_.Destroy();
+  location_id_.Destroy();
+  component_name_.Destroy();
+  component_type_.Destroy();
+  component_model_.Destroy();
+  method_name_.Destroy();
+  blob_path_.Destroy();
+  file_id_.Destroy();
+  session_id_.Destroy();
+  mime_type_.Destroy();
+  id_.Destroy();
+  if (this != internal_default_instance()) delete interval_;
 }
 
 void TabularCapture::ArenaDtor(void* object) {
   TabularCapture* _this = reinterpret_cast< TabularCapture* >(object);
-  _this->_impl_.method_parameters_.Destruct();
+  _this->method_parameters_.Destruct();
 }
 void TabularCapture::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void TabularCapture::Clear() {
@@ -3952,29 +3803,29 @@ void TabularCapture::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.column_names_.Clear();
-  _impl_.method_parameters_.Clear();
-  _impl_.tags_.Clear();
-  _impl_.org_id_.ClearToEmpty();
-  _impl_.robot_id_.ClearToEmpty();
-  _impl_.part_id_.ClearToEmpty();
-  _impl_.location_id_.ClearToEmpty();
-  _impl_.component_name_.ClearToEmpty();
-  _impl_.component_type_.ClearToEmpty();
-  _impl_.component_model_.ClearToEmpty();
-  _impl_.method_name_.ClearToEmpty();
-  _impl_.blob_path_.ClearToEmpty();
-  _impl_.file_id_.ClearToEmpty();
-  _impl_.session_id_.ClearToEmpty();
-  _impl_.mime_type_.ClearToEmpty();
-  _impl_.id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.interval_ != nullptr) {
-    delete _impl_.interval_;
+  column_names_.Clear();
+  method_parameters_.Clear();
+  tags_.Clear();
+  org_id_.ClearToEmpty();
+  robot_id_.ClearToEmpty();
+  part_id_.ClearToEmpty();
+  location_id_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  component_type_.ClearToEmpty();
+  component_model_.ClearToEmpty();
+  method_name_.ClearToEmpty();
+  blob_path_.ClearToEmpty();
+  file_id_.ClearToEmpty();
+  session_id_.ClearToEmpty();
+  mime_type_.ClearToEmpty();
+  id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && interval_ != nullptr) {
+    delete interval_;
   }
-  _impl_.interval_ = nullptr;
-  ::memset(&_impl_.file_size_bytes_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.message_count_) -
-      reinterpret_cast<char*>(&_impl_.file_size_bytes_)) + sizeof(_impl_.message_count_));
+  interval_ = nullptr;
+  ::memset(&file_size_bytes_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&message_count_) -
+      reinterpret_cast<char*>(&file_size_bytes_)) + sizeof(message_count_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4103,7 +3954,7 @@ const char* TabularCapture::_InternalParse(const char* ptr, ::_pbi::ParseContext
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.method_parameters_, ptr);
+            ptr = ctx->ParseMessage(&method_parameters_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<98>(ptr));
@@ -4138,7 +3989,7 @@ const char* TabularCapture::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // int32 message_count = 15 [json_name = "messageCount", (.tagger.v1.tags) = "bson:\"message_count\" json:\"message_count\""];
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
-          _impl_.message_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          message_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4146,7 +3997,7 @@ const char* TabularCapture::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // int64 file_size_bytes = 16 [json_name = "fileSizeBytes", (.tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 128)) {
-          _impl_.file_size_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          file_size_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4423,10 +4274,10 @@ size_t TabularCapture::ByteSizeLong() const {
 
   // repeated string column_names = 11 [json_name = "columnNames", (.tagger.v1.tags) = "bson:\"column_names\" json:\"column_names\""];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.column_names_.size());
-  for (int i = 0, n = _impl_.column_names_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(column_names_.size());
+  for (int i = 0, n = column_names_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.column_names_.Get(i));
+      column_names_.Get(i));
   }
 
   // map<string, .google.protobuf.Any> method_parameters = 12 [json_name = "methodParameters", (.tagger.v1.tags) = "bson:\"method_parameters\" json:\"method_parameters\""];
@@ -4440,10 +4291,10 @@ size_t TabularCapture::ByteSizeLong() const {
 
   // repeated string tags = 14 [json_name = "tags", (.tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
-  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.tags_.Get(i));
+      tags_.Get(i));
   }
 
   // string org_id = 2 [json_name = "orgId", (.tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
@@ -4541,7 +4392,7 @@ size_t TabularCapture::ByteSizeLong() const {
   if (this->_internal_has_interval()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.interval_);
+        *interval_);
   }
 
   // int64 file_size_bytes = 16 [json_name = "fileSizeBytes", (.tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
@@ -4556,77 +4407,80 @@ size_t TabularCapture::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_message_count());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TabularCapture::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     TabularCapture::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TabularCapture::GetClassData() const { return &_class_data_; }
 
+void TabularCapture::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TabularCapture *>(to)->MergeFrom(
+      static_cast<const TabularCapture &>(from));
+}
 
-void TabularCapture::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<TabularCapture*>(&to_msg);
-  auto& from = static_cast<const TabularCapture&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.TabularCapture)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void TabularCapture::MergeFrom(const TabularCapture& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.TabularCapture)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.column_names_.MergeFrom(from._impl_.column_names_);
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
+  column_names_.MergeFrom(from.column_names_);
+  method_parameters_.MergeFrom(from.method_parameters_);
+  tags_.MergeFrom(from.tags_);
   if (!from._internal_org_id().empty()) {
-    _this->_internal_set_org_id(from._internal_org_id());
+    _internal_set_org_id(from._internal_org_id());
   }
   if (!from._internal_robot_id().empty()) {
-    _this->_internal_set_robot_id(from._internal_robot_id());
+    _internal_set_robot_id(from._internal_robot_id());
   }
   if (!from._internal_part_id().empty()) {
-    _this->_internal_set_part_id(from._internal_part_id());
+    _internal_set_part_id(from._internal_part_id());
   }
   if (!from._internal_location_id().empty()) {
-    _this->_internal_set_location_id(from._internal_location_id());
+    _internal_set_location_id(from._internal_location_id());
   }
   if (!from._internal_component_name().empty()) {
-    _this->_internal_set_component_name(from._internal_component_name());
+    _internal_set_component_name(from._internal_component_name());
   }
   if (!from._internal_component_type().empty()) {
-    _this->_internal_set_component_type(from._internal_component_type());
+    _internal_set_component_type(from._internal_component_type());
   }
   if (!from._internal_component_model().empty()) {
-    _this->_internal_set_component_model(from._internal_component_model());
+    _internal_set_component_model(from._internal_component_model());
   }
   if (!from._internal_method_name().empty()) {
-    _this->_internal_set_method_name(from._internal_method_name());
+    _internal_set_method_name(from._internal_method_name());
   }
   if (!from._internal_blob_path().empty()) {
-    _this->_internal_set_blob_path(from._internal_blob_path());
+    _internal_set_blob_path(from._internal_blob_path());
   }
   if (!from._internal_file_id().empty()) {
-    _this->_internal_set_file_id(from._internal_file_id());
+    _internal_set_file_id(from._internal_file_id());
   }
   if (!from._internal_session_id().empty()) {
-    _this->_internal_set_session_id(from._internal_session_id());
+    _internal_set_session_id(from._internal_session_id());
   }
   if (!from._internal_mime_type().empty()) {
-    _this->_internal_set_mime_type(from._internal_mime_type());
+    _internal_set_mime_type(from._internal_mime_type());
   }
   if (!from._internal_id().empty()) {
-    _this->_internal_set_id(from._internal_id());
+    _internal_set_id(from._internal_id());
   }
   if (from._internal_has_interval()) {
-    _this->_internal_mutable_interval()->::viam::app::datasync::v1::CaptureInterval::MergeFrom(
-        from._internal_interval());
+    _internal_mutable_interval()->::viam::app::datasync::v1::CaptureInterval::MergeFrom(from._internal_interval());
   }
   if (from._internal_file_size_bytes() != 0) {
-    _this->_internal_set_file_size_bytes(from._internal_file_size_bytes());
+    _internal_set_file_size_bytes(from._internal_file_size_bytes());
   }
   if (from._internal_message_count() != 0) {
-    _this->_internal_set_message_count(from._internal_message_count());
+    _internal_set_message_count(from._internal_message_count());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TabularCapture::CopyFrom(const TabularCapture& from) {
@@ -4645,67 +4499,67 @@ void TabularCapture::InternalSwap(TabularCapture* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.column_names_.InternalSwap(&other->_impl_.column_names_);
-  _impl_.method_parameters_.InternalSwap(&other->_impl_.method_parameters_);
-  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
+  column_names_.InternalSwap(&other->column_names_);
+  method_parameters_.InternalSwap(&other->method_parameters_);
+  tags_.InternalSwap(&other->tags_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.org_id_, lhs_arena,
-      &other->_impl_.org_id_, rhs_arena
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.robot_id_, lhs_arena,
-      &other->_impl_.robot_id_, rhs_arena
+      &robot_id_, lhs_arena,
+      &other->robot_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.part_id_, lhs_arena,
-      &other->_impl_.part_id_, rhs_arena
+      &part_id_, lhs_arena,
+      &other->part_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.location_id_, lhs_arena,
-      &other->_impl_.location_id_, rhs_arena
+      &location_id_, lhs_arena,
+      &other->location_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_name_, lhs_arena,
-      &other->_impl_.component_name_, rhs_arena
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_type_, lhs_arena,
-      &other->_impl_.component_type_, rhs_arena
+      &component_type_, lhs_arena,
+      &other->component_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_model_, lhs_arena,
-      &other->_impl_.component_model_, rhs_arena
+      &component_model_, lhs_arena,
+      &other->component_model_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.method_name_, lhs_arena,
-      &other->_impl_.method_name_, rhs_arena
+      &method_name_, lhs_arena,
+      &other->method_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.blob_path_, lhs_arena,
-      &other->_impl_.blob_path_, rhs_arena
+      &blob_path_, lhs_arena,
+      &other->blob_path_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_id_, lhs_arena,
-      &other->_impl_.file_id_, rhs_arena
+      &file_id_, lhs_arena,
+      &other->file_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.session_id_, lhs_arena,
-      &other->_impl_.session_id_, rhs_arena
+      &session_id_, lhs_arena,
+      &other->session_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.mime_type_, lhs_arena,
-      &other->_impl_.mime_type_, rhs_arena
+      &mime_type_, lhs_arena,
+      &other->mime_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.id_, lhs_arena,
-      &other->_impl_.id_, rhs_arena
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TabularCapture, _impl_.message_count_)
-      + sizeof(TabularCapture::_impl_.message_count_)
-      - PROTOBUF_FIELD_OFFSET(TabularCapture, _impl_.interval_)>(
-          reinterpret_cast<char*>(&_impl_.interval_),
-          reinterpret_cast<char*>(&other->_impl_.interval_));
+      PROTOBUF_FIELD_OFFSET(TabularCapture, message_count_)
+      + sizeof(TabularCapture::message_count_)
+      - PROTOBUF_FIELD_OFFSET(TabularCapture, interval_)>(
+          reinterpret_cast<char*>(&interval_),
+          reinterpret_cast<char*>(&other->interval_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TabularCapture::GetMetadata() const {
@@ -4737,260 +4591,221 @@ class BinaryCapture::_Internal {
 
 const ::viam::app::datasync::v1::CaptureInterval&
 BinaryCapture::_Internal::interval(const BinaryCapture* msg) {
-  return *msg->_impl_.interval_;
+  return *msg->interval_;
 }
 void BinaryCapture::clear_method_parameters() {
-  _impl_.method_parameters_.Clear();
+  method_parameters_.Clear();
 }
 BinaryCapture::BinaryCapture(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  method_parameters_(arena),
+  tags_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &BinaryCapture::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:viam.app.datasync.v1.BinaryCapture)
 }
 BinaryCapture::BinaryCapture(const BinaryCapture& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  BinaryCapture* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.method_parameters_)*/{}
-    , decltype(_impl_.tags_){from._impl_.tags_}
-    , decltype(_impl_.org_id_){}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.part_id_){}
-    , decltype(_impl_.location_id_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.blob_path_){}
-    , decltype(_impl_.file_id_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.mime_type_){}
-    , decltype(_impl_.file_name_){}
-    , decltype(_impl_.file_ext_){}
-    , decltype(_impl_.id_){}
-    , decltype(_impl_.interval_){nullptr}
-    , decltype(_impl_.file_size_bytes_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _impl_.org_id_.InitDefault();
+  method_parameters_.MergeFrom(from.method_parameters_);
+  org_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.org_id_.Set("", GetArenaForAllocation());
+    org_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_org_id().empty()) {
-    _this->_impl_.org_id_.Set(from._internal_org_id(), 
-      _this->GetArenaForAllocation());
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.robot_id_.InitDefault();
+  robot_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.robot_id_.Set("", GetArenaForAllocation());
+    robot_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_robot_id().empty()) {
-    _this->_impl_.robot_id_.Set(from._internal_robot_id(), 
-      _this->GetArenaForAllocation());
+    robot_id_.Set(from._internal_robot_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.part_id_.InitDefault();
+  part_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.part_id_.Set("", GetArenaForAllocation());
+    part_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_part_id().empty()) {
-    _this->_impl_.part_id_.Set(from._internal_part_id(), 
-      _this->GetArenaForAllocation());
+    part_id_.Set(from._internal_part_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.location_id_.InitDefault();
+  location_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_id_.Set("", GetArenaForAllocation());
+    location_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_location_id().empty()) {
-    _this->_impl_.location_id_.Set(from._internal_location_id(), 
-      _this->GetArenaForAllocation());
+    location_id_.Set(from._internal_location_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_name_.InitDefault();
+  component_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
+    component_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_name().empty()) {
-    _this->_impl_.component_name_.Set(from._internal_component_name(), 
-      _this->GetArenaForAllocation());
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_type_.InitDefault();
+  component_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
+    component_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_type().empty()) {
-    _this->_impl_.component_type_.Set(from._internal_component_type(), 
-      _this->GetArenaForAllocation());
+    component_type_.Set(from._internal_component_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.component_model_.InitDefault();
+  component_model_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
+    component_model_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_component_model().empty()) {
-    _this->_impl_.component_model_.Set(from._internal_component_model(), 
-      _this->GetArenaForAllocation());
+    component_model_.Set(from._internal_component_model(), 
+      GetArenaForAllocation());
   }
-  _impl_.method_name_.InitDefault();
+  method_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
+    method_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_method_name().empty()) {
-    _this->_impl_.method_name_.Set(from._internal_method_name(), 
-      _this->GetArenaForAllocation());
+    method_name_.Set(from._internal_method_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.blob_path_.InitDefault();
+  blob_path_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.blob_path_.Set("", GetArenaForAllocation());
+    blob_path_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_blob_path().empty()) {
-    _this->_impl_.blob_path_.Set(from._internal_blob_path(), 
-      _this->GetArenaForAllocation());
+    blob_path_.Set(from._internal_blob_path(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_id_.InitDefault();
+  file_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_id_.Set("", GetArenaForAllocation());
+    file_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_id().empty()) {
-    _this->_impl_.file_id_.Set(from._internal_file_id(), 
-      _this->GetArenaForAllocation());
+    file_id_.Set(from._internal_file_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.session_id_.InitDefault();
+  session_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
+    session_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_session_id().empty()) {
-    _this->_impl_.session_id_.Set(from._internal_session_id(), 
-      _this->GetArenaForAllocation());
+    session_id_.Set(from._internal_session_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.mime_type_.InitDefault();
+  mime_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mime_type_.Set("", GetArenaForAllocation());
+    mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_mime_type().empty()) {
-    _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
-      _this->GetArenaForAllocation());
+    mime_type_.Set(from._internal_mime_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_name_.InitDefault();
+  file_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_name_.Set("", GetArenaForAllocation());
+    file_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_name().empty()) {
-    _this->_impl_.file_name_.Set(from._internal_file_name(), 
-      _this->GetArenaForAllocation());
+    file_name_.Set(from._internal_file_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.file_ext_.InitDefault();
+  file_ext_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_ext_.Set("", GetArenaForAllocation());
+    file_ext_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_file_ext().empty()) {
-    _this->_impl_.file_ext_.Set(from._internal_file_ext(), 
-      _this->GetArenaForAllocation());
+    file_ext_.Set(from._internal_file_ext(), 
+      GetArenaForAllocation());
   }
-  _impl_.id_.InitDefault();
+  id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.id_.Set("", GetArenaForAllocation());
+    id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    _this->_impl_.id_.Set(from._internal_id(), 
-      _this->GetArenaForAllocation());
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_interval()) {
-    _this->_impl_.interval_ = new ::viam::app::datasync::v1::CaptureInterval(*from._impl_.interval_);
+    interval_ = new ::viam::app::datasync::v1::CaptureInterval(*from.interval_);
+  } else {
+    interval_ = nullptr;
   }
-  _this->_impl_.file_size_bytes_ = from._impl_.file_size_bytes_;
+  file_size_bytes_ = from.file_size_bytes_;
   // @@protoc_insertion_point(copy_constructor:viam.app.datasync.v1.BinaryCapture)
 }
 
-inline void BinaryCapture::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.method_parameters_)*/{::_pbi::ArenaInitialized(), arena}
-    , decltype(_impl_.tags_){arena}
-    , decltype(_impl_.org_id_){}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.part_id_){}
-    , decltype(_impl_.location_id_){}
-    , decltype(_impl_.component_name_){}
-    , decltype(_impl_.component_type_){}
-    , decltype(_impl_.component_model_){}
-    , decltype(_impl_.method_name_){}
-    , decltype(_impl_.blob_path_){}
-    , decltype(_impl_.file_id_){}
-    , decltype(_impl_.session_id_){}
-    , decltype(_impl_.mime_type_){}
-    , decltype(_impl_.file_name_){}
-    , decltype(_impl_.file_ext_){}
-    , decltype(_impl_.id_){}
-    , decltype(_impl_.interval_){nullptr}
-    , decltype(_impl_.file_size_bytes_){int64_t{0}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.org_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.org_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.robot_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.robot_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.part_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.part_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.location_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.location_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.component_model_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.component_model_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.method_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.method_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.blob_path_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.blob_path_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.session_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.session_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.mime_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mime_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.file_ext_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.file_ext_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void BinaryCapture::SharedCtor() {
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+robot_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  robot_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+part_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  part_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+location_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  location_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_model_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_model_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+method_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  method_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+blob_path_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  blob_path_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+session_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  session_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+mime_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  mime_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+file_ext_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  file_ext_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&interval_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&file_size_bytes_) -
+    reinterpret_cast<char*>(&interval_)) + sizeof(file_size_bytes_));
 }
 
 BinaryCapture::~BinaryCapture() {
@@ -5005,33 +4820,31 @@ BinaryCapture::~BinaryCapture() {
 
 inline void BinaryCapture::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.method_parameters_.Destruct();
-  _impl_.method_parameters_.~MapField();
-  _impl_.tags_.~RepeatedPtrField();
-  _impl_.org_id_.Destroy();
-  _impl_.robot_id_.Destroy();
-  _impl_.part_id_.Destroy();
-  _impl_.location_id_.Destroy();
-  _impl_.component_name_.Destroy();
-  _impl_.component_type_.Destroy();
-  _impl_.component_model_.Destroy();
-  _impl_.method_name_.Destroy();
-  _impl_.blob_path_.Destroy();
-  _impl_.file_id_.Destroy();
-  _impl_.session_id_.Destroy();
-  _impl_.mime_type_.Destroy();
-  _impl_.file_name_.Destroy();
-  _impl_.file_ext_.Destroy();
-  _impl_.id_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.interval_;
+  method_parameters_.Destruct();
+  org_id_.Destroy();
+  robot_id_.Destroy();
+  part_id_.Destroy();
+  location_id_.Destroy();
+  component_name_.Destroy();
+  component_type_.Destroy();
+  component_model_.Destroy();
+  method_name_.Destroy();
+  blob_path_.Destroy();
+  file_id_.Destroy();
+  session_id_.Destroy();
+  mime_type_.Destroy();
+  file_name_.Destroy();
+  file_ext_.Destroy();
+  id_.Destroy();
+  if (this != internal_default_instance()) delete interval_;
 }
 
 void BinaryCapture::ArenaDtor(void* object) {
   BinaryCapture* _this = reinterpret_cast< BinaryCapture* >(object);
-  _this->_impl_.method_parameters_.Destruct();
+  _this->method_parameters_.Destruct();
 }
 void BinaryCapture::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void BinaryCapture::Clear() {
@@ -5040,28 +4853,28 @@ void BinaryCapture::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.method_parameters_.Clear();
-  _impl_.tags_.Clear();
-  _impl_.org_id_.ClearToEmpty();
-  _impl_.robot_id_.ClearToEmpty();
-  _impl_.part_id_.ClearToEmpty();
-  _impl_.location_id_.ClearToEmpty();
-  _impl_.component_name_.ClearToEmpty();
-  _impl_.component_type_.ClearToEmpty();
-  _impl_.component_model_.ClearToEmpty();
-  _impl_.method_name_.ClearToEmpty();
-  _impl_.blob_path_.ClearToEmpty();
-  _impl_.file_id_.ClearToEmpty();
-  _impl_.session_id_.ClearToEmpty();
-  _impl_.mime_type_.ClearToEmpty();
-  _impl_.file_name_.ClearToEmpty();
-  _impl_.file_ext_.ClearToEmpty();
-  _impl_.id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.interval_ != nullptr) {
-    delete _impl_.interval_;
+  method_parameters_.Clear();
+  tags_.Clear();
+  org_id_.ClearToEmpty();
+  robot_id_.ClearToEmpty();
+  part_id_.ClearToEmpty();
+  location_id_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  component_type_.ClearToEmpty();
+  component_model_.ClearToEmpty();
+  method_name_.ClearToEmpty();
+  blob_path_.ClearToEmpty();
+  file_id_.ClearToEmpty();
+  session_id_.ClearToEmpty();
+  mime_type_.ClearToEmpty();
+  file_name_.ClearToEmpty();
+  file_ext_.ClearToEmpty();
+  id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && interval_ != nullptr) {
+    delete interval_;
   }
-  _impl_.interval_ = nullptr;
-  _impl_.file_size_bytes_ = int64_t{0};
+  interval_ = nullptr;
+  file_size_bytes_ = int64_t{0};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5175,7 +4988,7 @@ const char* BinaryCapture::_InternalParse(const char* ptr, ::_pbi::ParseContext*
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.method_parameters_, ptr);
+            ptr = ctx->ParseMessage(&method_parameters_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<90>(ptr));
@@ -5210,7 +5023,7 @@ const char* BinaryCapture::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // int64 file_size_bytes = 14 [json_name = "fileSizeBytes", (.tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
-          _impl_.file_size_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          file_size_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5520,10 +5333,10 @@ size_t BinaryCapture::ByteSizeLong() const {
 
   // repeated string tags = 13 [json_name = "tags", (.tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
-  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.tags_.Get(i));
+      tags_.Get(i));
   }
 
   // string org_id = 2 [json_name = "orgId", (.tagger.v1.tags) = "bson:\"org_id\" json:\"org_id\""];
@@ -5635,7 +5448,7 @@ size_t BinaryCapture::ByteSizeLong() const {
   if (this->_internal_has_interval()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.interval_);
+        *interval_);
   }
 
   // int64 file_size_bytes = 14 [json_name = "fileSizeBytes", (.tagger.v1.tags) = "bson:\"file_size_bytes\" json:\"file_size_bytes\""];
@@ -5643,79 +5456,82 @@ size_t BinaryCapture::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_file_size_bytes());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BinaryCapture::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     BinaryCapture::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BinaryCapture::GetClassData() const { return &_class_data_; }
 
+void BinaryCapture::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<BinaryCapture *>(to)->MergeFrom(
+      static_cast<const BinaryCapture &>(from));
+}
 
-void BinaryCapture::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<BinaryCapture*>(&to_msg);
-  auto& from = static_cast<const BinaryCapture&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.BinaryCapture)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void BinaryCapture::MergeFrom(const BinaryCapture& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.datasync.v1.BinaryCapture)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.method_parameters_.MergeFrom(from._impl_.method_parameters_);
-  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
+  method_parameters_.MergeFrom(from.method_parameters_);
+  tags_.MergeFrom(from.tags_);
   if (!from._internal_org_id().empty()) {
-    _this->_internal_set_org_id(from._internal_org_id());
+    _internal_set_org_id(from._internal_org_id());
   }
   if (!from._internal_robot_id().empty()) {
-    _this->_internal_set_robot_id(from._internal_robot_id());
+    _internal_set_robot_id(from._internal_robot_id());
   }
   if (!from._internal_part_id().empty()) {
-    _this->_internal_set_part_id(from._internal_part_id());
+    _internal_set_part_id(from._internal_part_id());
   }
   if (!from._internal_location_id().empty()) {
-    _this->_internal_set_location_id(from._internal_location_id());
+    _internal_set_location_id(from._internal_location_id());
   }
   if (!from._internal_component_name().empty()) {
-    _this->_internal_set_component_name(from._internal_component_name());
+    _internal_set_component_name(from._internal_component_name());
   }
   if (!from._internal_component_type().empty()) {
-    _this->_internal_set_component_type(from._internal_component_type());
+    _internal_set_component_type(from._internal_component_type());
   }
   if (!from._internal_component_model().empty()) {
-    _this->_internal_set_component_model(from._internal_component_model());
+    _internal_set_component_model(from._internal_component_model());
   }
   if (!from._internal_method_name().empty()) {
-    _this->_internal_set_method_name(from._internal_method_name());
+    _internal_set_method_name(from._internal_method_name());
   }
   if (!from._internal_blob_path().empty()) {
-    _this->_internal_set_blob_path(from._internal_blob_path());
+    _internal_set_blob_path(from._internal_blob_path());
   }
   if (!from._internal_file_id().empty()) {
-    _this->_internal_set_file_id(from._internal_file_id());
+    _internal_set_file_id(from._internal_file_id());
   }
   if (!from._internal_session_id().empty()) {
-    _this->_internal_set_session_id(from._internal_session_id());
+    _internal_set_session_id(from._internal_session_id());
   }
   if (!from._internal_mime_type().empty()) {
-    _this->_internal_set_mime_type(from._internal_mime_type());
+    _internal_set_mime_type(from._internal_mime_type());
   }
   if (!from._internal_file_name().empty()) {
-    _this->_internal_set_file_name(from._internal_file_name());
+    _internal_set_file_name(from._internal_file_name());
   }
   if (!from._internal_file_ext().empty()) {
-    _this->_internal_set_file_ext(from._internal_file_ext());
+    _internal_set_file_ext(from._internal_file_ext());
   }
   if (!from._internal_id().empty()) {
-    _this->_internal_set_id(from._internal_id());
+    _internal_set_id(from._internal_id());
   }
   if (from._internal_has_interval()) {
-    _this->_internal_mutable_interval()->::viam::app::datasync::v1::CaptureInterval::MergeFrom(
-        from._internal_interval());
+    _internal_mutable_interval()->::viam::app::datasync::v1::CaptureInterval::MergeFrom(from._internal_interval());
   }
   if (from._internal_file_size_bytes() != 0) {
-    _this->_internal_set_file_size_bytes(from._internal_file_size_bytes());
+    _internal_set_file_size_bytes(from._internal_file_size_bytes());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void BinaryCapture::CopyFrom(const BinaryCapture& from) {
@@ -5734,74 +5550,74 @@ void BinaryCapture::InternalSwap(BinaryCapture* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.method_parameters_.InternalSwap(&other->_impl_.method_parameters_);
-  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
+  method_parameters_.InternalSwap(&other->method_parameters_);
+  tags_.InternalSwap(&other->tags_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.org_id_, lhs_arena,
-      &other->_impl_.org_id_, rhs_arena
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.robot_id_, lhs_arena,
-      &other->_impl_.robot_id_, rhs_arena
+      &robot_id_, lhs_arena,
+      &other->robot_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.part_id_, lhs_arena,
-      &other->_impl_.part_id_, rhs_arena
+      &part_id_, lhs_arena,
+      &other->part_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.location_id_, lhs_arena,
-      &other->_impl_.location_id_, rhs_arena
+      &location_id_, lhs_arena,
+      &other->location_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_name_, lhs_arena,
-      &other->_impl_.component_name_, rhs_arena
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_type_, lhs_arena,
-      &other->_impl_.component_type_, rhs_arena
+      &component_type_, lhs_arena,
+      &other->component_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.component_model_, lhs_arena,
-      &other->_impl_.component_model_, rhs_arena
+      &component_model_, lhs_arena,
+      &other->component_model_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.method_name_, lhs_arena,
-      &other->_impl_.method_name_, rhs_arena
+      &method_name_, lhs_arena,
+      &other->method_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.blob_path_, lhs_arena,
-      &other->_impl_.blob_path_, rhs_arena
+      &blob_path_, lhs_arena,
+      &other->blob_path_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_id_, lhs_arena,
-      &other->_impl_.file_id_, rhs_arena
+      &file_id_, lhs_arena,
+      &other->file_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.session_id_, lhs_arena,
-      &other->_impl_.session_id_, rhs_arena
+      &session_id_, lhs_arena,
+      &other->session_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.mime_type_, lhs_arena,
-      &other->_impl_.mime_type_, rhs_arena
+      &mime_type_, lhs_arena,
+      &other->mime_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_name_, lhs_arena,
-      &other->_impl_.file_name_, rhs_arena
+      &file_name_, lhs_arena,
+      &other->file_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.file_ext_, lhs_arena,
-      &other->_impl_.file_ext_, rhs_arena
+      &file_ext_, lhs_arena,
+      &other->file_ext_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.id_, lhs_arena,
-      &other->_impl_.id_, rhs_arena
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(BinaryCapture, _impl_.file_size_bytes_)
-      + sizeof(BinaryCapture::_impl_.file_size_bytes_)
-      - PROTOBUF_FIELD_OFFSET(BinaryCapture, _impl_.interval_)>(
-          reinterpret_cast<char*>(&_impl_.interval_),
-          reinterpret_cast<char*>(&other->_impl_.interval_));
+      PROTOBUF_FIELD_OFFSET(BinaryCapture, file_size_bytes_)
+      + sizeof(BinaryCapture::file_size_bytes_)
+      - PROTOBUF_FIELD_OFFSET(BinaryCapture, interval_)>(
+          reinterpret_cast<char*>(&interval_),
+          reinterpret_cast<char*>(&other->interval_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata BinaryCapture::GetMetadata() const {
