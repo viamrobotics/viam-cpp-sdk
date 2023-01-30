@@ -42,9 +42,6 @@ class Name : public Subtype {
     Name(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();
-    // size_t operator()(Name const& key) const {
-    // return std::hash<std::string>()(key.to_string());
-    //}
     friend bool operator==(const Name& lhs, const Name& rhs);
 };
 
@@ -53,11 +50,6 @@ class RPCSubtype {
     Subtype subtype;
     std::string proto_service_name;
     const google::protobuf::Descriptor* descriptor;
-    // size_t operator()(RPCSubtype const& key) const {
-    // Subtype subtype = key.subtype;
-    // std::string hash = subtype.to_string() + proto_service_name;
-    // return std::hash<std::string>()(hash);
-    //}
 
     bool operator<(const RPCSubtype& rhs) const {
         return (subtype.to_string() + proto_service_name + descriptor->DebugString()) <

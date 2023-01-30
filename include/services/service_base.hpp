@@ -7,6 +7,7 @@
 
 class ServiceType {
    public:
+    std::string name;
     friend bool operator==(ServiceType& lhs, ServiceType& rhs);
     ServiceType(std::string name) {
         name = name;
@@ -14,9 +15,6 @@ class ServiceType {
     ServiceType() {
         name = "ServiceBase";
     }
-
-   private:
-    std::string name;
 };
 
 class ServiceBase : public ResourceBase {
