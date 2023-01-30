@@ -27,7 +27,7 @@ class Subtype : public Type {
     friend bool operator<(const Subtype& lhs, const Subtype& rhs);
 };
 
-// CR erodkin: instead of inheriting from Subtype probably this should just have a Subtype as a
+// TODO: instead of inheriting from Subtype probably this should just have a Subtype as a
 // member
 class Name : public Subtype {
    public:
@@ -36,7 +36,7 @@ class Name : public Subtype {
 
     std::string short_name() const;
     std::string to_string() const;
-    // CR erodkin: this isn't necessary, instead this->Subtype::to_string();
+    // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
     viam::common::v1::ResourceName to_proto();
     Name(std::string name);

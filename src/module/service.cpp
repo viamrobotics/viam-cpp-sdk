@@ -55,7 +55,6 @@ void Module::dial() {
     this->channel = grpc::CreateChannel(address, grpc::InsecureChannelCredentials());
 }
 
-//// CR erodkin: fix
 ResourceBase Module::get_parent_resource(Name name) {
     return this->parent->get()->resource_by_name(name);
 }

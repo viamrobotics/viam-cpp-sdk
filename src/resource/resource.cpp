@@ -193,13 +193,3 @@ std::string Model::to_string() const {
 
 Model::Model() : Model(ModelFamily(RDK, BUILTIN), BUILTIN) {}
 
-// CR erodkin: delete these
-Model foo() {
-    ModelFamily mf{"my namespace", "my family"};
-    Model m{mf, "my name"};
-    return m;
-}
-
-Model bar() {
-    return {{"my namespace", "my family"}, "my name"};
-}

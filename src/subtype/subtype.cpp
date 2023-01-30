@@ -8,8 +8,6 @@
 #include <string>
 #include <subtype/subtype.hpp>
 
-// CR erodkin: define all of these. should key in replace_all be a name?
-
 boost::optional<ResourceBase&> SubtypeService::resource(std::string name) {
     lock.lock();
     if (resources.find(name) != resources.end()) {
