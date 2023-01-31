@@ -40,6 +40,8 @@ class RobotClient {
     std::vector<viam::robot::v1::Discovery> discover_components(
         std::vector<viam::robot::v1::DiscoveryQuery> queries);
 
+    std::vector<std::thread> threads;
+
     viam::common::v1::PoseInFrame transform_pose(
         viam::common::v1::PoseInFrame query,
         std::string destination,
