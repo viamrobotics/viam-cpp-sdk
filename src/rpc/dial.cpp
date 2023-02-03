@@ -7,8 +7,8 @@
 #include <istream>
 #include <string>
 
-#include "../../src/gen/robot/v1/robot.grpc.pb.h"
-#include "../../src/gen/robot/v1/robot.pb.h"
+#include "robot/v1/robot.grpc.pb.h"
+#include "robot/v1/robot.pb.h"
 
 class Credentials {
    public:

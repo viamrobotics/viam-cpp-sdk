@@ -11,6 +11,9 @@
 - `examples` A list of examples
 
 ## Getting Started
+
+NOTE: Please see `BUILDING.md` for instructions on how to use the new CMake-based build system for this project.
+
 First you may want to build the SDK library, to do so navigate to the root of the repository and run `make build` this should pull all the dependencies and hopefully build the library!
 Lastly you can run one of the examples by navigation to the examples/{dial|echo} folder and run `make example_{dial|echo} && ./example_{dial|echo}`
 

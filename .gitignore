@@ -1,9 +1,8 @@
-# example binaries
-examples/dial/example_dial
-examples/echo/example_echo
+# Please try to keep this file as empty as possible,
+# and document what cannot be avoided.
 
-# compilation files
-compile_commands.json
-*.o 
-.cache
+# Give users an ignored place to build
+/build/*
 
+# For now, ignore any viam_rust_utils library in the root.
+/libviam_rust_utils*

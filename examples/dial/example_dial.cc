@@ -8,10 +8,10 @@
 #include <string>
 #include <vector>
 
-#include "../../src/gen/robot/v1/robot.grpc.pb.h"
-#include "../../src/gen/robot/v1/robot.pb.h"
-#include "../../src/robot/client.h"
-#include "../../src/rpc/dial.h"
+#include "robot/v1/robot.grpc.pb.h"
+#include "robot/v1/robot.pb.h"
+#include "robot/client.hpp"
+#include "rpc/dial.hpp"
 
 using viam::robot::v1::Status;
 
