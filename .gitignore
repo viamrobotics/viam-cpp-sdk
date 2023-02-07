@@ -1,6 +1,7 @@
 # example binaries
 examples/dial/example_dial
 examples/echo/example_echo
+examples/modules/example_module
 
 # compilation files
 compile_commands.json

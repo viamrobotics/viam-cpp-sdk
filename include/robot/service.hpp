@@ -2,7 +2,7 @@
 
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
-#include <grpcpp/server_context.h>
+// #include <grpcpp/server_context.h>
 #include <grpcpp/support/status.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
@@ -21,14 +21,11 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
-class ModuleManager;
-
 class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
    public:
     RobotService_();
-    RobotService_(std::shared_ptr<ModuleManager> mm);
     static std::shared_ptr<RobotService_> create();
-    ComponentBase resource_by_name(Name name);
+    boost::optional<ResourceBase> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
                                  ::viam::robot::v1::ResourceNamesResponse* response) override;
@@ -42,7 +39,6 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
     ::grpc::Status StopAll(::grpc::ServerContext* context,
                            const ::viam::robot::v1::StopAllRequest* request,
                            ::viam::robot::v1::StopAllResponse* response) override;
-    std::shared_ptr<ModuleManager> mod_manager;
 
    private:
     std::mutex lock;

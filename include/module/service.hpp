@@ -3,34 +3,15 @@
 #include <module/v1/module.grpc.pb.h>
 
 #include <components/service_base.hpp>
-#include <config/resource.hpp>
-#include <module/handler_map.hpp>
-#include <robot/service.hpp>
-#include <subtype/subtype.hpp>
-
-class RobotService_;
-
-class Module {
-   public:
-    std::shared_ptr<RobotService_>* parent;
-    std::mutex lock;
-    std::string name;
-    std::string exe;
-    std::string addr;
-    bool ready;
-    HandlerMap_ handles;
-    std::shared_ptr<grpc::Channel> channel;
-    std::unordered_map<Subtype, SubtypeService&> services;
-    void dial();
-    ResourceBase get_parent_resource(Name name);
-    void set_ready();
-    Module();
-    Module(std::shared_ptr<RobotService_>* parent);
-};
+#include <module/module.hpp>
 
 class ModuleService_ : public ComponentServiceBase,
                        public viam::module::v1::ModuleService::Service {
    public:
+    void start();
+    void close();
+    void add_api_from_registry(Subtype api);
+    void add_model_from_registry(Subtype api, Model model);
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse* response) override;
@@ -49,5 +30,15 @@ class ModuleService_ : public ComponentServiceBase,
                          ::viam::module::v1::ReadyResponse* response) override;
 
     std::shared_ptr<Module> module;
+    std::unique_ptr<grpc::Server> server;
+
+    ModuleService_(std::shared_ptr<Module> module);
+    ModuleService_(std::string addr);
+    Dependencies get_dependencies(google::protobuf::RepeatedPtrField<std::string> proto);
+
+   private:
+    ResourceBase get_parent_resource(Name name);
+    std::shared_ptr<RobotClient>* parent;
+    std::string parent_addr;
 };
 

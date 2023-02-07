@@ -20,5 +20,6 @@ class ModuleClient {
     void remove_resource(Name name);
 
     void ready(std::string address);
+    // CR erodkin: api for module is defined in proto?? so says cheuk but that seems weird
 };
 

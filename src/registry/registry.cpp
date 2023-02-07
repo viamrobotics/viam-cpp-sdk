@@ -23,34 +23,38 @@ void Registry::register_component(ComponentRegistration component) {
     components.emplace(component.name, component);
 }
 
-ServiceRegistration Registry::lookup_service(std::string name) {
+boost::optional<ServiceRegistration> Registry::lookup_service(std::string name) {
     if (services.find(name) == services.end()) {
-        std::string err = "Service " + name + "not found.";
-        err += name;
-        throw std::runtime_error(err);
+        return boost::none;
     }
 
     return services.at(name);
 }
 
-ServiceRegistration Registry::lookup_service(Subtype subtype, Model model) {
+boost::optional<ServiceRegistration> Registry::lookup_service(Subtype subtype, Model model) {
     const std::string name = subtype.to_string() + model.to_string();
     return lookup_service(name);
 }
 
-ComponentRegistration Registry::lookup_component(std::string name) {
+boost::optional<ComponentRegistration> Registry::lookup_component(std::string name) {
     if (components.find(name) == components.end()) {
-        std::string err = "Component " + name + "not found.";
-        err += name;
-        throw std::runtime_error(err);
+        return boost::none;
     }
 
     return components.at(name);
 }
 
-ComponentRegistration Registry::lookup_component(Subtype subtype, Model model) {
+boost::optional<ComponentRegistration> Registry::lookup_component(Subtype subtype, Model model) {
     const std::string name = subtype.to_string() + model.to_string();
     return lookup_component(name);
+}
+
+boost::optional<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
+    if (subtypes.find(subtype) == subtypes.end()) {
+        return boost::none;
+    }
+
+    return subtypes.at(subtype);
 }
 
 std::unordered_map<Subtype, ServiceRegistration> Registry::registered_services() {
@@ -71,9 +75,8 @@ std::unordered_map<std::string, ComponentRegistration> Registry::registered_comp
 
 Status ComponentRegistration::create_status(ComponentBase component) {
     Status status;
-    google::protobuf::Struct struct_;
     *status.mutable_name() = component.get_resource_name(component.name);
-    *status.mutable_status() = struct_;
+    *status.mutable_status() = google::protobuf::Struct();
     return status;
 }
 
@@ -87,6 +90,7 @@ Status ServiceRegistration::create_status(ServiceBase service) {
 
 std::unordered_map<std::string, ComponentRegistration> Registry::components;
 std::unordered_map<std::string, ServiceRegistration> Registry::services;
+std::unordered_map<Subtype, ResourceSubtype> Registry::subtypes;
 
 ServiceRegistration::ServiceRegistration(){};
 ComponentRegistration::ComponentRegistration(){};

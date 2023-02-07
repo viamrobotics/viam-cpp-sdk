@@ -3,6 +3,7 @@
 #include <module/service.hpp>
 #include <unordered_map>
 
+// CR erodkin: should we just get rid of this entirely?
 class ModuleService_;
 class ModuleManager {
    public:

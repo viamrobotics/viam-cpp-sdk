@@ -8,7 +8,7 @@
 #include <string>
 #include <subtype/subtype.hpp>
 
-boost::optional<ResourceBase&> SubtypeService::resource(std::string name) {
+std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     lock.lock();
     if (resources.find(name) != resources.end()) {
         lock.unlock();
@@ -22,12 +22,12 @@ boost::optional<ResourceBase&> SubtypeService::resource(std::string name) {
     }
 
     lock.unlock();
-    return boost::none;
+    return nullptr;
 };
 
-void SubtypeService::replace_all(std::unordered_map<Name, ResourceBase> new_map) {
+void SubtypeService::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
     lock.lock();
-    std::unordered_map<std::string, ResourceBase> new_resources;
+    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> new_resources;
     std::unordered_map<std::string, std::string> new_short_names;
     this->resources = new_resources;
     this->short_names = new_short_names;
@@ -51,7 +51,7 @@ std::string get_shortcut_name(std::string name) {
     return name_split.at(name_split.size() - 1);
 }
 
-void SubtypeService::do_add(Name name, ResourceBase resource) {
+void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
     if (name.name == "") {
         throw "Empty name used for resource: " + name.to_string();
     }
@@ -72,7 +72,7 @@ void SubtypeService::do_add(Name name, ResourceBase resource) {
     }
 };
 
-void SubtypeService::add(Name name, ResourceBase resource) {
+void SubtypeService::add(Name name, std::shared_ptr<ResourceBase> resource) {
     lock.lock();
     try {
         do_add(name, resource);
@@ -117,7 +117,7 @@ void SubtypeService::remove(Name name) {
     };
     lock.unlock();
 };
-void SubtypeService::replace_one(Name name, ResourceBase resource) {
+void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resource) {
     lock.lock();
     try {
         do_remove(name);

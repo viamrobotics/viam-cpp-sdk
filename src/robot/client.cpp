@@ -32,7 +32,6 @@
 #include <vector>
 
 using google::protobuf::RepeatedPtrField;
-using grpc::Channel;
 using grpc::ClientContext;
 using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;
@@ -48,9 +47,9 @@ using Viam::SDK::ViamChannel;
 
 void RobotClient::close() {
     should_refresh.store(false);
-    for (std::thread& t : threads) {
-        t.join();
-        t.~thread();
+    for (std::thread* t : threads) {
+        t->join();
+        t->~thread();
     }
     stop_all();
     viam_channel.close();
@@ -155,7 +154,7 @@ void RobotClient::refresh() {
 
         try {
             ComponentBase rpc_client =
-                Registry::lookup_component(name.subtype()).create_rpc_client(name.name(), channel);
+                Registry::lookup_component(name.subtype())->create_rpc_client(name.name(), channel);
             new_resource_manager.register_component(rpc_client);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(debug)
@@ -214,7 +213,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
         // TODO(RSDK-1743): this is leaking, find a way to handle
         // shutdown gracefully. See also address sanitizer, UB sanitizer
         t.detach();
-        robot->threads.push_back(t);
+        robot->threads.push_back(&t);
     };
 
     robot->refresh();
@@ -311,6 +310,22 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     return components;
 }
 
+boost::optional<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
+    try {
+        ComponentBase c = get_component(name);
+        return c;
+    } catch (std::exception& exc) {
+    }
+
+    try {
+        ServiceBase s = get_service(name);
+        return s;
+    } catch (std::exception& exc) {
+    }
+
+    return boost::none;
+}
+
 ComponentBase RobotClient::get_component(ResourceName name) {
     if (name.type() != COMPONENT) {
         std::string error = "Expected resource type 'component' but got " + name.type();
@@ -321,6 +336,16 @@ ComponentBase RobotClient::get_component(ResourceName name) {
         resource_manager.get_component(name.name(), ComponentType("ComponentBase"));
     lock.unlock();
     return component;
+}
+
+ServiceBase RobotClient::get_service(ResourceName name) {
+    if (name.type() != SERVICE) {
+        throw "Expected resource type 'service' but got " + name.type();
+    }
+    lock.lock();
+    ServiceBase service = resource_manager.get_service(name.name(), ServiceType("ServiceBase"));
+    lock.unlock();
+    return service;
 }
 
 void RobotClient::stop_all() {

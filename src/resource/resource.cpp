@@ -136,12 +136,12 @@ bool operator==(const Model& lhs, const Model& rhs) {
 
 RPCSubtype::RPCSubtype(Subtype subtype,
                        std::string proto_service_name,
-                       google::protobuf::Descriptor& descriptor)
+                       const google::protobuf::ServiceDescriptor& descriptor)
     : subtype(subtype), descriptor(&descriptor) {
     proto_service_name = proto_service_name;
 }
 
-RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::Descriptor& descriptor)
+RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor)
     : subtype(subtype), descriptor(&descriptor) {}
 
 ModelFamily::ModelFamily(std::string namespace_, std::string family) {

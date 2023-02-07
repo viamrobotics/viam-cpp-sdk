@@ -1,6 +1,5 @@
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
-#include <grpcpp/server_context.h>
 #include <grpcpp/support/status.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
@@ -188,18 +187,22 @@ void RobotService_::stream_status(
     return grpc::Status(status, "");
 }
 
-ComponentBase RobotService_::resource_by_name(Name name) {
-    this->lock.lock();
-    ComponentBase component = manager.components.at(name.name);
-    this->lock.unlock();
-    return component;
+boost::optional<ResourceBase> RobotService_::resource_by_name(Name name) {
+    lock.lock();
+    if (manager.components.find(name.name) != manager.components.end()) {
+        lock.unlock();
+        return manager.components.at(name.name);
+    } else if (manager.services.find(name.name) != manager.services.end()) {
+        lock.unlock();
+        return manager.services.at(name.name);
+    }
+
+    return boost::none;
 }
 
-RobotService_::RobotService_(std::shared_ptr<ModuleManager> mm) : mod_manager(mm){};
+RobotService_::RobotService_(){};
 
 std::shared_ptr<RobotService_> RobotService_::create() {
-    ModuleManager mm;
-    std::shared_ptr<ModuleManager> mgr = std::make_shared<ModuleManager>(mm);
-    return std::make_shared<RobotService_>(mgr);
+    return std::make_shared<RobotService_>();
 };
 

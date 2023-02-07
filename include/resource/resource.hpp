@@ -49,17 +49,17 @@ class RPCSubtype {
    public:
     Subtype subtype;
     std::string proto_service_name;
-    const google::protobuf::Descriptor* descriptor;
+    const google::protobuf::ServiceDescriptor* descriptor;
 
     bool operator<(const RPCSubtype& rhs) const {
         return (subtype.to_string() + proto_service_name + descriptor->DebugString()) <
                (rhs.subtype.to_string() + rhs.proto_service_name + rhs.descriptor->DebugString());
     };
 
-    RPCSubtype(Subtype subtype, const google::protobuf::Descriptor& descriptor);
+    RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor);
     RPCSubtype(Subtype subtype,
                std::string proto_service_name,
-               google::protobuf::Descriptor& descriptor);
+               const google::protobuf::ServiceDescriptor& descriptor);
     friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
 };
 

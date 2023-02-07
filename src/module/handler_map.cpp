@@ -1,3 +1,6 @@
+#include <memory>
+
+#include "google/protobuf/descriptor.h"
 #define BOOST_LOG_DYN_LINK 1
 #include <common/v1/common.pb.h>
 #include <module/v1/module.pb.h>
@@ -43,8 +46,12 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
         std::string resource_type = handler.subtype().subtype().type();
         std::string resource_subtype = handler.subtype().subtype().subtype();
         Subtype subtype(namespace_, resource_type, resource_subtype);
+        // CR erodkin: ServiceDescriptor?
         const google::protobuf::Descriptor* descriptor = handler.GetDescriptor();
-        RPCSubtype handle(subtype, *descriptor);
+        const google::protobuf::DescriptorPool* pool =
+            google::protobuf::DescriptorPool::generated_pool();
+        const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(resource_type);
+        RPCSubtype handle(subtype, *sd);
         for (auto& mod : handler.models()) {
             try {
                 Model model = Model::from_str(mod);
