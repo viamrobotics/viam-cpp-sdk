@@ -34,12 +34,12 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
     for (auto& cmp : manager.components) {
-        ComponentBase component = cmp.second;
+        std::shared_ptr<ComponentBase> component = cmp.second;
         for (auto& registry : Registry::registered_components()) {
             ComponentRegistration registration = registry.second;
-            if (registration.component_type == component.type) {
+            if (registration.component_type == component->type) {
                 bool component_present = false;
-                ResourceName component_name = component.get_resource_name(component.name);
+                ResourceName component_name = component->get_resource_name(component->name);
                 for (auto& resource_name : resource_names) {
                     if (&resource_name == &component_name) {
                         component_present = true;
@@ -56,12 +56,12 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     }
 
     for (auto& svc : manager.services) {
-        ServiceBase service = svc.second;
+        std::shared_ptr<ServiceBase> service = svc.second;
         for (auto& registry : Registry::registered_services()) {
             ServiceRegistration registration = registry.second;
-            if (registration.service_type == service.type) {
+            if (registration.service_type == service->type) {
                 bool service_present = false;
-                ResourceName service_name = service.get_resource_name(service.name);
+                ResourceName service_name = service->get_resource_name(service->name);
                 for (auto& resource_name : resource_names) {
                     if (&resource_name == &service_name) {
                         service_present = true;
@@ -170,16 +170,16 @@ void RobotService_::stream_status(
         extra.emplace(name, value_map);
 
         for (auto& comp : manager.components) {
-            ComponentBase component = comp.second;
-            ResourceName rn = component.get_resource_name(component.name);
+            std::shared_ptr<ComponentBase> component = comp.second;
+            ResourceName rn = component->get_resource_name(component->name);
             std::string rn_ = rn.SerializeAsString();
             if (extra.find(rn_) != extra.end()) {
-                grpc::StatusCode status = component.stop(extra.at(rn_));
+                grpc::StatusCode status = component->stop(extra.at(rn_));
                 if (status != grpc::StatusCode::OK) {
-                    status = component.stop();
+                    status = component->stop();
                 }
             } else {
-                status = component.stop();
+                status = component->stop();
             }
         }
     }
@@ -187,7 +187,7 @@ void RobotService_::stream_status(
     return grpc::Status(status, "");
 }
 
-boost::optional<ResourceBase> RobotService_::resource_by_name(Name name) {
+std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
     lock.lock();
     if (manager.components.find(name.name) != manager.components.end()) {
         lock.unlock();
@@ -197,7 +197,7 @@ boost::optional<ResourceBase> RobotService_::resource_by_name(Name name) {
         return manager.services.at(name.name);
     }
 
-    return boost::none;
+    return nullptr;
 }
 
 RobotService_::RobotService_(){};

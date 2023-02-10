@@ -25,7 +25,7 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
    public:
     RobotService_();
     static std::shared_ptr<RobotService_> create();
-    boost::optional<ResourceBase> resource_by_name(Name name);
+    std::shared_ptr<ResourceBase> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
                                  ::viam::robot::v1::ResourceNamesResponse* response) override;

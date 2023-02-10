@@ -1,3 +1,4 @@
+#include "../../examples/modules/example_module.cpp"
 #include "component/generic/v1/generic.grpc.pb.h"
 #include "google/protobuf/descriptor.h"
 #define BOOST_LOG_DYN_LINK 1
@@ -139,7 +140,7 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
     Dependencies deps = get_dependencies(request->dependencies());
 
     if (module->services.find(cfg.api) == module->services.end()) {
-        return grpc::Status(grpc::UNKNOWN, "no rpc servgice for config: " + cfg.api.to_string());
+        return grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api.to_string());
     }
     std::shared_ptr<SubtypeService> sub_svc = module->services.at(cfg.api);
 
@@ -285,26 +286,27 @@ void ModuleService_::start() {
     std::string address = "unix://" + module->addr;
     // CR erodkin: delete me
     std::cout << "WHAT IS THE ADDRESS??" << address << std::endl;
-    grpc::ServerBuilder builder;
+    std::unique_ptr<grpc::ServerBuilder> builder = std::make_unique<grpc::ServerBuilder>();
     // CR erodkin: hard coding here no good! fix that up. In general we should have a better
     // location for this.
-    viam::component::generic::v1::GenericService::Service gs;
-    builder.RegisterService(&gs);
-    builder.RegisterService(this);
+    gs = std::make_unique<MyModule>();
+    builder->RegisterService(this->gs.get());
+    builder->RegisterService(this);
     std::cout << "ADDING LISTENING PORT" << std::endl;
-    builder.AddListeningPort(address, grpc::InsecureServerCredentials());
-    std::unique_ptr<grpc::reflection::ProtoServerReflectionPlugin> reflection =
-        std::make_unique<grpc::reflection::ProtoServerReflectionPlugin>();
+    builder->AddListeningPort(address, grpc::InsecureServerCredentials());
+    // std::unique_ptr<grpc::reflection::ProtoServerReflectionPlugin> reflection =
+    // std::make_unique<grpc::reflection::ProtoServerReflectionPlugin>();
     // builder.InternalAddPluginFactory(reflection);
     //
     // grpc::reflection::ProtoServerReflectionPlugin refl;
-    // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
-    reflection->UpdateServerBuilder(&builder);
-    // CR erodkin: probably we don't need server here? instead we can just always call at startup
-    // the server func
-    server = std::move(builder.BuildAndStart());
-    // CR erodkin: module has to be unlocked first because set_ready takes the lock. pretty gross!
-    // fix it
+    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+    // reflection->UpdateServerBuilder(builder.get());
+    //  CR erodkin: probably we don't need server here? instead we can just always call at startup
+    //  the server func
+    server = std::move(builder->BuildAndStart());
+    // server_builder = std::move(builder);
+    //  CR erodkin: module has to be unlocked first because set_ready takes the lock. pretty gross!
+    //  fix it
     module->lock.unlock();
     module->set_ready();
 }
@@ -343,6 +345,7 @@ void ModuleService_::add_api_from_registry(Subtype api) {
     boost::optional<ResourceSubtype> rs = Registry::lookup_subtype(api);
     module->services.emplace(api, new_svc);
     if (rs != boost::none) {
+        std::cout << "RS EXISTS!!!!!! We should register NOW, before server starts" << std::endl;
         rs.get().register_subtype_rpc_service(server.get(), new_svc);
     }
 }

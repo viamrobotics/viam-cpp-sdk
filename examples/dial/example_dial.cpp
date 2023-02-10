@@ -86,22 +86,27 @@ class MyModule : public ArmService::Service, public Module, public ComponentBase
 // MyModule::MyModule(std::string addr) : Module(addr), ArmService::Service::Service(){};
 
 int main() {
-    const char* uri = "<your robot URI here>";
+    const char* uri = "viam-robohead-test-main.ccdapva0gl.viam.cloud";
     Viam::SDK::DialOptions dial_options = Viam::SDK::DialOptions();
-    std::string payload = "<your payload here>";
+    std::string payload = "bkv94cmfdgpupset3kbbrgs275kb3u0ccu3yb9ypqgycgj91";
     Credentials credentials(payload);
     dial_options.credentials = credentials;
+    std::cout << "test" << std::endl;
     boost::optional<Viam::SDK::DialOptions> opts(dial_options);
     std::string address(uri);
     Options options = Options(1, opts);
+    std::cout << "test" << std::endl;
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
+    std::cout << "test" << std::endl;
     robot->refresh();
     std::vector<ResourceName>* resource_names = robot->resource_names();
+    std::cout << "test" << std::endl;
     ResourceName the_one_we_care_about = resource_names->at(0);
     for (ResourceName resource : *resource_names) {
         std::cout << "Resource name: " << resource.name() << resource.type() << resource.subtype()
                   << std::endl;
     }
+    std::cout << "test" << std::endl;
     std::vector<Status> status_plural = robot->get_status();
     std::cout << "Status plural len " << status_plural.size() << std::endl;
     for (Status s : status_plural) {
@@ -116,7 +121,7 @@ int main() {
         std::cout << " Status! " << s.name().subtype() << std::endl;
     }
 
-    std::shared_ptr<RobotService_> robot_service = RobotService_::create();
+    // std::shared_ptr<RobotService_> robot_service = RobotService_::create();
 
     robot->close();
     return 0;

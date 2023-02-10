@@ -229,7 +229,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
 // etc.) 		options: Options for connecting and refreshing
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
     const char* uri = address.c_str();
-    ViamChannel channel = ViamChannel::dial(uri, options.dial_options);
+    // CR erodkin: adding get good?
+    ViamChannel channel = ViamChannel::dial(uri, options.dial_options.get());
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
     robot->should_close_channel = true;
 
@@ -341,12 +342,13 @@ std::shared_ptr<ComponentBase> RobotClient::get_component(ResourceName name) {
     return component;
 }
 
-ServiceBase RobotClient::get_service(ResourceName name) {
+std::shared_ptr<ServiceBase> RobotClient::get_service(ResourceName name) {
     if (name.type() != SERVICE) {
         throw "Expected resource type 'service' but got " + name.type();
     }
     lock.lock();
-    ServiceBase service = resource_manager.get_service(name.name(), ServiceType("ServiceBase"));
+    std::shared_ptr<ServiceBase> service =
+        resource_manager.get_service(name.name(), ServiceType("ServiceBase"));
     lock.unlock();
     return service;
 }

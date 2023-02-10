@@ -13,18 +13,18 @@
 
 using viam::common::v1::ResourceName;
 
-std::vector<ResourceName> resource_names_for_component(ComponentBase component) {
+std::vector<ResourceName> resource_names_for_component(std::shared_ptr<ComponentBase> component) {
     std::string* component_type;
     std::vector<ResourceName> resource_names;
     for (auto& a : Registry::registered_components()) {
         ComponentRegistration reg = a.second;
-        if (reg.component_type == component.type) {
+        if (reg.component_type == component->type) {
             component_type = &reg.name;
         }
     }
 
     if (component_type == nullptr) {
-        component_type = &component.name;
+        component_type = &component->name;
     }
 
     // TODO (RSDK-1631): make sure we split properly on "viam.components."
@@ -33,7 +33,7 @@ std::vector<ResourceName> resource_names_for_component(ComponentBase component) 
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = COMPONENT;
-    *r.mutable_name() = component.name;
+    *r.mutable_name() = component->name;
     *r.mutable_subtype() = *component_type;
     resource_names.push_back(r);
     std::cout << "called to get resource names! " << r.SerializeAsString() << std::endl;

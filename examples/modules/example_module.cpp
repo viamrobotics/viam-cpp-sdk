@@ -1,6 +1,8 @@
 #include <component/arm/v1/arm.grpc.pb.h>
 #include <component/generic/v1/generic.grpc.pb.h>
+#include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
+#include <grpcpp/security/server_credentials.h>
 #include <robot/v1/robot.pb.h>
 
 #include <components/component_base.hpp>
@@ -31,7 +33,7 @@ class MyModule : public GenericService::Service, public ComponentBase {
             std::cout << "request key: " << req.first
                       << "\trequest value: " << req.second.SerializeAsString();
         }
-        *response->mutable_result() = request->command();
+        ///[>response->mutable_result() = request->command();
 
         return grpc::Status();
     }
@@ -43,22 +45,46 @@ int main(int argc, char** argv) {
     }
 
     Subtype generic = Generic::subtype();
-    ModuleService_ my_mod(argv[1]);
+    std::shared_ptr<ModuleService_> my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
-    my_mod.add_model_from_registry(generic, m);
+    my_mod->add_model_from_registry(generic, m);
 
     ComponentRegistration cr{
         {"MyModule"},
         "printer1",
-        [](std::string, std::shared_ptr<grpc::Channel>) { return std::make_unique<MyModule>(); },
+        [my_mod](std::string, std::shared_ptr<grpc::Channel>) {
+            // CR erodkin: this is ugly and weird but maybe it'll work?
+            std::cout << "CREATING module! Is this before or after we start the module service?"
+                      << std::endl;
+            std::unique_ptr<MyModule> mm = std::make_unique<MyModule>();
+            // my_mod->server_builder->RegisterService(mm.get());
+            // my_mod->server = std::move(my_mod->server_builder->BuildAndStart());
+            // std::cout << "CREATEDD module!" << std::endl;
+
+            return mm;
+
+            // return std::make_unique<MyModule>();
+        },
         [](Dependencies, Component) { return std::make_unique<MyModule>(); }};
     // CR erodkin: fix
     std::shared_ptr<ComponentRegistration> cr2 = std::make_shared<ComponentRegistration>(cr);
     Registry registry;
     registry.register_component(cr2);
 
-    my_mod.start();
-    my_mod.server.get()->Wait();
+    // grpc::ServerBuilder builder;
+    // viam::component::generic::v1::GenericService::Service gs;
+    // builder.RegisterService(&gs);
+    // builder.AddListeningPort("unix://" + my_mod->module->addr,
+    // grpc::InsecureServerCredentials());
+    // std::unique_ptr<grpc::reflection::ProtoServerReflectionPlugin> reflection =
+    // std::make_unique<grpc::reflection::ProtoServerReflectionPlugin>();
+    // reflection->UpdateServerBuilder(&builder);
+    // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+    // std::unique_ptr<grpc::Server> s = builder.BuildAndStart();
+
+    my_mod->start();
+    my_mod->server->Wait();
+    // s->Wait();
 
     return 0;
 };

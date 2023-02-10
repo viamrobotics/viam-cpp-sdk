@@ -7,6 +7,7 @@
 #include <string>
 
 class SubtypeService : public ServiceBase {
+    // need to know which type of service this subtype server is for!
    public:
     std::shared_ptr<ResourceBase> resource(std::string name);
     void replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> resources);

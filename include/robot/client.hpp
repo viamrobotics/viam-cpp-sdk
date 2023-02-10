@@ -32,7 +32,7 @@ class RobotClient {
     std::vector<ResourceName>* resource_names();
     std::unique_ptr<RobotService::Stub> stub_;
     boost::optional<ResourceBase> resource_by_name(ResourceName name);
-    ServiceBase get_service(ResourceName name);
+    std::shared_ptr<ServiceBase> get_service(ResourceName name);
     std::shared_ptr<ComponentBase> get_component(ResourceName name);
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());

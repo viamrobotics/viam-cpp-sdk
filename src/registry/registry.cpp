@@ -78,17 +78,17 @@ std::unordered_map<std::string, ComponentRegistration> Registry::registered_comp
     return registry;
 }
 
-Status ComponentRegistration::create_status(ComponentBase component) {
+Status ComponentRegistration::create_status(std::shared_ptr<ComponentBase> component) {
     Status status;
-    *status.mutable_name() = component.get_resource_name(component.name);
+    *status.mutable_name() = component->get_resource_name(component->name);
     *status.mutable_status() = google::protobuf::Struct();
     return status;
 }
 
-Status ServiceRegistration::create_status(ServiceBase service) {
+Status ServiceRegistration::create_status(std::shared_ptr<ServiceBase> service) {
     Status status;
     google::protobuf::Struct struct_;
-    *status.mutable_name() = service.get_resource_name(service.name);
+    *status.mutable_name() = service->get_resource_name(service->name);
     *status.mutable_status() = struct_;
     return status;
 }

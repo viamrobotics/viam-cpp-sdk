@@ -54,8 +54,7 @@ class ComponentRegistration {
     std::function<std::shared_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)>
         create_rpc_client;
     std::function<std::unique_ptr<ComponentBase>(Dependencies, Component)> create_component;
-    // CR erodkin: this should be a ptr of some sort (ref? shared_ptr?)
-    viam::robot::v1::Status create_status(ComponentBase component);
+    viam::robot::v1::Status create_status(std::shared_ptr<ComponentBase> component);
 };
 
 class ServiceRegistration {
@@ -66,7 +65,7 @@ class ServiceRegistration {
     std::function<std::shared_ptr<ServiceBase>(std::string, std::shared_ptr<grpc::Channel>)>
         create_rpc_client;
 
-    viam::robot::v1::Status create_status(ServiceBase service);
+    viam::robot::v1::Status create_status(std::shared_ptr<ServiceBase> service);
 };
 
 class Registry {

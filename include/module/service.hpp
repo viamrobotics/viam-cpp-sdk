@@ -1,8 +1,10 @@
 #pragma once
 
+#include <component/generic/v1/generic.grpc.pb.h>
 #include <module/v1/module.grpc.pb.h>
 
 #include <components/service_base.hpp>
+// #include <generic/generic.hpp>
 #include <module/module.hpp>
 
 class ModuleService_ : public ComponentServiceBase,
@@ -33,7 +35,10 @@ class ModuleService_ : public ComponentServiceBase,
     // CR erodkin: this shouldn't be living here, it's going to be used by lots of services not just
     // module
     std::unique_ptr<grpc::Server> server;
+    // CR erodkin: see if this works! think we don't need this probably actually
+    // std::unique_ptr<grpc::ServerBuilder> server_builder;
 
+    std::unique_ptr<viam::component::generic::v1::GenericService::Service> gs;
     ModuleService_(std::shared_ptr<Module> module);
     ModuleService_(std::string addr);
     ~ModuleService_();
