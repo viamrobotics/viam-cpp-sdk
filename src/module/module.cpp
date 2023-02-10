@@ -10,35 +10,33 @@
 
 Module::Module(std::string addr) : addr(addr) {
     Subtype generic(RDK, COMPONENT, GENERIC);
-    SubtypeService sub_svc;
+    std::shared_ptr<SubtypeService> sub_svc = std::make_shared<SubtypeService>();
     this->services.emplace(generic, sub_svc);
 };
 
 void Module::set_ready() {
-    BOOST_LOG_TRIVIAL(error) << "setting ready";
-    std::cout << "setting ready";
+    // // CR erodkin: we can't lock because someone else is owning it but this ain't good. see if we
+    // can fix this.
     // lock.lock();
     ready = true;
     // lock.unlock();
-
-    BOOST_LOG_TRIVIAL(error) << "we set ready in module";
 }
 
 void Module::dial() {
+    // CR erodkin: delete
+    std::cout << "WE ARE CALLING DIAL FROM A MODULE!! When does this happen??" << std::endl;
     if (this->channel != nullptr) {
         BOOST_LOG_TRIVIAL(info) << "attempted to dial with module " + this->name +
                                        " but it was already connected.";
         return;
     }
-    // CR erodkin: is this right?
+
+    // // CR erodkin: ??
+    // std::string address("unix://");
+    // address += this->addr;
+
+    // this->channel = grpc::CreateChannel(this->addr, grpc::InsecureChannelCredentials());
+    //  CR erodkin: is this right?
     set_ready();
-    std::cout << "dialin!\n";
-
-    // CR erodkin: double "unix://" in here, figure out how to avoid that
-    std::string address("unix://");
-    address += this->addr;
-    // std::string address = addr;
-
-    this->channel = grpc::CreateChannel(address, grpc::InsecureChannelCredentials());
 }
 

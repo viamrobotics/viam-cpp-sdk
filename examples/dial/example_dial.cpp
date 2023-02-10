@@ -118,16 +118,6 @@ int main() {
 
     std::shared_ptr<RobotService_> robot_service = RobotService_::create();
 
-    std::shared_ptr<MyModule> my_module =
-        std::make_shared<MyModule>(std::string("/tmp/abc123.sock"));
-    *my_module->parent = robot;
-    ModuleService_ ms(my_module);
-
-    Registry reg;
-    ComponentRegistration cr;
-    cr.component_type = ComponentType("generic");
-    cr.name = "my component";
-
     robot->close();
     return 0;
 }

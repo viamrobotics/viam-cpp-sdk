@@ -3,5 +3,11 @@
 #include <common/utils.hpp>
 #include <resource/resource.hpp>
 
-const Subtype GENERIC_SUBTYPE(RDK, COMPONENT, "generic");
+#include "registry/registry.hpp"
+
+class Generic {
+   public:
+    static ResourceSubtype resource_subtype();
+    static Subtype subtype();
+};
 

@@ -56,6 +56,7 @@ void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
         throw "Empty name used for resource: " + name.to_string();
     }
     std::string short_name = name.short_name();
+
     if (resources.find(short_name) != resources.end()) {
         throw "Attempted to add resource that already existed: " + name.to_string();
     }
@@ -129,5 +130,10 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
     lock.unlock();
 };
 
-SubtypeService::SubtypeService(){};
+SubtypeService::SubtypeService() {
+    // CR erodkin: fix
+    std::cout << "CREATING SUBTYPE SERVICE" << resources.size() << std::endl;
+    resources = std::unordered_map<std::string, std::shared_ptr<ResourceBase>>();
+    std::cout << "CREATed SUBTYPE SERVICE" << resources.size() << std::endl;
+};
 

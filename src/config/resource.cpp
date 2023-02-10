@@ -59,6 +59,8 @@ void Component::fix_api() {
 
 Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     Component component;
+    // CR erodkin: delete me and other std::cout stuff
+    std::cout << proto_cfg.SerializeAsString() << "<<< LOOK AT THIS COMPONENT PROTO" << std::endl;
     component.name = proto_cfg.name();
     component.namespace_ = proto_cfg.namespace_();
     component.type = proto_cfg.type();
@@ -66,12 +68,18 @@ Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     if (api.find(":") != std::string::npos) {
         component.api = Subtype(api);
     }
+    component.model = Model::from_str(proto_cfg.model());
+
+    std::cout << component.model.to_string() << "MODEL" << component.api.to_string() << "API"
+              << component.namespace_ << "NAMESPACE" << component.name << std::endl;
 
     try {
         component.fix_api();
     } catch (std::string err) {
         throw err;
     }
+    std::cout << component.model.to_string() << "MODEL" << component.api.to_string() << "API"
+              << component.namespace_ << "NAMESPACE" << component.name << std::endl;
 
     if (proto_cfg.has_frame()) {
         LinkConfig lc = LinkConfig::from_proto(proto_cfg.frame());

@@ -19,11 +19,11 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() {
             *hd.mutable_models()->Add() = m;
         }
         viam::robot::v1::ResourceRPCSubtype rpc_subtype;
-        viam::common::v1::ResourceName resource_name = Name(h.first.subtype, "", "").to_proto();
+        Name name(h.first.subtype, "", "");
+        viam::common::v1::ResourceName resource_name = name.to_proto();
         *rpc_subtype.mutable_subtype() = resource_name;
         *rpc_subtype.mutable_proto_service() = h.first.proto_service_name;
         *hd.mutable_subtype() = rpc_subtype;
-
         *proto.add_handlers() = hd;
     }
 
@@ -46,8 +46,8 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
         std::string resource_type = handler.subtype().subtype().type();
         std::string resource_subtype = handler.subtype().subtype().subtype();
         Subtype subtype(namespace_, resource_type, resource_subtype);
-        // CR erodkin: ServiceDescriptor?
-        const google::protobuf::Descriptor* descriptor = handler.GetDescriptor();
+        // CR erodkin: ServiceDescriptor? this in general seems funky and awkward, see if we can fix
+        // const google::protobuf::Descriptor* descriptor = handler.GetDescriptor();
         const google::protobuf::DescriptorPool* pool =
             google::protobuf::DescriptorPool::generated_pool();
         const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(resource_type);

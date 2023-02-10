@@ -153,8 +153,9 @@ void RobotClient::refresh() {
         }
 
         try {
-            ComponentBase rpc_client =
+            std::shared_ptr<ComponentBase> rpc_client =
                 Registry::lookup_component(name.subtype())->create_rpc_client(name.name(), channel);
+            // CR erodkin: fix this. resource_manager should hold onto pointers?
             new_resource_manager.register_component(rpc_client);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(debug)
@@ -312,8 +313,10 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 
 boost::optional<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
     try {
-        ComponentBase c = get_component(name);
-        return c;
+        std::shared_ptr<ComponentBase> c = get_component(name);
+        // CR erodkin: this ain't it! we shouldn't be derefing here, we should be returning service
+        // wrapped in ptr too
+        return *c;
     } catch (std::exception& exc) {
     }
 
@@ -326,13 +329,13 @@ boost::optional<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
     return boost::none;
 }
 
-ComponentBase RobotClient::get_component(ResourceName name) {
+std::shared_ptr<ComponentBase> RobotClient::get_component(ResourceName name) {
     if (name.type() != COMPONENT) {
         std::string error = "Expected resource type 'component' but got " + name.type();
         throw error;
     }
     lock.lock();
-    ComponentBase component =
+    std::shared_ptr<ComponentBase> component =
         resource_manager.get_component(name.name(), ComponentType("ComponentBase"));
     lock.unlock();
     return component;

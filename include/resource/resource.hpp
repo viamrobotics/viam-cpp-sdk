@@ -9,6 +9,8 @@ class Type {
    public:
     std::string namespace_;
     std::string resource_type;
+    Type(std::string namespace_, std::string resource_type);
+    Type(){};
 
     virtual std::string to_string() const;
 };

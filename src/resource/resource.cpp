@@ -18,10 +18,14 @@ std::string Type::to_string() const {
     return namespace_ + ":" + resource_type;
 }
 
+Type::Type(std::string namespace_, std::string resource_type)
+    : namespace_(namespace_), resource_type(resource_type){};
+
 std::string Subtype::to_string() const {
     return Type::to_string() + ":" + resource_subtype;
 }
 
+// CR erodkin: this should be a static from_string func rather than a constructor
 Subtype::Subtype(std::string subtype) {
     if (std::regex_match(subtype, MODEL_REGEX)) {
         std::vector<std::string> subtype_parts;
@@ -40,11 +44,8 @@ Subtype::Subtype(Type type, std::string resource_subtype) {
     resource_subtype = resource_subtype;
 }
 
-Subtype::Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype) {
-    namespace_ = namespace_;
-    resource_type = resource_type;
-    resource_subtype = resource_subtype;
-}
+Subtype::Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype)
+    : Type(namespace_, resource_type), resource_subtype(resource_subtype) {}
 
 bool Subtype::is_service_type() {
     return (this->resource_type == "service");
@@ -104,7 +105,7 @@ Name::Name(std::string name) : Subtype("") {
     this->name = matches.at(3);
 }
 
-Name::Name(Subtype subtype, std::string remote, std::string name) : Subtype("") {
+Name::Name(Subtype subtype, std::string remote, std::string name) : Subtype(subtype) {
     this->remote_name = remote;
     this->name = name;
     this->resource_subtype = subtype.resource_subtype;
@@ -137,17 +138,13 @@ bool operator==(const Model& lhs, const Model& rhs) {
 RPCSubtype::RPCSubtype(Subtype subtype,
                        std::string proto_service_name,
                        const google::protobuf::ServiceDescriptor& descriptor)
-    : subtype(subtype), descriptor(&descriptor) {
-    proto_service_name = proto_service_name;
-}
+    : subtype(subtype), descriptor(&descriptor), proto_service_name(proto_service_name) {}
 
 RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor)
     : subtype(subtype), descriptor(&descriptor) {}
 
-ModelFamily::ModelFamily(std::string namespace_, std::string family) {
-    namespace_ = namespace_;
-    family = family;
-}
+ModelFamily::ModelFamily(std::string namespace_, std::string family)
+    : namespace_(namespace_), family(family) {}
 
 Model::Model(ModelFamily model_family, std::string model_name)
     : model_family(std::move(model_family)), model_name(std::move(model_name)) {}

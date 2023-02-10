@@ -4,6 +4,7 @@
 
 #include <components/component_base.hpp>
 #include <components/service_base.hpp>
+#include <exception>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
@@ -11,16 +12,20 @@
 #include <string>
 #include <unordered_map>
 
+#include "components/generic.hpp"
+
 using viam::robot::v1::Status;
 
-void Registry::register_component(ComponentRegistration component) {
-    if (components.find(component.name) != components.end()) {
+void Registry::register_component(std::shared_ptr<ComponentRegistration> component) {
+    // CR erodkin: delete
+    if (components.find(component->name) != components.end()) {
         std::string err =
-            "Cannot add component with name " + component.name + "as it already exists";
+            "Cannot add component with name " + component->name + "as it already exists";
         throw std::runtime_error(err);
     }
 
-    components.emplace(component.name, component);
+    // CR erodkin: registered components should just be a bunch of pointers
+    components.emplace(component->name, *component);
 }
 
 boost::optional<ServiceRegistration> Registry::lookup_service(std::string name) {
@@ -90,7 +95,10 @@ Status ServiceRegistration::create_status(ServiceBase service) {
 
 std::unordered_map<std::string, ComponentRegistration> Registry::components;
 std::unordered_map<std::string, ServiceRegistration> Registry::services;
-std::unordered_map<Subtype, ResourceSubtype> Registry::subtypes;
+// // CR erodkin: fix
+// std::unordered_map<Subtype, ResourceSubtype> Registry::subtypes;
+std::unordered_map<Subtype, ResourceSubtype> Registry::subtypes = {
+    {Generic::subtype(), Generic::resource_subtype()}};
 
 ServiceRegistration::ServiceRegistration(){};
 ComponentRegistration::ComponentRegistration(){};

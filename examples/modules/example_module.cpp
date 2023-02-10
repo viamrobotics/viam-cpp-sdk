@@ -10,6 +10,7 @@
 #include <rpc/dial.hpp>
 
 #include "components/generic.hpp"
+#include "config/resource.hpp"
 #include "registry/registry.hpp"
 #include "resource/resource.hpp"
 
@@ -30,37 +31,34 @@ class MyModule : public GenericService::Service, public ComponentBase {
             std::cout << "request key: " << req.first
                       << "\trequest value: " << req.second.SerializeAsString();
         }
+        *response->mutable_result() = request->command();
 
         return grpc::Status();
     }
 };
 
 int main(int argc, char** argv) {
-    std::cout << "we begin!\n";
     if (argc != 2) {
         throw "need socket path as command line argument";
     }
 
-    std::cout << "making moduleservice!\n";
+    Subtype generic = Generic::subtype();
     ModuleService_ my_mod(argv[1]);
-    std::cout << "making model!\n";
     Model m("acme", "demo", "printer");
-    my_mod.add_model_from_registry(GENERIC_SUBTYPE, m);
+    my_mod.add_model_from_registry(generic, m);
 
-    std::cout << "making component registration!\n";
     ComponentRegistration cr{
-        {"my_module"}, "make", [](std::string, std::shared_ptr<grpc::Channel>) {
-            return std::make_unique<MyModule>();
-        }};
+        {"MyModule"},
+        "printer1",
+        [](std::string, std::shared_ptr<grpc::Channel>) { return std::make_unique<MyModule>(); },
+        [](Dependencies, Component) { return std::make_unique<MyModule>(); }};
+    // CR erodkin: fix
+    std::shared_ptr<ComponentRegistration> cr2 = std::make_shared<ComponentRegistration>(cr);
     Registry registry;
-    std::cout << "registering component!\n";
-    registry.register_component(cr);
-    std::cout << "going to start!\n";
+    registry.register_component(cr2);
 
     my_mod.start();
-    std::cout << "starting!\n";
     my_mod.server.get()->Wait();
-    std::cout << "We're done!";
 
     return 0;
 };

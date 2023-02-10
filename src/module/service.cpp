@@ -1,3 +1,4 @@
+#include "component/generic/v1/generic.grpc.pb.h"
 #include "google/protobuf/descriptor.h"
 #define BOOST_LOG_DYN_LINK 1
 #include <app/v1/robot.pb.h>
@@ -38,6 +39,8 @@
 
 Dependencies ModuleService_::get_dependencies(
     google::protobuf::RepeatedPtrField<std::string> proto) {
+    // CR erodkin: delete
+    std::cout << "SOME CALL  " << std::endl;
     Dependencies deps;
     for (auto& dep : proto) {
         Name name(dep);
@@ -48,35 +51,42 @@ Dependencies ModuleService_::get_dependencies(
 }
 
 ResourceBase ModuleService_::get_parent_resource(Name name) {
-    std::cout << "CALLING get_parent_resource";
+    // CR erodkin: delete
+    std::cout << "SOME CALL 2 " << std::endl;
     if (parent == nullptr) {
         // CR erodkin: figure out what best option defaults are
         //*parent = RobotClient::at_address(parent_addr, {0, boost::none});
         *parent = RobotClient::at_address("unix://" + parent_addr, {0, boost::none});
     }
 
-    // CR erodkin: we're forcing this to not be an option with the final `get` call. fix
-    // return parent->get()->resource_by_name(name.to_proto()).get();
-    //
-    // fix this
-    ResourceBase ret = parent->get()->resource_by_name(name.to_proto()).get();
+    boost::optional<ResourceBase> resource = parent->get()->resource_by_name(name.to_proto());
+    // CR erodkin: fix, make it just return an option? also simplify
+    if (resource == boost::none) {
+        std::cout << "Ugh it's a none" << std::endl;
+        return ResourceBase();
+    }
     std::cout << " WE GOT A PARENT RESOURCE!! ";
-    return ret;
+    return resource.get();
 }
 
 ::grpc::Status ModuleService_::AddResource(::grpc::ServerContext* context,
                                            const ::viam::module::v1::AddResourceRequest* request,
                                            ::viam::module::v1::AddResourceResponse* response) {
+    // CR erodkin: delete
+    std::cout << "SOME CALL 3 " << std::endl;
     viam::app::v1::ComponentConfig proto = request->config();
     Component cfg = Component::from_proto(proto);
     std::shared_ptr<Module> module = this->module;
     module->lock.lock();
 
     std::shared_ptr<ResourceBase> res;
+    // CR erodkin: get rid of these std::couts. also instead of a try, match on the none case
     if (cfg.api.is_component_type()) {
         ComponentRegistration reg;
         try {
-            reg = Registry::lookup_component(cfg.api, cfg.model).get();
+            // CR erodkin: seems like this is sometimes being called before a component is
+            // registered?
+            reg = Registry::lookup_component(cfg.name).get();
             module->dial();
             res = reg.create_rpc_client(module->name, module->channel);
         } catch (std::string err) {
@@ -84,8 +94,9 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
         }
     } else if (cfg.api.is_service_type()) {
         ServiceRegistration reg;
+        // CR erodkin: instead of doing `get` calls here, we should just match on is_none
         try {
-            reg = Registry::lookup_service(cfg.api, cfg.model).get();
+            reg = Registry::lookup_service(cfg.name).get();
             module->dial();
             res = reg.create_rpc_client(module->name, module->channel);
         } catch (std::string err) {
@@ -99,15 +110,17 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
         return grpc::Status(grpc::UNKNOWN, "module cannot service api " + cfg.api.to_string());
     }
 
-    SubtypeService& sub_svc = module->services.at(cfg.api);
-    if (cfg.api.is_component_type() && !(cfg.api == GENERIC_SUBTYPE)) {
-        if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
+    std::shared_ptr<SubtypeService> sub_svc = module->services.at(cfg.api);
+    if (cfg.api.is_component_type() && !(cfg.api == Generic::subtype())) {
+        if (module->services.find(Generic::subtype()) == module->services.end()) {
             return grpc::Status(grpc::UNKNOWN, "module cannot service the generic api");
         }
-        SubtypeService& generic_service = module->services.at(GENERIC_SUBTYPE);
-        generic_service.add(cfg.resource_name(), res);
+        std::shared_ptr<SubtypeService> generic_service = module->services.at(Generic::subtype());
+        generic_service->add(cfg.resource_name(), res);
     }
-    sub_svc.add(cfg.resource_name(), res);
+    std::cout << " LOOK HERE !7" << std::endl;
+    sub_svc->add(cfg.resource_name(), res);
+    std::cout << " LOOK HERE !8" << std::endl;
 
     module->lock.unlock();
     return grpc::Status();
@@ -117,6 +130,8 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
     ::grpc::ServerContext* context,
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse* response) {
+    // CR erodkin: delete
+    std::cout << "SOME CALL 4 " << std::endl;
     viam::app::v1::ComponentConfig proto = request->config();
     Component cfg = Component::from_proto(proto);
     std::shared_ptr<Module> module = this->module;
@@ -126,15 +141,17 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
     if (module->services.find(cfg.api) == module->services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no rpc servgice for config: " + cfg.api.to_string());
     }
-    SubtypeService& sub_svc = module->services.at(cfg.api);
+    std::shared_ptr<SubtypeService> sub_svc = module->services.at(cfg.api);
 
     // see if our resource is reconfigurable. if it is, reconfigure
-    std::shared_ptr<ResourceBase> res = sub_svc.resource(cfg.resource_name().name);
+    std::shared_ptr<ResourceBase> res = sub_svc->resource(cfg.resource_name().name);
     if (res == nullptr) {
         return grpc::Status(
             grpc::UNKNOWN,
             "unable to reconfigure resource " + cfg.resource_name().name + " as it doesn't exist.");
     }
+    // CR erodkin: get rid of me
+    std::cout << "CALLING RECONFIGURE RESOURCE" << std::endl;
     try {
         ReconfigurableComponent* rc = static_cast<ReconfigurableComponent*>(res.get());
         rc->reconfigure(cfg, deps);
@@ -164,14 +181,15 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
             reg = Registry::lookup_component(cfg.api, cfg.model).get();
             std::shared_ptr<ComponentBase> comp =
                 reg.create_rpc_client(module->name, module->channel);
-            if (!(cfg.api == GENERIC_SUBTYPE)) {
-                if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
+            if (!(cfg.api == Generic::subtype())) {
+                if (module->services.find(Generic::subtype()) == module->services.end()) {
                     return grpc::Status(grpc::UNKNOWN, "no generic service");
                 }
-                SubtypeService& generic_service = module->services.at(GENERIC_SUBTYPE);
-                generic_service.replace_one(cfg.resource_name(), res);
+                std::shared_ptr<SubtypeService> generic_service =
+                    module->services.at(Generic::subtype());
+                generic_service->replace_one(cfg.resource_name(), res);
             }
-            sub_svc.replace_one(cfg.resource_name(), comp);
+            sub_svc->replace_one(cfg.resource_name(), comp);
         } catch (std::string error) {
         }
     } else if (cfg.api.is_service_type()) {
@@ -180,7 +198,7 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
             reg = Registry::lookup_service(cfg.api, cfg.model).get();
             std::shared_ptr<ServiceBase> service =
                 reg.create_rpc_client(module->name, module->channel);
-            sub_svc.replace_one(cfg.resource_name(), service);
+            sub_svc->replace_one(cfg.resource_name(), service);
         } catch (std::string error) {
         }
     } else {
@@ -194,14 +212,16 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
     ::grpc::ServerContext* context,
     const ::viam::module::v1::RemoveResourceRequest* request,
     ::viam::module::v1::RemoveResourceResponse* response) {
+    // CR erodkin: delete
+    std::cout << "SOME CALL 5 " << std::endl;
     std::shared_ptr<Module> m = this->module;
     Name name(request->name());
     const Subtype* subtype = name.to_subtype();
     if (m->services.find(*subtype) == m->services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no grpc service for " + subtype->to_string());
     }
-    SubtypeService& svc = m->services.at(*name.to_subtype());
-    std::shared_ptr<ResourceBase> res = svc.resource(name.name);
+    std::shared_ptr<SubtypeService> svc = m->services.at(*name.to_subtype());
+    std::shared_ptr<ResourceBase> res = svc->resource(name.name);
     if (res == nullptr) {
         return grpc::Status(
             grpc::UNKNOWN,
@@ -214,35 +234,33 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
-    if (name.resource_type == COMPONENT && !(name.to_subtype() == &GENERIC_SUBTYPE)) {
-        if (module->services.find(GENERIC_SUBTYPE) == module->services.end()) {
+    if (name.resource_type == COMPONENT && !(*name.to_subtype() == Generic::subtype())) {
+        if (module->services.find(Generic::subtype()) == module->services.end()) {
             return grpc::Status(grpc::UNKNOWN, "no generic service");
         }
-        SubtypeService& generic_service = module->services.at(GENERIC_SUBTYPE);
-        generic_service.remove(name);
+        std::shared_ptr<SubtypeService> generic_service = module->services.at(Generic::subtype());
+        generic_service->remove(name);
     }
-    svc.remove(name);
+    svc->remove(name);
     return grpc::Status();
 };
 
 ::grpc::Status ModuleService_::Ready(::grpc::ServerContext* context,
                                      const ::viam::module::v1::ReadyRequest* request,
                                      ::viam::module::v1::ReadyResponse* response) {
+    // CR erodkin: delete
+    std::cout << "SOME CALL 6 " << std::endl;
     module->lock.lock();
-    module->set_ready();
-    std::cout << "check ready from c++!!\n";
-    BOOST_LOG_TRIVIAL(error) << "checking ready!";
-    if (this->module->ready) {
-        BOOST_LOG_TRIVIAL(error) << "we are ready!";
+    // CR erodkin: delete me
+    if (!module->ready) {
+        std::cout << "WE ARE NOT READY BOO" << std::endl;
+    } else {
+        std::cout << "WE ARE READY WOO" << std::endl;
     }
     response->set_ready(module->ready);
     viam::module::v1::HandlerMap hm = this->module->handles.to_proto();
-    if (response->ready()) {
-        std::cout << "WE ARE READY!!\n\n";
-    }
     *response->mutable_handlermap() = hm;
     parent_addr = request->parent_address();
-    BOOST_LOG_TRIVIAL(error) << "we are ready woo";
     module->lock.unlock();
     return grpc::Status();
 };
@@ -253,34 +271,54 @@ ModuleService_::ModuleService_(std::string addr) {
 }
 
 void ModuleService_::start() {
+    // CR erodkin: lock happening here might be part of a problem?
+    // CR erodkin: delete
+    std::cout << "SOME CALL 7 " << std::endl;
     module->lock.lock();
-    mode_t old_mask = umask(0077);
+    mode_t old_mask = umask(0777);
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    listen(sockfd, 3);
-    //  CR erodkin: necessary?
-    //  sockaddr addr;
+    listen(sockfd, 10);
+    // CR erodkin: necessary?
+    sockaddr addr;
     umask(old_mask);
 
-    //// CR erodkin: fix
     std::string address = "unix://" + module->addr;
-    // std::string address = module->addr;
+    // CR erodkin: delete me
+    std::cout << "WHAT IS THE ADDRESS??" << address << std::endl;
     grpc::ServerBuilder builder;
+    // CR erodkin: hard coding here no good! fix that up. In general we should have a better
+    // location for this.
+    viam::component::generic::v1::GenericService::Service gs;
+    builder.RegisterService(&gs);
     builder.RegisterService(this);
+    std::cout << "ADDING LISTENING PORT" << std::endl;
     builder.AddListeningPort(address, grpc::InsecureServerCredentials());
     std::unique_ptr<grpc::reflection::ProtoServerReflectionPlugin> reflection =
         std::make_unique<grpc::reflection::ProtoServerReflectionPlugin>();
     // builder.InternalAddPluginFactory(reflection);
     //
     // grpc::reflection::ProtoServerReflectionPlugin refl;
-    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+    // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     reflection->UpdateServerBuilder(&builder);
+    // CR erodkin: probably we don't need server here? instead we can just always call at startup
+    // the server func
     server = std::move(builder.BuildAndStart());
-    module->set_ready();
+    // CR erodkin: module has to be unlocked first because set_ready takes the lock. pretty gross!
+    // fix it
     module->lock.unlock();
+    module->set_ready();
+}
+
+ModuleService_::~ModuleService_() {
+    this->close();
 }
 
 void ModuleService_::close() {
+    // CR erodkin: delete
+    std::cout << "SOME CALL 8 " << std::endl;
     module->lock.lock();
+    // CR erodkin: delete me
+    std::cout << "CALLING CLOSE" << std::endl;
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
 
     if (parent != nullptr) {
@@ -294,11 +332,13 @@ void ModuleService_::close() {
 }
 
 void ModuleService_::add_api_from_registry(Subtype api) {
+    // CR erodkin: delete
+    std::cout << "SOME CALL 9 " << std::endl;
     module->lock.lock();
     if (module->services.find(api) != module->services.end()) {
         return;
     }
-    SubtypeService new_svc;
+    std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
 
     boost::optional<ResourceSubtype> rs = Registry::lookup_subtype(api);
     module->services.emplace(api, new_svc);
@@ -308,25 +348,23 @@ void ModuleService_::add_api_from_registry(Subtype api) {
 }
 
 void ModuleService_::add_model_from_registry(Subtype api, Model model) {
-    std::cout << "ADDING MODEL FROM REGISTRY\n";
+    // CR erodkin: delete
+    std::cout << "SOME CALL 10 " << std::endl;
     if (module->services.find(api) == module->services.end()) {
         add_api_from_registry(api);
     }
-    std::cout << "ADDING MODEL FROM REGISTRY2\n";
 
-    bool generic_registered = (module->services.find(GENERIC_SUBTYPE) != module->services.end());
+    bool generic_registered = (module->services.find(Generic::subtype()) != module->services.end());
 
-    if (api.is_component_type() && generic_registered && !(api == GENERIC_SUBTYPE)) {
-        add_api_from_registry(GENERIC_SUBTYPE);
+    if (api.is_component_type() && generic_registered && !(api == Generic::subtype())) {
+        add_api_from_registry(Generic::subtype());
     }
-    std::cout << "ADDING MODEL FROM REGISTRY3\n";
 
     boost::optional<ResourceSubtype> creator = Registry::lookup_subtype(api);
-    std::cout << "ADDING MODEL FROM REGISTRY4\n";
     std::string name;
-    google::protobuf::ServiceDescriptor* sd;
-    if (creator != boost::none) {
-        name = creator->service_descriptor->name();
+    const google::protobuf::ServiceDescriptor* sd;
+    if (creator != boost::none && creator->service_descriptor != nullptr) {
+        name = creator->service_descriptor->full_name();
         sd = creator->service_descriptor;
     }
     RPCSubtype rpc_subtype(api, name, *sd);
@@ -335,9 +373,7 @@ void ModuleService_::add_model_from_registry(Subtype api, Model model) {
     if (module->handles.handles.find(rpc_subtype) != module->handles.handles.end()) {
         models = module->handles.handles.at(rpc_subtype);
     }
-    std::cout << "ADDING MODEL FROM REGISTRY4\n";
     models.push_back(model);
     module->handles.handles.emplace(rpc_subtype, models);
-    std::cout << "ADDING MODEL FROM REGISTRY5\n";
 };
 
