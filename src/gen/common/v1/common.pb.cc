@@ -264,7 +264,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR WorldState::WorldState(
     ::_pbi::ConstantInitialized)
   : obstacles_()
-  , interaction_spaces_()
   , transforms_(){}
 struct WorldStateDefaultTypeInternal {
   PROTOBUF_CONSTEXPR WorldStateDefaultTypeInternal()
@@ -464,7 +463,6 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::WorldState, obstacles_),
-  PROTOBUF_FIELD_OFFSET(::viam::common::v1::WorldState, interaction_spaces_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::WorldState, transforms_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ActuatorStatus, _internal_metadata_),
@@ -494,7 +492,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 142, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
   { 150, 159, -1, sizeof(::viam::common::v1::Transform)},
   { 162, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 171, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 170, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -570,25 +568,23 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "e\030\002 \001(\0132\033.viam.common.v1.PoseInFrameR\023po"
   "seInObserverFrame\022F\n\017physical_object\030\003 \001"
   "(\0132\030.viam.common.v1.GeometryH\000R\016physical"
-  "Object\210\001\001B\022\n\020_physical_object\"\332\001\n\nWorldS"
+  "Object\210\001\001B\022\n\020_physical_object\"\210\001\n\nWorldS"
   "tate\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1"
-  ".GeometriesInFrameR\tobstacles\022P\n\022interac"
-  "tion_spaces\030\002 \003(\0132!.viam.common.v1.Geome"
-  "triesInFrameR\021interactionSpaces\0229\n\ntrans"
-  "forms\030\003 \003(\0132\031.viam.common.v1.TransformR\n"
-  "transforms\"-\n\016ActuatorStatus\022\033\n\tis_movin"
-  "g\030\001 \001(\010R\010isMoving:a\n\032safety_heartbeat_mo"
-  "nitored\022\036.google.protobuf.MethodOptions\030"
-  "\244\222\005 \001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022"
-  "com.viam.common.v1Z\031go.viam.com/api/comm"
-  "on/v1b\006proto3"
+  ".GeometriesInFrameR\tobstacles\0229\n\ntransfo"
+  "rms\030\003 \003(\0132\031.viam.common.v1.TransformR\ntr"
+  "ansforms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030"
+  "\001 \001(\010R\010isMoving:a\n\032safety_heartbeat_moni"
+  "tored\022\036.google.protobuf.MethodOptions\030\244\222"
+  "\005 \001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022co"
+  "m.viam.common.v1Z\031go.viam.com/api/common"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 2413, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 2331, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
     &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 1, 20,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
@@ -4805,7 +4801,6 @@ WorldState::WorldState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
   obstacles_(arena),
-  interaction_spaces_(arena),
   transforms_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.common.v1.WorldState)
@@ -4813,7 +4808,6 @@ WorldState::WorldState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 WorldState::WorldState(const WorldState& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       obstacles_(from.obstacles_),
-      interaction_spaces_(from.interaction_spaces_),
       transforms_(from.transforms_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.WorldState)
@@ -4846,7 +4840,6 @@ void WorldState::Clear() {
   (void) cached_has_bits;
 
   obstacles_.Clear();
-  interaction_spaces_.Clear();
   transforms_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -4867,19 +4860,6 @@ const char* WorldState::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .viam.common.v1.GeometriesInFrame interaction_spaces = 2 [json_name = "interactionSpaces"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_interaction_spaces(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -4933,14 +4913,6 @@ uint8_t* WorldState::_InternalSerialize(
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // repeated .viam.common.v1.GeometriesInFrame interaction_spaces = 2 [json_name = "interactionSpaces"];
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_interaction_spaces_size()); i < n; i++) {
-    const auto& repfield = this->_internal_interaction_spaces(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
   // repeated .viam.common.v1.Transform transforms = 3 [json_name = "transforms"];
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_transforms_size()); i < n; i++) {
@@ -4968,13 +4940,6 @@ size_t WorldState::ByteSizeLong() const {
   // repeated .viam.common.v1.GeometriesInFrame obstacles = 1 [json_name = "obstacles"];
   total_size += 1UL * this->_internal_obstacles_size();
   for (const auto& msg : this->obstacles_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  // repeated .viam.common.v1.GeometriesInFrame interaction_spaces = 2 [json_name = "interactionSpaces"];
-  total_size += 1UL * this->_internal_interaction_spaces_size();
-  for (const auto& msg : this->interaction_spaces_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -5009,7 +4974,6 @@ void WorldState::MergeFrom(const WorldState& from) {
   (void) cached_has_bits;
 
   obstacles_.MergeFrom(from.obstacles_);
-  interaction_spaces_.MergeFrom(from.interaction_spaces_);
   transforms_.MergeFrom(from.transforms_);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5029,7 +4993,6 @@ void WorldState::InternalSwap(WorldState* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   obstacles_.InternalSwap(&other->obstacles_);
-  interaction_spaces_.InternalSwap(&other->interaction_spaces_);
   transforms_.InternalSwap(&other->transforms_);
 }
 
