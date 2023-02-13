@@ -32,7 +32,7 @@ class ResourceSubtype {
     std::function<ResourceBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
 };
 
-typedef std::unordered_map<Name, ResourceBase> Dependencies;
+typedef std::unordered_map<Name, std::shared_ptr<ResourceBase>> Dependencies;
 
 class ComponentRegistration {
    public:
@@ -78,19 +78,19 @@ class Registry {
     /// Raises:
     /// 	throws error if component already exists in the registry
     void register_component(std::shared_ptr<ComponentRegistration> component);
-    static boost::optional<ServiceRegistration> lookup_service(std::string name);
-    static boost::optional<ServiceRegistration> lookup_service(Subtype subtype, Model model);
-    static boost::optional<ComponentRegistration> lookup_component(std::string name);
-    static boost::optional<ComponentRegistration> lookup_component(Subtype subtype, Model model);
-    static boost::optional<ResourceSubtype> lookup_subtype(Subtype subtype);
-    static std::unordered_map<Subtype, ServiceRegistration> registered_services();
+    static std::shared_ptr<ServiceRegistration> lookup_service(std::string name);
+    static std::shared_ptr<ServiceRegistration> lookup_service(Subtype subtype, Model model);
+    static std::shared_ptr<ComponentRegistration> lookup_component(std::string name);
+    static std::shared_ptr<ComponentRegistration> lookup_component(Subtype subtype, Model model);
+    static std::shared_ptr<ResourceSubtype> lookup_subtype(Subtype subtype);
+    static std::unordered_map<Subtype, std::shared_ptr<ServiceRegistration>> registered_services();
 
-    static std::unordered_map<std::string, ComponentRegistration> registered_components();
+    static std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>>
+    registered_components();
 
    private:
-    // CR erodkin: these all need to be pointers
-    static std::unordered_map<std::string, ComponentRegistration> components;
-    static std::unordered_map<Subtype, ResourceSubtype> subtypes;
-    static std::unordered_map<std::string, ServiceRegistration> services;
+    static std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> components;
+    static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes;
+    static std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> services;
 };
 

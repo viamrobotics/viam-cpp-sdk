@@ -23,8 +23,6 @@ void Module::set_ready() {
 }
 
 void Module::dial() {
-    // CR erodkin: delete
-    std::cout << "WE ARE CALLING DIAL FROM A MODULE!! When does this happen??" << std::endl;
     if (this->channel != nullptr) {
         BOOST_LOG_TRIVIAL(info) << "attempted to dial with module " + this->name +
                                        " but it was already connected.";
@@ -32,10 +30,10 @@ void Module::dial() {
     }
 
     // // CR erodkin: ??
-    // std::string address("unix://");
-    // address += this->addr;
+    std::string address("unix://");
+    address += this->addr;
 
-    // this->channel = grpc::CreateChannel(this->addr, grpc::InsecureChannelCredentials());
+    this->channel = grpc::CreateChannel(this->addr, grpc::InsecureChannelCredentials());
     //  CR erodkin: is this right?
     set_ready();
 }

@@ -10,6 +10,7 @@
 #include <module/module.hpp>
 #include <module/service.hpp>
 #include <rpc/dial.hpp>
+#include <rpc/server.hpp>
 
 #include "components/generic.hpp"
 #include "config/resource.hpp"
@@ -37,7 +38,17 @@ class MyModule : public GenericService::Service, public ComponentBase {
 
         return grpc::Status();
     }
+
+    static bool init(MyModule* mm) {
+        std::cout << "INITING!!" << std::endl;
+        Server::register_service(mm);
+        return true;
+    };
 };
+
+static MyModule MY_MODULE;
+
+static bool init = MyModule::init(&MY_MODULE);
 
 int main(int argc, char** argv) {
     if (argc != 2) {
@@ -49,42 +60,23 @@ int main(int argc, char** argv) {
     Model m("acme", "demo", "printer");
     my_mod->add_model_from_registry(generic, m);
 
-    ComponentRegistration cr{
-        {"MyModule"},
-        "printer1",
-        [my_mod](std::string, std::shared_ptr<grpc::Channel>) {
-            // CR erodkin: this is ugly and weird but maybe it'll work?
-            std::cout << "CREATING module! Is this before or after we start the module service?"
-                      << std::endl;
-            std::unique_ptr<MyModule> mm = std::make_unique<MyModule>();
-            // my_mod->server_builder->RegisterService(mm.get());
-            // my_mod->server = std::move(my_mod->server_builder->BuildAndStart());
-            // std::cout << "CREATEDD module!" << std::endl;
-
-            return mm;
-
-            // return std::make_unique<MyModule>();
-        },
-        [](Dependencies, Component) { return std::make_unique<MyModule>(); }};
+    ComponentRegistration cr{{"MyModule"},
+                             "printer1",
+                             [my_mod](std::string, std::shared_ptr<grpc::Channel>) {
+                                 return std::make_unique<MyModule>();
+                             },
+                             [](Dependencies, Component) { return std::make_unique<MyModule>(); }};
     // CR erodkin: fix
     std::shared_ptr<ComponentRegistration> cr2 = std::make_shared<ComponentRegistration>(cr);
     Registry registry;
     registry.register_component(cr2);
 
-    // grpc::ServerBuilder builder;
-    // viam::component::generic::v1::GenericService::Service gs;
-    // builder.RegisterService(&gs);
-    // builder.AddListeningPort("unix://" + my_mod->module->addr,
-    // grpc::InsecureServerCredentials());
-    // std::unique_ptr<grpc::reflection::ProtoServerReflectionPlugin> reflection =
-    // std::make_unique<grpc::reflection::ProtoServerReflectionPlugin>();
-    // reflection->UpdateServerBuilder(&builder);
-    // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
-    // std::unique_ptr<grpc::Server> s = builder.BuildAndStart();
-
     my_mod->start();
-    my_mod->server->Wait();
-    // s->Wait();
+    Server::start();
+    std::cout << "Waiting for server" << std::endl;
+    Server::wait();
+    // my_mod->server->Wait();
+    //  s->Wait();
 
     return 0;
 };

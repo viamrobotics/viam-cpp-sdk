@@ -36,8 +36,8 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     for (auto& cmp : manager.components) {
         std::shared_ptr<ComponentBase> component = cmp.second;
         for (auto& registry : Registry::registered_components()) {
-            ComponentRegistration registration = registry.second;
-            if (registration.component_type == component->type) {
+            std::shared_ptr<ComponentRegistration> registration = registry.second;
+            if (registration->component_type == component->type) {
                 bool component_present = false;
                 ResourceName component_name = component->get_resource_name(component->name);
                 for (auto& resource_name : resource_names) {
@@ -48,7 +48,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                 }
 
                 if (component_present) {
-                    Status status = registration.create_status(component);
+                    Status status = registration->create_status(component);
                     statuses.push_back(status);
                 }
             }
@@ -58,8 +58,8 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     for (auto& svc : manager.services) {
         std::shared_ptr<ServiceBase> service = svc.second;
         for (auto& registry : Registry::registered_services()) {
-            ServiceRegistration registration = registry.second;
-            if (registration.service_type == service->type) {
+            std::shared_ptr<ServiceRegistration> registration = registry.second;
+            if (registration->service_type == service->type) {
                 bool service_present = false;
                 ResourceName service_name = service->get_resource_name(service->name);
                 for (auto& resource_name : resource_names) {
@@ -70,7 +70,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                 }
 
                 if (service_present) {
-                    Status status = registration.create_status(service);
+                    Status status = registration->create_status(service);
                     statuses.push_back(status);
                 }
             }

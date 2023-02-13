@@ -34,7 +34,8 @@ class ModuleService_ : public ComponentServiceBase,
     std::shared_ptr<Module> module;
     // CR erodkin: this shouldn't be living here, it's going to be used by lots of services not just
     // module
-    std::unique_ptr<grpc::Server> server;
+    // CR erodkin: we probably don't want this, but we're calling to it right now. fix that.
+    // std::unique_ptr<grpc::Server> server;
     // CR erodkin: see if this works! think we don't need this probably actually
     // std::unique_ptr<grpc::ServerBuilder> server_builder;
 
@@ -45,8 +46,8 @@ class ModuleService_ : public ComponentServiceBase,
     Dependencies get_dependencies(google::protobuf::RepeatedPtrField<std::string> proto);
 
    private:
-    ResourceBase get_parent_resource(Name name);
-    std::shared_ptr<RobotClient>* parent;
+    std::shared_ptr<ResourceBase> get_parent_resource(Name name);
+    std::shared_ptr<RobotClient> parent;
     // CR erodkin: do we need parent_addr at all?
     std::string parent_addr;
 };

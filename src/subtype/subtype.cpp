@@ -130,10 +130,5 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
     lock.unlock();
 };
 
-SubtypeService::SubtypeService() {
-    // CR erodkin: fix
-    std::cout << "CREATING SUBTYPE SERVICE" << resources.size() << std::endl;
-    resources = std::unordered_map<std::string, std::shared_ptr<ResourceBase>>();
-    std::cout << "CREATed SUBTYPE SERVICE" << resources.size() << std::endl;
-};
+SubtypeService::SubtypeService(){};
 

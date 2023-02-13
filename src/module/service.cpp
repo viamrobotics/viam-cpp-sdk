@@ -1,4 +1,5 @@
-#include "../../examples/modules/example_module.cpp"
+#include <grpcpp/server.h>
+
 #include "component/generic/v1/generic.grpc.pb.h"
 #include "google/protobuf/descriptor.h"
 #define BOOST_LOG_DYN_LINK 1
@@ -34,47 +35,42 @@
 #include <resource/resource_base.hpp>
 #include <robot/client.hpp>
 #include <robot/service.hpp>
+#include <rpc/server.hpp>
 #include <services/reconfigurable_service.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
 Dependencies ModuleService_::get_dependencies(
     google::protobuf::RepeatedPtrField<std::string> proto) {
-    // CR erodkin: delete
-    std::cout << "SOME CALL  " << std::endl;
     Dependencies deps;
     for (auto& dep : proto) {
         Name name(dep);
-        ResourceBase resource = get_parent_resource(name);
+        std::shared_ptr<ResourceBase> resource = get_parent_resource(name);
         deps.emplace(name, resource);
     }
     return deps;
 }
 
-ResourceBase ModuleService_::get_parent_resource(Name name) {
-    // CR erodkin: delete
-    std::cout << "SOME CALL 2 " << std::endl;
+// CR erodkin: figure out how best to make use of init
+bool init() {
+    ModuleService_ ms("fake");
+    Server::register_service(&ms);
+    return true;
+};
+
+std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     if (parent == nullptr) {
         // CR erodkin: figure out what best option defaults are
         //*parent = RobotClient::at_address(parent_addr, {0, boost::none});
-        *parent = RobotClient::at_address("unix://" + parent_addr, {0, boost::none});
+        parent = RobotClient::at_address("unix://" + parent_addr, {0, boost::none});
     }
 
-    boost::optional<ResourceBase> resource = parent->get()->resource_by_name(name.to_proto());
-    // CR erodkin: fix, make it just return an option? also simplify
-    if (resource == boost::none) {
-        std::cout << "Ugh it's a none" << std::endl;
-        return ResourceBase();
-    }
-    std::cout << " WE GOT A PARENT RESOURCE!! ";
-    return resource.get();
+    return parent->resource_by_name(name.to_proto());
 }
 
 ::grpc::Status ModuleService_::AddResource(::grpc::ServerContext* context,
                                            const ::viam::module::v1::AddResourceRequest* request,
                                            ::viam::module::v1::AddResourceResponse* response) {
-    // CR erodkin: delete
-    std::cout << "SOME CALL 3 " << std::endl;
     viam::app::v1::ComponentConfig proto = request->config();
     Component cfg = Component::from_proto(proto);
     std::shared_ptr<Module> module = this->module;
@@ -83,23 +79,23 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
     std::shared_ptr<ResourceBase> res;
     // CR erodkin: get rid of these std::couts. also instead of a try, match on the none case
     if (cfg.api.is_component_type()) {
-        ComponentRegistration reg;
+        std::shared_ptr<ComponentRegistration> reg;
         try {
             // CR erodkin: seems like this is sometimes being called before a component is
             // registered?
-            reg = Registry::lookup_component(cfg.name).get();
+            reg = Registry::lookup_component(cfg.name);
             module->dial();
-            res = reg.create_rpc_client(module->name, module->channel);
+            res = reg->create_rpc_client(module->name, module->channel);
         } catch (std::string err) {
             BOOST_LOG_TRIVIAL(error) << err;
         }
     } else if (cfg.api.is_service_type()) {
-        ServiceRegistration reg;
+        std::shared_ptr<ServiceRegistration> reg;
         // CR erodkin: instead of doing `get` calls here, we should just match on is_none
         try {
-            reg = Registry::lookup_service(cfg.name).get();
+            reg = Registry::lookup_service(cfg.name);
             module->dial();
-            res = reg.create_rpc_client(module->name, module->channel);
+            res = reg->create_rpc_client(module->name, module->channel);
         } catch (std::string err) {
             BOOST_LOG_TRIVIAL(error) << err;
         }
@@ -119,9 +115,7 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
         std::shared_ptr<SubtypeService> generic_service = module->services.at(Generic::subtype());
         generic_service->add(cfg.resource_name(), res);
     }
-    std::cout << " LOOK HERE !7" << std::endl;
     sub_svc->add(cfg.resource_name(), res);
-    std::cout << " LOOK HERE !8" << std::endl;
 
     module->lock.unlock();
     return grpc::Status();
@@ -177,11 +171,12 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
     }
 
     if (cfg.api.is_component_type()) {
-        ComponentRegistration reg;
+        std::shared_ptr<ComponentRegistration> reg;
         try {
-            reg = Registry::lookup_component(cfg.api, cfg.model).get();
+            // CR erodkin: can we get rid of this try?
+            reg = Registry::lookup_component(cfg.api, cfg.model);
             std::shared_ptr<ComponentBase> comp =
-                reg.create_rpc_client(module->name, module->channel);
+                reg->create_rpc_client(module->name, module->channel);
             if (!(cfg.api == Generic::subtype())) {
                 if (module->services.find(Generic::subtype()) == module->services.end()) {
                     return grpc::Status(grpc::UNKNOWN, "no generic service");
@@ -194,11 +189,11 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
         } catch (std::string error) {
         }
     } else if (cfg.api.is_service_type()) {
-        ServiceRegistration reg;
+        std::shared_ptr<ServiceRegistration> reg;
         try {
-            reg = Registry::lookup_service(cfg.api, cfg.model).get();
+            reg = Registry::lookup_service(cfg.api, cfg.model);
             std::shared_ptr<ServiceBase> service =
-                reg.create_rpc_client(module->name, module->channel);
+                reg->create_rpc_client(module->name, module->channel);
             sub_svc->replace_one(cfg.resource_name(), service);
         } catch (std::string error) {
         }
@@ -249,15 +244,7 @@ ResourceBase ModuleService_::get_parent_resource(Name name) {
 ::grpc::Status ModuleService_::Ready(::grpc::ServerContext* context,
                                      const ::viam::module::v1::ReadyRequest* request,
                                      ::viam::module::v1::ReadyResponse* response) {
-    // CR erodkin: delete
-    std::cout << "SOME CALL 6 " << std::endl;
     module->lock.lock();
-    // CR erodkin: delete me
-    if (!module->ready) {
-        std::cout << "WE ARE NOT READY BOO" << std::endl;
-    } else {
-        std::cout << "WE ARE READY WOO" << std::endl;
-    }
     response->set_ready(module->ready);
     viam::module::v1::HandlerMap hm = this->module->handles.to_proto();
     *response->mutable_handlermap() = hm;
@@ -272,41 +259,17 @@ ModuleService_::ModuleService_(std::string addr) {
 }
 
 void ModuleService_::start() {
-    // CR erodkin: lock happening here might be part of a problem?
-    // CR erodkin: delete
-    std::cout << "SOME CALL 7 " << std::endl;
     module->lock.lock();
-    mode_t old_mask = umask(0777);
+    mode_t old_mask = umask(0077);
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     listen(sockfd, 10);
-    // CR erodkin: necessary?
-    sockaddr addr;
+    // CR erodkin: is any of this umask stuff necessary?
     umask(old_mask);
 
+    Server::register_service(this);
     std::string address = "unix://" + module->addr;
-    // CR erodkin: delete me
-    std::cout << "WHAT IS THE ADDRESS??" << address << std::endl;
-    std::unique_ptr<grpc::ServerBuilder> builder = std::make_unique<grpc::ServerBuilder>();
-    // CR erodkin: hard coding here no good! fix that up. In general we should have a better
-    // location for this.
-    gs = std::make_unique<MyModule>();
-    builder->RegisterService(this->gs.get());
-    builder->RegisterService(this);
-    std::cout << "ADDING LISTENING PORT" << std::endl;
-    builder->AddListeningPort(address, grpc::InsecureServerCredentials());
-    // std::unique_ptr<grpc::reflection::ProtoServerReflectionPlugin> reflection =
-    // std::make_unique<grpc::reflection::ProtoServerReflectionPlugin>();
-    // builder.InternalAddPluginFactory(reflection);
-    //
-    // grpc::reflection::ProtoServerReflectionPlugin refl;
-    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
-    // reflection->UpdateServerBuilder(builder.get());
-    //  CR erodkin: probably we don't need server here? instead we can just always call at startup
-    //  the server func
-    server = std::move(builder->BuildAndStart());
-    // server_builder = std::move(builder);
-    //  CR erodkin: module has to be unlocked first because set_ready takes the lock. pretty gross!
-    //  fix it
+    Server::add_listening_port(address);
+
     module->lock.unlock();
     module->set_ready();
 }
@@ -316,37 +279,31 @@ ModuleService_::~ModuleService_() {
 }
 
 void ModuleService_::close() {
-    // CR erodkin: delete
-    std::cout << "SOME CALL 8 " << std::endl;
     module->lock.lock();
-    // CR erodkin: delete me
-    std::cout << "CALLING CLOSE" << std::endl;
+    // CR erodkin: this actually doesn't shutdown gracefully at all! fix that
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
 
     if (parent != nullptr) {
         try {
-            parent->get()->close();
+            parent->close();
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(error) << exc.what();
         }
     }
-    server->Shutdown();
+    Server::shutdown();
 }
 
 void ModuleService_::add_api_from_registry(Subtype api) {
-    // CR erodkin: delete
-    std::cout << "SOME CALL 9 " << std::endl;
     module->lock.lock();
     if (module->services.find(api) != module->services.end()) {
         return;
     }
     std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
 
-    boost::optional<ResourceSubtype> rs = Registry::lookup_subtype(api);
+    std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
     module->services.emplace(api, new_svc);
-    if (rs != boost::none) {
-        std::cout << "RS EXISTS!!!!!! We should register NOW, before server starts" << std::endl;
-        rs.get().register_subtype_rpc_service(server.get(), new_svc);
+    if (rs != nullptr) {
+        rs->register_subtype_rpc_service(Server::server_ptr(), new_svc);
     }
 }
 
@@ -363,10 +320,10 @@ void ModuleService_::add_model_from_registry(Subtype api, Model model) {
         add_api_from_registry(Generic::subtype());
     }
 
-    boost::optional<ResourceSubtype> creator = Registry::lookup_subtype(api);
+    std::shared_ptr<ResourceSubtype> creator = Registry::lookup_subtype(api);
     std::string name;
     const google::protobuf::ServiceDescriptor* sd;
-    if (creator != boost::none && creator->service_descriptor != nullptr) {
+    if (creator != nullptr && creator->service_descriptor != nullptr) {
         name = creator->service_descriptor->full_name();
         sd = creator->service_descriptor;
     }

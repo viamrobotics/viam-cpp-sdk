@@ -25,53 +25,55 @@ void Registry::register_component(std::shared_ptr<ComponentRegistration> compone
     }
 
     // CR erodkin: registered components should just be a bunch of pointers
-    components.emplace(component->name, *component);
+    components.emplace(component->name, component);
 }
 
-boost::optional<ServiceRegistration> Registry::lookup_service(std::string name) {
+std::shared_ptr<ServiceRegistration> Registry::lookup_service(std::string name) {
     if (services.find(name) == services.end()) {
-        return boost::none;
+        // CR erodkin: do we need to do this if check at all? can we just return services.at?
+        return nullptr;
     }
 
     return services.at(name);
 }
 
-boost::optional<ServiceRegistration> Registry::lookup_service(Subtype subtype, Model model) {
+std::shared_ptr<ServiceRegistration> Registry::lookup_service(Subtype subtype, Model model) {
     const std::string name = subtype.to_string() + model.to_string();
     return lookup_service(name);
 }
 
-boost::optional<ComponentRegistration> Registry::lookup_component(std::string name) {
+std::shared_ptr<ComponentRegistration> Registry::lookup_component(std::string name) {
     if (components.find(name) == components.end()) {
-        return boost::none;
+        return nullptr;
     }
 
     return components.at(name);
 }
 
-boost::optional<ComponentRegistration> Registry::lookup_component(Subtype subtype, Model model) {
+std::shared_ptr<ComponentRegistration> Registry::lookup_component(Subtype subtype, Model model) {
     const std::string name = subtype.to_string() + model.to_string();
     return lookup_component(name);
 }
 
-boost::optional<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
+std::shared_ptr<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
     if (subtypes.find(subtype) == subtypes.end()) {
-        return boost::none;
+        return nullptr;
     }
 
     return subtypes.at(subtype);
 }
 
-std::unordered_map<Subtype, ServiceRegistration> Registry::registered_services() {
-    std::unordered_map<Subtype, ServiceRegistration> registry;
+std::unordered_map<Subtype, std::shared_ptr<ServiceRegistration>> Registry::registered_services() {
+    std::unordered_map<Subtype, std::shared_ptr<ServiceRegistration>> registry;
     for (auto& service : services) {
         registry.insert(service);
     }
     return registry;
 }
 
-std::unordered_map<std::string, ComponentRegistration> Registry::registered_components() {
-    std::unordered_map<std::string, ComponentRegistration> registry;
+std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>>
+Registry::registered_components() {
+    std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> registry;
     for (auto& component : components) {
         registry.insert(component);
     }
@@ -93,12 +95,12 @@ Status ServiceRegistration::create_status(std::shared_ptr<ServiceBase> service) 
     return status;
 }
 
-std::unordered_map<std::string, ComponentRegistration> Registry::components;
-std::unordered_map<std::string, ServiceRegistration> Registry::services;
-// // CR erodkin: fix
-// std::unordered_map<Subtype, ResourceSubtype> Registry::subtypes;
-std::unordered_map<Subtype, ResourceSubtype> Registry::subtypes = {
-    {Generic::subtype(), Generic::resource_subtype()}};
+std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> Registry::components;
+std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> Registry::services;
+// // CR erodkin: do we want generic to be automatically built in like this?
+// We want it to be automatic but not-like-this.gif. Instead, have it done through an init.
+std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes = {
+    {Generic::subtype(), std::make_shared<ResourceSubtype>(Generic::resource_subtype())}};
 
 ServiceRegistration::ServiceRegistration(){};
 ComponentRegistration::ComponentRegistration(){};

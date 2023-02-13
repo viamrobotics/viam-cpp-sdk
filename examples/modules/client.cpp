@@ -1,3 +1,4 @@
+// CR erodkin: do we need this?
 #include <robot/client.hpp>
 int main() {
     std::shared_ptr<RobotClient> robot =

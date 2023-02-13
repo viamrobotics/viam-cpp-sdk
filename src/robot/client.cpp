@@ -312,22 +312,22 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     return components;
 }
 
-boost::optional<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
+std::shared_ptr<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
     try {
         std::shared_ptr<ComponentBase> c = get_component(name);
         // CR erodkin: this ain't it! we shouldn't be derefing here, we should be returning service
         // wrapped in ptr too
-        return *c;
+        return c;
     } catch (std::exception& exc) {
     }
 
     try {
-        ServiceBase s = get_service(name);
+        std::shared_ptr<ServiceBase> s = get_service(name);
         return s;
     } catch (std::exception& exc) {
     }
 
-    return boost::none;
+    return nullptr;
 }
 
 std::shared_ptr<ComponentBase> RobotClient::get_component(ResourceName name) {

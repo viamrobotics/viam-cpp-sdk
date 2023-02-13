@@ -8,6 +8,7 @@
 // location so we don't get a dependency loop on defining it between this file and resource.hpp
 class ReconfigurableService : public ServiceBase, public ReconfigurableResource {
    public:
-    std::function<void(Service, std::unordered_map<Name, ResourceBase>)> reconfigure;
+    std::function<void(Service, std::unordered_map<Name, std::shared_ptr<ResourceBase>>)>
+        reconfigure;
 };
 

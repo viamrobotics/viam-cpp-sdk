@@ -8,7 +8,7 @@
 
 ResourceManager::ResourceManager() {}
 // CR erodkin: services should be shared ptrs too
-std::unordered_map<std::string, ServiceBase> ResourceManager::services;
+std::unordered_map<std::string, std::shared_ptr<ServiceBase>> ResourceManager::services;
 std::unordered_map<std::string, std::shared_ptr<ComponentBase>> ResourceManager::components;
 
 /// Register a new component with the registry.
@@ -19,13 +19,14 @@ ResourceManager::ResourceManager(std::vector<std::shared_ptr<ComponentBase>> com
     }
 }
 
-void ResourceManager::register_service(ServiceBase service) {
-    if (services.find(service.name) != services.end()) {
-        std::string err = "Cannot add service with name " + service.name + " as it already exists.";
+void ResourceManager::register_service(std::shared_ptr<ServiceBase> service) {
+    if (services.find(service->name) != services.end()) {
+        std::string err =
+            "Cannot add service with name " + service->name + " as it already exists.";
         throw std::runtime_error(err);
     }
 
-    services[service.name] = service;
+    services[service->name] = service;
 }
 
 void ResourceManager::register_component(std::shared_ptr<ComponentBase> component) {
@@ -38,13 +39,13 @@ void ResourceManager::register_component(std::shared_ptr<ComponentBase> componen
     components[component->name] = component;
 }
 
-ServiceBase ResourceManager::get_service(std::string name, ServiceType of_type) {
+std::shared_ptr<ServiceBase> ResourceManager::get_service(std::string name, ServiceType of_type) {
     if (services.find(name) == services.end()) {
         throw "Service name " + name + " doesn't exist!";
     }
 
-    ServiceBase service = services.at(name);
-    if (service.type == of_type) {
+    std::shared_ptr<ServiceBase> service = services.at(name);
+    if (service->type == of_type) {
         return service;
     }
 
@@ -54,7 +55,7 @@ ServiceBase ResourceManager::get_service(std::string name, ServiceType of_type) 
     }
     throw "Service name " + name +
         " was found, but it has the wrong type! Expected type: " + of_type.name +
-        ". Actual type: " + service.type.name;
+        ". Actual type: " + service->type.name;
 }
 
 std::shared_ptr<ComponentBase> ResourceManager::get_component(std::string name,
