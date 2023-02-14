@@ -46,6 +46,7 @@ ViamChannel ViamChannel::dial(const char* uri, boost::optional<DialOptions> opti
     char* socket_path = ::dial(uri, payload, opts.allow_insecure_downgrade, ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
+        // TODO(RSDK-1742) Replace throwing of strings with throwing of runtime_error
         throw "Unable to establish connecting path!";
     }
 

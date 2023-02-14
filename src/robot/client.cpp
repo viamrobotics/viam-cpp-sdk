@@ -155,7 +155,6 @@ void RobotClient::refresh() {
         try {
             std::shared_ptr<ComponentBase> rpc_client =
                 Registry::lookup_component(name.subtype())->create_rpc_client(name.name(), channel);
-            // CR erodkin: fix this. resource_manager should hold onto pointers?
             new_resource_manager.register_component(rpc_client);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(debug)
@@ -229,8 +228,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
 // etc.) 		options: Options for connecting and refreshing
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
     const char* uri = address.c_str();
-    // CR erodkin: adding get good?
-    ViamChannel channel = ViamChannel::dial(uri, options.dial_options.get());
+    ViamChannel channel = ViamChannel::dial(uri, options.dial_options);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
     robot->should_close_channel = true;
 
@@ -315,8 +313,6 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 std::shared_ptr<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
     try {
         std::shared_ptr<ComponentBase> c = get_component(name);
-        // CR erodkin: this ain't it! we shouldn't be derefing here, we should be returning service
-        // wrapped in ptr too
         return c;
     } catch (std::exception& exc) {
     }

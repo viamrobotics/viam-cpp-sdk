@@ -7,7 +7,11 @@
 
 class Generic {
    public:
-    static ResourceSubtype resource_subtype();
+    static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
+
+   private:
+    static bool init();
+    static bool inited;
 };
 

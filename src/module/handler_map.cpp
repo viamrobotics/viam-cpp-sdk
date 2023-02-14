@@ -46,8 +46,6 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
         std::string resource_type = handler.subtype().subtype().type();
         std::string resource_subtype = handler.subtype().subtype().subtype();
         Subtype subtype(namespace_, resource_type, resource_subtype);
-        // CR erodkin: ServiceDescriptor? this in general seems funky and awkward, see if we can fix
-        // const google::protobuf::Descriptor* descriptor = handler.GetDescriptor();
         const google::protobuf::DescriptorPool* pool =
             google::protobuf::DescriptorPool::generated_pool();
         const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(resource_type);
@@ -64,4 +62,13 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
     }
 
     return hm;
+}
+
+void HandlerMap_::add_model(Model model, RPCSubtype subtype) {
+    std::vector<Model> models;
+    if (handles.find(subtype) != handles.end()) {
+        models = handles.at(subtype);
+    }
+    models.push_back(model);
+    handles.emplace(subtype, models);
 }

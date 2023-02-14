@@ -15,7 +15,6 @@ class Module {
     HandlerMap_ handles;
     std::shared_ptr<grpc::Channel> channel;
     std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> services;
-    void dial();
     void set_ready();
     Module(std::string addr);
 };

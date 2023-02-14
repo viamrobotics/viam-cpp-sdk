@@ -25,14 +25,14 @@ std::string Subtype::to_string() const {
     return Type::to_string() + ":" + resource_subtype;
 }
 
-// CR erodkin: this should be a static from_string func rather than a constructor
-Subtype::Subtype(std::string subtype) {
+Subtype Subtype::from_string(std::string subtype) {
     if (std::regex_match(subtype, MODEL_REGEX)) {
         std::vector<std::string> subtype_parts;
         boost::split(subtype_parts, subtype, boost::is_any_of(":"));
-        this->namespace_ = subtype_parts.at(0);
-        this->resource_type = subtype_parts.at(1);
-        this->resource_subtype = subtype_parts.at(2);
+        std::string namespace_ = subtype_parts.at(0);
+        std::string resource_type = subtype_parts.at(1);
+        std::string resource_subtype = subtype_parts.at(2);
+        return {namespace_, resource_type, resource_subtype};
     } else {
         throw "string " + subtype + " is not a valid subtype name";
     }
@@ -83,7 +83,7 @@ viam::common::v1::ResourceName Name::to_proto() {
     return rn;
 }
 
-Name::Name(std::string name) : Subtype("") {
+Name::Name(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {
         throw "Received invalid Name string: " + this->name;
     }

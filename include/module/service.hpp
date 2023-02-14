@@ -32,15 +32,7 @@ class ModuleService_ : public ComponentServiceBase,
                          ::viam::module::v1::ReadyResponse* response) override;
 
     std::shared_ptr<Module> module;
-    // CR erodkin: this shouldn't be living here, it's going to be used by lots of services not just
-    // module
-    // CR erodkin: we probably don't want this, but we're calling to it right now. fix that.
-    // std::unique_ptr<grpc::Server> server;
-    // CR erodkin: see if this works! think we don't need this probably actually
-    // std::unique_ptr<grpc::ServerBuilder> server_builder;
 
-    std::unique_ptr<viam::component::generic::v1::GenericService::Service> gs;
-    ModuleService_(std::shared_ptr<Module> module);
     ModuleService_(std::string addr);
     ~ModuleService_();
     Dependencies get_dependencies(google::protobuf::RepeatedPtrField<std::string> proto);
@@ -48,7 +40,6 @@ class ModuleService_ : public ComponentServiceBase,
    private:
     std::shared_ptr<ResourceBase> get_parent_resource(Name name);
     std::shared_ptr<RobotClient> parent;
-    // CR erodkin: do we need parent_addr at all?
     std::string parent_addr;
 };
 

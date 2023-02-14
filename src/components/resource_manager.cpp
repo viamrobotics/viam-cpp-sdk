@@ -7,7 +7,6 @@
 #include <vector>
 
 ResourceManager::ResourceManager() {}
-// CR erodkin: services should be shared ptrs too
 std::unordered_map<std::string, std::shared_ptr<ServiceBase>> ResourceManager::services;
 std::unordered_map<std::string, std::shared_ptr<ComponentBase>> ResourceManager::components;
 

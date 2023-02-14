@@ -7,6 +7,9 @@
 #include <mutex>
 #include <rpc/dial.hpp>
 
+/// NOTE: This is not currently being used, may be useful for testing or down the line but for now
+/// clients should not be looking to make use of this.
+
 class ModuleClient {
    public:
     std::mutex lock;
@@ -20,6 +23,5 @@ class ModuleClient {
     void remove_resource(Name name);
 
     void ready(std::string address);
-    // CR erodkin: api for module is defined in proto?? so says cheuk but that seems weird
 };
 

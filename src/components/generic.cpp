@@ -1,23 +1,31 @@
+#include <component/generic/v1/generic.grpc.pb.h>
+#include <component/generic/v1/generic.pb.h>
+#include <google/protobuf/descriptor.h>
+
 #include <common/utils.hpp>
 #include <components/generic.hpp>
+#include <registry/registry.hpp>
 #include <resource/resource.hpp>
+#include <stdexcept>
 
-#include "component/generic/v1/generic.grpc.pb.h"
-#include "component/generic/v1/generic.pb.h"
-#include "google/protobuf/descriptor.h"
-#include "registry/registry.hpp"
-
-// CR erodkin: if this works, we should instead have a way to add subtypes to the registry listed in
-// registry, and then each component wrapper can call it on its own
-ResourceSubtype Generic::resource_subtype() {
-    std::cout << "WE ARE CALLING RESOURCE SUBTYPE SO WE NEED IT DONt DELETE" << std::endl;
+std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    // CR erodkin: we should have a way to handle if this doesn't exist?
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::generic::v1::GenericService::service_full_name());
-    return ResourceSubtype(sd);
+    if (sd == nullptr) {
+        throw std::runtime_error("Unable to get service descriptor for the generic service");
+    }
+    return ResourceSubtype::new_from_descriptor(sd);
 }
 
 Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
 }
+
+bool Generic::init() {
+    Registry::register_subtype(subtype(), resource_subtype());
+    return true;
+};
+
+bool Generic::inited = init();
+

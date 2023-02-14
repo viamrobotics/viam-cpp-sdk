@@ -13,28 +13,40 @@
 #include <unordered_map>
 
 #include "components/generic.hpp"
+#include "google/protobuf/descriptor.h"
 
 using viam::robot::v1::Status;
 
 void Registry::register_component(std::shared_ptr<ComponentRegistration> component) {
-    // CR erodkin: delete
     if (components.find(component->name) != components.end()) {
         std::string err =
             "Cannot add component with name " + component->name + "as it already exists";
         throw std::runtime_error(err);
     }
 
-    // CR erodkin: registered components should just be a bunch of pointers
     components.emplace(component->name, component);
+}
+void Registry::register_subtype(Subtype subtype,
+                                std::shared_ptr<ResourceSubtype> resource_subtype) {
+    if (subtypes.find(subtype) != subtypes.end()) {
+        throw std::runtime_error("Cannot add subtype " + subtype.to_string() +
+                                 " as it already exists");
+    }
+
+    subtypes.emplace(subtype, resource_subtype);
 }
 
 std::shared_ptr<ServiceRegistration> Registry::lookup_service(std::string name) {
     if (services.find(name) == services.end()) {
-        // CR erodkin: do we need to do this if check at all? can we just return services.at?
         return nullptr;
     }
 
     return services.at(name);
+}
+
+std::shared_ptr<ResourceSubtype> ResourceSubtype::new_from_descriptor(
+    const google::protobuf::ServiceDescriptor* descriptor) {
+    return std::make_shared<ResourceSubtype>(descriptor);
 }
 
 std::shared_ptr<ServiceRegistration> Registry::lookup_service(Subtype subtype, Model model) {
@@ -63,10 +75,11 @@ std::shared_ptr<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
     return subtypes.at(subtype);
 }
 
-std::unordered_map<Subtype, std::shared_ptr<ServiceRegistration>> Registry::registered_services() {
-    std::unordered_map<Subtype, std::shared_ptr<ServiceRegistration>> registry;
+std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>>
+Registry::registered_services() {
+    std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> registry;
     for (auto& service : services) {
-        registry.insert(service);
+        registry.emplace(service.first, service.second);
     }
     return registry;
 }
@@ -97,10 +110,7 @@ Status ServiceRegistration::create_status(std::shared_ptr<ServiceBase> service) 
 
 std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> Registry::components;
 std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> Registry::services;
-// // CR erodkin: do we want generic to be automatically built in like this?
-// We want it to be automatic but not-like-this.gif. Instead, have it done through an init.
-std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes = {
-    {Generic::subtype(), std::make_shared<ResourceSubtype>(Generic::resource_subtype())}};
+std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
 
 ServiceRegistration::ServiceRegistration(){};
 ComponentRegistration::ComponentRegistration(){};

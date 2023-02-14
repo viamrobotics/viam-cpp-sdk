@@ -64,7 +64,7 @@ Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     component.type = proto_cfg.type();
     std::string api = proto_cfg.api();
     if (api.find(":") != std::string::npos) {
-        component.api = Subtype(api);
+        component.api = Subtype::from_string(api);
     }
     component.model = Model::from_str(proto_cfg.model());
 

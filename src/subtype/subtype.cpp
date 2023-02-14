@@ -1,9 +1,18 @@
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/status.h>
+
+#include <exception>
+#include <memory>
+
+#include "component/generic/v1/generic.grpc.pb.h"
+#include "registry/registry.hpp"
 #define BOOST_LOG_DYN_LINK 1
 #include <boost/algorithm/string.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
+#include <rpc/server.hpp>
 #include <services/service_base.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
@@ -130,5 +139,40 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
     lock.unlock();
 };
 
-SubtypeService::SubtypeService(){};
+void SubtypeService::register_service() {
+    throw std::runtime_error(
+        "Attempting to register the abstract SubtypeService. Please build a [SubtypeService] for a "
+        "specific resource and build that instead.");
+}
 
+// TODO(RSDK-1742): make resource_subtype typeful, move this to a case statement
+std::shared_ptr<SubtypeService> SubtypeService::of_subtype(std::string resource_subtype) {
+    if (resource_subtype == "generic") {
+        return std::make_shared<GenericSubtypeService>();
+    }
+    return std::make_shared<SubtypeService>();
+}
+
+::grpc::Status GenericSubtypeService::DoCommand(
+    ::grpc::ServerContext* context,
+    const ::viam::component::generic::v1::DoCommandRequest* request,
+    ::viam::component::generic::v1::DoCommandResponse* response) {
+    std::shared_ptr<ResourceBase> rb = resource(request->name());
+    if (rb == nullptr) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    std::shared_ptr<viam::component::generic::v1::GenericService::Service> generic =
+        std::dynamic_pointer_cast<viam::component::generic::v1::GenericService::Service>(rb);
+    return generic->DoCommand(context, request, response);
+}
+
+void GenericSubtypeService::register_service() {
+    viam::component::generic::v1::GenericService::Service* generic =
+        static_cast<viam::component::generic::v1::GenericService::Service*>(this);
+    try {
+        Server::register_service(generic);
+    } catch (std::exception& exc) {
+        throw exc;
+    }
+}

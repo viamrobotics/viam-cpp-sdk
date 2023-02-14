@@ -3,9 +3,6 @@
 
 #include <rpc/server.hpp>
 
-// CR erodkin: do we need to make this at all?
-Server::Server(){};
-
 void Server::register_service(grpc::Service* service) {
     if (server != nullptr) {
         throw "Cannot register a new service after the server has started";
@@ -20,10 +17,6 @@ void Server::start() {
     }
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     server = std::move(builder->BuildAndStart());
-}
-
-std::unique_ptr<grpc::Server> Server::start_() {
-    return builder->BuildAndStart();
 }
 
 void Server::add_listening_port(std::string address,
@@ -41,10 +34,6 @@ void Server::add_listening_port(std::string address,
 
 std::unique_ptr<grpc::ServerBuilder> Server::builder = std::make_unique<grpc::ServerBuilder>();
 std::unique_ptr<grpc::Server> Server::server;
-
-grpc::Server* Server::server_ptr() {
-    return server.get();
-}
 
 void Server::wait() {
     server->Wait();

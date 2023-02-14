@@ -3,7 +3,8 @@
 #include <module/service.hpp>
 #include <unordered_map>
 
-// CR erodkin: should we just get rid of this entirely?
+/// NOTE: This is not currently being used, may be useful for testing or down the line but for now
+/// clients should not be looking to make use of this.
 class ModuleService_;
 class ModuleManager {
    public:

@@ -22,6 +22,7 @@ using Viam::SDK::ViamChannel;
 
 /// gRPC client for a robot. This class should be used for all interactions with
 /// a robot.
+// TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
 class RobotClient {
    public:
     void refresh();

@@ -36,7 +36,6 @@ std::vector<ResourceName> resource_names_for_component(std::shared_ptr<Component
     *r.mutable_name() = component->name;
     *r.mutable_subtype() = *component_type;
     resource_names.push_back(r);
-    std::cout << "called to get resource names! " << r.SerializeAsString() << std::endl;
     return resource_names;
 }
 
