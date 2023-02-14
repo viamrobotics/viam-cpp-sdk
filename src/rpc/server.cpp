@@ -40,6 +40,7 @@ void Server::wait() {
 }
 
 void Server::shutdown() {
-    server->Shutdown();
+    if (server != nullptr) {
+        server->Shutdown();
+    }
 }
-

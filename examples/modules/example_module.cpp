@@ -5,9 +5,9 @@
 #include <grpcpp/security/server_credentials.h>
 #include <robot/v1/robot.pb.h>
 #include <service/slam/v1/slam.grpc.pb.h>
+#include <signal.h>
 
 #include <components/component_base.hpp>
-#include <csignal>
 #include <iostream>
 #include <memory>
 #include <module/module.hpp>
@@ -50,9 +50,10 @@ class MyModule : public GenericService::Service, public ComponentBase {
 };
 
 int MyModule::which = 0;
+std::shared_ptr<ModuleService_> my_mod;
+
 void signal_handler(int signum) {
-    std::cout << "GOT INTERRUPT SIGNAL" << signum << std::endl;
-    std::exit(signum);
+    my_mod->close();
 }
 
 int main(int argc, char** argv) {
@@ -60,9 +61,15 @@ int main(int argc, char** argv) {
         throw "need socket path as command line argument";
     }
 
-    std::signal(SIGINT, signal_handler);
+    // TODO(RSDK-1920) This is still causing non-graceful shutdown. Figure out why, and fix.
+    struct sigaction sig_handler;
+    sig_handler.sa_handler = signal_handler;
+    sigaction(SIGTERM, &sig_handler, nullptr);
+    sigemptyset(&sig_handler.sa_mask);
+    sig_handler.sa_flags = 0;
+
     Subtype generic = Generic::subtype();
-    std::shared_ptr<ModuleService_> my_mod = std::make_shared<ModuleService_>(argv[1]);
+    my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
     my_mod->add_model_from_registry(generic, m);
 
@@ -82,6 +89,5 @@ int main(int argc, char** argv) {
     my_mod->start();
     Server::start();
     Server::wait();
-    my_mod->close();
     return 0;
 };
