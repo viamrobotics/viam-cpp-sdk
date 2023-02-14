@@ -3072,7 +3072,6 @@ class WorldState final :
 
   enum : int {
     kObstaclesFieldNumber = 1,
-    kInteractionSpacesFieldNumber = 2,
     kTransformsFieldNumber = 3,
   };
   // repeated .viam.common.v1.GeometriesInFrame obstacles = 1 [json_name = "obstacles"];
@@ -3092,24 +3091,6 @@ class WorldState final :
   ::viam::common::v1::GeometriesInFrame* add_obstacles();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame >&
       obstacles() const;
-
-  // repeated .viam.common.v1.GeometriesInFrame interaction_spaces = 2 [json_name = "interactionSpaces"];
-  int interaction_spaces_size() const;
-  private:
-  int _internal_interaction_spaces_size() const;
-  public:
-  void clear_interaction_spaces();
-  ::viam::common::v1::GeometriesInFrame* mutable_interaction_spaces(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame >*
-      mutable_interaction_spaces();
-  private:
-  const ::viam::common::v1::GeometriesInFrame& _internal_interaction_spaces(int index) const;
-  ::viam::common::v1::GeometriesInFrame* _internal_add_interaction_spaces();
-  public:
-  const ::viam::common::v1::GeometriesInFrame& interaction_spaces(int index) const;
-  ::viam::common::v1::GeometriesInFrame* add_interaction_spaces();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame >&
-      interaction_spaces() const;
 
   // repeated .viam.common.v1.Transform transforms = 3 [json_name = "transforms"];
   int transforms_size() const;
@@ -3137,7 +3118,6 @@ class WorldState final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame > obstacles_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame > interaction_spaces_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform > transforms_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
@@ -5145,46 +5125,6 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geom
 WorldState::obstacles() const {
   // @@protoc_insertion_point(field_list:viam.common.v1.WorldState.obstacles)
   return obstacles_;
-}
-
-// repeated .viam.common.v1.GeometriesInFrame interaction_spaces = 2 [json_name = "interactionSpaces"];
-inline int WorldState::_internal_interaction_spaces_size() const {
-  return interaction_spaces_.size();
-}
-inline int WorldState::interaction_spaces_size() const {
-  return _internal_interaction_spaces_size();
-}
-inline void WorldState::clear_interaction_spaces() {
-  interaction_spaces_.Clear();
-}
-inline ::viam::common::v1::GeometriesInFrame* WorldState::mutable_interaction_spaces(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.common.v1.WorldState.interaction_spaces)
-  return interaction_spaces_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame >*
-WorldState::mutable_interaction_spaces() {
-  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.WorldState.interaction_spaces)
-  return &interaction_spaces_;
-}
-inline const ::viam::common::v1::GeometriesInFrame& WorldState::_internal_interaction_spaces(int index) const {
-  return interaction_spaces_.Get(index);
-}
-inline const ::viam::common::v1::GeometriesInFrame& WorldState::interaction_spaces(int index) const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.WorldState.interaction_spaces)
-  return _internal_interaction_spaces(index);
-}
-inline ::viam::common::v1::GeometriesInFrame* WorldState::_internal_add_interaction_spaces() {
-  return interaction_spaces_.Add();
-}
-inline ::viam::common::v1::GeometriesInFrame* WorldState::add_interaction_spaces() {
-  ::viam::common::v1::GeometriesInFrame* _add = _internal_add_interaction_spaces();
-  // @@protoc_insertion_point(field_add:viam.common.v1.WorldState.interaction_spaces)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeometriesInFrame >&
-WorldState::interaction_spaces() const {
-  // @@protoc_insertion_point(field_list:viam.common.v1.WorldState.interaction_spaces)
-  return interaction_spaces_;
 }
 
 // repeated .viam.common.v1.Transform transforms = 3 [json_name = "transforms"];
