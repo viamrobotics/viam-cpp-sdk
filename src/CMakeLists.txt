@@ -91,6 +91,8 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.h
     ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.h
+    ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.cc
+    ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.h
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.h
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.cc
@@ -159,6 +161,7 @@ target_sources(viamcpp
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.cc
+    ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.cc
     common/proto_type.cpp
@@ -185,7 +188,9 @@ target_sources(viamcpp
     FILES
       ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/gen/google/api/http.pb.h
+      ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.h
       ${PROTO_GEN_DIR}/gen/common/v1/common.pb.h
+      ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.h
       ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.h
