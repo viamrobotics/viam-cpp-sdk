@@ -5,7 +5,6 @@
 #include <grpcpp/support/status.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
-#include <rpc/rpc.h>
 #include <unistd.h>
 
 #include <boost/log/trivial.hpp>

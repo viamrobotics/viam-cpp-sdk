@@ -209,7 +209,8 @@ target_include_directories(viamcpp
     "$<BUILD_INTERFACE:${VIAMCPPSDK_GRPC_INCLUDE_DIRS}>"
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_GRPC_INCLUDE_DIRS}>"
     "$<BUILD_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
-    "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>" )
+    "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
+)
 
 # This shouldn't be necessary, but we need it so that the installation
 # path of the C++ SDK is added to the link line of consumers to that
@@ -233,12 +234,13 @@ target_link_directories(viamcpp
 )
 
 target_link_libraries(viamcpp
-  PUBLIC ${VIAMCPPSDK_GRPCXX_LINK_LIBRARIES}
-  PUBLIC ${VIAMCPPSDK_GRPC_LINK_LIBRARIES}
-  PUBLIC ${VIAMCPPSDK_PROTOBUF_LINK_LIBRARIES}
+  PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARIES}
+  PUBLIC ${VIAMCPPSDK_GRPC_LIBRARIES}
+  PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PUBLIC Boost::headers
   PRIVATE Boost::log
   PRIVATE viam_rust_utils
+  PRIVATE Threads::Threads
 )
 
 install(

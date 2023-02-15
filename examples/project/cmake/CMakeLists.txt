@@ -29,8 +29,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 #   cmake -DCMAKE_PREFIX_PATH=$HOME/opt ...
 #
 if (NOT CMAKE_PREFIX_PATH)
-  set(CMAKE_PREFIX_PATH '${PROJECT_SOURCE_DIR}/../../../build/install')
+  set(CMAKE_PREFIX_PATH ${PROJECT_SOURCE_DIR}/../../../build/install)
 endif()
+
+
+# Everything needs threads, and prefer -pthread if available
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 
 # In practice, you should set a minimum required version

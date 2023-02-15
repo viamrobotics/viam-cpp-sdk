@@ -36,16 +36,24 @@ target_include_directories(example_echo
   PUBLIC ${PROTO_GEN_DIR}/gen
   PUBLIC ${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}
   PUBLIC ${VIAMCPPSDK_GRPC_INCLUDE_DIRS}
+  PUBLIC ${VIAMCPPSDK_GRPCXX_INCLUDE_DIRS}
+)
+
+target_link_directories(example_echo
+  PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS}
+  PUBLIC ${VIAMCPPSDK_GRPC_LIBRARY_DIRS}
+  PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARY_DIRS}
 )
 
 # Similarly, we can't pick up the public grpc or viam_rust_utils
 # dependencis from viamcpp, so we need to be explicit about them.
 target_link_libraries(example_echo
-  ${VIAMCPPSDK_PROTOBUF_LINK_LIBRARIES}
-  ${VIAMCPPSDK_GRPC_LINK_LIBRARIES}
-  ${VIAMCPPSDK_GRPCXX_LINK_LIBRARIES}
+  ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
+  ${VIAMCPPSDK_GRPC_LIBRARIES}
+  ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   Boost::headers
   viam_rust_utils
+  Threads::Threads
 )
 
 install(
