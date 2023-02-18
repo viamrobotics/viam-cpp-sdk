@@ -10,6 +10,7 @@
 #include <memory>
 #include <module/manager.hpp>
 #include <mutex>
+#include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <robot/client.hpp>
 #include <robot/service.hpp>

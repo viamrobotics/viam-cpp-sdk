@@ -70,12 +70,12 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     std::shared_ptr<ResourceBase> res;
     if (cfg.api.is_component_type()) {
-        std::shared_ptr<ComponentRegistration> reg = Registry::lookup_component(cfg.name);
+        std::shared_ptr<ComponentRegistration> reg = Registry::lookup_component(cfg.api, cfg.model);
         if (reg != nullptr) {
             res = reg->create_rpc_client(module->name, module->channel);
         };
     } else if (cfg.api.is_service_type()) {
-        std::shared_ptr<ServiceRegistration> reg = Registry::lookup_service(cfg.name);
+        std::shared_ptr<ServiceRegistration> reg = Registry::lookup_service(cfg.api, cfg.model);
         if (reg != nullptr) {
             res = reg->create_rpc_client(module->name, module->channel);
         }
@@ -165,9 +165,8 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
             sub_svc->replace_one(cfg.resource_name(), comp);
         }
     } else if (cfg.api.is_service_type()) {
-        std::shared_ptr<ServiceRegistration> reg = Registry::lookup_service(cfg.name);
+        std::shared_ptr<ServiceRegistration> reg = Registry::lookup_service(cfg.api, cfg.model);
         if (reg != nullptr) {
-            reg = Registry::lookup_service(cfg.api, cfg.model);
             std::shared_ptr<ServiceBase> service =
                 reg->create_rpc_client(module->name, module->channel);
             sub_svc->replace_one(cfg.resource_name(), service);

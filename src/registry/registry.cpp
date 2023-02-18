@@ -18,13 +18,13 @@
 using viam::robot::v1::Status;
 
 void Registry::register_component(std::shared_ptr<ComponentRegistration> component) {
-    if (components.find(component->name) != components.end()) {
-        std::string err =
-            "Cannot add component with name " + component->name + "as it already exists";
+    std::string reg_key = component->subtype.to_string() + "/" + component->model.to_string();
+    if (components.find(reg_key) != components.end()) {
+        std::string err = "Cannot add component with name " + reg_key + "as it already exists";
         throw std::runtime_error(err);
     }
 
-    components.emplace(component->name, component);
+    components.emplace(reg_key, component);
 }
 void Registry::register_subtype(Subtype subtype,
                                 std::shared_ptr<ResourceSubtype> resource_subtype) {
@@ -63,7 +63,7 @@ std::shared_ptr<ComponentRegistration> Registry::lookup_component(std::string na
 }
 
 std::shared_ptr<ComponentRegistration> Registry::lookup_component(Subtype subtype, Model model) {
-    const std::string name = subtype.to_string() + model.to_string();
+    const std::string name = subtype.to_string() + "/" + model.to_string();
     return lookup_component(name);
 }
 

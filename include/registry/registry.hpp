@@ -40,14 +40,17 @@ class ComponentRegistration {
     ComponentRegistration();
     ComponentRegistration(
         ComponentType ct,
-        std::string name,
+        Subtype subtype,
+        Model model,
         std::function<std::unique_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)>
             create_rpc_client)
-        : component_type(std::move(ct)),
-          name(std::move(name)),
+        : subtype(std::move(subtype)),
+          component_type(std::move(ct)),
+          model(std::move(model)),
           create_rpc_client(std::move(create_rpc_client)){};
+    Subtype subtype;
+    Model model;
     ComponentType component_type;
-    std::string name;
     std::function<std::shared_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)>
         create_rpc_client;
     viam::robot::v1::Status create_status(std::shared_ptr<ComponentBase> component);

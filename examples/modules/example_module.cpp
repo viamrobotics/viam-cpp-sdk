@@ -71,20 +71,13 @@ int main(int argc, char** argv) {
     Subtype generic = Generic::subtype();
     my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
-    my_mod->add_model_from_registry(generic, m);
-
-    std::shared_ptr<ComponentRegistration> cr2 = std::make_shared<ComponentRegistration>(
-        ComponentType("MyModule"), "printer2", [](std::string, std::shared_ptr<grpc::Channel>) {
-            return std::make_unique<MyModule>();
-        });
-
     std::shared_ptr<ComponentRegistration> cr = std::make_shared<ComponentRegistration>(
-        ComponentType("MyModule"), "printer1", [](std::string, std::shared_ptr<grpc::Channel>) {
+        ComponentType("MyModule"), generic, m, [](std::string, std::shared_ptr<grpc::Channel>) {
             return std::make_unique<MyModule>();
         });
 
-    Registry::register_component(cr2);
     Registry::register_component(cr);
+    my_mod->add_model_from_registry(generic, m);
 
     my_mod->start();
     Server::start();
