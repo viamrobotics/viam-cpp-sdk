@@ -2,8 +2,9 @@
 
 #include <google/protobuf/descriptor.h>
 
-#include <components/component_base.hpp>
 #include <string>
+
+#include "common/v1/common.pb.h"
 
 class Type {
    public:

@@ -7,20 +7,25 @@
 #include <grpcpp/server.h>
 #include <robot/v1/robot.pb.h>
 
-#include <components/service_base.hpp>
+#include <components/component_base.hpp>
+#include <components/component_type.hpp>
 #include <config/resource.hpp>
-#include <resource/reconfigurable_resource.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
-#include <services/reconfigurable_service.hpp>
+#include <services/service_type.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
+
+// need to forward declare to avoid circular dependencies
+// class ResourceBase;
+class ServiceBase;
+// class ComponentBase;
 
 class ResourceSubtype {
    public:
     static std::shared_ptr<ResourceSubtype> new_from_descriptor(
         const google::protobuf::ServiceDescriptor* service_descriptor);
-    std::function<ReconfigurableResource(ResourceBase, Name)> create_reconfigurable;
+    std::function<ResourceBase(ResourceBase, Name)> create_reconfigurable;
     std::function<ProtoType(ResourceBase)> create_status;
     const google::protobuf::ServiceDescriptor* service_descriptor;
     std::function<ResourceBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
@@ -33,7 +38,7 @@ class ResourceSubtype {
    private:
 };
 
-typedef std::unordered_map<Name, std::shared_ptr<ResourceBase>> Dependencies;
+// typedef std::unordered_map<Name, std::shared_ptr<ResourceBase>> Dependencies;
 
 class ComponentRegistration {
    public:

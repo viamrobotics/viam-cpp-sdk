@@ -25,7 +25,6 @@
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
 #include <components/generic.hpp>
-#include <components/reconfigurable_component.hpp>
 #include <components/service_base.hpp>
 #include <config/resource.hpp>
 #include <memory>
@@ -37,7 +36,6 @@
 #include <robot/client.hpp>
 #include <robot/service.hpp>
 #include <rpc/server.hpp>
-#include <services/reconfigurable_service.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
@@ -127,17 +125,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
             "unable to reconfigure resource " + cfg.resource_name().name + " as it doesn't exist.");
     }
     try {
-        ReconfigurableComponent* rc = static_cast<ReconfigurableComponent*>(res.get());
-        rc->reconfigure(cfg, deps);
-        return grpc::Status();
-    } catch (std::exception& exc) {
-    }
-
-    try {
-        ServiceBase* sb = static_cast<ServiceBase*>(res.get());
-        ReconfigurableService* rs = static_cast<ReconfigurableService*>(sb);
-        ::Service s = ::Service::from_component_config(cfg);
-        rs->reconfigure(s, deps);
+        res->reconfigure(deps);
         return grpc::Status();
     } catch (std::exception& exc) {
     }

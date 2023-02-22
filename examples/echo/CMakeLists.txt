@@ -21,7 +21,7 @@ add_executable(example_echo
   ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.cc
   ${PROTO_GEN_DIR}/gen/proto/rpc/examples/echo/v1/echo.pb.cc
   ${PROTO_GEN_DIR}/gen/proto/rpc/examples/echo/v1/echo.grpc.pb.cc
-  example_echo.cc
+  example_echo.cpp
 )
 
 if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)

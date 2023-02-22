@@ -25,7 +25,6 @@
 #include <robot/client.hpp>
 #include <rpc/dial.hpp>
 #include <set>
-#include <spatialmath/orientation.hpp>
 #include <string>
 #include <thread>
 #include <tuple>

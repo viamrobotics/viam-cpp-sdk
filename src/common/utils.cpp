@@ -19,7 +19,7 @@ std::vector<ResourceName> resource_names_for_component(std::shared_ptr<Component
     for (auto& a : Registry::registered_components()) {
         std::shared_ptr<ComponentRegistration> reg = a.second;
         if (reg->component_type == component->type) {
-            component_type = &reg->name;
+            component_type = &reg->component_type.name;
         }
     }
 

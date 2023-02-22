@@ -5,17 +5,7 @@
 #include <resource/resource_base.hpp>
 #include <string>
 
-class ServiceType {
-   public:
-    std::string name;
-    friend bool operator==(ServiceType& lhs, ServiceType& rhs);
-    ServiceType(std::string name) {
-        name = name;
-    }
-    ServiceType() {
-        name = "ServiceBase";
-    }
-};
+#include "services/service_type.hpp"
 
 class ServiceBase : public ResourceBase {
    public:

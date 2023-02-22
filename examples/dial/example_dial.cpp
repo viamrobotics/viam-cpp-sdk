@@ -13,11 +13,12 @@
 #include <iostream>
 #include <memory>
 #include <ostream>
-#include <robot/client.hpp>
-#include <robot/service.hpp>
-#include <rpc/dial.hpp>
 #include <string>
 #include <vector>
+
+#include "robot/client.hpp"
+#include "robot/service.hpp"
+#include "rpc/dial.hpp"
 
 using viam::robot::v1::Status;
 using Viam::SDK::Credentials;

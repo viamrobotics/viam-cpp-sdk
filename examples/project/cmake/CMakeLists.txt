@@ -41,12 +41,15 @@ endif()
 find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS Lib)
 
 
-# Here we compile the `examle_dial.cc` source file into an executable,
-# but as part of a separate project rather than being built-in to the
-# SDK build.
+# Here we compile the `examle_dial.cpp` and `example_module.cpp` source
+# files into an executable, but as part of a separate project rather than
+# being built-in to the SDK build.
 add_executable(example_dial
-  ../../dial/example_dial.cc
+  ../../dial/example_dial.cpp
 )
+
+add_executable(example_module
+  ../../modules/example_module.cpp)
 
 # Declaring the link dependency on the viam-cpp-sdk::viamcpp library
 # will automatically wire up the required include paths and transitive
@@ -59,5 +62,9 @@ add_executable(example_dial
 # yourself.
 #
 target_link_libraries(example_dial
+  viam-cpp-sdk::viamcpp
+)
+
+target_link_libraries(example_module
   viam-cpp-sdk::viamcpp
 )

@@ -7,10 +7,6 @@
 
 using viam::common::v1::ResourceName;
 
-bool operator==(ComponentType& lhs, ComponentType& rhs) {
-    return lhs.name == rhs.name;
-}
-
 ResourceName ComponentBase::get_resource_name(std::string name_) {
     // TODO (RSDK-1631): test, confirm whether we need to split on
     // "viam.components" here

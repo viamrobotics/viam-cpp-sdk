@@ -3,20 +3,9 @@
 #include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 
+#include <components/component_type.hpp>
 #include <resource/resource_base.hpp>
 #include <string>
-class ComponentType {
-   public:
-    std::string name;
-    friend bool operator==(ComponentType& lhs, ComponentType& rhs);
-    ComponentType(std::string name) {
-        name = name;
-    }
-    ComponentType() {
-        name = "ComponentBase";
-    }
-};
-
 class ComponentBase : public ResourceBase {
    public:
     std::string name;

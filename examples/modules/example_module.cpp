@@ -1,8 +1,7 @@
 #include <component/arm/v1/arm.grpc.pb.h>
 #include <component/generic/v1/generic.grpc.pb.h>
-#include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
-#include <grpcpp/security/server_credentials.h>
+#include <grpcpp/server_context.h>
 #include <robot/v1/robot.pb.h>
 #include <service/slam/v1/slam.grpc.pb.h>
 #include <signal.h>

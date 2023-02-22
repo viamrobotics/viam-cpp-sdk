@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_executable(example_dial
-  example_dial.cpp
+add_executable(example_module
+  example_module.cpp
 )
 
-target_link_libraries(example_dial
+target_link_libraries(example_module
   viamcpp
 )
 
 install(
-  TARGETS example_dial
+  TARGETS example_module
   COMPONENT examples
 )

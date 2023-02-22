@@ -10,12 +10,13 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
-#include <resource/resource.hpp>
-#include <resource/resource_base.hpp>
-#include <rpc/server.hpp>
-#include <services/service_base.hpp>
 #include <string>
-#include <subtype/subtype.hpp>
+
+#include "resource/resource.hpp"
+#include "resource/resource_base.hpp"
+#include "rpc/server.hpp"
+#include "services/service_base.hpp"
+#include "subtype/subtype.hpp"
 
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     lock.lock();

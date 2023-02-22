@@ -3,12 +3,13 @@
 #include <grpcpp/impl/service_type.h>
 
 #include <boost/optional/optional.hpp>
-#include <resource/resource.hpp>
-#include <resource/resource_base.hpp>
-#include <services/service_base.hpp>
 #include <string>
 
 #include "component/generic/v1/generic.grpc.pb.h"
+#include "resource/resource.hpp"
+
+// TODO (RSDK-1742): create resource_base_fwd.h which does this fwd declaration, and include that
+class ResourceBase;
 
 class SubtypeService : public grpc::Service {
    public:

@@ -78,9 +78,17 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     # files are generated.
     #
     # TODO: We reiterate this list below in `add_library`. Can we DRY
-    # it sanely? We would needd to filter out (or add in) the headers.
+    # it sanely? We would need to filter out (or add in) the headers.
 
     # This list is needed for the core library.
+    ${PROTO_GEN_DIR}/gen/app/v1/app.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/app.grpc.pb.h
+    ${PROTO_GEN_DIR}/gen/app/v1/app.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/app.pb.h
+    ${PROTO_GEN_DIR}/gen/app/v1/robot.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/robot.grpc.pb.h
+    ${PROTO_GEN_DIR}/gen/app/v1/robot.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/robot.pb.h
     ${PROTO_GEN_DIR}/gen/common/v1/common.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/common/v1/common.grpc.pb.h
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.cc
@@ -99,6 +107,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.h
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.h
+    ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.h
+    ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.cc
+    ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.h
 
     # These are needed for `echo` example, which is awkward. These can
     # probably be removed if that example is pulled.
@@ -109,7 +121,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
     COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/goutils --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api
-    COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module
+    COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module,tagger,app/v1
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
@@ -155,45 +167,97 @@ add_library(viam-cpp-sdk::viamcpp ALIAS viamcpp)
 
 target_sources(viamcpp
   PRIVATE
+    ${PROTO_GEN_DIR}/gen/app/v1/app.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/app.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/robot.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/app/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/gen/common/v1/common.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.cc
+	${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.cc
+	${PROTO_GEN_DIR}/gen/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.cc
+    ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.cc
     common/proto_type.cpp
     common/utils.cpp
     components/component_base.cpp
+	components/component_type.cpp
+	components/generic.cpp
     components/resource_manager.cpp
+	config/resource.cpp
+	module/handler_map.cpp
+	module/module.cpp
+	module/service.cpp
+	referenceframe/frame.cpp
     registry/registry.cpp
+	resource/resource.cpp
+	resource/resource_base.cpp
     robot/client.cpp
     rpc/dial.cpp
+	rpc/server.cpp
+	services/service_base.cpp
+	services/service_type.cpp
+	spatialmath/geometry.cpp
+	spatialmath/orientation_types.cpp
+	spatialmath/orientation.cpp
+	subtype/subtype.cpp
   PUBLIC FILE_SET viamcpp_public_includes TYPE HEADERS
     FILES
       common/proto_type.hpp
       common/utils.hpp
       components/component_base.hpp
+	  components/component_type.hpp
+	  components/generic.hpp
       components/resource_manager.hpp
       components/service_base.hpp
+	  config/resource.hpp
+	  module/handler_map.hpp
+	  module/module.hpp
+	  module/service.hpp
+	  referenceframe/frame.hpp
       registry/registry.hpp
+	  resource/resource.hpp
+      resource/resource_base.hpp
       robot/client.hpp
       robot/service.hpp
       rpc/dial.hpp
+	  rpc/server.hpp
+	  services/service_base.hpp
+	  services/service_type.hpp
+	  spatialmath/geometry.hpp
+	  spatialmath/orientation_types.hpp
+	  spatialmath/orientation.hpp
+	  subtype/subtype.hpp
   PUBLIC FILE_SET viamcpp_public_pb_includes TYPE HEADERS
     BASE_DIRS
       ${PROTO_GEN_DIR}/gen
     FILES
+      ${PROTO_GEN_DIR}/gen/app/v1/app.grpc.pb.h
+      ${PROTO_GEN_DIR}/gen/app/v1/app.pb.h
+      ${PROTO_GEN_DIR}/gen/app/v1/robot.grpc.pb.h
+      ${PROTO_GEN_DIR}/gen/app/v1/robot.pb.h
       ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/gen/google/api/http.pb.h
       ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.h
       ${PROTO_GEN_DIR}/gen/common/v1/common.pb.h
       ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.h
+      ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.h
+      ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.h
+	  ${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.h
+	  ${PROTO_GEN_DIR}/gen/module/v1/module.pb.h
       ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.h
+      ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.h
+      ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.h
 )
 
 target_include_directories(viamcpp
