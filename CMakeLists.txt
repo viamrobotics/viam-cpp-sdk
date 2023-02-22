@@ -1,0 +1,296 @@
+# Copyright 2023 Viam Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+# TODO: [required] libviam_rust_utils handling
+# TODO: [required] Runtime paths and make BUILD_SHARED_LIBS work
+# TODO: Sanitizer build configs
+# TODO: All warnings and warnings as errors
+# TODO: Runtime dependency sets?
+# TODO: Finding external projects vs building in (e.g grpc)
+# TODO: Better clang-format integration (versions, dependencies, only changed, etc.)
+# TODO: Version from git describe?
+# TODO: Export macros and visibilty annotations
+# TODO: CPack? CTest? Conan?
+
+
+# This is a tricky decision. If we set this too old, we lose access to
+# modern CMake facilities that we want to be able to use, like file
+# sets. If we set it too new, then the system CMake can't be used to
+# build the product. Here, we make an opinionated choice to require
+# the very latest stable CMake as of this writing, arguing that for
+# most uses of this product, it is expected to be cross-compiling for
+# the target platform on a development system, meaning that we are not
+# constrained by the version of CMake available on target systems.
+cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+
+
+# Identify the project.
+project(viam-cpp-sdk
+  VERSION 0.0.0
+  DESCRIPTION "Viam Robotics C++ SDK"
+  HOMEPAGE_URL https://github.com/viamrobotics/viam-cpp-sdk
+  LANGUAGES CXX
+)
+
+
+# Configure project-global options:
+#
+# - `VIAMCPPSDK_ENFORCE_COMPILER_MINIMA`: The user can elect to
+# disable enforcement of compiler minima (at their peril).
+#
+#
+# # - `VIAMCPPSDK_LOCAL_PROTO_GENERATION`: Do not use buf.builds remote
+# definitions or services and use the local proto compiler plugins to
+# do generation.
+#
+#
+# - `VIAMCPPSDK_USE_DYNAMIC_PROTOS`: The user can select whether to
+# use the prebuilt proto files under the `gen` directory, or to
+# dynamically regenerate them as part of the build. In the latter
+# mode, additional targets are defined that will copy the newly
+# generated protos back to the source directory so they can be
+# committed:
+#
+# ```
+# cmake ... -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON
+# [make|ninja|...] update-static-protos
+# ```
+#
+# Remember to check-in the results after regenerating!
+#
+option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selected compiler against known minima" ON)
+option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
+option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (network access may be required)" OFF)
+
+
+# Enforce known toolchains and toolchain minima unless asked not to.
+if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
+  if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.2)
+      message(FATAL_ERROR "Insufficient GCC version: 10.2+ required")
+    endif()
+  elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 11.0)
+      message(FATAL_ERROR "Insufficient clang version: 11.0+ required")
+    endif()
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 12.5)
+      message(FATAL_ERROR "Insufficient Apple clang version: XCode 12.5+ required")
+    endif()
+  else()
+    message(FATAL_ERROR "Unknown / untested compiler ${CMAKE_CXX_COMPILER_ID}")
+  endif()
+endif()
+
+
+# If no build type is selected, build optimized but retain debug
+# info. This is probably the right build type for packaging and
+# release.
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+endif()
+
+
+# Enforce the C++ standard, and disable extensions
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+
+# Produce a compilation database when generating for a build
+# system that is able to make one.
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+
+# Produce GNU-style variables for installation, and default the
+# installation directory to be local to the build. If you intend to
+# install elsewhere, pass an explicit argument to CMAKE_INSTALL_PREFIX
+# on the command line:
+#
+# cmake ... -DCMAKE_INSTALL_PREFIX=$HOME/opt
+#
+include(GNUInstallDirs)
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "..." FORCE)
+endif()
+
+
+# See if the user provided a libviam_rust_utils in the root of the
+# tree. If not, try to download the latest.
+#
+# TODO: Fixup runtime paths at install time.
+# TODO: This should be pushed down into a tool
+#
+# TODO: Eventually, `rust_utils` should be its own package that can be
+# pulled in via `find_package`, and this whole thing can be removed.
+#
+# TODO: When this is removed, also remove the
+# `target_link_directories` call down in src/CMakeLists.txt, as it
+# will no longer be neede.
+set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_SHARED_LIBRARY_SUFFIX})
+
+file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_SHARED_LIBRARY_SUFFIX})
+
+if (viam_rust_utils_files)
+  list(LENGTH viam_rust_utils_files num_viam_rust_utils_files)
+  if (num_viam_rust_utils_files GREATER 1)
+    message(FATAL_ERROR "Found multiple viam_rust_utils libraries in source tree root, cannot proceed")
+  endif()
+  FILE(COPY_FILE
+    ${viam_rust_utils_files}
+    ${viam_rust_utils_file}
+    ONLY_IF_DIFFERENT
+  )
+else()
+  set(lvru_system_name ${CMAKE_SYSTEM_NAME})
+  if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(lvru_system_name "macosx")
+  endif()
+  file(
+    DOWNLOAD
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_SHARED_LIBRARY_SUFFIX}
+    ${viam_rust_utils_file}
+    STATUS lvru_status
+  )
+  list(GET lvru_status 0 lvru_status_code)
+  list(GET lvru_status 1 lvru_status_string)
+
+  if(NOT lvru_status_code EQUAL 0)
+    message(FATAL_ERROR "No local viam_rust_utils found and failed to download: ${lvru_status_string}")
+  endif()
+
+endif()
+
+add_library(viam_rust_utils SHARED IMPORTED)
+
+target_link_directories(viam_rust_utils
+  INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
+)
+
+set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
+
+install(
+  IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
+  LIBRARY COMPONENT runtime
+)
+
+
+# Install the license file
+install(FILES
+  LICENSE
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/${CMAKE_PROJECT_NAME}
+  COMPONENT runtime
+)
+
+
+# Add `format` and `check-format` targets to run clang-format or just
+# check for errors. This is not a great way to go about it, but it is
+# enough to get started and match what the existing Makefile based
+# setup did. A better way (perhaps) would be to add `clang-format` as
+# an `IMPORT`ed executable and make this target dependent on it (and,
+# probably, any .clang-format files). Then use CMake to find the
+# sources rather than a shell script, and add them as dependencies so
+# that the `format` target is a no-op if nothing is out of date.
+add_custom_target(
+  format
+  COMMAND ${PROJECT_SOURCE_DIR}/bin/run-clang-format.sh
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
+add_custom_target(
+  check-format
+  COMMAND ${PROJECT_SOURCE_DIR}/bin/run-clang-format.sh --dry-run -Werror
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  USES_TERMINAL
+)
+
+
+# Time to find `BOOST`.
+find_package(Boost 1.74 REQUIRED COMPONENTS headers log)
+
+# Time to find `protobuf` and `gRPC[++]`. Normally this would just be
+# something like `find_package(gRPC <version> CONFIG REQUIRED)`, and
+# I'd push that call down only into the directories that actually need
+# it. However, that is currently 1) everything, and 2) it doesn't work
+# on Bullseye because the version of proto/gRPC there doesn't actually
+# install the .cmake files required to support `find_package`, so we
+# need a fallback path to pick it up from pkg-config files
+# instead. That logic is complex and I don't want to duplicate it into
+# every place we pick up the dependencies. Hopefully this can all go
+# away once our system of record is based on Bookworm.
+
+# Set our required version to the Bullseye proto version of 3.12.4 and
+# gRPC version of 1.30.2, but don't `REQUIRE` since we want to have
+# another try via pkgconfig.
+
+find_package(gRPC 1.30.2 CONFIG QUIET)
+if (gRPC_FOUND)
+  get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
+  set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
+  set(VIAMCPPSDK_GRPCXX_VERSION ${gRPC_VERSION})
+  set(VIAMCPPSDK_GRPCXX_LINK_LIBRARIES gRPC::grpc++)
+else()
+  # Versions here are per-bullseye
+  include(FindPkgConfig)
+  pkg_check_modules(PROTOBUF REQUIRED protobuf>=3.12.4)
+  pkg_check_modules(GRPC REQUIRED grpc>=1.30.2)
+  pkg_check_modules(GRPCXX REQUIRED grpc++>=1.30.2)
+
+  set(VIAMCPPSDK_PROTOBUF_VERSION ${PROTOBUF_VERSION})
+  set(VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS ${PROTOBUF_INCLUDE_DIRS})
+  set(VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS ${PROTOBUF_LIBRARY_DIRS})
+  set(VIAMCPPSDK_PROTOBUF_LINK_LIBRARIES ${PROTOBUF_LINK_LIBRARIES})
+  set(VIAMCPPSDK_GRPC_VERSION ${GRPC_VERSION})
+  set(VIAMCPPSDK_GRPC_INCLUDE_DIRS ${GRPC_INCLUDE_DIRS})
+  set(VIAMCPPSDK_GRPC_LIBRARY_DIRS ${GRPC_LIBRARY_DIRS})
+  set(VIAMCPPSDK_GRPC_LINK_LIBRARIES ${GRPC_LINK_LIBRARIES})
+  # TODO: This may be wrong. Consider providing a customization point
+  # for users to override on the command line.
+  set(VIAMCPPSDK_GRPC_CPP_PLUGIN ${GRPCXX_PREFIX}/bin/grpc_cpp_plugin)
+  set(VIAMCPPSDK_GRPCXX_VERSION ${GRPCXX_VERSION})
+  set(VIAMCPPSDK_GRPCXX_INCLUDE_DIRS ${GRPCXX_INCLUDE_DIRS})
+  set(VIAMCPPSDK_GRPCXX_LIBRARY_DIRS ${GRPCXX_LIBRARY_DIRS})
+  set(VIAMCPPSDK_GRPCXX_LINK_LIBRARIES ${GRPCXX_LINK_LIBRARIES})
+endif()
+
+
+# Pull in our subdirectories
+add_subdirectory(src)
+add_subdirectory(examples)
+
+
+# Generate CMake configs to enable importing this project
+# into others via `find_package`.
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/config/cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfig.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/viam-cpp-sdk
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO
+)
+
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
+  VERSION "${version}"
+  COMPATIBILITY AnyNewerVersion
+)
+
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfig.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/viam-cpp-sdk
+)

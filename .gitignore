@@ -6,14 +6,3 @@
 
 # For now, ignore any viam_rust_utils library in the root.
 /libviam_rust_utils*
-
-# example binaries
-examples/dial/example_dial
-examples/echo/example_echo
-examples/modules/example_module
-
-# compilation files
-compile_commands.json
-*.o 
-.cache
-
