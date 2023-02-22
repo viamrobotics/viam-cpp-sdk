@@ -1,14 +1,15 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
-#include <robot/v1/robot.grpc.pb.h>
-#include <robot/v1/robot.pb.h>
 
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
 #include <istream>
 #include <rpc/dial.hpp>
 #include <string>
+
+#include "robot/v1/robot.grpc.pb.h"
+#include "robot/v1/robot.pb.h"
 
 extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
