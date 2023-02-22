@@ -1,9 +1,7 @@
-#include <component/arm/v1/arm.grpc.pb.h>
 #include <component/generic/v1/generic.grpc.pb.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 #include <robot/v1/robot.pb.h>
-#include <service/slam/v1/slam.grpc.pb.h>
 #include <signal.h>
 
 #include <components/component_base.hpp>
