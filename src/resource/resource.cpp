@@ -95,13 +95,7 @@ Name Name::from_string(std::string name) {
 }
 
 Name::Name(Subtype subtype, std::string remote, std::string name)
-    : Subtype(subtype), remote_name(std::move(remote)), name(std::move(name)) {
-    this->remote_name = remote;
-    this->name = name;
-    this->resource_subtype = subtype.resource_subtype;
-    this->namespace_ = subtype.namespace_;
-    this->resource_type = subtype.resource_type;
-}
+    : Subtype(subtype), remote_name(std::move(remote)), name(std::move(name)) {}
 
 bool operator==(const Subtype& lhs, const Subtype& rhs) {
     return lhs.to_string() == rhs.to_string();
