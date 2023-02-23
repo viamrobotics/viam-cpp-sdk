@@ -25,6 +25,7 @@ using Viam::SDK::ViamChannel;
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
 class RobotClient {
    public:
+    ~RobotClient();
     void refresh();
     void close();
     static std::shared_ptr<RobotClient> at_address(std::string address, Options options);

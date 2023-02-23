@@ -12,14 +12,10 @@
 #include <config/resource.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
+#include <services/service_base.hpp>
 #include <services/service_type.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
-
-// need to forward declare to avoid circular dependencies
-// class ResourceBase;
-class ServiceBase;
-// class ComponentBase;
 
 class ResourceSubtype {
    public:

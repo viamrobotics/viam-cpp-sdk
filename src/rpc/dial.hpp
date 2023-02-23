@@ -5,6 +5,7 @@
 #include <boost/optional.hpp>
 #include <memory>
 #include <string>
+// TODO(RSDK-1742): make use of namespaces throughout repo
 namespace Viam {
 namespace SDK {
 

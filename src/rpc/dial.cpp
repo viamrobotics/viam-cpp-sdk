@@ -29,12 +29,8 @@ void ViamChannel::close() {
     free_rust_runtime(rust_runtime);
 };
 
-ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime) {
-    this->channel = channel;
-    this->path = path;
-    this->closed = false;
-    this->rust_runtime = runtime;
-}
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
+    : channel(channel), path(path), closed(false), rust_runtime(runtime) {}
 
 ViamChannel ViamChannel::dial(const char* uri, boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();

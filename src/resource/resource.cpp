@@ -29,20 +29,14 @@ Subtype Subtype::from_string(std::string subtype) {
     if (std::regex_match(subtype, MODEL_REGEX)) {
         std::vector<std::string> subtype_parts;
         boost::split(subtype_parts, subtype, boost::is_any_of(":"));
-        std::string namespace_ = subtype_parts.at(0);
-        std::string resource_type = subtype_parts.at(1);
-        std::string resource_subtype = subtype_parts.at(2);
-        return {namespace_, resource_type, resource_subtype};
+        return {subtype_parts.at(0), subtype_parts.at(1), subtype_parts.at(2)};
     } else {
         throw "string " + subtype + " is not a valid subtype name";
     }
 }
 
-Subtype::Subtype(Type type, std::string resource_subtype) {
-    namespace_ = type.namespace_;
-    resource_type = type.resource_type;
-    resource_subtype = resource_subtype;
-}
+Subtype::Subtype(Type type, std::string resource_subtype)
+    : Type(type), resource_subtype(resource_subtype) {}
 
 Subtype::Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype)
     : Type(namespace_, resource_type), resource_subtype(resource_subtype) {}
@@ -83,29 +77,25 @@ viam::common::v1::ResourceName Name::to_proto() {
     return rn;
 }
 
-Name::Name(std::string name) {
+Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {
-        throw "Received invalid Name string: " + this->name;
+        throw "Received invalid Name string: " + name;
     }
     std::vector<std::string> matches;
     boost::split(matches, name, boost::is_any_of(":"));
 
-    std::vector<std::string> subtype_parts;
-    boost::split(subtype_parts, matches.at(1), boost::is_any_of(":"));
+    Subtype subtype = Subtype::from_string(matches.at(1));
 
     std::string remote = matches.at(2);
     if (remote.size() > 0) {
         remote.pop_back();
     }
 
-    this->remote_name = remote;
-    this->namespace_ = subtype_parts.at(0);
-    this->resource_type = subtype_parts.at(1);
-    this->resource_subtype = subtype_parts.at(2);
-    this->name = matches.at(3);
+    return Name(subtype, remote, matches.at(3));
 }
 
-Name::Name(Subtype subtype, std::string remote, std::string name) : Subtype(subtype) {
+Name::Name(Subtype subtype, std::string remote, std::string name)
+    : Subtype(subtype), remote_name(std::move(remote)), name(std::move(name)) {
     this->remote_name = remote;
     this->name = name;
     this->resource_subtype = subtype.resource_subtype;
@@ -152,20 +142,11 @@ Model::Model(ModelFamily model_family, std::string model_name)
 Model::Model(std::string namespace_, std::string family, std::string model_name)
     : Model(ModelFamily(std::move(namespace_), std::move(family)), std::move(model_name)) {}
 
-// Parses a single model string into a Model. If only a model_name is
-// included, then default values will be used for namespace and family.
-//
-// Raises:
-// 	Will throw an error if an invalid model string is passed (i.e.,
-// using non-word characters)
 Model Model::from_str(std::string model) {
     if (std::regex_match(model, MODEL_REGEX)) {
         std::vector<std::string> model_parts;
         boost::split(model_parts, model, boost::is_any_of(":"));
-        std::string namespace_ = model_parts.at(0);
-        std::string family = model_parts.at(1);
-        std::string model_name = model_parts.at(2);
-        return {namespace_, family, model_name};
+        return {model_parts.at(0), model_parts.at(1), model_parts.at(2)};
     } else if (std::regex_match(model, SINGLE_FIELD_REGEX)) {
         return {"rdk", "builtin", model};
     } else {

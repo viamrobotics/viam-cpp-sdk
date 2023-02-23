@@ -22,10 +22,10 @@ Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
 }
 
-bool Generic::init() {
-    Registry::register_subtype(subtype(), resource_subtype());
+bool init() {
+    Registry::register_subtype(Generic::subtype(), Generic::resource_subtype());
     return true;
 };
 
-bool Generic::inited = init();
+bool inited = init();
 

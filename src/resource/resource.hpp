@@ -43,7 +43,7 @@ class Name : public Subtype {
     // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
     viam::common::v1::ResourceName to_proto();
-    Name(std::string name);
+    static Name from_string(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();
     friend bool operator==(const Name& lhs, const Name& rhs);
@@ -85,6 +85,12 @@ class Model {
     Model(std::string namespace_, std::string family, std::string model_name);
     Model(ModelFamily model, std::string model_name);
     Model();
+    /// Parses a single model string into a Model. If only a model_name is
+    /// included, then default values will be used for namespace and family.
+    ///
+    /// Raises:
+    /// 	Will throw an error if an invalid model string is passed (i.e., using non-word
+    /// characters)
     static Model from_str(std::string model);
     friend bool operator==(const Model& lhs, const Model& rhs);
 };

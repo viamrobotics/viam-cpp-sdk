@@ -188,16 +188,16 @@ void RobotService_::stream_status(
 }
 
 std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
+    std::shared_ptr<ResourceBase> r;
     lock.lock();
     if (manager.components.find(name.name) != manager.components.end()) {
-        lock.unlock();
-        return manager.components.at(name.name);
+        r = manager.components.at(name.name);
     } else if (manager.services.find(name.name) != manager.services.end()) {
-        lock.unlock();
-        return manager.services.at(name.name);
+        r = manager.services.at(name.name);
     }
 
-    return nullptr;
+    lock.unlock();
+    return r;
 }
 
 RobotService_::RobotService_(){};

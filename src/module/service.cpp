@@ -39,17 +39,19 @@
 #include <string>
 #include <subtype/subtype.hpp>
 
-Dependencies ModuleService_::get_dependencies(
-    google::protobuf::RepeatedPtrField<std::string> proto) {
+namespace {
+Dependencies get_dependencies(ModuleService_* m,
+                              google::protobuf::RepeatedPtrField<std::string> proto) {
     Dependencies deps;
     for (auto& dep : proto) {
-        Name name(dep);
-        std::shared_ptr<ResourceBase> resource = get_parent_resource(name);
+        auto name = Name::from_string(dep);
+        std::shared_ptr<ResourceBase> resource = m->get_parent_resource(name);
         deps.emplace(name, resource);
     }
     return deps;
 }
-
+}  // namespace
+   //
 std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     if (parent == nullptr) {
         parent = RobotClient::at_address("unix://" + parent_addr, {0, boost::none});
@@ -110,7 +112,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     Component cfg = Component::from_proto(proto);
     std::shared_ptr<Module> module = this->module;
 
-    Dependencies deps = get_dependencies(request->dependencies());
+    Dependencies deps = get_dependencies(this, request->dependencies());
 
     if (module->services.find(cfg.api) == module->services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api.to_string());
@@ -171,7 +173,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     const ::viam::module::v1::RemoveResourceRequest* request,
     ::viam::module::v1::RemoveResourceResponse* response) {
     std::shared_ptr<Module> m = this->module;
-    Name name(request->name());
+    auto name = Name::from_string(request->name());
     const Subtype* subtype = name.to_subtype();
     if (m->services.find(*subtype) == m->services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no grpc service for " + subtype->to_string());

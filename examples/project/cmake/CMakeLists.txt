@@ -42,7 +42,7 @@ find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS Lib)
 
 
 # Here we compile the `examle_dial.cpp` and `example_module.cpp` source
-# files into an executable, but as part of a separate project rather than
+# files into executables, but as parts of separate projects rather than
 # being built-in to the SDK build.
 add_executable(example_dial
   ../../dial/example_dial.cpp

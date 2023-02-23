@@ -183,8 +183,8 @@ target_sources(viamcpp
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.cc
-    ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.cc
-    ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.cc
+	${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.cc
+	${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.cc
@@ -199,13 +199,13 @@ target_sources(viamcpp
     components/component_base.cpp
 	components/component_type.cpp
 	components/generic.cpp
-    components/resource_manager.cpp
+	components/resource_manager.cpp
 	config/resource.cpp
 	module/handler_map.cpp
 	module/module.cpp
 	module/service.cpp
 	referenceframe/frame.cpp
-    registry/registry.cpp
+	registry/registry.cpp
 	resource/resource.cpp
 	resource/resource_base.cpp
     robot/client.cpp
@@ -260,8 +260,8 @@ target_sources(viamcpp
       ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.h
       ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.h
-	  ${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.h
-	  ${PROTO_GEN_DIR}/gen/module/v1/module.pb.h
+      ${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.h
+      ${PROTO_GEN_DIR}/gen/module/v1/module.pb.h
       ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.h
       ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.h

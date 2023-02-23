@@ -46,6 +46,10 @@ using viam::robot::v1::Status;
 using Viam::SDK::Options;
 using Viam::SDK::ViamChannel;
 
+RobotClient::~RobotClient() {
+    this->close();
+}
+
 void RobotClient::close() {
     should_refresh.store(false);
     for (std::thread* t : threads) {
@@ -211,8 +215,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
     robot->should_refresh = (robot->refresh_interval > 0);
     if (robot->should_refresh) {
         std::thread t(&RobotClient::refresh_every, robot);
-        // TODO(RSDK-1743): this is leaking, find a way to handle
-        // shutdown gracefully. See also address sanitizer, UB sanitizer
+        // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
+        // close/destructor lets us shutdown gracefully. See also address sanitizer, UB sanitizer
         t.detach();
         robot->threads.push_back(&t);
     };

@@ -40,15 +40,11 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
 
     for (auto& handler : handlers) {
         std::vector<Model> models;
-        viam::robot::v1::ResourceRPCSubtype rpc_subtype = handler.subtype();
-        viam::common::v1::ResourceName name = rpc_subtype.subtype();
-        std::string namespace_ = handler.subtype().subtype().namespace_();
-        std::string resource_type = handler.subtype().subtype().type();
-        std::string resource_subtype = handler.subtype().subtype().subtype();
-        Subtype subtype(namespace_, resource_type, resource_subtype);
+        viam::common::v1::ResourceName name = handler.subtype().subtype();
+        Subtype subtype(name.namespace_(), name.type(), name.subtype());
         const google::protobuf::DescriptorPool* pool =
             google::protobuf::DescriptorPool::generated_pool();
-        const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(resource_type);
+        const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(name.type());
         RPCSubtype handle(subtype, *sd);
         for (auto& mod : handler.models()) {
             try {
