@@ -8,7 +8,6 @@
 #include <components/component_base.hpp>
 #include <components/service_base.hpp>
 #include <memory>
-#include <module/manager.hpp>
 #include <mutex>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>

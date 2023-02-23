@@ -310,6 +310,7 @@ target_link_libraries(viamcpp
   PUBLIC ${VIAMCPPSDK_PROTOBUF_LINK_LIBRARIES}
   PUBLIC Boost::headers
   PRIVATE Boost::log
+  PRIVATE gRPC::grpc++_reflection
   PRIVATE viam_rust_utils
 )
 

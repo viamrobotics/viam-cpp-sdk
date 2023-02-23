@@ -30,6 +30,8 @@
 #include <tuple>
 #include <vector>
 
+#include "common/proto_type.hpp"
+
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
 using viam::common::v1::PoseInFrame;
