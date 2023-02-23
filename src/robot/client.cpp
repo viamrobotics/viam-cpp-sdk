@@ -46,14 +46,18 @@ using viam::robot::v1::Status;
 using Viam::SDK::Options;
 using Viam::SDK::ViamChannel;
 
+// gRPC responses are frequently coming back with a spurious `Stream removed` error, leading to
+// unhelpful and misleading logging. We should figure out why and fix that in `rust-utils`, but in
+// the meantime this cleans up the logging error on the C++ side.
+const std::string k_stream_removed = "Stream removed";
+
 RobotClient::~RobotClient() {
     this->close();
 }
 
 void RobotClient::close() {
     should_refresh.store(false);
-    for (std::thread* t : threads) {
-        t->join();
+    for (std::shared_ptr<std::thread> t : threads) {
         t->~thread();
     }
     stop_all();
@@ -74,7 +78,7 @@ std::vector<Status> RobotClient::get_status(std::vector<ResourceName> components
     }
 
     grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
                                  << response.error_details();
     }
@@ -98,7 +102,7 @@ std::vector<Operation> RobotClient::get_operations() {
     std::vector<Operation> operations;
 
     grpc::Status response = stub_->GetOperations(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
     for (int i = 0; i < resp.operations().size(); ++i) {
@@ -114,7 +118,7 @@ void RobotClient::cancel_operation(std::string id) {
 
     req.set_id(id);
     grpc::Status response = stub_->CancelOperation(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
     }
 }
@@ -127,7 +131,7 @@ void RobotClient::block_for_operation(std::string id) {
     req.set_id(id);
 
     grpc::Status response = stub_->BlockForOperation(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
     }
 }
@@ -137,7 +141,7 @@ void RobotClient::refresh() {
     viam::robot::v1::ResourceNamesResponse resp;
     ClientContext ctx;
     grpc::Status response = stub_->ResourceNames(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
 
@@ -147,9 +151,9 @@ void RobotClient::refresh() {
     const int num_resources = resources.size();
     std::vector<ResourceName> current_resources;
 
-    for (int i = 0; i < num_resources; i++) {
-        ResourceName name = resources.at(i);
+    for (auto& name : resources) {
         current_resources.push_back(name);
+        // TODO(RSDK-2066): stop filtering on COMPONENT
         if (name.type() != COMPONENT) {
             continue;
         }
@@ -157,13 +161,18 @@ void RobotClient::refresh() {
             continue;
         }
 
-        try {
-            std::shared_ptr<ComponentBase> rpc_client =
-                Registry::lookup_component(name.subtype())->create_rpc_client(name.name(), channel);
-            new_resource_manager.register_component(rpc_client);
-        } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(debug)
-                << "Error registering component " << name.subtype() << ": " << exc.what();
+        // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers are being
+        // properly registered from name.subtype(), or update what we're using for lookup
+        std::shared_ptr<ComponentRegistration> cr = Registry::lookup_component(name.subtype());
+        if (cr != nullptr) {
+            try {
+                std::shared_ptr<ComponentBase> rpc_client =
+                    cr->create_rpc_client(name.name(), channel);
+                new_resource_manager.register_component(rpc_client);
+            } catch (std::exception& exc) {
+                BOOST_LOG_TRIVIAL(debug)
+                    << "Error registering component " << name.subtype() << ": " << exc.what();
+            };
         }
     }
     bool is_equal = current_resources.size() == resource_names_.size();
@@ -214,11 +223,13 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
     robot->refresh_interval = options.refresh_interval;
     robot->should_refresh = (robot->refresh_interval > 0);
     if (robot->should_refresh) {
-        std::thread t(&RobotClient::refresh_every, robot);
+        std::shared_ptr<std::thread> t =
+            std::make_shared<std::thread>(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
-        // close/destructor lets us shutdown gracefully. See also address sanitizer, UB sanitizer
-        t.detach();
-        robot->threads.push_back(&t);
+        // close/destructor lets us shutdown gracefully. See also address sanitizer, UB
+        // sanitizer
+        t->detach();
+        robot->threads.push_back(t);
     };
 
     robot->refresh();
@@ -252,7 +263,7 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
     }
 
     grpc::Status response = stub_->FrameSystemConfig(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
                                  << response.error_message();
     }
@@ -283,7 +294,7 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
     }
 
     grpc::Status response = stub_->TransformPose(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
@@ -302,7 +313,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     }
 
     grpc::Status response = stub_->DiscoverComponents(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
     }
 
@@ -387,7 +398,7 @@ void RobotClient::stop_all(std::unordered_map<ResourceName,
         *ep->Add() = stop;
     }
     grpc::Status response = stub_->StopAll(&ctx, req, &resp);
-    if (!response.ok()) {
+    if (!response.ok() && response.error_message() != k_stream_removed) {
         BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
                                  << response.error_details();
     }
