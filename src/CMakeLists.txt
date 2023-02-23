@@ -194,6 +194,13 @@ target_sources(viamcpp
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.cc
     ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.cc
+	# TODO(RSDK-1742): we have to put `registry` up top here because we need the
+	# registry types to be defined first, before anything tries to init them.
+	# this obviously isn't great. it breaks up stylistic ordering and is brittle
+	# when we need to add updates. we should refactor to make this unnecessary.
+	# consider making all necessary runtime values a single `context` that has to
+	# be initialized within main before anything else happens?
+	registry/registry.cpp
     common/proto_type.cpp
     common/utils.cpp
     components/component_base.cpp
@@ -205,7 +212,6 @@ target_sources(viamcpp
 	module/module.cpp
 	module/service.cpp
 	referenceframe/frame.cpp
-	registry/registry.cpp
 	resource/resource.cpp
 	resource/resource_base.cpp
     robot/client.cpp

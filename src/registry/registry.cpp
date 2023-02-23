@@ -25,6 +25,7 @@ void Registry::register_component(std::shared_ptr<ComponentRegistration> compone
 
     components.emplace(reg_key, component);
 }
+
 void Registry::register_subtype(Subtype subtype,
                                 std::shared_ptr<ResourceSubtype> resource_subtype) {
     if (subtypes.find(subtype) != subtypes.end()) {
@@ -32,7 +33,7 @@ void Registry::register_subtype(Subtype subtype,
                                  " as it already exists");
     }
 
-    subtypes.emplace(subtype, resource_subtype);
+    subtypes.emplace(std::move(subtype), std::move(resource_subtype));
 }
 
 std::shared_ptr<ServiceRegistration> Registry::lookup_service(std::string name) {
