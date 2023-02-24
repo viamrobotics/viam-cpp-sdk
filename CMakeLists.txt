@@ -78,16 +78,16 @@ option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (net
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.2)
-      message(FATAL_ERROR "Insufficient GCC version: 10.2+ required")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.4)
+      message(FATAL_ERROR "Insufficient GCC version: 9.4+ required")
     endif()
   elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 11.0)
-      message(FATAL_ERROR "Insufficient clang version: 11.0+ required")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
+      message(FATAL_ERROR "Insufficient clang version: 10.0+ required")
     endif()
   elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
-    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 12.5)
-      message(FATAL_ERROR "Insufficient Apple clang version: XCode 12.5+ required")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
+      message(FATAL_ERROR "Insufficient Apple clang version: XCode 10.0+ required")
     endif()
   else()
     message(FATAL_ERROR "Unknown / untested compiler ${CMAKE_CXX_COMPILER_ID}")
@@ -107,6 +107,11 @@ endif()
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+
+# Everything needs threads, and prefer -pthread if available
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 
 # Produce a compilation database when generating for a build
@@ -219,8 +224,12 @@ add_custom_target(
 )
 
 
+set(VIAMCPPSDK_BOOST_VERSION_MINIMUM 1.71)
+set(VIAMCPPSDK_GRPC_VERSION_MINIMUM 1.30.2)
+set(VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM 3.12.4)
+
 # Time to find `BOOST`.
-find_package(Boost 1.74 REQUIRED COMPONENTS headers log)
+find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log)
 
 # Time to find `protobuf` and `gRPC[++]`. Normally this would just be
 # something like `find_package(gRPC <version> CONFIG REQUIRED)`, and
@@ -237,34 +246,52 @@ find_package(Boost 1.74 REQUIRED COMPONENTS headers log)
 # gRPC version of 1.30.2, but don't `REQUIRE` since we want to have
 # another try via pkgconfig.
 
-find_package(gRPC 1.30.2 CONFIG QUIET)
+find_package(gRPC ${VIAMCPPSDK_GRPC_VERSION_MINIMUM} CONFIG)
 if (gRPC_FOUND)
   get_target_property(VIAMCPPSDK_GRPC_CPP_PLUGIN gRPC::grpc_cpp_plugin LOCATION)
   set(VIAMCPPSDK_PROTOBUF_VERSION ${Protobuf_VERSION})
+
+  # We need a good value for VIAMCPPSDK_PROTOBUF_VERSION in order to
+  # interpolate it into our `pkgconfig` requirements. Make sure we
+  # derived value for it.
+  if (NOT VIAMCPPSDK_PROTOBUF_VERSION)
+    message(FATAL_ERROR "Found gRPC with `find_package` but could not determine the `protobuf` version")
+  endif()
+
+  # If we picked up `protobuf` indirectly, make sure it meets our
+  # version requirements.
+  if (NOT VIAMCPPSDK_PROTOBUF_VERSION VERSION_GREATER_EQUAL ${VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM})
+    message(FATAL_ERROR "The `protobuf` package found indirectly by `find_package(gRPC...) is too old (<${VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM})")
+  endif()
+
   set(VIAMCPPSDK_GRPCXX_VERSION ${gRPC_VERSION})
-  set(VIAMCPPSDK_GRPCXX_LINK_LIBRARIES gRPC::grpc++)
+  set(VIAMCPPSDK_GRPCXX_LIBRARIES gRPC::grpc++)
 else()
-  # Versions here are per-bullseye
+  message(WARNING "Failed to find gRPC with `find_package`; falling back to `pkg_check_modules`")
+
   include(FindPkgConfig)
-  pkg_check_modules(PROTOBUF REQUIRED protobuf>=3.12.4)
-  pkg_check_modules(GRPC REQUIRED grpc>=1.30.2)
-  pkg_check_modules(GRPCXX REQUIRED grpc++>=1.30.2)
+
+  pkg_check_modules(PROTOBUF REQUIRED protobuf>=${VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM})
+  pkg_check_modules(GRPC REQUIRED grpc>=${VIAMCPPSDK_GRPC_VERSION_MINIMUM})
+  pkg_check_modules(GRPCXX REQUIRED grpc++>=${VIAMCPPSDK_GRPC_VERSION_MINIMUM})
 
   set(VIAMCPPSDK_PROTOBUF_VERSION ${PROTOBUF_VERSION})
   set(VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS ${PROTOBUF_INCLUDE_DIRS})
   set(VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS ${PROTOBUF_LIBRARY_DIRS})
-  set(VIAMCPPSDK_PROTOBUF_LINK_LIBRARIES ${PROTOBUF_LINK_LIBRARIES})
+  set(VIAMCPPSDK_PROTOBUF_LIBRARIES ${PROTOBUF_LIBRARIES})
+
   set(VIAMCPPSDK_GRPC_VERSION ${GRPC_VERSION})
   set(VIAMCPPSDK_GRPC_INCLUDE_DIRS ${GRPC_INCLUDE_DIRS})
   set(VIAMCPPSDK_GRPC_LIBRARY_DIRS ${GRPC_LIBRARY_DIRS})
-  set(VIAMCPPSDK_GRPC_LINK_LIBRARIES ${GRPC_LINK_LIBRARIES})
+  set(VIAMCPPSDK_GRPC_LIBRARIES ${GRPC_LIBRARIES})
   # TODO: This may be wrong. Consider providing a customization point
   # for users to override on the command line.
   set(VIAMCPPSDK_GRPC_CPP_PLUGIN ${GRPCXX_PREFIX}/bin/grpc_cpp_plugin)
+
   set(VIAMCPPSDK_GRPCXX_VERSION ${GRPCXX_VERSION})
   set(VIAMCPPSDK_GRPCXX_INCLUDE_DIRS ${GRPCXX_INCLUDE_DIRS})
   set(VIAMCPPSDK_GRPCXX_LIBRARY_DIRS ${GRPCXX_LIBRARY_DIRS})
-  set(VIAMCPPSDK_GRPCXX_LINK_LIBRARIES ${GRPCXX_LINK_LIBRARIES})
+  set(VIAMCPPSDK_GRPCXX_LIBRARIES ${GRPCXX_LIBRARIES})
 endif()
 
 
