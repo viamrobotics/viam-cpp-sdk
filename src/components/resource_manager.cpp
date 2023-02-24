@@ -7,8 +7,6 @@
 #include <vector>
 
 ResourceManager::ResourceManager() {}
-std::unordered_map<std::string, std::shared_ptr<ServiceBase>> ResourceManager::services;
-std::unordered_map<std::string, std::shared_ptr<ComponentBase>> ResourceManager::components;
 
 /// Register a new component with the registry.
 /// Components may not have the same name.

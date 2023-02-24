@@ -5,10 +5,11 @@
 #include <string>
 #include <unordered_map>
 
+// CR erodkin: probably just need components here, can move services into another file. Or we can
+// keep them together, but then we should move this under /resource rather than /component
+// Also, consider whether we can collapse this and subtype_service into a single class?
 class ResourceManager {
    public:
-    static std::unordered_map<std::string, std::shared_ptr<ComponentBase>> components;
-    static std::unordered_map<std::string, std::shared_ptr<ServiceBase>> services;
     void register_component(std::shared_ptr<ComponentBase> component);
     void register_service(std::shared_ptr<ServiceBase> service);
 
@@ -24,5 +25,9 @@ class ResourceManager {
     std::shared_ptr<ServiceBase> get_service(std::string name, ServiceType of_type);
     ResourceManager(std::vector<std::shared_ptr<ComponentBase>> components);
     ResourceManager();
+
+   private:
+    std::unordered_map<std::string, std::shared_ptr<ComponentBase>> components;
+    std::unordered_map<std::string, std::shared_ptr<ServiceBase>> services;
 };
 

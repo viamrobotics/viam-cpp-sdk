@@ -7,17 +7,16 @@
 #include <signal.h>
 
 #include <components/component_base.hpp>
+#include <components/generic/generic.hpp>
+#include <config/resource.hpp>
 #include <iostream>
 #include <memory>
 #include <module/module.hpp>
 #include <module/service.hpp>
+#include <registry/registry.hpp>
+#include <resource/resource.hpp>
 #include <rpc/dial.hpp>
 #include <rpc/server.hpp>
-
-#include "components/generic.hpp"
-#include "config/resource.hpp"
-#include "registry/registry.hpp"
-#include "resource/resource.hpp"
 
 using viam::component::generic::v1::GenericService;
 

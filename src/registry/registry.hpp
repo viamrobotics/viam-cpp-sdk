@@ -12,29 +12,28 @@
 #include <config/resource.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
+#include <resource/resource_server_base.hpp>
 #include <services/service_base.hpp>
 #include <services/service_type.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
+// TODO(RSDK-1742): instead of std::functions, consider making these functions virtual
+// TODO(RSDK-1742): one class per header
 class ResourceSubtype {
    public:
-    static std::shared_ptr<ResourceSubtype> new_from_descriptor(
-        const google::protobuf::ServiceDescriptor* service_descriptor);
     std::function<ResourceBase(ResourceBase, Name)> create_reconfigurable;
     std::function<ProtoType(ResourceBase)> create_status;
     const google::protobuf::ServiceDescriptor* service_descriptor;
     std::function<ResourceBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
+    virtual std::shared_ptr<ResourceServerBase> create_resource_server(
+        std::shared_ptr<SubtypeService> svc);
 
-    // TODO(RSDK-1742): would love for this constructor to be private but we get compiler complaints
-    // if it is. See what we can do to fix that
     ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor(service_descriptor){};
 
    private:
 };
-
-// typedef std::unordered_map<Name, std::shared_ptr<ResourceBase>> Dependencies;
 
 class ComponentRegistration {
    public:

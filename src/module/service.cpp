@@ -24,7 +24,7 @@
 #include <boost/none.hpp>
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
-#include <components/generic.hpp>
+#include <components/generic/generic.hpp>
 #include <components/service_base.hpp>
 #include <config/resource.hpp>
 #include <memory>
@@ -258,11 +258,13 @@ void ModuleService_::add_api_from_registry(Subtype api) {
         return;
     }
     module->lock.lock();
-    std::shared_ptr<SubtypeService> new_svc = SubtypeService::of_subtype(api.resource_subtype);
+    std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
 
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
+    std::shared_ptr<ResourceServerBase> server = rs->create_resource_server(new_svc);
+    server->register_server();
     module->services.emplace(api, new_svc);
-    new_svc->register_service();
+    module->servers.push_back(server);
     module->lock.unlock();
 }
 

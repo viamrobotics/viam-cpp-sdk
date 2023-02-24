@@ -4,7 +4,7 @@
 #include <robot/v1/robot.pb.h>
 
 #include <components/component_base.hpp>
-#include <components/generic.hpp>
+#include <components/generic/generic.hpp>
 #include <components/service_base.hpp>
 #include <exception>
 #include <registry/registry.hpp>
@@ -15,6 +15,11 @@
 #include <unordered_map>
 
 using viam::robot::v1::Status;
+
+std::shared_ptr<ResourceServerBase> ResourceSubtype::create_resource_server(
+    std::shared_ptr<SubtypeService> svc) {
+    return nullptr;
+};
 
 void Registry::register_component(std::shared_ptr<ComponentRegistration> component) {
     std::string reg_key = component->subtype.to_string() + "/" + component->model.to_string();
@@ -42,11 +47,6 @@ std::shared_ptr<ServiceRegistration> Registry::lookup_service(std::string name) 
     }
 
     return services.at(name);
-}
-
-std::shared_ptr<ResourceSubtype> ResourceSubtype::new_from_descriptor(
-    const google::protobuf::ServiceDescriptor* descriptor) {
-    return std::make_shared<ResourceSubtype>(descriptor);
 }
 
 std::shared_ptr<ServiceRegistration> Registry::lookup_service(Subtype subtype, Model model) {
