@@ -1,4 +1,6 @@
 #include <algorithm>
+
+#include "resource/resource_base.hpp"
 #define BOOST_LOG_DYN_LINK 1
 #include <common/v1/common.pb.h>
 #include <grpcpp/channel.h>
@@ -13,7 +15,6 @@
 #include <chrono>
 #include <common/proto_type.hpp>
 #include <common/utils.hpp>
-#include <components/resource_manager.hpp>
 #include <components/service_base.hpp>
 #include <cstddef>
 #include <iostream>
@@ -21,6 +22,7 @@
 #include <mutex>
 #include <ostream>
 #include <registry/registry.hpp>
+#include <resource/resource_manager.hpp>
 #include <robot/client.hpp>
 #include <rpc/dial.hpp>
 #include <set>
@@ -28,8 +30,6 @@
 #include <thread>
 #include <tuple>
 #include <vector>
-
-#include "common/proto_type.hpp"
 
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
@@ -156,13 +156,16 @@ void RobotClient::refresh() {
             continue;
         }
 
-        try {
-            std::shared_ptr<ComponentBase> rpc_client =
-                Registry::lookup_component(name.subtype())->create_rpc_client(name.name(), channel);
-            new_resource_manager.register_component(rpc_client);
-        } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(debug)
-                << "Error registering component " << name.subtype() << ": " << exc.what();
+        std::shared_ptr<ResourceRegistration> rr = Registry::lookup_resource(name.subtype());
+        if (rr != nullptr) {
+            try {
+                std::shared_ptr<ResourceBase> rpc_client =
+                    rr->create_rpc_client(name.name(), channel);
+                new_resource_manager.register_resource(rpc_client);
+            } catch (std::exception& exc) {
+                BOOST_LOG_TRIVIAL(debug)
+                    << "Error registering component " << name.subtype() << ": " << exc.what();
+            }
         }
     }
     bool is_equal = current_resources.size() == resource_names_.size();
@@ -215,7 +218,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
     if (robot->should_refresh) {
         std::thread t(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
-        // close/destructor lets us shutdown gracefully. See also address sanitizer, UB sanitizer
+        // close/destructor lets us shutdown gracefully. See also address sanitizer, UB
+        // sanitizer
         t.detach();
         robot->threads.push_back(&t);
     };
@@ -315,42 +319,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 }
 
 std::shared_ptr<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
-    try {
-        std::shared_ptr<ComponentBase> c = get_component(name);
-        return c;
-    } catch (std::exception& exc) {
-    }
-
-    try {
-        std::shared_ptr<ServiceBase> s = get_service(name);
-        return s;
-    } catch (std::exception& exc) {
-    }
-
-    return nullptr;
-}
-
-std::shared_ptr<ComponentBase> RobotClient::get_component(ResourceName name) {
-    if (name.type() != COMPONENT) {
-        std::string error = "Expected resource type 'component' but got " + name.type();
-        throw error;
-    }
-    lock.lock();
-    std::shared_ptr<ComponentBase> component =
-        resource_manager.get_component(name.name(), ComponentType("ComponentBase"));
-    lock.unlock();
-    return component;
-}
-
-std::shared_ptr<ServiceBase> RobotClient::get_service(ResourceName name) {
-    if (name.type() != SERVICE) {
-        throw "Expected resource type 'service' but got " + name.type();
-    }
-    lock.lock();
-    std::shared_ptr<ServiceBase> service =
-        resource_manager.get_service(name.name(), ServiceType("ServiceBase"));
-    lock.unlock();
-    return service;
+    return resource_manager.get_resource(name.name(), ResourceType("ResourceBase"));
 }
 
 void RobotClient::stop_all() {

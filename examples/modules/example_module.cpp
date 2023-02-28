@@ -24,6 +24,7 @@ using viam::component::generic::v1::GenericService;
 class MyModule : public GenericService::Service, public ComponentBase {
    public:
     void signal_handler(int signum);
+    std::string name;
     static int which;
     int inner_which;
     MyModule() {
@@ -31,13 +32,21 @@ class MyModule : public GenericService::Service, public ComponentBase {
         which += 1;
     };
 
+    MyModule(Resource cfg) {
+        name = cfg.name;
+        std::cout << "Creating module with name " + name << std::endl;
+        inner_which = which;
+        which += 1;
+    }
+
     MyModule(const MyModule&) = delete;
     MyModule& operator=(const MyModule&) = delete;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::component::generic::v1::DoCommandRequest* request,
                              ::viam::component::generic::v1::DoCommandResponse* response) override {
-        std::cout << "Received DoCommand request for MyModule number " << inner_which << std::endl;
+        std::cout << "Received DoCommand request for MyModule number " << inner_which
+                  << " and name " << name << std::endl;
         for (auto& req : request->command().fields()) {
             std::cout << "request key: " << req.first.c_str()
                       << "\trequest value: " << req.second.SerializeAsString();
@@ -70,12 +79,14 @@ int main(int argc, char** argv) {
     Subtype generic = Generic::subtype();
     my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
-    std::shared_ptr<ComponentRegistration> cr = std::make_shared<ComponentRegistration>(
-        ComponentType("MyModule"), generic, m, [](std::string, std::shared_ptr<grpc::Channel>) {
-            return std::make_unique<MyModule>();
-        });
+    std::shared_ptr<ResourceRegistration> rr = std::make_shared<ResourceRegistration>(
+        ResourceType("MyModule"),
+        generic,
+        m,
+        [](std::string, std::shared_ptr<grpc::Channel>) { return std::make_unique<MyModule>(); },
+        [](Dependencies, Resource cfg) { return std::make_unique<MyModule>(cfg); });
 
-    Registry::register_component(cr);
+    Registry::register_resource(rr);
     my_mod->add_model_from_registry(generic, m);
 
     my_mod->start();
