@@ -61,6 +61,7 @@ CMake by default, but it can be obtained from the Bullseye Backports
 repository:
 
 ``` shell
+apt-get install software-properties-common
 apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main'
 apt-get update
 apt-get install -t bullseye-backports cmake
