@@ -13,7 +13,7 @@
 # limitations under the License.
 
 add_executable(example_dial
-  example_dial.cc
+  example_dial.cpp
 )
 
 target_link_libraries(example_dial

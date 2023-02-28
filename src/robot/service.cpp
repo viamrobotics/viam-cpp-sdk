@@ -1,47 +1,25 @@
+#include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
 
+#include <common/utils.hpp>
+#include <components/component_base.hpp>
+#include <components/service_base.hpp>
+#include <memory>
+#include <mutex>
+#include <registry/registry.hpp>
+#include <resource/resource.hpp>
+#include <robot/client.hpp>
+#include <robot/service.hpp>
 #include <string>
 #include <thread>
 #include <unordered_map>
 
-#include "../common/utils.hpp"
-#include "../components/component_base.hpp"
-#include "../components/service_base.hpp"
-#include "../robot/client.hpp"
-#include "common/v1/common.pb.h"
-#include "grpcpp/server_context.h"
-#include "robot/v1/robot.grpc.pb.h"
-#include "robot/v1/robot.pb.h"
-
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
-
-class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
-   public:
-    ::grpc::Status ResourceNames(::grpc::ServerContext* context,
-                                 const ::viam::robot::v1::ResourceNamesRequest* request,
-                                 ::viam::robot::v1::ResourceNamesResponse* response) override;
-    ::grpc::Status GetStatus(::grpc::ServerContext* context,
-                             const ::viam::robot::v1::GetStatusRequest* request,
-                             ::viam::robot::v1::GetStatusResponse* response) override;
-    ::grpc::Status StreamStatus(
-        ::grpc::ServerContext* context,
-        const ::viam::robot::v1::StreamStatusRequest* request,
-        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer) override;
-    ::grpc::Status StopAll(::grpc::ServerContext* context,
-                           const ::viam::robot::v1::StopAllRequest* request,
-                           ::viam::robot::v1::StopAllResponse* response) override;
-
-   private:
-    std::vector<ResourceName> generate_metadata();
-    std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);
-
-    void stream_status(const ::viam::robot::v1::StreamStatusRequest* request,
-                       ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
-                       int interval);
-};
 
 std::vector<ResourceName> RobotService_::generate_metadata() {
     std::vector<ResourceName> metadata;
@@ -55,14 +33,14 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
-    for (auto cmp : manager.components) {
-        ComponentBase component = cmp.second;
-        for (auto registry : Registry::registered_components()) {
-            ComponentRegistration registration = registry.second;
-            if (registration.component_type == component.type) {
+    for (auto& cmp : manager.components) {
+        std::shared_ptr<ComponentBase> component = cmp.second;
+        for (auto& registry : Registry::registered_components()) {
+            std::shared_ptr<ComponentRegistration> registration = registry.second;
+            if (registration->component_type == component->type) {
                 bool component_present = false;
-                ResourceName component_name = component.get_resource_name(component.name);
-                for (auto resource_name : resource_names) {
+                ResourceName component_name = component->get_resource_name(component->name);
+                for (auto& resource_name : resource_names) {
                     if (&resource_name == &component_name) {
                         component_present = true;
                         break;
@@ -70,16 +48,39 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
                 }
 
                 if (component_present) {
-                    Status status = registration.create_status(component);
+                    Status status = registration->create_status(component);
                     statuses.push_back(status);
                 }
             }
         }
     }
+
+    for (auto& svc : manager.services) {
+        std::shared_ptr<ServiceBase> service = svc.second;
+        for (auto& registry : Registry::registered_services()) {
+            std::shared_ptr<ServiceRegistration> registration = registry.second;
+            if (registration->service_type == service->type) {
+                bool service_present = false;
+                ResourceName service_name = service->get_resource_name(service->name);
+                for (auto& resource_name : resource_names) {
+                    if (&resource_name == &service_name) {
+                        service_present = true;
+                        break;
+                    }
+                }
+
+                if (service_present) {
+                    Status status = registration->create_status(service);
+                    statuses.push_back(status);
+                }
+            }
+        }
+    }
+
     std::vector<Status> returnable_statuses;
-    for (auto status : statuses) {
+    for (auto& status : statuses) {
         bool status_name_is_known = false;
-        for (auto resource_name : resource_names) {
+        for (auto& resource_name : resource_names) {
             if (status.name().SerializeAsString() == resource_name.SerializeAsString()) {
                 status_name_is_known = true;
                 break;
@@ -160,29 +161,48 @@ void RobotService_::stream_status(
                                       const ::viam::robot::v1::StopAllRequest* request,
                                       ::viam::robot::v1::StopAllResponse* response) {
     ResourceName r;
-    std::unordered_map<std::string, std::unordered_map<std::string, ProtoType>> extra;
+    std::unordered_map<std::string, std::unordered_map<std::string, ProtoType*>> extra;
     grpc::StatusCode status = grpc::StatusCode::OK;
-    for (auto ex : request->extra()) {
+    for (auto& ex : request->extra()) {
         google::protobuf::Struct struct_ = ex.params();
         std::unordered_map<std::string, ProtoType*> value_map = struct_to_map(struct_);
         std::string name = ex.name().SerializeAsString();
-        std::pair<std::string, std::unordered_map<std::string, ProtoType*>> pair_(name, value_map);
-        extra.emplace(pair_);
+        extra.emplace(name, value_map);
 
-        for (auto comp : manager.components) {
-            ComponentBase component = comp.second;
-            ResourceName rn = component.get_resource_name(component.name);
+        for (auto& comp : manager.components) {
+            std::shared_ptr<ComponentBase> component = comp.second;
+            ResourceName rn = component->get_resource_name(component->name);
             std::string rn_ = rn.SerializeAsString();
             if (extra.find(rn_) != extra.end()) {
-                grpc::StatusCode status = component.stop(extra.at(rn_));
+                grpc::StatusCode status = component->stop(extra.at(rn_));
                 if (status != grpc::StatusCode::OK) {
-                    status = component.stop();
+                    status = component->stop();
                 }
             } else {
-                status = component.stop();
+                status = component->stop();
             }
         }
     }
 
     return grpc::Status(status, "");
 }
+
+std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
+    std::shared_ptr<ResourceBase> r;
+    lock.lock();
+    if (manager.components.find(name.name) != manager.components.end()) {
+        r = manager.components.at(name.name);
+    } else if (manager.services.find(name.name) != manager.services.end()) {
+        r = manager.services.at(name.name);
+    }
+
+    lock.unlock();
+    return r;
+}
+
+RobotService_::RobotService_(){};
+
+std::shared_ptr<RobotService_> RobotService_::create() {
+    return std::make_shared<RobotService_>();
+};
+

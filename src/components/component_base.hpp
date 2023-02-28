@@ -1,33 +1,18 @@
-#ifndef COMPONENT_BASE_H
-#define COMPONENT_BASE_H
+#pragma once
 
-#include <grpcpp/support/status.h>
+#include <common/v1/common.pb.h>
+#include <google/protobuf/struct.pb.h>
 
+#include <components/component_type.hpp>
+#include <resource/resource_base.hpp>
 #include <string>
-
-#include "../common/proto_type.hpp"
-#include "common/v1/common.pb.h"
-#include "google/protobuf/struct.pb.h"
-
-class ComponentType {
-   public:
-    std::string name;
-    ComponentType(){};
-    ComponentType(std::string name) {
-        name = name;
-    }
-    friend bool operator==(ComponentType& lhs, ComponentType& rhs);
-};
-
-class ComponentBase {
+class ComponentBase : public ResourceBase {
    public:
     std::string name;
     ComponentType type;
     std::vector<ComponentType> component_hierarchy;
 
     viam::common::v1::ResourceName get_resource_name(std::string name);
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType> extra);
-    virtual grpc::StatusCode stop();
+    ComponentBase();
 };
 
-#endif

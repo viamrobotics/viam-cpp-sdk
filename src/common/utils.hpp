@@ -1,18 +1,23 @@
-#ifndef UTILS_H
-#define UTILS_H
+#pragma once
+
+#include <common/v1/common.pb.h>
 
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <common/proto_type.hpp>
+#include <components/component_base.hpp>
 #include <unordered_map>
 
-#include "../components/component_base.hpp"
-#include "common/v1/common.pb.h"
-#include "proto_type.hpp"
-
 using viam::common::v1::ResourceName;
+const std::string COMPONENT = "component";
+const std::string SERVICE = "service";
+const std::string RDK = "rdk";
+const std::string GENERIC = "generic";
+const std::string BUILTIN = "builtin";
 
-std::vector<viam::common::v1::ResourceName> resource_names_for_component(ComponentBase component);
+std::vector<viam::common::v1::ResourceName> resource_names_for_component(
+    std::shared_ptr<ComponentBase> component);
 
 class ResourceNameHasher {
    public:
@@ -30,4 +35,3 @@ class ResourceNameEqual {
     }
 };
 
-#endif

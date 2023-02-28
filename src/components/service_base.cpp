@@ -1,6 +1,2 @@
-#include "resource_manager.hpp"
+#include <components/service_base.hpp>
 
-class ComponentServiceBase {
-   public:
-    ResourceManager manager;
-};

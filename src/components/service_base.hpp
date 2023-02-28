@@ -1,11 +1,9 @@
-#ifndef SERVICE_BASE_H
-#define SERVICE_BASE_H
+#pragma once
 
-#include "resource_manager.hpp"
+#include <components/resource_manager.hpp>
 
 class ComponentServiceBase {
    public:
     ResourceManager manager;
 };
 
-#endif

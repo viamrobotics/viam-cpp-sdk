@@ -1,20 +1,19 @@
-#ifndef ROBOTSERVICE_H
-#define ROBOTSERVICE_H
+#pragma once
+
+#include <common/v1/common.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
 
+#include <common/utils.hpp>
+#include <components/component_base.hpp>
+#include <components/service_base.hpp>
+#include <resource/resource.hpp>
+#include <robot/client.hpp>
 #include <string>
 #include <thread>
 #include <unordered_map>
-
-#include "../common/utils.hpp"
-#include "../components/component_base.hpp"
-#include "../components/service_base.hpp"
-#include "../robot/client.hpp"
-#include "common/v1/common.pb.h"
-#include "grpcpp/server_context.h"
-#include "robot/v1/robot.grpc.pb.h"
-#include "robot/v1/robot.pb.h"
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
@@ -22,6 +21,9 @@ using viam::robot::v1::Status;
 
 class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
    public:
+    RobotService_();
+    static std::shared_ptr<RobotService_> create();
+    std::shared_ptr<ResourceBase> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
                                  ::viam::robot::v1::ResourceNamesResponse* response) override;
@@ -37,6 +39,7 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                            ::viam::robot::v1::StopAllResponse* response) override;
 
    private:
+    std::mutex lock;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);
 
@@ -45,4 +48,3 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                        int interval);
 };
 
-#endif
