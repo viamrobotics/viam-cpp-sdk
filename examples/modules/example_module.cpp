@@ -18,11 +18,21 @@
 #include "config/resource.hpp"
 #include "registry/registry.hpp"
 #include "resource/resource.hpp"
+#include "resource/resource_base.hpp"
 
 using viam::component::generic::v1::GenericService;
 
 class MyModule : public GenericService::Service, public ComponentBase {
    public:
+    void reconfigure(Dependencies deps, Resource cfg) override {
+        std::cout << "Calling reconfigure on MyModule" << std::endl;
+        for (auto& dep : deps) {
+            std::cout << "dependency: " << dep.first.to_string() << std::endl;
+        }
+
+        std::cout << "config in reconfigure: " << cfg.name << std::endl;
+    }
+
     void signal_handler(int signum);
     std::string name;
     static int which;
