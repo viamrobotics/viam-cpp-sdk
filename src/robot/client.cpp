@@ -235,12 +235,6 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
     return robot;
 };
 
-// Create a robot client that is connected to the robot at the provided
-// address.
-//
-// Args:
-// 		address: Address of the robot (IP address, URI, URL,
-// etc.) 		options: Options for connecting and refreshing
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
     const char* uri = address.c_str();
     ViamChannel channel = ViamChannel::dial(uri, options.dial_options);
