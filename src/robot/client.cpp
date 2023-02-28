@@ -162,15 +162,16 @@ void RobotClient::refresh() {
 
         // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers are being
         // properly registered from name.subtype(), or update what we're using for lookup
-        std::shared_ptr<ResourceRegistration> rr = Registry::lookup_resource(name.subtype());
-        if (rr != nullptr) {
+        std::shared_ptr<ResourceSubtype> rs =
+            Registry::lookup_subtype(Subtype::from_string(name.subtype()));
+        if (rs != nullptr) {
             try {
                 std::shared_ptr<ResourceBase> rpc_client =
-                    rr->create_rpc_client(name.name(), channel);
+                    rs->create_rpc_client(name.name(), channel);
                 new_resource_manager.register_resource(rpc_client);
             } catch (std::exception& exc) {
                 BOOST_LOG_TRIVIAL(debug)
-                    << "Error registering resource " << name.subtype() << ": " << exc.what();
+                    << "Error registering component " << name.subtype() << ": " << exc.what();
             }
         }
     }

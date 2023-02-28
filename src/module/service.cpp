@@ -70,7 +70,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     std::shared_ptr<ResourceBase> res;
     Dependencies deps = get_dependencies(this, request->dependencies());
-    std::shared_ptr<ResourceRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
+    std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
     if (reg != nullptr) {
         res = reg->construct_resource(deps, cfg);
     };
@@ -122,7 +122,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
-    std::shared_ptr<ResourceRegistration> reg = Registry::lookup_resource(cfg.name);
+    std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.name);
     if (reg != nullptr) {
         std::shared_ptr<ResourceBase> res = reg->construct_resource(deps, cfg);
         sub_svc->replace_one(cfg.resource_name(), res);

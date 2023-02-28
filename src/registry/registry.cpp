@@ -18,7 +18,7 @@
 
 using viam::robot::v1::Status;
 
-void Registry::register_resource(std::shared_ptr<ResourceRegistration> resource) {
+void Registry::register_resource(std::shared_ptr<ModelRegistration> resource) {
     std::string reg_key = resource->subtype.to_string() + "/" + resource->model.to_string();
     if (resources.find(reg_key) != resources.end()) {
         std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
@@ -38,7 +38,7 @@ void Registry::register_subtype(Subtype subtype,
     subtypes.emplace(std::move(subtype), std::move(resource_subtype));
 }
 
-std::shared_ptr<ResourceRegistration> Registry::lookup_resource(std::string name) {
+std::shared_ptr<ModelRegistration> Registry::lookup_resource(std::string name) {
     if (resources.find(name) == resources.end()) {
         return nullptr;
     }
@@ -51,7 +51,7 @@ std::shared_ptr<ResourceSubtype> ResourceSubtype::new_from_descriptor(
     return std::make_shared<ResourceSubtype>(descriptor);
 }
 
-std::shared_ptr<ResourceRegistration> Registry::lookup_resource(Subtype subtype, Model model) {
+std::shared_ptr<ModelRegistration> Registry::lookup_resource(Subtype subtype, Model model) {
     const std::string name = subtype.to_string() + "/" + model.to_string();
     return lookup_resource(name);
 }
@@ -64,16 +64,16 @@ std::shared_ptr<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
     return subtypes.at(subtype);
 }
 
-std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>>
+std::unordered_map<std::string, std::shared_ptr<ModelRegistration>>
 Registry::registered_resources() {
-    std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>> registry;
+    std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> registry;
     for (auto& resource : resources) {
         registry.emplace(resource.first, resource.second);
     }
     return registry;
 }
 
-Status ResourceRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
+Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
     Status status;
     ResourceName* name;
     if (resource->type.type == COMPONENT) {
@@ -103,6 +103,6 @@ Status ResourceRegistration::create_status(std::shared_ptr<ResourceBase> resourc
     return status;
 }
 
-std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>> Registry::resources;
+std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::resources;
 std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
 
