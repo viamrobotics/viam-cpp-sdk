@@ -156,11 +156,12 @@ void RobotClient::refresh() {
             continue;
         }
 
-        std::shared_ptr<ResourceRegistration> rr = Registry::lookup_resource(name.subtype());
-        if (rr != nullptr) {
+        std::shared_ptr<ResourceSubtype> rs =
+            Registry::lookup_subtype(Subtype::from_string(name.subtype()));
+        if (rs != nullptr) {
             try {
                 std::shared_ptr<ResourceBase> rpc_client =
-                    rr->create_rpc_client(name.name(), channel);
+                    rs->create_rpc_client(name.name(), channel);
                 new_resource_manager.register_resource(rpc_client);
             } catch (std::exception& exc) {
                 BOOST_LOG_TRIVIAL(debug)

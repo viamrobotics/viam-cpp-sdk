@@ -79,12 +79,10 @@ int main(int argc, char** argv) {
     Subtype generic = Generic::subtype();
     my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
-    std::shared_ptr<ResourceRegistration> rr = std::make_shared<ResourceRegistration>(
-        ResourceType("MyModule"),
-        generic,
-        m,
-        [](std::string, std::shared_ptr<grpc::Channel>) { return std::make_unique<MyModule>(); },
-        [](Dependencies, Resource cfg) { return std::make_unique<MyModule>(cfg); });
+    std::shared_ptr<ModelRegistration> rr = std::make_shared<ModelRegistration>(
+        ResourceType("MyModule"), generic, m, [](Dependencies, Resource cfg) {
+            return std::make_unique<MyModule>(cfg);
+        });
 
     Registry::register_resource(rr);
     my_mod->add_model_from_registry(generic, m);

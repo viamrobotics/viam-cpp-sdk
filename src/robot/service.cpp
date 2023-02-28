@@ -36,7 +36,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     for (auto& cmp : manager.resources) {
         std::shared_ptr<ResourceBase> resource = cmp.second;
         for (auto& registry : Registry::registered_resources()) {
-            std::shared_ptr<ResourceRegistration> registration = registry.second;
+            std::shared_ptr<ModelRegistration> registration = registry.second;
             if (registration->resource_type == resource->type) {
                 bool resource_present = false;
                 ResourceName* name;
