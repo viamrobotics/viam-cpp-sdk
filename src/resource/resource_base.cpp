@@ -13,3 +13,5 @@ grpc::StatusCode ResourceBase::stop() {
     return grpc::StatusCode::UNIMPLEMENTED;
 }
 
+void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
+

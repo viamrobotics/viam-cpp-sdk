@@ -16,8 +16,8 @@ const std::string RDK = "rdk";
 const std::string GENERIC = "generic";
 const std::string BUILTIN = "builtin";
 
-std::vector<viam::common::v1::ResourceName> resource_names_for_component(
-    std::shared_ptr<ComponentBase> component);
+std::vector<viam::common::v1::ResourceName> resource_names_for_resource(
+    std::shared_ptr<ResourceBase> resource);
 
 class ResourceNameHasher {
    public:
