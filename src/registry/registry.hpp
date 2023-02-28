@@ -7,14 +7,11 @@
 #include <grpcpp/server.h>
 #include <robot/v1/robot.pb.h>
 
-#include <components/component_base.hpp>
-#include <components/component_type.hpp>
 #include <config/resource.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <resource/resource_server_base.hpp>
-#include <services/service_base.hpp>
-#include <services/service_type.hpp>
+#include <resource/resource_type.hpp>
 #include <string>
 #include <subtype/subtype.hpp>
 
@@ -35,64 +32,49 @@ class ResourceSubtype {
    private:
 };
 
-class ComponentRegistration {
+class ResourceRegistration {
    public:
-    ComponentRegistration();
-    ComponentRegistration(
-        ComponentType ct,
+    ResourceRegistration(ResourceType rt) : resource_type(std::move(rt)){};
+    ResourceRegistration(
+        ResourceType rt,
         Subtype subtype,
         Model model,
-        std::function<std::unique_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)>
-            create_rpc_client)
+        std::function<std::shared_ptr<ResourceBase>(std::string, std::shared_ptr<grpc::Channel>)>
+            create_rpc_client,
+        std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor)
         : subtype(std::move(subtype)),
-          component_type(std::move(ct)),
+          resource_type(std::move(rt)),
           model(std::move(model)),
-          create_rpc_client(std::move(create_rpc_client)){};
+          create_rpc_client(std::move(create_rpc_client)),
+          construct_resource(std::move(constructor)){};
     Subtype subtype;
     Model model;
-    ComponentType component_type;
-    std::function<std::shared_ptr<ComponentBase>(std::string, std::shared_ptr<grpc::Channel>)>
+    ResourceType resource_type;
+    std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;
+    std::function<std::shared_ptr<ResourceBase>(std::string, std::shared_ptr<grpc::Channel>)>
         create_rpc_client;
-    viam::robot::v1::Status create_status(std::shared_ptr<ComponentBase> component);
-};
-
-class ServiceRegistration {
-   public:
-    ServiceRegistration();
-    ServiceType service_type;
-    std::string name;
-    std::function<std::shared_ptr<ServiceBase>(std::string, std::shared_ptr<grpc::Channel>)>
-        create_rpc_client;
-
-    viam::robot::v1::Status create_status(std::shared_ptr<ServiceBase> service);
+    viam::robot::v1::Status create_status(std::shared_ptr<ResourceBase> resource);
 };
 
 class Registry {
    public:
-    /// Registers a component with the Registry
+    /// Registers a resource with the Registry
     /// Args:
-    /// 	component (ComponentRegistration): object containing component
-    /// 	registration data
+    /// 	resource (ResourceRegistration): object containing resource registration data
     ///
     /// Raises:
-    /// 	throws error if component already exists in the registry
-    static void register_component(std::shared_ptr<ComponentRegistration> component);
+    /// 	throws error if resource already exists in the registry
+    static void register_resource(std::shared_ptr<ResourceRegistration> resource);
+    static std::shared_ptr<ResourceRegistration> lookup_resource(std::string name);
+    static std::shared_ptr<ResourceRegistration> lookup_resource(Subtype subtype, Model model);
     static void register_subtype(Subtype subtype,
                                  std::shared_ptr<ResourceSubtype> resource_subtype);
-    static std::shared_ptr<ServiceRegistration> lookup_service(std::string name);
-    static std::shared_ptr<ServiceRegistration> lookup_service(Subtype subtype, Model model);
-    static std::shared_ptr<ComponentRegistration> lookup_component(std::string name);
-    static std::shared_ptr<ComponentRegistration> lookup_component(Subtype subtype, Model model);
     static std::shared_ptr<ResourceSubtype> lookup_subtype(Subtype subtype);
-    static std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>>
-    registered_services();
-
-    static std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>>
-    registered_components();
+    static std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>>
+    registered_resources();
 
    private:
-    static std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> components;
+    static std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>> resources;
     static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes;
-    static std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> services;
 };
 

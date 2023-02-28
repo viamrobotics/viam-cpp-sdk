@@ -13,7 +13,7 @@
 
 typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
 
-Name Component::resource_name() {
+Name Resource::resource_name() {
     try {
         this->fix_api();
     } catch (std::string err) {
@@ -30,7 +30,7 @@ Name Component::resource_name() {
     return Name(this->api, "", remotes.at(0));
 }
 
-void Component::fix_api() {
+void Resource::fix_api() {
     if (this->api.namespace_ == "" && this->namespace_ == "") {
         this->namespace_ = RDK;
         this->api.namespace_ = RDK;
@@ -57,19 +57,19 @@ void Component::fix_api() {
     }
 }
 
-Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
-    Component component;
-    component.name = proto_cfg.name();
-    component.namespace_ = proto_cfg.namespace_();
-    component.type = proto_cfg.type();
+Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
+    Resource resource(proto_cfg.type());
+    resource.name = proto_cfg.name();
+    resource.namespace_ = proto_cfg.namespace_();
+    resource.type = proto_cfg.type();
     std::string api = proto_cfg.api();
     if (api.find(":") != std::string::npos) {
-        component.api = Subtype::from_string(api);
+        resource.api = Subtype::from_string(api);
     }
-    component.model = Model::from_str(proto_cfg.model());
+    resource.model = Model::from_str(proto_cfg.model());
 
     try {
-        component.fix_api();
+        resource.fix_api();
     } catch (std::string err) {
         throw err;
     }
@@ -78,10 +78,10 @@ Component Component::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
         LinkConfig lc = LinkConfig::from_proto(proto_cfg.frame());
     }
 
-    return component;
+    return resource;
 };
 
-viam::app::v1::ComponentConfig Component::to_proto() {
+viam::app::v1::ComponentConfig Resource::to_proto() {
     viam::app::v1::ComponentConfig proto_cfg;
     google::protobuf::Struct s = map_to_struct(attributes);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
@@ -108,19 +108,5 @@ viam::app::v1::ComponentConfig Component::to_proto() {
     return proto_cfg;
 }
 
-Service Service::from_component_config(Component cfg) {
-    Service svc;
-    svc.name = cfg.name;
-    svc.namespace_ = cfg.namespace_;
-    svc.type = cfg.type;
-    svc.model = cfg.model;
-    svc.depends_on = cfg.depends_on;
-    svc.attributes = cfg.attributes;
-    svc.converted_attributes = cfg.converted_attributes;
-    svc.implicit_depends_on = cfg.implicit_depends_on;
-    return svc;
-}
-
-Service::Service(){};
-Component::Component() : api(Subtype(RDK, "component", "")){};
+Resource::Resource(std::string type) : api({RDK, type, ""}), type(type){};
 
