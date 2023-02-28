@@ -6,8 +6,8 @@
 #include <robot/v1/robot.pb.h>
 
 #include <common/utils.hpp>
-#include <components/resource_manager.hpp>
 #include <registry/registry.hpp>
+#include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
 #include <string>
 
@@ -40,8 +40,6 @@ class RobotClient {
     std::vector<ResourceName>* resource_names();
     std::unique_ptr<RobotService::Stub> stub_;
     std::shared_ptr<ResourceBase> resource_by_name(ResourceName name);
-    std::shared_ptr<ServiceBase> get_service(ResourceName name);
-    std::shared_ptr<ComponentBase> get_component(ResourceName name);
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<viam::robot::v1::Operation> get_operations();

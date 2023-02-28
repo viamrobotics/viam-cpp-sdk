@@ -3,10 +3,12 @@
 #include <grpcpp/channel.h>
 #include <robot/v1/robot.pb.h>
 
+#include <boost/log/trivial.hpp>
 #include <components/component_base.hpp>
 #include <components/generic.hpp>
 #include <components/service_base.hpp>
 #include <exception>
+#include <memory>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
@@ -16,14 +18,14 @@
 
 using viam::robot::v1::Status;
 
-void Registry::register_component(std::shared_ptr<ComponentRegistration> component) {
-    std::string reg_key = component->subtype.to_string() + "/" + component->model.to_string();
-    if (components.find(reg_key) != components.end()) {
-        std::string err = "Cannot add component with name " + reg_key + "as it already exists";
+void Registry::register_resource(std::shared_ptr<ResourceRegistration> resource) {
+    std::string reg_key = resource->subtype.to_string() + "/" + resource->model.to_string();
+    if (resources.find(reg_key) != resources.end()) {
+        std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
         throw std::runtime_error(err);
     }
 
-    components.emplace(reg_key, component);
+    resources.emplace(reg_key, resource);
 }
 
 void Registry::register_subtype(Subtype subtype,
@@ -36,12 +38,12 @@ void Registry::register_subtype(Subtype subtype,
     subtypes.emplace(std::move(subtype), std::move(resource_subtype));
 }
 
-std::shared_ptr<ServiceRegistration> Registry::lookup_service(std::string name) {
-    if (services.find(name) == services.end()) {
+std::shared_ptr<ResourceRegistration> Registry::lookup_resource(std::string name) {
+    if (resources.find(name) == resources.end()) {
         return nullptr;
     }
 
-    return services.at(name);
+    return resources.at(name);
 }
 
 std::shared_ptr<ResourceSubtype> ResourceSubtype::new_from_descriptor(
@@ -49,22 +51,9 @@ std::shared_ptr<ResourceSubtype> ResourceSubtype::new_from_descriptor(
     return std::make_shared<ResourceSubtype>(descriptor);
 }
 
-std::shared_ptr<ServiceRegistration> Registry::lookup_service(Subtype subtype, Model model) {
-    const std::string name = subtype.to_string() + model.to_string();
-    return lookup_service(name);
-}
-
-std::shared_ptr<ComponentRegistration> Registry::lookup_component(std::string name) {
-    if (components.find(name) == components.end()) {
-        return nullptr;
-    }
-
-    return components.at(name);
-}
-
-std::shared_ptr<ComponentRegistration> Registry::lookup_component(Subtype subtype, Model model) {
+std::shared_ptr<ResourceRegistration> Registry::lookup_resource(Subtype subtype, Model model) {
     const std::string name = subtype.to_string() + "/" + model.to_string();
-    return lookup_component(name);
+    return lookup_resource(name);
 }
 
 std::shared_ptr<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
@@ -75,42 +64,45 @@ std::shared_ptr<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
     return subtypes.at(subtype);
 }
 
-std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>>
-Registry::registered_services() {
-    std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> registry;
-    for (auto& service : services) {
-        registry.emplace(service.first, service.second);
+std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>>
+Registry::registered_resources() {
+    std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>> registry;
+    for (auto& resource : resources) {
+        registry.emplace(resource.first, resource.second);
     }
     return registry;
 }
 
-std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>>
-Registry::registered_components() {
-    std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> registry;
-    for (auto& component : components) {
-        registry.insert(component);
-    }
-    return registry;
-}
-
-Status ComponentRegistration::create_status(std::shared_ptr<ComponentBase> component) {
+Status ResourceRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
     Status status;
-    *status.mutable_name() = component->get_resource_name(component->name);
+    ResourceName* name;
+    if (resource->type.type == COMPONENT) {
+        try {
+            std::shared_ptr<ComponentBase> cb = std::dynamic_pointer_cast<ComponentBase>(resource);
+            ResourceName rn = cb->get_resource_name(resource->name);
+            name = &rn;
+        } catch (std::exception& exc) {
+            BOOST_LOG_TRIVIAL(debug)
+                << "Unable to get resource name from resource base " << resource->name;
+        }
+    } else if (resource->type.type == SERVICE) {
+        try {
+            std::shared_ptr<ServiceBase> sb = std::dynamic_pointer_cast<ServiceBase>(resource);
+            ResourceName rn = sb->get_resource_name(resource->name);
+            name = &rn;
+        } catch (std::exception& exc) {
+            BOOST_LOG_TRIVIAL(debug)
+                << "Unable to get resource name from resource base " << resource->name;
+        };
+    } else {
+        throw "unable to create status; provided resource was of an unknown type: " +
+            resource->type.type;
+    }
+    *status.mutable_name() = *name;
     *status.mutable_status() = google::protobuf::Struct();
     return status;
 }
 
-Status ServiceRegistration::create_status(std::shared_ptr<ServiceBase> service) {
-    Status status;
-    google::protobuf::Struct struct_;
-    *status.mutable_name() = service->get_resource_name(service->name);
-    *status.mutable_status() = struct_;
-    return status;
-}
-
-std::unordered_map<std::string, std::shared_ptr<ComponentRegistration>> Registry::components;
-std::unordered_map<std::string, std::shared_ptr<ServiceRegistration>> Registry::services;
+std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>> Registry::resources;
 std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
 
-ServiceRegistration::ServiceRegistration(){};
-ComponentRegistration::ComponentRegistration(){};

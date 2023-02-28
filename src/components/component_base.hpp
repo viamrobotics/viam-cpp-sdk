@@ -8,7 +8,6 @@
 #include <string>
 class ComponentBase : public ResourceBase {
    public:
-    std::string name;
     ComponentType type;
     std::vector<ComponentType> component_hierarchy;
 

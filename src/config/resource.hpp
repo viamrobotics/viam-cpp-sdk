@@ -18,7 +18,7 @@ class ResourceLevelServiceConfig {
     ProtoType converted_attributes;
 };
 
-class Component {
+class Resource {
    public:
     std::string name;
     std::string namespace_;
@@ -32,28 +32,12 @@ class Component {
     ProtoType converted_attributes;
     std::vector<std::string> implicit_depends_on;
 
-    static Component from_proto(viam::app::v1::ComponentConfig proto_cfg);
+    static Resource from_proto(viam::app::v1::ComponentConfig proto_cfg);
     viam::app::v1::ComponentConfig to_proto();
-    Component();
+    Resource(std::string type);
     Name resource_name();
 
    private:
     void fix_api();
-};
-
-class Service {
-   public:
-    std::string name;
-    std::string namespace_;
-    std::string type;
-    Model model;
-    std::vector<std::string> depends_on;
-
-    AttributeMap attributes;
-    ProtoType converted_attributes;
-    std::vector<std::string> implicit_depends_on;
-
-    static Service from_component_config(Component cfg);
-    Service();
 };
 

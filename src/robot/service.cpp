@@ -6,13 +6,13 @@
 
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
-#include <components/service_base.hpp>
 #include <memory>
 #include <mutex>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <robot/client.hpp>
 #include <robot/service.hpp>
+#include <services/service_base.hpp>
 #include <string>
 #include <thread>
 #include <unordered_map>
@@ -23,8 +23,8 @@ using viam::robot::v1::Status;
 
 std::vector<ResourceName> RobotService_::generate_metadata() {
     std::vector<ResourceName> metadata;
-    for (const auto& key_and_val : manager.components) {
-        for (ResourceName resource : resource_names_for_component(key_and_val.second)) {
+    for (const auto& key_and_val : manager.resources) {
+        for (ResourceName resource : resource_names_for_resources(key_and_val.second)) {
             metadata.push_back(resource);
         }
     }
@@ -33,44 +33,39 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
-    for (auto& cmp : manager.components) {
-        std::shared_ptr<ComponentBase> component = cmp.second;
-        for (auto& registry : Registry::registered_components()) {
-            std::shared_ptr<ComponentRegistration> registration = registry.second;
-            if (registration->component_type == component->type) {
-                bool component_present = false;
-                ResourceName component_name = component->get_resource_name(component->name);
+    for (auto& cmp : manager.resources) {
+        std::shared_ptr<ResourceBase> resource = cmp.second;
+        for (auto& registry : Registry::registered_resources()) {
+            std::shared_ptr<ResourceRegistration> registration = registry.second;
+            if (registration->resource_type == resource->type) {
+                bool resource_present = false;
+                ResourceName* name;
+                try {
+                    std::shared_ptr<ComponentBase> cb =
+                        std::dynamic_pointer_cast<ComponentBase>(resource);
+                    ResourceName rn = cb->get_resource_name(resource->name);
+                    name = &rn;
+                } catch (std::exception& exc) {
+                };
+                if (name == nullptr) {
+                    try {
+                        std::shared_ptr<ServiceBase> sb =
+                            std::dynamic_pointer_cast<ServiceBase>(resource);
+                        ResourceName rn = sb->get_resource_name(resource->name);
+                        name = &rn;
+                    } catch (std::exception& exc) {
+                        throw "unable to create status; provided resource was of an unknown type";
+                    };
+                }
                 for (auto& resource_name : resource_names) {
-                    if (&resource_name == &component_name) {
-                        component_present = true;
+                    if (name == &resource_name) {
+                        resource_present = true;
                         break;
                     }
                 }
 
-                if (component_present) {
-                    Status status = registration->create_status(component);
-                    statuses.push_back(status);
-                }
-            }
-        }
-    }
-
-    for (auto& svc : manager.services) {
-        std::shared_ptr<ServiceBase> service = svc.second;
-        for (auto& registry : Registry::registered_services()) {
-            std::shared_ptr<ServiceRegistration> registration = registry.second;
-            if (registration->service_type == service->type) {
-                bool service_present = false;
-                ResourceName service_name = service->get_resource_name(service->name);
-                for (auto& resource_name : resource_names) {
-                    if (&resource_name == &service_name) {
-                        service_present = true;
-                        break;
-                    }
-                }
-
-                if (service_present) {
-                    Status status = registration->create_status(service);
+                if (resource_present) {
+                    Status status = registration->create_status(resource);
                     statuses.push_back(status);
                 }
             }
