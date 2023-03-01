@@ -207,7 +207,6 @@ target_sources(viamcpp
 	components/component_type.cpp
 	components/generic/generic.cpp
 	components/generic/server.cpp
-	components/generic.cpp
 	config/resource.cpp
 	module/handler_map.cpp
 	module/module.cpp
