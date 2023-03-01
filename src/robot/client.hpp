@@ -29,6 +29,12 @@ class RobotClient {
     ~RobotClient();
     void refresh();
     void close();
+    /// Create a robot client that is connected to the robot at the provided
+    /// address.
+    ///
+    /// Args:
+    /// 	address: Address of the robot (IP address, URI, URL, etc.)
+    /// 	options: Options for connecting and refreshing
     static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, Options options);
     RobotClient(ViamChannel channel);
@@ -43,7 +49,7 @@ class RobotClient {
     std::vector<viam::robot::v1::Discovery> discover_components(
         std::vector<viam::robot::v1::DiscoveryQuery> queries);
 
-    std::vector<std::thread*> threads;
+    std::vector<std::shared_ptr<std::thread>> threads;
 
     viam::common::v1::PoseInFrame transform_pose(
         viam::common::v1::PoseInFrame query,
