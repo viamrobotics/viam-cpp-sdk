@@ -63,6 +63,10 @@ void RobotClient::close() {
     viam_channel.close();
 }
 
+bool is_error_response(grpc::Status response) {
+    return !response.ok() && (response.error_message() != k_stream_removed);
+}
+
 // gets Statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given ResourceNames will be
 // returned
@@ -77,7 +81,7 @@ std::vector<Status> RobotClient::get_status(std::vector<ResourceName> components
     }
 
     grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
                                  << response.error_details();
     }
@@ -101,7 +105,7 @@ std::vector<Operation> RobotClient::get_operations() {
     std::vector<Operation> operations;
 
     grpc::Status response = stub_->GetOperations(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
     for (int i = 0; i < resp.operations().size(); ++i) {
@@ -117,7 +121,7 @@ void RobotClient::cancel_operation(std::string id) {
 
     req.set_id(id);
     grpc::Status response = stub_->CancelOperation(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
     }
 }
@@ -130,7 +134,7 @@ void RobotClient::block_for_operation(std::string id) {
     req.set_id(id);
 
     grpc::Status response = stub_->BlockForOperation(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
     }
 }
@@ -140,7 +144,7 @@ void RobotClient::refresh() {
     viam::robot::v1::ResourceNamesResponse resp;
     ClientContext ctx;
     grpc::Status response = stub_->ResourceNames(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
 
@@ -257,7 +261,7 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
     }
 
     grpc::Status response = stub_->FrameSystemConfig(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
                                  << response.error_message();
     }
@@ -288,7 +292,7 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
     }
 
     grpc::Status response = stub_->TransformPose(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
@@ -307,7 +311,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     }
 
     grpc::Status response = stub_->DiscoverComponents(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
     }
 
@@ -357,7 +361,7 @@ void RobotClient::stop_all(std::unordered_map<ResourceName,
         *ep->Add() = stop;
     }
     grpc::Status response = stub_->StopAll(&ctx, req, &resp);
-    if (!response.ok() && response.error_message() != k_stream_removed) {
+    if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
                                  << response.error_details();
     }
