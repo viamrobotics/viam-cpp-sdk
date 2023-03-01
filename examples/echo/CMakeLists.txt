@@ -58,5 +58,5 @@ target_link_libraries(example_echo
 
 install(
   TARGETS example_echo
-  COMPONENT examples
+  COMPONENT viam-cpp-sdk_examples
 )

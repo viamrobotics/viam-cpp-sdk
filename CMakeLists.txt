@@ -13,8 +13,7 @@
 # limitations under the License.
 
 
-# TODO: [required] libviam_rust_utils handling
-# TODO: [required] Runtime paths and make BUILD_SHARED_LIBS work
+# TODO: [required] fixup libviam_rust_utils install name after download
 # TODO: Sanitizer build configs
 # TODO: All warnings and warnings as errors
 # TODO: Runtime dependency sets?
@@ -43,6 +42,15 @@ project(viam-cpp-sdk
   HOMEPAGE_URL https://github.com/viamrobotics/viam-cpp-sdk
   LANGUAGES CXX
 )
+
+
+# Configure cmake-level options:
+#
+# - `BUILD_SHARED_LIBS`: Enabled by default so that we produce a
+# modern SDK, this option can be set to `OFF` to build a static
+# library. Note that this may result in non-functional examples.
+#
+option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
 
 # Configure project-global options:
@@ -109,11 +117,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-# Everything needs threads, and prefer -pthread if available
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
-
-
 # Produce a compilation database when generating for a build
 # system that is able to make one.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -126,10 +129,38 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #
 # cmake ... -DCMAKE_INSTALL_PREFIX=$HOME/opt
 #
-include(GNUInstallDirs)
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "..." FORCE)
 endif()
+include(GNUInstallDirs)
+
+
+# Configure how the SDK will manage runtime paths. This is important
+# even for BUILD_SHARED_LIBS=OFF due to the always-shared
+# `libviam_rust_utils` shared library.
+set(CMAKE_BUILD_WITH_INSTALL_RPATH false)
+set(CMAKE_BUILD_RPATH_USE_ORIGIN true)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
+set(CMAKE_MACOSX_RPATH true)
+set(CMAKE_SKIP_BUILD_RPATH false)
+
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}" isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+  # TODO: Is there a way to do this with generator expressions?
+  file(RELATIVE_PATH BINTOPREFIXRELPATH ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR} ${CMAKE_INSTALL_PREFIX})
+  file(RELATIVE_PATH PREFIXTOLIBRELPATH ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
+  if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(CMAKE_INSTALL_NAME_DIR "@rpath/${PREFIXTOLIBRELPATH}")
+    list(PREPEND CMAKE_INSTALL_RPATH "@loader_path/${BINTOPREFIXRELPATH}")
+  else()
+    list(PREPEND CMAKE_INSTALL_RPATH "$ORIGIN/${BINTOPREFIXRELPATH}/${PREFIXTOLIBRELPATH}")
+  endif()
+endif()
+
+
+# Everything needs threads, and prefer -pthread if available
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 
 # See if the user provided a libviam_rust_utils in the root of the
@@ -190,7 +221,7 @@ set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils
 
 install(
   IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-  LIBRARY COMPONENT runtime
+  LIBRARY COMPONENT viam-cpp-sdk_runtime
 )
 
 
@@ -198,7 +229,7 @@ install(
 install(FILES
   LICENSE
   DESTINATION ${CMAKE_INSTALL_DATADIR}/${CMAKE_PROJECT_NAME}
-  COMPONENT runtime
+  COMPONENT viam-cpp-sdk_runtime
 )
 
 
@@ -313,11 +344,35 @@ configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/config/cmake.in
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
   VERSION "${version}"
-  COMPATIBILITY AnyNewerVersion
+  COMPATIBILITY SameMajorVersion
 )
 
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfig.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/viam-cpp-sdk
+  COMPONENT viam-cpp-sdk_dev
+)
+
+
+# Define some custom targets to install different subsets of files.
+#
+# TODO: Can we programatically get the list of components?
+# TODO: The `all` dependency here is too broad. Can it be narrowed?
+add_custom_target(
+  install-runtime
+  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_runtime -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
+  DEPENDS all
+)
+
+add_custom_target(
+  install-dev
+  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_dev -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
+  DEPENDS all
+)
+
+add_custom_target(
+  install-examples
+  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
+  DEPENDS all
 )
