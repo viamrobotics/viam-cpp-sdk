@@ -204,19 +204,19 @@ target_sources(viamcpp
     common/proto_type.cpp
     common/utils.cpp
     components/component_base.cpp
-	components/component_type.cpp
-	components/generic/generic.cpp
-	components/generic/server.cpp
-	config/resource.cpp
-	module/handler_map.cpp
-	module/module.cpp
-	module/service.cpp
-	referenceframe/frame.cpp
-	resource/resource.cpp
-	resource/resource_base.cpp
-	resource/resource_server_base.cpp
-	resource/resource_manager.cpp
-	resource/resource_type.cpp
+    components/component_type.cpp
+    components/generic/generic.cpp
+    components/generic/server.cpp
+    config/resource.cpp
+    module/handler_map.cpp
+    module/module.cpp
+    module/service.cpp
+    referenceframe/frame.cpp
+    resource/resource.cpp
+    resource/resource_base.cpp
+    resource/resource_server_base.cpp
+    resource/resource_manager.cpp
+    resource/resource_type.cpp
     robot/client.cpp
     rpc/dial.cpp
     rpc/server.cpp
@@ -231,9 +231,9 @@ target_sources(viamcpp
       common/proto_type.hpp
       common/utils.hpp
       components/component_base.hpp
-	  components/component_type.hpp
-	  components/generic/generic.hpp
-	  components/generic/server.hpp
+      components/component_type.hpp
+      components/generic/generic.hpp
+      components/generic/server.hpp
       components/service_base.hpp
       config/resource.hpp
       module/handler_map.hpp
@@ -243,7 +243,7 @@ target_sources(viamcpp
       registry/registry.hpp
       resource/resource.hpp
       resource/resource_base.hpp
-	  resource/resource_server_base.hpp
+      resource/resource_server_base.hpp
       resource/resource_manager.hpp
       resource/resource_type.hpp
       robot/client.hpp
