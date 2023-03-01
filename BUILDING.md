@@ -296,13 +296,6 @@ similar on the link line.
 
 ## Limitations, Known Issues, and Troubleshooting
 
-### Limitation: Shared Library Builds Not Yet Supported
-
-Support for building with `BUILD_SHARED_LIBS=ON` is not yet
-integrated, but is a top priority. For now, the generated `viamcpp`
-library is static.
-
-
 ### Build Issue: Missing Build Dependency Edge when Using `VIAMDPPSDK_USE_DYNAMIC_PROTOS`
 
 Sometimes when running `ninja all` or `ninja install` in a project
@@ -341,18 +334,18 @@ ninja all    # OK!
 
 ### Runtime Issue: The `viam_rust_utils` Shared Library Not Found
 
-Without full support for `BUILD_SHARED_LIBS=ON`, the runtime and
-install name properties are not correctly configured. This can lead to
-a runtime error where the `viam_rust_utils` shared library is not
-found at program startup. If this happens, set `[DY]LD_LIBRARY_PATH`
-to point into the library directory of the installation when running
-commands that require it:
+For some platforms (mostly macOS) the runtime and install name
+properties are not correctly configured for the `viam_rust_utils`
+library. This can lead to a runtime error where the `viam_rust_utils`
+shared library is not found at program startup. If this happens, set
+`[DY]LD_LIBRARY_PATH` to point into the library directory of the
+installation when running commands that require it:
 
 ``` shell
 cmake ...
 ninja install
 ./build/install/bin/example_echo    # FAILS: libviam_rust_utils not found
-export LD_LIBRRAY_PATH=./build/install/lib
+export DYLD_LIBRRAY_PATH=./build/install/lib
 ./build/install/bin/example_echo    # OK!
 ```
 

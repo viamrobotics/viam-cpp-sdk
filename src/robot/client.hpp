@@ -10,6 +10,7 @@
 #include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
 #include <string>
+#include <thread>
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;

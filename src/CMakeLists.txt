@@ -107,10 +107,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.h
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.h
-	${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.cc
-	${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.h
-	${PROTO_GEN_DIR}/gen/module/v1/module.pb.cc
-	${PROTO_GEN_DIR}/gen/module/v1/module.pb.h
+    ${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.h
+    ${PROTO_GEN_DIR}/gen/module/v1/module.pb.cc
+    ${PROTO_GEN_DIR}/gen/module/v1/module.pb.h
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.h
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.cc
@@ -183,24 +183,24 @@ target_sources(viamcpp
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.cc
-	${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.cc
-	${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.cc
-	${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.cc
-	${PROTO_GEN_DIR}/gen/module/v1/module.pb.cc
+    ${PROTO_GEN_DIR}/gen/module/v1/module.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/gen/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.cc
     ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.grpc.pb.cc
-	# TODO(RSDK-1742): we have to put `registry` up top here because we need the
-	# registry types to be defined first, before anything tries to init them.
-	# this obviously isn't great. it breaks up stylistic ordering and is brittle
-	# when we need to add updates. we should refactor to make this unnecessary.
-	# consider making all necessary runtime values a single `context` that has to
-	# be initialized within main before anything else happens?
-	registry/registry.cpp
+    # TODO(RSDK-1742): we have to put `registry` up top here because we need the
+    # registry types to be defined first, before anything tries to init them.
+    # this obviously isn't great. it breaks up stylistic ordering and is brittle
+    # when we need to add updates. we should refactor to make this unnecessary.
+    # consider making all necessary runtime values a single `context` that has to
+    # be initialized within main before anything else happens?
+    registry/registry.cpp
     common/proto_type.cpp
     common/utils.cpp
     components/component_base.cpp
@@ -219,13 +219,13 @@ target_sources(viamcpp
 	resource/resource_type.cpp
     robot/client.cpp
     rpc/dial.cpp
-	rpc/server.cpp
-	services/service_base.cpp
-	services/service_type.cpp
-	spatialmath/geometry.cpp
-	spatialmath/orientation_types.cpp
-	spatialmath/orientation.cpp
-	subtype/subtype.cpp
+    rpc/server.cpp
+    services/service_base.cpp
+    services/service_type.cpp
+    spatialmath/geometry.cpp
+    spatialmath/orientation_types.cpp
+    spatialmath/orientation.cpp
+    subtype/subtype.cpp
   PUBLIC FILE_SET viamcpp_public_includes TYPE HEADERS
     FILES
       common/proto_type.hpp
@@ -235,13 +235,13 @@ target_sources(viamcpp
 	  components/generic/generic.hpp
 	  components/generic/server.hpp
       components/service_base.hpp
-	  config/resource.hpp
-	  module/handler_map.hpp
-	  module/module.hpp
-	  module/service.hpp
-	  referenceframe/frame.hpp
+      config/resource.hpp
+      module/handler_map.hpp
+      module/module.hpp
+      module/service.hpp
+      referenceframe/frame.hpp
       registry/registry.hpp
-	  resource/resource.hpp
+      resource/resource.hpp
       resource/resource_base.hpp
 	  resource/resource_server_base.hpp
       resource/resource_manager.hpp
@@ -249,13 +249,13 @@ target_sources(viamcpp
       robot/client.hpp
       robot/service.hpp
       rpc/dial.hpp
-	  rpc/server.hpp
-	  services/service_base.hpp
-	  services/service_type.hpp
-	  spatialmath/geometry.hpp
-	  spatialmath/orientation_types.hpp
-	  spatialmath/orientation.hpp
-	  subtype/subtype.hpp
+      rpc/server.hpp
+      services/service_base.hpp
+      services/service_type.hpp
+      spatialmath/geometry.hpp
+      spatialmath/orientation_types.hpp
+      spatialmath/orientation.hpp
+      subtype/subtype.hpp
   PUBLIC FILE_SET viamcpp_public_pb_includes TYPE HEADERS
     BASE_DIRS
       ${PROTO_GEN_DIR}/gen
@@ -280,6 +280,12 @@ target_sources(viamcpp
       ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.h
 )
 
+set_target_properties(
+  viamcpp PROPERTIES
+  SOVERSION noabi
+  VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
+)
+
 target_include_directories(viamcpp
   PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
@@ -296,14 +302,15 @@ target_include_directories(viamcpp
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_INCLUDE_DIRS}>"
 )
 
-# This shouldn't be necessary, but we need it so that the installation
-# path of the C++ SDK is added to the link line of consumers to that
-# `-lviam_rust_utils` can be meaningfully resolved.
-#
-# TODO: Remove this when we can import `viam_rust_utils` as a real
-# imported target with its own properties.
 target_link_directories(viamcpp
-  INTERFACE
+  PUBLIC
+    # This shouldn't be necessary, but we need it so that the
+    # installation path of the C++ SDK is added to the link line of
+    # consumers to that `-lviam_rust_utils` can be meaningfully
+    # resolved.
+    #
+    # TODO: Remove this when we can import `viam_rust_utils` as a real
+    # imported target with its own properties.
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
 
@@ -331,9 +338,12 @@ target_link_libraries(viamcpp
 install(
   TARGETS viamcpp
   EXPORT LibTargets
-  LIBRARY COMPONENT runtime
-  FILE_SET viamcpp_public_includes COMPONENT dev
-  FILE_SET viamcpp_public_pb_includes COMPONENT dev
+  RUNTIME COMPONENT viam-cpp-sdk_runtime
+  LIBRARY COMPONENT viam-cpp-sdk_runtime
+      NAMELINK_COMPONENT viam-cpp-sdk_dev
+  ARCHIVE COMPONENT viam-cpp-sdk_dev
+  FILE_SET viamcpp_public_includes COMPONENT viam-cpp-sdk_dev
+  FILE_SET viamcpp_public_pb_includes COMPONENT viam-cpp-sdk_dev
 )
 
 install(
@@ -341,6 +351,7 @@ install(
   FILE viam-cpp-sdkLibTargets.cmake
   NAMESPACE viam-cpp-sdk::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/viam-cpp-sdk
+  COMPONENT viam-cpp-sdk_dev
 )
 
 
@@ -362,5 +373,5 @@ configure_file(
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config/viam-cpp-sdk-libviamcpp.pc
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
-  COMPONENT dev
+  COMPONENT viam-cpp-sdk_dev
 )
