@@ -3,10 +3,16 @@
 #include <google/protobuf/descriptor.h>
 
 #include <common/utils.hpp>
-#include <components/generic.hpp>
+#include <components/generic/generic.hpp>
+#include <components/generic/server.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <stdexcept>
+
+std::shared_ptr<ResourceServerBase> GenericSubtype::create_resource_server(
+    std::shared_ptr<SubtypeService> svc) {
+    return std::make_shared<GenericServer>(svc);
+};
 
 std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
@@ -15,7 +21,7 @@ std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
     if (sd == nullptr) {
         throw std::runtime_error("Unable to get service descriptor for the generic service");
     }
-    return ResourceSubtype::new_from_descriptor(sd);
+    return std::make_shared<GenericSubtype>(sd);
 }
 
 Subtype Generic::subtype() {

@@ -5,7 +5,7 @@
 
 #include <boost/log/trivial.hpp>
 #include <components/component_base.hpp>
-#include <components/generic.hpp>
+#include <components/generic/generic.hpp>
 #include <components/service_base.hpp>
 #include <exception>
 #include <memory>
@@ -17,6 +17,11 @@
 #include <unordered_map>
 
 using viam::robot::v1::Status;
+
+std::shared_ptr<ResourceServerBase> ResourceSubtype::create_resource_server(
+    std::shared_ptr<SubtypeService> svc) {
+    return nullptr;
+};
 
 void Registry::register_resource(std::shared_ptr<ModelRegistration> resource) {
     std::string reg_key = resource->subtype.to_string() + "/" + resource->model.to_string();
@@ -44,11 +49,6 @@ std::shared_ptr<ModelRegistration> Registry::lookup_resource(std::string name) {
     }
 
     return resources.at(name);
-}
-
-std::shared_ptr<ResourceSubtype> ResourceSubtype::new_from_descriptor(
-    const google::protobuf::ServiceDescriptor* descriptor) {
-    return std::make_shared<ResourceSubtype>(descriptor);
 }
 
 std::shared_ptr<ModelRegistration> Registry::lookup_resource(Subtype subtype, Model model) {
