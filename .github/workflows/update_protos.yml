@@ -21,7 +21,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: mkdir build && cd build && cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && ninja update-static-protos
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
       - name: Add + Commit + Open PR
