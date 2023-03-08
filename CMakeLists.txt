@@ -325,6 +325,16 @@ else()
   set(VIAMCPPSDK_GRPCXX_LIBRARIES ${GRPCXX_LIBRARIES})
 endif()
 
+set(grpc++_reflection_DIR ${gRPC_DIR})
+find_package(grpc++_reflection CONFIG)
+if (reflection_FOUND)
+  set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES gRPC::grpc++_reflection)
+else()
+  message(WARNING "Failed to find gRPC_reflection with `find_package`; falling back to `pkg_check_modules`")
+
+  include(FindPkgConfig)
+  set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES grpc++_reflection${GRPCXX_LIBRARIES})
+endif()
 
 # Pull in our subdirectories
 add_subdirectory(src)

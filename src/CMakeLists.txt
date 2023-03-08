@@ -326,11 +326,11 @@ target_link_directories(viamcpp
 
 target_link_libraries(viamcpp
   PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARIES}
+  PUBLIC ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
   PUBLIC ${VIAMCPPSDK_GRPC_LIBRARIES}
   PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PUBLIC Boost::headers
   PRIVATE Boost::log
-  PRIVATE gRPC::grpc++_reflection
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
