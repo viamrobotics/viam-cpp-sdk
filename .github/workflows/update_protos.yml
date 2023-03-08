@@ -21,7 +21,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: make buf
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON && cmake --build ./build --target update-static-protos
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
       - name: Add + Commit + Open PR
