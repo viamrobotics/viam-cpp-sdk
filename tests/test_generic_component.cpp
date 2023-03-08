@@ -13,6 +13,8 @@ class generic_test {
     }
 };
 
+BOOST_AUTO_TEST_SUITE(generic_suite)
+
 boost::unit_test::test_suite* unit_test_suite(int argc, char* argv[]) {
     std::shared_ptr<generic_test> tester = std::make_shared<generic_test>();
     boost::unit_test::framework::master_test_suite().add(
@@ -21,3 +23,5 @@ boost::unit_test::test_suite* unit_test_suite(int argc, char* argv[]) {
         BOOST_TEST_CASE(boost::bind(&generic_test::test_method2, tester)));
     return 0;
 };
+
+BOOST_AUTO_TEST_SUITE_END()
