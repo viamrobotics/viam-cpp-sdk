@@ -14,10 +14,11 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
+      - name: boost
+        run: sudo apt-get update && sudo apt-get install -yq libboost1.81-dev
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.81.0
-          boost_install_dir: "~/boost"
           platform_version: 22.04
       - uses: lukka/get-cmake@latest
       - uses: bufbuild/buf-setup-action@v1.9.0
