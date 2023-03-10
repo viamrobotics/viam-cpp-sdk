@@ -329,6 +329,7 @@ endif()
 # Pull in our subdirectories
 add_subdirectory(src)
 add_subdirectory(examples)
+add_subdirectory(tests)
 
 
 # Generate CMake configs to enable importing this project
@@ -374,5 +375,11 @@ add_custom_target(
 add_custom_target(
   install-examples
   COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
+  DEPENDS all
+)
+
+add_custom_target(
+  install-tests
+  COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_tests -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
   DEPENDS all
 )
