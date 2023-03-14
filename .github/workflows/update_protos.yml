@@ -23,16 +23,6 @@ jobs:
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
-      - name: printoutput
-        run: |
-           files=`find ${{ steps.install-boost.outputs.BOOST_ROOT }} -type f`
-           echo $files
-      - name: printlogs
-        run: |
-           output=`cat ${{ github.workspace }}/build/CMakeFiles/CMakeOutput.log`
-           error=`cat ${{ github.workspace }}/build/CMakeFiles/CMakeError.log`
-           echo $output
-           echo $error
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +30,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/boost/boost && cmake --build ./build --target update-static-protos
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ steps.install-boost.outputs.BOOST_ROOT }}/boost/boost && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
