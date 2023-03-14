@@ -29,8 +29,8 @@ jobs:
            echo $files
       - name: printlogs
         run: |
-           output=`cat ${{ github.workspace }}/build/CMakeOutput.log`
-           error=`cat ${{ github.workspace }}/build/CMakeError.log`
+           output=`cat ${{ github.workspace }}/build/CMakeFiles/CMakeOutput.log`
+           error=`cat ${{ github.workspace }}/build/CMakeFiles/CMakeError.log`
            echo $output
            echo $error
       - uses: bufbuild/buf-setup-action@v1.9.0
