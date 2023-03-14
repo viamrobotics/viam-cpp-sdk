@@ -140,9 +140,6 @@ set(CMAKE_MODULE_PATH
   ${PROJECT_SOURCE_DIR}/cmake
 )
 
-# Include our helper CMake functions
-include(viamcppsdk_utils)
-
 
 # Configure how the SDK will manage runtime paths. This is important
 # even for BUILD_SHARED_LIBS=OFF due to the always-shared

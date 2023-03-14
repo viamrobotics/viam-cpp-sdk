@@ -16,11 +16,3 @@ enable_testing()
 include(viamcppsdk_utils)
 viamcppsdk_add_boost_test(test_generic_component.cpp)
 
-add_executable(viam_cpp_sdk_tests
-  test_generic_component.cpp
-)
-
-target_link_libraries(viam_cpp_sdk_tests
-  viamcpp
-)
-
