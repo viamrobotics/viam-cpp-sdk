@@ -23,6 +23,10 @@ jobs:
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
+      - name: printoutput
+        run: |
+           files=`find ${{ github.workspace }} -type f`
+           echo $files
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -44,5 +48,3 @@ jobs:
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
           assignees: stuqdog
           reviewers: stuqdog
-    outputs:
-      output: find . -f
