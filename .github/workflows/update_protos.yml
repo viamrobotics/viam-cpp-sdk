@@ -30,7 +30,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/boost && cmake --build ./build --target update-static-protos
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/boost/boost && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
@@ -44,3 +44,5 @@ jobs:
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
           assignees: stuqdog
           reviewers: stuqdog
+    outputs:
+      output: find . -f
