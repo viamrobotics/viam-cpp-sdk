@@ -335,6 +335,8 @@ target_link_libraries(viamcpp
   PRIVATE Threads::Threads
 )
 
+add_subdirectory(tests)
+
 install(
   TARGETS viamcpp
   EXPORT LibTargets
