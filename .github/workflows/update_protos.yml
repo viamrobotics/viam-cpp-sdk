@@ -27,6 +27,12 @@ jobs:
         run: |
            files=`find ${{ steps.install-boost.outputs.BOOST_ROOT }} -type f`
            echo $files
+      - name: printlogs
+        run: |
+           output=`cat ${{ github.workspace }}/build/CMakeOutput.log`
+           error=`cat ${{ github.workspace }}/build/CMakeError.log`
+           echo $output
+           echo $error
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
