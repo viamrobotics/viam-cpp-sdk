@@ -3,8 +3,8 @@
 
 ::grpc::Status GenericServer::DoCommand(
     ::grpc::ServerContext* context,
-    const ::viam::component::generic::v1::DoCommandRequest* request,
-    ::viam::component::generic::v1::DoCommandResponse* response) {
+    const ::viam::common::v1::DoCommandRequest* request,
+    ::viam::common::v1::DoCommandResponse* response) {
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
     if (rb == nullptr) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());

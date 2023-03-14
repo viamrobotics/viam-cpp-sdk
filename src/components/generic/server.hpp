@@ -9,8 +9,8 @@ class GenericServer : public ResourceServerBase,
                       public viam::component::generic::v1::GenericService::Service {
    public:
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                             const ::viam::component::generic::v1::DoCommandRequest* request,
-                             ::viam::component::generic::v1::DoCommandResponse* response) override;
+                             const ::viam::common::v1::DoCommandRequest* request,
+                             ::viam::common::v1::DoCommandResponse* response) override;
 
     void register_server() override;
 

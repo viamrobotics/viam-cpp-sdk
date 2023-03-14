@@ -49,8 +49,8 @@ class MyModule : public GenericService::Service, public ComponentBase {
     MyModule& operator=(const MyModule&) = delete;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                             const ::viam::component::generic::v1::DoCommandRequest* request,
-                             ::viam::component::generic::v1::DoCommandResponse* response) override {
+                             const ::viam::common::v1::DoCommandRequest* request,
+                             ::viam::common::v1::DoCommandResponse* response) override {
         std::cout << "Received DoCommand request for MyModule number " << inner_which
                   << " and name " << name << std::endl;
         for (auto& req : request->command().fields()) {

@@ -6,3 +6,6 @@
 
 # For now, ignore any viam_rust_utils library in the root.
 /libviam_rust_utils*
+
+# Ignore Clang caches.
+/.cache
