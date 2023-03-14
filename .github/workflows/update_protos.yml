@@ -19,7 +19,6 @@ jobs:
           boost_version: 1.80.0
           platform: linux
           platform_version: 22.04
-          boost_install_dir: /usr/local/bin
       - uses: lukka/get-cmake@latest
         with:
           cmakeVersion: 3.25.2
@@ -31,7 +30,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=/usr/local/bin/boost/boost --debug-find && cmake --build ./build --target update-static-protos
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/boost/boost --debug-find && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
