@@ -23,6 +23,8 @@ jobs:
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
+      - name: set-path
+        run: echo "${{ github.workspace }}:$GITHUB_PATH" >> $GITHUB_PATH
       - uses: eWaterCycle/setup-grpc@v5
         with:
           grpc-version: 1.51.1
