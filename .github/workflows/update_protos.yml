@@ -19,13 +19,13 @@ jobs:
           boost_version: 1.80.0
           platform: linux
           platform_version: 22.04
-      - uses: eWaterCycle/setup-grpc@v5
-        with:
-          grpc-version: 1.51.1
       - uses: lukka/get-cmake@latest
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
+      - uses: eWaterCycle/setup-grpc@v5
+        with:
+          grpc-version: 1.51.1
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
