@@ -23,6 +23,8 @@ jobs:
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
+      - name: setup-grpc-manual
+        run: git clone https://github.com/Microsoft/vcpkg.git && cs vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install grpc
       - name: set-path
         run: echo "path=${{ github.workspace }}:$GITHUB_PATH" >> ${GITHUB_ENV}
       - uses: eWaterCycle/setup-grpc@v5
