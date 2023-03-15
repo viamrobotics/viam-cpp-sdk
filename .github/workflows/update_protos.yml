@@ -30,7 +30,12 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=/__w/viam-cpp-sdk/viam-cpp-sdk/boost/boost --debug-find && cmake --build ./build --target update-static-protos
+        run: |
+           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON\
+           -DCMAKE_PREFIX_PATH=${{ github.workspace }}/boost/boost\
+           -DBoost_INCLUDE_DIR=${{steps.install-boost.outputs.BOOST_ROOT}}/include\
+           -DBoost_LIBRARY_DIRS=${{steps.install-boost.outputs.BOOST_ROOT}}/lib\
+           --debug-find && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
