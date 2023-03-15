@@ -14,6 +14,9 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
+      - uses: eWaterCycle/setup-grpc@v5
+        with:
+          grpc-version: 1.51.1
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.80.0
@@ -23,11 +26,6 @@ jobs:
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
-      - uses: eWaterCycle/setup-grpc@v5
-        with:
-          grpc-version: 1.47.3
-        env:
-          PATH: ${{ github.workspace }}
       - name: setup-grpc-manual
         run: git clone https://github.com/Microsoft/vcpkg.git && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install grpc
       - name: set-path
