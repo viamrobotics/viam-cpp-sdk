@@ -27,12 +27,6 @@ jobs:
         run: git clone https://github.com/Microsoft/vcpkg.git && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install grpc
       - name: set-path
         run: echo "path=${{ github.workspace }}:$GITHUB_PATH" >> ${GITHUB_ENV}
-      - uses: eWaterCycle/setup-grpc@v5
-        with:
-          grpc-version: 1.51.1
-          path: ${{ github.workspace }}
-        env:
-          PATH: ${{ github.workspace }}
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
