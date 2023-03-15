@@ -6,8 +6,8 @@
 #include "component/generic/v1/generic.grpc.pb.h"
 
 ProtoType GenericClient::do_command(std::unordered_map<std::string, ProtoType*> command) {
-    viam::component::generic::v1::DoCommandRequest req;
-    viam::component::generic::v1::DoCommandResponse resp;
+    viam::common::v1::DoCommandRequest req;
+    viam::common::v1::DoCommandResponse resp;
     grpc::ClientContext ctx;
 
     google::protobuf::Struct proto_command = map_to_struct(command);

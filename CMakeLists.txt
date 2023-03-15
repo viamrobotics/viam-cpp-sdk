@@ -134,6 +134,12 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 include(GNUInstallDirs)
 
+# Set the Cmake module path to include our cmake helper functions
+set(CMAKE_MODULE_PATH
+  ${CMAKE_MODULE_PATH}
+  ${PROJECT_SOURCE_DIR}/cmake
+)
+
 
 # Configure how the SDK will manage runtime paths. This is important
 # even for BUILD_SHARED_LIBS=OFF due to the always-shared
@@ -376,3 +382,4 @@ add_custom_target(
   COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
   DEPENDS all
 )
+
