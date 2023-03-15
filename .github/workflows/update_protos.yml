@@ -32,7 +32,7 @@ jobs:
       - name: Generate buf
         run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/boost/boost -DBoost_INCLUDE_DIR=${{steps.install-boost.outputs.BOOST_ROOT}}/include\ -DBoost_LIBRARY_DIRS=${{steps.install-boost.outputs.BOOST_ROOT}}/lib --debug-find && cmake --build ./build --target update-static-protos
         env:
-          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+          BOOST_ROOT: ${{ github.workspace }}/boost/boost
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
