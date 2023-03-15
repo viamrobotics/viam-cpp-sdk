@@ -30,7 +30,7 @@ jobs:
           grpc-version: 1.51.1
           path: ${{ github.workspace }}
         env:
-          PATH: $HOME
+          PATH: ${{ github.workspace }}
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
