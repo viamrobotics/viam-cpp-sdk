@@ -1,9 +1,11 @@
 name: Set Reviewers
+
 on:
   workflow_dispatch:
   pull_request:
     branches:
       - main
+
 jobs:
   set-reviewers:
     if: github.repository_owner == 'viamrobotics'
