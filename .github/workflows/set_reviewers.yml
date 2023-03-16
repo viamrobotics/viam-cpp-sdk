@@ -2,6 +2,10 @@ name: Set Reviewers
 
 on:
   workflow_dispatch:
+  workflow_call:
+    secrets:
+        GIT_ACCESS_TOKEN:
+          required: true
   pull_request:
     branches:
       - main
