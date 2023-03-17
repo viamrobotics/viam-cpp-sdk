@@ -386,7 +386,7 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "\016jointPositions\022\033\n\tis_moving\030\003 \001(\010R\010isMo"
   "ving\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004n"
   "ame\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001"
-  "(\010R\010isMoving2\341\007\n\nArmService\022\241\001\n\016GetEndPo"
+  "(\010R\010isMoving2\352\010\n\nArmService\022\241\001\n\016GetEndPo"
   "sition\022,.viam.component.arm.v1.GetEndPos"
   "itionRequest\032-.viam.component.arm.v1.Get"
   "EndPositionResponse\"2\202\323\344\223\002,\022*/viam/api/v"
@@ -411,8 +411,12 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "m.component.arm.v1.IsMovingRequest\032\'.via"
   "m.component.arm.v1.IsMovingResponse\"3\202\323\344"
   "\223\002-\022+/viam/api/v1/component/arm/{name}/i"
-  "s_movingB=\n\031com.viam.component.arm.v1Z g"
-  "o.viam.com/api/component/arm/v1b\006proto3"
+  "s_moving\022\206\001\n\tDoCommand\022 .viam.common.v1."
+  "DoCommandRequest\032!.viam.common.v1.DoComm"
+  "andResponse\"4\202\323\344\223\002.\",/viam/api/v1/compon"
+  "ent/arm/{name}/do_commandB=\n\031com.viam.co"
+  "mponent.arm.v1Z go.viam.com/api/componen"
+  "t/arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -421,7 +425,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 2399, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 2536, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,

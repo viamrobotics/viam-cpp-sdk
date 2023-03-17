@@ -84,28 +84,33 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n)service/datamanager/v1/data_manager.pr"
-  "oto\022\033viam.service.datamanager.v1\032\034google"
-  "/api/annotations.proto\032\034google/protobuf/"
-  "struct.proto\"P\n\013SyncRequest\022\022\n\004name\030\001 \001("
-  "\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extra\"\016\n\014SyncResponse2\254\001\n\022DataM"
-  "anagerService\022\225\001\n\004Sync\022(.viam.service.da"
-  "tamanager.v1.SyncRequest\032).viam.service."
-  "datamanager.v1.SyncResponse\"8\202\323\344\223\0022\"0/vi"
-  "am/api/v1/service/datamanager/{name}/dat"
-  "asyncBI\n\037com.viam.service.datamanager.v1"
-  "Z&go.viam.com/api/service/datamanager/v1"
-  "b\006proto3"
+  "oto\022\033viam.service.datamanager.v1\032\026common"
+  "/v1/common.proto\032\034google/api/annotations"
+  ".proto\032\034google/protobuf/struct.proto\"P\n\013"
+  "SyncRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra"
+  "\030c \001(\0132\027.google.protobuf.StructR\005extra\"\016"
+  "\n\014SyncResponse2\273\002\n\022DataManagerService\022\225\001"
+  "\n\004Sync\022(.viam.service.datamanager.v1.Syn"
+  "cRequest\032).viam.service.datamanager.v1.S"
+  "yncResponse\"8\202\323\344\223\0022\"0/viam/api/v1/servic"
+  "e/datamanager/{name}/datasync\022\214\001\n\tDoComm"
+  "and\022 .viam.common.v1.DoCommandRequest\032!."
+  "viam.common.v1.DoCommandResponse\":\202\323\344\223\0024"
+  "\"2/viam/api/v1/service/datamanager/{name"
+  "}/do_commandBI\n\037com.viam.service.dataman"
+  "ager.v1Z&go.viam.com/api/service/dataman"
+  "ager/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto = {
-    false, false, 488, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
+    false, false, 655, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     "service/datamanager/v1/data_manager.proto",
-    &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 2, 2,
+    &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 3, 2,
     schemas, file_default_instances, TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::offsets,
     file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto, file_level_enum_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     file_level_service_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,

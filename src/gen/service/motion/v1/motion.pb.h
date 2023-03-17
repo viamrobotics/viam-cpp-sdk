@@ -51,12 +51,24 @@ namespace viam {
 namespace service {
 namespace motion {
 namespace v1 {
+class CollisionSpecification;
+struct CollisionSpecificationDefaultTypeInternal;
+extern CollisionSpecificationDefaultTypeInternal _CollisionSpecification_default_instance_;
+class CollisionSpecification_AllowedFrameCollisions;
+struct CollisionSpecification_AllowedFrameCollisionsDefaultTypeInternal;
+extern CollisionSpecification_AllowedFrameCollisionsDefaultTypeInternal _CollisionSpecification_AllowedFrameCollisions_default_instance_;
+class Constraints;
+struct ConstraintsDefaultTypeInternal;
+extern ConstraintsDefaultTypeInternal _Constraints_default_instance_;
 class GetPoseRequest;
 struct GetPoseRequestDefaultTypeInternal;
 extern GetPoseRequestDefaultTypeInternal _GetPoseRequest_default_instance_;
 class GetPoseResponse;
 struct GetPoseResponseDefaultTypeInternal;
 extern GetPoseResponseDefaultTypeInternal _GetPoseResponse_default_instance_;
+class LinearConstraint;
+struct LinearConstraintDefaultTypeInternal;
+extern LinearConstraintDefaultTypeInternal _LinearConstraint_default_instance_;
 class MoveRequest;
 struct MoveRequestDefaultTypeInternal;
 extern MoveRequestDefaultTypeInternal _MoveRequest_default_instance_;
@@ -69,17 +81,25 @@ extern MoveSingleComponentRequestDefaultTypeInternal _MoveSingleComponentRequest
 class MoveSingleComponentResponse;
 struct MoveSingleComponentResponseDefaultTypeInternal;
 extern MoveSingleComponentResponseDefaultTypeInternal _MoveSingleComponentResponse_default_instance_;
+class OrientationConstraint;
+struct OrientationConstraintDefaultTypeInternal;
+extern OrientationConstraintDefaultTypeInternal _OrientationConstraint_default_instance_;
 }  // namespace v1
 }  // namespace motion
 }  // namespace service
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> ::viam::service::motion::v1::CollisionSpecification* Arena::CreateMaybeMessage<::viam::service::motion::v1::CollisionSpecification>(Arena*);
+template<> ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* Arena::CreateMaybeMessage<::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions>(Arena*);
+template<> ::viam::service::motion::v1::Constraints* Arena::CreateMaybeMessage<::viam::service::motion::v1::Constraints>(Arena*);
 template<> ::viam::service::motion::v1::GetPoseRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseRequest>(Arena*);
 template<> ::viam::service::motion::v1::GetPoseResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseResponse>(Arena*);
+template<> ::viam::service::motion::v1::LinearConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::LinearConstraint>(Arena*);
 template<> ::viam::service::motion::v1::MoveRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveSingleComponentRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveSingleComponentRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveSingleComponentResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveSingleComponentResponse>(Arena*);
+template<> ::viam::service::motion::v1::OrientationConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::OrientationConstraint>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace service {
@@ -211,6 +231,7 @@ class MoveRequest final :
     kDestinationFieldNumber = 2,
     kComponentNameFieldNumber = 3,
     kWorldStateFieldNumber = 4,
+    kConstraintsFieldNumber = 5,
     kExtraFieldNumber = 99,
   };
   // string name = 1 [json_name = "name"];
@@ -281,6 +302,24 @@ class MoveRequest final :
       ::viam::common::v1::WorldState* world_state);
   ::viam::common::v1::WorldState* unsafe_arena_release_world_state();
 
+  // optional .viam.service.motion.v1.Constraints constraints = 5 [json_name = "constraints"];
+  bool has_constraints() const;
+  private:
+  bool _internal_has_constraints() const;
+  public:
+  void clear_constraints();
+  const ::viam::service::motion::v1::Constraints& constraints() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::Constraints* release_constraints();
+  ::viam::service::motion::v1::Constraints* mutable_constraints();
+  void set_allocated_constraints(::viam::service::motion::v1::Constraints* constraints);
+  private:
+  const ::viam::service::motion::v1::Constraints& _internal_constraints() const;
+  ::viam::service::motion::v1::Constraints* _internal_mutable_constraints();
+  public:
+  void unsafe_arena_set_allocated_constraints(
+      ::viam::service::motion::v1::Constraints* constraints);
+  ::viam::service::motion::v1::Constraints* unsafe_arena_release_constraints();
+
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   bool has_extra() const;
   private:
@@ -312,6 +351,7 @@ class MoveRequest final :
   ::viam::common::v1::PoseInFrame* destination_;
   ::viam::common::v1::ResourceName* component_name_;
   ::viam::common::v1::WorldState* world_state_;
+  ::viam::service::motion::v1::Constraints* constraints_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
@@ -1206,6 +1246,827 @@ class GetPoseResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
+// -------------------------------------------------------------------
+
+class Constraints final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.Constraints) */ {
+ public:
+  inline Constraints() : Constraints(nullptr) {}
+  ~Constraints() override;
+  explicit PROTOBUF_CONSTEXPR Constraints(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Constraints(const Constraints& from);
+  Constraints(Constraints&& from) noexcept
+    : Constraints() {
+    *this = ::std::move(from);
+  }
+
+  inline Constraints& operator=(const Constraints& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Constraints& operator=(Constraints&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Constraints& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Constraints* internal_default_instance() {
+    return reinterpret_cast<const Constraints*>(
+               &_Constraints_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(Constraints& a, Constraints& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Constraints* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Constraints* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Constraints* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Constraints>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Constraints& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Constraints& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Constraints* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.Constraints";
+  }
+  protected:
+  explicit Constraints(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLinearConstraintFieldNumber = 1,
+    kOrientationConstraintFieldNumber = 2,
+    kCollisionSpecificationFieldNumber = 3,
+  };
+  // repeated .viam.service.motion.v1.LinearConstraint linear_constraint = 1 [json_name = "linearConstraint"];
+  int linear_constraint_size() const;
+  private:
+  int _internal_linear_constraint_size() const;
+  public:
+  void clear_linear_constraint();
+  ::viam::service::motion::v1::LinearConstraint* mutable_linear_constraint(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::LinearConstraint >*
+      mutable_linear_constraint();
+  private:
+  const ::viam::service::motion::v1::LinearConstraint& _internal_linear_constraint(int index) const;
+  ::viam::service::motion::v1::LinearConstraint* _internal_add_linear_constraint();
+  public:
+  const ::viam::service::motion::v1::LinearConstraint& linear_constraint(int index) const;
+  ::viam::service::motion::v1::LinearConstraint* add_linear_constraint();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::LinearConstraint >&
+      linear_constraint() const;
+
+  // repeated .viam.service.motion.v1.OrientationConstraint orientation_constraint = 2 [json_name = "orientationConstraint"];
+  int orientation_constraint_size() const;
+  private:
+  int _internal_orientation_constraint_size() const;
+  public:
+  void clear_orientation_constraint();
+  ::viam::service::motion::v1::OrientationConstraint* mutable_orientation_constraint(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::OrientationConstraint >*
+      mutable_orientation_constraint();
+  private:
+  const ::viam::service::motion::v1::OrientationConstraint& _internal_orientation_constraint(int index) const;
+  ::viam::service::motion::v1::OrientationConstraint* _internal_add_orientation_constraint();
+  public:
+  const ::viam::service::motion::v1::OrientationConstraint& orientation_constraint(int index) const;
+  ::viam::service::motion::v1::OrientationConstraint* add_orientation_constraint();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::OrientationConstraint >&
+      orientation_constraint() const;
+
+  // repeated .viam.service.motion.v1.CollisionSpecification collision_specification = 3 [json_name = "collisionSpecification"];
+  int collision_specification_size() const;
+  private:
+  int _internal_collision_specification_size() const;
+  public:
+  void clear_collision_specification();
+  ::viam::service::motion::v1::CollisionSpecification* mutable_collision_specification(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification >*
+      mutable_collision_specification();
+  private:
+  const ::viam::service::motion::v1::CollisionSpecification& _internal_collision_specification(int index) const;
+  ::viam::service::motion::v1::CollisionSpecification* _internal_add_collision_specification();
+  public:
+  const ::viam::service::motion::v1::CollisionSpecification& collision_specification(int index) const;
+  ::viam::service::motion::v1::CollisionSpecification* add_collision_specification();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification >&
+      collision_specification() const;
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.Constraints)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::LinearConstraint > linear_constraint_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::OrientationConstraint > orientation_constraint_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification > collision_specification_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LinearConstraint final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.LinearConstraint) */ {
+ public:
+  inline LinearConstraint() : LinearConstraint(nullptr) {}
+  ~LinearConstraint() override;
+  explicit PROTOBUF_CONSTEXPR LinearConstraint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LinearConstraint(const LinearConstraint& from);
+  LinearConstraint(LinearConstraint&& from) noexcept
+    : LinearConstraint() {
+    *this = ::std::move(from);
+  }
+
+  inline LinearConstraint& operator=(const LinearConstraint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LinearConstraint& operator=(LinearConstraint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LinearConstraint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LinearConstraint* internal_default_instance() {
+    return reinterpret_cast<const LinearConstraint*>(
+               &_LinearConstraint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(LinearConstraint& a, LinearConstraint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LinearConstraint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LinearConstraint* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LinearConstraint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LinearConstraint>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const LinearConstraint& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const LinearConstraint& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LinearConstraint* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.LinearConstraint";
+  }
+  protected:
+  explicit LinearConstraint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLineToleranceMmFieldNumber = 1,
+    kOrientationToleranceDegsFieldNumber = 2,
+  };
+  // optional float line_tolerance_mm = 1 [json_name = "lineToleranceMm"];
+  bool has_line_tolerance_mm() const;
+  private:
+  bool _internal_has_line_tolerance_mm() const;
+  public:
+  void clear_line_tolerance_mm();
+  float line_tolerance_mm() const;
+  void set_line_tolerance_mm(float value);
+  private:
+  float _internal_line_tolerance_mm() const;
+  void _internal_set_line_tolerance_mm(float value);
+  public:
+
+  // optional float orientation_tolerance_degs = 2 [json_name = "orientationToleranceDegs"];
+  bool has_orientation_tolerance_degs() const;
+  private:
+  bool _internal_has_orientation_tolerance_degs() const;
+  public:
+  void clear_orientation_tolerance_degs();
+  float orientation_tolerance_degs() const;
+  void set_orientation_tolerance_degs(float value);
+  private:
+  float _internal_orientation_tolerance_degs() const;
+  void _internal_set_orientation_tolerance_degs(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.LinearConstraint)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  float line_tolerance_mm_;
+  float orientation_tolerance_degs_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class OrientationConstraint final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.OrientationConstraint) */ {
+ public:
+  inline OrientationConstraint() : OrientationConstraint(nullptr) {}
+  ~OrientationConstraint() override;
+  explicit PROTOBUF_CONSTEXPR OrientationConstraint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  OrientationConstraint(const OrientationConstraint& from);
+  OrientationConstraint(OrientationConstraint&& from) noexcept
+    : OrientationConstraint() {
+    *this = ::std::move(from);
+  }
+
+  inline OrientationConstraint& operator=(const OrientationConstraint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OrientationConstraint& operator=(OrientationConstraint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const OrientationConstraint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const OrientationConstraint* internal_default_instance() {
+    return reinterpret_cast<const OrientationConstraint*>(
+               &_OrientationConstraint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OrientationConstraint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OrientationConstraint* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  OrientationConstraint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<OrientationConstraint>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const OrientationConstraint& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const OrientationConstraint& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(OrientationConstraint* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.OrientationConstraint";
+  }
+  protected:
+  explicit OrientationConstraint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrientationToleranceDegsFieldNumber = 1,
+  };
+  // optional float orientation_tolerance_degs = 1 [json_name = "orientationToleranceDegs"];
+  bool has_orientation_tolerance_degs() const;
+  private:
+  bool _internal_has_orientation_tolerance_degs() const;
+  public:
+  void clear_orientation_tolerance_degs();
+  float orientation_tolerance_degs() const;
+  void set_orientation_tolerance_degs(float value);
+  private:
+  float _internal_orientation_tolerance_degs() const;
+  void _internal_set_orientation_tolerance_degs(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.OrientationConstraint)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  float orientation_tolerance_degs_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CollisionSpecification_AllowedFrameCollisions final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions) */ {
+ public:
+  inline CollisionSpecification_AllowedFrameCollisions() : CollisionSpecification_AllowedFrameCollisions(nullptr) {}
+  ~CollisionSpecification_AllowedFrameCollisions() override;
+  explicit PROTOBUF_CONSTEXPR CollisionSpecification_AllowedFrameCollisions(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CollisionSpecification_AllowedFrameCollisions(const CollisionSpecification_AllowedFrameCollisions& from);
+  CollisionSpecification_AllowedFrameCollisions(CollisionSpecification_AllowedFrameCollisions&& from) noexcept
+    : CollisionSpecification_AllowedFrameCollisions() {
+    *this = ::std::move(from);
+  }
+
+  inline CollisionSpecification_AllowedFrameCollisions& operator=(const CollisionSpecification_AllowedFrameCollisions& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CollisionSpecification_AllowedFrameCollisions& operator=(CollisionSpecification_AllowedFrameCollisions&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CollisionSpecification_AllowedFrameCollisions& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CollisionSpecification_AllowedFrameCollisions* internal_default_instance() {
+    return reinterpret_cast<const CollisionSpecification_AllowedFrameCollisions*>(
+               &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CollisionSpecification_AllowedFrameCollisions* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CollisionSpecification_AllowedFrameCollisions* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CollisionSpecification_AllowedFrameCollisions* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CollisionSpecification_AllowedFrameCollisions>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CollisionSpecification_AllowedFrameCollisions& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CollisionSpecification_AllowedFrameCollisions& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CollisionSpecification_AllowedFrameCollisions* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions";
+  }
+  protected:
+  explicit CollisionSpecification_AllowedFrameCollisions(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFrame1FieldNumber = 1,
+    kFrame2FieldNumber = 2,
+  };
+  // string frame1 = 1 [json_name = "frame1"];
+  void clear_frame1();
+  const std::string& frame1() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_frame1(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_frame1();
+  PROTOBUF_NODISCARD std::string* release_frame1();
+  void set_allocated_frame1(std::string* frame1);
+  private:
+  const std::string& _internal_frame1() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_frame1(const std::string& value);
+  std::string* _internal_mutable_frame1();
+  public:
+
+  // string frame2 = 2 [json_name = "frame2"];
+  void clear_frame2();
+  const std::string& frame2() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_frame2(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_frame2();
+  PROTOBUF_NODISCARD std::string* release_frame2();
+  void set_allocated_frame2(std::string* frame2);
+  private:
+  const std::string& _internal_frame2() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_frame2(const std::string& value);
+  std::string* _internal_mutable_frame2();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr frame1_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr frame2_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CollisionSpecification final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.CollisionSpecification) */ {
+ public:
+  inline CollisionSpecification() : CollisionSpecification(nullptr) {}
+  ~CollisionSpecification() override;
+  explicit PROTOBUF_CONSTEXPR CollisionSpecification(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CollisionSpecification(const CollisionSpecification& from);
+  CollisionSpecification(CollisionSpecification&& from) noexcept
+    : CollisionSpecification() {
+    *this = ::std::move(from);
+  }
+
+  inline CollisionSpecification& operator=(const CollisionSpecification& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CollisionSpecification& operator=(CollisionSpecification&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CollisionSpecification& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CollisionSpecification* internal_default_instance() {
+    return reinterpret_cast<const CollisionSpecification*>(
+               &_CollisionSpecification_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CollisionSpecification* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CollisionSpecification* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CollisionSpecification* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CollisionSpecification>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CollisionSpecification& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CollisionSpecification& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CollisionSpecification* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.CollisionSpecification";
+  }
+  protected:
+  explicit CollisionSpecification(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef CollisionSpecification_AllowedFrameCollisions AllowedFrameCollisions;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAllowsFieldNumber = 1,
+  };
+  // repeated .viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions allows = 1 [json_name = "allows"];
+  int allows_size() const;
+  private:
+  int _internal_allows_size() const;
+  public:
+  void clear_allows();
+  ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* mutable_allows(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions >*
+      mutable_allows();
+  private:
+  const ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions& _internal_allows(int index) const;
+  ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* _internal_add_allows();
+  public:
+  const ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions& allows(int index) const;
+  ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* add_allows();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions >&
+      allows() const;
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.CollisionSpecification)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions > allows_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
 // ===================================================================
 
 
@@ -1522,6 +2383,96 @@ inline void MoveRequest::set_allocated_world_state(::viam::common::v1::WorldStat
   }
   world_state_ = world_state;
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.world_state)
+}
+
+// optional .viam.service.motion.v1.Constraints constraints = 5 [json_name = "constraints"];
+inline bool MoveRequest::_internal_has_constraints() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || constraints_ != nullptr);
+  return value;
+}
+inline bool MoveRequest::has_constraints() const {
+  return _internal_has_constraints();
+}
+inline void MoveRequest::clear_constraints() {
+  if (constraints_ != nullptr) constraints_->Clear();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const ::viam::service::motion::v1::Constraints& MoveRequest::_internal_constraints() const {
+  const ::viam::service::motion::v1::Constraints* p = constraints_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::Constraints&>(
+      ::viam::service::motion::v1::_Constraints_default_instance_);
+}
+inline const ::viam::service::motion::v1::Constraints& MoveRequest::constraints() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveRequest.constraints)
+  return _internal_constraints();
+}
+inline void MoveRequest::unsafe_arena_set_allocated_constraints(
+    ::viam::service::motion::v1::Constraints* constraints) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(constraints_);
+  }
+  constraints_ = constraints;
+  if (constraints) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveRequest.constraints)
+}
+inline ::viam::service::motion::v1::Constraints* MoveRequest::release_constraints() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::viam::service::motion::v1::Constraints* temp = constraints_;
+  constraints_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::Constraints* MoveRequest::unsafe_arena_release_constraints() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveRequest.constraints)
+  _has_bits_[0] &= ~0x00000002u;
+  ::viam::service::motion::v1::Constraints* temp = constraints_;
+  constraints_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::Constraints* MoveRequest::_internal_mutable_constraints() {
+  _has_bits_[0] |= 0x00000002u;
+  if (constraints_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::Constraints>(GetArenaForAllocation());
+    constraints_ = p;
+  }
+  return constraints_;
+}
+inline ::viam::service::motion::v1::Constraints* MoveRequest::mutable_constraints() {
+  ::viam::service::motion::v1::Constraints* _msg = _internal_mutable_constraints();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveRequest.constraints)
+  return _msg;
+}
+inline void MoveRequest::set_allocated_constraints(::viam::service::motion::v1::Constraints* constraints) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete constraints_;
+  }
+  if (constraints) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(constraints);
+    if (message_arena != submessage_arena) {
+      constraints = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, constraints, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  constraints_ = constraints;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.constraints)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -2453,9 +3404,383 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPoseResponse.pose)
 }
 
+// -------------------------------------------------------------------
+
+// Constraints
+
+// repeated .viam.service.motion.v1.LinearConstraint linear_constraint = 1 [json_name = "linearConstraint"];
+inline int Constraints::_internal_linear_constraint_size() const {
+  return linear_constraint_.size();
+}
+inline int Constraints::linear_constraint_size() const {
+  return _internal_linear_constraint_size();
+}
+inline void Constraints::clear_linear_constraint() {
+  linear_constraint_.Clear();
+}
+inline ::viam::service::motion::v1::LinearConstraint* Constraints::mutable_linear_constraint(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Constraints.linear_constraint)
+  return linear_constraint_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::LinearConstraint >*
+Constraints::mutable_linear_constraint() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.Constraints.linear_constraint)
+  return &linear_constraint_;
+}
+inline const ::viam::service::motion::v1::LinearConstraint& Constraints::_internal_linear_constraint(int index) const {
+  return linear_constraint_.Get(index);
+}
+inline const ::viam::service::motion::v1::LinearConstraint& Constraints::linear_constraint(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Constraints.linear_constraint)
+  return _internal_linear_constraint(index);
+}
+inline ::viam::service::motion::v1::LinearConstraint* Constraints::_internal_add_linear_constraint() {
+  return linear_constraint_.Add();
+}
+inline ::viam::service::motion::v1::LinearConstraint* Constraints::add_linear_constraint() {
+  ::viam::service::motion::v1::LinearConstraint* _add = _internal_add_linear_constraint();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.Constraints.linear_constraint)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::LinearConstraint >&
+Constraints::linear_constraint() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.Constraints.linear_constraint)
+  return linear_constraint_;
+}
+
+// repeated .viam.service.motion.v1.OrientationConstraint orientation_constraint = 2 [json_name = "orientationConstraint"];
+inline int Constraints::_internal_orientation_constraint_size() const {
+  return orientation_constraint_.size();
+}
+inline int Constraints::orientation_constraint_size() const {
+  return _internal_orientation_constraint_size();
+}
+inline void Constraints::clear_orientation_constraint() {
+  orientation_constraint_.Clear();
+}
+inline ::viam::service::motion::v1::OrientationConstraint* Constraints::mutable_orientation_constraint(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Constraints.orientation_constraint)
+  return orientation_constraint_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::OrientationConstraint >*
+Constraints::mutable_orientation_constraint() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.Constraints.orientation_constraint)
+  return &orientation_constraint_;
+}
+inline const ::viam::service::motion::v1::OrientationConstraint& Constraints::_internal_orientation_constraint(int index) const {
+  return orientation_constraint_.Get(index);
+}
+inline const ::viam::service::motion::v1::OrientationConstraint& Constraints::orientation_constraint(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Constraints.orientation_constraint)
+  return _internal_orientation_constraint(index);
+}
+inline ::viam::service::motion::v1::OrientationConstraint* Constraints::_internal_add_orientation_constraint() {
+  return orientation_constraint_.Add();
+}
+inline ::viam::service::motion::v1::OrientationConstraint* Constraints::add_orientation_constraint() {
+  ::viam::service::motion::v1::OrientationConstraint* _add = _internal_add_orientation_constraint();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.Constraints.orientation_constraint)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::OrientationConstraint >&
+Constraints::orientation_constraint() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.Constraints.orientation_constraint)
+  return orientation_constraint_;
+}
+
+// repeated .viam.service.motion.v1.CollisionSpecification collision_specification = 3 [json_name = "collisionSpecification"];
+inline int Constraints::_internal_collision_specification_size() const {
+  return collision_specification_.size();
+}
+inline int Constraints::collision_specification_size() const {
+  return _internal_collision_specification_size();
+}
+inline void Constraints::clear_collision_specification() {
+  collision_specification_.Clear();
+}
+inline ::viam::service::motion::v1::CollisionSpecification* Constraints::mutable_collision_specification(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Constraints.collision_specification)
+  return collision_specification_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification >*
+Constraints::mutable_collision_specification() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.Constraints.collision_specification)
+  return &collision_specification_;
+}
+inline const ::viam::service::motion::v1::CollisionSpecification& Constraints::_internal_collision_specification(int index) const {
+  return collision_specification_.Get(index);
+}
+inline const ::viam::service::motion::v1::CollisionSpecification& Constraints::collision_specification(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Constraints.collision_specification)
+  return _internal_collision_specification(index);
+}
+inline ::viam::service::motion::v1::CollisionSpecification* Constraints::_internal_add_collision_specification() {
+  return collision_specification_.Add();
+}
+inline ::viam::service::motion::v1::CollisionSpecification* Constraints::add_collision_specification() {
+  ::viam::service::motion::v1::CollisionSpecification* _add = _internal_add_collision_specification();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.Constraints.collision_specification)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification >&
+Constraints::collision_specification() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.Constraints.collision_specification)
+  return collision_specification_;
+}
+
+// -------------------------------------------------------------------
+
+// LinearConstraint
+
+// optional float line_tolerance_mm = 1 [json_name = "lineToleranceMm"];
+inline bool LinearConstraint::_internal_has_line_tolerance_mm() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool LinearConstraint::has_line_tolerance_mm() const {
+  return _internal_has_line_tolerance_mm();
+}
+inline void LinearConstraint::clear_line_tolerance_mm() {
+  line_tolerance_mm_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline float LinearConstraint::_internal_line_tolerance_mm() const {
+  return line_tolerance_mm_;
+}
+inline float LinearConstraint::line_tolerance_mm() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.LinearConstraint.line_tolerance_mm)
+  return _internal_line_tolerance_mm();
+}
+inline void LinearConstraint::_internal_set_line_tolerance_mm(float value) {
+  _has_bits_[0] |= 0x00000001u;
+  line_tolerance_mm_ = value;
+}
+inline void LinearConstraint::set_line_tolerance_mm(float value) {
+  _internal_set_line_tolerance_mm(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.LinearConstraint.line_tolerance_mm)
+}
+
+// optional float orientation_tolerance_degs = 2 [json_name = "orientationToleranceDegs"];
+inline bool LinearConstraint::_internal_has_orientation_tolerance_degs() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool LinearConstraint::has_orientation_tolerance_degs() const {
+  return _internal_has_orientation_tolerance_degs();
+}
+inline void LinearConstraint::clear_orientation_tolerance_degs() {
+  orientation_tolerance_degs_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline float LinearConstraint::_internal_orientation_tolerance_degs() const {
+  return orientation_tolerance_degs_;
+}
+inline float LinearConstraint::orientation_tolerance_degs() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.LinearConstraint.orientation_tolerance_degs)
+  return _internal_orientation_tolerance_degs();
+}
+inline void LinearConstraint::_internal_set_orientation_tolerance_degs(float value) {
+  _has_bits_[0] |= 0x00000002u;
+  orientation_tolerance_degs_ = value;
+}
+inline void LinearConstraint::set_orientation_tolerance_degs(float value) {
+  _internal_set_orientation_tolerance_degs(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.LinearConstraint.orientation_tolerance_degs)
+}
+
+// -------------------------------------------------------------------
+
+// OrientationConstraint
+
+// optional float orientation_tolerance_degs = 1 [json_name = "orientationToleranceDegs"];
+inline bool OrientationConstraint::_internal_has_orientation_tolerance_degs() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool OrientationConstraint::has_orientation_tolerance_degs() const {
+  return _internal_has_orientation_tolerance_degs();
+}
+inline void OrientationConstraint::clear_orientation_tolerance_degs() {
+  orientation_tolerance_degs_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline float OrientationConstraint::_internal_orientation_tolerance_degs() const {
+  return orientation_tolerance_degs_;
+}
+inline float OrientationConstraint::orientation_tolerance_degs() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.OrientationConstraint.orientation_tolerance_degs)
+  return _internal_orientation_tolerance_degs();
+}
+inline void OrientationConstraint::_internal_set_orientation_tolerance_degs(float value) {
+  _has_bits_[0] |= 0x00000001u;
+  orientation_tolerance_degs_ = value;
+}
+inline void OrientationConstraint::set_orientation_tolerance_degs(float value) {
+  _internal_set_orientation_tolerance_degs(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.OrientationConstraint.orientation_tolerance_degs)
+}
+
+// -------------------------------------------------------------------
+
+// CollisionSpecification_AllowedFrameCollisions
+
+// string frame1 = 1 [json_name = "frame1"];
+inline void CollisionSpecification_AllowedFrameCollisions::clear_frame1() {
+  frame1_.ClearToEmpty();
+}
+inline const std::string& CollisionSpecification_AllowedFrameCollisions::frame1() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame1)
+  return _internal_frame1();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CollisionSpecification_AllowedFrameCollisions::set_frame1(ArgT0&& arg0, ArgT... args) {
+ 
+ frame1_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame1)
+}
+inline std::string* CollisionSpecification_AllowedFrameCollisions::mutable_frame1() {
+  std::string* _s = _internal_mutable_frame1();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame1)
+  return _s;
+}
+inline const std::string& CollisionSpecification_AllowedFrameCollisions::_internal_frame1() const {
+  return frame1_.Get();
+}
+inline void CollisionSpecification_AllowedFrameCollisions::_internal_set_frame1(const std::string& value) {
+  
+  frame1_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CollisionSpecification_AllowedFrameCollisions::_internal_mutable_frame1() {
+  
+  return frame1_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CollisionSpecification_AllowedFrameCollisions::release_frame1() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame1)
+  return frame1_.Release();
+}
+inline void CollisionSpecification_AllowedFrameCollisions::set_allocated_frame1(std::string* frame1) {
+  if (frame1 != nullptr) {
+    
+  } else {
+    
+  }
+  frame1_.SetAllocated(frame1, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (frame1_.IsDefault()) {
+    frame1_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame1)
+}
+
+// string frame2 = 2 [json_name = "frame2"];
+inline void CollisionSpecification_AllowedFrameCollisions::clear_frame2() {
+  frame2_.ClearToEmpty();
+}
+inline const std::string& CollisionSpecification_AllowedFrameCollisions::frame2() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame2)
+  return _internal_frame2();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CollisionSpecification_AllowedFrameCollisions::set_frame2(ArgT0&& arg0, ArgT... args) {
+ 
+ frame2_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame2)
+}
+inline std::string* CollisionSpecification_AllowedFrameCollisions::mutable_frame2() {
+  std::string* _s = _internal_mutable_frame2();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame2)
+  return _s;
+}
+inline const std::string& CollisionSpecification_AllowedFrameCollisions::_internal_frame2() const {
+  return frame2_.Get();
+}
+inline void CollisionSpecification_AllowedFrameCollisions::_internal_set_frame2(const std::string& value) {
+  
+  frame2_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CollisionSpecification_AllowedFrameCollisions::_internal_mutable_frame2() {
+  
+  return frame2_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CollisionSpecification_AllowedFrameCollisions::release_frame2() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame2)
+  return frame2_.Release();
+}
+inline void CollisionSpecification_AllowedFrameCollisions::set_allocated_frame2(std::string* frame2) {
+  if (frame2 != nullptr) {
+    
+  } else {
+    
+  }
+  frame2_.SetAllocated(frame2, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (frame2_.IsDefault()) {
+    frame2_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions.frame2)
+}
+
+// -------------------------------------------------------------------
+
+// CollisionSpecification
+
+// repeated .viam.service.motion.v1.CollisionSpecification.AllowedFrameCollisions allows = 1 [json_name = "allows"];
+inline int CollisionSpecification::_internal_allows_size() const {
+  return allows_.size();
+}
+inline int CollisionSpecification::allows_size() const {
+  return _internal_allows_size();
+}
+inline void CollisionSpecification::clear_allows() {
+  allows_.Clear();
+}
+inline ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* CollisionSpecification::mutable_allows(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.CollisionSpecification.allows)
+  return allows_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions >*
+CollisionSpecification::mutable_allows() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.CollisionSpecification.allows)
+  return &allows_;
+}
+inline const ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions& CollisionSpecification::_internal_allows(int index) const {
+  return allows_.Get(index);
+}
+inline const ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions& CollisionSpecification::allows(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.CollisionSpecification.allows)
+  return _internal_allows(index);
+}
+inline ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* CollisionSpecification::_internal_add_allows() {
+  return allows_.Add();
+}
+inline ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* CollisionSpecification::add_allows() {
+  ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* _add = _internal_add_allows();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.CollisionSpecification.allows)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions >&
+CollisionSpecification::allows() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.CollisionSpecification.allows)
+  return allows_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

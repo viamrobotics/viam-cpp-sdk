@@ -22,10 +22,9 @@ class ResourceSubtype {
     std::function<ResourceBase(ResourceBase, Name)> create_reconfigurable;
     std::function<ProtoType(ResourceBase)> create_status;
     const google::protobuf::ServiceDescriptor* service_descriptor;
+    std::function<ResourceBase(std::string, std::shared_ptr<grpc::Channel>)> create_rpc_client;
     virtual std::shared_ptr<ResourceServerBase> create_resource_server(
         std::shared_ptr<SubtypeService> svc);
-    std::function<std::shared_ptr<ResourceBase>(std::string, std::shared_ptr<grpc::Channel>)>
-        create_rpc_client;
 
     ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor(service_descriptor){};
@@ -33,22 +32,27 @@ class ResourceSubtype {
    private:
 };
 
-class ModelRegistration {
+class ResourceRegistration {
    public:
-    ModelRegistration(ResourceType rt) : resource_type(std::move(rt)){};
-    ModelRegistration(
+    ResourceRegistration(ResourceType rt) : resource_type(std::move(rt)){};
+    ResourceRegistration(
         ResourceType rt,
         Subtype subtype,
         Model model,
+        std::function<std::shared_ptr<ResourceBase>(std::string, std::shared_ptr<grpc::Channel>)>
+            create_rpc_client,
         std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor)
         : subtype(std::move(subtype)),
           resource_type(std::move(rt)),
           model(std::move(model)),
+          create_rpc_client(std::move(create_rpc_client)),
           construct_resource(std::move(constructor)){};
     Subtype subtype;
     Model model;
     ResourceType resource_type;
     std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;
+    std::function<std::shared_ptr<ResourceBase>(std::string, std::shared_ptr<grpc::Channel>)>
+        create_rpc_client;
     viam::robot::v1::Status create_status(std::shared_ptr<ResourceBase> resource);
 };
 
@@ -56,21 +60,21 @@ class Registry {
    public:
     /// Registers a resource with the Registry
     /// Args:
-    /// 	resource (ModelRegistration): object containing resource registration data
+    /// 	resource (ResourceRegistration): object containing resource registration data
     ///
     /// Raises:
     /// 	throws error if resource already exists in the registry
-    static void register_resource(std::shared_ptr<ModelRegistration> resource);
-    static std::shared_ptr<ModelRegistration> lookup_resource(std::string name);
-    static std::shared_ptr<ModelRegistration> lookup_resource(Subtype subtype, Model model);
+    static void register_resource(std::shared_ptr<ResourceRegistration> resource);
+    static std::shared_ptr<ResourceRegistration> lookup_resource(std::string name);
+    static std::shared_ptr<ResourceRegistration> lookup_resource(Subtype subtype, Model model);
     static void register_subtype(Subtype subtype,
                                  std::shared_ptr<ResourceSubtype> resource_subtype);
     static std::shared_ptr<ResourceSubtype> lookup_subtype(Subtype subtype);
-    static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>>
+    static std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>>
     registered_resources();
 
    private:
-    static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> resources;
+    static std::unordered_map<std::string, std::shared_ptr<ResourceRegistration>> resources;
     static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes;
 };
 

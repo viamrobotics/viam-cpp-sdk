@@ -286,10 +286,35 @@ struct ActuatorStatusDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ActuatorStatusDefaultTypeInternal _ActuatorStatus_default_instance_;
+PROTOBUF_CONSTEXPR DoCommandRequest::DoCommandRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , command_(nullptr){}
+struct DoCommandRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DoCommandRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DoCommandRequestDefaultTypeInternal() {}
+  union {
+    DoCommandRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
+PROTOBUF_CONSTEXPR DoCommandResponse::DoCommandResponse(
+    ::_pbi::ConstantInitialized)
+  : result_(nullptr){}
+struct DoCommandResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DoCommandResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DoCommandResponseDefaultTypeInternal() {}
+  union {
+    DoCommandResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DoCommandResponseDefaultTypeInternal _DoCommandResponse_default_instance_;
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[20];
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[22];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
@@ -471,6 +496,21 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ActuatorStatus, is_moving_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandRequest, command_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandResponse, result_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::common::v1::ResourceName)},
@@ -493,6 +533,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 150, 159, -1, sizeof(::viam::common::v1::Transform)},
   { 162, -1, -1, sizeof(::viam::common::v1::WorldState)},
   { 170, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 177, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 185, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -516,77 +558,85 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_Transform_default_instance_._instance,
   &::viam::common::v1::_WorldState_default_instance_._instance,
   &::viam::common::v1::_ActuatorStatus_default_instance_._instance,
+  &::viam::common::v1::_DoCommandRequest_default_instance_._instance,
+  &::viam::common::v1::_DoCommandResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\026common/v1/common.proto\022\016viam.common.v1"
-  "\032 google/protobuf/descriptor.proto\"n\n\014Re"
-  "sourceName\022\034\n\tnamespace\030\001 \001(\tR\tnamespace"
-  "\022\022\n\004type\030\002 \001(\tR\004type\022\030\n\007subtype\030\003 \001(\tR\007s"
-  "ubtype\022\022\n\004name\030\004 \001(\tR\004name\"\374\002\n\013BoardStat"
-  "us\022B\n\007analogs\030\001 \003(\0132(.viam.common.v1.Boa"
-  "rdStatus.AnalogsEntryR\007analogs\022a\n\022digita"
-  "l_interrupts\030\002 \003(\01322.viam.common.v1.Boar"
-  "dStatus.DigitalInterruptsEntryR\021digitalI"
-  "nterrupts\032X\n\014AnalogsEntry\022\020\n\003key\030\001 \001(\tR\003"
-  "key\0222\n\005value\030\002 \001(\0132\034.viam.common.v1.Anal"
-  "ogStatusR\005value:\0028\001\032l\n\026DigitalInterrupts"
-  "Entry\022\020\n\003key\030\001 \001(\tR\003key\022<\n\005value\030\002 \001(\0132&"
-  ".viam.common.v1.DigitalInterruptStatusR\005"
-  "value:\0028\001\"$\n\014AnalogStatus\022\024\n\005value\030\001 \001(\005"
-  "R\005value\".\n\026DigitalInterruptStatus\022\024\n\005val"
-  "ue\030\001 \001(\003R\005value\"y\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n"
-  "\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002"
-  "oX\022\017\n\003o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005"
-  "theta\030\007 \001(\001R\005theta\"V\n\013Orientation\022\017\n\003o_x"
-  "\030\001 \001(\001R\002oX\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001"
-  "R\002oZ\022\024\n\005theta\030\004 \001(\001R\005theta\"`\n\013PoseInFram"
-  "e\022\'\n\017reference_frame\030\001 \001(\tR\016referenceFra"
-  "me\022(\n\004pose\030\002 \001(\0132\024.viam.common.v1.PoseR\004"
-  "pose\"3\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001"
-  "R\001y\022\014\n\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_mm"
-  "\030\001 \001(\001R\010radiusMm\"C\n\007Capsule\022\033\n\tradius_mm"
-  "\030\001 \001(\001R\010radiusMm\022\033\n\tlength_mm\030\002 \001(\001R\010len"
-  "gthMm\"D\n\020RectangularPrism\0220\n\007dims_mm\030\001 \001"
-  "(\0132\027.viam.common.v1.Vector3R\006dimsMm\"\374\001\n\010"
-  "Geometry\022,\n\006center\030\001 \001(\0132\024.viam.common.v"
-  "1.PoseR\006center\0220\n\006sphere\030\002 \001(\0132\026.viam.co"
-  "mmon.v1.SphereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 ."
-  "viam.common.v1.RectangularPrismH\000R\003box\0223"
-  "\n\007capsule\030\005 \001(\0132\027.viam.common.v1.Capsule"
-  "H\000R\007capsule\022\024\n\005label\030\004 \001(\tR\005labelB\017\n\rgeo"
-  "metry_type\"v\n\021GeometriesInFrame\022\'\n\017refer"
-  "ence_frame\030\001 \001(\tR\016referenceFrame\0228\n\ngeom"
-  "etries\030\002 \003(\0132\030.viam.common.v1.GeometryR\n"
-  "geometries\"v\n\020PointCloudObject\022\037\n\013point_"
-  "cloud\030\001 \001(\014R\npointCloud\022A\n\ngeometries\030\002 "
-  "\001(\0132!.viam.common.v1.GeometriesInFrameR\n"
-  "geometries\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001"
-  "R\010latitude\022\034\n\tlongitude\030\002 \001(\001R\tlongitude"
-  "\"\342\001\n\tTransform\022\'\n\017reference_frame\030\001 \001(\tR"
-  "\016referenceFrame\022P\n\026pose_in_observer_fram"
-  "e\030\002 \001(\0132\033.viam.common.v1.PoseInFrameR\023po"
-  "seInObserverFrame\022F\n\017physical_object\030\003 \001"
-  "(\0132\030.viam.common.v1.GeometryH\000R\016physical"
-  "Object\210\001\001B\022\n\020_physical_object\"\210\001\n\nWorldS"
-  "tate\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1"
-  ".GeometriesInFrameR\tobstacles\0229\n\ntransfo"
-  "rms\030\003 \003(\0132\031.viam.common.v1.TransformR\ntr"
-  "ansforms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030"
-  "\001 \001(\010R\010isMoving:a\n\032safety_heartbeat_moni"
-  "tored\022\036.google.protobuf.MethodOptions\030\244\222"
-  "\005 \001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022co"
-  "m.viam.common.v1Z\031go.viam.com/api/common"
-  "/v1b\006proto3"
+  "\032 google/protobuf/descriptor.proto\032\034goog"
+  "le/protobuf/struct.proto\"n\n\014ResourceName"
+  "\022\034\n\tnamespace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002"
+  " \001(\tR\004type\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004"
+  "name\030\004 \001(\tR\004name\"\374\002\n\013BoardStatus\022B\n\007anal"
+  "ogs\030\001 \003(\0132(.viam.common.v1.BoardStatus.A"
+  "nalogsEntryR\007analogs\022a\n\022digital_interrup"
+  "ts\030\002 \003(\01322.viam.common.v1.BoardStatus.Di"
+  "gitalInterruptsEntryR\021digitalInterrupts\032"
+  "X\n\014AnalogsEntry\022\020\n\003key\030\001 \001(\tR\003key\0222\n\005val"
+  "ue\030\002 \001(\0132\034.viam.common.v1.AnalogStatusR\005"
+  "value:\0028\001\032l\n\026DigitalInterruptsEntry\022\020\n\003k"
+  "ey\030\001 \001(\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.comm"
+  "on.v1.DigitalInterruptStatusR\005value:\0028\001\""
+  "$\n\014AnalogStatus\022\024\n\005value\030\001 \001(\005R\005value\".\n"
+  "\026DigitalInterruptStatus\022\024\n\005value\030\001 \001(\003R\005"
+  "value\"y\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001"
+  "y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002oX\022\017\n\003o_y\030"
+  "\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030\007 \001("
+  "\001R\005theta\"V\n\013Orientation\022\017\n\003o_x\030\001 \001(\001R\002oX"
+  "\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024\n\005th"
+  "eta\030\004 \001(\001R\005theta\"`\n\013PoseInFrame\022\'\n\017refer"
+  "ence_frame\030\001 \001(\tR\016referenceFrame\022(\n\004pose"
+  "\030\002 \001(\0132\024.viam.common.v1.PoseR\004pose\"3\n\007Ve"
+  "ctor3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003"
+  " \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_mm\030\001 \001(\001R\010ra"
+  "diusMm\"C\n\007Capsule\022\033\n\tradius_mm\030\001 \001(\001R\010ra"
+  "diusMm\022\033\n\tlength_mm\030\002 \001(\001R\010lengthMm\"D\n\020R"
+  "ectangularPrism\0220\n\007dims_mm\030\001 \001(\0132\027.viam."
+  "common.v1.Vector3R\006dimsMm\"\374\001\n\010Geometry\022,"
+  "\n\006center\030\001 \001(\0132\024.viam.common.v1.PoseR\006ce"
+  "nter\0220\n\006sphere\030\002 \001(\0132\026.viam.common.v1.Sp"
+  "hereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 .viam.commo"
+  "n.v1.RectangularPrismH\000R\003box\0223\n\007capsule\030"
+  "\005 \001(\0132\027.viam.common.v1.CapsuleH\000R\007capsul"
+  "e\022\024\n\005label\030\004 \001(\tR\005labelB\017\n\rgeometry_type"
+  "\"v\n\021GeometriesInFrame\022\'\n\017reference_frame"
+  "\030\001 \001(\tR\016referenceFrame\0228\n\ngeometries\030\002 \003"
+  "(\0132\030.viam.common.v1.GeometryR\ngeometries"
+  "\"v\n\020PointCloudObject\022\037\n\013point_cloud\030\001 \001("
+  "\014R\npointCloud\022A\n\ngeometries\030\002 \001(\0132!.viam"
+  ".common.v1.GeometriesInFrameR\ngeometries"
+  "\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010latitude"
+  "\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"\342\001\n\tTrans"
+  "form\022\'\n\017reference_frame\030\001 \001(\tR\016reference"
+  "Frame\022P\n\026pose_in_observer_frame\030\002 \001(\0132\033."
+  "viam.common.v1.PoseInFrameR\023poseInObserv"
+  "erFrame\022F\n\017physical_object\030\003 \001(\0132\030.viam."
+  "common.v1.GeometryH\000R\016physicalObject\210\001\001B"
+  "\022\n\020_physical_object\"\210\001\n\nWorldState\022\?\n\tob"
+  "stacles\030\001 \003(\0132!.viam.common.v1.Geometrie"
+  "sInFrameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132"
+  "\031.viam.common.v1.TransformR\ntransforms\"-"
+  "\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isM"
+  "oving\"Y\n\020DoCommandRequest\022\022\n\004name\030\001 \001(\tR"
+  "\004name\0221\n\007command\030\002 \001(\0132\027.google.protobuf"
+  ".StructR\007command\"D\n\021DoCommandResponse\022/\n"
+  "\006result\030\001 \001(\0132\027.google.protobuf.StructR\006"
+  "result:a\n\032safety_heartbeat_monitored\022\036.g"
+  "oogle.protobuf.MethodOptions\030\244\222\005 \001(\010R\030sa"
+  "fetyHeartbeatMonitored\210\001\001B/\n\022com.viam.co"
+  "mmon.v1Z\031go.viam.com/api/common/v1b\006prot"
+  "o3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[1] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
+  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 2331, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 2522, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 1, 20,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 2, 22,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -5172,6 +5222,442 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
       file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
 }
+
+// ===================================================================
+
+class DoCommandRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& command(const DoCommandRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+DoCommandRequest::_Internal::command(const DoCommandRequest* msg) {
+  return *msg->command_;
+}
+void DoCommandRequest::clear_command() {
+  if (GetArenaForAllocation() == nullptr && command_ != nullptr) {
+    delete command_;
+  }
+  command_ = nullptr;
+}
+DoCommandRequest::DoCommandRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.DoCommandRequest)
+}
+DoCommandRequest::DoCommandRequest(const DoCommandRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_command()) {
+    command_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.command_);
+  } else {
+    command_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.DoCommandRequest)
+}
+
+inline void DoCommandRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+command_ = nullptr;
+}
+
+DoCommandRequest::~DoCommandRequest() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.DoCommandRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DoCommandRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete command_;
+}
+
+void DoCommandRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DoCommandRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.DoCommandRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && command_ != nullptr) {
+    delete command_;
+  }
+  command_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DoCommandRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.DoCommandRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct command = 2 [json_name = "command"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_command(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DoCommandRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.DoCommandRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.DoCommandRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct command = 2 [json_name = "command"];
+  if (this->_internal_has_command()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::command(this),
+        _Internal::command(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.DoCommandRequest)
+  return target;
+}
+
+size_t DoCommandRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.DoCommandRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct command = 2 [json_name = "command"];
+  if (this->_internal_has_command()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *command_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DoCommandRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DoCommandRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DoCommandRequest::GetClassData() const { return &_class_data_; }
+
+void DoCommandRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DoCommandRequest *>(to)->MergeFrom(
+      static_cast<const DoCommandRequest &>(from));
+}
+
+
+void DoCommandRequest::MergeFrom(const DoCommandRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.DoCommandRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_command()) {
+    _internal_mutable_command()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_command());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DoCommandRequest::CopyFrom(const DoCommandRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.DoCommandRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DoCommandRequest::IsInitialized() const {
+  return true;
+}
+
+void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(command_, other->command_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
+}
+
+// ===================================================================
+
+class DoCommandResponse::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& result(const DoCommandResponse* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+DoCommandResponse::_Internal::result(const DoCommandResponse* msg) {
+  return *msg->result_;
+}
+void DoCommandResponse::clear_result() {
+  if (GetArenaForAllocation() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+}
+DoCommandResponse::DoCommandResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.DoCommandResponse)
+}
+DoCommandResponse::DoCommandResponse(const DoCommandResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_result()) {
+    result_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.result_);
+  } else {
+    result_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.DoCommandResponse)
+}
+
+inline void DoCommandResponse::SharedCtor() {
+result_ = nullptr;
+}
+
+DoCommandResponse::~DoCommandResponse() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.DoCommandResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DoCommandResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete result_;
+}
+
+void DoCommandResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DoCommandResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.DoCommandResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DoCommandResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .google.protobuf.Struct result = 1 [json_name = "result"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_result(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DoCommandResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.DoCommandResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .google.protobuf.Struct result = 1 [json_name = "result"];
+  if (this->_internal_has_result()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::result(this),
+        _Internal::result(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.DoCommandResponse)
+  return target;
+}
+
+size_t DoCommandResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.DoCommandResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .google.protobuf.Struct result = 1 [json_name = "result"];
+  if (this->_internal_has_result()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *result_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DoCommandResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DoCommandResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DoCommandResponse::GetClassData() const { return &_class_data_; }
+
+void DoCommandResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DoCommandResponse *>(to)->MergeFrom(
+      static_cast<const DoCommandResponse &>(from));
+}
+
+
+void DoCommandResponse::MergeFrom(const DoCommandResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.DoCommandResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_result()) {
+    _internal_mutable_result()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_result());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DoCommandResponse::CopyFrom(const DoCommandResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.DoCommandResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DoCommandResponse::IsInitialized() const {
+  return true;
+}
+
+void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(result_, other->result_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+}
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
   safety_heartbeat_monitored(kSafetyHeartbeatMonitoredFieldNumber, false, nullptr);
@@ -5260,6 +5746,14 @@ Arena::CreateMaybeMessage< ::viam::common::v1::WorldState >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::common::v1::ActuatorStatus*
 Arena::CreateMaybeMessage< ::viam::common::v1::ActuatorStatus >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::ActuatorStatus >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::DoCommandRequest*
+Arena::CreateMaybeMessage< ::viam::common::v1::DoCommandRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::DoCommandRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::DoCommandResponse*
+Arena::CreateMaybeMessage< ::viam::common::v1::DoCommandResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::DoCommandResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

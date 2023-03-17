@@ -13,7 +13,8 @@
 # limitations under the License.
 
 
-# TODO: [required] fixup libviam_rust_utils install name after download
+# TODO: [required] libviam_rust_utils handling
+# TODO: [required] Runtime paths and make BUILD_SHARED_LIBS work
 # TODO: Sanitizer build configs
 # TODO: All warnings and warnings as errors
 # TODO: Runtime dependency sets?
@@ -42,15 +43,6 @@ project(viam-cpp-sdk
   HOMEPAGE_URL https://github.com/viamrobotics/viam-cpp-sdk
   LANGUAGES CXX
 )
-
-
-# Configure cmake-level options:
-#
-# - `BUILD_SHARED_LIBS`: Enabled by default so that we produce a
-# modern SDK, this option can be set to `OFF` to build a static
-# library. Note that this may result in non-functional examples.
-#
-option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
 
 # Configure project-global options:
@@ -117,6 +109,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
+# Everything needs threads, and prefer -pthread if available
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+
 # Produce a compilation database when generating for a build
 # system that is able to make one.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -129,6 +126,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #
 # cmake ... -DCMAKE_INSTALL_PREFIX=$HOME/opt
 #
+include(GNUInstallDirs)
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "..." FORCE)
 endif()
@@ -227,7 +225,7 @@ set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils
 
 install(
   IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-  LIBRARY COMPONENT viam-cpp-sdk_runtime
+  LIBRARY COMPONENT runtime
 )
 
 
@@ -235,7 +233,7 @@ install(
 install(FILES
   LICENSE
   DESTINATION ${CMAKE_INSTALL_DATADIR}/${CMAKE_PROJECT_NAME}
-  COMPONENT viam-cpp-sdk_runtime
+  COMPONENT runtime
 )
 
 
@@ -335,6 +333,7 @@ endif()
 # Pull in our subdirectories
 add_subdirectory(src)
 add_subdirectory(examples)
+add_subdirectory(tests)
 
 
 # Generate CMake configs to enable importing this project
@@ -350,7 +349,7 @@ configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/config/cmake.in
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
   VERSION "${version}"
-  COMPATIBILITY SameMajorVersion
+  COMPATIBILITY AnyNewerVersion
 )
 
 install(FILES

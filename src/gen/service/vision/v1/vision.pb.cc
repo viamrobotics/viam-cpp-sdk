@@ -916,7 +916,7 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   "oogle.protobuf.StructR\005extra\"w\n\034GetObjec"
   "tPointCloudsResponse\022\033\n\tmime_type\030\001 \001(\tR"
   "\010mimeType\022:\n\007objects\030\002 \003(\0132 .viam.common"
-  ".v1.PointCloudObjectR\007objects2\332\025\n\rVision"
+  ".v1.PointCloudObjectR\007objects2\344\026\n\rVision"
   "Service\022\315\001\n\027GetModelParameterSchema\0226.vi"
   "am.service.vision.v1.GetModelParameterSc"
   "hemaRequest\0327.viam.service.vision.v1.Get"
@@ -986,9 +986,12 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   "loudsRequest\0324.viam.service.vision.v1.Ge"
   "tObjectPointCloudsResponse\">\202\323\344\223\0028\"6/via"
   "m/api/v1/service/vision/{name}/object_po"
-  "int_cloudsB\?\n\032com.viam.service.vision.v1"
-  "Z!go.viam.com/api/service/vision/v1b\006pro"
-  "to3"
+  "int_clouds\022\207\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"5\202\323\344\223\002/\"-/viam/api/v1/serv"
+  "ice/vision/{name}/do_commandB\?\n\032com.viam"
+  ".service.vision.v1Z!go.viam.com/api/serv"
+  "ice/vision/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -997,7 +1000,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fvision_2fv1_2fvision_2eproto = {
-    false, false, 6923, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
+    false, false, 7061, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
     "service/vision/v1/vision.proto",
     &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once, descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps, 3, 32,
     schemas, file_default_instances, TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets,

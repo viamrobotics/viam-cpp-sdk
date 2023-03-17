@@ -196,7 +196,7 @@ const char descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto[] 
   "\001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.protobu"
   "f.ValueR\005value:\0028\001\"T\n\023GetReadingsRespons"
   "e\022=\n\010readings\030\001 \003(\0132!.viam.service.senso"
-  "rs.v1.ReadingsR\010readings2\306\002\n\016SensorsServ"
+  "rs.v1.ReadingsR\010readings2\321\003\n\016SensorsServ"
   "ice\022\222\001\n\nGetSensors\022*.viam.service.sensor"
   "s.v1.GetSensorsRequest\032+.viam.service.se"
   "nsors.v1.GetSensorsResponse\"+\202\323\344\223\002%\022#/vi"
@@ -204,9 +204,13 @@ const char descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto[] 
   "Readings\022+.viam.service.sensors.v1.GetRe"
   "adingsRequest\032,.viam.service.sensors.v1."
   "GetReadingsResponse\"4\202\323\344\223\002.\022,/viam/api/v"
-  "1/service/sensors/{name}/readingsBA\n\033com"
-  ".viam.service.sensors.v1Z\"go.viam.com/ap"
-  "i/service/sensors/v1b\006proto3"
+  "1/service/sensors/{name}/readings\022\210\001\n\tDo"
+  "Command\022 .viam.common.v1.DoCommandReques"
+  "t\032!.viam.common.v1.DoCommandResponse\"6\202\323"
+  "\344\223\0020\"./viam/api/v1/service/sensors/{name"
+  "}/do_commandBA\n\033com.viam.service.sensors"
+  ".v1Z\"go.viam.com/api/service/sensors/v1b"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -215,7 +219,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fsensors_2
 };
 static ::_pbi::once_flag descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto = {
-    false, false, 1188, descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto,
+    false, false, 1327, descriptor_table_protodef_service_2fsensors_2fv1_2fsensors_2eproto,
     "service/sensors/v1/sensors.proto",
     &descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_once, descriptor_table_service_2fsensors_2fv1_2fsensors_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_service_2fsensors_2fv1_2fsensors_2eproto::offsets,

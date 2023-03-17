@@ -478,7 +478,7 @@ const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovements
   "e\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
   "tR\005extra\"i\n\035GetLinearAccelerationRespons"
   "e\022H\n\023linear_acceleration\030\001 \001(\0132\027.viam.co"
-  "mmon.v1.Vector3R\022linearAcceleration2\203\r\n\025"
+  "mmon.v1.Vector3R\022linearAcceleration2\227\016\n\025"
   "MovementSensorService\022\322\001\n\021GetLinearVeloc"
   "ity\022:.viam.component.movementsensor.v1.G"
   "etLinearVelocityRequest\032;.viam.component"
@@ -520,9 +520,13 @@ const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovements
   "equest\032\?.viam.component.movementsensor.v"
   "1.GetLinearAccelerationResponse\"H\202\323\344\223\002B\022"
   "@/viam/api/v1/component/movementsensor/{"
-  "name}/linear_accelerationBS\n$com.viam.co"
-  "mponent.movementsensor.v1Z+go.viam.com/a"
-  "pi/component/movementsensor/v1b\006proto3"
+  "name}/linear_acceleration\022\221\001\n\tDoCommand\022"
+  " .viam.common.v1.DoCommandRequest\032!.viam"
+  ".common.v1.DoCommandResponse\"\?\202\323\344\223\0029\"7/v"
+  "iam/api/v1/component/movementsensor/{nam"
+  "e}/do_commandBS\n$com.viam.component.move"
+  "mentsensor.v1Z+go.viam.com/api/component"
+  "/movementsensor/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -531,7 +535,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovemen
 };
 static ::_pbi::once_flag descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = {
-    false, false, 3798, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
+    false, false, 3946, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
     "component/movementsensor/v1/movementsensor.proto",
     &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once, descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps, 3, 17,
     schemas, file_default_instances, TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets,

@@ -22,5 +22,5 @@ target_link_libraries(example_dial
 
 install(
   TARGETS example_dial
-  COMPONENT viam-cpp-sdk_examples
+  COMPONENT examples
 )

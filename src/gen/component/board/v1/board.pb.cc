@@ -494,7 +494,7 @@ const char descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto[] PR
   "pt_name\030\002 \001(\tR\024digitalInterruptName\022-\n\005e"
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
   "ra\"8\n GetDigitalInterruptValueResponse\022\024"
-  "\n\005value\030\001 \001(\003R\005value2\355\013\n\014BoardService\022\215\001"
+  "\n\005value\030\001 \001(\003R\005value2\370\014\n\014BoardService\022\215\001"
   "\n\006Status\022&.viam.component.board.v1.Statu"
   "sRequest\032\'.viam.component.board.v1.Statu"
   "sResponse\"2\202\323\344\223\002,\022*/viam/api/v1/componen"
@@ -521,20 +521,23 @@ const char descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto[] PR
   "MFrequencyRequest\0320.viam.component.board"
   ".v1.SetPWMFrequencyResponse\"4\202\323\344\223\002.\032,/vi"
   "am/api/v1/component/board/{name}/pwm_fre"
-  "q\022\322\001\n\020ReadAnalogReader\0220.viam.component."
-  "board.v1.ReadAnalogReaderRequest\0321.viam."
-  "component.board.v1.ReadAnalogReaderRespo"
-  "nse\"Y\202\323\344\223\002S\022Q/viam/api/v1/component/boar"
-  "d/{board_name}/analog_reader/{analog_rea"
-  "der_name}/read\022\363\001\n\030GetDigitalInterruptVa"
-  "lue\0228.viam.component.board.v1.GetDigital"
-  "InterruptValueRequest\0329.viam.component.b"
-  "oard.v1.GetDigitalInterruptValueResponse"
-  "\"b\202\323\344\223\002\\\022Z/viam/api/v1/component/board/{"
-  "board_name}/digital_interrupt/{digital_i"
-  "nterrupt_name}/valueBA\n\033com.viam.compone"
-  "nt.board.v1Z\"go.viam.com/api/component/b"
-  "oard/v1b\006proto3"
+  "q\022\210\001\n\tDoCommand\022 .viam.common.v1.DoComma"
+  "ndRequest\032!.viam.common.v1.DoCommandResp"
+  "onse\"6\202\323\344\223\0020\"./viam/api/v1/component/boa"
+  "rd/{name}/do_command\022\322\001\n\020ReadAnalogReade"
+  "r\0220.viam.component.board.v1.ReadAnalogRe"
+  "aderRequest\0321.viam.component.board.v1.Re"
+  "adAnalogReaderResponse\"Y\202\323\344\223\002S\022Q/viam/ap"
+  "i/v1/component/board/{board_name}/analog"
+  "_reader/{analog_reader_name}/read\022\363\001\n\030Ge"
+  "tDigitalInterruptValue\0228.viam.component."
+  "board.v1.GetDigitalInterruptValueRequest"
+  "\0329.viam.component.board.v1.GetDigitalInt"
+  "erruptValueResponse\"b\202\323\344\223\002\\\022Z/viam/api/v"
+  "1/component/board/{board_name}/digital_i"
+  "nterrupt/{digital_interrupt_name}/valueB"
+  "A\n\033com.viam.component.board.v1Z\"go.viam."
+  "com/api/component/board/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -543,7 +546,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fboard_2fv1_2fboard_2eproto = {
-    false, false, 3255, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
+    false, false, 3394, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
     "component/board/v1/board.proto",
     &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once, descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps, 3, 18,
     schemas, file_default_instances, TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets,

@@ -7,7 +7,6 @@
 
 class ResourceManager {
    public:
-    static std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
     void register_resource(std::shared_ptr<ResourceBase> Resource);
 
     /// returns a resource from the registry.
@@ -22,6 +21,7 @@ class ResourceManager {
     ResourceManager();
 
    private:
+    static std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
     ResourceManager(std::vector<std::shared_ptr<ResourceBase>> resources);
 };
 

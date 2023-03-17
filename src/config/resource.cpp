@@ -11,7 +11,6 @@
 #include <string>
 #include <unordered_map>
 
-typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
 
 Name Resource::resource_name() {
     try {

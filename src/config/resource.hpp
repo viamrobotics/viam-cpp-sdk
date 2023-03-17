@@ -9,7 +9,7 @@
 #include <string>
 #include <unordered_map>
 
-typedef std::unordered_map<std::string, ProtoType*> AttributeMap;
+typedef std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> AttributeMap;
 
 class ResourceLevelServiceConfig {
    public:

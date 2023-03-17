@@ -19,21 +19,29 @@
 #include "subtype/subtype.hpp"
 
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
-    lock.lock();
+     lock.lock();
+
+
     if (resources.find(name) != resources.end()) {
         lock.unlock();
         return resources.at(name);
     }
 
-    std::string short_name = short_names.at(name);
-    if (resources.find(short_name) != resources.end()) {
-        lock.unlock();
-        return resources.at(short_name);
+    if (short_names.find(name) != short_names.end()) {
+        std::string short_name = short_names.at(name);
+        if (resources.find(short_name) != resources.end()) {
+            std::cout << "short name\n";
+            lock.unlock();
+            return resources.at(short_name);
+        }
     }
-
-    lock.unlock();
+     lock.unlock();
     return nullptr;
 };
+
+SubtypeService::SubtypeService() : resources(std::unordered_map<std::string, std::shared_ptr<ResourceBase>>()) {
+    //lock = std::mutex();
+}
 
 void SubtypeService::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
     lock.lock();
@@ -67,21 +75,25 @@ void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
     }
     std::string short_name = name.short_name();
 
-    if (resources.find(short_name) != resources.end()) {
-        throw "Attempted to add resource that already existed: " + name.to_string();
+    do_add(short_name, resource);
+};
+
+void SubtypeService::do_add(std::string name, std::shared_ptr<ResourceBase> resource) {
+      if (resources.find(name) != resources.end()) {
+        throw "Attempted to add resource that already existed: " + name;
     }
 
-    resources.emplace(short_name, resource);
+    resources.emplace(name, resource);
 
-    std::string shortcut = get_shortcut_name(short_name);
-    if (shortcut != short_name) {
+    std::string shortcut = get_shortcut_name(name);
+    if (shortcut != name) {
         if (short_names.find(shortcut) != short_names.end()) {
             short_names.emplace(shortcut, "");
         } else {
-            short_names.emplace(shortcut, short_name);
+            short_names.emplace(shortcut, name);
         }
     }
-};
+}
 
 void SubtypeService::add(Name name, std::shared_ptr<ResourceBase> resource) {
     lock.lock();
@@ -139,4 +151,10 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
     }
     lock.unlock();
 };
+
+  void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resource) {
+        lock.lock();
+        do_add(name, resource);
+        lock.unlock();
+  }
 

@@ -19,5 +19,5 @@ class ResourceBase {
     ResourceType type;
     virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> extra);
     virtual grpc::StatusCode stop();
-    virtual void reconfigure(Dependencies deps, Resource cfg);
+    std::function<void(Dependencies, Resource)> reconfigure;
 };

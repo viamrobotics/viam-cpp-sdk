@@ -228,7 +228,7 @@ const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[
   "obuf.StructR\005extra\"\016\n\014StopResponse\"%\n\017Is"
   "MovingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsM"
   "ovingResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMovi"
-  "ng2\341\004\n\016GripperService\022\217\001\n\004Open\022&.viam.co"
+  "ng2\356\005\n\016GripperService\022\217\001\n\004Open\022&.viam.co"
   "mponent.gripper.v1.OpenRequest\032\'.viam.co"
   "mponent.gripper.v1.OpenResponse\"6\240\222)\001\202\323\344"
   "\223\002,\032*/viam/api/v1/component/gripper/{nam"
@@ -243,9 +243,12 @@ const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[
   "onent.gripper.v1.IsMovingRequest\032+.viam."
   "component.gripper.v1.IsMovingResponse\"7\202"
   "\323\344\223\0021\022//viam/api/v1/component/gripper/{n"
-  "ame}/is_movingBE\n\035com.viam.component.gri"
-  "pper.v1Z$go.viam.com/api/component/gripp"
-  "er/v1b\006proto3"
+  "ame}/is_moving\022\212\001\n\tDoCommand\022 .viam.comm"
+  "on.v1.DoCommandRequest\032!.viam.common.v1."
+  "DoCommandResponse\"8\202\323\344\223\0022\"0/viam/api/v1/"
+  "component/gripper/{name}/do_commandBE\n\035c"
+  "om.viam.component.gripper.v1Z$go.viam.co"
+  "m/api/component/gripper/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -254,7 +257,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper
 };
 static ::_pbi::once_flag descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto = {
-    false, false, 1293, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
+    false, false, 1434, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
     "component/gripper/v1/gripper.proto",
     &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 3, 8,
     schemas, file_default_instances, TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets,

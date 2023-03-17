@@ -17,7 +17,7 @@ std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<ResourceBa
     std::string* resource_type;
     std::vector<ResourceName> resource_names;
     for (auto& a : Registry::registered_resources()) {
-        std::shared_ptr<ModelRegistration> reg = a.second;
+        std::shared_ptr<ResourceRegistration> reg = a.second;
         if (reg->resource_type.type == resource->type.type) {
             resource_type = &reg->resource_type.type;
         }
