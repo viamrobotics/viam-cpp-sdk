@@ -1,12 +1,9 @@
-#define BOOST_TEST_MODULE test module test_generic_component
+#define BOOST_TEST_MODULE test module test_camera
 #include <boost/test/included/unit_test.hpp> 
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
 
-BOOST_AUTO_TEST_SUITE(generic_suite)
-
-#include <common/utils.hpp>
 #include <components/camera/camera.hpp>
 #include <components/camera/client.hpp>
 #include <components/camera/server.hpp>
@@ -15,6 +12,8 @@ BOOST_AUTO_TEST_SUITE(generic_suite)
 #include <utility>
 #include <vector>
 
+
+BOOST_AUTO_TEST_SUITE(camera_suite)
 
 class MockCamera : public Camera {
   public:
@@ -90,12 +89,10 @@ Camera::properties properties() {
 } 
 
 std::shared_ptr<std::unordered_map<std::string,std::shared_ptr<ProtoType>>> map() {
-
       ProtoType prototype = ProtoType(std::string("hello"));
-     std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+      std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
       std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {{std::string("test"), proto_ptr}};
       return std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
-
 }
 
  std::shared_ptr<MockCamera> get_mock_camera() {
@@ -133,27 +130,21 @@ class MockStub : public viam::component::camera::v1::CameraService::StubInterfac
    public:
     CameraServer server;   
 
-
-   
     MockStub(): server(CameraServer(std::make_shared<SubtypeService>())){
         this->server.sub_svc->add(std::string("camera"), get_mock_camera());
       };
 
-
-
       ::grpc::Status GetImage(::grpc::ClientContext* context,
                              const ::viam::component::camera::v1::GetImageRequest& request,
                              ::viam::component::camera::v1::GetImageResponse* response) override {
-                            //  std::cout << "in stub get_image";
                             grpc::ServerContext* ctx; 
-                          return server.GetImage(ctx, &request, response);
+                            return server.GetImage(ctx, &request, response);
                              }
     ::grpc::Status RenderFrame(::grpc::ClientContext* context,
                              const ::viam::component::camera::v1::RenderFrameRequest& request,
                              ::google::api::HttpBody* response) override  {
                                 grpc::ServerContext* ctx;
                                 return server.RenderFrame(ctx, &request, response);
-
                              }                    
     ::grpc::Status GetPointCloud(::grpc::ClientContext* context,
                              const ::viam::component::camera::v1::GetPointCloudRequest& request,
@@ -293,15 +284,10 @@ class MockStub : public viam::component::camera::v1::CameraService::StubInterfac
     const ::grpc::internal::RpcMethod rpcmethod_GetPointCloud_ = ::grpc::internal::RpcMethod("name", type);
     const ::grpc::internal::RpcMethod rpcmethod_GetProperties_ = ::grpc::internal::RpcMethod("name", type);
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_ = ::grpc::internal::RpcMethod("name", type);
-   
-
-
-
   };
 
-// mock camera tests!!!!
-  std::shared_ptr<MockCamera> camera = get_mock_camera();
 
+ std::shared_ptr<MockCamera> camera = get_mock_camera();
 
 BOOST_AUTO_TEST_CASE(test_get_image) {
     Camera::raw_image expected_image = raw_image();
@@ -315,7 +301,6 @@ BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
    Camera::point_cloud pc = camera->get_point_cloud("camera", "pointcloud/pcd");
 
     BOOST_CHECK(expected_pc == pc);
-
 }
 
 
@@ -344,12 +329,7 @@ BOOST_AUTO_TEST_CASE(test_do) {
    BOOST_CHECK(result_pt == expected_pt);
 }    
 
-
-
-
-// service tests
-
-   MockStub mock =  MockStub();
+MockStub mock =  MockStub();
 
 BOOST_AUTO_TEST_CASE(test_get_image_service) {
 
@@ -406,11 +386,8 @@ BOOST_AUTO_TEST_CASE(test_render_frame_service) {
 
     std::vector<unsigned char> bytes = string_to_bytes(resp.data());
 
-    if(resp.content_type() != image.mime_type ) {
-      return 1;
-    }
-
-     BOOST_CHECK(image.bytes == bytes);
+    BOOST_CHECK(resp.content_type() == image.mime_type);
+    BOOST_CHECK(image.bytes == bytes);
 }
  
 BOOST_AUTO_TEST_CASE(test_get_properties_service) {
@@ -421,13 +398,13 @@ BOOST_AUTO_TEST_CASE(test_get_properties_service) {
     grpc::Status status = mock.GetProperties(&ctx, req, &resp);
     Camera::properties expected = properties();
 
-     BOOST_CHECK(expected.supports_pcd!= resp.supports_pcd);
+     BOOST_CHECK(expected.supports_pcd == resp.supports_pcd());
 
-   Camera::intrinsic_parameters in_params;
-   Camera::distortion_parameters di_params;
+    Camera::intrinsic_parameters in_params;
+    Camera::distortion_parameters di_params;
    
 
-     BOOST_CHECK(expected.intrinsic_parameters == in_params.from_proto(resp.intrinsic_parameters()))
+     BOOST_CHECK(expected.intrinsic_parameters == in_params.from_proto(resp.intrinsic_parameters()));
      BOOST_CHECK(expected.distortion_parameters == di_params.from_proto(resp.distortion_parameters()));
 } 
 
@@ -472,44 +449,34 @@ BOOST_AUTO_TEST_CASE(test_do_service) {
   }; 
 
 
-    MockClient client = MockClient();
+MockClient client = MockClient();
 
 
-//client tests 
 BOOST_AUTO_TEST_CASE(test_image_client) {
-
 
     Camera::raw_image image = client.get_image("camera", "JPEG");
     Camera::raw_image expected_image = raw_image();
 
-
-     BOOST_CHECK(expected_image == image);
+    BOOST_CHECK(expected_image == image);
 } 
 
 
 
   BOOST_AUTO_TEST_CASE(test_get_point_cloud_client) {
 
-
     Camera::point_cloud pc = client.get_point_cloud("camera", "pointcloud/pcd");
-
     Camera::point_cloud expected = point_cloud();
 
-     BOOST_CHECK(expected == pc);
+    BOOST_CHECK(expected == pc);
 } 
 
 
+BOOST_AUTO_TEST_CASE(test_get_properties_client) {
 
+  Camera::properties props = client.get_properties("camera");
+  Camera::properties expected = properties(); 
 
- 
-
-  BOOST_AUTO_TEST_CASE(test_get_properties_client) {
-
-    Camera::properties props = client.get_properties("camera");
-
-    Camera::properties expected = properties(); 
-
-     BOOST_CHECK(expected == props);
+    BOOST_CHECK(expected == props);
   }
 
 
@@ -533,17 +500,5 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     BOOST_CHECK(expected_pt == result_pt);
 }
 
-BOOST_AUTO_TEST_SUITE_END()
-
-
-
-
-
-
-
-
-
-
-
-
+BOOST_AUTO_TEST_SUITE_END() 
 

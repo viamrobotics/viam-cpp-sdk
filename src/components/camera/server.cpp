@@ -3,8 +3,6 @@
 #include <rpc/server.hpp>
 #include <gen/google/api/http.pb.h>
 
-
-
 ::grpc::Status CameraServer::DoCommand(
     ::grpc::ServerContext* context,
     const ::viam::common::v1::DoCommandRequest* request,
@@ -23,7 +21,6 @@
 
      return ::grpc::Status(); 
 
-     
 } 
 
 
@@ -49,7 +46,6 @@
     std::string name = request->name();
     std::string mime_type = request->mime_type();
     Camera::raw_image image = camera->get_image(name, mime_type);
-
 
 
     std::string img_string = bytes_to_string(image.bytes);

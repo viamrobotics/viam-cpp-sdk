@@ -3,7 +3,6 @@
 #include <csignal>
 #include <iostream>
 
-#include "component/generic/v1/generic.grpc.pb.h"
 #include "google/protobuf/descriptor.h"
 #define BOOST_LOG_DYN_LINK 1
 #include <app/v1/robot.pb.h>
@@ -24,7 +23,6 @@
 #include <boost/none.hpp>
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
-#include <components/generic/generic.hpp>
 #include <components/service_base.hpp>
 #include <config/resource.hpp>
 #include <memory>
@@ -70,7 +68,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     std::shared_ptr<ResourceBase> res;
     Dependencies deps = get_dependencies(this, request->dependencies());
-    std::shared_ptr<ResourceRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
+    std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
     if (reg != nullptr) {
         res = reg->construct_resource(deps, cfg);
     };
@@ -122,7 +120,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
-    std::shared_ptr<ResourceRegistration> reg = Registry::lookup_resource(cfg.name);
+    std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.name);
     if (reg != nullptr) {
         std::shared_ptr<ResourceBase> res = reg->construct_resource(deps, cfg);
         sub_svc->replace_one(cfg.resource_name(), res);
@@ -228,8 +226,6 @@ void ModuleService_::add_model_from_registry(Subtype api, Model model) {
     if (module->services.find(api) == module->services.end()) {
         add_api_from_registry(api);
     }
-
-    bool generic_registered = (module->services.find(Generic::subtype()) != module->services.end());
 
     std::shared_ptr<ResourceSubtype> creator = Registry::lookup_subtype(api);
     std::string name;

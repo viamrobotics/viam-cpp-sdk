@@ -137,7 +137,6 @@ public:
     virtual point_cloud get_point_cloud(std::string name, std::string mime_type) = 0;
     virtual properties get_properties(std::string name) = 0;
 
-
 };
 
 
