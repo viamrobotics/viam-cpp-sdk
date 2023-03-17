@@ -1,17 +1,10 @@
+#define BOOST_TEST_MODULE test module test_generic_component
+#include <boost/test/included/unit_test.hpp> 
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/security/credentials.h>
 
+BOOST_AUTO_TEST_SUITE(generic_suite)
 
 #include <common/utils.hpp>
 #include <components/camera/camera.hpp>
@@ -310,39 +303,30 @@ class MockStub : public viam::component::camera::v1::CameraService::StubInterfac
   std::shared_ptr<MockCamera> camera = get_mock_camera();
 
 
-int test_get_image() {
+BOOST_AUTO_TEST_CASE(test_get_image) {
     Camera::raw_image expected_image = raw_image();
     Camera::raw_image image = camera->get_image("camera", "JPEG");
 
-    if(!(expected_image == image)) {
-      return 1;
-    }
-    return 0;
+    BOOST_CHECK(expected_image == image);
 } 
 
-int test_get_point_cloud() {
+BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
    Camera::point_cloud expected_pc = point_cloud();
    Camera::point_cloud pc = camera->get_point_cloud("camera", "pointcloud/pcd");
 
-   if(!(expected_pc == pc)) {
-    return 1;
-   }
-   return 0;
+    BOOST_CHECK(expected_pc == pc);
 
 }
 
 
-int test_get_properties() {
+BOOST_AUTO_TEST_CASE(test_get_properties) {
     Camera::properties expected_props = properties(); 
     Camera::properties properties = camera->get_properties("camera");
 
-    if(!(expected_props == properties)) {
-      return 1;
-    }
-    return 0;
+     BOOST_CHECK(expected_props == properties);
 }
 
- int test_do() {
+BOOST_AUTO_TEST_CASE(test_do) {
    ProtoType prototype = ProtoType(std::string("hello"));
 
   std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
@@ -357,10 +341,7 @@ int test_get_properties() {
    ProtoType result_pt = *(result_map->at(std::string("test")));
 
 
-  if(!(result_pt == expected_pt)) {
-    return 1;
-  }
-  return 0;
+   BOOST_CHECK(result_pt == expected_pt);
 }    
 
 
@@ -370,7 +351,7 @@ int test_get_properties() {
 
    MockStub mock =  MockStub();
 
- int test_get_image_service() {
+BOOST_AUTO_TEST_CASE(test_get_image_service) {
 
     grpc::ClientContext ctx;
     viam::component::camera::v1::GetImageRequest req;
@@ -385,14 +366,11 @@ int test_get_properties() {
 
     std::vector<unsigned char> bytes = string_to_bytes(resp.image());
 
-   if(!(image.bytes == bytes)) {
-    return 1;
-  } 
-    return 0;
+    BOOST_CHECK(image.bytes == bytes);
 } 
 
 
-int test_get_point_cloud_service() {
+BOOST_AUTO_TEST_CASE(test_get_point_cloud_service) {
 
     grpc::ClientContext ctx;
     viam::component::camera::v1::GetPointCloudRequest req;
@@ -409,13 +387,10 @@ int test_get_point_cloud_service() {
 
     std::vector<unsigned char> bytes = string_to_bytes(resp.point_cloud());
 
-    if(!(expected_pc.pc == bytes)) {
-      return 1;
-    }
-    return 0;
+     BOOST_CHECK(expected_pc.pc == bytes);
 }
 
-int test_render_frame_service() {
+BOOST_AUTO_TEST_CASE(test_render_frame_service) {
 
     grpc::ClientContext ctx;
     viam::component::camera::v1::RenderFrameRequest req;
@@ -435,14 +410,10 @@ int test_render_frame_service() {
       return 1;
     }
 
-    if(!(image.bytes == bytes)) {
-      return 1;
-    }
-
-    return 0;
+     BOOST_CHECK(image.bytes == bytes);
 }
  
-int test_get_properties_service() {
+BOOST_AUTO_TEST_CASE(test_get_properties_service) {
     grpc::ClientContext ctx;
     viam::component::camera::v1::GetPropertiesRequest req;
     viam::component::camera::v1::GetPropertiesResponse resp;
@@ -450,24 +421,17 @@ int test_get_properties_service() {
     grpc::Status status = mock.GetProperties(&ctx, req, &resp);
     Camera::properties expected = properties();
 
-    if(expected.supports_pcd!= resp.supports_pcd()) {
-      return 1;
-    }
+     BOOST_CHECK(expected.supports_pcd!= resp.supports_pcd);
 
    Camera::intrinsic_parameters in_params;
    Camera::distortion_parameters di_params;
    
 
-    if(!(expected.intrinsic_parameters == in_params.from_proto(resp.intrinsic_parameters()))) {
-      return 1;
-    }
-     if(!(expected.distortion_parameters == di_params.from_proto(resp.distortion_parameters()))) {
-      return 1;
-    } 
-    return 0;
+     BOOST_CHECK(expected.intrinsic_parameters == in_params.from_proto(resp.intrinsic_parameters()))
+     BOOST_CHECK(expected.distortion_parameters == di_params.from_proto(resp.distortion_parameters()));
 } 
 
-int test_do_service() {
+BOOST_AUTO_TEST_CASE(test_do_service) {
     grpc::ClientContext ctx;
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
@@ -495,10 +459,7 @@ int test_do_service() {
     std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
 
 
-    if(!(*expected_pt ==  *result_pt)) {
-      return 1;
-    } 
-    return 0;
+     BOOST_CHECK(*expected_pt ==  *result_pt);
 }
 
 
@@ -515,32 +476,26 @@ int test_do_service() {
 
 
 //client tests 
- int test_image_client() {
+BOOST_AUTO_TEST_CASE(test_image_client) {
 
 
     Camera::raw_image image = client.get_image("camera", "JPEG");
     Camera::raw_image expected_image = raw_image();
 
 
-     if(!(expected_image == image)) {
-      return 1;
-    } 
-    return 0; 
+     BOOST_CHECK(expected_image == image);
 } 
 
 
 
-  int test_get_point_cloud_client() {
+  BOOST_AUTO_TEST_CASE(test_get_point_cloud_client) {
 
 
     Camera::point_cloud pc = client.get_point_cloud("camera", "pointcloud/pcd");
 
     Camera::point_cloud expected = point_cloud();
 
-     if(!(expected == pc)) {
-      return 1;
-    }
-    return 0; 
+     BOOST_CHECK(expected == pc);
 } 
 
 
@@ -548,20 +503,17 @@ int test_do_service() {
 
  
 
-   int test_get_properties_client() {
+  BOOST_AUTO_TEST_CASE(test_get_properties_client) {
 
     Camera::properties props = client.get_properties("camera");
 
     Camera::properties expected = properties(); 
 
-     if(!(expected == props)) {
-      return 1;
-    }
-    return 0; 
-} 
+     BOOST_CHECK(expected == props);
+  }
 
 
-int test_do_client() {
+BOOST_AUTO_TEST_CASE(test_do_client) {
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command = 
     std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
@@ -578,87 +530,18 @@ int test_do_client() {
     ProtoType result_pt = *(result_map->at(std::string("test")));
 
 
-    if(!(expected_pt == result_pt)) {
-      return 1;
-    }
-
-    return 0;
-    }
-
-
-
-
-
-
-
-
-
- int main() {
-
-  int image_test = test_get_image();
-  int point_cloud_test = test_get_point_cloud();
-  int properties_test = test_get_properties();
-  int do_test = test_do();
-
-
-  int pc_service_test = test_get_point_cloud_service();
-  int image_service_test = test_get_image_service();
-  int get_properties_service_test = test_get_properties_service();
-  int render_frame_test = test_render_frame_service();
-  int do_service_test = test_do_service();
-
-
-
-
- int get_image_client_test = test_image_client();
- int get_point_cloud_client_test = test_get_point_cloud_client();
- int get_properties_client_test = test_get_properties_client();
- int do_client_test = test_do_client();
-
-
-
-  if(image_test == 1) {
-          std::cout << "Image test failed"; 
-  } 
-
-  if(point_cloud_test == 1) {
-      std::cout << "point class test failed"; 
-  }
-  if(properties_test == 1 ) {
-    std::cout << "properties test failed"; 
+    BOOST_CHECK(expected_pt == result_pt);
 }
- if(do_test == 1 ) {
-    std::cout << "do test failed\n"; 
-}
-if(image_service_test == 1 ) {
-    std::cout << "image service test failed\n"; 
-} 
-if(pc_service_test == 1 ) {
-    std::cout << "point cloud service test failed\n"; 
-} 
-if(get_properties_service_test == 1 ) {
-    std::cout << "get proeprties service test failed\n"; 
-} 
-if(render_frame_test == 1 ) {
-    std::cout << "render frame test failed\n"; 
-} 
- if(do_service_test == 1) {
-  std::cout << "do service test failed\n";
-} 
-if(get_image_client_test == 1 ) {
-    std::cout << "get image client test failed\n"; 
-}
- if(get_point_cloud_client_test == 1 ) {
-    std::cout << "point cloud client test failed\n"; 
-}  
- if(get_properties_client_test == 1 ) {
-    std::cout << "get properties client test failed\n"; 
-}  
- if(do_client_test == 1 ) {
-    std::cout << "do client test failed\n"; 
-}  
-return 1; 
-} 
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+
+
+
+
+
+
 
 
 

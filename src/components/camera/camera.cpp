@@ -9,8 +9,6 @@
 #include <resource/resource.hpp>
 
 
-
-
  std::shared_ptr<ResourceServerBase> CameraSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> svc) {
     return std::make_shared<CameraServer>(svc);

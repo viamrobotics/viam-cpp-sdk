@@ -333,7 +333,6 @@ endif()
 # Pull in our subdirectories
 add_subdirectory(src)
 add_subdirectory(examples)
-add_subdirectory(tests)
 
 
 # Generate CMake configs to enable importing this project
