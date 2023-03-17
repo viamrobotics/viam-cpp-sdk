@@ -16,7 +16,7 @@ class SubtypeService : public grpc::Service {
     void add(std::string name, std::shared_ptr<ResourceBase> resource);
     void remove(Name name);
     void replace_one(Name name, std::shared_ptr<ResourceBase> resource);
-    SubtypeService();
+    SubtypeService(){};
 
    private:
     std::mutex lock;
