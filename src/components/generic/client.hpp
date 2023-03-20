@@ -5,7 +5,7 @@
 
 class GenericClient : public Generic {
    public:
-    ProtoType do_command(std::unordered_map<std::string, ProtoType*> command) override;
+   virtual std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> do_command(std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) override;
     GenericClient(std::shared_ptr<grpc::Channel> channel_);
 
    private:

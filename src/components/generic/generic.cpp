@@ -28,10 +28,12 @@ Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
 }
 
-bool init() {
+namespace {
+ bool init() {
     Registry::register_subtype(Generic::subtype(), Generic::resource_subtype());
     return true;
 };
 
-bool inited = init();
+bool inited = init();   
+} //namespace
 

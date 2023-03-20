@@ -24,16 +24,19 @@ std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
     return std::make_shared<CameraSubtype>(sd);
 }
 
+   bool init() {
+        Registry::register_subtype(Camera::subtype(), Camera::resource_subtype());
+        return true;
+    };
+
+    bool inited = init(); 
+
+
 Subtype Camera::subtype() {
     return Subtype(RDK, COMPONENT, "camera");
 }
 
-bool init() {
-    Registry::register_subtype(Camera::subtype(), Camera::resource_subtype());
-    return true;
-};
 
-bool inited = init();
 
 
 

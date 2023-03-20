@@ -203,14 +203,18 @@ target_sources(viamcpp
     registry/registry.cpp
     common/proto_type.cpp
     common/utils.cpp
+    components/camera/camera.cpp
+    components/camera/client.cpp
+    components/camera/server.cpp
     components/component_base.cpp
     components/component_type.cpp
+    components/generic/client.cpp
     components/generic/generic.cpp
     components/generic/server.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
-    module/service.cpp
+    module/service.cpp 
     referenceframe/frame.cpp
     resource/resource.cpp
     resource/resource_base.cpp
@@ -230,8 +234,12 @@ target_sources(viamcpp
     FILES
       common/proto_type.hpp
       common/utils.hpp
+      components/camera/camera.hpp
+      components/camera/client.hpp
+      components/camera/server.hpp
       components/component_base.hpp
       components/component_type.hpp
+      components/generic/client.hpp
       components/generic/generic.hpp
       components/generic/server.hpp
       components/service_base.hpp
@@ -256,6 +264,7 @@ target_sources(viamcpp
       spatialmath/orientation_types.hpp
       spatialmath/orientation.hpp
       subtype/subtype.hpp
+      tests/test_camera.cpp
   PUBLIC FILE_SET viamcpp_public_pb_includes TYPE HEADERS
     BASE_DIRS
       ${PROTO_GEN_DIR}/gen

@@ -20,6 +20,6 @@ class Generic : public ComponentBase {
    public:
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
-    virtual ProtoType do_command(std::unordered_map<std::string, ProtoType*> command);
+    virtual std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> do_command(std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) = 0;
 };
 
