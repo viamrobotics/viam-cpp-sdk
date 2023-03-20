@@ -25,9 +25,10 @@ namespace service {
 namespace datamanager {
 namespace v1 {
 PROTOBUF_CONSTEXPR SyncRequest::SyncRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SyncRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SyncRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,7 +39,7 @@ struct SyncRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SyncRequestDefaultTypeInternal _SyncRequest_default_instance_;
 PROTOBUF_CONSTEXPR SyncResponse::SyncResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SyncResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SyncResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -63,8 +64,8 @@ const uint32_t TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -84,28 +85,33 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n)service/datamanager/v1/data_manager.pr"
-  "oto\022\033viam.service.datamanager.v1\032\034google"
-  "/api/annotations.proto\032\034google/protobuf/"
-  "struct.proto\"P\n\013SyncRequest\022\022\n\004name\030\001 \001("
-  "\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extra\"\016\n\014SyncResponse2\254\001\n\022DataM"
-  "anagerService\022\225\001\n\004Sync\022(.viam.service.da"
-  "tamanager.v1.SyncRequest\032).viam.service."
-  "datamanager.v1.SyncResponse\"8\202\323\344\223\0022\"0/vi"
-  "am/api/v1/service/datamanager/{name}/dat"
-  "asyncBI\n\037com.viam.service.datamanager.v1"
-  "Z&go.viam.com/api/service/datamanager/v1"
-  "b\006proto3"
+  "oto\022\033viam.service.datamanager.v1\032\026common"
+  "/v1/common.proto\032\034google/api/annotations"
+  ".proto\032\034google/protobuf/struct.proto\"P\n\013"
+  "SyncRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra"
+  "\030c \001(\0132\027.google.protobuf.StructR\005extra\"\016"
+  "\n\014SyncResponse2\273\002\n\022DataManagerService\022\225\001"
+  "\n\004Sync\022(.viam.service.datamanager.v1.Syn"
+  "cRequest\032).viam.service.datamanager.v1.S"
+  "yncResponse\"8\202\323\344\223\0022\"0/viam/api/v1/servic"
+  "e/datamanager/{name}/datasync\022\214\001\n\tDoComm"
+  "and\022 .viam.common.v1.DoCommandRequest\032!."
+  "viam.common.v1.DoCommandResponse\":\202\323\344\223\0024"
+  "\"2/viam/api/v1/service/datamanager/{name"
+  "}/do_commandBI\n\037com.viam.service.dataman"
+  "ager.v1Z&go.viam.com/api/service/dataman"
+  "ager/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto = {
-    false, false, 488, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
+    false, false, 655, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     "service/datamanager/v1/data_manager.proto",
-    &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 2, 2,
+    &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 3, 2,
     schemas, file_default_instances, TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::offsets,
     file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto, file_level_enum_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     file_level_service_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
@@ -130,45 +136,56 @@ class SyncRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SyncRequest::_Internal::extra(const SyncRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void SyncRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 SyncRequest::SyncRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.datamanager.v1.SyncRequest)
 }
 SyncRequest::SyncRequest(const SyncRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SyncRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.SyncRequest)
 }
 
-inline void SyncRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void SyncRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SyncRequest::~SyncRequest() {
@@ -182,12 +199,12 @@ SyncRequest::~SyncRequest() {
 
 inline void SyncRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void SyncRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SyncRequest::Clear() {
@@ -196,11 +213,11 @@ void SyncRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -301,38 +318,35 @@ size_t SyncRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SyncRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SyncRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SyncRequest::GetClassData() const { return &_class_data_; }
 
-void SyncRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SyncRequest *>(to)->MergeFrom(
-      static_cast<const SyncRequest &>(from));
-}
 
-
-void SyncRequest::MergeFrom(const SyncRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.SyncRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SyncRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SyncRequest*>(&to_msg);
+  auto& from = static_cast<const SyncRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.SyncRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SyncRequest::CopyFrom(const SyncRequest& from) {
@@ -352,10 +366,10 @@ void SyncRequest::InternalSwap(SyncRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SyncRequest::GetMetadata() const {
@@ -377,6 +391,7 @@ SyncResponse::SyncResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 SyncResponse::SyncResponse(const SyncResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SyncResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.SyncResponse)
 }
