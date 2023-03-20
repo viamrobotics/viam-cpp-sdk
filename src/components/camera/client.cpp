@@ -25,9 +25,6 @@ CameraClient::do_command(std::string name, std::shared_ptr<std::unordered_map<st
 
 
 Camera::raw_image CameraClient::get_image(std::string name, std::string mime_type) {
-
-
-
     viam::component::camera::v1::GetImageRequest req;
     viam::component::camera::v1::GetImageResponse resp;
     grpc::ClientContext ctx;
@@ -36,13 +33,10 @@ Camera::raw_image CameraClient::get_image(std::string name, std::string mime_typ
         mime_type = mime_type.substr(0, mime_type.length() - Camera::lazy_suffix.length());
     } 
 
-
    *req.mutable_mime_type() = mime_type;
    *req.mutable_name() = name;
 
-
     stub_->GetImage(&ctx, req, &resp); 
-
 
     Camera::raw_image raw_image;
 
@@ -70,13 +64,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string name, std:: string
 
     std::string pc_string = resp.point_cloud();
     point_cloud.pc = string_to_bytes(pc_string);
-
-    
     point_cloud.mime_type = resp.mime_type();
-
-
-
-
 
     return point_cloud;
     
@@ -124,8 +112,6 @@ bool has_suffix(const std::string &str, const std::string &suffix) {
     std::transform(std::begin(s), std::end(s), std::back_inserter(bytes), [](char c){
         return c;
     });
-
-
     return bytes; 
 }; 
 

@@ -30,7 +30,6 @@ std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     if (short_names.find(name) != short_names.end()) {
         std::string short_name = short_names.at(name);
         if (resources.find(short_name) != resources.end()) {
-            std::cout << "short name\n";
             lock.unlock();
             return resources.at(short_name);
         }

@@ -42,15 +42,11 @@
 
    std::shared_ptr<Camera> camera =std::dynamic_pointer_cast<Camera>(rb);
 
-
     std::string name = request->name();
     std::string mime_type = request->mime_type();
     Camera::raw_image image = camera->get_image(name, mime_type);
 
-
     std::string img_string = bytes_to_string(image.bytes);
-
-
 
     *response->mutable_mime_type() = image.mime_type;
     *response->mutable_image() = img_string;
@@ -80,13 +76,12 @@
     std::string name = request->name();
     std::string mime_type = request->mime_type();
 
+    Camera::raw_image image = camera->get_image(name, mime_type);
 
-     Camera::raw_image image = camera->get_image(name, mime_type);
+    response->set_data(bytes_to_string(image.bytes));
+    response->set_content_type(image.mime_type);
 
-     response->set_data(bytes_to_string(image.bytes));
-     response->set_content_type(image.mime_type);
-
-     return ::grpc::Status(); 
+    return ::grpc::Status(); 
 
 }
 
@@ -101,8 +96,6 @@
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-
-    
 
     if (rb == nullptr) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
@@ -131,7 +124,6 @@
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [GetProperties] without a request");
     };
-
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
     if (rb == nullptr) {
