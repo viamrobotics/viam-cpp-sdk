@@ -240,13 +240,6 @@ bool operator==(const ProtoType &lhs, const ProtoType &rhs) {
 						please file a bug report.";
         }
     }
-
-
-
-
-    
-    
-
 }
 
 
