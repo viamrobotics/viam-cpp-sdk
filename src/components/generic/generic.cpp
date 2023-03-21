@@ -3,6 +3,7 @@
 #include <google/protobuf/descriptor.h>
 
 #include <common/utils.hpp>
+#include <components/generic/client.hpp>
 #include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
 #include <registry/registry.hpp>
@@ -12,6 +13,13 @@
 std::shared_ptr<ResourceServerBase> GenericSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> svc) {
     return std::make_shared<GenericServer>(svc);
+};
+
+std::shared_ptr<ResourceBase> GenericSubtype::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
+    auto generic_client = std::make_shared<GenericClient>(chan);
+    generic_client->name = name;
+    return generic_client;
 };
 
 std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
@@ -26,6 +34,10 @@ std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
 
 Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
+}
+
+ProtoType Generic::do_command(std::unordered_map<std::string, ProtoType*> command) {
+    return ProtoType();
 }
 
 bool init() {

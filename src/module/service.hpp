@@ -6,6 +6,7 @@
 #include <components/service_base.hpp>
 #include <module/module.hpp>
 #include <resource/resource_base.hpp>
+#include "module/v1/module.pb.h"
 
 class ModuleService_ : public ComponentServiceBase,
                        public viam::module::v1::ModuleService::Service {
@@ -31,6 +32,10 @@ class ModuleService_ : public ComponentServiceBase,
     ::grpc::Status Ready(::grpc::ServerContext* context,
                          const ::viam::module::v1::ReadyRequest* request,
                          ::viam::module::v1::ReadyResponse* response) override;
+
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* context,
+                         const ::viam::module::v1::ValidateConfigRequest* request,
+                         ::viam::module::v1::ValidateConfigResponse* response) override;
 
     std::shared_ptr<Module> module;
 

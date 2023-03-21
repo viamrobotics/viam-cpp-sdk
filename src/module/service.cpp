@@ -52,7 +52,7 @@ Dependencies get_dependencies(ModuleService_* m,
    //
 std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     if (parent == nullptr) {
-        parent = RobotClient::at_address("unix://" + parent_addr, {0, boost::none});
+        parent = RobotClient::at_local_socket("unix://" + parent_addr, {0, boost::none});
     }
 
     return parent->resource_by_name(name.to_proto());
@@ -126,6 +126,35 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         sub_svc->replace_one(cfg.resource_name(), res);
     }
 
+    return grpc::Status();
+};
+
+::grpc::Status ModuleService_::ValidateConfig(
+    ::grpc::ServerContext* context,
+    const ::viam::module::v1::ValidateConfigRequest* request,
+    ::viam::module::v1::ValidateConfigResponse* response) {
+    viam::app::v1::ComponentConfig proto = request->config();
+    Resource cfg = Resource::from_proto(proto);
+
+    std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
+    if (reg == nullptr) {
+        return grpc::Status(grpc::UNKNOWN,
+                            "unable to validate resource " + cfg.resource_name().name +
+                                " as it hasn't been registered.");
+    }
+    try {
+        std::vector<std::string> implicit_deps = reg->validate(cfg);
+        for (int i = 0; i < implicit_deps.size(); i++) {
+            if (i == 0) {
+              response->add_dependencies();
+            }
+            response->set_dependencies(i, implicit_deps[i]);
+        }
+    } catch (std::exception& exc) {
+        return grpc::Status(
+            grpc::UNKNOWN,
+            "validation failure in resource " + cfg.name + ": " + exc.what());
+    }
     return grpc::Status();
 };
 
@@ -237,4 +266,3 @@ void ModuleService_::add_model_from_registry(Subtype api, Model model) {
     RPCSubtype rpc_subtype(api, name, *sd);
     module->handles.add_model(model, rpc_subtype);
 };
-

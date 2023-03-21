@@ -36,6 +36,7 @@ class RobotClient {
     /// 	address: Address of the robot (IP address, URI, URL, etc.)
     /// 	options: Options for connecting and refreshing
     static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
+    static std::shared_ptr<RobotClient> at_local_socket(std::string address, Options options);
     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, Options options);
     RobotClient(ViamChannel channel);
     std::vector<ResourceName>* resource_names();
