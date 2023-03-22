@@ -147,9 +147,9 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         for (auto& dep : implicit_deps) {
             response->add_dependencies(dep);
         }
-    } catch (std::exception& exc) {
+    } catch (std::string err) {
         return grpc::Status(grpc::UNKNOWN,
-                            "validation failure in resource " + cfg.name + ": " + exc.what());
+                            "validation failure in resource " + cfg.name + ": " + err);
     }
     return grpc::Status();
 };
