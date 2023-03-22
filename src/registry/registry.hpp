@@ -23,9 +23,9 @@ class ResourceSubtype {
     std::function<ProtoType(ResourceBase)> create_status;
     const google::protobuf::ServiceDescriptor* service_descriptor;
     virtual std::shared_ptr<ResourceServerBase> create_resource_server(
-        std::shared_ptr<SubtypeService> svc);
+        std::shared_ptr<SubtypeService> svc) = 0;
     virtual std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                            std::shared_ptr<grpc::Channel> channel);
+                                                            std::shared_ptr<grpc::Channel> channel) = 0;
 
     ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor(service_descriptor){};

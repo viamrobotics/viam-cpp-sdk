@@ -36,10 +36,6 @@ Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
 }
 
-ProtoType Generic::do_command(std::unordered_map<std::string, ProtoType*> command) {
-    return ProtoType();
-}
-
 bool init() {
     Registry::register_subtype(Generic::subtype(), Generic::resource_subtype());
     return true;
