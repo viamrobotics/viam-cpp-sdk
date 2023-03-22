@@ -205,6 +205,7 @@ target_sources(viamcpp
     common/utils.cpp
     components/component_base.cpp
     components/component_type.cpp
+    components/generic/client.cpp
     components/generic/generic.cpp
     components/generic/server.cpp
     config/resource.cpp
@@ -232,6 +233,7 @@ target_sources(viamcpp
       common/utils.hpp
       components/component_base.hpp
       components/component_type.hpp
+      components/generic/client.hpp
       components/generic/generic.hpp
       components/generic/server.hpp
       components/service_base.hpp
