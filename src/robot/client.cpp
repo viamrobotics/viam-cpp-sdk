@@ -252,6 +252,7 @@ std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Option
 };
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, Options options) {
+    address = "unix://" + address;
     const char* uri = address.c_str();
     std::shared_ptr<grpc::Channel> channel =
         grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());

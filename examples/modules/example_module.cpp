@@ -94,9 +94,8 @@ int main(int argc, char** argv) {
         // Custom validation can be done by specifying a validator function like
         // this one. Validator functions can `throw` errors that will be returned
         // to the parent through gRPC.
-        [](Resource cfg) {
-            std::vector<std::string> dependencies = {"component1"};
-            return dependencies;
+        [](Resource cfg) -> std::vector<std::string> {
+            return {"component1"};
         });
 
     Registry::register_resource(rr);

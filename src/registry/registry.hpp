@@ -33,10 +33,6 @@ class ResourceSubtype {
    private:
 };
 
-// default_validator is the default validator for all models if no validator is
-// provided in construction. No dependencies are returned.
-std::vector<std::string> default_validator(Resource cfg);
-
 class ModelRegistration {
    public:
     ModelRegistration(ResourceType rt)
@@ -68,6 +64,13 @@ class ModelRegistration {
     std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;
     std::function<std::vector<std::string>(Resource)> validate;
     viam::robot::v1::Status create_status(std::shared_ptr<ResourceBase> resource);
+
+   private:
+    // default_validator is the default validator for all models if no validator is
+    // provided in construction. No dependencies are returned.
+    static const std::vector<std::string> default_validator(Resource cfg) {
+        return {};
+    };
 };
 
 class Registry {

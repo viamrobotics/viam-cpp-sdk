@@ -52,7 +52,7 @@ Dependencies get_dependencies(ModuleService_* m,
    //
 std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     if (parent == nullptr) {
-        parent = RobotClient::at_local_socket("unix://" + parent_addr, {0, boost::none});
+        parent = RobotClient::at_local_socket(parent_addr, {0, boost::none});
     }
 
     return parent->resource_by_name(name.to_proto());
@@ -144,16 +144,12 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     }
     try {
         std::vector<std::string> implicit_deps = reg->validate(cfg);
-        for (int i = 0; i < implicit_deps.size(); i++) {
-            if (i == 0) {
-              response->add_dependencies();
-            }
-            response->set_dependencies(i, implicit_deps[i]);
+        for (auto& dep : implicit_deps) {
+            response->add_dependencies(dep);
         }
     } catch (std::exception& exc) {
-        return grpc::Status(
-            grpc::UNKNOWN,
-            "validation failure in resource " + cfg.name + ": " + exc.what());
+        return grpc::Status(grpc::UNKNOWN,
+                            "validation failure in resource " + cfg.name + ": " + exc.what());
     }
     return grpc::Status();
 };

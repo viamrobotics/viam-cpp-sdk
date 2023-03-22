@@ -110,7 +110,3 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
 
 std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::resources;
 std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
-
-std::vector<std::string> default_validator(Resource cfg) {
-  return {};
-}

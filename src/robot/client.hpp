@@ -30,12 +30,20 @@ class RobotClient {
     void refresh();
     void close();
     /// Create a robot client that is connected to the robot at the provided
+    /// address. Uses the underlying rust-utils library and webRTC to dial the
     /// address.
     ///
     /// Args:
     /// 	address: Address of the robot (IP address, URI, URL, etc.)
     /// 	options: Options for connecting and refreshing
     static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
+    /// Create a robot client that is connected to the robot at the provided
+    /// local socket. Creates a direct connection to the robot using the `unix://`
+    /// scheme. Only useful for connecting to robots across Unix sockets.
+    ///
+    /// Args:
+    /// 	address: Local socket of the robot (a .sock file, etc.)
+    /// 	options: Options for connecting and refreshing
     static std::shared_ptr<RobotClient> at_local_socket(std::string address, Options options);
     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, Options options);
     RobotClient(ViamChannel channel);

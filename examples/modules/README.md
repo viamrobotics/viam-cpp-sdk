@@ -11,7 +11,7 @@ For more information, see the [documentation](https://docs.viam.com/program/exte
 ## How to use
 The `example_module` binary generated after building is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, this could be `/home/viam-cpp-sdk/build/install/bin/example_module`. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
 
-Once the module has been added to your robot, you will then need to add a component that uses the `acme:demo:printer` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. `acme:demo:printer` components depend on a generic component `component1` by default; you will need to include a generic component with that name, as well.
+Once the module has been added to your robot, you will then need to add a component that uses the `acme:demo:printer` model. Note that `acme:demo:printer1` is only an example model and is not meaningful outside of this context. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. `acme:demo:printer` components depend on a generic component `component1` by default; you will need to include a generic component with that name, as well.
 
 An example configuration for a printer that depends on a generic component could look like this:
 ```json
