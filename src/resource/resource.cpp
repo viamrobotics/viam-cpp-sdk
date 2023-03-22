@@ -92,9 +92,6 @@ Name Name::from_string(std::string name) {
     std::string resource_name = colon_splits.at(0);
     if (colon_splits.size() > 1) {
       remote = colon_splits.at(0);
-      if (remote.size() > 0) {
-          remote.pop_back();
-      }
       resource_name = colon_splits.at(1);
     }
 
