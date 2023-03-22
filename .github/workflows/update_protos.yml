@@ -14,6 +14,8 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
+      - name: set-path
+        run: echo "path=${{ github.workspace }}:$GITHUB_PATH" >> ${GITHUB_ENV}
       - uses: eWaterCycle/setup-grpc@v5
         with:
           grpc-version: 1.51.1
@@ -28,8 +30,6 @@ jobs:
           ninjaVersion: 1.11.1
       - name: setup-grpc-manual
         run: git clone https://github.com/Microsoft/vcpkg.git && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install grpc
-      - name: set-path
-        run: echo "path=${{ github.workspace }}:$GITHUB_PATH" >> ${GITHUB_ENV}
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
