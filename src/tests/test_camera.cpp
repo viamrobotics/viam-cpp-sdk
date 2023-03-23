@@ -166,14 +166,6 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_camera_client)
 
-class MockClient : public CameraClient {
-   public:
-    MockClient(std::string name) : CameraClient(name) {
-        stub_ = std::make_unique<MockStub>();
-        name_ = name;
-    }
-};
-
 MockClient client = MockClient("camera");
 
 BOOST_AUTO_TEST_CASE(test_image_client) {

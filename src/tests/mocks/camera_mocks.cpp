@@ -420,3 +420,11 @@ class MockStub : public viam::component::camera::v1::CameraService::StubInterfac
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_ =
         ::grpc::internal::RpcMethod("name", type);
 };
+
+class MockClient : public CameraClient {
+   public:
+    MockClient(std::string name) : CameraClient(name) {
+        stub_ = std::make_unique<MockStub>();
+        name_ = name;
+    }
+};
