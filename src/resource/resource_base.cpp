@@ -14,4 +14,3 @@ grpc::StatusCode ResourceBase::stop() {
 }
 
 void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
-

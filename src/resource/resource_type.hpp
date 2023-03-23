@@ -10,4 +10,3 @@ class ResourceType {
         type = type;
     }
 };
-

@@ -29,11 +29,10 @@ Subtype Generic::subtype() {
 }
 
 namespace {
- bool init() {
+bool init() {
     Registry::register_subtype(Generic::subtype(), Generic::resource_subtype());
     return true;
 };
 
-bool inited = init();   
-} //namespace
-
+bool inited = init();
+}  // namespace

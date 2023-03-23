@@ -41,4 +41,3 @@ class ModuleService_ : public ComponentServiceBase,
     std::shared_ptr<RobotClient> parent;
     std::string parent_addr;
 };
-

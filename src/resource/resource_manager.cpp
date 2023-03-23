@@ -46,4 +46,3 @@ std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
         " was found, but it has the wrong type! Expected type: " + of_type.type +
         ". Actual type: " + resource->type.type;
 }
-

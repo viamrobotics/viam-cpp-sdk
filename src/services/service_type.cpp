@@ -3,4 +3,3 @@
 bool operator==(ServiceType& lhs, ServiceType& rhs) {
     return lhs.name == rhs.name;
 }
-

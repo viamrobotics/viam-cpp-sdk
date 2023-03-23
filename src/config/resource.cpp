@@ -11,7 +11,6 @@
 #include <string>
 #include <unordered_map>
 
-
 Name Resource::resource_name() {
     try {
         this->fix_api();
@@ -108,4 +107,3 @@ viam::app::v1::ComponentConfig Resource::to_proto() {
 }
 
 Resource::Resource(std::string type) : api({RDK, type, ""}), type(type){};
-

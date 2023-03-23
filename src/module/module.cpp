@@ -15,4 +15,3 @@ void Module::set_ready() {
     ready = true;
     lock.unlock();
 }
-

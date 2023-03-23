@@ -14,4 +14,3 @@ class ServiceBase : public ResourceBase {
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);
     ServiceBase();
 };
-

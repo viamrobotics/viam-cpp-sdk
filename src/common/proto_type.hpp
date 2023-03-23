@@ -10,7 +10,6 @@ class ProtoType {
     boost::variant<boost::blank,
                    bool,
                    std::string,
-                   char const*,
                    int,
                    double,
                    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>,
@@ -25,9 +24,6 @@ class ProtoType {
     ProtoType(std::string s) {
         proto_type = s;
     }
-  ProtoType(char const* c) {
-        proto_type = c;
-    } 
     ProtoType(int i) {
         proto_type = i;
     }
@@ -41,16 +37,16 @@ class ProtoType {
         proto_type = v;
     }
 
-    static ProtoType of_value(const google::protobuf::Value& value);
+    // TODO: RSDK-2421 consider switching this to a constructor
+    static ProtoType of_value(google::protobuf::Value value);
 
     google::protobuf::Value proto_value();
-
 };
 
-std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> struct_to_map(google::protobuf::Struct struct_);
+std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> struct_to_map(
+    google::protobuf::Struct struct_);
 
-google::protobuf::Struct map_to_struct(std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> dict);
+google::protobuf::Struct map_to_struct(
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> dict);
 
-
-bool operator==(const ProtoType &lhs, const ProtoType &rhs);
-
+bool operator==(const ProtoType& lhs, const ProtoType& rhs);

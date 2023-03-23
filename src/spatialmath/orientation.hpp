@@ -23,4 +23,3 @@ class OrientationConfig {
 
     static OrientationConfig from_proto(viam::app::v1::Orientation proto);
 };
-

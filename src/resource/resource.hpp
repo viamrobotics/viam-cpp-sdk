@@ -31,8 +31,8 @@ class Subtype : public Type {
     friend bool operator<(const Subtype& lhs, const Subtype& rhs);
 };
 
-// TODO: instead of inheriting from Subtype probably this should just have a Subtype as a
-// member
+// TODO: instead of inheriting from Subtype probably this should just have a
+// Subtype as a member
 class Name : public Subtype {
    public:
     std::string remote_name;
@@ -89,8 +89,8 @@ class Model {
     /// included, then default values will be used for namespace and family.
     ///
     /// Raises:
-    /// 	Will throw an error if an invalid model string is passed (i.e., using non-word
-    /// characters)
+    /// 	Will throw an error if an invalid model string is passed (i.e., using
+    /// non-word characters)
     static Model from_str(std::string model);
     friend bool operator==(const Model& lhs, const Model& rhs);
 };

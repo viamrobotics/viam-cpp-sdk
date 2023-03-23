@@ -17,4 +17,3 @@ class LinkConfig {
     GeometryConfig geometry;
     std::string parent;
 };
-

@@ -237,4 +237,3 @@ void ModuleService_::add_model_from_registry(Subtype api, Model model) {
     RPCSubtype rpc_subtype(api, name, *sd);
     module->handles.add_model(model, rpc_subtype);
 };
-

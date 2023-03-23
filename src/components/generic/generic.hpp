@@ -1,8 +1,8 @@
 #pragma once
 
 #include <common/utils.hpp>
+#include <config/resource.hpp>
 #include <registry/registry.hpp>
-#include <resource/resource.hpp>
 
 #include "common/proto_type.hpp"
 #include "subtype/subtype.hpp"
@@ -20,6 +20,5 @@ class Generic : public ComponentBase {
    public:
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
-    virtual std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> do_command(std::string name, std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) = 0;
+    virtual AttributeMap do_command(AttributeMap command) = 0;
 };
-

@@ -15,7 +15,8 @@
 #include <string>
 #include <subtype/subtype.hpp>
 
-// TODO(RSDK-1742): instead of std::functions, consider making these functions virtual
+// TODO(RSDK-1742): instead of std::functions, consider making these functions
+// virtual
 // TODO(RSDK-1742): one class per header
 class ResourceSubtype {
    public:
@@ -56,7 +57,8 @@ class Registry {
    public:
     /// Registers a resource with the Registry
     /// Args:
-    /// 	resource (ModelRegistration): object containing resource registration data
+    /// 	resource (ModelRegistration): object containing resource registration
+    /// data
     ///
     /// Raises:
     /// 	throws error if resource already exists in the registry
@@ -73,4 +75,3 @@ class Registry {
     static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> resources;
     static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes;
 };
-

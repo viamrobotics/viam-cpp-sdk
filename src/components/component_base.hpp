@@ -14,4 +14,3 @@ class ComponentBase : public ResourceBase {
     viam::common::v1::ResourceName get_resource_name(std::string name);
     ComponentBase();
 };
-

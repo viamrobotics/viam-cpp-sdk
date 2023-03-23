@@ -19,8 +19,7 @@
 #include "subtype/subtype.hpp"
 
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
-     lock.lock();
-
+    lock.lock();
 
     if (resources.find(name) != resources.end()) {
         lock.unlock();
@@ -34,7 +33,7 @@ std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
             return resources.at(short_name);
         }
     }
-     lock.unlock();
+    lock.unlock();
     return nullptr;
 };
 
@@ -75,7 +74,7 @@ void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
 };
 
 void SubtypeService::do_add(std::string name, std::shared_ptr<ResourceBase> resource) {
-      if (resources.find(name) != resources.end()) {
+    if (resources.find(name) != resources.end()) {
         throw "Attempted to add resource that already existed: " + name;
     }
 
@@ -113,8 +112,8 @@ void SubtypeService::do_remove(Name name) {
         short_names.erase(shortcut);
     }
 
-    // case: remote1:nameA and remote2:nameA both existed, and remote2:nameA is being deleted,
-    // restore shortcut to remote1:nameA
+    // case: remote1:nameA and remote2:nameA both existed, and remote2:nameA is
+    // being deleted, restore shortcut to remote1:nameA
     for (auto& res : resources) {
         std::string key = res.first;
         if (shortcut == get_shortcut_name(key) && short_name != get_shortcut_name(key)) {
@@ -148,9 +147,9 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
     lock.unlock();
 };
 
-  void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resource) {
-        lock.lock();
-        do_add(name, resource);
-        lock.unlock();
-  }
+void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resource) {
+    lock.lock();
+    do_add(name, resource);
+    lock.unlock();
+}
 
