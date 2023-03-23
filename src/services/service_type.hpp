@@ -13,4 +13,3 @@ class ServiceType {
         name = "ServiceBase";
     }
 };
-

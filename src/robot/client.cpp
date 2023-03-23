@@ -45,9 +45,10 @@ using viam::robot::v1::Status;
 using Viam::SDK::Options;
 using Viam::SDK::ViamChannel;
 
-// gRPC responses are frequently coming back with a spurious `Stream removed` error, leading to
-// unhelpful and misleading logging. We should figure out why and fix that in `rust-utils`, but in
-// the meantime this cleans up the logging error on the C++ side.
+// gRPC responses are frequently coming back with a spurious `Stream removed`
+// error, leading to unhelpful and misleading logging. We should figure out why
+// and fix that in `rust-utils`, but in the meantime this cleans up the logging
+// error on the C++ side.
 const std::string k_stream_removed = "Stream removed";
 
 RobotClient::~RobotClient() {
@@ -164,8 +165,9 @@ void RobotClient::refresh() {
             continue;
         }
 
-        // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers are being
-        // properly registered from name.subtype(), or update what we're using for lookup
+        // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers
+        // are being properly registered from name.subtype(), or update what we're
+        // using for lookup
         std::shared_ptr<ResourceSubtype> rs =
             Registry::lookup_subtype(Subtype::from_string(name.subtype()));
         if (rs != nullptr) {
@@ -230,8 +232,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
         std::shared_ptr<std::thread> t =
             std::make_shared<std::thread>(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
-        // close/destructor lets us shutdown gracefully. See also address sanitizer, UB
-        // sanitizer
+        // close/destructor lets us shutdown gracefully. See also address sanitizer,
+        // UB sanitizer
         t->detach();
         robot->threads.push_back(t);
     };
@@ -341,10 +343,11 @@ void RobotClient::stop_all() {
     stop_all(map);
 }
 
-void RobotClient::stop_all(std::unordered_map<ResourceName,
-                                              std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
-                                              ResourceNameHasher,
-                                              ResourceNameEqual> extra) {
+void RobotClient::stop_all(
+    std::unordered_map<ResourceName,
+                       std::unordered_map<std::string, std::shared_ptr<ProtoType>>,
+                       ResourceNameHasher,
+                       ResourceNameEqual> extra) {
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
@@ -354,7 +357,8 @@ void RobotClient::stop_all(std::unordered_map<ResourceName,
     for (auto& xtra : extra) {
         ResourceName name = xtra.first;
         std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> params =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(xtra.second);
+            std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(
+                xtra.second);
         google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name;

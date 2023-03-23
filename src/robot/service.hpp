@@ -47,4 +47,3 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
                        int interval);
 };
-

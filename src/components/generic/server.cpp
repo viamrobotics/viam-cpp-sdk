@@ -23,4 +23,3 @@ void GenericServer::register_server() {
         throw exc;
     }
 }
-

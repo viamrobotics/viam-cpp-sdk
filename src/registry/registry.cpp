@@ -95,8 +95,9 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
                 << "Unable to get resource name from resource base " << resource->name;
         };
     } else {
-        throw "unable to create status; provided resource was of an unknown type: " +
-            resource->type.type;
+        throw "unable to create status; provided resource was of an unknown "
+          "type: " +
+        resource->type.type;
     }
     *status.mutable_name() = *name;
     *status.mutable_status() = google::protobuf::Struct();
@@ -105,4 +106,3 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
 
 std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::resources;
 std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
-

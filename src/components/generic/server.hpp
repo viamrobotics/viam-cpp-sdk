@@ -20,6 +20,4 @@ class GenericServer : public ResourceServerBase,
 
    private:
     std::shared_ptr<SubtypeService> sub_svc;
-    static bool initialized;
 };
-

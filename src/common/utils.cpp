@@ -39,3 +39,12 @@ std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<ResourceBa
     return resource_names;
 }
 
+std::vector<unsigned char> string_to_bytes(std::string const& s) {
+    std::vector<unsigned char> bytes(s.begin(), s.end());
+    return bytes;
+};
+
+std::string bytes_to_string(std::vector<unsigned char> const& b) {
+    std::string img_string(b.begin(), b.end());
+    return img_string;
+};

@@ -24,4 +24,3 @@ class ResourceManager {
    private:
     ResourceManager(std::vector<std::shared_ptr<ResourceBase>> resources);
 };
-

@@ -19,4 +19,3 @@ class Module {
     void set_ready();
     Module(std::string addr);
 };
-

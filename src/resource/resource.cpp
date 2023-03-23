@@ -164,4 +164,3 @@ std::string Model::to_string() const {
 }
 
 Model::Model() : Model(ModelFamily(RDK, BUILTIN), BUILTIN) {}
-

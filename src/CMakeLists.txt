@@ -214,7 +214,7 @@ target_sources(viamcpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
-    module/service.cpp 
+    module/service.cpp
     referenceframe/frame.cpp
     resource/resource.cpp
     resource/resource_base.cpp
@@ -264,7 +264,6 @@ target_sources(viamcpp
       spatialmath/orientation_types.hpp
       spatialmath/orientation.hpp
       subtype/subtype.hpp
-      tests/test_camera.cpp
   PUBLIC FILE_SET viamcpp_public_pb_includes TYPE HEADERS
     BASE_DIRS
       ${PROTO_GEN_DIR}/gen

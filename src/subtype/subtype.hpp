@@ -26,4 +26,3 @@ class SubtypeService : public grpc::Service {
     void do_add(std::string name, std::shared_ptr<ResourceBase> resource);
     void do_remove(Name name);
 };
-

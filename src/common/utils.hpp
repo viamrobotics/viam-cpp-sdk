@@ -35,3 +35,5 @@ class ResourceNameEqual {
     }
 };
 
+std::vector<unsigned char> string_to_bytes(std::string const& s);
+std::string bytes_to_string(std::vector<unsigned char> const& b);

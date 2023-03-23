@@ -34,4 +34,3 @@ class GeometryConfig {
     viam::common::v1::Pose pose_proto();
     static GeometryConfig from_proto(viam::common::v1::Geometry proto);
 };
-

@@ -200,4 +200,3 @@ RobotService_::RobotService_(){};
 std::shared_ptr<RobotService_> RobotService_::create() {
     return std::make_shared<RobotService_>();
 };
-

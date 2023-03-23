@@ -1,11 +1,12 @@
 #include <common/proto_type.hpp>
 #include <components/generic/client.hpp>
+#include <config/resource.hpp>
 #include <utility>
 
 #include "common/v1/common.pb.h"
 #include "component/generic/v1/generic.grpc.pb.h"
 
-std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> GenericClient::do_command(std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
+AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
     grpc::ClientContext ctx;

@@ -40,4 +40,3 @@ class Resource {
    private:
     void fix_api();
 };
-

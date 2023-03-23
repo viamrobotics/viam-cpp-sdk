@@ -6,4 +6,3 @@ class ComponentServiceBase {
    public:
     ResourceManager manager;
 };
-
