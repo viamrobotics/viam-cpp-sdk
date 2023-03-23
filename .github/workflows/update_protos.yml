@@ -14,8 +14,6 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
-      - name: set-path
-        run: echo "path=${{ github.workspace }}:$GITHUB_PATH" >> ${GITHUB_ENV}
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.80.0
@@ -34,7 +32,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/vcpkg/packages/grpc_x64-linux/lib --debug-find && cmake --build ./build --target update-static-protos
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/vcpkg/packages/grpc_x64-linux --debug-find && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
