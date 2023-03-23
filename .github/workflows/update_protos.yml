@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup-grpc-manual
-        run: git clone https://github.com/Microsoft/vcpkg.git && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install grpc && ./vcpkg install upb
+        run: git clone https://github.com/Microsoft/vcpkg.git && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install grpc && ./vcpkg install upb && ./vcpkg install openssl
       - name: print-files
         run: find . -type f | xargs echo
       - uses: MarkusJx/install-boost@v2.4.4
