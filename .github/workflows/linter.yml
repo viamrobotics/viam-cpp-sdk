@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout PR/Push/Workflow Dispatch
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - name: Run linter
         uses: cpp-linter/cpp-linter-action@v2
         id: linter
