@@ -34,7 +34,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/vcpkg/packages/grpc_x64-linux --debug-find && cmake --build ./build --target update-static-protos
+        run: cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=${{ github.workspace }}/vcpkg/buildtrees/grpc --debug-find && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
