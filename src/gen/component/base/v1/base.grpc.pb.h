@@ -7,23 +7,23 @@
 #include "component/base/v1/base.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
-#include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/proto_utils.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/status.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -91,6 +91,14 @@ class BaseService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::IsMovingResponse>> PrepareAsyncIsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::IsMovingResponse>>(PrepareAsyncIsMovingRaw(context, request, cq));
     }
+    // DoCommand sends/receives arbitrary commands
+    virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -117,6 +125,9 @@ class BaseService final {
       // IsMoving reports if a component is in motion
       virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // DoCommand sends/receives arbitrary commands
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -134,6 +145,8 @@ class BaseService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::IsMovingResponse>* PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -180,6 +193,13 @@ class BaseService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>> PrepareAsyncIsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>>(PrepareAsyncIsMovingRaw(context, request, cq));
     }
+    ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -195,6 +215,8 @@ class BaseService final {
       void Stop(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) override;
       void IsMoving(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -218,12 +240,15 @@ class BaseService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::IsMovingResponse>* PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_MoveStraight_;
     const ::grpc::internal::RpcMethod rpcmethod_Spin_;
     const ::grpc::internal::RpcMethod rpcmethod_SetPower_;
     const ::grpc::internal::RpcMethod rpcmethod_SetVelocity_;
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
     const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
+    const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -248,6 +273,8 @@ class BaseService final {
     virtual ::grpc::Status Stop(::grpc::ServerContext* context, const ::viam::component::base::v1::StopRequest* request, ::viam::component::base::v1::StopResponse* response);
     // IsMoving reports if a component is in motion
     virtual ::grpc::Status IsMoving(::grpc::ServerContext* context, const ::viam::component::base::v1::IsMovingRequest* request, ::viam::component::base::v1::IsMovingResponse* response);
+    // DoCommand sends/receives arbitrary commands
+    virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_MoveStraight : public BaseClass {
@@ -369,7 +396,27 @@ class BaseService final {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_MoveStraight<WithAsyncMethod_Spin<WithAsyncMethod_SetPower<WithAsyncMethod_SetVelocity<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<Service > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoCommand() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_MoveStraight<WithAsyncMethod_Spin<WithAsyncMethod_SetPower<WithAsyncMethod_SetVelocity<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<Service > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_MoveStraight : public BaseClass {
    private:
@@ -532,7 +579,34 @@ class BaseService final {
     virtual ::grpc::ServerUnaryReactor* IsMoving(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::base::v1::IsMovingRequest* /*request*/, ::viam::component::base::v1::IsMovingResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_MoveStraight<WithCallbackMethod_Spin<WithCallbackMethod_SetPower<WithCallbackMethod_SetVelocity<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<Service > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    void SetMessageAllocatorFor_DoCommand(
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoCommand(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_MoveStraight<WithCallbackMethod_Spin<WithCallbackMethod_SetPower<WithCallbackMethod_SetVelocity<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<Service > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_MoveStraight : public BaseClass {
@@ -632,6 +706,23 @@ class BaseService final {
     }
     // disable synchronous version of this method
     ::grpc::Status IsMoving(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::IsMovingRequest* /*request*/, ::viam::component::base::v1::IsMovingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoCommand() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -754,6 +845,26 @@ class BaseService final {
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -886,6 +997,28 @@ class BaseService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* IsMoving(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1050,9 +1183,36 @@ class BaseService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedIsMoving(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::base::v1::IsMovingRequest,::viam::component::base::v1::IsMovingResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<Service > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DoCommand() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
+                       return this->StreamedDoCommand(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<Service > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > StreamedService;
 };
 
 }  // namespace v1

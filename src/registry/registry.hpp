@@ -23,9 +23,9 @@ class ResourceSubtype {
     std::function<ProtoType(ResourceBase)> create_status;
     const google::protobuf::ServiceDescriptor* service_descriptor;
     virtual std::shared_ptr<ResourceServerBase> create_resource_server(
-        std::shared_ptr<SubtypeService> svc);
-    std::function<std::shared_ptr<ResourceBase>(std::string, std::shared_ptr<grpc::Channel>)>
-        create_rpc_client;
+        std::shared_ptr<SubtypeService> svc) = 0;
+    virtual std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
+                                                            std::shared_ptr<grpc::Channel> channel) = 0;
 
     ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor(service_descriptor){};
@@ -35,7 +35,8 @@ class ResourceSubtype {
 
 class ModelRegistration {
    public:
-    ModelRegistration(ResourceType rt) : resource_type(std::move(rt)){};
+    ModelRegistration(ResourceType rt)
+        : resource_type(std::move(rt)), validate(default_validator){};
     ModelRegistration(
         ResourceType rt,
         Subtype subtype,
@@ -44,12 +45,32 @@ class ModelRegistration {
         : subtype(std::move(subtype)),
           resource_type(std::move(rt)),
           model(std::move(model)),
-          construct_resource(std::move(constructor)){};
+          construct_resource(std::move(constructor)),
+          validate(default_validator){};
+    ModelRegistration(
+        ResourceType rt,
+        Subtype subtype,
+        Model model,
+        std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor,
+        std::function<std::vector<std::string>(Resource)> validator)
+        : subtype(std::move(subtype)),
+          resource_type(std::move(rt)),
+          model(std::move(model)),
+          construct_resource(std::move(constructor)),
+          validate(std::move(validator)){};
     Subtype subtype;
     Model model;
     ResourceType resource_type;
     std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;
+    std::function<std::vector<std::string>(Resource)> validate;
     viam::robot::v1::Status create_status(std::shared_ptr<ResourceBase> resource);
+
+   private:
+    // default_validator is the default validator for all models if no validator is
+    // provided in construction. No dependencies are returned.
+    static const std::vector<std::string> default_validator(Resource cfg) {
+        return {};
+    };
 };
 
 class Registry {
@@ -73,4 +94,3 @@ class Registry {
     static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> resources;
     static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes;
 };
-
