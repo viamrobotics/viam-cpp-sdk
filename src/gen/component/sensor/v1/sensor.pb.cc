@@ -25,10 +25,9 @@ namespace component {
 namespace sensor {
 namespace v1 {
 PROTOBUF_CONSTEXPR GetReadingsRequest::GetReadingsRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.extra_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetReadingsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetReadingsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,7 +38,7 @@ struct GetReadingsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsRequestDefaultTypeInternal _GetReadingsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetReadingsResponse_ReadingsEntry_DoNotUse::GetReadingsResponse_ReadingsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct GetReadingsResponse_ReadingsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetReadingsResponse_ReadingsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -50,9 +49,8 @@ struct GetReadingsResponse_ReadingsEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetReadingsResponse_ReadingsEntry_DoNotUseDefaultTypeInternal _GetReadingsResponse_ReadingsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR GetReadingsResponse::GetReadingsResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.readings_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : readings_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
 struct GetReadingsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetReadingsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -77,8 +75,8 @@ const uint32_t TableStruct_component_2fsensor_2fv1_2fsensor_2eproto::offsets[] P
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsRequest, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsRequest, _impl_.extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsRequest, extra_),
   PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsResponse_ReadingsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsResponse_ReadingsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -95,7 +93,7 @@ const uint32_t TableStruct_component_2fsensor_2fv1_2fsensor_2eproto::offsets[] P
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsResponse, _impl_.readings_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::sensor::v1::GetReadingsResponse, readings_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::sensor::v1::GetReadingsRequest)},
@@ -166,56 +164,45 @@ class GetReadingsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetReadingsRequest::_Internal::extra(const GetReadingsRequest* msg) {
-  return *msg->_impl_.extra_;
+  return *msg->extra_;
 }
 void GetReadingsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
-    delete _impl_.extra_;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_.extra_ = nullptr;
+  extra_ = nullptr;
 }
 GetReadingsRequest::GetReadingsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.sensor.v1.GetReadingsRequest)
 }
 GetReadingsRequest::GetReadingsRequest(const GetReadingsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GetReadingsRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.extra_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.sensor.v1.GetReadingsRequest)
 }
 
-inline void GetReadingsRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.extra_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetReadingsRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GetReadingsRequest::~GetReadingsRequest() {
@@ -229,12 +216,12 @@ GetReadingsRequest::~GetReadingsRequest() {
 
 inline void GetReadingsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.extra_;
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetReadingsRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void GetReadingsRequest::Clear() {
@@ -243,11 +230,11 @@ void GetReadingsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
-    delete _impl_.extra_;
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_.extra_ = nullptr;
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -348,35 +335,38 @@ size_t GetReadingsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.extra_);
+        *extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetReadingsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     GetReadingsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetReadingsRequest::GetClassData() const { return &_class_data_; }
 
+void GetReadingsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetReadingsRequest *>(to)->MergeFrom(
+      static_cast<const GetReadingsRequest &>(from));
+}
 
-void GetReadingsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GetReadingsRequest*>(&to_msg);
-  auto& from = static_cast<const GetReadingsRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.sensor.v1.GetReadingsRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void GetReadingsRequest::MergeFrom(const GetReadingsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.sensor.v1.GetReadingsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
-        from._internal_extra());
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetReadingsRequest::CopyFrom(const GetReadingsRequest& from) {
@@ -396,10 +386,10 @@ void GetReadingsRequest::InternalSwap(GetReadingsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
-  swap(_impl_.extra_, other->_impl_.extra_);
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsRequest::GetMetadata() const {
@@ -429,12 +419,13 @@ class GetReadingsResponse::_Internal {
 };
 
 void GetReadingsResponse::clear_readings() {
-  _impl_.readings_.Clear();
+  readings_.Clear();
 }
 GetReadingsResponse::GetReadingsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  readings_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &GetReadingsResponse::ArenaDtor);
   }
@@ -442,24 +433,12 @@ GetReadingsResponse::GetReadingsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 GetReadingsResponse::GetReadingsResponse(const GetReadingsResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GetReadingsResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.readings_)*/{}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.readings_.MergeFrom(from._impl_.readings_);
+  readings_.MergeFrom(from.readings_);
   // @@protoc_insertion_point(copy_constructor:viam.component.sensor.v1.GetReadingsResponse)
 }
 
-inline void GetReadingsResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.readings_)*/{::_pbi::ArenaInitialized(), arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void GetReadingsResponse::SharedCtor() {
 }
 
 GetReadingsResponse::~GetReadingsResponse() {
@@ -474,16 +453,15 @@ GetReadingsResponse::~GetReadingsResponse() {
 
 inline void GetReadingsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.readings_.Destruct();
-  _impl_.readings_.~MapField();
+  readings_.Destruct();
 }
 
 void GetReadingsResponse::ArenaDtor(void* object) {
   GetReadingsResponse* _this = reinterpret_cast< GetReadingsResponse* >(object);
-  _this->_impl_.readings_.Destruct();
+  _this->readings_.Destruct();
 }
 void GetReadingsResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void GetReadingsResponse::Clear() {
@@ -492,7 +470,7 @@ void GetReadingsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.readings_.Clear();
+  readings_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -508,7 +486,7 @@ const char* GetReadingsResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.readings_, ptr);
+            ptr = ctx->ParseMessage(&readings_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -595,26 +573,30 @@ size_t GetReadingsResponse::ByteSizeLong() const {
     total_size += GetReadingsResponse_ReadingsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetReadingsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     GetReadingsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetReadingsResponse::GetClassData() const { return &_class_data_; }
 
+void GetReadingsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetReadingsResponse *>(to)->MergeFrom(
+      static_cast<const GetReadingsResponse &>(from));
+}
 
-void GetReadingsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GetReadingsResponse*>(&to_msg);
-  auto& from = static_cast<const GetReadingsResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.sensor.v1.GetReadingsResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void GetReadingsResponse::MergeFrom(const GetReadingsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.sensor.v1.GetReadingsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.readings_.MergeFrom(from._impl_.readings_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  readings_.MergeFrom(from.readings_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetReadingsResponse::CopyFrom(const GetReadingsResponse& from) {
@@ -631,7 +613,7 @@ bool GetReadingsResponse::IsInitialized() const {
 void GetReadingsResponse::InternalSwap(GetReadingsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.readings_.InternalSwap(&other->_impl_.readings_);
+  readings_.InternalSwap(&other->readings_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsResponse::GetMetadata() const {

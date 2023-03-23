@@ -25,11 +25,10 @@ namespace component {
 namespace posetracker {
 namespace v1 {
 PROTOBUF_CONSTEXPR GetPosesRequest::GetPosesRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.body_names_)*/{}
-  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.extra_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : body_names_()
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetPosesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPosesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -40,7 +39,7 @@ struct GetPosesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesRequestDefaultTypeInternal _GetPosesRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetPosesResponse_BodyPosesEntry_DoNotUse::GetPosesResponse_BodyPosesEntry_DoNotUse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized){}
 struct GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -51,9 +50,8 @@ struct GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPosesResponse_BodyPosesEntry_DoNotUseDefaultTypeInternal _GetPosesResponse_BodyPosesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR GetPosesResponse::GetPosesResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.body_poses_)*/{::_pbi::ConstantInitialized()}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : body_poses_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
 struct GetPosesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPosesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -78,9 +76,9 @@ const uint32_t TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_.body_names_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, _impl_.extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, body_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesRequest, extra_),
   PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse_BodyPosesEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -97,7 +95,7 @@ const uint32_t TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse, _impl_.body_poses_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::posetracker::v1::GetPosesResponse, body_poses_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::posetracker::v1::GetPosesRequest)},
@@ -170,58 +168,47 @@ class GetPosesRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetPosesRequest::_Internal::extra(const GetPosesRequest* msg) {
-  return *msg->_impl_.extra_;
+  return *msg->extra_;
 }
 void GetPosesRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
-    delete _impl_.extra_;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_.extra_ = nullptr;
+  extra_ = nullptr;
 }
 GetPosesRequest::GetPosesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  body_names_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.posetracker.v1.GetPosesRequest)
 }
 GetPosesRequest::GetPosesRequest(const GetPosesRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GetPosesRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.body_names_){from._impl_.body_names_}
-    , decltype(_impl_.name_){}
-    , decltype(_impl_.extra_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      body_names_(from.body_names_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.posetracker.v1.GetPosesRequest)
 }
 
-inline void GetPosesRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.body_names_){arena}
-    , decltype(_impl_.name_){}
-    , decltype(_impl_.extra_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetPosesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GetPosesRequest::~GetPosesRequest() {
@@ -235,13 +222,12 @@ GetPosesRequest::~GetPosesRequest() {
 
 inline void GetPosesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.body_names_.~RepeatedPtrField();
-  _impl_.name_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.extra_;
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetPosesRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void GetPosesRequest::Clear() {
@@ -250,12 +236,12 @@ void GetPosesRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.body_names_.Clear();
-  _impl_.name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
-    delete _impl_.extra_;
+  body_names_.Clear();
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_.extra_ = nullptr;
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -372,10 +358,10 @@ size_t GetPosesRequest::ByteSizeLong() const {
 
   // repeated string body_names = 2 [json_name = "bodyNames"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.body_names_.size());
-  for (int i = 0, n = _impl_.body_names_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(body_names_.size());
+  for (int i = 0, n = body_names_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.body_names_.Get(i));
+      body_names_.Get(i));
   }
 
   // string name = 1 [json_name = "name"];
@@ -389,36 +375,39 @@ size_t GetPosesRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.extra_);
+        *extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPosesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     GetPosesRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPosesRequest::GetClassData() const { return &_class_data_; }
 
+void GetPosesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPosesRequest *>(to)->MergeFrom(
+      static_cast<const GetPosesRequest &>(from));
+}
 
-void GetPosesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GetPosesRequest*>(&to_msg);
-  auto& from = static_cast<const GetPosesRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void GetPosesRequest::MergeFrom(const GetPosesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.body_names_.MergeFrom(from._impl_.body_names_);
+  body_names_.MergeFrom(from.body_names_);
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
-        from._internal_extra());
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPosesRequest::CopyFrom(const GetPosesRequest& from) {
@@ -437,12 +426,12 @@ void GetPosesRequest::InternalSwap(GetPosesRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.body_names_.InternalSwap(&other->_impl_.body_names_);
+  body_names_.InternalSwap(&other->body_names_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
-  swap(_impl_.extra_, other->_impl_.extra_);
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPosesRequest::GetMetadata() const {
@@ -472,12 +461,13 @@ class GetPosesResponse::_Internal {
 };
 
 void GetPosesResponse::clear_body_poses() {
-  _impl_.body_poses_.Clear();
+  body_poses_.Clear();
 }
 GetPosesResponse::GetPosesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  body_poses_(arena) {
+  SharedCtor();
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &GetPosesResponse::ArenaDtor);
   }
@@ -485,24 +475,12 @@ GetPosesResponse::GetPosesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 GetPosesResponse::GetPosesResponse(const GetPosesResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GetPosesResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.body_poses_)*/{}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.body_poses_.MergeFrom(from._impl_.body_poses_);
+  body_poses_.MergeFrom(from.body_poses_);
   // @@protoc_insertion_point(copy_constructor:viam.component.posetracker.v1.GetPosesResponse)
 }
 
-inline void GetPosesResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      /*decltype(_impl_.body_poses_)*/{::_pbi::ArenaInitialized(), arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void GetPosesResponse::SharedCtor() {
 }
 
 GetPosesResponse::~GetPosesResponse() {
@@ -517,16 +495,15 @@ GetPosesResponse::~GetPosesResponse() {
 
 inline void GetPosesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.body_poses_.Destruct();
-  _impl_.body_poses_.~MapField();
+  body_poses_.Destruct();
 }
 
 void GetPosesResponse::ArenaDtor(void* object) {
   GetPosesResponse* _this = reinterpret_cast< GetPosesResponse* >(object);
-  _this->_impl_.body_poses_.Destruct();
+  _this->body_poses_.Destruct();
 }
 void GetPosesResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void GetPosesResponse::Clear() {
@@ -535,7 +512,7 @@ void GetPosesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.body_poses_.Clear();
+  body_poses_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -551,7 +528,7 @@ const char* GetPosesResponse::_InternalParse(const char* ptr, ::_pbi::ParseConte
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&_impl_.body_poses_, ptr);
+            ptr = ctx->ParseMessage(&body_poses_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -638,26 +615,30 @@ size_t GetPosesResponse::ByteSizeLong() const {
     total_size += GetPosesResponse_BodyPosesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPosesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     GetPosesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPosesResponse::GetClassData() const { return &_class_data_; }
 
+void GetPosesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetPosesResponse *>(to)->MergeFrom(
+      static_cast<const GetPosesResponse &>(from));
+}
 
-void GetPosesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GetPosesResponse*>(&to_msg);
-  auto& from = static_cast<const GetPosesResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void GetPosesResponse::MergeFrom(const GetPosesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.posetracker.v1.GetPosesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.body_poses_.MergeFrom(from._impl_.body_poses_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  body_poses_.MergeFrom(from.body_poses_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPosesResponse::CopyFrom(const GetPosesResponse& from) {
@@ -674,7 +655,7 @@ bool GetPosesResponse::IsInitialized() const {
 void GetPosesResponse::InternalSwap(GetPosesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.body_poses_.InternalSwap(&other->_impl_.body_poses_);
+  body_poses_.InternalSwap(&other->body_poses_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPosesResponse::GetMetadata() const {

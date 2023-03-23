@@ -15,7 +15,7 @@
 #include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/rpc_service_method.h>
 #include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
 #include <grpcpp/server_context.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/sync_stream.h>
@@ -35,6 +35,7 @@ static const char* BoardService_method_names[] = {
   "/viam.component.board.v1.BoardService/DoCommand",
   "/viam.component.board.v1.BoardService/ReadAnalogReader",
   "/viam.component.board.v1.BoardService/GetDigitalInterruptValue",
+  "/viam.component.board.v1.BoardService/SetPowerMode",
 };
 
 std::unique_ptr< BoardService::Stub> BoardService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -54,6 +55,7 @@ BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_DoCommand_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ReadAnalogReader_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPowerMode_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BoardService::Stub::Status(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest& request, ::viam::component::board::v1::StatusResponse* response) {
@@ -286,6 +288,29 @@ void BoardService::Stub::async::GetDigitalInterruptValue(::grpc::ClientContext* 
   return result;
 }
 
+::grpc::Status BoardService::Stub::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::viam::component::board::v1::SetPowerModeResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPowerMode_, context, request, response);
+}
+
+void BoardService::Stub::async::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, std::move(f));
+}
+
+void BoardService::Stub::async::SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPowerMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPowerModeResponse>* BoardService::Stub::PrepareAsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::SetPowerModeResponse, ::viam::component::board::v1::SetPowerModeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPowerMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPowerModeResponse>* BoardService::Stub::AsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPowerModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[0],
@@ -387,6 +412,16 @@ BoardService::Service::Service() {
              ::viam::component::board::v1::GetDigitalInterruptValueResponse* resp) {
                return service->GetDigitalInterruptValue(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BoardService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BoardService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::board::v1::SetPowerModeRequest* req,
+             ::viam::component::board::v1::SetPowerModeResponse* resp) {
+               return service->SetPowerMode(ctx, req, resp);
+             }, this)));
 }
 
 BoardService::Service::~Service() {
@@ -456,6 +491,13 @@ BoardService::Service::~Service() {
 }
 
 ::grpc::Status BoardService::Service::GetDigitalInterruptValue(::grpc::ServerContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BoardService::Service::SetPowerMode(::grpc::ServerContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response) {
   (void) context;
   (void) request;
   (void) response;
