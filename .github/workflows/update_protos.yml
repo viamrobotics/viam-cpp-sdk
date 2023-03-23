@@ -17,7 +17,7 @@ jobs:
       - name: setup-grpc-manual
         run: git clone https://github.com/Microsoft/vcpkg.git && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install && ./vcpkg install openssl && ./vcpkg install grpc && ./vcpkg install upb
       - name: setup-deps-manual
-        run: sudo apt-get install -y protobuf-compiler-grpc libgrpc-dev libgrpc++-dev
+        run: sudo apt-get install openssl-dev && echo "-y protobuf-compiler-grpc libgrpc-dev libgrpc++-dev"
       - uses: MarkusJx/install-boost@v2.4.4
         with:
           boost_version: 1.80.0
