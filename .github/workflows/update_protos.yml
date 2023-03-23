@@ -38,6 +38,8 @@ jobs:
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
+      - name: cleanup
+        run: rm -rf boost/ && rm -rf vcpkg/
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
