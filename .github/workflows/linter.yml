@@ -12,12 +12,10 @@ jobs:
       - name: Checkout PR/Push/Workflow Dispatch
         uses: actions/checkout@v3
         with:
-          submodules: recursive
+          fetch-depth: 0
       - name: Run linter
-        uses: cpp-linter/cpp-linter-action@v2
-        id: linter
+        uses: github/super-linter@v4
         env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          style: file
-
