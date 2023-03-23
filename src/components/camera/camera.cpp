@@ -27,6 +27,16 @@ Subtype Camera::subtype() {
     return Subtype(RDK, COMPONENT, "camera");
 }
 
+std::vector<double> repeated_field_to_vector(google::protobuf::RepeatedField<double> const& f) {
+    std::vector<double> v(f.begin(), f.end());
+    return v;
+}
+
+google::protobuf::RepeatedField<double> vector_to_repeated_field(std::vector<double> const& v) {
+    google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
+    return rf;
+}
+
 Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
     Camera::raw_image raw_image;
     std::string img_string = proto.image();
@@ -65,18 +75,6 @@ Camera::distortion_parameters Camera::from_proto(
     return params;
 }
 
-std::vector<double> Camera::repeated_field_to_vector(
-    google::protobuf::RepeatedField<double> const& f) {
-    std::vector<double> v(f.begin(), f.end());
-    return v;
-}
-
-google::protobuf::RepeatedField<double> Camera::vector_to_repeated_field(
-    std::vector<double> const& v) {
-    google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
-    return rf;
-}
-
 Camera::properties Camera::from_proto(viam::component::camera::v1::GetPropertiesResponse proto) {
     Camera::distortion_parameters distortion_parameters;
     Camera::intrinsic_parameters intrinsic_parameters;
@@ -112,7 +110,7 @@ viam::component::camera::v1::DistortionParameters Camera::to_proto(
     Camera::distortion_parameters params) {
     viam::component::camera::v1::DistortionParameters proto;
     *proto.mutable_model() = params.model;
-    *proto.mutable_parameters() = Camera::vector_to_repeated_field(params.parameters);
+    *proto.mutable_parameters() = vector_to_repeated_field(params.parameters);
     return proto;
 }
 

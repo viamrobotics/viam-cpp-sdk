@@ -9,7 +9,16 @@
 #include "common/v1/common.pb.h"
 #include "component/camera/v1/camera.grpc.pb.h"
 
-std::string normalize_mime_type(const std::string& str);
+std::string normalize_mime_type(const std::string& str) {
+    std::string mime_type = str;
+    if (str.size() >= Camera::lazy_suffix.size() &&
+        str.compare(str.size() - Camera::lazy_suffix.size(),
+                    Camera::lazy_suffix.size(),
+                    Camera::lazy_suffix) == 0) {
+        mime_type = mime_type.substr(0, mime_type.length() - Camera::lazy_suffix.length());
+    }
+    return mime_type;
+}
 
 AttributeMap CameraClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
@@ -59,17 +68,6 @@ Camera::properties CameraClient::get_properties() {
     stub_->GetProperties(&ctx, req, &resp);
     return from_proto(resp);
 };
-
-std::string normalize_mime_type(const std::string& str) {
-    std::string mime_type = str;
-    if (str.size() >= Camera::lazy_suffix.size() &&
-        str.compare(str.size() - Camera::lazy_suffix.size(),
-                    Camera::lazy_suffix.size(),
-                    Camera::lazy_suffix) == 0) {
-        mime_type = mime_type.substr(0, mime_type.length() - Camera::lazy_suffix.length());
-    }
-    return mime_type;
-}
 
 CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_)
     : channel_(channel_), stub_(viam::component::camera::v1::CameraService::NewStub(channel_)){};

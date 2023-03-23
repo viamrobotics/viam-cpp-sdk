@@ -129,9 +129,5 @@
 void CameraServer::register_server() {
     viam::component::camera::v1::CameraService::Service* camera =
         static_cast<viam::component::camera::v1::CameraService::Service*>(this);
-    try {
-        Server::register_service(camera);
-    } catch (std::exception& exc) {
-        throw exc;
-    }
+    Server::register_service(camera);
 }

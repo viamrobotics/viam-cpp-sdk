@@ -62,10 +62,6 @@ class Camera : public ComponentBase {
     static distortion_parameters from_proto(
         viam::component::camera::v1::DistortionParameters proto);
     static properties from_proto(viam::component::camera::v1::GetPropertiesResponse proto);
-    static std::vector<double> repeated_field_to_vector(
-        google::protobuf::RepeatedField<double> const& f);
-    static google::protobuf::RepeatedField<double> vector_to_repeated_field(
-        std::vector<double> const& v);
     static viam::component::camera::v1::DistortionParameters to_proto(distortion_parameters);
     static viam::component::camera::v1::IntrinsicParameters to_proto(intrinsic_parameters);
 

@@ -23,4 +23,3 @@ class CameraClient : public Camera {
    private:
     std::shared_ptr<grpc::Channel> channel_;
 };
-std::vector<unsigned char> string_to_bytes(std::string const& s);

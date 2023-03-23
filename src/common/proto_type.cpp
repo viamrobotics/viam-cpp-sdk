@@ -22,8 +22,7 @@ ProtoType ProtoType::of_value(Value value) {
             return ProtoType(value.bool_value());
         }
         case Value::KindCase::kStringValue: {
-            std::string stg = std::string(value.string_value());
-            return ProtoType(stg);
+            return ProtoType(value.string_value());
         }
         case Value::KindCase::kNumberValue: {
             return ProtoType(value.number_value());
@@ -165,7 +164,9 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
             if (lhs_map->size() != rhs_map->size()) {
                 return false;
             }
-            auto pred = [](auto lhs_map, auto rhs_map) { return lhs_map.first == rhs_map.first; };
+            auto pred = [](auto lhs_map, auto rhs_map) {
+                return lhs_map.first == rhs_map.first && *lhs_map.second == *rhs_map.second;
+            };
 
             if (std::equal(lhs_map->begin(), lhs_map->end(), rhs_map->begin(), pred)) {
                 return true;

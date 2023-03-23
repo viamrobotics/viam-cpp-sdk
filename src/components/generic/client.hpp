@@ -5,7 +5,7 @@
 
 class GenericClient : public Generic {
    public:
-    virtual AttributeMap do_command(AttributeMap command) override;
+    AttributeMap do_command(AttributeMap command) override;
     GenericClient(std::shared_ptr<grpc::Channel> channel_);
 
    private:
