@@ -18,6 +18,6 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_CPP: true
-          IGNORE_GENERATED_FILES: true
+          FILTER_REGEX_EXCLUDE: .*src/gen/.*
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
