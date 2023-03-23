@@ -40,7 +40,8 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
 }
 
 BOOST_AUTO_TEST_CASE(test_do) {
-    std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(std::move(std::string("hello")));
+    std::shared_ptr<ProtoType> proto_ptr =
+        std::make_shared<ProtoType>(std::move(std::string("hello")));
     std::unordered_map<std::string, std::shared_ptr<ProtoType>> expected_map = {
         {std::string("test"), proto_ptr}};
     AttributeMap expected =
@@ -55,32 +56,29 @@ BOOST_AUTO_TEST_CASE(test_do) {
     BOOST_CHECK(result_pt == expected_pt);
 }
 
-BOOST_AUTO_TEST_CASE(test_prototype_equality)
- {
-
+BOOST_AUTO_TEST_CASE(test_prototype_equality) {
     ProtoType prototype = ProtoType(std::string("hello"));
     std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
     std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
         {std::string("test"), proto_ptr}};
 
-     AttributeMap expected_map =
+    AttributeMap expected_map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
 
-    ProtoType type1= ProtoType(expected_map);
+    ProtoType type1 = ProtoType(expected_map);
 
     ProtoType prototype2 = ProtoType(std::string("hello"));
     std::shared_ptr<ProtoType> proto_ptr2 = std::make_shared<ProtoType>(prototype2);
     std::unordered_map<std::string, std::shared_ptr<ProtoType>> map2 = {
         {std::string("test"), proto_ptr2}};
 
-     AttributeMap expected_map2 =
+    AttributeMap expected_map2 =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map2);
 
-        ProtoType type2= ProtoType(expected_map2);
+    ProtoType type2 = ProtoType(expected_map2);
 
     BOOST_CHECK(type1 == type2);
-
- }
+}
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_camera_service)
@@ -170,7 +168,8 @@ BOOST_AUTO_TEST_CASE(test_do_service) {
 
     *req.mutable_name() = "camera";
 
-    std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(std::move(std::string("hello")));
+    std::shared_ptr<ProtoType> proto_ptr =
+        std::make_shared<ProtoType>(std::move(std::string("hello")));
     std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
         {std::string("test"), proto_ptr}};
 
@@ -225,7 +224,8 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     AttributeMap command =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(std::move(std::string("hello")));
+    std::shared_ptr<ProtoType> proto_ptr =
+        std::make_shared<ProtoType>(std::move(std::string("hello")));
     std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
         {std::string("test"), proto_ptr}};
     AttributeMap expected_map =
@@ -238,4 +238,4 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
 
     BOOST_CHECK(expected_pt == result_pt);
 }
-    BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()

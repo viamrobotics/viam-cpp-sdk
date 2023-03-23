@@ -37,7 +37,7 @@ class ProtoType {
         proto_type = v;
     }
 
-    //TODO: RSDK-2421 consider switching this to a constructor
+    // TODO: RSDK-2421 consider switching this to a constructor
     static ProtoType of_value(google::protobuf::Value value);
 
     google::protobuf::Value proto_value();

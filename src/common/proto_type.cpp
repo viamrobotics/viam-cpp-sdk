@@ -62,7 +62,8 @@ Struct map_to_struct(AttributeMap dict) {
 
 AttributeMap struct_to_map(Struct struct_) {
     google::protobuf::Map<std::string, Value> struct_map = struct_.fields();
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
     for (auto& val : struct_.fields()) {
         std::string key = val.first;
@@ -157,24 +158,21 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
             return lhs_i == rhs_i;
         }
         case 5: {
-
             std::cout << "case 5\n";
             AttributeMap lhs_map = boost::get<AttributeMap>(lhs.proto_type);
             AttributeMap rhs_map = boost::get<AttributeMap>(rhs.proto_type);
 
+            if (lhs_map->size() != rhs_map->size()) {
+                return false;
+            }
+            auto pred = [](auto lhs_map, auto rhs_map) { return lhs_map.first == rhs_map.first; };
 
-        if (lhs_map->size() != rhs_map->size()) {
+            if (std::equal(lhs_map->begin(), lhs_map->end(), rhs_map->begin(), pred)) {
+                return true;
+            }
             return false;
         }
-        auto pred = [] (auto lhs_map, auto rhs_map)
-                   { return lhs_map.first == rhs_map.first; };
-        
-         if(std::equal(lhs_map->begin(), lhs_map->end(), rhs_map->begin(), pred)) {
-            return true;
-        }
-        return false;
-        }
-        
+
         case 6: {
             std::vector<ProtoType*> lhs_vec = boost::get<std::vector<ProtoType*>>(lhs.proto_type);
             std::vector<ProtoType*> rhs_vec = boost::get<std::vector<ProtoType*>>(rhs.proto_type);
