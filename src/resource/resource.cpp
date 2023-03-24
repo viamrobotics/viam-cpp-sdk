@@ -81,17 +81,21 @@ Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {
         throw "Received invalid Name string: " + name;
     }
-    std::vector<std::string> matches;
-    boost::split(matches, name, boost::is_any_of(":"));
+    std::vector<std::string> slash_splits;
+    boost::split(slash_splits, name, boost::is_any_of("/"));
 
-    Subtype subtype = Subtype::from_string(matches.at(1));
+    Subtype subtype = Subtype::from_string(slash_splits.at(0));
 
-    std::string remote = matches.at(2);
-    if (remote.size() > 0) {
-        remote.pop_back();
+    std::vector<std::string> colon_splits;
+    boost::split(colon_splits, slash_splits.at(1), boost::is_any_of(":"));
+    std::string remote = "";
+    std::string resource_name = colon_splits.at(0);
+    if (colon_splits.size() > 1) {
+      remote = colon_splits.at(0);
+      resource_name = colon_splits.at(1);
     }
 
-    return Name(subtype, remote, matches.at(3));
+    return Name(subtype, remote, resource_name);
 }
 
 Name::Name(Subtype subtype, std::string remote, std::string name)

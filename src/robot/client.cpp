@@ -4,6 +4,7 @@
 #define BOOST_LOG_DYN_LINK 1
 #include <common/v1/common.pb.h>
 #include <grpcpp/channel.h>
+#include <grpcpp/create_channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/support/status.h>
@@ -169,7 +170,7 @@ void RobotClient::refresh() {
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
         std::shared_ptr<ResourceSubtype> rs =
-            Registry::lookup_subtype(Subtype::from_string(name.subtype()));
+            Registry::lookup_subtype(Subtype({name.namespace_(), name.type(), name.subtype()}));
         if (rs != nullptr) {
             try {
                 std::shared_ptr<ResourceBase> rpc_client =
@@ -196,6 +197,7 @@ void RobotClient::refresh() {
 
     lock.lock();
     resource_names_ = current_resources;
+    resource_manager = new_resource_manager;
     lock.unlock();
 }
 
@@ -246,6 +248,20 @@ std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Option
     const char* uri = address.c_str();
     ViamChannel channel = ViamChannel::dial(uri, options.dial_options);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
+    robot->should_close_channel = true;
+
+    return robot;
+};
+
+std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, Options options) {
+    address = "unix://" + address;
+    const char* uri = address.c_str();
+    std::shared_ptr<grpc::Channel> channel =
+        grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
+    std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
+        viam::robot::v1::RobotService::NewStub(channel);
+    ViamChannel viam_channel = ViamChannel(channel, uri, nullptr);
+    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
     robot->should_close_channel = true;
 
     return robot;
