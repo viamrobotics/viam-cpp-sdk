@@ -16,9 +16,7 @@ BOOST_AUTO_TEST_SUITE(generic_suite)
 std::shared_ptr<MockGeneric> generic = get_mock_generic();
 
 BOOST_AUTO_TEST_CASE(test_do) {
-  ProtoType prototype = ProtoType(std::string("hello"));
-
-  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(std::move(std::string("hello")));
   std::unordered_map<std::string, std::shared_ptr<ProtoType>> expected_map = {
       {std::string("test"), proto_ptr}};
   std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
@@ -50,8 +48,7 @@ BOOST_AUTO_TEST_CASE(test_do_service) {
   *req.mutable_command() = map_to_struct(command);
   *req.mutable_name() = "generic";
 
-  ProtoType prototype = ProtoType(std::string("hello"));
-  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(std::move(std::string("hello")));
   std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
       {std::string("test"), proto_ptr}};
 
@@ -77,8 +74,7 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
       command = std::make_shared<
           std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-  ProtoType prototype = ProtoType(std::string("hello"));
-  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(std::move(std::string("hello")));
   std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
       {std::string("test"), proto_ptr}};
   std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
