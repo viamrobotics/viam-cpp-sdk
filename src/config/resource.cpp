@@ -60,6 +60,7 @@ Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     resource.name = proto_cfg.name();
     resource.namespace_ = proto_cfg.namespace_();
     resource.type = proto_cfg.type();
+    resource.attributes = struct_to_map(proto_cfg.attributes());
     std::string api = proto_cfg.api();
     if (api.find(":") != std::string::npos) {
         resource.api = Subtype::from_string(api);

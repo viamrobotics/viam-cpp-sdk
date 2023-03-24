@@ -15,7 +15,7 @@
 #include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/rpc_service_method.h>
 #include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
 #include <grpcpp/server_context.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/sync_stream.h>
@@ -38,23 +38,23 @@ GenericService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   : channel_(channel), rpcmethod_DoCommand_(GenericService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status GenericService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::component::generic::v1::DoCommandRequest& request, ::viam::component::generic::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::generic::v1::DoCommandRequest, ::viam::component::generic::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+::grpc::Status GenericService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void GenericService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::component::generic::v1::DoCommandRequest* request, ::viam::component::generic::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::generic::v1::DoCommandRequest, ::viam::component::generic::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void GenericService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void GenericService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::component::generic::v1::DoCommandRequest* request, ::viam::component::generic::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void GenericService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::generic::v1::DoCommandResponse>* GenericService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::component::generic::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::generic::v1::DoCommandResponse, ::viam::component::generic::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* GenericService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::generic::v1::DoCommandResponse>* GenericService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::component::generic::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* GenericService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDoCommandRaw(context, request, cq);
   result->StartCall();
@@ -65,11 +65,11 @@ GenericService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GenericService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GenericService::Service, ::viam::component::generic::v1::DoCommandRequest, ::viam::component::generic::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GenericService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GenericService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::component::generic::v1::DoCommandRequest* req,
-             ::viam::component::generic::v1::DoCommandResponse* resp) {
+             const ::viam::common::v1::DoCommandRequest* req,
+             ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
              }, this)));
 }
@@ -77,7 +77,7 @@ GenericService::Service::Service() {
 GenericService::Service::~Service() {
 }
 
-::grpc::Status GenericService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::component::generic::v1::DoCommandRequest* request, ::viam::component::generic::v1::DoCommandResponse* response) {
+::grpc::Status GenericService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) {
   (void) context;
   (void) request;
   (void) response;

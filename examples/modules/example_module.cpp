@@ -87,8 +87,21 @@ int main(int argc, char** argv) {
     my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
     std::shared_ptr<ModelRegistration> rr = std::make_shared<ModelRegistration>(
-        ResourceType("MyModule"), generic, m, [](Dependencies, Resource cfg) {
-            return std::make_unique<MyModule>(cfg);
+        ResourceType("MyModule"),
+        generic,
+        m,
+        [](Dependencies, Resource cfg) { return std::make_unique<MyModule>(cfg); },
+        // Custom validation can be done by specifying a validate function like
+        // this one. Validate functions can `throw` error strings that will be
+        // returned to the parent through gRPC. Validate functions can also return
+        // a vector of strings representing the implicit dependencies of the resource.
+        [](Resource cfg) -> std::vector<std::string> {
+            if (cfg.attributes.find("invalidattribute") != cfg.attributes.end()) {
+                throw std::string(
+                    "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
+            }
+
+            return {"component1"};
         });
 
     Registry::register_resource(rr);

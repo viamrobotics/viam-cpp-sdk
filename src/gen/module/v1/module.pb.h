@@ -80,6 +80,12 @@ extern RemoveResourceRequestDefaultTypeInternal _RemoveResourceRequest_default_i
 class RemoveResourceResponse;
 struct RemoveResourceResponseDefaultTypeInternal;
 extern RemoveResourceResponseDefaultTypeInternal _RemoveResourceResponse_default_instance_;
+class ValidateConfigRequest;
+struct ValidateConfigRequestDefaultTypeInternal;
+extern ValidateConfigRequestDefaultTypeInternal _ValidateConfigRequest_default_instance_;
+class ValidateConfigResponse;
+struct ValidateConfigResponseDefaultTypeInternal;
+extern ValidateConfigResponseDefaultTypeInternal _ValidateConfigResponse_default_instance_;
 }  // namespace v1
 }  // namespace module
 }  // namespace viam
@@ -94,6 +100,8 @@ template<> ::viam::module::v1::ReconfigureResourceRequest* Arena::CreateMaybeMes
 template<> ::viam::module::v1::ReconfigureResourceResponse* Arena::CreateMaybeMessage<::viam::module::v1::ReconfigureResourceResponse>(Arena*);
 template<> ::viam::module::v1::RemoveResourceRequest* Arena::CreateMaybeMessage<::viam::module::v1::RemoveResourceRequest>(Arena*);
 template<> ::viam::module::v1::RemoveResourceResponse* Arena::CreateMaybeMessage<::viam::module::v1::RemoveResourceResponse>(Arena*);
+template<> ::viam::module::v1::ValidateConfigRequest* Arena::CreateMaybeMessage<::viam::module::v1::ValidateConfigRequest>(Arena*);
+template<> ::viam::module::v1::ValidateConfigResponse* Arena::CreateMaybeMessage<::viam::module::v1::ValidateConfigResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace module {
@@ -1592,6 +1600,316 @@ class ReadyResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_module_2fv1_2fmodule_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ValidateConfigRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.module.v1.ValidateConfigRequest) */ {
+ public:
+  inline ValidateConfigRequest() : ValidateConfigRequest(nullptr) {}
+  ~ValidateConfigRequest() override;
+  explicit PROTOBUF_CONSTEXPR ValidateConfigRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ValidateConfigRequest(const ValidateConfigRequest& from);
+  ValidateConfigRequest(ValidateConfigRequest&& from) noexcept
+    : ValidateConfigRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ValidateConfigRequest& operator=(const ValidateConfigRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ValidateConfigRequest& operator=(ValidateConfigRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ValidateConfigRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ValidateConfigRequest* internal_default_instance() {
+    return reinterpret_cast<const ValidateConfigRequest*>(
+               &_ValidateConfigRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(ValidateConfigRequest& a, ValidateConfigRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ValidateConfigRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ValidateConfigRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ValidateConfigRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ValidateConfigRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ValidateConfigRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ValidateConfigRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ValidateConfigRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.module.v1.ValidateConfigRequest";
+  }
+  protected:
+  explicit ValidateConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConfigFieldNumber = 1,
+  };
+  // .viam.app.v1.ComponentConfig config = 1 [json_name = "config"];
+  bool has_config() const;
+  private:
+  bool _internal_has_config() const;
+  public:
+  void clear_config();
+  const ::viam::app::v1::ComponentConfig& config() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::ComponentConfig* release_config();
+  ::viam::app::v1::ComponentConfig* mutable_config();
+  void set_allocated_config(::viam::app::v1::ComponentConfig* config);
+  private:
+  const ::viam::app::v1::ComponentConfig& _internal_config() const;
+  ::viam::app::v1::ComponentConfig* _internal_mutable_config();
+  public:
+  void unsafe_arena_set_allocated_config(
+      ::viam::app::v1::ComponentConfig* config);
+  ::viam::app::v1::ComponentConfig* unsafe_arena_release_config();
+
+  // @@protoc_insertion_point(class_scope:viam.module.v1.ValidateConfigRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::ComponentConfig* config_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_module_2fv1_2fmodule_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ValidateConfigResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.module.v1.ValidateConfigResponse) */ {
+ public:
+  inline ValidateConfigResponse() : ValidateConfigResponse(nullptr) {}
+  ~ValidateConfigResponse() override;
+  explicit PROTOBUF_CONSTEXPR ValidateConfigResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ValidateConfigResponse(const ValidateConfigResponse& from);
+  ValidateConfigResponse(ValidateConfigResponse&& from) noexcept
+    : ValidateConfigResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ValidateConfigResponse& operator=(const ValidateConfigResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ValidateConfigResponse& operator=(ValidateConfigResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ValidateConfigResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ValidateConfigResponse* internal_default_instance() {
+    return reinterpret_cast<const ValidateConfigResponse*>(
+               &_ValidateConfigResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(ValidateConfigResponse& a, ValidateConfigResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ValidateConfigResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ValidateConfigResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ValidateConfigResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ValidateConfigResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ValidateConfigResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ValidateConfigResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ValidateConfigResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.module.v1.ValidateConfigResponse";
+  }
+  protected:
+  explicit ValidateConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDependenciesFieldNumber = 1,
+  };
+  // repeated string dependencies = 1 [json_name = "dependencies"];
+  int dependencies_size() const;
+  private:
+  int _internal_dependencies_size() const;
+  public:
+  void clear_dependencies();
+  const std::string& dependencies(int index) const;
+  std::string* mutable_dependencies(int index);
+  void set_dependencies(int index, const std::string& value);
+  void set_dependencies(int index, std::string&& value);
+  void set_dependencies(int index, const char* value);
+  void set_dependencies(int index, const char* value, size_t size);
+  std::string* add_dependencies();
+  void add_dependencies(const std::string& value);
+  void add_dependencies(std::string&& value);
+  void add_dependencies(const char* value);
+  void add_dependencies(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& dependencies() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_dependencies();
+  private:
+  const std::string& _internal_dependencies(int index) const;
+  std::string* _internal_add_dependencies();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.module.v1.ValidateConfigResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> dependencies_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_module_2fv1_2fmodule_2eproto;
+};
 // ===================================================================
 
 
@@ -2369,9 +2687,181 @@ inline void ReadyResponse::set_allocated_handlermap(::viam::module::v1::HandlerM
   // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyResponse.handlermap)
 }
 
+// -------------------------------------------------------------------
+
+// ValidateConfigRequest
+
+// .viam.app.v1.ComponentConfig config = 1 [json_name = "config"];
+inline bool ValidateConfigRequest::_internal_has_config() const {
+  return this != internal_default_instance() && config_ != nullptr;
+}
+inline bool ValidateConfigRequest::has_config() const {
+  return _internal_has_config();
+}
+inline const ::viam::app::v1::ComponentConfig& ValidateConfigRequest::_internal_config() const {
+  const ::viam::app::v1::ComponentConfig* p = config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::ComponentConfig&>(
+      ::viam::app::v1::_ComponentConfig_default_instance_);
+}
+inline const ::viam::app::v1::ComponentConfig& ValidateConfigRequest::config() const {
+  // @@protoc_insertion_point(field_get:viam.module.v1.ValidateConfigRequest.config)
+  return _internal_config();
+}
+inline void ValidateConfigRequest::unsafe_arena_set_allocated_config(
+    ::viam::app::v1::ComponentConfig* config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(config_);
+  }
+  config_ = config;
+  if (config) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.module.v1.ValidateConfigRequest.config)
+}
+inline ::viam::app::v1::ComponentConfig* ValidateConfigRequest::release_config() {
+  
+  ::viam::app::v1::ComponentConfig* temp = config_;
+  config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::ComponentConfig* ValidateConfigRequest::unsafe_arena_release_config() {
+  // @@protoc_insertion_point(field_release:viam.module.v1.ValidateConfigRequest.config)
+  
+  ::viam::app::v1::ComponentConfig* temp = config_;
+  config_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::ComponentConfig* ValidateConfigRequest::_internal_mutable_config() {
+  
+  if (config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::ComponentConfig>(GetArenaForAllocation());
+    config_ = p;
+  }
+  return config_;
+}
+inline ::viam::app::v1::ComponentConfig* ValidateConfigRequest::mutable_config() {
+  ::viam::app::v1::ComponentConfig* _msg = _internal_mutable_config();
+  // @@protoc_insertion_point(field_mutable:viam.module.v1.ValidateConfigRequest.config)
+  return _msg;
+}
+inline void ValidateConfigRequest::set_allocated_config(::viam::app::v1::ComponentConfig* config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(config_);
+  }
+  if (config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(config));
+    if (message_arena != submessage_arena) {
+      config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, config, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  config_ = config;
+  // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ValidateConfigRequest.config)
+}
+
+// -------------------------------------------------------------------
+
+// ValidateConfigResponse
+
+// repeated string dependencies = 1 [json_name = "dependencies"];
+inline int ValidateConfigResponse::_internal_dependencies_size() const {
+  return dependencies_.size();
+}
+inline int ValidateConfigResponse::dependencies_size() const {
+  return _internal_dependencies_size();
+}
+inline void ValidateConfigResponse::clear_dependencies() {
+  dependencies_.Clear();
+}
+inline std::string* ValidateConfigResponse::add_dependencies() {
+  std::string* _s = _internal_add_dependencies();
+  // @@protoc_insertion_point(field_add_mutable:viam.module.v1.ValidateConfigResponse.dependencies)
+  return _s;
+}
+inline const std::string& ValidateConfigResponse::_internal_dependencies(int index) const {
+  return dependencies_.Get(index);
+}
+inline const std::string& ValidateConfigResponse::dependencies(int index) const {
+  // @@protoc_insertion_point(field_get:viam.module.v1.ValidateConfigResponse.dependencies)
+  return _internal_dependencies(index);
+}
+inline std::string* ValidateConfigResponse::mutable_dependencies(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.module.v1.ValidateConfigResponse.dependencies)
+  return dependencies_.Mutable(index);
+}
+inline void ValidateConfigResponse::set_dependencies(int index, const std::string& value) {
+  dependencies_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline void ValidateConfigResponse::set_dependencies(int index, std::string&& value) {
+  dependencies_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline void ValidateConfigResponse::set_dependencies(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dependencies_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline void ValidateConfigResponse::set_dependencies(int index, const char* value, size_t size) {
+  dependencies_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline std::string* ValidateConfigResponse::_internal_add_dependencies() {
+  return dependencies_.Add();
+}
+inline void ValidateConfigResponse::add_dependencies(const std::string& value) {
+  dependencies_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline void ValidateConfigResponse::add_dependencies(std::string&& value) {
+  dependencies_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline void ValidateConfigResponse::add_dependencies(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dependencies_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline void ValidateConfigResponse::add_dependencies(const char* value, size_t size) {
+  dependencies_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.module.v1.ValidateConfigResponse.dependencies)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ValidateConfigResponse::dependencies() const {
+  // @@protoc_insertion_point(field_list:viam.module.v1.ValidateConfigResponse.dependencies)
+  return dependencies_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ValidateConfigResponse::mutable_dependencies() {
+  // @@protoc_insertion_point(field_mutable_list:viam.module.v1.ValidateConfigResponse.dependencies)
+  return &dependencies_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

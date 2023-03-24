@@ -18,11 +18,6 @@
 
 using viam::robot::v1::Status;
 
-std::shared_ptr<ResourceServerBase> ResourceSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> svc) {
-    return nullptr;
-};
-
 void Registry::register_resource(std::shared_ptr<ModelRegistration> resource) {
     std::string reg_key = resource->subtype.to_string() + "/" + resource->model.to_string();
     if (resources.find(reg_key) != resources.end()) {

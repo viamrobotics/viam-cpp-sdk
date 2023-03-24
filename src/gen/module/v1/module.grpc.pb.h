@@ -15,13 +15,13 @@
 #include <grpcpp/completion_queue.h>
 #include <grpcpp/support/message_allocator.h>
 #include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
 #include <grpcpp/impl/rpc_method.h>
 #include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
 #include <grpcpp/server_context.h>
 #include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
+#include <grpcpp/impl/codegen/status.h>
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
 
@@ -70,6 +70,15 @@ class ModuleService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReadyResponse>> PrepareAsyncReady(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReadyResponse>>(PrepareAsyncReadyRaw(context, request, cq));
     }
+    // ValidateConfig determines whether the given config is valid and registers/returns implicit
+    // dependencies.
+    virtual ::grpc::Status ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::viam::module::v1::ValidateConfigResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>> AsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>>(AsyncValidateConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>> PrepareAsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>>(PrepareAsyncValidateConfigRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -85,6 +94,10 @@ class ModuleService final {
       // Ready determines if the server is started and ready to recieve resource configurations.
       virtual void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ValidateConfig determines whether the given config is valid and registers/returns implicit
+      // dependencies.
+      virtual void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -98,6 +111,8 @@ class ModuleService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::RemoveResourceResponse>* PrepareAsyncRemoveResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReadyResponse>* AsyncReadyRaw(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReadyResponse>* PrepareAsyncReadyRaw(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>* AsyncValidateConfigRaw(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>* PrepareAsyncValidateConfigRaw(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -130,6 +145,13 @@ class ModuleService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ReadyResponse>> PrepareAsyncReady(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ReadyResponse>>(PrepareAsyncReadyRaw(context, request, cq));
     }
+    ::grpc::Status ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::viam::module::v1::ValidateConfigResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>> AsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>>(AsyncValidateConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>> PrepareAsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>>(PrepareAsyncValidateConfigRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -141,6 +163,8 @@ class ModuleService final {
       void RemoveResource(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, std::function<void(::grpc::Status)>) override;
       void Ready(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -160,10 +184,13 @@ class ModuleService final {
     ::grpc::ClientAsyncResponseReader< ::viam::module::v1::RemoveResourceResponse>* PrepareAsyncRemoveResourceRaw(::grpc::ClientContext* context, const ::viam::module::v1::RemoveResourceRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ReadyResponse>* AsyncReadyRaw(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ReadyResponse>* PrepareAsyncReadyRaw(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>* AsyncValidateConfigRaw(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>* PrepareAsyncValidateConfigRaw(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_AddResource_;
     const ::grpc::internal::RpcMethod rpcmethod_ReconfigureResource_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveResource_;
     const ::grpc::internal::RpcMethod rpcmethod_Ready_;
+    const ::grpc::internal::RpcMethod rpcmethod_ValidateConfig_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -179,6 +206,9 @@ class ModuleService final {
     virtual ::grpc::Status RemoveResource(::grpc::ServerContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response);
     // Ready determines if the server is started and ready to recieve resource configurations.
     virtual ::grpc::Status Ready(::grpc::ServerContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response);
+    // ValidateConfig determines whether the given config is valid and registers/returns implicit
+    // dependencies.
+    virtual ::grpc::Status ValidateConfig(::grpc::ServerContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_AddResource : public BaseClass {
@@ -260,7 +290,27 @@ class ModuleService final {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_AddResource<WithAsyncMethod_ReconfigureResource<WithAsyncMethod_RemoveResource<WithAsyncMethod_Ready<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_ValidateConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ValidateConfig() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_ValidateConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestValidateConfig(::grpc::ServerContext* context, ::viam::module::v1::ValidateConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::module::v1::ValidateConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_AddResource<WithAsyncMethod_ReconfigureResource<WithAsyncMethod_RemoveResource<WithAsyncMethod_Ready<WithAsyncMethod_ValidateConfig<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_AddResource : public BaseClass {
    private:
@@ -369,7 +419,34 @@ class ModuleService final {
     virtual ::grpc::ServerUnaryReactor* Ready(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ReadyRequest* /*request*/, ::viam::module::v1::ReadyResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_AddResource<WithCallbackMethod_ReconfigureResource<WithCallbackMethod_RemoveResource<WithCallbackMethod_Ready<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_ValidateConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ValidateConfig() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response) { return this->ValidateConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_ValidateConfig(
+        ::grpc::MessageAllocator< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ValidateConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ValidateConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_AddResource<WithCallbackMethod_ReconfigureResource<WithCallbackMethod_RemoveResource<WithCallbackMethod_Ready<WithCallbackMethod_ValidateConfig<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_AddResource : public BaseClass {
@@ -435,6 +512,23 @@ class ModuleService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Ready(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ReadyRequest* /*request*/, ::viam::module::v1::ReadyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ValidateConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ValidateConfig() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_ValidateConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -517,6 +611,26 @@ class ModuleService final {
     }
     void RequestReady(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ValidateConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ValidateConfig() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_ValidateConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestValidateConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -605,6 +719,28 @@ class ModuleService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Ready(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ValidateConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ValidateConfig() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ValidateConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ValidateConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ValidateConfig(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -715,9 +851,36 @@ class ModuleService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedReady(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::module::v1::ReadyRequest,::viam::module::v1::ReadyResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_AddResource<WithStreamedUnaryMethod_ReconfigureResource<WithStreamedUnaryMethod_RemoveResource<WithStreamedUnaryMethod_Ready<Service > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ValidateConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ValidateConfig() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse>* streamer) {
+                       return this->StreamedValidateConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ValidateConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* /*context*/, const ::viam::module::v1::ValidateConfigRequest* /*request*/, ::viam::module::v1::ValidateConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedValidateConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::module::v1::ValidateConfigRequest,::viam::module::v1::ValidateConfigResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_AddResource<WithStreamedUnaryMethod_ReconfigureResource<WithStreamedUnaryMethod_RemoveResource<WithStreamedUnaryMethod_Ready<WithStreamedUnaryMethod_ValidateConfig<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_AddResource<WithStreamedUnaryMethod_ReconfigureResource<WithStreamedUnaryMethod_RemoveResource<WithStreamedUnaryMethod_Ready<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_AddResource<WithStreamedUnaryMethod_ReconfigureResource<WithStreamedUnaryMethod_RemoveResource<WithStreamedUnaryMethod_Ready<WithStreamedUnaryMethod_ValidateConfig<Service > > > > > StreamedService;
 };
 
 }  // namespace v1

@@ -797,6 +797,7 @@ class Publishing final :
     kApiShortNameFieldNumber = 103,
     kGithubLabelFieldNumber = 104,
     kDocTagPrefixFieldNumber = 106,
+    kProtoReferenceDocumentationUriFieldNumber = 110,
     kOrganizationFieldNumber = 107,
   };
   // repeated .google.api.MethodSettings method_settings = 2 [json_name = "methodSettings"];
@@ -929,6 +930,20 @@ class Publishing final :
   std::string* _internal_mutable_doc_tag_prefix();
   public:
 
+  // string proto_reference_documentation_uri = 110 [json_name = "protoReferenceDocumentationUri"];
+  void clear_proto_reference_documentation_uri();
+  const std::string& proto_reference_documentation_uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_proto_reference_documentation_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_proto_reference_documentation_uri();
+  PROTOBUF_NODISCARD std::string* release_proto_reference_documentation_uri();
+  void set_allocated_proto_reference_documentation_uri(std::string* proto_reference_documentation_uri);
+  private:
+  const std::string& _internal_proto_reference_documentation_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_proto_reference_documentation_uri(const std::string& value);
+  std::string* _internal_mutable_proto_reference_documentation_uri();
+  public:
+
   // .google.api.ClientLibraryOrganization organization = 107 [json_name = "organization"];
   void clear_organization();
   ::google::api::ClientLibraryOrganization organization() const;
@@ -953,6 +968,7 @@ class Publishing final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_short_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr github_label_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr doc_tag_prefix_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr proto_reference_documentation_uri_;
   int organization_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
@@ -3973,6 +3989,56 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::ClientLib
 Publishing::library_settings() const {
   // @@protoc_insertion_point(field_list:google.api.Publishing.library_settings)
   return library_settings_;
+}
+
+// string proto_reference_documentation_uri = 110 [json_name = "protoReferenceDocumentationUri"];
+inline void Publishing::clear_proto_reference_documentation_uri() {
+  proto_reference_documentation_uri_.ClearToEmpty();
+}
+inline const std::string& Publishing::proto_reference_documentation_uri() const {
+  // @@protoc_insertion_point(field_get:google.api.Publishing.proto_reference_documentation_uri)
+  return _internal_proto_reference_documentation_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Publishing::set_proto_reference_documentation_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ proto_reference_documentation_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.Publishing.proto_reference_documentation_uri)
+}
+inline std::string* Publishing::mutable_proto_reference_documentation_uri() {
+  std::string* _s = _internal_mutable_proto_reference_documentation_uri();
+  // @@protoc_insertion_point(field_mutable:google.api.Publishing.proto_reference_documentation_uri)
+  return _s;
+}
+inline const std::string& Publishing::_internal_proto_reference_documentation_uri() const {
+  return proto_reference_documentation_uri_.Get();
+}
+inline void Publishing::_internal_set_proto_reference_documentation_uri(const std::string& value) {
+  
+  proto_reference_documentation_uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Publishing::_internal_mutable_proto_reference_documentation_uri() {
+  
+  return proto_reference_documentation_uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Publishing::release_proto_reference_documentation_uri() {
+  // @@protoc_insertion_point(field_release:google.api.Publishing.proto_reference_documentation_uri)
+  return proto_reference_documentation_uri_.Release();
+}
+inline void Publishing::set_allocated_proto_reference_documentation_uri(std::string* proto_reference_documentation_uri) {
+  if (proto_reference_documentation_uri != nullptr) {
+    
+  } else {
+    
+  }
+  proto_reference_documentation_uri_.SetAllocated(proto_reference_documentation_uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (proto_reference_documentation_uri_.IsDefault()) {
+    proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.Publishing.proto_reference_documentation_uri)
 }
 
 // -------------------------------------------------------------------
