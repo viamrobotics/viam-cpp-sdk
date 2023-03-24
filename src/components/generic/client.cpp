@@ -7,9 +7,9 @@
 #include "component/generic/v1/generic.grpc.pb.h"
 
 AttributeMap GenericClient::do_command(AttributeMap command) {
-    viam::common::v1::DoCommandRequest req;
-    viam::common::v1::DoCommandResponse resp;
-    grpc::ClientContext ctx;
+  viam::common::v1::DoCommandRequest req;
+  viam::common::v1::DoCommandResponse resp;
+  grpc::ClientContext ctx;
 
     google::protobuf::Struct proto_command = map_to_struct(command);
     *req.mutable_command() = proto_command;

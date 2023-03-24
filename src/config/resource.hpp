@@ -9,34 +9,36 @@
 #include <string>
 #include <unordered_map>
 
-typedef std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> AttributeMap;
+typedef std::shared_ptr<
+    std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+    AttributeMap;
 
 class ResourceLevelServiceConfig {
-   public:
-    std::string type;
-    AttributeMap attributes;
-    ProtoType converted_attributes;
+public:
+  std::string type;
+  AttributeMap attributes;
+  ProtoType converted_attributes;
 };
 
 class Resource {
-   public:
-    std::string name;
-    std::string namespace_;
-    std::string type;
-    Subtype api;
-    Model model;
-    LinkConfig frame;
-    std::vector<std::string> depends_on;
-    std::vector<ResourceLevelServiceConfig> service_config;
-    AttributeMap attributes;
-    ProtoType converted_attributes;
-    std::vector<std::string> implicit_depends_on;
+public:
+  std::string name;
+  std::string namespace_;
+  std::string type;
+  Subtype api;
+  Model model;
+  LinkConfig frame;
+  std::vector<std::string> depends_on;
+  std::vector<ResourceLevelServiceConfig> service_config;
+  AttributeMap attributes;
+  ProtoType converted_attributes;
+  std::vector<std::string> implicit_depends_on;
 
-    static Resource from_proto(viam::app::v1::ComponentConfig proto_cfg);
-    viam::app::v1::ComponentConfig to_proto();
-    Resource(std::string type);
-    Name resource_name();
+  static Resource from_proto(viam::app::v1::ComponentConfig proto_cfg);
+  viam::app::v1::ComponentConfig to_proto();
+  Resource(std::string type);
+  Name resource_name();
 
-   private:
-    void fix_api();
+private:
+  void fix_api();
 };

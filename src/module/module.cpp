@@ -11,7 +11,7 @@
 Module::Module(std::string addr) : addr(addr){};
 
 void Module::set_ready() {
-    lock.lock();
-    ready = true;
-    lock.unlock();
+  lock.lock();
+  ready = true;
+  lock.unlock();
 }
