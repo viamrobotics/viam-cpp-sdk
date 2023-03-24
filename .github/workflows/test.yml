@@ -10,15 +10,44 @@ jobs:
       image: ghcr.io/viamrbotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
-      ###################################
-      # necessary installs for building #
-      # #################################
-      - uses: lukka/get-cmake@latest
-      - user: MarkusJx/install-boost@v2.4.4
+      ###########################################
+      #     necessary installs for building     #
+      ###########################################
+      - name: setup-grpc
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git \
+          && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
+          && ./vcpkg install grpc \
+          && ./vcpkg install upb
+      - name: setup-openssl
+        run: sudo apt-get install libssl-dev
+      - uses: MarkusJx/install-boost@v2.4.4
         with:
-          boost-version: 1.81.0
-      -uses: bufbuild/buf-setup-action@v1.9.0
-       with: 
-       github_token: ${{ secrets.GITHUB_TOKEN }}
+          boost_version: 1.81.0
+          platform_version: 22.04
+      - uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: 3.25.2
+          ninjaVersion: 1.11.1
+      - uses: bufbuild/buf-setup-action@v1.9.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      ###########################################
+      #              build the sdk!             #
+      ###########################################
+      - name: build-sdk
+        run: |
+          mkdir build && cd build && cmake .. -G Ninja \
+          -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
+          -DCMAKE_PREFIX_PATH=../vcpkg/installed/x64-linux/share
+      ###########################################
+      #              run the tests!             #
+      ###########################################
+      - name: run-tests
+        run: |
+          cd src/tests && ctest
 
 
