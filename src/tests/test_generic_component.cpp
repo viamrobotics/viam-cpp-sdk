@@ -10,6 +10,11 @@ BOOST_AUTO_TEST_CASE(test1) {
 
 BOOST_AUTO_TEST_CASE(test2) {
     int i = 1;
+    BOOST_CHECK(i + i == 2);
+}
+
+BOOST_AUTO_TEST_CASE(test3) {
+    int i = 1;
     BOOST_CHECK(i + i == 3);
 }
 
