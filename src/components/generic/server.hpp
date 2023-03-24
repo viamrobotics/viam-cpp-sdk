@@ -17,7 +17,7 @@ public:
 
   void register_server() override;
 
-    GenericServer(){};
-    GenericServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
-    std::shared_ptr<SubtypeService> sub_svc;
+  GenericServer(){};
+  GenericServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
+  std::shared_ptr<SubtypeService> sub_svc;
 };

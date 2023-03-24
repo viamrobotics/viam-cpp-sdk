@@ -16,75 +16,82 @@ BOOST_AUTO_TEST_SUITE(generic_suite)
 std::shared_ptr<MockGeneric> generic = get_mock_generic();
 
 BOOST_AUTO_TEST_CASE(test_do) {
-    ProtoType prototype = ProtoType(std::string("hello"));
+  ProtoType prototype = ProtoType(std::string("hello"));
 
-    std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
-    std::unordered_map<std::string, std::shared_ptr<ProtoType>> expected_map = {
-        {std::string("test"), proto_ptr}};
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> expected =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(expected_map);
+  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+  std::unordered_map<std::string, std::shared_ptr<ProtoType>> expected_map = {
+      {std::string("test"), proto_ptr}};
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      expected = std::make_shared<
+          std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(
+          expected_map);
 
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command;
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> result_map =
-        generic->do_command(command);
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      command;
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      result_map = generic->do_command(command);
 
-    std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
-    std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
+  std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
+  std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
 
-    BOOST_CHECK(*expected_pt == *result_pt);
+  BOOST_CHECK(*expected_pt == *result_pt);
 }
 
-MockStub* mock = new MockStub();
+MockStub *mock = new MockStub();
 BOOST_AUTO_TEST_CASE(test_do_service) {
-    viam::common::v1::DoCommandRequest req;
-    viam::common::v1::DoCommandResponse resp;
-    grpc::ClientContext ctx;
+  viam::common::v1::DoCommandRequest req;
+  viam::common::v1::DoCommandResponse resp;
+  grpc::ClientContext ctx;
 
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      command = std::make_shared<
+          std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    *req.mutable_command() = map_to_struct(command);
-    *req.mutable_name() = "generic";
+  *req.mutable_command() = map_to_struct(command);
+  *req.mutable_name() = "generic";
 
-    ProtoType prototype = ProtoType(std::string("hello"));
-    std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
-    std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
-        {std::string("test"), proto_ptr}};
+  ProtoType prototype = ProtoType(std::string("hello"));
+  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+  std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
+      {std::string("test"), proto_ptr}};
 
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> expected_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      expected_map = std::make_shared<
+          std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
 
-    grpc::Status status = mock->DoCommand(&ctx, req, &resp);
+  grpc::Status status = mock->DoCommand(&ctx, req, &resp);
 
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> result_map =
-        struct_to_map(resp.result());
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      result_map = struct_to_map(resp.result());
 
-    ProtoType expected_pt = *(expected_map->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
+  ProtoType expected_pt = *(expected_map->at(std::string("test")));
+  ProtoType result_pt = *(result_map->at(std::string("test")));
 
-    BOOST_CHECK(expected_pt == result_pt);
+  BOOST_CHECK(expected_pt == result_pt);
 }
 
-MockClient* client = new MockClient("generic");
+MockClient *client = new MockClient("generic");
 
 BOOST_AUTO_TEST_CASE(test_do_client) {
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      command = std::make_shared<
+          std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
 
-    ProtoType prototype = ProtoType(std::string("hello"));
-    std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
-    std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
-        {std::string("test"), proto_ptr}};
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> expected_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
+  ProtoType prototype = ProtoType(std::string("hello"));
+  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
+  std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
+      {std::string("test"), proto_ptr}};
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      expected_map = std::make_shared<
+          std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
 
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> result_map =
-        client->do_command(command);
+  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+      result_map = client->do_command(command);
 
-    ProtoType expected_pt = *(expected_map->at(std::string("test")));
-    ProtoType result_pt = *(result_map->at(std::string("test")));
+  ProtoType expected_pt = *(expected_map->at(std::string("test")));
+  ProtoType result_pt = *(result_map->at(std::string("test")));
 
-    BOOST_CHECK(expected_pt == result_pt);
+  BOOST_CHECK(expected_pt == result_pt);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
