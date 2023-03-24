@@ -1,0 +1,24 @@
+name: Test
+
+on: pull_request
+
+jobs:
+  run-tests:
+    if: github.repository_owner = 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrbotics/canon:amd64
+    steps:
+      - uses: actions/checkout@v3
+      ###################################
+      # necessary installs for building #
+      # #################################
+      - uses: lukka/get-cmake@latest
+      - user: MarkusJx/install-boost@v2.4.4
+        with:
+          boost-version: 1.81.0
+      -uses: bufbuild/buf-setup-action@v1.9.0
+       with: 
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
