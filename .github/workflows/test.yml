@@ -50,6 +50,6 @@ jobs:
       ###########################################
       - name: run-tests
         run: |
-          cd src/tests && ctest
+          cd build/src/tests && ctest
 
 
