@@ -5,12 +5,13 @@
 #include <resource/resource_base.hpp>
 #include <unordered_map>
 
-grpc::StatusCode ResourceBase::stop(std::unordered_map<std::string, ProtoType*> extra) {
-    return stop();
+grpc::StatusCode ResourceBase::stop(
+    std::unordered_map<std::string, ProtoType *> extra) {
+  return stop();
 }
 
 grpc::StatusCode ResourceBase::stop() {
-    return grpc::StatusCode::UNIMPLEMENTED;
+  return grpc::StatusCode::UNIMPLEMENTED;
 }
 
 void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
