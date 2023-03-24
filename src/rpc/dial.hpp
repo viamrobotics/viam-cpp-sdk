@@ -11,7 +11,7 @@ namespace SDK {
 
 class DialOptions;
 class ViamChannel {
- public:
+public:
   std::shared_ptr<grpc::Channel> channel;
   void close();
   ViamChannel(std::shared_ptr<grpc::Channel> channel, const char *path,
@@ -19,14 +19,14 @@ class ViamChannel {
   static ViamChannel dial(const char *uri,
                           boost::optional<DialOptions> options);
 
- private:
+private:
   const char *path;
   bool closed;
   void *rust_runtime;
 };
 
 class Credentials {
- public:
+public:
   std::string type_;
   std::string payload;
 
@@ -34,7 +34,7 @@ class Credentials {
 };
 
 class DialOptions {
- public:
+public:
   /// Bypass webRTC and connect directly to the robot
   // TODO (RSDK-917): This field is currently just for show, we
   // should update dial logic to actually care about this
@@ -71,7 +71,7 @@ class DialOptions {
 };
 
 class Options {
- public:
+public:
   /// How often to refresh the status/parts of the robot, in seconds.
   /// if set to 0, the robot will not automatically refresh.
   unsigned int refresh_interval;
@@ -83,5 +83,5 @@ class Options {
   }
 };
 
-}  // namespace SDK
-}  // namespace Viam
+} // namespace SDK
+} // namespace Viam

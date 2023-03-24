@@ -38,8 +38,9 @@
 #include <subtype/subtype.hpp>
 
 namespace {
-Dependencies get_dependencies(
-    ModuleService_ *m, google::protobuf::RepeatedPtrField<std::string> proto) {
+Dependencies
+get_dependencies(ModuleService_ *m,
+                 google::protobuf::RepeatedPtrField<std::string> proto) {
   Dependencies deps;
   for (auto &dep : proto) {
     auto name = Name::from_string(dep);
@@ -48,8 +49,8 @@ Dependencies get_dependencies(
   }
   return deps;
 }
-}  // namespace
-   //
+} // namespace
+  //
 std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
   if (parent == nullptr) {
     parent = RobotClient::at_local_socket(parent_addr, {0, boost::none});
@@ -189,10 +190,10 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
   return grpc::Status();
 };
 
-::grpc::Status ModuleService_::Ready(
-    ::grpc::ServerContext *context,
-    const ::viam::module::v1::ReadyRequest *request,
-    ::viam::module::v1::ReadyResponse *response) {
+::grpc::Status
+ModuleService_::Ready(::grpc::ServerContext *context,
+                      const ::viam::module::v1::ReadyRequest *request,
+                      ::viam::module::v1::ReadyResponse *response) {
   module->lock.lock();
   viam::module::v1::HandlerMap hm = this->module->handles.to_proto();
   *response->mutable_handlermap() = hm;

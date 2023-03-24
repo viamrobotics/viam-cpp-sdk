@@ -14,14 +14,14 @@ typedef std::shared_ptr<
     AttributeMap;
 
 class ResourceLevelServiceConfig {
- public:
+public:
   std::string type;
   AttributeMap attributes;
   ProtoType converted_attributes;
 };
 
 class Resource {
- public:
+public:
   std::string name;
   std::string namespace_;
   std::string type;
@@ -39,6 +39,6 @@ class Resource {
   Resource(std::string type);
   Name resource_name();
 
- private:
+private:
   void fix_api();
 };

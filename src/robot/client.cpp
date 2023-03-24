@@ -70,8 +70,8 @@ bool is_error_response(grpc::Status response) {
 // gets Statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given ResourceNames will be
 // returned
-std::vector<Status> RobotClient::get_status(
-    std::vector<ResourceName> components) {
+std::vector<Status>
+RobotClient::get_status(std::vector<ResourceName> components) {
   viam::robot::v1::GetStatusRequest req;
   viam::robot::v1::GetStatusResponse resp;
   ClientContext ctx;
@@ -304,9 +304,9 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
   return fs_configs;
 }
-PoseInFrame RobotClient::transform_pose(
-    PoseInFrame query, std::string destination,
-    std::vector<Transform> additional_transforms) {
+PoseInFrame
+RobotClient::transform_pose(PoseInFrame query, std::string destination,
+                            std::vector<Transform> additional_transforms) {
   viam::robot::v1::TransformPoseRequest req;
   viam::robot::v1::TransformPoseResponse resp;
   ClientContext ctx;
@@ -329,8 +329,8 @@ PoseInFrame RobotClient::transform_pose(
   return resp.pose();
 }
 
-std::vector<Discovery> RobotClient::discover_components(
-    std::vector<DiscoveryQuery> queries) {
+std::vector<Discovery>
+RobotClient::discover_components(std::vector<DiscoveryQuery> queries) {
   viam::robot::v1::DiscoverComponentsRequest req;
   viam::robot::v1::DiscoverComponentsResponse resp;
   ClientContext ctx;

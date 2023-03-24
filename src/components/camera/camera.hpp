@@ -13,15 +13,15 @@
 #include "subtype/subtype.hpp"
 
 class CameraSubtype : public ResourceSubtype {
- public:
-  std::shared_ptr<ResourceServerBase> create_resource_server(
-      std::shared_ptr<SubtypeService> svc) override;
+public:
+  std::shared_ptr<ResourceServerBase>
+  create_resource_server(std::shared_ptr<SubtypeService> svc) override;
   CameraSubtype(const google::protobuf::ServiceDescriptor *service_descriptor)
       : ResourceSubtype(service_descriptor){};
 };
 
 class Camera : public ComponentBase {
- public:
+public:
   struct intrinsic_parameters {
     int width_px;
     int height_px;
@@ -56,20 +56,20 @@ class Camera : public ComponentBase {
 
   static std::shared_ptr<ResourceSubtype> resource_subtype();
   static Subtype subtype();
-  static raw_image from_proto(
-      viam::component::camera::v1::GetImageResponse proto);
-  static point_cloud from_proto(
-      viam::component::camera::v1::GetPointCloudResponse proto);
-  static intrinsic_parameters from_proto(
-      viam::component::camera::v1::IntrinsicParameters proto);
-  static distortion_parameters from_proto(
-      viam::component::camera::v1::DistortionParameters proto);
-  static properties from_proto(
-      viam::component::camera::v1::GetPropertiesResponse proto);
-  static viam::component::camera::v1::DistortionParameters to_proto(
-      distortion_parameters);
-  static viam::component::camera::v1::IntrinsicParameters to_proto(
-      intrinsic_parameters);
+  static raw_image
+  from_proto(viam::component::camera::v1::GetImageResponse proto);
+  static point_cloud
+  from_proto(viam::component::camera::v1::GetPointCloudResponse proto);
+  static intrinsic_parameters
+  from_proto(viam::component::camera::v1::IntrinsicParameters proto);
+  static distortion_parameters
+  from_proto(viam::component::camera::v1::DistortionParameters proto);
+  static properties
+  from_proto(viam::component::camera::v1::GetPropertiesResponse proto);
+  static viam::component::camera::v1::DistortionParameters
+      to_proto(distortion_parameters);
+  static viam::component::camera::v1::IntrinsicParameters
+      to_proto(intrinsic_parameters);
 
   virtual AttributeMap do_command(AttributeMap command) = 0;
   virtual raw_image get_image(std::string mime_type) = 0;

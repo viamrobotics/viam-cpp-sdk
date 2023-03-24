@@ -5,7 +5,7 @@
 #include <resource/resource.hpp>
 
 class HandlerMap_ {
- public:
+public:
   HandlerMap_();
   void add_model(Model model, RPCSubtype subtype);
   std::unordered_map<RPCSubtype, std::vector<Model>> handles;

@@ -121,8 +121,7 @@ bool operator==(const Model &lhs, const Model &rhs) {
 
 RPCSubtype::RPCSubtype(Subtype subtype, std::string proto_service_name,
                        const google::protobuf::ServiceDescriptor &descriptor)
-    : subtype(subtype),
-      descriptor(&descriptor),
+    : subtype(subtype), descriptor(&descriptor),
       proto_service_name(proto_service_name) {}
 
 RPCSubtype::RPCSubtype(Subtype subtype,
@@ -133,8 +132,8 @@ ModelFamily::ModelFamily(std::string namespace_, std::string family)
     : namespace_(namespace_), family(family) {}
 
 Model::Model(ModelFamily model_family, std::string model_name)
-    : model_family(std::move(model_family)),
-      model_name(std::move(model_name)) {}
+    : model_family(std::move(model_family)), model_name(std::move(model_name)) {
+}
 
 Model::Model(std::string namespace_, std::string family, std::string model_name)
     : Model(ModelFamily(std::move(namespace_), std::move(family)),

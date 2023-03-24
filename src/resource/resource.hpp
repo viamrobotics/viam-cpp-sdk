@@ -7,7 +7,7 @@
 #include "common/v1/common.pb.h"
 
 class Type {
- public:
+public:
   std::string namespace_;
   std::string resource_type;
   Type(std::string namespace_, std::string resource_type);
@@ -17,7 +17,7 @@ class Type {
 };
 
 class Subtype : public Type {
- public:
+public:
   std::string resource_subtype;
 
   std::string to_string() const;
@@ -35,7 +35,7 @@ class Subtype : public Type {
 // TODO: instead of inheriting from Subtype probably this should just have a
 // Subtype as a member
 class Name : public Subtype {
- public:
+public:
   std::string remote_name;
   std::string name;
 
@@ -51,7 +51,7 @@ class Name : public Subtype {
 };
 
 class RPCSubtype {
- public:
+public:
   Subtype subtype;
   std::string proto_service_name;
   const google::protobuf::ServiceDescriptor *descriptor;
@@ -71,7 +71,7 @@ class RPCSubtype {
 };
 
 class ModelFamily {
- public:
+public:
   std::string namespace_;
   std::string family;
 
@@ -80,7 +80,7 @@ class ModelFamily {
 };
 
 class Model {
- public:
+public:
   ModelFamily model_family;
   std::string model_name;
   std::string to_string() const;
@@ -98,15 +98,13 @@ class Model {
   friend bool operator==(const Model &lhs, const Model &rhs);
 };
 
-template <>
-struct std::hash<Name> {
+template <> struct std::hash<Name> {
   size_t operator()(Name const &key) const noexcept {
     return std::hash<std::string>()(key.to_string());
   }
 };
 
-template <>
-struct std::hash<RPCSubtype> {
+template <> struct std::hash<RPCSubtype> {
   size_t operator()(RPCSubtype const &key) const noexcept {
     Subtype subtype = key.subtype;
     std::string hash = subtype.to_string() + key.proto_service_name;
@@ -114,8 +112,7 @@ struct std::hash<RPCSubtype> {
   };
 };
 
-template <>
-struct std::hash<Subtype> {
+template <> struct std::hash<Subtype> {
   size_t operator()(const Subtype &key) const noexcept {
     return std::hash<std::string>()(key.to_string());
   };

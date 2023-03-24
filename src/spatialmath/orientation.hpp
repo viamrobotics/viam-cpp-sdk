@@ -14,7 +14,7 @@ typedef boost::variant<Viam::SDK::axis_angles, Viam::SDK::euler_angles,
     orientation;
 
 class OrientationConfig {
- public:
+public:
   Viam::SDK::OrientationType type;
   std::vector<std::uint8_t> value;
   orientation orientation_;

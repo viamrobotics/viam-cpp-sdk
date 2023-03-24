@@ -6,7 +6,7 @@
 #include <unordered_map>
 
 class ResourceManager {
- public:
+public:
   static std::unordered_map<std::string, std::shared_ptr<ResourceBase>>
       resources;
   void register_resource(std::shared_ptr<ResourceBase> Resource);
@@ -23,6 +23,6 @@ class ResourceManager {
                                              ResourceType of_type);
   ResourceManager();
 
- private:
+private:
   ResourceManager(std::vector<std::shared_ptr<ResourceBase>> resources);
 };

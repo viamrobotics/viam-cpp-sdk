@@ -27,7 +27,7 @@ class GeometryConfig {
   OrientationConfig orientation_config;
   std::string label;
 
- public:
+public:
   viam::common::v1::Geometry to_proto();
   viam::common::v1::RectangularPrism box_proto();
   viam::common::v1::Sphere sphere_proto();

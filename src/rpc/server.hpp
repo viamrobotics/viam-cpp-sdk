@@ -4,7 +4,7 @@
 
 /// A grpc server
 class Server {
- public:
+public:
   /// Starts the grpc server. This can only be called once, and will throw on
   /// repeated calls.
   static void start();
@@ -32,14 +32,14 @@ class Server {
   ///		Must be called before starting the server. Attempting to call
   /// after
   /// the server has 		started will throw an error
-  static void add_listening_port(
-      std::string address,
-      std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
+  static void
+  add_listening_port(std::string address,
+                     std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 
   static void wait();
   static void shutdown();
 
- private:
+private:
   static std::unique_ptr<grpc::ServerBuilder> builder;
   static std::unique_ptr<grpc::Server> server;
 };

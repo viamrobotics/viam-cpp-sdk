@@ -25,7 +25,7 @@ using Viam::SDK::ViamChannel;
 /// a robot.
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
 class RobotClient {
- public:
+public:
   ~RobotClient();
   void refresh();
   void close();
@@ -58,8 +58,8 @@ class RobotClient {
   std::vector<viam::robot::v1::Operation> get_operations();
   std::vector<Status> get_status(
       std::vector<ResourceName> components = std::vector<ResourceName>());
-  std::vector<viam::robot::v1::Discovery> discover_components(
-      std::vector<viam::robot::v1::DiscoveryQuery> queries);
+  std::vector<viam::robot::v1::Discovery>
+  discover_components(std::vector<viam::robot::v1::DiscoveryQuery> queries);
 
   std::vector<std::shared_ptr<std::thread>> threads;
 
@@ -75,7 +75,7 @@ class RobotClient {
                     extra);
   void cancel_operation(std::string id);
 
- private:
+private:
   std::atomic<bool> should_refresh;
   unsigned int refresh_interval;
   // (RSDK-919): make use of should_close_channel

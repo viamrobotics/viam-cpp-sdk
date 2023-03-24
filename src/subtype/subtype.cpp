@@ -37,7 +37,7 @@ std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
   }
   lock.unlock();
   return nullptr;
-};
+}
 
 void SubtypeService::replace_all(
     std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
@@ -58,7 +58,7 @@ void SubtypeService::replace_all(
   }
 
   lock.unlock();
-};
+}
 
 std::string get_shortcut_name(std::string name) {
   std::vector<std::string> name_split;
@@ -73,7 +73,7 @@ void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
   std::string short_name = name.short_name();
 
   do_add(short_name, resource);
-};
+}
 
 void SubtypeService::do_add(std::string name,
                             std::shared_ptr<ResourceBase> resource) {
@@ -152,7 +152,7 @@ void SubtypeService::replace_one(Name name,
                              << name.to_string() << ": " << exc.what();
   }
   lock.unlock();
-};
+}
 
 void SubtypeService::add(std::string name,
                          std::shared_ptr<ResourceBase> resource) {

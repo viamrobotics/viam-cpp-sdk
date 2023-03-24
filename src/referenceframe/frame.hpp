@@ -6,11 +6,11 @@
 #include <string>
 
 class LinkConfig {
- public:
+public:
   viam::app::v1::Frame to_proto();
   static LinkConfig from_proto(viam::app::v1::Frame proto);
 
- private:
+private:
   std::string id;
   Viam::SDK::translation translation;
   OrientationConfig orientation;

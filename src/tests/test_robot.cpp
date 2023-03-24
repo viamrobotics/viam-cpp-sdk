@@ -24,26 +24,26 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;
 class TestService : public RobotService_ {
- public:
+public:
   ::grpc::Status FrameSystemConfig(
       ::grpc::ServerContext *context,
       const ::viam::robot::v1::FrameSystemConfigRequest *request,
       ::viam::robot::v1::FrameSystemConfigResponse *response) override;
 
-  ::grpc::Status TransformPose(
-      ::grpc::ServerContext *context,
-      const ::viam::robot::v1::TransformPoseRequest *request,
-      ::viam::robot::v1::TransformPoseResponse *response) override;
+  ::grpc::Status
+  TransformPose(::grpc::ServerContext *context,
+                const ::viam::robot::v1::TransformPoseRequest *request,
+                ::viam::robot::v1::TransformPoseResponse *response) override;
 
   ::grpc::Status DiscoverComponents(
       ::grpc::ServerContext *context,
       const ::viam::robot::v1::DiscoverComponentsRequest *request,
       ::viam::robot::v1::DiscoverComponentsResponse *response) override;
 
-  ::grpc::Status GetOperations(
-      ::grpc::ServerContext *context,
-      const ::viam::robot::v1::GetOperationsRequest *request,
-      ::viam::robot::v1::GetOperationsResponse *response) override;
+  ::grpc::Status
+  GetOperations(::grpc::ServerContext *context,
+                const ::viam::robot::v1::GetOperationsRequest *request,
+                ::viam::robot::v1::GetOperationsResponse *response) override;
 
   TestService();
 };
@@ -51,35 +51,35 @@ class TestService : public RobotService_ {
 // TODO(RSDK-1629): when we flesh out the tests here, move MockStub into its own
 // file.
 class MockStub : public RobotService::StubInterface {
- public:
+public:
   TestService service;
   MockStub(TestService service) { service = service; };
 
-  ::grpc::Status ResourceNames(
-      ::grpc::ClientContext *context,
-      const ::viam::robot::v1::ResourceNamesRequest &request,
-      ::viam::robot::v1::ResourceNamesResponse *response) override {
+  ::grpc::Status
+  ResourceNames(::grpc::ClientContext *context,
+                const ::viam::robot::v1::ResourceNamesRequest &request,
+                ::viam::robot::v1::ResourceNamesResponse *response) override {
     grpc::ServerContext *ctx;
     return service.ResourceNames(ctx, &request, response);
   }
 
-  ::grpc::Status GetStatus(
-      ::grpc::ClientContext *context,
-      const ::viam::robot::v1::GetStatusRequest &request,
-      ::viam::robot::v1::GetStatusResponse *response) override {
+  ::grpc::Status
+  GetStatus(::grpc::ClientContext *context,
+            const ::viam::robot::v1::GetStatusRequest &request,
+            ::viam::robot::v1::GetStatusResponse *response) override {
     grpc::ServerContext *ctx;
     return service.GetStatus(ctx, &request, response);
   }
 
-  ::grpc::Status GetOperations(
-      ::grpc::ClientContext *context,
-      const ::viam::robot::v1::GetOperationsRequest &request,
-      ::viam::robot::v1::GetOperationsResponse *response) override;
+  ::grpc::Status
+  GetOperations(::grpc::ClientContext *context,
+                const ::viam::robot::v1::GetOperationsRequest &request,
+                ::viam::robot::v1::GetOperationsResponse *response) override;
 
-  ::grpc::Status GetSessions(
-      ::grpc::ClientContext *context,
-      const ::viam::robot::v1::GetSessionsRequest &request,
-      ::viam::robot::v1::GetSessionsResponse *response) override;
+  ::grpc::Status
+  GetSessions(::grpc::ClientContext *context,
+              const ::viam::robot::v1::GetSessionsRequest &request,
+              ::viam::robot::v1::GetSessionsResponse *response) override;
 
   ::grpc::Status ResourceRPCSubtypes(
       ::grpc::ClientContext *context,
@@ -106,19 +106,19 @@ class MockStub : public RobotService::StubInterface {
       const ::viam::robot::v1::FrameSystemConfigRequest &request,
       ::viam::robot::v1::FrameSystemConfigResponse *response) override;
 
-  ::grpc::Status TransformPose(
-      ::grpc::ClientContext *context,
-      const ::viam::robot::v1::TransformPoseRequest &request,
-      ::viam::robot::v1::TransformPoseResponse *response) override;
+  ::grpc::Status
+  TransformPose(::grpc::ClientContext *context,
+                const ::viam::robot::v1::TransformPoseRequest &request,
+                ::viam::robot::v1::TransformPoseResponse *response) override;
 
   ::grpc::Status StopAll(::grpc::ClientContext *context,
                          const ::viam::robot::v1::StopAllRequest &request,
                          ::viam::robot::v1::StopAllResponse *response) override;
 
-  ::grpc::Status StartSession(
-      ::grpc::ClientContext *context,
-      const ::viam::robot::v1::StartSessionRequest &request,
-      ::viam::robot::v1::StartSessionResponse *response) override;
+  ::grpc::Status
+  StartSession(::grpc::ClientContext *context,
+               const ::viam::robot::v1::StartSessionRequest &request,
+               ::viam::robot::v1::StartSessionResponse *response) override;
 
   ::grpc::Status SendSessionHeartbeat(
       ::grpc::ClientContext *context,

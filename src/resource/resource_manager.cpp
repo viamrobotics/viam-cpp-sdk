@@ -30,8 +30,8 @@ void ResourceManager::register_resource(
   resources[resource->name] = resource;
 }
 
-std::shared_ptr<ResourceBase> ResourceManager::get_resource(
-    std::string name, ResourceType of_type) {
+std::shared_ptr<ResourceBase>
+ResourceManager::get_resource(std::string name, ResourceType of_type) {
   if (resources.find(name) == resources.end()) {
     throw "Resource name " + name + " doesn't exist!";
   }

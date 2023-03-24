@@ -6,7 +6,7 @@
 #include <components/camera/server.hpp>
 
 class MockCamera : public Camera {
- public:
+public:
   AttributeMap do_command(AttributeMap command) override { return map; }
   raw_image get_image(std::string mime_type) override { return image; }
   point_cloud get_point_cloud(std::string mime_type) override { return pc; }
@@ -85,24 +85,24 @@ std::shared_ptr<MockCamera> get_mock_camera() {
 
 class MockStub
     : public viam::component::camera::v1::CameraService::StubInterface {
- public:
+public:
   CameraServer server;
 
   MockStub() : server(CameraServer(std::make_shared<SubtypeService>())) {
     this->server.sub_svc->add(std::string("camera"), get_mock_camera());
   };
 
-  ::grpc::Status GetImage(
-      ::grpc::ClientContext *context,
-      const ::viam::component::camera::v1::GetImageRequest &request,
-      ::viam::component::camera::v1::GetImageResponse *response) override {
+  ::grpc::Status
+  GetImage(::grpc::ClientContext *context,
+           const ::viam::component::camera::v1::GetImageRequest &request,
+           ::viam::component::camera::v1::GetImageResponse *response) override {
     grpc::ServerContext *ctx;
     return server.GetImage(ctx, &request, response);
   }
-  ::grpc::Status RenderFrame(
-      ::grpc::ClientContext *context,
-      const ::viam::component::camera::v1::RenderFrameRequest &request,
-      ::google::api::HttpBody *response) override {
+  ::grpc::Status
+  RenderFrame(::grpc::ClientContext *context,
+              const ::viam::component::camera::v1::RenderFrameRequest &request,
+              ::google::api::HttpBody *response) override {
     grpc::ServerContext *ctx;
     return server.RenderFrame(ctx, &request, response);
   }
@@ -120,10 +120,10 @@ class MockStub
     grpc::ServerContext *ctx;
     return server.GetProperties(ctx, &request, response);
   }
-  ::grpc::Status DoCommand(
-      ::grpc::ClientContext *context,
-      const ::viam::common::v1::DoCommandRequest &request,
-      ::viam::common::v1::DoCommandResponse *response) override {
+  ::grpc::Status
+  DoCommand(::grpc::ClientContext *context,
+            const ::viam::common::v1::DoCommandRequest &request,
+            ::viam::common::v1::DoCommandResponse *response) override {
     grpc::ServerContext *ctx;
     return server.DoCommand(ctx, &request, response);
   }
@@ -228,7 +228,7 @@ class MockStub
   }
 
   class async final : public StubInterface::async_interface {
-   public:
+  public:
     void GetImage(::grpc::ClientContext *context,
                   const ::viam::component::camera::v1::GetImageRequest *request,
                   ::viam::component::camera::v1::GetImageResponse *response,
@@ -296,7 +296,7 @@ class MockStub
       return;
     }
 
-   public:
+  public:
     friend class Stub;
     explicit async(MockStub *stub) : stub_(stub) {}
     MockStub *stub() { return stub_; }
@@ -438,7 +438,7 @@ class MockStub
 };
 
 class MockClient : public CameraClient {
- public:
+public:
   MockClient(std::string name) : CameraClient(name) {
     stub_ = std::make_unique<MockStub>();
     name_ = name;

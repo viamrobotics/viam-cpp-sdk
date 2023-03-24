@@ -32,8 +32,8 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
   return metadata;
 }
 
-std::vector<Status> RobotService_::generate_status(
-    RepeatedPtrField<ResourceName> resource_names) {
+std::vector<Status>
+RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
   std::vector<Status> statuses;
   for (auto &cmp : manager.resources) {
     std::shared_ptr<ResourceBase> resource = cmp.second;
@@ -108,10 +108,10 @@ std::vector<Status> RobotService_::generate_status(
   return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::GetStatus(
-    ::grpc::ServerContext *context,
-    const ::viam::robot::v1::GetStatusRequest *request,
-    ::viam::robot::v1::GetStatusResponse *response) {
+::grpc::Status
+RobotService_::GetStatus(::grpc::ServerContext *context,
+                         const ::viam::robot::v1::GetStatusRequest *request,
+                         ::viam::robot::v1::GetStatusResponse *response) {
   if (request == nullptr) {
     return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                           "Called [GetStatus] without a request");
@@ -158,10 +158,10 @@ void RobotService_::stream_status(
   return ::grpc::Status();
 }
 
-::grpc::Status RobotService_::StopAll(
-    ::grpc::ServerContext *context,
-    const ::viam::robot::v1::StopAllRequest *request,
-    ::viam::robot::v1::StopAllResponse *response) {
+::grpc::Status
+RobotService_::StopAll(::grpc::ServerContext *context,
+                       const ::viam::robot::v1::StopAllRequest *request,
+                       ::viam::robot::v1::StopAllResponse *response) {
   ResourceName r;
   std::unordered_map<std::string, std::unordered_map<std::string, ProtoType *>>
       extra;

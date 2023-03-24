@@ -13,8 +13,8 @@
 
 using viam::common::v1::ResourceName;
 
-std::vector<ResourceName> resource_names_for_resource(
-    std::shared_ptr<ResourceBase> resource) {
+std::vector<ResourceName>
+resource_names_for_resource(std::shared_ptr<ResourceBase> resource) {
   std::string *resource_type;
   std::vector<ResourceName> resource_names;
   for (auto &a : Registry::registered_resources()) {

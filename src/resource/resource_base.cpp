@@ -5,8 +5,8 @@
 #include <resource/resource_base.hpp>
 #include <unordered_map>
 
-grpc::StatusCode ResourceBase::stop(
-    std::unordered_map<std::string, ProtoType *> extra) {
+grpc::StatusCode
+ResourceBase::stop(std::unordered_map<std::string, ProtoType *> extra) {
   return stop();
 }
 

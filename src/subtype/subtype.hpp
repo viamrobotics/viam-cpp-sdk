@@ -4,12 +4,14 @@
 #include <grpcpp/impl/service_type.h>
 
 #include <boost/optional/optional.hpp>
+#include <memory>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <string>
+#include <unordered_map>
 
 class SubtypeService : public grpc::Service {
- public:
+public:
   std::shared_ptr<ResourceBase> resource(std::string name);
   void replace_all(
       std::unordered_map<Name, std::shared_ptr<ResourceBase>> resources);
@@ -19,7 +21,7 @@ class SubtypeService : public grpc::Service {
   void replace_one(Name name, std::shared_ptr<ResourceBase> resource);
   SubtypeService(){};
 
- private:
+private:
   std::mutex lock;
   std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
   std::unordered_map<std::string, std::string> short_names;

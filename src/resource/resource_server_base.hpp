@@ -2,9 +2,9 @@
 
 #include <subtype/subtype.hpp>
 class ResourceServerBase {
- public:
+public:
   virtual void register_server();
 
- private:
+private:
   std::shared_ptr<SubtypeService> sub_svc;
 };

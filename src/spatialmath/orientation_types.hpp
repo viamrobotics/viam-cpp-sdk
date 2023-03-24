@@ -13,34 +13,34 @@ enum OrientationType {
 };
 
 class axis_angles {
- public:
+public:
   double x, y, z, theta;
 };
 
 class euler_angles {
- public:
+public:
   double yaw, roll, pitch;
 };
 
 class orientation_vector {
- public:
+public:
   double x, y, z, theta;
 };
 
 class orientation_vector_degrees {
- public:
+public:
   double x, y, z, theta;
 };
 
 class quaternion {
- public:
+public:
   double x, y, z, w;
 };
 
 class translation {
- public:
+public:
   double x, y, z;
   viam::app::v1::Translation to_proto();
 };
-}  // namespace SDK
-}  // namespace Viam
+} // namespace SDK
+} // namespace Viam

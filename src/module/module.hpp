@@ -7,7 +7,7 @@
 #include <subtype/subtype.hpp>
 
 class Module {
- public:
+public:
   std::mutex lock;
   std::string name;
   std::string addr;

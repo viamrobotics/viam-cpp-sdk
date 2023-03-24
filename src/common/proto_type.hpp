@@ -6,7 +6,7 @@
 #include <unordered_map>
 
 class ProtoType {
- public:
+public:
   boost::variant<boost::blank, bool, std::string, int, double,
                  std::shared_ptr<std::unordered_map<
                      std::string, std::shared_ptr<ProtoType>>>,

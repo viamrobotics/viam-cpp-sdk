@@ -16,17 +16,17 @@ const std::string RDK = "rdk";
 const std::string GENERIC = "generic";
 const std::string BUILTIN = "builtin";
 
-std::vector<viam::common::v1::ResourceName> resource_names_for_resource(
-    std::shared_ptr<ResourceBase> resource);
+std::vector<viam::common::v1::ResourceName>
+resource_names_for_resource(std::shared_ptr<ResourceBase> resource);
 
 class ResourceNameHasher {
- public:
+public:
   size_t operator()(ResourceName const &key) const {
     return std::hash<std::string>()(key.SerializeAsString());
   }
 };
 class ResourceNameEqual {
- public:
+public:
   bool operator()(ResourceName const &t1, ResourceName const &t2) const {
     return !(t1.SerializeAsString().compare(t2.SerializeAsString()));
   }

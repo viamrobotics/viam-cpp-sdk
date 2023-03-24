@@ -3,6 +3,6 @@
 #include <resource/resource_manager.hpp>
 
 class ComponentServiceBase {
- public:
+public:
   ResourceManager manager;
 };

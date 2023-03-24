@@ -8,19 +8,19 @@
 #include <config/resource.hpp>
 
 class CameraClient : public Camera {
- public:
+public:
   AttributeMap do_command(AttributeMap command) override;
   raw_image get_image(std::string mime_type) override;
   point_cloud get_point_cloud(std::string mime_type) override;
   properties get_properties() override;
   CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_);
 
- protected:
+protected:
   CameraClient(std::string name);
   std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface>
       stub_;
   std::string name_;
 
- private:
+private:
   std::shared_ptr<grpc::Channel> channel_;
 };

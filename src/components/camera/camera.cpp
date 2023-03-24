@@ -8,8 +8,8 @@
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 
-std::shared_ptr<ResourceServerBase> CameraSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> svc) {
+std::shared_ptr<ResourceServerBase>
+CameraSubtype::create_resource_server(std::shared_ptr<SubtypeService> svc) {
   return std::make_shared<CameraServer>(svc);
 };
 
@@ -27,20 +27,20 @@ std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
 
 Subtype Camera::subtype() { return Subtype(RDK, COMPONENT, "camera"); }
 
-std::vector<double> repeated_field_to_vector(
-    google::protobuf::RepeatedField<double> const &f) {
+std::vector<double>
+repeated_field_to_vector(google::protobuf::RepeatedField<double> const &f) {
   std::vector<double> v(f.begin(), f.end());
   return v;
 }
 
-google::protobuf::RepeatedField<double> vector_to_repeated_field(
-    std::vector<double> const &v) {
+google::protobuf::RepeatedField<double>
+vector_to_repeated_field(std::vector<double> const &v) {
   google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
   return rf;
 }
 
-Camera::raw_image Camera::from_proto(
-    viam::component::camera::v1::GetImageResponse proto) {
+Camera::raw_image
+Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
   Camera::raw_image raw_image;
   std::string img_string = proto.image();
   std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
@@ -49,8 +49,8 @@ Camera::raw_image Camera::from_proto(
   return raw_image;
 }
 
-Camera::point_cloud Camera::from_proto(
-    viam::component::camera::v1::GetPointCloudResponse proto) {
+Camera::point_cloud
+Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto) {
   Camera::point_cloud point_cloud;
   std::string pc_string = proto.point_cloud();
   std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
@@ -59,8 +59,8 @@ Camera::point_cloud Camera::from_proto(
   return point_cloud;
 }
 
-Camera::intrinsic_parameters Camera::from_proto(
-    viam::component::camera::v1::IntrinsicParameters proto) {
+Camera::intrinsic_parameters
+Camera::from_proto(viam::component::camera::v1::IntrinsicParameters proto) {
   Camera::intrinsic_parameters params;
   params.width_px = proto.width_px();
   params.height_px = proto.height_px();
@@ -71,16 +71,16 @@ Camera::intrinsic_parameters Camera::from_proto(
   return params;
 }
 
-Camera::distortion_parameters Camera::from_proto(
-    viam::component::camera::v1::DistortionParameters proto) {
+Camera::distortion_parameters
+Camera::from_proto(viam::component::camera::v1::DistortionParameters proto) {
   Camera::distortion_parameters params;
   params.model = proto.model();
   params.parameters = repeated_field_to_vector(proto.parameters());
   return params;
 }
 
-Camera::properties Camera::from_proto(
-    viam::component::camera::v1::GetPropertiesResponse proto) {
+Camera::properties
+Camera::from_proto(viam::component::camera::v1::GetPropertiesResponse proto) {
   Camera::distortion_parameters distortion_parameters;
   Camera::intrinsic_parameters intrinsic_parameters;
   Camera::properties properties;
@@ -100,8 +100,8 @@ Camera::properties Camera::from_proto(
   return properties;
 }
 
-viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
-    Camera::intrinsic_parameters params) {
+viam::component::camera::v1::IntrinsicParameters
+Camera::to_proto(Camera::intrinsic_parameters params) {
   viam::component::camera::v1::IntrinsicParameters proto;
   proto.set_width_px(params.width_px);
   proto.set_height_px(params.height_px);
@@ -111,8 +111,8 @@ viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
   proto.set_center_y_px(params.center_y_px);
   return proto;
 }
-viam::component::camera::v1::DistortionParameters Camera::to_proto(
-    Camera::distortion_parameters params) {
+viam::component::camera::v1::DistortionParameters
+Camera::to_proto(Camera::distortion_parameters params) {
   viam::component::camera::v1::DistortionParameters proto;
   *proto.mutable_model() = params.model;
   *proto.mutable_parameters() = vector_to_repeated_field(params.parameters);
@@ -153,4 +153,4 @@ bool init() {
 };
 
 bool inited = init();
-}  // namespace
+} // namespace

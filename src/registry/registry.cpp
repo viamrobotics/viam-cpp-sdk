@@ -71,8 +71,8 @@ Registry::registered_resources() {
   return registry;
 }
 
-Status ModelRegistration::create_status(
-    std::shared_ptr<ResourceBase> resource) {
+Status
+ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
   Status status;
   ResourceName *name;
   if (resource->type.type == COMPONENT) {

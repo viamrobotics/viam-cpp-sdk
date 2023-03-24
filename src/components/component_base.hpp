@@ -7,7 +7,7 @@
 #include <resource/resource_base.hpp>
 #include <string>
 class ComponentBase : public ResourceBase {
- public:
+public:
   ComponentType type;
   std::vector<ComponentType> component_hierarchy;
 

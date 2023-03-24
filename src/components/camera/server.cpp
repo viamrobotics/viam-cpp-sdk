@@ -6,10 +6,10 @@
 #include <config/resource.hpp>
 #include <rpc/server.hpp>
 
-::grpc::Status CameraServer::DoCommand(
-    ::grpc::ServerContext *context,
-    const ::viam::common::v1::DoCommandRequest *request,
-    ::viam::common::v1::DoCommandResponse *response) {
+::grpc::Status
+CameraServer::DoCommand(::grpc::ServerContext *context,
+                        const ::viam::common::v1::DoCommandRequest *request,
+                        ::viam::common::v1::DoCommandResponse *response) {
   if (request == nullptr) {
     return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                           "Called [DoCommand] without a request");

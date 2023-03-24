@@ -3,7 +3,7 @@
 #include <string>
 
 class ComponentType {
- public:
+public:
   std::string name;
   friend bool operator==(ComponentType &lhs, ComponentType &rhs);
   ComponentType(std::string name) { name = name; }

@@ -3,7 +3,7 @@
 #include <string>
 
 class ServiceType {
- public:
+public:
   std::string name;
   friend bool operator==(ServiceType &lhs, ServiceType &rhs);
   ServiceType(std::string name) { name = name; }
