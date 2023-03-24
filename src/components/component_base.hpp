@@ -7,11 +7,10 @@
 #include <resource/resource_base.hpp>
 #include <string>
 class ComponentBase : public ResourceBase {
-   public:
-    ComponentType type;
-    std::vector<ComponentType> component_hierarchy;
+public:
+  ComponentType type;
+  std::vector<ComponentType> component_hierarchy;
 
-    viam::common::v1::ResourceName get_resource_name(std::string name);
-    ComponentBase();
+  viam::common::v1::ResourceName get_resource_name(std::string name);
+  ComponentBase();
 };
-
