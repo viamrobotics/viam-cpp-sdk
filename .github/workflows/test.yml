@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   run-tests:
-    if: github.repository_owner = 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrbotics/canon:amd64
