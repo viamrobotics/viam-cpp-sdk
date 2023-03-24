@@ -25,13 +25,11 @@ namespace api {
 namespace expr {
 namespace v1beta1 {
 PROTOBUF_CONSTEXPR Decl::Decl(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.doc_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.id_)*/0
-  , /*decltype(_impl_.kind_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , doc_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , id_(0)
+  , _oneof_case_{}{}
 struct DeclDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DeclDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -42,11 +40,10 @@ struct DeclDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeclDefaultTypeInternal _Decl_default_instance_;
 PROTOBUF_CONSTEXPR DeclType::DeclType(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_params_)*/{}
-  , /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.id_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : type_params_()
+  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , id_(0){}
 struct DeclTypeDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DeclTypeDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -57,10 +54,9 @@ struct DeclTypeDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeclTypeDefaultTypeInternal _DeclType_default_instance_;
 PROTOBUF_CONSTEXPR IdentDecl::IdentDecl(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_)*/nullptr
-  , /*decltype(_impl_.value_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : type_(nullptr)
+  , value_(nullptr){}
 struct IdentDeclDefaultTypeInternal {
   PROTOBUF_CONSTEXPR IdentDeclDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -71,11 +67,10 @@ struct IdentDeclDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IdentDeclDefaultTypeInternal _IdentDecl_default_instance_;
 PROTOBUF_CONSTEXPR FunctionDecl::FunctionDecl(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.args_)*/{}
-  , /*decltype(_impl_.return_type_)*/nullptr
-  , /*decltype(_impl_.receiver_function_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : args_()
+  , return_type_(nullptr)
+  , receiver_function_(false){}
 struct FunctionDeclDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FunctionDeclDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -97,41 +92,41 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1beta1_2fdecl_2eproto::offsets
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _impl_._oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _impl_.id_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _impl_.doc_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, id_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, name_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, doc_),
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, _impl_.kind_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::Decl, kind_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, _impl_.id_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, _impl_.type_params_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, id_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::DeclType, type_params_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::IdentDecl, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::IdentDecl, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::IdentDecl, _impl_.value_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::IdentDecl, type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::IdentDecl, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, _impl_.args_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, _impl_.return_type_),
-  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, _impl_.receiver_function_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, args_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, return_type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1beta1::FunctionDecl, receiver_function_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::expr::v1beta1::Decl)},
@@ -203,11 +198,11 @@ class Decl::_Internal {
 
 const ::google::api::expr::v1beta1::IdentDecl&
 Decl::_Internal::ident(const Decl* msg) {
-  return *msg->_impl_.kind_.ident_;
+  return *msg->kind_.ident_;
 }
 const ::google::api::expr::v1beta1::FunctionDecl&
 Decl::_Internal::function(const Decl* msg) {
-  return *msg->_impl_.kind_.function_;
+  return *msg->kind_.function_;
 }
 void Decl::set_allocated_ident(::google::api::expr::v1beta1::IdentDecl* ident) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -220,7 +215,7 @@ void Decl::set_allocated_ident(::google::api::expr::v1beta1::IdentDecl* ident) {
           message_arena, ident, submessage_arena);
     }
     set_has_ident();
-    _impl_.kind_.ident_ = ident;
+    kind_.ident_ = ident;
   }
   // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1beta1.Decl.ident)
 }
@@ -235,55 +230,44 @@ void Decl::set_allocated_function(::google::api::expr::v1beta1::FunctionDecl* fu
           message_arena, function, submessage_arena);
     }
     set_has_function();
-    _impl_.kind_.function_ = function;
+    kind_.function_ = function;
   }
   // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1beta1.Decl.function)
 }
 Decl::Decl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.Decl)
 }
 Decl::Decl(const Decl& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Decl* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.doc_){}
-    , decltype(_impl_.id_){}
-    , decltype(_impl_.kind_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
-  _impl_.doc_.InitDefault();
+  doc_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.doc_.Set("", GetArenaForAllocation());
+    doc_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_doc().empty()) {
-    _this->_impl_.doc_.Set(from._internal_doc(), 
-      _this->GetArenaForAllocation());
+    doc_.Set(from._internal_doc(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.id_ = from._impl_.id_;
+  id_ = from.id_;
   clear_has_kind();
   switch (from.kind_case()) {
     case kIdent: {
-      _this->_internal_mutable_ident()->::google::api::expr::v1beta1::IdentDecl::MergeFrom(
-          from._internal_ident());
+      _internal_mutable_ident()->::google::api::expr::v1beta1::IdentDecl::MergeFrom(from._internal_ident());
       break;
     }
     case kFunction: {
-      _this->_internal_mutable_function()->::google::api::expr::v1beta1::FunctionDecl::MergeFrom(
-          from._internal_function());
+      _internal_mutable_function()->::google::api::expr::v1beta1::FunctionDecl::MergeFrom(from._internal_function());
       break;
     }
     case KIND_NOT_SET: {
@@ -293,27 +277,17 @@ Decl::Decl(const Decl& from)
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.Decl)
 }
 
-inline void Decl::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.doc_){}
-    , decltype(_impl_.id_){0}
-    , decltype(_impl_.kind_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.doc_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.doc_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  clear_has_kind();
+inline void Decl::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+doc_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  doc_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+id_ = 0;
+clear_has_kind();
 }
 
 Decl::~Decl() {
@@ -327,15 +301,15 @@ Decl::~Decl() {
 
 inline void Decl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
-  _impl_.doc_.Destroy();
+  name_.Destroy();
+  doc_.Destroy();
   if (has_kind()) {
     clear_kind();
   }
 }
 
 void Decl::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Decl::clear_kind() {
@@ -343,13 +317,13 @@ void Decl::clear_kind() {
   switch (kind_case()) {
     case kIdent: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.kind_.ident_;
+        delete kind_.ident_;
       }
       break;
     }
     case kFunction: {
       if (GetArenaForAllocation() == nullptr) {
-        delete _impl_.kind_.function_;
+        delete kind_.function_;
       }
       break;
     }
@@ -357,7 +331,7 @@ void Decl::clear_kind() {
       break;
     }
   }
-  _impl_._oneof_case_[0] = KIND_NOT_SET;
+  _oneof_case_[0] = KIND_NOT_SET;
 }
 
 
@@ -367,9 +341,9 @@ void Decl::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  _impl_.doc_.ClearToEmpty();
-  _impl_.id_ = 0;
+  name_.ClearToEmpty();
+  doc_.ClearToEmpty();
+  id_ = 0;
   clear_kind();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -383,7 +357,7 @@ const char* Decl::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // int32 id = 1 [json_name = "id"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -533,63 +507,65 @@ size_t Decl::ByteSizeLong() const {
     case kIdent: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.kind_.ident_);
+          *kind_.ident_);
       break;
     }
     // .google.api.expr.v1beta1.FunctionDecl function = 5 [json_name = "function"];
     case kFunction: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.kind_.function_);
+          *kind_.function_);
       break;
     }
     case KIND_NOT_SET: {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Decl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Decl::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Decl::GetClassData() const { return &_class_data_; }
 
+void Decl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Decl *>(to)->MergeFrom(
+      static_cast<const Decl &>(from));
+}
 
-void Decl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Decl*>(&to_msg);
-  auto& from = static_cast<const Decl&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.Decl)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Decl::MergeFrom(const Decl& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.Decl)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (!from._internal_doc().empty()) {
-    _this->_internal_set_doc(from._internal_doc());
+    _internal_set_doc(from._internal_doc());
   }
   if (from._internal_id() != 0) {
-    _this->_internal_set_id(from._internal_id());
+    _internal_set_id(from._internal_id());
   }
   switch (from.kind_case()) {
     case kIdent: {
-      _this->_internal_mutable_ident()->::google::api::expr::v1beta1::IdentDecl::MergeFrom(
-          from._internal_ident());
+      _internal_mutable_ident()->::google::api::expr::v1beta1::IdentDecl::MergeFrom(from._internal_ident());
       break;
     }
     case kFunction: {
-      _this->_internal_mutable_function()->::google::api::expr::v1beta1::FunctionDecl::MergeFrom(
-          from._internal_function());
+      _internal_mutable_function()->::google::api::expr::v1beta1::FunctionDecl::MergeFrom(from._internal_function());
       break;
     }
     case KIND_NOT_SET: {
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Decl::CopyFrom(const Decl& from) {
@@ -609,16 +585,16 @@ void Decl::InternalSwap(Decl* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.doc_, lhs_arena,
-      &other->_impl_.doc_, rhs_arena
+      &doc_, lhs_arena,
+      &other->doc_, rhs_arena
   );
-  swap(_impl_.id_, other->_impl_.id_);
-  swap(_impl_.kind_, other->_impl_.kind_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(id_, other->id_);
+  swap(kind_, other->kind_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Decl::GetMetadata() const {
@@ -635,46 +611,33 @@ class DeclType::_Internal {
 
 DeclType::DeclType(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  type_params_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.DeclType)
 }
 DeclType::DeclType(const DeclType& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  DeclType* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_params_){from._impl_.type_params_}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.id_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      type_params_(from.type_params_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.type_.InitDefault();
+  type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
+    type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type().empty()) {
-    _this->_impl_.type_.Set(from._internal_type(), 
-      _this->GetArenaForAllocation());
+    type_.Set(from._internal_type(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.id_ = from._impl_.id_;
+  id_ = from.id_;
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.DeclType)
 }
 
-inline void DeclType::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_params_){arena}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.id_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void DeclType::SharedCtor() {
+type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+id_ = 0;
 }
 
 DeclType::~DeclType() {
@@ -688,12 +651,11 @@ DeclType::~DeclType() {
 
 inline void DeclType::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.type_params_.~RepeatedPtrField();
-  _impl_.type_.Destroy();
+  type_.Destroy();
 }
 
 void DeclType::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void DeclType::Clear() {
@@ -702,9 +664,9 @@ void DeclType::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.type_params_.Clear();
-  _impl_.type_.ClearToEmpty();
-  _impl_.id_ = 0;
+  type_params_.Clear();
+  type_.ClearToEmpty();
+  id_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -717,7 +679,7 @@ const char* DeclType::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // int32 id = 1 [json_name = "id"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -816,7 +778,7 @@ size_t DeclType::ByteSizeLong() const {
 
   // repeated .google.api.expr.v1beta1.DeclType type_params = 4 [json_name = "typeParams"];
   total_size += 1UL * this->_internal_type_params_size();
-  for (const auto& msg : this->_impl_.type_params_) {
+  for (const auto& msg : this->type_params_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -833,32 +795,36 @@ size_t DeclType::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeclType::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     DeclType::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeclType::GetClassData() const { return &_class_data_; }
 
+void DeclType::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DeclType *>(to)->MergeFrom(
+      static_cast<const DeclType &>(from));
+}
 
-void DeclType::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<DeclType*>(&to_msg);
-  auto& from = static_cast<const DeclType&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.DeclType)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void DeclType::MergeFrom(const DeclType& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.DeclType)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.type_params_.MergeFrom(from._impl_.type_params_);
+  type_params_.MergeFrom(from.type_params_);
   if (!from._internal_type().empty()) {
-    _this->_internal_set_type(from._internal_type());
+    _internal_set_type(from._internal_type());
   }
   if (from._internal_id() != 0) {
-    _this->_internal_set_id(from._internal_id());
+    _internal_set_id(from._internal_id());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DeclType::CopyFrom(const DeclType& from) {
@@ -877,12 +843,12 @@ void DeclType::InternalSwap(DeclType* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.type_params_.InternalSwap(&other->_impl_.type_params_);
+  type_params_.InternalSwap(&other->type_params_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.type_, lhs_arena,
-      &other->_impl_.type_, rhs_arena
+      &type_, lhs_arena,
+      &other->type_, rhs_arena
   );
-  swap(_impl_.id_, other->_impl_.id_);
+  swap(id_, other->id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DeclType::GetMetadata() const {
@@ -901,51 +867,45 @@ class IdentDecl::_Internal {
 
 const ::google::api::expr::v1beta1::DeclType&
 IdentDecl::_Internal::type(const IdentDecl* msg) {
-  return *msg->_impl_.type_;
+  return *msg->type_;
 }
 const ::google::api::expr::v1beta1::Expr&
 IdentDecl::_Internal::value(const IdentDecl* msg) {
-  return *msg->_impl_.value_;
+  return *msg->value_;
 }
 void IdentDecl::clear_value() {
-  if (GetArenaForAllocation() == nullptr && _impl_.value_ != nullptr) {
-    delete _impl_.value_;
+  if (GetArenaForAllocation() == nullptr && value_ != nullptr) {
+    delete value_;
   }
-  _impl_.value_ = nullptr;
+  value_ = nullptr;
 }
 IdentDecl::IdentDecl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.IdentDecl)
 }
 IdentDecl::IdentDecl(const IdentDecl& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  IdentDecl* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){nullptr}
-    , decltype(_impl_.value_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_type()) {
-    _this->_impl_.type_ = new ::google::api::expr::v1beta1::DeclType(*from._impl_.type_);
+    type_ = new ::google::api::expr::v1beta1::DeclType(*from.type_);
+  } else {
+    type_ = nullptr;
   }
   if (from._internal_has_value()) {
-    _this->_impl_.value_ = new ::google::api::expr::v1beta1::Expr(*from._impl_.value_);
+    value_ = new ::google::api::expr::v1beta1::Expr(*from.value_);
+  } else {
+    value_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.IdentDecl)
 }
 
-inline void IdentDecl::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){nullptr}
-    , decltype(_impl_.value_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void IdentDecl::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&value_) -
+    reinterpret_cast<char*>(&type_)) + sizeof(value_));
 }
 
 IdentDecl::~IdentDecl() {
@@ -959,12 +919,12 @@ IdentDecl::~IdentDecl() {
 
 inline void IdentDecl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.type_;
-  if (this != internal_default_instance()) delete _impl_.value_;
+  if (this != internal_default_instance()) delete type_;
+  if (this != internal_default_instance()) delete value_;
 }
 
 void IdentDecl::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void IdentDecl::Clear() {
@@ -973,14 +933,14 @@ void IdentDecl::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.type_ != nullptr) {
-    delete _impl_.type_;
+  if (GetArenaForAllocation() == nullptr && type_ != nullptr) {
+    delete type_;
   }
-  _impl_.type_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.value_ != nullptr) {
-    delete _impl_.value_;
+  type_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && value_ != nullptr) {
+    delete value_;
   }
-  _impl_.value_ = nullptr;
+  value_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1069,43 +1029,45 @@ size_t IdentDecl::ByteSizeLong() const {
   if (this->_internal_has_type()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.type_);
+        *type_);
   }
 
   // .google.api.expr.v1beta1.Expr value = 4 [json_name = "value"];
   if (this->_internal_has_value()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.value_);
+        *value_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IdentDecl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     IdentDecl::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IdentDecl::GetClassData() const { return &_class_data_; }
 
+void IdentDecl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IdentDecl *>(to)->MergeFrom(
+      static_cast<const IdentDecl &>(from));
+}
 
-void IdentDecl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<IdentDecl*>(&to_msg);
-  auto& from = static_cast<const IdentDecl&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.IdentDecl)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void IdentDecl::MergeFrom(const IdentDecl& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.IdentDecl)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_type()) {
-    _this->_internal_mutable_type()->::google::api::expr::v1beta1::DeclType::MergeFrom(
-        from._internal_type());
+    _internal_mutable_type()->::google::api::expr::v1beta1::DeclType::MergeFrom(from._internal_type());
   }
   if (from._internal_has_value()) {
-    _this->_internal_mutable_value()->::google::api::expr::v1beta1::Expr::MergeFrom(
-        from._internal_value());
+    _internal_mutable_value()->::google::api::expr::v1beta1::Expr::MergeFrom(from._internal_value());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void IdentDecl::CopyFrom(const IdentDecl& from) {
@@ -1123,11 +1085,11 @@ void IdentDecl::InternalSwap(IdentDecl* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(IdentDecl, _impl_.value_)
-      + sizeof(IdentDecl::_impl_.value_)
-      - PROTOBUF_FIELD_OFFSET(IdentDecl, _impl_.type_)>(
-          reinterpret_cast<char*>(&_impl_.type_),
-          reinterpret_cast<char*>(&other->_impl_.type_));
+      PROTOBUF_FIELD_OFFSET(IdentDecl, value_)
+      + sizeof(IdentDecl::value_)
+      - PROTOBUF_FIELD_OFFSET(IdentDecl, type_)>(
+          reinterpret_cast<char*>(&type_),
+          reinterpret_cast<char*>(&other->type_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata IdentDecl::GetMetadata() const {
@@ -1145,41 +1107,33 @@ class FunctionDecl::_Internal {
 
 const ::google::api::expr::v1beta1::DeclType&
 FunctionDecl::_Internal::return_type(const FunctionDecl* msg) {
-  return *msg->_impl_.return_type_;
+  return *msg->return_type_;
 }
 FunctionDecl::FunctionDecl(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  args_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.expr.v1beta1.FunctionDecl)
 }
 FunctionDecl::FunctionDecl(const FunctionDecl& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  FunctionDecl* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.args_){from._impl_.args_}
-    , decltype(_impl_.return_type_){nullptr}
-    , decltype(_impl_.receiver_function_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      args_(from.args_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_return_type()) {
-    _this->_impl_.return_type_ = new ::google::api::expr::v1beta1::DeclType(*from._impl_.return_type_);
+    return_type_ = new ::google::api::expr::v1beta1::DeclType(*from.return_type_);
+  } else {
+    return_type_ = nullptr;
   }
-  _this->_impl_.receiver_function_ = from._impl_.receiver_function_;
+  receiver_function_ = from.receiver_function_;
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1beta1.FunctionDecl)
 }
 
-inline void FunctionDecl::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.args_){arena}
-    , decltype(_impl_.return_type_){nullptr}
-    , decltype(_impl_.receiver_function_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void FunctionDecl::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&return_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&receiver_function_) -
+    reinterpret_cast<char*>(&return_type_)) + sizeof(receiver_function_));
 }
 
 FunctionDecl::~FunctionDecl() {
@@ -1193,12 +1147,11 @@ FunctionDecl::~FunctionDecl() {
 
 inline void FunctionDecl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.args_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.return_type_;
+  if (this != internal_default_instance()) delete return_type_;
 }
 
 void FunctionDecl::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void FunctionDecl::Clear() {
@@ -1207,12 +1160,12 @@ void FunctionDecl::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.args_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.return_type_ != nullptr) {
-    delete _impl_.return_type_;
+  args_.Clear();
+  if (GetArenaForAllocation() == nullptr && return_type_ != nullptr) {
+    delete return_type_;
   }
-  _impl_.return_type_ = nullptr;
-  _impl_.receiver_function_ = false;
+  return_type_ = nullptr;
+  receiver_function_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1246,7 +1199,7 @@ const char* FunctionDecl::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // bool receiver_function = 3 [json_name = "receiverFunction"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.receiver_function_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          receiver_function_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1319,7 +1272,7 @@ size_t FunctionDecl::ByteSizeLong() const {
 
   // repeated .google.api.expr.v1beta1.IdentDecl args = 1 [json_name = "args"];
   total_size += 1UL * this->_internal_args_size();
-  for (const auto& msg : this->_impl_.args_) {
+  for (const auto& msg : this->args_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1328,7 +1281,7 @@ size_t FunctionDecl::ByteSizeLong() const {
   if (this->_internal_has_return_type()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.return_type_);
+        *return_type_);
   }
 
   // bool receiver_function = 3 [json_name = "receiverFunction"];
@@ -1336,33 +1289,36 @@ size_t FunctionDecl::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FunctionDecl::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     FunctionDecl::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FunctionDecl::GetClassData() const { return &_class_data_; }
 
+void FunctionDecl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<FunctionDecl *>(to)->MergeFrom(
+      static_cast<const FunctionDecl &>(from));
+}
 
-void FunctionDecl::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<FunctionDecl*>(&to_msg);
-  auto& from = static_cast<const FunctionDecl&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.FunctionDecl)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void FunctionDecl::MergeFrom(const FunctionDecl& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.expr.v1beta1.FunctionDecl)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.args_.MergeFrom(from._impl_.args_);
+  args_.MergeFrom(from.args_);
   if (from._internal_has_return_type()) {
-    _this->_internal_mutable_return_type()->::google::api::expr::v1beta1::DeclType::MergeFrom(
-        from._internal_return_type());
+    _internal_mutable_return_type()->::google::api::expr::v1beta1::DeclType::MergeFrom(from._internal_return_type());
   }
   if (from._internal_receiver_function() != 0) {
-    _this->_internal_set_receiver_function(from._internal_receiver_function());
+    _internal_set_receiver_function(from._internal_receiver_function());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FunctionDecl::CopyFrom(const FunctionDecl& from) {
@@ -1379,13 +1335,13 @@ bool FunctionDecl::IsInitialized() const {
 void FunctionDecl::InternalSwap(FunctionDecl* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.args_.InternalSwap(&other->_impl_.args_);
+  args_.InternalSwap(&other->args_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(FunctionDecl, _impl_.receiver_function_)
-      + sizeof(FunctionDecl::_impl_.receiver_function_)
-      - PROTOBUF_FIELD_OFFSET(FunctionDecl, _impl_.return_type_)>(
-          reinterpret_cast<char*>(&_impl_.return_type_),
-          reinterpret_cast<char*>(&other->_impl_.return_type_));
+      PROTOBUF_FIELD_OFFSET(FunctionDecl, receiver_function_)
+      + sizeof(FunctionDecl::receiver_function_)
+      - PROTOBUF_FIELD_OFFSET(FunctionDecl, return_type_)>(
+          reinterpret_cast<char*>(&return_type_),
+          reinterpret_cast<char*>(&other->return_type_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FunctionDecl::GetMetadata() const {
