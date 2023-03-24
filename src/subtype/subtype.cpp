@@ -37,7 +37,6 @@ std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     return nullptr;
 };
 
-
 void SubtypeService::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
     lock.lock();
     std::unordered_map<std::string, std::shared_ptr<ResourceBase>> new_resources;
@@ -152,4 +151,3 @@ void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resourc
     do_add(name, resource);
     lock.unlock();
 }
-

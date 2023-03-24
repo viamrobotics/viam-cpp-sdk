@@ -30,4 +30,3 @@ class ResourceManager {
     std::unordered_map<std::string, std::shared_ptr<ComponentBase>> components;
     std::unordered_map<std::string, std::shared_ptr<ServiceBase>> services;
 };
-

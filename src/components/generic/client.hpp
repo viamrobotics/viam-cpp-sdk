@@ -6,11 +6,12 @@
 class GenericClient : public Generic {
    public:
     virtual AttributeMap do_command(AttributeMap command) override;
-    GenericClient(std::shared_ptr<grpc::Channel> channel_);
+    GenericClient(std::shared_ptr<grpc::Channel> channel_, std::string name);
 
-    protected:
-    GenericClient();
+   protected:
+    GenericClient(std::string name);
     std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
+    std::string name_;
 
    private:
     std::shared_ptr<grpc::Channel> channel_;
