@@ -13,7 +13,6 @@
 
 BOOST_AUTO_TEST_SUITE(generic_suite)
 
-<<<<<<< HEAD
 std::shared_ptr<MockGeneric> generic = get_mock_generic();
 
 BOOST_AUTO_TEST_CASE(test_do) {
@@ -86,16 +85,6 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     ProtoType result_pt = *(result_map->at(std::string("test")));
 
     BOOST_CHECK(expected_pt == result_pt);
-=======
-BOOST_AUTO_TEST_CASE(test1) {
-  int i = 1;
-  BOOST_CHECK(i * i == 1);
-}
-
-BOOST_AUTO_TEST_CASE(test2) {
-  int i = 1;
-  BOOST_CHECK(i + i == 2);
->>>>>>> e975f1d7b626714ea09e91428c4094c22f04153f
 }
 
 BOOST_AUTO_TEST_SUITE_END()

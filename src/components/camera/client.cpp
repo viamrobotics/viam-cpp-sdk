@@ -74,7 +74,4 @@ CameraClient::CameraClient(std::string name,
     : channel_(channel_),
       stub_(viam::component::camera::v1::CameraService::NewStub(channel_)){};
 
-CameraClient::CameraClient(std::string name)
-    : name_(name), channel_(nullptr), stub_(nullptr){};
-
 CameraClient::CameraClient(std::string name) : name_(name), channel_(nullptr), stub_(nullptr){};
