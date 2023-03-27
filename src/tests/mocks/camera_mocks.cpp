@@ -19,7 +19,6 @@ Camera::raw_image fake_raw_image() {
   image.mime_type = "JPEG";
   std::vector<unsigned char> bytes = {'a', 'b', 'c'};
   image.bytes = bytes;
-  std::cout << "in raw image\n";
   return image;
 }
 
