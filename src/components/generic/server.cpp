@@ -35,3 +35,5 @@ void GenericServer::register_server() {
     throw exc;
   }
 }
+
+std::shared_ptr<SubtypeService> GenericServer::get_sub_svc() { return sub_svc; }

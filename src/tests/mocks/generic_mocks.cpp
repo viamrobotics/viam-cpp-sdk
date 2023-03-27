@@ -24,8 +24,8 @@ std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
 
 MockGenericStub::MockGenericStub()
     : server(GenericServer(std::make_shared<SubtypeService>())) {
-  this->server.sub_svc->add(std::string("generic"),
-                            MockGeneric::get_mock_generic());
+  this->server.get_sub_svc()->add(std::string("generic"),
+                                  MockGeneric::get_mock_generic());
 }
 
 ::grpc::Status

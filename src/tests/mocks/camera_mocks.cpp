@@ -69,8 +69,8 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
 
 MockCameraStub::MockCameraStub()
     : server(CameraServer(std::make_shared<SubtypeService>())) {
-  this->server.sub_svc->add(std::string("camera"),
-                            MockCamera::get_mock_camera());
+  this->server.get_sub_svc()->add(std::string("camera"),
+                                  MockCamera::get_mock_camera());
 };
 
 ::grpc::Status MockCameraStub::GetImage(

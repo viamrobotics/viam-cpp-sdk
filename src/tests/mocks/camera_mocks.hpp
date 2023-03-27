@@ -190,7 +190,7 @@ public:
     explicit async(MockCameraStub *stub) : stub_(stub) {}
     MockCameraStub *stub() { return stub_; }
     MockCameraStub *stub_;
-  }; 
+  };
 
   class async *async() override { return &async_stub_; }
 
