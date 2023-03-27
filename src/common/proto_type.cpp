@@ -160,7 +160,6 @@ bool operator==(const ProtoType &lhs, const ProtoType &rhs) {
     return lhs_i == rhs_i;
   }
   case 5: {
-    std::cout << "case 5\n";
     AttributeMap lhs_map = boost::get<AttributeMap>(lhs.proto_type);
     AttributeMap rhs_map = boost::get<AttributeMap>(rhs.proto_type);
 
