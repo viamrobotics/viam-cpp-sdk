@@ -2,133 +2,102 @@
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
 
+#include <components/generic/client.hpp>
 #include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
-
-class MockGeneric : public Generic {
-public:
-  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-  do_command(std::shared_ptr<
-             std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-                 command) override {
-    return map;
-  }
-
-  std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-      map;
-};
+#include <tests/mocks/generic_mocks.hpp>
+#include <tests/test_utils.hpp>
 
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
-map() {
-  ProtoType prototype = ProtoType(std::string("hello"));
-  std::shared_ptr<ProtoType> proto_ptr = std::make_shared<ProtoType>(prototype);
-  std::unordered_map<std::string, std::shared_ptr<ProtoType>> map = {
-      {std::string("test"), proto_ptr}};
-  return std::make_shared<
-      std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(map);
+MockGeneric::do_command(
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
+        command) {
+  return map;
 }
 
-std::shared_ptr<MockGeneric> get_mock_generic() {
-  MockGeneric generic;
-  generic.map = map();
+std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
+  std::shared_ptr<MockGeneric> generic = std::make_shared<MockGeneric>();
+  generic->map = fake_map();
 
-  return std::make_shared<MockGeneric>(generic);
+  return generic;
 }
 
-std::shared_ptr<MockGeneric> generic = get_mock_generic();
+MockGenericStub::MockGenericStub()
+    : server(GenericServer(std::make_shared<SubtypeService>())) {
+  this->server.sub_svc->add(std::string("generic"),
+                            MockGeneric::get_mock_generic());
+}
 
-class MockStub
-    : public viam::component::generic::v1::GenericService::StubInterface {
-public:
-  GenericServer server;
-
-  MockStub() : server(GenericServer(std::make_shared<SubtypeService>())) {
-    this->server.sub_svc->add(std::string("generic"), get_mock_generic());
-  }
-
-  ::grpc::Status
-  DoCommand(::grpc::ClientContext *context,
-            const ::viam::common::v1::DoCommandRequest &request,
-            ::viam::common::v1::DoCommandResponse *response) override {
-    grpc::ServerContext *ctx;
-    return server.DoCommand(ctx, &request, response);
-  }
-  std::unique_ptr<
-      ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
-  AsyncDoCommand(::grpc::ClientContext *context,
-                 const ::viam::common::v1::DoCommandRequest &request,
-                 ::grpc::CompletionQueue *cq) {
-    return std::unique_ptr<::grpc::ClientAsyncResponseReader<
-        ::viam::common::v1::DoCommandResponse>>(
-        AsyncDoCommandRaw(context, request, cq));
-  }
-  std::unique_ptr<
-      ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
-  PrepareAsyncDoCommand(::grpc::ClientContext *context,
-                        const ::viam::common::v1::DoCommandRequest &request,
-                        ::grpc::CompletionQueue *cq) {
-    return std::unique_ptr<::grpc::ClientAsyncResponseReader<
-        ::viam::common::v1::DoCommandResponse>>(
-        PrepareAsyncDoCommandRaw(context, request, cq));
-  }
-  class async final : public StubInterface::async_interface {
-  public:
-    void DoCommand(::grpc::ClientContext *context,
-                   const ::viam::common::v1::DoCommandRequest *request,
-                   ::viam::common::v1::DoCommandResponse *response,
-                   std::function<void(::grpc::Status)>) override {
-      return;
-    };
-    void DoCommand(::grpc::ClientContext *context,
-                   const ::viam::common::v1::DoCommandRequest *request,
-                   ::viam::common::v1::DoCommandResponse *response,
-                   ::grpc::ClientUnaryReactor *reactor) override {
-      return;
-    };
-
-  public:
-    friend class Stub;
-    explicit async(MockStub *stub) : stub_(stub) {}
-    MockStub *stub() { return stub_; }
-    MockStub *stub_;
-  };
-  class async *async() override { return &async_stub_; }
-
-private:
-  std::shared_ptr<::grpc::ChannelInterface> channel_;
-  class async async_stub_ {
-    this
-  };
-  ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse> *
-  AsyncDoCommandRaw(::grpc::ClientContext *context,
-                    const ::viam::common::v1::DoCommandRequest &request,
-                    ::grpc::CompletionQueue *cq) override {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::common::v1::DoCommandResponse,
-        ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_,
-                                       context, request);
-  }
-  ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse> *
-  PrepareAsyncDoCommandRaw(::grpc::ClientContext *context,
+::grpc::Status
+MockGenericStub::DoCommand(::grpc::ClientContext *context,
                            const ::viam::common::v1::DoCommandRequest &request,
-                           ::grpc::CompletionQueue *cq) override {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::common::v1::DoCommandResponse,
-        ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_,
-                                       context, request);
-  }
+                           ::viam::common::v1::DoCommandResponse *response) {
+  grpc::ServerContext *ctx;
+  return server.DoCommand(ctx, &request, response);
+}
 
-  const ::grpc::internal::RpcServiceMethod::RpcType type =
-      ::grpc::internal::RpcServiceMethod::RpcType();
-  const ::grpc::internal::RpcMethod rpcmethod_DoCommand_ =
-      ::grpc::internal::RpcMethod("name", type);
-};
+std::unique_ptr<
+    ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
+MockGenericStub::AsyncDoCommand(
+    ::grpc::ClientContext *context,
+    const ::viam::common::v1::DoCommandRequest &request,
+    ::grpc::CompletionQueue *cq) {
+  return std::unique_ptr<
+      ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>(
+      AsyncDoCommandRaw(context, request, cq));
+}
 
-class MockClient : public GenericClient {
-public:
-  MockClient(std::string name) : GenericClient(name) {
-    stub_ = std::make_unique<MockStub>();
-  }
-};
+std::unique_ptr<
+    ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
+MockGenericStub::PrepareAsyncDoCommand(
+    ::grpc::ClientContext *context,
+    const ::viam::common::v1::DoCommandRequest &request,
+    ::grpc::CompletionQueue *cq) {
+  return std::unique_ptr<
+      ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>(
+      PrepareAsyncDoCommandRaw(context, request, cq));
+}
+
+void MockGenericStub::async::DoCommand(
+    ::grpc::ClientContext *context,
+    const ::viam::common::v1::DoCommandRequest *request,
+    ::viam::common::v1::DoCommandResponse *response,
+    std::function<void(::grpc::Status)>) {
+  return;
+}
+
+void MockGenericStub::async::DoCommand(
+    ::grpc::ClientContext *context,
+    const ::viam::common::v1::DoCommandRequest *request,
+    ::viam::common::v1::DoCommandResponse *response,
+    ::grpc::ClientUnaryReactor *reactor) {
+  return;
+}
+
+::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse> *
+MockGenericStub::AsyncDoCommandRaw(
+    ::grpc::ClientContext *context,
+    const ::viam::common::v1::DoCommandRequest &request,
+    ::grpc::CompletionQueue *cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
+      ::viam::common::v1::DoCommandResponse,
+      ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite,
+      ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_,
+                                     context, request);
+}
+
+::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse> *
+MockGenericStub::PrepareAsyncDoCommandRaw(
+    ::grpc::ClientContext *context,
+    const ::viam::common::v1::DoCommandRequest &request,
+    ::grpc::CompletionQueue *cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
+      ::viam::common::v1::DoCommandResponse,
+      ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite,
+      ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_,
+                                     context, request);
+}
+
+MockGenericClient::MockGenericClient(std::string name) : GenericClient(name) {
+  stub_ = std::make_unique<MockGenericStub>();
+}
