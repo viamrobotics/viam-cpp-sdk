@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
         // returned to the parent through gRPC. Validate functions can also return
         // a vector of strings representing the implicit dependencies of the resource.
         [](Resource cfg) -> std::vector<std::string> {
-            if (cfg.attributes.find("invalidattribute") != cfg.attributes.end()) {
+            if (cfg.attributes->find("invalidattribute") != cfg.attributes->end()) {
                 throw std::string(
                     "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
             }

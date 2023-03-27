@@ -230,6 +230,9 @@ target_sources(viamcpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
     subtype/subtype.cpp
+    tests/test_utils.cpp
+    tests/mocks/camera_mocks.cpp
+    tests/mocks/generic_mocks.cpp
   PUBLIC FILE_SET viamcpp_public_includes TYPE HEADERS
     FILES
       common/proto_type.hpp
@@ -264,6 +267,9 @@ target_sources(viamcpp
       spatialmath/orientation_types.hpp
       spatialmath/orientation.hpp
       subtype/subtype.hpp
+      tests/test_utils.hpp
+      tests/mocks/camera_mocks.hpp
+      tests/mocks/generic_mocks.hpp
   PUBLIC FILE_SET viamcpp_public_pb_includes TYPE HEADERS
     BASE_DIRS
       ${PROTO_GEN_DIR}/gen
