@@ -6,19 +6,19 @@
 #include "module/v1/module.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace viam {
 namespace module {
 namespace v1 {
@@ -28,6 +28,7 @@ static const char* ModuleService_method_names[] = {
   "/viam.module.v1.ModuleService/ReconfigureResource",
   "/viam.module.v1.ModuleService/RemoveResource",
   "/viam.module.v1.ModuleService/Ready",
+  "/viam.module.v1.ModuleService/ValidateConfig",
 };
 
 std::unique_ptr< ModuleService::Stub> ModuleService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +42,7 @@ ModuleService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_ReconfigureResource_(ModuleService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveResource_(ModuleService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Ready_(ModuleService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ValidateConfig_(ModuleService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ModuleService::Stub::AddResource(::grpc::ClientContext* context, const ::viam::module::v1::AddResourceRequest& request, ::viam::module::v1::AddResourceResponse* response) {
@@ -135,6 +137,29 @@ void ModuleService::Stub::async::Ready(::grpc::ClientContext* context, const ::v
   return result;
 }
 
+::grpc::Status ModuleService::Stub::ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::viam::module::v1::ValidateConfigResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ValidateConfig_, context, request, response);
+}
+
+void ModuleService::Stub::async::ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ValidateConfig_, context, request, response, std::move(f));
+}
+
+void ModuleService::Stub::async::ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ValidateConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>* ModuleService::Stub::PrepareAsyncValidateConfigRaw(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::module::v1::ValidateConfigResponse, ::viam::module::v1::ValidateConfigRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ValidateConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::module::v1::ValidateConfigResponse>* ModuleService::Stub::AsyncValidateConfigRaw(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncValidateConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ModuleService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ModuleService_method_names[0],
@@ -176,6 +201,16 @@ ModuleService::Service::Service() {
              ::viam::module::v1::ReadyResponse* resp) {
                return service->Ready(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ModuleService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ModuleService::Service, ::viam::module::v1::ValidateConfigRequest, ::viam::module::v1::ValidateConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ModuleService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::module::v1::ValidateConfigRequest* req,
+             ::viam::module::v1::ValidateConfigResponse* resp) {
+               return service->ValidateConfig(ctx, req, resp);
+             }, this)));
 }
 
 ModuleService::Service::~Service() {
@@ -203,6 +238,13 @@ ModuleService::Service::~Service() {
 }
 
 ::grpc::Status ModuleService::Service::Ready(::grpc::ServerContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ModuleService::Service::ValidateConfig(::grpc::ServerContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response) {
   (void) context;
   (void) request;
   (void) response;

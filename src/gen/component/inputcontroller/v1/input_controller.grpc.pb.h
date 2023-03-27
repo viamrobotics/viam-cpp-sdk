@@ -7,23 +7,23 @@
 #include "component/inputcontroller/v1/input_controller.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -74,6 +74,14 @@ class InputControllerService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::TriggerEventResponse>> PrepareAsyncTriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::TriggerEventResponse>>(PrepareAsyncTriggerEventRaw(context, request, cq));
     }
+    // DoCommand sends/receives arbitrary commands
+    virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -89,6 +97,9 @@ class InputControllerService final {
       // like button presses or axis movements
       virtual void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // DoCommand sends/receives arbitrary commands
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -103,6 +114,8 @@ class InputControllerService final {
     virtual ::grpc::ClientAsyncReaderInterface< ::viam::component::inputcontroller::v1::StreamEventsResponse>* PrepareAsyncStreamEventsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::StreamEventsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::TriggerEventResponse>* AsyncTriggerEventRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::TriggerEventResponse>* PrepareAsyncTriggerEventRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -137,6 +150,13 @@ class InputControllerService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::TriggerEventResponse>> PrepareAsyncTriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::TriggerEventResponse>>(PrepareAsyncTriggerEventRaw(context, request, cq));
     }
+    ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -147,6 +167,8 @@ class InputControllerService final {
       void StreamEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) override;
       void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, std::function<void(::grpc::Status)>) override;
       void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -167,10 +189,13 @@ class InputControllerService final {
     ::grpc::ClientAsyncReader< ::viam::component::inputcontroller::v1::StreamEventsResponse>* PrepareAsyncStreamEventsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::StreamEventsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::TriggerEventResponse>* AsyncTriggerEventRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::TriggerEventResponse>* PrepareAsyncTriggerEventRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetControls_;
     const ::grpc::internal::RpcMethod rpcmethod_GetEvents_;
     const ::grpc::internal::RpcMethod rpcmethod_StreamEvents_;
     const ::grpc::internal::RpcMethod rpcmethod_TriggerEvent_;
+    const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -187,6 +212,8 @@ class InputControllerService final {
     // TriggerEvent, where supported, injects an InputControllerEvent into an input controller to (virtually) generate events
     // like button presses or axis movements
     virtual ::grpc::Status TriggerEvent(::grpc::ServerContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response);
+    // DoCommand sends/receives arbitrary commands
+    virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetControls : public BaseClass {
@@ -268,7 +295,27 @@ class InputControllerService final {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetControls<WithAsyncMethod_GetEvents<WithAsyncMethod_StreamEvents<WithAsyncMethod_TriggerEvent<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoCommand() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetControls<WithAsyncMethod_GetEvents<WithAsyncMethod_StreamEvents<WithAsyncMethod_TriggerEvent<WithAsyncMethod_DoCommand<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetControls : public BaseClass {
    private:
@@ -372,7 +419,34 @@ class InputControllerService final {
     virtual ::grpc::ServerUnaryReactor* TriggerEvent(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::TriggerEventRequest* /*request*/, ::viam::component::inputcontroller::v1::TriggerEventResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetControls<WithCallbackMethod_GetEvents<WithCallbackMethod_StreamEvents<WithCallbackMethod_TriggerEvent<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    void SetMessageAllocatorFor_DoCommand(
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoCommand(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetControls<WithCallbackMethod_GetEvents<WithCallbackMethod_StreamEvents<WithCallbackMethod_TriggerEvent<WithCallbackMethod_DoCommand<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetControls : public BaseClass {
@@ -438,6 +512,23 @@ class InputControllerService final {
     }
     // disable synchronous version of this method
     ::grpc::Status TriggerEvent(::grpc::ServerContext* /*context*/, const ::viam::component::inputcontroller::v1::TriggerEventRequest* /*request*/, ::viam::component::inputcontroller::v1::TriggerEventResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoCommand() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -520,6 +611,26 @@ class InputControllerService final {
     }
     void RequestTriggerEvent(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -611,6 +722,28 @@ class InputControllerService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoCommand(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetControls : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -691,7 +824,34 @@ class InputControllerService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTriggerEvent(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::inputcontroller::v1::TriggerEventRequest,::viam::component::inputcontroller::v1::TriggerEventResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetControls<WithStreamedUnaryMethod_GetEvents<WithStreamedUnaryMethod_TriggerEvent<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DoCommand : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DoCommand() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
+                       return this->StreamedDoCommand(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DoCommand() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetControls<WithStreamedUnaryMethod_GetEvents<WithStreamedUnaryMethod_TriggerEvent<WithStreamedUnaryMethod_DoCommand<Service > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamEvents : public BaseClass {
    private:
@@ -720,7 +880,7 @@ class InputControllerService final {
     virtual ::grpc::Status StreamedStreamEvents(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::component::inputcontroller::v1::StreamEventsRequest,::viam::component::inputcontroller::v1::StreamEventsResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamEvents<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetControls<WithStreamedUnaryMethod_GetEvents<WithSplitStreamingMethod_StreamEvents<WithStreamedUnaryMethod_TriggerEvent<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetControls<WithStreamedUnaryMethod_GetEvents<WithSplitStreamingMethod_StreamEvents<WithStreamedUnaryMethod_TriggerEvent<WithStreamedUnaryMethod_DoCommand<Service > > > > > StreamedService;
 };
 
 }  // namespace v1

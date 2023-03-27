@@ -84,6 +84,9 @@ extern ConfigRequestDefaultTypeInternal _ConfigRequest_default_instance_;
 class ConfigResponse;
 struct ConfigResponseDefaultTypeInternal;
 extern ConfigResponseDefaultTypeInternal _ConfigResponse_default_instance_;
+class ExternalAuthConfig;
+struct ExternalAuthConfigDefaultTypeInternal;
+extern ExternalAuthConfigDefaultTypeInternal _ExternalAuthConfig_default_instance_;
 class Frame;
 struct FrameDefaultTypeInternal;
 extern FrameDefaultTypeInternal _Frame_default_instance_;
@@ -173,6 +176,7 @@ template<> ::viam::app::v1::CloudConfig* Arena::CreateMaybeMessage<::viam::app::
 template<> ::viam::app::v1::ComponentConfig* Arena::CreateMaybeMessage<::viam::app::v1::ComponentConfig>(Arena*);
 template<> ::viam::app::v1::ConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::ConfigRequest>(Arena*);
 template<> ::viam::app::v1::ConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::ConfigResponse>(Arena*);
+template<> ::viam::app::v1::ExternalAuthConfig* Arena::CreateMaybeMessage<::viam::app::v1::ExternalAuthConfig>(Arena*);
 template<> ::viam::app::v1::Frame* Arena::CreateMaybeMessage<::viam::app::v1::Frame>(Arena*);
 template<> ::viam::app::v1::JWKSFile* Arena::CreateMaybeMessage<::viam::app::v1::JWKSFile>(Arena*);
 template<> ::viam::app::v1::LocationSecret* Arena::CreateMaybeMessage<::viam::app::v1::LocationSecret>(Arena*);
@@ -2300,6 +2304,7 @@ class AuthConfig final :
   enum : int {
     kHandlersFieldNumber = 1,
     kTlsAuthEntitiesFieldNumber = 2,
+    kExternalAuthConfigFieldNumber = 3,
   };
   // repeated .viam.app.v1.AuthHandlerConfig handlers = 1 [json_name = "handlers"];
   int handlers_size() const;
@@ -2343,6 +2348,24 @@ class AuthConfig final :
   std::string* _internal_add_tls_auth_entities();
   public:
 
+  // optional .viam.app.v1.ExternalAuthConfig external_auth_config = 3 [json_name = "externalAuthConfig"];
+  bool has_external_auth_config() const;
+  private:
+  bool _internal_has_external_auth_config() const;
+  public:
+  void clear_external_auth_config();
+  const ::viam::app::v1::ExternalAuthConfig& external_auth_config() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::ExternalAuthConfig* release_external_auth_config();
+  ::viam::app::v1::ExternalAuthConfig* mutable_external_auth_config();
+  void set_allocated_external_auth_config(::viam::app::v1::ExternalAuthConfig* external_auth_config);
+  private:
+  const ::viam::app::v1::ExternalAuthConfig& _internal_external_auth_config() const;
+  ::viam::app::v1::ExternalAuthConfig* _internal_mutable_external_auth_config();
+  public:
+  void unsafe_arena_set_allocated_external_auth_config(
+      ::viam::app::v1::ExternalAuthConfig* external_auth_config);
+  ::viam::app::v1::ExternalAuthConfig* unsafe_arena_release_external_auth_config();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.AuthConfig)
  private:
   class _Internal;
@@ -2350,9 +2373,11 @@ class AuthConfig final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthHandlerConfig > handlers_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tls_auth_entities_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::viam::app::v1::ExternalAuthConfig* external_auth_config_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2687,6 +2712,158 @@ class AuthHandlerWebOauthConfig final :
 };
 // -------------------------------------------------------------------
 
+class ExternalAuthConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ExternalAuthConfig) */ {
+ public:
+  inline ExternalAuthConfig() : ExternalAuthConfig(nullptr) {}
+  ~ExternalAuthConfig() override;
+  explicit PROTOBUF_CONSTEXPR ExternalAuthConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ExternalAuthConfig(const ExternalAuthConfig& from);
+  ExternalAuthConfig(ExternalAuthConfig&& from) noexcept
+    : ExternalAuthConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline ExternalAuthConfig& operator=(const ExternalAuthConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ExternalAuthConfig& operator=(ExternalAuthConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ExternalAuthConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ExternalAuthConfig* internal_default_instance() {
+    return reinterpret_cast<const ExternalAuthConfig*>(
+               &_ExternalAuthConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(ExternalAuthConfig& a, ExternalAuthConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ExternalAuthConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ExternalAuthConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ExternalAuthConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ExternalAuthConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ExternalAuthConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ExternalAuthConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ExternalAuthConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ExternalAuthConfig";
+  }
+  protected:
+  explicit ExternalAuthConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJwksFieldNumber = 1,
+  };
+  // .viam.app.v1.JWKSFile jwks = 1 [json_name = "jwks"];
+  bool has_jwks() const;
+  private:
+  bool _internal_has_jwks() const;
+  public:
+  void clear_jwks();
+  const ::viam::app::v1::JWKSFile& jwks() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::JWKSFile* release_jwks();
+  ::viam::app::v1::JWKSFile* mutable_jwks();
+  void set_allocated_jwks(::viam::app::v1::JWKSFile* jwks);
+  private:
+  const ::viam::app::v1::JWKSFile& _internal_jwks() const;
+  ::viam::app::v1::JWKSFile* _internal_mutable_jwks();
+  public:
+  void unsafe_arena_set_allocated_jwks(
+      ::viam::app::v1::JWKSFile* jwks);
+  ::viam::app::v1::JWKSFile* unsafe_arena_release_jwks();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ExternalAuthConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::JWKSFile* jwks_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AuthHandlerConfig final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.AuthHandlerConfig) */ {
  public:
@@ -2735,7 +2912,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -2919,7 +3096,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -3127,7 +3304,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -3291,7 +3468,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -3408,7 +3585,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -3584,7 +3761,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -3760,7 +3937,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -3925,7 +4102,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -4101,7 +4278,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -4287,7 +4464,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -4563,7 +4740,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -4870,7 +5047,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -5029,7 +5206,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -5199,7 +5376,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -5421,7 +5598,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -5590,7 +5767,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -5742,7 +5919,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -5890,7 +6067,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -6070,7 +6247,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -6237,7 +6414,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -6354,7 +6531,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -6502,7 +6679,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -6681,7 +6858,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -6845,7 +7022,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -9814,6 +9991,96 @@ AuthConfig::mutable_tls_auth_entities() {
   return &tls_auth_entities_;
 }
 
+// optional .viam.app.v1.ExternalAuthConfig external_auth_config = 3 [json_name = "externalAuthConfig"];
+inline bool AuthConfig::_internal_has_external_auth_config() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || external_auth_config_ != nullptr);
+  return value;
+}
+inline bool AuthConfig::has_external_auth_config() const {
+  return _internal_has_external_auth_config();
+}
+inline void AuthConfig::clear_external_auth_config() {
+  if (external_auth_config_ != nullptr) external_auth_config_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::ExternalAuthConfig& AuthConfig::_internal_external_auth_config() const {
+  const ::viam::app::v1::ExternalAuthConfig* p = external_auth_config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::ExternalAuthConfig&>(
+      ::viam::app::v1::_ExternalAuthConfig_default_instance_);
+}
+inline const ::viam::app::v1::ExternalAuthConfig& AuthConfig::external_auth_config() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthConfig.external_auth_config)
+  return _internal_external_auth_config();
+}
+inline void AuthConfig::unsafe_arena_set_allocated_external_auth_config(
+    ::viam::app::v1::ExternalAuthConfig* external_auth_config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(external_auth_config_);
+  }
+  external_auth_config_ = external_auth_config;
+  if (external_auth_config) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.AuthConfig.external_auth_config)
+}
+inline ::viam::app::v1::ExternalAuthConfig* AuthConfig::release_external_auth_config() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::ExternalAuthConfig* temp = external_auth_config_;
+  external_auth_config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::ExternalAuthConfig* AuthConfig::unsafe_arena_release_external_auth_config() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthConfig.external_auth_config)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::ExternalAuthConfig* temp = external_auth_config_;
+  external_auth_config_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::ExternalAuthConfig* AuthConfig::_internal_mutable_external_auth_config() {
+  _has_bits_[0] |= 0x00000001u;
+  if (external_auth_config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::ExternalAuthConfig>(GetArenaForAllocation());
+    external_auth_config_ = p;
+  }
+  return external_auth_config_;
+}
+inline ::viam::app::v1::ExternalAuthConfig* AuthConfig::mutable_external_auth_config() {
+  ::viam::app::v1::ExternalAuthConfig* _msg = _internal_mutable_external_auth_config();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthConfig.external_auth_config)
+  return _msg;
+}
+inline void AuthConfig::set_allocated_external_auth_config(::viam::app::v1::ExternalAuthConfig* external_auth_config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete external_auth_config_;
+  }
+  if (external_auth_config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(external_auth_config);
+    if (message_arena != submessage_arena) {
+      external_auth_config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, external_auth_config, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  external_auth_config_ = external_auth_config;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthConfig.external_auth_config)
+}
+
 // -------------------------------------------------------------------
 
 // JWKSFile
@@ -10070,6 +10337,100 @@ inline void AuthHandlerWebOauthConfig::set_allocated_jwks(::viam::app::v1::JWKSF
   }
   jwks_ = jwks;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthHandlerWebOauthConfig.jwks)
+}
+
+// -------------------------------------------------------------------
+
+// ExternalAuthConfig
+
+// .viam.app.v1.JWKSFile jwks = 1 [json_name = "jwks"];
+inline bool ExternalAuthConfig::_internal_has_jwks() const {
+  return this != internal_default_instance() && jwks_ != nullptr;
+}
+inline bool ExternalAuthConfig::has_jwks() const {
+  return _internal_has_jwks();
+}
+inline void ExternalAuthConfig::clear_jwks() {
+  if (GetArenaForAllocation() == nullptr && jwks_ != nullptr) {
+    delete jwks_;
+  }
+  jwks_ = nullptr;
+}
+inline const ::viam::app::v1::JWKSFile& ExternalAuthConfig::_internal_jwks() const {
+  const ::viam::app::v1::JWKSFile* p = jwks_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::JWKSFile&>(
+      ::viam::app::v1::_JWKSFile_default_instance_);
+}
+inline const ::viam::app::v1::JWKSFile& ExternalAuthConfig::jwks() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ExternalAuthConfig.jwks)
+  return _internal_jwks();
+}
+inline void ExternalAuthConfig::unsafe_arena_set_allocated_jwks(
+    ::viam::app::v1::JWKSFile* jwks) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(jwks_);
+  }
+  jwks_ = jwks;
+  if (jwks) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ExternalAuthConfig.jwks)
+}
+inline ::viam::app::v1::JWKSFile* ExternalAuthConfig::release_jwks() {
+  
+  ::viam::app::v1::JWKSFile* temp = jwks_;
+  jwks_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::JWKSFile* ExternalAuthConfig::unsafe_arena_release_jwks() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ExternalAuthConfig.jwks)
+  
+  ::viam::app::v1::JWKSFile* temp = jwks_;
+  jwks_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::JWKSFile* ExternalAuthConfig::_internal_mutable_jwks() {
+  
+  if (jwks_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::JWKSFile>(GetArenaForAllocation());
+    jwks_ = p;
+  }
+  return jwks_;
+}
+inline ::viam::app::v1::JWKSFile* ExternalAuthConfig::mutable_jwks() {
+  ::viam::app::v1::JWKSFile* _msg = _internal_mutable_jwks();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ExternalAuthConfig.jwks)
+  return _msg;
+}
+inline void ExternalAuthConfig::set_allocated_jwks(::viam::app::v1::JWKSFile* jwks) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete jwks_;
+  }
+  if (jwks) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(jwks);
+    if (message_arena != submessage_arena) {
+      jwks = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, jwks, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  jwks_ = jwks;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ExternalAuthConfig.jwks)
 }
 
 // -------------------------------------------------------------------
@@ -13641,6 +14002,8 @@ inline void PackageConfig::set_allocated_version(std::string* version) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -69,6 +69,7 @@ PROTOBUF_CONSTEXPR Publishing::Publishing(
   , api_short_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , github_label_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , doc_tag_prefix_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , proto_reference_documentation_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , organization_(0)
 {}
 struct PublishingDefaultTypeInternal {
@@ -264,6 +265,7 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   PROTOBUF_FIELD_OFFSET(::google::api::Publishing, doc_tag_prefix_),
   PROTOBUF_FIELD_OFFSET(::google::api::Publishing, organization_),
   PROTOBUF_FIELD_OFFSET(::google::api::Publishing, library_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, proto_reference_documentation_uri_),
   PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -355,17 +357,17 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::google::api::CommonLanguageSettings)},
   { 8, -1, -1, sizeof(::google::api::ClientLibrarySettings)},
   { 25, -1, -1, sizeof(::google::api::Publishing)},
-  { 40, 48, -1, sizeof(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse)},
-  { 50, -1, -1, sizeof(::google::api::JavaSettings)},
-  { 59, -1, -1, sizeof(::google::api::CppSettings)},
-  { 66, -1, -1, sizeof(::google::api::PhpSettings)},
-  { 73, -1, -1, sizeof(::google::api::PythonSettings)},
-  { 80, -1, -1, sizeof(::google::api::NodeSettings)},
-  { 87, -1, -1, sizeof(::google::api::DotnetSettings)},
-  { 94, -1, -1, sizeof(::google::api::RubySettings)},
-  { 101, -1, -1, sizeof(::google::api::GoSettings)},
-  { 108, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
-  { 118, -1, -1, sizeof(::google::api::MethodSettings)},
+  { 41, 49, -1, sizeof(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse)},
+  { 51, -1, -1, sizeof(::google::api::JavaSettings)},
+  { 60, -1, -1, sizeof(::google::api::CppSettings)},
+  { 67, -1, -1, sizeof(::google::api::PhpSettings)},
+  { 74, -1, -1, sizeof(::google::api::PythonSettings)},
+  { 81, -1, -1, sizeof(::google::api::NodeSettings)},
+  { 88, -1, -1, sizeof(::google::api::DotnetSettings)},
+  { 95, -1, -1, sizeof(::google::api::RubySettings)},
+  { 102, -1, -1, sizeof(::google::api::GoSettings)},
+  { 109, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
+  { 119, -1, -1, sizeof(::google::api::MethodSettings)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -409,7 +411,7 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "netSettingsR\016dotnetSettings\022=\n\rruby_sett"
   "ings\030\033 \001(\0132\030.google.api.RubySettingsR\014ru"
   "bySettings\0227\n\013go_settings\030\034 \001(\0132\026.google"
-  ".api.GoSettingsR\ngoSettings\"\340\003\n\nPublishi"
+  ".api.GoSettingsR\ngoSettings\"\253\004\n\nPublishi"
   "ng\022C\n\017method_settings\030\002 \003(\0132\032.google.api"
   ".MethodSettingsR\016methodSettings\022\"\n\rnew_i"
   "ssue_uri\030e \001(\tR\013newIssueUri\022+\n\021documenta"
@@ -421,52 +423,53 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "\014organization\030k \001(\0162%.google.api.ClientL"
   "ibraryOrganizationR\014organization\022L\n\020libr"
   "ary_settings\030m \003(\0132!.google.api.ClientLi"
-  "brarySettingsR\017librarySettings\"\232\002\n\014JavaS"
-  "ettings\022\'\n\017library_package\030\001 \001(\tR\016librar"
-  "yPackage\022_\n\023service_class_names\030\002 \003(\0132/."
-  "google.api.JavaSettings.ServiceClassName"
-  "sEntryR\021serviceClassNames\022:\n\006common\030\003 \001("
-  "\0132\".google.api.CommonLanguageSettingsR\006c"
-  "ommon\032D\n\026ServiceClassNamesEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"I\n\013C"
-  "ppSettings\022:\n\006common\030\001 \001(\0132\".google.api."
-  "CommonLanguageSettingsR\006common\"I\n\013PhpSet"
+  "brarySettingsR\017librarySettings\022I\n!proto_"
+  "reference_documentation_uri\030n \001(\tR\036proto"
+  "ReferenceDocumentationUri\"\232\002\n\014JavaSettin"
+  "gs\022\'\n\017library_package\030\001 \001(\tR\016libraryPack"
+  "age\022_\n\023service_class_names\030\002 \003(\0132/.googl"
+  "e.api.JavaSettings.ServiceClassNamesEntr"
+  "yR\021serviceClassNames\022:\n\006common\030\003 \001(\0132\".g"
+  "oogle.api.CommonLanguageSettingsR\006common"
+  "\032D\n\026ServiceClassNamesEntry\022\020\n\003key\030\001 \001(\tR"
+  "\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"I\n\013CppSet"
   "tings\022:\n\006common\030\001 \001(\0132\".google.api.Commo"
-  "nLanguageSettingsR\006common\"L\n\016PythonSetti"
-  "ngs\022:\n\006common\030\001 \001(\0132\".google.api.CommonL"
-  "anguageSettingsR\006common\"J\n\014NodeSettings\022"
-  ":\n\006common\030\001 \001(\0132\".google.api.CommonLangu"
-  "ageSettingsR\006common\"L\n\016DotnetSettings\022:\n"
-  "\006common\030\001 \001(\0132\".google.api.CommonLanguag"
-  "eSettingsR\006common\"J\n\014RubySettings\022:\n\006com"
-  "mon\030\001 \001(\0132\".google.api.CommonLanguageSet"
-  "tingsR\006common\"H\n\nGoSettings\022:\n\006common\030\001 "
-  "\001(\0132\".google.api.CommonLanguageSettingsR"
-  "\006common\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001"
-  " \001(\tR\010selector\022I\n\014long_running\030\002 \001(\0132&.g"
-  "oogle.api.MethodSettings.LongRunningR\013lo"
-  "ngRunning\032\224\002\n\013LongRunning\022G\n\022initial_pol"
-  "l_delay\030\001 \001(\0132\031.google.protobuf.Duration"
-  "R\020initialPollDelay\0222\n\025poll_delay_multipl"
-  "ier\030\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_po"
-  "ll_delay\030\003 \001(\0132\031.google.protobuf.Duratio"
-  "nR\014maxPollDelay\022G\n\022total_poll_timeout\030\004 "
-  "\001(\0132\031.google.protobuf.DurationR\020totalPol"
-  "lTimeout*y\n\031ClientLibraryOrganization\022+\n"
-  "\'CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED"
-  "\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013ST"
-  "REET_VIEW\020\004*g\n\030ClientLibraryDestination\022"
-  "*\n&CLIENT_LIBRARY_DESTINATION_UNSPECIFIE"
-  "D\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020"
-  "method_signature\022\036.google.protobuf.Metho"
-  "dOptions\030\233\010 \003(\tR\017methodSignature:C\n\014defa"
-  "ult_host\022\037.google.protobuf.ServiceOption"
-  "s\030\231\010 \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037."
-  "google.protobuf.ServiceOptions\030\232\010 \001(\tR\013o"
-  "authScopesBi\n\016com.google.apiB\013ClientProt"
-  "oP\001ZAgoogle.golang.org/genproto/googleap"
-  "is/api/annotations;annotations\242\002\004GAPIb\006p"
-  "roto3"
+  "nLanguageSettingsR\006common\"I\n\013PhpSettings"
+  "\022:\n\006common\030\001 \001(\0132\".google.api.CommonLang"
+  "uageSettingsR\006common\"L\n\016PythonSettings\022:"
+  "\n\006common\030\001 \001(\0132\".google.api.CommonLangua"
+  "geSettingsR\006common\"J\n\014NodeSettings\022:\n\006co"
+  "mmon\030\001 \001(\0132\".google.api.CommonLanguageSe"
+  "ttingsR\006common\"L\n\016DotnetSettings\022:\n\006comm"
+  "on\030\001 \001(\0132\".google.api.CommonLanguageSett"
+  "ingsR\006common\"J\n\014RubySettings\022:\n\006common\030\001"
+  " \001(\0132\".google.api.CommonLanguageSettings"
+  "R\006common\"H\n\nGoSettings\022:\n\006common\030\001 \001(\0132\""
+  ".google.api.CommonLanguageSettingsR\006comm"
+  "on\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001 \001(\tR"
+  "\010selector\022I\n\014long_running\030\002 \001(\0132&.google"
+  ".api.MethodSettings.LongRunningR\013longRun"
+  "ning\032\224\002\n\013LongRunning\022G\n\022initial_poll_del"
+  "ay\030\001 \001(\0132\031.google.protobuf.DurationR\020ini"
+  "tialPollDelay\0222\n\025poll_delay_multiplier\030\002"
+  " \001(\002R\023pollDelayMultiplier\022\?\n\016max_poll_de"
+  "lay\030\003 \001(\0132\031.google.protobuf.DurationR\014ma"
+  "xPollDelay\022G\n\022total_poll_timeout\030\004 \001(\0132\031"
+  ".google.protobuf.DurationR\020totalPollTime"
+  "out*y\n\031ClientLibraryOrganization\022+\n\'CLIE"
+  "NT_LIBRARY_ORGANIZATION_UNSPECIFIED\020\000\022\t\n"
+  "\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET_"
+  "VIEW\020\004*g\n\030ClientLibraryDestination\022*\n&CL"
+  "IENT_LIBRARY_DESTINATION_UNSPECIFIED\020\000\022\n"
+  "\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020metho"
+  "d_signature\022\036.google.protobuf.MethodOpti"
+  "ons\030\233\010 \003(\tR\017methodSignature:C\n\014default_h"
+  "ost\022\037.google.protobuf.ServiceOptions\030\231\010 "
+  "\001(\tR\013defaultHost:C\n\014oauth_scopes\022\037.googl"
+  "e.protobuf.ServiceOptions\030\232\010 \001(\tR\013oauthS"
+  "copesBi\n\016com.google.apiB\013ClientProtoP\001ZA"
+  "google.golang.org/genproto/googleapis/ap"
+  "i/annotations;annotations\242\002\004GAPIb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -475,7 +478,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 3205, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 3280, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -1400,6 +1403,14 @@ Publishing::Publishing(const Publishing& from)
     doc_tag_prefix_.Set(from._internal_doc_tag_prefix(), 
       GetArenaForAllocation());
   }
+  proto_reference_documentation_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_proto_reference_documentation_uri().empty()) {
+    proto_reference_documentation_uri_.Set(from._internal_proto_reference_documentation_uri(), 
+      GetArenaForAllocation());
+  }
   organization_ = from.organization_;
   // @@protoc_insertion_point(copy_constructor:google.api.Publishing)
 }
@@ -1425,6 +1436,10 @@ doc_tag_prefix_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   doc_tag_prefix_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+proto_reference_documentation_uri_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 organization_ = 0;
 }
 
@@ -1444,6 +1459,7 @@ inline void Publishing::SharedDtor() {
   api_short_name_.Destroy();
   github_label_.Destroy();
   doc_tag_prefix_.Destroy();
+  proto_reference_documentation_uri_.Destroy();
 }
 
 void Publishing::SetCachedSize(int size) const {
@@ -1464,6 +1480,7 @@ void Publishing::Clear() {
   api_short_name_.ClearToEmpty();
   github_label_.ClearToEmpty();
   doc_tag_prefix_.ClearToEmpty();
+  proto_reference_documentation_uri_.ClearToEmpty();
   organization_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1571,6 +1588,16 @@ const char* Publishing::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<874>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string proto_reference_documentation_uri = 110 [json_name = "protoReferenceDocumentationUri"];
+      case 110:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
+          auto str = _internal_mutable_proto_reference_documentation_uri();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.api.Publishing.proto_reference_documentation_uri"));
         } else
           goto handle_unusual;
         continue;
@@ -1686,6 +1713,16 @@ uint8_t* Publishing::_InternalSerialize(
         InternalWriteMessage(109, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // string proto_reference_documentation_uri = 110 [json_name = "protoReferenceDocumentationUri"];
+  if (!this->_internal_proto_reference_documentation_uri().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_proto_reference_documentation_uri().data(), static_cast<int>(this->_internal_proto_reference_documentation_uri().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.Publishing.proto_reference_documentation_uri");
+    target = stream->WriteStringMaybeAliased(
+        110, this->_internal_proto_reference_documentation_uri(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1759,6 +1796,13 @@ size_t Publishing::ByteSizeLong() const {
         this->_internal_doc_tag_prefix());
   }
 
+  // string proto_reference_documentation_uri = 110 [json_name = "protoReferenceDocumentationUri"];
+  if (!this->_internal_proto_reference_documentation_uri().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_proto_reference_documentation_uri());
+  }
+
   // .google.api.ClientLibraryOrganization organization = 107 [json_name = "organization"];
   if (this->_internal_organization() != 0) {
     total_size += 2 +
@@ -1805,6 +1849,9 @@ void Publishing::MergeFrom(const Publishing& from) {
   if (!from._internal_doc_tag_prefix().empty()) {
     _internal_set_doc_tag_prefix(from._internal_doc_tag_prefix());
   }
+  if (!from._internal_proto_reference_documentation_uri().empty()) {
+    _internal_set_proto_reference_documentation_uri(from._internal_proto_reference_documentation_uri());
+  }
   if (from._internal_organization() != 0) {
     _internal_set_organization(from._internal_organization());
   }
@@ -1849,6 +1896,10 @@ void Publishing::InternalSwap(Publishing* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &doc_tag_prefix_, lhs_arena,
       &other->doc_tag_prefix_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &proto_reference_documentation_uri_, lhs_arena,
+      &other->proto_reference_documentation_uri_, rhs_arena
   );
   swap(organization_, other->organization_);
 }

@@ -30,9 +30,11 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
+#include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -100,6 +102,12 @@ extern SetPWMRequestDefaultTypeInternal _SetPWMRequest_default_instance_;
 class SetPWMResponse;
 struct SetPWMResponseDefaultTypeInternal;
 extern SetPWMResponseDefaultTypeInternal _SetPWMResponse_default_instance_;
+class SetPowerModeRequest;
+struct SetPowerModeRequestDefaultTypeInternal;
+extern SetPowerModeRequestDefaultTypeInternal _SetPowerModeRequest_default_instance_;
+class SetPowerModeResponse;
+struct SetPowerModeResponseDefaultTypeInternal;
+extern SetPowerModeResponseDefaultTypeInternal _SetPowerModeResponse_default_instance_;
 class StatusRequest;
 struct StatusRequestDefaultTypeInternal;
 extern StatusRequestDefaultTypeInternal _StatusRequest_default_instance_;
@@ -127,6 +135,8 @@ template<> ::viam::component::board::v1::SetPWMFrequencyRequest* Arena::CreateMa
 template<> ::viam::component::board::v1::SetPWMFrequencyResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPWMFrequencyResponse>(Arena*);
 template<> ::viam::component::board::v1::SetPWMRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPWMRequest>(Arena*);
 template<> ::viam::component::board::v1::SetPWMResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPWMResponse>(Arena*);
+template<> ::viam::component::board::v1::SetPowerModeRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPowerModeRequest>(Arena*);
+template<> ::viam::component::board::v1::SetPowerModeResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPowerModeResponse>(Arena*);
 template<> ::viam::component::board::v1::StatusRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::StatusRequest>(Arena*);
 template<> ::viam::component::board::v1::StatusResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::StatusResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -135,6 +145,32 @@ namespace component {
 namespace board {
 namespace v1 {
 
+enum PowerMode : int {
+  POWER_MODE_UNSPECIFIED = 0,
+  POWER_MODE_NORMAL = 1,
+  POWER_MODE_OFFLINE_DEEP = 2,
+  PowerMode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PowerMode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool PowerMode_IsValid(int value);
+constexpr PowerMode PowerMode_MIN = POWER_MODE_UNSPECIFIED;
+constexpr PowerMode PowerMode_MAX = POWER_MODE_OFFLINE_DEEP;
+constexpr int PowerMode_ARRAYSIZE = PowerMode_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PowerMode_descriptor();
+template<typename T>
+inline const std::string& PowerMode_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PowerMode>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PowerMode_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PowerMode_descriptor(), enum_t_value);
+}
+inline bool PowerMode_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PowerMode* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PowerMode>(
+    PowerMode_descriptor(), name, value);
+}
 // ===================================================================
 
 class StatusRequest final :
@@ -3023,6 +3059,322 @@ class GetDigitalInterruptValueResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
 };
+// -------------------------------------------------------------------
+
+class SetPowerModeRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.board.v1.SetPowerModeRequest) */ {
+ public:
+  inline SetPowerModeRequest() : SetPowerModeRequest(nullptr) {}
+  ~SetPowerModeRequest() override;
+  explicit PROTOBUF_CONSTEXPR SetPowerModeRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SetPowerModeRequest(const SetPowerModeRequest& from);
+  SetPowerModeRequest(SetPowerModeRequest&& from) noexcept
+    : SetPowerModeRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetPowerModeRequest& operator=(const SetPowerModeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetPowerModeRequest& operator=(SetPowerModeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetPowerModeRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetPowerModeRequest* internal_default_instance() {
+    return reinterpret_cast<const SetPowerModeRequest*>(
+               &_SetPowerModeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(SetPowerModeRequest& a, SetPowerModeRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetPowerModeRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetPowerModeRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetPowerModeRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetPowerModeRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SetPowerModeRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SetPowerModeRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetPowerModeRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.board.v1.SetPowerModeRequest";
+  }
+  protected:
+  explicit SetPowerModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kDurationFieldNumber = 3,
+    kExtraFieldNumber = 99,
+    kPowerModeFieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional .google.protobuf.Duration duration = 3 [json_name = "duration"];
+  bool has_duration() const;
+  private:
+  bool _internal_has_duration() const;
+  public:
+  void clear_duration();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& duration() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_duration();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_duration();
+  void set_allocated_duration(::PROTOBUF_NAMESPACE_ID::Duration* duration);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_duration() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_duration();
+  public:
+  void unsafe_arena_set_allocated_duration(
+      ::PROTOBUF_NAMESPACE_ID::Duration* duration);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_duration();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // .viam.component.board.v1.PowerMode power_mode = 2 [json_name = "powerMode"];
+  void clear_power_mode();
+  ::viam::component::board::v1::PowerMode power_mode() const;
+  void set_power_mode(::viam::component::board::v1::PowerMode value);
+  private:
+  ::viam::component::board::v1::PowerMode _internal_power_mode() const;
+  void _internal_set_power_mode(::viam::component::board::v1::PowerMode value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.board.v1.SetPowerModeRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* duration_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  int power_mode_;
+  friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetPowerModeResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.component.board.v1.SetPowerModeResponse) */ {
+ public:
+  inline SetPowerModeResponse() : SetPowerModeResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR SetPowerModeResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SetPowerModeResponse(const SetPowerModeResponse& from);
+  SetPowerModeResponse(SetPowerModeResponse&& from) noexcept
+    : SetPowerModeResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetPowerModeResponse& operator=(const SetPowerModeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetPowerModeResponse& operator=(SetPowerModeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetPowerModeResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetPowerModeResponse* internal_default_instance() {
+    return reinterpret_cast<const SetPowerModeResponse*>(
+               &_SetPowerModeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(SetPowerModeResponse& a, SetPowerModeResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetPowerModeResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetPowerModeResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetPowerModeResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetPowerModeResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SetPowerModeResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SetPowerModeResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.board.v1.SetPowerModeResponse";
+  }
+  protected:
+  explicit SetPowerModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.component.board.v1.SetPowerModeResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
+};
 // ===================================================================
 
 
@@ -4962,9 +5314,263 @@ inline void GetDigitalInterruptValueResponse::set_value(int64_t value) {
   // @@protoc_insertion_point(field_set:viam.component.board.v1.GetDigitalInterruptValueResponse.value)
 }
 
+// -------------------------------------------------------------------
+
+// SetPowerModeRequest
+
+// string name = 1 [json_name = "name"];
+inline void SetPowerModeRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& SetPowerModeRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.SetPowerModeRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SetPowerModeRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.SetPowerModeRequest.name)
+}
+inline std::string* SetPowerModeRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.SetPowerModeRequest.name)
+  return _s;
+}
+inline const std::string& SetPowerModeRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void SetPowerModeRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SetPowerModeRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SetPowerModeRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.SetPowerModeRequest.name)
+  return name_.Release();
+}
+inline void SetPowerModeRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.SetPowerModeRequest.name)
+}
+
+// .viam.component.board.v1.PowerMode power_mode = 2 [json_name = "powerMode"];
+inline void SetPowerModeRequest::clear_power_mode() {
+  power_mode_ = 0;
+}
+inline ::viam::component::board::v1::PowerMode SetPowerModeRequest::_internal_power_mode() const {
+  return static_cast< ::viam::component::board::v1::PowerMode >(power_mode_);
+}
+inline ::viam::component::board::v1::PowerMode SetPowerModeRequest::power_mode() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.SetPowerModeRequest.power_mode)
+  return _internal_power_mode();
+}
+inline void SetPowerModeRequest::_internal_set_power_mode(::viam::component::board::v1::PowerMode value) {
+  
+  power_mode_ = value;
+}
+inline void SetPowerModeRequest::set_power_mode(::viam::component::board::v1::PowerMode value) {
+  _internal_set_power_mode(value);
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.SetPowerModeRequest.power_mode)
+}
+
+// optional .google.protobuf.Duration duration = 3 [json_name = "duration"];
+inline bool SetPowerModeRequest::_internal_has_duration() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || duration_ != nullptr);
+  return value;
+}
+inline bool SetPowerModeRequest::has_duration() const {
+  return _internal_has_duration();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& SetPowerModeRequest::_internal_duration() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = duration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& SetPowerModeRequest::duration() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.SetPowerModeRequest.duration)
+  return _internal_duration();
+}
+inline void SetPowerModeRequest::unsafe_arena_set_allocated_duration(
+    ::PROTOBUF_NAMESPACE_ID::Duration* duration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(duration_);
+  }
+  duration_ = duration;
+  if (duration) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.board.v1.SetPowerModeRequest.duration)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SetPowerModeRequest::release_duration() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = duration_;
+  duration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SetPowerModeRequest::unsafe_arena_release_duration() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.SetPowerModeRequest.duration)
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = duration_;
+  duration_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SetPowerModeRequest::_internal_mutable_duration() {
+  _has_bits_[0] |= 0x00000001u;
+  if (duration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    duration_ = p;
+  }
+  return duration_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SetPowerModeRequest::mutable_duration() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_duration();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.SetPowerModeRequest.duration)
+  return _msg;
+}
+inline void SetPowerModeRequest::set_allocated_duration(::PROTOBUF_NAMESPACE_ID::Duration* duration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(duration_);
+  }
+  if (duration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(duration));
+    if (message_arena != submessage_arena) {
+      duration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, duration, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  duration_ = duration;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.SetPowerModeRequest.duration)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool SetPowerModeRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool SetPowerModeRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& SetPowerModeRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& SetPowerModeRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.SetPowerModeRequest.extra)
+  return _internal_extra();
+}
+inline void SetPowerModeRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.board.v1.SetPowerModeRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPowerModeRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPowerModeRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.SetPowerModeRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPowerModeRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* SetPowerModeRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.SetPowerModeRequest.extra)
+  return _msg;
+}
+inline void SetPowerModeRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.SetPowerModeRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// SetPowerModeResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5006,6 +5612,16 @@ inline void GetDigitalInterruptValueResponse::set_value(int64_t value) {
 }  // namespace board
 }  // namespace component
 }  // namespace viam
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::viam::component::board::v1::PowerMode> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::component::board::v1::PowerMode>() {
+  return ::viam::component::board::v1::PowerMode_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

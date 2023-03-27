@@ -312,7 +312,7 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   "Mm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving\"%\n\017IsMov"
   "ingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsMovi"
   "ngResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving2"
-  "\253\006\n\rGantryService\022\241\001\n\013GetPosition\022,.viam"
+  "\267\007\n\rGantryService\022\241\001\n\013GetPosition\022,.viam"
   ".component.gantry.v1.GetPositionRequest\032"
   "-.viam.component.gantry.v1.GetPositionRe"
   "sponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/g"
@@ -332,9 +332,12 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   "mponent.gantry.v1.IsMovingRequest\032*.viam"
   ".component.gantry.v1.IsMovingResponse\"6\202"
   "\323\344\223\0020\022./viam/api/v1/component/gantry/{na"
-  "me}/is_movingBC\n\034com.viam.component.gant"
-  "ry.v1Z#go.viam.com/api/component/gantry/"
-  "v1b\006proto3"
+  "me}/is_moving\022\211\001\n\tDoCommand\022 .viam.commo"
+  "n.v1.DoCommandRequest\032!.viam.common.v1.D"
+  "oCommandResponse\"7\202\323\344\223\0021\"//viam/api/v1/c"
+  "omponent/gantry/{name}/do_commandBC\n\034com"
+  ".viam.component.gantry.v1Z#go.viam.com/a"
+  "pi/component/gantry/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -343,7 +346,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_
 };
 static ::_pbi::once_flag descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto = {
-    false, false, 1850, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
+    false, false, 1990, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
     "component/gantry/v1/gantry.proto",
     &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once, descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps, 3, 11,
     schemas, file_default_instances, TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets,

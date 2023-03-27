@@ -257,12 +257,39 @@ struct GetDigitalInterruptValueResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDigitalInterruptValueResponseDefaultTypeInternal _GetDigitalInterruptValueResponse_default_instance_;
+PROTOBUF_CONSTEXPR SetPowerModeRequest::SetPowerModeRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , duration_(nullptr)
+  , extra_(nullptr)
+  , power_mode_(0)
+{}
+struct SetPowerModeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetPowerModeRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetPowerModeRequestDefaultTypeInternal() {}
+  union {
+    SetPowerModeRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPowerModeRequestDefaultTypeInternal _SetPowerModeRequest_default_instance_;
+PROTOBUF_CONSTEXPR SetPowerModeResponse::SetPowerModeResponse(
+    ::_pbi::ConstantInitialized){}
+struct SetPowerModeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetPowerModeResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetPowerModeResponseDefaultTypeInternal() {}
+  union {
+    SetPowerModeResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPowerModeResponseDefaultTypeInternal _SetPowerModeResponse_default_instance_;
 }  // namespace v1
 }  // namespace board
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[18];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fboard_2fv1_2fboard_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[20];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_component_2fboard_2fv1_2fboard_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fboard_2fv1_2fboard_2eproto = nullptr;
 
 const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -409,6 +436,26 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueResponse, value_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, power_mode_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, duration_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, extra_),
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::board::v1::StatusRequest)},
@@ -429,6 +476,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 120, -1, -1, sizeof(::viam::component::board::v1::ReadAnalogReaderResponse)},
   { 127, -1, -1, sizeof(::viam::component::board::v1::GetDigitalInterruptValueRequest)},
   { 136, -1, -1, sizeof(::viam::component::board::v1::GetDigitalInterruptValueResponse)},
+  { 143, 153, -1, sizeof(::viam::component::board::v1::SetPowerModeRequest)},
+  { 157, -1, -1, sizeof(::viam::component::board::v1::SetPowerModeResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -450,102 +499,122 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::board::v1::_ReadAnalogReaderResponse_default_instance_._instance,
   &::viam::component::board::v1::_GetDigitalInterruptValueRequest_default_instance_._instance,
   &::viam::component::board::v1::_GetDigitalInterruptValueResponse_default_instance_._instance,
+  &::viam::component::board::v1::_SetPowerModeRequest_default_instance_._instance,
+  &::viam::component::board::v1::_SetPowerModeResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\036component/board/v1/board.proto\022\027viam.c"
   "omponent.board.v1\032\026common/v1/common.prot"
-  "o\032\034google/api/annotations.proto\032\034google/"
-  "protobuf/struct.proto\"R\n\rStatusRequest\022\022"
-  "\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.goog"
-  "le.protobuf.StructR\005extra\"E\n\016StatusRespo"
-  "nse\0223\n\006status\030\001 \001(\0132\033.viam.common.v1.Boa"
-  "rdStatusR\006status\"y\n\016SetGPIORequest\022\022\n\004na"
-  "me\030\001 \001(\tR\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022\022\n\004high"
-  "\030\003 \001(\010R\004high\022-\n\005extra\030c \001(\0132\027.google.pro"
-  "tobuf.StructR\005extra\"\021\n\017SetGPIOResponse\"e"
-  "\n\016GetGPIORequest\022\022\n\004name\030\001 \001(\tR\004name\022\020\n\003"
-  "pin\030\002 \001(\tR\003pin\022-\n\005extra\030c \001(\0132\027.google.p"
-  "rotobuf.StructR\005extra\"%\n\017GetGPIOResponse"
-  "\022\022\n\004high\030\001 \001(\010R\004high\"a\n\nPWMRequest\022\022\n\004na"
-  "me\030\001 \001(\tR\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022-\n\005extr"
-  "a\030c \001(\0132\027.google.protobuf.StructR\005extra\""
-  "3\n\013PWMResponse\022$\n\016duty_cycle_pct\030\001 \001(\001R\014"
-  "dutyCyclePct\"\212\001\n\rSetPWMRequest\022\022\n\004name\030\001"
-  " \001(\tR\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022$\n\016duty_cyc"
-  "le_pct\030\003 \001(\001R\014dutyCyclePct\022-\n\005extra\030c \001("
-  "\0132\027.google.protobuf.StructR\005extra\"\020\n\016Set"
-  "PWMResponse\"j\n\023PWMFrequencyRequest\022\022\n\004na"
-  "me\030\001 \001(\tR\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022-\n\005extr"
-  "a\030c \001(\0132\027.google.protobuf.StructR\005extra\""
-  "9\n\024PWMFrequencyResponse\022!\n\014frequency_hz\030"
-  "\001 \001(\004R\013frequencyHz\"\220\001\n\026SetPWMFrequencyRe"
-  "quest\022\022\n\004name\030\001 \001(\tR\004name\022\020\n\003pin\030\002 \001(\tR\003"
-  "pin\022!\n\014frequency_hz\030\003 \001(\004R\013frequencyHz\022-"
-  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
-  "extra\"\031\n\027SetPWMFrequencyResponse\"\225\001\n\027Rea"
-  "dAnalogReaderRequest\022\035\n\nboard_name\030\001 \001(\t"
-  "R\tboardName\022,\n\022analog_reader_name\030\002 \001(\tR"
-  "\020analogReaderName\022-\n\005extra\030c \001(\0132\027.googl"
-  "e.protobuf.StructR\005extra\"0\n\030ReadAnalogRe"
-  "aderResponse\022\024\n\005value\030\001 \001(\005R\005value\"\245\001\n\037G"
-  "etDigitalInterruptValueRequest\022\035\n\nboard_"
-  "name\030\001 \001(\tR\tboardName\0224\n\026digital_interru"
-  "pt_name\030\002 \001(\tR\024digitalInterruptName\022-\n\005e"
-  "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
-  "ra\"8\n GetDigitalInterruptValueResponse\022\024"
-  "\n\005value\030\001 \001(\003R\005value2\355\013\n\014BoardService\022\215\001"
-  "\n\006Status\022&.viam.component.board.v1.Statu"
-  "sRequest\032\'.viam.component.board.v1.Statu"
-  "sResponse\"2\202\323\344\223\002,\022*/viam/api/v1/componen"
-  "t/board/{name}/status\022\216\001\n\007SetGPIO\022\'.viam"
-  ".component.board.v1.SetGPIORequest\032(.via"
-  "m.component.board.v1.SetGPIOResponse\"0\202\323"
-  "\344\223\002*\032(/viam/api/v1/component/board/{name"
-  "}/gpio\022\216\001\n\007GetGPIO\022\'.viam.component.boar"
-  "d.v1.GetGPIORequest\032(.viam.component.boa"
-  "rd.v1.GetGPIOResponse\"0\202\323\344\223\002*\022(/viam/api"
-  "/v1/component/board/{name}/gpio\022\201\001\n\003PWM\022"
-  "#.viam.component.board.v1.PWMRequest\032$.v"
-  "iam.component.board.v1.PWMResponse\"/\202\323\344\223"
-  "\002)\022\'/viam/api/v1/component/board/{name}/"
-  "pwm\022\212\001\n\006SetPWM\022&.viam.component.board.v1"
-  ".SetPWMRequest\032\'.viam.component.board.v1"
-  ".SetPWMResponse\"/\202\323\344\223\002)\032\'/viam/api/v1/co"
-  "mponent/board/{name}/pwm\022\241\001\n\014PWMFrequenc"
-  "y\022,.viam.component.board.v1.PWMFrequency"
-  "Request\032-.viam.component.board.v1.PWMFre"
-  "quencyResponse\"4\202\323\344\223\002.\022,/viam/api/v1/com"
-  "ponent/board/{name}/pwm_freq\022\252\001\n\017SetPWMF"
-  "requency\022/.viam.component.board.v1.SetPW"
-  "MFrequencyRequest\0320.viam.component.board"
-  ".v1.SetPWMFrequencyResponse\"4\202\323\344\223\002.\032,/vi"
-  "am/api/v1/component/board/{name}/pwm_fre"
-  "q\022\322\001\n\020ReadAnalogReader\0220.viam.component."
-  "board.v1.ReadAnalogReaderRequest\0321.viam."
-  "component.board.v1.ReadAnalogReaderRespo"
-  "nse\"Y\202\323\344\223\002S\022Q/viam/api/v1/component/boar"
-  "d/{board_name}/analog_reader/{analog_rea"
-  "der_name}/read\022\363\001\n\030GetDigitalInterruptVa"
-  "lue\0228.viam.component.board.v1.GetDigital"
-  "InterruptValueRequest\0329.viam.component.b"
-  "oard.v1.GetDigitalInterruptValueResponse"
-  "\"b\202\323\344\223\002\\\022Z/viam/api/v1/component/board/{"
-  "board_name}/digital_interrupt/{digital_i"
-  "nterrupt_name}/valueBA\n\033com.viam.compone"
-  "nt.board.v1Z\"go.viam.com/api/component/b"
-  "oard/v1b\006proto3"
+  "o\032\034google/api/annotations.proto\032\036google/"
+  "protobuf/duration.proto\032\034google/protobuf"
+  "/struct.proto\"R\n\rStatusRequest\022\022\n\004name\030\001"
+  " \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.proto"
+  "buf.StructR\005extra\"E\n\016StatusResponse\0223\n\006s"
+  "tatus\030\001 \001(\0132\033.viam.common.v1.BoardStatus"
+  "R\006status\"y\n\016SetGPIORequest\022\022\n\004name\030\001 \001(\t"
+  "R\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022\022\n\004high\030\003 \001(\010R\004"
+  "high\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
+  "ructR\005extra\"\021\n\017SetGPIOResponse\"e\n\016GetGPI"
+  "ORequest\022\022\n\004name\030\001 \001(\tR\004name\022\020\n\003pin\030\002 \001("
+  "\tR\003pin\022-\n\005extra\030c \001(\0132\027.google.protobuf."
+  "StructR\005extra\"%\n\017GetGPIOResponse\022\022\n\004high"
+  "\030\001 \001(\010R\004high\"a\n\nPWMRequest\022\022\n\004name\030\001 \001(\t"
+  "R\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022-\n\005extra\030c \001(\0132"
+  "\027.google.protobuf.StructR\005extra\"3\n\013PWMRe"
+  "sponse\022$\n\016duty_cycle_pct\030\001 \001(\001R\014dutyCycl"
+  "ePct\"\212\001\n\rSetPWMRequest\022\022\n\004name\030\001 \001(\tR\004na"
+  "me\022\020\n\003pin\030\002 \001(\tR\003pin\022$\n\016duty_cycle_pct\030\003"
+  " \001(\001R\014dutyCyclePct\022-\n\005extra\030c \001(\0132\027.goog"
+  "le.protobuf.StructR\005extra\"\020\n\016SetPWMRespo"
+  "nse\"j\n\023PWMFrequencyRequest\022\022\n\004name\030\001 \001(\t"
+  "R\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022-\n\005extra\030c \001(\0132"
+  "\027.google.protobuf.StructR\005extra\"9\n\024PWMFr"
+  "equencyResponse\022!\n\014frequency_hz\030\001 \001(\004R\013f"
+  "requencyHz\"\220\001\n\026SetPWMFrequencyRequest\022\022\n"
+  "\004name\030\001 \001(\tR\004name\022\020\n\003pin\030\002 \001(\tR\003pin\022!\n\014f"
+  "requency_hz\030\003 \001(\004R\013frequencyHz\022-\n\005extra\030"
+  "c \001(\0132\027.google.protobuf.StructR\005extra\"\031\n"
+  "\027SetPWMFrequencyResponse\"\225\001\n\027ReadAnalogR"
+  "eaderRequest\022\035\n\nboard_name\030\001 \001(\tR\tboardN"
+  "ame\022,\n\022analog_reader_name\030\002 \001(\tR\020analogR"
+  "eaderName\022-\n\005extra\030c \001(\0132\027.google.protob"
+  "uf.StructR\005extra\"0\n\030ReadAnalogReaderResp"
+  "onse\022\024\n\005value\030\001 \001(\005R\005value\"\245\001\n\037GetDigita"
+  "lInterruptValueRequest\022\035\n\nboard_name\030\001 \001"
+  "(\tR\tboardName\0224\n\026digital_interrupt_name\030"
+  "\002 \001(\tR\024digitalInterruptName\022-\n\005extra\030c \001"
+  "(\0132\027.google.protobuf.StructR\005extra\"8\n Ge"
+  "tDigitalInterruptValueResponse\022\024\n\005value\030"
+  "\001 \001(\003R\005value\"\344\001\n\023SetPowerModeRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\022A\n\npower_mode\030\002 \001(\0162\".v"
+  "iam.component.board.v1.PowerModeR\tpowerM"
+  "ode\022:\n\010duration\030\003 \001(\0132\031.google.protobuf."
+  "DurationH\000R\010duration\210\001\001\022-\n\005extra\030c \001(\0132\027"
+  ".google.protobuf.StructR\005extraB\013\n\t_durat"
+  "ion\"\026\n\024SetPowerModeResponse*[\n\tPowerMode"
+  "\022\032\n\026POWER_MODE_UNSPECIFIED\020\000\022\025\n\021POWER_MO"
+  "DE_NORMAL\020\001\022\033\n\027POWER_MODE_OFFLINE_DEEP\020\002"
+  "2\236\016\n\014BoardService\022\215\001\n\006Status\022&.viam.comp"
+  "onent.board.v1.StatusRequest\032\'.viam.comp"
+  "onent.board.v1.StatusResponse\"2\202\323\344\223\002,\022*/"
+  "viam/api/v1/component/board/{name}/statu"
+  "s\022\216\001\n\007SetGPIO\022\'.viam.component.board.v1."
+  "SetGPIORequest\032(.viam.component.board.v1"
+  ".SetGPIOResponse\"0\202\323\344\223\002*\032(/viam/api/v1/c"
+  "omponent/board/{name}/gpio\022\216\001\n\007GetGPIO\022\'"
+  ".viam.component.board.v1.GetGPIORequest\032"
+  "(.viam.component.board.v1.GetGPIORespons"
+  "e\"0\202\323\344\223\002*\022(/viam/api/v1/component/board/"
+  "{name}/gpio\022\201\001\n\003PWM\022#.viam.component.boa"
+  "rd.v1.PWMRequest\032$.viam.component.board."
+  "v1.PWMResponse\"/\202\323\344\223\002)\022\'/viam/api/v1/com"
+  "ponent/board/{name}/pwm\022\212\001\n\006SetPWM\022&.via"
+  "m.component.board.v1.SetPWMRequest\032\'.via"
+  "m.component.board.v1.SetPWMResponse\"/\202\323\344"
+  "\223\002)\032\'/viam/api/v1/component/board/{name}"
+  "/pwm\022\241\001\n\014PWMFrequency\022,.viam.component.b"
+  "oard.v1.PWMFrequencyRequest\032-.viam.compo"
+  "nent.board.v1.PWMFrequencyResponse\"4\202\323\344\223"
+  "\002.\022,/viam/api/v1/component/board/{name}/"
+  "pwm_freq\022\252\001\n\017SetPWMFrequency\022/.viam.comp"
+  "onent.board.v1.SetPWMFrequencyRequest\0320."
+  "viam.component.board.v1.SetPWMFrequencyR"
+  "esponse\"4\202\323\344\223\002.\032,/viam/api/v1/component/"
+  "board/{name}/pwm_freq\022\210\001\n\tDoCommand\022 .vi"
+  "am.common.v1.DoCommandRequest\032!.viam.com"
+  "mon.v1.DoCommandResponse\"6\202\323\344\223\0020\"./viam/"
+  "api/v1/component/board/{name}/do_command"
+  "\022\322\001\n\020ReadAnalogReader\0220.viam.component.b"
+  "oard.v1.ReadAnalogReaderRequest\0321.viam.c"
+  "omponent.board.v1.ReadAnalogReaderRespon"
+  "se\"Y\202\323\344\223\002S\022Q/viam/api/v1/component/board"
+  "/{board_name}/analog_reader/{analog_read"
+  "er_name}/read\022\363\001\n\030GetDigitalInterruptVal"
+  "ue\0228.viam.component.board.v1.GetDigitalI"
+  "nterruptValueRequest\0329.viam.component.bo"
+  "ard.v1.GetDigitalInterruptValueResponse\""
+  "b\202\323\344\223\002\\\022Z/viam/api/v1/component/board/{b"
+  "oard_name}/digital_interrupt/{digital_in"
+  "terrupt_name}/value\022\243\001\n\014SetPowerMode\022,.v"
+  "iam.component.board.v1.SetPowerModeReque"
+  "st\032-.viam.component.board.v1.SetPowerMod"
+  "eResponse\"6\202\323\344\223\0020\032./viam/api/v1/componen"
+  "t/board/{name}/power_modeBA\n\033com.viam.co"
+  "mponent.board.v1Z\"go.viam.com/api/compon"
+  "ent/board/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
+  &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fboard_2fv1_2fboard_2eproto = {
-    false, false, 3255, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
+    false, false, 3940, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
     "component/board/v1/board.proto",
-    &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once, descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps, 3, 18,
+    &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once, descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps, 4, 20,
     schemas, file_default_instances, TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets,
     file_level_metadata_component_2fboard_2fv1_2fboard_2eproto, file_level_enum_descriptors_component_2fboard_2fv1_2fboard_2eproto,
     file_level_service_descriptors_component_2fboard_2fv1_2fboard_2eproto,
@@ -560,6 +629,21 @@ namespace viam {
 namespace component {
 namespace board {
 namespace v1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PowerMode_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_component_2fboard_2fv1_2fboard_2eproto);
+  return file_level_enum_descriptors_component_2fboard_2fv1_2fboard_2eproto[0];
+}
+bool PowerMode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -4417,6 +4501,378 @@ void GetDigitalInterruptValueResponse::InternalSwap(GetDigitalInterruptValueResp
       file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[17]);
 }
 
+// ===================================================================
+
+class SetPowerModeRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetPowerModeRequest>()._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& duration(const SetPowerModeRequest* msg);
+  static void set_has_duration(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const SetPowerModeRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Duration&
+SetPowerModeRequest::_Internal::duration(const SetPowerModeRequest* msg) {
+  return *msg->duration_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+SetPowerModeRequest::_Internal::extra(const SetPowerModeRequest* msg) {
+  return *msg->extra_;
+}
+void SetPowerModeRequest::clear_duration() {
+  if (duration_ != nullptr) duration_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+void SetPowerModeRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+SetPowerModeRequest::SetPowerModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.SetPowerModeRequest)
+}
+SetPowerModeRequest::SetPowerModeRequest(const SetPowerModeRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_duration()) {
+    duration_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.duration_);
+  } else {
+    duration_ = nullptr;
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  power_mode_ = from.power_mode_;
+  // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPowerModeRequest)
+}
+
+inline void SetPowerModeRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&duration_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&power_mode_) -
+    reinterpret_cast<char*>(&duration_)) + sizeof(power_mode_));
+}
+
+SetPowerModeRequest::~SetPowerModeRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.board.v1.SetPowerModeRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SetPowerModeRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete duration_;
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void SetPowerModeRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SetPowerModeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.board.v1.SetPowerModeRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(duration_ != nullptr);
+    duration_->Clear();
+  }
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  power_mode_ = 0;
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SetPowerModeRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.board.v1.SetPowerModeRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.component.board.v1.PowerMode power_mode = 2 [json_name = "powerMode"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_power_mode(static_cast<::viam::component::board::v1::PowerMode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Duration duration = 3 [json_name = "duration"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_duration(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SetPowerModeRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.board.v1.SetPowerModeRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.board.v1.SetPowerModeRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .viam.component.board.v1.PowerMode power_mode = 2 [json_name = "powerMode"];
+  if (this->_internal_power_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_power_mode(), target);
+  }
+
+  // optional .google.protobuf.Duration duration = 3 [json_name = "duration"];
+  if (_internal_has_duration()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::duration(this),
+        _Internal::duration(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.board.v1.SetPowerModeRequest)
+  return target;
+}
+
+size_t SetPowerModeRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.board.v1.SetPowerModeRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // optional .google.protobuf.Duration duration = 3 [json_name = "duration"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *duration_);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  // .viam.component.board.v1.PowerMode power_mode = 2 [json_name = "powerMode"];
+  if (this->_internal_power_mode() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_power_mode());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetPowerModeRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SetPowerModeRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetPowerModeRequest::GetClassData() const { return &_class_data_; }
+
+void SetPowerModeRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SetPowerModeRequest *>(to)->MergeFrom(
+      static_cast<const SetPowerModeRequest &>(from));
+}
+
+
+void SetPowerModeRequest::MergeFrom(const SetPowerModeRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPowerModeRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_duration()) {
+    _internal_mutable_duration()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_duration());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  if (from._internal_power_mode() != 0) {
+    _internal_set_power_mode(from._internal_power_mode());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetPowerModeRequest::CopyFrom(const SetPowerModeRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.board.v1.SetPowerModeRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetPowerModeRequest::IsInitialized() const {
+  return true;
+}
+
+void SetPowerModeRequest::InternalSwap(SetPowerModeRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SetPowerModeRequest, power_mode_)
+      + sizeof(SetPowerModeRequest::power_mode_)
+      - PROTOBUF_FIELD_OFFSET(SetPowerModeRequest, duration_)>(
+          reinterpret_cast<char*>(&duration_),
+          reinterpret_cast<char*>(&other->duration_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetPowerModeRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_getter, &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once,
+      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[18]);
+}
+
+// ===================================================================
+
+class SetPowerModeResponse::_Internal {
+ public:
+};
+
+SetPowerModeResponse::SetPowerModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.SetPowerModeResponse)
+}
+SetPowerModeResponse::SetPowerModeResponse(const SetPowerModeResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPowerModeResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetPowerModeResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetPowerModeResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetPowerModeResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_getter, &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once,
+      file_level_metadata_component_2fboard_2fv1_2fboard_2eproto[19]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace board
@@ -4494,6 +4950,14 @@ Arena::CreateMaybeMessage< ::viam::component::board::v1::GetDigitalInterruptValu
 template<> PROTOBUF_NOINLINE ::viam::component::board::v1::GetDigitalInterruptValueResponse*
 Arena::CreateMaybeMessage< ::viam::component::board::v1::GetDigitalInterruptValueResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::board::v1::GetDigitalInterruptValueResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::board::v1::SetPowerModeRequest*
+Arena::CreateMaybeMessage< ::viam::component::board::v1::SetPowerModeRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::board::v1::SetPowerModeRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::board::v1::SetPowerModeResponse*
+Arena::CreateMaybeMessage< ::viam::component::board::v1::SetPowerModeResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::board::v1::SetPowerModeResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

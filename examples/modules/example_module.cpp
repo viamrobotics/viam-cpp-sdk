@@ -1,3 +1,4 @@
+#include <common/v1/common.grpc.pb.h>
 #include <component/generic/v1/generic.grpc.pb.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
@@ -49,8 +50,8 @@ class MyModule : public GenericService::Service, public ComponentBase {
     MyModule& operator=(const MyModule&) = delete;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                             const ::viam::component::generic::v1::DoCommandRequest* request,
-                             ::viam::component::generic::v1::DoCommandResponse* response) override {
+                             const ::viam::common::v1::DoCommandRequest* request,
+                             ::viam::common::v1::DoCommandResponse* response) override {
         std::cout << "Received DoCommand request for MyModule number " << inner_which
                   << " and name " << name << std::endl;
         for (auto& req : request->command().fields()) {
@@ -86,8 +87,21 @@ int main(int argc, char** argv) {
     my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
     std::shared_ptr<ModelRegistration> rr = std::make_shared<ModelRegistration>(
-        ResourceType("MyModule"), generic, m, [](Dependencies, Resource cfg) {
-            return std::make_unique<MyModule>(cfg);
+        ResourceType("MyModule"),
+        generic,
+        m,
+        [](Dependencies, Resource cfg) { return std::make_unique<MyModule>(cfg); },
+        // Custom validation can be done by specifying a validate function like
+        // this one. Validate functions can `throw` error strings that will be
+        // returned to the parent through gRPC. Validate functions can also return
+        // a vector of strings representing the implicit dependencies of the resource.
+        [](Resource cfg) -> std::vector<std::string> {
+            if (cfg.attributes.find("invalidattribute") != cfg.attributes.end()) {
+                throw std::string(
+                    "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
+            }
+
+            return {"component1"};
         });
 
     Registry::register_resource(rr);

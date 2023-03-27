@@ -336,7 +336,7 @@ const char descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto[] PROT
   "StructR\005extra\"\025\n\023SetVelocityResponse\"%\n\017"
   "IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020I"
   "sMovingResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMo"
-  "ving2\233\007\n\013BaseService\022\247\001\n\014MoveStraight\022+."
+  "ving2\245\010\n\013BaseService\022\247\001\n\014MoveStraight\022+."
   "viam.component.base.v1.MoveStraightReque"
   "st\032,.viam.component.base.v1.MoveStraight"
   "Response\"<\240\222)\001\202\323\344\223\0022\"0/viam/api/v1/compo"
@@ -359,9 +359,12 @@ const char descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto[] PROT
   ".component.base.v1.IsMovingRequest\032(.via"
   "m.component.base.v1.IsMovingResponse\"4\202\323"
   "\344\223\002.\022,/viam/api/v1/component/base/{name}"
-  "/is_movingB\?\n\032com.viam.component.base.v1"
-  "Z!go.viam.com/api/component/base/v1b\006pro"
-  "to3"
+  "/is_moving\022\207\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"5\202\323\344\223\002/\"-/viam/api/v1/comp"
+  "onent/base/{name}/do_commandB\?\n\032com.viam"
+  ".component.base.v1Z!go.viam.com/api/comp"
+  "onent/base/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -370,7 +373,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2f
 };
 static ::_pbi::once_flag descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fbase_2fv1_2fbase_2eproto = {
-    false, false, 2083, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
+    false, false, 2221, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
     "component/base/v1/base.proto",
     &descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once, descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps, 3, 12,
     schemas, file_default_instances, TableStruct_component_2fbase_2fv1_2fbase_2eproto::offsets,

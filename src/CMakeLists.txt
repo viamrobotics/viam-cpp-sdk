@@ -203,8 +203,12 @@ target_sources(viamcpp
     registry/registry.cpp
     common/proto_type.cpp
     common/utils.cpp
+    components/camera/camera.cpp
+    components/camera/client.cpp
+    components/camera/server.cpp
     components/component_base.cpp
     components/component_type.cpp
+    components/generic/client.cpp
     components/generic/generic.cpp
     components/generic/server.cpp
     config/resource.cpp
@@ -230,8 +234,12 @@ target_sources(viamcpp
     FILES
       common/proto_type.hpp
       common/utils.hpp
+      components/camera/camera.hpp
+      components/camera/client.hpp
+      components/camera/server.hpp
       components/component_base.hpp
       components/component_type.hpp
+      components/generic/client.hpp
       components/generic/generic.hpp
       components/generic/server.hpp
       components/service_base.hpp
@@ -334,6 +342,8 @@ target_link_libraries(viamcpp
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
+
+add_subdirectory(tests)
 
 install(
   TARGETS viamcpp

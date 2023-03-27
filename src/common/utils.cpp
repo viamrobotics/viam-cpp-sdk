@@ -13,29 +13,39 @@
 
 using viam::common::v1::ResourceName;
 
-std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<ResourceBase> resource) {
-    std::string* resource_type;
-    std::vector<ResourceName> resource_names;
-    for (auto& a : Registry::registered_resources()) {
-        std::shared_ptr<ModelRegistration> reg = a.second;
-        if (reg->resource_type.type == resource->type.type) {
-            resource_type = &reg->resource_type.type;
-        }
+std::vector<ResourceName>
+resource_names_for_resource(std::shared_ptr<ResourceBase> resource) {
+  std::string *resource_type;
+  std::vector<ResourceName> resource_names;
+  for (auto &a : Registry::registered_resources()) {
+    std::shared_ptr<ModelRegistration> reg = a.second;
+    if (reg->resource_type.type == resource->type.type) {
+      resource_type = &reg->resource_type.type;
     }
+  }
 
-    if (resource_type == nullptr) {
-        resource_type = &resource->name;
-    }
+  if (resource_type == nullptr) {
+    resource_type = &resource->name;
+  }
 
-    // TODO (RSDK-1631): make sure we split properly on "viam.components."
-    // within component_type as needed
+  // TODO (RSDK-1631): make sure we split properly on "viam.components."
+  // within component_type as needed
 
-    ResourceName r;
-    *r.mutable_namespace_() = RDK;
-    *r.mutable_type() = resource->type.type;
-    *r.mutable_name() = resource->name;
-    *r.mutable_subtype() = *resource_type;
-    resource_names.push_back(r);
-    return resource_names;
+  ResourceName r;
+  *r.mutable_namespace_() = RDK;
+  *r.mutable_type() = resource->type.type;
+  *r.mutable_name() = resource->name;
+  *r.mutable_subtype() = *resource_type;
+  resource_names.push_back(r);
+  return resource_names;
 }
 
+std::vector<unsigned char> string_to_bytes(std::string const &s) {
+  std::vector<unsigned char> bytes(s.begin(), s.end());
+  return bytes;
+};
+
+std::string bytes_to_string(std::vector<unsigned char> const &b) {
+  std::string img_string(b.begin(), b.end());
+  return img_string;
+};

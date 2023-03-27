@@ -14,6 +14,22 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
+      - name: setup-grpc
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git \
+          && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
+          && ./vcpkg install grpc \
+          && ./vcpkg install upb
+      - name: setup-openssl
+        run: sudo apt-get install libssl-dev
+      - uses: MarkusJx/install-boost@v2.4.4
+        with:
+          boost_version: 1.81.0
+          platform_version: 22.04
+      - uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: 3.25.2
+          ninjaVersion: 1.11.1
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -21,14 +37,20 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate buf
-        run: make buf
+        run: |
+          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          && cmake --build ./build --target update-static-protos
         env:
+          BOOST_ROOT: ${{ github.workspace }}/boost/boost
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
+      - name: cleanup
+        run: rm -rf boost/ && rm -rf vcpkg/
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
           branch: 'origin/update-protos'
+          add-paths: src/gen/*
           delete-branch: true
           title: Automated Protos Update
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes

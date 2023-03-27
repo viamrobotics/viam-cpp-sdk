@@ -7,23 +7,23 @@
 #include "proto/rpc/v1/auth.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace proto {
 namespace rpc {
@@ -40,9 +40,11 @@ class AuthService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // Authenticate attempts to authenticate the caller. The resulting
-    // response contains an access token that should be used for future
-    // requests.
+    // Authenticate attempts to authenticate the caller claiming to be
+    // the given entity. The resulting response contains an access token
+    // with the subject as the entity and the audience/issuer as the
+    // provider of this service. This token should be used for all future
+    // RPC requests.
     virtual ::grpc::Status Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::proto::rpc::v1::AuthenticateResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateResponse>> AsyncAuthenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateResponse>>(AsyncAuthenticateRaw(context, request, cq));
@@ -53,9 +55,11 @@ class AuthService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // Authenticate attempts to authenticate the caller. The resulting
-      // response contains an access token that should be used for future
-      // requests.
+      // Authenticate attempts to authenticate the caller claiming to be
+      // the given entity. The resulting response contains an access token
+      // with the subject as the entity and the audience/issuer as the
+      // provider of this service. This token should be used for all future
+      // RPC requests.
       virtual void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -102,9 +106,11 @@ class AuthService final {
    public:
     Service();
     virtual ~Service();
-    // Authenticate attempts to authenticate the caller. The resulting
-    // response contains an access token that should be used for future
-    // requests.
+    // Authenticate attempts to authenticate the caller claiming to be
+    // the given entity. The resulting response contains an access token
+    // with the subject as the entity and the audience/issuer as the
+    // provider of this service. This token should be used for all future
+    // RPC requests.
     virtual ::grpc::Status Authenticate(::grpc::ServerContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response);
   };
   template <class BaseClass>
@@ -262,9 +268,12 @@ class ExternalAuthService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // AuthenticateTo attempts to authenticate the caller on behalf of an entity.
-    // The resulting response contains an access token that should be used for future
-    // requests. This assumes that the caller is already authenticated to the
+    // AuthenticateTo attempts to allow the caller to authenticate to another entity.
+    // The resulting response contains an access token with the subject
+    // as the calling entity, the audience as the other entity, and the issuer
+    // as the provider of this service. This token should be used for all
+    // future RPC requests to the other entity on the services it provides.
+    // This assumes that the caller is already authenticated to the
     // server implementing this service.
     virtual ::grpc::Status AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::proto::rpc::v1::AuthenticateToResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateToResponse>> AsyncAuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) {
@@ -276,9 +285,12 @@ class ExternalAuthService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // AuthenticateTo attempts to authenticate the caller on behalf of an entity.
-      // The resulting response contains an access token that should be used for future
-      // requests. This assumes that the caller is already authenticated to the
+      // AuthenticateTo attempts to allow the caller to authenticate to another entity.
+      // The resulting response contains an access token with the subject
+      // as the calling entity, the audience as the other entity, and the issuer
+      // as the provider of this service. This token should be used for all
+      // future RPC requests to the other entity on the services it provides.
+      // This assumes that the caller is already authenticated to the
       // server implementing this service.
       virtual void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -326,9 +338,12 @@ class ExternalAuthService final {
    public:
     Service();
     virtual ~Service();
-    // AuthenticateTo attempts to authenticate the caller on behalf of an entity.
-    // The resulting response contains an access token that should be used for future
-    // requests. This assumes that the caller is already authenticated to the
+    // AuthenticateTo attempts to allow the caller to authenticate to another entity.
+    // The resulting response contains an access token with the subject
+    // as the calling entity, the audience as the other entity, and the issuer
+    // as the provider of this service. This token should be used for all
+    // future RPC requests to the other entity on the services it provides.
+    // This assumes that the caller is already authenticated to the
     // server implementing this service.
     virtual ::grpc::Status AuthenticateTo(::grpc::ServerContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response);
   };

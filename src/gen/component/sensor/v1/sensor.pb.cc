@@ -109,32 +109,37 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n component/sensor/v1/sensor.proto\022\030viam"
-  ".component.sensor.v1\032\034google/api/annotat"
-  "ions.proto\032\034google/protobuf/struct.proto"
-  "\"W\n\022GetReadingsRequest\022\022\n\004name\030\001 \001(\tR\004na"
-  "me\022-\n\005extra\030c \001(\0132\027.google.protobuf.Stru"
-  "ctR\005extra\"\303\001\n\023GetReadingsResponse\022W\n\010rea"
-  "dings\030\001 \003(\0132;.viam.component.sensor.v1.G"
-  "etReadingsResponse.ReadingsEntryR\010readin"
-  "gs\032S\n\rReadingsEntry\022\020\n\003key\030\001 \001(\tR\003key\022,\n"
-  "\005value\030\002 \001(\0132\026.google.protobuf.ValueR\005va"
-  "lue:\0028\0012\263\001\n\rSensorService\022\241\001\n\013GetReading"
-  "s\022,.viam.component.sensor.v1.GetReadings"
-  "Request\032-.viam.component.sensor.v1.GetRe"
-  "adingsResponse\"5\202\323\344\223\002/\022-/viam/api/v1/com"
-  "ponent/sensor/{name}/readingsBC\n\034com.via"
-  "m.component.sensor.v1Z#go.viam.com/api/c"
-  "omponent/sensor/v1b\006proto3"
+  ".component.sensor.v1\032\026common/v1/common.p"
+  "roto\032\034google/api/annotations.proto\032\034goog"
+  "le/protobuf/struct.proto\"W\n\022GetReadingsR"
+  "equest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001("
+  "\0132\027.google.protobuf.StructR\005extra\"\303\001\n\023Ge"
+  "tReadingsResponse\022W\n\010readings\030\001 \003(\0132;.vi"
+  "am.component.sensor.v1.GetReadingsRespon"
+  "se.ReadingsEntryR\010readings\032S\n\rReadingsEn"
+  "try\022\020\n\003key\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.g"
+  "oogle.protobuf.ValueR\005value:\0028\0012\277\002\n\rSens"
+  "orService\022\241\001\n\013GetReadings\022,.viam.compone"
+  "nt.sensor.v1.GetReadingsRequest\032-.viam.c"
+  "omponent.sensor.v1.GetReadingsResponse\"5"
+  "\202\323\344\223\002/\022-/viam/api/v1/component/sensor/{n"
+  "ame}/readings\022\211\001\n\tDoCommand\022 .viam.commo"
+  "n.v1.DoCommandRequest\032!.viam.common.v1.D"
+  "oCommandResponse\"7\202\323\344\223\0021\"//viam/api/v1/c"
+  "omponent/sensor/{name}/do_commandBC\n\034com"
+  ".viam.component.sensor.v1Z#go.viam.com/a"
+  "pi/component/sensor/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto = {
-    false, false, 666, descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto,
+    false, false, 830, descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto,
     "component/sensor/v1/sensor.proto",
-    &descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once, descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps, 2, 3,
+    &descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once, descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps, 3, 3,
     schemas, file_default_instances, TableStruct_component_2fsensor_2fv1_2fsensor_2eproto::offsets,
     file_level_metadata_component_2fsensor_2fv1_2fsensor_2eproto, file_level_enum_descriptors_component_2fsensor_2fv1_2fsensor_2eproto,
     file_level_service_descriptors_component_2fsensor_2fv1_2fsensor_2eproto,

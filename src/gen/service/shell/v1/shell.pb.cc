@@ -92,26 +92,33 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\034service/shell/v1/shell.proto\022\025viam.ser"
-  "vice.shell.v1\032\034google/protobuf/struct.pr"
-  "oto\"j\n\014ShellRequest\022\022\n\004name\030\001 \001(\tR\004name\022"
-  "\027\n\007data_in\030\002 \001(\tR\006dataIn\022-\n\005extra\030c \001(\0132"
-  "\027.google.protobuf.StructR\005extra\"W\n\rShell"
-  "Response\022\031\n\010data_out\030\001 \001(\tR\007dataOut\022\031\n\010d"
-  "ata_err\030\002 \001(\tR\007dataErr\022\020\n\003eof\030\003 \001(\010R\003eof"
-  "2f\n\014ShellService\022V\n\005Shell\022#.viam.service"
-  ".shell.v1.ShellRequest\032$.viam.service.sh"
-  "ell.v1.ShellResponse(\0010\001B=\n\031com.viam.ser"
-  "vice.shell.v1Z go.viam.com/api/service/s"
-  "hell/v1b\006proto3"
+  "vice.shell.v1\032\026common/v1/common.proto\032\034g"
+  "oogle/api/annotations.proto\032\034google/prot"
+  "obuf/struct.proto\"j\n\014ShellRequest\022\022\n\004nam"
+  "e\030\001 \001(\tR\004name\022\027\n\007data_in\030\002 \001(\tR\006dataIn\022-"
+  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
+  "extra\"W\n\rShellResponse\022\031\n\010data_out\030\001 \001(\t"
+  "R\007dataOut\022\031\n\010data_err\030\002 \001(\tR\007dataErr\022\020\n\003"
+  "eof\030\003 \001(\010R\003eof2\357\001\n\014ShellService\022V\n\005Shell"
+  "\022#.viam.service.shell.v1.ShellRequest\032$."
+  "viam.service.shell.v1.ShellResponse(\0010\001\022"
+  "\206\001\n\tDoCommand\022 .viam.common.v1.DoCommand"
+  "Request\032!.viam.common.v1.DoCommandRespon"
+  "se\"4\202\323\344\223\002.\",/viam/api/v1/service/shell/{"
+  "name}/do_commandB=\n\031com.viam.service.she"
+  "ll.v1Z go.viam.com/api/service/shell/v1b"
+  "\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fshell_2fv1_2fshell_2eproto_deps[1] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fshell_2fv1_2fshell_2eproto_deps[3] = {
+  &::descriptor_table_common_2fv1_2fcommon_2eproto,
+  &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2fshell_2fv1_2fshell_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fshell_2fv1_2fshell_2eproto = {
-    false, false, 455, descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto,
+    false, false, 647, descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto,
     "service/shell/v1/shell.proto",
-    &descriptor_table_service_2fshell_2fv1_2fshell_2eproto_once, descriptor_table_service_2fshell_2fv1_2fshell_2eproto_deps, 1, 2,
+    &descriptor_table_service_2fshell_2fv1_2fshell_2eproto_once, descriptor_table_service_2fshell_2fv1_2fshell_2eproto_deps, 3, 2,
     schemas, file_default_instances, TableStruct_service_2fshell_2fv1_2fshell_2eproto::offsets,
     file_level_metadata_service_2fshell_2fv1_2fshell_2eproto, file_level_enum_descriptors_service_2fshell_2fv1_2fshell_2eproto,
     file_level_service_descriptors_service_2fshell_2fv1_2fshell_2eproto,
