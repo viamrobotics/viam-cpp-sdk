@@ -331,15 +331,15 @@ else()
   set(VIAMCPPSDK_GRPCXX_LIBRARY_DIRS ${GRPCXX_LIBRARY_DIRS})
   set(VIAMCPPSDK_GRPCXX_LIBRARIES ${GRPCXX_LIBRARIES})
   
-  # We need to set the reflection library, which unfortunately does not 
-  # have a `.pc` file. To do so, we duplicate the `VIAMCPPSDK_GRPCXX_LIBRARIES` 
-  # value, assume its first element is the base dependency for GRPC, and 
-  # prepend our new list with a new value, equal to that base dependency plus 
+  # We need to set the reflection library, which unfortunately does not
+  # have a `.pc` file. To do so, we duplicate the `VIAMCPPSDK_GRPCXX_LIBRARIES`
+  # value, assume its first element is the base dependency for GRPC, and
+  # prepend our new list with a new value, equal to that base dependency plus
   # the `::grpc++_reflection` suffix for finding the reflection library.
-  list(GET VIAMCPPSDK_GRPCXX_LIBRARIES 0 VIAMCPPSDK_GRPC_ROOT)
+  list(GET VIAMCPPSDK_GRPCXX_LIBRARIES 0 VIAMCPPSDK_GRPCXX_ROOT)
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_LIBRARIES})
-  set(VIAMCPPSDK_GRPC_REFLECTION_LIB ${VIAMCPPSDK_GRPC_ROOT}::grpc++_reflection)
-  list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES VIAMCPPSDK_GRPC_REFLECTION_LIB)
+  set(VIAMCPPSDK_GRPCXX_REFLECTION_LIB ${VIAMCPPSDK_GRPCXX_ROOT}_reflection)
+  list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_REFLECTION_LIB})
 endif()
 
 # Pull in our subdirectories
