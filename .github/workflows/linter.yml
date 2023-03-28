@@ -14,4 +14,4 @@ jobs:
         with:
           fetch-depth: 0
       - name: Run linter
-        run: ./bin/run-clang-format.sh
+        run: sh ./bin/run-clang-format.sh
