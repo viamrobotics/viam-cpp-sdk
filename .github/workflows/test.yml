@@ -42,7 +42,8 @@ jobs:
         run: |
           mkdir build && cd build && cmake .. -G Ninja \
           -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
-          -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share
+          -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          && ninja all && ninja install
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
       ###########################################
