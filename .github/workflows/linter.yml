@@ -17,3 +17,9 @@ jobs:
         run: sudo apt install -y clang-format
       - name: Run linter
         run: sh ./bin/run-clang-format.sh
+      - name: check for uncommitted changes
+        id: changes
+        uses: UnicornGlobal/has-changes-action@v1.0.11
+      - name: process changes
+        if: steps.changes.outputs.changed == 1
+        run: echo "Linter failed with uncommitted changes" && return 1
