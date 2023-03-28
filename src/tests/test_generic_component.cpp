@@ -17,55 +17,54 @@ BOOST_AUTO_TEST_SUITE(generic_suite)
 std::shared_ptr<MockGeneric> generic = MockGeneric::get_mock_generic();
 
 BOOST_AUTO_TEST_CASE(test_do) {
-  AttributeMap expected = fake_map();
+    AttributeMap expected = fake_map();
 
-  AttributeMap command;
-  AttributeMap result_map = generic->do_command(command);
+    AttributeMap command;
+    AttributeMap result_map = generic->do_command(command);
 
-  std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
-  std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
+    std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
+    std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
 
-  BOOST_CHECK(*expected_pt == *result_pt);
+    BOOST_CHECK(*expected_pt == *result_pt);
 }
 
 BOOST_AUTO_TEST_CASE(test_do_service) {
+    MockGenericStub mock = MockGenericStub();
 
-  MockGenericStub mock = MockGenericStub();
+    viam::common::v1::DoCommandRequest req;
+    viam::common::v1::DoCommandResponse resp;
+    grpc::ClientContext ctx;
 
-  viam::common::v1::DoCommandRequest req;
-  viam::common::v1::DoCommandResponse resp;
-  grpc::ClientContext ctx;
+    AttributeMap command = fake_map();
 
-  AttributeMap command = fake_map();
+    *req.mutable_command() = map_to_struct(command);
+    *req.mutable_name() = "generic";
 
-  *req.mutable_command() = map_to_struct(command);
-  *req.mutable_name() = "generic";
+    AttributeMap expected_map = fake_map();
 
-  AttributeMap expected_map = fake_map();
+    grpc::Status status = mock.DoCommand(&ctx, req, &resp);
 
-  grpc::Status status = mock.DoCommand(&ctx, req, &resp);
+    AttributeMap result_map = struct_to_map(resp.result());
 
-  AttributeMap result_map = struct_to_map(resp.result());
+    ProtoType expected_pt = *(expected_map->at(std::string("test")));
+    ProtoType result_pt = *(result_map->at(std::string("test")));
 
-  ProtoType expected_pt = *(expected_map->at(std::string("test")));
-  ProtoType result_pt = *(result_map->at(std::string("test")));
-
-  BOOST_CHECK(expected_pt == result_pt);
+    BOOST_CHECK(expected_pt == result_pt);
 }
 
 BOOST_AUTO_TEST_CASE(test_do_client) {
-  MockGenericClient client = MockGenericClient("generic");
+    MockGenericClient client = MockGenericClient("generic");
 
-  AttributeMap command = fake_map();
+    AttributeMap command = fake_map();
 
-  AttributeMap expected_map = fake_map();
+    AttributeMap expected_map = fake_map();
 
-  AttributeMap result_map = client.do_command(command);
+    AttributeMap result_map = client.do_command(command);
 
-  ProtoType expected_pt = *(expected_map->at(std::string("test")));
-  ProtoType result_pt = *(result_map->at(std::string("test")));
+    ProtoType expected_pt = *(expected_map->at(std::string("test")));
+    ProtoType result_pt = *(result_map->at(std::string("test")));
 
-  BOOST_CHECK(expected_pt == result_pt);
+    BOOST_CHECK(expected_pt == result_pt);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
