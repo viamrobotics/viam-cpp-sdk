@@ -14,10 +14,4 @@ jobs:
         with:
           fetch-depth: 0
       - name: Run linter
-        uses: github/super-linter/slim@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_CPP: true
-          FILTER_REGEX_EXCLUDE: .*src/gen/.*
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./bin/run-clang-format.sh
