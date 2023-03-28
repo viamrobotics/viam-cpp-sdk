@@ -18,8 +18,8 @@ jobs:
       - name: Run linter
         run: sh ./bin/run-clang-format.sh
       - name: check for uncommitted changes
-        id: changes
-        uses: UnicornGlobal/has-changes-action@v1.0.11
+        id: check-changes
+        uses: mskri/check-uncommitted-changes-action@v1.0.1
       - name: process changes
-        if: steps.changes.outputs.changed == 1
+        if: steps.check-changes.outputs.changes != ''
         run: echo "Linter failed with uncommitted changes" && return 1
