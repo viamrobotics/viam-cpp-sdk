@@ -16,6 +16,7 @@ public:
             ::viam::common::v1::DoCommandResponse *response) override;
 
   void register_server() override;
+  std::shared_ptr<SubtypeService> get_sub_svc();
 
   GenericServer(){};
   GenericServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};

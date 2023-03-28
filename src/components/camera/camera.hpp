@@ -16,6 +16,9 @@ class CameraSubtype : public ResourceSubtype {
 public:
   std::shared_ptr<ResourceServerBase>
   create_resource_server(std::shared_ptr<SubtypeService> svc) override;
+  std::shared_ptr<ResourceBase>
+  create_rpc_client(std::string name,
+                    std::shared_ptr<grpc::Channel> chan) override;
   CameraSubtype(const google::protobuf::ServiceDescriptor *service_descriptor)
       : ResourceSubtype(service_descriptor){};
 };
