@@ -16,9 +16,8 @@ std::shared_ptr<ResourceServerBase> CameraSubtype::create_resource_server(
 
 std::shared_ptr<ResourceBase> CameraSubtype::create_rpc_client(
     std::string name, std::shared_ptr<grpc::Channel> chan) {
-    auto        camera_client = std::make_shared<CameraClient>(name, chan);
-    return 
-			camera_client;
+    auto camera_client = std::make_shared<CameraClient>(name, chan);
+    return camera_client;
 };
 
 std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
