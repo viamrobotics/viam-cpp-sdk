@@ -14,6 +14,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: install clang-format
-        run: sudo apt install clang-format
+        run: sudo apt install -y clang-format
       - name: Run linter
         run: sh ./bin/run-clang-format.sh
