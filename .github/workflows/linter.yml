@@ -15,11 +15,16 @@ jobs:
           fetch-depth: 0
       - name: install clang-format
         run: sudo apt install -y clang-format
-      - name: Run linter
-        run: sh ./bin/run-clang-format.sh
-      - name: check for uncommitted changes
-        id: check-changes
-        uses: mskri/check-uncommitted-changes-action@v1.0.1
-      - name: process changes
-        if: steps.check-changes.outputs.changes != ''
-        run: echo "Linter failed with uncommitted changes" && return 1
+      - name: verify no uncommitted changes
+        run: |
+          git init
+          git add .
+          chown -R testbot .
+          sudo -u testbot bash -lc 'sh ./bin/run-clang-format.sh'
+          GEN_DIFF=$(git status -s)
+
+          if [ -n "$GEN_DIFF" ]; then
+              echo 'linting resulted in changes not in git' 1>&2
+              git status
+              exit 1
+          fi
