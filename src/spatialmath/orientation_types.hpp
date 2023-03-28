@@ -5,42 +5,42 @@ namespace Viam {
 namespace SDK {
 
 enum OrientationType {
-  AxisAngles,
-  OrientationVector,
-  OrientationVectorDegrees,
-  EulerAngles,
-  Quaternion,
+    AxisAngles,
+    OrientationVector,
+    OrientationVectorDegrees,
+    EulerAngles,
+    Quaternion,
 };
 
 class axis_angles {
-public:
-  double x, y, z, theta;
+   public:
+    double x, y, z, theta;
 };
 
 class euler_angles {
-public:
-  double yaw, roll, pitch;
+   public:
+    double yaw, roll, pitch;
 };
 
 class orientation_vector {
-public:
-  double x, y, z, theta;
+   public:
+    double x, y, z, theta;
 };
 
 class orientation_vector_degrees {
-public:
-  double x, y, z, theta;
+   public:
+    double x, y, z, theta;
 };
 
 class quaternion {
-public:
-  double x, y, z, w;
+   public:
+    double x, y, z, w;
 };
 
 class translation {
-public:
-  double x, y, z;
-  viam::app::v1::Translation to_proto();
+   public:
+    double x, y, z;
+    viam::app::v1::Translation to_proto();
 };
-} // namespace SDK
-} // namespace Viam
+}  // namespace SDK
+}  // namespace Viam

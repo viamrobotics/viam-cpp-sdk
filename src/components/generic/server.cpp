@@ -2,38 +2,37 @@
 #include <components/generic/server.hpp>
 #include <rpc/server.hpp>
 
-::grpc::Status
-GenericServer::DoCommand(::grpc::ServerContext *context,
-                         const ::viam::common::v1::DoCommandRequest *request,
-                         ::viam::common::v1::DoCommandResponse *response) {
-  if (request == nullptr) {
-    return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                          "Called [DoCommand] without a request");
-  };
+::grpc::Status GenericServer::DoCommand(::grpc::ServerContext* context,
+                                        const ::viam::common::v1::DoCommandRequest* request,
+                                        ::viam::common::v1::DoCommandResponse* response) {
+    if (request == nullptr) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [DoCommand] without a request");
+    };
 
-  std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-  if (rb == nullptr) {
-    return grpc::Status(grpc::UNKNOWN,
-                        "resource not found: " + request->name());
-  }
+    std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
+    if (rb == nullptr) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
 
-  std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
-  AttributeMap result = generic->do_command(struct_to_map(request->command()));
+    std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
+    AttributeMap result = generic->do_command(struct_to_map(request->command()));
 
-  *response->mutable_result() = map_to_struct(result);
+    *response->mutable_result() = map_to_struct(result);
 
-  return ::grpc::Status();
+    return ::grpc::Status();
 }
 
 void GenericServer::register_server() {
-  viam::component::generic::v1::GenericService::Service *generic =
-      static_cast<viam::component::generic::v1::GenericService::Service *>(
-          this);
-  try {
-    Server::register_service(generic);
-  } catch (std::exception &exc) {
-    throw exc;
-  }
+    viam::component::generic::v1::GenericService::Service* generic =
+        static_cast<viam::component::generic::v1::GenericService::Service*>(this);
+    try {
+        Server::register_service(generic);
+    } catch (std::exception& exc) {
+        throw exc;
+    }
 }
 
-std::shared_ptr<SubtypeService> GenericServer::get_sub_svc() { return sub_svc; }
+std::shared_ptr<SubtypeService> GenericServer::get_sub_svc() {
+    return sub_svc;
+}
