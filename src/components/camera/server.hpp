@@ -34,7 +34,11 @@ public:
 
   void register_server() override;
 
+  std::shared_ptr<SubtypeService> get_sub_svc();
+
   CameraServer(){};
   CameraServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
+
+private:
   std::shared_ptr<SubtypeService> sub_svc;
 };

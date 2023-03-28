@@ -141,3 +141,5 @@ void CameraServer::register_server() {
       static_cast<viam::component::camera::v1::CameraService::Service *>(this);
   Server::register_service(camera);
 }
+
+std::shared_ptr<SubtypeService> CameraServer::get_sub_svc() { return sub_svc; }
