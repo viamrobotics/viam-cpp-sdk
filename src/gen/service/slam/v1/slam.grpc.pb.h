@@ -40,7 +40,7 @@ class SLAMService final {
    public:
     virtual ~StubInterface() {}
     // GetPosition returns the current estimated position of the robot with
-    // respect to the "origin" of the map.
+    // respect to a returned component reference.
     virtual ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::viam::service::slam::v1::GetPositionResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
@@ -48,13 +48,27 @@ class SLAMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
     }
-    // GetMap returns the latest map image or point cloud
-    virtual ::grpc::Status GetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::viam::service::slam::v1::GetMapResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetMapResponse>> AsyncGetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetMapResponse>>(AsyncGetMapRaw(context, request, cq));
+    // GetPointCloudMap returns the latest point cloud map available
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>> GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>>(GetPointCloudMapRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetMapResponse>> PrepareAsyncGetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetMapResponse>>(PrepareAsyncGetMapRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>> AsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>>(AsyncGetPointCloudMapRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>> PrepareAsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>>(PrepareAsyncGetPointCloudMapRaw(context, request, cq));
+    }
+    // GetInternalState returns the internal map as defined by the specified slam
+    // algorithm required to continue mapping/localizing.
+    // This endpoint is not intended for end users.
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>> GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>>(GetInternalStateRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>> AsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>>(AsyncGetInternalStateRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>> PrepareAsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>>(PrepareAsyncGetInternalStateRaw(context, request, cq));
     }
     // GetPositionNew returns the current estimated position of the robot with
     // respect to a returned component reference. Note: this function will be
@@ -65,24 +79,6 @@ class SLAMService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionNewResponse>> PrepareAsyncGetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionNewResponse>>(PrepareAsyncGetPositionNewRaw(context, request, cq));
-    }
-    // GetPointCloudMap returns the latest point cloud map
-    virtual ::grpc::Status GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::viam::service::slam::v1::GetPointCloudMapResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>> AsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>>(AsyncGetPointCloudMapRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>> PrepareAsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>>(PrepareAsyncGetPointCloudMapRaw(context, request, cq));
-    }
-    // GetInternalState returns the internal map as defined by the specified slam
-    // algorithm required to continue mapping/localizing. This endpoint is not
-    // intended for end user usage
-    virtual ::grpc::Status GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::viam::service::slam::v1::GetInternalStateResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>> AsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>>(AsyncGetInternalStateRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>> PrepareAsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>>(PrepareAsyncGetInternalStateRaw(context, request, cq));
     }
     // TODO (RSDK-1066): This will soon be renamed to GetPointCloudMap
     // GetPointCloudMapStream returns the latest point cloud map available
@@ -120,25 +116,20 @@ class SLAMService final {
      public:
       virtual ~async_interface() {}
       // GetPosition returns the current estimated position of the robot with
-      // respect to the "origin" of the map.
+      // respect to a returned component reference.
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetMap returns the latest map image or point cloud
-      virtual void GetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetPointCloudMap returns the latest point cloud map available
+      virtual void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) = 0;
+      // GetInternalState returns the internal map as defined by the specified slam
+      // algorithm required to continue mapping/localizing.
+      // This endpoint is not intended for end users.
+      virtual void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) = 0;
       // GetPositionNew returns the current estimated position of the robot with
       // respect to a returned component reference. Note: this function will be
       // renamed to GetPosition and replace the existing one in the near future
       virtual void GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetPointCloudMap returns the latest point cloud map
-      virtual void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetInternalState returns the internal map as defined by the specified slam
-      // algorithm required to continue mapping/localizing. This endpoint is not
-      // intended for end user usage
-      virtual void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // TODO (RSDK-1066): This will soon be renamed to GetPointCloudMap
       // GetPointCloudMapStream returns the latest point cloud map available
       virtual void GetPointCloudMapStream(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* reactor) = 0;
@@ -157,14 +148,14 @@ class SLAMService final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetMapResponse>* AsyncGetMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetMapResponse>* PrepareAsyncGetMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>* AsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>* PrepareAsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>* GetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>* AsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>* PrepareAsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionNewResponse>* AsyncGetPositionNewRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionNewResponse>* PrepareAsyncGetPositionNewRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>* AsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>* PrepareAsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>* AsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>* PrepareAsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* GetPointCloudMapStreamRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* AsyncGetPointCloudMapStreamRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* PrepareAsyncGetPointCloudMapStreamRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -184,12 +175,23 @@ class SLAMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
     }
-    ::grpc::Status GetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::viam::service::slam::v1::GetMapResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetMapResponse>> AsyncGetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetMapResponse>>(AsyncGetMapRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapResponse>> GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapResponse>>(GetPointCloudMapRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetMapResponse>> PrepareAsyncGetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetMapResponse>>(PrepareAsyncGetMapRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapResponse>> AsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapResponse>>(AsyncGetPointCloudMapRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapResponse>> PrepareAsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapResponse>>(PrepareAsyncGetPointCloudMapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReader< ::viam::service::slam::v1::GetInternalStateResponse>> GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::viam::service::slam::v1::GetInternalStateResponse>>(GetInternalStateRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetInternalStateResponse>> AsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetInternalStateResponse>>(AsyncGetInternalStateRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetInternalStateResponse>> PrepareAsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetInternalStateResponse>>(PrepareAsyncGetInternalStateRaw(context, request, cq));
     }
     ::grpc::Status GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::viam::service::slam::v1::GetPositionNewResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>> AsyncGetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) {
@@ -197,20 +199,6 @@ class SLAMService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>> PrepareAsyncGetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>>(PrepareAsyncGetPositionNewRaw(context, request, cq));
-    }
-    ::grpc::Status GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::viam::service::slam::v1::GetPointCloudMapResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>> AsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>>(AsyncGetPointCloudMapRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>> PrepareAsyncGetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>>(PrepareAsyncGetPointCloudMapRaw(context, request, cq));
-    }
-    ::grpc::Status GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::viam::service::slam::v1::GetInternalStateResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>> AsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>>(AsyncGetInternalStateRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>> PrepareAsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>>(PrepareAsyncGetInternalStateRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>> GetPointCloudMapStream(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request) {
       return std::unique_ptr< ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>>(GetPointCloudMapStreamRaw(context, request));
@@ -242,14 +230,10 @@ class SLAMService final {
      public:
       void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
       void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) override;
+      void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) override;
       void GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response, std::function<void(::grpc::Status)>) override;
       void GetPositionNew(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPointCloudMapStream(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* reactor) override;
       void GetInternalStateStream(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateStreamRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateStreamResponse>* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
@@ -267,14 +251,14 @@ class SLAMService final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetMapResponse>* AsyncGetMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetMapResponse>* PrepareAsyncGetMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetMapRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) override;
+    ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* AsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* PrepareAsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::viam::service::slam::v1::GetInternalStateResponse>* GetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request) override;
+    ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetInternalStateResponse>* AsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetInternalStateResponse>* PrepareAsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>* AsyncGetPositionNewRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPositionNewResponse>* PrepareAsyncGetPositionNewRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionNewRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* AsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetPointCloudMapResponse>* PrepareAsyncGetPointCloudMapRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>* AsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::slam::v1::GetInternalStateResponse>* PrepareAsyncGetInternalStateRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReader< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* GetPointCloudMapStreamRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request) override;
     ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* AsyncGetPointCloudMapStreamRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* PrepareAsyncGetPointCloudMapStreamRaw(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -284,10 +268,9 @@ class SLAMService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetPosition_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetMap_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetPositionNew_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPointCloudMap_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInternalState_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetPositionNew_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPointCloudMapStream_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInternalStateStream_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
@@ -299,20 +282,18 @@ class SLAMService final {
     Service();
     virtual ~Service();
     // GetPosition returns the current estimated position of the robot with
-    // respect to the "origin" of the map.
+    // respect to a returned component reference.
     virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response);
-    // GetMap returns the latest map image or point cloud
-    virtual ::grpc::Status GetMap(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response);
+    // GetPointCloudMap returns the latest point cloud map available
+    virtual ::grpc::Status GetPointCloudMap(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* writer);
+    // GetInternalState returns the internal map as defined by the specified slam
+    // algorithm required to continue mapping/localizing.
+    // This endpoint is not intended for end users.
+    virtual ::grpc::Status GetInternalState(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* writer);
     // GetPositionNew returns the current estimated position of the robot with
     // respect to a returned component reference. Note: this function will be
     // renamed to GetPosition and replace the existing one in the near future
     virtual ::grpc::Status GetPositionNew(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response);
-    // GetPointCloudMap returns the latest point cloud map
-    virtual ::grpc::Status GetPointCloudMap(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response);
-    // GetInternalState returns the internal map as defined by the specified slam
-    // algorithm required to continue mapping/localizing. This endpoint is not
-    // intended for end user usage
-    virtual ::grpc::Status GetInternalState(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response);
     // TODO (RSDK-1066): This will soon be renamed to GetPointCloudMap
     // GetPointCloudMapStream returns the latest point cloud map available
     virtual ::grpc::Status GetPointCloudMapStream(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest* request, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* writer);
@@ -345,23 +326,43 @@ class SLAMService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetMap : public BaseClass {
+  class WithAsyncMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetMap() {
+    WithAsyncMethod_GetPointCloudMap() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_GetMap() override {
+    ~WithAsyncMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/) override {
+    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetMap(::grpc::ServerContext* context, ::viam::service::slam::v1::GetMapRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::slam::v1::GetMapResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestGetPointCloudMap(::grpc::ServerContext* context, ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ServerAsyncWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetInternalState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetInternalState() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_GetInternalState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetInternalState(::grpc::ServerContext* context, ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ServerAsyncWriter< ::viam::service::slam::v1::GetInternalStateResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(2, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -370,7 +371,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPositionNew() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetPositionNew() override {
       BaseClassMustBeDerivedFromService(this);
@@ -381,47 +382,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPositionNew(::grpc::ServerContext* context, ::viam::service::slam::v1::GetPositionNewRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::slam::v1::GetPositionNewResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetPointCloudMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_GetPointCloudMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetPointCloudMap(::grpc::ServerContext* context, ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetInternalState : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodAsync(4);
-    }
-    ~WithAsyncMethod_GetInternalState() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetInternalState(::grpc::ServerContext* context, ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::slam::v1::GetInternalStateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -430,7 +391,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPointCloudMapStream() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_GetPointCloudMapStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -441,7 +402,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPointCloudMapStream(::grpc::ServerContext* context, ::viam::service::slam::v1::GetPointCloudMapStreamRequest* request, ::grpc::ServerAsyncWriter< ::viam::service::slam::v1::GetPointCloudMapStreamResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(5, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(4, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -450,7 +411,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetInternalStateStream() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_GetInternalStateStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -461,7 +422,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInternalStateStream(::grpc::ServerContext* context, ::viam::service::slam::v1::GetInternalStateStreamRequest* request, ::grpc::ServerAsyncWriter< ::viam::service::slam::v1::GetInternalStateStreamResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(6, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(5, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -470,7 +431,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -481,10 +442,10 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetPosition<WithAsyncMethod_GetMap<WithAsyncMethod_GetPositionNew<WithAsyncMethod_GetPointCloudMap<WithAsyncMethod_GetInternalState<WithAsyncMethod_GetPointCloudMapStream<WithAsyncMethod_GetInternalStateStream<WithAsyncMethod_DoCommand<Service > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetPosition<WithAsyncMethod_GetPointCloudMap<WithAsyncMethod_GetInternalState<WithAsyncMethod_GetPositionNew<WithAsyncMethod_GetPointCloudMapStream<WithAsyncMethod_GetInternalStateStream<WithAsyncMethod_DoCommand<Service > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetPosition : public BaseClass {
    private:
@@ -513,31 +474,48 @@ class SLAMService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPositionRequest* /*request*/, ::viam::service::slam::v1::GetPositionResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetMap : public BaseClass {
+  class WithCallbackMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetMap() {
+    WithCallbackMethod_GetPointCloudMap() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetMapRequest, ::viam::service::slam::v1::GetMapResponse>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetMapRequest* request, ::viam::service::slam::v1::GetMapResponse* response) { return this->GetMap(context, request, response); }));}
-    void SetMessageAllocatorFor_GetMap(
-        ::grpc::MessageAllocator< ::viam::service::slam::v1::GetMapRequest, ::viam::service::slam::v1::GetMapResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetMapRequest, ::viam::service::slam::v1::GetMapResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
+                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request) { return this->GetPointCloudMap(context, request); }));
     }
-    ~WithCallbackMethod_GetMap() override {
+    ~WithCallbackMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/) override {
+    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerWriteReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* GetPointCloudMap(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetInternalState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetInternalState() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request) { return this->GetInternalState(context, request); }));
+    }
+    ~WithCallbackMethod_GetInternalState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::viam::service::slam::v1::GetInternalStateResponse>* GetInternalState(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetPositionNew : public BaseClass {
@@ -545,13 +523,13 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPositionNew() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPositionNewRequest* request, ::viam::service::slam::v1::GetPositionNewResponse* response) { return this->GetPositionNew(context, request, response); }));}
     void SetMessageAllocatorFor_GetPositionNew(
         ::grpc::MessageAllocator< ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -567,66 +545,12 @@ class SLAMService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPositionNewRequest* /*request*/, ::viam::service::slam::v1::GetPositionNewResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetPointCloudMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::viam::service::slam::v1::GetPointCloudMapResponse* response) { return this->GetPointCloudMap(context, request, response); }));}
-    void SetMessageAllocatorFor_GetPointCloudMap(
-        ::grpc::MessageAllocator< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetPointCloudMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetPointCloudMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetInternalState : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::viam::service::slam::v1::GetInternalStateResponse* response) { return this->GetInternalState(context, request, response); }));}
-    void SetMessageAllocatorFor_GetInternalState(
-        ::grpc::MessageAllocator< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetInternalState() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetInternalState(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithCallbackMethod_GetPointCloudMapStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPointCloudMapStream() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(4,
           new ::grpc::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetPointCloudMapStreamRequest, ::viam::service::slam::v1::GetPointCloudMapStreamResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapStreamRequest* request) { return this->GetPointCloudMapStream(context, request); }));
@@ -648,7 +572,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetInternalStateStream() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackServerStreamingHandler< ::viam::service::slam::v1::GetInternalStateStreamRequest, ::viam::service::slam::v1::GetInternalStateStreamResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::slam::v1::GetInternalStateStreamRequest* request) { return this->GetInternalStateStream(context, request); }));
@@ -670,13 +594,13 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -691,7 +615,7 @@ class SLAMService final {
     virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetPosition<WithCallbackMethod_GetMap<WithCallbackMethod_GetPositionNew<WithCallbackMethod_GetPointCloudMap<WithCallbackMethod_GetInternalState<WithCallbackMethod_GetPointCloudMapStream<WithCallbackMethod_GetInternalStateStream<WithCallbackMethod_DoCommand<Service > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetPosition<WithCallbackMethod_GetPointCloudMap<WithCallbackMethod_GetInternalState<WithCallbackMethod_GetPositionNew<WithCallbackMethod_GetPointCloudMapStream<WithCallbackMethod_GetInternalStateStream<WithCallbackMethod_DoCommand<Service > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetPosition : public BaseClass {
@@ -711,18 +635,35 @@ class SLAMService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetMap : public BaseClass {
+  class WithGenericMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetMap() {
+    WithGenericMethod_GetPointCloudMap() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_GetMap() override {
+    ~WithGenericMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/) override {
+    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetInternalState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetInternalState() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_GetInternalState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -733,7 +674,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPositionNew() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetPositionNew() override {
       BaseClassMustBeDerivedFromService(this);
@@ -745,46 +686,12 @@ class SLAMService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetPointCloudMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_GetPointCloudMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetInternalState : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodGeneric(4);
-    }
-    ~WithGenericMethod_GetInternalState() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_GetPointCloudMapStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPointCloudMapStream() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_GetPointCloudMapStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -801,7 +708,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetInternalStateStream() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_GetInternalStateStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -818,7 +725,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -850,23 +757,43 @@ class SLAMService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetMap : public BaseClass {
+  class WithRawMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetMap() {
+    WithRawMethod_GetPointCloudMap() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_GetMap() override {
+    ~WithRawMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/) override {
+    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetMap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestGetPointCloudMap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetInternalState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetInternalState() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_GetInternalState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetInternalState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(2, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -875,7 +802,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPositionNew() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetPositionNew() override {
       BaseClassMustBeDerivedFromService(this);
@@ -886,47 +813,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPositionNew(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetPointCloudMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_GetPointCloudMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetPointCloudMap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetInternalState : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodRaw(4);
-    }
-    ~WithRawMethod_GetInternalState() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetInternalState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -935,7 +822,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPointCloudMapStream() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_GetPointCloudMapStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -946,7 +833,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPointCloudMapStream(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(5, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(4, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -955,7 +842,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetInternalStateStream() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_GetInternalStateStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -966,7 +853,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetInternalStateStream(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(6, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(5, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -975,7 +862,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -986,7 +873,7 @@ class SLAMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1012,26 +899,48 @@ class SLAMService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetMap : public BaseClass {
+  class WithRawCallbackMethod_GetPointCloudMap : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetMap() {
+    WithRawCallbackMethod_GetPointCloudMap() {
       ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMap(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetPointCloudMap(context, request); }));
     }
-    ~WithRawCallbackMethod_GetMap() override {
+    ~WithRawCallbackMethod_GetPointCloudMap() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/) override {
+    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetPointCloudMap(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetInternalState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetInternalState() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetInternalState(context, request); }));
+    }
+    ~WithRawCallbackMethod_GetInternalState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetInternalState(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_GetPositionNew : public BaseClass {
@@ -1039,7 +948,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPositionNew() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPositionNew(context, request, response); }));
@@ -1056,56 +965,12 @@ class SLAMService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPointCloudMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPointCloudMap(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetPointCloudMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetPointCloudMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetInternalState : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetInternalState(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetInternalState() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetInternalState(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_GetPointCloudMapStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPointCloudMapStream() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetPointCloudMapStream(context, request); }));
@@ -1127,7 +992,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetInternalStateStream() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetInternalStateStream(context, request); }));
@@ -1149,7 +1014,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1193,39 +1058,12 @@ class SLAMService final {
     virtual ::grpc::Status StreamedGetPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::slam::v1::GetPositionRequest,::viam::service::slam::v1::GetPositionResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetMap() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::slam::v1::GetMapRequest, ::viam::service::slam::v1::GetMapResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::slam::v1::GetMapRequest, ::viam::service::slam::v1::GetMapResponse>* streamer) {
-                       return this->StreamedGetMap(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetMapRequest* /*request*/, ::viam::service::slam::v1::GetMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetMap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::slam::v1::GetMapRequest,::viam::service::slam::v1::GetMapResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetPositionNew : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPositionNew() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::slam::v1::GetPositionNewRequest, ::viam::service::slam::v1::GetPositionNewResponse>(
             [this](::grpc::ServerContext* context,
@@ -1247,66 +1085,12 @@ class SLAMService final {
     virtual ::grpc::Status StreamedGetPositionNew(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::slam::v1::GetPositionNewRequest,::viam::service::slam::v1::GetPositionNewResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetPointCloudMap : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetPointCloudMap() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>* streamer) {
-                       return this->StreamedGetPointCloudMap(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetPointCloudMap() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::viam::service::slam::v1::GetPointCloudMapResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetPointCloudMap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::slam::v1::GetPointCloudMapRequest,::viam::service::slam::v1::GetPointCloudMapResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetInternalState : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetInternalState() {
-      ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>* streamer) {
-                       return this->StreamedGetInternalState(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetInternalState() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::viam::service::slam::v1::GetInternalStateResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetInternalState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::slam::v1::GetInternalStateRequest,::viam::service::slam::v1::GetInternalStateResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1327,14 +1111,68 @@ class SLAMService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetMap<WithStreamedUnaryMethod_GetPositionNew<WithStreamedUnaryMethod_GetPointCloudMap<WithStreamedUnaryMethod_GetInternalState<WithStreamedUnaryMethod_DoCommand<Service > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetPositionNew<WithStreamedUnaryMethod_DoCommand<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithSplitStreamingMethod_GetPointCloudMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_GetPointCloudMap() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::viam::service::slam::v1::GetPointCloudMapRequest, ::viam::service::slam::v1::GetPointCloudMapResponse>* streamer) {
+                       return this->StreamedGetPointCloudMap(context,
+                         streamer);
+                  }));
+    }
+    ~WithSplitStreamingMethod_GetPointCloudMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetPointCloudMap(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetPointCloudMapRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedGetPointCloudMap(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::service::slam::v1::GetPointCloudMapRequest,::viam::service::slam::v1::GetPointCloudMapResponse>* server_split_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithSplitStreamingMethod_GetInternalState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_GetInternalState() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::viam::service::slam::v1::GetInternalStateRequest, ::viam::service::slam::v1::GetInternalStateResponse>* streamer) {
+                       return this->StreamedGetInternalState(context,
+                         streamer);
+                  }));
+    }
+    ~WithSplitStreamingMethod_GetInternalState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetInternalState(::grpc::ServerContext* /*context*/, const ::viam::service::slam::v1::GetInternalStateRequest* /*request*/, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedGetInternalState(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::service::slam::v1::GetInternalStateRequest,::viam::service::slam::v1::GetInternalStateResponse>* server_split_streamer) = 0;
+  };
   template <class BaseClass>
   class WithSplitStreamingMethod_GetPointCloudMapStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_GetPointCloudMapStream() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::service::slam::v1::GetPointCloudMapStreamRequest, ::viam::service::slam::v1::GetPointCloudMapStreamResponse>(
             [this](::grpc::ServerContext* context,
@@ -1361,7 +1199,7 @@ class SLAMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_GetInternalStateStream() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::service::slam::v1::GetInternalStateStreamRequest, ::viam::service::slam::v1::GetInternalStateStreamResponse>(
             [this](::grpc::ServerContext* context,
@@ -1382,8 +1220,8 @@ class SLAMService final {
     // replace default version of method with split streamed
     virtual ::grpc::Status StreamedGetInternalStateStream(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::service::slam::v1::GetInternalStateStreamRequest,::viam::service::slam::v1::GetInternalStateStreamResponse>* server_split_streamer) = 0;
   };
-  typedef WithSplitStreamingMethod_GetPointCloudMapStream<WithSplitStreamingMethod_GetInternalStateStream<Service > > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_GetMap<WithStreamedUnaryMethod_GetPositionNew<WithStreamedUnaryMethod_GetPointCloudMap<WithStreamedUnaryMethod_GetInternalState<WithSplitStreamingMethod_GetPointCloudMapStream<WithSplitStreamingMethod_GetInternalStateStream<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > StreamedService;
+  typedef WithSplitStreamingMethod_GetPointCloudMap<WithSplitStreamingMethod_GetInternalState<WithSplitStreamingMethod_GetPointCloudMapStream<WithSplitStreamingMethod_GetInternalStateStream<Service > > > > SplitStreamedService;
+  typedef WithStreamedUnaryMethod_GetPosition<WithSplitStreamingMethod_GetPointCloudMap<WithSplitStreamingMethod_GetInternalState<WithStreamedUnaryMethod_GetPositionNew<WithSplitStreamingMethod_GetPointCloudMapStream<WithSplitStreamingMethod_GetInternalStateStream<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > StreamedService;
 };
 
 }  // namespace v1

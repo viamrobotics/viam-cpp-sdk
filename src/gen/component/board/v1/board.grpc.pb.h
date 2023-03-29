@@ -582,7 +582,27 @@ class BoardService final {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Status<WithAsyncMethod_SetGPIO<WithAsyncMethod_GetGPIO<WithAsyncMethod_PWM<WithAsyncMethod_SetPWM<WithAsyncMethod_PWMFrequency<WithAsyncMethod_SetPWMFrequency<WithAsyncMethod_ReadAnalogReader<WithAsyncMethod_GetDigitalInterruptValue<Service > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SetPowerMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetPowerMode() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_SetPowerMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPowerMode(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPowerMode(::grpc::ServerContext* context, ::viam::component::board::v1::SetPowerModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::board::v1::SetPowerModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Status<WithAsyncMethod_SetGPIO<WithAsyncMethod_GetGPIO<WithAsyncMethod_PWM<WithAsyncMethod_SetPWM<WithAsyncMethod_PWMFrequency<WithAsyncMethod_SetPWMFrequency<WithAsyncMethod_DoCommand<WithAsyncMethod_ReadAnalogReader<WithAsyncMethod_GetDigitalInterruptValue<WithAsyncMethod_SetPowerMode<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Status : public BaseClass {
    private:
@@ -853,7 +873,34 @@ class BoardService final {
     virtual ::grpc::ServerUnaryReactor* GetDigitalInterruptValue(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* /*request*/, ::viam::component::board::v1::GetDigitalInterruptValueResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Status<WithCallbackMethod_SetGPIO<WithCallbackMethod_GetGPIO<WithCallbackMethod_PWM<WithCallbackMethod_SetPWM<WithCallbackMethod_PWMFrequency<WithCallbackMethod_SetPWMFrequency<WithCallbackMethod_ReadAnalogReader<WithCallbackMethod_GetDigitalInterruptValue<Service > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SetPowerMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetPowerMode() {
+      ::grpc::Service::MarkMethodCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response) { return this->SetPowerMode(context, request, response); }));}
+    void SetMessageAllocatorFor_SetPowerMode(
+        ::grpc::MessageAllocator< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetPowerMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPowerMode(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPowerMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Status<WithCallbackMethod_SetGPIO<WithCallbackMethod_GetGPIO<WithCallbackMethod_PWM<WithCallbackMethod_SetPWM<WithCallbackMethod_PWMFrequency<WithCallbackMethod_SetPWMFrequency<WithCallbackMethod_DoCommand<WithCallbackMethod_ReadAnalogReader<WithCallbackMethod_GetDigitalInterruptValue<WithCallbackMethod_SetPowerMode<Service > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Status : public BaseClass {
@@ -1239,7 +1286,27 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDigitalInterruptValue(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetPowerMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetPowerMode() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_SetPowerMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPowerMode(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPowerMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1754,9 +1821,36 @@ class BoardService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetDigitalInterruptValue(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::board::v1::GetDigitalInterruptValueRequest,::viam::component::board::v1::GetDigitalInterruptValueResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_GetDigitalInterruptValue<Service > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetPowerMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetPowerMode() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>* streamer) {
+                       return this->StreamedSetPowerMode(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetPowerMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetPowerMode(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::SetPowerModeRequest* /*request*/, ::viam::component::board::v1::SetPowerModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetPowerMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::board::v1::SetPowerModeRequest,::viam::component::board::v1::SetPowerModeResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_GetDigitalInterruptValue<WithStreamedUnaryMethod_SetPowerMode<Service > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_GetDigitalInterruptValue<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_GetDigitalInterruptValue<WithStreamedUnaryMethod_SetPowerMode<Service > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
