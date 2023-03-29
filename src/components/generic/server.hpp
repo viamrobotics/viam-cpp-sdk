@@ -16,7 +16,7 @@ class GenericServer : public ResourceServerBase,
     void register_server() override;
     std::shared_ptr<SubtypeService> get_sub_svc();
 
-    GenericServer(){};
+    GenericServer() : sub_svc(std::make_shared<SubtypeService>()){};
     GenericServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
 
    private:

@@ -15,7 +15,7 @@
 #include <utility>
 #include <vector>
 
-BOOST_AUTO_TEST_SUITE(camera_suite)
+BOOST_AUTO_TEST_SUITE(test_camera)
 
 std::shared_ptr<MockCamera> camera = MockCamera::get_mock_camera();
 
@@ -55,18 +55,22 @@ BOOST_AUTO_TEST_CASE(test_do) {
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_camera_service)
-
-MockCameraStub mock = MockCameraStub();
+std::shared_ptr<CameraServer> get_camera_server() {
+    auto server = std::make_shared<CameraServer>();
+    server->get_sub_svc()->add(std::string("camera"), MockCamera::get_mock_camera());
+    return server;
+}
 
 BOOST_AUTO_TEST_CASE(test_get_image_service) {
-    grpc::ClientContext ctx;
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
     viam::component::camera::v1::GetImageRequest req;
     viam::component::camera::v1::GetImageResponse resp;
 
     *req.mutable_name() = "camera";
     *req.mutable_mime_type() = "JPEG";
 
-    grpc::Status status = mock.GetImage(&ctx, req, &resp);
+    grpc::Status status = server->GetImage(&ctx, &req, &resp);
     BOOST_CHECK(status.error_code() == 0);
 
     Camera::raw_image image = fake_raw_image();
@@ -77,14 +81,15 @@ BOOST_AUTO_TEST_CASE(test_get_image_service) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_point_cloud_service) {
-    grpc::ClientContext ctx;
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
     viam::component::camera::v1::GetPointCloudRequest req;
     viam::component::camera::v1::GetPointCloudResponse resp;
 
     *req.mutable_name() = "camera";
     *req.mutable_mime_type() = "pointcloud/pcd";
 
-    grpc::Status status = mock.GetPointCloud(&ctx, req, &resp);
+    grpc::Status status = server->GetPointCloud(&ctx, &req, &resp);
     BOOST_CHECK(status.error_code() == 0);
 
     Camera::point_cloud expected_pc = fake_point_cloud();
@@ -95,7 +100,8 @@ BOOST_AUTO_TEST_CASE(test_get_point_cloud_service) {
 }
 
 BOOST_AUTO_TEST_CASE(test_render_frame_service) {
-    grpc::ClientContext ctx;
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
     viam::component::camera::v1::RenderFrameRequest req;
     ::google::api::HttpBody resp;
 
@@ -103,7 +109,7 @@ BOOST_AUTO_TEST_CASE(test_render_frame_service) {
 
     *req.mutable_name() = "camera";
     *req.mutable_mime_type() = "JPEG";
-    grpc::Status status = mock.RenderFrame(&ctx, req, &resp);
+    grpc::Status status = server->RenderFrame(&ctx, &req, &resp);
 
     BOOST_CHECK(status.error_code() == 0);
 
@@ -114,11 +120,12 @@ BOOST_AUTO_TEST_CASE(test_render_frame_service) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_properties_service) {
-    grpc::ClientContext ctx;
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
     viam::component::camera::v1::GetPropertiesRequest req;
     viam::component::camera::v1::GetPropertiesResponse resp;
     *req.mutable_name() = "camera";
-    grpc::Status status = mock.GetProperties(&ctx, req, &resp);
+    grpc::Status status = server->GetProperties(&ctx, &req, &resp);
 
     BOOST_CHECK(status.error_code() == 0);
 
@@ -130,22 +137,18 @@ BOOST_AUTO_TEST_CASE(test_get_properties_service) {
 }
 
 BOOST_AUTO_TEST_CASE(test_do_service) {
-    grpc::ClientContext ctx;
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
 
-    AttributeMap command = fake_map();
-    *req.mutable_command() = map_to_struct(command);
-
     *req.mutable_name() = "camera";
+    grpc::Status status = server->DoCommand(&ctx, &req, &resp);
 
+    AttributeMap result_map = struct_to_map(resp.result());
     AttributeMap expected_map = fake_map();
 
-    grpc::Status status = mock.DoCommand(&ctx, req, &resp);
-    AttributeMap result_map = struct_to_map(resp.result());
-
     std::shared_ptr<ProtoType> expected_pt = expected_map->at(std::string("test"));
-
     std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
 
     BOOST_CHECK(*expected_pt == *result_pt);
@@ -179,9 +182,7 @@ BOOST_AUTO_TEST_CASE(test_get_properties_client) {
 
 BOOST_AUTO_TEST_CASE(test_do_client) {
     AttributeMap command = fake_map();
-
     AttributeMap expected_map = fake_map();
-
     AttributeMap result_map = client.do_command(command);
 
     ProtoType expected_pt = *(expected_map->at(std::string("test")));
@@ -190,3 +191,4 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     BOOST_CHECK(expected_pt == result_pt);
 }
 BOOST_AUTO_TEST_SUITE_END()
+
