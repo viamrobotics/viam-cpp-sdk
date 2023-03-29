@@ -32,9 +32,6 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: arduino/setup-protoc@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
       ###########################################
       #              build the sdk!             #
       ###########################################
