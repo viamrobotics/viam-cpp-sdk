@@ -32,9 +32,8 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: eWaterCycle/setup-grpc@v5
-        with:
-          grpc-version: 1.51.1
+      -name: hacky-move-protobuf
+      run: mv .vcpkg/installed/x64-linux/tools/protobuf/protoc-3.21.12.0 .vcpkg/installed/x64-linux/tools/protobuf/protoc-3.21.12
       ###########################################
       #              build the sdk!             #
       ###########################################
