@@ -18,7 +18,7 @@ jobs:
           git clone https://github.com/Microsoft/vcpkg.git \
           && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
           && ./vcpkg install grpc \
-          && ./vcpkg install upb
+          && ./vcpkg install upb \
           && ./vcpkg install protobuf
       - name: setup-openssl
         run: sudo apt-get install libssl-dev
