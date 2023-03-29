@@ -19,6 +19,7 @@ jobs:
           && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
           && ./vcpkg install grpc \
           && ./vcpkg install upb
+          && ./vcpkg install protobuf
       - name: setup-openssl
         run: sudo apt-get install libssl-dev
       - uses: MarkusJx/install-boost@v2.4.4
