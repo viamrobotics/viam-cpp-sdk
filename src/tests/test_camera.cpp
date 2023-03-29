@@ -191,4 +191,3 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     BOOST_CHECK(expected_pt == result_pt);
 }
 BOOST_AUTO_TEST_SUITE_END()
-
