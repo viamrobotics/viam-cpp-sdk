@@ -1,9 +1,9 @@
+#include <components/camera/camera.hpp>
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
 #include <google/protobuf/descriptor.h>
 
 #include <common/utils.hpp>
-#include <components/camera/camera.hpp>
 #include <components/camera/client.hpp>
 #include <components/camera/server.hpp>
 #include <registry/registry.hpp>
@@ -29,6 +29,8 @@ std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
     }
     return std::make_shared<CameraSubtype>(sd);
 }
+
+const std::string Camera::lazy_suffix = "+lazy";
 
 Subtype Camera::subtype() {
     return Subtype(RDK, COMPONENT, "camera");

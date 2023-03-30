@@ -12,4 +12,5 @@ MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 SpaceBeforeAssignmentOperators: true
 Standard: Cpp11
+SortIncludes: false
 UseTab: Never
