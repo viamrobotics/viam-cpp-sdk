@@ -65,6 +65,12 @@ extern CppSettingsDefaultTypeInternal _CppSettings_default_instance_;
 class DotnetSettings;
 struct DotnetSettingsDefaultTypeInternal;
 extern DotnetSettingsDefaultTypeInternal _DotnetSettings_default_instance_;
+class DotnetSettings_RenamedResourcesEntry_DoNotUse;
+struct DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal;
+extern DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedResourcesEntry_DoNotUse_default_instance_;
+class DotnetSettings_RenamedServicesEntry_DoNotUse;
+struct DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal;
+extern DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedServicesEntry_DoNotUse_default_instance_;
 class GoSettings;
 struct GoSettingsDefaultTypeInternal;
 extern GoSettingsDefaultTypeInternal _GoSettings_default_instance_;
@@ -102,6 +108,8 @@ template<> ::google::api::ClientLibrarySettings* Arena::CreateMaybeMessage<::goo
 template<> ::google::api::CommonLanguageSettings* Arena::CreateMaybeMessage<::google::api::CommonLanguageSettings>(Arena*);
 template<> ::google::api::CppSettings* Arena::CreateMaybeMessage<::google::api::CppSettings>(Arena*);
 template<> ::google::api::DotnetSettings* Arena::CreateMaybeMessage<::google::api::DotnetSettings>(Arena*);
+template<> ::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse* Arena::CreateMaybeMessage<::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse>(Arena*);
+template<> ::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse* Arena::CreateMaybeMessage<::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse>(Arena*);
 template<> ::google::api::GoSettings* Arena::CreateMaybeMessage<::google::api::GoSettings>(Arena*);
 template<> ::google::api::JavaSettings* Arena::CreateMaybeMessage<::google::api::JavaSettings>(Arena*);
 template<> ::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse* Arena::CreateMaybeMessage<::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse>(Arena*);
@@ -1805,6 +1813,62 @@ class NodeSettings final :
 };
 // -------------------------------------------------------------------
 
+class DotnetSettings_RenamedServicesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<DotnetSettings_RenamedServicesEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<DotnetSettings_RenamedServicesEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  DotnetSettings_RenamedServicesEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR DotnetSettings_RenamedServicesEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit DotnetSettings_RenamedServicesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const DotnetSettings_RenamedServicesEntry_DoNotUse& other);
+  static const DotnetSettings_RenamedServicesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const DotnetSettings_RenamedServicesEntry_DoNotUse*>(&_DotnetSettings_RenamedServicesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.api.DotnetSettings.RenamedServicesEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.api.DotnetSettings.RenamedServicesEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class DotnetSettings_RenamedResourcesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<DotnetSettings_RenamedResourcesEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<DotnetSettings_RenamedResourcesEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  DotnetSettings_RenamedResourcesEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR DotnetSettings_RenamedResourcesEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit DotnetSettings_RenamedResourcesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const DotnetSettings_RenamedResourcesEntry_DoNotUse& other);
+  static const DotnetSettings_RenamedResourcesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const DotnetSettings_RenamedResourcesEntry_DoNotUse*>(&_DotnetSettings_RenamedResourcesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.api.DotnetSettings.RenamedResourcesEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.api.DotnetSettings.RenamedResourcesEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class DotnetSettings final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.api.DotnetSettings) */ {
  public:
@@ -1853,7 +1917,7 @@ class DotnetSettings final :
                &_DotnetSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(DotnetSettings& a, DotnetSettings& b) {
     a.Swap(&b);
@@ -1912,6 +1976,8 @@ class DotnetSettings final :
   protected:
   explicit DotnetSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -1921,11 +1987,123 @@ class DotnetSettings final :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kRenamedServicesFieldNumber = 2,
+    kRenamedResourcesFieldNumber = 3,
+    kIgnoredResourcesFieldNumber = 4,
+    kForcedNamespaceAliasesFieldNumber = 5,
+    kHandwrittenSignaturesFieldNumber = 6,
     kCommonFieldNumber = 1,
   };
+  // map<string, string> renamed_services = 2 [json_name = "renamedServices"];
+  int renamed_services_size() const;
+  private:
+  int _internal_renamed_services_size() const;
+  public:
+  void clear_renamed_services();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_renamed_services() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_renamed_services();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      renamed_services() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_renamed_services();
+
+  // map<string, string> renamed_resources = 3 [json_name = "renamedResources"];
+  int renamed_resources_size() const;
+  private:
+  int _internal_renamed_resources_size() const;
+  public:
+  void clear_renamed_resources();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_renamed_resources() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_renamed_resources();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      renamed_resources() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_renamed_resources();
+
+  // repeated string ignored_resources = 4 [json_name = "ignoredResources"];
+  int ignored_resources_size() const;
+  private:
+  int _internal_ignored_resources_size() const;
+  public:
+  void clear_ignored_resources();
+  const std::string& ignored_resources(int index) const;
+  std::string* mutable_ignored_resources(int index);
+  void set_ignored_resources(int index, const std::string& value);
+  void set_ignored_resources(int index, std::string&& value);
+  void set_ignored_resources(int index, const char* value);
+  void set_ignored_resources(int index, const char* value, size_t size);
+  std::string* add_ignored_resources();
+  void add_ignored_resources(const std::string& value);
+  void add_ignored_resources(std::string&& value);
+  void add_ignored_resources(const char* value);
+  void add_ignored_resources(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& ignored_resources() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_ignored_resources();
+  private:
+  const std::string& _internal_ignored_resources(int index) const;
+  std::string* _internal_add_ignored_resources();
+  public:
+
+  // repeated string forced_namespace_aliases = 5 [json_name = "forcedNamespaceAliases"];
+  int forced_namespace_aliases_size() const;
+  private:
+  int _internal_forced_namespace_aliases_size() const;
+  public:
+  void clear_forced_namespace_aliases();
+  const std::string& forced_namespace_aliases(int index) const;
+  std::string* mutable_forced_namespace_aliases(int index);
+  void set_forced_namespace_aliases(int index, const std::string& value);
+  void set_forced_namespace_aliases(int index, std::string&& value);
+  void set_forced_namespace_aliases(int index, const char* value);
+  void set_forced_namespace_aliases(int index, const char* value, size_t size);
+  std::string* add_forced_namespace_aliases();
+  void add_forced_namespace_aliases(const std::string& value);
+  void add_forced_namespace_aliases(std::string&& value);
+  void add_forced_namespace_aliases(const char* value);
+  void add_forced_namespace_aliases(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& forced_namespace_aliases() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_forced_namespace_aliases();
+  private:
+  const std::string& _internal_forced_namespace_aliases(int index) const;
+  std::string* _internal_add_forced_namespace_aliases();
+  public:
+
+  // repeated string handwritten_signatures = 6 [json_name = "handwrittenSignatures"];
+  int handwritten_signatures_size() const;
+  private:
+  int _internal_handwritten_signatures_size() const;
+  public:
+  void clear_handwritten_signatures();
+  const std::string& handwritten_signatures(int index) const;
+  std::string* mutable_handwritten_signatures(int index);
+  void set_handwritten_signatures(int index, const std::string& value);
+  void set_handwritten_signatures(int index, std::string&& value);
+  void set_handwritten_signatures(int index, const char* value);
+  void set_handwritten_signatures(int index, const char* value, size_t size);
+  std::string* add_handwritten_signatures();
+  void add_handwritten_signatures(const std::string& value);
+  void add_handwritten_signatures(std::string&& value);
+  void add_handwritten_signatures(const char* value);
+  void add_handwritten_signatures(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& handwritten_signatures() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_handwritten_signatures();
+  private:
+  const std::string& _internal_handwritten_signatures(int index) const;
+  std::string* _internal_add_handwritten_signatures();
+  public:
+
   // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
   bool has_common() const;
   private:
@@ -1951,6 +2129,19 @@ class DotnetSettings final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      DotnetSettings_RenamedServicesEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> renamed_services_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      DotnetSettings_RenamedResourcesEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> renamed_resources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> ignored_resources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> forced_namespace_aliases_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> handwritten_signatures_;
   ::google::api::CommonLanguageSettings* common_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
@@ -2005,7 +2196,7 @@ class RubySettings final :
                &_RubySettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(RubySettings& a, RubySettings& b) {
     a.Swap(&b);
@@ -2157,7 +2348,7 @@ class GoSettings final :
                &_GoSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(GoSettings& a, GoSettings& b) {
     a.Swap(&b);
@@ -2309,7 +2500,7 @@ class MethodSettings_LongRunning final :
                &_MethodSettings_LongRunning_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(MethodSettings_LongRunning& a, MethodSettings_LongRunning& b) {
     a.Swap(&b);
@@ -2512,7 +2703,7 @@ class MethodSettings final :
                &_MethodSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(MethodSettings& a, MethodSettings& b) {
     a.Swap(&b);
@@ -4594,6 +4785,10 @@ inline void NodeSettings::set_allocated_common(::google::api::CommonLanguageSett
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // DotnetSettings
 
 // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
@@ -4684,6 +4879,289 @@ inline void DotnetSettings::set_allocated_common(::google::api::CommonLanguageSe
   }
   common_ = common;
   // @@protoc_insertion_point(field_set_allocated:google.api.DotnetSettings.common)
+}
+
+// map<string, string> renamed_services = 2 [json_name = "renamedServices"];
+inline int DotnetSettings::_internal_renamed_services_size() const {
+  return renamed_services_.size();
+}
+inline int DotnetSettings::renamed_services_size() const {
+  return _internal_renamed_services_size();
+}
+inline void DotnetSettings::clear_renamed_services() {
+  renamed_services_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+DotnetSettings::_internal_renamed_services() const {
+  return renamed_services_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+DotnetSettings::renamed_services() const {
+  // @@protoc_insertion_point(field_map:google.api.DotnetSettings.renamed_services)
+  return _internal_renamed_services();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+DotnetSettings::_internal_mutable_renamed_services() {
+  return renamed_services_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+DotnetSettings::mutable_renamed_services() {
+  // @@protoc_insertion_point(field_mutable_map:google.api.DotnetSettings.renamed_services)
+  return _internal_mutable_renamed_services();
+}
+
+// map<string, string> renamed_resources = 3 [json_name = "renamedResources"];
+inline int DotnetSettings::_internal_renamed_resources_size() const {
+  return renamed_resources_.size();
+}
+inline int DotnetSettings::renamed_resources_size() const {
+  return _internal_renamed_resources_size();
+}
+inline void DotnetSettings::clear_renamed_resources() {
+  renamed_resources_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+DotnetSettings::_internal_renamed_resources() const {
+  return renamed_resources_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+DotnetSettings::renamed_resources() const {
+  // @@protoc_insertion_point(field_map:google.api.DotnetSettings.renamed_resources)
+  return _internal_renamed_resources();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+DotnetSettings::_internal_mutable_renamed_resources() {
+  return renamed_resources_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+DotnetSettings::mutable_renamed_resources() {
+  // @@protoc_insertion_point(field_mutable_map:google.api.DotnetSettings.renamed_resources)
+  return _internal_mutable_renamed_resources();
+}
+
+// repeated string ignored_resources = 4 [json_name = "ignoredResources"];
+inline int DotnetSettings::_internal_ignored_resources_size() const {
+  return ignored_resources_.size();
+}
+inline int DotnetSettings::ignored_resources_size() const {
+  return _internal_ignored_resources_size();
+}
+inline void DotnetSettings::clear_ignored_resources() {
+  ignored_resources_.Clear();
+}
+inline std::string* DotnetSettings::add_ignored_resources() {
+  std::string* _s = _internal_add_ignored_resources();
+  // @@protoc_insertion_point(field_add_mutable:google.api.DotnetSettings.ignored_resources)
+  return _s;
+}
+inline const std::string& DotnetSettings::_internal_ignored_resources(int index) const {
+  return ignored_resources_.Get(index);
+}
+inline const std::string& DotnetSettings::ignored_resources(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.DotnetSettings.ignored_resources)
+  return _internal_ignored_resources(index);
+}
+inline std::string* DotnetSettings::mutable_ignored_resources(int index) {
+  // @@protoc_insertion_point(field_mutable:google.api.DotnetSettings.ignored_resources)
+  return ignored_resources_.Mutable(index);
+}
+inline void DotnetSettings::set_ignored_resources(int index, const std::string& value) {
+  ignored_resources_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:google.api.DotnetSettings.ignored_resources)
+}
+inline void DotnetSettings::set_ignored_resources(int index, std::string&& value) {
+  ignored_resources_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:google.api.DotnetSettings.ignored_resources)
+}
+inline void DotnetSettings::set_ignored_resources(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  ignored_resources_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:google.api.DotnetSettings.ignored_resources)
+}
+inline void DotnetSettings::set_ignored_resources(int index, const char* value, size_t size) {
+  ignored_resources_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:google.api.DotnetSettings.ignored_resources)
+}
+inline std::string* DotnetSettings::_internal_add_ignored_resources() {
+  return ignored_resources_.Add();
+}
+inline void DotnetSettings::add_ignored_resources(const std::string& value) {
+  ignored_resources_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:google.api.DotnetSettings.ignored_resources)
+}
+inline void DotnetSettings::add_ignored_resources(std::string&& value) {
+  ignored_resources_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:google.api.DotnetSettings.ignored_resources)
+}
+inline void DotnetSettings::add_ignored_resources(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  ignored_resources_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:google.api.DotnetSettings.ignored_resources)
+}
+inline void DotnetSettings::add_ignored_resources(const char* value, size_t size) {
+  ignored_resources_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:google.api.DotnetSettings.ignored_resources)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+DotnetSettings::ignored_resources() const {
+  // @@protoc_insertion_point(field_list:google.api.DotnetSettings.ignored_resources)
+  return ignored_resources_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+DotnetSettings::mutable_ignored_resources() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.DotnetSettings.ignored_resources)
+  return &ignored_resources_;
+}
+
+// repeated string forced_namespace_aliases = 5 [json_name = "forcedNamespaceAliases"];
+inline int DotnetSettings::_internal_forced_namespace_aliases_size() const {
+  return forced_namespace_aliases_.size();
+}
+inline int DotnetSettings::forced_namespace_aliases_size() const {
+  return _internal_forced_namespace_aliases_size();
+}
+inline void DotnetSettings::clear_forced_namespace_aliases() {
+  forced_namespace_aliases_.Clear();
+}
+inline std::string* DotnetSettings::add_forced_namespace_aliases() {
+  std::string* _s = _internal_add_forced_namespace_aliases();
+  // @@protoc_insertion_point(field_add_mutable:google.api.DotnetSettings.forced_namespace_aliases)
+  return _s;
+}
+inline const std::string& DotnetSettings::_internal_forced_namespace_aliases(int index) const {
+  return forced_namespace_aliases_.Get(index);
+}
+inline const std::string& DotnetSettings::forced_namespace_aliases(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.DotnetSettings.forced_namespace_aliases)
+  return _internal_forced_namespace_aliases(index);
+}
+inline std::string* DotnetSettings::mutable_forced_namespace_aliases(int index) {
+  // @@protoc_insertion_point(field_mutable:google.api.DotnetSettings.forced_namespace_aliases)
+  return forced_namespace_aliases_.Mutable(index);
+}
+inline void DotnetSettings::set_forced_namespace_aliases(int index, const std::string& value) {
+  forced_namespace_aliases_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline void DotnetSettings::set_forced_namespace_aliases(int index, std::string&& value) {
+  forced_namespace_aliases_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline void DotnetSettings::set_forced_namespace_aliases(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  forced_namespace_aliases_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline void DotnetSettings::set_forced_namespace_aliases(int index, const char* value, size_t size) {
+  forced_namespace_aliases_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline std::string* DotnetSettings::_internal_add_forced_namespace_aliases() {
+  return forced_namespace_aliases_.Add();
+}
+inline void DotnetSettings::add_forced_namespace_aliases(const std::string& value) {
+  forced_namespace_aliases_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline void DotnetSettings::add_forced_namespace_aliases(std::string&& value) {
+  forced_namespace_aliases_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline void DotnetSettings::add_forced_namespace_aliases(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  forced_namespace_aliases_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline void DotnetSettings::add_forced_namespace_aliases(const char* value, size_t size) {
+  forced_namespace_aliases_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:google.api.DotnetSettings.forced_namespace_aliases)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+DotnetSettings::forced_namespace_aliases() const {
+  // @@protoc_insertion_point(field_list:google.api.DotnetSettings.forced_namespace_aliases)
+  return forced_namespace_aliases_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+DotnetSettings::mutable_forced_namespace_aliases() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.DotnetSettings.forced_namespace_aliases)
+  return &forced_namespace_aliases_;
+}
+
+// repeated string handwritten_signatures = 6 [json_name = "handwrittenSignatures"];
+inline int DotnetSettings::_internal_handwritten_signatures_size() const {
+  return handwritten_signatures_.size();
+}
+inline int DotnetSettings::handwritten_signatures_size() const {
+  return _internal_handwritten_signatures_size();
+}
+inline void DotnetSettings::clear_handwritten_signatures() {
+  handwritten_signatures_.Clear();
+}
+inline std::string* DotnetSettings::add_handwritten_signatures() {
+  std::string* _s = _internal_add_handwritten_signatures();
+  // @@protoc_insertion_point(field_add_mutable:google.api.DotnetSettings.handwritten_signatures)
+  return _s;
+}
+inline const std::string& DotnetSettings::_internal_handwritten_signatures(int index) const {
+  return handwritten_signatures_.Get(index);
+}
+inline const std::string& DotnetSettings::handwritten_signatures(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.DotnetSettings.handwritten_signatures)
+  return _internal_handwritten_signatures(index);
+}
+inline std::string* DotnetSettings::mutable_handwritten_signatures(int index) {
+  // @@protoc_insertion_point(field_mutable:google.api.DotnetSettings.handwritten_signatures)
+  return handwritten_signatures_.Mutable(index);
+}
+inline void DotnetSettings::set_handwritten_signatures(int index, const std::string& value) {
+  handwritten_signatures_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:google.api.DotnetSettings.handwritten_signatures)
+}
+inline void DotnetSettings::set_handwritten_signatures(int index, std::string&& value) {
+  handwritten_signatures_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:google.api.DotnetSettings.handwritten_signatures)
+}
+inline void DotnetSettings::set_handwritten_signatures(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  handwritten_signatures_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:google.api.DotnetSettings.handwritten_signatures)
+}
+inline void DotnetSettings::set_handwritten_signatures(int index, const char* value, size_t size) {
+  handwritten_signatures_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:google.api.DotnetSettings.handwritten_signatures)
+}
+inline std::string* DotnetSettings::_internal_add_handwritten_signatures() {
+  return handwritten_signatures_.Add();
+}
+inline void DotnetSettings::add_handwritten_signatures(const std::string& value) {
+  handwritten_signatures_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:google.api.DotnetSettings.handwritten_signatures)
+}
+inline void DotnetSettings::add_handwritten_signatures(std::string&& value) {
+  handwritten_signatures_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:google.api.DotnetSettings.handwritten_signatures)
+}
+inline void DotnetSettings::add_handwritten_signatures(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  handwritten_signatures_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:google.api.DotnetSettings.handwritten_signatures)
+}
+inline void DotnetSettings::add_handwritten_signatures(const char* value, size_t size) {
+  handwritten_signatures_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:google.api.DotnetSettings.handwritten_signatures)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+DotnetSettings::handwritten_signatures() const {
+  // @@protoc_insertion_point(field_list:google.api.DotnetSettings.handwritten_signatures)
+  return handwritten_signatures_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+DotnetSettings::mutable_handwritten_signatures() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.DotnetSettings.handwritten_signatures)
+  return &handwritten_signatures_;
 }
 
 // -------------------------------------------------------------------
@@ -5300,6 +5778,10 @@ inline void MethodSettings::set_allocated_long_running(::google::api::MethodSett
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
