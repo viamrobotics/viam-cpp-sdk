@@ -1,21 +1,24 @@
-#include <common/v1/common.pb.h>
+#include <robot/service.hpp>
+
+#include <memory>
+#include <mutex>
+#include <string>
+#include <thread>
+#include <unordered_map>
+
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
+
+#include <common/v1/common.pb.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
 
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
-#include <memory>
-#include <mutex>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <robot/client.hpp>
-#include <robot/service.hpp>
 #include <services/service_base.hpp>
-#include <string>
-#include <thread>
-#include <unordered_map>
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;

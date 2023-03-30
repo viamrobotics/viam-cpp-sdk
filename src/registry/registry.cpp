@@ -1,20 +1,23 @@
+#include <registry/registry.hpp>
+
+#include <exception>
+#include <memory>
+#include <string>
+#include <unordered_map>
+
+#include <boost/log/trivial.hpp>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>
+
 #include <robot/v1/robot.pb.h>
 
-#include <boost/log/trivial.hpp>
 #include <components/component_base.hpp>
 #include <components/generic/generic.hpp>
 #include <components/service_base.hpp>
-#include <exception>
-#include <memory>
-#include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <services/service_base.hpp>
-#include <string>
-#include <unordered_map>
 
 using viam::robot::v1::Status;
 

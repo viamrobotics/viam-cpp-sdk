@@ -1,9 +1,9 @@
 #pragma once
 
-#include <google/protobuf/struct.pb.h>
+#include <unordered_map>
 
 #include <boost/variant/variant.hpp>
-#include <unordered_map>
+#include <google/protobuf/struct.pb.h>
 
 class ProtoType {
    public:

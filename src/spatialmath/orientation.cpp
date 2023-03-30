@@ -1,11 +1,14 @@
-#include <app/v1/robot.pb.h>
+#include <spatialmath/orientation.hpp>
+
+#include <string>
+#include <vector>
 
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
-#include <spatialmath/orientation.hpp>
+
+#include <app/v1/robot.pb.h>
+
 #include <spatialmath/orientation_types.hpp>
-#include <string>
-#include <vector>
 
 namespace SDK = Viam::SDK;
 namespace proto = viam::app::v1;

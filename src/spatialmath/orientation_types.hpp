@@ -1,6 +1,7 @@
 #pragma once
 
 #include <app/v1/robot.pb.h>
+
 namespace Viam {
 namespace SDK {
 

@@ -4,6 +4,7 @@
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
 
+#include <components/generic/client.hpp>
 #include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
 

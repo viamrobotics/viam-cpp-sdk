@@ -1,11 +1,13 @@
+#include <referenceframe/frame.hpp>
+
+#include <string>
+
 #include <app/v1/robot.pb.h>
 #include <common/v1/common.pb.h>
 
-#include <referenceframe/frame.hpp>
 #include <spatialmath/geometry.hpp>
 #include <spatialmath/orientation.hpp>
 #include <spatialmath/orientation_types.hpp>
-#include <string>
 
 viam::app::v1::Frame LinkConfig::to_proto() {
     viam::app::v1::Frame frame;

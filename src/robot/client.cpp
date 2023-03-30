@@ -1,36 +1,37 @@
+#include <robot/client.hpp>
+
 #include <algorithm>
-
-#include "resource/resource_base.hpp"
-#define BOOST_LOG_DYN_LINK 1
-#include <common/v1/common.pb.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/support/status.h>
-#include <robot/v1/robot.grpc.pb.h>
-#include <robot/v1/robot.pb.h>
-#include <unistd.h>
-
-#include <boost/log/trivial.hpp>
 #include <chrono>
-#include <common/proto_type.hpp>
-#include <common/utils.hpp>
-#include <components/service_base.hpp>
 #include <cstddef>
 #include <iostream>
 #include <memory>
 #include <mutex>
 #include <ostream>
-#include <registry/registry.hpp>
-#include <resource/resource_manager.hpp>
-#include <robot/client.hpp>
-#include <rpc/dial.hpp>
 #include <set>
 #include <string>
 #include <thread>
 #include <tuple>
+#include <unistd.h>
 #include <vector>
+
+#include <boost/log/trivial.hpp>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/support/status.h>
+
+#include <common/v1/common.pb.h>
+#include <robot/v1/robot.grpc.pb.h>
+#include <robot/v1/robot.pb.h>
+
+#include <common/proto_type.hpp>
+#include <common/utils.hpp>
+#include <components/service_base.hpp>
+#include <registry/registry.hpp>
+#include <resource/resource_base.hpp>
+#include <resource/resource_manager.hpp>
+#include <rpc/dial.hpp>
 
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;

@@ -1,11 +1,13 @@
 #pragma once
 
-#include <app/v1/robot.pb.h>
-
-#include <boost/variant/variant.hpp>
-#include <spatialmath/orientation_types.hpp>
 #include <string>
 #include <vector>
+
+#include <boost/variant/variant.hpp>
+
+#include <app/v1/robot.pb.h>
+
+#include <spatialmath/orientation_types.hpp>
 
 typedef boost::variant<Viam::SDK::axis_angles,
                        Viam::SDK::euler_angles,

@@ -1,7 +1,7 @@
+#include <rpc/server.hpp>
+
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/security/server_credentials.h>
-
-#include <rpc/server.hpp>
 
 void Server::register_service(grpc::Service* service) {
     if (server != nullptr) {

@@ -1,7 +1,9 @@
 #include <components/camera/camera.hpp>
+
+#include <google/protobuf/descriptor.h>
+
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
-#include <google/protobuf/descriptor.h>
 
 #include <common/utils.hpp>
 #include <components/camera/client.hpp>

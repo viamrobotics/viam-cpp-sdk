@@ -1,13 +1,14 @@
+#include <module/handler_map.hpp>
+
 #include <memory>
 
-#include "google/protobuf/descriptor.h"
-#define BOOST_LOG_DYN_LINK 1
+#include <boost/log/trivial.hpp>
+#include <google/protobuf/descriptor.h>
+
 #include <common/v1/common.pb.h>
 #include <module/v1/module.pb.h>
 #include <robot/v1/robot.pb.h>
 
-#include <boost/log/trivial.hpp>
-#include <module/handler_map.hpp>
 #include <resource/resource.hpp>
 
 viam::module::v1::HandlerMap HandlerMap_::to_proto() {

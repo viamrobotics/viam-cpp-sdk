@@ -1,16 +1,19 @@
 #define BOOST_TEST_MODULE test module test_generic_component
-#include <common/v1/common.pb.h>
+
+#include <typeinfo>
+#include <unordered_map>
+#include <utility>
 
 #include <boost/test/included/unit_test.hpp>
+
+#include <common/v1/common.pb.h>
+
 #include <components/generic/client.hpp>
 #include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
 #include <config/resource.hpp>
 #include <tests/mocks/generic_mocks.hpp>
 #include <tests/test_utils.hpp>
-#include <typeinfo>
-#include <unordered_map>
-#include <utility>
 
 BOOST_AUTO_TEST_SUITE(generic_suite)
 

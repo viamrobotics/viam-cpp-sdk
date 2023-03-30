@@ -1,11 +1,11 @@
 #pragma once
 
+#include <string>
+
 #include <common/v1/common.pb.h>
 
 #include <resource/resource_base.hpp>
-#include <string>
-
-#include "services/service_type.hpp"
+#include <services/service_type.hpp>
 
 class ServiceBase : public ResourceBase {
    public:

@@ -1,10 +1,12 @@
-#include <common/proto_type.hpp>
 #include <components/generic/client.hpp>
-#include <config/resource.hpp>
+
 #include <utility>
 
-#include "common/v1/common.pb.h"
-#include "component/generic/v1/generic.grpc.pb.h"
+#include <common/v1/common.pb.h>
+#include <component/generic/v1/generic.grpc.pb.h>
+
+#include <common/proto_type.hpp>
+#include <config/resource.hpp>
 
 AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;

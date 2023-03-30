@@ -1,5 +1,6 @@
-#include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
+
+#include <components/generic/generic.hpp>
 #include <rpc/server.hpp>
 
 ::grpc::Status GenericServer::DoCommand(::grpc::ServerContext* context,

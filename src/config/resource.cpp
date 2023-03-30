@@ -1,15 +1,18 @@
+#include <config/resource.hpp>
+
+#include <numeric>
+#include <string>
+#include <unordered_map>
+
+#include <boost/algorithm/string.hpp>
+
 #include <app/v1/robot.pb.h>
 #include <robot/v1/robot.pb.h>
 
-#include <boost/algorithm/string.hpp>
 #include <common/proto_type.hpp>
 #include <common/utils.hpp>
-#include <config/resource.hpp>
-#include <numeric>
 #include <referenceframe/frame.hpp>
 #include <resource/resource.hpp>
-#include <string>
-#include <unordered_map>
 
 Name Resource::resource_name() {
     try {

@@ -1,24 +1,24 @@
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
+#include <subtype/subtype.hpp>
 
 #include <exception>
 #include <memory>
-
-#include "component/generic/v1/generic.grpc.pb.h"
-#include "registry/registry.hpp"
-#define BOOST_LOG_DYN_LINK 1
-#include <boost/algorithm/string.hpp>
-#include <boost/log/trivial.hpp>
-#include <boost/optional/optional.hpp>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-#include "resource/resource.hpp"
-#include "resource/resource_base.hpp"
-#include "rpc/server.hpp"
-#include "services/service_base.hpp"
-#include "subtype/subtype.hpp"
+#include <boost/algorithm/string.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/optional/optional.hpp>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/status.h>
+
+#include <component/generic/v1/generic.grpc.pb.h>
+
+#include <registry/registry.hpp>
+#include <resource/resource.hpp>
+#include <resource/resource_base.hpp>
+#include <rpc/server.hpp>
+#include <services/service_base.hpp>
 
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     lock.lock();

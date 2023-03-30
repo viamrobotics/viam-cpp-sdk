@@ -1,9 +1,11 @@
 #pragma once
+
+#include <string>
+
 #include <app/v1/robot.pb.h>
 
 #include <spatialmath/geometry.hpp>
 #include <spatialmath/orientation.hpp>
-#include <string>
 
 class LinkConfig {
    public:

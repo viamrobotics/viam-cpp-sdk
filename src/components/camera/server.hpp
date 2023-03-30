@@ -2,7 +2,6 @@
 
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
-#include <gen/google/api/http.pb.h>
 
 #include <resource/resource_server_base.hpp>
 #include <subtype/subtype.hpp>

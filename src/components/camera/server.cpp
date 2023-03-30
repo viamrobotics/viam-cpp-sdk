@@ -1,5 +1,4 @@
 #include <components/camera/server.hpp>
-#include <gen/google/api/http.pb.h>
 
 #include <common/utils.hpp>
 #include <components/camera/camera.hpp>
