@@ -7,10 +7,26 @@ BinPackParameters: false
 ColumnLimit: 100
 Cpp11BracedListStyle: true
 DerivePointerAlignment: false
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '<.*>'
+    Priority: 1
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^(<|"(boost|google|grpc)/)'
+    Priority: 3
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '.*'
+    Priority: 1
+    SortPriority: 0
+    CaseSensitive: false
+IncludeIsMainRegex: '(Test)?$'
+IncludeIsMainSourceRegex: ''
 IndentWidth: 4
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
-SortIncludes: false
+SortIncludes: true
 SpaceBeforeAssignmentOperators: true
 Standard: Cpp11
 UseTab: Never
