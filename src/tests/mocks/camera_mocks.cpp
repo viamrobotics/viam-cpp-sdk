@@ -1,10 +1,11 @@
+#include <tests/mocks/camera_mocks.hpp>
+
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
 
 #include <components/camera/camera.hpp>
 #include <components/camera/server.hpp>
-#include <tests/mocks/camera_mocks.hpp>
 #include <tests/test_utils.hpp>
 
 AttributeMap MockCamera::do_command(AttributeMap command) {

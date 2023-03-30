@@ -1,3 +1,5 @@
+#include <tests/mocks/generic_mocks.hpp>
+
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
@@ -5,7 +7,6 @@
 #include <components/generic/client.hpp>
 #include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
-#include <tests/mocks/generic_mocks.hpp>
 #include <tests/test_utils.hpp>
 
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <grpcpp/channel.h>
 
 #include <component/generic/v1/generic.grpc.pb.h>

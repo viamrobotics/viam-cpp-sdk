@@ -1,7 +1,5 @@
 #pragma once
 
-#include <gen/google/api/http.pb.h>
-
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
 
