@@ -1,8 +1,13 @@
 #pragma once
 
-#include <common/v1/common.pb.h>
+#include <string>
+#include <thread>
+#include <unordered_map>
+
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/support/status.h>
+
+#include <common/v1/common.pb.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
 
@@ -11,9 +16,6 @@
 #include <components/service_base.hpp>
 #include <resource/resource.hpp>
 #include <robot/client.hpp>
-#include <string>
-#include <thread>
-#include <unordered_map>
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;

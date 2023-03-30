@@ -10,6 +10,7 @@ DerivePointerAlignment: false
 IndentWidth: 4
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
+SortIncludes: false
 SpaceBeforeAssignmentOperators: true
 Standard: Cpp11
 UseTab: Never

@@ -1,7 +1,11 @@
 #pragma once
 
-#include <common/v1/common.pb.h>
+#include <string>
+#include <thread>
+
 #include <grpcpp/channel.h>
+
+#include <common/v1/common.pb.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
 
@@ -9,8 +13,6 @@
 #include <registry/registry.hpp>
 #include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
-#include <string>
-#include <thread>
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;

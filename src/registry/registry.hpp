@@ -1,10 +1,13 @@
 #pragma once
 
+#include <string>
+
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/message.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/server.h>
+
 #include <robot/v1/robot.pb.h>
 
 #include <config/resource.hpp>
@@ -12,7 +15,6 @@
 #include <resource/resource_base.hpp>
 #include <resource/resource_server_base.hpp>
 #include <resource/resource_type.hpp>
-#include <string>
 #include <subtype/subtype.hpp>
 
 // TODO(RSDK-1742): instead of std::functions, consider making these functions

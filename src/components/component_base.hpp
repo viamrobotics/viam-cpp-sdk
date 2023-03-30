@@ -1,11 +1,14 @@
 #pragma once
 
-#include <common/v1/common.pb.h>
+#include <string>
+
 #include <google/protobuf/struct.pb.h>
+
+#include <common/v1/common.pb.h>
 
 #include <components/component_type.hpp>
 #include <resource/resource_base.hpp>
-#include <string>
+
 class ComponentBase : public ResourceBase {
    public:
     ComponentType type;

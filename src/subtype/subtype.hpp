@@ -1,14 +1,16 @@
 #pragma once
 
-#include <component/generic/v1/generic.grpc.pb.h>
-#include <grpcpp/impl/service_type.h>
-
-#include <boost/optional/optional.hpp>
 #include <memory>
-#include <resource/resource.hpp>
-#include <resource/resource_base.hpp>
 #include <string>
 #include <unordered_map>
+
+#include <boost/optional/optional.hpp>
+#include <grpcpp/impl/service_type.h>
+
+#include <component/generic/v1/generic.grpc.pb.h>
+
+#include <resource/resource.hpp>
+#include <resource/resource_base.hpp>
 
 class SubtypeService : public grpc::Service {
    public:

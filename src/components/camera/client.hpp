@@ -1,7 +1,8 @@
 #pragma once
 
-#include <component/camera/v1/camera.grpc.pb.h>
 #include <grpcpp/channel.h>
+
+#include <component/camera/v1/camera.grpc.pb.h>
 
 #include <components/camera/camera.hpp>
 #include <components/camera/server.hpp>

@@ -1,9 +1,11 @@
-#include <common/v1/common.pb.h>
-
 #include <spatialmath/geometry.hpp>
-#include <spatialmath/orientation.hpp>
+
 #include <string>
 #include <tuple>
+
+#include <common/v1/common.pb.h>
+
+#include <spatialmath/orientation.hpp>
 
 viam::common::v1::Sphere GeometryConfig::sphere_proto() {
     viam::common::v1::Sphere sphere;

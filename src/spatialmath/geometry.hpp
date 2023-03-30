@@ -1,10 +1,11 @@
 #pragma once
 
+#include <string>
+#include <tuple>
+
 #include <common/v1/common.pb.h>
 
 #include <spatialmath/orientation.hpp>
-#include <string>
-#include <tuple>
 
 enum GeometryType {
     box,

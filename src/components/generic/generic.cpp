@@ -1,14 +1,16 @@
-#include <component/generic/v1/generic.grpc.pb.h>
-#include <component/generic/v1/generic.pb.h>
+#include <components/generic/generic.hpp>
+
+#include <stdexcept>
+
 #include <google/protobuf/descriptor.h>
+
+#include <component/generic/v1/generic.grpc.pb.h>
 
 #include <common/utils.hpp>
 #include <components/generic/client.hpp>
-#include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
-#include <stdexcept>
 
 std::shared_ptr<ResourceServerBase> GenericSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> svc) {

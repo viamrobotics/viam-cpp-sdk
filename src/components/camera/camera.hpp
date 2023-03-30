@@ -1,16 +1,16 @@
 #pragma once
 
-#include <component/camera/v1/camera.pb.h>
-
 #include <bitset>
-#include <common/utils.hpp>
-#include <config/resource.hpp>
-#include <registry/registry.hpp>
 #include <string>
 #include <vector>
 
-#include "common/proto_type.hpp"
-#include "subtype/subtype.hpp"
+#include <component/camera/v1/camera.pb.h>
+
+#include <common/proto_type.hpp>
+#include <common/utils.hpp>
+#include <config/resource.hpp>
+#include <registry/registry.hpp>
+#include <subtype/subtype.hpp>
 
 class CameraSubtype : public ResourceSubtype {
    public:

@@ -1,5 +1,6 @@
-#include <component/generic/v1/generic.grpc.pb.h>
 #include <grpcpp/channel.h>
+
+#include <component/generic/v1/generic.grpc.pb.h>
 
 #include <components/generic/generic.hpp>
 

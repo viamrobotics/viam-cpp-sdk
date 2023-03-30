@@ -1,9 +1,10 @@
 #pragma once
 
-#include <resource/resource_base.hpp>
-#include <resource/resource_type.hpp>
 #include <string>
 #include <unordered_map>
+
+#include <resource/resource_base.hpp>
+#include <resource/resource_type.hpp>
 
 class ResourceManager {
    public:

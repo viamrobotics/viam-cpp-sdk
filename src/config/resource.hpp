@@ -1,13 +1,14 @@
 #pragma once
 
+#include <string>
+#include <unordered_map>
+
 #include <app/v1/robot.pb.h>
 #include <robot/v1/robot.pb.h>
 
 #include <common/proto_type.hpp>
 #include <referenceframe/frame.hpp>
 #include <resource/resource.hpp>
-#include <string>
-#include <unordered_map>
 
 typedef std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> AttributeMap;
 

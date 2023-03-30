@@ -1,10 +1,10 @@
 #pragma once
 
-#include <google/protobuf/descriptor.h>
-
 #include <string>
 
-#include "common/v1/common.pb.h"
+#include <google/protobuf/descriptor.h>
+
+#include <common/v1/common.pb.h>
 
 class Type {
    public:

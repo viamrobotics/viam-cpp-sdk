@@ -1,10 +1,11 @@
 #pragma once
 
-#include <grpcpp/channel.h>
-
-#include <boost/optional.hpp>
 #include <memory>
 #include <string>
+
+#include <boost/optional.hpp>
+#include <grpcpp/channel.h>
+
 // TODO(RSDK-1742): make use of namespaces throughout repo
 namespace Viam {
 namespace SDK {

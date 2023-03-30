@@ -1,40 +1,40 @@
-#include <grpcpp/server.h>
+#include <module/service.hpp>
 
 #include <csignal>
 #include <iostream>
-
-#include "google/protobuf/descriptor.h"
-#define BOOST_LOG_DYN_LINK 1
-#include <app/v1/robot.pb.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/security/credentials.h>
-#include <grpcpp/security/server_credentials.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/support/status.h>
-#include <module/v1/module.grpc.pb.h>
-#include <module/v1/module.pb.h>
+#include <memory>
+#include <string>
 #include <sys/socket.h>
 #include <sys/stat.h>
 
 #include <boost/log/trivial.hpp>
 #include <boost/none.hpp>
+#include <google/protobuf/descriptor.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/security/credentials.h>
+#include <grpcpp/security/server_credentials.h>
+#include <grpcpp/server.h>
+#include <grpcpp/server_builder.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/support/status.h>
+
+#include <app/v1/robot.pb.h>
+#include <module/v1/module.grpc.pb.h>
+#include <module/v1/module.pb.h>
+
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
 #include <components/service_base.hpp>
 #include <config/resource.hpp>
-#include <memory>
 #include <module/handler_map.hpp>
-#include <module/service.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
 #include <robot/client.hpp>
 #include <robot/service.hpp>
 #include <rpc/server.hpp>
-#include <string>
 #include <subtype/subtype.hpp>
 
 namespace {

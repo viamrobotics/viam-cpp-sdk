@@ -1,13 +1,15 @@
 #pragma once
 
-#include <common/v1/common.pb.h>
+#include <unordered_map>
 
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+
+#include <common/v1/common.pb.h>
+
 #include <common/proto_type.hpp>
 #include <components/component_base.hpp>
-#include <unordered_map>
 
 using viam::common::v1::ResourceName;
 const std::string COMPONENT = "component";
