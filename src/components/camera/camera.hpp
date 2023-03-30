@@ -40,8 +40,8 @@ class Camera : public ComponentBase {
 
     struct properties {
         bool supports_pcd;
-        intrinsic_parameters intrinsic_parameters;
-        distortion_parameters distortion_parameters;
+        struct intrinsic_parameters intrinsic_parameters;
+        struct distortion_parameters distortion_parameters;
     };
 
     struct point_cloud {
@@ -54,7 +54,7 @@ class Camera : public ComponentBase {
         std::vector<unsigned char> bytes;
     };
 
-    inline const static std::string lazy_suffix = "+lazy";
+    const static std::string lazy_suffix;
 
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();

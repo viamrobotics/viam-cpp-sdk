@@ -19,65 +19,28 @@ class MockGeneric : public Generic {
 
 class MockGenericStub : public viam::component::generic::v1::GenericService::StubInterface {
    public:
-    GenericServer server;
-
     MockGenericStub();
 
     ::grpc::Status DoCommand(::grpc::ClientContext* context,
                              const ::viam::common::v1::DoCommandRequest& request,
                              ::viam::common::v1::DoCommandResponse* response) override;
-    std::unique_ptr<::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
-    AsyncDoCommand(::grpc::ClientContext* context,
-                   const ::viam::common::v1::DoCommandRequest& request,
-                   ::grpc::CompletionQueue* cq);
-    std::unique_ptr<::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
-    PrepareAsyncDoCommand(::grpc::ClientContext* context,
-                          const ::viam::common::v1::DoCommandRequest& request,
-                          ::grpc::CompletionQueue* cq);
-
-    class async final : public StubInterface::async_interface {
-       public:
-        void DoCommand(::grpc::ClientContext* context,
-                       const ::viam::common::v1::DoCommandRequest* request,
-                       ::viam::common::v1::DoCommandResponse* response,
-                       std::function<void(::grpc::Status)>) override;
-
-        void DoCommand(::grpc::ClientContext* context,
-                       const ::viam::common::v1::DoCommandRequest* request,
-                       ::viam::common::v1::DoCommandResponse* response,
-                       ::grpc::ClientUnaryReactor* reactor) override;
-
-       public:
-        friend class Stub;
-        explicit async(MockGenericStub* stub) : stub_(stub) {}
-        MockGenericStub* stub() {
-            return stub_;
-        }
-        MockGenericStub* stub_;
-    };
-    class async* async() override {
-        return &async_stub_;
-    }
 
    private:
+    std::shared_ptr<GenericServer> server;
     std::shared_ptr<::grpc::ChannelInterface> channel_;
-    class async async_stub_ {
-        this
-    };
     ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(
         ::grpc::ClientContext* context,
         const ::viam::common::v1::DoCommandRequest& request,
-        ::grpc::CompletionQueue* cq) override;
+        ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("Unimplemented");
+    };
 
     ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>*
     PrepareAsyncDoCommandRaw(::grpc::ClientContext* context,
                              const ::viam::common::v1::DoCommandRequest& request,
-                             ::grpc::CompletionQueue* cq) override;
-
-    const ::grpc::internal::RpcServiceMethod::RpcType type =
-        ::grpc::internal::RpcServiceMethod::RpcType();
-    const ::grpc::internal::RpcMethod rpcmethod_DoCommand_ =
-        ::grpc::internal::RpcMethod("name", type);
+                             ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("Unimplemented");
+    };
 };
 
 class MockGenericClient : public GenericClient {

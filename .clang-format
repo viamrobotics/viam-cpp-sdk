@@ -13,4 +13,5 @@ NamespaceIndentation: None
 SortIncludes: false
 SpaceBeforeAssignmentOperators: true
 Standard: Cpp11
+SortIncludes: false
 UseTab: Never
