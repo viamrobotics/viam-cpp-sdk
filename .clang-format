@@ -12,15 +12,12 @@ IncludeCategories:
   - Regex: '<.*>'
     Priority: 1
     SortPriority: 0
-    CaseSensitive: false
   - Regex: '^(<|"(boost|google|grpc)/)'
     Priority: 3
     SortPriority: 0
-    CaseSensitive: false
   - Regex: '.*'
     Priority: 1
     SortPriority: 0
-    CaseSensitive: false
 IncludeIsMainRegex: '(Test)?$'
 IncludeIsMainSourceRegex: ''
 IndentWidth: 4
