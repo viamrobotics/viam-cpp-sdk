@@ -1,0 +1,37 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(Boost @Boost_VERSION_MAJOR@.@Boost_VERSION_MINOR@ COMPONENTS headers log)
+
+if (@gRPC_FOUND@)
+  find_dependency(gRPC @gRPC_VERSION_MAJOR@.@gRPC_VERSION_MINOR@ CONFIG)
+endif()
+
+# NOTE(acm): It is up to us to decide what components to get if none
+# are specified. Since the common use case should be getting the SDK,
+# interpret no-component as meaning SDK.
+if (NOT viam-cpp-sdk_FIND_COMPONENTS)
+  set(viam-cpp-sdk_FIND_COMPONENTS viamsdk)
+endif()
+
+# TODO(acm): I don't like this manual step where we need to list out
+# the components, it seems like an easy thing to forget.
+set(_viam-cpp-sdk_supported_components viamapi viamsdk)
+
+# TODO(acm): I also don't like that we need to manually set things up
+# so that asking for viamsdk cause you to ask for viamapi too. I'd
+# expect cmake to know that viamsdk dependson viamapi so asking for the
+# one should force you to get the other. But, it doesn't seem to do
+# that, so force it, and force it ahead of viamsdk so that viamsdk's
+# file can resolve viam-cpp-sdk::viamapi
+if (viamsdk IN_LIST viam-cpp-sdk_FIND_COMPONENTS)
+  LIST(PREPEND viam-cpp-sdk_FIND_COMPONENTS viamapi)
+endif()
+
+foreach(_comp ${viam-cpp-sdk_FIND_COMPONENTS})
+  if (NOT _comp IN_LIST _viam-cpp-sdk_supported_components)
+    set(viam-cpp-sdk_FOUND False)
+    set(viam-cpp-sdk_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
+  endif()
+  include("${CMAKE_CURRENT_LIST_DIR}/viam-cpp-sdk-${_comp}-Targets.cmake")
+endforeach()

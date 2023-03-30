@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2023 Viam Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find ./src -not -path "./src/viam/api" -type f \( -name \*.cpp -o -name \*.hpp \) | xargs clang-format -style=file -i -fallback-style=none "$@"
+add_executable(example_dial
+  example_dial.cpp
+)
+
+target_link_libraries(example_dial
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS example_dial
+  COMPONENT viam-cpp-sdk_examples
+)

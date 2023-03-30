@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2023 Viam Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find ./src -not -path "./src/viam/api" -type f \( -name \*.cpp -o -name \*.hpp \) | xargs clang-format -style=file -i -fallback-style=none "$@"
+version: v1
+plugins:
+  - name: cpp
+    out: gen/viam/api
+    # TODO: Is the interpolated version here correct? How do we deal
+    # with the `-1` bit if so? Or should this be a fixed value, rather
+    # than being derived from the version of gRPC against which we are
+    # building?
+  - remote: buf.build/grpc/plugins/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@-1
+    out: gen/viam/api
