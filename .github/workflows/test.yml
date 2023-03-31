@@ -18,13 +18,14 @@ jobs:
       - name: build-docker
         run: docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye
       - name: run-docker
-        run: docker run --rm -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
-      - name: build-sdk
-        run: |
-          apt-get -y --no-install-recommends install software-properties-common \
-          && apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main' \
-          && apt-get update \
-          && apt-get -y --no-install-recommends install -t bullseye-backports cmake \
+        run: | 
+          docker run --rm -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash \
+      #- name: build-sdk
+        #run: |
+          #apt-get -y --no-install-recommends install software-properties-common \
+          #&& apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main' \
+          #&& apt-get update \
+          #&& apt-get -y --no-install-recommends install -t bullseye-backports cmake \
           && mkdir build && cd build && cmake .. -G Ninja \
           -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
           -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
