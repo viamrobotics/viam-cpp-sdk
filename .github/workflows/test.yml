@@ -20,13 +20,13 @@ jobs:
       - name: run-docker
         run: |
           docker run --rm -ti -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
-      #- name: run-tests
-        #run: |
           mkdir build && cd build && cmake .. -G Ninja \
           -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
           -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
           && ninja all && ninja install 
           && cd src/tests && ctest
+      #- name: run-tests
+        #run: |
           #docker run --rm -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash \
       #- name: build-sdk
         #run: |
