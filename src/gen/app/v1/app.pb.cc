@@ -1290,10 +1290,143 @@ struct DeleteRobotPartSecretResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteRobotPartSecretResponseDefaultTypeInternal _DeleteRobotPartSecretResponse_default_instance_;
+PROTOBUF_CONSTEXPR Authorization::Authorization(
+    ::_pbi::ConstantInitialized)
+  : identity_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , authorization_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , authorization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct AuthorizationDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AuthorizationDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AuthorizationDefaultTypeInternal() {}
+  union {
+    Authorization _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AuthorizationDefaultTypeInternal _Authorization_default_instance_;
+PROTOBUF_CONSTEXPR AddRoleRequest::AddRoleRequest(
+    ::_pbi::ConstantInitialized)
+  : identity_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , role_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct AddRoleRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AddRoleRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AddRoleRequestDefaultTypeInternal() {}
+  union {
+    AddRoleRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddRoleRequestDefaultTypeInternal _AddRoleRequest_default_instance_;
+PROTOBUF_CONSTEXPR AddRoleResponse::AddRoleResponse(
+    ::_pbi::ConstantInitialized)
+  : authorization_(nullptr){}
+struct AddRoleResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AddRoleResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AddRoleResponseDefaultTypeInternal() {}
+  union {
+    AddRoleResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddRoleResponseDefaultTypeInternal _AddRoleResponse_default_instance_;
+PROTOBUF_CONSTEXPR RemoveRoleRequest::RemoveRoleRequest(
+    ::_pbi::ConstantInitialized)
+  : identity_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , role_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct RemoveRoleRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoveRoleRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RemoveRoleRequestDefaultTypeInternal() {}
+  union {
+    RemoveRoleRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveRoleRequestDefaultTypeInternal _RemoveRoleRequest_default_instance_;
+PROTOBUF_CONSTEXPR RemoveRoleResponse::RemoveRoleResponse(
+    ::_pbi::ConstantInitialized){}
+struct RemoveRoleResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoveRoleResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RemoveRoleResponseDefaultTypeInternal() {}
+  union {
+    RemoveRoleResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveRoleResponseDefaultTypeInternal _RemoveRoleResponse_default_instance_;
+PROTOBUF_CONSTEXPR ListAuthorizationsRequest::ListAuthorizationsRequest(
+    ::_pbi::ConstantInitialized)
+  : resource_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct ListAuthorizationsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ListAuthorizationsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ListAuthorizationsRequestDefaultTypeInternal() {}
+  union {
+    ListAuthorizationsRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListAuthorizationsRequestDefaultTypeInternal _ListAuthorizationsRequest_default_instance_;
+PROTOBUF_CONSTEXPR ListAuthorizationsResponse::ListAuthorizationsResponse(
+    ::_pbi::ConstantInitialized)
+  : authorizations_(){}
+struct ListAuthorizationsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ListAuthorizationsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ListAuthorizationsResponseDefaultTypeInternal() {}
+  union {
+    ListAuthorizationsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListAuthorizationsResponseDefaultTypeInternal _ListAuthorizationsResponse_default_instance_;
+PROTOBUF_CONSTEXPR CheckPermissionsRequest::CheckPermissionsRequest(
+    ::_pbi::ConstantInitialized)
+  : resource_ids_()
+  , permission_ids_(){}
+struct CheckPermissionsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CheckPermissionsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CheckPermissionsRequestDefaultTypeInternal() {}
+  union {
+    CheckPermissionsRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CheckPermissionsRequestDefaultTypeInternal _CheckPermissionsRequest_default_instance_;
+PROTOBUF_CONSTEXPR AuthorizedPermissions::AuthorizedPermissions(
+    ::_pbi::ConstantInitialized)
+  : permissions_()
+  , resource_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct AuthorizedPermissionsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AuthorizedPermissionsDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AuthorizedPermissionsDefaultTypeInternal() {}
+  union {
+    AuthorizedPermissions _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AuthorizedPermissionsDefaultTypeInternal _AuthorizedPermissions_default_instance_;
+PROTOBUF_CONSTEXPR CheckPermissionsResponse::CheckPermissionsResponse(
+    ::_pbi::ConstantInitialized)
+  : authorized_permissions_(){}
+struct CheckPermissionsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CheckPermissionsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CheckPermissionsResponseDefaultTypeInternal() {}
+  union {
+    CheckPermissionsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CheckPermissionsResponseDefaultTypeInternal _CheckPermissionsResponse_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[99];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[109];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fapp_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fapp_2eproto = nullptr;
 
@@ -2086,6 +2219,89 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::Authorization, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::Authorization, identity_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::Authorization, authorization_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::Authorization, authorization_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::Authorization, resource_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::Authorization, resource_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleRequest, identity_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleRequest, role_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleRequest, resource_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleRequest, resource_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleRequest, organization_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AddRoleResponse, authorization_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RemoveRoleRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RemoveRoleRequest, identity_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RemoveRoleRequest, role_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RemoveRoleRequest, resource_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RemoveRoleRequest, resource_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::RemoveRoleResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListAuthorizationsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListAuthorizationsRequest, resource_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListAuthorizationsRequest, resource_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListAuthorizationsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListAuthorizationsResponse, authorizations_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::CheckPermissionsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::CheckPermissionsRequest, resource_ids_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::CheckPermissionsRequest, permission_ids_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthorizedPermissions, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthorizedPermissions, resource_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthorizedPermissions, permissions_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::CheckPermissionsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::CheckPermissionsResponse, authorized_permissions_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::Robot)},
@@ -2187,6 +2403,16 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 767, -1, -1, sizeof(::viam::app::v1::CreateRobotPartSecretResponse)},
   { 774, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretRequest)},
   { 782, -1, -1, sizeof(::viam::app::v1::DeleteRobotPartSecretResponse)},
+  { 788, -1, -1, sizeof(::viam::app::v1::Authorization)},
+  { 799, -1, -1, sizeof(::viam::app::v1::AddRoleRequest)},
+  { 810, -1, -1, sizeof(::viam::app::v1::AddRoleResponse)},
+  { 817, -1, -1, sizeof(::viam::app::v1::RemoveRoleRequest)},
+  { 827, -1, -1, sizeof(::viam::app::v1::RemoveRoleResponse)},
+  { 833, -1, -1, sizeof(::viam::app::v1::ListAuthorizationsRequest)},
+  { 841, -1, -1, sizeof(::viam::app::v1::ListAuthorizationsResponse)},
+  { 848, -1, -1, sizeof(::viam::app::v1::CheckPermissionsRequest)},
+  { 856, -1, -1, sizeof(::viam::app::v1::AuthorizedPermissions)},
+  { 864, -1, -1, sizeof(::viam::app::v1::CheckPermissionsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2289,6 +2515,16 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_CreateRobotPartSecretResponse_default_instance_._instance,
   &::viam::app::v1::_DeleteRobotPartSecretRequest_default_instance_._instance,
   &::viam::app::v1::_DeleteRobotPartSecretResponse_default_instance_._instance,
+  &::viam::app::v1::_Authorization_default_instance_._instance,
+  &::viam::app::v1::_AddRoleRequest_default_instance_._instance,
+  &::viam::app::v1::_AddRoleResponse_default_instance_._instance,
+  &::viam::app::v1::_RemoveRoleRequest_default_instance_._instance,
+  &::viam::app::v1::_RemoveRoleResponse_default_instance_._instance,
+  &::viam::app::v1::_ListAuthorizationsRequest_default_instance_._instance,
+  &::viam::app::v1::_ListAuthorizationsResponse_default_instance_._instance,
+  &::viam::app::v1::_CheckPermissionsRequest_default_instance_._instance,
+  &::viam::app::v1::_AuthorizedPermissions_default_instance_._instance,
+  &::viam::app::v1::_CheckPermissionsResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -2550,112 +2786,141 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "v1.RobotPartR\004part\"T\n\034DeleteRobotPartSec"
   "retRequest\022\027\n\007part_id\030\001 \001(\tR\006partId\022\033\n\ts"
   "ecret_id\030\002 \001(\tR\010secretId\"\037\n\035DeleteRobotP"
-  "artSecretResponse2\273 \n\nAppService\022e\n\022Crea"
-  "teOrganization\022&.viam.app.v1.CreateOrgan"
-  "izationRequest\032\'.viam.app.v1.CreateOrgan"
-  "izationResponse\022b\n\021ListOrganizations\022%.v"
-  "iam.app.v1.ListOrganizationsRequest\032&.vi"
-  "am.app.v1.ListOrganizationsResponse\022\\\n\017G"
-  "etOrganization\022#.viam.app.v1.GetOrganiza"
-  "tionRequest\032$.viam.app.v1.GetOrganizatio"
-  "nResponse\022e\n\022UpdateOrganization\022&.viam.a"
-  "pp.v1.UpdateOrganizationRequest\032\'.viam.a"
-  "pp.v1.UpdateOrganizationResponse\022e\n\022Dele"
-  "teOrganization\022&.viam.app.v1.DeleteOrgan"
-  "izationRequest\032\'.viam.app.v1.DeleteOrgan"
-  "izationResponse\022t\n\027ListOrganizationMembe"
-  "rs\022+.viam.app.v1.ListOrganizationMembers"
-  "Request\032,.viam.app.v1.ListOrganizationMe"
-  "mbersResponse\022w\n\030CreateOrganizationInvit"
-  "e\022,.viam.app.v1.CreateOrganizationInvite"
-  "Request\032-.viam.app.v1.CreateOrganization"
-  "InviteResponse\022w\n\030DeleteOrganizationMemb"
-  "er\022,.viam.app.v1.DeleteOrganizationMembe"
-  "rRequest\032-.viam.app.v1.DeleteOrganizatio"
-  "nMemberResponse\022w\n\030DeleteOrganizationInv"
-  "ite\022,.viam.app.v1.DeleteOrganizationInvi"
-  "teRequest\032-.viam.app.v1.DeleteOrganizati"
-  "onInviteResponse\022w\n\030ResendOrganizationIn"
-  "vite\022,.viam.app.v1.ResendOrganizationInv"
-  "iteRequest\032-.viam.app.v1.ResendOrganizat"
-  "ionInviteResponse\022Y\n\016CreateLocation\022\".vi"
-  "am.app.v1.CreateLocationRequest\032#.viam.a"
-  "pp.v1.CreateLocationResponse\022P\n\013GetLocat"
-  "ion\022\037.viam.app.v1.GetLocationRequest\032 .v"
-  "iam.app.v1.GetLocationResponse\022Y\n\016Update"
-  "Location\022\".viam.app.v1.UpdateLocationReq"
-  "uest\032#.viam.app.v1.UpdateLocationRespons"
-  "e\022Y\n\016DeleteLocation\022\".viam.app.v1.Delete"
-  "LocationRequest\032#.viam.app.v1.DeleteLoca"
-  "tionResponse\022V\n\rListLocations\022!.viam.app"
-  ".v1.ListLocationsRequest\032\".viam.app.v1.L"
-  "istLocationsResponse\022V\n\rShareLocation\022!."
-  "viam.app.v1.ShareLocationRequest\032\".viam."
-  "app.v1.ShareLocationResponse\022\\\n\017UnshareL"
-  "ocation\022#.viam.app.v1.UnshareLocationReq"
-  "uest\032$.viam.app.v1.UnshareLocationRespon"
-  "se\022S\n\014LocationAuth\022 .viam.app.v1.Locatio"
-  "nAuthRequest\032!.viam.app.v1.LocationAuthR"
-  "esponse\022k\n\024CreateLocationSecret\022(.viam.a"
-  "pp.v1.CreateLocationSecretRequest\032).viam"
-  ".app.v1.CreateLocationSecretResponse\022k\n\024"
-  "DeleteLocationSecret\022(.viam.app.v1.Delet"
-  "eLocationSecretRequest\032).viam.app.v1.Del"
-  "eteLocationSecretResponse\022G\n\010GetRobot\022\034."
-  "viam.app.v1.GetRobotRequest\032\035.viam.app.v"
-  "1.GetRobotResponse\022k\n\024GetRoverRentalRobo"
-  "ts\022(.viam.app.v1.GetRoverRentalRobotsReq"
-  "uest\032).viam.app.v1.GetRoverRentalRobotsR"
-  "esponse\022V\n\rGetRobotParts\022!.viam.app.v1.G"
-  "etRobotPartsRequest\032\".viam.app.v1.GetRob"
-  "otPartsResponse\022S\n\014GetRobotPart\022 .viam.a"
-  "pp.v1.GetRobotPartRequest\032!.viam.app.v1."
-  "GetRobotPartResponse\022_\n\020GetRobotPartLogs"
-  "\022$.viam.app.v1.GetRobotPartLogsRequest\032%"
-  ".viam.app.v1.GetRobotPartLogsResponse\022d\n"
-  "\021TailRobotPartLogs\022%.viam.app.v1.TailRob"
-  "otPartLogsRequest\032&.viam.app.v1.TailRobo"
-  "tPartLogsResponse0\001\022h\n\023GetRobotPartHisto"
-  "ry\022\'.viam.app.v1.GetRobotPartHistoryRequ"
-  "est\032(.viam.app.v1.GetRobotPartHistoryRes"
-  "ponse\022\\\n\017UpdateRobotPart\022#.viam.app.v1.U"
-  "pdateRobotPartRequest\032$.viam.app.v1.Upda"
-  "teRobotPartResponse\022S\n\014NewRobotPart\022 .vi"
-  "am.app.v1.NewRobotPartRequest\032!.viam.app"
-  ".v1.NewRobotPartResponse\022\\\n\017DeleteRobotP"
-  "art\022#.viam.app.v1.DeleteRobotPartRequest"
-  "\032$.viam.app.v1.DeleteRobotPartResponse\022Y"
-  "\n\016MarkPartAsMain\022\".viam.app.v1.MarkPartA"
-  "sMainRequest\032#.viam.app.v1.MarkPartAsMai"
-  "nResponse\022e\n\022MarkPartForRestart\022&.viam.a"
-  "pp.v1.MarkPartForRestartRequest\032\'.viam.a"
-  "pp.v1.MarkPartForRestartResponse\022n\n\025Crea"
-  "teRobotPartSecret\022).viam.app.v1.CreateRo"
-  "botPartSecretRequest\032*.viam.app.v1.Creat"
-  "eRobotPartSecretResponse\022n\n\025DeleteRobotP"
-  "artSecret\022).viam.app.v1.DeleteRobotPartS"
-  "ecretRequest\032*.viam.app.v1.DeleteRobotPa"
-  "rtSecretResponse\022M\n\nListRobots\022\036.viam.ap"
-  "p.v1.ListRobotsRequest\032\037.viam.app.v1.Lis"
-  "tRobotsResponse\022G\n\010NewRobot\022\034.viam.app.v"
-  "1.NewRobotRequest\032\035.viam.app.v1.NewRobot"
-  "Response\022P\n\013UpdateRobot\022\037.viam.app.v1.Up"
-  "dateRobotRequest\032 .viam.app.v1.UpdateRob"
-  "otResponse\022P\n\013DeleteRobot\022\037.viam.app.v1."
-  "DeleteRobotRequest\032 .viam.app.v1.DeleteR"
-  "obotResponse\022V\n\rListFragments\022!.viam.app"
-  ".v1.ListFragmentsRequest\032\".viam.app.v1.L"
-  "istFragmentsResponse\022P\n\013GetFragment\022\037.vi"
-  "am.app.v1.GetFragmentRequest\032 .viam.app."
-  "v1.GetFragmentResponse\022Y\n\016CreateFragment"
-  "\022\".viam.app.v1.CreateFragmentRequest\032#.v"
-  "iam.app.v1.CreateFragmentResponse\022Y\n\016Upd"
-  "ateFragment\022\".viam.app.v1.UpdateFragment"
-  "Request\032#.viam.app.v1.UpdateFragmentResp"
-  "onse\022Y\n\016DeleteFragment\022\".viam.app.v1.Del"
-  "eteFragmentRequest\032#.viam.app.v1.DeleteF"
-  "ragmentResponseB\030Z\026go.viam.com/api/app/v"
-  "1b\006proto3"
+  "artSecretResponse\"\320\001\n\rAuthorization\022\037\n\013i"
+  "dentity_id\030\001 \001(\tR\nidentityId\022-\n\022authoriz"
+  "ation_type\030\002 \001(\tR\021authorizationType\022)\n\020a"
+  "uthorization_id\030\003 \001(\tR\017authorizationId\022#"
+  "\n\rresource_type\030\004 \001(\tR\014resourceType\022\037\n\013r"
+  "esource_id\030\005 \001(\tR\nresourceId\"\271\001\n\016AddRole"
+  "Request\022\037\n\013identity_id\030\001 \001(\tR\nidentityId"
+  "\022\027\n\007role_id\030\002 \001(\tR\006roleId\022#\n\rresource_ty"
+  "pe\030\003 \001(\tR\014resourceType\022\037\n\013resource_id\030\004 "
+  "\001(\tR\nresourceId\022\'\n\017organization_id\030\005 \001(\t"
+  "R\016organizationId\"S\n\017AddRoleResponse\022@\n\ra"
+  "uthorization\030\001 \001(\0132\032.viam.app.v1.Authori"
+  "zationR\rauthorization\"\223\001\n\021RemoveRoleRequ"
+  "est\022\037\n\013identity_id\030\001 \001(\tR\nidentityId\022\027\n\007"
+  "role_id\030\002 \001(\tR\006roleId\022#\n\rresource_type\030\003"
+  " \001(\tR\014resourceType\022\037\n\013resource_id\030\004 \001(\tR"
+  "\nresourceId\"\024\n\022RemoveRoleResponse\"a\n\031Lis"
+  "tAuthorizationsRequest\022#\n\rresource_type\030"
+  "\001 \001(\tR\014resourceType\022\037\n\013resource_id\030\002 \001(\t"
+  "R\nresourceId\"`\n\032ListAuthorizationsRespon"
+  "se\022B\n\016authorizations\030\001 \003(\0132\032.viam.app.v1"
+  ".AuthorizationR\016authorizations\"c\n\027CheckP"
+  "ermissionsRequest\022!\n\014resource_ids\030\001 \003(\tR"
+  "\013resourceIds\022%\n\016permission_ids\030\002 \003(\tR\rpe"
+  "rmissionIds\"Z\n\025AuthorizedPermissions\022\037\n\013"
+  "resource_id\030\001 \001(\tR\nresourceId\022 \n\013permiss"
+  "ions\030\002 \003(\tR\013permissions\"u\n\030CheckPermissi"
+  "onsResponse\022Y\n\026authorized_permissions\030\001 "
+  "\003(\0132\".viam.app.v1.AuthorizedPermissionsR"
+  "\025authorizedPermissions2\273 \n\nAppService\022e\n"
+  "\022CreateOrganization\022&.viam.app.v1.Create"
+  "OrganizationRequest\032\'.viam.app.v1.Create"
+  "OrganizationResponse\022b\n\021ListOrganization"
+  "s\022%.viam.app.v1.ListOrganizationsRequest"
+  "\032&.viam.app.v1.ListOrganizationsResponse"
+  "\022\\\n\017GetOrganization\022#.viam.app.v1.GetOrg"
+  "anizationRequest\032$.viam.app.v1.GetOrgani"
+  "zationResponse\022e\n\022UpdateOrganization\022&.v"
+  "iam.app.v1.UpdateOrganizationRequest\032\'.v"
+  "iam.app.v1.UpdateOrganizationResponse\022e\n"
+  "\022DeleteOrganization\022&.viam.app.v1.Delete"
+  "OrganizationRequest\032\'.viam.app.v1.Delete"
+  "OrganizationResponse\022t\n\027ListOrganization"
+  "Members\022+.viam.app.v1.ListOrganizationMe"
+  "mbersRequest\032,.viam.app.v1.ListOrganizat"
+  "ionMembersResponse\022w\n\030CreateOrganization"
+  "Invite\022,.viam.app.v1.CreateOrganizationI"
+  "nviteRequest\032-.viam.app.v1.CreateOrganiz"
+  "ationInviteResponse\022w\n\030DeleteOrganizatio"
+  "nMember\022,.viam.app.v1.DeleteOrganization"
+  "MemberRequest\032-.viam.app.v1.DeleteOrgani"
+  "zationMemberResponse\022w\n\030DeleteOrganizati"
+  "onInvite\022,.viam.app.v1.DeleteOrganizatio"
+  "nInviteRequest\032-.viam.app.v1.DeleteOrgan"
+  "izationInviteResponse\022w\n\030ResendOrganizat"
+  "ionInvite\022,.viam.app.v1.ResendOrganizati"
+  "onInviteRequest\032-.viam.app.v1.ResendOrga"
+  "nizationInviteResponse\022Y\n\016CreateLocation"
+  "\022\".viam.app.v1.CreateLocationRequest\032#.v"
+  "iam.app.v1.CreateLocationResponse\022P\n\013Get"
+  "Location\022\037.viam.app.v1.GetLocationReques"
+  "t\032 .viam.app.v1.GetLocationResponse\022Y\n\016U"
+  "pdateLocation\022\".viam.app.v1.UpdateLocati"
+  "onRequest\032#.viam.app.v1.UpdateLocationRe"
+  "sponse\022Y\n\016DeleteLocation\022\".viam.app.v1.D"
+  "eleteLocationRequest\032#.viam.app.v1.Delet"
+  "eLocationResponse\022V\n\rListLocations\022!.via"
+  "m.app.v1.ListLocationsRequest\032\".viam.app"
+  ".v1.ListLocationsResponse\022V\n\rShareLocati"
+  "on\022!.viam.app.v1.ShareLocationRequest\032\"."
+  "viam.app.v1.ShareLocationResponse\022\\\n\017Uns"
+  "hareLocation\022#.viam.app.v1.UnshareLocati"
+  "onRequest\032$.viam.app.v1.UnshareLocationR"
+  "esponse\022S\n\014LocationAuth\022 .viam.app.v1.Lo"
+  "cationAuthRequest\032!.viam.app.v1.Location"
+  "AuthResponse\022k\n\024CreateLocationSecret\022(.v"
+  "iam.app.v1.CreateLocationSecretRequest\032)"
+  ".viam.app.v1.CreateLocationSecretRespons"
+  "e\022k\n\024DeleteLocationSecret\022(.viam.app.v1."
+  "DeleteLocationSecretRequest\032).viam.app.v"
+  "1.DeleteLocationSecretResponse\022G\n\010GetRob"
+  "ot\022\034.viam.app.v1.GetRobotRequest\032\035.viam."
+  "app.v1.GetRobotResponse\022k\n\024GetRoverRenta"
+  "lRobots\022(.viam.app.v1.GetRoverRentalRobo"
+  "tsRequest\032).viam.app.v1.GetRoverRentalRo"
+  "botsResponse\022V\n\rGetRobotParts\022!.viam.app"
+  ".v1.GetRobotPartsRequest\032\".viam.app.v1.G"
+  "etRobotPartsResponse\022S\n\014GetRobotPart\022 .v"
+  "iam.app.v1.GetRobotPartRequest\032!.viam.ap"
+  "p.v1.GetRobotPartResponse\022_\n\020GetRobotPar"
+  "tLogs\022$.viam.app.v1.GetRobotPartLogsRequ"
+  "est\032%.viam.app.v1.GetRobotPartLogsRespon"
+  "se\022d\n\021TailRobotPartLogs\022%.viam.app.v1.Ta"
+  "ilRobotPartLogsRequest\032&.viam.app.v1.Tai"
+  "lRobotPartLogsResponse0\001\022h\n\023GetRobotPart"
+  "History\022\'.viam.app.v1.GetRobotPartHistor"
+  "yRequest\032(.viam.app.v1.GetRobotPartHisto"
+  "ryResponse\022\\\n\017UpdateRobotPart\022#.viam.app"
+  ".v1.UpdateRobotPartRequest\032$.viam.app.v1"
+  ".UpdateRobotPartResponse\022S\n\014NewRobotPart"
+  "\022 .viam.app.v1.NewRobotPartRequest\032!.via"
+  "m.app.v1.NewRobotPartResponse\022\\\n\017DeleteR"
+  "obotPart\022#.viam.app.v1.DeleteRobotPartRe"
+  "quest\032$.viam.app.v1.DeleteRobotPartRespo"
+  "nse\022Y\n\016MarkPartAsMain\022\".viam.app.v1.Mark"
+  "PartAsMainRequest\032#.viam.app.v1.MarkPart"
+  "AsMainResponse\022e\n\022MarkPartForRestart\022&.v"
+  "iam.app.v1.MarkPartForRestartRequest\032\'.v"
+  "iam.app.v1.MarkPartForRestartResponse\022n\n"
+  "\025CreateRobotPartSecret\022).viam.app.v1.Cre"
+  "ateRobotPartSecretRequest\032*.viam.app.v1."
+  "CreateRobotPartSecretResponse\022n\n\025DeleteR"
+  "obotPartSecret\022).viam.app.v1.DeleteRobot"
+  "PartSecretRequest\032*.viam.app.v1.DeleteRo"
+  "botPartSecretResponse\022M\n\nListRobots\022\036.vi"
+  "am.app.v1.ListRobotsRequest\032\037.viam.app.v"
+  "1.ListRobotsResponse\022G\n\010NewRobot\022\034.viam."
+  "app.v1.NewRobotRequest\032\035.viam.app.v1.New"
+  "RobotResponse\022P\n\013UpdateRobot\022\037.viam.app."
+  "v1.UpdateRobotRequest\032 .viam.app.v1.Upda"
+  "teRobotResponse\022P\n\013DeleteRobot\022\037.viam.ap"
+  "p.v1.DeleteRobotRequest\032 .viam.app.v1.De"
+  "leteRobotResponse\022V\n\rListFragments\022!.via"
+  "m.app.v1.ListFragmentsRequest\032\".viam.app"
+  ".v1.ListFragmentsResponse\022P\n\013GetFragment"
+  "\022\037.viam.app.v1.GetFragmentRequest\032 .viam"
+  ".app.v1.GetFragmentResponse\022Y\n\016CreateFra"
+  "gment\022\".viam.app.v1.CreateFragmentReques"
+  "t\032#.viam.app.v1.CreateFragmentResponse\022Y"
+  "\n\016UpdateFragment\022\".viam.app.v1.UpdateFra"
+  "gmentRequest\032#.viam.app.v1.UpdateFragmen"
+  "tResponse\022Y\n\016DeleteFragment\022\".viam.app.v"
+  "1.DeleteFragmentRequest\032#.viam.app.v1.De"
+  "leteFragmentResponseB\030Z\026go.viam.com/api/"
+  "app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
@@ -2664,9 +2929,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 14529, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 15694, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
-    &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 99,
+    &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 109,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
     file_level_metadata_app_2fv1_2fapp_2eproto, file_level_enum_descriptors_app_2fv1_2fapp_2eproto,
     file_level_service_descriptors_app_2fv1_2fapp_2eproto,
@@ -23653,6 +23918,2398 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteRobotPartSecretResponse:
       file_level_metadata_app_2fv1_2fapp_2eproto[98]);
 }
 
+// ===================================================================
+
+class Authorization::_Internal {
+ public:
+};
+
+Authorization::Authorization(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.Authorization)
+}
+Authorization::Authorization(const Authorization& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  identity_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    identity_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_identity_id().empty()) {
+    identity_id_.Set(from._internal_identity_id(), 
+      GetArenaForAllocation());
+  }
+  authorization_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    authorization_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_authorization_type().empty()) {
+    authorization_type_.Set(from._internal_authorization_type(), 
+      GetArenaForAllocation());
+  }
+  authorization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    authorization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_authorization_id().empty()) {
+    authorization_id_.Set(from._internal_authorization_id(), 
+      GetArenaForAllocation());
+  }
+  resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    resource_type_.Set(from._internal_resource_type(), 
+      GetArenaForAllocation());
+  }
+  resource_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_id().empty()) {
+    resource_id_.Set(from._internal_resource_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.Authorization)
+}
+
+inline void Authorization::SharedCtor() {
+identity_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  identity_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+authorization_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  authorization_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+authorization_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  authorization_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+Authorization::~Authorization() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.Authorization)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Authorization::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  identity_id_.Destroy();
+  authorization_type_.Destroy();
+  authorization_id_.Destroy();
+  resource_type_.Destroy();
+  resource_id_.Destroy();
+}
+
+void Authorization::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Authorization::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.Authorization)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  identity_id_.ClearToEmpty();
+  authorization_type_.ClearToEmpty();
+  authorization_id_.ClearToEmpty();
+  resource_type_.ClearToEmpty();
+  resource_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Authorization::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string identity_id = 1 [json_name = "identityId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_identity_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.Authorization.identity_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string authorization_type = 2 [json_name = "authorizationType"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_authorization_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.Authorization.authorization_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string authorization_id = 3 [json_name = "authorizationId"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_authorization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.Authorization.authorization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_type = 4 [json_name = "resourceType"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.Authorization.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_id = 5 [json_name = "resourceId"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_resource_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.Authorization.resource_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Authorization::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.Authorization)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  if (!this->_internal_identity_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_identity_id().data(), static_cast<int>(this->_internal_identity_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.Authorization.identity_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_identity_id(), target);
+  }
+
+  // string authorization_type = 2 [json_name = "authorizationType"];
+  if (!this->_internal_authorization_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_authorization_type().data(), static_cast<int>(this->_internal_authorization_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.Authorization.authorization_type");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_authorization_type(), target);
+  }
+
+  // string authorization_id = 3 [json_name = "authorizationId"];
+  if (!this->_internal_authorization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_authorization_id().data(), static_cast<int>(this->_internal_authorization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.Authorization.authorization_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_authorization_id(), target);
+  }
+
+  // string resource_type = 4 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.Authorization.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_resource_type(), target);
+  }
+
+  // string resource_id = 5 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_id().data(), static_cast<int>(this->_internal_resource_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.Authorization.resource_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_resource_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.Authorization)
+  return target;
+}
+
+size_t Authorization::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.Authorization)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  if (!this->_internal_identity_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_identity_id());
+  }
+
+  // string authorization_type = 2 [json_name = "authorizationType"];
+  if (!this->_internal_authorization_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_authorization_type());
+  }
+
+  // string authorization_id = 3 [json_name = "authorizationId"];
+  if (!this->_internal_authorization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_authorization_id());
+  }
+
+  // string resource_type = 4 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // string resource_id = 5 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Authorization::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Authorization::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Authorization::GetClassData() const { return &_class_data_; }
+
+void Authorization::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Authorization *>(to)->MergeFrom(
+      static_cast<const Authorization &>(from));
+}
+
+
+void Authorization::MergeFrom(const Authorization& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.Authorization)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_identity_id().empty()) {
+    _internal_set_identity_id(from._internal_identity_id());
+  }
+  if (!from._internal_authorization_type().empty()) {
+    _internal_set_authorization_type(from._internal_authorization_type());
+  }
+  if (!from._internal_authorization_id().empty()) {
+    _internal_set_authorization_id(from._internal_authorization_id());
+  }
+  if (!from._internal_resource_type().empty()) {
+    _internal_set_resource_type(from._internal_resource_type());
+  }
+  if (!from._internal_resource_id().empty()) {
+    _internal_set_resource_id(from._internal_resource_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Authorization::CopyFrom(const Authorization& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.Authorization)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Authorization::IsInitialized() const {
+  return true;
+}
+
+void Authorization::InternalSwap(Authorization* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &identity_id_, lhs_arena,
+      &other->identity_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &authorization_type_, lhs_arena,
+      &other->authorization_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &authorization_id_, lhs_arena,
+      &other->authorization_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_type_, lhs_arena,
+      &other->resource_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_id_, lhs_arena,
+      &other->resource_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Authorization::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[99]);
+}
+
+// ===================================================================
+
+class AddRoleRequest::_Internal {
+ public:
+};
+
+AddRoleRequest::AddRoleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.AddRoleRequest)
+}
+AddRoleRequest::AddRoleRequest(const AddRoleRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  identity_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    identity_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_identity_id().empty()) {
+    identity_id_.Set(from._internal_identity_id(), 
+      GetArenaForAllocation());
+  }
+  role_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    role_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_role_id().empty()) {
+    role_id_.Set(from._internal_role_id(), 
+      GetArenaForAllocation());
+  }
+  resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    resource_type_.Set(from._internal_resource_type(), 
+      GetArenaForAllocation());
+  }
+  resource_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_id().empty()) {
+    resource_id_.Set(from._internal_resource_id(), 
+      GetArenaForAllocation());
+  }
+  organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_organization_id().empty()) {
+    organization_id_.Set(from._internal_organization_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.AddRoleRequest)
+}
+
+inline void AddRoleRequest::SharedCtor() {
+identity_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  identity_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+role_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  role_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+organization_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  organization_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AddRoleRequest::~AddRoleRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.AddRoleRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AddRoleRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  identity_id_.Destroy();
+  role_id_.Destroy();
+  resource_type_.Destroy();
+  resource_id_.Destroy();
+  organization_id_.Destroy();
+}
+
+void AddRoleRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AddRoleRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.AddRoleRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  identity_id_.ClearToEmpty();
+  role_id_.ClearToEmpty();
+  resource_type_.ClearToEmpty();
+  resource_id_.ClearToEmpty();
+  organization_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AddRoleRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string identity_id = 1 [json_name = "identityId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_identity_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AddRoleRequest.identity_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string role_id = 2 [json_name = "roleId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_role_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AddRoleRequest.role_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_type = 3 [json_name = "resourceType"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AddRoleRequest.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_id = 4 [json_name = "resourceId"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_resource_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AddRoleRequest.resource_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string organization_id = 5 [json_name = "organizationId"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_organization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AddRoleRequest.organization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AddRoleRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.AddRoleRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  if (!this->_internal_identity_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_identity_id().data(), static_cast<int>(this->_internal_identity_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AddRoleRequest.identity_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_identity_id(), target);
+  }
+
+  // string role_id = 2 [json_name = "roleId"];
+  if (!this->_internal_role_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_role_id().data(), static_cast<int>(this->_internal_role_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AddRoleRequest.role_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_role_id(), target);
+  }
+
+  // string resource_type = 3 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AddRoleRequest.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_resource_type(), target);
+  }
+
+  // string resource_id = 4 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_id().data(), static_cast<int>(this->_internal_resource_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AddRoleRequest.resource_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_resource_id(), target);
+  }
+
+  // string organization_id = 5 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_organization_id().data(), static_cast<int>(this->_internal_organization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AddRoleRequest.organization_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_organization_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.AddRoleRequest)
+  return target;
+}
+
+size_t AddRoleRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.AddRoleRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  if (!this->_internal_identity_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_identity_id());
+  }
+
+  // string role_id = 2 [json_name = "roleId"];
+  if (!this->_internal_role_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_role_id());
+  }
+
+  // string resource_type = 3 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // string resource_id = 4 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_id());
+  }
+
+  // string organization_id = 5 [json_name = "organizationId"];
+  if (!this->_internal_organization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_organization_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AddRoleRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AddRoleRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddRoleRequest::GetClassData() const { return &_class_data_; }
+
+void AddRoleRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AddRoleRequest *>(to)->MergeFrom(
+      static_cast<const AddRoleRequest &>(from));
+}
+
+
+void AddRoleRequest::MergeFrom(const AddRoleRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.AddRoleRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_identity_id().empty()) {
+    _internal_set_identity_id(from._internal_identity_id());
+  }
+  if (!from._internal_role_id().empty()) {
+    _internal_set_role_id(from._internal_role_id());
+  }
+  if (!from._internal_resource_type().empty()) {
+    _internal_set_resource_type(from._internal_resource_type());
+  }
+  if (!from._internal_resource_id().empty()) {
+    _internal_set_resource_id(from._internal_resource_id());
+  }
+  if (!from._internal_organization_id().empty()) {
+    _internal_set_organization_id(from._internal_organization_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AddRoleRequest::CopyFrom(const AddRoleRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.AddRoleRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AddRoleRequest::IsInitialized() const {
+  return true;
+}
+
+void AddRoleRequest::InternalSwap(AddRoleRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &identity_id_, lhs_arena,
+      &other->identity_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &role_id_, lhs_arena,
+      &other->role_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_type_, lhs_arena,
+      &other->resource_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_id_, lhs_arena,
+      &other->resource_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &organization_id_, lhs_arena,
+      &other->organization_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AddRoleRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[100]);
+}
+
+// ===================================================================
+
+class AddRoleResponse::_Internal {
+ public:
+  static const ::viam::app::v1::Authorization& authorization(const AddRoleResponse* msg);
+};
+
+const ::viam::app::v1::Authorization&
+AddRoleResponse::_Internal::authorization(const AddRoleResponse* msg) {
+  return *msg->authorization_;
+}
+AddRoleResponse::AddRoleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.AddRoleResponse)
+}
+AddRoleResponse::AddRoleResponse(const AddRoleResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_authorization()) {
+    authorization_ = new ::viam::app::v1::Authorization(*from.authorization_);
+  } else {
+    authorization_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.AddRoleResponse)
+}
+
+inline void AddRoleResponse::SharedCtor() {
+authorization_ = nullptr;
+}
+
+AddRoleResponse::~AddRoleResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.AddRoleResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AddRoleResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete authorization_;
+}
+
+void AddRoleResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AddRoleResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.AddRoleResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && authorization_ != nullptr) {
+    delete authorization_;
+  }
+  authorization_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AddRoleResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.app.v1.Authorization authorization = 1 [json_name = "authorization"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_authorization(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AddRoleResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.AddRoleResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.app.v1.Authorization authorization = 1 [json_name = "authorization"];
+  if (this->_internal_has_authorization()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::authorization(this),
+        _Internal::authorization(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.AddRoleResponse)
+  return target;
+}
+
+size_t AddRoleResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.AddRoleResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .viam.app.v1.Authorization authorization = 1 [json_name = "authorization"];
+  if (this->_internal_has_authorization()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *authorization_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AddRoleResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AddRoleResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddRoleResponse::GetClassData() const { return &_class_data_; }
+
+void AddRoleResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AddRoleResponse *>(to)->MergeFrom(
+      static_cast<const AddRoleResponse &>(from));
+}
+
+
+void AddRoleResponse::MergeFrom(const AddRoleResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.AddRoleResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_authorization()) {
+    _internal_mutable_authorization()->::viam::app::v1::Authorization::MergeFrom(from._internal_authorization());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AddRoleResponse::CopyFrom(const AddRoleResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.AddRoleResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AddRoleResponse::IsInitialized() const {
+  return true;
+}
+
+void AddRoleResponse::InternalSwap(AddRoleResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(authorization_, other->authorization_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AddRoleResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[101]);
+}
+
+// ===================================================================
+
+class RemoveRoleRequest::_Internal {
+ public:
+};
+
+RemoveRoleRequest::RemoveRoleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.RemoveRoleRequest)
+}
+RemoveRoleRequest::RemoveRoleRequest(const RemoveRoleRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  identity_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    identity_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_identity_id().empty()) {
+    identity_id_.Set(from._internal_identity_id(), 
+      GetArenaForAllocation());
+  }
+  role_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    role_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_role_id().empty()) {
+    role_id_.Set(from._internal_role_id(), 
+      GetArenaForAllocation());
+  }
+  resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    resource_type_.Set(from._internal_resource_type(), 
+      GetArenaForAllocation());
+  }
+  resource_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_id().empty()) {
+    resource_id_.Set(from._internal_resource_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.RemoveRoleRequest)
+}
+
+inline void RemoveRoleRequest::SharedCtor() {
+identity_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  identity_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+role_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  role_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+RemoveRoleRequest::~RemoveRoleRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.RemoveRoleRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void RemoveRoleRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  identity_id_.Destroy();
+  role_id_.Destroy();
+  resource_type_.Destroy();
+  resource_id_.Destroy();
+}
+
+void RemoveRoleRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void RemoveRoleRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.RemoveRoleRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  identity_id_.ClearToEmpty();
+  role_id_.ClearToEmpty();
+  resource_type_.ClearToEmpty();
+  resource_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* RemoveRoleRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string identity_id = 1 [json_name = "identityId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_identity_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.RemoveRoleRequest.identity_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string role_id = 2 [json_name = "roleId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_role_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.RemoveRoleRequest.role_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_type = 3 [json_name = "resourceType"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.RemoveRoleRequest.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_id = 4 [json_name = "resourceId"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_resource_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.RemoveRoleRequest.resource_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* RemoveRoleRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.RemoveRoleRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  if (!this->_internal_identity_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_identity_id().data(), static_cast<int>(this->_internal_identity_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.RemoveRoleRequest.identity_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_identity_id(), target);
+  }
+
+  // string role_id = 2 [json_name = "roleId"];
+  if (!this->_internal_role_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_role_id().data(), static_cast<int>(this->_internal_role_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.RemoveRoleRequest.role_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_role_id(), target);
+  }
+
+  // string resource_type = 3 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.RemoveRoleRequest.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_resource_type(), target);
+  }
+
+  // string resource_id = 4 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_id().data(), static_cast<int>(this->_internal_resource_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.RemoveRoleRequest.resource_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_resource_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.RemoveRoleRequest)
+  return target;
+}
+
+size_t RemoveRoleRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.RemoveRoleRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  if (!this->_internal_identity_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_identity_id());
+  }
+
+  // string role_id = 2 [json_name = "roleId"];
+  if (!this->_internal_role_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_role_id());
+  }
+
+  // string resource_type = 3 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // string resource_id = 4 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveRoleRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    RemoveRoleRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveRoleRequest::GetClassData() const { return &_class_data_; }
+
+void RemoveRoleRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RemoveRoleRequest *>(to)->MergeFrom(
+      static_cast<const RemoveRoleRequest &>(from));
+}
+
+
+void RemoveRoleRequest::MergeFrom(const RemoveRoleRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.RemoveRoleRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_identity_id().empty()) {
+    _internal_set_identity_id(from._internal_identity_id());
+  }
+  if (!from._internal_role_id().empty()) {
+    _internal_set_role_id(from._internal_role_id());
+  }
+  if (!from._internal_resource_type().empty()) {
+    _internal_set_resource_type(from._internal_resource_type());
+  }
+  if (!from._internal_resource_id().empty()) {
+    _internal_set_resource_id(from._internal_resource_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RemoveRoleRequest::CopyFrom(const RemoveRoleRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.RemoveRoleRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RemoveRoleRequest::IsInitialized() const {
+  return true;
+}
+
+void RemoveRoleRequest::InternalSwap(RemoveRoleRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &identity_id_, lhs_arena,
+      &other->identity_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &role_id_, lhs_arena,
+      &other->role_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_type_, lhs_arena,
+      &other->resource_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_id_, lhs_arena,
+      &other->resource_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RemoveRoleRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[102]);
+}
+
+// ===================================================================
+
+class RemoveRoleResponse::_Internal {
+ public:
+};
+
+RemoveRoleResponse::RemoveRoleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.RemoveRoleResponse)
+}
+RemoveRoleResponse::RemoveRoleResponse(const RemoveRoleResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.RemoveRoleResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveRoleResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveRoleResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata RemoveRoleResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[103]);
+}
+
+// ===================================================================
+
+class ListAuthorizationsRequest::_Internal {
+ public:
+};
+
+ListAuthorizationsRequest::ListAuthorizationsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ListAuthorizationsRequest)
+}
+ListAuthorizationsRequest::ListAuthorizationsRequest(const ListAuthorizationsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    resource_type_.Set(from._internal_resource_type(), 
+      GetArenaForAllocation());
+  }
+  resource_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_id().empty()) {
+    resource_id_.Set(from._internal_resource_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ListAuthorizationsRequest)
+}
+
+inline void ListAuthorizationsRequest::SharedCtor() {
+resource_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+ListAuthorizationsRequest::~ListAuthorizationsRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ListAuthorizationsRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ListAuthorizationsRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  resource_type_.Destroy();
+  resource_id_.Destroy();
+}
+
+void ListAuthorizationsRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ListAuthorizationsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ListAuthorizationsRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  resource_type_.ClearToEmpty();
+  resource_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ListAuthorizationsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string resource_type = 1 [json_name = "resourceType"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ListAuthorizationsRequest.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_id = 2 [json_name = "resourceId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_resource_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ListAuthorizationsRequest.resource_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ListAuthorizationsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ListAuthorizationsRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string resource_type = 1 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ListAuthorizationsRequest.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_resource_type(), target);
+  }
+
+  // string resource_id = 2 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_id().data(), static_cast<int>(this->_internal_resource_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ListAuthorizationsRequest.resource_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_resource_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ListAuthorizationsRequest)
+  return target;
+}
+
+size_t ListAuthorizationsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ListAuthorizationsRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string resource_type = 1 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // string resource_id = 2 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListAuthorizationsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ListAuthorizationsRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListAuthorizationsRequest::GetClassData() const { return &_class_data_; }
+
+void ListAuthorizationsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ListAuthorizationsRequest *>(to)->MergeFrom(
+      static_cast<const ListAuthorizationsRequest &>(from));
+}
+
+
+void ListAuthorizationsRequest::MergeFrom(const ListAuthorizationsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ListAuthorizationsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_resource_type().empty()) {
+    _internal_set_resource_type(from._internal_resource_type());
+  }
+  if (!from._internal_resource_id().empty()) {
+    _internal_set_resource_id(from._internal_resource_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ListAuthorizationsRequest::CopyFrom(const ListAuthorizationsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ListAuthorizationsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ListAuthorizationsRequest::IsInitialized() const {
+  return true;
+}
+
+void ListAuthorizationsRequest::InternalSwap(ListAuthorizationsRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_type_, lhs_arena,
+      &other->resource_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_id_, lhs_arena,
+      &other->resource_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ListAuthorizationsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[104]);
+}
+
+// ===================================================================
+
+class ListAuthorizationsResponse::_Internal {
+ public:
+};
+
+ListAuthorizationsResponse::ListAuthorizationsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  authorizations_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ListAuthorizationsResponse)
+}
+ListAuthorizationsResponse::ListAuthorizationsResponse(const ListAuthorizationsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      authorizations_(from.authorizations_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ListAuthorizationsResponse)
+}
+
+inline void ListAuthorizationsResponse::SharedCtor() {
+}
+
+ListAuthorizationsResponse::~ListAuthorizationsResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ListAuthorizationsResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ListAuthorizationsResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void ListAuthorizationsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ListAuthorizationsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ListAuthorizationsResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  authorizations_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ListAuthorizationsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.app.v1.Authorization authorizations = 1 [json_name = "authorizations"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_authorizations(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ListAuthorizationsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ListAuthorizationsResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .viam.app.v1.Authorization authorizations = 1 [json_name = "authorizations"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_authorizations_size()); i < n; i++) {
+    const auto& repfield = this->_internal_authorizations(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ListAuthorizationsResponse)
+  return target;
+}
+
+size_t ListAuthorizationsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ListAuthorizationsResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.app.v1.Authorization authorizations = 1 [json_name = "authorizations"];
+  total_size += 1UL * this->_internal_authorizations_size();
+  for (const auto& msg : this->authorizations_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListAuthorizationsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ListAuthorizationsResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListAuthorizationsResponse::GetClassData() const { return &_class_data_; }
+
+void ListAuthorizationsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ListAuthorizationsResponse *>(to)->MergeFrom(
+      static_cast<const ListAuthorizationsResponse &>(from));
+}
+
+
+void ListAuthorizationsResponse::MergeFrom(const ListAuthorizationsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ListAuthorizationsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  authorizations_.MergeFrom(from.authorizations_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ListAuthorizationsResponse::CopyFrom(const ListAuthorizationsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ListAuthorizationsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ListAuthorizationsResponse::IsInitialized() const {
+  return true;
+}
+
+void ListAuthorizationsResponse::InternalSwap(ListAuthorizationsResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  authorizations_.InternalSwap(&other->authorizations_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ListAuthorizationsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[105]);
+}
+
+// ===================================================================
+
+class CheckPermissionsRequest::_Internal {
+ public:
+};
+
+CheckPermissionsRequest::CheckPermissionsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  resource_ids_(arena),
+  permission_ids_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.CheckPermissionsRequest)
+}
+CheckPermissionsRequest::CheckPermissionsRequest(const CheckPermissionsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      resource_ids_(from.resource_ids_),
+      permission_ids_(from.permission_ids_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.CheckPermissionsRequest)
+}
+
+inline void CheckPermissionsRequest::SharedCtor() {
+}
+
+CheckPermissionsRequest::~CheckPermissionsRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.CheckPermissionsRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void CheckPermissionsRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void CheckPermissionsRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void CheckPermissionsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.CheckPermissionsRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  resource_ids_.Clear();
+  permission_ids_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CheckPermissionsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated string resource_ids = 1 [json_name = "resourceIds"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_resource_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.CheckPermissionsRequest.resource_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string permission_ids = 2 [json_name = "permissionIds"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_permission_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.CheckPermissionsRequest.permission_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CheckPermissionsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.CheckPermissionsRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string resource_ids = 1 [json_name = "resourceIds"];
+  for (int i = 0, n = this->_internal_resource_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_resource_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.CheckPermissionsRequest.resource_ids");
+    target = stream->WriteString(1, s, target);
+  }
+
+  // repeated string permission_ids = 2 [json_name = "permissionIds"];
+  for (int i = 0, n = this->_internal_permission_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_permission_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.CheckPermissionsRequest.permission_ids");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.CheckPermissionsRequest)
+  return target;
+}
+
+size_t CheckPermissionsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.CheckPermissionsRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string resource_ids = 1 [json_name = "resourceIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(resource_ids_.size());
+  for (int i = 0, n = resource_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      resource_ids_.Get(i));
+  }
+
+  // repeated string permission_ids = 2 [json_name = "permissionIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(permission_ids_.size());
+  for (int i = 0, n = permission_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      permission_ids_.Get(i));
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CheckPermissionsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    CheckPermissionsRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CheckPermissionsRequest::GetClassData() const { return &_class_data_; }
+
+void CheckPermissionsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CheckPermissionsRequest *>(to)->MergeFrom(
+      static_cast<const CheckPermissionsRequest &>(from));
+}
+
+
+void CheckPermissionsRequest::MergeFrom(const CheckPermissionsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.CheckPermissionsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  resource_ids_.MergeFrom(from.resource_ids_);
+  permission_ids_.MergeFrom(from.permission_ids_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CheckPermissionsRequest::CopyFrom(const CheckPermissionsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.CheckPermissionsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CheckPermissionsRequest::IsInitialized() const {
+  return true;
+}
+
+void CheckPermissionsRequest::InternalSwap(CheckPermissionsRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  resource_ids_.InternalSwap(&other->resource_ids_);
+  permission_ids_.InternalSwap(&other->permission_ids_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CheckPermissionsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[106]);
+}
+
+// ===================================================================
+
+class AuthorizedPermissions::_Internal {
+ public:
+};
+
+AuthorizedPermissions::AuthorizedPermissions(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  permissions_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.AuthorizedPermissions)
+}
+AuthorizedPermissions::AuthorizedPermissions(const AuthorizedPermissions& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      permissions_(from.permissions_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  resource_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_id().empty()) {
+    resource_id_.Set(from._internal_resource_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.AuthorizedPermissions)
+}
+
+inline void AuthorizedPermissions::SharedCtor() {
+resource_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AuthorizedPermissions::~AuthorizedPermissions() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.AuthorizedPermissions)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AuthorizedPermissions::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  resource_id_.Destroy();
+}
+
+void AuthorizedPermissions::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AuthorizedPermissions::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.AuthorizedPermissions)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  permissions_.Clear();
+  resource_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AuthorizedPermissions::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string resource_id = 1 [json_name = "resourceId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_resource_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AuthorizedPermissions.resource_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string permissions = 2 [json_name = "permissions"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_permissions();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AuthorizedPermissions.permissions"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AuthorizedPermissions::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.AuthorizedPermissions)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string resource_id = 1 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_id().data(), static_cast<int>(this->_internal_resource_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AuthorizedPermissions.resource_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_resource_id(), target);
+  }
+
+  // repeated string permissions = 2 [json_name = "permissions"];
+  for (int i = 0, n = this->_internal_permissions_size(); i < n; i++) {
+    const auto& s = this->_internal_permissions(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AuthorizedPermissions.permissions");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.AuthorizedPermissions)
+  return target;
+}
+
+size_t AuthorizedPermissions::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.AuthorizedPermissions)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string permissions = 2 [json_name = "permissions"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(permissions_.size());
+  for (int i = 0, n = permissions_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      permissions_.Get(i));
+  }
+
+  // string resource_id = 1 [json_name = "resourceId"];
+  if (!this->_internal_resource_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AuthorizedPermissions::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AuthorizedPermissions::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AuthorizedPermissions::GetClassData() const { return &_class_data_; }
+
+void AuthorizedPermissions::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AuthorizedPermissions *>(to)->MergeFrom(
+      static_cast<const AuthorizedPermissions &>(from));
+}
+
+
+void AuthorizedPermissions::MergeFrom(const AuthorizedPermissions& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.AuthorizedPermissions)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  permissions_.MergeFrom(from.permissions_);
+  if (!from._internal_resource_id().empty()) {
+    _internal_set_resource_id(from._internal_resource_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AuthorizedPermissions::CopyFrom(const AuthorizedPermissions& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.AuthorizedPermissions)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AuthorizedPermissions::IsInitialized() const {
+  return true;
+}
+
+void AuthorizedPermissions::InternalSwap(AuthorizedPermissions* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  permissions_.InternalSwap(&other->permissions_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_id_, lhs_arena,
+      &other->resource_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AuthorizedPermissions::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[107]);
+}
+
+// ===================================================================
+
+class CheckPermissionsResponse::_Internal {
+ public:
+};
+
+CheckPermissionsResponse::CheckPermissionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  authorized_permissions_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.CheckPermissionsResponse)
+}
+CheckPermissionsResponse::CheckPermissionsResponse(const CheckPermissionsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      authorized_permissions_(from.authorized_permissions_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.CheckPermissionsResponse)
+}
+
+inline void CheckPermissionsResponse::SharedCtor() {
+}
+
+CheckPermissionsResponse::~CheckPermissionsResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.CheckPermissionsResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void CheckPermissionsResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void CheckPermissionsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void CheckPermissionsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.CheckPermissionsResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  authorized_permissions_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CheckPermissionsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.app.v1.AuthorizedPermissions authorized_permissions = 1 [json_name = "authorizedPermissions"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_authorized_permissions(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CheckPermissionsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.CheckPermissionsResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .viam.app.v1.AuthorizedPermissions authorized_permissions = 1 [json_name = "authorizedPermissions"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_authorized_permissions_size()); i < n; i++) {
+    const auto& repfield = this->_internal_authorized_permissions(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.CheckPermissionsResponse)
+  return target;
+}
+
+size_t CheckPermissionsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.CheckPermissionsResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.app.v1.AuthorizedPermissions authorized_permissions = 1 [json_name = "authorizedPermissions"];
+  total_size += 1UL * this->_internal_authorized_permissions_size();
+  for (const auto& msg : this->authorized_permissions_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CheckPermissionsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    CheckPermissionsResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CheckPermissionsResponse::GetClassData() const { return &_class_data_; }
+
+void CheckPermissionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CheckPermissionsResponse *>(to)->MergeFrom(
+      static_cast<const CheckPermissionsResponse &>(from));
+}
+
+
+void CheckPermissionsResponse::MergeFrom(const CheckPermissionsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.CheckPermissionsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  authorized_permissions_.MergeFrom(from.authorized_permissions_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CheckPermissionsResponse::CopyFrom(const CheckPermissionsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.CheckPermissionsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CheckPermissionsResponse::IsInitialized() const {
+  return true;
+}
+
+void CheckPermissionsResponse::InternalSwap(CheckPermissionsResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  authorized_permissions_.InternalSwap(&other->authorized_permissions_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CheckPermissionsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[108]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace app
@@ -24053,6 +26710,46 @@ Arena::CreateMaybeMessage< ::viam::app::v1::DeleteRobotPartSecretRequest >(Arena
 template<> PROTOBUF_NOINLINE ::viam::app::v1::DeleteRobotPartSecretResponse*
 Arena::CreateMaybeMessage< ::viam::app::v1::DeleteRobotPartSecretResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::DeleteRobotPartSecretResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::Authorization*
+Arena::CreateMaybeMessage< ::viam::app::v1::Authorization >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::Authorization >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::AddRoleRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::AddRoleRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::AddRoleRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::AddRoleResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::AddRoleResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::AddRoleResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::RemoveRoleRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::RemoveRoleRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::RemoveRoleRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::RemoveRoleResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::RemoveRoleResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::RemoveRoleResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ListAuthorizationsRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::ListAuthorizationsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ListAuthorizationsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ListAuthorizationsResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::ListAuthorizationsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ListAuthorizationsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::CheckPermissionsRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::CheckPermissionsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::CheckPermissionsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::AuthorizedPermissions*
+Arena::CreateMaybeMessage< ::viam::app::v1::AuthorizedPermissions >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::AuthorizedPermissions >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::CheckPermissionsResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::CheckPermissionsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::CheckPermissionsResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

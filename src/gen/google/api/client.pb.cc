@@ -154,9 +154,36 @@ struct NodeSettingsDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NodeSettingsDefaultTypeInternal _NodeSettings_default_instance_;
+PROTOBUF_CONSTEXPR DotnetSettings_RenamedServicesEntry_DoNotUse::DotnetSettings_RenamedServicesEntry_DoNotUse(
+    ::_pbi::ConstantInitialized){}
+struct DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    DotnetSettings_RenamedServicesEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedServicesEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR DotnetSettings_RenamedResourcesEntry_DoNotUse::DotnetSettings_RenamedResourcesEntry_DoNotUse(
+    ::_pbi::ConstantInitialized){}
+struct DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    DotnetSettings_RenamedResourcesEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedResourcesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR DotnetSettings::DotnetSettings(
     ::_pbi::ConstantInitialized)
-  : common_(nullptr){}
+  : renamed_services_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , renamed_resources_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , ignored_resources_()
+  , forced_namespace_aliases_()
+  , handwritten_signatures_()
+  , common_(nullptr){}
 struct DotnetSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DotnetSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -220,7 +247,7 @@ struct MethodSettingsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettingsDefaultTypeInternal _MethodSettings_default_instance_;
 }  // namespace api
 }  // namespace google
-static ::_pb::Metadata file_level_metadata_google_2fapi_2fclient_2eproto[14];
+static ::_pb::Metadata file_level_metadata_google_2fapi_2fclient_2eproto[16];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2fclient_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2fapi_2fclient_2eproto = nullptr;
 
@@ -313,6 +340,26 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::NodeSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse, value_),
+  0,
+  1,
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -320,6 +367,11 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, renamed_services_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, renamed_resources_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, ignored_resources_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, forced_namespace_aliases_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, handwritten_signatures_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::RubySettings, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -363,11 +415,13 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 67, -1, -1, sizeof(::google::api::PhpSettings)},
   { 74, -1, -1, sizeof(::google::api::PythonSettings)},
   { 81, -1, -1, sizeof(::google::api::NodeSettings)},
-  { 88, -1, -1, sizeof(::google::api::DotnetSettings)},
-  { 95, -1, -1, sizeof(::google::api::RubySettings)},
-  { 102, -1, -1, sizeof(::google::api::GoSettings)},
-  { 109, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
-  { 119, -1, -1, sizeof(::google::api::MethodSettings)},
+  { 88, 96, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
+  { 98, 106, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
+  { 108, -1, -1, sizeof(::google::api::DotnetSettings)},
+  { 120, -1, -1, sizeof(::google::api::RubySettings)},
+  { 127, -1, -1, sizeof(::google::api::GoSettings)},
+  { 134, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
+  { 144, -1, -1, sizeof(::google::api::MethodSettings)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -380,6 +434,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::google::api::_PhpSettings_default_instance_._instance,
   &::google::api::_PythonSettings_default_instance_._instance,
   &::google::api::_NodeSettings_default_instance_._instance,
+  &::google::api::_DotnetSettings_RenamedServicesEntry_DoNotUse_default_instance_._instance,
+  &::google::api::_DotnetSettings_RenamedResourcesEntry_DoNotUse_default_instance_._instance,
   &::google::api::_DotnetSettings_default_instance_._instance,
   &::google::api::_RubySettings_default_instance_._instance,
   &::google::api::_GoSettings_default_instance_._instance,
@@ -440,36 +496,49 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "\n\006common\030\001 \001(\0132\".google.api.CommonLangua"
   "geSettingsR\006common\"J\n\014NodeSettings\022:\n\006co"
   "mmon\030\001 \001(\0132\".google.api.CommonLanguageSe"
-  "ttingsR\006common\"L\n\016DotnetSettings\022:\n\006comm"
-  "on\030\001 \001(\0132\".google.api.CommonLanguageSett"
-  "ingsR\006common\"J\n\014RubySettings\022:\n\006common\030\001"
-  " \001(\0132\".google.api.CommonLanguageSettings"
-  "R\006common\"H\n\nGoSettings\022:\n\006common\030\001 \001(\0132\""
-  ".google.api.CommonLanguageSettingsR\006comm"
-  "on\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001 \001(\tR"
-  "\010selector\022I\n\014long_running\030\002 \001(\0132&.google"
-  ".api.MethodSettings.LongRunningR\013longRun"
-  "ning\032\224\002\n\013LongRunning\022G\n\022initial_poll_del"
-  "ay\030\001 \001(\0132\031.google.protobuf.DurationR\020ini"
-  "tialPollDelay\0222\n\025poll_delay_multiplier\030\002"
-  " \001(\002R\023pollDelayMultiplier\022\?\n\016max_poll_de"
-  "lay\030\003 \001(\0132\031.google.protobuf.DurationR\014ma"
-  "xPollDelay\022G\n\022total_poll_timeout\030\004 \001(\0132\031"
-  ".google.protobuf.DurationR\020totalPollTime"
-  "out*y\n\031ClientLibraryOrganization\022+\n\'CLIE"
-  "NT_LIBRARY_ORGANIZATION_UNSPECIFIED\020\000\022\t\n"
-  "\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET_"
-  "VIEW\020\004*g\n\030ClientLibraryDestination\022*\n&CL"
-  "IENT_LIBRARY_DESTINATION_UNSPECIFIED\020\000\022\n"
-  "\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020metho"
-  "d_signature\022\036.google.protobuf.MethodOpti"
-  "ons\030\233\010 \003(\tR\017methodSignature:C\n\014default_h"
-  "ost\022\037.google.protobuf.ServiceOptions\030\231\010 "
-  "\001(\tR\013defaultHost:C\n\014oauth_scopes\022\037.googl"
-  "e.protobuf.ServiceOptions\030\232\010 \001(\tR\013oauthS"
-  "copesBi\n\016com.google.apiB\013ClientProtoP\001ZA"
-  "google.golang.org/genproto/googleapis/ap"
-  "i/annotations;annotations\242\002\004GAPIb\006proto3"
+  "ttingsR\006common\"\256\004\n\016DotnetSettings\022:\n\006com"
+  "mon\030\001 \001(\0132\".google.api.CommonLanguageSet"
+  "tingsR\006common\022Z\n\020renamed_services\030\002 \003(\0132"
+  "/.google.api.DotnetSettings.RenamedServi"
+  "cesEntryR\017renamedServices\022]\n\021renamed_res"
+  "ources\030\003 \003(\01320.google.api.DotnetSettings"
+  ".RenamedResourcesEntryR\020renamedResources"
+  "\022+\n\021ignored_resources\030\004 \003(\tR\020ignoredReso"
+  "urces\0228\n\030forced_namespace_aliases\030\005 \003(\tR"
+  "\026forcedNamespaceAliases\0225\n\026handwritten_s"
+  "ignatures\030\006 \003(\tR\025handwrittenSignatures\032B"
+  "\n\024RenamedServicesEntry\022\020\n\003key\030\001 \001(\tR\003key"
+  "\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032C\n\025RenamedRes"
+  "ourcesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002"
+  " \001(\tR\005value:\0028\001\"J\n\014RubySettings\022:\n\006commo"
+  "n\030\001 \001(\0132\".google.api.CommonLanguageSetti"
+  "ngsR\006common\"H\n\nGoSettings\022:\n\006common\030\001 \001("
+  "\0132\".google.api.CommonLanguageSettingsR\006c"
+  "ommon\"\216\003\n\016MethodSettings\022\032\n\010selector\030\001 \001"
+  "(\tR\010selector\022I\n\014long_running\030\002 \001(\0132&.goo"
+  "gle.api.MethodSettings.LongRunningR\013long"
+  "Running\032\224\002\n\013LongRunning\022G\n\022initial_poll_"
+  "delay\030\001 \001(\0132\031.google.protobuf.DurationR\020"
+  "initialPollDelay\0222\n\025poll_delay_multiplie"
+  "r\030\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_poll"
+  "_delay\030\003 \001(\0132\031.google.protobuf.DurationR"
+  "\014maxPollDelay\022G\n\022total_poll_timeout\030\004 \001("
+  "\0132\031.google.protobuf.DurationR\020totalPollT"
+  "imeout*y\n\031ClientLibraryOrganization\022+\n\'C"
+  "LIENT_LIBRARY_ORGANIZATION_UNSPECIFIED\020\000"
+  "\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STRE"
+  "ET_VIEW\020\004*g\n\030ClientLibraryDestination\022*\n"
+  "&CLIENT_LIBRARY_DESTINATION_UNSPECIFIED\020"
+  "\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020me"
+  "thod_signature\022\036.google.protobuf.MethodO"
+  "ptions\030\233\010 \003(\tR\017methodSignature:C\n\014defaul"
+  "t_host\022\037.google.protobuf.ServiceOptions\030"
+  "\231\010 \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037.go"
+  "ogle.protobuf.ServiceOptions\030\232\010 \001(\tR\013oau"
+  "thScopesBi\n\016com.google.apiB\013ClientProtoP"
+  "\001ZAgoogle.golang.org/genproto/googleapis"
+  "/api/annotations;annotations\242\002\004GAPIb\006pro"
+  "to3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -478,9 +547,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 3280, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 3763, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
-    &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 14,
+    &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 16,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
     file_level_metadata_google_2fapi_2fclient_2eproto, file_level_enum_descriptors_google_2fapi_2fclient_2eproto,
     file_level_service_descriptors_google_2fapi_2fclient_2eproto,
@@ -2977,6 +3046,34 @@ void NodeSettings::InternalSwap(NodeSettings* other) {
 
 // ===================================================================
 
+DotnetSettings_RenamedServicesEntry_DoNotUse::DotnetSettings_RenamedServicesEntry_DoNotUse() {}
+DotnetSettings_RenamedServicesEntry_DoNotUse::DotnetSettings_RenamedServicesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void DotnetSettings_RenamedServicesEntry_DoNotUse::MergeFrom(const DotnetSettings_RenamedServicesEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata DotnetSettings_RenamedServicesEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
+      file_level_metadata_google_2fapi_2fclient_2eproto[9]);
+}
+
+// ===================================================================
+
+DotnetSettings_RenamedResourcesEntry_DoNotUse::DotnetSettings_RenamedResourcesEntry_DoNotUse() {}
+DotnetSettings_RenamedResourcesEntry_DoNotUse::DotnetSettings_RenamedResourcesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void DotnetSettings_RenamedResourcesEntry_DoNotUse::MergeFrom(const DotnetSettings_RenamedResourcesEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata DotnetSettings_RenamedResourcesEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
+      file_level_metadata_google_2fapi_2fclient_2eproto[10]);
+}
+
+// ===================================================================
+
 class DotnetSettings::_Internal {
  public:
   static const ::google::api::CommonLanguageSettings& common(const DotnetSettings* msg);
@@ -2988,13 +3085,26 @@ DotnetSettings::_Internal::common(const DotnetSettings* msg) {
 }
 DotnetSettings::DotnetSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  renamed_services_(arena),
+  renamed_resources_(arena),
+  ignored_resources_(arena),
+  forced_namespace_aliases_(arena),
+  handwritten_signatures_(arena) {
   SharedCtor();
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &DotnetSettings::ArenaDtor);
+  }
   // @@protoc_insertion_point(arena_constructor:google.api.DotnetSettings)
 }
 DotnetSettings::DotnetSettings(const DotnetSettings& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      ignored_resources_(from.ignored_resources_),
+      forced_namespace_aliases_(from.forced_namespace_aliases_),
+      handwritten_signatures_(from.handwritten_signatures_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  renamed_services_.MergeFrom(from.renamed_services_);
+  renamed_resources_.MergeFrom(from.renamed_resources_);
   if (from._internal_has_common()) {
     common_ = new ::google::api::CommonLanguageSettings(*from.common_);
   } else {
@@ -3011,6 +3121,7 @@ DotnetSettings::~DotnetSettings() {
   // @@protoc_insertion_point(destructor:google.api.DotnetSettings)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
+    ArenaDtor(this);
     return;
   }
   SharedDtor();
@@ -3018,9 +3129,16 @@ DotnetSettings::~DotnetSettings() {
 
 inline void DotnetSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  renamed_services_.Destruct();
+  renamed_resources_.Destruct();
   if (this != internal_default_instance()) delete common_;
 }
 
+void DotnetSettings::ArenaDtor(void* object) {
+  DotnetSettings* _this = reinterpret_cast< DotnetSettings* >(object);
+  _this->renamed_services_.Destruct();
+  _this->renamed_resources_.Destruct();
+}
 void DotnetSettings::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -3031,6 +3149,11 @@ void DotnetSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  renamed_services_.Clear();
+  renamed_resources_.Clear();
+  ignored_resources_.Clear();
+  forced_namespace_aliases_.Clear();
+  handwritten_signatures_.Clear();
   if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
     delete common_;
   }
@@ -3049,6 +3172,77 @@ const char* DotnetSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_common(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, string> renamed_services = 2 [json_name = "renamedServices"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&renamed_services_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, string> renamed_resources = 3 [json_name = "renamedResources"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&renamed_resources_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string ignored_resources = 4 [json_name = "ignoredResources"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_ignored_resources();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "google.api.DotnetSettings.ignored_resources"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string forced_namespace_aliases = 5 [json_name = "forcedNamespaceAliases"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_forced_namespace_aliases();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "google.api.DotnetSettings.forced_namespace_aliases"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string handwritten_signatures = 6 [json_name = "handwrittenSignatures"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_handwritten_signatures();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "google.api.DotnetSettings.handwritten_signatures"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -3088,6 +3282,96 @@ uint8_t* DotnetSettings::_InternalSerialize(
         _Internal::common(this).GetCachedSize(), target, stream);
   }
 
+  // map<string, string> renamed_services = 2 [json_name = "renamedServices"];
+  if (!this->_internal_renamed_services().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = DotnetSettings_RenamedServicesEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_renamed_services();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "google.api.DotnetSettings.RenamedServicesEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "google.api.DotnetSettings.RenamedServicesEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(2, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(2, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
+  // map<string, string> renamed_resources = 3 [json_name = "renamedResources"];
+  if (!this->_internal_renamed_resources().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = DotnetSettings_RenamedResourcesEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_renamed_resources();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "google.api.DotnetSettings.RenamedResourcesEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "google.api.DotnetSettings.RenamedResourcesEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(3, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(3, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
+  // repeated string ignored_resources = 4 [json_name = "ignoredResources"];
+  for (int i = 0, n = this->_internal_ignored_resources_size(); i < n; i++) {
+    const auto& s = this->_internal_ignored_resources(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.DotnetSettings.ignored_resources");
+    target = stream->WriteString(4, s, target);
+  }
+
+  // repeated string forced_namespace_aliases = 5 [json_name = "forcedNamespaceAliases"];
+  for (int i = 0, n = this->_internal_forced_namespace_aliases_size(); i < n; i++) {
+    const auto& s = this->_internal_forced_namespace_aliases(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.DotnetSettings.forced_namespace_aliases");
+    target = stream->WriteString(5, s, target);
+  }
+
+  // repeated string handwritten_signatures = 6 [json_name = "handwrittenSignatures"];
+  for (int i = 0, n = this->_internal_handwritten_signatures_size(); i < n; i++) {
+    const auto& s = this->_internal_handwritten_signatures(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.DotnetSettings.handwritten_signatures");
+    target = stream->WriteString(6, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3103,6 +3387,48 @@ size_t DotnetSettings::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // map<string, string> renamed_services = 2 [json_name = "renamedServices"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_renamed_services_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_renamed_services().begin();
+      it != this->_internal_renamed_services().end(); ++it) {
+    total_size += DotnetSettings_RenamedServicesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // map<string, string> renamed_resources = 3 [json_name = "renamedResources"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_renamed_resources_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_renamed_resources().begin();
+      it != this->_internal_renamed_resources().end(); ++it) {
+    total_size += DotnetSettings_RenamedResourcesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // repeated string ignored_resources = 4 [json_name = "ignoredResources"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(ignored_resources_.size());
+  for (int i = 0, n = ignored_resources_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      ignored_resources_.Get(i));
+  }
+
+  // repeated string forced_namespace_aliases = 5 [json_name = "forcedNamespaceAliases"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(forced_namespace_aliases_.size());
+  for (int i = 0, n = forced_namespace_aliases_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      forced_namespace_aliases_.Get(i));
+  }
+
+  // repeated string handwritten_signatures = 6 [json_name = "handwrittenSignatures"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(handwritten_signatures_.size());
+  for (int i = 0, n = handwritten_signatures_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      handwritten_signatures_.Get(i));
+  }
 
   // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
   if (this->_internal_has_common()) {
@@ -3133,6 +3459,11 @@ void DotnetSettings::MergeFrom(const DotnetSettings& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  renamed_services_.MergeFrom(from.renamed_services_);
+  renamed_resources_.MergeFrom(from.renamed_resources_);
+  ignored_resources_.MergeFrom(from.ignored_resources_);
+  forced_namespace_aliases_.MergeFrom(from.forced_namespace_aliases_);
+  handwritten_signatures_.MergeFrom(from.handwritten_signatures_);
   if (from._internal_has_common()) {
     _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
   }
@@ -3153,13 +3484,18 @@ bool DotnetSettings::IsInitialized() const {
 void DotnetSettings::InternalSwap(DotnetSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  renamed_services_.InternalSwap(&other->renamed_services_);
+  renamed_resources_.InternalSwap(&other->renamed_resources_);
+  ignored_resources_.InternalSwap(&other->ignored_resources_);
+  forced_namespace_aliases_.InternalSwap(&other->forced_namespace_aliases_);
+  handwritten_signatures_.InternalSwap(&other->handwritten_signatures_);
   swap(common_, other->common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DotnetSettings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
-      file_level_metadata_google_2fapi_2fclient_2eproto[9]);
+      file_level_metadata_google_2fapi_2fclient_2eproto[11]);
 }
 
 // ===================================================================
@@ -3346,7 +3682,7 @@ void RubySettings::InternalSwap(RubySettings* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RubySettings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
-      file_level_metadata_google_2fapi_2fclient_2eproto[10]);
+      file_level_metadata_google_2fapi_2fclient_2eproto[12]);
 }
 
 // ===================================================================
@@ -3533,7 +3869,7 @@ void GoSettings::InternalSwap(GoSettings* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GoSettings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
-      file_level_metadata_google_2fapi_2fclient_2eproto[11]);
+      file_level_metadata_google_2fapi_2fclient_2eproto[13]);
 }
 
 // ===================================================================
@@ -3862,7 +4198,7 @@ void MethodSettings_LongRunning::InternalSwap(MethodSettings_LongRunning* other)
 ::PROTOBUF_NAMESPACE_ID::Metadata MethodSettings_LongRunning::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
-      file_level_metadata_google_2fapi_2fclient_2eproto[12]);
+      file_level_metadata_google_2fapi_2fclient_2eproto[14]);
 }
 
 // ===================================================================
@@ -4099,7 +4435,7 @@ void MethodSettings::InternalSwap(MethodSettings* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MethodSettings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
-      file_level_metadata_google_2fapi_2fclient_2eproto[13]);
+      file_level_metadata_google_2fapi_2fclient_2eproto[15]);
 }
 const std::string method_signature_default("");
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
@@ -4153,6 +4489,14 @@ Arena::CreateMaybeMessage< ::google::api::PythonSettings >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::google::api::NodeSettings*
 Arena::CreateMaybeMessage< ::google::api::NodeSettings >(Arena* arena) {
   return Arena::CreateMessageInternal< ::google::api::NodeSettings >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::google::api::DotnetSettings*
 Arena::CreateMaybeMessage< ::google::api::DotnetSettings >(Arena* arena) {
