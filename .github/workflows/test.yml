@@ -21,7 +21,8 @@ jobs:
         run: docker run --rm -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
       - name: build-sdk
         run: |
-          apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main' \
+          apt-get -y --no-install-recommends install software-properties-common \
+          && apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main' \
           && apt-get update \
           && apt-get -y --no-install-recommends install -t bullseye-backports cmake \
           && mkdir build && cd build && cmake .. -G Ninja \
