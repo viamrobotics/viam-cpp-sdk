@@ -13,42 +13,105 @@ jobs:
       ###########################################
       #     necessary installs for building     #
       ###########################################
-      - name: setup-grpc
-        run: |
-          git clone https://github.com/Microsoft/vcpkg.git \
-          && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
-          && ./vcpkg install grpc \
-          && ./vcpkg install upb
-      - name: setup-openssl
-        run: sudo apt-get install libssl-dev
-      - uses: MarkusJx/install-boost@v2.4.4
-        with:
-          boost_version: 1.81.0
-          platform_version: 22.04
-      - uses: lukka/get-cmake@latest
-        with:
-          cmakeVersion: 3.25.2
-          ninjaVersion: 1.11.1
-      - uses: bufbuild/buf-setup-action@v1.9.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      ###########################################
-      #              build the sdk!             #
-      ###########################################
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+      - name: build-docker
+        run: docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye
+      - name: run-docker
+        run: docker run --rm -it -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
       - name: build-sdk
         run: |
           mkdir build && cd build && cmake .. -G Ninja \
           -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
           -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
-          -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
-          && ninja all && ninja install
-        env:
-          BOOST_ROOT: ${{ github.workspace }}/boost/boost
-      ###########################################
-      #              run the tests!             #
-      ###########################################
-      - name: run-tests
-        run: |
-          cd build/src/tests && ctest
+          && ninja all && ninja install 
+          && cd src/tests && ctest
+      #- name: setup-grpc
+        #run: |
+          #git clone https://github.com/Microsoft/vcpkg.git \
+          #&& cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
+          #&& ./vcpkg install grpc \
+          #&& ./vcpkg install upb
+      #- name: setup-openssl
+        #run: sudo apt-get install libssl-dev
+      #- uses: MarkusJx/install-boost@v2.4.4
+        #with:
+          #boost_version: 1.81.0
+          #platform_version: 22.04
+      #- uses: lukka/get-cmake@latest
+        #with:
+          #cmakeVersion: 3.25.2
+          #ninjaVersion: 1.11.1
+      #- uses: bufbuild/buf-setup-action@v1.9.0
+        #with:
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
+      ############################################
+      ##              build the sdk!             #
+      ############################################
+      #- name: build-sdk
+        #run: |
+          #mkdir build && cd build && cmake .. -G Ninja \
+          #-DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
+          #-DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+          #-DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          #&& ninja all && ninja install
+        #env:
+          #BOOST_ROOT: ${{ github.workspace }}/boost/boost
+      ############################################
+      ##              run the tests!             #
+      ############################################
+      #- name: run-tests
+        #run: |
+          #cd build/src/tests && ctest
+
+
+
+  #run-tests:
+    #if: github.repository_owner == 'viamrobotics'
+    #runs-on: [self-hosted, x64]
+    #container:
+      #image: ghcr.io/viamrobotics/canon:amd64
+    #steps:
+      #- uses: actions/checkout@v3
+      ############################################
+      ##     necessary installs for building     #
+      ############################################
+      #- name: setup-grpc
+        #run: |
+          #git clone https://github.com/Microsoft/vcpkg.git \
+          #&& cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg integrate install \
+          #&& ./vcpkg install grpc \
+          #&& ./vcpkg install upb
+      #- name: setup-openssl
+        #run: sudo apt-get install libssl-dev
+      #- uses: MarkusJx/install-boost@v2.4.4
+        #with:
+          #boost_version: 1.81.0
+          #platform_version: 22.04
+      #- uses: lukka/get-cmake@latest
+        #with:
+          #cmakeVersion: 3.25.2
+          #ninjaVersion: 1.11.1
+      #- uses: bufbuild/buf-setup-action@v1.9.0
+        #with:
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
+      ############################################
+      ##              build the sdk!             #
+      ############################################
+      #- name: build-sdk
+        #run: |
+          #mkdir build && cd build && cmake .. -G Ninja \
+          #-DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
+          #-DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+          #-DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          #&& ninja all && ninja install
+        #env:
+          #BOOST_ROOT: ${{ github.workspace }}/boost/boost
+      ############################################
+      ##              run the tests!             #
+      ############################################
+      #- name: run-tests
+        #run: |
+          #cd build/src/tests && ctest
 
 
