@@ -18,7 +18,7 @@ jobs:
       - name: build-docker
         run: docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye
       - name: run-docker
-        run: docker run --rm -it -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
+        run: docker run --rm -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
       - name: build-sdk
         run: |
           mkdir build && cd build && cmake .. -G Ninja \
