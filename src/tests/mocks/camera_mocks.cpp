@@ -1,10 +1,11 @@
+#include <tests/mocks/camera_mocks.hpp>
+
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
 #include <component/camera/v1/camera.pb.h>
 
 #include <components/camera/camera.hpp>
 #include <components/camera/server.hpp>
-#include <tests/mocks/camera_mocks.hpp>
 #include <tests/test_utils.hpp>
 
 AttributeMap MockCamera::do_command(AttributeMap command) {
@@ -62,7 +63,7 @@ Camera::properties fake_properties() {
 }
 
 std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
-    std::shared_ptr<MockCamera> camera = std::make_shared<MockCamera>();
+    auto camera = std::make_shared<MockCamera>();
 
     camera->image = fake_raw_image();
     camera->pc = fake_point_cloud();
@@ -72,8 +73,8 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     return camera;
 }
 
-MockCameraStub::MockCameraStub() : server(CameraServer(std::make_shared<SubtypeService>())) {
-    this->server.get_sub_svc()->add(std::string("camera"), MockCamera::get_mock_camera());
+MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
+    this->server->get_sub_svc()->add(std::string("camera"), MockCamera::get_mock_camera());
 };
 
 ::grpc::Status MockCameraStub::GetImage(
@@ -81,299 +82,34 @@ MockCameraStub::MockCameraStub() : server(CameraServer(std::make_shared<SubtypeS
     const ::viam::component::camera::v1::GetImageRequest& request,
     ::viam::component::camera::v1::GetImageResponse* response) {
     grpc::ServerContext* ctx;
-    return server.GetImage(ctx, &request, response);
+    return server->GetImage(ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::RenderFrame(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest& request,
     ::google::api::HttpBody* response) {
     grpc::ServerContext* ctx;
-    return server.RenderFrame(ctx, &request, response);
+    return server->RenderFrame(ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetPointCloud(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetPointCloudRequest& request,
     ::viam::component::camera::v1::GetPointCloudResponse* response) {
     grpc::ServerContext* ctx;
-    return server.GetPointCloud(ctx, &request, response);
+    return server->GetPointCloud(ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetProperties(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetPropertiesRequest& request,
     ::viam::component::camera::v1::GetPropertiesResponse* response) {
     grpc::ServerContext* ctx;
-    return server.GetProperties(ctx, &request, response);
+    return server->GetProperties(ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::DoCommand(::grpc::ClientContext* context,
                                          const ::viam::common::v1::DoCommandRequest& request,
                                          ::viam::common::v1::DoCommandResponse* response) {
     grpc::ServerContext* ctx;
-    return server.DoCommand(ctx, &request, response);
-}
-
-std::unique_ptr<::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetImageResponse>>
-MockCameraStub::AsyncGetImage(::grpc::ClientContext* context,
-                              const ::viam::component::camera::v1::GetImageRequest& request,
-                              ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetImageResponse>>(
-        AsyncGetImageRaw(context, request, cq));
-}
-std::unique_ptr<::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetImageResponse>>
-MockCameraStub::PrepareAsyncGetImage(::grpc::ClientContext* context,
-                                     const ::viam::component::camera::v1::GetImageRequest& request,
-                                     ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetImageResponse>>(
-        PrepareAsyncGetImageRaw(context, request, cq));
-}
-std::unique_ptr<::grpc::ClientAsyncResponseReader<::google::api::HttpBody>>
-MockCameraStub::AsyncRenderFrame(::grpc::ClientContext* context,
-                                 const ::viam::component::camera::v1::RenderFrameRequest& request,
-                                 ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<::grpc::ClientAsyncResponseReader<::google::api::HttpBody>>(
-        AsyncRenderFrameRaw(context, request, cq));
-}
-std::unique_ptr<::grpc::ClientAsyncResponseReader<::google::api::HttpBody>>
-MockCameraStub::PrepareAsyncRenderFrame(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::RenderFrameRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<::grpc::ClientAsyncResponseReader<::google::api::HttpBody>>(
-        PrepareAsyncRenderFrameRaw(context, request, cq));
-}
-
-std::unique_ptr<
-    ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPointCloudResponse>>
-MockCameraStub::AsyncGetPointCloud(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPointCloudRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPointCloudResponse>>(
-        AsyncGetPointCloudRaw(context, request, cq));
-}
-std::unique_ptr<
-    ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPointCloudResponse>>
-MockCameraStub::PrepareAsyncGetPointCloud(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPointCloudRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPointCloudResponse>>(
-        PrepareAsyncGetPointCloudRaw(context, request, cq));
-}
-
-std::unique_ptr<
-    ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPropertiesResponse>>
-MockCameraStub::AsyncGetProperties(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPropertiesRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPropertiesResponse>>(
-        AsyncGetPropertiesRaw(context, request, cq));
-}
-std::unique_ptr<
-    ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPropertiesResponse>>
-MockCameraStub::PrepareAsyncGetProperties(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPropertiesRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPropertiesResponse>>(
-        PrepareAsyncGetPropertiesRaw(context, request, cq));
-}
-
-std::unique_ptr<::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
-MockCameraStub::AsyncDoCommand(::grpc::ClientContext* context,
-                               const ::viam::common::v1::DoCommandRequest& request,
-                               ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>(
-        AsyncDoCommandRaw(context, request, cq));
-}
-std::unique_ptr<::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>
-MockCameraStub::PrepareAsyncDoCommand(::grpc::ClientContext* context,
-                                      const ::viam::common::v1::DoCommandRequest& request,
-                                      ::grpc::CompletionQueue* cq) {
-    return std::unique_ptr<
-        ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>>(
-        PrepareAsyncDoCommandRaw(context, request, cq));
-}
-
-void MockCameraStub::async::GetImage(::grpc::ClientContext* context,
-                                     const ::viam::component::camera::v1::GetImageRequest* request,
-                                     ::viam::component::camera::v1::GetImageResponse* response,
-                                     std::function<void(::grpc::Status)>) {
-    return;
-}
-void MockCameraStub::async::GetImage(::grpc::ClientContext* context,
-                                     const ::viam::component::camera::v1::GetImageRequest* request,
-                                     ::viam::component::camera::v1::GetImageResponse* response,
-                                     ::grpc::ClientUnaryReactor* reactor) {
-    return;
-}
-void MockCameraStub::async::RenderFrame(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::RenderFrameRequest* request,
-    ::google::api::HttpBody* response,
-    std::function<void(::grpc::Status)>) {
-    return;
-}
-void MockCameraStub::async::RenderFrame(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::RenderFrameRequest* request,
-    ::google::api::HttpBody* response,
-    ::grpc::ClientUnaryReactor* reactor) {
-    return;
-}
-void MockCameraStub::async::GetPointCloud(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPointCloudRequest* request,
-    ::viam::component::camera::v1::GetPointCloudResponse* response,
-    std::function<void(::grpc::Status)>) {
-    return;
-}
-void MockCameraStub::async::GetPointCloud(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPointCloudRequest* request,
-    ::viam::component::camera::v1::GetPointCloudResponse* response,
-    ::grpc::ClientUnaryReactor* reactor) {
-    return;
-}
-void MockCameraStub::async::GetProperties(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPropertiesRequest* request,
-    ::viam::component::camera::v1::GetPropertiesResponse* response,
-    std::function<void(::grpc::Status)>) {
-    return;
-}
-void MockCameraStub::async::GetProperties(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPropertiesRequest* request,
-    ::viam::component::camera::v1::GetPropertiesResponse* response,
-    ::grpc::ClientUnaryReactor* reactor) {
-    return;
-}
-void MockCameraStub::async::DoCommand(::grpc::ClientContext* context,
-                                      const ::viam::common::v1::DoCommandRequest* request,
-                                      ::viam::common::v1::DoCommandResponse* response,
-                                      std::function<void(::grpc::Status)>) {
-    return;
-}
-void MockCameraStub::async::DoCommand(::grpc::ClientContext* context,
-                                      const ::viam::common::v1::DoCommandRequest* request,
-                                      ::viam::common::v1::DoCommandResponse* response,
-                                      ::grpc::ClientUnaryReactor* reactor) {
-    return;
-}
-
-::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetImageResponse>*
-MockCameraStub::AsyncGetImageRaw(::grpc::ClientContext* context,
-                                 const ::viam::component::camera::v1::GetImageRequest& request,
-                                 ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::component::camera::v1::GetImageResponse,
-        ::viam::component::camera::v1::GetImageRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetImageResponse>*
-MockCameraStub::PrepareAsyncGetImageRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetImageRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::component::camera::v1::GetImageResponse,
-        ::viam::component::camera::v1::GetImageRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::google::api::HttpBody>* MockCameraStub::AsyncRenderFrameRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::RenderFrameRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::google::api::HttpBody,
-        ::viam::component::camera::v1::RenderFrameRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::google::api::HttpBody>*
-MockCameraStub::PrepareAsyncRenderFrameRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::RenderFrameRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::google::api::HttpBody,
-        ::viam::component::camera::v1::RenderFrameRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPointCloudResponse>*
-MockCameraStub::AsyncGetPointCloudRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPointCloudRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::component::camera::v1::GetPointCloudResponse,
-        ::viam::component::camera::v1::GetPointCloudRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPointCloudResponse>*
-MockCameraStub::PrepareAsyncGetPointCloudRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPointCloudRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::component::camera::v1::GetPointCloudResponse,
-        ::viam::component::camera::v1::GetPointCloudRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPropertiesResponse>*
-MockCameraStub::AsyncGetPropertiesRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPropertiesRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::component::camera::v1::GetPropertiesResponse,
-        ::viam::component::camera::v1::GetPropertiesRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::component::camera::v1::GetPropertiesResponse>*
-MockCameraStub::PrepareAsyncGetPropertiesRaw(
-    ::grpc::ClientContext* context,
-    const ::viam::component::camera::v1::GetPropertiesRequest& request,
-    ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::component::camera::v1::GetPropertiesResponse,
-        ::viam::component::camera::v1::GetPropertiesRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>*
-MockCameraStub::AsyncDoCommandRaw(::grpc::ClientContext* context,
-                                  const ::viam::common::v1::DoCommandRequest& request,
-                                  ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::common::v1::DoCommandResponse,
-        ::viam::common::v1::DoCommandRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
-}
-::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>*
-MockCameraStub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context,
-                                         const ::viam::common::v1::DoCommandRequest& request,
-                                         ::grpc::CompletionQueue* cq) {
-    return ::grpc::internal::ClientAsyncResponseReaderHelper::Create<
-        ::viam::common::v1::DoCommandResponse,
-        ::viam::common::v1::DoCommandRequest,
-        ::grpc::protobuf::MessageLite,
-        ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
+    return server->DoCommand(ctx, &request, response);
 }
 
 MockCameraClient::MockCameraClient(std::string name) : CameraClient(name) {

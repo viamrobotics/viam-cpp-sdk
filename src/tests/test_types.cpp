@@ -1,9 +1,12 @@
 #define BOOST_TEST_MODULE test module test_types
+
+#include <unordered_map>
+
 #include <boost/test/included/unit_test.hpp>
+
 #include <common/proto_type.hpp>
 #include <config/resource.hpp>
 #include <tests/test_utils.hpp>
-#include <unordered_map>
 
 BOOST_AUTO_TEST_SUITE(test_prototype)
 

@@ -2,7 +2,6 @@
 
 #include <common/v1/common.pb.h>
 #include <component/camera/v1/camera.grpc.pb.h>
-#include <gen/google/api/http.pb.h>
 
 #include <resource/resource_server_base.hpp>
 #include <subtype/subtype.hpp>
@@ -32,7 +31,7 @@ class CameraServer : public ResourceServerBase,
 
     std::shared_ptr<SubtypeService> get_sub_svc();
 
-    CameraServer(){};
+    CameraServer() : sub_svc(std::make_shared<SubtypeService>()){};
     CameraServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
 
    private:

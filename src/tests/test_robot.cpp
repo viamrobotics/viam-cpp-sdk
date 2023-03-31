@@ -1,6 +1,6 @@
-#include <common/v1/common.pb.h>
-#include <component/arm/v1/arm.grpc.pb.h>
-#include <component/arm/v1/arm.pb.h>
+#include <memory>
+#include <utility>
+
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
@@ -12,13 +12,15 @@
 #include <grpcpp/server_context.h>
 #include <grpcpp/support/server_callback.h>
 #include <grpcpp/support/stub_options.h>
+
+#include <common/v1/common.pb.h>
+#include <component/arm/v1/arm.grpc.pb.h>
+#include <component/arm/v1/arm.pb.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
 
 #include <common/utils.hpp>
-#include <memory>
 #include <robot/service.hpp>
-#include <utility>
 
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::PoseInFrame;

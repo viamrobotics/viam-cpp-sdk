@@ -1,13 +1,15 @@
-#include <google/protobuf/struct.pb.h>
+#include <common/proto_type.hpp>
+
+#include <memory>
+#include <unordered_map>
+#include <vector>
 
 #include <boost/blank.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
-#include <common/proto_type.hpp>
+#include <google/protobuf/struct.pb.h>
+
 #include <config/resource.hpp>
-#include <memory>
-#include <unordered_map>
-#include <vector>
 
 using google::protobuf::Struct;
 using google::protobuf::Value;

@@ -1,10 +1,13 @@
-#include <common/v1/common.pb.h>
+#include <components/component_base.hpp>
+
+#include <string>
+
 #include <google/protobuf/struct.pb.h>
 
+#include <common/v1/common.pb.h>
+
 #include <common/utils.hpp>
-#include <components/component_base.hpp>
 #include <resource/resource_base.hpp>
-#include <string>
 
 using viam::common::v1::ResourceName;
 

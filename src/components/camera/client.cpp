@@ -1,13 +1,15 @@
-#include <algorithm>
-#include <common/utils.hpp>
-#include <components/camera/camera.hpp>
 #include <components/camera/client.hpp>
-#include <config/resource.hpp>
+
+#include <algorithm>
 #include <string>
 #include <utility>
 
-#include "common/v1/common.pb.h"
-#include "component/camera/v1/camera.grpc.pb.h"
+#include <common/v1/common.pb.h>
+#include <component/camera/v1/camera.grpc.pb.h>
+
+#include <common/utils.hpp>
+#include <components/camera/camera.hpp>
+#include <config/resource.hpp>
 
 std::string normalize_mime_type(const std::string& str) {
     std::string mime_type = str;

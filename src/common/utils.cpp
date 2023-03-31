@@ -1,15 +1,18 @@
-#include <common/v1/common.pb.h>
+#include <common/utils.hpp>
+
+#include <tuple>
+#include <unordered_map>
+#include <vector>
 
 #include <boost/blank.hpp>
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
-#include <common/utils.hpp>
+
+#include <common/v1/common.pb.h>
+
 #include <components/component_base.hpp>
 #include <registry/registry.hpp>
-#include <tuple>
-#include <unordered_map>
-#include <vector>
 
 using viam::common::v1::ResourceName;
 

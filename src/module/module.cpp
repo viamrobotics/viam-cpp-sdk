@@ -1,12 +1,11 @@
-#include <grpcpp/channel.h>
-#include <grpcpp/security/credentials.h>
-
-#include "subtype/subtype.hpp"
-#define BOOST_LOG_DYN_LINK 1
-#include <grpcpp/create_channel.h>
+#include <module/module.hpp>
 
 #include <boost/log/trivial.hpp>
-#include <module/module.hpp>
+#include <grpcpp/channel.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/security/credentials.h>
+
+#include <subtype/subtype.hpp>
 
 Module::Module(std::string addr) : addr(addr){};
 

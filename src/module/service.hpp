@@ -7,8 +7,6 @@
 #include <module/module.hpp>
 #include <resource/resource_base.hpp>
 
-#include "module/v1/module.pb.h"
-
 class ModuleService_ : public ComponentServiceBase,
                        public viam::module::v1::ModuleService::Service {
    public:

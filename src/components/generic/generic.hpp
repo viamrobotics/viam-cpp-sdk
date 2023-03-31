@@ -1,11 +1,12 @@
 #pragma once
 
+#include <google/protobuf/descriptor.h>
+
+#include <common/proto_type.hpp>
 #include <common/utils.hpp>
 #include <config/resource.hpp>
 #include <registry/registry.hpp>
-
-#include "common/proto_type.hpp"
-#include "subtype/subtype.hpp"
+#include <subtype/subtype.hpp>
 
 // TODO(RSDK-1742): one class per header
 class GenericSubtype : public ResourceSubtype {

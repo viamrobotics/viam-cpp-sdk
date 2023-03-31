@@ -1,13 +1,16 @@
-#include <common/v1/common.pb.h>
-#include <google/protobuf/descriptor.h>
-
-#include <boost/algorithm/string.hpp>
-#include <common/utils.hpp>
-#include <components/component_base.hpp>
-#include <regex>
 #include <resource/resource.hpp>
+
+#include <regex>
 #include <sstream>
 #include <string>
+
+#include <boost/algorithm/string.hpp>
+#include <google/protobuf/descriptor.h>
+
+#include <common/v1/common.pb.h>
+
+#include <common/utils.hpp>
+#include <components/component_base.hpp>
 
 const std::regex NAME_REGEX("^([\\w-]+:[\\w-]+:(?:[\\w-]+))\\/?([\\w-]+:(?:[\\w-]+:)*)?(.+)?$");
 
