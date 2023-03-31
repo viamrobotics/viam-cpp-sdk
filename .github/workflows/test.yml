@@ -2,6 +2,10 @@ name: Test
 
 on: pull_request
 
+runs:
+  using: 'docker'
+  image: 'etc/docker/Dockerfile.debian.bullseye'
+
 jobs:
   run-tests:
     if: github.repository_owner == 'viamrobotics'
@@ -17,6 +21,13 @@ jobs:
       - uses: docker/setup-buildx-action@v2
       - name: build-docker
         run: docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye
+      - name: test
+        run: |
+          mkdir build && cd build && cmake .. -G Ninja \
+          -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
+          -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+          && ninja all && ninja install 
+          && cd src/tests && ctest
       - name: run-docker
         run: | 
           docker run --rm -i -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash \
