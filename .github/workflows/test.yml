@@ -21,7 +21,7 @@ jobs:
           docker run --rm -i -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash
           apt-get install -y cmake
           pwd
-          apt-get -y update && apt-get upgrade
+          apt-get -y update && apt-get -y upgrade
           mkdir build && cd build && cmake .. -G Ninja \
           -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
           -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
