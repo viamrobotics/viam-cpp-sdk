@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <components/component_base.hpp>
+#include <resource/resource_type.hpp>
 #include <services/service_base.hpp>
 
 ResourceManager::ResourceManager() {}
@@ -42,7 +43,7 @@ std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
     if (of_type == ResourceBase::base_type) {
         return resource;
     }
-    throw std::runtime_error("Resource name " + name +
-                             " was found, but it has the wrong type! Expected type: " +
-                             of_type.type + ". Actual type: " + resource->type().type);
+    throw std::runtime_error(
+        "Resource name " + name + " was found, but it has the wrong type! Expected type: " +
+        of_type.to_string() + ". Actual type: " + resource->type().to_string());
 }

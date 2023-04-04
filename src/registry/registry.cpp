@@ -17,6 +17,7 @@
 #include <components/service_base.hpp>
 #include <resource/resource.hpp>
 #include <resource/resource_base.hpp>
+#include <resource/resource_type.hpp>
 #include <services/service_base.hpp>
 
 using viam::robot::v1::Status;
@@ -74,7 +75,7 @@ Registry::registered_resources() {
 Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
     Status status;
     ResourceName* name;
-    if (resource->type().type == COMPONENT) {
+    if (resource->type().to_string() == COMPONENT) {
         try {
             std::shared_ptr<ComponentBase> cb = std::dynamic_pointer_cast<ComponentBase>(resource);
             ResourceName rn = cb->get_resource_name(resource->name());
@@ -83,7 +84,7 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
             BOOST_LOG_TRIVIAL(debug)
                 << "Unable to get resource name from resource base " << resource->name();
         }
-    } else if (resource->type().type == SERVICE) {
+    } else if (resource->type().to_string() == SERVICE) {
         try {
             std::shared_ptr<ServiceBase> sb = std::dynamic_pointer_cast<ServiceBase>(resource);
             ResourceName rn = sb->get_resource_name(resource->name());
@@ -95,7 +96,7 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
     } else {
         throw "unable to create status; provided resource was of an unknown "
           "type: " +
-        resource->type().type;
+        resource->type().to_string();
     }
     *status.mutable_name() = *name;
     *status.mutable_status() = google::protobuf::Struct();

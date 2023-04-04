@@ -1,6 +1,5 @@
 #pragma once
 
-#include "resource/resource_base.hpp"
 #include <string>
 #include <thread>
 
@@ -12,6 +11,7 @@
 
 #include <common/utils.hpp>
 #include <registry/registry.hpp>
+#include <resource/resource_base.hpp>
 #include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
 

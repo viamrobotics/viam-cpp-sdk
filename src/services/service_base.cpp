@@ -13,8 +13,8 @@ ResourceName ServiceBase::get_resource_name(std::string name) {
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = SERVICE;
-    *r.mutable_subtype() = this->name();
-    *r.mutable_name() = name;
+    *r.mutable_subtype() = this->type().to_string();
+    *r.mutable_name() = std::move(name);
 
     return r;
 }

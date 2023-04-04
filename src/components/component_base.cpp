@@ -8,6 +8,7 @@
 
 #include <common/utils.hpp>
 #include <resource/resource_base.hpp>
+#include <resource/resource_type.hpp>
 
 using viam::common::v1::ResourceName;
 
@@ -17,8 +18,8 @@ ResourceName ComponentBase::get_resource_name(std::string name) {
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = COMPONENT;
-    *r.mutable_subtype() = this->name();
-    *r.mutable_name() = name;
+    *r.mutable_subtype() = this->type().to_string();
+    *r.mutable_name() = std::move(name);
 
     return r;
 }
