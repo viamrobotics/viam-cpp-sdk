@@ -21,15 +21,13 @@ jobs:
           file: ./etc/docker/Dockerfile.debian.bullseye
       - name: build-docker
         run: | 
-          docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye
-          docker run --rm -i -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash \
-          && pwd \
-          && apt-get -y update && apt-get -y upgrade \
-          && mkdir build && cd build && cmake .. -G Ninja \
-          -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
-          -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
-          && ninja all && ninja install \
-          && cd src/tests && ctest
+          docker build -t cpp . -f etc/docker/tests/Dockerfile.debian.bullseye.test
+          #docker run --rm -i -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash \
+          #&& mkdir build && cd build && cmake .. -G Ninja \
+          #-DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
+          #-DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+          #&& ninja all && ninja install \
+          #&& cd src/tests && ctest
       #- name: run-docker
         #run: |
       #- name: run-tests
