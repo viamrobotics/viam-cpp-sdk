@@ -1,4 +1,4 @@
-INCLUDE+ ../Dockerfile.debian.bullseye
+INCLUDE ../Dockerfile.debian.bullseye
 
 RUN mkdir build
 RUN cd build
