@@ -199,7 +199,7 @@ ModuleService_::ModuleService_(std::string addr) {
     module = std::make_shared<Module>(addr);
 }
 
-void ModuleService_::signal_handler(int signum) {
+void ModuleService_::signal_handler(int) {
     exit(0);
 }
 
