@@ -7,14 +7,14 @@
 #include <common/utils.hpp>
 #include <resource/resource_base.hpp>
 
-ResourceName ServiceBase::get_resource_name(std::string name_) {
+ResourceName ServiceBase::get_resource_name(std::string name) {
     // TODO (RSDK-1631): test, confirm whether we need to split on
     // "viam.components" here
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = SERVICE;
-    *r.mutable_subtype() = name;
-    *r.mutable_name() = name_;
+    *r.mutable_subtype() = this->name();
+    *r.mutable_name() = name;
 
     return r;
 }

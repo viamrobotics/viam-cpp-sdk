@@ -1,5 +1,6 @@
 #pragma once
 
+#include "resource/resource_base.hpp"
 #include <string>
 #include <thread>
 
@@ -51,7 +52,22 @@ class RobotClient {
     RobotClient(ViamChannel channel);
     std::vector<ResourceName>* resource_names();
     std::unique_ptr<RobotService::Stub> stub_;
-    std::shared_ptr<ResourceBase> resource_by_name(ResourceName name);
+    /// Gets a `shared_ptr` to a Resource Base.
+    ///
+    /// Args:
+    /// 	name: the name of the resource
+    /// 	type: the resource type (defaults to a generic `ResourceBase`)
+    ///
+    /// Raises:
+    /// 	Throws an error if the requested resource doesn't exist or is of the wrong type.
+    ///
+    /// This function should not be called directly expect in specific cases. The
+    /// method `<Service>.from_robot` is the preferred method for obtaining resources.
+    ///
+    /// Because the return type here is a `ResourceBase`, the user will need to manually
+    /// cast to the desired type.
+    std::shared_ptr<ResourceBase> resource_by_name(ResourceName name,
+                                                   ResourceType type = ResourceBase::base_type);
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<viam::robot::v1::Operation> get_operations();

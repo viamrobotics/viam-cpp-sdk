@@ -1,6 +1,7 @@
 #include <components/camera/client.hpp>
 
 #include <algorithm>
+#include <memory>
 #include <string>
 #include <utility>
 
@@ -10,6 +11,7 @@
 #include <common/utils.hpp>
 #include <components/camera/camera.hpp>
 #include <config/resource.hpp>
+#include <robot/client.hpp>
 
 std::string normalize_mime_type(const std::string& str) {
     std::string mime_type = str;
@@ -48,6 +50,18 @@ Camera::raw_image CameraClient::get_image(std::string mime_type) {
     return from_proto(resp);
 };
 
+std::shared_ptr<CameraClient> CameraClient::from_robot(std::shared_ptr<RobotClient> robot,
+                                                       std::string name) {
+    ResourceName r;
+    *r.mutable_namespace_() = RDK;
+    *r.mutable_type() = COMPONENT;
+    *r.mutable_subtype() = "camera";
+    *r.mutable_name() = std::move(name);
+
+    auto resource = robot->resource_by_name(std::move(r), ResourceType("camera"));
+    return std::dynamic_pointer_cast<CameraClient>(resource);
+}
+
 Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
     viam::component::camera::v1::GetPointCloudRequest req;
     viam::component::camera::v1::GetPointCloudResponse resp;
@@ -72,6 +86,12 @@ Camera::properties CameraClient::get_properties() {
 };
 
 CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_)
-    : channel_(channel_), stub_(viam::component::camera::v1::CameraService::NewStub(channel_)){};
+    : channel_(channel_), stub_(viam::component::camera::v1::CameraService::NewStub(channel_)) {
+    name_ = std::move(name);
+    type_ = {"camera"};
+};
 
-CameraClient::CameraClient(std::string name) : name_(name), channel_(nullptr), stub_(nullptr){};
+CameraClient::CameraClient(std::string name) : channel_(nullptr), stub_(nullptr) {
+    name_ = std::move(name);
+    type_ = {"camera"};
+};

@@ -11,14 +11,14 @@
 
 using viam::common::v1::ResourceName;
 
-ResourceName ComponentBase::get_resource_name(std::string name_) {
+ResourceName ComponentBase::get_resource_name(std::string name) {
     // TODO (RSDK-1631): test, confirm whether we need to split on
     // "viam.components" here
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = COMPONENT;
-    *r.mutable_subtype() = name;
-    *r.mutable_name() = name_;
+    *r.mutable_subtype() = this->name();
+    *r.mutable_name() = name;
 
     return r;
 }

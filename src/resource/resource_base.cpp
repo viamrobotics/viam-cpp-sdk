@@ -15,4 +15,14 @@ grpc::StatusCode ResourceBase::stop() {
     return grpc::StatusCode::UNIMPLEMENTED;
 }
 
+std::string ResourceBase::name() {
+    return name_;
+}
+
+ResourceType ResourceBase::type() {
+    return type_;
+}
+
+ResourceType ResourceBase::base_type = {"ResourceBase"};
+
 void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
