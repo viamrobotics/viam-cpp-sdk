@@ -3,7 +3,6 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 #include <robot/v1/robot.pb.h>
-#include <signal.h>
 
 #include <components/component_base.hpp>
 #include <components/generic/generic.hpp>
@@ -30,7 +29,6 @@ class MyModule : public GenericService::Service, public ComponentBase {
         std::cout << "config in reconfigure: " << cfg.name << std::endl;
     }
 
-    void signal_handler(int signum);
     std::string name;
     static int which;
     int inner_which;
@@ -67,21 +65,10 @@ class MyModule : public GenericService::Service, public ComponentBase {
 int MyModule::which = 0;
 std::shared_ptr<ModuleService_> my_mod;
 
-void signal_handler(int signum) {
-    my_mod->close();
-}
-
 int main(int argc, char** argv) {
     if (argc != 2) {
         throw "need socket path as command line argument";
     }
-
-    // TODO(RSDK-1920) This is still causing non-graceful shutdown. Figure out why, and fix.
-    struct sigaction sig_handler;
-    sig_handler.sa_handler = signal_handler;
-    sigaction(SIGTERM, &sig_handler, nullptr);
-    sigemptyset(&sig_handler.sa_mask);
-    sig_handler.sa_flags = 0;
 
     Subtype generic = Generic::subtype();
     my_mod = std::make_shared<ModuleService_>(argv[1]);

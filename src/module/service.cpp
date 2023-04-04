@@ -3,6 +3,7 @@
 #include <csignal>
 #include <iostream>
 #include <memory>
+#include <signal.h>
 #include <string>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -198,6 +199,10 @@ ModuleService_::ModuleService_(std::string addr) {
     module = std::make_shared<Module>(addr);
 }
 
+void ModuleService_::signal_handler(int signum) {
+    exit(0);
+}
+
 void ModuleService_::start() {
     module->lock.lock();
     mode_t old_mask = umask(0077);
@@ -210,6 +215,11 @@ void ModuleService_::start() {
     std::string address = "unix://" + module->addr;
     Server::add_listening_port(address);
 
+    // Call exit(0) on SIGTERM or SIGINT so module can cleanly shutdown with its
+    // destructor.
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+
     module->lock.unlock();
     module->set_ready();
 }
@@ -219,7 +229,6 @@ ModuleService_::~ModuleService_() {
 }
 
 void ModuleService_::close() {
-    // CR erodkin: this actually doesn't shutdown gracefully at all! fix that
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
 
     if (parent != nullptr) {
