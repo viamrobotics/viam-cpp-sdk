@@ -34,3 +34,5 @@ RUN apt-get update
 
 RUN apt-get -y --no-install-recommends install -t bullseye-backports \
     cmake
+
+COPY ../../ /usr/src/viam-cpp-sdk
