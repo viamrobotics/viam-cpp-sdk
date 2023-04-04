@@ -35,4 +35,7 @@ RUN apt-get update
 RUN apt-get -y --no-install-recommends install -t bullseye-backports \
     cmake
 
-COPY . /usr/src/viam-cpp-sdk
+RUN mkdir build && cd build && pwd && \
+cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+&& cd src/tests
+&& ctest
