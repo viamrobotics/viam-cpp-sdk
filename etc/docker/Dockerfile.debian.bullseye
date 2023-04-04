@@ -35,9 +35,5 @@ RUN apt-get update
 RUN apt-get -y --no-install-recommends install -t bullseye-backports \
     cmake
 
-CMD mkdir build 
-CMD cd build 
-CMD pwd 
-CMD cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON 
-CMD cd src/tests 
-CMD ctest
+ENTRYPOINT ["./run_test.sh"]
+
