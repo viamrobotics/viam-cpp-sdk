@@ -26,9 +26,9 @@ using Viam::SDK::Credentials;
 using Viam::SDK::Options;
 
 int main() {
-    const char* uri = "webrtc-test-main.jkek76kqnh.viam.cloud";
+    const char* uri = "<your robot URI here>";
     Viam::SDK::DialOptions dial_options = Viam::SDK::DialOptions();
-    std::string payload = "ytexnwei4fu1xv9csoqxfv4ckl3htsb49mzzey5t15xo9swy";
+    std::string payload = "<your payload here>";
     Credentials credentials(payload);
     dial_options.credentials = credentials;
     boost::optional<Viam::SDK::DialOptions> opts(dial_options);
