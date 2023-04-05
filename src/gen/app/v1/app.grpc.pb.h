@@ -390,6 +390,30 @@ class AppService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFragmentResponse>> PrepareAsyncDeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFragmentResponse>>(PrepareAsyncDeleteFragmentRaw(context, request, cq));
     }
+    // Creates an IdentityAuthorization
+    virtual ::grpc::Status AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::viam::app::v1::AddRoleResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AddRoleResponse>> AsyncAddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AddRoleResponse>>(AsyncAddRoleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AddRoleResponse>> PrepareAsyncAddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AddRoleResponse>>(PrepareAsyncAddRoleRaw(context, request, cq));
+    }
+    // Deletes an IdentityAuthorization
+    virtual ::grpc::Status RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::viam::app::v1::RemoveRoleResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RemoveRoleResponse>> AsyncRemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RemoveRoleResponse>>(AsyncRemoveRoleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RemoveRoleResponse>> PrepareAsyncRemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RemoveRoleResponse>>(PrepareAsyncRemoveRoleRaw(context, request, cq));
+    }
+    // Shows organization, location, and robot level permissions that exist on the resource
+    virtual ::grpc::Status ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::viam::app::v1::ListAuthorizationsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListAuthorizationsResponse>> AsyncListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListAuthorizationsResponse>>(AsyncListAuthorizationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListAuthorizationsResponse>> PrepareAsyncListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListAuthorizationsResponse>>(PrepareAsyncListAuthorizationsRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -528,6 +552,15 @@ class AppService final {
       // Deletes a fragment
       virtual void DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Creates an IdentityAuthorization
+      virtual void AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Deletes an IdentityAuthorization
+      virtual void RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Shows organization, location, and robot level permissions that exist on the resource
+      virtual void ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -620,6 +653,12 @@ class AppService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateFragmentResponse>* PrepareAsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFragmentResponse>* AsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFragmentResponse>* PrepareAsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AddRoleResponse>* AsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::AddRoleResponse>* PrepareAsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RemoveRoleResponse>* AsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::RemoveRoleResponse>* PrepareAsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListAuthorizationsResponse>* AsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListAuthorizationsResponse>* PrepareAsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -927,6 +966,27 @@ class AppService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>> PrepareAsyncDeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>>(PrepareAsyncDeleteFragmentRaw(context, request, cq));
     }
+    ::grpc::Status AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::viam::app::v1::AddRoleResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>> AsyncAddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>>(AsyncAddRoleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>> PrepareAsyncAddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>>(PrepareAsyncAddRoleRaw(context, request, cq));
+    }
+    ::grpc::Status RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::viam::app::v1::RemoveRoleResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>> AsyncRemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>>(AsyncRemoveRoleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>> PrepareAsyncRemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>>(PrepareAsyncRemoveRoleRaw(context, request, cq));
+    }
+    ::grpc::Status ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::viam::app::v1::ListAuthorizationsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>> AsyncListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>>(AsyncListAuthorizationsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>> PrepareAsyncListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>>(PrepareAsyncListAuthorizationsRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -1015,6 +1075,12 @@ class AppService final {
       void UpdateFragment(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, std::function<void(::grpc::Status)>) override;
       void DeleteFragment(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddRole(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, std::function<void(::grpc::Status)>) override;
+      void RemoveRole(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -1113,6 +1179,12 @@ class AppService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateFragmentResponse>* PrepareAsyncUpdateFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateFragmentRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* AsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFragmentResponse>* PrepareAsyncDeleteFragmentRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFragmentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>* AsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::AddRoleResponse>* PrepareAsyncAddRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::AddRoleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>* AsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::RemoveRoleResponse>* PrepareAsyncRemoveRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::RemoveRoleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>* AsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListAuthorizationsResponse>* PrepareAsyncListAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_CreateOrganization_;
     const ::grpc::internal::RpcMethod rpcmethod_ListOrganizations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetOrganization_;
@@ -1156,6 +1228,9 @@ class AppService final {
     const ::grpc::internal::RpcMethod rpcmethod_CreateFragment_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateFragment_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteFragment_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddRole_;
+    const ::grpc::internal::RpcMethod rpcmethod_RemoveRole_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListAuthorizations_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -1256,6 +1331,12 @@ class AppService final {
     virtual ::grpc::Status UpdateFragment(::grpc::ServerContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response);
     // Deletes a fragment
     virtual ::grpc::Status DeleteFragment(::grpc::ServerContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response);
+    // Creates an IdentityAuthorization
+    virtual ::grpc::Status AddRole(::grpc::ServerContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response);
+    // Deletes an IdentityAuthorization
+    virtual ::grpc::Status RemoveRole(::grpc::ServerContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response);
+    // Shows organization, location, and robot level permissions that exist on the resource
+    virtual ::grpc::Status ListAuthorizations(::grpc::ServerContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_CreateOrganization : public BaseClass {
@@ -2117,7 +2198,67 @@ class AppService final {
       ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_CreateOrganization<WithAsyncMethod_ListOrganizations<WithAsyncMethod_GetOrganization<WithAsyncMethod_UpdateOrganization<WithAsyncMethod_DeleteOrganization<WithAsyncMethod_ListOrganizationMembers<WithAsyncMethod_CreateOrganizationInvite<WithAsyncMethod_DeleteOrganizationMember<WithAsyncMethod_DeleteOrganizationInvite<WithAsyncMethod_ResendOrganizationInvite<WithAsyncMethod_CreateLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_ListLocations<WithAsyncMethod_ShareLocation<WithAsyncMethod_UnshareLocation<WithAsyncMethod_LocationAuth<WithAsyncMethod_CreateLocationSecret<WithAsyncMethod_DeleteLocationSecret<WithAsyncMethod_GetRobot<WithAsyncMethod_GetRoverRentalRobots<WithAsyncMethod_GetRobotParts<WithAsyncMethod_GetRobotPart<WithAsyncMethod_GetRobotPartLogs<WithAsyncMethod_TailRobotPartLogs<WithAsyncMethod_GetRobotPartHistory<WithAsyncMethod_UpdateRobotPart<WithAsyncMethod_NewRobotPart<WithAsyncMethod_DeleteRobotPart<WithAsyncMethod_MarkPartAsMain<WithAsyncMethod_MarkPartForRestart<WithAsyncMethod_CreateRobotPartSecret<WithAsyncMethod_DeleteRobotPartSecret<WithAsyncMethod_ListRobots<WithAsyncMethod_NewRobot<WithAsyncMethod_UpdateRobot<WithAsyncMethod_DeleteRobot<WithAsyncMethod_ListFragments<WithAsyncMethod_GetFragment<WithAsyncMethod_CreateFragment<WithAsyncMethod_UpdateFragment<WithAsyncMethod_DeleteFragment<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_AddRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddRole() {
+      ::grpc::Service::MarkMethodAsync(43);
+    }
+    ~WithAsyncMethod_AddRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddRole(::grpc::ServerContext* context, ::viam::app::v1::AddRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::AddRoleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_RemoveRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RemoveRole() {
+      ::grpc::Service::MarkMethodAsync(44);
+    }
+    ~WithAsyncMethod_RemoveRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRemoveRole(::grpc::ServerContext* context, ::viam::app::v1::RemoveRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::RemoveRoleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListAuthorizations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListAuthorizations() {
+      ::grpc::Service::MarkMethodAsync(45);
+    }
+    ~WithAsyncMethod_ListAuthorizations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListAuthorizations(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListAuthorizations(::grpc::ServerContext* context, ::viam::app::v1::ListAuthorizationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListAuthorizationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_CreateOrganization<WithAsyncMethod_ListOrganizations<WithAsyncMethod_GetOrganization<WithAsyncMethod_UpdateOrganization<WithAsyncMethod_DeleteOrganization<WithAsyncMethod_ListOrganizationMembers<WithAsyncMethod_CreateOrganizationInvite<WithAsyncMethod_DeleteOrganizationMember<WithAsyncMethod_DeleteOrganizationInvite<WithAsyncMethod_ResendOrganizationInvite<WithAsyncMethod_CreateLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_ListLocations<WithAsyncMethod_ShareLocation<WithAsyncMethod_UnshareLocation<WithAsyncMethod_LocationAuth<WithAsyncMethod_CreateLocationSecret<WithAsyncMethod_DeleteLocationSecret<WithAsyncMethod_GetRobot<WithAsyncMethod_GetRoverRentalRobots<WithAsyncMethod_GetRobotParts<WithAsyncMethod_GetRobotPart<WithAsyncMethod_GetRobotPartLogs<WithAsyncMethod_TailRobotPartLogs<WithAsyncMethod_GetRobotPartHistory<WithAsyncMethod_UpdateRobotPart<WithAsyncMethod_NewRobotPart<WithAsyncMethod_DeleteRobotPart<WithAsyncMethod_MarkPartAsMain<WithAsyncMethod_MarkPartForRestart<WithAsyncMethod_CreateRobotPartSecret<WithAsyncMethod_DeleteRobotPartSecret<WithAsyncMethod_ListRobots<WithAsyncMethod_NewRobot<WithAsyncMethod_UpdateRobot<WithAsyncMethod_DeleteRobot<WithAsyncMethod_ListFragments<WithAsyncMethod_GetFragment<WithAsyncMethod_CreateFragment<WithAsyncMethod_UpdateFragment<WithAsyncMethod_DeleteFragment<WithAsyncMethod_AddRole<WithAsyncMethod_RemoveRole<WithAsyncMethod_ListAuthorizations<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_CreateOrganization : public BaseClass {
    private:
@@ -3274,7 +3415,88 @@ class AppService final {
     virtual ::grpc::ServerUnaryReactor* DeleteFragment(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::DeleteFragmentRequest* /*request*/, ::viam::app::v1::DeleteFragmentResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_CreateOrganization<WithCallbackMethod_ListOrganizations<WithCallbackMethod_GetOrganization<WithCallbackMethod_UpdateOrganization<WithCallbackMethod_DeleteOrganization<WithCallbackMethod_ListOrganizationMembers<WithCallbackMethod_CreateOrganizationInvite<WithCallbackMethod_DeleteOrganizationMember<WithCallbackMethod_DeleteOrganizationInvite<WithCallbackMethod_ResendOrganizationInvite<WithCallbackMethod_CreateLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_ListLocations<WithCallbackMethod_ShareLocation<WithCallbackMethod_UnshareLocation<WithCallbackMethod_LocationAuth<WithCallbackMethod_CreateLocationSecret<WithCallbackMethod_DeleteLocationSecret<WithCallbackMethod_GetRobot<WithCallbackMethod_GetRoverRentalRobots<WithCallbackMethod_GetRobotParts<WithCallbackMethod_GetRobotPart<WithCallbackMethod_GetRobotPartLogs<WithCallbackMethod_TailRobotPartLogs<WithCallbackMethod_GetRobotPartHistory<WithCallbackMethod_UpdateRobotPart<WithCallbackMethod_NewRobotPart<WithCallbackMethod_DeleteRobotPart<WithCallbackMethod_MarkPartAsMain<WithCallbackMethod_MarkPartForRestart<WithCallbackMethod_CreateRobotPartSecret<WithCallbackMethod_DeleteRobotPartSecret<WithCallbackMethod_ListRobots<WithCallbackMethod_NewRobot<WithCallbackMethod_UpdateRobot<WithCallbackMethod_DeleteRobot<WithCallbackMethod_ListFragments<WithCallbackMethod_GetFragment<WithCallbackMethod_CreateFragment<WithCallbackMethod_UpdateFragment<WithCallbackMethod_DeleteFragment<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_AddRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AddRole() {
+      ::grpc::Service::MarkMethodCallback(43,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response) { return this->AddRole(context, request, response); }));}
+    void SetMessageAllocatorFor_AddRole(
+        ::grpc::MessageAllocator< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AddRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddRole(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_RemoveRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RemoveRole() {
+      ::grpc::Service::MarkMethodCallback(44,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response) { return this->RemoveRole(context, request, response); }));}
+    void SetMessageAllocatorFor_RemoveRole(
+        ::grpc::MessageAllocator< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RemoveRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RemoveRole(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ListAuthorizations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ListAuthorizations() {
+      ::grpc::Service::MarkMethodCallback(45,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response) { return this->ListAuthorizations(context, request, response); }));}
+    void SetMessageAllocatorFor_ListAuthorizations(
+        ::grpc::MessageAllocator< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ListAuthorizations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListAuthorizations(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListAuthorizations(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_CreateOrganization<WithCallbackMethod_ListOrganizations<WithCallbackMethod_GetOrganization<WithCallbackMethod_UpdateOrganization<WithCallbackMethod_DeleteOrganization<WithCallbackMethod_ListOrganizationMembers<WithCallbackMethod_CreateOrganizationInvite<WithCallbackMethod_DeleteOrganizationMember<WithCallbackMethod_DeleteOrganizationInvite<WithCallbackMethod_ResendOrganizationInvite<WithCallbackMethod_CreateLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_ListLocations<WithCallbackMethod_ShareLocation<WithCallbackMethod_UnshareLocation<WithCallbackMethod_LocationAuth<WithCallbackMethod_CreateLocationSecret<WithCallbackMethod_DeleteLocationSecret<WithCallbackMethod_GetRobot<WithCallbackMethod_GetRoverRentalRobots<WithCallbackMethod_GetRobotParts<WithCallbackMethod_GetRobotPart<WithCallbackMethod_GetRobotPartLogs<WithCallbackMethod_TailRobotPartLogs<WithCallbackMethod_GetRobotPartHistory<WithCallbackMethod_UpdateRobotPart<WithCallbackMethod_NewRobotPart<WithCallbackMethod_DeleteRobotPart<WithCallbackMethod_MarkPartAsMain<WithCallbackMethod_MarkPartForRestart<WithCallbackMethod_CreateRobotPartSecret<WithCallbackMethod_DeleteRobotPartSecret<WithCallbackMethod_ListRobots<WithCallbackMethod_NewRobot<WithCallbackMethod_UpdateRobot<WithCallbackMethod_DeleteRobot<WithCallbackMethod_ListFragments<WithCallbackMethod_GetFragment<WithCallbackMethod_CreateFragment<WithCallbackMethod_UpdateFragment<WithCallbackMethod_DeleteFragment<WithCallbackMethod_AddRole<WithCallbackMethod_RemoveRole<WithCallbackMethod_ListAuthorizations<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_CreateOrganization : public BaseClass {
@@ -4003,6 +4225,57 @@ class AppService final {
     }
     // disable synchronous version of this method
     ::grpc::Status DeleteFragment(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFragmentRequest* /*request*/, ::viam::app::v1::DeleteFragmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AddRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddRole() {
+      ::grpc::Service::MarkMethodGeneric(43);
+    }
+    ~WithGenericMethod_AddRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RemoveRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RemoveRole() {
+      ::grpc::Service::MarkMethodGeneric(44);
+    }
+    ~WithGenericMethod_RemoveRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListAuthorizations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListAuthorizations() {
+      ::grpc::Service::MarkMethodGeneric(45);
+    }
+    ~WithGenericMethod_ListAuthorizations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListAuthorizations(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4865,6 +5138,66 @@ class AppService final {
     }
     void RequestDeleteFragment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AddRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddRole() {
+      ::grpc::Service::MarkMethodRaw(43);
+    }
+    ~WithRawMethod_AddRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RemoveRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RemoveRole() {
+      ::grpc::Service::MarkMethodRaw(44);
+    }
+    ~WithRawMethod_RemoveRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRemoveRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListAuthorizations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListAuthorizations() {
+      ::grpc::Service::MarkMethodRaw(45);
+    }
+    ~WithRawMethod_ListAuthorizations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListAuthorizations(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListAuthorizations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5811,6 +6144,72 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* DeleteFragment(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_AddRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AddRole() {
+      ::grpc::Service::MarkMethodRawCallback(43,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddRole(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AddRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddRole(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RemoveRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RemoveRole() {
+      ::grpc::Service::MarkMethodRawCallback(44,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveRole(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RemoveRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RemoveRole(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ListAuthorizations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ListAuthorizations() {
+      ::grpc::Service::MarkMethodRawCallback(45,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListAuthorizations(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ListAuthorizations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListAuthorizations(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListAuthorizations(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -6947,7 +7346,88 @@ class AppService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDeleteFragment(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::DeleteFragmentRequest,::viam::app::v1::DeleteFragmentResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AddRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AddRole() {
+      ::grpc::Service::MarkMethodStreamed(43,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>* streamer) {
+                       return this->StreamedAddRole(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AddRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AddRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::AddRoleRequest* /*request*/, ::viam::app::v1::AddRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAddRole(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::AddRoleRequest,::viam::app::v1::AddRoleResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RemoveRole : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RemoveRole() {
+      ::grpc::Service::MarkMethodStreamed(44,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>* streamer) {
+                       return this->StreamedRemoveRole(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RemoveRole() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RemoveRole(::grpc::ServerContext* /*context*/, const ::viam::app::v1::RemoveRoleRequest* /*request*/, ::viam::app::v1::RemoveRoleResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRemoveRole(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::RemoveRoleRequest,::viam::app::v1::RemoveRoleResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListAuthorizations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListAuthorizations() {
+      ::grpc::Service::MarkMethodStreamed(45,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>* streamer) {
+                       return this->StreamedListAuthorizations(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListAuthorizations() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListAuthorizations(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ListAuthorizationsRequest* /*request*/, ::viam::app::v1::ListAuthorizationsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListAuthorizations(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::ListAuthorizationsRequest,::viam::app::v1::ListAuthorizationsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ListAuthorizations<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_TailRobotPartLogs : public BaseClass {
    private:
@@ -6976,7 +7456,7 @@ class AppService final {
     virtual ::grpc::Status StreamedTailRobotPartLogs(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::TailRobotPartLogsRequest,::viam::app::v1::TailRobotPartLogsResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_TailRobotPartLogs<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartLogs<WithSplitStreamingMethod_TailRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartLogs<WithSplitStreamingMethod_TailRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ListAuthorizations<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 // Organizations
 
