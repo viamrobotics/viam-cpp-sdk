@@ -10,10 +10,12 @@
 #include <robot/v1/robot.pb.h>
 
 #include <common/utils.hpp>
+#include <components/component_base.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource_base.hpp>
 #include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
+#include <services/service_base.hpp>
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;
@@ -105,6 +107,25 @@ class RobotClient {
 };
 
 template <typename T>
-std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
-                                             const std::string& name);
+extern std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient> client,
+                                                    const std::string& name) {
+    std::string resource_type;
+    if (std::is_base_of<ComponentBase, T>()) {
+        resource_type = COMPONENT;
+    } else if (std::is_base_of<ServiceBase, T>()) {
+        resource_type = SERVICE;
+    } else {
+        throw std::runtime_error("attempted to get unknown resource type from robot");
+    }
+
+    ResourceName r;
+    Subtype subtype = T::subtype();
+    *r.mutable_namespace_() = subtype.type_namespace();
+    *r.mutable_type() = subtype.resource_type();
+    *r.mutable_subtype() = subtype.resource_subtype();
+    *r.mutable_name() = std::move(name);
+
+    auto resource = client->resource_by_name(std::move(r), subtype.resource_type());
+    return std::dynamic_pointer_cast<T>(resource);
+}
 
