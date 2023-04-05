@@ -21,7 +21,7 @@ jobs:
           file: ./etc/docker/Dockerfile.debian.bullseye
       - name: build-docker
         run: | 
-          docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye
+          docker build -it cpp . -f etc/docker/Dockerfile.debian.bullseye
           docker run --rm -i -w /usr/src/viam-cpp-sdk cpp /bin/bash \
           && pwd \
           && apt-get -y update && apt-get -y upgrade \
