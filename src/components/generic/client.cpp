@@ -7,6 +7,7 @@
 
 #include <common/proto_type.hpp>
 #include <config/resource.hpp>
+#include <robot/client.hpp>
 
 AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
@@ -21,8 +22,10 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
 };
 
 GenericClient::GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel_)
-    : channel_(channel_),
-      stub_(viam::component::generic::v1::GenericService::NewStub(channel_)),
-      name_(name){};
+    : channel_(channel_), stub_(viam::component::generic::v1::GenericService::NewStub(channel_)) {
+    name_ = std::move(name);
+}
 
-GenericClient::GenericClient(std::string name) : channel_(nullptr), stub_(nullptr), name_(name){};
+GenericClient::GenericClient(std::string name) : channel_(nullptr), stub_(nullptr) {
+    name_ = std::move(name);
+};

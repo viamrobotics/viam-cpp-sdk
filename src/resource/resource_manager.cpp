@@ -6,10 +6,10 @@
 #include <vector>
 
 #include <components/component_base.hpp>
+#include <resource/resource_type.hpp>
 #include <services/service_base.hpp>
 
 ResourceManager::ResourceManager() {}
-std::unordered_map<std::string, std::shared_ptr<ResourceBase>> ResourceManager::resources;
 
 // Register a new resource with the registry.
 // Resources may not have the same name.
@@ -20,13 +20,13 @@ ResourceManager::ResourceManager(std::vector<std::shared_ptr<ResourceBase>> reso
 }
 
 void ResourceManager::register_resource(std::shared_ptr<ResourceBase> resource) {
-    if (resources.find(resource->name) != resources.end()) {
+    if (resources.find(resource->name()) != resources.end()) {
         std::string err =
-            "Cannot add resource with name " + resource->name + " as it already exists.";
+            "Cannot add resource with name " + resource->name() + " as it already exists.";
         throw std::runtime_error(err);
     }
 
-    resources[resource->name] = resource;
+    resources[resource->name()] = resource;
 }
 
 std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
@@ -36,15 +36,14 @@ std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
     }
 
     std::shared_ptr<ResourceBase> resource = resources.at(name);
-    if (resource->type == of_type) {
+    if (resource->type() == of_type) {
         return resource;
     }
 
-    ResourceType base = ResourceType("ResourceBase");
-    if (of_type == base) {
+    if (of_type == ResourceType("resource")) {
         return resource;
     }
-    throw std::runtime_error("Resource name " + name +
-                             " was found, but it has the wrong type! Expected type: " +
-                             of_type.type + ". Actual type: " + resource->type.type);
+    throw std::runtime_error(
+        "Resource name " + name + " was found, but it has the wrong type! Expected type: " +
+        of_type.to_string() + ". Actual type: " + resource->type().to_string());
 }

@@ -10,9 +10,12 @@
 #include <robot/v1/robot.pb.h>
 
 #include <common/utils.hpp>
+#include <components/component_base.hpp>
 #include <registry/registry.hpp>
+#include <resource/resource_base.hpp>
 #include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
+#include <services/service_base.hpp>
 
 using grpc::Channel;
 using viam::common::v1::ResourceName;
@@ -51,7 +54,23 @@ class RobotClient {
     RobotClient(ViamChannel channel);
     std::vector<ResourceName>* resource_names();
     std::unique_ptr<RobotService::Stub> stub_;
-    std::shared_ptr<ResourceBase> resource_by_name(ResourceName name);
+    /// Gets a `shared_ptr` to a Resource Base.
+    ///
+    /// Args:
+    /// 	name: the name of the resource
+    /// 	type: the resource type (defaults to a generic `ResourceBase`)
+    ///
+    /// Raises:
+    /// 	Throws an error if the requested resource doesn't exist or is of the wrong type.
+    ///
+    /// This function should not be called directly expect in specific cases. The
+    /// function `typed_resource_from_robot<T>(robot, name)` is the preferred method for obtaining
+    /// resources.
+    ///
+    /// Because the return type here is a `ResourceBase`, the user will need to manually
+    /// cast to the desired type.
+    std::shared_ptr<ResourceBase> resource_by_name(ResourceName name,
+                                                   ResourceType type = {"resource"});
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<viam::robot::v1::Operation> get_operations();
@@ -86,3 +105,26 @@ class RobotClient {
     ResourceManager resource_manager;
     void refresh_every();
 };
+
+template <typename T>
+std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient> client,
+                                             const std::string& name) {
+    std::string resource_type;
+    if (std::is_base_of<ComponentBase, T>()) {
+        resource_type = COMPONENT;
+    } else if (std::is_base_of<ServiceBase, T>()) {
+        resource_type = SERVICE;
+    } else {
+        throw std::runtime_error("attempted to get unknown resource type from robot");
+    }
+
+    ResourceName r;
+    Subtype subtype = T::subtype();
+    *r.mutable_namespace_() = subtype.type_namespace();
+    *r.mutable_type() = subtype.resource_type();
+    *r.mutable_subtype() = subtype.resource_subtype();
+    *r.mutable_name() = std::move(name);
+
+    auto resource = client->resource_by_name(std::move(r), subtype.resource_type());
+    return std::dynamic_pointer_cast<T>(resource);
+}

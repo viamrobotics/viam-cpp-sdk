@@ -8,19 +8,22 @@
 
 #include <common/utils.hpp>
 #include <resource/resource_base.hpp>
+#include <resource/resource_type.hpp>
 
 using viam::common::v1::ResourceName;
 
-ResourceName ComponentBase::get_resource_name(std::string name_) {
+ResourceName ComponentBase::get_resource_name(std::string name) {
     // TODO (RSDK-1631): test, confirm whether we need to split on
     // "viam.components" here
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = COMPONENT;
-    *r.mutable_subtype() = name;
-    *r.mutable_name() = name_;
+    *r.mutable_subtype() = this->type().to_string();
+    *r.mutable_name() = std::move(name);
 
     return r;
 }
 
-ComponentBase::ComponentBase() : ResourceBase({"component"}){};
+ResourceType ComponentBase::type() {
+    return {COMPONENT};
+}

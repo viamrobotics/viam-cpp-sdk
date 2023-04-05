@@ -8,27 +8,34 @@
 
 class Type {
    public:
-    std::string namespace_;
-    std::string resource_type;
     Type(std::string namespace_, std::string resource_type);
     Type(){};
-
     virtual std::string to_string() const;
+
+    std::string type_namespace();
+    std::string resource_type();
+
+   protected:
+    std::string namespace_;
+    std::string resource_type_;
 };
 
 class Subtype : public Type {
    public:
-    std::string resource_subtype;
-
-    std::string to_string() const;
+    virtual std::string to_string() const override;
     Subtype(){};
     Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype);
     Subtype(Type type, std::string resource_subtype);
     static Subtype from_string(std::string subtype);
+
+    std::string resource_subtype();
     bool is_component_type();
     bool is_service_type();
     friend bool operator==(Subtype const& lhs, Subtype const& rhs);
     friend bool operator<(const Subtype& lhs, const Subtype& rhs);
+
+   protected:
+    std::string resource_subtype_;
 };
 
 // TODO: instead of inheriting from Subtype probably this should just have a
@@ -39,7 +46,7 @@ class Name : public Subtype {
     std::string name;
 
     std::string short_name() const;
-    std::string to_string() const;
+    virtual std::string to_string() const override;
     // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
     viam::common::v1::ResourceName to_proto();

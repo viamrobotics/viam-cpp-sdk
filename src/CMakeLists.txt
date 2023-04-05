@@ -207,7 +207,6 @@ target_sources(viamcpp
     components/camera/client.cpp
     components/camera/server.cpp
     components/component_base.cpp
-    components/component_type.cpp
     components/generic/client.cpp
     components/generic/generic.cpp
     components/generic/server.cpp
@@ -218,14 +217,13 @@ target_sources(viamcpp
     referenceframe/frame.cpp
     resource/resource.cpp
     resource/resource_base.cpp
-    resource/resource_server_base.cpp
     resource/resource_manager.cpp
+    resource/resource_server_base.cpp
     resource/resource_type.cpp
     robot/client.cpp
     rpc/dial.cpp
     rpc/server.cpp
     services/service_base.cpp
-    services/service_type.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
@@ -241,7 +239,6 @@ target_sources(viamcpp
       components/camera/client.hpp
       components/camera/server.hpp
       components/component_base.hpp
-      components/component_type.hpp
       components/generic/client.hpp
       components/generic/generic.hpp
       components/generic/server.hpp
@@ -254,15 +251,14 @@ target_sources(viamcpp
       registry/registry.hpp
       resource/resource.hpp
       resource/resource_base.hpp
-      resource/resource_server_base.hpp
       resource/resource_manager.hpp
+      resource/resource_server_base.hpp
       resource/resource_type.hpp
       robot/client.hpp
       robot/service.hpp
       rpc/dial.hpp
       rpc/server.hpp
       services/service_base.hpp
-      services/service_type.hpp
       spatialmath/geometry.hpp
       spatialmath/orientation_types.hpp
       spatialmath/orientation.hpp
