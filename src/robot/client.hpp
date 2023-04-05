@@ -128,4 +128,3 @@ std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient> 
     auto resource = client->resource_by_name(std::move(r), subtype.resource_type());
     return std::dynamic_pointer_cast<T>(resource);
 }
-
