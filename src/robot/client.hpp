@@ -62,12 +62,13 @@ class RobotClient {
     /// 	Throws an error if the requested resource doesn't exist or is of the wrong type.
     ///
     /// This function should not be called directly expect in specific cases. The
-    /// method `<Service>.from_robot` is the preferred method for obtaining resources.
+    /// function `typed_resource_from_robot<T>(robot, name)` is the preferred method for obtaining
+    /// resources.
     ///
     /// Because the return type here is a `ResourceBase`, the user will need to manually
     /// cast to the desired type.
     std::shared_ptr<ResourceBase> resource_by_name(ResourceName name,
-                                                   ResourceType type = ResourceBase::base_type);
+                                                   ResourceType type = {"resource"});
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<viam::robot::v1::Operation> get_operations();
@@ -102,3 +103,8 @@ class RobotClient {
     ResourceManager resource_manager;
     void refresh_every();
 };
+
+template <typename T>
+std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
+                                             const std::string& name);
+

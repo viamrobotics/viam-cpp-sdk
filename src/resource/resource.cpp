@@ -18,14 +18,26 @@ const std::regex MODEL_REGEX("^([\\w-]+):([\\w-]+):([\\w-]+)$");
 std::regex SINGLE_FIELD_REGEX("^([\\w-]+)$");
 
 std::string Type::to_string() const {
-    return namespace_ + ":" + resource_type;
+    return namespace_ + ":" + resource_type_;
 }
 
 Type::Type(std::string namespace_, std::string resource_type)
-    : namespace_(namespace_), resource_type(resource_type){};
+    : namespace_(namespace_), resource_type_(resource_type){};
 
 std::string Subtype::to_string() const {
-    return Type::to_string() + ":" + resource_subtype;
+    return Type::to_string() + ":" + resource_subtype_;
+}
+
+std::string Type::type_namespace() {
+    return namespace_;
+}
+
+std::string Type::resource_type() {
+    return resource_type_;
+}
+
+std::string Subtype::resource_subtype() {
+    return resource_subtype_;
 }
 
 Subtype Subtype::from_string(std::string subtype) {
@@ -39,17 +51,17 @@ Subtype Subtype::from_string(std::string subtype) {
 }
 
 Subtype::Subtype(Type type, std::string resource_subtype)
-    : Type(type), resource_subtype(resource_subtype) {}
+    : Type(type), resource_subtype_(resource_subtype) {}
 
 Subtype::Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype)
-    : Type(namespace_, resource_type), resource_subtype(resource_subtype) {}
+    : Type(namespace_, resource_type), resource_subtype_(resource_subtype) {}
 
 bool Subtype::is_service_type() {
-    return (this->resource_type == "service");
+    return (this->resource_type_ == "service");
 }
 
 bool Subtype::is_component_type() {
-    return (this->resource_type == "component");
+    return (this->resource_type_ == "component");
 }
 
 const Subtype* Name::to_subtype() const {
@@ -75,8 +87,8 @@ viam::common::v1::ResourceName Name::to_proto() {
     viam::common::v1::ResourceName rn;
     *rn.mutable_namespace_() = this->namespace_;
     *rn.mutable_name() = this->name;
-    *rn.mutable_type() = this->resource_type;
-    *rn.mutable_subtype() = this->resource_subtype;
+    *rn.mutable_type() = this->resource_type_;
+    *rn.mutable_subtype() = this->resource_subtype_;
     return rn;
 }
 

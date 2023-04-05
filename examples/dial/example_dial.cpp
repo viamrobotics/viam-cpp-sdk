@@ -62,7 +62,7 @@ int main() {
     }
 
     // ensure we can create clients to the robot
-    std::shared_ptr<GenericClient> gc = GenericClient::from_robot(robot, "generic1");
+    std::shared_ptr<GenericClient> gc = typed_resource_from_robot<GenericClient>(robot, "generic1");
     std::cout << "got generic client named " << gc->name() << std::endl;
 
     robot->close();

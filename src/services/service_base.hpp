@@ -9,5 +9,6 @@
 class ServiceBase : public ResourceBase {
    public:
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);
+    virtual ResourceType type() override;
     ServiceBase();
 };

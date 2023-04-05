@@ -14,15 +14,14 @@ class ResourceBase;
 using Dependencies = std::unordered_map<Name, std::shared_ptr<ResourceBase>>;
 class ResourceBase {
    public:
-    ResourceBase(ResourceType type) : type_(std::move(type)){};
-    static ResourceType base_type;
+    ResourceBase(std::string name) : name_(std::move(name)){};
+    static Subtype subtype();
     virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> extra);
     virtual grpc::StatusCode stop();
     virtual void reconfigure(Dependencies deps, Resource cfg);
     virtual std::string name();
-    ResourceType type();
+    virtual ResourceType type();
 
    protected:
     std::string name_;
-    ResourceType type_;
 };

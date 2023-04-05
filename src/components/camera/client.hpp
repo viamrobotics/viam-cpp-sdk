@@ -16,8 +16,6 @@ class CameraClient : public Camera {
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_);
-    static std::shared_ptr<CameraClient> from_robot(std::shared_ptr<RobotClient> robot,
-                                                    std::string name);
 
    protected:
     CameraClient(std::string name);

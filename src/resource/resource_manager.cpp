@@ -40,7 +40,7 @@ std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
         return resource;
     }
 
-    if (of_type == ResourceBase::base_type) {
+    if (of_type == ResourceType("resource")) {
         return resource;
     }
     throw std::runtime_error(
