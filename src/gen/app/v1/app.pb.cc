@@ -2815,7 +2815,7 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "ions\030\002 \003(\tR\013permissions\"u\n\030CheckPermissi"
   "onsResponse\022Y\n\026authorized_permissions\030\001 "
   "\003(\0132\".viam.app.v1.AuthorizedPermissionsR"
-  "\025authorizedPermissions2\273 \n\nAppService\022e\n"
+  "\025authorizedPermissions2\267\"\n\nAppService\022e\n"
   "\022CreateOrganization\022&.viam.app.v1.Create"
   "OrganizationRequest\032\'.viam.app.v1.Create"
   "OrganizationResponse\022b\n\021ListOrganization"
@@ -2919,8 +2919,14 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "gmentRequest\032#.viam.app.v1.UpdateFragmen"
   "tResponse\022Y\n\016DeleteFragment\022\".viam.app.v"
   "1.DeleteFragmentRequest\032#.viam.app.v1.De"
-  "leteFragmentResponseB\030Z\026go.viam.com/api/"
-  "app/v1b\006proto3"
+  "leteFragmentResponse\022D\n\007AddRole\022\033.viam.a"
+  "pp.v1.AddRoleRequest\032\034.viam.app.v1.AddRo"
+  "leResponse\022M\n\nRemoveRole\022\036.viam.app.v1.R"
+  "emoveRoleRequest\032\037.viam.app.v1.RemoveRol"
+  "eResponse\022e\n\022ListAuthorizations\022&.viam.a"
+  "pp.v1.ListAuthorizationsRequest\032\'.viam.a"
+  "pp.v1.ListAuthorizationsResponseB\030Z\026go.v"
+  "iam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
@@ -2929,7 +2935,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 15694, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 15946, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
     &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 109,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
