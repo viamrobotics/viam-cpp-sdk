@@ -107,8 +107,8 @@ class RobotClient {
 };
 
 template <typename T>
-extern std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient> client,
-                                                    const std::string& name) {
+std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient> client,
+                                             const std::string& name) {
     std::string resource_type;
     if (std::is_base_of<ComponentBase, T>()) {
         resource_type = COMPONENT;

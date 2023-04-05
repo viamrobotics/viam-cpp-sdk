@@ -391,4 +391,3 @@ void RobotClient::stop_all(
                                  << response.error_details();
     }
 }
-

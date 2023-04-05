@@ -20,6 +20,5 @@ class GenericClient : public Generic {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-std::shared_ptr<GenericClient> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
-                                                         const std::string&);
-
+template std::shared_ptr<GenericClient> typed_resource_from_robot(
+    const std::shared_ptr<RobotClient>, const std::string&);

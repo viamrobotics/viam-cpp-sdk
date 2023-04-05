@@ -27,4 +27,3 @@ class CameraClient : public Camera {
 
 template std::shared_ptr<CameraClient> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
                                                                  const std::string&);
-

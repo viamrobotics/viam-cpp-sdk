@@ -24,4 +24,3 @@ ServiceBase::ServiceBase() : ResourceBase("service"){};
 ResourceType ServiceBase::type() {
     return {SERVICE};
 }
-
