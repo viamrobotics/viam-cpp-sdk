@@ -8,7 +8,7 @@
 
 class ResourceManager {
    public:
-    static std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
+    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
     void register_resource(std::shared_ptr<ResourceBase> Resource);
 
     /// returns a resource from the registry.
@@ -17,8 +17,8 @@ class ResourceManager {
     ///
     /// Raises:
     /// 	If the name is not within the ResourceManager or the registered
-    /// resource's type is not the expected type, then get_resource
-    /// will throw an error.
+    ///     resource's type is not the expected type, then get_resource
+    ///     will throw an error.
     std::shared_ptr<ResourceBase> get_resource(std::string name, ResourceType of_type);
     ResourceManager();
 

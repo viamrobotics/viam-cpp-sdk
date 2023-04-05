@@ -32,28 +32,29 @@ Name Resource::resource_name() {
 }
 
 void Resource::fix_api() {
-    if (this->api.namespace_ == "" && this->namespace_ == "") {
+    if (this->api.type_namespace() == "" && this->namespace_ == "") {
         this->namespace_ = RDK;
-        this->api.namespace_ = RDK;
-    } else if (this->api.namespace_ == "") {
-        this->api.namespace_ = this->namespace_;
+        this->api.type_namespace() = RDK;
+    } else if (this->api.type_namespace() == "") {
+        this->api.type_namespace() = this->namespace_;
     } else {
-        this->namespace_ = this->api.namespace_;
+        this->namespace_ = this->api.type_namespace();
     }
 
-    if (this->api.resource_type == "") {
-        this->api.resource_type = COMPONENT;
+    if (this->api.resource_type() == "") {
+        this->api.resource_type() = COMPONENT;
     }
 
-    if (this->api.resource_subtype == "") {
-        this->api.resource_subtype = this->type;
+    if (this->api.resource_subtype() == "") {
+        this->api.resource_subtype() = this->type;
     } else if (this->type == "") {
-        this->type = this->api.resource_subtype;
+        this->type = this->api.resource_subtype();
     }
 
     // This shouldn't be able to happen except with directly instantiated
     // config structs
-    if (this->api.namespace_ != this->namespace_ || this->api.resource_subtype != this->type) {
+    if (this->api.type_namespace() != this->namespace_ ||
+        this->api.resource_subtype() != this->type) {
         throw "component namespace and/or type do not match component api field";
     }
 }

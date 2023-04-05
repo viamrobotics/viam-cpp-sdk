@@ -5,6 +5,7 @@
 #include <component/generic/v1/generic.grpc.pb.h>
 
 #include <components/generic/generic.hpp>
+#include <robot/client.hpp>
 
 class GenericClient : public Generic {
    public:
@@ -14,8 +15,10 @@ class GenericClient : public Generic {
    protected:
     GenericClient(std::string name);
     std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
-    std::string name_;
 
    private:
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+template std::shared_ptr<GenericClient> typed_resource_from_robot(
+    const std::shared_ptr<RobotClient>, const std::string&);

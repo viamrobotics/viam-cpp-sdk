@@ -11,6 +11,7 @@
 #include <string>
 #include <thread>
 #include <tuple>
+#include <type_traits>
 #include <unistd.h>
 #include <vector>
 
@@ -27,11 +28,13 @@
 
 #include <common/proto_type.hpp>
 #include <common/utils.hpp>
+#include <components/component_base.hpp>
 #include <components/service_base.hpp>
 #include <registry/registry.hpp>
 #include <resource/resource_base.hpp>
 #include <resource/resource_manager.hpp>
 #include <rpc/dial.hpp>
+#include <services/service_base.hpp>
 
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
@@ -343,8 +346,8 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     return components;
 }
 
-std::shared_ptr<ResourceBase> RobotClient::resource_by_name(ResourceName name) {
-    return resource_manager.get_resource(name.name(), ResourceType("ResourceBase"));
+std::shared_ptr<ResourceBase> RobotClient::resource_by_name(ResourceName name, ResourceType type) {
+    return resource_manager.get_resource(name.name(), type);
 }
 
 void RobotClient::stop_all() {

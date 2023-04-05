@@ -1,6 +1,7 @@
 #include <components/camera/client.hpp>
 
 #include <algorithm>
+#include <memory>
 #include <string>
 #include <utility>
 
@@ -10,6 +11,7 @@
 #include <common/utils.hpp>
 #include <components/camera/camera.hpp>
 #include <config/resource.hpp>
+#include <robot/client.hpp>
 
 std::string normalize_mime_type(const std::string& str) {
     std::string mime_type = str;
@@ -72,6 +74,10 @@ Camera::properties CameraClient::get_properties() {
 };
 
 CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_)
-    : channel_(channel_), stub_(viam::component::camera::v1::CameraService::NewStub(channel_)){};
+    : channel_(channel_), stub_(viam::component::camera::v1::CameraService::NewStub(channel_)) {
+    name_ = std::move(name);
+};
 
-CameraClient::CameraClient(std::string name) : name_(name), channel_(nullptr), stub_(nullptr){};
+CameraClient::CameraClient(std::string name) : channel_(nullptr), stub_(nullptr) {
+    name_ = std::move(name);
+};

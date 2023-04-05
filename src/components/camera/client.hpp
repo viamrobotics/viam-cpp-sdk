@@ -7,6 +7,7 @@
 #include <components/camera/camera.hpp>
 #include <components/camera/server.hpp>
 #include <config/resource.hpp>
+#include <robot/client.hpp>
 
 class CameraClient : public Camera {
    public:
@@ -19,8 +20,10 @@ class CameraClient : public Camera {
    protected:
     CameraClient(std::string name);
     std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
-    std::string name_;
 
    private:
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+template std::shared_ptr<CameraClient> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
+                                                                 const std::string&);
