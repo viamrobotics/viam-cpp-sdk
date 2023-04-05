@@ -183,10 +183,6 @@ BOOST_AUTO_TEST_CASE(test_get_properties_client) {
     BOOST_CHECK(expected == props);
 }
 
-BOOST_AUTO_TEST_CASE(failing_test) {
-    BOOST_CHECK(false);
-}
-
 BOOST_AUTO_TEST_CASE(test_do_client) {
     AttributeMap command = fake_map();
     AttributeMap expected_map = fake_map();
