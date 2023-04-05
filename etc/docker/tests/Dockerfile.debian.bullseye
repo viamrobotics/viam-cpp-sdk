@@ -1,0 +1,43 @@
+# n.b. this is primarily a duplicate of the Dockerfile one level up, but with an
+# additional entrypoint for running tests. Not ideal, but sufficient for CI purposes.
+# We should at some point fix this.
+FROM debian:bullseye
+
+ENV HOME /root
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+
+RUN apt-get -y dist-upgrade
+
+RUN apt-get -y --no-install-recommends install \
+    build-essential \
+    ca-certificates \
+    clang \
+    doxygen \
+    curl \
+    g++ \
+    gdb \
+    git \
+    less \
+    libboost-all-dev \
+    libgrpc++-dev \
+    libprotobuf-dev \
+    libssl-dev \
+    ninja-build \
+    pkg-config \
+    protobuf-compiler-grpc \
+    software-properties-common \
+    wget
+
+
+RUN apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main'
+
+RUN apt-get update
+
+RUN apt-get -y --no-install-recommends install -t bullseye-backports \
+    cmake
+
+COPY . /tmp/
+ENTRYPOINT ["etc/docker/tests/run_test.sh"]
+
