@@ -18,7 +18,7 @@ class GenericClient : public Generic {
    protected:
     GenericClient(std::string name,
                   std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
-        : Generic(std::move(name)), stub_(std::move(stub)), channel_(nullptr){};
+        : Generic(std::move(name)), stub_(std::move(stub)){};
 
    private:
     std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;

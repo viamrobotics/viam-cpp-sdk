@@ -23,7 +23,7 @@ class CameraClient : public Camera {
    protected:
     CameraClient(std::string name,
                  std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
-        : Camera(std::move(name)), stub_(std::move(stub)), channel_(nullptr){};
+        : Camera(std::move(name)), stub_(std::move(stub)){};
 
    private:
     std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
