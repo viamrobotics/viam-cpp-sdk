@@ -32,4 +32,3 @@ MockGenericStub::MockGenericStub() : server(std::make_shared<GenericServer>()) {
     grpc::ServerContext* ctx;
     return server->DoCommand(ctx, &request, response);
 }
-

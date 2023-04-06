@@ -117,4 +117,3 @@ class RobotClient {
     ResourceManager resource_manager;
     void refresh_every();
 };
-

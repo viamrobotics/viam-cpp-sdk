@@ -20,4 +20,3 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
     stub_->DoCommand(&ctx, req, &resp);
     return struct_to_map(resp.result());
 };
-

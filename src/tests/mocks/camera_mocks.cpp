@@ -111,4 +111,3 @@ MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
     grpc::ServerContext* ctx;
     return server->DoCommand(ctx, &request, response);
 }
-

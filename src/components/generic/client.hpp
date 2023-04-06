@@ -24,4 +24,3 @@ class GenericClient : public Generic {
     std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
-
