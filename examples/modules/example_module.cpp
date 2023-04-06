@@ -3,6 +3,7 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 #include <robot/v1/robot.pb.h>
+#include <signal.h>
 
 #include <components/component_base.hpp>
 #include <components/generic/generic.hpp>
@@ -64,11 +65,30 @@ class MyModule : public GenericService::Service, public ComponentBase {
 
 int MyModule::which = 0;
 std::shared_ptr<ModuleService_> my_mod;
+volatile sig_atomic_t shutdown;
+
+void check_for_shutdown() {
+    while (!shutdown) {
+        // Check for shutdown every 100ms.
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    // Assign my_mod to nullptr and let destructor be called.
+    my_mod = nullptr;
+}
 
 int main(int argc, char** argv) {
     if (argc != 2) {
         throw "need socket path as command line argument";
     }
+
+    // Make sure to register signal handlers for SIGINT and SIGTERM that set a
+    // global shutdown flag. Start a thread to destroy my_mod if global shutdown
+    // flag is set.
+    shutdown = false;
+    signal(SIGINT, [](int) { shutdown = true; });
+    signal(SIGTERM, [](int) { shutdown = true; });
+    std::shared_ptr<std::thread> check_thread = std::make_shared<std::thread>(check_for_shutdown);
+    check_thread->detach();
 
     Subtype generic = Generic::subtype();
     my_mod = std::make_shared<ModuleService_>(argv[1]);

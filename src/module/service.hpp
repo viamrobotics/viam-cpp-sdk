@@ -44,5 +44,4 @@ class ModuleService_ : public ComponentServiceBase,
    private:
     std::shared_ptr<RobotClient> parent;
     std::string parent_addr;
-    static void signal_handler(int);
 };
