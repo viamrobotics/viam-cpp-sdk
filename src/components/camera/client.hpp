@@ -15,15 +15,17 @@ class CameraClient : public Camera {
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
-    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_);
+    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+        : Camera(std::move(name)),
+          stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
+          channel_(std::move(channel)){};
 
    protected:
-    CameraClient(std::string name);
-    std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
+    CameraClient(std::string name,
+                 std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
+        : Camera(std::move(name)), stub_(std::move(stub)), channel_(nullptr){};
 
    private:
+    std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
-
-template std::shared_ptr<CameraClient> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
-                                                                 const std::string&);

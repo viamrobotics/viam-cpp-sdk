@@ -15,6 +15,7 @@ class MockCamera : public Camera {
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
     static std::shared_ptr<MockCamera> get_mock_camera();
+    MockCamera(std::string name) : Camera(std::move(name)){};
 
    private:
     Camera::intrinsic_parameters intrinsic_parameters;
@@ -127,5 +128,6 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
 
 class MockCameraClient : public CameraClient {
    public:
-    MockCameraClient(std::string name);
+    MockCameraClient(std::string name)
+        : CameraClient(std::move(name), std::make_unique<MockCameraStub>()){};
 };

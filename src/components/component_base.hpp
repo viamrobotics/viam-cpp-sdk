@@ -13,4 +13,7 @@ class ComponentBase : public ResourceBase {
     virtual ResourceType type() override;
     viam::common::v1::ResourceName get_resource_name(std::string name);
     ComponentBase() : ResourceBase("component"){};
+
+   protected:
+    explicit ComponentBase(std::string name) : ResourceBase(std::move(name)){};
 };

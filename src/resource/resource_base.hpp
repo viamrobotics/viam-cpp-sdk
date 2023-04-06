@@ -22,6 +22,6 @@ class ResourceBase {
     virtual std::string name();
     virtual ResourceType type();
 
-   protected:
+   private:
     std::string name_;
 };

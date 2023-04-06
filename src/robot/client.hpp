@@ -63,14 +63,26 @@ class RobotClient {
     /// Raises:
     /// 	Throws an error if the requested resource doesn't exist or is of the wrong type.
     ///
-    /// This function should not be called directly expect in specific cases. The
-    /// function `typed_resource_from_robot<T>(robot, name)` is the preferred method for obtaining
-    /// resources.
+    /// This method should not be called directly except in specific cases. The
+    /// type-annotated `resource_by_name<T>(name)` overload is the preferred method
+    /// for obtaining resources.
     ///
     /// Because the return type here is a `ResourceBase`, the user will need to manually
     /// cast to the desired type.
     std::shared_ptr<ResourceBase> resource_by_name(ResourceName name,
                                                    ResourceType type = {"resource"});
+    template <typename T>
+    std::shared_ptr<T> resource_by_name(const std::string& name) {
+        ResourceName r;
+        Subtype subtype = T::subtype();
+        *r.mutable_namespace_() = subtype.type_namespace();
+        *r.mutable_type() = subtype.resource_type();
+        *r.mutable_subtype() = subtype.resource_subtype();
+        *r.mutable_name() = std::move(name);
+
+        auto resource = this->resource_by_name(std::move(r), subtype.resource_type());
+        return std::dynamic_pointer_cast<T>(resource);
+    }
     std::vector<FrameSystemConfig> get_frame_system_config(
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<viam::robot::v1::Operation> get_operations();
@@ -106,25 +118,3 @@ class RobotClient {
     void refresh_every();
 };
 
-template <typename T>
-std::shared_ptr<T> typed_resource_from_robot(const std::shared_ptr<RobotClient> client,
-                                             const std::string& name) {
-    std::string resource_type;
-    if (std::is_base_of<ComponentBase, T>()) {
-        resource_type = COMPONENT;
-    } else if (std::is_base_of<ServiceBase, T>()) {
-        resource_type = SERVICE;
-    } else {
-        throw std::runtime_error("attempted to get unknown resource type from robot");
-    }
-
-    ResourceName r;
-    Subtype subtype = T::subtype();
-    *r.mutable_namespace_() = subtype.type_namespace();
-    *r.mutable_type() = subtype.resource_type();
-    *r.mutable_subtype() = subtype.resource_subtype();
-    *r.mutable_name() = std::move(name);
-
-    auto resource = client->resource_by_name(std::move(r), subtype.resource_type());
-    return std::dynamic_pointer_cast<T>(resource);
-}

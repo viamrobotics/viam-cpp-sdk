@@ -10,6 +10,7 @@
 
 class MockGeneric : public Generic {
    public:
+    MockGeneric(std::string name) : Generic(std::move(name)){};
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> do_command(
         std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command)
         override;
@@ -46,5 +47,6 @@ class MockGenericStub : public viam::component::generic::v1::GenericService::Stu
 
 class MockGenericClient : public GenericClient {
    public:
-    MockGenericClient(std::string name);
+    MockGenericClient(std::string name)
+        : GenericClient(std::move(name), std::make_unique<MockGenericStub>()){};
 };

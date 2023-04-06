@@ -71,6 +71,9 @@ class Camera : public ComponentBase {
     virtual raw_image get_image(std::string mime_type) = 0;
     virtual point_cloud get_point_cloud(std::string mime_type) = 0;
     virtual properties get_properties() = 0;
+
+   protected:
+    Camera(std::string name) : ComponentBase(std::move(name)){};
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);

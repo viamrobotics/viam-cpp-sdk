@@ -19,7 +19,7 @@ std::shared_ptr<ResourceServerBase> GenericSubtype::create_resource_server(
 
 std::shared_ptr<ResourceBase> GenericSubtype::create_rpc_client(
     std::string name, std::shared_ptr<grpc::Channel> chan) {
-    return std::make_shared<GenericClient>(std::move(name), chan);
+    return std::make_shared<GenericClient>(std::move(name), std::move(chan));
 };
 
 std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {

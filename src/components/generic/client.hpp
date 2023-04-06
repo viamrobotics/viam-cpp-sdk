@@ -10,15 +10,18 @@
 class GenericClient : public Generic {
    public:
     AttributeMap do_command(AttributeMap command) override;
-    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel_);
+    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+        : Generic(std::move(name)),
+          stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
+          channel_(std::move(channel)){};
 
    protected:
-    GenericClient(std::string name);
-    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
+    GenericClient(std::string name,
+                  std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
+        : Generic(std::move(name)), stub_(std::move(stub)), channel_(nullptr){};
 
    private:
+    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-template std::shared_ptr<GenericClient> typed_resource_from_robot(
-    const std::shared_ptr<RobotClient>, const std::string&);

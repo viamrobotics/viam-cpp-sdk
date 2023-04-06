@@ -24,4 +24,7 @@ class Generic : public ComponentBase {
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
     virtual AttributeMap do_command(AttributeMap command) = 0;
+
+   protected:
+    explicit Generic(std::string name) : ComponentBase(std::move(name)){};
 };
