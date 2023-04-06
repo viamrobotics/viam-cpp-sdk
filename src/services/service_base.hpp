@@ -13,5 +13,5 @@ class ServiceBase : public ResourceBase {
     ServiceBase();
 
    protected:
-    ServiceBase(std::string name) : ResourceBase(std::move(name)){};
+    explicit ServiceBase(std::string name) : ResourceBase(std::move(name)){};
 };

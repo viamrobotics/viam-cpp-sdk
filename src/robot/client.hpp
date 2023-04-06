@@ -58,7 +58,6 @@ class RobotClient {
     ///
     /// Args:
     /// 	name: the name of the resource
-    /// 	type: the resource type (defaults to a generic `ResourceBase`)
     ///
     /// Raises:
     /// 	Throws an error if the requested resource doesn't exist or is of the wrong type.
@@ -69,10 +68,9 @@ class RobotClient {
     ///
     /// Because the return type here is a `ResourceBase`, the user will need to manually
     /// cast to the desired type.
-    std::shared_ptr<ResourceBase> resource_by_name(ResourceName name,
-                                                   ResourceType type = {"resource"});
+    std::shared_ptr<ResourceBase> resource_by_name(const ResourceName& name);
     template <typename T>
-    std::shared_ptr<T> resource_by_name(const std::string& name) {
+    std::shared_ptr<T> resource_by_name(const std::string name) {
         ResourceName r;
         Subtype subtype = T::subtype();
         *r.mutable_namespace_() = subtype.type_namespace();
@@ -80,7 +78,7 @@ class RobotClient {
         *r.mutable_subtype() = subtype.resource_subtype();
         *r.mutable_name() = std::move(name);
 
-        auto resource = this->resource_by_name(std::move(r), subtype.resource_type());
+        auto resource = this->resource_by_name(std::move(r));
         return std::dynamic_pointer_cast<T>(resource);
     }
     std::vector<FrameSystemConfig> get_frame_system_config(

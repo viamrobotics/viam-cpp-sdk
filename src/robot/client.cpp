@@ -346,8 +346,8 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     return components;
 }
 
-std::shared_ptr<ResourceBase> RobotClient::resource_by_name(ResourceName name, ResourceType type) {
-    return resource_manager.get_resource(name.name(), type);
+std::shared_ptr<ResourceBase> RobotClient::resource_by_name(const ResourceName& name) {
+    return resource_manager.get_resource(name.name(), name.type());
 }
 
 void RobotClient::stop_all() {

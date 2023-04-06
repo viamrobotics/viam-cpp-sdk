@@ -16,6 +16,9 @@ class GenericClient : public Generic {
           channel_(std::move(channel)){};
 
    protected:
+    // This constructor leaves the `channel_` as a nullptr. This is useful for testing
+    // purposes, but renders it unusable for production use. Care should be taken to
+    // avoid use of this constructor outside of tests.
     GenericClient(std::string name,
                   std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
         : Generic(std::move(name)), stub_(std::move(stub)){};

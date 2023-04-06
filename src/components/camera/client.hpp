@@ -21,6 +21,9 @@ class CameraClient : public Camera {
           channel_(std::move(channel)){};
 
    protected:
+    // This constructor leaves the `channel_` as a nullptr. This is useful for testing
+    // purposes, but renders it unusable for production use. Care should be taken to
+    // avoid use of this constructor outside of tests.
     CameraClient(std::string name,
                  std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
         : Camera(std::move(name)), stub_(std::move(stub)){};

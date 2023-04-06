@@ -73,7 +73,7 @@ class Camera : public ComponentBase {
     virtual properties get_properties() = 0;
 
    protected:
-    Camera(std::string name) : ComponentBase(std::move(name)){};
+    explicit Camera(std::string name) : ComponentBase(std::move(name)){};
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);
