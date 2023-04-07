@@ -53,7 +53,6 @@ PROTOBUF_CONSTEXPR MoveToPositionRequest::MoveToPositionRequest(
     ::_pbi::ConstantInitialized)
   : positions_mm_()
   , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , world_state_(nullptr)
   , extra_(nullptr){}
 struct MoveToPositionRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MoveToPositionRequestDefaultTypeInternal()
@@ -186,7 +185,7 @@ const uint32_t TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets[] P
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::GetPositionResponse, positions_mm_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionRequest, _has_bits_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -194,12 +193,7 @@ const uint32_t TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets[] P
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionRequest, positions_mm_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionRequest, world_state_),
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionRequest, extra_),
-  ~0u,
-  ~0u,
-  0,
-  ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::gantry::v1::MoveToPositionResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -262,15 +256,15 @@ const uint32_t TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets[] P
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::gantry::v1::GetPositionRequest)},
   { 8, -1, -1, sizeof(::viam::component::gantry::v1::GetPositionResponse)},
-  { 15, 25, -1, sizeof(::viam::component::gantry::v1::MoveToPositionRequest)},
-  { 29, -1, -1, sizeof(::viam::component::gantry::v1::MoveToPositionResponse)},
-  { 35, -1, -1, sizeof(::viam::component::gantry::v1::GetLengthsRequest)},
-  { 43, -1, -1, sizeof(::viam::component::gantry::v1::GetLengthsResponse)},
-  { 50, -1, -1, sizeof(::viam::component::gantry::v1::StopRequest)},
-  { 58, -1, -1, sizeof(::viam::component::gantry::v1::StopResponse)},
-  { 64, -1, -1, sizeof(::viam::component::gantry::v1::Status)},
-  { 73, -1, -1, sizeof(::viam::component::gantry::v1::IsMovingRequest)},
-  { 80, -1, -1, sizeof(::viam::component::gantry::v1::IsMovingResponse)},
+  { 15, -1, -1, sizeof(::viam::component::gantry::v1::MoveToPositionRequest)},
+  { 24, -1, -1, sizeof(::viam::component::gantry::v1::MoveToPositionResponse)},
+  { 30, -1, -1, sizeof(::viam::component::gantry::v1::GetLengthsRequest)},
+  { 38, -1, -1, sizeof(::viam::component::gantry::v1::GetLengthsResponse)},
+  { 45, -1, -1, sizeof(::viam::component::gantry::v1::StopRequest)},
+  { 53, -1, -1, sizeof(::viam::component::gantry::v1::StopResponse)},
+  { 59, -1, -1, sizeof(::viam::component::gantry::v1::Status)},
+  { 68, -1, -1, sizeof(::viam::component::gantry::v1::IsMovingRequest)},
+  { 75, -1, -1, sizeof(::viam::component::gantry::v1::IsMovingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -295,49 +289,47 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   "equest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001("
   "\0132\027.google.protobuf.StructR\005extra\"8\n\023Get"
   "PositionResponse\022!\n\014positions_mm\030\001 \003(\001R\013"
-  "positionsMm\"\317\001\n\025MoveToPositionRequest\022\022\n"
-  "\004name\030\001 \001(\tR\004name\022!\n\014positions_mm\030\002 \003(\001R"
-  "\013positionsMm\022@\n\013world_state\030\003 \001(\0132\032.viam"
-  ".common.v1.WorldStateH\000R\nworldState\210\001\001\022-"
-  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
-  "extraB\016\n\014_world_state\"\030\n\026MoveToPositionR"
-  "esponse\"V\n\021GetLengthsRequest\022\022\n\004name\030\001 \001"
-  "(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobu"
-  "f.StructR\005extra\"3\n\022GetLengthsResponse\022\035\n"
-  "\nlengths_mm\030\001 \003(\001R\tlengthsMm\"P\n\013StopRequ"
-  "est\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027"
-  ".google.protobuf.StructR\005extra\"\016\n\014StopRe"
-  "sponse\"g\n\006Status\022!\n\014positions_mm\030\001 \003(\001R\013"
-  "positionsMm\022\035\n\nlengths_mm\030\002 \003(\001R\tlengths"
-  "Mm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving\"%\n\017IsMov"
-  "ingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsMovi"
-  "ngResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving2"
-  "\267\007\n\rGantryService\022\241\001\n\013GetPosition\022,.viam"
-  ".component.gantry.v1.GetPositionRequest\032"
-  "-.viam.component.gantry.v1.GetPositionRe"
-  "sponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/g"
-  "antry/{name}/position\022\256\001\n\016MoveToPosition"
-  "\022/.viam.component.gantry.v1.MoveToPositi"
-  "onRequest\0320.viam.component.gantry.v1.Mov"
-  "eToPositionResponse\"9\240\222)\001\202\323\344\223\002/\032-/viam/a"
-  "pi/v1/component/gantry/{name}/position\022\235"
-  "\001\n\nGetLengths\022+.viam.component.gantry.v1"
-  ".GetLengthsRequest\032,.viam.component.gant"
-  "ry.v1.GetLengthsResponse\"4\202\323\344\223\002.\022,/viam/"
-  "api/v1/component/gantry/{name}/lengths\022\210"
-  "\001\n\004Stop\022%.viam.component.gantry.v1.StopR"
-  "equest\032&.viam.component.gantry.v1.StopRe"
-  "sponse\"1\202\323\344\223\002+\")/viam/api/v1/component/g"
-  "antry/{name}/stop\022\231\001\n\010IsMoving\022).viam.co"
-  "mponent.gantry.v1.IsMovingRequest\032*.viam"
-  ".component.gantry.v1.IsMovingResponse\"6\202"
-  "\323\344\223\0020\022./viam/api/v1/component/gantry/{na"
-  "me}/is_moving\022\211\001\n\tDoCommand\022 .viam.commo"
-  "n.v1.DoCommandRequest\032!.viam.common.v1.D"
-  "oCommandResponse\"7\202\323\344\223\0021\"//viam/api/v1/c"
-  "omponent/gantry/{name}/do_commandBC\n\034com"
-  ".viam.component.gantry.v1Z#go.viam.com/a"
-  "pi/component/gantry/v1b\006proto3"
+  "positionsMm\"}\n\025MoveToPositionRequest\022\022\n\004"
+  "name\030\001 \001(\tR\004name\022!\n\014positions_mm\030\002 \003(\001R\013"
+  "positionsMm\022-\n\005extra\030c \001(\0132\027.google.prot"
+  "obuf.StructR\005extra\"\030\n\026MoveToPositionResp"
+  "onse\"V\n\021GetLengthsRequest\022\022\n\004name\030\001 \001(\tR"
+  "\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf.S"
+  "tructR\005extra\"3\n\022GetLengthsResponse\022\035\n\nle"
+  "ngths_mm\030\001 \003(\001R\tlengthsMm\"P\n\013StopRequest"
+  "\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.go"
+  "ogle.protobuf.StructR\005extra\"\016\n\014StopRespo"
+  "nse\"g\n\006Status\022!\n\014positions_mm\030\001 \003(\001R\013pos"
+  "itionsMm\022\035\n\nlengths_mm\030\002 \003(\001R\tlengthsMm\022"
+  "\033\n\tis_moving\030\003 \001(\010R\010isMoving\"%\n\017IsMoving"
+  "Request\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsMovingR"
+  "esponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving2\267\007\n"
+  "\rGantryService\022\241\001\n\013GetPosition\022,.viam.co"
+  "mponent.gantry.v1.GetPositionRequest\032-.v"
+  "iam.component.gantry.v1.GetPositionRespo"
+  "nse\"5\202\323\344\223\002/\022-/viam/api/v1/component/gant"
+  "ry/{name}/position\022\256\001\n\016MoveToPosition\022/."
+  "viam.component.gantry.v1.MoveToPositionR"
+  "equest\0320.viam.component.gantry.v1.MoveTo"
+  "PositionResponse\"9\240\222)\001\202\323\344\223\002/\032-/viam/api/"
+  "v1/component/gantry/{name}/position\022\235\001\n\n"
+  "GetLengths\022+.viam.component.gantry.v1.Ge"
+  "tLengthsRequest\032,.viam.component.gantry."
+  "v1.GetLengthsResponse\"4\202\323\344\223\002.\022,/viam/api"
+  "/v1/component/gantry/{name}/lengths\022\210\001\n\004"
+  "Stop\022%.viam.component.gantry.v1.StopRequ"
+  "est\032&.viam.component.gantry.v1.StopRespo"
+  "nse\"1\202\323\344\223\002+\")/viam/api/v1/component/gant"
+  "ry/{name}/stop\022\231\001\n\010IsMoving\022).viam.compo"
+  "nent.gantry.v1.IsMovingRequest\032*.viam.co"
+  "mponent.gantry.v1.IsMovingResponse\"6\202\323\344\223"
+  "\0020\022./viam/api/v1/component/gantry/{name}"
+  "/is_moving\022\211\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"7\202\323\344\223\0021\"//viam/api/v1/comp"
+  "onent/gantry/{name}/do_commandBC\n\034com.vi"
+  "am.component.gantry.v1Z#go.viam.com/api/"
+  "component/gantry/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -346,7 +338,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_
 };
 static ::_pbi::once_flag descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto = {
-    false, false, 1990, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
+    false, false, 1907, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
     "component/gantry/v1/gantry.proto",
     &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once, descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps, 3, 11,
     schemas, file_default_instances, TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets,
@@ -788,25 +780,12 @@ void GetPositionResponse::InternalSwap(GetPositionResponse* other) {
 
 class MoveToPositionRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<MoveToPositionRequest>()._has_bits_);
-  static const ::viam::common::v1::WorldState& world_state(const MoveToPositionRequest* msg);
-  static void set_has_world_state(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
   static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const MoveToPositionRequest* msg);
 };
 
-const ::viam::common::v1::WorldState&
-MoveToPositionRequest::_Internal::world_state(const MoveToPositionRequest* msg) {
-  return *msg->world_state_;
-}
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 MoveToPositionRequest::_Internal::extra(const MoveToPositionRequest* msg) {
   return *msg->extra_;
-}
-void MoveToPositionRequest::clear_world_state() {
-  if (world_state_ != nullptr) world_state_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
 }
 void MoveToPositionRequest::clear_extra() {
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
@@ -823,7 +802,6 @@ MoveToPositionRequest::MoveToPositionRequest(::PROTOBUF_NAMESPACE_ID::Arena* are
 }
 MoveToPositionRequest::MoveToPositionRequest(const MoveToPositionRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_),
       positions_mm_(from.positions_mm_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.InitDefault();
@@ -833,11 +811,6 @@ MoveToPositionRequest::MoveToPositionRequest(const MoveToPositionRequest& from)
   if (!from._internal_name().empty()) {
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
-  }
-  if (from._internal_has_world_state()) {
-    world_state_ = new ::viam::common::v1::WorldState(*from.world_state_);
-  } else {
-    world_state_ = nullptr;
   }
   if (from._internal_has_extra()) {
     extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
@@ -852,10 +825,7 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&world_state_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&world_state_)) + sizeof(extra_));
+extra_ = nullptr;
 }
 
 MoveToPositionRequest::~MoveToPositionRequest() {
@@ -870,7 +840,6 @@ MoveToPositionRequest::~MoveToPositionRequest() {
 inline void MoveToPositionRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
-  if (this != internal_default_instance()) delete world_state_;
   if (this != internal_default_instance()) delete extra_;
 }
 
@@ -886,22 +855,15 @@ void MoveToPositionRequest::Clear() {
 
   positions_mm_.Clear();
   name_.ClearToEmpty();
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(world_state_ != nullptr);
-    world_state_->Clear();
-  }
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
     delete extra_;
   }
   extra_ = nullptr;
-  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* MoveToPositionRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -924,14 +886,6 @@ const char* MoveToPositionRequest::_InternalParse(const char* ptr, ::_pbi::Parse
         } else if (static_cast<uint8_t>(tag) == 17) {
           _internal_add_positions_mm(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
           ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_world_state(), ptr);
-          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -959,7 +913,6 @@ const char* MoveToPositionRequest::_InternalParse(const char* ptr, ::_pbi::Parse
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -986,13 +939,6 @@ uint8_t* MoveToPositionRequest::_InternalSerialize(
   // repeated double positions_mm = 2 [json_name = "positionsMm"];
   if (this->_internal_positions_mm_size() > 0) {
     target = stream->WriteFixedPacked(2, _internal_positions_mm(), target);
-  }
-
-  // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-  if (_internal_has_world_state()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::world_state(this),
-        _Internal::world_state(this).GetCachedSize(), target, stream);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -1036,14 +982,6 @@ size_t MoveToPositionRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *world_state_);
-  }
-
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
@@ -1077,9 +1015,6 @@ void MoveToPositionRequest::MergeFrom(const MoveToPositionRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
-  if (from._internal_has_world_state()) {
-    _internal_mutable_world_state()->::viam::common::v1::WorldState::MergeFrom(from._internal_world_state());
-  }
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
@@ -1102,18 +1037,12 @@ void MoveToPositionRequest::InternalSwap(MoveToPositionRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   positions_mm_.InternalSwap(&other->positions_mm_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
   );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MoveToPositionRequest, extra_)
-      + sizeof(MoveToPositionRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(MoveToPositionRequest, world_state_)>(
-          reinterpret_cast<char*>(&world_state_),
-          reinterpret_cast<char*>(&other->world_state_));
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MoveToPositionRequest::GetMetadata() const {

@@ -70,6 +70,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/AddRole",
   "/viam.app.v1.AppService/RemoveRole",
   "/viam.app.v1.AppService/ListAuthorizations",
+  "/viam.app.v1.AppService/CheckPermissions",
 };
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -125,6 +126,7 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_AddRole_(AppService_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveRole_(AppService_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListAuthorizations_(AppService_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckPermissions_(AppService_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::CreateOrganization(::grpc::ClientContext* context, const ::viam::app::v1::CreateOrganizationRequest& request, ::viam::app::v1::CreateOrganizationResponse* response) {
@@ -1178,6 +1180,29 @@ void AppService::Stub::async::ListAuthorizations(::grpc::ClientContext* context,
   return result;
 }
 
+::grpc::Status AppService::Stub::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::viam::app::v1::CheckPermissionsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CheckPermissions_, context, request, response);
+}
+
+void AppService::Stub::async::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::CheckPermissions(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CheckPermissions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CheckPermissionsResponse>* AppService::Stub::PrepareAsyncCheckPermissionsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CheckPermissionsResponse, ::viam::app::v1::CheckPermissionsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CheckPermissions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CheckPermissionsResponse>* AppService::Stub::AsyncCheckPermissionsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CheckPermissionsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCheckPermissionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[0],
@@ -1639,6 +1664,16 @@ AppService::Service::Service() {
              ::viam::app::v1::ListAuthorizationsResponse* resp) {
                return service->ListAuthorizations(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[46],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::CheckPermissionsRequest* req,
+             ::viam::app::v1::CheckPermissionsResponse* resp) {
+               return service->CheckPermissions(ctx, req, resp);
+             }, this)));
 }
 
 AppService::Service::~Service() {
@@ -1960,6 +1995,13 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::ListAuthorizations(::grpc::ServerContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::CheckPermissions(::grpc::ServerContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
