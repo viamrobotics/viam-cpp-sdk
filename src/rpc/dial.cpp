@@ -36,7 +36,7 @@ ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* pat
 ViamChannel ViamChannel::dial(const char* uri, boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();
     DialOptions opts = options.get_value_or(DialOptions());
-    const char* payload;
+    const char* payload = nullptr;
 
     if (opts.credentials) {
         payload = opts.credentials->payload.c_str();
