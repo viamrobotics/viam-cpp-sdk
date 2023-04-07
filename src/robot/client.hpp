@@ -70,7 +70,7 @@ class RobotClient {
     /// cast to the desired type.
     std::shared_ptr<ResourceBase> resource_by_name(const ResourceName& name);
     template <typename T>
-    std::shared_ptr<T> resource_by_name(const std::string name) {
+    std::shared_ptr<T> resource_by_name(std::string name) {
         ResourceName r;
         Subtype subtype = T::subtype();
         *r.mutable_namespace_() = subtype.type_namespace();
