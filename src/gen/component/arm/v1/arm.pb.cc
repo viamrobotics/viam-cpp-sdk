@@ -90,7 +90,6 @@ PROTOBUF_CONSTEXPR MoveToPositionRequest::MoveToPositionRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , to_(nullptr)
-  , world_state_(nullptr)
   , extra_(nullptr){}
 struct MoveToPositionRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MoveToPositionRequestDefaultTypeInternal()
@@ -245,7 +244,7 @@ const uint32_t TableStruct_component_2farm_2fv1_2farm_2eproto::offsets[] PROTOBU
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::GetJointPositionsResponse, positions_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionRequest, _has_bits_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -253,12 +252,7 @@ const uint32_t TableStruct_component_2farm_2fv1_2farm_2eproto::offsets[] PROTOBU
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionRequest, to_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionRequest, world_state_),
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionRequest, extra_),
-  ~0u,
-  ~0u,
-  0,
-  ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveToPositionResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -324,15 +318,15 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 15, -1, -1, sizeof(::viam::component::arm::v1::JointPositions)},
   { 22, -1, -1, sizeof(::viam::component::arm::v1::GetJointPositionsRequest)},
   { 30, -1, -1, sizeof(::viam::component::arm::v1::GetJointPositionsResponse)},
-  { 37, 47, -1, sizeof(::viam::component::arm::v1::MoveToPositionRequest)},
-  { 51, -1, -1, sizeof(::viam::component::arm::v1::MoveToPositionResponse)},
-  { 57, -1, -1, sizeof(::viam::component::arm::v1::MoveToJointPositionsRequest)},
-  { 66, -1, -1, sizeof(::viam::component::arm::v1::MoveToJointPositionsResponse)},
-  { 72, -1, -1, sizeof(::viam::component::arm::v1::StopRequest)},
-  { 80, -1, -1, sizeof(::viam::component::arm::v1::StopResponse)},
-  { 86, -1, -1, sizeof(::viam::component::arm::v1::Status)},
-  { 95, -1, -1, sizeof(::viam::component::arm::v1::IsMovingRequest)},
-  { 102, -1, -1, sizeof(::viam::component::arm::v1::IsMovingResponse)},
+  { 37, -1, -1, sizeof(::viam::component::arm::v1::MoveToPositionRequest)},
+  { 46, -1, -1, sizeof(::viam::component::arm::v1::MoveToPositionResponse)},
+  { 52, -1, -1, sizeof(::viam::component::arm::v1::MoveToJointPositionsRequest)},
+  { 61, -1, -1, sizeof(::viam::component::arm::v1::MoveToJointPositionsResponse)},
+  { 67, -1, -1, sizeof(::viam::component::arm::v1::StopRequest)},
+  { 75, -1, -1, sizeof(::viam::component::arm::v1::StopResponse)},
+  { 81, -1, -1, sizeof(::viam::component::arm::v1::Status)},
+  { 90, -1, -1, sizeof(::viam::component::arm::v1::IsMovingRequest)},
+  { 97, -1, -1, sizeof(::viam::component::arm::v1::IsMovingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -366,57 +360,55 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "2\027.google.protobuf.StructR\005extra\"`\n\031GetJ"
   "ointPositionsResponse\022C\n\tpositions\030\001 \001(\013"
   "2%.viam.component.arm.v1.JointPositionsR"
-  "\tpositions\"\322\001\n\025MoveToPositionRequest\022\022\n\004"
+  "\tpositions\"\200\001\n\025MoveToPositionRequest\022\022\n\004"
   "name\030\001 \001(\tR\004name\022$\n\002to\030\002 \001(\0132\024.viam.comm"
-  "on.v1.PoseR\002to\022@\n\013world_state\030\003 \001(\0132\032.vi"
-  "am.common.v1.WorldStateH\000R\nworldState\210\001\001"
-  "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
-  "R\005extraB\016\n\014_world_state\"\030\n\026MoveToPositio"
-  "nResponse\"\245\001\n\033MoveToJointPositionsReques"
-  "t\022\022\n\004name\030\001 \001(\tR\004name\022C\n\tpositions\030\002 \001(\013"
-  "2%.viam.component.arm.v1.JointPositionsR"
-  "\tpositions\022-\n\005extra\030c \001(\0132\027.google.proto"
-  "buf.StructR\005extra\"\036\n\034MoveToJointPosition"
-  "sResponse\"P\n\013StopRequest\022\022\n\004name\030\001 \001(\tR\004"
-  "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
-  "ructR\005extra\"\016\n\014StopResponse\"\256\001\n\006Status\0227"
-  "\n\014end_position\030\001 \001(\0132\024.viam.common.v1.Po"
-  "seR\013endPosition\022N\n\017joint_positions\030\002 \001(\013"
-  "2%.viam.component.arm.v1.JointPositionsR"
-  "\016jointPositions\022\033\n\tis_moving\030\003 \001(\010R\010isMo"
-  "ving\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004n"
-  "ame\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001"
-  "(\010R\010isMoving2\352\010\n\nArmService\022\241\001\n\016GetEndPo"
-  "sition\022,.viam.component.arm.v1.GetEndPos"
-  "itionRequest\032-.viam.component.arm.v1.Get"
-  "EndPositionResponse\"2\202\323\344\223\002,\022*/viam/api/v"
-  "1/component/arm/{name}/position\022\245\001\n\016Move"
-  "ToPosition\022,.viam.component.arm.v1.MoveT"
-  "oPositionRequest\032-.viam.component.arm.v1"
-  ".MoveToPositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/vi"
-  "am/api/v1/component/arm/{name}/position\022"
-  "\261\001\n\021GetJointPositions\022/.viam.component.a"
-  "rm.v1.GetJointPositionsRequest\0320.viam.co"
-  "mponent.arm.v1.GetJointPositionsResponse"
-  "\"9\202\323\344\223\0023\0221/viam/api/v1/component/arm/{na"
-  "me}/joint_positions\022\276\001\n\024MoveToJointPosit"
-  "ions\0222.viam.component.arm.v1.MoveToJoint"
-  "PositionsRequest\0323.viam.component.arm.v1"
-  ".MoveToJointPositionsResponse\"=\240\222)\001\202\323\344\223\002"
-  "3\0321/viam/api/v1/component/arm/{name}/joi"
-  "nt_positions\022\177\n\004Stop\022\".viam.component.ar"
-  "m.v1.StopRequest\032#.viam.component.arm.v1"
-  ".StopResponse\".\202\323\344\223\002(\"&/viam/api/v1/comp"
-  "onent/arm/{name}/stop\022\220\001\n\010IsMoving\022&.via"
-  "m.component.arm.v1.IsMovingRequest\032\'.via"
-  "m.component.arm.v1.IsMovingResponse\"3\202\323\344"
-  "\223\002-\022+/viam/api/v1/component/arm/{name}/i"
-  "s_moving\022\206\001\n\tDoCommand\022 .viam.common.v1."
-  "DoCommandRequest\032!.viam.common.v1.DoComm"
-  "andResponse\"4\202\323\344\223\002.\",/viam/api/v1/compon"
-  "ent/arm/{name}/do_commandB=\n\031com.viam.co"
-  "mponent.arm.v1Z go.viam.com/api/componen"
-  "t/arm/v1b\006proto3"
+  "on.v1.PoseR\002to\022-\n\005extra\030c \001(\0132\027.google.p"
+  "rotobuf.StructR\005extra\"\030\n\026MoveToPositionR"
+  "esponse\"\245\001\n\033MoveToJointPositionsRequest\022"
+  "\022\n\004name\030\001 \001(\tR\004name\022C\n\tpositions\030\002 \001(\0132%"
+  ".viam.component.arm.v1.JointPositionsR\tp"
+  "ositions\022-\n\005extra\030c \001(\0132\027.google.protobu"
+  "f.StructR\005extra\"\036\n\034MoveToJointPositionsR"
+  "esponse\"P\n\013StopRequest\022\022\n\004name\030\001 \001(\tR\004na"
+  "me\022-\n\005extra\030c \001(\0132\027.google.protobuf.Stru"
+  "ctR\005extra\"\016\n\014StopResponse\"\256\001\n\006Status\0227\n\014"
+  "end_position\030\001 \001(\0132\024.viam.common.v1.Pose"
+  "R\013endPosition\022N\n\017joint_positions\030\002 \001(\0132%"
+  ".viam.component.arm.v1.JointPositionsR\016j"
+  "ointPositions\022\033\n\tis_moving\030\003 \001(\010R\010isMovi"
+  "ng\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001(\010"
+  "R\010isMoving2\352\010\n\nArmService\022\241\001\n\016GetEndPosi"
+  "tion\022,.viam.component.arm.v1.GetEndPosit"
+  "ionRequest\032-.viam.component.arm.v1.GetEn"
+  "dPositionResponse\"2\202\323\344\223\002,\022*/viam/api/v1/"
+  "component/arm/{name}/position\022\245\001\n\016MoveTo"
+  "Position\022,.viam.component.arm.v1.MoveToP"
+  "ositionRequest\032-.viam.component.arm.v1.M"
+  "oveToPositionResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam"
+  "/api/v1/component/arm/{name}/position\022\261\001"
+  "\n\021GetJointPositions\022/.viam.component.arm"
+  ".v1.GetJointPositionsRequest\0320.viam.comp"
+  "onent.arm.v1.GetJointPositionsResponse\"9"
+  "\202\323\344\223\0023\0221/viam/api/v1/component/arm/{name"
+  "}/joint_positions\022\276\001\n\024MoveToJointPositio"
+  "ns\0222.viam.component.arm.v1.MoveToJointPo"
+  "sitionsRequest\0323.viam.component.arm.v1.M"
+  "oveToJointPositionsResponse\"=\240\222)\001\202\323\344\223\0023\032"
+  "1/viam/api/v1/component/arm/{name}/joint"
+  "_positions\022\177\n\004Stop\022\".viam.component.arm."
+  "v1.StopRequest\032#.viam.component.arm.v1.S"
+  "topResponse\".\202\323\344\223\002(\"&/viam/api/v1/compon"
+  "ent/arm/{name}/stop\022\220\001\n\010IsMoving\022&.viam."
+  "component.arm.v1.IsMovingRequest\032\'.viam."
+  "component.arm.v1.IsMovingResponse\"3\202\323\344\223\002"
+  "-\022+/viam/api/v1/component/arm/{name}/is_"
+  "moving\022\206\001\n\tDoCommand\022 .viam.common.v1.Do"
+  "CommandRequest\032!.viam.common.v1.DoComman"
+  "dResponse\"4\202\323\344\223\002.\",/viam/api/v1/componen"
+  "t/arm/{name}/do_commandB=\n\031com.viam.comp"
+  "onent.arm.v1Z go.viam.com/api/component/"
+  "arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -425,7 +417,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 2536, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 2454, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,
@@ -1490,22 +1482,13 @@ void GetJointPositionsResponse::InternalSwap(GetJointPositionsResponse* other) {
 
 class MoveToPositionRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<MoveToPositionRequest>()._has_bits_);
   static const ::viam::common::v1::Pose& to(const MoveToPositionRequest* msg);
-  static const ::viam::common::v1::WorldState& world_state(const MoveToPositionRequest* msg);
-  static void set_has_world_state(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
   static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const MoveToPositionRequest* msg);
 };
 
 const ::viam::common::v1::Pose&
 MoveToPositionRequest::_Internal::to(const MoveToPositionRequest* msg) {
   return *msg->to_;
-}
-const ::viam::common::v1::WorldState&
-MoveToPositionRequest::_Internal::world_state(const MoveToPositionRequest* msg) {
-  return *msg->world_state_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 MoveToPositionRequest::_Internal::extra(const MoveToPositionRequest* msg) {
@@ -1516,10 +1499,6 @@ void MoveToPositionRequest::clear_to() {
     delete to_;
   }
   to_ = nullptr;
-}
-void MoveToPositionRequest::clear_world_state() {
-  if (world_state_ != nullptr) world_state_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
 }
 void MoveToPositionRequest::clear_extra() {
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
@@ -1534,8 +1513,7 @@ MoveToPositionRequest::MoveToPositionRequest(::PROTOBUF_NAMESPACE_ID::Arena* are
   // @@protoc_insertion_point(arena_constructor:viam.component.arm.v1.MoveToPositionRequest)
 }
 MoveToPositionRequest::MoveToPositionRequest(const MoveToPositionRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1549,11 +1527,6 @@ MoveToPositionRequest::MoveToPositionRequest(const MoveToPositionRequest& from)
     to_ = new ::viam::common::v1::Pose(*from.to_);
   } else {
     to_ = nullptr;
-  }
-  if (from._internal_has_world_state()) {
-    world_state_ = new ::viam::common::v1::WorldState(*from.world_state_);
-  } else {
-    world_state_ = nullptr;
   }
   if (from._internal_has_extra()) {
     extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
@@ -1587,7 +1560,6 @@ inline void MoveToPositionRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   if (this != internal_default_instance()) delete to_;
-  if (this != internal_default_instance()) delete world_state_;
   if (this != internal_default_instance()) delete extra_;
 }
 
@@ -1606,22 +1578,15 @@ void MoveToPositionRequest::Clear() {
     delete to_;
   }
   to_ = nullptr;
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(world_state_ != nullptr);
-    world_state_->Clear();
-  }
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
     delete extra_;
   }
   extra_ = nullptr;
-  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* MoveToPositionRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -1640,14 +1605,6 @@ const char* MoveToPositionRequest::_InternalParse(const char* ptr, ::_pbi::Parse
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_to(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_world_state(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1676,7 +1633,6 @@ const char* MoveToPositionRequest::_InternalParse(const char* ptr, ::_pbi::Parse
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1705,13 +1661,6 @@ uint8_t* MoveToPositionRequest::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::to(this),
         _Internal::to(this).GetCachedSize(), target, stream);
-  }
-
-  // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-  if (_internal_has_world_state()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::world_state(this),
-        _Internal::world_state(this).GetCachedSize(), target, stream);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -1751,14 +1700,6 @@ size_t MoveToPositionRequest::ByteSizeLong() const {
         *to_);
   }
 
-  // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *world_state_);
-  }
-
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
@@ -1794,9 +1735,6 @@ void MoveToPositionRequest::MergeFrom(const MoveToPositionRequest& from) {
   if (from._internal_has_to()) {
     _internal_mutable_to()->::viam::common::v1::Pose::MergeFrom(from._internal_to());
   }
-  if (from._internal_has_world_state()) {
-    _internal_mutable_world_state()->::viam::common::v1::WorldState::MergeFrom(from._internal_world_state());
-  }
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
@@ -1819,7 +1757,6 @@ void MoveToPositionRequest::InternalSwap(MoveToPositionRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
