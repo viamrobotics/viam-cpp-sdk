@@ -1,7 +1,7 @@
 #pragma once
 
-#include <subtype/subtype.hpp>
 #include <rpc/server.hpp>
+#include <subtype/subtype.hpp>
 
 class ResourceServerBase {
    public:

@@ -3,8 +3,7 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/security/server_credentials.h>
 
-Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
-}
+Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {}
 
 Server::~Server() {
     shutdown();
@@ -30,7 +29,6 @@ void Server::start() {
 
 void Server::add_listening_port(std::string address,
                                 std::shared_ptr<grpc::ServerCredentials> creds) {
-
     if (!builder_) {
         throw "Cannot add a listening port after server has started";
     }

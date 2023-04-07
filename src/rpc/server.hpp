@@ -7,7 +7,6 @@
 /// A grpc server
 class Server {
    public:
-
     Server();
     ~Server();
 
