@@ -7,9 +7,13 @@
 /// A grpc server
 class Server {
    public:
+
+    Server();
+    ~Server();
+
     /// Starts the grpc server. This can only be called once, and will throw on
     /// repeated calls.
-    static void start();
+    void start();
 
     // TODO: make `register_service` take one of our types as an arg rather than a
     // grpc service type, and convert under the hood
@@ -22,7 +26,7 @@ class Server {
     /// 	Must be called before starting the server; new services cannot be
     /// registered after 	the server starts. Attempting to do so will throw an
     /// error
-    static void register_service(grpc::Service* service);
+    void register_service(grpc::Service* service);
 
     /// Adds a listening port to the server.
     /// Args:
@@ -34,13 +38,13 @@ class Server {
     ///		Must be called before starting the server. Attempting to call
     /// after
     /// the server has 		started will throw an error
-    static void add_listening_port(std::string address,
-                                   std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
+    void add_listening_port(std::string address,
+                            std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 
-    static void wait();
-    static void shutdown();
+    void wait();
+    void shutdown();
 
    private:
-    static std::unique_ptr<grpc::ServerBuilder> builder;
-    static std::unique_ptr<grpc::Server> server;
+    std::unique_ptr<grpc::ServerBuilder> builder_;
+    std::unique_ptr<grpc::Server> server_;
 };

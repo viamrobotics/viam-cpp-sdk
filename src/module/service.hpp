@@ -6,15 +6,17 @@
 #include <components/service_base.hpp>
 #include <module/module.hpp>
 #include <resource/resource_base.hpp>
+#include <rpc/server.hpp>
 
 class ModuleService_ : public ComponentServiceBase,
                        public viam::module::v1::ModuleService::Service {
    public:
-    void start();
+    void start(Server* server);
     void close();
     std::shared_ptr<ResourceBase> get_parent_resource(Name name);
-    void add_api_from_registry(Subtype api);
-    void add_model_from_registry(Subtype api, Model model);
+    
+    void add_api_from_registry(Server* server, Subtype api);
+    void add_model_from_registry(Server* server, Subtype api, Model model);
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse* response) override;

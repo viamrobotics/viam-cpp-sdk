@@ -24,11 +24,11 @@
     return ::grpc::Status();
 }
 
-void GenericServer::register_server() {
+void GenericServer::register_server(Server* server) {
     viam::component::generic::v1::GenericService::Service* generic =
         static_cast<viam::component::generic::v1::GenericService::Service*>(this);
     try {
-        Server::register_service(generic);
+        server->register_service(generic);
     } catch (std::exception& exc) {
         throw exc;
     }

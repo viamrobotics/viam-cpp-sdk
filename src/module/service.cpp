@@ -198,7 +198,7 @@ ModuleService_::ModuleService_(std::string addr) {
     module = std::make_shared<Module>(addr);
 }
 
-void ModuleService_::start() {
+void ModuleService_::start(Server* server) {
     module->lock.lock();
     mode_t old_mask = umask(0077);
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
@@ -206,9 +206,9 @@ void ModuleService_::start() {
     umask(old_mask);
 
     // TODO(RSDK-1742) see if we can/want to do this in an init instead
-    Server::register_service(this);
+    server->register_service(this);
     std::string address = "unix://" + module->addr;
-    Server::add_listening_port(address);
+    server->add_listening_port(address);
 
     module->lock.unlock();
     module->set_ready();
@@ -228,10 +228,9 @@ void ModuleService_::close() {
             BOOST_LOG_TRIVIAL(error) << exc.what();
         }
     }
-    Server::shutdown();
 }
 
-void ModuleService_::add_api_from_registry(Subtype api) {
+void ModuleService_::add_api_from_registry(Server* server, Subtype api) {
     if (module->services.find(api) != module->services.end()) {
         return;
     }
@@ -239,16 +238,16 @@ void ModuleService_::add_api_from_registry(Subtype api) {
     std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
 
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
-    std::shared_ptr<ResourceServerBase> server = rs->create_resource_server(new_svc);
-    server->register_server();
+    std::shared_ptr<ResourceServerBase> resource_server = rs->create_resource_server(new_svc);
+    resource_server->register_server(server);
     module->services.emplace(api, new_svc);
-    module->servers.push_back(server);
+    module->servers.push_back(resource_server);
     module->lock.unlock();
 }
 
-void ModuleService_::add_model_from_registry(Subtype api, Model model) {
+void ModuleService_::add_model_from_registry(Server* server, Subtype api, Model model) {
     if (module->services.find(api) == module->services.end()) {
-        add_api_from_registry(api);
+        add_api_from_registry(server, api);
     }
 
     std::shared_ptr<ResourceSubtype> creator = Registry::lookup_subtype(api);

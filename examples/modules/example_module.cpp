@@ -2,6 +2,7 @@
 #include <component/generic/v1/generic.grpc.pb.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
+#include <pthread.h>
 #include <robot/v1/robot.pb.h>
 #include <signal.h>
 
@@ -64,35 +65,24 @@ class MyModule : public GenericService::Service, public ComponentBase {
 };
 
 int MyModule::which = 0;
-std::shared_ptr<ModuleService_> my_mod;
-volatile sig_atomic_t shutdown;
-
-void check_for_shutdown() {
-    while (!shutdown) {
-        // Check for shutdown every 100ms.
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    // Assign my_mod to nullptr and let destructor be called.
-    my_mod = nullptr;
-}
 
 int main(int argc, char** argv) {
     if (argc != 2) {
         throw "need socket path as command line argument";
     }
 
-    // Make sure to register signal handlers for SIGINT and SIGTERM that set a
-    // global shutdown flag. Start a thread to destroy my_mod if global shutdown
-    // flag is set.
-    shutdown = false;
-    signal(SIGINT, [](int) { shutdown = true; });
-    signal(SIGTERM, [](int) { shutdown = true; });
-    std::shared_ptr<std::thread> check_thread = std::make_shared<std::thread>(check_for_shutdown);
-    check_thread->detach();
+    // C++ modules must handle SIGINT and SIGTERM. Make sure to create a sigset
+    // for SIGINT and SIGTERM that can be later awaited in a thread that cleanly
+    // shuts down your module.
+    sigset_t sigset;
+    sigemptyset(&sigset);
+    sigaddset(&sigset, SIGINT);
+    sigaddset(&sigset, SIGTERM);
+    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
 
     Subtype generic = Generic::subtype();
-    my_mod = std::make_shared<ModuleService_>(argv[1]);
     Model m("acme", "demo", "printer");
+
     std::shared_ptr<ModelRegistration> rr = std::make_shared<ModelRegistration>(
         ResourceType("MyModule"),
         generic,
@@ -112,10 +102,25 @@ int main(int argc, char** argv) {
         });
 
     Registry::register_resource(rr);
-    my_mod->add_model_from_registry(generic, m);
 
-    my_mod->start();
-    Server::start();
-    Server::wait();
+    // The `ModuleService_` must outlive the Server, so the declaration order
+    // here matters.
+    auto my_mod = std::make_shared<ModuleService_>(argv[1]);
+    Server server;
+
+    my_mod->add_model_from_registry(&server, generic, m);
+    my_mod->start(&server);
+
+    std::thread signal_wait_thread([&server, &sigset]() {
+        int sig = 0;
+        auto result = sigwait(&sigset, &sig);
+        server.shutdown();
+    });
+
+    server.start();
+    server.wait();
+
+    signal_wait_thread.join();
+
     return 0;
 };
