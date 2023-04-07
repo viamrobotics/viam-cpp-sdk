@@ -63,7 +63,7 @@ Camera::properties fake_properties() {
 }
 
 std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
-    auto camera = std::make_shared<MockCamera>();
+    auto camera = std::make_shared<MockCamera>("camera");
 
     camera->image = fake_raw_image();
     camera->pc = fake_point_cloud();
@@ -110,9 +110,4 @@ MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
                                          ::viam::common::v1::DoCommandResponse* response) {
     grpc::ServerContext* ctx;
     return server->DoCommand(ctx, &request, response);
-}
-
-MockCameraClient::MockCameraClient(std::string name) : CameraClient(name) {
-    stub_ = std::make_unique<MockCameraStub>();
-    name_ = name;
 }

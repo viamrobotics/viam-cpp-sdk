@@ -31,7 +31,7 @@ AttributeMap CameraClient::do_command(AttributeMap command) {
 
     google::protobuf::Struct proto_command = map_to_struct(command);
     *req.mutable_command() = proto_command;
-    *req.mutable_name() = this->name_;
+    *req.mutable_name() = this->name();
     stub_->DoCommand(&ctx, req, &resp);
     return struct_to_map(resp.result());
 };
@@ -44,7 +44,7 @@ Camera::raw_image CameraClient::get_image(std::string mime_type) {
     normalize_mime_type(mime_type);
 
     *req.mutable_mime_type() = mime_type;
-    *req.mutable_name() = this->name_;
+    *req.mutable_name() = this->name();
 
     stub_->GetImage(&ctx, req, &resp);
     return from_proto(resp);
@@ -55,7 +55,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
     viam::component::camera::v1::GetPointCloudResponse resp;
     grpc::ClientContext ctx;
 
-    *req.mutable_name() = this->name_;
+    *req.mutable_name() = this->name();
     *req.mutable_mime_type() = mime_type;
 
     stub_->GetPointCloud(&ctx, req, &resp);
@@ -67,17 +67,8 @@ Camera::properties CameraClient::get_properties() {
     viam::component::camera::v1::GetPropertiesResponse resp;
     grpc::ClientContext ctx;
 
-    *req.mutable_name() = this->name_;
+    *req.mutable_name() = this->name();
 
     stub_->GetProperties(&ctx, req, &resp);
     return from_proto(resp);
-};
-
-CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_)
-    : channel_(channel_), stub_(viam::component::camera::v1::CameraService::NewStub(channel_)) {
-    name_ = std::move(name);
-};
-
-CameraClient::CameraClient(std::string name) : channel_(nullptr), stub_(nullptr) {
-    name_ = std::move(name);
 };

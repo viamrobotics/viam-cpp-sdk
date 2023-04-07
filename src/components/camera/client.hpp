@@ -15,15 +15,20 @@ class CameraClient : public Camera {
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
-    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel_);
+    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+        : Camera(std::move(name)),
+          stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
+          channel_(std::move(channel)){};
 
    protected:
-    CameraClient(std::string name);
-    std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
+    // This constructor leaves the `channel_` as a nullptr. This is useful for testing
+    // purposes, but renders it unusable for production use. Care should be taken to
+    // avoid use of this constructor outside of tests.
+    CameraClient(std::string name,
+                 std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
+        : Camera(std::move(name)), stub_(std::move(stub)){};
 
    private:
+    std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
-
-template std::shared_ptr<CameraClient> typed_resource_from_robot(const std::shared_ptr<RobotClient>,
-                                                                 const std::string&);

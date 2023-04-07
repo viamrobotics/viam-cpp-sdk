@@ -16,7 +16,7 @@ MockGeneric::do_command(
 }
 
 std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
-    auto generic = std::make_shared<MockGeneric>();
+    auto generic = std::make_shared<MockGeneric>("generic");
     generic->map = fake_map();
 
     return generic;
@@ -31,8 +31,4 @@ MockGenericStub::MockGenericStub() : server(std::make_shared<GenericServer>()) {
                                           ::viam::common::v1::DoCommandResponse* response) {
     grpc::ServerContext* ctx;
     return server->DoCommand(ctx, &request, response);
-}
-
-MockGenericClient::MockGenericClient(std::string name) : GenericClient(name) {
-    stub_ = std::make_unique<MockGenericStub>();
 }

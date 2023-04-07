@@ -10,15 +10,20 @@
 class GenericClient : public Generic {
    public:
     AttributeMap do_command(AttributeMap command) override;
-    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel_);
+    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+        : Generic(std::move(name)),
+          stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
+          channel_(std::move(channel)){};
 
    protected:
-    GenericClient(std::string name);
-    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
+    // This constructor leaves the `channel_` as a nullptr. This is useful for testing
+    // purposes, but renders it unusable for production use. Care should be taken to
+    // avoid use of this constructor outside of tests.
+    GenericClient(std::string name,
+                  std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub)
+        : Generic(std::move(name)), stub_(std::move(stub)){};
 
    private:
+    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
-
-template std::shared_ptr<GenericClient> typed_resource_from_robot(
-    const std::shared_ptr<RobotClient>, const std::string&);
