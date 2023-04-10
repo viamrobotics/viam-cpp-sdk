@@ -26,6 +26,7 @@ namespace v1 {
 
 static const char* MotionService_method_names[] = {
   "/viam.service.motion.v1.MotionService/Move",
+  "/viam.service.motion.v1.MotionService/MoveOnMap",
   "/viam.service.motion.v1.MotionService/MoveSingleComponent",
   "/viam.service.motion.v1.MotionService/GetPose",
   "/viam.service.motion.v1.MotionService/DoCommand",
@@ -39,9 +40,10 @@ std::unique_ptr< MotionService::Stub> MotionService::NewStub(const std::shared_p
 
 MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Move_(MotionService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveSingleComponent_(MotionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPose_(MotionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveOnMap_(MotionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveSingleComponent_(MotionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPose_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(MotionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotionService::Stub::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::viam::service::motion::v1::MoveResponse* response) {
@@ -63,6 +65,29 @@ void MotionService::Stub::async::Move(::grpc::ClientContext* context, const ::vi
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveResponse>* MotionService::Stub::AsyncMoveRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncMoveRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MotionService::Stub::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::viam::service::motion::v1::MoveOnMapResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveOnMap_, context, request, response);
+}
+
+void MotionService::Stub::async::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::MoveOnMap(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnMap_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* MotionService::Stub::PrepareAsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::MoveOnMapResponse, ::viam::service::motion::v1::MoveOnMapRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveOnMap_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnMapResponse>* MotionService::Stub::AsyncMoveOnMapRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnMapRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMoveOnMapRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -150,6 +175,16 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveOnMapRequest, ::viam::service::motion::v1::MoveOnMapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::motion::v1::MoveOnMapRequest* req,
+             ::viam::service::motion::v1::MoveOnMapResponse* resp) {
+               return service->MoveOnMap(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveSingleComponentRequest, ::viam::service::motion::v1::MoveSingleComponentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -158,7 +193,7 @@ MotionService::Service::Service() {
                return service->MoveSingleComponent(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MotionService_method_names[2],
+      MotionService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
@@ -168,7 +203,7 @@ MotionService::Service::Service() {
                return service->GetPose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MotionService_method_names[3],
+      MotionService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
@@ -183,6 +218,13 @@ MotionService::Service::~Service() {
 }
 
 ::grpc::Status MotionService::Service::Move(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveRequest* request, ::viam::service::motion::v1::MoveResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::MoveOnMap(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveOnMapRequest* request, ::viam::service::motion::v1::MoveOnMapResponse* response) {
   (void) context;
   (void) request;
   (void) response;

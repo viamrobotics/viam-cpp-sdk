@@ -61,6 +61,9 @@ extern AddRoleResponseDefaultTypeInternal _AddRoleResponse_default_instance_;
 class Authorization;
 struct AuthorizationDefaultTypeInternal;
 extern AuthorizationDefaultTypeInternal _Authorization_default_instance_;
+class Authorizations;
+struct AuthorizationsDefaultTypeInternal;
+extern AuthorizationsDefaultTypeInternal _Authorizations_default_instance_;
 class AuthorizedPermissions;
 struct AuthorizedPermissionsDefaultTypeInternal;
 extern AuthorizedPermissionsDefaultTypeInternal _AuthorizedPermissions_default_instance_;
@@ -386,6 +389,7 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::app::v1::AddRoleRequest* Arena::CreateMaybeMessage<::viam::app::v1::AddRoleRequest>(Arena*);
 template<> ::viam::app::v1::AddRoleResponse* Arena::CreateMaybeMessage<::viam::app::v1::AddRoleResponse>(Arena*);
 template<> ::viam::app::v1::Authorization* Arena::CreateMaybeMessage<::viam::app::v1::Authorization>(Arena*);
+template<> ::viam::app::v1::Authorizations* Arena::CreateMaybeMessage<::viam::app::v1::Authorizations>(Arena*);
 template<> ::viam::app::v1::AuthorizedPermissions* Arena::CreateMaybeMessage<::viam::app::v1::AuthorizedPermissions>(Arena*);
 template<> ::viam::app::v1::CheckPermissionsRequest* Arena::CreateMaybeMessage<::viam::app::v1::CheckPermissionsRequest>(Arena*);
 template<> ::viam::app::v1::CheckPermissionsResponse* Arena::CreateMaybeMessage<::viam::app::v1::CheckPermissionsResponse>(Arena*);
@@ -3796,9 +3800,28 @@ class CreateOrganizationInviteRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAuthorizationsFieldNumber = 3,
     kOrganizationIdFieldNumber = 1,
     kEmailFieldNumber = 2,
   };
+  // repeated .viam.app.v1.Authorization authorizations = 3 [json_name = "authorizations"];
+  int authorizations_size() const;
+  private:
+  int _internal_authorizations_size() const;
+  public:
+  void clear_authorizations();
+  ::viam::app::v1::Authorization* mutable_authorizations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >*
+      mutable_authorizations();
+  private:
+  const ::viam::app::v1::Authorization& _internal_authorizations(int index) const;
+  ::viam::app::v1::Authorization* _internal_add_authorizations();
+  public:
+  const ::viam::app::v1::Authorization& authorizations(int index) const;
+  ::viam::app::v1::Authorization* add_authorizations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >&
+      authorizations() const;
+
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
   const std::string& organization_id() const;
@@ -3834,6 +3857,7 @@ class CreateOrganizationInviteRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization > authorizations_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -16541,27 +16565,12 @@ class Authorization final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIdentityIdFieldNumber = 1,
-    kAuthorizationTypeFieldNumber = 2,
-    kAuthorizationIdFieldNumber = 3,
-    kResourceTypeFieldNumber = 4,
-    kResourceIdFieldNumber = 5,
+    kAuthorizationTypeFieldNumber = 1,
+    kAuthorizationIdFieldNumber = 2,
+    kResourceTypeFieldNumber = 3,
+    kResourceIdFieldNumber = 4,
   };
-  // string identity_id = 1 [json_name = "identityId"];
-  void clear_identity_id();
-  const std::string& identity_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_identity_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_identity_id();
-  PROTOBUF_NODISCARD std::string* release_identity_id();
-  void set_allocated_identity_id(std::string* identity_id);
-  private:
-  const std::string& _internal_identity_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_identity_id(const std::string& value);
-  std::string* _internal_mutable_identity_id();
-  public:
-
-  // string authorization_type = 2 [json_name = "authorizationType"];
+  // string authorization_type = 1 [json_name = "authorizationType"];
   void clear_authorization_type();
   const std::string& authorization_type() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -16575,7 +16584,7 @@ class Authorization final :
   std::string* _internal_mutable_authorization_type();
   public:
 
-  // string authorization_id = 3 [json_name = "authorizationId"];
+  // string authorization_id = 2 [json_name = "authorizationId"];
   void clear_authorization_id();
   const std::string& authorization_id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -16589,7 +16598,7 @@ class Authorization final :
   std::string* _internal_mutable_authorization_id();
   public:
 
-  // string resource_type = 4 [json_name = "resourceType"];
+  // string resource_type = 3 [json_name = "resourceType"];
   void clear_resource_type();
   const std::string& resource_type() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -16603,7 +16612,7 @@ class Authorization final :
   std::string* _internal_mutable_resource_type();
   public:
 
-  // string resource_id = 5 [json_name = "resourceId"];
+  // string resource_id = 4 [json_name = "resourceId"];
   void clear_resource_id();
   const std::string& resource_id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -16624,7 +16633,6 @@ class Authorization final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr identity_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr authorization_type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr authorization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
@@ -17121,6 +17129,7 @@ class RemoveRoleRequest final :
     kRoleIdFieldNumber = 2,
     kResourceTypeFieldNumber = 3,
     kResourceIdFieldNumber = 4,
+    kOrganizationIdFieldNumber = 5,
   };
   // string identity_id = 1 [json_name = "identityId"];
   void clear_identity_id();
@@ -17178,6 +17187,20 @@ class RemoveRoleRequest final :
   std::string* _internal_mutable_resource_id();
   public:
 
+  // string organization_id = 5 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.RemoveRoleRequest)
  private:
   class _Internal;
@@ -17189,6 +17212,7 @@ class RemoveRoleRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr role_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -17431,6 +17455,7 @@ class ListAuthorizationsRequest final :
   enum : int {
     kResourceTypeFieldNumber = 1,
     kResourceIdFieldNumber = 2,
+    kOrganizationIdFieldNumber = 3,
   };
   // string resource_type = 1 [json_name = "resourceType"];
   void clear_resource_type();
@@ -17460,6 +17485,20 @@ class ListAuthorizationsRequest final :
   std::string* _internal_mutable_resource_id();
   public:
 
+  // string organization_id = 3 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ListAuthorizationsRequest)
  private:
   class _Internal;
@@ -17469,6 +17508,175 @@ class ListAuthorizationsRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Authorizations final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Authorizations) */ {
+ public:
+  inline Authorizations() : Authorizations(nullptr) {}
+  ~Authorizations() override;
+  explicit PROTOBUF_CONSTEXPR Authorizations(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Authorizations(const Authorizations& from);
+  Authorizations(Authorizations&& from) noexcept
+    : Authorizations() {
+    *this = ::std::move(from);
+  }
+
+  inline Authorizations& operator=(const Authorizations& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Authorizations& operator=(Authorizations&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Authorizations& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Authorizations* internal_default_instance() {
+    return reinterpret_cast<const Authorizations*>(
+               &_Authorizations_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    105;
+
+  friend void swap(Authorizations& a, Authorizations& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Authorizations* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Authorizations* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Authorizations* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Authorizations>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Authorizations& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Authorizations& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Authorizations* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.Authorizations";
+  }
+  protected:
+  explicit Authorizations(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAuthorizationsFieldNumber = 2,
+    kIdentityIdFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.Authorization authorizations = 2 [json_name = "authorizations"];
+  int authorizations_size() const;
+  private:
+  int _internal_authorizations_size() const;
+  public:
+  void clear_authorizations();
+  ::viam::app::v1::Authorization* mutable_authorizations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >*
+      mutable_authorizations();
+  private:
+  const ::viam::app::v1::Authorization& _internal_authorizations(int index) const;
+  ::viam::app::v1::Authorization* _internal_add_authorizations();
+  public:
+  const ::viam::app::v1::Authorization& authorizations(int index) const;
+  ::viam::app::v1::Authorization* add_authorizations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >&
+      authorizations() const;
+
+  // string identity_id = 1 [json_name = "identityId"];
+  void clear_identity_id();
+  const std::string& identity_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_identity_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_identity_id();
+  PROTOBUF_NODISCARD std::string* release_identity_id();
+  void set_allocated_identity_id(std::string* identity_id);
+  private:
+  const std::string& _internal_identity_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_identity_id(const std::string& value);
+  std::string* _internal_mutable_identity_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.Authorizations)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization > authorizations_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr identity_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -17522,7 +17730,7 @@ class ListAuthorizationsResponse final :
                &_ListAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    105;
+    106;
 
   friend void swap(ListAuthorizationsResponse& a, ListAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -17595,22 +17803,22 @@ class ListAuthorizationsResponse final :
   enum : int {
     kAuthorizationsFieldNumber = 1,
   };
-  // repeated .viam.app.v1.Authorization authorizations = 1 [json_name = "authorizations"];
+  // repeated .viam.app.v1.Authorizations authorizations = 1 [json_name = "authorizations"];
   int authorizations_size() const;
   private:
   int _internal_authorizations_size() const;
   public:
   void clear_authorizations();
-  ::viam::app::v1::Authorization* mutable_authorizations(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >*
+  ::viam::app::v1::Authorizations* mutable_authorizations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorizations >*
       mutable_authorizations();
   private:
-  const ::viam::app::v1::Authorization& _internal_authorizations(int index) const;
-  ::viam::app::v1::Authorization* _internal_add_authorizations();
+  const ::viam::app::v1::Authorizations& _internal_authorizations(int index) const;
+  ::viam::app::v1::Authorizations* _internal_add_authorizations();
   public:
-  const ::viam::app::v1::Authorization& authorizations(int index) const;
-  ::viam::app::v1::Authorization* add_authorizations();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >&
+  const ::viam::app::v1::Authorizations& authorizations(int index) const;
+  ::viam::app::v1::Authorizations* add_authorizations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorizations >&
       authorizations() const;
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.ListAuthorizationsResponse)
@@ -17620,7 +17828,7 @@ class ListAuthorizationsResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization > authorizations_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorizations > authorizations_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -17674,7 +17882,7 @@ class CheckPermissionsRequest final :
                &_CheckPermissionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    106;
+    107;
 
   friend void swap(CheckPermissionsRequest& a, CheckPermissionsRequest& b) {
     a.Swap(&b);
@@ -17745,56 +17953,25 @@ class CheckPermissionsRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kResourceIdsFieldNumber = 1,
-    kPermissionIdsFieldNumber = 2,
+    kPermissionsFieldNumber = 1,
   };
-  // repeated string resource_ids = 1 [json_name = "resourceIds"];
-  int resource_ids_size() const;
+  // repeated .viam.app.v1.AuthorizedPermissions permissions = 1 [json_name = "permissions"];
+  int permissions_size() const;
   private:
-  int _internal_resource_ids_size() const;
+  int _internal_permissions_size() const;
   public:
-  void clear_resource_ids();
-  const std::string& resource_ids(int index) const;
-  std::string* mutable_resource_ids(int index);
-  void set_resource_ids(int index, const std::string& value);
-  void set_resource_ids(int index, std::string&& value);
-  void set_resource_ids(int index, const char* value);
-  void set_resource_ids(int index, const char* value, size_t size);
-  std::string* add_resource_ids();
-  void add_resource_ids(const std::string& value);
-  void add_resource_ids(std::string&& value);
-  void add_resource_ids(const char* value);
-  void add_resource_ids(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& resource_ids() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_resource_ids();
+  void clear_permissions();
+  ::viam::app::v1::AuthorizedPermissions* mutable_permissions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizedPermissions >*
+      mutable_permissions();
   private:
-  const std::string& _internal_resource_ids(int index) const;
-  std::string* _internal_add_resource_ids();
+  const ::viam::app::v1::AuthorizedPermissions& _internal_permissions(int index) const;
+  ::viam::app::v1::AuthorizedPermissions* _internal_add_permissions();
   public:
-
-  // repeated string permission_ids = 2 [json_name = "permissionIds"];
-  int permission_ids_size() const;
-  private:
-  int _internal_permission_ids_size() const;
-  public:
-  void clear_permission_ids();
-  const std::string& permission_ids(int index) const;
-  std::string* mutable_permission_ids(int index);
-  void set_permission_ids(int index, const std::string& value);
-  void set_permission_ids(int index, std::string&& value);
-  void set_permission_ids(int index, const char* value);
-  void set_permission_ids(int index, const char* value, size_t size);
-  std::string* add_permission_ids();
-  void add_permission_ids(const std::string& value);
-  void add_permission_ids(std::string&& value);
-  void add_permission_ids(const char* value);
-  void add_permission_ids(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& permission_ids() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_permission_ids();
-  private:
-  const std::string& _internal_permission_ids(int index) const;
-  std::string* _internal_add_permission_ids();
-  public:
+  const ::viam::app::v1::AuthorizedPermissions& permissions(int index) const;
+  ::viam::app::v1::AuthorizedPermissions* add_permissions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizedPermissions >&
+      permissions() const;
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.CheckPermissionsRequest)
  private:
@@ -17803,8 +17980,7 @@ class CheckPermissionsRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> resource_ids_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> permission_ids_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizedPermissions > permissions_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -17858,7 +18034,7 @@ class AuthorizedPermissions final :
                &_AuthorizedPermissions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    107;
+    108;
 
   friend void swap(AuthorizedPermissions& a, AuthorizedPermissions& b) {
     a.Swap(&b);
@@ -18032,7 +18208,7 @@ class CheckPermissionsResponse final :
                &_CheckPermissionsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    108;
+    109;
 
   friend void swap(CheckPermissionsResponse& a, CheckPermissionsResponse& b) {
     a.Swap(&b);
@@ -21050,6 +21226,46 @@ inline void CreateOrganizationInviteRequest::set_allocated_email(std::string* em
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOrganizationInviteRequest.email)
+}
+
+// repeated .viam.app.v1.Authorization authorizations = 3 [json_name = "authorizations"];
+inline int CreateOrganizationInviteRequest::_internal_authorizations_size() const {
+  return authorizations_.size();
+}
+inline int CreateOrganizationInviteRequest::authorizations_size() const {
+  return _internal_authorizations_size();
+}
+inline void CreateOrganizationInviteRequest::clear_authorizations() {
+  authorizations_.Clear();
+}
+inline ::viam::app::v1::Authorization* CreateOrganizationInviteRequest::mutable_authorizations(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOrganizationInviteRequest.authorizations)
+  return authorizations_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >*
+CreateOrganizationInviteRequest::mutable_authorizations() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.CreateOrganizationInviteRequest.authorizations)
+  return &authorizations_;
+}
+inline const ::viam::app::v1::Authorization& CreateOrganizationInviteRequest::_internal_authorizations(int index) const {
+  return authorizations_.Get(index);
+}
+inline const ::viam::app::v1::Authorization& CreateOrganizationInviteRequest::authorizations(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOrganizationInviteRequest.authorizations)
+  return _internal_authorizations(index);
+}
+inline ::viam::app::v1::Authorization* CreateOrganizationInviteRequest::_internal_add_authorizations() {
+  return authorizations_.Add();
+}
+inline ::viam::app::v1::Authorization* CreateOrganizationInviteRequest::add_authorizations() {
+  ::viam::app::v1::Authorization* _add = _internal_add_authorizations();
+  // @@protoc_insertion_point(field_add:viam.app.v1.CreateOrganizationInviteRequest.authorizations)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >&
+CreateOrganizationInviteRequest::authorizations() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.CreateOrganizationInviteRequest.authorizations)
+  return authorizations_;
 }
 
 // -------------------------------------------------------------------
@@ -28424,57 +28640,7 @@ inline void DeleteRobotPartSecretRequest::set_allocated_secret_id(std::string* s
 
 // Authorization
 
-// string identity_id = 1 [json_name = "identityId"];
-inline void Authorization::clear_identity_id() {
-  identity_id_.ClearToEmpty();
-}
-inline const std::string& Authorization::identity_id() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Authorization.identity_id)
-  return _internal_identity_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Authorization::set_identity_id(ArgT0&& arg0, ArgT... args) {
- 
- identity_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.Authorization.identity_id)
-}
-inline std::string* Authorization::mutable_identity_id() {
-  std::string* _s = _internal_mutable_identity_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Authorization.identity_id)
-  return _s;
-}
-inline const std::string& Authorization::_internal_identity_id() const {
-  return identity_id_.Get();
-}
-inline void Authorization::_internal_set_identity_id(const std::string& value) {
-  
-  identity_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Authorization::_internal_mutable_identity_id() {
-  
-  return identity_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* Authorization::release_identity_id() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.Authorization.identity_id)
-  return identity_id_.Release();
-}
-inline void Authorization::set_allocated_identity_id(std::string* identity_id) {
-  if (identity_id != nullptr) {
-    
-  } else {
-    
-  }
-  identity_id_.SetAllocated(identity_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (identity_id_.IsDefault()) {
-    identity_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Authorization.identity_id)
-}
-
-// string authorization_type = 2 [json_name = "authorizationType"];
+// string authorization_type = 1 [json_name = "authorizationType"];
 inline void Authorization::clear_authorization_type() {
   authorization_type_.ClearToEmpty();
 }
@@ -28524,7 +28690,7 @@ inline void Authorization::set_allocated_authorization_type(std::string* authori
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Authorization.authorization_type)
 }
 
-// string authorization_id = 3 [json_name = "authorizationId"];
+// string authorization_id = 2 [json_name = "authorizationId"];
 inline void Authorization::clear_authorization_id() {
   authorization_id_.ClearToEmpty();
 }
@@ -28574,7 +28740,7 @@ inline void Authorization::set_allocated_authorization_id(std::string* authoriza
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Authorization.authorization_id)
 }
 
-// string resource_type = 4 [json_name = "resourceType"];
+// string resource_type = 3 [json_name = "resourceType"];
 inline void Authorization::clear_resource_type() {
   resource_type_.ClearToEmpty();
 }
@@ -28624,7 +28790,7 @@ inline void Authorization::set_allocated_resource_type(std::string* resource_typ
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Authorization.resource_type)
 }
 
-// string resource_id = 5 [json_name = "resourceId"];
+// string resource_id = 4 [json_name = "resourceId"];
 inline void Authorization::clear_resource_id() {
   resource_id_.ClearToEmpty();
 }
@@ -29226,6 +29392,56 @@ inline void RemoveRoleRequest::set_allocated_resource_id(std::string* resource_i
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RemoveRoleRequest.resource_id)
 }
 
+// string organization_id = 5 [json_name = "organizationId"];
+inline void RemoveRoleRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& RemoveRoleRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RemoveRoleRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RemoveRoleRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RemoveRoleRequest.organization_id)
+}
+inline std::string* RemoveRoleRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RemoveRoleRequest.organization_id)
+  return _s;
+}
+inline const std::string& RemoveRoleRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void RemoveRoleRequest::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RemoveRoleRequest::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RemoveRoleRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RemoveRoleRequest.organization_id)
+  return organization_id_.Release();
+}
+inline void RemoveRoleRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RemoveRoleRequest.organization_id)
+}
+
 // -------------------------------------------------------------------
 
 // RemoveRoleResponse
@@ -29334,11 +29550,155 @@ inline void ListAuthorizationsRequest::set_allocated_resource_id(std::string* re
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListAuthorizationsRequest.resource_id)
 }
 
+// string organization_id = 3 [json_name = "organizationId"];
+inline void ListAuthorizationsRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& ListAuthorizationsRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListAuthorizationsRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListAuthorizationsRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListAuthorizationsRequest.organization_id)
+}
+inline std::string* ListAuthorizationsRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListAuthorizationsRequest.organization_id)
+  return _s;
+}
+inline const std::string& ListAuthorizationsRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void ListAuthorizationsRequest::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListAuthorizationsRequest::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListAuthorizationsRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ListAuthorizationsRequest.organization_id)
+  return organization_id_.Release();
+}
+inline void ListAuthorizationsRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListAuthorizationsRequest.organization_id)
+}
+
+// -------------------------------------------------------------------
+
+// Authorizations
+
+// string identity_id = 1 [json_name = "identityId"];
+inline void Authorizations::clear_identity_id() {
+  identity_id_.ClearToEmpty();
+}
+inline const std::string& Authorizations::identity_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Authorizations.identity_id)
+  return _internal_identity_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Authorizations::set_identity_id(ArgT0&& arg0, ArgT... args) {
+ 
+ identity_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Authorizations.identity_id)
+}
+inline std::string* Authorizations::mutable_identity_id() {
+  std::string* _s = _internal_mutable_identity_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Authorizations.identity_id)
+  return _s;
+}
+inline const std::string& Authorizations::_internal_identity_id() const {
+  return identity_id_.Get();
+}
+inline void Authorizations::_internal_set_identity_id(const std::string& value) {
+  
+  identity_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Authorizations::_internal_mutable_identity_id() {
+  
+  return identity_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Authorizations::release_identity_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Authorizations.identity_id)
+  return identity_id_.Release();
+}
+inline void Authorizations::set_allocated_identity_id(std::string* identity_id) {
+  if (identity_id != nullptr) {
+    
+  } else {
+    
+  }
+  identity_id_.SetAllocated(identity_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (identity_id_.IsDefault()) {
+    identity_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Authorizations.identity_id)
+}
+
+// repeated .viam.app.v1.Authorization authorizations = 2 [json_name = "authorizations"];
+inline int Authorizations::_internal_authorizations_size() const {
+  return authorizations_.size();
+}
+inline int Authorizations::authorizations_size() const {
+  return _internal_authorizations_size();
+}
+inline void Authorizations::clear_authorizations() {
+  authorizations_.Clear();
+}
+inline ::viam::app::v1::Authorization* Authorizations::mutable_authorizations(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Authorizations.authorizations)
+  return authorizations_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >*
+Authorizations::mutable_authorizations() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Authorizations.authorizations)
+  return &authorizations_;
+}
+inline const ::viam::app::v1::Authorization& Authorizations::_internal_authorizations(int index) const {
+  return authorizations_.Get(index);
+}
+inline const ::viam::app::v1::Authorization& Authorizations::authorizations(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Authorizations.authorizations)
+  return _internal_authorizations(index);
+}
+inline ::viam::app::v1::Authorization* Authorizations::_internal_add_authorizations() {
+  return authorizations_.Add();
+}
+inline ::viam::app::v1::Authorization* Authorizations::add_authorizations() {
+  ::viam::app::v1::Authorization* _add = _internal_add_authorizations();
+  // @@protoc_insertion_point(field_add:viam.app.v1.Authorizations.authorizations)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >&
+Authorizations::authorizations() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.Authorizations.authorizations)
+  return authorizations_;
+}
+
 // -------------------------------------------------------------------
 
 // ListAuthorizationsResponse
 
-// repeated .viam.app.v1.Authorization authorizations = 1 [json_name = "authorizations"];
+// repeated .viam.app.v1.Authorizations authorizations = 1 [json_name = "authorizations"];
 inline int ListAuthorizationsResponse::_internal_authorizations_size() const {
   return authorizations_.size();
 }
@@ -29348,31 +29708,31 @@ inline int ListAuthorizationsResponse::authorizations_size() const {
 inline void ListAuthorizationsResponse::clear_authorizations() {
   authorizations_.Clear();
 }
-inline ::viam::app::v1::Authorization* ListAuthorizationsResponse::mutable_authorizations(int index) {
+inline ::viam::app::v1::Authorizations* ListAuthorizationsResponse::mutable_authorizations(int index) {
   // @@protoc_insertion_point(field_mutable:viam.app.v1.ListAuthorizationsResponse.authorizations)
   return authorizations_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorizations >*
 ListAuthorizationsResponse::mutable_authorizations() {
   // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListAuthorizationsResponse.authorizations)
   return &authorizations_;
 }
-inline const ::viam::app::v1::Authorization& ListAuthorizationsResponse::_internal_authorizations(int index) const {
+inline const ::viam::app::v1::Authorizations& ListAuthorizationsResponse::_internal_authorizations(int index) const {
   return authorizations_.Get(index);
 }
-inline const ::viam::app::v1::Authorization& ListAuthorizationsResponse::authorizations(int index) const {
+inline const ::viam::app::v1::Authorizations& ListAuthorizationsResponse::authorizations(int index) const {
   // @@protoc_insertion_point(field_get:viam.app.v1.ListAuthorizationsResponse.authorizations)
   return _internal_authorizations(index);
 }
-inline ::viam::app::v1::Authorization* ListAuthorizationsResponse::_internal_add_authorizations() {
+inline ::viam::app::v1::Authorizations* ListAuthorizationsResponse::_internal_add_authorizations() {
   return authorizations_.Add();
 }
-inline ::viam::app::v1::Authorization* ListAuthorizationsResponse::add_authorizations() {
-  ::viam::app::v1::Authorization* _add = _internal_add_authorizations();
+inline ::viam::app::v1::Authorizations* ListAuthorizationsResponse::add_authorizations() {
+  ::viam::app::v1::Authorizations* _add = _internal_add_authorizations();
   // @@protoc_insertion_point(field_add:viam.app.v1.ListAuthorizationsResponse.authorizations)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorization >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Authorizations >&
 ListAuthorizationsResponse::authorizations() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.ListAuthorizationsResponse.authorizations)
   return authorizations_;
@@ -29382,154 +29742,44 @@ ListAuthorizationsResponse::authorizations() const {
 
 // CheckPermissionsRequest
 
-// repeated string resource_ids = 1 [json_name = "resourceIds"];
-inline int CheckPermissionsRequest::_internal_resource_ids_size() const {
-  return resource_ids_.size();
+// repeated .viam.app.v1.AuthorizedPermissions permissions = 1 [json_name = "permissions"];
+inline int CheckPermissionsRequest::_internal_permissions_size() const {
+  return permissions_.size();
 }
-inline int CheckPermissionsRequest::resource_ids_size() const {
-  return _internal_resource_ids_size();
+inline int CheckPermissionsRequest::permissions_size() const {
+  return _internal_permissions_size();
 }
-inline void CheckPermissionsRequest::clear_resource_ids() {
-  resource_ids_.Clear();
+inline void CheckPermissionsRequest::clear_permissions() {
+  permissions_.Clear();
 }
-inline std::string* CheckPermissionsRequest::add_resource_ids() {
-  std::string* _s = _internal_add_resource_ids();
-  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.CheckPermissionsRequest.resource_ids)
-  return _s;
+inline ::viam::app::v1::AuthorizedPermissions* CheckPermissionsRequest::mutable_permissions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CheckPermissionsRequest.permissions)
+  return permissions_.Mutable(index);
 }
-inline const std::string& CheckPermissionsRequest::_internal_resource_ids(int index) const {
-  return resource_ids_.Get(index);
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizedPermissions >*
+CheckPermissionsRequest::mutable_permissions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.CheckPermissionsRequest.permissions)
+  return &permissions_;
 }
-inline const std::string& CheckPermissionsRequest::resource_ids(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.CheckPermissionsRequest.resource_ids)
-  return _internal_resource_ids(index);
+inline const ::viam::app::v1::AuthorizedPermissions& CheckPermissionsRequest::_internal_permissions(int index) const {
+  return permissions_.Get(index);
 }
-inline std::string* CheckPermissionsRequest::mutable_resource_ids(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.CheckPermissionsRequest.resource_ids)
-  return resource_ids_.Mutable(index);
+inline const ::viam::app::v1::AuthorizedPermissions& CheckPermissionsRequest::permissions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CheckPermissionsRequest.permissions)
+  return _internal_permissions(index);
 }
-inline void CheckPermissionsRequest::set_resource_ids(int index, const std::string& value) {
-  resource_ids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.CheckPermissionsRequest.resource_ids)
+inline ::viam::app::v1::AuthorizedPermissions* CheckPermissionsRequest::_internal_add_permissions() {
+  return permissions_.Add();
 }
-inline void CheckPermissionsRequest::set_resource_ids(int index, std::string&& value) {
-  resource_ids_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:viam.app.v1.CheckPermissionsRequest.resource_ids)
+inline ::viam::app::v1::AuthorizedPermissions* CheckPermissionsRequest::add_permissions() {
+  ::viam::app::v1::AuthorizedPermissions* _add = _internal_add_permissions();
+  // @@protoc_insertion_point(field_add:viam.app.v1.CheckPermissionsRequest.permissions)
+  return _add;
 }
-inline void CheckPermissionsRequest::set_resource_ids(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  resource_ids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:viam.app.v1.CheckPermissionsRequest.resource_ids)
-}
-inline void CheckPermissionsRequest::set_resource_ids(int index, const char* value, size_t size) {
-  resource_ids_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.CheckPermissionsRequest.resource_ids)
-}
-inline std::string* CheckPermissionsRequest::_internal_add_resource_ids() {
-  return resource_ids_.Add();
-}
-inline void CheckPermissionsRequest::add_resource_ids(const std::string& value) {
-  resource_ids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:viam.app.v1.CheckPermissionsRequest.resource_ids)
-}
-inline void CheckPermissionsRequest::add_resource_ids(std::string&& value) {
-  resource_ids_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:viam.app.v1.CheckPermissionsRequest.resource_ids)
-}
-inline void CheckPermissionsRequest::add_resource_ids(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  resource_ids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:viam.app.v1.CheckPermissionsRequest.resource_ids)
-}
-inline void CheckPermissionsRequest::add_resource_ids(const char* value, size_t size) {
-  resource_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.CheckPermissionsRequest.resource_ids)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-CheckPermissionsRequest::resource_ids() const {
-  // @@protoc_insertion_point(field_list:viam.app.v1.CheckPermissionsRequest.resource_ids)
-  return resource_ids_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-CheckPermissionsRequest::mutable_resource_ids() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.CheckPermissionsRequest.resource_ids)
-  return &resource_ids_;
-}
-
-// repeated string permission_ids = 2 [json_name = "permissionIds"];
-inline int CheckPermissionsRequest::_internal_permission_ids_size() const {
-  return permission_ids_.size();
-}
-inline int CheckPermissionsRequest::permission_ids_size() const {
-  return _internal_permission_ids_size();
-}
-inline void CheckPermissionsRequest::clear_permission_ids() {
-  permission_ids_.Clear();
-}
-inline std::string* CheckPermissionsRequest::add_permission_ids() {
-  std::string* _s = _internal_add_permission_ids();
-  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.CheckPermissionsRequest.permission_ids)
-  return _s;
-}
-inline const std::string& CheckPermissionsRequest::_internal_permission_ids(int index) const {
-  return permission_ids_.Get(index);
-}
-inline const std::string& CheckPermissionsRequest::permission_ids(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.CheckPermissionsRequest.permission_ids)
-  return _internal_permission_ids(index);
-}
-inline std::string* CheckPermissionsRequest::mutable_permission_ids(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.CheckPermissionsRequest.permission_ids)
-  return permission_ids_.Mutable(index);
-}
-inline void CheckPermissionsRequest::set_permission_ids(int index, const std::string& value) {
-  permission_ids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline void CheckPermissionsRequest::set_permission_ids(int index, std::string&& value) {
-  permission_ids_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline void CheckPermissionsRequest::set_permission_ids(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  permission_ids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline void CheckPermissionsRequest::set_permission_ids(int index, const char* value, size_t size) {
-  permission_ids_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline std::string* CheckPermissionsRequest::_internal_add_permission_ids() {
-  return permission_ids_.Add();
-}
-inline void CheckPermissionsRequest::add_permission_ids(const std::string& value) {
-  permission_ids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline void CheckPermissionsRequest::add_permission_ids(std::string&& value) {
-  permission_ids_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline void CheckPermissionsRequest::add_permission_ids(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  permission_ids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline void CheckPermissionsRequest::add_permission_ids(const char* value, size_t size) {
-  permission_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.CheckPermissionsRequest.permission_ids)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-CheckPermissionsRequest::permission_ids() const {
-  // @@protoc_insertion_point(field_list:viam.app.v1.CheckPermissionsRequest.permission_ids)
-  return permission_ids_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-CheckPermissionsRequest::mutable_permission_ids() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.CheckPermissionsRequest.permission_ids)
-  return &permission_ids_;
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizedPermissions >&
+CheckPermissionsRequest::permissions() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.CheckPermissionsRequest.permissions)
+  return permissions_;
 }
 
 // -------------------------------------------------------------------
@@ -29708,6 +29958,8 @@ CheckPermissionsResponse::authorized_permissions() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
