@@ -554,7 +554,6 @@ class MoveToPositionRequest final :
   enum : int {
     kPositionsMmFieldNumber = 2,
     kNameFieldNumber = 1,
-    kWorldStateFieldNumber = 3,
     kExtraFieldNumber = 99,
   };
   // repeated double positions_mm = 2 [json_name = "positionsMm"];
@@ -593,24 +592,6 @@ class MoveToPositionRequest final :
   std::string* _internal_mutable_name();
   public:
 
-  // optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-  bool has_world_state() const;
-  private:
-  bool _internal_has_world_state() const;
-  public:
-  void clear_world_state();
-  const ::viam::common::v1::WorldState& world_state() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::WorldState* release_world_state();
-  ::viam::common::v1::WorldState* mutable_world_state();
-  void set_allocated_world_state(::viam::common::v1::WorldState* world_state);
-  private:
-  const ::viam::common::v1::WorldState& _internal_world_state() const;
-  ::viam::common::v1::WorldState* _internal_mutable_world_state();
-  public:
-  void unsafe_arena_set_allocated_world_state(
-      ::viam::common::v1::WorldState* world_state);
-  ::viam::common::v1::WorldState* unsafe_arena_release_world_state();
-
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   bool has_extra() const;
   private:
@@ -636,12 +617,10 @@ class MoveToPositionRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > positions_mm_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::viam::common::v1::WorldState* world_state_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fgantry_2fv1_2fgantry_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2146,93 +2125,6 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
 MoveToPositionRequest::mutable_positions_mm() {
   // @@protoc_insertion_point(field_mutable_list:viam.component.gantry.v1.MoveToPositionRequest.positions_mm)
   return _internal_mutable_positions_mm();
-}
-
-// optional .viam.common.v1.WorldState world_state = 3 [json_name = "worldState"];
-inline bool MoveToPositionRequest::_internal_has_world_state() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || world_state_ != nullptr);
-  return value;
-}
-inline bool MoveToPositionRequest::has_world_state() const {
-  return _internal_has_world_state();
-}
-inline const ::viam::common::v1::WorldState& MoveToPositionRequest::_internal_world_state() const {
-  const ::viam::common::v1::WorldState* p = world_state_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::WorldState&>(
-      ::viam::common::v1::_WorldState_default_instance_);
-}
-inline const ::viam::common::v1::WorldState& MoveToPositionRequest::world_state() const {
-  // @@protoc_insertion_point(field_get:viam.component.gantry.v1.MoveToPositionRequest.world_state)
-  return _internal_world_state();
-}
-inline void MoveToPositionRequest::unsafe_arena_set_allocated_world_state(
-    ::viam::common::v1::WorldState* world_state) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(world_state_);
-  }
-  world_state_ = world_state;
-  if (world_state) {
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gantry.v1.MoveToPositionRequest.world_state)
-}
-inline ::viam::common::v1::WorldState* MoveToPositionRequest::release_world_state() {
-  _has_bits_[0] &= ~0x00000001u;
-  ::viam::common::v1::WorldState* temp = world_state_;
-  world_state_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::common::v1::WorldState* MoveToPositionRequest::unsafe_arena_release_world_state() {
-  // @@protoc_insertion_point(field_release:viam.component.gantry.v1.MoveToPositionRequest.world_state)
-  _has_bits_[0] &= ~0x00000001u;
-  ::viam::common::v1::WorldState* temp = world_state_;
-  world_state_ = nullptr;
-  return temp;
-}
-inline ::viam::common::v1::WorldState* MoveToPositionRequest::_internal_mutable_world_state() {
-  _has_bits_[0] |= 0x00000001u;
-  if (world_state_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::WorldState>(GetArenaForAllocation());
-    world_state_ = p;
-  }
-  return world_state_;
-}
-inline ::viam::common::v1::WorldState* MoveToPositionRequest::mutable_world_state() {
-  ::viam::common::v1::WorldState* _msg = _internal_mutable_world_state();
-  // @@protoc_insertion_point(field_mutable:viam.component.gantry.v1.MoveToPositionRequest.world_state)
-  return _msg;
-}
-inline void MoveToPositionRequest::set_allocated_world_state(::viam::common::v1::WorldState* world_state) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(world_state_);
-  }
-  if (world_state) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(world_state));
-    if (message_arena != submessage_arena) {
-      world_state = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, world_state, submessage_arena);
-    }
-    _has_bits_[0] |= 0x00000001u;
-  } else {
-    _has_bits_[0] &= ~0x00000001u;
-  }
-  world_state_ = world_state;
-  // @@protoc_insertion_point(field_set_allocated:viam.component.gantry.v1.MoveToPositionRequest.world_state)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
