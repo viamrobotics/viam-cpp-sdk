@@ -1,6 +1,3 @@
-/// @file proto_type.hpp
-///
-/// @brief Implements `proto_type` class to mirror google's `protobuf struct`.
 #pragma once
 
 #include <unordered_map>
@@ -46,15 +43,9 @@ class ProtoType {
     google::protobuf::Value proto_value();
 };
 
-/// @brief convert `protobuf struct` to a map from `string` to `ProtoType`
-/// @param struct_ the struct to convert
-/// @return `shared_ptr` to the converted map
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> struct_to_map(
     google::protobuf::Struct struct_);
 
-/// @brief convert a `ProtoType` map into a google `protobuf struct`
-/// @param dict the map to convert
-/// @return the converted struct
 google::protobuf::Struct map_to_struct(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> dict);
 

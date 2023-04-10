@@ -1,6 +1,3 @@
-/// @file utils.hpp
-///
-/// @brief Provides shared utility functions, classes, and constants.
 #pragma once
 
 #include <unordered_map>

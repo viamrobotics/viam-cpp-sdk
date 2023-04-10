@@ -1,3 +1,6 @@
+/// @file generic/server.hpp
+///
+/// @brief Implements a gRPC server for the `Generic` component.
 #pragma once
 
 #include <common/v1/common.grpc.pb.h>

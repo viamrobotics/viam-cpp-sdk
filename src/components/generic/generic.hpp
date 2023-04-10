@@ -1,3 +1,6 @@
+/// @file generic/generic.hpp
+///
+/// @brief Defines `Generic` subtype and component class capable of executing arbitrary commands.
 #pragma once
 
 #include <google/protobuf/descriptor.h>
