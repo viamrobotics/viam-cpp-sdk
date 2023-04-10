@@ -1,0 +1,37 @@
+name: Generate docs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'README.md'
+    branches: [main]
+
+jobs:
+  generate-docs:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+    - name: Generate docs
+      run: doxygen Doxyfile
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: html-docs
+        path: etc/docs/api/current
+
+    - name: Deploy docs
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: etc/docs/api/current
+        publish_branch: docs-gh_pages
+        cname: cpp.viam.dev

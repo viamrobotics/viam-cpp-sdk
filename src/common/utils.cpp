@@ -24,21 +24,21 @@ std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<ResourceBa
         if (reg->resource_type.to_string() == resource->type().to_string()) {
             resource_type = reg->resource_type.to_string();
         }
+
+        if (resource_type == "") {
+            resource_type = resource->name();
+        }
+
+        // TODO (RSDK-1631): make sure we split properly on "viam.components."
+        // within component_type as needed
+
+        ResourceName r;
+        *r.mutable_namespace_() = RDK;
+        *r.mutable_type() = resource->type().to_string();
+        *r.mutable_name() = resource->name();
+        *r.mutable_subtype() = resource_type;
+        resource_names.push_back(r);
     }
-
-    if (resource_type == "") {
-        resource_type = resource->name();
-    }
-
-    // TODO (RSDK-1631): make sure we split properly on "viam.components."
-    // within component_type as needed
-
-    ResourceName r;
-    *r.mutable_namespace_() = RDK;
-    *r.mutable_type() = resource->type().to_string();
-    *r.mutable_name() = resource->name();
-    *r.mutable_subtype() = resource_type;
-    resource_names.push_back(r);
     return resource_names;
 }
 
