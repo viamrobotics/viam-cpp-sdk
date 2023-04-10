@@ -25,13 +25,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: html-docs
-        path: etc/docs/api/current
+        path: docs
 
     - name: Deploy docs
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: etc/docs/api/current
+        publish_dir: docs
         publish_branch: docs-gh_pages
         cname: cpp.viam.dev
