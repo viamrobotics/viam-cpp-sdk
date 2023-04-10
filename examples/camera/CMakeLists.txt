@@ -12,7 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(dial)
-add_subdirectory(echo)
-add_subdirectory(modules)
-add_subdirectory(camera)
+add_executable(example_camera
+  example_camera.cpp
+)
+
+target_link_libraries(example_camera
+  viamcpp
+)
+
+install(
+  TARGETS example_camera
+  COMPONENT viam-cpp-sdk_examples
+)
