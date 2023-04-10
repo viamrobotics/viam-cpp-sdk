@@ -24,7 +24,7 @@
     return ::grpc::Status();
 }
 
-void GenericServer::register_server(Server* server) {
+void GenericServer::register_server(std::shared_ptr<Server> server) {
     viam::component::generic::v1::GenericService::Service* generic =
         static_cast<viam::component::generic::v1::GenericService::Service*>(this);
     try {

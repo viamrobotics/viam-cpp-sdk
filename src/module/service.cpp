@@ -198,7 +198,7 @@ ModuleService_::ModuleService_(std::string addr) {
     module = std::make_shared<Module>(addr);
 }
 
-void ModuleService_::start(Server* server) {
+void ModuleService_::start(std::shared_ptr<Server> server) {
     module->lock.lock();
     mode_t old_mask = umask(0077);
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
@@ -230,7 +230,7 @@ void ModuleService_::close() {
     }
 }
 
-void ModuleService_::add_api_from_registry(Server* server, Subtype api) {
+void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subtype api) {
     if (module->services.find(api) != module->services.end()) {
         return;
     }
@@ -245,7 +245,9 @@ void ModuleService_::add_api_from_registry(Server* server, Subtype api) {
     module->lock.unlock();
 }
 
-void ModuleService_::add_model_from_registry(Server* server, Subtype api, Model model) {
+void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,
+                                             Subtype api,
+                                             Model model) {
     if (module->services.find(api) == module->services.end()) {
         add_api_from_registry(server, api);
     }

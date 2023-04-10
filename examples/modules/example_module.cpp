@@ -107,19 +107,19 @@ int main(int argc, char** argv) {
     // The `ModuleService_` must outlive the Server, so the declaration order
     // here matters.
     auto my_mod = std::make_shared<ModuleService_>(argv[1]);
-    Server server;
+    auto server = std::make_shared<Server>();
 
-    my_mod->add_model_from_registry(&server, generic, m);
-    my_mod->start(&server);
+    my_mod->add_model_from_registry(server, generic, m);
+    my_mod->start(server);
 
     std::thread signal_wait_thread([&server, &sigset]() {
         int sig = 0;
         auto result = sigwait(&sigset, &sig);
-        server.shutdown();
+        server->shutdown();
     });
 
-    server.start();
-    server.wait();
+    server->start();
+    server->wait();
 
     signal_wait_thread.join();
 
