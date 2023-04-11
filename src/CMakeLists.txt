@@ -93,6 +93,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/gen/common/v1/common.grpc.pb.h
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.h
+    ${PROTO_GEN_DIR}/gen/component/board/v1/board.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/board/v1/board.grpc.pb.h
+    ${PROTO_GEN_DIR}/gen/component/board/v1/board.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/board/v1/board.pb.h
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.h
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.cc
@@ -181,6 +185,8 @@ target_sources(viamcpp
     ${PROTO_GEN_DIR}/gen/app/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/gen/common/v1/common.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/common/v1/common.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/board/v1/board.grpc.pb.cc
+    ${PROTO_GEN_DIR}/gen/component/board/v1/board.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.cc
     ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.cc
@@ -203,6 +209,9 @@ target_sources(viamcpp
     registry/registry.cpp
     common/proto_type.cpp
     common/utils.cpp
+    components/board/board.cpp
+    components/board/client.cpp
+    components/board/server.cpp
     components/camera/camera.cpp
     components/camera/client.cpp
     components/camera/server.cpp
@@ -229,12 +238,16 @@ target_sources(viamcpp
     spatialmath/orientation.cpp
     subtype/subtype.cpp
     tests/test_utils.cpp
+    tests/mocks/board_mocks.cpp
     tests/mocks/camera_mocks.cpp
     tests/mocks/generic_mocks.cpp
   PUBLIC FILE_SET viamcpp_public_includes TYPE HEADERS
     FILES
       common/proto_type.hpp
       common/utils.hpp
+      components/board/board.hpp
+      components/board/client.hpp
+      components/board/server.hpp
       components/camera/camera.hpp
       components/camera/client.hpp
       components/camera/server.hpp
@@ -264,6 +277,7 @@ target_sources(viamcpp
       spatialmath/orientation.hpp
       subtype/subtype.hpp
       tests/test_utils.hpp
+      tests/mocks/board_mocks.hpp
       tests/mocks/camera_mocks.hpp
       tests/mocks/generic_mocks.hpp
   PUBLIC FILE_SET viamcpp_public_pb_includes TYPE HEADERS
@@ -278,6 +292,8 @@ target_sources(viamcpp
       ${PROTO_GEN_DIR}/gen/google/api/http.pb.h
       ${PROTO_GEN_DIR}/gen/google/api/httpbody.pb.h
       ${PROTO_GEN_DIR}/gen/common/v1/common.pb.h
+      ${PROTO_GEN_DIR}/gen/component/board/v1/board.grpc.pb.h
+      ${PROTO_GEN_DIR}/gen/component/board/v1/board.pb.h
       ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.grpc.pb.h
       ${PROTO_GEN_DIR}/gen/component/camera/v1/camera.pb.h
       ${PROTO_GEN_DIR}/gen/component/generic/v1/generic.grpc.pb.h
