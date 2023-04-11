@@ -12,10 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-enable_testing()
-include(viamcppsdk_utils)
-viamcppsdk_add_boost_test(test_generic_component.cpp)
-viamcppsdk_add_boost_test(test_camera.cpp)
-viamcppsdk_add_boost_test(test_base.cpp)
-viamcppsdk_add_boost_test(test_types.cpp)
+add_executable(example_base
+  example_base.cpp
+)
 
+target_link_libraries(example_base
+  viamcpp
+)
+
+install(
+  TARGETS example_base
+  COMPONENT viam-cpp-sdk_examples
+)

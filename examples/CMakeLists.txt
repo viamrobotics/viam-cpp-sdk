@@ -15,3 +15,4 @@
 add_subdirectory(dial)
 add_subdirectory(echo)
 add_subdirectory(modules)
+add_subdirectory(base)
