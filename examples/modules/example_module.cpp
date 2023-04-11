@@ -112,16 +112,15 @@ int main(int argc, char** argv) {
     my_mod->add_model_from_registry(server, generic, m);
     my_mod->start(server);
 
-    std::thread signal_wait_thread([&server, &sigset]() {
+    std::thread server_thread([&server, &sigset]() {
+        server->start();
         int sig = 0;
         auto result = sigwait(&sigset, &sig);
         server->shutdown();
     });
 
-    server->start();
     server->wait();
-
-    signal_wait_thread.join();
+    server_thread.join();
 
     return 0;
 };
