@@ -91,12 +91,13 @@ struct MetadataDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetadataDefaultTypeInternal _Metadata_default_instance_;
 PROTOBUF_CONSTEXPR TensorInfo::TensorInfo(
     ::_pbi::ConstantInitialized)
-  : associated_files_()
+  : shape_()
+  , _shape_cached_byte_size_(0)
+  , associated_files_()
   , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , data_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , n_dim_(0){}
+  , extra_(nullptr){}
 struct TensorInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TensorInfoDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -179,7 +180,7 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, description_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, data_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, n_dim_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, shape_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, associated_files_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, extra_),
   ~0u,  // no _has_bits_
@@ -228,29 +229,29 @@ const char descriptor_table_protodef_service_2fmlmodel_2fv1_2fmlmodel_2eproto[] 
   "(\tR\013description\022B\n\ninput_info\030\004 \003(\0132#.vi"
   "am.service.mlmodel.v1.TensorInfoR\tinputI"
   "nfo\022D\n\013output_info\030\005 \003(\0132#.viam.service."
-  "mlmodel.v1.TensorInfoR\noutputInfo\"\355\001\n\nTe"
+  "mlmodel.v1.TensorInfoR\noutputInfo\"\356\001\n\nTe"
   "nsorInfo\022\022\n\004name\030\001 \001(\tR\004name\022 \n\013descript"
   "ion\030\002 \001(\tR\013description\022\033\n\tdata_type\030\003 \001("
-  "\tR\010dataType\022\023\n\005n_dim\030\004 \001(\005R\004nDim\022H\n\020asso"
-  "ciated_files\030\005 \003(\0132\035.viam.service.mlmode"
-  "l.v1.FileR\017associatedFiles\022-\n\005extra\030c \001("
-  "\0132\027.google.protobuf.StructR\005extra\"\177\n\004Fil"
-  "e\022\022\n\004name\030\001 \001(\tR\004name\022 \n\013description\030\002 \001"
-  "(\tR\013description\022A\n\nlabel_type\030\003 \001(\0162\".vi"
-  "am.service.mlmodel.v1.LabelTypeR\tlabelTy"
-  "pe*`\n\tLabelType\022\032\n\026LABEL_TYPE_UNSPECIFIE"
-  "D\020\000\022\033\n\027LABEL_TYPE_TENSOR_VALUE\020\001\022\032\n\026LABE"
-  "L_TYPE_TENSOR_AXIS\020\0022\264\002\n\016MLModelService\022"
-  "\211\001\n\005Infer\022%.viam.service.mlmodel.v1.Infe"
-  "rRequest\032&.viam.service.mlmodel.v1.Infer"
-  "Response\"1\202\323\344\223\002+\")/viam/api/v1/service/m"
-  "lmodel/{name}/infer\022\225\001\n\010Metadata\022(.viam."
-  "service.mlmodel.v1.MetadataRequest\032).via"
-  "m.service.mlmodel.v1.MetadataResponse\"4\202"
-  "\323\344\223\002.\022,/viam/api/v1/service/mlmodel/{nam"
-  "e}/metadataBA\n\033com.viam.service.mlmodel."
-  "v1Z\"go.viam.com/api/service/mlmodel/v1b\006"
-  "proto3"
+  "\tR\010dataType\022\024\n\005shape\030\004 \003(\005R\005shape\022H\n\020ass"
+  "ociated_files\030\005 \003(\0132\035.viam.service.mlmod"
+  "el.v1.FileR\017associatedFiles\022-\n\005extra\030c \001"
+  "(\0132\027.google.protobuf.StructR\005extra\"\177\n\004Fi"
+  "le\022\022\n\004name\030\001 \001(\tR\004name\022 \n\013description\030\002 "
+  "\001(\tR\013description\022A\n\nlabel_type\030\003 \001(\0162\".v"
+  "iam.service.mlmodel.v1.LabelTypeR\tlabelT"
+  "ype*`\n\tLabelType\022\032\n\026LABEL_TYPE_UNSPECIFI"
+  "ED\020\000\022\033\n\027LABEL_TYPE_TENSOR_VALUE\020\001\022\032\n\026LAB"
+  "EL_TYPE_TENSOR_AXIS\020\0022\264\002\n\016MLModelService"
+  "\022\211\001\n\005Infer\022%.viam.service.mlmodel.v1.Inf"
+  "erRequest\032&.viam.service.mlmodel.v1.Infe"
+  "rResponse\"1\202\323\344\223\002+\")/viam/api/v1/service/"
+  "mlmodel/{name}/infer\022\225\001\n\010Metadata\022(.viam"
+  ".service.mlmodel.v1.MetadataRequest\032).vi"
+  "am.service.mlmodel.v1.MetadataResponse\"4"
+  "\202\323\344\223\002.\022,/viam/api/v1/service/mlmodel/{na"
+  "me}/metadataBA\n\033com.viam.service.mlmodel"
+  ".v1Z\"go.viam.com/api/service/mlmodel/v1b"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_deps[2] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
@@ -258,7 +259,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmlmodel_2
 };
 static ::_pbi::once_flag descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto = {
-    false, false, 1486, descriptor_table_protodef_service_2fmlmodel_2fv1_2fmlmodel_2eproto,
+    false, false, 1487, descriptor_table_protodef_service_2fmlmodel_2fv1_2fmlmodel_2eproto,
     "service/mlmodel/v1/mlmodel.proto",
     &descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_once, descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_deps, 2, 7,
     schemas, file_default_instances, TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets,
@@ -1486,12 +1487,14 @@ void TensorInfo::clear_extra() {
 TensorInfo::TensorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  shape_(arena),
   associated_files_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.TensorInfo)
 }
 TensorInfo::TensorInfo(const TensorInfo& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
+      shape_(from.shape_),
       associated_files_(from.associated_files_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   name_.InitDefault();
@@ -1523,7 +1526,6 @@ TensorInfo::TensorInfo(const TensorInfo& from)
   } else {
     extra_ = nullptr;
   }
-  n_dim_ = from.n_dim_;
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.TensorInfo)
 }
 
@@ -1540,10 +1542,7 @@ data_type_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   data_type_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&n_dim_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(n_dim_));
+extra_ = nullptr;
 }
 
 TensorInfo::~TensorInfo() {
@@ -1573,6 +1572,7 @@ void TensorInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  shape_.Clear();
   associated_files_.Clear();
   name_.ClearToEmpty();
   description_.ClearToEmpty();
@@ -1581,7 +1581,6 @@ void TensorInfo::Clear() {
     delete extra_;
   }
   extra_ = nullptr;
-  n_dim_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1621,10 +1620,13 @@ const char* TensorInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // int32 n_dim = 4 [json_name = "nDim"];
+      // repeated int32 shape = 4 [json_name = "shape"];
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          n_dim_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_shape(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 32) {
+          _internal_add_shape(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1709,10 +1711,13 @@ uint8_t* TensorInfo::_InternalSerialize(
         3, this->_internal_data_type(), target);
   }
 
-  // int32 n_dim = 4 [json_name = "nDim"];
-  if (this->_internal_n_dim() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_n_dim(), target);
+  // repeated int32 shape = 4 [json_name = "shape"];
+  {
+    int byte_size = _shape_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(
+          4, _internal_shape(), byte_size, target);
+    }
   }
 
   // repeated .viam.service.mlmodel.v1.File associated_files = 5 [json_name = "associatedFiles"];
@@ -1745,6 +1750,20 @@ size_t TensorInfo::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated int32 shape = 4 [json_name = "shape"];
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      Int32Size(this->shape_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _shape_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
 
   // repeated .viam.service.mlmodel.v1.File associated_files = 5 [json_name = "associatedFiles"];
   total_size += 1UL * this->_internal_associated_files_size();
@@ -1781,11 +1800,6 @@ size_t TensorInfo::ByteSizeLong() const {
         *extra_);
   }
 
-  // int32 n_dim = 4 [json_name = "nDim"];
-  if (this->_internal_n_dim() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_n_dim());
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -1808,6 +1822,7 @@ void TensorInfo::MergeFrom(const TensorInfo& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  shape_.MergeFrom(from.shape_);
   associated_files_.MergeFrom(from.associated_files_);
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
@@ -1820,9 +1835,6 @@ void TensorInfo::MergeFrom(const TensorInfo& from) {
   }
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
-  }
-  if (from._internal_n_dim() != 0) {
-    _internal_set_n_dim(from._internal_n_dim());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1843,6 +1855,7 @@ void TensorInfo::InternalSwap(TensorInfo* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  shape_.InternalSwap(&other->shape_);
   associated_files_.InternalSwap(&other->associated_files_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
@@ -1856,12 +1869,7 @@ void TensorInfo::InternalSwap(TensorInfo* other) {
       &data_type_, lhs_arena,
       &other->data_type_, rhs_arena
   );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TensorInfo, n_dim_)
-      + sizeof(TensorInfo::n_dim_)
-      - PROTOBUF_FIELD_OFFSET(TensorInfo, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TensorInfo::GetMetadata() const {
