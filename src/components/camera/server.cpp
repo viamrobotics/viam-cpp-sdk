@@ -125,10 +125,10 @@
     return ::grpc::Status();
 }
 
-void CameraServer::register_server() {
+void CameraServer::register_server(std::shared_ptr<Server> server) {
     viam::component::camera::v1::CameraService::Service* camera =
         static_cast<viam::component::camera::v1::CameraService::Service*>(this);
-    Server::register_service(camera);
+    server->register_service(camera);
 }
 
 std::shared_ptr<SubtypeService> CameraServer::get_sub_svc() {
