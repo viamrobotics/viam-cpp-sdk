@@ -9,3 +9,6 @@
 
 # Ignore clang cache.
 /.cache/
+
+# ignore doxygen output
+/etc/docs/api/*
