@@ -1077,13 +1077,35 @@ class TensorInfo final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kShapeFieldNumber = 4,
     kAssociatedFilesFieldNumber = 5,
     kNameFieldNumber = 1,
     kDescriptionFieldNumber = 2,
     kDataTypeFieldNumber = 3,
     kExtraFieldNumber = 99,
-    kNDimFieldNumber = 4,
   };
+  // repeated int32 shape = 4 [json_name = "shape"];
+  int shape_size() const;
+  private:
+  int _internal_shape_size() const;
+  public:
+  void clear_shape();
+  private:
+  int32_t _internal_shape(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_shape() const;
+  void _internal_add_shape(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_shape();
+  public:
+  int32_t shape(int index) const;
+  void set_shape(int index, int32_t value);
+  void add_shape(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      shape() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_shape();
+
   // repeated .viam.service.mlmodel.v1.File associated_files = 5 [json_name = "associatedFiles"];
   int associated_files_size() const;
   private:
@@ -1162,15 +1184,6 @@ class TensorInfo final :
       ::PROTOBUF_NAMESPACE_ID::Struct* extra);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
 
-  // int32 n_dim = 4 [json_name = "nDim"];
-  void clear_n_dim();
-  int32_t n_dim() const;
-  void set_n_dim(int32_t value);
-  private:
-  int32_t _internal_n_dim() const;
-  void _internal_set_n_dim(int32_t value);
-  public:
-
   // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.TensorInfo)
  private:
   class _Internal;
@@ -1178,12 +1191,13 @@ class TensorInfo final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > shape_;
+  mutable std::atomic<int> _shape_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::mlmodel::v1::File > associated_files_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_type_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
-  int32_t n_dim_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
 };
@@ -2133,24 +2147,51 @@ inline void TensorInfo::set_allocated_data_type(std::string* data_type) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.TensorInfo.data_type)
 }
 
-// int32 n_dim = 4 [json_name = "nDim"];
-inline void TensorInfo::clear_n_dim() {
-  n_dim_ = 0;
+// repeated int32 shape = 4 [json_name = "shape"];
+inline int TensorInfo::_internal_shape_size() const {
+  return shape_.size();
 }
-inline int32_t TensorInfo::_internal_n_dim() const {
-  return n_dim_;
+inline int TensorInfo::shape_size() const {
+  return _internal_shape_size();
 }
-inline int32_t TensorInfo::n_dim() const {
-  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.TensorInfo.n_dim)
-  return _internal_n_dim();
+inline void TensorInfo::clear_shape() {
+  shape_.Clear();
 }
-inline void TensorInfo::_internal_set_n_dim(int32_t value) {
-  
-  n_dim_ = value;
+inline int32_t TensorInfo::_internal_shape(int index) const {
+  return shape_.Get(index);
 }
-inline void TensorInfo::set_n_dim(int32_t value) {
-  _internal_set_n_dim(value);
-  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.TensorInfo.n_dim)
+inline int32_t TensorInfo::shape(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.TensorInfo.shape)
+  return _internal_shape(index);
+}
+inline void TensorInfo::set_shape(int index, int32_t value) {
+  shape_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.TensorInfo.shape)
+}
+inline void TensorInfo::_internal_add_shape(int32_t value) {
+  shape_.Add(value);
+}
+inline void TensorInfo::add_shape(int32_t value) {
+  _internal_add_shape(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.TensorInfo.shape)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+TensorInfo::_internal_shape() const {
+  return shape_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+TensorInfo::shape() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.TensorInfo.shape)
+  return _internal_shape();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+TensorInfo::_internal_mutable_shape() {
+  return &shape_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+TensorInfo::mutable_shape() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.TensorInfo.shape)
+  return _internal_mutable_shape();
 }
 
 // repeated .viam.service.mlmodel.v1.File associated_files = 5 [json_name = "associatedFiles"];
