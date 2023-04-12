@@ -79,6 +79,9 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
+    services/mlmodel/client.cpp
+    services/mlmodel/mlmodel.cpp
+    services/mlmodel/server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
@@ -132,6 +135,9 @@ target_sources(viamsdk
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/server.hpp
+      ../../viam/sdk/services/mlmodel/client.hpp
+      ../../viam/sdk/services/mlmodel/mlmodel.hpp
+      ../../viam/sdk/services/mlmodel/server.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
