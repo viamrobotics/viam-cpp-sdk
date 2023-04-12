@@ -27,7 +27,7 @@ class CameraServer : public ResourceServerBase,
         const ::viam::component::camera::v1::GetPropertiesRequest* request,
         ::viam::component::camera::v1::GetPropertiesResponse* response) override;
 
-    void register_server() override;
+    void register_server(std::shared_ptr<Server> server) override;
 
     std::shared_ptr<SubtypeService> get_sub_svc();
 
