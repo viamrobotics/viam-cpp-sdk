@@ -30,12 +30,14 @@ using Viam::SDK::Options;
 using Viam::SDK::ViamChannel;
 
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
+/// @defgroup Robot Classes related to a `Robot` representation.
 
 /// @class RobotClient client.h "robot/client.h"
 /// @brief gRPC client for a robot, to be used for all interactions with a robot.
 /// There are two ways to instantiate a robot:
 ///   - `RobotClient::at_address(...)`
 ///   - `RobotClient::with_channel(...)`
+/// @ingroup Robot
 ///
 /// You must `close()` a robot when finished with it in order to release its resources.
 /// Robots creates via `at_address` will automatically close, but robots created via

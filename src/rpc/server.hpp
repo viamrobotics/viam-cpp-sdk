@@ -23,13 +23,13 @@ class Server {
     // grpc service type, and convert under the hood
     /// @brief Registers a gRPC service.
     /// @param service The gRPC service to be registered.
-    /// @raises `std::runtime_error` if called after the server has been `start`ed.
+    /// @throws `std::runtime_error` if called after the server has been `start`ed.
     void register_service(grpc::Service* service);
 
     /// @brief Adds a listening port to the server.
     /// @param address The address to listen at.
-    /// @creds The server credentials; defaults to a insecure server credentials.
-    /// @thows `std::runtime_error` if called after the server has been `start`ed.
+    /// @param The server credentials; defaults to a insecure server credentials.
+    /// @throws `std::runtime_error` if called after the server has been `start`ed.
     void add_listening_port(std::string address,
                             std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 

@@ -12,6 +12,9 @@
 #include <config/resource.hpp>
 #include <robot/client.hpp>
 
+/// @class CameraClient
+/// @brief gRPC client implementation of a `Camera` component.
+/// @ingroup Camera
 class CameraClient : public Camera {
    public:
     AttributeMap do_command(AttributeMap command) override;

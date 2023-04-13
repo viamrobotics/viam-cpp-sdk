@@ -10,6 +10,9 @@
 #include <components/generic/generic.hpp>
 #include <robot/client.hpp>
 
+/// @class GenericClient
+/// @brief gRPC client implementation of a `Generic` component.
+/// @ingroup Generic
 class GenericClient : public Generic {
    public:
     AttributeMap do_command(AttributeMap command) override;

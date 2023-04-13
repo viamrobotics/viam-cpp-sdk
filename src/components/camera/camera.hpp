@@ -15,8 +15,11 @@
 #include <registry/registry.hpp>
 #include <subtype/subtype.hpp>
 
+/// @defgroup Camera Classes related to the `Camera` component.
+
 /// @class CameraSubtype
 /// @brief Defines a `ResourceSubtype` for the `Camera` component.
+/// @ingroup Camera
 class CameraSubtype : public ResourceSubtype {
    public:
     std::shared_ptr<ResourceServerBase> create_resource_server(
@@ -29,6 +32,7 @@ class CameraSubtype : public ResourceSubtype {
 
 /// @class Camera camera.hpp "components/camera/camera.hpp"
 /// @brief A `Camera` represents any physical hardware that can capture frames.
+/// @ingroup Camera
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific camera implementations. This class cannot be used on its own.
