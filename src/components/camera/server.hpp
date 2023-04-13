@@ -1,3 +1,6 @@
+/// @file components/camera/server.hpp
+///
+/// @brief Implements a gRPC server for the `Camera` component.
 #pragma once
 
 #include <common/v1/common.pb.h>

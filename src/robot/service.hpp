@@ -1,3 +1,6 @@
+/// @file robot/service.cpp
+///
+/// @brief gRPC service implementation for a `robot`.
 #pragma once
 
 #include <string>

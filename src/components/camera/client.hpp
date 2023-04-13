@@ -1,3 +1,6 @@
+/// @file components/camera/client.hpp
+///
+/// @brief Implements a gRPC client for the `Camera` component.
 #pragma once
 
 #include <grpcpp/channel.h>

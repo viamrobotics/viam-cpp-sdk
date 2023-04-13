@@ -1,4 +1,4 @@
-/// @file generic/server.hpp
+/// @file components/generic/server.hpp
 ///
 /// @brief Implements a gRPC server for the `Generic` component.
 #pragma once

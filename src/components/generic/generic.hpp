@@ -12,6 +12,8 @@
 #include <subtype/subtype.hpp>
 
 // TODO(RSDK-1742): one class per header
+/// @class GenericSubtype
+/// @brief Defines a `ResourceSubtype` for the `Generic` component.
 class GenericSubtype : public ResourceSubtype {
    public:
     std::shared_ptr<ResourceServerBase> create_resource_server(
@@ -24,8 +26,15 @@ class GenericSubtype : public ResourceSubtype {
 
 class Generic : public ComponentBase {
    public:
+    /// @brief Creates a `ResourceSubtype` for the `Generic` component.
     static std::shared_ptr<ResourceSubtype> resource_subtype();
+
+    /// @brief Creates a `Generic` `Subtype`.
     static Subtype subtype();
+
+    /// @brief Send/receive arbitrary commands to the resource.
+    /// @param Command the command to execute.
+    /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
    protected:

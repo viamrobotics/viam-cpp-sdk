@@ -1,4 +1,4 @@
-/// @file generic/client.hpp
+/// @file components/generic/client.hpp
 ///
 /// @brief Implements a gRPC client for the `Generic` component.
 #pragma once
@@ -12,9 +12,6 @@
 
 class GenericClient : public Generic {
    public:
-    /// @brief Send/receive arbitrary commands to the resource.
-    /// @param Command the command to execute.
-    /// @return The result of the executed command.
     AttributeMap do_command(AttributeMap command) override;
     GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
         : Generic(std::move(name)),
