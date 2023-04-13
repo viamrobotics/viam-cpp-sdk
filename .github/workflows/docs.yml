@@ -20,6 +20,9 @@ jobs:
       
       - name: install Doxygen
         uses: ssciwr/doxygen-install@v1
+        
+      - name: create path
+        run: mkdir -p etc/docs/api/current
 
       - name: Generate docs
         run: doxygen Doxyfile
