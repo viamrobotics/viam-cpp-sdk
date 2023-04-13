@@ -1,3 +1,6 @@
+/// @file components/camera/server.hpp
+///
+/// @brief Implements a gRPC server for the `Camera` component.
 #pragma once
 
 #include <common/v1/common.pb.h>
@@ -9,6 +12,9 @@
 namespace viam {
 namespace cppsdk {
 
+/// @class CameraServer
+/// @brief gRPC server implementation of a `Camera` component.
+/// @ingroup Camera
 class CameraServer : public ResourceServerBase,
                      public viam::component::camera::v1::CameraService::Service {
    public:

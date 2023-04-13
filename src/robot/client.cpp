@@ -57,12 +57,14 @@ using viam::robot::v1::Status;
 const std::string k_stream_removed = "Stream removed";
 
 RobotClient::~RobotClient() {
-    this->close();
+    if (should_close_channel) {
+        this->close();
+    }
 }
 
 void RobotClient::close() {
     should_refresh.store(false);
-    for (std::shared_ptr<std::thread> t : threads) {
+    for (std::shared_ptr<std::thread> t : threads_) {
         t->~thread();
     }
     stop_all();
@@ -241,7 +243,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
         // close/destructor lets us shutdown gracefully. See also address sanitizer,
         // UB sanitizer
         t->detach();
-        robot->threads.push_back(t);
+        robot->threads_.push_back(t);
     };
 
     robot->refresh();

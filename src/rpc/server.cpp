@@ -21,7 +21,7 @@ void Server::register_service(grpc::Service* service) {
 
 void Server::start() {
     if (server_) {
-        throw "Attempted to start server that was already running";
+        throw std::runtime_error("Attempted to start server that was already running");
     }
 
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();

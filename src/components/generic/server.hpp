@@ -1,4 +1,4 @@
-/// @file generic/server.hpp
+/// @file components/generic/server.hpp
 ///
 /// @brief Implements a gRPC server for the `Generic` component.
 #pragma once
@@ -12,6 +12,9 @@
 namespace viam {
 namespace cppsdk {
 
+/// @class GenericServer
+/// @brief gRPC server implementation of a `Generic` component.
+/// @ingroup Generic
 class GenericServer : public ResourceServerBase,
                       public viam::component::generic::v1::GenericService::Service {
    public:

@@ -1,3 +1,6 @@
+/// @file components/camera/client.hpp
+///
+/// @brief Implements a gRPC client for the `Camera` component.
 #pragma once
 
 #include <grpcpp/channel.h>
@@ -12,6 +15,9 @@
 namespace viam {
 namespace cppsdk {
 
+/// @class CameraClient
+/// @brief gRPC client implementation of a `Camera` component.
+/// @ingroup Camera
 class CameraClient : public Camera {
    public:
     AttributeMap do_command(AttributeMap command) override;
