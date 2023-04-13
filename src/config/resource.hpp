@@ -10,6 +10,9 @@
 #include <referenceframe/frame.hpp>
 #include <resource/resource.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 typedef std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> AttributeMap;
 
 class ResourceLevelServiceConfig {
@@ -41,3 +44,6 @@ class Resource {
    private:
     void fix_api();
 };
+
+}  // namespace cppsdk
+}  // namespace viam

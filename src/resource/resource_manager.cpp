@@ -9,6 +9,8 @@
 #include <resource/resource_type.hpp>
 #include <services/service_base.hpp>
 
+using namespace viam::cppsdk;
+
 ResourceManager::ResourceManager() {}
 
 // Register a new resource with the registry.

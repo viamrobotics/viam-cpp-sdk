@@ -6,6 +6,9 @@
 #include <robot/client.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class Module {
    public:
     std::mutex lock;
@@ -19,3 +22,6 @@ class Module {
     void set_ready();
     Module(std::string addr);
 };
+
+}  // namespace cppsdk
+}  // namespace viam

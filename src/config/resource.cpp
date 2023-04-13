@@ -14,6 +14,8 @@
 #include <referenceframe/frame.hpp>
 #include <resource/resource.hpp>
 
+using namespace viam::cppsdk;
+
 Name Resource::resource_name() {
     try {
         this->fix_api();

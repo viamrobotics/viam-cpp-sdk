@@ -6,6 +6,9 @@
 
 #include <common/v1/common.pb.h>
 
+namespace viam {
+namespace cppsdk {
+
 class Type {
    public:
     Type(std::string namespace_, std::string resource_type);
@@ -124,3 +127,6 @@ struct std::hash<Subtype> {
         return std::hash<std::string>()(key.to_string());
     };
 };
+
+}  // namespace cppsdk
+}  // namespace viam

@@ -5,6 +5,8 @@
 #include <common/proto_type.hpp>
 #include <config/resource.hpp>
 
+using namespace viam::cppsdk;
+
 AttributeMap fake_map() {
     std::shared_ptr<ProtoType> proto_ptr =
         std::make_shared<ProtoType>(std::move(std::string("hello")));

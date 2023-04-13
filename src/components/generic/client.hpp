@@ -10,6 +10,9 @@
 #include <components/generic/generic.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class GenericClient : public Generic {
    public:
     /// @brief Send/receive arbitrary commands to the resource.
@@ -33,3 +36,6 @@ class GenericClient : public Generic {
     std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

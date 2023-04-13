@@ -20,6 +20,8 @@
 #include <rpc/server.hpp>
 #include <services/service_base.hpp>
 
+using namespace viam::cppsdk;
+
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     lock.lock();
 

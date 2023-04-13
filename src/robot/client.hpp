@@ -17,14 +17,15 @@
 #include <rpc/dial.hpp>
 #include <services/service_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using grpc::Channel;
 using viam::common::v1::ResourceName;
 using viam::common::v1::Transform;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
-using Viam::SDK::Options;
-using Viam::SDK::ViamChannel;
 
 /// gRPC client for a robot. This class should be used for all interactions with
 /// a robot.
@@ -115,3 +116,6 @@ class RobotClient {
     ResourceManager resource_manager;
     void refresh_every();
 };
+
+}  // namespace cppsdk
+}  // namespace viam

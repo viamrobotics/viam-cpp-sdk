@@ -4,6 +4,9 @@
 #include <grpcpp/security/server_credentials.h>
 #include <grpcpp/server_builder.h>
 
+namespace viam {
+namespace cppsdk {
+
 /// A grpc server
 class Server {
    public:
@@ -47,3 +50,6 @@ class Server {
     std::unique_ptr<grpc::ServerBuilder> builder_;
     std::unique_ptr<grpc::Server> server_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

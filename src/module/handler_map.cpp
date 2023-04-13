@@ -11,6 +11,8 @@
 
 #include <resource/resource.hpp>
 
+using namespace viam::cppsdk;
+
 viam::module::v1::HandlerMap HandlerMap_::to_proto() {
     viam::module::v1::HandlerMap proto;
     for (auto& h : this->handles) {

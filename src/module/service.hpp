@@ -8,6 +8,9 @@
 #include <resource/resource_base.hpp>
 #include <rpc/server.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class ModuleService_ : public ComponentServiceBase,
                        public viam::module::v1::ModuleService::Service {
    public:
@@ -47,3 +50,6 @@ class ModuleService_ : public ComponentServiceBase,
     std::shared_ptr<RobotClient> parent;
     std::string parent_addr;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

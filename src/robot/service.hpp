@@ -17,6 +17,9 @@
 #include <resource/resource.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
@@ -49,3 +52,6 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,
                        int interval);
 };
+
+}  // namespace cppsdk
+}  // namespace viam

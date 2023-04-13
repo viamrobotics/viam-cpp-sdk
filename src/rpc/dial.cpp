@@ -17,9 +17,7 @@ extern "C" int free_rust_runtime(void* ptr);
 extern "C" void free_string(const char* s);
 extern "C" char* dial(const char* uri, const char* payload, bool allow_insecure, void* ptr);
 
-using Viam::SDK::Credentials;
-using Viam::SDK::DialOptions;
-using Viam::SDK::ViamChannel;
+using namespace viam::cppsdk;
 
 void ViamChannel::close() {
     if (closed) {

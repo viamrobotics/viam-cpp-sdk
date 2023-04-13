@@ -3,6 +3,8 @@
 #include <components/generic/generic.hpp>
 #include <rpc/server.hpp>
 
+using namespace viam::cppsdk;
+
 ::grpc::Status GenericServer::DoCommand(::grpc::ServerContext* context,
                                         const ::viam::common::v1::DoCommandRequest* request,
                                         ::viam::common::v1::DoCommandResponse* response) {

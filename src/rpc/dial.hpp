@@ -6,9 +6,8 @@
 #include <boost/optional.hpp>
 #include <grpcpp/channel.h>
 
-// TODO(RSDK-1742): make use of namespaces throughout repo
-namespace Viam {
-namespace SDK {
+namespace viam {
+namespace cppsdk {
 
 class DialOptions;
 class ViamChannel {
@@ -81,5 +80,5 @@ class Options {
     }
 };
 
-}  // namespace SDK
-}  // namespace Viam
+}  // namespace cppsdk
+}  // namespace viam

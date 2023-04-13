@@ -20,6 +20,8 @@
 #include <robot/client.hpp>
 #include <services/service_base.hpp>
 
+using namespace viam::cppsdk;
+
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;

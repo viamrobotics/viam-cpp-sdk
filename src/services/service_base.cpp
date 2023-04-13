@@ -7,6 +7,8 @@
 #include <common/utils.hpp>
 #include <resource/resource_base.hpp>
 
+using namespace viam::cppsdk;
+
 ResourceName ServiceBase::get_resource_name(std::string name) {
     // TODO (RSDK-1631): test, confirm whether we need to split on
     // "viam.components" here

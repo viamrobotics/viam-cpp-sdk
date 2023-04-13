@@ -12,6 +12,8 @@
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
 
+using namespace viam::cppsdk;
+
 const std::regex NAME_REGEX("^([\\w-]+:[\\w-]+:(?:[\\w-]+))\\/?([\\w-]+:(?:[\\w-]+:)*)?(.+)?$");
 
 const std::regex MODEL_REGEX("^([\\w-]+):([\\w-]+):([\\w-]+)$");

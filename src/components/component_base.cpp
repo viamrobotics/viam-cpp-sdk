@@ -11,6 +11,7 @@
 #include <resource/resource_type.hpp>
 
 using viam::common::v1::ResourceName;
+using namespace viam::cppsdk;
 
 ResourceName ComponentBase::get_resource_name(std::string name) {
     // TODO (RSDK-1631): test, confirm whether we need to split on

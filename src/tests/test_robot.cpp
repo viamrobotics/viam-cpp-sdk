@@ -22,6 +22,8 @@
 #include <common/utils.hpp>
 #include <robot/service.hpp>
 
+using namespace viam::cppsdk;
+
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;

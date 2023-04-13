@@ -3,6 +3,8 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/security/server_credentials.h>
 
+using namespace viam::cppsdk;
+
 Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {}
 
 Server::~Server() {

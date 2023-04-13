@@ -18,6 +18,8 @@
 #include <tests/mocks/camera_mocks.hpp>
 #include <tests/test_utils.hpp>
 
+using namespace viam::cppsdk;
+
 BOOST_AUTO_TEST_SUITE(test_camera)
 
 std::shared_ptr<MockCamera> camera = MockCamera::get_mock_camera();

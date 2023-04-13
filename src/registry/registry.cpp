@@ -21,6 +21,7 @@
 #include <services/service_base.hpp>
 
 using viam::robot::v1::Status;
+using namespace viam::cppsdk;
 
 void Registry::register_resource(std::shared_ptr<ModelRegistration> resource) {
     std::string reg_key = resource->subtype.to_string() + "/" + resource->model.to_string();

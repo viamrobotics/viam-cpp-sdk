@@ -2,8 +2,8 @@
 
 #include <app/v1/robot.pb.h>
 
-namespace Viam {
-namespace SDK {
+namespace viam {
+namespace cppsdk {
 
 enum OrientationType {
     AxisAngles,
@@ -43,5 +43,5 @@ class translation {
     double x, y, z;
     viam::app::v1::Translation to_proto();
 };
-}  // namespace SDK
-}  // namespace Viam
+}  // namespace cppsdk
+}  // namespace viam

@@ -37,6 +37,8 @@
 #include <rpc/server.hpp>
 #include <subtype/subtype.hpp>
 
+using namespace viam::cppsdk;
+
 namespace {
 Dependencies get_dependencies(ModuleService_* m,
                               google::protobuf::RepeatedPtrField<std::string> proto) {

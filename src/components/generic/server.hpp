@@ -9,6 +9,9 @@
 #include <resource/resource_server_base.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class GenericServer : public ResourceServerBase,
                       public viam::component::generic::v1::GenericService::Service {
    public:
@@ -25,3 +28,6 @@ class GenericServer : public ResourceServerBase,
    private:
     std::shared_ptr<SubtypeService> sub_svc;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

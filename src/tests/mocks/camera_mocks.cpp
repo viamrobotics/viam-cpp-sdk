@@ -8,6 +8,8 @@
 #include <components/camera/server.hpp>
 #include <tests/test_utils.hpp>
 
+using namespace viam::cppsdk;
+
 AttributeMap MockCamera::do_command(AttributeMap command) {
     return map;
 }

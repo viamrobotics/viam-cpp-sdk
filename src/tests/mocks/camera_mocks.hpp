@@ -8,6 +8,9 @@
 #include <components/camera/client.hpp>
 #include <components/camera/server.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class MockCamera : public Camera {
    public:
     AttributeMap do_command(AttributeMap command) override;
@@ -131,3 +134,6 @@ class MockCameraClient : public CameraClient {
     MockCameraClient(std::string name)
         : CameraClient(std::move(name), std::make_unique<MockCameraStub>()){};
 };
+
+}  // namespace cppsdk
+}  // namespace viam

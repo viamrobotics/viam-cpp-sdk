@@ -15,6 +15,8 @@
 #include <tests/mocks/generic_mocks.hpp>
 #include <tests/test_utils.hpp>
 
+using namespace viam::cppsdk;
+
 BOOST_AUTO_TEST_SUITE(generic_suite)
 
 std::shared_ptr<MockGeneric> generic = MockGeneric::get_mock_generic();

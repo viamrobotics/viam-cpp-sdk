@@ -8,6 +8,8 @@
 #include <common/utils.hpp>
 #include <resource/resource.hpp>
 
+using namespace viam::cppsdk;
+
 grpc::StatusCode ResourceBase::stop(std::unordered_map<std::string, ProtoType*> extra) {
     return stop();
 }

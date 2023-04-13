@@ -7,6 +7,8 @@
 
 #include <spatialmath/orientation.hpp>
 
+using namespace viam::cppsdk;
+
 viam::common::v1::Sphere GeometryConfig::sphere_proto() {
     viam::common::v1::Sphere sphere;
     sphere.set_radius_mm(r);

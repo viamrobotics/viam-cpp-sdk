@@ -9,6 +9,8 @@
 #include <components/generic/server.hpp>
 #include <tests/test_utils.hpp>
 
+using namespace viam::cppsdk;
+
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
 MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {

@@ -7,6 +7,8 @@
 
 #include <subtype/subtype.hpp>
 
+using namespace viam::cppsdk;
+
 Module::Module(std::string addr) : addr(addr){};
 
 void Module::set_ready() {

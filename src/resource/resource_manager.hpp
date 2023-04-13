@@ -6,6 +6,9 @@
 #include <resource/resource_base.hpp>
 #include <resource/resource_type.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class ResourceManager {
    public:
     std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
@@ -25,3 +28,6 @@ class ResourceManager {
    private:
     ResourceManager(std::vector<std::shared_ptr<ResourceBase>> resources);
 };
+
+}  // namespace cppsdk
+}  // namespace viam

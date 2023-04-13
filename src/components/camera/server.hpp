@@ -6,6 +6,9 @@
 #include <resource/resource_server_base.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class CameraServer : public ResourceServerBase,
                      public viam::component::camera::v1::CameraService::Service {
    public:
@@ -37,3 +40,6 @@ class CameraServer : public ResourceServerBase,
    private:
     std::shared_ptr<SubtypeService> sub_svc;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

@@ -9,6 +9,9 @@
 #include <config/resource.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class CameraClient : public Camera {
    public:
     AttributeMap do_command(AttributeMap command) override;
@@ -32,3 +35,6 @@ class CameraClient : public Camera {
     std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam
