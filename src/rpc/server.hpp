@@ -1,46 +1,42 @@
+/// @file rpc/server.hpp
+///
+/// @brief Defines the `Server` class.
 #pragma once
 
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/security/server_credentials.h>
 #include <grpcpp/server_builder.h>
 
-/// A grpc server
+/// @class Server server.hpp "rpc/server.hpp"
+/// @brief Defines gRPC `Server` functionality.
 class Server {
    public:
     Server();
     ~Server();
 
-    /// Starts the grpc server. This can only be called once, and will throw on
+    /// @brief Starts the grpc server. Can only be called once.
+    /// @throws `std::runtime_error` if the server was already `start`ed.
     /// repeated calls.
     void start();
 
     // TODO: make `register_service` take one of our types as an arg rather than a
     // grpc service type, and convert under the hood
-    /// registers a grpc service.
-    ///
-    /// Args:
-    /// 	service: the grpc service to be registered
-    ///
-    /// Raises:
-    /// 	Must be called before starting the server; new services cannot be
-    /// registered after 	the server starts. Attempting to do so will throw an
-    /// error
+    /// @brief Registers a gRPC service.
+    /// @param service The gRPC service to be registered.
+    /// @throws `std::runtime_error` if called after the server has been `start`ed.
     void register_service(grpc::Service* service);
 
-    /// Adds a listening port to the server.
-    /// Args:
-    /// 	address: the address to listen at
-    ///		creds: server credentials. defaults to insecure server
-    /// credentials
-    ///
-    ///	Raises:
-    ///		Must be called before starting the server. Attempting to call
-    /// after
-    /// the server has 		started will throw an error
+    /// @brief Adds a listening port to the server.
+    /// @param address The address to listen at.
+    /// @param creds The server credentials; defaults to a insecure server credentials.
+    /// @throws `std::runtime_error` if called after the server has been `start`ed.
     void add_listening_port(std::string address,
                             std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 
+    /// @brief waits on server close, only returning when the server is closed.
     void wait();
+
+    /// @brief Shutdown the gRPC server.
     void shutdown();
 
    private:

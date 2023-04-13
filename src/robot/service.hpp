@@ -1,3 +1,6 @@
+/// @file robot/service.cpp
+///
+/// @brief gRPC service implementation for a `robot`.
 #pragma once
 
 #include <string>
@@ -21,6 +24,9 @@ using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
 
+/// @class RobotService_ service.hpp "robot/service.hpp"
+/// @brief a gRPC service for a robot.
+/// @ingroup Robot
 class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
    public:
     RobotService_();
