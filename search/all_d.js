@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['quaternion_0',['quaternion',['../classViam_1_1SDK_1_1quaternion.html',1,'Viam::SDK']]]
+  ['point_5fcloud_0',['point_cloud',['../structCamera_1_1point__cloud.html',1,'Camera']]],
+  ['properties_1',['properties',['../structCamera_1_1properties.html',1,'Camera']]],
+  ['prototype_2',['ProtoType',['../classProtoType.html',1,'']]]
 ];

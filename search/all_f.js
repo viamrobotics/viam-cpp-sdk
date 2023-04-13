@@ -1,9 +1,25 @@
 var searchData=
 [
-  ['server_0',['Server',['../classServer.html',1,'']]],
-  ['server_2ehpp_1',['server.hpp',['../components_2generic_2server_8hpp.html',1,'']]],
-  ['servicebase_2',['ServiceBase',['../classServiceBase.html',1,'']]],
-  ['start_3',['start',['../classServer.html#a7eac07d2582fa01c2671362efa955b31',1,'Server']]],
-  ['subtype_4',['Subtype',['../classSubtype.html',1,'']]],
-  ['subtypeservice_5',['SubtypeService',['../classSubtypeService.html',1,'']]]
+  ['raw_5fimage_0',['raw_image',['../structCamera_1_1raw__image.html',1,'Camera']]],
+  ['refresh_5finterval_1',['refresh_interval',['../classViam_1_1SDK_1_1Options.html#a5aa8388c78c15b4297ed4a995384cd27',1,'Viam::SDK::Options']]],
+  ['register_5fresource_2',['register_resource',['../classRegistry.html#a6181d6733b22ca276d48eec39375cbd4',1,'Registry']]],
+  ['register_5fservice_3',['register_service',['../classServer.html#af5fcece11fe0663772054cd371c69022',1,'Server']]],
+  ['register_5fsubtype_4',['register_subtype',['../classRegistry.html#a0bf30ed891a84845f4e5f769c88287c4',1,'Registry']]],
+  ['registered_5fresources_5',['registered_resources',['../classRegistry.html#a6e78488c8e92f2505a63e7189b75962d',1,'Registry']]],
+  ['registry_6',['Registry',['../classRegistry.html',1,'']]],
+  ['registry_2ehpp_7',['registry.hpp',['../registry_8hpp.html',1,'']]],
+  ['resource_8',['Resource',['../classResource.html',1,'']]],
+  ['resource_5fby_5fname_9',['resource_by_name',['../classRobotClient.html#a07ed91301edb0ac6639a3ab04601693f',1,'RobotClient::resource_by_name(std::string name)'],['../classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94',1,'RobotClient::resource_by_name(const ResourceName &amp;name)']]],
+  ['resource_5fsubtype_10',['resource_subtype',['../classGeneric.html#a03f5da25bee5d5c29b3e17088b5fc5ce',1,'Generic::resource_subtype()'],['../classCamera.html#a5c34e4739fbddb6b7a936ec2f4c0f475',1,'Camera::resource_subtype()']]],
+  ['resourcebase_11',['ResourceBase',['../classResourceBase.html',1,'']]],
+  ['resourcelevelserviceconfig_12',['ResourceLevelServiceConfig',['../classResourceLevelServiceConfig.html',1,'']]],
+  ['resourcemanager_13',['ResourceManager',['../classResourceManager.html',1,'']]],
+  ['resourcenameequal_14',['ResourceNameEqual',['../classResourceNameEqual.html',1,'']]],
+  ['resourcenamehasher_15',['ResourceNameHasher',['../classResourceNameHasher.html',1,'']]],
+  ['resourceserverbase_16',['ResourceServerBase',['../classResourceServerBase.html',1,'']]],
+  ['resourcesubtype_17',['ResourceSubtype',['../classResourceSubtype.html',1,'']]],
+  ['resourcetype_18',['ResourceType',['../classResourceType.html',1,'']]],
+  ['robotclient_19',['RobotClient',['../classRobotClient.html',1,'']]],
+  ['robotservice_5f_20',['RobotService_',['../classRobotService__.html',1,'']]],
+  ['rpcsubtype_21',['RPCSubtype',['../classRPCSubtype.html',1,'']]]
 ];

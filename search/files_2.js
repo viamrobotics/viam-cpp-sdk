@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['server_2ehpp_0',['server.hpp',['../components_2generic_2server_8hpp.html',1,'']]]
+  ['registry_2ehpp_0',['registry.hpp',['../registry_8hpp.html',1,'']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['register_5fresource_0',['register_resource',['../classRegistry.html#a6181d6733b22ca276d48eec39375cbd4',1,'Registry']]],
-  ['register_5fservice_1',['register_service',['../classServer.html#af5fcece11fe0663772054cd371c69022',1,'Server']]],
-  ['resource_5fby_5fname_2',['resource_by_name',['../classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94',1,'RobotClient']]]
+  ['from_5fproto_0',['from_proto',['../classCamera.html#ab1a03257ef07dfe9fd132c03e3684883',1,'Camera::from_proto(viam::component::camera::v1::GetImageResponse proto)'],['../classCamera.html#aa8c117c29618ff8c829fa47798703b85',1,'Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto)'],['../classCamera.html#ab8f9af7ac926bb4b9eacb5ed3bffd8e9',1,'Camera::from_proto(viam::component::camera::v1::IntrinsicParameters proto)'],['../classCamera.html#ac1b47e187d0593a73e3c06c05959f74d',1,'Camera::from_proto(viam::component::camera::v1::DistortionParameters proto)'],['../classCamera.html#a9f44f9ee1249b460c03df5269c883706',1,'Camera::from_proto(viam::component::camera::v1::GetPropertiesResponse proto)']]],
+  ['from_5fstr_1',['from_str',['../classModel.html#a473c6c8f6f8ff8970b562b5c080f85b2',1,'Model']]]
 ];

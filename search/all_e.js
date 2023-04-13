@@ -1,21 +1,4 @@
 var searchData=
 [
-  ['raw_5fimage_0',['raw_image',['../structCamera_1_1raw__image.html',1,'Camera']]],
-  ['refresh_5finterval_1',['refresh_interval',['../classViam_1_1SDK_1_1Options.html#a5aa8388c78c15b4297ed4a995384cd27',1,'Viam::SDK::Options']]],
-  ['register_5fresource_2',['register_resource',['../classRegistry.html#a6181d6733b22ca276d48eec39375cbd4',1,'Registry']]],
-  ['register_5fservice_3',['register_service',['../classServer.html#af5fcece11fe0663772054cd371c69022',1,'Server']]],
-  ['registry_4',['Registry',['../classRegistry.html',1,'']]],
-  ['resource_5',['Resource',['../classResource.html',1,'']]],
-  ['resource_5fby_5fname_6',['resource_by_name',['../classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94',1,'RobotClient']]],
-  ['resourcebase_7',['ResourceBase',['../classResourceBase.html',1,'']]],
-  ['resourcelevelserviceconfig_8',['ResourceLevelServiceConfig',['../classResourceLevelServiceConfig.html',1,'']]],
-  ['resourcemanager_9',['ResourceManager',['../classResourceManager.html',1,'']]],
-  ['resourcenameequal_10',['ResourceNameEqual',['../classResourceNameEqual.html',1,'']]],
-  ['resourcenamehasher_11',['ResourceNameHasher',['../classResourceNameHasher.html',1,'']]],
-  ['resourceserverbase_12',['ResourceServerBase',['../classResourceServerBase.html',1,'']]],
-  ['resourcesubtype_13',['ResourceSubtype',['../classResourceSubtype.html',1,'']]],
-  ['resourcetype_14',['ResourceType',['../classResourceType.html',1,'']]],
-  ['robotclient_15',['RobotClient',['../classRobotClient.html',1,'']]],
-  ['robotservice_5f_16',['RobotService_',['../classRobotService__.html',1,'']]],
-  ['rpcsubtype_17',['RPCSubtype',['../classRPCSubtype.html',1,'']]]
+  ['quaternion_0',['quaternion',['../classViam_1_1SDK_1_1quaternion.html',1,'Viam::SDK']]]
 ];

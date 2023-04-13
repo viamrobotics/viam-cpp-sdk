@@ -75,28 +75,152 @@ $(function() {
   <div class="headertitle"><div class="title">Registry Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A registry of known resources.  
+ <a href="classRegistry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="registry_8hpp_source.html">registry.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6181d6733b22ca276d48eec39375cbd4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegistry.html#a6181d6733b22ca276d48eec39375cbd4">register_resource</a> (std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt; resource)</td></tr>
+<tr class="memdesc:a6181d6733b22ca276d48eec39375cbd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a resource with the <a class="el" href="classRegistry.html" title="A registry of known resources.">Registry</a>.  <br /></td></tr>
 <tr class="separator:a6181d6733b22ca276d48eec39375cbd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ff5fcbceee915f79987c9611988f200"><td class="memItemLeft" align="right" valign="top"><a id="a2ff5fcbceee915f79987c9611988f200" name="a2ff5fcbceee915f79987c9611988f200"></a>
-static std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lookup_resource</b> (std::string name)</td></tr>
+<tr class="memitem:a2ff5fcbceee915f79987c9611988f200"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegistry.html#a2ff5fcbceee915f79987c9611988f200">lookup_resource</a> (std::string name)</td></tr>
+<tr class="memdesc:a2ff5fcbceee915f79987c9611988f200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
 <tr class="separator:a2ff5fcbceee915f79987c9611988f200"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79b9a1498c5590bff7789ade8c5cf7b6"><td class="memItemLeft" align="right" valign="top"><a id="a79b9a1498c5590bff7789ade8c5cf7b6" name="a79b9a1498c5590bff7789ade8c5cf7b6"></a>
-static std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lookup_resource</b> (<a class="el" href="classSubtype.html">Subtype</a> subtype, <a class="el" href="classModel.html">Model</a> model)</td></tr>
+<tr class="memitem:a79b9a1498c5590bff7789ade8c5cf7b6"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegistry.html#a79b9a1498c5590bff7789ade8c5cf7b6">lookup_resource</a> (<a class="el" href="classSubtype.html">Subtype</a> subtype, <a class="el" href="classModel.html">Model</a> model)</td></tr>
+<tr class="memdesc:a79b9a1498c5590bff7789ade8c5cf7b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
 <tr class="separator:a79b9a1498c5590bff7789ade8c5cf7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bf30ed891a84845f4e5f769c88287c4"><td class="memItemLeft" align="right" valign="top"><a id="a0bf30ed891a84845f4e5f769c88287c4" name="a0bf30ed891a84845f4e5f769c88287c4"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>register_subtype</b> (<a class="el" href="classSubtype.html">Subtype</a> subtype, std::shared_ptr&lt; <a class="el" href="classResourceSubtype.html">ResourceSubtype</a> &gt; resource_subtype)</td></tr>
+<tr class="memitem:a0bf30ed891a84845f4e5f769c88287c4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegistry.html#a0bf30ed891a84845f4e5f769c88287c4">register_subtype</a> (<a class="el" href="classSubtype.html">Subtype</a> subtype, std::shared_ptr&lt; <a class="el" href="classResourceSubtype.html">ResourceSubtype</a> &gt; resource_subtype)</td></tr>
+<tr class="memdesc:a0bf30ed891a84845f4e5f769c88287c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a subtype.  <br /></td></tr>
 <tr class="separator:a0bf30ed891a84845f4e5f769c88287c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2bb1964a5e1ffc7e382adf33cc58eb6"><td class="memItemLeft" align="right" valign="top"><a id="ab2bb1964a5e1ffc7e382adf33cc58eb6" name="ab2bb1964a5e1ffc7e382adf33cc58eb6"></a>
-static std::shared_ptr&lt; <a class="el" href="classResourceSubtype.html">ResourceSubtype</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lookup_subtype</b> (<a class="el" href="classSubtype.html">Subtype</a> subtype)</td></tr>
+<tr class="memitem:ab2bb1964a5e1ffc7e382adf33cc58eb6"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classResourceSubtype.html">ResourceSubtype</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegistry.html#ab2bb1964a5e1ffc7e382adf33cc58eb6">lookup_subtype</a> (<a class="el" href="classSubtype.html">Subtype</a> subtype)</td></tr>
+<tr class="memdesc:ab2bb1964a5e1ffc7e382adf33cc58eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a registered subtype.  <br /></td></tr>
 <tr class="separator:ab2bb1964a5e1ffc7e382adf33cc58eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e78488c8e92f2505a63e7189b75962d"><td class="memItemLeft" align="right" valign="top"><a id="a6e78488c8e92f2505a63e7189b75962d" name="a6e78488c8e92f2505a63e7189b75962d"></a>
-static std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>registered_resources</b> ()</td></tr>
+<tr class="memitem:a6e78488c8e92f2505a63e7189b75962d"><td class="memItemLeft" align="right" valign="top">static std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegistry.html#a6e78488c8e92f2505a63e7189b75962d">registered_resources</a> ()</td></tr>
+<tr class="memdesc:a6e78488c8e92f2505a63e7189b75962d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide information on registered resources.  <br /></td></tr>
 <tr class="separator:a6e78488c8e92f2505a63e7189b75962d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A registry of known resources. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2ff5fcbceee915f79987c9611988f200" name="a2ff5fcbceee915f79987c9611988f200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff5fcbceee915f79987c9611988f200">&#9670;&#160;</a></span>lookup_resource() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt; Registry::lookup_resource </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lookup a given registered resource. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the resource to lookup. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the resource's registration data. </dd></dl>
+
+</div>
+</div>
+<a id="a79b9a1498c5590bff7789ade8c5cf7b6" name="a79b9a1498c5590bff7789ade8c5cf7b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79b9a1498c5590bff7789ade8c5cf7b6">&#9670;&#160;</a></span>lookup_resource() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt; Registry::lookup_resource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSubtype.html">Subtype</a>&#160;</td>
+          <td class="paramname"><em>subtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classModel.html">Model</a>&#160;</td>
+          <td class="paramname"><em>model</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lookup a given registered resource. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subtype</td><td>The subtype of the resource to lookup. </td></tr>
+    <tr><td class="paramname">model</td><td>The model of the resource to lookup. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the resource's registration data. </dd></dl>
+
+</div>
+</div>
+<a id="ab2bb1964a5e1ffc7e382adf33cc58eb6" name="ab2bb1964a5e1ffc7e382adf33cc58eb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2bb1964a5e1ffc7e382adf33cc58eb6">&#9670;&#160;</a></span>lookup_subtype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::shared_ptr&lt; <a class="el" href="classResourceSubtype.html">ResourceSubtype</a> &gt; Registry::lookup_subtype </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSubtype.html">Subtype</a>&#160;</td>
+          <td class="paramname"><em>subtype</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lookup a registered subtype. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subtype</td><td>The subtype to lookup. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <code>shared_ptr</code> to the registered subtype's <code><a class="el" href="classResourceSubtype.html" title="Defines registered Resource creation functionality.">ResourceSubtype</a></code>. </dd></dl>
+
+</div>
+</div>
 <a id="a6181d6733b22ca276d48eec39375cbd4" name="a6181d6733b22ca276d48eec39375cbd4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6181d6733b22ca276d48eec39375cbd4">&#9670;&#160;</a></span>register_resource()</h2>
 
@@ -120,8 +244,93 @@ static std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" hre
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Registers a resource with the <a class="el" href="classRegistry.html">Registry</a> Args: resource (<a class="el" href="classModelRegistration.html">ModelRegistration</a>): object containing resource registration data</p>
-<p>Raises: throws error if resource already exists in the registry </p>
+
+<p>Registers a resource with the <a class="el" href="classRegistry.html" title="A registry of known resources.">Registry</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resource</td><td>An object containing resource registration information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`std::runtime_error`</td><td>if the resource has already been registered. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0bf30ed891a84845f4e5f769c88287c4" name="a0bf30ed891a84845f4e5f769c88287c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bf30ed891a84845f4e5f769c88287c4">&#9670;&#160;</a></span>register_subtype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Registry::register_subtype </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSubtype.html">Subtype</a>&#160;</td>
+          <td class="paramname"><em>subtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classResourceSubtype.html">ResourceSubtype</a> &gt;&#160;</td>
+          <td class="paramname"><em>resource_subtype</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a subtype. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subtype</td><td>The subtype to be registered. </td></tr>
+    <tr><td class="paramname">resource_subtype</td><td><code><a class="el" href="classResourceSubtype.html" title="Defines registered Resource creation functionality.">ResourceSubtype</a></code> with resource functionality. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6e78488c8e92f2505a63e7189b75962d" name="a6e78488c8e92f2505a63e7189b75962d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e78488c8e92f2505a63e7189b75962d">&#9670;&#160;</a></span>registered_resources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classModelRegistration.html">ModelRegistration</a> &gt; &gt; Registry::registered_resources </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Provide information on registered resources. </p>
+<dl class="section return"><dt>Returns</dt><dd>A map from name to <code><a class="el" href="classModelRegistration.html" title="Information about a registered model, including a constructor and config validator.">ModelRegistration</a></code> of all registered resources. </dd></dl>
 
 </div>
 </div>

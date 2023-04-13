@@ -76,103 +76,125 @@ $(function() {
   <div class="headertitle"><div class="title">client.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;grpcpp/channel.h&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;common/v1/common.pb.h&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;robot/v1/robot.grpc.pb.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;robot/v1/robot.pb.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;common/utils.hpp&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;components/component_base.hpp&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;registry/registry.hpp&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;resource/resource_base.hpp&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;resource/resource_manager.hpp&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;rpc/dial.hpp&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;services/service_base.hpp&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">using </span>grpc::Channel;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">using </span>viam::common::v1::ResourceName;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">using </span>viam::common::v1::Transform;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">using </span>viam::robot::v1::FrameSystemConfig;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">using </span>viam::robot::v1::RobotService;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using </span>viam::robot::v1::Status;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using </span><a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Viam::SDK::Options</a>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using </span><a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">Viam::SDK::ViamChannel</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classRobotClient.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classRobotClient.html">RobotClient</a> {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_class" href="classRobotClient.html">~RobotClient</a>();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> refresh();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> close();</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">   44</a></span>    <span class="keyword">static</span> std::shared_ptr&lt;RobotClient&gt; <a class="code hl_function" href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">at_address</a>(std::string address, <a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Options</a> options);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">   52</a></span>    <span class="keyword">static</span> std::shared_ptr&lt;RobotClient&gt; <a class="code hl_function" href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">at_local_socket</a>(std::string address, <a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Options</a> options);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">static</span> std::shared_ptr&lt;RobotClient&gt; with_channel(<a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> channel, <a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Options</a> options);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classRobotClient.html">RobotClient</a>(<a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> channel);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::vector&lt;ResourceName&gt;* resource_names();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    std::unique_ptr&lt;RobotService::Stub&gt; stub_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">   71</a></span>    std::shared_ptr&lt;ResourceBase&gt; <a class="code hl_function" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">resource_by_name</a>(<span class="keyword">const</span> ResourceName&amp; name);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    std::shared_ptr&lt;T&gt; <a class="code hl_function" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">resource_by_name</a>(std::string name) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        ResourceName r;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_class" href="classSubtype.html">Subtype</a> subtype = T::subtype();</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        *r.mutable_namespace_() = subtype.type_namespace();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        *r.mutable_type() = subtype.resource_type();</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        *r.mutable_subtype() = subtype.resource_subtype();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        *r.mutable_name() = std::move(name);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keyword">auto</span> resource = this-&gt;<a class="code hl_function" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">resource_by_name</a>(std::move(r));</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> std::dynamic_pointer_cast&lt;T&gt;(resource);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::vector&lt;FrameSystemConfig&gt; get_frame_system_config(</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        std::vector&lt;Transform&gt; additional_transforms = std::vector&lt;Transform&gt;());</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    std::vector&lt;viam::robot::v1::Operation&gt; get_operations();</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    std::vector&lt;Status&gt; get_status(</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        std::vector&lt;ResourceName&gt; components = std::vector&lt;ResourceName&gt;());</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    std::vector&lt;viam::robot::v1::Discovery&gt; discover_components(</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        std::vector&lt;viam::robot::v1::DiscoveryQuery&gt; queries);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    std::vector&lt;std::shared_ptr&lt;std::thread&gt;&gt; threads;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    viam::common::v1::PoseInFrame transform_pose(</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        viam::common::v1::PoseInFrame query,</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        std::string destination,</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        std::vector&lt;Transform&gt; additional_transforms = std::vector&lt;Transform&gt;());</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span> block_for_operation(std::string <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> stop_all();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> stop_all(std::unordered_map&lt;ResourceName,</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                                     std::unordered_map&lt;std::string, std::shared_ptr&lt;ProtoType&gt;&gt;,</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                                     <a class="code hl_class" href="classResourceNameHasher.html">ResourceNameHasher</a>,</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                                     <a class="code hl_class" href="classResourceNameEqual.html">ResourceNameEqual</a>&gt; extra);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> cancel_operation(std::string <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;grpcpp/channel.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;common/v1/common.pb.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;robot/v1/robot.grpc.pb.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;robot/v1/robot.pb.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;common/utils.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;components/component_base.hpp&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="registry_8hpp.html">registry/registry.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;resource/resource_base.hpp&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;resource/resource_manager.hpp&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;rpc/dial.hpp&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;services/service_base.hpp&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">using </span>grpc::Channel;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">using </span>viam::common::v1::ResourceName;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using </span>viam::common::v1::Transform;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using </span>viam::robot::v1::FrameSystemConfig;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using </span>viam::robot::v1::RobotService;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">using </span>viam::robot::v1::Status;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">using </span><a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Viam::SDK::Options</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">using </span><a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">Viam::SDK::ViamChannel</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"></span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classRobotClient.html">   45</a></span><span class="keyword">class </span><a class="code hl_class" href="classRobotClient.html">RobotClient</a> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classRobotClient.html">~RobotClient</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> refresh();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> close();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">   53</a></span>    <span class="keyword">static</span> std::shared_ptr&lt;RobotClient&gt; <a class="code hl_function" href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">at_address</a>(std::string address, <a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Options</a> options);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">   59</a></span>    <span class="keyword">static</span> std::shared_ptr&lt;RobotClient&gt; <a class="code hl_function" href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">at_local_socket</a>(std::string address, <a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Options</a> options);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classRobotClient.html#a79eac5736188135fb13c9ad51c38eef1">   66</a></span>    <span class="keyword">static</span> std::shared_ptr&lt;RobotClient&gt; <a class="code hl_function" href="classRobotClient.html#a79eac5736188135fb13c9ad51c38eef1">with_channel</a>(<a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> channel, <a class="code hl_class" href="classViam_1_1SDK_1_1Options.html">Options</a> options);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_class" href="classRobotClient.html">RobotClient</a>(<a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> channel);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    std::vector&lt;ResourceName&gt;* resource_names();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::unique_ptr&lt;RobotService::Stub&gt; stub_;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">   82</a></span>    std::shared_ptr&lt;ResourceBase&gt; <a class="code hl_function" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">resource_by_name</a>(<span class="keyword">const</span> ResourceName&amp; name);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classRobotClient.html#a07ed91301edb0ac6639a3ab04601693f">   89</a></span>    std::shared_ptr&lt;T&gt; <a class="code hl_function" href="classRobotClient.html#a07ed91301edb0ac6639a3ab04601693f">resource_by_name</a>(std::string name) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        ResourceName r;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_class" href="classSubtype.html">Subtype</a> subtype = T::subtype();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        *r.mutable_namespace_() = subtype.type_namespace();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        *r.mutable_type() = subtype.resource_type();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        *r.mutable_subtype() = subtype.resource_subtype();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        *r.mutable_name() = std::move(name);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">auto</span> resource = this-&gt;<a class="code hl_function" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">resource_by_name</a>(std::move(r));</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> std::dynamic_pointer_cast&lt;T&gt;(resource);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classRobotClient.html#ad23156c97c9f3c156a68efc94dd84e74">  103</a></span>    std::vector&lt;FrameSystemConfig&gt; <a class="code hl_function" href="classRobotClient.html#ad23156c97c9f3c156a68efc94dd84e74">get_frame_system_config</a>(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        std::vector&lt;Transform&gt; additional_transforms = std::vector&lt;Transform&gt;());</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    std::atomic&lt;bool&gt; should_refresh;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> refresh_interval;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// (RSDK-919): make use of should_close_channel</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">bool</span> should_close_channel;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    std::shared_ptr&lt;Channel&gt; channel;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> viam_channel;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    std::mutex lock;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    std::vector&lt;ResourceName&gt; resource_names_;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_class" href="classResourceManager.html">ResourceManager</a> resource_manager;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">void</span> refresh_every();</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>};</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classRobotClient.html#abe769bd43e2ed71794b3e7130d84bdd4">  108</a></span>    std::vector&lt;viam::robot::v1::Operation&gt; <a class="code hl_function" href="classRobotClient.html#abe769bd43e2ed71794b3e7130d84bdd4">get_operations</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classRobotClient.html#accf44ec665d4a2ca12e816d4a70f4791">  113</a></span>    std::vector&lt;Status&gt; <a class="code hl_function" href="classRobotClient.html#accf44ec665d4a2ca12e816d4a70f4791">get_status</a>(</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        std::vector&lt;ResourceName&gt; components = std::vector&lt;ResourceName&gt;());</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    std::vector&lt;viam::robot::v1::Discovery&gt; discover_components(</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        std::vector&lt;viam::robot::v1::DiscoveryQuery&gt; queries);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classRobotClient.html#a7e3975d41986b9df65c36b5a8d7cbbb0">  122</a></span>    viam::common::v1::PoseInFrame <a class="code hl_function" href="classRobotClient.html#a7e3975d41986b9df65c36b5a8d7cbbb0">transform_pose</a>(</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        viam::common::v1::PoseInFrame query,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        std::string destination,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        std::vector&lt;Transform&gt; additional_transforms = std::vector&lt;Transform&gt;());</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classRobotClient.html#a3df44b6349fb1a7e2c61ede0975bb3ee">  129</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRobotClient.html#a3df44b6349fb1a7e2c61ede0975bb3ee">block_for_operation</a>(std::string <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classRobotClient.html#a0fc64b8097cf41697afa8d9a8ed09ade">  132</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRobotClient.html#a0fc64b8097cf41697afa8d9a8ed09ade">stop_all</a>();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classRobotClient.html#ad40db2413089700aa2f9dc686a1faa67">  136</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRobotClient.html#ad40db2413089700aa2f9dc686a1faa67">stop_all</a>(std::unordered_map&lt;ResourceName,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                                     std::unordered_map&lt;std::string, std::shared_ptr&lt;ProtoType&gt;&gt;,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                                     <a class="code hl_class" href="classResourceNameHasher.html">ResourceNameHasher</a>,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                                     <a class="code hl_class" href="classResourceNameEqual.html">ResourceNameEqual</a>&gt; extra);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classRobotClient.html#ae9857ebfa6d639d49945a352cdb480ab">  143</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRobotClient.html#ae9857ebfa6d639d49945a352cdb480ab">cancel_operation</a>(std::string <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    std::vector&lt;std::shared_ptr&lt;std::thread&gt;&gt; threads_;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    std::atomic&lt;bool&gt; should_refresh;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> refresh_interval;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// (RSDK-919): make use of should_close_channel</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">bool</span> should_close_channel;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    std::shared_ptr&lt;Channel&gt; channel;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_class" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> viam_channel;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    std::mutex lock;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    std::vector&lt;ResourceName&gt; resource_names_;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_class" href="classResourceManager.html">ResourceManager</a> resource_manager;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">void</span> refresh_every();</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>};</div>
 <div class="ttc" id="aclassResourceManager_html"><div class="ttname"><a href="classResourceManager.html">ResourceManager</a></div><div class="ttdef"><b>Definition:</b> resource_manager.hpp:9</div></div>
 <div class="ttc" id="aclassResourceNameEqual_html"><div class="ttname"><a href="classResourceNameEqual.html">ResourceNameEqual</a></div><div class="ttdef"><b>Definition:</b> utils.hpp:30</div></div>
 <div class="ttc" id="aclassResourceNameHasher_html"><div class="ttname"><a href="classResourceNameHasher.html">ResourceNameHasher</a></div><div class="ttdef"><b>Definition:</b> utils.hpp:24</div></div>
-<div class="ttc" id="aclassRobotClient_html"><div class="ttname"><a href="classRobotClient.html">RobotClient</a></div><div class="ttdef"><b>Definition:</b> client.hpp:32</div></div>
-<div class="ttc" id="aclassRobotClient_html_a713b6f52ffd1f9780a4f0d768f879e94"><div class="ttname"><a href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">RobotClient::resource_by_name</a></div><div class="ttdeci">std::shared_ptr&lt; ResourceBase &gt; resource_by_name(const ResourceName &amp;name)</div></div>
-<div class="ttc" id="aclassRobotClient_html_a71e2e01eea68ccf9acbbab8a4f907324"><div class="ttname"><a href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">RobotClient::at_address</a></div><div class="ttdeci">static std::shared_ptr&lt; RobotClient &gt; at_address(std::string address, Options options)</div></div>
-<div class="ttc" id="aclassRobotClient_html_a95da0b0808f052ce9e7c063c6f84b98f"><div class="ttname"><a href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">RobotClient::at_local_socket</a></div><div class="ttdeci">static std::shared_ptr&lt; RobotClient &gt; at_local_socket(std::string address, Options options)</div></div>
+<div class="ttc" id="aclassRobotClient_html"><div class="ttname"><a href="classRobotClient.html">RobotClient</a></div><div class="ttdoc">gRPC client for a robot, to be used for all interactions with a robot. There are two ways to instanti...</div><div class="ttdef"><b>Definition:</b> client.hpp:45</div></div>
+<div class="ttc" id="aclassRobotClient_html_a07ed91301edb0ac6639a3ab04601693f"><div class="ttname"><a href="classRobotClient.html#a07ed91301edb0ac6639a3ab04601693f">RobotClient::resource_by_name</a></div><div class="ttdeci">std::shared_ptr&lt; T &gt; resource_by_name(std::string name)</div><div class="ttdoc">Lookup and return a shared_ptr to a resource of the requested type.</div><div class="ttdef"><b>Definition:</b> client.hpp:89</div></div>
+<div class="ttc" id="aclassRobotClient_html_a0fc64b8097cf41697afa8d9a8ed09ade"><div class="ttname"><a href="classRobotClient.html#a0fc64b8097cf41697afa8d9a8ed09ade">RobotClient::stop_all</a></div><div class="ttdeci">void stop_all()</div><div class="ttdoc">Cancel all operations for the robot and stop all actuators and movement.</div></div>
+<div class="ttc" id="aclassRobotClient_html_a3df44b6349fb1a7e2c61ede0975bb3ee"><div class="ttname"><a href="classRobotClient.html#a3df44b6349fb1a7e2c61ede0975bb3ee">RobotClient::block_for_operation</a></div><div class="ttdeci">void block_for_operation(std::string id)</div><div class="ttdoc">Blocks on the specified operation of the robot, returning when it is complete.</div></div>
+<div class="ttc" id="aclassRobotClient_html_a713b6f52ffd1f9780a4f0d768f879e94"><div class="ttname"><a href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">RobotClient::resource_by_name</a></div><div class="ttdeci">std::shared_ptr&lt; ResourceBase &gt; resource_by_name(const ResourceName &amp;name)</div><div class="ttdoc">Lookup and return a shared_ptr to a resource.</div></div>
+<div class="ttc" id="aclassRobotClient_html_a71e2e01eea68ccf9acbbab8a4f907324"><div class="ttname"><a href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">RobotClient::at_address</a></div><div class="ttdeci">static std::shared_ptr&lt; RobotClient &gt; at_address(std::string address, Options options)</div><div class="ttdoc">Create a robot client connected to the robot at the provided address.</div></div>
+<div class="ttc" id="aclassRobotClient_html_a79eac5736188135fb13c9ad51c38eef1"><div class="ttname"><a href="classRobotClient.html#a79eac5736188135fb13c9ad51c38eef1">RobotClient::with_channel</a></div><div class="ttdeci">static std::shared_ptr&lt; RobotClient &gt; with_channel(ViamChannel channel, Options options)</div><div class="ttdoc">Creates a robot client connected to the provided channel.</div></div>
+<div class="ttc" id="aclassRobotClient_html_a7e3975d41986b9df65c36b5a8d7cbbb0"><div class="ttname"><a href="classRobotClient.html#a7e3975d41986b9df65c36b5a8d7cbbb0">RobotClient::transform_pose</a></div><div class="ttdeci">viam::common::v1::PoseInFrame transform_pose(viam::common::v1::PoseInFrame query, std::string destination, std::vector&lt; Transform &gt; additional_transforms=std::vector&lt; Transform &gt;())</div><div class="ttdoc">Transform a given Pose to a new specified destination which is a reference frame.</div></div>
+<div class="ttc" id="aclassRobotClient_html_a95da0b0808f052ce9e7c063c6f84b98f"><div class="ttname"><a href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">RobotClient::at_local_socket</a></div><div class="ttdeci">static std::shared_ptr&lt; RobotClient &gt; at_local_socket(std::string address, Options options)</div><div class="ttdoc">Creates a robot client connected to the robot at the provided local socket.</div></div>
+<div class="ttc" id="aclassRobotClient_html_abe769bd43e2ed71794b3e7130d84bdd4"><div class="ttname"><a href="classRobotClient.html#abe769bd43e2ed71794b3e7130d84bdd4">RobotClient::get_operations</a></div><div class="ttdeci">std::vector&lt; viam::robot::v1::Operation &gt; get_operations()</div><div class="ttdoc">Get the list of operations currently running on a robot.</div></div>
+<div class="ttc" id="aclassRobotClient_html_accf44ec665d4a2ca12e816d4a70f4791"><div class="ttname"><a href="classRobotClient.html#accf44ec665d4a2ca12e816d4a70f4791">RobotClient::get_status</a></div><div class="ttdeci">std::vector&lt; Status &gt; get_status(std::vector&lt; ResourceName &gt; components=std::vector&lt; ResourceName &gt;())</div><div class="ttdoc">Get the status of the robot's components.</div></div>
+<div class="ttc" id="aclassRobotClient_html_ad23156c97c9f3c156a68efc94dd84e74"><div class="ttname"><a href="classRobotClient.html#ad23156c97c9f3c156a68efc94dd84e74">RobotClient::get_frame_system_config</a></div><div class="ttdeci">std::vector&lt; FrameSystemConfig &gt; get_frame_system_config(std::vector&lt; Transform &gt; additional_transforms=std::vector&lt; Transform &gt;())</div><div class="ttdoc">Get the configuration of the frame system of the given robot.</div></div>
+<div class="ttc" id="aclassRobotClient_html_ad40db2413089700aa2f9dc686a1faa67"><div class="ttname"><a href="classRobotClient.html#ad40db2413089700aa2f9dc686a1faa67">RobotClient::stop_all</a></div><div class="ttdeci">void stop_all(std::unordered_map&lt; ResourceName, std::unordered_map&lt; std::string, std::shared_ptr&lt; ProtoType &gt; &gt;, ResourceNameHasher, ResourceNameEqual &gt; extra)</div><div class="ttdoc">Cancel all operations for the robot and stop all actuators and movement.</div></div>
+<div class="ttc" id="aclassRobotClient_html_ae9857ebfa6d639d49945a352cdb480ab"><div class="ttname"><a href="classRobotClient.html#ae9857ebfa6d639d49945a352cdb480ab">RobotClient::cancel_operation</a></div><div class="ttdeci">void cancel_operation(std::string id)</div><div class="ttdoc">Cancel a specified operation on the robot.</div></div>
 <div class="ttc" id="aclassSubtype_html"><div class="ttname"><a href="classSubtype.html">Subtype</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:23</div></div>
 <div class="ttc" id="aclassViam_1_1SDK_1_1Options_html"><div class="ttname"><a href="classViam_1_1SDK_1_1Options.html">Viam::SDK::Options</a></div><div class="ttdef"><b>Definition:</b> dial.hpp:72</div></div>
 <div class="ttc" id="aclassViam_1_1SDK_1_1ViamChannel_html"><div class="ttname"><a href="classViam_1_1SDK_1_1ViamChannel.html">Viam::SDK::ViamChannel</a></div><div class="ttdef"><b>Definition:</b> dial.hpp:14</div></div>
+<div class="ttc" id="aregistry_8hpp_html"><div class="ttname"><a href="registry_8hpp.html">registry.hpp</a></div><div class="ttdoc">Defines the resource registry and associated types.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -76,6 +76,11 @@ $(function() {
   <div class="headertitle"><div class="title">ModelRegistration Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Information about a registered model, including a constructor and config validator.  
+ <a href="classModelRegistration.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="registry_8hpp_source.html">registry.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,6 +95,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7d3f5b61af5eb6bc01b4fa1f322abf6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b730f0a12a8dd05072b992ce8dadc27"><td class="memItemLeft" align="right" valign="top"><a id="a0b730f0a12a8dd05072b992ce8dadc27" name="a0b730f0a12a8dd05072b992ce8dadc27"></a>
 viam::robot::v1::Status&#160;</td><td class="memItemRight" valign="bottom"><b>create_status</b> (std::shared_ptr&lt; <a class="el" href="classResourceBase.html">ResourceBase</a> &gt; resource)</td></tr>
+<tr class="memdesc:a0b730f0a12a8dd05072b992ce8dadc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code>Status</code> object for a given resource. <br /></td></tr>
 <tr class="separator:a0b730f0a12a8dd05072b992ce8dadc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -105,12 +111,16 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a0c465acc26c24968cf8d2d873544072a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59560532cadacb6a271042257806e12e"><td class="memItemLeft" align="right" valign="top"><a id="a59560532cadacb6a271042257806e12e" name="a59560532cadacb6a271042257806e12e"></a>
 std::function&lt; std::shared_ptr&lt; <a class="el" href="classResourceBase.html">ResourceBase</a> &gt;(Dependencies, <a class="el" href="classResource.html">Resource</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>construct_resource</b></td></tr>
+<tr class="memdesc:a59560532cadacb6a271042257806e12e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a resource from a map of dependencies and a resource config. <br /></td></tr>
 <tr class="separator:a59560532cadacb6a271042257806e12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a888031da1f204ef4af484ed9b9fb4001"><td class="memItemLeft" align="right" valign="top"><a id="a888031da1f204ef4af484ed9b9fb4001" name="a888031da1f204ef4af484ed9b9fb4001"></a>
 std::function&lt; std::vector&lt; std::string &gt;(<a class="el" href="classResource.html">Resource</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>validate</b></td></tr>
+<tr class="memdesc:a888031da1f204ef4af484ed9b9fb4001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates a resource config. <br /></td></tr>
 <tr class="separator:a888031da1f204ef4af484ed9b9fb4001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Information about a registered model, including a constructor and config validator. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/registry/<a class="el" href="registry_8hpp_source.html">registry.hpp</a></li>
 </ul>
 </div><!-- contents -->

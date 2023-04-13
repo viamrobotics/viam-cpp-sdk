@@ -74,11 +74,12 @@ $(function() {
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classRobotClient-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">RobotClient Class Reference</div></div>
+  <div class="headertitle"><div class="title">RobotClient Class Reference<div class="ingroups"><a class="el" href="group__Robot.html">Classes related to a &lt;tt&gt;Robot&lt;/tt&gt; representation.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="robot_2client_8hpp_source.html">client.hpp</a>&gt;</code></p>
+<p>gRPC client for a robot, to be used for all interactions with a robot. There are two ways to instantiate a robot:  
+ <a href="classRobotClient.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -95,47 +96,51 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr
 std::vector&lt; ResourceName &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>resource_names</b> ()</td></tr>
 <tr class="separator:ae244119f66e49230f71be6cf2758e255"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a713b6f52ffd1f9780a4f0d768f879e94"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classResourceBase.html">ResourceBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94">resource_by_name</a> (const ResourceName &amp;name)</td></tr>
+<tr class="memdesc:a713b6f52ffd1f9780a4f0d768f879e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup and return a <code>shared_ptr</code> to a resource.  <br /></td></tr>
 <tr class="separator:a713b6f52ffd1f9780a4f0d768f879e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07ed91301edb0ac6639a3ab04601693f"><td class="memTemplParams" colspan="2"><a id="a07ed91301edb0ac6639a3ab04601693f" name="a07ed91301edb0ac6639a3ab04601693f"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a07ed91301edb0ac6639a3ab04601693f"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>resource_by_name</b> (std::string name)</td></tr>
+<tr class="memitem:a07ed91301edb0ac6639a3ab04601693f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a07ed91301edb0ac6639a3ab04601693f"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a07ed91301edb0ac6639a3ab04601693f">resource_by_name</a> (std::string name)</td></tr>
+<tr class="memdesc:a07ed91301edb0ac6639a3ab04601693f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup and return a <code>shared_ptr</code> to a resource of the requested type.  <br /></td></tr>
 <tr class="separator:a07ed91301edb0ac6639a3ab04601693f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad23156c97c9f3c156a68efc94dd84e74"><td class="memItemLeft" align="right" valign="top"><a id="ad23156c97c9f3c156a68efc94dd84e74" name="ad23156c97c9f3c156a68efc94dd84e74"></a>
-std::vector&lt; FrameSystemConfig &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_frame_system_config</b> (std::vector&lt; Transform &gt; additional_transforms=std::vector&lt; Transform &gt;())</td></tr>
+<tr class="memitem:ad23156c97c9f3c156a68efc94dd84e74"><td class="memItemLeft" align="right" valign="top">std::vector&lt; FrameSystemConfig &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#ad23156c97c9f3c156a68efc94dd84e74">get_frame_system_config</a> (std::vector&lt; Transform &gt; additional_transforms=std::vector&lt; Transform &gt;())</td></tr>
+<tr class="memdesc:ad23156c97c9f3c156a68efc94dd84e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configuration of the frame system of the given robot.  <br /></td></tr>
 <tr class="separator:ad23156c97c9f3c156a68efc94dd84e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe769bd43e2ed71794b3e7130d84bdd4"><td class="memItemLeft" align="right" valign="top"><a id="abe769bd43e2ed71794b3e7130d84bdd4" name="abe769bd43e2ed71794b3e7130d84bdd4"></a>
-std::vector&lt; viam::robot::v1::Operation &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_operations</b> ()</td></tr>
+<tr class="memitem:abe769bd43e2ed71794b3e7130d84bdd4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; viam::robot::v1::Operation &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#abe769bd43e2ed71794b3e7130d84bdd4">get_operations</a> ()</td></tr>
+<tr class="memdesc:abe769bd43e2ed71794b3e7130d84bdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of operations currently running on a robot.  <br /></td></tr>
 <tr class="separator:abe769bd43e2ed71794b3e7130d84bdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accf44ec665d4a2ca12e816d4a70f4791"><td class="memItemLeft" align="right" valign="top"><a id="accf44ec665d4a2ca12e816d4a70f4791" name="accf44ec665d4a2ca12e816d4a70f4791"></a>
-std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_status</b> (std::vector&lt; ResourceName &gt; components=std::vector&lt; ResourceName &gt;())</td></tr>
+<tr class="memitem:accf44ec665d4a2ca12e816d4a70f4791"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#accf44ec665d4a2ca12e816d4a70f4791">get_status</a> (std::vector&lt; ResourceName &gt; components=std::vector&lt; ResourceName &gt;())</td></tr>
+<tr class="memdesc:accf44ec665d4a2ca12e816d4a70f4791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the robot's components.  <br /></td></tr>
 <tr class="separator:accf44ec665d4a2ca12e816d4a70f4791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8737cb953e567a5036f25bcad6c008cb"><td class="memItemLeft" align="right" valign="top"><a id="a8737cb953e567a5036f25bcad6c008cb" name="a8737cb953e567a5036f25bcad6c008cb"></a>
 std::vector&lt; viam::robot::v1::Discovery &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>discover_components</b> (std::vector&lt; viam::robot::v1::DiscoveryQuery &gt; queries)</td></tr>
 <tr class="separator:a8737cb953e567a5036f25bcad6c008cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e3975d41986b9df65c36b5a8d7cbbb0"><td class="memItemLeft" align="right" valign="top"><a id="a7e3975d41986b9df65c36b5a8d7cbbb0" name="a7e3975d41986b9df65c36b5a8d7cbbb0"></a>
-viam::common::v1::PoseInFrame&#160;</td><td class="memItemRight" valign="bottom"><b>transform_pose</b> (viam::common::v1::PoseInFrame query, std::string destination, std::vector&lt; Transform &gt; additional_transforms=std::vector&lt; Transform &gt;())</td></tr>
+<tr class="memitem:a7e3975d41986b9df65c36b5a8d7cbbb0"><td class="memItemLeft" align="right" valign="top">viam::common::v1::PoseInFrame&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a7e3975d41986b9df65c36b5a8d7cbbb0">transform_pose</a> (viam::common::v1::PoseInFrame query, std::string destination, std::vector&lt; Transform &gt; additional_transforms=std::vector&lt; Transform &gt;())</td></tr>
+<tr class="memdesc:a7e3975d41986b9df65c36b5a8d7cbbb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a given <code>Pose</code> to a new specified destination which is a reference frame.  <br /></td></tr>
 <tr class="separator:a7e3975d41986b9df65c36b5a8d7cbbb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3df44b6349fb1a7e2c61ede0975bb3ee"><td class="memItemLeft" align="right" valign="top"><a id="a3df44b6349fb1a7e2c61ede0975bb3ee" name="a3df44b6349fb1a7e2c61ede0975bb3ee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>block_for_operation</b> (std::string id)</td></tr>
+<tr class="memitem:a3df44b6349fb1a7e2c61ede0975bb3ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a3df44b6349fb1a7e2c61ede0975bb3ee">block_for_operation</a> (std::string id)</td></tr>
+<tr class="memdesc:a3df44b6349fb1a7e2c61ede0975bb3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks on the specified operation of the robot, returning when it is complete.  <br /></td></tr>
 <tr class="separator:a3df44b6349fb1a7e2c61ede0975bb3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fc64b8097cf41697afa8d9a8ed09ade"><td class="memItemLeft" align="right" valign="top"><a id="a0fc64b8097cf41697afa8d9a8ed09ade" name="a0fc64b8097cf41697afa8d9a8ed09ade"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_all</b> ()</td></tr>
+<tr class="memdesc:a0fc64b8097cf41697afa8d9a8ed09ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel all operations for the robot and stop all actuators and movement. <br /></td></tr>
 <tr class="separator:a0fc64b8097cf41697afa8d9a8ed09ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad40db2413089700aa2f9dc686a1faa67"><td class="memItemLeft" align="right" valign="top"><a id="ad40db2413089700aa2f9dc686a1faa67" name="ad40db2413089700aa2f9dc686a1faa67"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_all</b> (std::unordered_map&lt; ResourceName, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classProtoType.html">ProtoType</a> &gt; &gt;, <a class="el" href="classResourceNameHasher.html">ResourceNameHasher</a>, <a class="el" href="classResourceNameEqual.html">ResourceNameEqual</a> &gt; extra)</td></tr>
+<tr class="memitem:ad40db2413089700aa2f9dc686a1faa67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#ad40db2413089700aa2f9dc686a1faa67">stop_all</a> (std::unordered_map&lt; ResourceName, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classProtoType.html">ProtoType</a> &gt; &gt;, <a class="el" href="classResourceNameHasher.html">ResourceNameHasher</a>, <a class="el" href="classResourceNameEqual.html">ResourceNameEqual</a> &gt; extra)</td></tr>
+<tr class="memdesc:ad40db2413089700aa2f9dc686a1faa67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel all operations for the robot and stop all actuators and movement.  <br /></td></tr>
 <tr class="separator:ad40db2413089700aa2f9dc686a1faa67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9857ebfa6d639d49945a352cdb480ab"><td class="memItemLeft" align="right" valign="top"><a id="ae9857ebfa6d639d49945a352cdb480ab" name="ae9857ebfa6d639d49945a352cdb480ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cancel_operation</b> (std::string id)</td></tr>
+<tr class="memitem:ae9857ebfa6d639d49945a352cdb480ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#ae9857ebfa6d639d49945a352cdb480ab">cancel_operation</a> (std::string id)</td></tr>
+<tr class="memdesc:ae9857ebfa6d639d49945a352cdb480ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel a specified operation on the robot.  <br /></td></tr>
 <tr class="separator:ae9857ebfa6d639d49945a352cdb480ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a71e2e01eea68ccf9acbbab8a4f907324"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classRobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a71e2e01eea68ccf9acbbab8a4f907324">at_address</a> (std::string address, <a class="el" href="classViam_1_1SDK_1_1Options.html">Options</a> options)</td></tr>
+<tr class="memdesc:a71e2e01eea68ccf9acbbab8a4f907324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a robot client connected to the robot at the provided address.  <br /></td></tr>
 <tr class="separator:a71e2e01eea68ccf9acbbab8a4f907324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95da0b0808f052ce9e7c063c6f84b98f"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classRobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a95da0b0808f052ce9e7c063c6f84b98f">at_local_socket</a> (std::string address, <a class="el" href="classViam_1_1SDK_1_1Options.html">Options</a> options)</td></tr>
+<tr class="memdesc:a95da0b0808f052ce9e7c063c6f84b98f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a robot client connected to the robot at the provided local socket.  <br /></td></tr>
 <tr class="separator:a95da0b0808f052ce9e7c063c6f84b98f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79eac5736188135fb13c9ad51c38eef1"><td class="memItemLeft" align="right" valign="top"><a id="a79eac5736188135fb13c9ad51c38eef1" name="a79eac5736188135fb13c9ad51c38eef1"></a>
-static std::shared_ptr&lt; <a class="el" href="classRobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>with_channel</b> (<a class="el" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> channel, <a class="el" href="classViam_1_1SDK_1_1Options.html">Options</a> options)</td></tr>
+<tr class="memitem:a79eac5736188135fb13c9ad51c38eef1"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classRobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotClient.html#a79eac5736188135fb13c9ad51c38eef1">with_channel</a> (<a class="el" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a> channel, <a class="el" href="classViam_1_1SDK_1_1Options.html">Options</a> options)</td></tr>
+<tr class="memdesc:a79eac5736188135fb13c9ad51c38eef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a robot client connected to the provided channel.  <br /></td></tr>
 <tr class="separator:a79eac5736188135fb13c9ad51c38eef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -143,12 +148,14 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a582204a535e69d50498ba7bf1deeb552"><td class="memItemLeft" align="right" valign="top"><a id="a582204a535e69d50498ba7bf1deeb552" name="a582204a535e69d50498ba7bf1deeb552"></a>
 std::unique_ptr&lt; RobotService::Stub &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stub_</b></td></tr>
 <tr class="separator:a582204a535e69d50498ba7bf1deeb552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe1012ce872fdf939b4f427e9484322"><td class="memItemLeft" align="right" valign="top"><a id="aefe1012ce872fdf939b4f427e9484322" name="aefe1012ce872fdf939b4f427e9484322"></a>
-std::vector&lt; std::shared_ptr&lt; std::thread &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>threads</b></td></tr>
-<tr class="separator:aefe1012ce872fdf939b4f427e9484322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>gRPC client for a robot. This class should be used for all interactions with a robot. </p>
+<div class="textblock"><p>gRPC client for a robot, to be used for all interactions with a robot. There are two ways to instantiate a robot: </p>
+<ul>
+<li><code>RobotClient::at_address(...)</code></li>
+<li><code>RobotClient::with_channel(...)</code></li>
+</ul>
+<p>You must <code>close()</code> a robot when finished with it in order to release its resources. Robots creates via <code>at_address</code> will automatically close, but robots created via <code>with_channel</code> require a user call to <code>close()</code>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a71e2e01eea68ccf9acbbab8a4f907324" name="a71e2e01eea68ccf9acbbab8a4f907324"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a71e2e01eea68ccf9acbbab8a4f907324">&#9670;&#160;</a></span>at_address()</h2>
@@ -183,8 +190,15 @@ std::vector&lt; std::shared_ptr&lt; std::thread &gt; &gt;&#160;</td><td class="m
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a robot client that is connected to the robot at the provided address. Uses the underlying rust-utils library and webRTC to dial the address.</p>
-<p>Args: address: Address of the robot (IP address, URI, URL, etc.) options: Options for connecting and refreshing </p>
+
+<p>Create a robot client connected to the robot at the provided address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>The addrxess of the robot (IP address, URI, URL, etc.) </td></tr>
+    <tr><td class="paramname">options</td><td>Options for connecting and refreshing. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -221,13 +235,140 @@ std::vector&lt; std::shared_ptr&lt; std::thread &gt; &gt;&#160;</td><td class="m
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create a robot client that is connected to the robot at the provided local socket. Creates a direct connection to the robot using the <code>unix://</code> scheme. Only useful for connecting to robots across Unix sockets.</p>
-<p>Args: address: Local socket of the robot (a .sock file, etc.) options: Options for connecting and refreshing </p>
+
+<p>Creates a robot client connected to the robot at the provided local socket. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>The local socket of the robot (a .sock file, etc.). </td></tr>
+    <tr><td class="paramname">options</td><td>Options for connecting and refreshing. Creates a direct connection to the robot using the <code>unix://</code> scheme. Only useful for connecting to robots across Unix sockets. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3df44b6349fb1a7e2c61ede0975bb3ee" name="a3df44b6349fb1a7e2c61ede0975bb3ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3df44b6349fb1a7e2c61ede0975bb3ee">&#9670;&#160;</a></span>block_for_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RobotClient::block_for_operation </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Blocks on the specified operation of the robot, returning when it is complete. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the operation to block on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae9857ebfa6d639d49945a352cdb480ab" name="ae9857ebfa6d639d49945a352cdb480ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9857ebfa6d639d49945a352cdb480ab">&#9670;&#160;</a></span>cancel_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RobotClient::cancel_operation </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel a specified operation on the robot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the operation to cancel. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad23156c97c9f3c156a68efc94dd84e74" name="ad23156c97c9f3c156a68efc94dd84e74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23156c97c9f3c156a68efc94dd84e74">&#9670;&#160;</a></span>get_frame_system_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; FrameSystemConfig &gt; RobotClient::get_frame_system_config </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; Transform &gt;&#160;</td>
+          <td class="paramname"><em>additional_transforms</em> = <code>std::vector&lt;&#160;Transform&#160;&gt;()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configuration of the frame system of the given robot. </p>
+<dl class="section return"><dt>Returns</dt><dd>The configuration of the calling robot's frame system. </dd></dl>
+
+</div>
+</div>
+<a id="abe769bd43e2ed71794b3e7130d84bdd4" name="abe769bd43e2ed71794b3e7130d84bdd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe769bd43e2ed71794b3e7130d84bdd4">&#9670;&#160;</a></span>get_operations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; viam::robot::v1::Operation &gt; RobotClient::get_operations </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the list of operations currently running on a robot. </p>
+<dl class="section return"><dt>Returns</dt><dd>The list of operations currently running on the calling robot. </dd></dl>
+
+</div>
+</div>
+<a id="accf44ec665d4a2ca12e816d4a70f4791" name="accf44ec665d4a2ca12e816d4a70f4791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accf44ec665d4a2ca12e816d4a70f4791">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; Status &gt; RobotClient::get_status </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; ResourceName &gt;&#160;</td>
+          <td class="paramname"><em>components</em> = <code>std::vector&lt;&#160;ResourceName&#160;&gt;()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the status of the robot's components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>An optional list of the specific components for which status is desired. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of statuses. </dd></dl>
 
 </div>
 </div>
 <a id="a713b6f52ffd1f9780a4f0d768f879e94" name="a713b6f52ffd1f9780a4f0d768f879e94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a713b6f52ffd1f9780a4f0d768f879e94">&#9670;&#160;</a></span>resource_by_name()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a713b6f52ffd1f9780a4f0d768f879e94">&#9670;&#160;</a></span>resource_by_name() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,11 +382,181 @@ std::vector&lt; std::shared_ptr&lt; std::thread &gt; &gt;&#160;</td><td class="m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Gets a <code>shared_ptr</code> to a <a class="el" href="classResource.html">Resource</a> Base.</p>
-<p>Args: name: the name of the resource</p>
-<p>Raises: Throws an error if the requested resource doesn't exist or is of the wrong type.</p>
+
+<p>Lookup and return a <code>shared_ptr</code> to a resource. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The <code>ResourceName</code> of the resource. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`std::runtime_error`</td><td>if the requested resource doesn't exist or is the wrong type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the requested resource as an uncasted <code><a class="el" href="classResourceBase.html">ResourceBase</a></code>.</dd></dl>
 <p>This method should not be called directly except in specific cases. The type-annotated <code>resource_by_name&lt;T&gt;(name)</code> overload is the preferred method for obtaining resources.</p>
 <p>Because the return type here is a <code><a class="el" href="classResourceBase.html">ResourceBase</a></code>, the user will need to manually cast to the desired type. </p>
+
+</div>
+</div>
+<a id="a07ed91301edb0ac6639a3ab04601693f" name="a07ed91301edb0ac6639a3ab04601693f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ed91301edb0ac6639a3ab04601693f">&#9670;&#160;</a></span>resource_by_name() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; T &gt; RobotClient::resource_by_name </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lookup and return a <code>shared_ptr</code> to a resource of the requested type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The ordinary name of the resource. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`std::runtime_error`</td><td>if the requested resource doesn't exist or is the wrong type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the requested resource. </dd></dl>
+
+</div>
+</div>
+<a id="ad40db2413089700aa2f9dc686a1faa67" name="ad40db2413089700aa2f9dc686a1faa67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad40db2413089700aa2f9dc686a1faa67">&#9670;&#160;</a></span>stop_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RobotClient::stop_all </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; ResourceName, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classProtoType.html">ProtoType</a> &gt; &gt;, <a class="el" href="classResourceNameHasher.html">ResourceNameHasher</a>, <a class="el" href="classResourceNameEqual.html">ResourceNameEqual</a> &gt;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel all operations for the robot and stop all actuators and movement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any extra params to pass to resources' <code>stop</code> methods, keyed by <code>ResourceName</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7e3975d41986b9df65c36b5a8d7cbbb0" name="a7e3975d41986b9df65c36b5a8d7cbbb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3975d41986b9df65c36b5a8d7cbbb0">&#9670;&#160;</a></span>transform_pose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">viam::common::v1::PoseInFrame RobotClient::transform_pose </td>
+          <td>(</td>
+          <td class="paramtype">viam::common::v1::PoseInFrame&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; Transform &gt;&#160;</td>
+          <td class="paramname"><em>additional_transforms</em> = <code>std::vector&lt;&#160;Transform&#160;&gt;()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transform a given <code>Pose</code> to a new specified destination which is a reference frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>The pose that should be transformed. </td></tr>
+    <tr><td class="paramname">destination</td><td>The name of the reference frame to transform the given pose to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the <code>PoseInFrame</code> of the transformed pose. </dd></dl>
+
+</div>
+</div>
+<a id="a79eac5736188135fb13c9ad51c38eef1" name="a79eac5736188135fb13c9ad51c38eef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79eac5736188135fb13c9ad51c38eef1">&#9670;&#160;</a></span>with_channel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::shared_ptr&lt; <a class="el" href="classRobotClient.html">RobotClient</a> &gt; RobotClient::with_channel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classViam_1_1SDK_1_1ViamChannel.html">ViamChannel</a>&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classViam_1_1SDK_1_1Options.html">Options</a>&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a robot client connected to the provided channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>The channel to connect with. </td></tr>
+    <tr><td class="paramname">options</td><td>Options for connecting and refreshing. Connects directly to a pre-existing channel. A robot created this way must be <code>close()</code>d manually. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

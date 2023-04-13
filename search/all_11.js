@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['viam_20c_2b_2b_20sdk_0',['Viam C++ SDK',['../index.html',1,'']]],
-  ['viamchannel_1',['ViamChannel',['../classViam_1_1SDK_1_1ViamChannel.html',1,'Viam::SDK']]]
+  ['to_5fproto_0',['to_proto',['../classCamera.html#aa6e77823cf55c4948554f025f69dc1c9',1,'Camera::to_proto(distortion_parameters)'],['../classCamera.html#a3e72188d9a73d23c22accc4c84fed547',1,'Camera::to_proto(intrinsic_parameters)']]],
+  ['transform_5fpose_1',['transform_pose',['../classRobotClient.html#a7e3975d41986b9df65c36b5a8d7cbbb0',1,'RobotClient']]],
+  ['translation_2',['translation',['../classViam_1_1SDK_1_1translation.html',1,'Viam::SDK']]],
+  ['type_3',['Type',['../classType.html',1,'']]]
 ];

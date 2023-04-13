@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['point_5fcloud_0',['point_cloud',['../structCamera_1_1point__cloud.html',1,'Camera']]],
-  ['properties_1',['properties',['../structCamera_1_1properties.html',1,'Camera']]],
-  ['prototype_2',['ProtoType',['../classProtoType.html',1,'']]]
+  ['options_0',['Options',['../classViam_1_1SDK_1_1Options.html',1,'Viam::SDK']]],
+  ['orientation_5fvector_1',['orientation_vector',['../classViam_1_1SDK_1_1orientation__vector.html',1,'Viam::SDK']]],
+  ['orientation_5fvector_5fdegrees_2',['orientation_vector_degrees',['../classViam_1_1SDK_1_1orientation__vector__degrees.html',1,'Viam::SDK']]],
+  ['orientationconfig_3',['OrientationConfig',['../classOrientationConfig.html',1,'']]]
 ];
