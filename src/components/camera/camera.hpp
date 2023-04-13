@@ -72,6 +72,8 @@ class Camera : public ComponentBase {
         std::vector<unsigned char> pc;
     };
 
+    const static std::string lazy_suffix;
+
     /// @struct raw_image
     /// @brief the raw bytes and mime type of an image.
     // TODO: update documentaiton to show how to deserialize a `raw_image`
@@ -129,9 +131,6 @@ class Camera : public ComponentBase {
 
    protected:
     explicit Camera(std::string name) : ComponentBase(std::move(name)){};
-
-   private:
-    const static std::string lazy_suffix;
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);

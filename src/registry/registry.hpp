@@ -33,6 +33,8 @@ class ResourceSubtype {
     // TODO: it doesn't look like we actually use this. Confirm, then remove.
     std::function<ProtoType(ResourceBase)> create_status;
 
+    const google::protobuf::ServiceDescriptor* service_descriptor;
+
     /// @brief Create a resource's gRPC server.
     /// @param svc The server's `SubtypeService`.
     /// @return a `shared_ptr` to the gRPC server.
@@ -48,9 +50,6 @@ class ResourceSubtype {
 
     ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor(service_descriptor){};
-
-   private:
-    const google::protobuf::ServiceDescriptor* service_descriptor;
 };
 
 /// @class ModelRegistration
