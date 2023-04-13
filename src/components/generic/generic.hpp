@@ -42,7 +42,7 @@ class Generic : public ComponentBase {
     static Subtype subtype();
 
     /// @brief Send/receive arbitrary commands to the resource.
-    /// @param Command the command to execute.
+    /// @param command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
