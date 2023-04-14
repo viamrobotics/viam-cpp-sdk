@@ -17,7 +17,7 @@ class LinkConfig {
 
    private:
     std::string id;
-    translation translation;
+    class translation translation;
     OrientationConfig orientation;
     GeometryConfig geometry;
     std::string parent;
