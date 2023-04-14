@@ -109,24 +109,24 @@ class Model {
 }  // namespace viam
 
 template <>
-struct std::hash<viam::cppsdk::Name> {
-    size_t operator()(viam::cppsdk::Name const& key) const noexcept {
+struct std::hash<::viam::cppsdk::Name> {
+    size_t operator()(::viam::cppsdk::Name const& key) const noexcept {
         return std::hash<std::string>()(key.to_string());
     }
 };
 
 template <>
-struct std::hash<viam::cppsdk::RPCSubtype> {
-    size_t operator()(viam::cppsdk::RPCSubtype const& key) const noexcept {
-        viam::cppsdk::Subtype subtype = key.subtype;
+struct std::hash<::viam::cppsdk::RPCSubtype> {
+    size_t operator()(::viam::cppsdk::RPCSubtype const& key) const noexcept {
+        ::viam::cppsdk::Subtype subtype = key.subtype;
         std::string hash = subtype.to_string() + key.proto_service_name;
         return std::hash<std::string>()(hash);
     };
 };
 
 template <>
-struct std::hash<viam::cppsdk::Subtype> {
-    size_t operator()(const viam::cppsdk::Subtype& key) const noexcept {
+struct std::hash<::viam::cppsdk::Subtype> {
+    size_t operator()(const ::viam::cppsdk::Subtype& key) const noexcept {
         return std::hash<std::string>()(key.to_string());
     };
 };
