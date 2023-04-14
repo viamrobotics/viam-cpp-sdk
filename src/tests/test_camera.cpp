@@ -21,6 +21,8 @@
 namespace viam {
 namespace cppsdktests {
 
+using namespace camera;
+
 using namespace viam::cppsdk;
 
 BOOST_AUTO_TEST_SUITE(test_camera)

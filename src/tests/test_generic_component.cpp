@@ -18,6 +18,8 @@
 namespace viam {
 namespace cppsdktests {
 
+using namespace generic;
+
 using namespace viam::cppsdk;
 
 BOOST_AUTO_TEST_SUITE(generic_suite)

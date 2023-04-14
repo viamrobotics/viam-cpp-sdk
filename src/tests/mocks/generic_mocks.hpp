@@ -10,6 +10,7 @@
 
 namespace viam {
 namespace cppsdktests {
+namespace generic {
 
 using namespace viam::cppsdk;
 
@@ -56,5 +57,6 @@ class MockGenericClient : public GenericClient {
         : GenericClient(std::move(name), std::make_unique<MockGenericStub>()){};
 };
 
+}  // namespace generic
 }  // namespace cppsdktests
 }  // namespace viam

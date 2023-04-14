@@ -11,6 +11,7 @@
 
 namespace viam {
 namespace cppsdktests {
+namespace generic {
 
 using namespace viam::cppsdk;
 
@@ -38,5 +39,6 @@ MockGenericStub::MockGenericStub() : server(std::make_shared<GenericServer>()) {
     return server->DoCommand(ctx, &request, response);
 }
 
+}  // namespace generic
 }  // namespace cppsdktests
 }  // namespace viam

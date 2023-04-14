@@ -10,6 +10,7 @@
 
 namespace viam {
 namespace cppsdktests {
+namespace camera {
 
 using namespace viam::cppsdk;
 
@@ -117,5 +118,6 @@ MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
     return server->DoCommand(ctx, &request, response);
 }
 
+}  // namespace camera
 }  // namespace cppsdktests
 }  // namespace viam
