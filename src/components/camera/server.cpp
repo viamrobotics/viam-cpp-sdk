@@ -5,7 +5,8 @@
 #include <config/resource.hpp>
 #include <rpc/server.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext* context,
                                        const ::viam::common::v1::DoCommandRequest* request,
@@ -136,3 +137,6 @@ void CameraServer::register_server(std::shared_ptr<Server> server) {
 std::shared_ptr<SubtypeService> CameraServer::get_sub_svc() {
     return sub_svc;
 }
+
+}  // namespace cppsdk
+}  // namespace viam

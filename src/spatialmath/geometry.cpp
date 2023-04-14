@@ -7,7 +7,8 @@
 
 #include <spatialmath/orientation.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 viam::common::v1::Sphere GeometryConfig::sphere_proto() {
     viam::common::v1::Sphere sphere;
@@ -93,3 +94,6 @@ viam::common::v1::Geometry GeometryConfig::to_proto() {
         }
     }
 };
+
+}  // namespace cppsdk
+}  // namespace viam

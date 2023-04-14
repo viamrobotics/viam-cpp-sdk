@@ -18,6 +18,9 @@
 #include <tests/mocks/camera_mocks.hpp>
 #include <tests/test_utils.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
 using namespace viam::cppsdk;
 
 BOOST_AUTO_TEST_SUITE(test_camera)
@@ -196,3 +199,6 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     BOOST_CHECK(expected_pt == result_pt);
 }
 BOOST_AUTO_TEST_SUITE_END()
+
+}  // namespace cppsdktests
+}  // namespace viam

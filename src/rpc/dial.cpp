@@ -16,8 +16,8 @@ extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
 extern "C" void free_string(const char* s);
 extern "C" char* dial(const char* uri, const char* payload, bool allow_insecure, void* ptr);
-
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 void ViamChannel::close() {
     if (closed) {
@@ -62,3 +62,6 @@ Credentials::Credentials(std::string payload_) {
     type_ = "robot-location-secret";
     payload = payload_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

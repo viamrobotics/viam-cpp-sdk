@@ -11,9 +11,11 @@
 
 #include <config/resource.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using google::protobuf::Struct;
 using google::protobuf::Value;
-using namespace viam::cppsdk;
 
 Struct map_to_struct(AttributeMap dict);
 AttributeMap struct_to_map(Struct struct_);
@@ -188,3 +190,6 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
         }
     }
 }
+
+}  // namespace cppsdk
+}  // namespace viam

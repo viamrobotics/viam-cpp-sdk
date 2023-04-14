@@ -9,7 +9,8 @@
 #include <resource/resource_type.hpp>
 #include <services/service_base.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 ResourceManager::ResourceManager() {}
 
@@ -49,3 +50,6 @@ std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
         "Resource name " + name + " was found, but it has the wrong type! Expected type: " +
         of_type.to_string() + ". Actual type: " + resource->type().to_string());
 }
+
+}  // namespace cppsdk
+}  // namespace viam

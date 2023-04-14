@@ -2,7 +2,8 @@
 
 #include <app/v1/robot.pb.h>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 viam::app::v1::Translation translation::to_proto() {
     viam::app::v1::Translation t;
@@ -11,3 +12,6 @@ viam::app::v1::Translation translation::to_proto() {
     t.set_z(z);
     return t;
 }
+
+}  // namespace cppsdk
+}  // namespace viam

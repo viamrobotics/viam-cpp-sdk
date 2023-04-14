@@ -12,7 +12,8 @@
 #include <common/utils.hpp>
 #include <components/component_base.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 const std::regex NAME_REGEX("^([\\w-]+:[\\w-]+:(?:[\\w-]+))\\/?([\\w-]+:(?:[\\w-]+:)*)?(.+)?$");
 
@@ -185,3 +186,6 @@ std::string Model::to_string() const {
 }
 
 Model::Model() : Model(ModelFamily(RDK, BUILTIN), BUILTIN) {}
+
+}  // namespace cppsdk
+}  // namespace viam

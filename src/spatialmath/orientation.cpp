@@ -10,7 +10,9 @@
 
 #include <spatialmath/orientation_types.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
+
 namespace proto = viam::app::v1;
 
 OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
@@ -136,3 +138,6 @@ proto::Orientation OrientationConfig::to_proto() {
         }
     }
 }
+
+}  // namespace cppsdk
+}  // namespace viam

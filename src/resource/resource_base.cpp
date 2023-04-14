@@ -8,7 +8,8 @@
 #include <common/utils.hpp>
 #include <resource/resource.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 grpc::StatusCode ResourceBase::stop(std::unordered_map<std::string, ProtoType*> extra) {
     return stop();
@@ -31,3 +32,6 @@ void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
 ResourceType ResourceBase::type() {
     return {"resource"};
 }
+
+}  // namespace cppsdk
+}  // namespace viam

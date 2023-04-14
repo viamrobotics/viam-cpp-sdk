@@ -9,7 +9,8 @@
 #include <config/resource.hpp>
 #include <robot/client.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
@@ -22,3 +23,6 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
     stub_->DoCommand(&ctx, req, &resp);
     return struct_to_map(resp.result());
 };
+
+}  // namespace cppsdk
+}  // namespace viam

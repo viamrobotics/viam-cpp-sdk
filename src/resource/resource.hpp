@@ -105,6 +105,10 @@ class Model {
     friend bool operator==(const Model& lhs, const Model& rhs);
 };
 
+}  // namespace cppsdk
+}  // namespace viam
+
+using namespace viam::cppsdk;
 template <>
 struct std::hash<Name> {
     size_t operator()(Name const& key) const noexcept {
@@ -127,6 +131,3 @@ struct std::hash<Subtype> {
         return std::hash<std::string>()(key.to_string());
     };
 };
-
-}  // namespace cppsdk
-}  // namespace viam

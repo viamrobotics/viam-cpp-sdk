@@ -5,6 +5,9 @@
 #include <common/proto_type.hpp>
 #include <config/resource.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
 using namespace viam::cppsdk;
 
 AttributeMap fake_map() {
@@ -15,3 +18,6 @@ AttributeMap fake_map() {
     map->insert({{std::string("test"), proto_ptr}});
     return map;
 }
+
+}  // namespace cppsdktests
+}  // namespace viam

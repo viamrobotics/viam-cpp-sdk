@@ -1,3 +1,5 @@
 #include <resource/resource_server_base.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {}  // namespace cppsdk
+}  // namespace viam

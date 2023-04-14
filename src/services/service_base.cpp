@@ -7,7 +7,8 @@
 #include <common/utils.hpp>
 #include <resource/resource_base.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 ResourceName ServiceBase::get_resource_name(std::string name) {
     // TODO (RSDK-1631): test, confirm whether we need to split on
@@ -26,3 +27,6 @@ ServiceBase::ServiceBase() : ResourceBase("service"){};
 ResourceType ServiceBase::type() {
     return {SERVICE};
 }
+
+}  // namespace cppsdk
+}  // namespace viam

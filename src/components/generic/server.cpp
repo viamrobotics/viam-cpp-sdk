@@ -3,7 +3,8 @@
 #include <components/generic/generic.hpp>
 #include <rpc/server.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 ::grpc::Status GenericServer::DoCommand(::grpc::ServerContext* context,
                                         const ::viam::common::v1::DoCommandRequest* request,
@@ -39,3 +40,6 @@ void GenericServer::register_server(std::shared_ptr<Server> server) {
 std::shared_ptr<SubtypeService> GenericServer::get_sub_svc() {
     return sub_svc;
 }
+
+}  // namespace cppsdk
+}  // namespace viam

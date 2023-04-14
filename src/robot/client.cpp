@@ -36,7 +36,8 @@
 #include <rpc/dial.hpp>
 #include <services/service_base.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
@@ -393,3 +394,6 @@ void RobotClient::stop_all(
                                  << response.error_details();
     }
 }
+
+}  // namespace cppsdk
+}  // namespace viam

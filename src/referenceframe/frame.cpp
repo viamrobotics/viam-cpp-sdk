@@ -9,7 +9,8 @@
 #include <spatialmath/orientation.hpp>
 #include <spatialmath/orientation_types.hpp>
 
-using namespace viam::cppsdk;
+namespace viam {
+namespace cppsdk {
 
 viam::app::v1::Frame LinkConfig::to_proto() {
     viam::app::v1::Frame frame;
@@ -39,3 +40,6 @@ LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
 
     return lc;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

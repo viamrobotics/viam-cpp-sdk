@@ -22,6 +22,9 @@
 #include <common/utils.hpp>
 #include <robot/service.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
 using namespace viam::cppsdk;
 
 using google::protobuf::RepeatedPtrField;
@@ -315,3 +318,6 @@ int test_resource_names(TestService service) {
     }
     return 1;
 }
+
+}  // namespace cppsdktests
+}  // namespace viam

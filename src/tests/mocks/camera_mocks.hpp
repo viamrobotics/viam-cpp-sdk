@@ -9,7 +9,9 @@
 #include <components/camera/server.hpp>
 
 namespace viam {
-namespace cppsdk {
+namespace cppsdktests {
+
+using namespace viam::cppsdk;
 
 class MockCamera : public Camera {
    public:
@@ -135,5 +137,5 @@ class MockCameraClient : public CameraClient {
         : CameraClient(std::move(name), std::make_unique<MockCameraStub>()){};
 };
 
-}  // namespace cppsdk
+}  // namespace cppsdktests
 }  // namespace viam
