@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['disable_5fwebrtc_0',['disable_webrtc',['../classViam_1_1SDK_1_1DialOptions.html#a50266e5d25258be4ab179779f848aff3',1,'Viam::SDK::DialOptions']]]
+  ['disable_5fwebrtc_0',['disable_webrtc',['../classviam_1_1cppsdk_1_1DialOptions.html#ae8963da21e5cf2ef702411ef4d95aa0a',1,'viam::cppsdk::DialOptions']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classModelRegistration.html#a888031da1f204ef4af484ed9b9fb4001',1,'ModelRegistration']]]
+  ['validate_0',['validate',['../classviam_1_1cppsdk_1_1ModelRegistration.html#a0d35280931479e8b50232b3b29a4a2e0',1,'viam::cppsdk::ModelRegistration']]]
 ];

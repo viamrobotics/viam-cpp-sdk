@@ -86,50 +86,56 @@ $(function() {
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;resource/resource_base.hpp&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="rpc_2server_8hpp.html">rpc/server.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classModuleService__.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classModuleService__.html">ModuleService_</a> : <span class="keyword">public</span> <a class="code hl_class" href="classComponentServiceBase.html">ComponentServiceBase</a>,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                       <span class="keyword">public</span> viam::module::v1::ModuleService::Service {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">void</span> start(std::shared_ptr&lt;Server&gt; server);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">void</span> close();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::shared_ptr&lt;ResourceBase&gt; get_parent_resource(<a class="code hl_class" href="className.html">Name</a> name);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> add_api_from_registry(std::shared_ptr&lt;Server&gt; server, <a class="code hl_class" href="classSubtype.html">Subtype</a> api);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> add_model_from_registry(std::shared_ptr&lt;Server&gt; server, <a class="code hl_class" href="classSubtype.html">Subtype</a> api, <a class="code hl_class" href="classModel.html">Model</a> model);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    ::grpc::Status AddResource(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                               const ::viam::module::v1::AddResourceRequest* request,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                               ::viam::module::v1::AddResourceResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    ::grpc::Status ReconfigureResource(</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        ::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        const ::viam::module::v1::ReconfigureResourceRequest* request,</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        ::viam::module::v1::ReconfigureResourceResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    ::grpc::Status RemoveResource(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                                  const ::viam::module::v1::RemoveResourceRequest* request,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                                  ::viam::module::v1::RemoveResourceResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ::grpc::Status Ready(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                         const ::viam::module::v1::ReadyRequest* request,</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                         ::viam::module::v1::ReadyResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ::grpc::Status ValidateConfig(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                  const ::viam::module::v1::ValidateConfigRequest* request,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                  ::viam::module::v1::ValidateConfigResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::shared_ptr&lt;Module&gt; module;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_class" href="classModuleService__.html">ModuleService_</a>(std::string addr);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_class" href="classModuleService__.html">~ModuleService_</a>();</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>cppsdk {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1ModuleService__.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1cppsdk_1_1ModuleService__.html">ModuleService_</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1cppsdk_1_1ComponentServiceBase.html">ComponentServiceBase</a>,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                       <span class="keyword">public</span> viam::module::v1::ModuleService::Service {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">void</span> start(std::shared_ptr&lt;Server&gt; server);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> close();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::shared_ptr&lt;ResourceBase&gt; get_parent_resource(<a class="code hl_class" href="classviam_1_1cppsdk_1_1Name.html">Name</a> name);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> add_api_from_registry(std::shared_ptr&lt;Server&gt; server, <a class="code hl_class" href="classviam_1_1cppsdk_1_1Subtype.html">Subtype</a> api);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> add_model_from_registry(std::shared_ptr&lt;Server&gt; server, <a class="code hl_class" href="classviam_1_1cppsdk_1_1Subtype.html">Subtype</a> api, <a class="code hl_class" href="classviam_1_1cppsdk_1_1Model.html">Model</a> model);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    ::grpc::Status AddResource(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                               const ::viam::module::v1::AddResourceRequest* request,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                               ::viam::module::v1::AddResourceResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    ::grpc::Status ReconfigureResource(</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        ::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        const ::viam::module::v1::ReconfigureResourceRequest* request,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        ::viam::module::v1::ReconfigureResourceResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    ::grpc::Status RemoveResource(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                                  const ::viam::module::v1::RemoveResourceRequest* request,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                                  ::viam::module::v1::RemoveResourceResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    ::grpc::Status Ready(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                         const ::viam::module::v1::ReadyRequest* request,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                         ::viam::module::v1::ReadyResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    ::grpc::Status ValidateConfig(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                  const ::viam::module::v1::ValidateConfigRequest* request,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                  ::viam::module::v1::ValidateConfigResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::shared_ptr&lt;Module&gt; module;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::shared_ptr&lt;RobotClient&gt; parent;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::string parent_addr;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
-<div class="ttc" id="aclassComponentServiceBase_html"><div class="ttname"><a href="classComponentServiceBase.html">ComponentServiceBase</a></div><div class="ttdef"><b>Definition:</b> service_base.hpp:5</div></div>
-<div class="ttc" id="aclassModel_html"><div class="ttname"><a href="classModel.html">Model</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:86</div></div>
-<div class="ttc" id="aclassModuleService___html"><div class="ttname"><a href="classModuleService__.html">ModuleService_</a></div><div class="ttdef"><b>Definition:</b> service.hpp:12</div></div>
-<div class="ttc" id="aclassName_html"><div class="ttname"><a href="className.html">Name</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:43</div></div>
-<div class="ttc" id="aclassSubtype_html"><div class="ttname"><a href="classSubtype.html">Subtype</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:23</div></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_class" href="classviam_1_1cppsdk_1_1ModuleService__.html">ModuleService_</a>(std::string addr);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classviam_1_1cppsdk_1_1ModuleService__.html">~ModuleService_</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::shared_ptr&lt;RobotClient&gt; parent;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::string parent_addr;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace cppsdk</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1ComponentServiceBase_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1ComponentServiceBase.html">viam::cppsdk::ComponentServiceBase</a></div><div class="ttdef"><b>Definition:</b> service_base.hpp:8</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Model_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Model.html">viam::cppsdk::Model</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:89</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1ModuleService___html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1ModuleService__.html">viam::cppsdk::ModuleService_</a></div><div class="ttdef"><b>Definition:</b> service.hpp:15</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Name_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Name.html">viam::cppsdk::Name</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:46</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Subtype_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Subtype.html">viam::cppsdk::Subtype</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:26</div></div>
 <div class="ttc" id="arpc_2server_8hpp_html"><div class="ttname"><a href="rpc_2server_8hpp.html">server.hpp</a></div><div class="ttdoc">Defines the Server class.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

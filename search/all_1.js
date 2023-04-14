@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['block_5ffor_5foperation_0',['block_for_operation',['../classRobotClient.html#a3df44b6349fb1a7e2c61ede0975bb3ee',1,'RobotClient']]]
+  ['block_5ffor_5foperation_0',['block_for_operation',['../classviam_1_1cppsdk_1_1RobotClient.html#aa8eef07aeda652f47f895e0c8e4a9468',1,'viam::cppsdk::RobotClient']]]
 ];

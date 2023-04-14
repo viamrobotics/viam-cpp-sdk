@@ -82,18 +82,24 @@ $(function() {
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;resource/resource.hpp&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classHandlerMap__.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classHandlerMap__.html">HandlerMap_</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_class" href="classHandlerMap__.html">HandlerMap_</a>();</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">void</span> add_model(<a class="code hl_class" href="classModel.html">Model</a> model, <a class="code hl_class" href="classRPCSubtype.html">RPCSubtype</a> subtype);</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    std::unordered_map&lt;RPCSubtype, std::vector&lt;Model&gt;&gt; handles;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    viam::module::v1::HandlerMap to_proto();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">static</span> <a class="code hl_class" href="classHandlerMap__.html">HandlerMap_</a> from_proto(viam::module::v1::HandlerMap proto);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>};</div>
-<div class="ttc" id="aclassHandlerMap___html"><div class="ttname"><a href="classHandlerMap__.html">HandlerMap_</a></div><div class="ttdef"><b>Definition:</b> handler_map.hpp:7</div></div>
-<div class="ttc" id="aclassModel_html"><div class="ttname"><a href="classModel.html">Model</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:86</div></div>
-<div class="ttc" id="aclassRPCSubtype_html"><div class="ttname"><a href="classRPCSubtype.html">RPCSubtype</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:59</div></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span>cppsdk {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1HandlerMap__.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1cppsdk_1_1HandlerMap__.html">HandlerMap_</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="classviam_1_1cppsdk_1_1HandlerMap__.html">HandlerMap_</a>();</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">void</span> add_model(<a class="code hl_class" href="classviam_1_1cppsdk_1_1Model.html">Model</a> model, <a class="code hl_class" href="classviam_1_1cppsdk_1_1RPCSubtype.html">RPCSubtype</a> subtype);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::unordered_map&lt;RPCSubtype, std::vector&lt;Model&gt;&gt; handles;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    viam::module::v1::HandlerMap to_proto();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1cppsdk_1_1HandlerMap__.html">HandlerMap_</a> from_proto(viam::module::v1::HandlerMap proto);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}  <span class="comment">// namespace cppsdk</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1HandlerMap___html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1HandlerMap__.html">viam::cppsdk::HandlerMap_</a></div><div class="ttdef"><b>Definition:</b> handler_map.hpp:10</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Model_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Model.html">viam::cppsdk::Model</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:89</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1RPCSubtype_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1RPCSubtype.html">viam::cppsdk::RPCSubtype</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

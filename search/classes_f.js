@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['translation_0',['translation',['../classViam_1_1SDK_1_1translation.html',1,'Viam::SDK']]],
-  ['type_1',['Type',['../classType.html',1,'']]]
+  ['translation_0',['translation',['../classviam_1_1cppsdk_1_1translation.html',1,'viam::cppsdk']]],
+  ['type_1',['Type',['../classviam_1_1cppsdk_1_1Type.html',1,'viam::cppsdk']]]
 ];

@@ -83,34 +83,40 @@ $(function() {
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;grpcpp/security/server_credentials.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;grpcpp/server_builder.h&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classServer.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classServer.html">Server</a> {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_class" href="classServer.html">Server</a>();</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="classServer.html">~Server</a>();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classServer.html#a7eac07d2582fa01c2671362efa955b31">   20</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a7eac07d2582fa01c2671362efa955b31">start</a>();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// TODO: make `register_service` take one of our types as an arg rather than a</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// grpc service type, and convert under the hood</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classServer.html#af5fcece11fe0663772054cd371c69022">   27</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#af5fcece11fe0663772054cd371c69022">register_service</a>(grpc::Service* service);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classServer.html#aa809af289f4e59cd61bc7f6bf139f86b">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#aa809af289f4e59cd61bc7f6bf139f86b">add_listening_port</a>(std::string address,</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                            std::shared_ptr&lt;grpc::ServerCredentials&gt; creds = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classServer.html#a0a4bf8daebe6e1644b71535909b0e703">   37</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a0a4bf8daebe6e1644b71535909b0e703">wait</a>();</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>viam {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>cppsdk {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1Server.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1cppsdk_1_1Server.html">Server</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classviam_1_1cppsdk_1_1Server.html">Server</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classviam_1_1cppsdk_1_1Server.html">~Server</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1Server.html#a31a5358de88697cc071cbcdc66b96c1e">   23</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1cppsdk_1_1Server.html#a31a5358de88697cc071cbcdc66b96c1e">start</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// TODO: make `register_service` take one of our types as an arg rather than a</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// grpc service type, and convert under the hood</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1Server.html#a563f25971273b8ec7daf59ddfd61d14e">   30</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1cppsdk_1_1Server.html#a563f25971273b8ec7daf59ddfd61d14e">register_service</a>(grpc::Service* service);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1Server.html#ad1b51cf36f9f80ce3d2d10e3255725a3">   36</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1cppsdk_1_1Server.html#ad1b51cf36f9f80ce3d2d10e3255725a3">add_listening_port</a>(std::string address,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                            std::shared_ptr&lt;grpc::ServerCredentials&gt; creds = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classServer.html#a28be9df75b3a622f95297ebf812f83f8">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a28be9df75b3a622f95297ebf812f83f8">shutdown</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1Server.html#ab5e8240f67b0b526bb2d19610761ee98">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1cppsdk_1_1Server.html#ab5e8240f67b0b526bb2d19610761ee98">wait</a>();</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::unique_ptr&lt;grpc::ServerBuilder&gt; builder_;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::unique_ptr&lt;grpc::Server&gt; server_;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
-<div class="ttc" id="aclassServer_html"><div class="ttname"><a href="classServer.html">Server</a></div><div class="ttdoc">Defines gRPC Server functionality.</div><div class="ttdef"><b>Definition:</b> server.hpp:12</div></div>
-<div class="ttc" id="aclassServer_html_a0a4bf8daebe6e1644b71535909b0e703"><div class="ttname"><a href="classServer.html#a0a4bf8daebe6e1644b71535909b0e703">Server::wait</a></div><div class="ttdeci">void wait()</div><div class="ttdoc">waits on server close, only returning when the server is closed.</div></div>
-<div class="ttc" id="aclassServer_html_a28be9df75b3a622f95297ebf812f83f8"><div class="ttname"><a href="classServer.html#a28be9df75b3a622f95297ebf812f83f8">Server::shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdoc">Shutdown the gRPC server.</div></div>
-<div class="ttc" id="aclassServer_html_a7eac07d2582fa01c2671362efa955b31"><div class="ttname"><a href="classServer.html#a7eac07d2582fa01c2671362efa955b31">Server::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts the grpc server. Can only be called once.</div></div>
-<div class="ttc" id="aclassServer_html_aa809af289f4e59cd61bc7f6bf139f86b"><div class="ttname"><a href="classServer.html#aa809af289f4e59cd61bc7f6bf139f86b">Server::add_listening_port</a></div><div class="ttdeci">void add_listening_port(std::string address, std::shared_ptr&lt; grpc::ServerCredentials &gt; creds=nullptr)</div><div class="ttdoc">Adds a listening port to the server.</div></div>
-<div class="ttc" id="aclassServer_html_af5fcece11fe0663772054cd371c69022"><div class="ttname"><a href="classServer.html#af5fcece11fe0663772054cd371c69022">Server::register_service</a></div><div class="ttdeci">void register_service(grpc::Service *service)</div><div class="ttdoc">Registers a gRPC service.</div></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classviam_1_1cppsdk_1_1Server.html#af20bb199e30cd78849840b07915999f6">   43</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1cppsdk_1_1Server.html#af20bb199e30cd78849840b07915999f6">shutdown</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::unique_ptr&lt;grpc::ServerBuilder&gt; builder_;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::unique_ptr&lt;grpc::Server&gt; server_;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}  <span class="comment">// namespace cppsdk</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Server_html"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Server.html">viam::cppsdk::Server</a></div><div class="ttdoc">Defines gRPC Server functionality.</div><div class="ttdef"><b>Definition:</b> server.hpp:15</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Server_html_a31a5358de88697cc071cbcdc66b96c1e"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Server.html#a31a5358de88697cc071cbcdc66b96c1e">viam::cppsdk::Server::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts the grpc server. Can only be called once.</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Server_html_a563f25971273b8ec7daf59ddfd61d14e"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Server.html#a563f25971273b8ec7daf59ddfd61d14e">viam::cppsdk::Server::register_service</a></div><div class="ttdeci">void register_service(grpc::Service *service)</div><div class="ttdoc">Registers a gRPC service.</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Server_html_ab5e8240f67b0b526bb2d19610761ee98"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Server.html#ab5e8240f67b0b526bb2d19610761ee98">viam::cppsdk::Server::wait</a></div><div class="ttdeci">void wait()</div><div class="ttdoc">waits on server close, only returning when the server is closed.</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Server_html_ad1b51cf36f9f80ce3d2d10e3255725a3"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Server.html#ad1b51cf36f9f80ce3d2d10e3255725a3">viam::cppsdk::Server::add_listening_port</a></div><div class="ttdeci">void add_listening_port(std::string address, std::shared_ptr&lt; grpc::ServerCredentials &gt; creds=nullptr)</div><div class="ttdoc">Adds a listening port to the server.</div></div>
+<div class="ttc" id="aclassviam_1_1cppsdk_1_1Server_html_af20bb199e30cd78849840b07915999f6"><div class="ttname"><a href="classviam_1_1cppsdk_1_1Server.html#af20bb199e30cd78849840b07915999f6">viam::cppsdk::Server::shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdoc">Shutdown the gRPC server.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

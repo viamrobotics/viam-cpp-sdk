@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['dialoptions_0',['DialOptions',['../classViam_1_1SDK_1_1DialOptions.html',1,'Viam::SDK']]],
-  ['disable_5fwebrtc_1',['disable_webrtc',['../classViam_1_1SDK_1_1DialOptions.html#a50266e5d25258be4ab179779f848aff3',1,'Viam::SDK::DialOptions']]],
-  ['distortion_5fparameters_2',['distortion_parameters',['../structCamera_1_1distortion__parameters.html',1,'Camera']]],
-  ['do_5fcommand_3',['do_command',['../classCamera.html#aa8ed777d4ec1f3fcb60d2618de352c6d',1,'Camera::do_command()'],['../classCameraClient.html#addd0dc2883776bbd1cd08f34aa09ee37',1,'CameraClient::do_command()'],['../classGenericClient.html#a85ad4c5976002b50250c8184e59fd1e7',1,'GenericClient::do_command()'],['../classGeneric.html#a2a1e863b1761ba71a9f6a353abbc4c16',1,'Generic::do_command()']]]
+  ['dialoptions_0',['DialOptions',['../classviam_1_1cppsdk_1_1DialOptions.html',1,'viam::cppsdk']]],
+  ['disable_5fwebrtc_1',['disable_webrtc',['../classviam_1_1cppsdk_1_1DialOptions.html#ae8963da21e5cf2ef702411ef4d95aa0a',1,'viam::cppsdk::DialOptions']]],
+  ['distortion_5fparameters_2',['distortion_parameters',['../structviam_1_1cppsdk_1_1Camera_1_1distortion__parameters.html',1,'viam::cppsdk::Camera']]],
+  ['do_5fcommand_3',['do_command',['../classviam_1_1cppsdk_1_1Camera.html#a18d27419957c6c2033e822afdaaa0dcd',1,'viam::cppsdk::Camera::do_command()'],['../classviam_1_1cppsdk_1_1CameraClient.html#a17673da63a1245057f3a5c2b776550a9',1,'viam::cppsdk::CameraClient::do_command()'],['../classviam_1_1cppsdk_1_1GenericClient.html#a014f46d97b5eb9d4bfcfa51f086d20d9',1,'viam::cppsdk::GenericClient::do_command()'],['../classviam_1_1cppsdk_1_1Generic.html#ab650e96596a2429ba003d4bc25a1efd7',1,'viam::cppsdk::Generic::do_command()']]]
 ];

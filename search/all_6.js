@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['generic_0',['Generic',['../classGeneric.html',1,'']]],
+  ['generic_0',['Generic',['../classviam_1_1cppsdk_1_1Generic.html',1,'viam::cppsdk']]],
   ['generic_2ehpp_1',['generic.hpp',['../generic_8hpp.html',1,'']]],
-  ['genericclient_2',['GenericClient',['../classGenericClient.html',1,'']]],
-  ['genericserver_3',['GenericServer',['../classGenericServer.html',1,'']]],
-  ['genericsubtype_4',['GenericSubtype',['../classGenericSubtype.html',1,'']]],
-  ['geometryconfig_5',['GeometryConfig',['../classGeometryConfig.html',1,'']]],
-  ['get_5fframe_5fsystem_5fconfig_6',['get_frame_system_config',['../classRobotClient.html#ad23156c97c9f3c156a68efc94dd84e74',1,'RobotClient']]],
-  ['get_5fimage_7',['get_image',['../classCamera.html#a6b7850a62be0207bfc73afb0a99d23f5',1,'Camera::get_image()'],['../classCameraClient.html#a2c353e0282d24e155cf0b5bd9a1cf41c',1,'CameraClient::get_image()']]],
-  ['get_5foperations_8',['get_operations',['../classRobotClient.html#abe769bd43e2ed71794b3e7130d84bdd4',1,'RobotClient']]],
-  ['get_5fpoint_5fcloud_9',['get_point_cloud',['../classCamera.html#a8513bd389fe09b5b63e24d667039a5fa',1,'Camera::get_point_cloud()'],['../classCameraClient.html#ab3506122cb27ff3f6720d2aed73fd033',1,'CameraClient::get_point_cloud()']]],
-  ['get_5fproperties_10',['get_properties',['../classCamera.html#a096342b5d06243d1da7ee734276c0ec4',1,'Camera::get_properties()'],['../classCameraClient.html#aaa72db37de241b865b46884b7ede1b44',1,'CameraClient::get_properties()']]],
-  ['get_5fresource_11',['get_resource',['../classResourceManager.html#a6242b060188582cfc3b32e1dd50d821c',1,'ResourceManager']]],
-  ['get_5fstatus_12',['get_status',['../classRobotClient.html#accf44ec665d4a2ca12e816d4a70f4791',1,'RobotClient']]]
+  ['genericclient_2',['GenericClient',['../classviam_1_1cppsdk_1_1GenericClient.html',1,'viam::cppsdk']]],
+  ['genericserver_3',['GenericServer',['../classviam_1_1cppsdk_1_1GenericServer.html',1,'viam::cppsdk']]],
+  ['genericsubtype_4',['GenericSubtype',['../classviam_1_1cppsdk_1_1GenericSubtype.html',1,'viam::cppsdk']]],
+  ['geometryconfig_5',['GeometryConfig',['../classviam_1_1cppsdk_1_1GeometryConfig.html',1,'viam::cppsdk']]],
+  ['get_5fframe_5fsystem_5fconfig_6',['get_frame_system_config',['../classviam_1_1cppsdk_1_1RobotClient.html#a8e638038175dffa5a08ca8728ce4bc58',1,'viam::cppsdk::RobotClient']]],
+  ['get_5fimage_7',['get_image',['../classviam_1_1cppsdk_1_1Camera.html#a6543210af5aa7064086462ceb29680c0',1,'viam::cppsdk::Camera::get_image()'],['../classviam_1_1cppsdk_1_1CameraClient.html#a7260d23ee9fe2a8004bae7c06a84e8e3',1,'viam::cppsdk::CameraClient::get_image()']]],
+  ['get_5foperations_8',['get_operations',['../classviam_1_1cppsdk_1_1RobotClient.html#ab282b064be1419bc76222e0b0609fa6e',1,'viam::cppsdk::RobotClient']]],
+  ['get_5fpoint_5fcloud_9',['get_point_cloud',['../classviam_1_1cppsdk_1_1Camera.html#aa028c6f7ddbfc3dfa683b72994dd4588',1,'viam::cppsdk::Camera::get_point_cloud()'],['../classviam_1_1cppsdk_1_1CameraClient.html#a56fe59898c3a1cef4183a76e3d601504',1,'viam::cppsdk::CameraClient::get_point_cloud()']]],
+  ['get_5fproperties_10',['get_properties',['../classviam_1_1cppsdk_1_1Camera.html#ad12517893713c78d2d3c579ff68d0e66',1,'viam::cppsdk::Camera::get_properties()'],['../classviam_1_1cppsdk_1_1CameraClient.html#acb4f9b718274eb576b61137004fea0c3',1,'viam::cppsdk::CameraClient::get_properties()']]],
+  ['get_5fresource_11',['get_resource',['../classviam_1_1cppsdk_1_1ResourceManager.html#a740c6fb118e1cb400bdc5e04f6fef4c9',1,'viam::cppsdk::ResourceManager']]],
+  ['get_5fstatus_12',['get_status',['../classviam_1_1cppsdk_1_1RobotClient.html#ac4686dd49e22eb73d7b085f7fe18ca12',1,'viam::cppsdk::RobotClient']]]
 ];

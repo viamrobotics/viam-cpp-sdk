@@ -1,17 +1,17 @@
 var searchData=
 [
-  ['raw_5fimage_0',['raw_image',['../structCamera_1_1raw__image.html',1,'Camera']]],
-  ['registry_1',['Registry',['../classRegistry.html',1,'']]],
-  ['resource_2',['Resource',['../classResource.html',1,'']]],
-  ['resourcebase_3',['ResourceBase',['../classResourceBase.html',1,'']]],
-  ['resourcelevelserviceconfig_4',['ResourceLevelServiceConfig',['../classResourceLevelServiceConfig.html',1,'']]],
-  ['resourcemanager_5',['ResourceManager',['../classResourceManager.html',1,'']]],
-  ['resourcenameequal_6',['ResourceNameEqual',['../classResourceNameEqual.html',1,'']]],
-  ['resourcenamehasher_7',['ResourceNameHasher',['../classResourceNameHasher.html',1,'']]],
-  ['resourceserverbase_8',['ResourceServerBase',['../classResourceServerBase.html',1,'']]],
-  ['resourcesubtype_9',['ResourceSubtype',['../classResourceSubtype.html',1,'']]],
-  ['resourcetype_10',['ResourceType',['../classResourceType.html',1,'']]],
-  ['robotclient_11',['RobotClient',['../classRobotClient.html',1,'']]],
-  ['robotservice_5f_12',['RobotService_',['../classRobotService__.html',1,'']]],
-  ['rpcsubtype_13',['RPCSubtype',['../classRPCSubtype.html',1,'']]]
+  ['raw_5fimage_0',['raw_image',['../structviam_1_1cppsdk_1_1Camera_1_1raw__image.html',1,'viam::cppsdk::Camera']]],
+  ['registry_1',['Registry',['../classviam_1_1cppsdk_1_1Registry.html',1,'viam::cppsdk']]],
+  ['resource_2',['Resource',['../classviam_1_1cppsdk_1_1Resource.html',1,'viam::cppsdk']]],
+  ['resourcebase_3',['ResourceBase',['../classviam_1_1cppsdk_1_1ResourceBase.html',1,'viam::cppsdk']]],
+  ['resourcelevelserviceconfig_4',['ResourceLevelServiceConfig',['../classviam_1_1cppsdk_1_1ResourceLevelServiceConfig.html',1,'viam::cppsdk']]],
+  ['resourcemanager_5',['ResourceManager',['../classviam_1_1cppsdk_1_1ResourceManager.html',1,'viam::cppsdk']]],
+  ['resourcenameequal_6',['ResourceNameEqual',['../classviam_1_1cppsdk_1_1ResourceNameEqual.html',1,'viam::cppsdk']]],
+  ['resourcenamehasher_7',['ResourceNameHasher',['../classviam_1_1cppsdk_1_1ResourceNameHasher.html',1,'viam::cppsdk']]],
+  ['resourceserverbase_8',['ResourceServerBase',['../classviam_1_1cppsdk_1_1ResourceServerBase.html',1,'viam::cppsdk']]],
+  ['resourcesubtype_9',['ResourceSubtype',['../classviam_1_1cppsdk_1_1ResourceSubtype.html',1,'viam::cppsdk']]],
+  ['resourcetype_10',['ResourceType',['../classviam_1_1cppsdk_1_1ResourceType.html',1,'viam::cppsdk']]],
+  ['robotclient_11',['RobotClient',['../classviam_1_1cppsdk_1_1RobotClient.html',1,'viam::cppsdk']]],
+  ['robotservice_5f_12',['RobotService_',['../classviam_1_1cppsdk_1_1RobotService__.html',1,'viam::cppsdk']]],
+  ['rpcsubtype_13',['RPCSubtype',['../classviam_1_1cppsdk_1_1RPCSubtype.html',1,'viam::cppsdk']]]
 ];

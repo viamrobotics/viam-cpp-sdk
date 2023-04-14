@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['register_5fresource_0',['register_resource',['../classRegistry.html#a6181d6733b22ca276d48eec39375cbd4',1,'Registry']]],
-  ['register_5fservice_1',['register_service',['../classServer.html#af5fcece11fe0663772054cd371c69022',1,'Server']]],
-  ['register_5fsubtype_2',['register_subtype',['../classRegistry.html#a0bf30ed891a84845f4e5f769c88287c4',1,'Registry']]],
-  ['registered_5fresources_3',['registered_resources',['../classRegistry.html#a6e78488c8e92f2505a63e7189b75962d',1,'Registry']]],
-  ['resource_5fby_5fname_4',['resource_by_name',['../classRobotClient.html#a713b6f52ffd1f9780a4f0d768f879e94',1,'RobotClient::resource_by_name(const ResourceName &amp;name)'],['../classRobotClient.html#a07ed91301edb0ac6639a3ab04601693f',1,'RobotClient::resource_by_name(std::string name)']]],
-  ['resource_5fsubtype_5',['resource_subtype',['../classCamera.html#a5c34e4739fbddb6b7a936ec2f4c0f475',1,'Camera::resource_subtype()'],['../classGeneric.html#a03f5da25bee5d5c29b3e17088b5fc5ce',1,'Generic::resource_subtype()']]]
+  ['register_5fresource_0',['register_resource',['../classviam_1_1cppsdk_1_1Registry.html#a3f94277d02dca1a078ffc665b13dfbf2',1,'viam::cppsdk::Registry']]],
+  ['register_5fservice_1',['register_service',['../classviam_1_1cppsdk_1_1Server.html#a563f25971273b8ec7daf59ddfd61d14e',1,'viam::cppsdk::Server']]],
+  ['register_5fsubtype_2',['register_subtype',['../classviam_1_1cppsdk_1_1Registry.html#a4ac611655d63ec895e98501f3a48b6d0',1,'viam::cppsdk::Registry']]],
+  ['registered_5fresources_3',['registered_resources',['../classviam_1_1cppsdk_1_1Registry.html#a0b5c751b21b73683af5d1065ed00e0bc',1,'viam::cppsdk::Registry']]],
+  ['resource_5fby_5fname_4',['resource_by_name',['../classviam_1_1cppsdk_1_1RobotClient.html#a69a7ed7e9a8f07e49c2ca18dfb579011',1,'viam::cppsdk::RobotClient::resource_by_name(const ResourceName &amp;name)'],['../classviam_1_1cppsdk_1_1RobotClient.html#aebfadb88a3a80d79af7cf56394ee0e78',1,'viam::cppsdk::RobotClient::resource_by_name(std::string name)']]],
+  ['resource_5fsubtype_5',['resource_subtype',['../classviam_1_1cppsdk_1_1Camera.html#ad39818b30d9af5eb86c5bbf2e8114103',1,'viam::cppsdk::Camera::resource_subtype()'],['../classviam_1_1cppsdk_1_1Generic.html#a4190bf8c5e8664a390fd86b5c4e5c4dd',1,'viam::cppsdk::Generic::resource_subtype()']]]
 ];

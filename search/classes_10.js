@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['viamchannel_0',['ViamChannel',['../classViam_1_1SDK_1_1ViamChannel.html',1,'Viam::SDK']]]
+  ['viamchannel_0',['ViamChannel',['../classviam_1_1cppsdk_1_1ViamChannel.html',1,'viam::cppsdk']]]
 ];
