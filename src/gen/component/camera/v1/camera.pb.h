@@ -1537,6 +1537,8 @@ class Webcam final :
     kPropertiesFieldNumber = 3,
     kLabelFieldNumber = 1,
     kStatusFieldNumber = 2,
+    kNameFieldNumber = 4,
+    kIdFieldNumber = 5,
   };
   // repeated .viam.component.camera.v1.Property properties = 3 [json_name = "properties"];
   int properties_size() const;
@@ -1584,6 +1586,34 @@ class Webcam final :
   std::string* _internal_mutable_status();
   public:
 
+  // string name = 4 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string id = 5 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.component.camera.v1.Webcam)
  private:
   class _Internal;
@@ -1594,6 +1624,8 @@ class Webcam final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::component::camera::v1::Property > properties_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr label_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
 };
@@ -3108,6 +3140,106 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::component::camer
 Webcam::properties() const {
   // @@protoc_insertion_point(field_list:viam.component.camera.v1.Webcam.properties)
   return properties_;
+}
+
+// string name = 4 [json_name = "name"];
+inline void Webcam::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& Webcam::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.Webcam.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Webcam::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.Webcam.name)
+}
+inline std::string* Webcam::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.Webcam.name)
+  return _s;
+}
+inline const std::string& Webcam::_internal_name() const {
+  return name_.Get();
+}
+inline void Webcam::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Webcam::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Webcam::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.Webcam.name)
+  return name_.Release();
+}
+inline void Webcam::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Webcam.name)
+}
+
+// string id = 5 [json_name = "id"];
+inline void Webcam::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& Webcam::id() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.Webcam.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Webcam::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.Webcam.id)
+}
+inline std::string* Webcam::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.Webcam.id)
+  return _s;
+}
+inline const std::string& Webcam::_internal_id() const {
+  return id_.Get();
+}
+inline void Webcam::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Webcam::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Webcam::release_id() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.Webcam.id)
+  return id_.Release();
+}
+inline void Webcam::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Webcam.id)
 }
 
 // -------------------------------------------------------------------

@@ -131,7 +131,9 @@ PROTOBUF_CONSTEXPR Webcam::Webcam(
     ::_pbi::ConstantInitialized)
   : properties_()
   , label_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , status_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , status_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct WebcamDefaultTypeInternal {
   PROTOBUF_CONSTEXPR WebcamDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -266,6 +268,8 @@ const uint32_t TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets[] P
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Webcam, label_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Webcam, status_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Webcam, properties_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Webcam, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Webcam, id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::Property, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -306,9 +310,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 47, -1, -1, sizeof(::viam::component::camera::v1::GetPropertiesResponse)},
   { 56, -1, -1, sizeof(::viam::component::camera::v1::Webcams)},
   { 63, -1, -1, sizeof(::viam::component::camera::v1::Webcam)},
-  { 72, -1, -1, sizeof(::viam::component::camera::v1::Property)},
-  { 81, -1, -1, sizeof(::viam::component::camera::v1::IntrinsicParameters)},
-  { 93, -1, -1, sizeof(::viam::component::camera::v1::DistortionParameters)},
+  { 74, -1, -1, sizeof(::viam::component::camera::v1::Property)},
+  { 83, -1, -1, sizeof(::viam::component::camera::v1::IntrinsicParameters)},
+  { 95, -1, -1, sizeof(::viam::component::camera::v1::DistortionParameters)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -349,41 +353,42 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "nt.camera.v1.DistortionParametersR\024disto"
   "rtionParameters\"E\n\007Webcams\022:\n\007webcams\030\001 "
   "\003(\0132 .viam.component.camera.v1.WebcamR\007w"
-  "ebcams\"z\n\006Webcam\022\024\n\005label\030\001 \001(\tR\005label\022\026"
-  "\n\006status\030\002 \001(\tR\006status\022B\n\nproperties\030\003 \003"
-  "(\0132\".viam.component.camera.v1.PropertyR\n"
-  "properties\"e\n\010Property\022\031\n\010width_px\030\001 \001(\005"
-  "R\007widthPx\022\033\n\theight_px\030\002 \001(\005R\010heightPx\022!"
-  "\n\014frame_format\030\003 \001(\tR\013frameFormat\"\311\001\n\023In"
-  "trinsicParameters\022\031\n\010width_px\030\001 \001(\rR\007wid"
-  "thPx\022\033\n\theight_px\030\002 \001(\rR\010heightPx\022\034\n\nfoc"
-  "al_x_px\030\003 \001(\001R\010focalXPx\022\034\n\nfocal_y_px\030\004 "
-  "\001(\001R\010focalYPx\022\036\n\013center_x_px\030\005 \001(\001R\tcent"
-  "erXPx\022\036\n\013center_y_px\030\006 \001(\001R\tcenterYPx\"L\n"
-  "\024DistortionParameters\022\024\n\005model\030\001 \001(\tR\005mo"
-  "del\022\036\n\nparameters\030\002 \003(\001R\nparameters2\233\006\n\r"
-  "CameraService\022\225\001\n\010GetImage\022).viam.compon"
-  "ent.camera.v1.GetImageRequest\032*.viam.com"
-  "ponent.camera.v1.GetImageResponse\"2\202\323\344\223\002"
-  ",\022*/viam/api/v1/component/camera/{name}/"
-  "image\022\214\001\n\013RenderFrame\022,.viam.component.c"
-  "amera.v1.RenderFrameRequest\032\024.google.api"
-  ".HttpBody\"9\202\323\344\223\0023\0221/viam/api/v1/componen"
-  "t/camera/{name}/render_frame\022\252\001\n\rGetPoin"
-  "tCloud\022..viam.component.camera.v1.GetPoi"
-  "ntCloudRequest\032/.viam.component.camera.v"
-  "1.GetPointCloudResponse\"8\202\323\344\223\0022\0220/viam/a"
-  "pi/v1/component/camera/{name}/point_clou"
-  "d\022\251\001\n\rGetProperties\022..viam.component.cam"
-  "era.v1.GetPropertiesRequest\032/.viam.compo"
-  "nent.camera.v1.GetPropertiesResponse\"7\202\323"
-  "\344\223\0021\022//viam/api/v1/component/camera/{nam"
-  "e}/properties\022\211\001\n\tDoCommand\022 .viam.commo"
-  "n.v1.DoCommandRequest\032!.viam.common.v1.D"
-  "oCommandResponse\"7\202\323\344\223\0021\"//viam/api/v1/c"
-  "omponent/camera/{name}/do_commandBC\n\034com"
-  ".viam.component.camera.v1Z#go.viam.com/a"
-  "pi/component/camera/v1b\006proto3"
+  "ebcams\"\236\001\n\006Webcam\022\024\n\005label\030\001 \001(\tR\005label\022"
+  "\026\n\006status\030\002 \001(\tR\006status\022B\n\nproperties\030\003 "
+  "\003(\0132\".viam.component.camera.v1.PropertyR"
+  "\nproperties\022\022\n\004name\030\004 \001(\tR\004name\022\016\n\002id\030\005 "
+  "\001(\tR\002id\"e\n\010Property\022\031\n\010width_px\030\001 \001(\005R\007w"
+  "idthPx\022\033\n\theight_px\030\002 \001(\005R\010heightPx\022!\n\014f"
+  "rame_format\030\003 \001(\tR\013frameFormat\"\311\001\n\023Intri"
+  "nsicParameters\022\031\n\010width_px\030\001 \001(\rR\007widthP"
+  "x\022\033\n\theight_px\030\002 \001(\rR\010heightPx\022\034\n\nfocal_"
+  "x_px\030\003 \001(\001R\010focalXPx\022\034\n\nfocal_y_px\030\004 \001(\001"
+  "R\010focalYPx\022\036\n\013center_x_px\030\005 \001(\001R\tcenterX"
+  "Px\022\036\n\013center_y_px\030\006 \001(\001R\tcenterYPx\"L\n\024Di"
+  "stortionParameters\022\024\n\005model\030\001 \001(\tR\005model"
+  "\022\036\n\nparameters\030\002 \003(\001R\nparameters2\233\006\n\rCam"
+  "eraService\022\225\001\n\010GetImage\022).viam.component"
+  ".camera.v1.GetImageRequest\032*.viam.compon"
+  "ent.camera.v1.GetImageResponse\"2\202\323\344\223\002,\022*"
+  "/viam/api/v1/component/camera/{name}/ima"
+  "ge\022\214\001\n\013RenderFrame\022,.viam.component.came"
+  "ra.v1.RenderFrameRequest\032\024.google.api.Ht"
+  "tpBody\"9\202\323\344\223\0023\0221/viam/api/v1/component/c"
+  "amera/{name}/render_frame\022\252\001\n\rGetPointCl"
+  "oud\022..viam.component.camera.v1.GetPointC"
+  "loudRequest\032/.viam.component.camera.v1.G"
+  "etPointCloudResponse\"8\202\323\344\223\0022\0220/viam/api/"
+  "v1/component/camera/{name}/point_cloud\022\251"
+  "\001\n\rGetProperties\022..viam.component.camera"
+  ".v1.GetPropertiesRequest\032/.viam.componen"
+  "t.camera.v1.GetPropertiesResponse\"7\202\323\344\223\002"
+  "1\022//viam/api/v1/component/camera/{name}/"
+  "properties\022\211\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"7\202\323\344\223\0021\"//viam/api/v1/comp"
+  "onent/camera/{name}/do_commandBC\n\034com.vi"
+  "am.component.camera.v1Z#go.viam.com/api/"
+  "component/camera/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -392,7 +397,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_
 };
 static ::_pbi::once_flag descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto = {
-    false, false, 2270, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
+    false, false, 2307, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
     "component/camera/v1/camera.proto",
     &descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once, descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps, 3, 12,
     schemas, file_default_instances, TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets,
@@ -2280,6 +2285,22 @@ Webcam::Webcam(const Webcam& from)
     status_.Set(from._internal_status(), 
       GetArenaForAllocation());
   }
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    id_.Set(from._internal_id(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.component.camera.v1.Webcam)
 }
 
@@ -2291,6 +2312,14 @@ label_.InitDefault();
 status_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   status_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -2307,6 +2336,8 @@ inline void Webcam::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   label_.Destroy();
   status_.Destroy();
+  name_.Destroy();
+  id_.Destroy();
 }
 
 void Webcam::SetCachedSize(int size) const {
@@ -2322,6 +2353,8 @@ void Webcam::Clear() {
   properties_.Clear();
   label_.ClearToEmpty();
   status_.ClearToEmpty();
+  name_.ClearToEmpty();
+  id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2361,6 +2394,26 @@ const char* Webcam::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string name = 4 [json_name = "name"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.camera.v1.Webcam.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string id = 5 [json_name = "id"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.camera.v1.Webcam.id"));
         } else
           goto handle_unusual;
         continue;
@@ -2421,6 +2474,26 @@ uint8_t* Webcam::_InternalSerialize(
         InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // string name = 4 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.camera.v1.Webcam.name");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_name(), target);
+  }
+
+  // string id = 5 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.camera.v1.Webcam.id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2458,6 +2531,20 @@ size_t Webcam::ByteSizeLong() const {
         this->_internal_status());
   }
 
+  // string name = 4 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string id = 5 [json_name = "id"];
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -2487,6 +2574,12 @@ void Webcam::MergeFrom(const Webcam& from) {
   if (!from._internal_status().empty()) {
     _internal_set_status(from._internal_status());
   }
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2514,6 +2607,14 @@ void Webcam::InternalSwap(Webcam* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &status_, lhs_arena,
       &other->status_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
   );
 }
 
