@@ -6,6 +6,9 @@
 
 #include <resource/resource_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class ServiceBase : public ResourceBase {
    public:
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);
@@ -15,3 +18,6 @@ class ServiceBase : public ResourceBase {
    protected:
     explicit ServiceBase(std::string name) : ResourceBase(std::move(name)){};
 };
+
+}  // namespace cppsdk
+}  // namespace viam

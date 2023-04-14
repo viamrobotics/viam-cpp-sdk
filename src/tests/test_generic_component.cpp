@@ -15,6 +15,13 @@
 #include <tests/mocks/generic_mocks.hpp>
 #include <tests/test_utils.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
+using namespace generic;
+
+using namespace viam::cppsdk;
+
 BOOST_AUTO_TEST_SUITE(generic_suite)
 
 std::shared_ptr<MockGeneric> generic = MockGeneric::get_mock_generic();
@@ -65,3 +72,6 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+}  // namespace cppsdktests
+}  // namespace viam

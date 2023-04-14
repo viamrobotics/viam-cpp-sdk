@@ -37,6 +37,9 @@
 #include <rpc/server.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 namespace {
 Dependencies get_dependencies(ModuleService_* m,
                               google::protobuf::RepeatedPtrField<std::string> proto) {
@@ -262,3 +265,6 @@ void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,
     RPCSubtype rpc_subtype(api, name, *sd);
     module->handles.add_model(model, rpc_subtype);
 };
+
+}  // namespace cppsdk
+}  // namespace viam

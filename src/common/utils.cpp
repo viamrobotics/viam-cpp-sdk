@@ -14,6 +14,9 @@
 #include <components/component_base.hpp>
 #include <registry/registry.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using viam::common::v1::ResourceName;
 
 std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<ResourceBase> resource) {
@@ -51,3 +54,6 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     std::string img_string(b.begin(), b.end());
     return img_string;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

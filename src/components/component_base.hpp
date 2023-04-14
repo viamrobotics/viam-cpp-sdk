@@ -8,6 +8,9 @@
 
 #include <resource/resource_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class ComponentBase : public ResourceBase {
    public:
     virtual ResourceType type() override;
@@ -17,3 +20,6 @@ class ComponentBase : public ResourceBase {
    protected:
     explicit ComponentBase(std::string name) : ResourceBase(std::move(name)){};
 };
+
+}  // namespace cppsdk
+}  // namespace viam

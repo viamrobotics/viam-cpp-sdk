@@ -9,6 +9,9 @@
 #include <resource/resource_server_base.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 /// @class GenericServer
 /// @brief gRPC server implementation of a `Generic` component.
 /// @ingroup Generic
@@ -28,3 +31,6 @@ class GenericServer : public ResourceServerBase,
    private:
     std::shared_ptr<SubtypeService> sub_svc;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

@@ -11,6 +11,9 @@
 #include <common/proto_type.hpp>
 #include <components/component_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using viam::common::v1::ResourceName;
 const std::string COMPONENT = "component";
 const std::string SERVICE = "service";
@@ -39,3 +42,6 @@ class ResourceNameEqual {
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
+
+}  // namespace cppsdk
+}  // namespace viam

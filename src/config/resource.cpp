@@ -14,6 +14,9 @@
 #include <referenceframe/frame.hpp>
 #include <resource/resource.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 Name Resource::resource_name() {
     try {
         this->fix_api();
@@ -112,3 +115,6 @@ viam::app::v1::ComponentConfig Resource::to_proto() {
 }
 
 Resource::Resource(std::string type) : api({RDK, type, ""}), type(type){};
+
+}  // namespace cppsdk
+}  // namespace viam

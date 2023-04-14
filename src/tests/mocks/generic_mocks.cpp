@@ -9,6 +9,12 @@
 #include <components/generic/server.hpp>
 #include <tests/test_utils.hpp>
 
+namespace viam {
+namespace cppsdktests {
+namespace generic {
+
+using namespace viam::cppsdk;
+
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
 MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
@@ -32,3 +38,7 @@ MockGenericStub::MockGenericStub() : server(std::make_shared<GenericServer>()) {
     grpc::ServerContext* ctx;
     return server->DoCommand(ctx, &request, response);
 }
+
+}  // namespace generic
+}  // namespace cppsdktests
+}  // namespace viam

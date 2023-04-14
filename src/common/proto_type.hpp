@@ -5,6 +5,9 @@
 #include <boost/variant/variant.hpp>
 #include <google/protobuf/struct.pb.h>
 
+namespace viam {
+namespace cppsdk {
+
 class ProtoType {
    public:
     boost::variant<boost::blank,
@@ -50,3 +53,6 @@ google::protobuf::Struct map_to_struct(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> dict);
 
 bool operator==(const ProtoType& lhs, const ProtoType& rhs);
+
+}  // namespace cppsdk
+}  // namespace viam

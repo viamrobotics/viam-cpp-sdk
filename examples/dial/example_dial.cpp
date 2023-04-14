@@ -22,16 +22,15 @@
 #include <rpc/dial.hpp>
 
 using viam::robot::v1::Status;
-using Viam::SDK::Credentials;
-using Viam::SDK::Options;
+using namespace viam::cppsdk;
 
 int main() {
     const char* uri = "<your robot URI here>";
-    Viam::SDK::DialOptions dial_options = Viam::SDK::DialOptions();
+    DialOptions dial_options;
     std::string payload = "<your payload here>";
     Credentials credentials(payload);
     dial_options.credentials = credentials;
-    boost::optional<Viam::SDK::DialOptions> opts(dial_options);
+    boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);
     Options options = Options(1, opts);
 

@@ -20,6 +20,9 @@
 #include <rpc/server.hpp>
 #include <services/service_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
     lock.lock();
 
@@ -153,3 +156,6 @@ void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resourc
     do_add(name, resource);
     lock.unlock();
 }
+
+}  // namespace cppsdk
+}  // namespace viam

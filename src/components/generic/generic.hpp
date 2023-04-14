@@ -11,6 +11,9 @@
 #include <registry/registry.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 // TODO(RSDK-1742): one class per header
 /// @defgroup Generic Classes related to the `Generic` component.
 
@@ -49,3 +52,6 @@ class Generic : public ComponentBase {
    protected:
     explicit Generic(std::string name) : ComponentBase(std::move(name)){};
 };
+
+}  // namespace cppsdk
+}  // namespace viam

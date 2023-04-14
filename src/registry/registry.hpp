@@ -20,6 +20,9 @@
 #include <resource/resource_type.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 // TODO(RSDK-1742): instead of std::functions, consider making these functions
 // virtual
 // TODO(RSDK-1742): one class per header
@@ -140,3 +143,6 @@ class Registry {
     static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> resources;
     static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

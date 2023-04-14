@@ -19,6 +19,7 @@
 #include <rpc/server.hpp>
 
 using viam::component::generic::v1::GenericService;
+using namespace viam::cppsdk;
 
 class MyModule : public GenericService::Service, public ComponentBase {
    public:

@@ -36,6 +36,9 @@
 #include <rpc/dial.hpp>
 #include <services/service_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
 using viam::common::v1::PoseInFrame;
@@ -47,8 +50,6 @@ using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
-using Viam::SDK::Options;
-using Viam::SDK::ViamChannel;
 
 // gRPC responses are frequently coming back with a spurious `Stream removed`
 // error, leading to unhelpful and misleading logging. We should figure out why
@@ -393,3 +394,6 @@ void RobotClient::stop_all(
                                  << response.error_details();
     }
 }
+
+}  // namespace cppsdk
+}  // namespace viam

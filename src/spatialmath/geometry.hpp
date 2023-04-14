@@ -7,6 +7,9 @@
 
 #include <spatialmath/orientation.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 enum GeometryType {
     box,
     sphere,
@@ -35,3 +38,6 @@ class GeometryConfig {
     viam::common::v1::Pose pose_proto();
     static GeometryConfig from_proto(viam::common::v1::Geometry proto);
 };
+
+}  // namespace cppsdk
+}  // namespace viam

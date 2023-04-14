@@ -10,6 +10,9 @@
 #include <resource/resource.hpp>
 #include <resource/resource_type.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class ResourceBase;
 using Dependencies = std::unordered_map<Name, std::shared_ptr<ResourceBase>>;
 class ResourceBase {
@@ -25,3 +28,6 @@ class ResourceBase {
    private:
     std::string name_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

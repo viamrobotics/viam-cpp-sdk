@@ -11,6 +11,9 @@
 
 #include <resource/resource.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 viam::module::v1::HandlerMap HandlerMap_::to_proto() {
     viam::module::v1::HandlerMap proto;
     for (auto& h : this->handles) {
@@ -69,3 +72,6 @@ void HandlerMap_::add_model(Model model, RPCSubtype subtype) {
     models.push_back(model);
     handles.emplace(subtype, models);
 }
+
+}  // namespace cppsdk
+}  // namespace viam
