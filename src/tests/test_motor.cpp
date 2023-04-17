@@ -18,6 +18,13 @@
 #include <tests/mocks/mock_motor.hpp>
 #include <tests/test_utils.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
+using namespace motor;
+
+using namespace viam::cppsdk;
+
 BOOST_AUTO_TEST_SUITE(test_motor)
 
 
@@ -57,7 +64,7 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
     BOOST_CHECK(false);
 }
 
-BOOST_AUTO_TEST_CASE(test_stop) {
+BOOST_AUTO_TEST_CASE(test_stop_motor) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
     // TODO impl
     BOOST_CHECK(false);
@@ -84,3 +91,5 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
+} // namespace cppsdktests
+} // namespace viam

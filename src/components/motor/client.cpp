@@ -13,9 +13,10 @@
 #include <config/resource.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
 
-
-void MotorClient::set_power(double power_pct){
+void MotorClient::set_power(double power_pct) {
     viam::component::motor::v1::SetPowerRequest request;
     viam::component::motor::v1::SetPowerResponse response;
 
@@ -25,10 +26,9 @@ void MotorClient::set_power(double power_pct){
     request.set_power_pct(power_pct);
 
     stub_->SetPower(&ctx, request, &response);
-    return from_proto(response);
 }
 
-void MotorClient::go_for(double rpm, double revolutions){
+void MotorClient::go_for(double rpm, double revolutions) {
     viam::component::motor::v1::GoForRequest request;
     viam::component::motor::v1::GoForResponse response;
 
@@ -39,10 +39,9 @@ void MotorClient::go_for(double rpm, double revolutions){
     request.set_revolutions(revolutions);
 
     stub_->GoFor(&ctx, request, &response);
-    return from_proto(response);
 }
 
-void MotorClient::go_to(double rpm, double position_revolutions){
+void MotorClient::go_to(double rpm, double position_revolutions) {
     viam::component::motor::v1::GoToRequest request;
     viam::component::motor::v1::GoToResponse response;
 
@@ -53,10 +52,9 @@ void MotorClient::go_to(double rpm, double position_revolutions){
     request.set_position_revolutions(position_revolutions);
 
     stub_->GoTo(&ctx, request, &response);
-    return from_proto(response);
 }
 
-void MotorClient::reset_zero_position(double offset){
+void MotorClient::reset_zero_position(double offset) {
     viam::component::motor::v1::ResetZeroPositionRequest request;
     viam::component::motor::v1::ResetZeroPositionResponse response;
 
@@ -66,10 +64,9 @@ void MotorClient::reset_zero_position(double offset){
     request.set_offset(offset);
 
     stub_->ResetZeroPosition(&ctx, request, &response);
-    return from_proto(response);
 }
 
-Motor::position MotorClient::get_position(){
+Motor::position MotorClient::get_position() {
     viam::component::motor::v1::GetPositionRequest request;
     viam::component::motor::v1::GetPositionResponse response;
 
@@ -81,7 +78,7 @@ Motor::position MotorClient::get_position(){
     return from_proto(response);
 }
 
-Motor::properties MotorClient::get_properties(){
+Motor::properties MotorClient::get_properties() {
     viam::component::motor::v1::GetPropertiesRequest request;
     viam::component::motor::v1::GetPropertiesResponse response;
 
@@ -93,7 +90,7 @@ Motor::properties MotorClient::get_properties(){
     return from_proto(response);
 }
 
-void MotorClient::stop(){
+void MotorClient::stop_motor() {
     viam::component::motor::v1::StopRequest request;
     viam::component::motor::v1::StopResponse response;
 
@@ -102,10 +99,9 @@ void MotorClient::stop(){
     *request.mutable_name() = this->name();
 
     stub_->Stop(&ctx, request, &response);
-    return from_proto(response);
 }
 
-Motor::power_status MotorClient::get_power_status(){
+Motor::power_status MotorClient::get_power_status() {
     viam::component::motor::v1::IsPoweredRequest request;
     viam::component::motor::v1::IsPoweredResponse response;
 
@@ -117,7 +113,7 @@ Motor::power_status MotorClient::get_power_status(){
     return from_proto(response);
 }
 
-Motor::moving_status MotorClient::is_moving(){
+Motor::moving_status MotorClient::is_moving() {
     viam::component::motor::v1::IsMovingRequest request;
     viam::component::motor::v1::IsMovingResponse response;
 
@@ -129,17 +125,19 @@ Motor::moving_status MotorClient::is_moving(){
     return from_proto(response);
 }
 
-AttributeMap MotorClient::do_command(ERROR TODO){
-    viam::component::motor::v1::common.v1.DoCommandRequest request;
-    viam::component::motor::v1::common.v1.DoCommandResponse response;
+AttributeMap MotorClient::do_command(AttributeMap command) {
+    viam::common::v1::DoCommandRequest request;
+    viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
 
+    google::protobuf::Struct proto_command = map_to_struct(command);
+    *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
-    request.set_TODO(TODO);
 
     stub_->DoCommand(&ctx, request, &response);
-    return from_proto(response);
+    return struct_to_map(response.result());
 }
 
-
+}  // namespace cppsdk
+}  // namespace viam

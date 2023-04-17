@@ -27,17 +27,18 @@
 #include "robot/service.hpp"
 #include "rpc/dial.hpp"
 
+using namespace viam::cppsdk;
+using viam::cppsdk::Credentials;
+using viam::cppsdk::DialOptions;
+using viam::cppsdk::Options;
 using viam::robot::v1::Status;
-using Viam::SDK::Credentials;
-using Viam::SDK::Options;
 
 int main() {
     std::cout << "Started" << std::endl;
 
-    Viam::SDK::DialOptions dial_options = Viam::SDK::DialOptions();
-
+    DialOptions dial_options;
     dial_options.allow_insecure_downgrade = true;
-    boost::optional<Viam::SDK::DialOptions> opts(dial_options);
+    boost::optional<DialOptions> opts(dial_options);
 
     std::string address = "localhost:8080";
     Options options = Options(0, opts);
@@ -58,7 +59,7 @@ int main() {
     {
         Motor::position pos = motor->get_position();
 
-        std::cout << "Motor position " << pos << std::endl;
+        std::cout << "Motor position " << pos.position << std::endl;
     }
 
     std::cout << "Moving forward by 1/2 rotation" << std::endl;
@@ -67,7 +68,7 @@ int main() {
     {
         Motor::position pos = motor->get_position();
 
-        std::cout << "Motor position " << pos << std::endl;
+        std::cout << "Motor position " << pos.position << std::endl;
     }
 
     robot->close();
