@@ -113,7 +113,7 @@ Motor::power_status MotorClient::get_power_status() {
     return from_proto(response);
 }
 
-Motor::moving_status MotorClient::is_moving() {
+bool MotorClient::is_moving() {
     viam::component::motor::v1::IsMovingRequest request;
     viam::component::motor::v1::IsMovingResponse response;
 
@@ -122,7 +122,7 @@ Motor::moving_status MotorClient::is_moving() {
     *request.mutable_name() = this->name();
 
     stub_->IsMoving(&ctx, request, &response);
-    return from_proto(response);
+    return response.is_moving();
 }
 
 AttributeMap MotorClient::do_command(AttributeMap command) {

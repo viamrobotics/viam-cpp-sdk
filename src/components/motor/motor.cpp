@@ -39,9 +39,7 @@ Subtype Motor::subtype() {
 }
 
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
-    Motor::position position;
-    position.position = proto.position();
-    return position;
+    return proto.position();
 }
 
 Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
@@ -58,15 +56,9 @@ Motor::properties Motor::from_proto(viam::component::motor::v1::GetPropertiesRes
     return properties;
 }
 
-Motor::moving_status Motor::from_proto(viam::component::motor::v1::IsMovingResponse proto) {
-    Motor::moving_status moving_status;
-    moving_status.is_moving = proto.is_moving();
-    return moving_status;
-}
-
 viam::component::motor::v1::GetPositionResponse Motor::to_proto(position position) {
     viam::component::motor::v1::GetPositionResponse proto;
-    proto.set_position(position.position);
+    proto.set_position(position);
     return proto;
 }
 
@@ -84,26 +76,12 @@ viam::component::motor::v1::GetPropertiesResponse Motor::to_proto(properties pro
     return proto;
 }
 
-viam::component::motor::v1::IsMovingResponse Motor::to_proto(moving_status moving_status) {
-    viam::component::motor::v1::IsMovingResponse proto;
-    proto.set_is_moving(moving_status.is_moving);
-    return proto;
-}
-
-bool operator==(const Motor::position& lhs, const Motor::position& rhs) {
-    return (lhs.position == rhs.position);
-}
-
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs) {
     return (lhs.is_on == rhs.is_on && lhs.power_pct == rhs.power_pct);
 }
 
 bool operator==(const Motor::properties& lhs, const Motor::properties& rhs) {
     return (lhs.position_reporting == rhs.position_reporting);
-}
-
-bool operator==(const Motor::moving_status& lhs, const Motor::moving_status& rhs) {
-    return (lhs.is_moving == rhs.is_moving);
 }
 
 namespace {

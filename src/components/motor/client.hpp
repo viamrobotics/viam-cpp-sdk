@@ -28,7 +28,7 @@ class MotorClient : public Motor {
     properties get_properties() override;
     void stop_motor() override;
     power_status get_power_status() override;
-    moving_status is_moving() override;
+    bool is_moving() override;
     AttributeMap do_command(AttributeMap command) override;
     MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
         : Motor(std::move(name)),

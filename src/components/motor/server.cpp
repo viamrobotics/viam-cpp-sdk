@@ -106,6 +106,7 @@ namespace cppsdk {
     std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     Motor::position result = motor->get_position();
+    response->set_position(result);
 
     return ::grpc::Status();
 }
@@ -127,6 +128,7 @@ namespace cppsdk {
     std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     Motor::properties result = motor->get_properties();
+    response->set_position_reporting(result.position_reporting);
 
     return ::grpc::Status();
 }
@@ -167,6 +169,8 @@ namespace cppsdk {
     std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     Motor::power_status result = motor->get_power_status();
+    response->set_is_on(result.is_on);
+    response->set_power_pct(result.power_pct);
 
     return ::grpc::Status();
 }
@@ -186,7 +190,8 @@ namespace cppsdk {
 
     std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
-    Motor::moving_status result = motor->is_moving();
+    bool result = motor->is_moving();
+    response->set_is_moving(result);
 
     return ::grpc::Status();
 }
@@ -194,21 +199,23 @@ namespace cppsdk {
 ::grpc::Status MotorServer::DoCommand(grpc::ServerContext* context,
                                       const viam::common::v1::DoCommandRequest* request,
                                       viam::common::v1::DoCommandResponse* response) {
-    if (!request) {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
-                            "Called [DoCommand] without a request");
-    }
+    if (request == nullptr) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Motor::DoCommand] without a request");
+    };
 
-    std::shared_ptr<ResourceBase> resource = sub_svc->resource(request->name());
-    if (!resource) {
+    std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
+    if (rb == nullptr) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(resource);
-    auto result = motor->do_command(struct_to_map(request->command()));
-    response->mutable_result()->CopyFrom(map_to_struct(result));
+    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap result = motor->do_command(struct_to_map(request->command()));
 
-    return grpc::Status::OK;
+    *response->mutable_result() = map_to_struct(result);
+    /* response->mutable_result()->CopyFrom(map_to_struct(result)); */
+
+    return ::grpc::Status();
 }
 
 void MotorServer::register_server(std::shared_ptr<Server> server) {

@@ -33,9 +33,8 @@ using viam::cppsdk::DialOptions;
 using viam::cppsdk::Options;
 using viam::robot::v1::Status;
 
+// TODO(RSDK-2751) Cleanup examples for components
 int main() {
-    std::cout << "Started" << std::endl;
-
     DialOptions dial_options;
     dial_options.allow_insecure_downgrade = true;
     boost::optional<DialOptions> opts(dial_options);
@@ -59,7 +58,7 @@ int main() {
     {
         Motor::position pos = motor->get_position();
 
-        std::cout << "Motor position " << pos.position << std::endl;
+        std::cout << "Motor position " << pos << std::endl;
     }
 
     std::cout << "Moving forward by 1/2 rotation" << std::endl;
@@ -68,7 +67,7 @@ int main() {
     {
         Motor::position pos = motor->get_position();
 
-        std::cout << "Motor position " << pos.position << std::endl;
+        std::cout << "Motor position " << pos << std::endl;
     }
 
     robot->close();

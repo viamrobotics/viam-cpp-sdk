@@ -22,18 +22,23 @@ class MockMotor : public viam::cppsdk::Motor {
     viam::cppsdk::Motor::properties get_properties() override;
     void stop_motor() override;
     viam::cppsdk::Motor::power_status get_power_status() override;
-    viam::cppsdk::Motor::moving_status is_moving() override;
-    AttributeMap do_command(AttributeMap command) override;
+    bool is_moving() override;
+    viam::cppsdk::AttributeMap do_command(viam::cppsdk::AttributeMap command) override;
     static std::shared_ptr<MockMotor> get_mock_motor();
 
     MockMotor(std::string name) : Motor(std::move(name)){};
 
    private:
-    // TODO add private members for mock
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map;
+    viam::cppsdk::Motor::position position;
+    viam::cppsdk::Motor::power_status power_status;
+    viam::cppsdk::Motor::properties properties;
+    // TODO(RSDK-2747) swap to AttributeMap
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<viam::cppsdk::ProtoType>>> map;
 };
 
-// TODO create fake_xxx functions
+viam::cppsdk::Motor::position fake_position();
+viam::cppsdk::Motor::power_status fake_power_status();
+viam::cppsdk::Motor::properties fake_properties();
 
 }  // namespace motor
 }  // namespace cppsdktests

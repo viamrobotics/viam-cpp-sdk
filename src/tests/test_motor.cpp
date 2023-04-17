@@ -12,8 +12,8 @@
 #include <component/motor/v1/motor.pb.h>
 
 #include <common/proto_type.hpp>
-#include <components/motor/motor.hpp>
 #include <components/motor/client.hpp>
+#include <components/motor/motor.hpp>
 #include <components/motor/server.hpp>
 #include <tests/mocks/mock_motor.hpp>
 #include <tests/test_utils.hpp>
@@ -27,69 +27,220 @@ using namespace viam::cppsdk;
 
 BOOST_AUTO_TEST_SUITE(test_motor)
 
-
 BOOST_AUTO_TEST_CASE(test_set_power) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
+    motor->set_power(1.0);
+    BOOST_CHECK(motor->get_power_status().power_pct == 1.0);
+    motor->set_power(0.0);
+    BOOST_CHECK(motor->get_power_status().power_pct == 0.0);
+    BOOST_CHECK(!motor->get_power_status().is_on);
 }
 
 BOOST_AUTO_TEST_CASE(test_go_for) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
+    motor->go_for(1.0, 1.0);
+    motor->go_for(1.0, 1.5);
+    BOOST_CHECK(motor->get_position() == 2.5);
 }
 
 BOOST_AUTO_TEST_CASE(test_go_to) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
+    motor->go_to(1.0, 1.0);
+    BOOST_CHECK(motor->get_position() == 1.0);
 }
 
 BOOST_AUTO_TEST_CASE(test_reset_zero_position) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
-}
-
-BOOST_AUTO_TEST_CASE(test_get_position) {
-    std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
+    motor->go_to(1.0, 1.0);
+    BOOST_CHECK(motor->get_position() == 1.0);
+    motor->reset_zero_position(1.5);
+    BOOST_CHECK(motor->get_position() == -0.5);
 }
 
 BOOST_AUTO_TEST_CASE(test_get_properties) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
+    BOOST_CHECK(motor->get_properties().position_reporting);
 }
 
 BOOST_AUTO_TEST_CASE(test_stop_motor) {
+    // This test is a no-op for now because is_moving will always
+    // return false
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
-}
-
-BOOST_AUTO_TEST_CASE(test_get_power_status) {
-    std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
-}
-
-BOOST_AUTO_TEST_CASE(test_is_moving) {
-    std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
+    motor->stop_motor();
+    BOOST_CHECK(!motor->is_moving());
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    // TODO impl
-    BOOST_CHECK(false);
-}
+    AttributeMap expected = fake_map();
 
+    AttributeMap command = fake_map();
+    AttributeMap result_map = motor->do_command(command);
+
+    ProtoType expected_pt = *(expected->at(std::string("test")));
+    ProtoType result_pt = *(result_map->at(std::string("test")));
+
+    BOOST_CHECK(result_pt == expected_pt);
+}
 
 BOOST_AUTO_TEST_SUITE_END()
 
-} // namespace cppsdktests
-} // namespace viam
+BOOST_AUTO_TEST_SUITE(test_motor_client_server)
+
+// This sets up the following architecture
+// -- MockComponent
+//        /\
+//
+//        | (function calls)
+//
+//        \/
+// -- Server (Real)
+//        /\
+//
+//        | (grpc InProcessChannel)
+//
+//        \/
+// -- ComponentClient (Real)
+//
+// This is as close to a real setup as we can get
+// without starting another process
+//
+// The passed in lambda function has access to the ComponentClient
+//
+template <typename Lambda>
+void server_to_mock_pipeline(Lambda&& func) {
+    MotorServer motor_server;
+    motor_server.get_sub_svc()->add(std::string("mock_motor"), MockMotor::get_mock_motor());
+
+    grpc::ServerBuilder builder;
+    builder.RegisterService(&motor_server);
+
+    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
+
+    grpc::ChannelArguments args;
+    auto grpc_channel = server->InProcessChannel(args);
+    MotorClient client("mock_motor", grpc_channel);
+    // Run the passed test on the created stack
+    std::forward<Lambda>(func)(client);
+    // shutdown afterwards
+    server->Shutdown();
+}
+
+BOOST_AUTO_TEST_CASE(test_set_power) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        client.set_power(1.0);
+        BOOST_CHECK(client.get_power_status().power_pct == 1.0);
+        client.set_power(0.0);
+        BOOST_CHECK(client.get_power_status().power_pct == 0.0);
+        BOOST_CHECK(!client.get_power_status().is_on);
+        client.set_power(-0.5);
+        BOOST_CHECK(client.get_power_status().power_pct == -0.5);
+        BOOST_CHECK(client.get_power_status().is_on);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_go_for) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        client.go_for(1.0, 1.0);
+        BOOST_CHECK(client.get_position() == 1.0);
+        client.go_for(1.0, 1.5);
+        BOOST_CHECK(client.get_position() == 2.5);
+        client.go_for(1.0, -0.5);
+        BOOST_CHECK(client.get_position() == 2.0);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_go_to) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        client.go_to(1.0, 1.0);
+        BOOST_CHECK(client.get_position() == 1.0);
+        client.go_to(0.1, -1.0);
+        BOOST_CHECK(client.get_position() == -1.0);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_reset_zero_position) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        client.go_to(1.0, 1.0);
+        BOOST_CHECK(client.get_position() == 1.0);
+        client.reset_zero_position(1.5);
+        BOOST_CHECK(client.get_position() == -0.5);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_properties) {
+    server_to_mock_pipeline(
+        [](Motor& client) -> void { BOOST_CHECK(client.get_properties().position_reporting); });
+}
+
+BOOST_AUTO_TEST_CASE(test_stop_motor) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        client.set_power(1.0);
+        BOOST_CHECK(client.get_power_status().power_pct == 1.0);
+        BOOST_CHECK(client.get_power_status().is_on);
+        client.stop_motor();
+        BOOST_CHECK(client.get_power_status().power_pct == 0.0);
+        BOOST_CHECK(!client.get_power_status().is_on);
+        // This test is a no-op for now because is_moving will always
+        // return false
+        BOOST_CHECK(!client.is_moving());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_do_command) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        AttributeMap expected = fake_map();
+
+        AttributeMap command = fake_map();
+        AttributeMap result_map = client.do_command(command);
+
+        ProtoType expected_pt = *(expected->at(std::string("test")));
+        ProtoType result_pt = *(result_map->at(std::string("test")));
+
+        BOOST_CHECK(result_pt == expected_pt);
+    });
+}
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(test_motor_service_raw)
+std::shared_ptr<MotorServer> get_motor_server() {
+    auto server = std::make_shared<MotorServer>();
+    server->get_sub_svc()->add(std::string("mock_motor"), MockMotor::get_mock_motor());
+    return server;
+}
+
+BOOST_AUTO_TEST_CASE(test_set_power) {
+    auto server = get_motor_server();
+
+    {
+        viam::component::motor::v1::SetPowerRequest request;
+        viam::component::motor::v1::SetPowerResponse response;
+
+        grpc::ServerContext ctx;
+
+        *request.mutable_name() = "mock_motor";
+        request.set_power_pct(4.0);
+
+        grpc::Status status = server->SetPower(&ctx, &request, &response);
+        BOOST_CHECK(status.error_code() == 0);
+    }
+
+    {
+        viam::component::motor::v1::IsPoweredRequest request;
+        viam::component::motor::v1::IsPoweredResponse response;
+
+        grpc::ServerContext ctx;
+
+        *request.mutable_name() = "mock_motor";
+
+        grpc::Status status = server->IsPowered(&ctx, &request, &response);
+        BOOST_CHECK(status.error_code() == 0);
+        auto ret = Motor::from_proto(response);
+        BOOST_CHECK(ret.is_on);
+        BOOST_CHECK(ret.power_pct == 4.0);
+    }
+}
+BOOST_AUTO_TEST_SUITE_END()
+
+}  // namespace cppsdktests
+}  // namespace viam
