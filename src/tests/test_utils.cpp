@@ -5,6 +5,11 @@
 #include <common/proto_type.hpp>
 #include <config/resource.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
+using namespace viam::cppsdk;
+
 AttributeMap fake_map() {
     std::shared_ptr<ProtoType> proto_ptr =
         std::make_shared<ProtoType>(std::move(std::string("hello")));
@@ -13,3 +18,6 @@ AttributeMap fake_map() {
     map->insert({{std::string("test"), proto_ptr}});
     return map;
 }
+
+}  // namespace cppsdktests
+}  // namespace viam

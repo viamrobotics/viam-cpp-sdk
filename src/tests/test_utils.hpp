@@ -4,4 +4,12 @@
 
 #include <config/resource.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
+using namespace viam::cppsdk;
+
 AttributeMap fake_map();
+
+}  // namespace cppsdktests
+}  // namespace viam

@@ -12,6 +12,9 @@
 #include <config/resource.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 /// @class CameraClient
 /// @brief gRPC client implementation of a `Camera` component.
 /// @ingroup Camera
@@ -38,3 +41,6 @@ class CameraClient : public Camera {
     std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

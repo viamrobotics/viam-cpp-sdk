@@ -7,6 +7,9 @@
 
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 Module::Module(std::string addr) : addr(addr){};
 
 void Module::set_ready() {
@@ -14,3 +17,6 @@ void Module::set_ready() {
     ready = true;
     lock.unlock();
 }
+
+}  // namespace cppsdk
+}  // namespace viam

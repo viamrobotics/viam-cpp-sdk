@@ -17,6 +17,7 @@ add_executable(example_module
 )
 
 target_link_libraries(example_module
+  PRIVATE Threads::Threads
   viamcpp
 )
 

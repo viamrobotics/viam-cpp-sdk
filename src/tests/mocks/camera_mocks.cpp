@@ -8,6 +8,12 @@
 #include <components/camera/server.hpp>
 #include <tests/test_utils.hpp>
 
+namespace viam {
+namespace cppsdktests {
+namespace camera {
+
+using namespace viam::cppsdk;
+
 AttributeMap MockCamera::do_command(AttributeMap command) {
     return map;
 }
@@ -111,3 +117,7 @@ MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
     grpc::ServerContext* ctx;
     return server->DoCommand(ctx, &request, response);
 }
+
+}  // namespace camera
+}  // namespace cppsdktests
+}  // namespace viam

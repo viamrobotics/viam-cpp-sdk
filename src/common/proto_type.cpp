@@ -11,6 +11,9 @@
 
 #include <config/resource.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using google::protobuf::Struct;
 using google::protobuf::Value;
 
@@ -187,3 +190,6 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
         }
     }
 }
+
+}  // namespace cppsdk
+}  // namespace viam

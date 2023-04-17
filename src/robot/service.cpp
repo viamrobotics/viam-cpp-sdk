@@ -20,6 +20,9 @@
 #include <robot/client.hpp>
 #include <services/service_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::ResourceName;
 using viam::robot::v1::Status;
@@ -204,3 +207,6 @@ RobotService_::RobotService_(){};
 std::shared_ptr<RobotService_> RobotService_::create() {
     return std::make_shared<RobotService_>();
 };
+
+}  // namespace cppsdk
+}  // namespace viam

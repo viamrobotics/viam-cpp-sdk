@@ -8,6 +8,12 @@
 #include <components/generic/generic.hpp>
 #include <components/generic/server.hpp>
 
+namespace viam {
+namespace cppsdktests {
+namespace generic {
+
+using namespace viam::cppsdk;
+
 class MockGeneric : public Generic {
    public:
     MockGeneric(std::string name) : Generic(std::move(name)){};
@@ -50,3 +56,7 @@ class MockGenericClient : public GenericClient {
     MockGenericClient(std::string name)
         : GenericClient(std::move(name), std::make_unique<MockGenericStub>()){};
 };
+
+}  // namespace generic
+}  // namespace cppsdktests
+}  // namespace viam

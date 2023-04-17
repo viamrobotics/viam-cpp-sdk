@@ -13,6 +13,9 @@
 #include <config/resource.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 std::string normalize_mime_type(const std::string& str) {
     std::string mime_type = str;
     if (str.size() >= Camera::lazy_suffix.size() &&
@@ -72,3 +75,6 @@ Camera::properties CameraClient::get_properties() {
     stub_->GetProperties(&ctx, req, &resp);
     return from_proto(resp);
 };
+
+}  // namespace cppsdk
+}  // namespace viam

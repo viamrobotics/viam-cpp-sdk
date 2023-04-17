@@ -15,6 +15,9 @@
 #include <registry/registry.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 /// @defgroup Camera Classes related to the `Camera` component.
 
 /// @class CameraSubtype
@@ -142,3 +145,6 @@ bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs);
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs);
+
+}  // namespace cppsdk
+}  // namespace viam

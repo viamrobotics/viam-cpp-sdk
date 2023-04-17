@@ -7,6 +7,9 @@
 #include <spatialmath/geometry.hpp>
 #include <spatialmath/orientation.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 class LinkConfig {
    public:
     viam::app::v1::Frame to_proto();
@@ -14,8 +17,11 @@ class LinkConfig {
 
    private:
     std::string id;
-    Viam::SDK::translation translation;
+    class translation translation;
     OrientationConfig orientation;
     GeometryConfig geometry;
     std::string parent;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

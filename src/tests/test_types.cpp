@@ -8,6 +8,11 @@
 #include <config/resource.hpp>
 #include <tests/test_utils.hpp>
 
+namespace viam {
+namespace cppsdktests {
+
+using namespace viam::cppsdk;
+
 BOOST_AUTO_TEST_SUITE(test_prototype)
 
 BOOST_AUTO_TEST_CASE(test_prototype_equality) {
@@ -32,3 +37,6 @@ BOOST_AUTO_TEST_CASE(test_prototype_equality) {
     BOOST_CHECK(!(type1 == type3));
 }
 BOOST_AUTO_TEST_SUITE_END()
+
+}  // namespace cppsdktests
+}  // namespace viam

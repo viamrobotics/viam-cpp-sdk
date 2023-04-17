@@ -7,6 +7,9 @@
 #include <grpcpp/security/server_credentials.h>
 #include <grpcpp/server_builder.h>
 
+namespace viam {
+namespace cppsdk {
+
 /// @class Server server.hpp "rpc/server.hpp"
 /// @brief Defines gRPC `Server` functionality.
 class Server {
@@ -43,3 +46,6 @@ class Server {
     std::unique_ptr<grpc::ServerBuilder> builder_;
     std::unique_ptr<grpc::Server> server_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

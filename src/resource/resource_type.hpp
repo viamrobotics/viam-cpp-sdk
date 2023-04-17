@@ -2,6 +2,9 @@
 
 #include <string>
 
+namespace viam {
+namespace cppsdk {
+
 class ResourceType {
    public:
     std::string to_string();
@@ -11,3 +14,6 @@ class ResourceType {
    private:
     std::string type;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

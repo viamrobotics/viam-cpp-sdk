@@ -10,6 +10,9 @@
 #include <components/generic/generic.hpp>
 #include <robot/client.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 /// @class GenericClient
 /// @brief gRPC client implementation of a `Generic` component.
 /// @ingroup Generic
@@ -33,3 +36,6 @@ class GenericClient : public Generic {
     std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

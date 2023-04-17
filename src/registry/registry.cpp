@@ -20,6 +20,9 @@
 #include <resource/resource_type.hpp>
 #include <services/service_base.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 using viam::robot::v1::Status;
 
 void Registry::register_resource(std::shared_ptr<ModelRegistration> resource) {
@@ -105,3 +108,6 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
 
 std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::resources;
 std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
+
+}  // namespace cppsdk
+}  // namespace viam

@@ -9,6 +9,9 @@
 #include <resource/resource_server_base.hpp>
 #include <subtype/subtype.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 /// @class CameraServer
 /// @brief gRPC server implementation of a `Camera` component.
 /// @ingroup Camera
@@ -43,3 +46,6 @@ class CameraServer : public ResourceServerBase,
    private:
     std::shared_ptr<SubtypeService> sub_svc;
 };
+
+}  // namespace cppsdk
+}  // namespace viam

@@ -11,6 +11,9 @@
 #include <registry/registry.hpp>
 #include <resource/resource.hpp>
 
+namespace viam {
+namespace cppsdk {
+
 std::shared_ptr<ResourceServerBase> CameraSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> svc) {
     return std::make_shared<CameraServer>(svc);
@@ -156,3 +159,6 @@ bool init() {
 
 bool inited = init();
 }  // namespace
+
+}  // namespace cppsdk
+}  // namespace viam
