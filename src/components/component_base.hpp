@@ -14,7 +14,7 @@ namespace cppsdk {
 class ComponentBase : public ResourceBase {
    public:
     virtual ResourceType type() override;
-    viam::common::v1::ResourceName get_resource_name(std::string name);
+    viam::common::v1::ResourceName get_resource_name(std::string name) override;
     ComponentBase() : ResourceBase("component"){};
 
    protected:

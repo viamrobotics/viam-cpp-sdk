@@ -11,14 +11,8 @@ namespace viam {
 namespace cppsdk {
 
 ResourceName ServiceBase::get_resource_name(std::string name) {
-    // TODO (RSDK-1631): test, confirm whether we need to split on
-    // "viam.components" here
-    ResourceName r;
-    *r.mutable_namespace_() = RDK;
+    auto r = this->ResourceBase::get_resource_name(name);
     *r.mutable_type() = SERVICE;
-    *r.mutable_subtype() = this->type().to_string();
-    *r.mutable_name() = std::move(name);
-
     return r;
 }
 

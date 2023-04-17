@@ -19,7 +19,8 @@ class ResourceBase {
    public:
     explicit ResourceBase(std::string name) : name_(std::move(name)){};
     static Subtype subtype();
-    virtual grpc::StatusCode stop(std::unordered_map<std::string, ProtoType*> extra);
+    virtual viam::common::v1::ResourceName get_resource_name(std::string name);
+    virtual grpc::StatusCode stop(AttributeMap extra);
     virtual grpc::StatusCode stop();
     virtual void reconfigure(Dependencies deps, Resource cfg);
     virtual std::string name();
