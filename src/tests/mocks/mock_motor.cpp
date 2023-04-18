@@ -17,24 +17,20 @@ namespace motor {
 using namespace viam::cppsdk;
 
 void MockMotor::set_power(double power_pct) {
-    if (std::abs(power_pct) > 1.0) {
-        throw std::range_error("power_pct");
-    }
     power_status.is_on = power_pct != 0.0;
     power_status.power_pct = power_pct;
 };
 void MockMotor::go_for(double rpm, double revolutions) {
+    // This is the actual behavior from rdk:builtin:fake_motor
+    if (rpm == 0.0) {
+        throw std::runtime_error("Cannot move motor at 0 RPM");
+    }
     position += revolutions;
 };
 void MockMotor::go_to(double rpm, double position_revolutions) {
     position = position_revolutions;
 };
 void MockMotor::reset_zero_position(double offset) {
-    // If position = x
-    // offset = x-y
-    // new pos = y,
-    // This is not idential to the real world but
-    // is equivalent for this mock
     position -= offset;
 };
 Motor::position MockMotor::get_position() {
@@ -45,7 +41,7 @@ Motor::properties MockMotor::get_properties() {
 };
 void MockMotor::stop_motor() {
     // None of these functions are async and this mock is not
-    // thread-safe (Send, not Sync). The motor should never be
+    // thread-safe (Send, not Sync). The mock motor should never be
     // moving when this is called
     set_power(0.0);
 };
