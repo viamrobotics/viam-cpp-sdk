@@ -107,6 +107,32 @@ override and only use direct gRPC calls, you will need to use a
 e.g. `name.xxxx.local.viam.cloud:8080` instead of
 `name.xxxx.viam.cloud`.
 
+## Building Documentation Locally for Testing
+The C++ sdk uses [Doxygen](https://www.doxygen.nl/) to generate documentation.
+An automated workflow will generate and update our documentation on each merge,
+and publish it to [cpp.viam.dev](https://cpp.viam.dev). 
+
+Generating documentation locally to observe changes while developing with the
+C++ SDK is simple. 
+First, make sure doxygen is installed, e.g.,
+```
+(on mac) brew install doxygen
+(on linux) apt-get install -y doxygen
+```
+
+Second, make sure the documentation directory exists. From the SDK root, run:
+```
+mkdir -p etc/docs/api/current
+```
+
+Finally, generate the documentation. From the SDK root, run:
+```
+doxygen Doxyfile
+```
+
+That will generate all documentation in the `etc/docs/api/current` folder. Then 
+simply open the `index.html` file in your preferred browser to view the documentation.
+
 ## A Note on Connectivity and webRTC Functionality
 
 The rust webRTC implementation (which C++ relies on via rust's foreign
