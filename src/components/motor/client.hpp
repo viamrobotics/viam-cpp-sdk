@@ -26,7 +26,7 @@ class MotorClient : public Motor {
     void reset_zero_position(double offset) override;
     position get_position() override;
     properties get_properties() override;
-    void stop_motor() override;
+    grpc::StatusCode stop(AttributeMap extra) override;
     power_status get_power_status() override;
     bool is_moving() override;
     AttributeMap do_command(AttributeMap command) override;

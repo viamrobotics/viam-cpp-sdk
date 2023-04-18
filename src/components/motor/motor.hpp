@@ -118,9 +118,6 @@ class Motor : public ComponentBase {
     /// which optional features the robot's motor supports
     virtual properties get_properties() = 0;
 
-    /// @brief Turns the robot's motor off
-    virtual void stop_motor() = 0;
-
     /// @return The motor's current power_status
     virtual power_status get_power_status() = 0;
 

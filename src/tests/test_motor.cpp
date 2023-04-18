@@ -61,11 +61,11 @@ BOOST_AUTO_TEST_CASE(mock_get_properties) {
     BOOST_CHECK(motor->get_properties().position_reporting);
 }
 
-BOOST_AUTO_TEST_CASE(mock_stop_motor) {
-    // This test is a no-op for now because is_moving will always
-    // return false
+BOOST_AUTO_TEST_CASE(mock_stop) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    motor->stop_motor();
+    AttributeMap extra_map = fake_map();
+    motor->stop(std::move(extra_map));
+    BOOST_CHECK(motor->get_power_status().power_pct == 0.0);
     BOOST_CHECK(!motor->is_moving());
 }
 
@@ -177,12 +177,12 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
         [](Motor& client) -> void { BOOST_CHECK(client.get_properties().position_reporting); });
 }
 
-BOOST_AUTO_TEST_CASE(test_stop_motor) {
+BOOST_AUTO_TEST_CASE(test_stop) {
     server_to_mock_pipeline([](Motor& client) -> void {
         client.set_power(1.0);
         BOOST_CHECK(client.get_power_status().power_pct == 1.0);
         BOOST_CHECK(client.get_power_status().is_on);
-        client.stop_motor();
+        client.stop(AttributeMap());
         BOOST_CHECK(client.get_power_status().power_pct == 0.0);
         BOOST_CHECK(!client.get_power_status().is_on);
         // This test is a no-op for now because is_moving will always

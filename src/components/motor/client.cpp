@@ -109,7 +109,7 @@ Motor::properties MotorClient::get_properties() {
     return from_proto(response);
 }
 
-void MotorClient::stop_motor() {
+grpc::StatusCode MotorClient::stop(AttributeMap extra) {
     viam::component::motor::v1::StopRequest request;
     viam::component::motor::v1::StopResponse response;
 
@@ -118,9 +118,7 @@ void MotorClient::stop_motor() {
     *request.mutable_name() = this->name();
 
     grpc::Status status = stub_->Stop(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return status.error_code();
 }
 
 Motor::power_status MotorClient::get_power_status() {

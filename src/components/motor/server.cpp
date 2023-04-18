@@ -148,7 +148,7 @@ namespace cppsdk {
 
     std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
-    motor->stop_motor();
+    motor->stop(AttributeMap());
 
     return ::grpc::Status();
 }

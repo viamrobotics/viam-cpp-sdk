@@ -39,11 +39,12 @@ Motor::position MockMotor::get_position() {
 Motor::properties MockMotor::get_properties() {
     return properties;
 };
-void MockMotor::stop_motor() {
+grpc::StatusCode MockMotor::stop(AttributeMap extra) {
     // None of these functions are async and this mock is not
     // thread-safe (Send, not Sync). The mock motor should never be
     // moving when this is called
     set_power(0.0);
+    return grpc::StatusCode();
 };
 Motor::power_status MockMotor::get_power_status() {
     return power_status;

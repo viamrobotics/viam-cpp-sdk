@@ -22,7 +22,7 @@ class MockMotor : public Motor {
     void reset_zero_position(double offset) override;
     Motor::position get_position() override;
     Motor::properties get_properties() override;
-    void stop_motor() override;
+    grpc::StatusCode stop(viam::cppsdk::AttributeMap extra) override;
     Motor::power_status get_power_status() override;
     bool is_moving() override;
     viam::cppsdk::AttributeMap do_command(viam::cppsdk::AttributeMap command) override;
