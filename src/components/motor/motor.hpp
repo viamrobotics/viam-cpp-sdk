@@ -3,17 +3,14 @@
 /// @brief Defines a `Motor` component.
 #pragma once
 
-// direct relevant
-// std::global
-// third party
-// local proto
-// sdk local
+#include <string>
+
+#include <component/motor/v1/motor.pb.h>
+
 #include <common/proto_type.hpp>
 #include <common/utils.hpp>
-#include <component/motor/v1/motor.pb.h>
 #include <config/resource.hpp>
 #include <registry/registry.hpp>
-#include <string>
 #include <subtype/subtype.hpp>
 
 namespace viam {
@@ -43,7 +40,7 @@ class MotorSubtype : public ResourceSubtype {
 class Motor : public ComponentBase {
    public:
     /// @struct position
-    /// Current position of the motor relative to its home
+    /// @brief Current position of the motor relative to its home
     typedef double position;
 
     /// @struct power_status
@@ -68,65 +65,69 @@ class Motor : public ComponentBase {
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
 
-    /// @brief Creates an `position` struct from its proto representation.
+    /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::motor::v1::GetPositionResponse proto);
 
-    /// @brief Creates an `power_status` struct from its proto representation.
+    /// @brief Creates a `power_status` struct from its proto representation.
     static power_status from_proto(viam::component::motor::v1::IsPoweredResponse proto);
 
-    /// @brief Creates an `properties` struct from its proto representation.
+    /// @brief Creates a `properties` struct from its proto representation.
     static properties from_proto(viam::component::motor::v1::GetPropertiesResponse proto);
 
-    /// @brief Converts an `position` struct to its proto representation.
+    /// @brief Converts a `position` struct to its proto representation.
     static viam::component::motor::v1::GetPositionResponse to_proto(position position);
 
-    /// @brief Converts an `power_status` struct to its proto representation.
+    /// @brief Converts a `power_status` struct to its proto representation.
     static viam::component::motor::v1::IsPoweredResponse to_proto(power_status power_status);
 
-    /// @brief Converts an `properties` struct to its proto representation.
+    /// @brief Converts a `properties` struct to its proto representation.
     static viam::component::motor::v1::GetPropertiesResponse to_proto(properties properties);
 
-    /// set_power sets the percentage of the motor's total power that should be employed expressed a
-    /// value between -1 and 1 where negative values indicate a backwards direction and positive
-    /// values a forward direction
-    /// @param power_pct Percentage of motor's power, between -1 and 1
+    /// @brief Sets the percentage of the motor's total power that should be employed.
+    /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values
+    /// indicate a backwards direction and positive values, a forward direction.
     virtual void set_power(double power_pct) = 0;
 
-    /// go_for instructs the motor to turn at a specified speed, which is expressed in RPM, for a
-    /// specified number of rotations relative to its starting position. If revolutions is 0, this
-    /// will run the motor at rpm indefinitely. If revolutions != 0, this will block until the
-    /// number of revolutions has been completed or another operation comes in.
+    /// @brief Instructs the motor to turn at a specified speed, which is expressed in RPM, for a
+    /// specified number of rotations relative to its starting position.
     /// @param rpm Speed of motor travel in rotations per minute
-    /// @param revolutions Number of revolutions relative to motor's start position
+    /// @param revolutions Number of revolutions relative to motor's start position. If
+    /// `revolutions` == 0, this will run the motor at `rpm` indefinetely. If `revolutions` != 0,
+    /// this will block until the number of revolutions has been completed or another operation
+    /// comes in.
+    /// @throws runtime_error if position reporting is not supported
     virtual void go_for(double rpm, double revolutions) = 0;
 
-    /// go_to requests the robot's motor to move to a specific position that is relative to its home
-    /// position at a specified speed which is expressed in RPM.
+    /// @brief Move the motor to a specific position that is relative to its
+    /// home position at a specified speed which is expressed in RPM.
     /// @param rpm Speed of motor travel in rotations per minute
     /// @param position_revolutions Number of revolutions relative to motor's home home/zero
+    /// @throws runtime_error if position reporting is not supported
     virtual void go_to(double rpm, double position_revolutions) = 0;
 
-    /// reset_zero_position sets the current position of the motor as the new zero position.
+    /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
+    /// @throws runtime_error if position reporting is not supported
     virtual void reset_zero_position(double offset) = 0;
 
-    /// get_position reports the position of the robot's motor relative to its zero position.
+    /// @brief Reports the position of the robot's motor relative to its zero position.
+    /// @throws runtime_error if position reporting is not supported
     virtual position get_position() = 0;
 
-    /// get_properties returns the properties of the motor which comprises the booleans indicating
+    /// @brief Returns the properties of the motor which comprises the booleans indicating
     /// which optional features the robot's motor supports
     virtual properties get_properties() = 0;
 
-    /// stop_motor turns the robot's motor off
+    /// @brief Turns the robot's motor off
     virtual void stop_motor() = 0;
 
-    /// @return the motor's current power_status
+    /// @return The motor's current power_status
     virtual power_status get_power_status() = 0;
 
-    /// is_moving reports if a component is in motion
+    /// @brief Reports if a component is in motion
     virtual bool is_moving() = 0;
 
-    /// Send/receive arbitrary commands to the resource.
+    /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
