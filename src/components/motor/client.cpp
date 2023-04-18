@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -25,7 +26,10 @@ void MotorClient::set_power(double power_pct) {
     *request.mutable_name() = this->name();
     request.set_power_pct(power_pct);
 
-    stub_->SetPower(&ctx, request, &response);
+    grpc::Status status = stub_->SetPower(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 void MotorClient::go_for(double rpm, double revolutions) {
@@ -38,7 +42,10 @@ void MotorClient::go_for(double rpm, double revolutions) {
     request.set_rpm(rpm);
     request.set_revolutions(revolutions);
 
-    stub_->GoFor(&ctx, request, &response);
+    grpc::Status status = stub_->GoFor(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 void MotorClient::go_to(double rpm, double position_revolutions) {
@@ -51,7 +58,10 @@ void MotorClient::go_to(double rpm, double position_revolutions) {
     request.set_rpm(rpm);
     request.set_position_revolutions(position_revolutions);
 
-    stub_->GoTo(&ctx, request, &response);
+    grpc::Status status = stub_->GoTo(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 void MotorClient::reset_zero_position(double offset) {
@@ -63,7 +73,10 @@ void MotorClient::reset_zero_position(double offset) {
     *request.mutable_name() = this->name();
     request.set_offset(offset);
 
-    stub_->ResetZeroPosition(&ctx, request, &response);
+    grpc::Status status = stub_->ResetZeroPosition(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 Motor::position MotorClient::get_position() {
@@ -74,7 +87,10 @@ Motor::position MotorClient::get_position() {
 
     *request.mutable_name() = this->name();
 
-    stub_->GetPosition(&ctx, request, &response);
+    grpc::Status status = stub_->GetPosition(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
     return from_proto(response);
 }
 
@@ -86,7 +102,10 @@ Motor::properties MotorClient::get_properties() {
 
     *request.mutable_name() = this->name();
 
-    stub_->GetProperties(&ctx, request, &response);
+    grpc::Status status = stub_->GetProperties(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
     return from_proto(response);
 }
 
@@ -98,7 +117,10 @@ void MotorClient::stop_motor() {
 
     *request.mutable_name() = this->name();
 
-    stub_->Stop(&ctx, request, &response);
+    grpc::Status status = stub_->Stop(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 Motor::power_status MotorClient::get_power_status() {
@@ -109,7 +131,10 @@ Motor::power_status MotorClient::get_power_status() {
 
     *request.mutable_name() = this->name();
 
-    stub_->IsPowered(&ctx, request, &response);
+    grpc::Status status = stub_->IsPowered(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
     return from_proto(response);
 }
 
@@ -121,7 +146,10 @@ bool MotorClient::is_moving() {
 
     *request.mutable_name() = this->name();
 
-    stub_->IsMoving(&ctx, request, &response);
+    grpc::Status status = stub_->IsMoving(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
     return response.is_moving();
 }
 
@@ -135,7 +163,10 @@ AttributeMap MotorClient::do_command(AttributeMap command) {
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    stub_->DoCommand(&ctx, request, &response);
+    grpc::Status status = stub_->DoCommand(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
     return struct_to_map(response.result());
 }
 

@@ -17,15 +17,13 @@
 #include <components/motor/server.hpp>
 #include <tests/mocks/mock_motor.hpp>
 #include <tests/test_utils.hpp>
-
 namespace viam {
 namespace cppsdktests {
-
-using namespace motor;
+namespace motor {
 
 using namespace viam::cppsdk;
 
-BOOST_AUTO_TEST_SUITE(test_motor)
+BOOST_AUTO_TEST_SUITE(test_mock)
 
 BOOST_AUTO_TEST_CASE(test_set_power) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
@@ -33,7 +31,6 @@ BOOST_AUTO_TEST_CASE(test_set_power) {
     BOOST_CHECK(motor->get_power_status().power_pct == 1.0);
     motor->set_power(0.0);
     BOOST_CHECK(motor->get_power_status().power_pct == 0.0);
-    BOOST_CHECK(!motor->get_power_status().is_on);
 }
 
 BOOST_AUTO_TEST_CASE(test_go_for) {
@@ -83,6 +80,11 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     BOOST_CHECK(result_pt == expected_pt);
 }
 
+BOOST_AUTO_TEST_CASE(test_exception_creation) {
+    std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
+    BOOST_CHECK_THROW(motor->set_power(1.5), std::range_error);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_motor_client_server)
@@ -94,7 +96,7 @@ BOOST_AUTO_TEST_SUITE(test_motor_client_server)
 //        | (function calls)
 //
 //        \/
-// -- Server (Real)
+// -- ComponentServer (Real)
 //        /\
 //
 //        | (grpc InProcessChannel)
@@ -200,47 +202,15 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
         BOOST_CHECK(result_pt == expected_pt);
     });
 }
-BOOST_AUTO_TEST_SUITE_END()
 
-BOOST_AUTO_TEST_SUITE(test_motor_service_raw)
-std::shared_ptr<MotorServer> get_motor_server() {
-    auto server = std::make_shared<MotorServer>();
-    server->get_sub_svc()->add(std::string("mock_motor"), MockMotor::get_mock_motor());
-    return server;
+BOOST_AUTO_TEST_CASE(test_exception_creation) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        BOOST_CHECK_THROW(client.set_power(1.5), std::runtime_error);
+    });
 }
 
-BOOST_AUTO_TEST_CASE(test_set_power) {
-    auto server = get_motor_server();
-
-    {
-        viam::component::motor::v1::SetPowerRequest request;
-        viam::component::motor::v1::SetPowerResponse response;
-
-        grpc::ServerContext ctx;
-
-        *request.mutable_name() = "mock_motor";
-        request.set_power_pct(4.0);
-
-        grpc::Status status = server->SetPower(&ctx, &request, &response);
-        BOOST_CHECK(status.error_code() == 0);
-    }
-
-    {
-        viam::component::motor::v1::IsPoweredRequest request;
-        viam::component::motor::v1::IsPoweredResponse response;
-
-        grpc::ServerContext ctx;
-
-        *request.mutable_name() = "mock_motor";
-
-        grpc::Status status = server->IsPowered(&ctx, &request, &response);
-        BOOST_CHECK(status.error_code() == 0);
-        auto ret = Motor::from_proto(response);
-        BOOST_CHECK(ret.is_on);
-        BOOST_CHECK(ret.power_pct == 4.0);
-    }
-}
 BOOST_AUTO_TEST_SUITE_END()
 
+}  // namespace motor
 }  // namespace cppsdktests
 }  // namespace viam

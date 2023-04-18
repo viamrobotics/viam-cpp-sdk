@@ -1,5 +1,7 @@
 #include <tests/mocks/mock_motor.hpp>
 
+#include <stdexcept>
+
 #include <common/v1/common.pb.h>
 #include <component/motor/v1/motor.grpc.pb.h>
 #include <component/motor/v1/motor.pb.h>
@@ -15,6 +17,9 @@ namespace motor {
 using namespace viam::cppsdk;
 
 void MockMotor::set_power(double power_pct) {
+    if (std::abs(power_pct) > 1.0) {
+        throw std::range_error("power_pct");
+    }
     power_status.is_on = power_pct != 0.0;
     power_status.power_pct = power_pct;
 };

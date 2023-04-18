@@ -3,6 +3,11 @@
 /// @brief Defines a `Motor` component.
 #pragma once
 
+// direct relevant
+// std::global
+// third party
+// local proto
+// sdk local
 #include <common/proto_type.hpp>
 #include <common/utils.hpp>
 #include <component/motor/v1/motor.pb.h>
