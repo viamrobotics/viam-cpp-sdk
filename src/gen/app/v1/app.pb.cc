@@ -1415,6 +1415,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR AuthorizedPermissions::AuthorizedPermissions(
     ::_pbi::ConstantInitialized)
   : permissions_()
+  , resource_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , resource_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct AuthorizedPermissionsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AuthorizedPermissionsDefaultTypeInternal()
@@ -2316,6 +2317,7 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthorizedPermissions, resource_type_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthorizedPermissions, resource_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::AuthorizedPermissions, permissions_),
   ~0u,  // no _has_bits_
@@ -2436,7 +2438,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 851, -1, -1, sizeof(::viam::app::v1::ListAuthorizationsResponse)},
   { 858, -1, -1, sizeof(::viam::app::v1::CheckPermissionsRequest)},
   { 865, -1, -1, sizeof(::viam::app::v1::AuthorizedPermissions)},
-  { 873, -1, -1, sizeof(::viam::app::v1::CheckPermissionsResponse)},
+  { 874, -1, -1, sizeof(::viam::app::v1::CheckPermissionsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2841,125 +2843,126 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "uthorizationsR\016authorizations\"_\n\027CheckPe"
   "rmissionsRequest\022D\n\013permissions\030\001 \003(\0132\"."
   "viam.app.v1.AuthorizedPermissionsR\013permi"
-  "ssions\"Z\n\025AuthorizedPermissions\022\037\n\013resou"
-  "rce_id\030\001 \001(\tR\nresourceId\022 \n\013permissions\030"
-  "\002 \003(\tR\013permissions\"u\n\030CheckPermissionsRe"
-  "sponse\022Y\n\026authorized_permissions\030\001 \003(\0132\""
-  ".viam.app.v1.AuthorizedPermissionsR\025auth"
-  "orizedPermissions2\230#\n\nAppService\022e\n\022Crea"
-  "teOrganization\022&.viam.app.v1.CreateOrgan"
-  "izationRequest\032\'.viam.app.v1.CreateOrgan"
-  "izationResponse\022b\n\021ListOrganizations\022%.v"
-  "iam.app.v1.ListOrganizationsRequest\032&.vi"
-  "am.app.v1.ListOrganizationsResponse\022\\\n\017G"
-  "etOrganization\022#.viam.app.v1.GetOrganiza"
-  "tionRequest\032$.viam.app.v1.GetOrganizatio"
-  "nResponse\022e\n\022UpdateOrganization\022&.viam.a"
-  "pp.v1.UpdateOrganizationRequest\032\'.viam.a"
-  "pp.v1.UpdateOrganizationResponse\022e\n\022Dele"
-  "teOrganization\022&.viam.app.v1.DeleteOrgan"
-  "izationRequest\032\'.viam.app.v1.DeleteOrgan"
-  "izationResponse\022t\n\027ListOrganizationMembe"
-  "rs\022+.viam.app.v1.ListOrganizationMembers"
-  "Request\032,.viam.app.v1.ListOrganizationMe"
-  "mbersResponse\022w\n\030CreateOrganizationInvit"
-  "e\022,.viam.app.v1.CreateOrganizationInvite"
-  "Request\032-.viam.app.v1.CreateOrganization"
-  "InviteResponse\022w\n\030DeleteOrganizationMemb"
-  "er\022,.viam.app.v1.DeleteOrganizationMembe"
-  "rRequest\032-.viam.app.v1.DeleteOrganizatio"
-  "nMemberResponse\022w\n\030DeleteOrganizationInv"
-  "ite\022,.viam.app.v1.DeleteOrganizationInvi"
-  "teRequest\032-.viam.app.v1.DeleteOrganizati"
-  "onInviteResponse\022w\n\030ResendOrganizationIn"
-  "vite\022,.viam.app.v1.ResendOrganizationInv"
-  "iteRequest\032-.viam.app.v1.ResendOrganizat"
-  "ionInviteResponse\022Y\n\016CreateLocation\022\".vi"
-  "am.app.v1.CreateLocationRequest\032#.viam.a"
-  "pp.v1.CreateLocationResponse\022P\n\013GetLocat"
-  "ion\022\037.viam.app.v1.GetLocationRequest\032 .v"
-  "iam.app.v1.GetLocationResponse\022Y\n\016Update"
-  "Location\022\".viam.app.v1.UpdateLocationReq"
-  "uest\032#.viam.app.v1.UpdateLocationRespons"
-  "e\022Y\n\016DeleteLocation\022\".viam.app.v1.Delete"
-  "LocationRequest\032#.viam.app.v1.DeleteLoca"
-  "tionResponse\022V\n\rListLocations\022!.viam.app"
-  ".v1.ListLocationsRequest\032\".viam.app.v1.L"
-  "istLocationsResponse\022V\n\rShareLocation\022!."
-  "viam.app.v1.ShareLocationRequest\032\".viam."
-  "app.v1.ShareLocationResponse\022\\\n\017UnshareL"
-  "ocation\022#.viam.app.v1.UnshareLocationReq"
-  "uest\032$.viam.app.v1.UnshareLocationRespon"
-  "se\022S\n\014LocationAuth\022 .viam.app.v1.Locatio"
-  "nAuthRequest\032!.viam.app.v1.LocationAuthR"
-  "esponse\022k\n\024CreateLocationSecret\022(.viam.a"
-  "pp.v1.CreateLocationSecretRequest\032).viam"
-  ".app.v1.CreateLocationSecretResponse\022k\n\024"
-  "DeleteLocationSecret\022(.viam.app.v1.Delet"
-  "eLocationSecretRequest\032).viam.app.v1.Del"
-  "eteLocationSecretResponse\022G\n\010GetRobot\022\034."
-  "viam.app.v1.GetRobotRequest\032\035.viam.app.v"
-  "1.GetRobotResponse\022k\n\024GetRoverRentalRobo"
-  "ts\022(.viam.app.v1.GetRoverRentalRobotsReq"
-  "uest\032).viam.app.v1.GetRoverRentalRobotsR"
-  "esponse\022V\n\rGetRobotParts\022!.viam.app.v1.G"
-  "etRobotPartsRequest\032\".viam.app.v1.GetRob"
-  "otPartsResponse\022S\n\014GetRobotPart\022 .viam.a"
-  "pp.v1.GetRobotPartRequest\032!.viam.app.v1."
-  "GetRobotPartResponse\022_\n\020GetRobotPartLogs"
-  "\022$.viam.app.v1.GetRobotPartLogsRequest\032%"
-  ".viam.app.v1.GetRobotPartLogsResponse\022d\n"
-  "\021TailRobotPartLogs\022%.viam.app.v1.TailRob"
-  "otPartLogsRequest\032&.viam.app.v1.TailRobo"
-  "tPartLogsResponse0\001\022h\n\023GetRobotPartHisto"
-  "ry\022\'.viam.app.v1.GetRobotPartHistoryRequ"
-  "est\032(.viam.app.v1.GetRobotPartHistoryRes"
-  "ponse\022\\\n\017UpdateRobotPart\022#.viam.app.v1.U"
-  "pdateRobotPartRequest\032$.viam.app.v1.Upda"
-  "teRobotPartResponse\022S\n\014NewRobotPart\022 .vi"
-  "am.app.v1.NewRobotPartRequest\032!.viam.app"
-  ".v1.NewRobotPartResponse\022\\\n\017DeleteRobotP"
-  "art\022#.viam.app.v1.DeleteRobotPartRequest"
-  "\032$.viam.app.v1.DeleteRobotPartResponse\022Y"
-  "\n\016MarkPartAsMain\022\".viam.app.v1.MarkPartA"
-  "sMainRequest\032#.viam.app.v1.MarkPartAsMai"
-  "nResponse\022e\n\022MarkPartForRestart\022&.viam.a"
-  "pp.v1.MarkPartForRestartRequest\032\'.viam.a"
-  "pp.v1.MarkPartForRestartResponse\022n\n\025Crea"
-  "teRobotPartSecret\022).viam.app.v1.CreateRo"
-  "botPartSecretRequest\032*.viam.app.v1.Creat"
-  "eRobotPartSecretResponse\022n\n\025DeleteRobotP"
-  "artSecret\022).viam.app.v1.DeleteRobotPartS"
-  "ecretRequest\032*.viam.app.v1.DeleteRobotPa"
-  "rtSecretResponse\022M\n\nListRobots\022\036.viam.ap"
-  "p.v1.ListRobotsRequest\032\037.viam.app.v1.Lis"
-  "tRobotsResponse\022G\n\010NewRobot\022\034.viam.app.v"
-  "1.NewRobotRequest\032\035.viam.app.v1.NewRobot"
-  "Response\022P\n\013UpdateRobot\022\037.viam.app.v1.Up"
-  "dateRobotRequest\032 .viam.app.v1.UpdateRob"
-  "otResponse\022P\n\013DeleteRobot\022\037.viam.app.v1."
-  "DeleteRobotRequest\032 .viam.app.v1.DeleteR"
-  "obotResponse\022V\n\rListFragments\022!.viam.app"
-  ".v1.ListFragmentsRequest\032\".viam.app.v1.L"
-  "istFragmentsResponse\022P\n\013GetFragment\022\037.vi"
-  "am.app.v1.GetFragmentRequest\032 .viam.app."
-  "v1.GetFragmentResponse\022Y\n\016CreateFragment"
-  "\022\".viam.app.v1.CreateFragmentRequest\032#.v"
-  "iam.app.v1.CreateFragmentResponse\022Y\n\016Upd"
-  "ateFragment\022\".viam.app.v1.UpdateFragment"
-  "Request\032#.viam.app.v1.UpdateFragmentResp"
-  "onse\022Y\n\016DeleteFragment\022\".viam.app.v1.Del"
-  "eteFragmentRequest\032#.viam.app.v1.DeleteF"
-  "ragmentResponse\022D\n\007AddRole\022\033.viam.app.v1"
-  ".AddRoleRequest\032\034.viam.app.v1.AddRoleRes"
-  "ponse\022M\n\nRemoveRole\022\036.viam.app.v1.Remove"
-  "RoleRequest\032\037.viam.app.v1.RemoveRoleResp"
-  "onse\022e\n\022ListAuthorizations\022&.viam.app.v1"
-  ".ListAuthorizationsRequest\032\'.viam.app.v1"
-  ".ListAuthorizationsResponse\022_\n\020CheckPerm"
-  "issions\022$.viam.app.v1.CheckPermissionsRe"
-  "quest\032%.viam.app.v1.CheckPermissionsResp"
-  "onseB\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "ssions\"\177\n\025AuthorizedPermissions\022#\n\rresou"
+  "rce_type\030\001 \001(\tR\014resourceType\022\037\n\013resource"
+  "_id\030\002 \001(\tR\nresourceId\022 \n\013permissions\030\003 \003"
+  "(\tR\013permissions\"u\n\030CheckPermissionsRespo"
+  "nse\022Y\n\026authorized_permissions\030\001 \003(\0132\".vi"
+  "am.app.v1.AuthorizedPermissionsR\025authori"
+  "zedPermissions2\230#\n\nAppService\022e\n\022CreateO"
+  "rganization\022&.viam.app.v1.CreateOrganiza"
+  "tionRequest\032\'.viam.app.v1.CreateOrganiza"
+  "tionResponse\022b\n\021ListOrganizations\022%.viam"
+  ".app.v1.ListOrganizationsRequest\032&.viam."
+  "app.v1.ListOrganizationsResponse\022\\\n\017GetO"
+  "rganization\022#.viam.app.v1.GetOrganizatio"
+  "nRequest\032$.viam.app.v1.GetOrganizationRe"
+  "sponse\022e\n\022UpdateOrganization\022&.viam.app."
+  "v1.UpdateOrganizationRequest\032\'.viam.app."
+  "v1.UpdateOrganizationResponse\022e\n\022DeleteO"
+  "rganization\022&.viam.app.v1.DeleteOrganiza"
+  "tionRequest\032\'.viam.app.v1.DeleteOrganiza"
+  "tionResponse\022t\n\027ListOrganizationMembers\022"
+  "+.viam.app.v1.ListOrganizationMembersReq"
+  "uest\032,.viam.app.v1.ListOrganizationMembe"
+  "rsResponse\022w\n\030CreateOrganizationInvite\022,"
+  ".viam.app.v1.CreateOrganizationInviteReq"
+  "uest\032-.viam.app.v1.CreateOrganizationInv"
+  "iteResponse\022w\n\030DeleteOrganizationMember\022"
+  ",.viam.app.v1.DeleteOrganizationMemberRe"
+  "quest\032-.viam.app.v1.DeleteOrganizationMe"
+  "mberResponse\022w\n\030DeleteOrganizationInvite"
+  "\022,.viam.app.v1.DeleteOrganizationInviteR"
+  "equest\032-.viam.app.v1.DeleteOrganizationI"
+  "nviteResponse\022w\n\030ResendOrganizationInvit"
+  "e\022,.viam.app.v1.ResendOrganizationInvite"
+  "Request\032-.viam.app.v1.ResendOrganization"
+  "InviteResponse\022Y\n\016CreateLocation\022\".viam."
+  "app.v1.CreateLocationRequest\032#.viam.app."
+  "v1.CreateLocationResponse\022P\n\013GetLocation"
+  "\022\037.viam.app.v1.GetLocationRequest\032 .viam"
+  ".app.v1.GetLocationResponse\022Y\n\016UpdateLoc"
+  "ation\022\".viam.app.v1.UpdateLocationReques"
+  "t\032#.viam.app.v1.UpdateLocationResponse\022Y"
+  "\n\016DeleteLocation\022\".viam.app.v1.DeleteLoc"
+  "ationRequest\032#.viam.app.v1.DeleteLocatio"
+  "nResponse\022V\n\rListLocations\022!.viam.app.v1"
+  ".ListLocationsRequest\032\".viam.app.v1.List"
+  "LocationsResponse\022V\n\rShareLocation\022!.via"
+  "m.app.v1.ShareLocationRequest\032\".viam.app"
+  ".v1.ShareLocationResponse\022\\\n\017UnshareLoca"
+  "tion\022#.viam.app.v1.UnshareLocationReques"
+  "t\032$.viam.app.v1.UnshareLocationResponse\022"
+  "S\n\014LocationAuth\022 .viam.app.v1.LocationAu"
+  "thRequest\032!.viam.app.v1.LocationAuthResp"
+  "onse\022k\n\024CreateLocationSecret\022(.viam.app."
+  "v1.CreateLocationSecretRequest\032).viam.ap"
+  "p.v1.CreateLocationSecretResponse\022k\n\024Del"
+  "eteLocationSecret\022(.viam.app.v1.DeleteLo"
+  "cationSecretRequest\032).viam.app.v1.Delete"
+  "LocationSecretResponse\022G\n\010GetRobot\022\034.via"
+  "m.app.v1.GetRobotRequest\032\035.viam.app.v1.G"
+  "etRobotResponse\022k\n\024GetRoverRentalRobots\022"
+  "(.viam.app.v1.GetRoverRentalRobotsReques"
+  "t\032).viam.app.v1.GetRoverRentalRobotsResp"
+  "onse\022V\n\rGetRobotParts\022!.viam.app.v1.GetR"
+  "obotPartsRequest\032\".viam.app.v1.GetRobotP"
+  "artsResponse\022S\n\014GetRobotPart\022 .viam.app."
+  "v1.GetRobotPartRequest\032!.viam.app.v1.Get"
+  "RobotPartResponse\022_\n\020GetRobotPartLogs\022$."
+  "viam.app.v1.GetRobotPartLogsRequest\032%.vi"
+  "am.app.v1.GetRobotPartLogsResponse\022d\n\021Ta"
+  "ilRobotPartLogs\022%.viam.app.v1.TailRobotP"
+  "artLogsRequest\032&.viam.app.v1.TailRobotPa"
+  "rtLogsResponse0\001\022h\n\023GetRobotPartHistory\022"
+  "\'.viam.app.v1.GetRobotPartHistoryRequest"
+  "\032(.viam.app.v1.GetRobotPartHistoryRespon"
+  "se\022\\\n\017UpdateRobotPart\022#.viam.app.v1.Upda"
+  "teRobotPartRequest\032$.viam.app.v1.UpdateR"
+  "obotPartResponse\022S\n\014NewRobotPart\022 .viam."
+  "app.v1.NewRobotPartRequest\032!.viam.app.v1"
+  ".NewRobotPartResponse\022\\\n\017DeleteRobotPart"
+  "\022#.viam.app.v1.DeleteRobotPartRequest\032$."
+  "viam.app.v1.DeleteRobotPartResponse\022Y\n\016M"
+  "arkPartAsMain\022\".viam.app.v1.MarkPartAsMa"
+  "inRequest\032#.viam.app.v1.MarkPartAsMainRe"
+  "sponse\022e\n\022MarkPartForRestart\022&.viam.app."
+  "v1.MarkPartForRestartRequest\032\'.viam.app."
+  "v1.MarkPartForRestartResponse\022n\n\025CreateR"
+  "obotPartSecret\022).viam.app.v1.CreateRobot"
+  "PartSecretRequest\032*.viam.app.v1.CreateRo"
+  "botPartSecretResponse\022n\n\025DeleteRobotPart"
+  "Secret\022).viam.app.v1.DeleteRobotPartSecr"
+  "etRequest\032*.viam.app.v1.DeleteRobotPartS"
+  "ecretResponse\022M\n\nListRobots\022\036.viam.app.v"
+  "1.ListRobotsRequest\032\037.viam.app.v1.ListRo"
+  "botsResponse\022G\n\010NewRobot\022\034.viam.app.v1.N"
+  "ewRobotRequest\032\035.viam.app.v1.NewRobotRes"
+  "ponse\022P\n\013UpdateRobot\022\037.viam.app.v1.Updat"
+  "eRobotRequest\032 .viam.app.v1.UpdateRobotR"
+  "esponse\022P\n\013DeleteRobot\022\037.viam.app.v1.Del"
+  "eteRobotRequest\032 .viam.app.v1.DeleteRobo"
+  "tResponse\022V\n\rListFragments\022!.viam.app.v1"
+  ".ListFragmentsRequest\032\".viam.app.v1.List"
+  "FragmentsResponse\022P\n\013GetFragment\022\037.viam."
+  "app.v1.GetFragmentRequest\032 .viam.app.v1."
+  "GetFragmentResponse\022Y\n\016CreateFragment\022\"."
+  "viam.app.v1.CreateFragmentRequest\032#.viam"
+  ".app.v1.CreateFragmentResponse\022Y\n\016Update"
+  "Fragment\022\".viam.app.v1.UpdateFragmentReq"
+  "uest\032#.viam.app.v1.UpdateFragmentRespons"
+  "e\022Y\n\016DeleteFragment\022\".viam.app.v1.Delete"
+  "FragmentRequest\032#.viam.app.v1.DeleteFrag"
+  "mentResponse\022D\n\007AddRole\022\033.viam.app.v1.Ad"
+  "dRoleRequest\032\034.viam.app.v1.AddRoleRespon"
+  "se\022M\n\nRemoveRole\022\036.viam.app.v1.RemoveRol"
+  "eRequest\032\037.viam.app.v1.RemoveRoleRespons"
+  "e\022e\n\022ListAuthorizations\022&.viam.app.v1.Li"
+  "stAuthorizationsRequest\032\'.viam.app.v1.Li"
+  "stAuthorizationsResponse\022_\n\020CheckPermiss"
+  "ions\022$.viam.app.v1.CheckPermissionsReque"
+  "st\032%.viam.app.v1.CheckPermissionsRespons"
+  "eB\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
@@ -2968,7 +2971,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 16278, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 16315, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
     &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 3, 110,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
@@ -26221,6 +26224,14 @@ AuthorizedPermissions::AuthorizedPermissions(const AuthorizedPermissions& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       permissions_(from.permissions_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    resource_type_.Set(from._internal_resource_type(), 
+      GetArenaForAllocation());
+  }
   resource_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     resource_id_.Set("", GetArenaForAllocation());
@@ -26233,6 +26244,10 @@ AuthorizedPermissions::AuthorizedPermissions(const AuthorizedPermissions& from)
 }
 
 inline void AuthorizedPermissions::SharedCtor() {
+resource_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  resource_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 resource_id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   resource_id_.Set("", GetArenaForAllocation());
@@ -26250,6 +26265,7 @@ AuthorizedPermissions::~AuthorizedPermissions() {
 
 inline void AuthorizedPermissions::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  resource_type_.Destroy();
   resource_id_.Destroy();
 }
 
@@ -26264,6 +26280,7 @@ void AuthorizedPermissions::Clear() {
   (void) cached_has_bits;
 
   permissions_.Clear();
+  resource_type_.ClearToEmpty();
   resource_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -26274,9 +26291,19 @@ const char* AuthorizedPermissions::_InternalParse(const char* ptr, ::_pbi::Parse
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string resource_id = 1 [json_name = "resourceId"];
+      // string resource_type = 1 [json_name = "resourceType"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AuthorizedPermissions.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_id = 2 [json_name = "resourceId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_resource_id();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -26284,9 +26311,9 @@ const char* AuthorizedPermissions::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
-      // repeated string permissions = 2 [json_name = "permissions"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+      // repeated string permissions = 3 [json_name = "permissions"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr -= 1;
           do {
             ptr += 1;
@@ -26295,7 +26322,7 @@ const char* AuthorizedPermissions::_InternalParse(const char* ptr, ::_pbi::Parse
             CHK_(ptr);
             CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AuthorizedPermissions.permissions"));
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -26328,24 +26355,34 @@ uint8_t* AuthorizedPermissions::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string resource_id = 1 [json_name = "resourceId"];
+  // string resource_type = 1 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AuthorizedPermissions.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_resource_type(), target);
+  }
+
+  // string resource_id = 2 [json_name = "resourceId"];
   if (!this->_internal_resource_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_resource_id().data(), static_cast<int>(this->_internal_resource_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "viam.app.v1.AuthorizedPermissions.resource_id");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_resource_id(), target);
+        2, this->_internal_resource_id(), target);
   }
 
-  // repeated string permissions = 2 [json_name = "permissions"];
+  // repeated string permissions = 3 [json_name = "permissions"];
   for (int i = 0, n = this->_internal_permissions_size(); i < n; i++) {
     const auto& s = this->_internal_permissions(i);
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       s.data(), static_cast<int>(s.length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "viam.app.v1.AuthorizedPermissions.permissions");
-    target = stream->WriteString(2, s, target);
+    target = stream->WriteString(3, s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -26364,7 +26401,7 @@ size_t AuthorizedPermissions::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated string permissions = 2 [json_name = "permissions"];
+  // repeated string permissions = 3 [json_name = "permissions"];
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(permissions_.size());
   for (int i = 0, n = permissions_.size(); i < n; i++) {
@@ -26372,7 +26409,14 @@ size_t AuthorizedPermissions::ByteSizeLong() const {
       permissions_.Get(i));
   }
 
-  // string resource_id = 1 [json_name = "resourceId"];
+  // string resource_type = 1 [json_name = "resourceType"];
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // string resource_id = 2 [json_name = "resourceId"];
   if (!this->_internal_resource_id().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -26402,6 +26446,9 @@ void AuthorizedPermissions::MergeFrom(const AuthorizedPermissions& from) {
   (void) cached_has_bits;
 
   permissions_.MergeFrom(from.permissions_);
+  if (!from._internal_resource_type().empty()) {
+    _internal_set_resource_type(from._internal_resource_type());
+  }
   if (!from._internal_resource_id().empty()) {
     _internal_set_resource_id(from._internal_resource_id());
   }
@@ -26425,6 +26472,10 @@ void AuthorizedPermissions::InternalSwap(AuthorizedPermissions* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   permissions_.InternalSwap(&other->permissions_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &resource_type_, lhs_arena,
+      &other->resource_type_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &resource_id_, lhs_arena,
       &other->resource_id_, rhs_arena
