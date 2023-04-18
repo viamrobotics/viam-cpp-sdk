@@ -221,6 +221,7 @@ target_sources(viamcpp
     resource/resource_server_base.cpp
     resource/resource_type.cpp
     robot/client.cpp
+    robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
     services/service_base.cpp

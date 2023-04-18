@@ -11,7 +11,7 @@ namespace cppsdk {
 
 class ServiceBase : public ResourceBase {
    public:
-    virtual viam::common::v1::ResourceName get_resource_name(std::string name);
+    viam::common::v1::ResourceName get_resource_name(std::string name) override;
     ResourceType type() override;
     ServiceBase();
 

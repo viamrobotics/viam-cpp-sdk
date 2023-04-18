@@ -16,6 +16,7 @@ namespace cppsdk {
 
 using viam::common::v1::ResourceName;
 const std::string COMPONENT = "component";
+const std::string RESOURCE = "resource";
 const std::string SERVICE = "service";
 const std::string RDK = "rdk";
 const std::string GENERIC = "generic";

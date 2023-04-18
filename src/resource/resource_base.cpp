@@ -11,7 +11,7 @@
 namespace viam {
 namespace cppsdk {
 
-grpc::StatusCode ResourceBase::stop(std::unordered_map<std::string, ProtoType*> extra) {
+grpc::StatusCode ResourceBase::stop(AttributeMap extra) {
     return stop();
 }
 
@@ -24,13 +24,23 @@ std::string ResourceBase::name() {
 }
 
 Subtype ResourceBase::subtype() {
-    return {RDK, "resource", "ResourceBase"};
+    return {RDK, RESOURCE, "ResourceBase"};
 }
 
 void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
 
 ResourceType ResourceBase::type() {
-    return {"resource"};
+    return {RESOURCE};
+}
+
+ResourceName ResourceBase::get_resource_name(std::string name) {
+    ResourceName r;
+    *r.mutable_namespace_() = RDK;
+    *r.mutable_type() = RESOURCE;
+    *r.mutable_subtype() = this->type().to_string();
+    *r.mutable_name() = std::move(name);
+
+    return r;
 }
 
 }  // namespace cppsdk
