@@ -213,7 +213,6 @@ namespace cppsdk {
     AttributeMap result = motor->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
-    /* response->mutable_result()->CopyFrom(map_to_struct(result)); */
 
     return ::grpc::Status();
 }
