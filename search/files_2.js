@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['registry_2ehpp_0',['registry.hpp',['../registry_8hpp.html',1,'']]]
+  ['motor_2ehpp_0',['motor.hpp',['../motor_8hpp.html',1,'']]]
 ];

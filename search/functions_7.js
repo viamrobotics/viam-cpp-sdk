@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['register_5fresource_0',['register_resource',['../classviam_1_1cppsdk_1_1Registry.html#a3f94277d02dca1a078ffc665b13dfbf2',1,'viam::cppsdk::Registry']]],
-  ['register_5fservice_1',['register_service',['../classviam_1_1cppsdk_1_1Server.html#a563f25971273b8ec7daf59ddfd61d14e',1,'viam::cppsdk::Server']]],
-  ['register_5fsubtype_2',['register_subtype',['../classviam_1_1cppsdk_1_1Registry.html#a4ac611655d63ec895e98501f3a48b6d0',1,'viam::cppsdk::Registry']]],
-  ['registered_5fresources_3',['registered_resources',['../classviam_1_1cppsdk_1_1Registry.html#a0b5c751b21b73683af5d1065ed00e0bc',1,'viam::cppsdk::Registry']]],
-  ['resource_5fby_5fname_4',['resource_by_name',['../classviam_1_1cppsdk_1_1RobotClient.html#a69a7ed7e9a8f07e49c2ca18dfb579011',1,'viam::cppsdk::RobotClient::resource_by_name(const ResourceName &amp;name)'],['../classviam_1_1cppsdk_1_1RobotClient.html#aebfadb88a3a80d79af7cf56394ee0e78',1,'viam::cppsdk::RobotClient::resource_by_name(std::string name)']]],
-  ['resource_5fsubtype_5',['resource_subtype',['../classviam_1_1cppsdk_1_1Camera.html#ad39818b30d9af5eb86c5bbf2e8114103',1,'viam::cppsdk::Camera::resource_subtype()'],['../classviam_1_1cppsdk_1_1Generic.html#a4190bf8c5e8664a390fd86b5c4e5c4dd',1,'viam::cppsdk::Generic::resource_subtype()']]]
+  ['lookup_5fresource_0',['lookup_resource',['../classviam_1_1cppsdk_1_1Registry.html#a0d40051371d0b3f976aff3ca1acb9cee',1,'viam::cppsdk::Registry::lookup_resource(std::string name)'],['../classviam_1_1cppsdk_1_1Registry.html#a26a700c2581aee929cf6ebe5eb4688c6',1,'viam::cppsdk::Registry::lookup_resource(Subtype subtype, Model model)']]],
+  ['lookup_5fsubtype_1',['lookup_subtype',['../classviam_1_1cppsdk_1_1Registry.html#a1559b7bcfd5cc32b1d560f094fe9e335',1,'viam::cppsdk::Registry']]]
 ];
