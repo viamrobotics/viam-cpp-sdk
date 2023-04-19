@@ -218,9 +218,7 @@ namespace cppsdk {
 }
 
 void MotorServer::register_server(std::shared_ptr<Server> server) {
-    viam::component::motor::v1::MotorService::Service* motor =
-        static_cast<viam::component::motor::v1::MotorService::Service*>(this);
-    server->register_service(motor);
+    server->register_service(this);
 }
 
 std::shared_ptr<SubtypeService> MotorServer::get_sub_svc() {

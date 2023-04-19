@@ -81,9 +81,7 @@ Motor::position fake_position() {
 }
 
 Motor::properties fake_properties() {
-    Motor::properties properties;
-    properties.position_reporting = true;
-    return properties;
+    return {true};
 }
 
 }  // namespace motor
