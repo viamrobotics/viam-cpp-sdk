@@ -14,11 +14,44 @@
 
 #pragma once
 
+#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
+
 #include <viam/sdk/resource/resource_server_base.hpp>
+#include <viam/sdk/subtype/subtype.hpp>
+
+namespace viam {
+namespace sdk {
 
 ///
 /// The `MLModelServiceServer` is used to implement new modular
 /// resources implementing the ML Model Service.
 ///
-class MLModelServiceServer : public ResourceServerBase {
+class MLModelServiceServer : public ResourceServerBase,
+                             public ::viam::service::mlmodel::v1::MLModelService::Service
+{
+public:
+
+    MLModelServiceServer();
+    explicit MLModelServiceServer(std::shared_ptr<SubtypeService> subtype_service);
+
+    void register_server(std::shared_ptr<Server> server) override;
+
+    const std::shared_ptr<SubtypeService>& get_sub_svc();
+
+
+    ::grpc::Status Infer(
+        ::grpc::ServerContext* context,
+        const ::viam::service::mlmodel::v1::InferRequest* request,
+        ::viam::service::mlmodel::v1::InferResponse* response) override;
+
+    ::grpc::Status Metadata(
+        ::grpc::ServerContext* context,
+        const ::viam::service::mlmodel::v1::MetadataRequest* request,
+        ::viam::service::mlmodel::v1::MetadataResponse* response) override;
+
+private:
+    std::shared_ptr<SubtypeService> subtype_service_;
 };
+
+}  // namespace sdk
+}  // namespace viam

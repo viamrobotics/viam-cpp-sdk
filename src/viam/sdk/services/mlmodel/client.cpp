@@ -13,3 +13,28 @@
 // limitations under the License.
 
 #include <viam/sdk/services/mlmodel/client.hpp>
+
+#include <grpcpp/channel.h>
+
+namespace viam {
+namespace sdk {
+
+MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+    : MLModelServiceClient(std::move(name), service_type::NewStub(channel)) {
+    channel_ = std::move(channel);
+}
+
+MLModelServiceClient::MLModelServiceClient(std::string name, std::unique_ptr<service_type::StubInterface> stub)
+    : MLModelService(name),
+      stub_(std::move(stub)) {
+}
+
+void MLModelServiceClient::infer() {
+}
+
+struct MLModelService::metadata MLModelServiceClient::metadata() {
+    return {};
+}
+
+}  // namespace sdk
+}  // namespace viam

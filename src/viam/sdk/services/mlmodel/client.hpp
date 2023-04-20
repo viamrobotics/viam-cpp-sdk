@@ -14,13 +14,34 @@
 
 #pragma once
 
+#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
+
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
+namespace viam {
+namespace sdk {
+
 ///
-/// An `MLModelServiceClient` provides client side access to a
-/// remotely served ML Model Service. A robot control program written
-/// in C++ with the Viam C++ SDK uses this class to communicate with
-/// ML Model Service instances running elsewhere.
+/// An `MLModelServiceClient` provides client-side access to a
+/// remotely served ML Model Service. Use this class to communicate
+/// with MLModelService instances running elsewhere.
 ///
 class MLModelServiceClient : public MLModelService {
+public:
+    using service_type = viam::service::mlmodel::v1::MLModelService;
+
+    MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+
+    void infer() override;
+    struct metadata metadata() override;
+
+protected:
+    MLModelServiceClient(std::string name, std::unique_ptr<service_type::StubInterface> stub);
+
+private:
+    std::shared_ptr<grpc::Channel> channel_;
+    std::unique_ptr<service_type::StubInterface> stub_;
 };
+
+}  // namespace sdk
+}  // namespace viam

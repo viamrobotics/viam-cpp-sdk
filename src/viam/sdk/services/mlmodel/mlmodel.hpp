@@ -15,9 +15,66 @@
 #pragma once
 
 #include <viam/sdk/services/service_base.hpp>
+#include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/gensubtype/subtype.hpp>
+
+namespace viam {
+namespace sdk {
+
+class MLModelServiceSubtype : public ResourceSubtype {
+public:
+    explicit MLModelServiceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
+
+    std::shared_ptr<ResourceServerBase> create_resource_server(std::shared_ptr<SubtypeService> service) override;
+
+    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
+                                                    std::shared_ptr<grpc::Channel> channel) override;
+};
 
 ///
 /// The `MLModelService` presents the API for an ML Model Service.
 ///
 class MLModelService : public ServiceBase {
+public:
+
+    struct tensor_info {
+
+        struct file {
+            std::string name;
+            std::string description;
+
+            enum {
+                k_type_unspecified,
+                k_type_tensor_value,
+                k_type_tensor_axis,
+            } label_type;
+        };
+
+        std::string name;
+        std::string description;
+        // TODO: Should this be an enum?
+        std::string data_type;
+        std::vector<int> shape;
+        std::vector<file> associated_files;
+        // TODO: 'extra' field
+    };
+
+    struct metadata {
+        std::string name;
+        std::string type;
+        std::string description;
+        std::vector<tensor_info> inputs;
+        std::vector<tensor_info> outputs;
+    };
+
+    virtual void infer() = 0;
+    virtual struct metadata metadata() = 0;
+
+    static std::shared_ptr<ResourceSubtype> resource_subtype();
+
+protected:
+    explicit MLModelService(std::string name);
 };
+
+}  // namespace sdk
+}  // namespace viam
