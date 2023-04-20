@@ -18105,10 +18105,11 @@ class AuthorizedPermissions final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPermissionsFieldNumber = 2,
-    kResourceIdFieldNumber = 1,
+    kPermissionsFieldNumber = 3,
+    kResourceTypeFieldNumber = 1,
+    kResourceIdFieldNumber = 2,
   };
-  // repeated string permissions = 2 [json_name = "permissions"];
+  // repeated string permissions = 3 [json_name = "permissions"];
   int permissions_size() const;
   private:
   int _internal_permissions_size() const;
@@ -18132,7 +18133,21 @@ class AuthorizedPermissions final :
   std::string* _internal_add_permissions();
   public:
 
-  // string resource_id = 1 [json_name = "resourceId"];
+  // string resource_type = 1 [json_name = "resourceType"];
+  void clear_resource_type();
+  const std::string& resource_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource_type();
+  PROTOBUF_NODISCARD std::string* release_resource_type();
+  void set_allocated_resource_type(std::string* resource_type);
+  private:
+  const std::string& _internal_resource_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource_type(const std::string& value);
+  std::string* _internal_mutable_resource_type();
+  public:
+
+  // string resource_id = 2 [json_name = "resourceId"];
   void clear_resource_id();
   const std::string& resource_id() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -18154,6 +18169,7 @@ class AuthorizedPermissions final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> permissions_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -29786,7 +29802,57 @@ CheckPermissionsRequest::permissions() const {
 
 // AuthorizedPermissions
 
-// string resource_id = 1 [json_name = "resourceId"];
+// string resource_type = 1 [json_name = "resourceType"];
+inline void AuthorizedPermissions::clear_resource_type() {
+  resource_type_.ClearToEmpty();
+}
+inline const std::string& AuthorizedPermissions::resource_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthorizedPermissions.resource_type)
+  return _internal_resource_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthorizedPermissions::set_resource_type(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthorizedPermissions.resource_type)
+}
+inline std::string* AuthorizedPermissions::mutable_resource_type() {
+  std::string* _s = _internal_mutable_resource_type();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthorizedPermissions.resource_type)
+  return _s;
+}
+inline const std::string& AuthorizedPermissions::_internal_resource_type() const {
+  return resource_type_.Get();
+}
+inline void AuthorizedPermissions::_internal_set_resource_type(const std::string& value) {
+  
+  resource_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthorizedPermissions::_internal_mutable_resource_type() {
+  
+  return resource_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthorizedPermissions::release_resource_type() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthorizedPermissions.resource_type)
+  return resource_type_.Release();
+}
+inline void AuthorizedPermissions::set_allocated_resource_type(std::string* resource_type) {
+  if (resource_type != nullptr) {
+    
+  } else {
+    
+  }
+  resource_type_.SetAllocated(resource_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (resource_type_.IsDefault()) {
+    resource_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizedPermissions.resource_type)
+}
+
+// string resource_id = 2 [json_name = "resourceId"];
 inline void AuthorizedPermissions::clear_resource_id() {
   resource_id_.ClearToEmpty();
 }
@@ -29836,7 +29902,7 @@ inline void AuthorizedPermissions::set_allocated_resource_id(std::string* resour
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizedPermissions.resource_id)
 }
 
-// repeated string permissions = 2 [json_name = "permissions"];
+// repeated string permissions = 3 [json_name = "permissions"];
 inline int AuthorizedPermissions::_internal_permissions_size() const {
   return permissions_.size();
 }
