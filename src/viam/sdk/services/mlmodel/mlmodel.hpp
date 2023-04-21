@@ -16,7 +16,7 @@
 
 #include <viam/sdk/services/service_base.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/gensubtype/subtype.hpp>
+#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {

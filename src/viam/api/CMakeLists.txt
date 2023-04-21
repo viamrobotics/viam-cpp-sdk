@@ -237,8 +237,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.grpc.pb.h
-      ${PROTO_GEN_DIR}/../../service/mlmodel/v1/mlmodel.grpc.pb.h
-      ${PROTO_GEN_DIR}/../../service/mlmodel/v1/mlmodel.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/mlmodel/v1/mlmodel.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.pb.h
 )
 

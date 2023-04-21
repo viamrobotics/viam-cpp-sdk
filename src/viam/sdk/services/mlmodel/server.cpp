@@ -15,7 +15,7 @@
 #include <viam/sdk/services/mlmodel/server.hpp>
 
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
-#include <rpc/server.hpp>
+#include <viam/sdk/rpc/server.hpp>
 
 namespace viam {
 namespace sdk {
