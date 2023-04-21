@@ -137,7 +137,7 @@ include(GNUInstallDirs)
 # Set the Cmake module path to include our cmake helper functions
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
-  ${PROJECT_SOURCE_DIR}/cmake
+  ${PROJECT_SOURCE_DIR}/src/viam/cmake
 )
 
 
@@ -330,7 +330,7 @@ else()
   set(VIAMCPPSDK_GRPCXX_INCLUDE_DIRS ${GRPCXX_INCLUDE_DIRS})
   set(VIAMCPPSDK_GRPCXX_LIBRARY_DIRS ${GRPCXX_LIBRARY_DIRS})
   set(VIAMCPPSDK_GRPCXX_LIBRARIES ${GRPCXX_LIBRARIES})
-  
+
   # We need to set the reflection library, which unfortunately does not
   # have a `.pc` file. To do so, we duplicate the `VIAMCPPSDK_GRPCXX_LIBRARIES`
   # value, assume its first element is the base dependency for GRPC, and
@@ -344,31 +344,6 @@ endif()
 
 # Pull in our subdirectories
 add_subdirectory(src)
-add_subdirectory(examples)
-
-
-# Generate CMake configs to enable importing this project
-# into others via `find_package`.
-include(CMakePackageConfigHelpers)
-
-configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/config/cmake.in
-  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfig.cmake"
-  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/viam-cpp-sdk
-  NO_CHECK_REQUIRED_COMPONENTS_MACRO
-)
-
-write_basic_package_version_file(
-  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
-  VERSION "${version}"
-  COMPATIBILITY SameMajorVersion
-)
-
-install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfig.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/viam-cpp-sdkConfigVersion.cmake"
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/viam-cpp-sdk
-  COMPONENT viam-cpp-sdk_dev
-)
 
 
 # Define some custom targets to install different subsets of files.
@@ -392,4 +367,3 @@ add_custom_target(
   COMMAND ${CMAKE_COMMAND} -DCOMPONENT=viam-cpp-sdk_examples -P ${CMAKE_BINARY_DIR}/cmake_install.cmake
   DEPENDS all
 )
-
