@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['to_5fproto_0',['to_proto',['../classviam_1_1cppsdk_1_1Camera.html#a046b34f2ecc0947ad13c00bd2a498849',1,'viam::cppsdk::Camera::to_proto(distortion_parameters)'],['../classviam_1_1cppsdk_1_1Camera.html#a97d95052801f6e24f0359e137002fc29',1,'viam::cppsdk::Camera::to_proto(intrinsic_parameters)'],['../classviam_1_1cppsdk_1_1Motor.html#a9ae06f535a1e8ec38abcf198c733c608',1,'viam::cppsdk::Motor::to_proto(position position)'],['../classviam_1_1cppsdk_1_1Motor.html#aa8904355d9f4e70652efa9e26ae5b5d0',1,'viam::cppsdk::Motor::to_proto(power_status power_status)'],['../classviam_1_1cppsdk_1_1Motor.html#ab187f966c0305703dab48427da889078',1,'viam::cppsdk::Motor::to_proto(properties properties)']]],
-  ['transform_5fpose_1',['transform_pose',['../classviam_1_1cppsdk_1_1RobotClient.html#af3b1d0e3dc30ac79f1838abd979149a7',1,'viam::cppsdk::RobotClient']]],
-  ['translation_2',['translation',['../classviam_1_1cppsdk_1_1translation.html',1,'viam::cppsdk']]],
-  ['type_3',['Type',['../classviam_1_1cppsdk_1_1Type.html',1,'viam::cppsdk']]]
+  ['to_5fproto_0',['to_proto',['../classviam_1_1sdk_1_1Camera.html#ae7d4c4ecc34243260d14405df1e30588',1,'viam::sdk::Camera::to_proto(distortion_parameters)'],['../classviam_1_1sdk_1_1Camera.html#a8e8c7bfb54fb1346df412300171b7dd9',1,'viam::sdk::Camera::to_proto(intrinsic_parameters)'],['../classviam_1_1sdk_1_1Motor.html#ad4ff540d93802cbf62ed27fc1dd8753f',1,'viam::sdk::Motor::to_proto(position position)'],['../classviam_1_1sdk_1_1Motor.html#afc7c2f6393eaf4d28913237de9428b4d',1,'viam::sdk::Motor::to_proto(power_status power_status)'],['../classviam_1_1sdk_1_1Motor.html#a95d0a7757488cf20ef3942a6ebff0ee9',1,'viam::sdk::Motor::to_proto(properties properties)']]],
+  ['transform_5fpose_1',['transform_pose',['../classviam_1_1sdk_1_1RobotClient.html#acfff200e9968a69c6acfe34bae49e928',1,'viam::sdk::RobotClient']]],
+  ['translation_2',['translation',['../classviam_1_1sdk_1_1translation.html',1,'viam::sdk']]],
+  ['type_3',['Type',['../classviam_1_1sdk_1_1Type.html',1,'viam::sdk']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quaternion_0',['quaternion',['../classviam_1_1cppsdk_1_1quaternion.html',1,'viam::cppsdk']]]
+  ['quaternion_0',['quaternion',['../classviam_1_1sdk_1_1quaternion.html',1,'viam::sdk']]]
 ];

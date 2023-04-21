@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['insecure_0',['insecure',['../classviam_1_1cppsdk_1_1DialOptions.html#a5f458ab3823678e368b0ad2a2a2a6e3d',1,'viam::cppsdk::DialOptions']]],
-  ['is_5fon_1',['is_on',['../structviam_1_1cppsdk_1_1Motor_1_1power__status.html#a1bbf79cecb578e410f84a228e214d4a7',1,'viam::cppsdk::Motor::power_status']]]
+  ['insecure_0',['insecure',['../classviam_1_1sdk_1_1DialOptions.html#ae96bbe1d868c07fec2040b08cd5675cf',1,'viam::sdk::DialOptions']]],
+  ['is_5fon_1',['is_on',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a24506b3292b733a55350fcc6ad8750b0',1,'viam::sdk::Motor::power_status']]]
 ];

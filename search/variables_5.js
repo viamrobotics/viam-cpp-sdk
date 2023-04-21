@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['refresh_5finterval_0',['refresh_interval',['../classviam_1_1cppsdk_1_1Options.html#a1c1645b0da2315c1921a3a1476dcf58d',1,'viam::cppsdk::Options']]]
+  ['refresh_5finterval_0',['refresh_interval',['../classviam_1_1sdk_1_1Options.html#a96e2e46d5a8ed402901d10f6ac52232a',1,'viam::sdk::Options']]]
 ];
