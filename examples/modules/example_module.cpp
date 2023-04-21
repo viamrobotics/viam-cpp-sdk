@@ -68,7 +68,7 @@ class MyModule : public GenericService::Service, public ComponentBase {
 int MyModule::which = 0;
 
 int main(int argc, char** argv) {
-    if (argc != 2) {
+    if (argc < 2) {
         throw "need socket path as command line argument";
     }
 
