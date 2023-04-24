@@ -30,17 +30,61 @@ MLModelServiceClient::MLModelServiceClient(std::string name, std::unique_ptr<ser
 }
 
 void MLModelServiceClient::infer() {
+    // TODO: Encode `infer` arguments into an `InferRequest`
+    // TODO: Call `stub_`
+    // TODO: Decode result from an `InferResponse` into results
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata() {
+    // Encode metadata args into a `MetadataRequest`
     viam::service::mlmodel::v1::MetadataRequest req;
-    *req.mutable_name() = this->name();
+    *req.mutable_name() = name();
 
+    // Invoke the stub
     grpc::ClientContext ctx;
     viam::service::mlmodel::v1::MetadataResponse resp;
-    stub_->Metadata(&ctx, req, &resp);
+    const auto stub_result = stub_->Metadata(&ctx, req, &resp);
+
+    // XXX ACM TODO: Evaluate stub_result;
 
     struct metadata result;
+    auto& metadata_pb = *resp.mutable_metadata();
+    result.name = std::move(*metadata_pb.mutable_name());
+    result.type = std::move(*metadata_pb.mutable_type());
+    result.description = std::move(*metadata_pb.mutable_description());
+
+    const auto unpack_tensor_info = [](std::vector<tensor_info>& target, auto source) {
+        target.reserve(source.size());
+        for (auto&& s : source) {
+            target.emplace_back();
+            auto ti = target.back();
+            ti.name = std::move(*s.mutable_name());
+            ti.description = std::move(*s.mutable_description());
+            ti.data_type = std::move(*s.mutable_data_type());
+            ti.shape.reserve(s.shape_size());
+            ti.shape.assign(s.shape().begin(), s.shape().end());
+            ti.associated_files.reserve(s.associated_files().size());
+            for (auto&& af : *s.mutable_associated_files()) {
+                ti.associated_files.emplace_back();
+                auto new_file = ti.associated_files.back();
+                new_file.name = std::move(*af.mutable_name());
+                new_file.description = std::move(*af.mutable_description());
+                switch (af.label_type()) {
+                case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE:
+                    new_file.label_type = tensor_info::file::k_type_tensor_value;
+                    break;
+                case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS:
+                    new_file.label_type = tensor_info::file::k_type_tensor_axis;
+                    break;
+                default:
+                    throw -1;  // XXX ACM TODO
+                }
+            }
+        }
+    };
+
+    unpack_tensor_info(result.inputs, metadata_pb.input_info());
+    unpack_tensor_info(result.outputs, metadata_pb.output_info());
 
     return result;
 }

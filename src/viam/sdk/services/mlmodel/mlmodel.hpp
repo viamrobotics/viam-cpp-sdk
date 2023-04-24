@@ -55,7 +55,7 @@ public:
         std::string data_type;
         std::vector<int> shape;
         std::vector<file> associated_files;
-        // TODO: 'extra' field
+        // XXX ACM TODO: 'extra' field
     };
 
     struct metadata {
