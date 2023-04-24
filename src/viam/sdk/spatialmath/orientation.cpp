@@ -76,6 +76,8 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             quat.x = 0;
             quat.y = 0;
             quat.z = 0;
+            cfg.orientation_ = quat;
+            break;
         }
         case proto::Orientation::TypeCase::TYPE_NOT_SET:
         default: {
