@@ -44,7 +44,6 @@ public:
             std::string description;
 
             enum {
-                k_type_unspecified,
                 k_type_tensor_value,
                 k_type_tensor_axis,
             } label_type;

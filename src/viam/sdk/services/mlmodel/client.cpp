@@ -33,7 +33,16 @@ void MLModelServiceClient::infer() {
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata() {
-    return {};
+    viam::service::mlmodel::v1::MetadataRequest req;
+    *req.mutable_name() = this->name();
+
+    grpc::ClientContext ctx;
+    viam::service::mlmodel::v1::MetadataResponse resp;
+    stub_->Metadata(&ctx, req, &resp);
+
+    struct metadata result;
+
+    return result;
 }
 
 }  // namespace sdk
