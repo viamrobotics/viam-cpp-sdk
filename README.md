@@ -41,22 +41,6 @@ packages.
 Instructions for running examples follows. More robust instructions
 for setting up a project to come.
 
-### Echo Streaming Example
-The echo example communicates with the goutils sample server. It
-demonstrates individual, streamed, and bidirectional communication. To
-test, navigate to your goutils clone and run
-
-``` shell
-go run rpc/examples/echo/server/cmd/main.go
-```
-
-Then, run the `example_echo` program (it will be in the `bin`
-directory of your SDK installation)
-
-``` shell
-ninja install && ./build/install/bin/example_echo
-```
-
 ### Dial Example
 
 If you are connecting to a robot with authentication you will need to
@@ -106,6 +90,21 @@ override and only use direct gRPC calls, you will need to use a
 `.local` address for your robot's uri,
 e.g. `name.xxxx.local.viam.cloud:8080` instead of
 `name.xxxx.viam.cloud`.
+
+### Camera Example
+The camera example demonstrates how to get an image from the a remote camera and save it to a local file.
+
+First, download and start the [rdk](https://github.com/viamrobotics/rdk) with the provided config
+``` shell
+./viam-server-binary --config ./src/viam/examples/camera/example_config.json
+```
+
+Then build the c++ sdk using the instructions below and run
+``` shell
+./build/src/viam/examples/camera/example_camera
+```
+This will save the image from the fake camera to `img.png`.
+
 
 ## Building Documentation Locally for Testing
 The C++ sdk uses [Doxygen](https://www.doxygen.nl/) to generate documentation.
