@@ -31,22 +31,23 @@
 using namespace viam::sdk;
 using namespace std;
 
-using viam::robot::v1::Status;
-
 int main() {
     // If you want to connect to a remote robot, this should be the url of the robot
     // Ex: xxx.xxx.viam.cloud
     string robot_address("localhost:8080");
-    // If you want to connect to a remote robot, you will need the robot secret
-    // You can find this on app.viam.com
+    // If you want to connect to a remote robot, you need the robot location secret (not
+    // the part secret) You can find this on app.viam.com
     Credentials credentials("");
 
     DialOptions dial_options;
 
-    // This is for an example. You should NOT have this option enabled in real systems.
+    // If you have credentials, use this to pass them to the robot
+    // dial_options.credentials = credentials;
+
+    // This is for an example. You should **not** have this option enabled in real systems.
     dial_options.allow_insecure_downgrade = credentials.payload.length() == 0;
 
-    // Set the refresh interval of the robot (in seconds) (0 = auto refresh)
+    // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial options
     Options options = Options(1, dial_options);
 
     shared_ptr<RobotClient> robot;
@@ -86,11 +87,18 @@ int main() {
     string output_file = "img.png";
     string image_mime_type = "image/png";
 
-    std::cout << "Getting and saving image to " << output_file << std::endl;
+    cout << "Getting image from camera " << endl;
     Camera::raw_image img = camera->get_image(image_mime_type);
-    std::ofstream fout;
+    cout << "Got image of mime type: " << img.mime_type << endl;
+
+    // Depending on how you use the image, you may need to convert the
+    // data to a string
+    string img_data(img.bytes.begin(), img.bytes.end());
+
+    cout << "Getting and saving image to " << output_file << endl;
+    ofstream fout;
     fout.open(output_file, std::ios::binary | std::ios::out);
-    fout.write((char*)&img.bytes, sizeof(img.bytes.size()));
+    fout.write(img_data.c_str(), img_data.length());
     fout.close();
 
     robot->close();
