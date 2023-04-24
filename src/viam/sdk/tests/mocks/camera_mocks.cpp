@@ -74,6 +74,8 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     camera->image = fake_raw_image();
     camera->pc = fake_point_cloud();
     camera->camera_properties = fake_properties();
+    camera->intrinsic_parameters = fake_intrinsic_parameters();
+    camera->distortion_parameters = fake_distortion_parameters();
     camera->map = fake_map();
 
     return camera;
@@ -87,35 +89,35 @@ MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetImageRequest& request,
     ::viam::component::camera::v1::GetImageResponse* response) {
-    grpc::ServerContext* ctx;
-    return server->GetImage(ctx, &request, response);
+    grpc::ServerContext ctx;
+    return server->GetImage(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::RenderFrame(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest& request,
     ::google::api::HttpBody* response) {
-    grpc::ServerContext* ctx;
-    return server->RenderFrame(ctx, &request, response);
+    grpc::ServerContext ctx;
+    return server->RenderFrame(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetPointCloud(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetPointCloudRequest& request,
     ::viam::component::camera::v1::GetPointCloudResponse* response) {
-    grpc::ServerContext* ctx;
-    return server->GetPointCloud(ctx, &request, response);
+    grpc::ServerContext ctx;
+    return server->GetPointCloud(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetProperties(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetPropertiesRequest& request,
     ::viam::component::camera::v1::GetPropertiesResponse* response) {
-    grpc::ServerContext* ctx;
-    return server->GetProperties(ctx, &request, response);
+    grpc::ServerContext ctx;
+    return server->GetProperties(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::DoCommand(::grpc::ClientContext* context,
                                          const ::viam::common::v1::DoCommandRequest& request,
                                          ::viam::common::v1::DoCommandResponse* response) {
-    grpc::ServerContext* ctx;
-    return server->DoCommand(ctx, &request, response);
+    grpc::ServerContext ctx;
+    return server->DoCommand(&ctx, &request, response);
 }
 
 }  // namespace camera

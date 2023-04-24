@@ -31,7 +31,8 @@ void ViamChannel::close() {
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
     : channel(channel), path(path), closed(false), rust_runtime(runtime) {}
 
-ViamChannel ViamChannel::dial(const char* uri, boost::optional<DialOptions> options) {
+std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
+                                               boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();
     DialOptions opts = options.get_value_or(DialOptions());
     const char* payload = nullptr;
@@ -53,9 +54,7 @@ ViamChannel ViamChannel::dial(const char* uri, boost::optional<DialOptions> opti
         grpc::CreateChannel(address, grpc::InsecureChannelCredentials());
     std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
-    const char* path = address.c_str();
-    ViamChannel viam_channel = ViamChannel(channel, path, ptr);
-    return viam_channel;
+    return std::make_shared<ViamChannel>(channel, socket_path, ptr);
 };
 
 Credentials::Credentials(std::string payload_) {

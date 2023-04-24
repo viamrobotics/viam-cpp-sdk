@@ -26,7 +26,7 @@ void Server::start() {
     }
 
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
-    server_ = std::move(builder_->BuildAndStart());
+    server_ = builder_->BuildAndStart();
     builder_ = nullptr;
 }
 

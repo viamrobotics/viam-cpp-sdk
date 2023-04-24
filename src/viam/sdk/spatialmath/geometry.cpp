@@ -31,9 +31,9 @@ viam::common::v1::Pose GeometryConfig::pose_proto() {
     pose.set_x(x);
     pose.set_y(y);
     pose.set_z(z);
-    pose.set_o_x(0);
-    pose.set_o_y(0);
-    pose.set_o_z(1);
+    pose.set_o_x(o_x);
+    pose.set_o_y(o_y);
+    pose.set_o_z(o_z);
     pose.set_theta(0);
     return pose;
 }
@@ -84,7 +84,8 @@ viam::common::v1::Geometry GeometryConfig::to_proto() {
 
             return geometry_;
         }
-        case unknown: {
+        case unknown:
+        default: {
             if (x == 0 && y == 0 && z == 0) {
                 *geometry_.mutable_box() = box_proto();
             } else {

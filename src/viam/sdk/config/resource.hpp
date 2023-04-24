@@ -24,12 +24,12 @@ class ResourceLevelServiceConfig {
 
 class Resource {
    public:
+    Subtype api;
+    LinkConfig frame;
+    Model model;
     std::string name;
     std::string namespace_;
     std::string type;
-    Subtype api;
-    Model model;
-    LinkConfig frame;
     std::vector<std::string> depends_on;
     std::vector<ResourceLevelServiceConfig> service_config;
     AttributeMap attributes;

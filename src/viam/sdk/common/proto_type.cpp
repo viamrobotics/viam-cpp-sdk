@@ -47,7 +47,8 @@ ProtoType ProtoType::of_value(Value value) {
             return ProtoType(map);
         }
         case Value::KindCase::KIND_NOT_SET:
-        case Value::KindCase::kNullValue: {
+        case Value::KindCase::kNullValue:
+        default: {
             return ProtoType();
         }
     }
@@ -84,8 +85,7 @@ Value ProtoType::proto_value() {
     Value v;
     switch (proto_type.which()) {
         case 0: {
-            ::google::protobuf::NullValue value;
-            v.set_null_value(value);
+            v.set_null_value(::google::protobuf::NULL_VALUE);
             break;
         }
         case 1: {

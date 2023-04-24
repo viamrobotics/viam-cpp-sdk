@@ -167,7 +167,7 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_camera_client)
 
-MockCameraClient client = MockCameraClient("camera");
+MockCameraClient client("camera");
 
 BOOST_AUTO_TEST_CASE(test_image_client) {
     Camera::raw_image image = client.get_image("JPEG");

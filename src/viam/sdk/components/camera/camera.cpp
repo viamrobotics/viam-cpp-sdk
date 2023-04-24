@@ -28,7 +28,7 @@ std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::camera::v1::CameraService::service_full_name());
-    if (sd == nullptr) {
+    if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the camera service");
     }
     return std::make_shared<CameraSubtype>(sd);

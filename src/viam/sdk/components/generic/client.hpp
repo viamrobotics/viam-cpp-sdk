@@ -18,6 +18,7 @@ namespace sdk {
 /// @ingroup Generic
 class GenericClient : public Generic {
    public:
+    virtual ~GenericClient() = default;
     AttributeMap do_command(AttributeMap command) override;
     GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
         : Generic(std::move(name)),
@@ -33,8 +34,8 @@ class GenericClient : public Generic {
         : Generic(std::move(name)), stub_(std::move(stub)){};
 
    private:
-    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_{};
+    std::shared_ptr<grpc::Channel> channel_{};
 };
 
 }  // namespace sdk

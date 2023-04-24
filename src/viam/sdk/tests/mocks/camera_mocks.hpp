@@ -16,6 +16,7 @@ using namespace viam::sdk;
 
 class MockCamera : public Camera {
    public:
+    virtual ~MockCamera() = default;
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;

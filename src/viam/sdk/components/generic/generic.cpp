@@ -29,7 +29,7 @@ std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::generic::v1::GenericService::service_full_name());
-    if (sd == nullptr) {
+    if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the generic service");
     }
     return std::make_shared<GenericSubtype>(sd);

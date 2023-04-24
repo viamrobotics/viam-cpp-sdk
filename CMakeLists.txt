@@ -81,6 +81,9 @@ option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selected compiler against known minima" ON)
 option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
 option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (network access may be required)" OFF)
+option(VIAMCPPSDK_USE_WALL_WERROR "Build with -Wall and -Werror flags" ON)
+# N.b.: `VIAMCPPSDK_SANITIZED_BUILD` may cause runtime failures if gRPC is not also built with sanitizers.
+option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less performant)" OFF)
 
 
 # Enforce known toolchains and toolchain minima unless asked not to.

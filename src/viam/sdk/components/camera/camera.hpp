@@ -25,6 +25,7 @@ namespace sdk {
 /// @ingroup Camera
 class CameraSubtype : public ResourceSubtype {
    public:
+    virtual ~CameraSubtype() = default;
     std::shared_ptr<ResourceServerBase> create_resource_server(
         std::shared_ptr<SubtypeService> svc) override;
     std::shared_ptr<ResourceBase> create_rpc_client(std::string name,

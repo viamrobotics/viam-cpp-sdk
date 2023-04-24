@@ -66,9 +66,9 @@ class ModelRegistration {
         Subtype subtype,
         Model model,
         std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor)
-        : subtype(std::move(subtype)),
+        : model(std::move(model)),
           resource_type(std::move(rt)),
-          model(std::move(model)),
+          subtype(std::move(subtype)),
           construct_resource(std::move(constructor)),
           validate(default_validator){};
     ModelRegistration(
@@ -77,14 +77,14 @@ class ModelRegistration {
         Model model,
         std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor,
         std::function<std::vector<std::string>(Resource)> validator)
-        : subtype(std::move(subtype)),
+        : model(std::move(model)),
           resource_type(std::move(rt)),
-          model(std::move(model)),
+          subtype(std::move(subtype)),
           construct_resource(std::move(constructor)),
           validate(std::move(validator)){};
-    Subtype subtype;
     Model model;
     ResourceType resource_type;
+    Subtype subtype;
 
     /// @brief Constructs a resource from a map of dependencies and a resource config.
     std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;

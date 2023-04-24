@@ -158,6 +158,18 @@ target_link_libraries(viamsdk
   PRIVATE Threads::Threads
 )
 
+# Build api as a system library so we Wall/Werror don't cause unsolvable compilation failures
+target_include_directories(viamapi SYSTEM INTERFACE)
+
+# Set compile and link options based on arguments
+if (VIAMCPPSDK_USE_WALL_WERROR)
+  target_compile_options(viamsdk PRIVATE -Wall -Werror)
+endif()
+if (VIAMCPPSDK_SANITIZED_BUILD)
+  target_link_options(viamsdk PRIVATE -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer -fno-sanitize-recover)
+  target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer -fno-sanitize-recover)
+endif()
+
 
 install(
   TARGETS viamsdk

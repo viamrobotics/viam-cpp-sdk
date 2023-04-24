@@ -64,10 +64,10 @@ class RobotClient {
     /// @param options Options for connecting and refreshing.
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
-    static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, Options options);
-    RobotClient(ViamChannel channel);
+    static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
+                                                     Options options);
+    RobotClient(std::shared_ptr<ViamChannel> channel);
     std::vector<ResourceName>* resource_names();
-    std::unique_ptr<RobotService::Stub> stub_;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
     /// @param name The `ResourceName` of the resource.
@@ -111,8 +111,8 @@ class RobotClient {
     /// @brief Get the status of the robot's components.
     /// @param components An optional list of the specific components for which status is desired.
     /// @return A list of statuses.
-    std::vector<Status> get_status(
-        std::vector<ResourceName> components = std::vector<ResourceName>());
+    std::vector<Status> get_status(std::vector<ResourceName> components = {});
+
     std::vector<viam::robot::v1::Discovery> discover_components(
         std::vector<viam::robot::v1::DiscoveryQuery> queries);
 
@@ -147,10 +147,10 @@ class RobotClient {
     std::vector<std::shared_ptr<std::thread>> threads_;
     std::atomic<bool> should_refresh;
     unsigned int refresh_interval;
-    // (RSDK-919): make use of should_close_channel
-    bool should_close_channel;
+    std::shared_ptr<ViamChannel> viam_channel;
     std::shared_ptr<Channel> channel;
-    ViamChannel viam_channel;
+    bool should_close_channel;
+    std::unique_ptr<RobotService::Stub> stub_;
     std::mutex lock;
     std::vector<ResourceName> resource_names_;
     ResourceManager resource_manager;
