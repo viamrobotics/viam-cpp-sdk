@@ -166,8 +166,8 @@ if (VIAMCPPSDK_USE_WALL_WERROR)
   target_compile_options(viamsdk PRIVATE -Wall -Werror)
 endif()
 if (VIAMCPPSDK_SANITIZED_BUILD)
-  target_link_options(viamsdk PRIVATE -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer -fno-sanitize-recover)
-  target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer -fno-sanitize-recover)
+  target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
+  target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
 endif()
 
 

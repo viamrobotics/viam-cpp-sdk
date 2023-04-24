@@ -142,9 +142,6 @@ proto::Orientation OrientationConfig::to_proto() {
         default: {
             throw std::runtime_error("orientation type not known");
         }
-        default: {
-            throw std::runtime_error("orientation type not known");
-        }
     }
 }
 
