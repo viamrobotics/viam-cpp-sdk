@@ -81,7 +81,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
         }
         case proto::Orientation::TypeCase::TYPE_NOT_SET:
         default: {
-            throw "orientation type not known";
+            throw std::runtime_error("orientation type not known");
         }
     }
     return cfg;
@@ -138,6 +138,9 @@ proto::Orientation OrientationConfig::to_proto() {
             quat.set_z(q.z);
             orientation.set_allocated_quaternion(&quat);
             return orientation;
+        };
+        default: {
+            throw std::runtime_error("orientation type not known");
         }
         default: {
             throw std::runtime_error("orientation type not known");
