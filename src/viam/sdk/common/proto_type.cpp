@@ -47,7 +47,8 @@ ProtoType ProtoType::of_value(Value value) {
             return ProtoType(map);
         }
         case Value::KindCase::KIND_NOT_SET:
-        case Value::KindCase::kNullValue: {
+        case Value::KindCase::kNullValue:
+        default: {
             return ProtoType();
         }
     }
