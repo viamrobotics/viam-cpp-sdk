@@ -1,29 +1,10 @@
-#include <chrono>
-#include <cstddef>
 #include <fstream>
-#include <functional>
-#include <iostream>
-#include <memory>
-#include <ostream>
 #include <string>
-#include <thread>
-#include <vector>
-
-#include <boost/optional.hpp>
-#include <boost/program_options.hpp>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/support/status.h>
 #include <unistd.h>
-
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/robot/v1/robot.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
+#include <vector>
 
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/client.hpp>
-#include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -47,18 +28,18 @@ int main() {
     // This is for an example. You should **not** have this option enabled in real systems.
     dial_options.allow_insecure_downgrade = credentials.payload.empty();
 
-    // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial options
+    // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial
+    // options
     Options options = Options(1, dial_options);
 
     shared_ptr<RobotClient> robot;
     try {
         robot = RobotClient::at_address(robot_address, options);
-        robot->refresh();
         cout << "Successfully connected to the robot" << endl;
     } catch (const std::exception& e) {
         cout << "Failed to connect to the robot. Exiting." << endl;
         cout << "Exception: " << string(e.what()) << endl;
-        return 1;
+        return EXIT_FAILURE;
     }
 
     vector<ResourceName>* resource_names = robot->resource_names();
@@ -77,8 +58,7 @@ int main() {
     } catch (const std::exception& e) {
         cout << "Failed to find " << camera_name << ". Exiting." << endl;
         cout << "Exception: " << e.what() << endl;
-        robot->close();
-        return 1;
+        return EXIT_FAILURE;
     }
     Camera::properties props = camera->get_properties();
     Camera::intrinsic_parameters intrinsics = props.intrinsic_parameters;
@@ -91,16 +71,11 @@ int main() {
     Camera::raw_image img = camera->get_image(image_mime_type);
     cout << "Got image of mime type: " << img.mime_type << endl;
 
-    // Depending on how you use the image, you may need to convert the
-    // data to a string
-    string img_data(img.bytes.begin(), img.bytes.end());
-
     cout << "Getting and saving image to " << output_file << endl;
     ofstream fout;
     fout.open(output_file, std::ios::binary | std::ios::out);
-    fout.write(img_data.c_str(), img_data.length());
+    fout.write((char*)&img.bytes[0], img.bytes.size());
     fout.close();
 
-    robot->close();
-    return 0;
+    return EXIT_SUCCESS;
 }
