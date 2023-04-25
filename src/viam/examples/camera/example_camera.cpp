@@ -25,7 +25,7 @@ int main() {
     // If you have credentials, use this to pass them to the robot
     // dial_options.credentials = credentials;
 
-    // This is for an example. You should **not** have this option enabled in real systems.
+    // This is for an example. Care should be taken before exercising this option in production.
     dial_options.allow_insecure_downgrade = credentials.payload.empty();
 
     // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial
