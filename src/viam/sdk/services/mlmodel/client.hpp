@@ -27,7 +27,7 @@ namespace sdk {
 /// with MLModelService instances running elsewhere.
 ///
 class MLModelServiceClient : public MLModelService {
-public:
+   public:
     using service_type = viam::service::mlmodel::v1::MLModelService;
 
     MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
@@ -35,10 +35,10 @@ public:
     void infer() override;
     struct metadata metadata() override;
 
-protected:
+   protected:
     MLModelServiceClient(std::string name, std::unique_ptr<service_type::StubInterface> stub);
 
-private:
+   private:
     std::shared_ptr<grpc::Channel> channel_;
     std::unique_ptr<service_type::StubInterface> stub_;
 };

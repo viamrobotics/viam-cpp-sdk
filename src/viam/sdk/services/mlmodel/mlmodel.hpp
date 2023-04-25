@@ -14,31 +14,30 @@
 
 #pragma once
 
-#include <viam/sdk/services/service_base.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/services/service_base.hpp>
 #include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
 
 class MLModelServiceSubtype : public ResourceSubtype {
-public:
+   public:
     explicit MLModelServiceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
 
-    std::shared_ptr<ResourceServerBase> create_resource_server(std::shared_ptr<SubtypeService> service) override;
+    std::shared_ptr<ResourceServerBase> create_resource_server(
+        std::shared_ptr<SubtypeService> service) override;
 
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> channel) override;
+    std::shared_ptr<ResourceBase> create_rpc_client(
+        std::string name, std::shared_ptr<grpc::Channel> channel) override;
 };
 
 ///
 /// The `MLModelService` presents the API for an ML Model Service.
 ///
 class MLModelService : public ServiceBase {
-public:
-
+   public:
     struct tensor_info {
-
         struct file {
             std::string name;
             std::string description;
@@ -71,7 +70,7 @@ public:
 
     static std::shared_ptr<ResourceSubtype> resource_subtype();
 
-protected:
+   protected:
     explicit MLModelService(std::string name);
 };
 

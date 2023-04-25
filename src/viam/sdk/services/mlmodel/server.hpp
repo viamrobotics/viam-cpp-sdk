@@ -27,10 +27,8 @@ namespace sdk {
 /// resources implementing the ML Model Service.
 ///
 class MLModelServiceServer : public ResourceServerBase,
-                             public ::viam::service::mlmodel::v1::MLModelService::Service
-{
-public:
-
+                             public ::viam::service::mlmodel::v1::MLModelService::Service {
+   public:
     MLModelServiceServer();
     explicit MLModelServiceServer(std::shared_ptr<SubtypeService> subtype_service);
 
@@ -38,18 +36,15 @@ public:
 
     const std::shared_ptr<SubtypeService>& get_sub_svc();
 
+    ::grpc::Status Infer(::grpc::ServerContext* context,
+                         const ::viam::service::mlmodel::v1::InferRequest* request,
+                         ::viam::service::mlmodel::v1::InferResponse* response) override;
 
-    ::grpc::Status Infer(
-        ::grpc::ServerContext* context,
-        const ::viam::service::mlmodel::v1::InferRequest* request,
-        ::viam::service::mlmodel::v1::InferResponse* response) override;
+    ::grpc::Status Metadata(::grpc::ServerContext* context,
+                            const ::viam::service::mlmodel::v1::MetadataRequest* request,
+                            ::viam::service::mlmodel::v1::MetadataResponse* response) override;
 
-    ::grpc::Status Metadata(
-        ::grpc::ServerContext* context,
-        const ::viam::service::mlmodel::v1::MetadataRequest* request,
-        ::viam::service::mlmodel::v1::MetadataResponse* response) override;
-
-private:
+   private:
     std::shared_ptr<SubtypeService> subtype_service_;
 };
 

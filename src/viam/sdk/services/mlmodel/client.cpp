@@ -24,10 +24,9 @@ MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grp
     channel_ = std::move(channel);
 }
 
-MLModelServiceClient::MLModelServiceClient(std::string name, std::unique_ptr<service_type::StubInterface> stub)
-    : MLModelService(name),
-      stub_(std::move(stub)) {
-}
+MLModelServiceClient::MLModelServiceClient(std::string name,
+                                           std::unique_ptr<service_type::StubInterface> stub)
+    : MLModelService(name), stub_(std::move(stub)) {}
 
 void MLModelServiceClient::infer() {
     // TODO: Encode `infer` arguments into an `InferRequest`
@@ -70,14 +69,14 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                 new_file.name = std::move(*af.mutable_name());
                 new_file.description = std::move(*af.mutable_description());
                 switch (af.label_type()) {
-                case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE:
-                    new_file.label_type = tensor_info::file::k_type_tensor_value;
-                    break;
-                case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS:
-                    new_file.label_type = tensor_info::file::k_type_tensor_axis;
-                    break;
-                default:
-                    throw -1;  // XXX ACM TODO
+                    case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE:
+                        new_file.label_type = tensor_info::file::k_type_tensor_value;
+                        break;
+                    case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS:
+                        new_file.label_type = tensor_info::file::k_type_tensor_axis;
+                        break;
+                    default:
+                        throw -1;  // XXX ACM TODO
                 }
             }
         }

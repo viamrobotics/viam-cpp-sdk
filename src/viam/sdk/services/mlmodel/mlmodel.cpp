@@ -20,9 +20,9 @@
 namespace viam {
 namespace sdk {
 
-MLModelServiceSubtype::MLModelServiceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor) :
-    ResourceSubtype(service_descriptor) {
-}
+MLModelServiceSubtype::MLModelServiceSubtype(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceSubtype(service_descriptor) {}
 
 std::shared_ptr<ResourceServerBase> MLModelServiceSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> service) {
@@ -34,8 +34,7 @@ std::shared_ptr<ResourceBase> MLModelServiceSubtype::create_rpc_client(
     return std::make_shared<MLModelServiceClient>(std::move(name), std::move(channel));
 };
 
-MLModelService::MLModelService(std::string name) : ServiceBase(std::move(name)) {
-}
+MLModelService::MLModelService(std::string name) : ServiceBase(std::move(name)) {}
 
 std::shared_ptr<ResourceSubtype> MLModelService::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();

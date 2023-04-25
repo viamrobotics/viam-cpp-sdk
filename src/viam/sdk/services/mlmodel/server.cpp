@@ -14,16 +14,17 @@
 
 #include <viam/sdk/services/mlmodel/server.hpp>
 
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {
 
-MLModelServiceServer::MLModelServiceServer() : MLModelServiceServer(std::make_shared<SubtypeService>()) {}
+MLModelServiceServer::MLModelServiceServer()
+    : MLModelServiceServer(std::make_shared<SubtypeService>()) {}
 
-MLModelServiceServer::MLModelServiceServer(std::shared_ptr<SubtypeService> subtype_service) :
-    subtype_service_(std::move(subtype_service)) {}
+MLModelServiceServer::MLModelServiceServer(std::shared_ptr<SubtypeService> subtype_service)
+    : subtype_service_(std::move(subtype_service)) {}
 
 void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
@@ -37,20 +38,13 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) {
-
     if (!request) {
-        return {
-            ::grpc::StatusCode::INVALID_ARGUMENT,
-            "Called [Infer] without a request"
-        };
+        return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] without a request"};
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
     if (!rb) {
-        return {
-            ::grpc::UNKNOWN,
-            "resource not found: " + request->name()
-        };
+        return {::grpc::UNKNOWN, "resource not found: " + request->name()};
     }
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
@@ -61,27 +55,19 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
     // TODO: encode result of `infer` call into `response`
 
     return ::grpc::Status();
-
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::MetadataRequest* request,
     ::viam::service::mlmodel::v1::MetadataResponse* response) {
-
     if (!request) {
-        return {
-            ::grpc::StatusCode::INVALID_ARGUMENT,
-            "Called [Metadata] without a request"
-        };
+        return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Metadata] without a request"};
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
     if (!rb) {
-        return {
-            grpc::UNKNOWN,
-            "resource not found: " + request->name()
-        };
+        return {grpc::UNKNOWN, "resource not found: " + request->name()};
     }
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
@@ -92,7 +78,8 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
     *metadata_pb.mutable_type() = std::move(result.type);
     *metadata_pb.mutable_description() = std::move(result.description);
 
-    const auto pack_tensor_info = [](auto target, const std::vector<MLModelService::tensor_info>& source) {
+    const auto pack_tensor_info = [](auto target,
+                                     const std::vector<MLModelService::tensor_info>& source) {
         target.Reserve(source.size());
         for (auto&& s : source) {
             auto& new_entry = *target.Add();
@@ -109,15 +96,16 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
                 *new_af.mutable_name() = std::move(af.name);
                 *new_af.mutable_description() = std::move(af.description);
                 switch (af.label_type) {
-                case MLModelService::tensor_info::file::k_type_tensor_value:
-                    new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE);
-                    break;
-                case MLModelService::tensor_info::file::k_type_tensor_axis:
-                    new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS);
-                    break;
-                default:
-                    break;
-                    // XXX ACM TODO
+                    case MLModelService::tensor_info::file::k_type_tensor_value:
+                        new_af.set_label_type(
+                            ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE);
+                        break;
+                    case MLModelService::tensor_info::file::k_type_tensor_axis:
+                        new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS);
+                        break;
+                    default:
+                        break;
+                        // XXX ACM TODO
                 }
             }
         }
