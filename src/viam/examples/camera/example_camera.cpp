@@ -74,7 +74,7 @@ int main() {
     cout << "Getting and saving image to " << output_file << endl;
     ofstream fout;
     fout.open(output_file, std::ios::binary | std::ios::out);
-    fout.write((char*)&img.bytes[0], img.bytes.size());
+    fout.write(reinterpret_cast<char*>(img.bytes.data()), img.bytes.size());
     fout.close();
 
     return EXIT_SUCCESS;
