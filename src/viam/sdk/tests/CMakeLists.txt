@@ -13,7 +13,26 @@
 # limitations under the License.
 
 enable_testing()
+
 include(viamcppsdk_utils)
+add_library(viamsdk_test)
+
+target_sources(viamsdk_test
+  PRIVATE
+    test_utils.cpp
+    mocks/camera_mocks.cpp
+    mocks/generic_mocks.cpp
+    mocks/mock_base.cpp
+    mocks/mock_board.cpp
+    mocks/mock_encoder.cpp
+    mocks/mock_motor.cpp
+    mocks/mock_robot.cpp
+)
+
+target_link_libraries(viamsdk_test
+  PUBLIC viam-cpp-sdk::viamsdk
+)
+
 viamcppsdk_add_boost_test(test_base.cpp)
 viamcppsdk_add_boost_test(test_board.cpp)
 viamcppsdk_add_boost_test(test_camera.cpp)
@@ -23,4 +42,3 @@ viamcppsdk_add_boost_test(test_generic_component.cpp)
 viamcppsdk_add_boost_test(test_motor.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
 viamcppsdk_add_boost_test(test_types.cpp)
-

@@ -86,14 +86,6 @@ target_sources(viamsdk
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
-    tests/test_utils.cpp
-    tests/mocks/camera_mocks.cpp
-    tests/mocks/generic_mocks.cpp
-    tests/mocks/mock_base.cpp
-    tests/mocks/mock_board.cpp
-    tests/mocks/mock_encoder.cpp
-    tests/mocks/mock_motor.cpp
-    tests/mocks/mock_robot.cpp
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
@@ -142,14 +134,6 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
-      ../../viam/sdk/tests/test_utils.hpp
-      ../../viam/sdk/tests/mocks/camera_mocks.hpp
-      ../../viam/sdk/tests/mocks/generic_mocks.hpp
-      ../../viam/sdk/tests/mocks/mock_base.hpp
-      ../../viam/sdk/tests/mocks/mock_board.hpp
-      ../../viam/sdk/tests/mocks/mock_encoder.hpp
-      ../../viam/sdk/tests/mocks/mock_motor.hpp
-      ../../viam/sdk/tests/mocks/mock_robot.hpp
 )
 
 set_target_properties(
