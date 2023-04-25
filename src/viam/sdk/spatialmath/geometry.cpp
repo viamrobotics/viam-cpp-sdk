@@ -84,7 +84,8 @@ viam::common::v1::Geometry GeometryConfig::to_proto() {
 
             return geometry_;
         }
-        case unknown: {
+        case unknown:
+        default: {
             if (x == 0 && y == 0 && z == 0) {
                 *geometry_.mutable_box() = box_proto();
             } else {
