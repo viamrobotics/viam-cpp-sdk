@@ -60,38 +60,46 @@ Subtype::Subtype(std::string namespace_, std::string resource_type, std::string 
     : Type(namespace_, resource_type), resource_subtype_(resource_subtype) {}
 
 bool Subtype::is_service_type() {
-    return (this->resource_type_ == "service");
+    return (this->resource_type() == "service");
 }
 
 bool Subtype::is_component_type() {
-    return (this->resource_type_ == "component");
+    return (this->resource_type() == "component");
 }
 
 const Subtype* Name::to_subtype() const {
     return this;
 }
 
+std::string Name::name() {
+    return name_;
+}
+
+std::string Name::remote_name() {
+    return remote_name_;
+}
+
 std::string Name::to_string() const {
     std::string subtype_name = Subtype::to_string();
-    if (remote_name == "") {
-        return subtype_name + "/" + name;
+    if (remote_name_ == "") {
+        return subtype_name + "/" + name_;
     }
-    return subtype_name + "/" + remote_name + ":" + name;
+    return subtype_name + "/" + remote_name_ + ":" + name_;
 }
 
 std::string Name::short_name() const {
-    if (remote_name != "") {
-        return remote_name + ":" + name;
+    if (remote_name_ != "") {
+        return remote_name_ + ":" + name_;
     }
-    return name;
+    return name_;
 }
 
 viam::common::v1::ResourceName Name::to_proto() {
     viam::common::v1::ResourceName rn;
-    *rn.mutable_namespace_() = this->namespace_;
-    *rn.mutable_name() = this->name;
-    *rn.mutable_type() = this->resource_type_;
-    *rn.mutable_subtype() = this->resource_subtype_;
+    *rn.mutable_namespace_() = this->type_namespace();
+    *rn.mutable_name() = this->name_;
+    *rn.mutable_type() = this->resource_type();
+    *rn.mutable_subtype() = this->resource_subtype();
     return rn;
 }
 
@@ -117,7 +125,7 @@ Name Name::from_string(std::string name) {
 }
 
 Name::Name(Subtype subtype, std::string remote, std::string name)
-    : Subtype(subtype), remote_name(std::move(remote)), name(std::move(name)) {}
+    : Subtype(subtype), remote_name_(std::move(remote)), name_(std::move(name)) {}
 
 bool operator==(const Subtype& lhs, const Subtype& rhs) {
     return lhs.to_string() == rhs.to_string();
@@ -132,9 +140,9 @@ bool operator==(const Name& lhs, const Name& rhs) {
 }
 
 bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {
-    return lhs.subtype.to_string() == rhs.subtype.to_string() &&
-           lhs.proto_service_name == rhs.proto_service_name &&
-           lhs.descriptor->DebugString() == rhs.descriptor->DebugString();
+    return lhs.subtype_.to_string() == rhs.subtype_.to_string() &&
+           lhs.proto_service_name_ == rhs.proto_service_name_ &&
+           lhs.descriptor_.DebugString() == rhs.descriptor_.DebugString();
 }
 
 bool operator==(const Model& lhs, const Model& rhs) {
@@ -144,18 +152,26 @@ bool operator==(const Model& lhs, const Model& rhs) {
 RPCSubtype::RPCSubtype(Subtype subtype,
                        std::string proto_service_name,
                        const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor(std::move(&descriptor)),
-      proto_service_name(std::move(proto_service_name)),
-      subtype(std::move(subtype)) {}
+    : descriptor_(std::move(descriptor)),
+      proto_service_name_(std::move(proto_service_name)),
+      subtype_(std::move(subtype)) {}
 
 RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor(std::move(&descriptor)), subtype(std::move(subtype)) {}
+    : descriptor_(std::move(descriptor)), subtype_(std::move(subtype)) {}
+
+std::string RPCSubtype::proto_service_name() const {
+    return proto_service_name_;
+};
+
+Subtype RPCSubtype::subtype() const {
+    return subtype_;
+};
 
 ModelFamily::ModelFamily(std::string namespace_, std::string family)
-    : namespace_(namespace_), family(family) {}
+    : namespace_(namespace_), family_(family) {}
 
 Model::Model(ModelFamily model_family, std::string model_name)
-    : model_family(std::move(model_family)), model_name(std::move(model_name)) {}
+    : model_family_(std::move(model_family)), model_name_(std::move(model_name)) {}
 
 Model::Model(std::string namespace_, std::string family, std::string model_name)
     : Model(ModelFamily(std::move(namespace_), std::move(family)), std::move(model_name)) {}
@@ -174,17 +190,17 @@ Model Model::from_str(std::string model) {
 
 std::string ModelFamily::to_string() const {
     if (namespace_ == "") {
-        return family;
+        return family_;
     }
-    return namespace_ + ":" + family;
+    return namespace_ + ":" + family_;
 }
 
 std::string Model::to_string() const {
-    const std::string mf = model_family.to_string();
+    const std::string mf = model_family_.to_string();
     if (mf == "") {
-        return model_name;
+        return model_name_;
     }
-    return mf + ":" + model_name;
+    return mf + ":" + model_name_;
 }
 
 Model::Model() : Model(ModelFamily(RDK, BUILTIN), BUILTIN) {}

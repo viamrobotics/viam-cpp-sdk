@@ -16,11 +16,11 @@ class LinkConfig {
     static LinkConfig from_proto(viam::app::v1::Frame proto);
 
    private:
-    std::string id;
-    class translation translation;
-    OrientationConfig orientation;
-    GeometryConfig geometry;
-    std::string parent;
+    std::string id_;
+    translation translation_;
+    OrientationConfig orientation_;
+    GeometryConfig geometry_;
+    std::string parent_;
 };
 
 }  // namespace sdk

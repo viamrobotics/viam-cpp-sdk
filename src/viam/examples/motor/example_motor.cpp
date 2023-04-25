@@ -28,12 +28,11 @@
 #include <viam/sdk/rpc/dial.hpp>
 
 using namespace viam::sdk;
-using viam::robot::v1::Status;
 
 // TODO(RSDK-2751) Cleanup examples for components
 int main() {
     DialOptions dial_options;
-    dial_options.allow_insecure_downgrade = true;
+    dial_options.set_allow_insecure_downgrade(true);
     boost::optional<DialOptions> opts(dial_options);
 
     std::string address = "localhost:8080";

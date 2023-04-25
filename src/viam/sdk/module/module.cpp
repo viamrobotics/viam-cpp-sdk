@@ -10,13 +10,37 @@
 namespace viam {
 namespace sdk {
 
-Module::Module(std::string addr) : addr(addr){};
+Module::Module(std::string addr) : addr_(addr){};
 
 void Module::set_ready() {
-    lock.lock();
-    ready = true;
-    lock.unlock();
+    lock_.lock();
+    ready_ = true;
+    lock_.unlock();
 }
+std::mutex& Module::lock() {
+    return lock_;
+};
+std::string Module::name() {
+    return name_;
+};
+std::string Module::addr() {
+    return addr_;
+};
+bool Module::ready() {
+    return ready_;
+};
+HandlerMap_ Module::handles() {
+    return handles_;
+};
+std::shared_ptr<grpc::Channel> Module::channel() {
+    return channel_;
+};
+std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> Module::services() {
+    return services_;
+};
+std::vector<std::shared_ptr<ResourceServerBase>> Module::servers() {
+    return servers_;
+};
 
 }  // namespace sdk
 }  // namespace viam

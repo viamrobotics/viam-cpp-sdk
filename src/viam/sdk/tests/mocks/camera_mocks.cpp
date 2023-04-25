@@ -15,16 +15,16 @@ namespace camera {
 using namespace viam::sdk;
 
 AttributeMap MockCamera::do_command(AttributeMap command) {
-    return map;
+    return map_;
 }
 Camera::raw_image MockCamera::get_image(std::string mime_type) {
-    return image;
+    return image_;
 }
 Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
-    return pc;
+    return pc_;
 }
 Camera::properties MockCamera::get_properties() {
-    return camera_properties;
+    return camera_properties_;
 }
 
 Camera::raw_image fake_raw_image() {
@@ -71,18 +71,18 @@ Camera::properties fake_properties() {
 std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     auto camera = std::make_shared<MockCamera>("camera");
 
-    camera->image = fake_raw_image();
-    camera->pc = fake_point_cloud();
-    camera->camera_properties = fake_properties();
-    camera->intrinsic_parameters = fake_intrinsic_parameters();
-    camera->distortion_parameters = fake_distortion_parameters();
-    camera->map = fake_map();
+    camera->image_ = fake_raw_image();
+    camera->pc_ = fake_point_cloud();
+    camera->camera_properties_ = fake_properties();
+    camera->intrinsic_parameters_ = fake_intrinsic_parameters();
+    camera->distortion_parameters_ = fake_distortion_parameters();
+    camera->map_ = fake_map();
 
     return camera;
 }
 
-MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
-    this->server->get_sub_svc()->add(std::string("camera"), MockCamera::get_mock_camera());
+MockCameraStub::MockCameraStub() : server_(std::make_shared<CameraServer>()) {
+    this->server_->get_sub_svc()->add(std::string("camera"), MockCamera::get_mock_camera());
 };
 
 ::grpc::Status MockCameraStub::GetImage(
@@ -90,34 +90,34 @@ MockCameraStub::MockCameraStub() : server(std::make_shared<CameraServer>()) {
     const ::viam::component::camera::v1::GetImageRequest& request,
     ::viam::component::camera::v1::GetImageResponse* response) {
     grpc::ServerContext ctx;
-    return server->GetImage(&ctx, &request, response);
+    return server_->GetImage(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::RenderFrame(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest& request,
     ::google::api::HttpBody* response) {
     grpc::ServerContext ctx;
-    return server->RenderFrame(&ctx, &request, response);
+    return server_->RenderFrame(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetPointCloud(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetPointCloudRequest& request,
     ::viam::component::camera::v1::GetPointCloudResponse* response) {
     grpc::ServerContext ctx;
-    return server->GetPointCloud(&ctx, &request, response);
+    return server_->GetPointCloud(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetProperties(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::GetPropertiesRequest& request,
     ::viam::component::camera::v1::GetPropertiesResponse* response) {
     grpc::ServerContext ctx;
-    return server->GetProperties(&ctx, &request, response);
+    return server_->GetProperties(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::DoCommand(::grpc::ClientContext* context,
                                          const ::viam::common::v1::DoCommandRequest& request,
                                          ::viam::common::v1::DoCommandResponse* response) {
     grpc::ServerContext ctx;
-    return server->DoCommand(&ctx, &request, response);
+    return server_->DoCommand(&ctx, &request, response);
 }
 
 }  // namespace camera

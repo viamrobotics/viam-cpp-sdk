@@ -18,12 +18,14 @@ typedef boost::
 
 class OrientationConfig {
    public:
-    OrientationType type;
-    std::vector<std::uint8_t> value;
-    orientation orientation_;
     viam::app::v1::Orientation to_proto();
 
     static OrientationConfig from_proto(viam::app::v1::Orientation proto);
+
+   private:
+    OrientationType type_;
+    std::vector<std::uint8_t> value_;
+    orientation orientation_;
 };
 
 }  // namespace sdk

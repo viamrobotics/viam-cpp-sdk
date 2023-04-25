@@ -17,27 +17,27 @@ namespace motor {
 using namespace viam::sdk;
 
 void MockMotor::set_power(double power_pct) {
-    power_status.is_on = power_pct != 0.0;
-    power_status.power_pct = power_pct;
+    power_status_.is_on = power_pct != 0.0;
+    power_status_.power_pct = power_pct;
 };
 void MockMotor::go_for(double rpm, double revolutions) {
     // This is the actual behavior from rdk:builtin:fake_motor
     if (rpm == 0.0) {
         throw std::runtime_error("Cannot move motor at 0 RPM");
     }
-    position += revolutions;
+    position_ += revolutions;
 };
 void MockMotor::go_to(double rpm, double position_revolutions) {
-    position = position_revolutions;
+    position_ = position_revolutions;
 };
 void MockMotor::reset_zero_position(double offset) {
-    position -= offset;
+    position_ -= offset;
 };
 Motor::position MockMotor::get_position() {
-    return position;
+    return position_;
 };
 Motor::properties MockMotor::get_properties() {
-    return properties;
+    return properties_;
 };
 grpc::StatusCode MockMotor::stop(AttributeMap extra) {
     // None of these functions are async and this mock is not
@@ -47,7 +47,7 @@ grpc::StatusCode MockMotor::stop(AttributeMap extra) {
     return grpc::StatusCode();
 };
 Motor::power_status MockMotor::get_power_status() {
-    return power_status;
+    return power_status_;
 };
 bool MockMotor::is_moving() {
     // None of these functions are async and this mock is not
@@ -55,16 +55,16 @@ bool MockMotor::is_moving() {
     return false;
 };
 AttributeMap MockMotor::do_command(AttributeMap _command) {
-    return map;
+    return map_;
 };
 
 std::shared_ptr<MockMotor> MockMotor::get_mock_motor() {
     auto motor = std::make_shared<MockMotor>("mock_motor");
 
-    motor->power_status = fake_power_status();
-    motor->position = fake_position();
-    motor->properties = fake_properties();
-    motor->map = fake_map();
+    motor->power_status_ = fake_power_status();
+    motor->position_ = fake_position();
+    motor->properties_ = fake_properties();
+    motor->map_ = fake_map();
 
     return motor;
 }

@@ -15,27 +15,27 @@ namespace sdk {
 viam::app::v1::Frame LinkConfig::to_proto() {
     viam::app::v1::Frame frame;
 
-    *frame.mutable_parent() = parent;
-    *frame.mutable_geometry() = geometry.to_proto();
-    *frame.mutable_orientation() = orientation.to_proto();
-    *frame.mutable_translation() = translation.to_proto();
+    *frame.mutable_parent() = parent_;
+    *frame.mutable_geometry() = geometry_.to_proto();
+    *frame.mutable_orientation() = orientation_.to_proto();
+    *frame.mutable_translation() = translation_.to_proto();
     return frame;
 };
 
 LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
     LinkConfig lc;
 
-    lc.parent = proto.parent();
-    lc.translation.x = proto.translation().x();
-    lc.translation.y = proto.translation().y();
-    lc.translation.z = proto.translation().z();
+    lc.parent_ = proto.parent();
+    lc.translation_.x_ = proto.translation().x();
+    lc.translation_.y_ = proto.translation().y();
+    lc.translation_.z_ = proto.translation().z();
 
     if (proto.has_orientation()) {
-        lc.orientation = OrientationConfig::from_proto(proto.orientation());
+        lc.orientation_ = OrientationConfig::from_proto(proto.orientation());
     }
 
     if (proto.has_geometry()) {
-        lc.geometry = GeometryConfig::from_proto(proto.geometry());
+        lc.geometry_ = GeometryConfig::from_proto(proto.geometry());
     }
 
     return lc;

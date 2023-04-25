@@ -31,22 +31,19 @@ class MyModule : public GenericService::Service, public ComponentBase {
             std::cout << "dependency: " << dep.first.to_string() << std::endl;
         }
 
-        std::cout << "config in reconfigure: " << cfg.name << std::endl;
+        std::cout << "config in reconfigure: " << cfg.name() << std::endl;
     }
 
-    std::string name;
-    static int which;
-    int inner_which;
     MyModule() {
-        inner_which = which;
-        which += 1;
+        inner_which_ = which_;
+        which_ += 1;
     };
 
     MyModule(Resource cfg) {
-        name = cfg.name;
-        std::cout << "Creating module with name " + name << std::endl;
-        inner_which = which;
-        which += 1;
+        name_ = cfg.name();
+        std::cout << "Creating module with name " + name_ << std::endl;
+        inner_which_ = which_;
+        which_ += 1;
     }
 
     MyModule(const MyModule&) = delete;
@@ -55,8 +52,8 @@ class MyModule : public GenericService::Service, public ComponentBase {
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) override {
-        std::cout << "Received DoCommand request for MyModule number " << inner_which
-                  << " and name " << name << std::endl;
+        std::cout << "Received DoCommand request for MyModule number " << inner_which_
+                  << " and name " << name_ << std::endl;
         for (auto& req : request->command().fields()) {
             std::cout << "request key: " << req.first.c_str()
                       << "\trequest value: " << req.second.SerializeAsString();
@@ -65,9 +62,14 @@ class MyModule : public GenericService::Service, public ComponentBase {
 
         return grpc::Status();
     }
+
+   private:
+    std::string name_;
+    static int which_;
+    int inner_which_;
 };
 
-int MyModule::which = 0;
+int MyModule::which_ = 0;
 
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -97,7 +99,7 @@ int main(int argc, char** argv) {
         // returned to the parent through gRPC. Validate functions can also return
         // a vector of strings representing the implicit dependencies of the resource.
         [](Resource cfg) -> std::vector<std::string> {
-            if (cfg.attributes->find("invalidattribute") != cfg.attributes->end()) {
+            if (cfg.attributes()->find("invalidattribute") != cfg.attributes()->end()) {
                 throw std::string(
                     "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
             }

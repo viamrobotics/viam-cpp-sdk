@@ -11,7 +11,6 @@ namespace sdk {
 
 class ResourceManager {
    public:
-    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
     void register_resource(std::shared_ptr<ResourceBase> Resource);
 
     /// returns a resource from the registry.
@@ -24,9 +23,11 @@ class ResourceManager {
     ///     will throw an error.
     std::shared_ptr<ResourceBase> get_resource(std::string name, ResourceType of_type);
     ResourceManager();
+    const std::unordered_map<std::string, std::shared_ptr<ResourceBase>>& resources() const;
 
    private:
     ResourceManager(std::vector<std::shared_ptr<ResourceBase>> resources);
+    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources_;
 };
 
 }  // namespace sdk

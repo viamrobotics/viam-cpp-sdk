@@ -16,17 +16,17 @@ namespace sdk {
 
 viam::module::v1::HandlerMap HandlerMap_::to_proto() {
     viam::module::v1::HandlerMap proto;
-    for (auto& h : this->handles) {
+    for (auto& h : this->handles_) {
         viam::module::v1::HandlerDefinition hd;
         for (auto& model : h.second) {
             const std::string m = model.to_string();
             *hd.mutable_models()->Add() = m;
         }
         viam::robot::v1::ResourceRPCSubtype rpc_subtype;
-        Name name(h.first.subtype, "", "");
+        Name name(h.first.subtype(), "", "");
         viam::common::v1::ResourceName resource_name = name.to_proto();
         *rpc_subtype.mutable_subtype() = resource_name;
-        *rpc_subtype.mutable_proto_service() = h.first.proto_service_name;
+        *rpc_subtype.mutable_proto_service() = h.first.proto_service_name();
         *hd.mutable_subtype() = rpc_subtype;
         *proto.add_handlers() = hd;
     }
@@ -58,7 +58,7 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
                 BOOST_LOG_TRIVIAL(error) << "Error processing model " + mod;
             }
         }
-        hm.handles.emplace(handle, models);
+        hm.handles_.emplace(handle, models);
     }
 
     return hm;
@@ -66,11 +66,11 @@ HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
 
 void HandlerMap_::add_model(Model model, RPCSubtype subtype) {
     std::vector<Model> models;
-    if (handles.find(subtype) != handles.end()) {
-        models = handles.at(subtype);
+    if (handles_.find(subtype) != handles_.end()) {
+        models = handles_.at(subtype);
     }
     models.push_back(model);
-    handles.emplace(subtype, models);
+    handles_.emplace(subtype, models);
 }
 
 }  // namespace sdk

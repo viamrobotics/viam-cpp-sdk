@@ -50,7 +50,7 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
                            ::viam::robot::v1::StopAllResponse* response) override;
 
    private:
-    std::mutex lock;
+    std::mutex lock_;
     std::vector<ResourceName> generate_metadata();
     std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);
 

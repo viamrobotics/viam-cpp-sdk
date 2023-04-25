@@ -24,55 +24,77 @@ Name Resource::resource_name() {
         throw err;
     }
     std::vector<std::string> remotes;
-    boost::split(remotes, this->name, boost::is_any_of(":"));
+    boost::split(remotes, this->name_, boost::is_any_of(":"));
     if (remotes.size() > 1) {
         std::string str_name = remotes.at(remotes.size() - 1);
         remotes.pop_back();
         std::string remote = std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
-        return Name(this->api, remote, str_name);
+        return Name(this->api_, remote, str_name);
     }
-    return Name(this->api, "", remotes.at(0));
+    return Name(this->api_, "", remotes.at(0));
+}
+
+Subtype Resource::api() {
+    return api_;
+};
+LinkConfig Resource::frame() {
+    return frame_;
+};
+Model Resource::model() {
+    return model_;
+};
+std::string Resource::name() {
+    return name_;
+};
+std::string Resource::namespace_() {
+    return namespace__;
+};
+std::string Resource::type() {
+    return type_;
+};
+AttributeMap Resource::attributes() {
+    return attributes_;
 }
 
 void Resource::fix_api() {
-    if (this->api.type_namespace() == "" && this->namespace_ == "") {
-        this->namespace_ = RDK;
-        this->api.type_namespace() = RDK;
-    } else if (this->api.type_namespace() == "") {
-        this->api.type_namespace() = this->namespace_;
+    if (this->api_.type_namespace() == "" && this->namespace__ == "") {
+        this->namespace__ = RDK;
+        this->api_.type_namespace() = RDK;
+    } else if (this->api_.type_namespace() == "") {
+        this->api_.type_namespace() = this->namespace__;
     } else {
-        this->namespace_ = this->api.type_namespace();
+        this->namespace__ = this->api_.type_namespace();
     }
 
-    if (this->api.resource_type() == "") {
-        this->api.resource_type() = COMPONENT;
+    if (this->api_.resource_type() == "") {
+        this->api_.resource_type() = COMPONENT;
     }
 
-    if (this->api.resource_subtype() == "") {
-        this->api.resource_subtype() = this->type;
-    } else if (this->type == "") {
-        this->type = this->api.resource_subtype();
+    if (this->api_.resource_subtype() == "") {
+        this->api_.resource_subtype() = this->type_;
+    } else if (this->type_ == "") {
+        this->type_ = this->api_.resource_subtype();
     }
 
     // This shouldn't be able to happen except with directly instantiated
     // config structs
-    if (this->api.type_namespace() != this->namespace_ ||
-        this->api.resource_subtype() != this->type) {
+    if (this->api_.type_namespace() != this->namespace__ ||
+        this->api_.resource_subtype() != this->type_) {
         throw "component namespace and/or type do not match component api field";
     }
 }
 
 Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     Resource resource(proto_cfg.type());
-    resource.name = proto_cfg.name();
-    resource.namespace_ = proto_cfg.namespace_();
-    resource.type = proto_cfg.type();
-    resource.attributes = struct_to_map(proto_cfg.attributes());
+    resource.name_ = proto_cfg.name();
+    resource.namespace__ = proto_cfg.namespace_();
+    resource.type_ = proto_cfg.type();
+    resource.attributes_ = struct_to_map(proto_cfg.attributes());
     std::string api = proto_cfg.api();
     if (api.find(":") != std::string::npos) {
-        resource.api = Subtype::from_string(api);
+        resource.api_ = Subtype::from_string(api);
     }
-    resource.model = Model::from_str(proto_cfg.model());
+    resource.model_ = Model::from_str(proto_cfg.model());
 
     try {
         resource.fix_api();
@@ -89,32 +111,32 @@ Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
 
 viam::app::v1::ComponentConfig Resource::to_proto() {
     viam::app::v1::ComponentConfig proto_cfg;
-    google::protobuf::Struct s = map_to_struct(attributes);
+    google::protobuf::Struct s = map_to_struct(attributes_);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
 
-    for (auto& svc_cfg : service_config) {
+    for (auto& svc_cfg : service_config_) {
         viam::app::v1::ResourceLevelServiceConfig cfg;
         *cfg.mutable_type() = svc_cfg.type;
         *cfg.mutable_attributes() = map_to_struct(svc_cfg.attributes);
         *proto_cfg.mutable_service_configs()->Add() = cfg;
     }
 
-    *proto_cfg.mutable_name() = name;
-    *proto_cfg.mutable_namespace_() = namespace_;
-    *proto_cfg.mutable_type() = type;
-    *proto_cfg.mutable_api() = api.to_string();
-    const std::string mm = model.to_string();
+    *proto_cfg.mutable_name() = name_;
+    *proto_cfg.mutable_namespace_() = namespace__;
+    *proto_cfg.mutable_type() = type_;
+    *proto_cfg.mutable_api() = api_.to_string();
+    const std::string mm = model_.to_string();
     *proto_cfg.mutable_model() = mm;
-    *proto_cfg.mutable_attributes() = map_to_struct(attributes);
-    for (auto& dep : depends_on) {
+    *proto_cfg.mutable_attributes() = map_to_struct(attributes_);
+    for (auto& dep : depends_on_) {
         *proto_cfg.mutable_depends_on()->Add() = dep;
     }
-    *proto_cfg.mutable_frame() = frame.to_proto();
+    *proto_cfg.mutable_frame() = frame_.to_proto();
 
     return proto_cfg;
 }
 
-Resource::Resource(std::string type) : api({RDK, type, ""}), type(type){};
+Resource::Resource(std::string type) : api_({RDK, type, ""}), type_(type){};
 
 }  // namespace sdk
 }  // namespace viam

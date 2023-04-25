@@ -6,8 +6,11 @@ namespace viam {
 namespace sdk {
 
 class ComponentServiceBase {
-   public:
-    ResourceManager manager;
+   protected:
+    const ResourceManager manager() const;
+
+   private:
+    ResourceManager manager_;
 };
 
 }  // namespace sdk

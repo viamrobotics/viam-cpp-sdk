@@ -12,72 +12,70 @@ namespace sdk {
 class DialOptions;
 class ViamChannel {
    public:
-    std::shared_ptr<grpc::Channel> channel;
     void close();
     ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime);
     static std::shared_ptr<ViamChannel> dial(const char* uri, boost::optional<DialOptions> options);
 
+    std::shared_ptr<grpc::Channel> channel() const;
+
    private:
-    const char* path;
-    bool closed;
-    void* rust_runtime;
+    std::shared_ptr<grpc::Channel> channel_;
+    const char* path_;
+    bool closed_;
+    void* rust_runtime_;
 };
 
 class Credentials {
    public:
-    std::string type_;
-    std::string payload;
-
     Credentials(std::string payload);
+    const std::string payload() const;
+
+   private:
+    std::string type_;
+    std::string payload_;
 };
 
 class DialOptions {
    public:
-    /// Bypass webRTC and connect directly to the robot
-    // TODO (RSDK-917): This field is currently just for show, we
-    // should update dial logic to actually care about this
-    bool disable_webrtc;
+    DialOptions()
+        : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false) {}
+
+    const boost::optional<Credentials> credentials() const;
+    void set_allow_insecure_downgrade(bool allow);
+    const bool allows_insecure_downgrade() const;
+
+    void set_credentials(boost::optional<Credentials> creds);
+
+   private:
+    // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
+    // `local` uri. We should update dial logic to consider such a flag.
 
     /// the URL to authenticate against
-    boost::optional<std::string> auth_entity;
+    boost::optional<std::string> auth_entity_;
 
     /// Credentials for connecting to the robot
-    boost::optional<Credentials> credentials;
-
-    /// Determine if the connection is TLS-based. Must be set to
-    /// `true` to establish an insecure connection. Otherwise, a
-    /// TLS-based connection will be assumed
-    bool insecure;
+    boost::optional<Credentials> credentials_;
 
     /// allow the RPC connection to be downgraded to an insecure
     /// connection if detected. This is only used when credentials
     /// are not present
-    bool allow_insecure_downgrade;
-
-    /// allow the RPC connection to be downgraded to an insecure
-    /// connection if detected, even with credentials present. This
-    /// is generally unsafe to do, but can be requested
-    bool allow_insecure_with_creds_downgrade;
-    DialOptions() {
-        disable_webrtc = false;
-        auth_entity = boost::none;
-        credentials = boost::none;
-        insecure = false;
-        allow_insecure_downgrade = false;
-        allow_insecure_with_creds_downgrade = false;
-    }
+    bool allow_insecure_downgrade_;
 };
 
 class Options {
    public:
+    Options(unsigned int refresh_interval, boost::optional<DialOptions> dial_options)
+        : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
+
+    const unsigned int refresh_interval() const;
+    // CR erodkin: this should be a ref
+    const boost::optional<DialOptions> dial_options() const;
+
+   private:
     /// How often to refresh the status/parts of the robot, in seconds.
     /// if set to 0, the robot will not automatically refresh.
-    unsigned int refresh_interval;
-    boost::optional<DialOptions> dial_options;
-    Options(unsigned int refresh_interval_, boost::optional<DialOptions> dial_options_) {
-        refresh_interval = refresh_interval_;
-        dial_options = dial_options_;
-    }
+    unsigned int refresh_interval_;
+    boost::optional<DialOptions> dial_options_;
 };
 
 }  // namespace sdk

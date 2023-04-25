@@ -24,42 +24,42 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
-    lock.lock();
+    lock_.lock();
 
-    if (resources.find(name) != resources.end()) {
-        lock.unlock();
-        return resources.at(name);
+    if (resources_.find(name) != resources_.end()) {
+        lock_.unlock();
+        return resources_.at(name);
     }
 
-    if (short_names.find(name) != short_names.end()) {
-        std::string short_name = short_names.at(name);
-        if (resources.find(short_name) != resources.end()) {
-            lock.unlock();
-            return resources.at(short_name);
+    if (short_names_.find(name) != short_names_.end()) {
+        std::string short_name = short_names_.at(name);
+        if (resources_.find(short_name) != resources_.end()) {
+            lock_.unlock();
+            return resources_.at(short_name);
         }
     }
-    lock.unlock();
+    lock_.unlock();
     return nullptr;
 }
 
 void SubtypeService::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
-    lock.lock();
+    lock_.lock();
     std::unordered_map<std::string, std::shared_ptr<ResourceBase>> new_resources;
     std::unordered_map<std::string, std::string> new_short_names;
-    this->resources = new_resources;
-    this->short_names = new_short_names;
+    this->resources_ = new_resources;
+    this->short_names_ = new_short_names;
 
     for (auto& resource : new_map) {
         try {
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(error) << "Error replacing all resources" << exc.what();
-            lock.unlock();
+            lock_.unlock();
             return;
         }
     }
 
-    lock.unlock();
+    lock_.unlock();
 }
 
 std::string get_shortcut_name(std::string name) {
@@ -69,7 +69,7 @@ std::string get_shortcut_name(std::string name) {
 }
 
 void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
-    if (name.name == "") {
+    if (name.name() == "") {
         throw "Empty name used for resource: " + name.to_string();
     }
     std::string short_name = name.short_name();
@@ -78,69 +78,69 @@ void SubtypeService::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
 }
 
 void SubtypeService::do_add(std::string name, std::shared_ptr<ResourceBase> resource) {
-    if (resources.find(name) != resources.end()) {
+    if (resources_.find(name) != resources_.end()) {
         throw "Attempted to add resource that already existed: " + name;
     }
 
-    resources.emplace(name, resource);
+    resources_.emplace(name, resource);
 
     std::string shortcut = get_shortcut_name(name);
     if (shortcut != name) {
-        if (short_names.find(shortcut) != short_names.end()) {
-            short_names.emplace(shortcut, "");
+        if (short_names_.find(shortcut) != short_names_.end()) {
+            short_names_.emplace(shortcut, "");
         } else {
-            short_names.emplace(shortcut, name);
+            short_names_.emplace(shortcut, name);
         }
     }
 }
 
 void SubtypeService::add(Name name, std::shared_ptr<ResourceBase> resource) {
-    lock.lock();
+    lock_.lock();
     try {
         do_add(name, resource);
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "Error adding resource to subtype service: " << exc.what();
     }
-    lock.unlock();
+    lock_.unlock();
 };
 
 void SubtypeService::do_remove(Name name) {
     std::string short_name = name.short_name();
-    if (resources.find(short_name) == resources.end()) {
+    if (resources_.find(short_name) == resources_.end()) {
         throw "attempted to remove resource " + name.to_string() + " but it didn't exist!";
     }
-    resources.erase(short_name);
+    resources_.erase(short_name);
 
     std::string shortcut = get_shortcut_name(short_name);
-    if (short_names.find(shortcut) != short_names.end()) {
-        short_names.erase(shortcut);
+    if (short_names_.find(shortcut) != short_names_.end()) {
+        short_names_.erase(shortcut);
     }
 
     // case: remote1:nameA and remote2:nameA both existed, and remote2:nameA is
     // being deleted, restore shortcut to remote1:nameA
-    for (auto& res : resources) {
+    for (auto& res : resources_) {
         std::string key = res.first;
         if (shortcut == get_shortcut_name(key) && short_name != get_shortcut_name(key)) {
-            if (short_names.find(shortcut) != short_names.end()) {
-                short_names.emplace(shortcut, "");
+            if (short_names_.find(shortcut) != short_names_.end()) {
+                short_names_.emplace(shortcut, "");
             } else {
-                short_names.emplace(shortcut, key);
+                short_names_.emplace(shortcut, key);
             }
         }
     }
 }
 
 void SubtypeService::remove(Name name) {
-    lock.lock();
+    lock_.lock();
     try {
         do_remove(name);
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "unable to remove resource: " << exc.what();
     };
-    lock.unlock();
+    lock_.unlock();
 };
 void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resource) {
-    lock.lock();
+    lock_.lock();
     try {
         do_remove(name);
         do_add(name, resource);
@@ -148,13 +148,13 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
         BOOST_LOG_TRIVIAL(error) << "failed to replace resource " << name.to_string() << ": "
                                  << exc.what();
     }
-    lock.unlock();
+    lock_.unlock();
 }
 
 void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resource) {
-    lock.lock();
+    lock_.lock();
     do_add(name, resource);
-    lock.unlock();
+    lock_.unlock();
 }
 
 }  // namespace sdk

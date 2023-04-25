@@ -4,11 +4,11 @@ namespace viam {
 namespace sdk {
 
 bool operator==(const ResourceType& lhs, const ResourceType& rhs) {
-    return lhs.type == rhs.type;
+    return lhs.type_ == rhs.type_;
 }
 
-std::string ResourceType::to_string() {
-    return type;
+const std::string ResourceType::to_string() const {
+    return type_;
 }
 
 }  // namespace sdk

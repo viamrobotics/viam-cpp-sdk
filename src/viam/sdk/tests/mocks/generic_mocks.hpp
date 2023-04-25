@@ -22,8 +22,10 @@ class MockGeneric : public Generic {
         std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command)
         override;
 
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map;
     static std::shared_ptr<MockGeneric> get_mock_generic();
+
+   private:
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
 };
 
 class MockGenericStub : public viam::component::generic::v1::GenericService::StubInterface {
@@ -35,7 +37,7 @@ class MockGenericStub : public viam::component::generic::v1::GenericService::Stu
                              ::viam::common::v1::DoCommandResponse* response) override;
 
    private:
-    std::shared_ptr<GenericServer> server;
+    std::shared_ptr<GenericServer> server_;
     std::shared_ptr<::grpc::ChannelInterface> channel_;
     ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(
         ::grpc::ClientContext* context,

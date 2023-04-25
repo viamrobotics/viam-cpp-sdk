@@ -40,6 +40,7 @@ target_sources(viamsdk
     components/motor/motor.cpp
     components/motor/client.cpp
     components/motor/server.cpp
+    components/service_base.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp

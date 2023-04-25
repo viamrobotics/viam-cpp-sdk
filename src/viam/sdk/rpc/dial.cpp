@@ -19,17 +19,40 @@ extern "C" char* dial(const char* uri, const char* payload, bool allow_insecure,
 namespace viam {
 namespace sdk {
 
+std::shared_ptr<grpc::Channel> ViamChannel::channel() const {
+    return channel_;
+}
+
 void ViamChannel::close() {
-    if (closed) {
+    if (closed_) {
         return;
     }
-    closed = true;
-    free_string(path);
-    free_rust_runtime(rust_runtime);
+    closed_ = true;
+    free_string(path_);
+    free_rust_runtime(rust_runtime_);
 };
 
+const std::string Credentials::payload() const {
+    return payload_;
+}
+
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : channel(channel), path(path), closed(false), rust_runtime(runtime) {}
+    : channel_(channel), path_(path), closed_(false), rust_runtime_(runtime) {}
+
+void DialOptions::set_credentials(boost::optional<Credentials> creds) {
+    credentials_ = creds;
+}
+
+const boost::optional<Credentials> DialOptions::credentials() const {
+    return credentials_;
+}
+
+void DialOptions::set_allow_insecure_downgrade(bool allow) {
+    allow_insecure_downgrade_ = allow;
+}
+const bool DialOptions::allows_insecure_downgrade() const {
+    return allow_insecure_downgrade_;
+}
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                boost::optional<DialOptions> options) {
@@ -37,10 +60,10 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     DialOptions opts = options.get_value_or(DialOptions());
     const char* payload = nullptr;
 
-    if (opts.credentials) {
-        payload = opts.credentials->payload.c_str();
+    if (opts.credentials()) {
+        payload = opts.credentials()->payload().c_str();
     }
-    char* socket_path = ::dial(uri, payload, opts.allow_insecure_downgrade, ptr);
+    char* socket_path = ::dial(uri, payload, opts.allows_insecure_downgrade(), ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         // TODO(RSDK-1742) Replace throwing of strings with throwing of
@@ -57,10 +80,16 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
 };
 
-Credentials::Credentials(std::string payload_) {
-    type_ = "robot-location-secret";
-    payload = payload_;
-};
+const unsigned int Options::refresh_interval() const {
+    return refresh_interval_;
+}
+
+const boost::optional<DialOptions> Options::dial_options() const {
+    return dial_options_;
+}
+
+Credentials::Credentials(std::string payload)
+    : type_("robot-location-secret"), payload_(std::move(payload)){};
 
 }  // namespace sdk
 }  // namespace viam

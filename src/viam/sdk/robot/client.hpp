@@ -145,15 +145,15 @@ class RobotClient {
 
    private:
     std::vector<std::shared_ptr<std::thread>> threads_;
-    std::atomic<bool> should_refresh;
-    unsigned int refresh_interval;
-    std::shared_ptr<ViamChannel> viam_channel;
-    std::shared_ptr<Channel> channel;
-    bool should_close_channel;
+    std::atomic<bool> should_refresh_;
+    unsigned int refresh_interval_;
+    std::shared_ptr<ViamChannel> viam_channel_;
+    std::shared_ptr<Channel> channel_;
+    bool should_close_channel_;
     std::unique_ptr<RobotService::Stub> stub_;
-    std::mutex lock;
+    std::mutex lock_;
     std::vector<ResourceName> resource_names_;
-    ResourceManager resource_manager;
+    ResourceManager resource_manager_;
     void refresh_every();
 };
 
