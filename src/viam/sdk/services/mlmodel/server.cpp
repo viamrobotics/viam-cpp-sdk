@@ -78,7 +78,7 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
     *metadata_pb.mutable_type() = std::move(result.type);
     *metadata_pb.mutable_description() = std::move(result.description);
 
-    const auto pack_tensor_info = [](auto target,
+    const auto pack_tensor_info = [](auto& target,
                                      const std::vector<MLModelService::tensor_info>& source) {
         target.Reserve(source.size());
         for (auto&& s : source) {

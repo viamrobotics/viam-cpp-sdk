@@ -44,19 +44,17 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
     viam::service::mlmodel::v1::MetadataResponse resp;
     const auto stub_result = stub_->Metadata(&ctx, req, &resp);
 
-    // XXX ACM TODO: Evaluate stub_result;
-
     struct metadata result;
     auto& metadata_pb = *resp.mutable_metadata();
     result.name = std::move(*metadata_pb.mutable_name());
     result.type = std::move(*metadata_pb.mutable_type());
     result.description = std::move(*metadata_pb.mutable_description());
 
-    const auto unpack_tensor_info = [](std::vector<tensor_info>& target, auto source) {
+    const auto unpack_tensor_info = [](std::vector<tensor_info>& target, auto& source) {
         target.reserve(source.size());
         for (auto&& s : source) {
             target.emplace_back();
-            auto ti = target.back();
+            auto& ti = target.back();
             ti.name = std::move(*s.mutable_name());
             ti.description = std::move(*s.mutable_description());
             ti.data_type = std::move(*s.mutable_data_type());
@@ -65,7 +63,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
             ti.associated_files.reserve(s.associated_files().size());
             for (auto&& af : *s.mutable_associated_files()) {
                 ti.associated_files.emplace_back();
-                auto new_file = ti.associated_files.back();
+                auto& new_file = ti.associated_files.back();
                 new_file.name = std::move(*af.mutable_name());
                 new_file.description = std::move(*af.mutable_description());
                 switch (af.label_type()) {
@@ -82,8 +80,8 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
         }
     };
 
-    unpack_tensor_info(result.inputs, metadata_pb.input_info());
-    unpack_tensor_info(result.outputs, metadata_pb.output_info());
+    unpack_tensor_info(result.inputs, *metadata_pb.mutable_input_info());
+    unpack_tensor_info(result.outputs, *metadata_pb.mutable_output_info());
 
     return result;
 }
