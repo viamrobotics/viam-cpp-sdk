@@ -343,7 +343,7 @@ else()
 endif()
 
 # Pull in our subdirectories
-add_subdirectory(src)
+add_subdirectory(src/viam)
 
 
 # Define some custom targets to install different subsets of files.
