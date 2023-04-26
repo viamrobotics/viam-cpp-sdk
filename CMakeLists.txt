@@ -57,13 +57,15 @@ option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 #
 # - `VIAMCPPSDK_ENFORCE_COMPILER_MINIMA`: The user can elect to
 # disable enforcement of compiler minima (at their peril).
-#
-#
-# # - `VIAMCPPSDK_LOCAL_PROTO_GENERATION`: Do not use buf.builds remote
+option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selected compiler against known minima" ON)
+
+
+# # - `VIAMCPPSDK_OFFLINE_PROTO_GENERATION`: Do not use buf.builds remote
 # definitions or services and use the local proto compiler plugins to
 # do generation.
-#
-#
+option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
+
+
 # - `VIAMCPPSDK_USE_DYNAMIC_PROTOS`: The user can select whether to
 # use the prebuilt proto files under the `gen` directory, or to
 # dynamically regenerate them as part of the build. In the latter
@@ -75,14 +77,18 @@ option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 # cmake ... -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON
 # [make|ninja|...] update-static-protos
 # ```
-#
 # Remember to check-in the results after regenerating!
-#
-option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selected compiler against known minima" ON)
-option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
 option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (network access may be required)" OFF)
+
+
+# # - `VIAMCPPSDK_USE_WALL_WERROR`: This causes the SDK's internal
+# code to compile with `-Wall` and `-Werror` flags.
 option(VIAMCPPSDK_USE_WALL_WERROR "Build with -Wall and -Werror flags" ON)
-# N.b.: `VIAMCPPSDK_SANITIZED_BUILD` may cause runtime failures if gRPC is not also built with sanitizers.
+
+
+# # - `VIAMCPPSDK_SANITIZED_BUILD`: This causes the SDK to build with
+# UBSan, helping in the detection of undefined behavior. Note that builds
+# with this flag will be less performant.
 option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less performant)" OFF)
 
 

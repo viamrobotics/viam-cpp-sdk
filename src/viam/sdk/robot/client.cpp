@@ -190,7 +190,7 @@ void RobotClient::refresh() {
     }
     bool is_equal = current_resources.size() == resource_names_.size();
     if (is_equal) {
-        for (long unsigned int i = 0; i < resource_names_.size(); ++i) {
+        for (size_t i = 0; i < resource_names_.size(); ++i) {
             if (!ResourceNameEqual::check_equal(resource_names_.at(i), current_resources.at(i))) {
                 is_equal = false;
                 break;
