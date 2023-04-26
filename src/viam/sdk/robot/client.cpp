@@ -70,7 +70,6 @@ void RobotClient::close() {
     }
     stop_all();
     viam_channel->close();
-    viam_channel = nullptr;
 }
 
 bool is_error_response(grpc::Status response) {
