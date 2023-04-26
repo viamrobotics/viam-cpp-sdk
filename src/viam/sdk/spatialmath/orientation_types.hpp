@@ -14,27 +14,27 @@ enum OrientationType {
 };
 
 struct axis_angles {
-    double x_, y_, z_, theta_;
+    double x, y, z, theta;
 };
 
 struct euler_angles {
-    double yaw_, roll_, pitch_;
+    double yaw, roll, pitch;
 };
 
 struct orientation_vector {
-    double x_, y_, z_, theta_;
+    double x, y, z, theta;
 };
 
 struct orientation_vector_degrees {
-    double x_, y_, z_, theta_;
+    double x, y, z, theta;
 };
 
 struct quaternion {
-    double x_, y_, z_, w_;
+    double x, y, z, w;
 };
 
 struct translation {
-    double x_, y_, z_;
+    double x, y, z;
     viam::app::v1::Translation to_proto();
 };
 }  // namespace sdk

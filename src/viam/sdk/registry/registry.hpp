@@ -89,9 +89,9 @@ class ModelRegistration {
           resource_type_(std::move(rt)),
           subtype_(std::move(subtype)){};
 
-    const ResourceType resource_type() const;
-    const Subtype subtype() const;
-    const Model model() const;
+    const ResourceType& resource_type() const;
+    const Subtype& subtype() const;
+    const Model& model() const;
 
     /// @brief Constructs a resource from a map of dependencies and a resource config.
     std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;

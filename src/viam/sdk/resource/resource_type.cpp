@@ -7,7 +7,7 @@ bool operator==(const ResourceType& lhs, const ResourceType& rhs) {
     return lhs.type_ == rhs.type_;
 }
 
-const std::string ResourceType::to_string() const {
+const std::string& ResourceType::to_string() const {
     return type_;
 }
 

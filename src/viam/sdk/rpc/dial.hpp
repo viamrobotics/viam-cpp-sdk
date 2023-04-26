@@ -16,7 +16,7 @@ class ViamChannel {
     ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime);
     static std::shared_ptr<ViamChannel> dial(const char* uri, boost::optional<DialOptions> options);
 
-    std::shared_ptr<grpc::Channel> channel() const;
+    const std::shared_ptr<grpc::Channel>& channel() const;
 
    private:
     std::shared_ptr<grpc::Channel> channel_;
@@ -28,7 +28,7 @@ class ViamChannel {
 class Credentials {
    public:
     Credentials(std::string payload);
-    const std::string payload() const;
+    const std::string& payload() const;
 
    private:
     std::string type_;
@@ -69,7 +69,7 @@ class Options {
 
     const unsigned int refresh_interval() const;
     // CR erodkin: this should be a ref
-    const boost::optional<DialOptions> dial_options() const;
+    const boost::optional<DialOptions>& dial_options() const;
 
    private:
     /// How often to refresh the status/parts of the robot, in seconds.

@@ -26,9 +26,9 @@ LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
     LinkConfig lc;
 
     lc.parent_ = proto.parent();
-    lc.translation_.x_ = proto.translation().x();
-    lc.translation_.y_ = proto.translation().y();
-    lc.translation_.z_ = proto.translation().z();
+    lc.translation_.x = proto.translation().x();
+    lc.translation_.y = proto.translation().y();
+    lc.translation_.z = proto.translation().z();
 
     if (proto.has_orientation()) {
         lc.orientation_ = OrientationConfig::from_proto(proto.orientation());

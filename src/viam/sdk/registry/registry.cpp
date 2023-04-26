@@ -25,13 +25,13 @@ namespace sdk {
 
 using viam::robot::v1::Status;
 
-const ResourceType ModelRegistration::resource_type() const {
+const ResourceType& ModelRegistration::resource_type() const {
     return resource_type_;
 };
-const Subtype ModelRegistration::subtype() const {
+const Subtype& ModelRegistration::subtype() const {
     return subtype_;
 };
-const Model ModelRegistration::model() const {
+const Model& ModelRegistration::model() const {
     return model_;
 };
 

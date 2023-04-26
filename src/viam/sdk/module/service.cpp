@@ -67,7 +67,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     viam::app::v1::ComponentConfig proto = request->config();
     Resource cfg = Resource::from_proto(proto);
     std::shared_ptr<Module> module = this->module_;
-    module->lock().lock();
+    auto lock = module->lock();
 
     std::shared_ptr<ResourceBase> res;
     Dependencies deps = get_dependencies(this, request->dependencies());
@@ -76,14 +76,12 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         res = reg->construct_resource(deps, cfg);
     };
     if (module->services().find(cfg.api()) == module->services().end()) {
-        module->lock().unlock();
         return grpc::Status(grpc::UNKNOWN, "module cannot service api " + cfg.api().to_string());
     }
 
     std::shared_ptr<SubtypeService> sub_svc = module->services().at(cfg.api());
     sub_svc->add(cfg.resource_name(), res);
 
-    module->lock().unlock();
     return grpc::Status();
 };
 
@@ -187,11 +185,10 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 ::grpc::Status ModuleService_::Ready(::grpc::ServerContext* context,
                                      const ::viam::module::v1::ReadyRequest* request,
                                      ::viam::module::v1::ReadyResponse* response) {
-    module_->lock().lock();
-    viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
+    auto lock = module_->lock();
+    const viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
     *response->mutable_handlermap() = hm;
     parent_addr_ = request->parent_address();
-    module_->lock().unlock();
     response->set_ready(module_->ready());
     return grpc::Status();
 };
@@ -201,7 +198,7 @@ ModuleService_::ModuleService_(std::string addr) {
 }
 
 void ModuleService_::start(std::shared_ptr<Server> server) {
-    module_->lock().lock();
+    auto lock = module_->lock();
     mode_t old_mask = umask(0077);
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     listen(sockfd, 10);
@@ -212,7 +209,6 @@ void ModuleService_::start(std::shared_ptr<Server> server) {
     std::string address = "unix://" + module_->addr();
     server->add_listening_port(address);
 
-    module_->lock().unlock();
     module_->set_ready();
 }
 
@@ -236,7 +232,7 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subty
     if (module_->services().find(api) != module_->services().end()) {
         return;
     }
-    module_->lock().lock();
+    auto lock = module_->lock();
     std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
 
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
@@ -244,7 +240,6 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subty
     resource_server->register_server(server);
     module_->services().emplace(api, new_svc);
     module_->servers().push_back(resource_server);
-    module_->lock().unlock();
 }
 
 void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,

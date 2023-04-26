@@ -19,7 +19,7 @@ extern "C" char* dial(const char* uri, const char* payload, bool allow_insecure,
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<grpc::Channel> ViamChannel::channel() const {
+const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
     return channel_;
 }
 
@@ -32,7 +32,7 @@ void ViamChannel::close() {
     free_rust_runtime(rust_runtime_);
 };
 
-const std::string Credentials::payload() const {
+const std::string& Credentials::payload() const {
     return payload_;
 }
 
@@ -84,7 +84,7 @@ const unsigned int Options::refresh_interval() const {
     return refresh_interval_;
 }
 
-const boost::optional<DialOptions> Options::dial_options() const {
+const boost::optional<DialOptions>& Options::dial_options() const {
     return dial_options_;
 }
 

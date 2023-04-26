@@ -2,7 +2,7 @@
 
 namespace viam {
 namespace sdk {
-const ResourceManager ComponentServiceBase::manager() const {
+const ResourceManager& ComponentServiceBase::manager() const {
     return manager_;
 }
 }  // namespace sdk

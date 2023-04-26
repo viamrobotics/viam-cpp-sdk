@@ -1,3 +1,4 @@
+#include <mutex>
 #include <viam/sdk/module/module.hpp>
 
 #include <boost/log/trivial.hpp>
@@ -17,19 +18,19 @@ void Module::set_ready() {
     ready_ = true;
     lock_.unlock();
 }
-std::mutex& Module::lock() {
-    return lock_;
+std::lock_guard<std::mutex> Module::lock() {
+    return std::lock_guard<std::mutex>(lock_);
 };
-std::string Module::name() {
+const std::string& Module::name() const {
     return name_;
 };
-std::string Module::addr() {
+const std::string& Module::addr() const {
     return addr_;
 };
-bool Module::ready() {
+const bool Module::ready() const {
     return ready_;
 };
-HandlerMap_ Module::handles() {
+HandlerMap_& Module::handles() {
     return handles_;
 };
 std::shared_ptr<grpc::Channel> Module::channel() {

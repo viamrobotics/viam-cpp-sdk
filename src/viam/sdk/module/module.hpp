@@ -13,11 +13,11 @@ class Module {
    public:
     void set_ready();
     Module(std::string addr);
-    std::mutex& lock();
-    std::string name();
-    std::string addr();
-    bool ready();
-    HandlerMap_ handles();
+    std::lock_guard<std::mutex> lock();
+    const std::string& name() const;
+    const std::string& addr() const;
+    const bool ready() const;
+    HandlerMap_& handles();
     std::shared_ptr<grpc::Channel> channel();
     std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> services();
     std::vector<std::shared_ptr<ResourceServerBase>> servers();

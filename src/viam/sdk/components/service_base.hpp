@@ -7,7 +7,7 @@ namespace sdk {
 
 class ComponentServiceBase {
    protected:
-    const ResourceManager manager() const;
+    const ResourceManager& manager() const;
 
    private:
     ResourceManager manager_;
