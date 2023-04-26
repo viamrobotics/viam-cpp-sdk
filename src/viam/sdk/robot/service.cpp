@@ -173,12 +173,11 @@ void RobotService_::stream_status(
 
 std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
     std::shared_ptr<ResourceBase> r;
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     if (manager().resources().find(name.name()) != manager().resources().end()) {
         r = manager().resources().at(name.name());
     }
 
-    lock_.unlock();
     return r;
 }
 

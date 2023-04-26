@@ -202,10 +202,9 @@ void RobotClient::refresh() {
         return;
     }
 
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     resource_names_ = current_resources;
     resource_manager_ = new_resource_manager;
-    lock_.unlock();
 }
 
 void RobotClient::refresh_every() {
@@ -227,9 +226,8 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> vc)
       stub_(RobotService::NewStub(channel_)) {}
 
 std::vector<ResourceName>* RobotClient::resource_names() {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     std::vector<ResourceName>* resources = &resource_names_;
-    lock_.unlock();
     return resources;
 }
 

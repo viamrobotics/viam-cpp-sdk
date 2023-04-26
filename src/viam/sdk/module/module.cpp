@@ -14,9 +14,8 @@ namespace sdk {
 Module::Module(std::string addr) : addr_(addr){};
 
 void Module::set_ready() {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     ready_ = true;
-    lock_.unlock();
 }
 std::lock_guard<std::mutex> Module::lock() {
     return std::lock_guard<std::mutex>(lock_);

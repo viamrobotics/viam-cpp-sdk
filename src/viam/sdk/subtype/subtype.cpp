@@ -24,26 +24,23 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceBase> SubtypeService::resource(std::string name) {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
 
     if (resources_.find(name) != resources_.end()) {
-        lock_.unlock();
         return resources_.at(name);
     }
 
     if (short_names_.find(name) != short_names_.end()) {
         std::string short_name = short_names_.at(name);
         if (resources_.find(short_name) != resources_.end()) {
-            lock_.unlock();
             return resources_.at(short_name);
         }
     }
-    lock_.unlock();
     return nullptr;
 }
 
 void SubtypeService::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     std::unordered_map<std::string, std::shared_ptr<ResourceBase>> new_resources;
     std::unordered_map<std::string, std::string> new_short_names;
     this->resources_ = new_resources;
@@ -54,12 +51,9 @@ void SubtypeService::replace_all(std::unordered_map<Name, std::shared_ptr<Resour
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(error) << "Error replacing all resources" << exc.what();
-            lock_.unlock();
             return;
         }
     }
-
-    lock_.unlock();
 }
 
 std::string get_shortcut_name(std::string name) {
@@ -95,13 +89,12 @@ void SubtypeService::do_add(std::string name, std::shared_ptr<ResourceBase> reso
 }
 
 void SubtypeService::add(Name name, std::shared_ptr<ResourceBase> resource) {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     try {
         do_add(name, resource);
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "Error adding resource to subtype service: " << exc.what();
     }
-    lock_.unlock();
 };
 
 void SubtypeService::do_remove(Name name) {
@@ -131,16 +124,16 @@ void SubtypeService::do_remove(Name name) {
 }
 
 void SubtypeService::remove(Name name) {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
     } catch (std::exception& exc) {
         BOOST_LOG_TRIVIAL(error) << "unable to remove resource: " << exc.what();
     };
-    lock_.unlock();
 };
+
 void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resource) {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
         do_add(name, resource);
@@ -148,13 +141,11 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
         BOOST_LOG_TRIVIAL(error) << "failed to replace resource " << name.to_string() << ": "
                                  << exc.what();
     }
-    lock_.unlock();
 }
 
 void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resource) {
-    lock_.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     do_add(name, resource);
-    lock_.unlock();
 }
 
 }  // namespace sdk
