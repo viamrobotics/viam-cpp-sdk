@@ -72,7 +72,7 @@ int main() {
             throw;
         }
 
-        // Motors are always turned off if there is no attached client.
+        // Motors are always turned off if there is no attached client so this is expected to be 0
         cout << "Motor power: " << motor->get_power_status().power_pct << endl;
         cout << "Setting motor power to 50%" << endl;
         motor->set_power(0.5);
