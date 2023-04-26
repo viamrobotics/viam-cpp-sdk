@@ -88,7 +88,8 @@ int main() {
             // More accurate
             motor->go_to(10, 0);
         } else {
-            // If position reporting is unavailable, defer to reverting past actions
+            // If position reporting is unavailable, we cannot call go_to
+            // but we can defer to reverting past actions
             motor->go_for(10, -0.5);
         }
         print_motor_position(motor);
