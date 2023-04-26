@@ -6,10 +6,14 @@
 > is not guaranteed. Breaking changes are likely to occur, and occur
 > often.
 
+## Resources
+* [Documentation](https://cpp.viam.dev)
+* [Examples](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples)
+
 ## Repository Layout
-- `src` The implementation of the C++ sdk library
-- `src/gen` All the google and viam api autogen files
-- `examples` A list of examples
+- `src/viam/sdk` The implementation of the C++ sdk library
+- `src/viam/api` All the google and viam api autogen files
+- `src/viam/examples` A list of examples
 
 ## Getting Started
 
@@ -36,76 +40,6 @@ packages.
    files on your local filesystem. When it comes time to
    testing/building/running the program, do so inside the docker
    environment you opened in the previous step.
-
-## Usage
-Instructions for running examples follows. More robust instructions
-for setting up a project to come.
-
-### Echo Streaming Example
-The echo example communicates with the goutils sample server. It
-demonstrates individual, streamed, and bidirectional communication. To
-test, navigate to your goutils clone and run
-
-``` shell
-go run rpc/examples/echo/server/cmd/main.go
-```
-
-Then, run the `example_echo` program (it will be in the `bin`
-directory of your SDK installation)
-
-``` shell
-ninja install && ./build/install/bin/example_echo
-```
-
-### Dial Example
-
-If you are connecting to a robot with authentication you will need to
-add credentials. Update path code :
-
-``` c++
-void *ptr = init_rust_runtime();
-char *path = dial("<your robot uri here>", "<your robot credentials here>", false, ptr);
-```
-
-Then to obtain a robot client do :
-
-``` c++
-std::string address("unix://");
-address += path;
-RobotServiceClient client(grpc::CreateChannel(address, grpc::InsecureChannelCredentials()));
-```
-
-Now if we want to get the metadata of the robots we just have to do :
-
-``` c++
-ResourceNamesRequest req;
-ResourceNamesResponse resp;
-ClientContext context;
-
-Status status = stub_->ResourceNames(&context, req, &resp);
-if (!status.ok()) {
-  return;
-}
-
-for (auto i = 0; i < resp.resource_size(); i++) {
-  std::cout << "Resource " << i << " " << resp.resources(i).type() << std::endl;
-}
-```
-
-Then simply run
-
-``` shell
-ninja install && ./build/install/bin/example_dial
-```
-
-If you want to connect to a robot without credentials then just simply
-pass a null pointer for the credentials.
-
-Note also that this will attempt to connect over webRTC by default. To
-override and only use direct gRPC calls, you will need to use a
-`.local` address for your robot's uri,
-e.g. `name.xxxx.local.viam.cloud:8080` instead of
-`name.xxxx.viam.cloud`.
 
 ## Building Documentation Locally for Testing
 The C++ sdk uses [Doxygen](https://www.doxygen.nl/) to generate documentation.
