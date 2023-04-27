@@ -13,7 +13,6 @@ class Module {
    public:
     void set_ready();
     Module(std::string addr);
-    std::lock_guard<std::mutex> lock();
     const std::string& name() const;
     const std::string& addr() const;
     const bool ready() const;
@@ -23,7 +22,6 @@ class Module {
     std::vector<std::shared_ptr<ResourceServerBase>> servers();
 
    private:
-    std::mutex lock_;
     std::string name_;
     std::string addr_;
     bool ready_;

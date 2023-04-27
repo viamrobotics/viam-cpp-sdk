@@ -45,6 +45,7 @@ class ModuleService_ : public ComponentServiceBase,
     ~ModuleService_();
 
    private:
+    std::mutex lock_;
     std::shared_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;

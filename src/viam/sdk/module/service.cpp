@@ -67,7 +67,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     viam::app::v1::ComponentConfig proto = request->config();
     Resource cfg = Resource::from_proto(proto);
     std::shared_ptr<Module> module = this->module_;
-    auto lock = module->lock();
+    const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<ResourceBase> res;
     Dependencies deps = get_dependencies(this, request->dependencies());
@@ -185,7 +185,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 ::grpc::Status ModuleService_::Ready(::grpc::ServerContext* context,
                                      const ::viam::module::v1::ReadyRequest* request,
                                      ::viam::module::v1::ReadyResponse* response) {
-    auto lock = module_->lock();
+    const std::lock_guard<std::mutex> lock(lock_);
     const viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
     *response->mutable_handlermap() = hm;
     parent_addr_ = request->parent_address();
@@ -198,7 +198,7 @@ ModuleService_::ModuleService_(std::string addr) {
 }
 
 void ModuleService_::start(std::shared_ptr<Server> server) {
-    auto lock = module_->lock();
+    const std::lock_guard<std::mutex> lock(lock_);
     mode_t old_mask = umask(0077);
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     listen(sockfd, 10);
@@ -232,7 +232,7 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subty
     if (module_->services().find(api) != module_->services().end()) {
         return;
     }
-    auto lock = module_->lock();
+    const std::lock_guard<std::mutex> lock(lock_);
     std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
 
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
