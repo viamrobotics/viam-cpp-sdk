@@ -32,6 +32,7 @@ bool operator==(const MLModelService::tensor_info::file& l,
 
 bool operator==(const struct MLModelService::tensor_info& l,
                 const struct MLModelService::tensor_info& r) {
+    // XXX ACM TODO: `extra`
     return std::tie(l.name, l.description, l.data_type, l.shape, l.associated_files) ==
            std::tie(r.name, r.description, r.data_type, r.shape, r.associated_files);
 }
@@ -63,14 +64,32 @@ const struct MLModelService::metadata test_metadata {
 
         // `inputs`
         {{
+
+             // `name`
              "input1",
+
+             // `description`
              "the first input",
+
+             // `data_type`
              "float32",
+
+             // `shape`
              {640, 480, -1},
-             {{"path/to/file1.1", "i1f1", MLModelService::tensor_info::file::k_type_tensor_value},
+
+             // `associated_files`
+             {{// `name`
+               "path/to/file1.1",
+
+               // `description`
+               "i1f1",
+
+               // `label_type`
+               MLModelService::tensor_info::file::k_type_tensor_value},
               {"path/to/file1.2", "i1f2", MLModelService::tensor_info::file::k_type_tensor_axis}},
-             // TODO `extra` field
-         },
+
+             // XXX ACM TODO: `extra`
+             },
 
          {
              "input2",
@@ -79,11 +98,47 @@ const struct MLModelService::metadata test_metadata {
              {4096, 2160, 3, -1},
              {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_type_tensor_axis},
               {"path/to/file2.2", "i2f2", MLModelService::tensor_info::file::k_type_tensor_value}},
-             // TODO `extra` field
+             // XXX ACM TODO: `extra`
          }},
 
-    // `outputs`
-    {}
+        // `outputs`
+        {{
+
+             // `name`
+             "output1",
+
+             // `description`
+             "the first output",
+
+             // `data_type`
+             "int32",
+
+             // `shape`
+             {-1, -1},
+
+             // `associated_files`
+             {{// `name`
+               "path/to/output_file1.1",
+
+               // `description`
+               "o1f1",
+
+               // `label_type`
+               MLModelService::tensor_info::file::k_type_tensor_axis},
+              {"path/to/output_file1.2", "o1f2", MLModelService::tensor_info::file::k_type_tensor_value}},
+
+             // XXX ACM TODO: `extra`
+             },
+
+         {
+             "output2",
+             "the second output",
+             "float32",
+             {-1, -1, 4},
+             {{"path/to/output_file2.1", "o2f1", MLModelService::tensor_info::file::k_type_tensor_axis},
+              {"path/to/output_file2.2", "o2f2", MLModelService::tensor_info::file::k_type_tensor_value}},
+             // XXX ACM TODO: `extra`
+         }},
 };
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
@@ -109,10 +164,7 @@ void client_server_test(std::shared_ptr<MockMLModelService> mock, F&& f) {
     const auto k_service_name = "mock_mlmodel_service";
 
     MLModelServiceServer mlmodel_server;
-    mlmodel_server.get_sub_svc()->add(
-        k_service_name,
-        std::move(mock)
-    );
+    mlmodel_server.get_sub_svc()->add(k_service_name, std::move(mock));
 
     grpc::ServerBuilder builder;
     builder.RegisterService(&mlmodel_server);
@@ -127,10 +179,7 @@ void client_server_test(std::shared_ptr<MockMLModelService> mock, F&& f) {
 BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     auto mock = std::make_shared<MockMLModelService>();
     mock->metadata(test_metadata);
-    client_server_test(mock, [](auto& client) {
-        auto client_metadata = client.metadata();
-        BOOST_TEST(test_metadata == client_metadata);
-    });
+    client_server_test(mock, [](auto& client) { BOOST_TEST(test_metadata == client.metadata()); });
 }
 BOOST_AUTO_TEST_SUITE_END()
 

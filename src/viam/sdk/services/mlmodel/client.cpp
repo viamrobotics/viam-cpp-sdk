@@ -77,6 +77,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                         throw -1;  // XXX ACM TODO
                 }
             }
+            // XXX ACM TODO: `extra` field
         }
     };
 

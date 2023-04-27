@@ -108,6 +108,7 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
                         // XXX ACM TODO
                 }
             }
+            // XXX ACM TODO: `extra` field
         }
     };
 

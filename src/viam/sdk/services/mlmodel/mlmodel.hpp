@@ -50,11 +50,15 @@ class MLModelService : public ServiceBase {
 
         std::string name;
         std::string description;
-        // TODO: Should this be an enum?
+
+        // XXX ACM TODO: make `data_type` an enum.
         std::string data_type;
+
         std::vector<int> shape;
         std::vector<file> associated_files;
-        // XXX ACM TODO: 'extra' field
+
+        // XXX ACM TODO: support `extra` field
+        // extra;
     };
 
     struct metadata {
