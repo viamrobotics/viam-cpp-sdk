@@ -75,11 +75,13 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     if (reg) {
         res = reg->construct_resource(deps, cfg);
     };
-    if (module->services().find(cfg.api()) == module->services().end()) {
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+        module->services();
+    if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "module cannot service api " + cfg.api().to_string());
     }
 
-    std::shared_ptr<SubtypeService> sub_svc = module->services().at(cfg.api());
+    std::shared_ptr<SubtypeService> sub_svc = services.at(cfg.api());
     sub_svc->add(cfg.resource_name(), res);
 
     return grpc::Status();
@@ -95,10 +97,12 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     Dependencies deps = get_dependencies(this, request->dependencies());
 
-    if (module->services().find(cfg.api()) == module->services().end()) {
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+        module->services();
+    if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string());
     }
-    std::shared_ptr<SubtypeService> sub_svc = module->services().at(cfg.api());
+    std::shared_ptr<SubtypeService> sub_svc = services.at(cfg.api());
 
     // see if our resource is reconfigurable. if it is, reconfigure
     std::shared_ptr<ResourceBase> res = sub_svc->resource(cfg.resource_name().name());
@@ -158,13 +162,14 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     ::grpc::ServerContext* context,
     const ::viam::module::v1::RemoveResourceRequest* request,
     ::viam::module::v1::RemoveResourceResponse* response) {
-    std::shared_ptr<Module> m = this->module_;
     auto name = Name::from_string(request->name());
     const Subtype* subtype = name.to_subtype();
-    if (m->services().find(*subtype) == m->services().end()) {
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+        module_->services();
+    if (services.find(*subtype) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no grpc service for " + subtype->to_string());
     }
-    std::shared_ptr<SubtypeService> svc = m->services().at(*name.to_subtype());
+    std::shared_ptr<SubtypeService> svc = services.at(*name.to_subtype());
     std::shared_ptr<ResourceBase> res = svc->resource(name.name());
     if (!res) {
         return grpc::Status(
@@ -229,7 +234,9 @@ void ModuleService_::close() {
 }
 
 void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subtype api) {
-    if (module_->services().find(api) != module_->services().end()) {
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+        module_->services();
+    if (services.find(api) != services.end()) {
         return;
     }
     const std::lock_guard<std::mutex> lock(lock_);
@@ -238,14 +245,16 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subty
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
     std::shared_ptr<ResourceServerBase> resource_server = rs->create_resource_server(new_svc);
     resource_server->register_server(server);
-    module_->services().emplace(api, new_svc);
-    module_->servers().push_back(resource_server);
+    module_->mutable_services().emplace(api, new_svc);
+    module_->mutable_servers().push_back(resource_server);
 }
 
 void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,
                                              Subtype api,
                                              Model model) {
-    if (module_->services().find(api) == module_->services().end()) {
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+        module_->services();
+    if (services.find(api) == services.end()) {
         add_api_from_registry(server, api);
     }
 
@@ -257,7 +266,7 @@ void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,
         sd = creator->service_descriptor();
     }
     RPCSubtype rpc_subtype(api, name, *sd);
-    module_->handles().add_model(model, rpc_subtype);
+    module_->mutable_handles().add_model(model, rpc_subtype);
 };
 
 }  // namespace sdk

@@ -16,10 +16,13 @@ class Module {
     const std::string& name() const;
     const std::string& addr() const;
     const bool ready() const;
-    HandlerMap_& handles();
-    std::shared_ptr<grpc::Channel> channel();
-    std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> services();
-    std::vector<std::shared_ptr<ResourceServerBase>> servers();
+    const HandlerMap_& handles() const;
+    HandlerMap_& mutable_handles();
+    const std::shared_ptr<grpc::Channel>& channel() const;
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services() const;
+    std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& mutable_services();
+    const std::vector<std::shared_ptr<ResourceServerBase>>& servers() const;
+    std::vector<std::shared_ptr<ResourceServerBase>>& mutable_servers();
 
    private:
     std::string name_;

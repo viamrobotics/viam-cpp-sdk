@@ -34,25 +34,31 @@ Name Resource::resource_name() {
     return Name(this->api_, "", remotes.at(0));
 }
 
-Subtype Resource::api() {
+const Subtype& Resource::api() const {
     return api_;
-};
-LinkConfig Resource::frame() {
+}
+
+const LinkConfig& Resource::frame() const {
     return frame_;
-};
-Model Resource::model() {
+}
+
+const Model& Resource::model() const {
     return model_;
-};
-std::string Resource::name() {
+}
+
+const std::string& Resource::name() const {
     return name_;
-};
-std::string Resource::namespace_() {
+}
+
+const std::string& Resource::namespace_() const {
     return namespace__;
-};
-std::string Resource::type() {
+}
+
+const std::string& Resource::type() const {
     return type_;
-};
-AttributeMap Resource::attributes() {
+}
+
+const AttributeMap& Resource::attributes() const {
     return attributes_;
 }
 

@@ -71,11 +71,11 @@ const Subtype* Name::to_subtype() const {
     return this;
 }
 
-std::string Name::name() {
+const std::string& Name::name() const {
     return name_;
 }
 
-std::string Name::remote_name() {
+const std::string& Name::remote_name() const {
     return remote_name_;
 }
 
@@ -87,7 +87,7 @@ std::string Name::to_string() const {
     return subtype_name + "/" + remote_name_ + ":" + name_;
 }
 
-std::string Name::short_name() const {
+const std::string Name::short_name() const {
     if (remote_name_ != "") {
         return remote_name_ + ":" + name_;
     }
@@ -159,11 +159,11 @@ RPCSubtype::RPCSubtype(Subtype subtype,
 RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor)
     : descriptor_(std::move(descriptor)), subtype_(std::move(subtype)) {}
 
-std::string RPCSubtype::proto_service_name() const {
+const std::string& RPCSubtype::proto_service_name() const {
     return proto_service_name_;
 };
 
-Subtype RPCSubtype::subtype() const {
+const Subtype& RPCSubtype::subtype() const {
     return subtype_;
 };
 

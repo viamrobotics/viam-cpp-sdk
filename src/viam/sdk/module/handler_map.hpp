@@ -12,7 +12,7 @@ class HandlerMap_ {
     HandlerMap_();
     void add_model(Model model, RPCSubtype subtype);
 
-    viam::module::v1::HandlerMap to_proto();
+    const viam::module::v1::HandlerMap to_proto() const;
     static HandlerMap_ from_proto(viam::module::v1::HandlerMap proto);
 
    private:

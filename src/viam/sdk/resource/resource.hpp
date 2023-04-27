@@ -45,7 +45,7 @@ class Subtype : public Type {
 // Subtype as a member
 class Name : public Subtype {
    public:
-    std::string short_name() const;
+    const std::string short_name() const;
     virtual std::string to_string() const override;
     // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
@@ -53,8 +53,8 @@ class Name : public Subtype {
     static Name from_string(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();
-    std::string name();
-    std::string remote_name();
+    const std::string& name() const;
+    const std::string& remote_name() const;
     friend bool operator==(const Name& lhs, const Name& rhs);
 
    private:
@@ -68,8 +68,8 @@ class RPCSubtype {
         return (subtype_.to_string() + proto_service_name_ + descriptor_.DebugString()) <
                (rhs.subtype_.to_string() + rhs.proto_service_name_ + rhs.descriptor_.DebugString());
     };
-    std::string proto_service_name() const;
-    Subtype subtype() const;
+    const std::string& proto_service_name() const;
+    const Subtype& subtype() const;
 
     RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor);
     RPCSubtype(Subtype subtype,
@@ -78,8 +78,6 @@ class RPCSubtype {
     friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
 
    private:
-    // CR erodkin: fix this. ref or ptr?
-    // Assuming this all compiles and works probably just leave it as is.
     const google::protobuf::ServiceDescriptor& descriptor_;
     std::string proto_service_name_;
     Subtype subtype_;

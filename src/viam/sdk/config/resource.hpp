@@ -28,13 +28,13 @@ class Resource {
     viam::app::v1::ComponentConfig to_proto();
     Resource(std::string type);
     Name resource_name();
-    Subtype api();
-    LinkConfig frame();
-    Model model();
-    std::string name();
-    std::string namespace_();
-    std::string type();
-    AttributeMap attributes();
+    const Subtype& api() const;
+    const LinkConfig& frame() const;
+    const Model& model() const;
+    const std::string& name() const;
+    const std::string& namespace_() const;
+    const std::string& type() const;
+    const AttributeMap& attributes() const;
 
    private:
     Subtype api_;

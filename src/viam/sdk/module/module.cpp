@@ -1,4 +1,3 @@
-#include <mutex>
 #include <viam/sdk/module/module.hpp>
 
 #include <boost/log/trivial.hpp>
@@ -26,16 +25,25 @@ const std::string& Module::addr() const {
 const bool Module::ready() const {
     return ready_;
 };
-HandlerMap_& Module::handles() {
+const HandlerMap_& Module::handles() const {
     return handles_;
 };
-std::shared_ptr<grpc::Channel> Module::channel() {
+HandlerMap_& Module::mutable_handles() {
+    return handles_;
+};
+const std::shared_ptr<grpc::Channel>& Module::channel() const {
     return channel_;
 };
-std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> Module::services() {
+const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& Module::services() const {
     return services_;
 };
-std::vector<std::shared_ptr<ResourceServerBase>> Module::servers() {
+std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& Module::mutable_services() {
+    return services_;
+};
+const std::vector<std::shared_ptr<ResourceServerBase>>& Module::servers() const {
+    return servers_;
+};
+std::vector<std::shared_ptr<ResourceServerBase>>& Module::mutable_servers() {
     return servers_;
 };
 

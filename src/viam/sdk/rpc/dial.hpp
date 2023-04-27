@@ -68,7 +68,6 @@ class Options {
         : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
 
     const unsigned int refresh_interval() const;
-    // CR erodkin: this should be a ref
     const boost::optional<DialOptions>& dial_options() const;
 
    private:
