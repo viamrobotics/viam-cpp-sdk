@@ -14,6 +14,12 @@
 
 #pragma once
 
+#include <boost/mpl/joint_view.hpp>
+#include <boost/mpl/list.hpp>
+#include <boost/mpl/transform_view.hpp>
+
+#include <boost/variant/variant.hpp>
+
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/services/service_base.hpp>
 #include <viam/sdk/subtype/subtype.hpp>
@@ -37,6 +43,26 @@ class MLModelServiceSubtype : public ResourceSubtype {
 ///
 class MLModelService : public ServiceBase {
    public:
+    template <typename T>
+    class tensor_view {};
+
+    using signed_integral_types =
+        boost::mpl::list<std::int8_t, std::int16_t, std::int32_t, std::int64_t>;
+    using unsigned_integral_types = boost::mpl::transform_view<signed_integral_types, std::make_unsigned<boost::mpl::placeholders::_1>>;
+    using integral_types = boost::mpl::joint_view<signed_integral_types, unsigned_integral_types>;
+
+    using fp_types = boost::mpl::list<float, double>;
+
+    using tensor_types = boost::mpl::joint_view<integral_types, fp_types>;
+
+    using tensor_views = boost::make_variant_over<tensor_types>::type;
+    using tensor_map = std::unordered_map<std::string, tensor_views>;
+
+    struct tensor_state;
+    using infer_result = std::tuple<std::shared_ptr<tensor_state>, tensor_map>;
+
+    virtual infer_result infer(const tensor_map& inputs) = 0;
+
     struct tensor_info {
         struct file {
             std::string name;
@@ -69,7 +95,6 @@ class MLModelService : public ServiceBase {
         std::vector<tensor_info> outputs;
     };
 
-    virtual void infer() = 0;
     virtual struct metadata metadata() = 0;
 
     static std::shared_ptr<ResourceSubtype> resource_subtype();

@@ -48,7 +48,7 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
     }
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
-    mlms->infer();
+    mlms->infer({});
 
     //*response->mutable_result() = map_to_struct(result);
 

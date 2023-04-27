@@ -28,10 +28,11 @@ MLModelServiceClient::MLModelServiceClient(std::string name,
                                            std::unique_ptr<service_type::StubInterface> stub)
     : MLModelService(name), stub_(std::move(stub)) {}
 
-void MLModelServiceClient::infer() {
+MLModelService::infer_result MLModelServiceClient::infer(const tensor_map& inputs) {
     // TODO: Encode `infer` arguments into an `InferRequest`
     // TODO: Call `stub_`
     // TODO: Decode result from an `InferResponse` into results
+    return {};
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata() {
