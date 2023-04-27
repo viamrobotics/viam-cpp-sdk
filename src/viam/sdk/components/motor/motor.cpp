@@ -14,6 +14,7 @@
 namespace viam {
 namespace sdk {
 
+MotorSubtype::~MotorSubtype() = default;
 std::shared_ptr<ResourceServerBase> MotorSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> svc) {
     return std::make_shared<MotorServer>(svc);

@@ -12,6 +12,7 @@
 namespace viam {
 namespace sdk {
 
+GenericClient::~GenericClient() = default;
 AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;

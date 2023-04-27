@@ -22,7 +22,7 @@ namespace sdk {
 /// @ingroup Generic
 class GenericSubtype : public ResourceSubtype {
    public:
-    virtual ~GenericSubtype() = default;
+    virtual ~GenericSubtype();
     std::shared_ptr<ResourceServerBase> create_resource_server(
         std::shared_ptr<SubtypeService> svc) override;
     std::shared_ptr<ResourceBase> create_rpc_client(std::string name,

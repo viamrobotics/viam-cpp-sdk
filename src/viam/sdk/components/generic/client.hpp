@@ -18,7 +18,7 @@ namespace sdk {
 /// @ingroup Generic
 class GenericClient : public Generic {
    public:
-    virtual ~GenericClient() = default;
+    virtual ~GenericClient();
     AttributeMap do_command(AttributeMap command) override;
     GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
         : Generic(std::move(name)),

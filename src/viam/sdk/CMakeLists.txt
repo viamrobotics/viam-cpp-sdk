@@ -19,6 +19,17 @@ target_include_directories(viamsdk
     "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
 )
 
+
+# Set compile and link options based on arguments
+if (VIAMCPPSDK_USE_WALL_WERROR)
+  target_compile_options(viamsdk PRIVATE -Wall -Werror)
+endif()
+if (VIAMCPPSDK_SANITIZED_BUILD)
+  target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
+  target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
+endif()
+
+
 target_sources(viamsdk
   PRIVATE
     # TODO(RSDK-1742): we have to put `registry` up top here because we need the
@@ -157,16 +168,6 @@ target_link_libraries(viamsdk
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
-
-
-# Set compile and link options based on arguments
-if (VIAMCPPSDK_USE_WALL_WERROR)
-  target_compile_options(viamsdk PRIVATE -Wall -Werror)
-endif()
-if (VIAMCPPSDK_SANITIZED_BUILD)
-  target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
-  target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
-endif()
 
 
 install(
