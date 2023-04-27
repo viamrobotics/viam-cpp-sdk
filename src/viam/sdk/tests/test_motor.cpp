@@ -11,6 +11,7 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 #include <viam/api/component/motor/v1/motor.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/motor/client.hpp>
 #include <viam/sdk/components/motor/motor.hpp>
@@ -85,7 +86,7 @@ BOOST_AUTO_TEST_CASE(mock_do_command) {
 
 BOOST_AUTO_TEST_CASE(mock_exception_creation) {
     std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
-    BOOST_CHECK_THROW(motor->go_for(0.0, 1.0), std::runtime_error);
+    BOOST_CHECK_THROW(motor->go_for(0.0, 1.0), ViamException);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -207,9 +208,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 }
 
 BOOST_AUTO_TEST_CASE(test_exception_creation) {
-    server_to_mock_pipeline([](Motor& client) -> void {
-        BOOST_CHECK_THROW(client.go_for(0.0, 1.0), std::runtime_error);
-    });
+    server_to_mock_pipeline(
+        [](Motor& client) -> void { BOOST_CHECK_THROW(client.go_for(0.0, 1.0), ViamException); });
 }
 
 BOOST_AUTO_TEST_SUITE_END()

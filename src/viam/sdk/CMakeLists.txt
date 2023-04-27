@@ -43,6 +43,7 @@ target_sources(viamsdk
     # consider making all necessary runtime values a single `context` that has to
     # be initialized within main before anything else happens?
     registry/registry.cpp
+    common/exception.cpp
     common/linear_algebra.cpp
     common/proto_type.cpp
     common/utils.cpp

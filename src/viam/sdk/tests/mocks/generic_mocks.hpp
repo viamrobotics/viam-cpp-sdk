@@ -4,6 +4,7 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/components/generic/client.hpp>
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/components/generic/server.hpp>
@@ -42,14 +43,14 @@ class MockGenericStub : public viam::component::generic::v1::GenericService::Stu
         ::grpc::ClientContext* context,
         const ::viam::common::v1::DoCommandRequest& request,
         ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("Unimplemented");
+        throw UnimplementedException("ClientAsycResponseReader");
     };
 
     ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>*
     PrepareAsyncDoCommandRaw(::grpc::ClientContext* context,
                              const ::viam::common::v1::DoCommandRequest& request,
                              ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("Unimplemented");
+        throw UnimplementedException("PrepareAsyncDoCommandRaw");
     };
 };
 

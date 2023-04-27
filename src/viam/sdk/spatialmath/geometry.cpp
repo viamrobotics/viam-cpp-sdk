@@ -5,6 +5,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
@@ -59,7 +60,7 @@ GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
         }
         case viam::common::v1::Geometry::GeometryTypeCase::GEOMETRY_TYPE_NOT_SET:
         default: {
-            throw "Geometry type is not supported";
+            throw UnimplementedException("Geometry type is not supported");
         }
     }
 }

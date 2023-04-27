@@ -24,7 +24,7 @@ class ResourceManager {
    public:
     /// @brief Returns a resource.
     /// @param name the name of the desired resource.
-    /// @throws `std::runtime_error` if the desired resource does not exist.
+    /// @throws `ViamException` if the desired resource does not exist.
     std::shared_ptr<Resource> resource(std::string name);
 
     /// @brief Replaces all resources in the manager.

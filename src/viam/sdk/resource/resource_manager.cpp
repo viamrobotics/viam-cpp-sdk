@@ -14,6 +14,7 @@
 
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -35,7 +36,7 @@ std::shared_ptr<Resource> ResourceManager::resource(std::string name) {
             return resources_.at(short_name);
         }
     }
-    throw std::runtime_error("Unable to find resource named " + name);
+    throw ViamException("Unable to find resource named " + name);
 }
 
 void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> resources) {
@@ -65,7 +66,7 @@ std::string get_shortcut_name(std::string name) {
 
 void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
     if (name.name().empty()) {
-        throw "Empty name used for resource: " + name.to_string();
+        throw ViamException("Empty name used for resource: " + name.to_string());
     }
     std::string short_name = name.short_name();
 
@@ -74,7 +75,7 @@ void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
 
 void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
     if (resources_.find(name) != resources_.end()) {
-        throw "Attempted to add resource that already existed: " + name;
+        throw DuplicateResourceException("Attempted to add resource that already existed: " + name);
     }
 
     resources_.emplace(name, resource);
@@ -101,7 +102,8 @@ void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
 void ResourceManager::do_remove(Name name) {
     std::string short_name = name.short_name();
     if (resources_.find(short_name) == resources_.end()) {
-        throw "attempted to remove resource " + name.to_string() + " but it didn't exist!";
+        throw ViamException("attempted to remove resource " + name.to_string() +
+                            " but it didn't exist!");
     }
     resources_.erase(short_name);
 

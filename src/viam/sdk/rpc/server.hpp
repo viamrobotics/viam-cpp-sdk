@@ -18,7 +18,7 @@ class Server {
     ~Server();
 
     /// @brief Starts the grpc server. Can only be called once.
-    /// @throws `std::runtime_error` if the server was already `start`ed.
+    /// @throws `ViamException` if the server was already `start`ed.
     /// repeated calls.
     void start();
 
@@ -26,13 +26,13 @@ class Server {
     // grpc service type, and convert under the hood
     /// @brief Registers a gRPC service.
     /// @param service The gRPC service to be registered.
-    /// @throws `std::runtime_error` if called after the server has been `start`ed.
+    /// @throws `ViamException` if called after the server has been `start`ed.
     void register_service(grpc::Service* service);
 
     /// @brief Adds a listening port to the server.
     /// @param address The address to listen at.
     /// @param creds The server credentials; defaults to a insecure server credentials.
-    /// @throws `std::runtime_error` if called after the server has been `start`ed.
+    /// @throws `ViamException` if called after the server has been `start`ed.
     void add_listening_port(std::string address,
                             std::shared_ptr<grpc::ServerCredentials> creds = nullptr);
 

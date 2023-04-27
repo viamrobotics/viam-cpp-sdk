@@ -1,3 +1,4 @@
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
@@ -14,7 +15,7 @@ Server::~Server() {
 
 void Server::register_service(grpc::Service* service) {
     if (!builder_) {
-        throw "Cannot register a new service after the server has started";
+        throw ViamException("Cannot register a new service after the server has started");
     }
 
     builder_->RegisterService(service);
@@ -22,7 +23,7 @@ void Server::register_service(grpc::Service* service) {
 
 void Server::start() {
     if (server_) {
-        throw std::runtime_error("Attempted to start server that was already running");
+        throw ViamException("Attempted to start server that was already running");
     }
 
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -33,7 +34,7 @@ void Server::start() {
 void Server::add_listening_port(std::string address,
                                 std::shared_ptr<grpc::ServerCredentials> creds) {
     if (!builder_) {
-        throw "Cannot add a listening port after server has started";
+        throw ViamException("Cannot add a listening port after server has started");
     }
 
     if (!creds) {

@@ -9,6 +9,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base/base.hpp>
@@ -30,7 +31,7 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
 
     grpc::Status status = stub_->MoveStraight(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -46,7 +47,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec) {
 
     grpc::Status status = stub_->Spin(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -62,7 +63,7 @@ void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
 
     grpc::Status status = stub_->SetPower(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -78,7 +79,7 @@ void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
 
     grpc::Status status = stub_->SetVelocity(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -96,7 +97,7 @@ grpc::StatusCode BaseClient::stop() {
 
     grpc::Status status = stub_->Stop(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return status.error_code();
 }
@@ -111,7 +112,7 @@ bool BaseClient::is_moving() {
 
     grpc::Status status = stub_->IsMoving(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return response.is_moving();
 }
@@ -128,7 +129,7 @@ AttributeMap BaseClient::do_command(AttributeMap command) {
 
     grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return struct_to_map(response.result());
 }
