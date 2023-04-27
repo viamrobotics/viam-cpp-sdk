@@ -1,3 +1,4 @@
+#include <chrono>
 #include <fstream>
 #include <string>
 #include <unistd.h>
@@ -102,10 +103,7 @@ int main() {
 
         // Wait for 2 seconds, print position every 0.5 seconds
         for (int i = 0; i < 4; i++) {
-            struct timespec waittime, remaining;
-            waittime.tv_sec = 0;
-            waittime.tv_nsec = 500000000;  // 500ms
-            nanosleep(&waittime, &remaining);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             print_motor_position(motor);
         }
 
