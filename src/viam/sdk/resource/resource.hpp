@@ -79,6 +79,7 @@ class RPCSubtype {
 
    private:
     // CR erodkin: fix this. ref or ptr?
+    // Assuming this all compiles and works probably just leave it as is.
     const google::protobuf::ServiceDescriptor& descriptor_;
     std::string proto_service_name_;
     Subtype subtype_;
