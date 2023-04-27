@@ -43,7 +43,7 @@ void DialOptions::set_credentials(boost::optional<Credentials> creds) {
     credentials_ = creds;
 }
 
-const boost::optional<Credentials> DialOptions::credentials() const {
+const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 

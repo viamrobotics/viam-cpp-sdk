@@ -40,7 +40,7 @@ class DialOptions {
     DialOptions()
         : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false) {}
 
-    const boost::optional<Credentials> credentials() const;
+    const boost::optional<Credentials>& credentials() const;
     void set_allow_insecure_downgrade(bool allow);
     const bool allows_insecure_downgrade() const;
 
