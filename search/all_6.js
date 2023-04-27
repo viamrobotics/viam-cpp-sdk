@@ -14,7 +14,7 @@ var searchData=
   ['get_5fpower_5fstatus_11',['get_power_status',['../classviam_1_1sdk_1_1MotorClient.html#a313e3b96e521fc35e114478db6f7139e',1,'viam::sdk::MotorClient::get_power_status()'],['../classviam_1_1sdk_1_1Motor.html#a90760513b89189678b57776dd9cdd5cd',1,'viam::sdk::Motor::get_power_status()']]],
   ['get_5fproperties_12',['get_properties',['../classviam_1_1sdk_1_1Camera.html#a6ea3343a476f71a783ccb5e673e0f6b1',1,'viam::sdk::Camera::get_properties()'],['../classviam_1_1sdk_1_1CameraClient.html#a371ead0b808b662f6667261746b171fa',1,'viam::sdk::CameraClient::get_properties()'],['../classviam_1_1sdk_1_1MotorClient.html#adb492ffb6fd1592406d75436cf821def',1,'viam::sdk::MotorClient::get_properties()'],['../classviam_1_1sdk_1_1Motor.html#a361f46873f34eda2af5e65ef57cffb55',1,'viam::sdk::Motor::get_properties()']]],
   ['get_5fresource_13',['get_resource',['../classviam_1_1sdk_1_1ResourceManager.html#a47979b635ff26163dd4d16d08a9efda8',1,'viam::sdk::ResourceManager']]],
-  ['get_5fstatus_14',['get_status',['../classviam_1_1sdk_1_1RobotClient.html#afc63633f41d9de2e3bdfa8a9ebdc3647',1,'viam::sdk::RobotClient']]],
+  ['get_5fstatus_14',['get_status',['../classviam_1_1sdk_1_1RobotClient.html#ae4040337c1d9b6b6f710455ac23f1742',1,'viam::sdk::RobotClient']]],
   ['go_5ffor_15',['go_for',['../classviam_1_1sdk_1_1MotorClient.html#a6cf1ae037b86cb1b9d84c55d906686b8',1,'viam::sdk::MotorClient::go_for()'],['../classviam_1_1sdk_1_1Motor.html#ab37ba1a9cae975a652b3545bb3040fb3',1,'viam::sdk::Motor::go_for()']]],
   ['go_5fto_16',['go_to',['../classviam_1_1sdk_1_1MotorClient.html#a0e20df8b3c079d6af00b6a0bba1b30f2',1,'viam::sdk::MotorClient::go_to()'],['../classviam_1_1sdk_1_1Motor.html#a7d1e86b1213465b1c6826b8b00473b3c',1,'viam::sdk::Motor::go_to()']]]
 ];

@@ -76,7 +76,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classviam_1_1sdk_1_1RobotClient-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::RobotClient Class Reference<div class="ingroups"><a class="el" href="group__Robot.html">Classes related to a &lt;tt&gt;Robot&lt;/tt&gt; representation.</a></div></div></div>
 </div><!--header-->
@@ -93,9 +92,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>refresh</b> ()</td></
 <tr class="memitem:a282c43833b86045f77f14aff324d173f"><td class="memItemLeft" align="right" valign="top"><a id="a282c43833b86045f77f14aff324d173f" name="a282c43833b86045f77f14aff324d173f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
 <tr class="separator:a282c43833b86045f77f14aff324d173f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a356490cc0b8a13f100b0f8507a56f56d"><td class="memItemLeft" align="right" valign="top"><a id="a356490cc0b8a13f100b0f8507a56f56d" name="a356490cc0b8a13f100b0f8507a56f56d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RobotClient</b> (<a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> channel)</td></tr>
-<tr class="separator:a356490cc0b8a13f100b0f8507a56f56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af33337bb906b711ef68931c4cb0da195"><td class="memItemLeft" align="right" valign="top"><a id="af33337bb906b711ef68931c4cb0da195" name="af33337bb906b711ef68931c4cb0da195"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>RobotClient</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> &gt; channel)</td></tr>
+<tr class="separator:af33337bb906b711ef68931c4cb0da195"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71a56328284b28fc71805817747561e6"><td class="memItemLeft" align="right" valign="top"><a id="a71a56328284b28fc71805817747561e6" name="a71a56328284b28fc71805817747561e6"></a>
 std::vector&lt; ResourceName &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>resource_names</b> ()</td></tr>
 <tr class="separator:a71a56328284b28fc71805817747561e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,9 +111,9 @@ std::vector&lt; ResourceName &gt; *&#160;</td><td class="memItemRight" valign="b
 <tr class="memitem:a7c09925ae19eaeda5b4b8cbf31077738"><td class="memItemLeft" align="right" valign="top">std::vector&lt; viam::robot::v1::Operation &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a7c09925ae19eaeda5b4b8cbf31077738">get_operations</a> ()</td></tr>
 <tr class="memdesc:a7c09925ae19eaeda5b4b8cbf31077738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of operations currently running on a robot.  <br /></td></tr>
 <tr class="separator:a7c09925ae19eaeda5b4b8cbf31077738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc63633f41d9de2e3bdfa8a9ebdc3647"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#afc63633f41d9de2e3bdfa8a9ebdc3647">get_status</a> (std::vector&lt; ResourceName &gt; components=std::vector&lt; ResourceName &gt;())</td></tr>
-<tr class="memdesc:afc63633f41d9de2e3bdfa8a9ebdc3647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the robot's components.  <br /></td></tr>
-<tr class="separator:afc63633f41d9de2e3bdfa8a9ebdc3647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4040337c1d9b6b6f710455ac23f1742"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#ae4040337c1d9b6b6f710455ac23f1742">get_status</a> (std::vector&lt; ResourceName &gt; components={})</td></tr>
+<tr class="memdesc:ae4040337c1d9b6b6f710455ac23f1742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the robot's components.  <br /></td></tr>
+<tr class="separator:ae4040337c1d9b6b6f710455ac23f1742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48943f31362d796f4adfff54a6c53c5b"><td class="memItemLeft" align="right" valign="top"><a id="a48943f31362d796f4adfff54a6c53c5b" name="a48943f31362d796f4adfff54a6c53c5b"></a>
 std::vector&lt; viam::robot::v1::Discovery &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>discover_components</b> (std::vector&lt; viam::robot::v1::DiscoveryQuery &gt; queries)</td></tr>
 <tr class="separator:a48943f31362d796f4adfff54a6c53c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,15 +142,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ae00fb453a4321ec2f37f4a1ded41abac"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1RobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#ae00fb453a4321ec2f37f4a1ded41abac">at_local_socket</a> (std::string address, <a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> options)</td></tr>
 <tr class="memdesc:ae00fb453a4321ec2f37f4a1ded41abac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a robot client connected to the robot at the provided local socket.  <br /></td></tr>
 <tr class="separator:ae00fb453a4321ec2f37f4a1ded41abac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af98ea6efb062d583a00a0b3a337f6eef"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1RobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#af98ea6efb062d583a00a0b3a337f6eef">with_channel</a> (<a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> channel, <a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> options)</td></tr>
-<tr class="memdesc:af98ea6efb062d583a00a0b3a337f6eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a robot client connected to the provided channel.  <br /></td></tr>
-<tr class="separator:af98ea6efb062d583a00a0b3a337f6eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a9a440e21e72f26bdeaa7ebefd936abff"><td class="memItemLeft" align="right" valign="top"><a id="a9a440e21e72f26bdeaa7ebefd936abff" name="a9a440e21e72f26bdeaa7ebefd936abff"></a>
-std::unique_ptr&lt; RobotService::Stub &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stub_</b></td></tr>
-<tr class="separator:a9a440e21e72f26bdeaa7ebefd936abff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d45bb64418c241a9ea33cea5ca2da15"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1RobotClient.html">RobotClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a3d45bb64418c241a9ea33cea5ca2da15">with_channel</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> &gt; channel, <a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> options)</td></tr>
+<tr class="memdesc:a3d45bb64418c241a9ea33cea5ca2da15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a robot client connected to the provided channel.  <br /></td></tr>
+<tr class="separator:a3d45bb64418c241a9ea33cea5ca2da15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>gRPC client for a robot, to be used for all interactions with a robot. There are two ways to instantiate a robot: </p>
@@ -344,8 +337,8 @@ std::unique_ptr&lt; RobotService::Stub &gt;&#160;</td><td class="memItemRight" v
 
 </div>
 </div>
-<a id="afc63633f41d9de2e3bdfa8a9ebdc3647" name="afc63633f41d9de2e3bdfa8a9ebdc3647"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc63633f41d9de2e3bdfa8a9ebdc3647">&#9670;&#160;</a></span>get_status()</h2>
+<a id="ae4040337c1d9b6b6f710455ac23f1742" name="ae4040337c1d9b6b6f710455ac23f1742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4040337c1d9b6b6f710455ac23f1742">&#9670;&#160;</a></span>get_status()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -354,7 +347,7 @@ std::unique_ptr&lt; RobotService::Stub &gt;&#160;</td><td class="memItemRight" v
           <td class="memname">std::vector&lt; Status &gt; viam::sdk::RobotClient::get_status </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; ResourceName &gt;&#160;</td>
-          <td class="paramname"><em>components</em> = <code>std::vector&lt;&#160;ResourceName&#160;&gt;()</code></td><td>)</td>
+          <td class="paramname"><em>components</em> = <code>{}</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -519,8 +512,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="af98ea6efb062d583a00a0b3a337f6eef" name="af98ea6efb062d583a00a0b3a337f6eef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af98ea6efb062d583a00a0b3a337f6eef">&#9670;&#160;</a></span>with_channel()</h2>
+<a id="a3d45bb64418c241a9ea33cea5ca2da15" name="a3d45bb64418c241a9ea33cea5ca2da15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d45bb64418c241a9ea33cea5ca2da15">&#9670;&#160;</a></span>with_channel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -531,7 +524,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">static std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1RobotClient.html">RobotClient</a> &gt; viam::sdk::RobotClient::with_channel </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> &gt;&#160;</td>
           <td class="paramname"><em>channel</em>, </td>
         </tr>
         <tr>

@@ -93,7 +93,7 @@ $(function() {
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    std::shared_ptr&lt;grpc::Channel&gt; channel;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">void</span> close();</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>(std::shared_ptr&lt;grpc::Channel&gt; channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">void</span>* runtime);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> dial(<span class="keyword">const</span> <span class="keywordtype">char</span>* uri, boost::optional&lt;DialOptions&gt; options);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static</span> std::shared_ptr&lt;ViamChannel&gt; dial(<span class="keyword">const</span> <span class="keywordtype">char</span>* uri, boost::optional&lt;DialOptions&gt; options);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>   <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* path;</div>
