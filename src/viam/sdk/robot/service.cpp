@@ -81,7 +81,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
 ::grpc::Status RobotService_::ResourceNames(::grpc::ServerContext* context,
                                             const viam::robot::v1::ResourceNamesRequest* request,
                                             viam::robot::v1::ResourceNamesResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [ResourceNames] without a request");
     };
@@ -96,7 +96,7 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
 ::grpc::Status RobotService_::GetStatus(::grpc::ServerContext* context,
                                         const ::viam::robot::v1::GetStatusRequest* request,
                                         ::viam::robot::v1::GetStatusResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [GetStatus] without a request");
     };
@@ -116,14 +116,13 @@ void RobotService_::stream_status(
     int interval) {
     while (true) {
         std::vector<Status> statuses = generate_status(request->resource_names());
-        viam::robot::v1::StreamStatusResponse* response;
-        RepeatedPtrField<Status>* response_status = response->mutable_status();
+        viam::robot::v1::StreamStatusResponse response;
+        RepeatedPtrField<Status>* response_status = response.mutable_status();
         for (Status status : statuses) {
             *response_status->Add() = status;
         }
 
-        const viam::robot::v1::StreamStatusResponse* resp = response;
-        writer->Write(*resp);
+        writer->Write(response);
         std::this_thread::sleep_for(std::chrono::seconds(interval));
     }
 }

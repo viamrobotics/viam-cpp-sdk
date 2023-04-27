@@ -11,13 +11,13 @@ namespace sdk {
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext* context,
                                        const ::viam::common::v1::DoCommandRequest* request,
                                        ::viam::common::v1::DoCommandResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [DoCommand] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -32,13 +32,13 @@ namespace sdk {
 ::grpc::Status CameraServer::GetImage(::grpc::ServerContext* context,
                                       const ::viam::component::camera::v1::GetImageRequest* request,
                                       ::viam::component::camera::v1::GetImageResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [GetImage] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -58,13 +58,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest* request,
     ::google::api::HttpBody* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [RenderFrame] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -82,14 +82,14 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetPointCloudRequest* request,
     ::viam::component::camera::v1::GetPointCloudResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [GetPointCloud] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
 
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -107,13 +107,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetPropertiesRequest* request,
     ::viam::component::camera::v1::GetPropertiesResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [GetProperties] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -129,9 +129,7 @@ namespace sdk {
 }
 
 void CameraServer::register_server(std::shared_ptr<Server> server) {
-    viam::component::camera::v1::CameraService::Service* camera =
-        static_cast<viam::component::camera::v1::CameraService::Service*>(this);
-    server->register_service(camera);
+    server->register_service(this);
 }
 
 std::shared_ptr<SubtypeService> CameraServer::get_sub_svc() {

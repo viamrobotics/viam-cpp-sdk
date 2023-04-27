@@ -85,8 +85,7 @@ Value ProtoType::proto_value() {
     Value v;
     switch (proto_type.which()) {
         case 0: {
-            ::google::protobuf::NullValue value;
-            v.set_null_value(value);
+            v.set_null_value(::google::protobuf::NULL_VALUE);
             break;
         }
         case 1: {

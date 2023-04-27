@@ -16,6 +16,8 @@ namespace motor {
 
 using namespace viam::sdk;
 
+MockMotor::~MockMotor() = default;
+
 void MockMotor::set_power(double power_pct) {
     power_status.is_on = power_pct != 0.0;
     power_status.power_pct = power_pct;

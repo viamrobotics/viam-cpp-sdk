@@ -54,7 +54,7 @@ Dependencies get_dependencies(ModuleService_* m,
 }  // namespace
    //
 std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
-    if (parent == nullptr) {
+    if (!parent) {
         parent = RobotClient::at_local_socket(parent_addr, {0, boost::none});
     }
 
@@ -72,7 +72,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     std::shared_ptr<ResourceBase> res;
     Dependencies deps = get_dependencies(this, request->dependencies());
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
-    if (reg != nullptr) {
+    if (reg) {
         res = reg->construct_resource(deps, cfg);
     };
     if (module->services.find(cfg.api) == module->services.end()) {
@@ -104,7 +104,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     // see if our resource is reconfigurable. if it is, reconfigure
     std::shared_ptr<ResourceBase> res = sub_svc->resource(cfg.resource_name().name);
-    if (res == nullptr) {
+    if (!res) {
         return grpc::Status(
             grpc::UNKNOWN,
             "unable to reconfigure resource " + cfg.resource_name().name + " as it doesn't exist.");
@@ -123,7 +123,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     }
 
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.name);
-    if (reg != nullptr) {
+    if (reg) {
         std::shared_ptr<ResourceBase> res = reg->construct_resource(deps, cfg);
         sub_svc->replace_one(cfg.resource_name(), res);
     }
@@ -139,7 +139,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     Resource cfg = Resource::from_proto(proto);
 
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api, cfg.model);
-    if (reg == nullptr) {
+    if (!reg) {
         return grpc::Status(grpc::UNKNOWN,
                             "unable to validate resource " + cfg.resource_name().name +
                                 " as it hasn't been registered.");
@@ -168,7 +168,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     }
     std::shared_ptr<SubtypeService> svc = m->services.at(*name.to_subtype());
     std::shared_ptr<ResourceBase> res = svc->resource(name.name);
-    if (res == nullptr) {
+    if (!res) {
         return grpc::Status(
             grpc::UNKNOWN,
             "unable to remove resource " + name.to_string() + " as it doesn't exist.");
@@ -223,7 +223,7 @@ ModuleService_::~ModuleService_() {
 void ModuleService_::close() {
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
 
-    if (parent != nullptr) {
+    if (parent) {
         try {
             parent->close();
         } catch (std::exception& exc) {
@@ -256,8 +256,8 @@ void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,
 
     std::shared_ptr<ResourceSubtype> creator = Registry::lookup_subtype(api);
     std::string name;
-    const google::protobuf::ServiceDescriptor* sd;
-    if (creator != nullptr && creator->service_descriptor != nullptr) {
+    const google::protobuf::ServiceDescriptor* sd = nullptr;
+    if (creator && creator->service_descriptor) {
         name = creator->service_descriptor->full_name();
         sd = creator->service_descriptor;
     }

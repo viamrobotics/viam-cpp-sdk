@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(test_do_service) {
 }
 
 BOOST_AUTO_TEST_CASE(test_do_client) {
-    MockGenericClient client = MockGenericClient("generic");
+    MockGenericClient client("generic");
 
     AttributeMap command = fake_map();
     AttributeMap expected_map = fake_map();

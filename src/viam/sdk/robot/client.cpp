@@ -69,7 +69,7 @@ void RobotClient::close() {
         t->~thread();
     }
     stop_all();
-    viam_channel.close();
+    viam_channel->close();
 }
 
 bool is_error_response(grpc::Status response) {
@@ -160,7 +160,6 @@ void RobotClient::refresh() {
     ResourceManager new_resource_manager;
     RepeatedPtrField<ResourceName> resources = resp.resources();
 
-    const int num_resources = resources.size();
     std::vector<ResourceName> current_resources;
 
     for (auto& name : resources) {
@@ -177,8 +176,8 @@ void RobotClient::refresh() {
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
         std::shared_ptr<ResourceSubtype> rs =
-            Registry::lookup_subtype(Subtype({name.namespace_(), name.type(), name.subtype()}));
-        if (rs != nullptr) {
+            Registry::lookup_subtype({name.namespace_(), name.type(), name.subtype()});
+        if (rs) {
             try {
                 std::shared_ptr<ResourceBase> rpc_client =
                     rs->create_rpc_client(name.name(), channel);
@@ -191,7 +190,7 @@ void RobotClient::refresh() {
     }
     bool is_equal = current_resources.size() == resource_names_.size();
     if (is_equal) {
-        for (int i = 0; i < current_resources.size(); ++i) {
+        for (size_t i = 0; i < resource_names_.size(); ++i) {
             if (!ResourceNameEqual::check_equal(resource_names_.at(i), current_resources.at(i))) {
                 is_equal = false;
                 break;
@@ -220,11 +219,11 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(ViamChannel vc) : viam_channel(vc) {
-    should_close_channel = false;
-    stub_ = std::move(RobotService::NewStub(vc.channel));
-    channel = vc.channel;
-}
+RobotClient::RobotClient(std::shared_ptr<ViamChannel> vc)
+    : viam_channel(vc),
+      channel(vc->channel),
+      should_close_channel(false),
+      stub_(RobotService::NewStub(channel)) {}
 
 std::vector<ResourceName>* RobotClient::resource_names() {
     lock.lock();
@@ -233,7 +232,8 @@ std::vector<ResourceName>* RobotClient::resource_names() {
     return resources;
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Options options) {
+std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
+                                                       Options options) {
     std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
     robot->refresh_interval = options.refresh_interval;
     robot->should_refresh = (robot->refresh_interval > 0);
@@ -253,7 +253,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
 
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
     const char* uri = address.c_str();
-    ViamChannel channel = ViamChannel::dial(uri, options.dial_options);
+    auto channel = ViamChannel::dial(uri, options.dial_options);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
     robot->should_close_channel = true;
 
@@ -261,13 +261,13 @@ std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Option
 };
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, Options options) {
-    address = "unix://" + address;
-    const char* uri = address.c_str();
+    std::string addr = "unix://" + address;
+    const char* uri = addr.c_str();
     std::shared_ptr<grpc::Channel> channel =
         grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
     std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
-    ViamChannel viam_channel = ViamChannel(channel, uri, nullptr);
+    auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
     robot->should_close_channel = true;
 
