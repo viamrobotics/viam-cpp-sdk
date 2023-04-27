@@ -58,8 +58,8 @@ class MLModelService : public ServiceBase {
     using tensor_views = boost::make_variant_over<tensor_types>::type;
     using tensor_map = std::unordered_map<std::string, tensor_views>;
 
-    struct tensor_state;
-    using infer_result = std::tuple<std::shared_ptr<tensor_state>, tensor_map>;
+    struct infer_result_state;
+    using infer_result = std::tuple<std::shared_ptr<infer_result_state>, tensor_map>;
 
     virtual infer_result infer(const tensor_map& inputs) = 0;
 
