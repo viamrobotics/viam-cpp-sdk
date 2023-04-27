@@ -15,6 +15,8 @@ namespace generic {
 
 using namespace viam::sdk;
 
+MockGeneric::~MockGeneric() = default;
+
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
 MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
@@ -35,8 +37,8 @@ MockGenericStub::MockGenericStub() : server(std::make_shared<GenericServer>()) {
 ::grpc::Status MockGenericStub::DoCommand(::grpc::ClientContext* context,
                                           const ::viam::common::v1::DoCommandRequest& request,
                                           ::viam::common::v1::DoCommandResponse* response) {
-    grpc::ServerContext* ctx;
-    return server->DoCommand(ctx, &request, response);
+    grpc::ServerContext ctx;
+    return server->DoCommand(&ctx, &request, response);
 }
 
 }  // namespace generic

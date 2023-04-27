@@ -26,8 +26,7 @@ BOOST_AUTO_TEST_CASE(test_prototype_equality) {
 
     BOOST_CHECK(type1 == type2);
 
-    std::shared_ptr<ProtoType> proto_ptr =
-        std::make_shared<ProtoType>(std::move(std::string("not hello")));
+    auto proto_ptr = std::make_shared<ProtoType>(std::move(std::string("not hello")));
     AttributeMap unequal_map =
         std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
     unequal_map->insert({{std::string("test"), proto_ptr}});

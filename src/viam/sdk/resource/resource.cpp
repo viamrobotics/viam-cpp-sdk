@@ -80,7 +80,7 @@ std::string Name::to_string() const {
 }
 
 std::string Name::short_name() const {
-    if (remote_name == "") {
+    if (remote_name != "") {
         return remote_name + ":" + name;
     }
     return name;
@@ -144,10 +144,12 @@ bool operator==(const Model& lhs, const Model& rhs) {
 RPCSubtype::RPCSubtype(Subtype subtype,
                        std::string proto_service_name,
                        const google::protobuf::ServiceDescriptor& descriptor)
-    : subtype(subtype), descriptor(&descriptor), proto_service_name(proto_service_name) {}
+    : descriptor(std::move(&descriptor)),
+      proto_service_name(std::move(proto_service_name)),
+      subtype(std::move(subtype)) {}
 
 RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor)
-    : subtype(subtype), descriptor(&descriptor) {}
+    : descriptor(std::move(&descriptor)), subtype(std::move(subtype)) {}
 
 ModelFamily::ModelFamily(std::string namespace_, std::string family)
     : namespace_(namespace_), family(family) {}

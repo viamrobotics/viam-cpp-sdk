@@ -77,31 +77,7 @@ Registry::registered_resources() {
 
 Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
     Status status;
-    ResourceName* name;
-    if (resource->type().to_string() == COMPONENT) {
-        try {
-            std::shared_ptr<ComponentBase> cb = std::dynamic_pointer_cast<ComponentBase>(resource);
-            ResourceName rn = cb->get_resource_name(resource->name());
-            name = &rn;
-        } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(debug)
-                << "Unable to get resource name from resource base " << resource->name();
-        }
-    } else if (resource->type().to_string() == SERVICE) {
-        try {
-            std::shared_ptr<ServiceBase> sb = std::dynamic_pointer_cast<ServiceBase>(resource);
-            ResourceName rn = sb->get_resource_name(resource->name());
-            name = &rn;
-        } catch (std::exception& exc) {
-            BOOST_LOG_TRIVIAL(debug)
-                << "Unable to get resource name from resource base " << resource->name();
-        };
-    } else {
-        throw "unable to create status; provided resource was of an unknown "
-          "type: " +
-        resource->type().to_string();
-    }
-    *status.mutable_name() = *name;
+    *status.mutable_name() = resource->get_resource_name(resource->name());
     *status.mutable_status() = google::protobuf::Struct();
     return status;
 }

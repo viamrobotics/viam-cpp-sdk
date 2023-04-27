@@ -20,6 +20,7 @@ namespace sdk {
 /// @ingroup Camera
 class CameraClient : public Camera {
    public:
+    virtual ~CameraClient();
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;

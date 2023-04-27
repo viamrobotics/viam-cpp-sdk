@@ -61,9 +61,9 @@ class Name : public Subtype {
 
 class RPCSubtype {
    public:
-    Subtype subtype;
-    std::string proto_service_name;
     const google::protobuf::ServiceDescriptor* descriptor;
+    std::string proto_service_name;
+    Subtype subtype;
 
     bool operator<(const RPCSubtype& rhs) const {
         return (subtype.to_string() + proto_service_name + descriptor->DebugString()) <
