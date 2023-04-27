@@ -37,7 +37,6 @@ int main() {
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
-    robot->refresh();
 
     // ensure we can query resources
     std::vector<ResourceName>* resource_names = robot->resource_names();
@@ -65,6 +64,5 @@ int main() {
     auto gc = robot->resource_by_name<GenericClient>("generic1");
     std::cout << "got generic client named " << gc->name() << std::endl;
 
-    robot->close();
-    return 0;
+    return EXIT_SUCCESS;
 }
