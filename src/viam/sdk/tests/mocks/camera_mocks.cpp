@@ -14,6 +14,8 @@ namespace camera {
 
 using namespace viam::sdk;
 
+MockCamera::~MockCamera() = default;
+
 AttributeMap MockCamera::do_command(AttributeMap command) {
     return map_;
 }

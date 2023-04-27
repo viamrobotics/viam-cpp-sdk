@@ -15,6 +15,8 @@
 namespace viam {
 namespace sdk {
 
+GenericSubtype::~GenericSubtype() = default;
+
 std::shared_ptr<ResourceServerBase> GenericSubtype::create_resource_server(
     std::shared_ptr<SubtypeService> svc) {
     return std::make_shared<GenericServer>(svc);

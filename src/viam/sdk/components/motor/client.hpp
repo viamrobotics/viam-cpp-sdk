@@ -20,7 +20,7 @@ namespace sdk {
 /// @ingroup Motor
 class MotorClient : public Motor {
    public:
-    virtual ~MotorClient() = default;
+    virtual ~MotorClient();
     void set_power(double power_pct) override;
     void go_for(double rpm, double revolutions) override;
     void go_to(double rpm, double position_revolutions) override;
