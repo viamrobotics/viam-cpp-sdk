@@ -20,6 +20,9 @@
 
 #include <boost/variant/variant.hpp>
 
+#include <xtensor/xadapt.hpp>
+#include <xtensor/xchunked_array.hpp>
+
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/services/service_base.hpp>
 #include <viam/sdk/subtype/subtype.hpp>
@@ -43,27 +46,79 @@ class MLModelServiceSubtype : public ResourceSubtype {
 ///
 class MLModelService : public ServiceBase {
    public:
+    // Ultimately, we want an xchunked_array backed by a std::vector
+    // of adapted linear buffers over T. Explicitly naming that type
+    // would be profoundly difficult given how `xtensor` works. Use
+    // decltype/declval to metaprogram up the type we want instead.
     template <typename T>
-    class tensor_view {};
+    class tensor_view {
+       private:
+        using shape_t = std::vector<std::size_t>;
 
-    using signed_integral_types =
+        using xt_no_ownership_t = decltype(xt::no_ownership());
+
+        // The type for the first layer of adapt over the raw buffer
+        using adapt_l1_t = decltype(xt::adapt(std::declval<T*>(),
+                                              std::declval<std::size_t>(),
+                                              std::declval<xt_no_ownership_t>(),
+                                              std::declval<shape_t>()));
+
+        // The l1 adapts will be stored in a vector.
+        using adapt_l1_storage_t = std::vector<adapt_l1_t>;
+
+        // The type for the second layer of adapt over a vector of l1 adapts.
+        using adapt_l2_t = decltype(xt::adapt(std::declval<adapt_l1_storage_t>().data(),
+                                              std::declval<adapt_l1_storage_t>().size(),
+                                              std::declval<xt_no_ownership_t>(),
+                                              std::declval<shape_t>()));
+
+       public:
+        // The type for an `xchunked_array` viewing over the l2 adapt.
+        //
+        // Hooray! we made it!
+        using type = decltype(xt::xchunked_array<adapt_l2_t>(std::move(std::declval<adapt_l2_t>()),
+                                                             std::declval<shape_t>(),
+                                                             std::declval<shape_t>()));
+    };
+
+    // Now that we have a factory for our tensor view types, use mpl
+    // to produce a variant over tensor views over the primitive types
+    // we care about, which are the signed and unsigned fixed width
+    // integral types and the two floating point types.
+
+    using signed_integral_base_types =
         boost::mpl::list<std::int8_t, std::int16_t, std::int32_t, std::int64_t>;
-    using unsigned_integral_types =
-        boost::mpl::transform_view<signed_integral_types,
+
+    using unsigned_integral_base_types =
+        boost::mpl::transform_view<signed_integral_base_types,
                                    std::make_unsigned<boost::mpl::placeholders::_1>>;
-    using integral_types = boost::mpl::joint_view<signed_integral_types, unsigned_integral_types>;
 
-    using fp_types = boost::mpl::list<float, double>;
+    using integral_base_types =
+        boost::mpl::joint_view<signed_integral_base_types, unsigned_integral_base_types>;
 
-    using tensor_types = boost::mpl::joint_view<integral_types, fp_types>;
+    using fp_base_types = boost::mpl::list<float, double>;
 
-    using tensor_views = boost::make_variant_over<tensor_types>::type;
+    using base_types = boost::mpl::joint_view<integral_base_types, fp_base_types>;
+
+    using tensor_view_types =
+        boost::mpl::transform_view<base_types, tensor_view<boost::mpl::placeholders::_1>>;
+
+    // Union the tensor views for the various base types.
+    using tensor_views = boost::make_variant_over<tensor_view_types>::type;
+
+    // Our parameters to and from the model come as named tensor_views.
     using tensor_map = std::unordered_map<std::string, tensor_views>;
 
+    // Inputs are just the name / tensor_view mapping.
+    using infer_request = tensor_map;
+
+    // Outputs are also the name / tensor_view mapping, but tupled together
+    // with an opaque state handle that owns the backing memory.
     struct infer_result_state;
     using infer_result = std::tuple<std::shared_ptr<infer_result_state>, tensor_map>;
 
-    virtual infer_result infer(const tensor_map& inputs) = 0;
+    // XXX ACM TODO: doc comment
+    virtual infer_result infer(const infer_request& inputs) = 0;
 
     struct tensor_info {
         struct file {
@@ -97,6 +152,7 @@ class MLModelService : public ServiceBase {
         std::vector<tensor_info> outputs;
     };
 
+    // XXX ACM TODO: doc comment
     virtual struct metadata metadata() = 0;
 
     static std::shared_ptr<ResourceSubtype> resource_subtype();

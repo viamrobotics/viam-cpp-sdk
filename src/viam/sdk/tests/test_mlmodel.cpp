@@ -308,6 +308,9 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
                                  detection_results_shape[2] - 1) ==
                k_detection_results_buffer_size - 1);
 
+    // TODO: Validate that we can view this as an `xchuncked_array` over a single element
+    // vector.
+
     // TODO: Validate that we can efficiently fragement to 50 newly
     // allocated 4 element vectors with 50 copies, as we would need to
     // do to push it back as a proto `struct`.
