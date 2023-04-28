@@ -35,7 +35,7 @@ struct quaternion {
 
 struct translation {
     double x, y, z;
-    viam::app::v1::Translation to_proto();
+    const viam::app::v1::Translation to_proto() const;
 };
 }  // namespace sdk
 }  // namespace viam

@@ -65,19 +65,19 @@ const AttributeMap& Resource::attributes() const {
 void Resource::fix_api() {
     if (this->api_.type_namespace() == "" && this->namespace__ == "") {
         this->namespace__ = RDK;
-        this->api_.type_namespace() = RDK;
+        this->api_.set_namespace(RDK);
     } else if (this->api_.type_namespace() == "") {
-        this->api_.type_namespace() = this->namespace__;
+        this->api_.set_namespace(this->namespace__);
     } else {
         this->namespace__ = this->api_.type_namespace();
     }
 
     if (this->api_.resource_type() == "") {
-        this->api_.resource_type() = COMPONENT;
+        this->api_.set_resource_type(COMPONENT);
     }
 
     if (this->api_.resource_subtype() == "") {
-        this->api_.resource_subtype() = this->type_;
+        this->api_.set_resource_subtype(this->type_);
     } else if (this->type_ == "") {
         this->type_ = this->api_.resource_subtype();
     }
@@ -90,7 +90,7 @@ void Resource::fix_api() {
     }
 }
 
-Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
+const Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     Resource resource(proto_cfg.type());
     resource.name_ = proto_cfg.name();
     resource.namespace__ = proto_cfg.namespace_();
@@ -115,7 +115,7 @@ Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     return resource;
 };
 
-viam::app::v1::ComponentConfig Resource::to_proto() {
+const viam::app::v1::ComponentConfig Resource::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
     google::protobuf::Struct s = map_to_struct(attributes_);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;

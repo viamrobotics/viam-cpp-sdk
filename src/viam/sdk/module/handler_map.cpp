@@ -36,7 +36,7 @@ const viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
 
 HandlerMap_::HandlerMap_(){};
 
-HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
+const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
     HandlerMap_ hm;
 
     google::protobuf::RepeatedPtrField<viam::module::v1::HandlerDefinition> handlers =

@@ -41,10 +41,10 @@ class DialOptions {
         : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false) {}
 
     const boost::optional<Credentials>& credentials() const;
-    void set_allow_insecure_downgrade(bool allow);
     const bool allows_insecure_downgrade() const;
 
     void set_credentials(boost::optional<Credentials> creds);
+    void set_allow_insecure_downgrade(bool allow);
 
    private:
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a

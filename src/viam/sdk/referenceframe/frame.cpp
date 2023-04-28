@@ -12,7 +12,7 @@
 namespace viam {
 namespace sdk {
 
-viam::app::v1::Frame LinkConfig::to_proto() {
+const viam::app::v1::Frame LinkConfig::to_proto() const {
     viam::app::v1::Frame frame;
 
     *frame.mutable_parent() = parent_;
@@ -22,7 +22,7 @@ viam::app::v1::Frame LinkConfig::to_proto() {
     return frame;
 };
 
-LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
+const LinkConfig LinkConfig::from_proto(viam::app::v1::Frame proto) {
     LinkConfig lc;
 
     lc.parent_ = proto.parent();

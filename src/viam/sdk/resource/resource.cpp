@@ -31,16 +31,28 @@ std::string Subtype::to_string() const {
     return Type::to_string() + ":" + resource_subtype_;
 }
 
-std::string Type::type_namespace() {
+const std::string& Type::type_namespace() const {
     return namespace_;
 }
 
-std::string Type::resource_type() {
+void Type::set_namespace(const std::string type_namespace) {
+    this->namespace_ = type_namespace;
+}
+
+void Type::set_resource_type(const std::string resource_type) {
+    this->resource_type_ = resource_type;
+}
+
+const std::string& Type::resource_type() const {
     return resource_type_;
 }
 
-std::string Subtype::resource_subtype() {
+const std::string& Subtype::resource_subtype() const {
     return resource_subtype_;
+}
+
+void Subtype::set_resource_subtype(const std::string subtype) {
+    this->resource_subtype_ = subtype;
 }
 
 Subtype Subtype::from_string(std::string subtype) {
@@ -94,10 +106,10 @@ const std::string Name::short_name() const {
     return name_;
 }
 
-viam::common::v1::ResourceName Name::to_proto() {
+const viam::common::v1::ResourceName Name::to_proto() const {
     viam::common::v1::ResourceName rn;
     *rn.mutable_namespace_() = this->type_namespace();
-    *rn.mutable_name() = this->name_;
+    *rn.mutable_name() = this->name();
     *rn.mutable_type() = this->resource_type();
     *rn.mutable_subtype() = this->resource_subtype();
     return rn;

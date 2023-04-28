@@ -15,8 +15,11 @@ class Type {
     Type(){};
     virtual std::string to_string() const;
 
-    std::string type_namespace();
-    std::string resource_type();
+    const std::string& type_namespace() const;
+    const std::string& resource_type() const;
+
+    void set_namespace(const std::string type_namespace);
+    void set_resource_type(const std::string resource_type);
 
    private:
     std::string namespace_;
@@ -31,7 +34,8 @@ class Subtype : public Type {
     Subtype(Type type, std::string resource_subtype);
     static Subtype from_string(std::string subtype);
 
-    std::string resource_subtype();
+    const std::string& resource_subtype() const;
+    void set_resource_subtype(const std::string subtype);
     bool is_component_type();
     bool is_service_type();
     friend bool operator==(Subtype const& lhs, Subtype const& rhs);
@@ -49,7 +53,7 @@ class Name : public Subtype {
     virtual std::string to_string() const override;
     // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
-    viam::common::v1::ResourceName to_proto();
+    const viam::common::v1::ResourceName to_proto() const;
     static Name from_string(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();

@@ -97,26 +97,27 @@ class Camera : public ComponentBase {
     static Subtype subtype();
 
     /// @brief Creates a `raw_image` struct from its proto representation.
-    static raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);
+    static const raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);
 
     /// @brief Creates a `point_cloud` struct from its proto representation.
-    static point_cloud from_proto(viam::component::camera::v1::GetPointCloudResponse proto);
+    static const point_cloud from_proto(viam::component::camera::v1::GetPointCloudResponse proto);
 
     /// @brief creates an `intrinsic_parameters` struct from its proto representation.
-    static intrinsic_parameters from_proto(viam::component::camera::v1::IntrinsicParameters proto);
+    static const intrinsic_parameters from_proto(
+        viam::component::camera::v1::IntrinsicParameters proto);
 
     /// @brief creats a `distortion_parameters` struct from its proto representation.
-    static distortion_parameters from_proto(
+    static const distortion_parameters from_proto(
         viam::component::camera::v1::DistortionParameters proto);
 
     /// @brief creates a `properties` struct from its proto representation.
-    static properties from_proto(viam::component::camera::v1::GetPropertiesResponse proto);
+    static const properties from_proto(viam::component::camera::v1::GetPropertiesResponse proto);
 
     /// @brief converts a `distortion_parameters` struct to its proto representation.
-    static viam::component::camera::v1::DistortionParameters to_proto(distortion_parameters);
+    static const viam::component::camera::v1::DistortionParameters to_proto(distortion_parameters);
 
     /// @brief converts an `intrinsic_parameters` struct to its proto representation.
-    static viam::component::camera::v1::IntrinsicParameters to_proto(intrinsic_parameters);
+    static const viam::component::camera::v1::IntrinsicParameters to_proto(intrinsic_parameters);
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

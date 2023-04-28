@@ -18,9 +18,9 @@ typedef boost::
 
 class OrientationConfig {
    public:
-    viam::app::v1::Orientation to_proto();
+    const viam::app::v1::Orientation to_proto() const;
 
-    static OrientationConfig from_proto(viam::app::v1::Orientation proto);
+    static const OrientationConfig from_proto(viam::app::v1::Orientation proto);
 
    private:
     OrientationType type_;

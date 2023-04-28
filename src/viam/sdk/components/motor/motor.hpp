@@ -67,22 +67,22 @@ class Motor : public ComponentBase {
     static Subtype subtype();
 
     /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(viam::component::motor::v1::GetPositionResponse proto);
+    static const position from_proto(viam::component::motor::v1::GetPositionResponse proto);
 
     /// @brief Creates a `power_status` struct from its proto representation.
-    static power_status from_proto(viam::component::motor::v1::IsPoweredResponse proto);
+    static const power_status from_proto(viam::component::motor::v1::IsPoweredResponse proto);
 
     /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(viam::component::motor::v1::GetPropertiesResponse proto);
+    static const properties from_proto(viam::component::motor::v1::GetPropertiesResponse proto);
 
     /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::motor::v1::GetPositionResponse to_proto(position position);
+    static const viam::component::motor::v1::GetPositionResponse to_proto(position position);
 
     /// @brief Converts a `power_status` struct to its proto representation.
-    static viam::component::motor::v1::IsPoweredResponse to_proto(power_status power_status);
+    static const viam::component::motor::v1::IsPoweredResponse to_proto(power_status power_status);
 
     /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::motor::v1::GetPropertiesResponse to_proto(properties properties);
+    static const viam::component::motor::v1::GetPropertiesResponse to_proto(properties properties);
 
     /// @brief Sets the percentage of the motor's total power that should be employed.
     /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values

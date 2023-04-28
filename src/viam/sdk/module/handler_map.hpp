@@ -13,7 +13,7 @@ class HandlerMap_ {
     void add_model(Model model, RPCSubtype subtype);
 
     const viam::module::v1::HandlerMap to_proto() const;
-    static HandlerMap_ from_proto(viam::module::v1::HandlerMap proto);
+    static const HandlerMap_ from_proto(viam::module::v1::HandlerMap proto);
 
    private:
     std::unordered_map<RPCSubtype, std::vector<Model>> handles_;
