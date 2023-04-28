@@ -74,79 +74,27 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1DialOptions-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::DialOptions Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:af31fc1ba8888fb0a3b72886076720d75"><td class="memItemLeft" align="right" valign="top"><a id="af31fc1ba8888fb0a3b72886076720d75" name="af31fc1ba8888fb0a3b72886076720d75"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>disable_webrtc</b></td></tr>
-<tr class="memdesc:af31fc1ba8888fb0a3b72886076720d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bypass webRTC and connect directly to the robot. <br /></td></tr>
-<tr class="separator:af31fc1ba8888fb0a3b72886076720d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb5fe45e77c36e5d7bea537695842c82"><td class="memItemLeft" align="right" valign="top"><a id="acb5fe45e77c36e5d7bea537695842c82" name="acb5fe45e77c36e5d7bea537695842c82"></a>
-boost::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>auth_entity</b></td></tr>
-<tr class="memdesc:acb5fe45e77c36e5d7bea537695842c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">the URL to authenticate against <br /></td></tr>
-<tr class="separator:acb5fe45e77c36e5d7bea537695842c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8bcb83761a79624d7d5574e78536193"><td class="memItemLeft" align="right" valign="top"><a id="ab8bcb83761a79624d7d5574e78536193" name="ab8bcb83761a79624d7d5574e78536193"></a>
-boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1Credentials.html">Credentials</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>credentials</b></td></tr>
-<tr class="memdesc:ab8bcb83761a79624d7d5574e78536193"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classviam_1_1sdk_1_1Credentials.html">Credentials</a> for connecting to the robot. <br /></td></tr>
-<tr class="separator:ab8bcb83761a79624d7d5574e78536193"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae96bbe1d868c07fec2040b08cd5675cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1DialOptions.html#ae96bbe1d868c07fec2040b08cd5675cf">insecure</a></td></tr>
-<tr class="separator:ae96bbe1d868c07fec2040b08cd5675cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a482b9846695a0d94f35249cd8e9b1aa7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1DialOptions.html#a482b9846695a0d94f35249cd8e9b1aa7">allow_insecure_downgrade</a></td></tr>
-<tr class="separator:a482b9846695a0d94f35249cd8e9b1aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf53a825efba4323a128504190d98fc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1DialOptions.html#abf53a825efba4323a128504190d98fc0">allow_insecure_with_creds_downgrade</a></td></tr>
-<tr class="separator:abf53a825efba4323a128504190d98fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1fc0e6f0db8c8a739f7273916de2b893"><td class="memItemLeft" align="right" valign="top"><a id="a1fc0e6f0db8c8a739f7273916de2b893" name="a1fc0e6f0db8c8a739f7273916de2b893"></a>
+const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1Credentials.html">Credentials</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>credentials</b> () const</td></tr>
+<tr class="separator:a1fc0e6f0db8c8a739f7273916de2b893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a891369f3429271688fcaa93f05f85537"><td class="memItemLeft" align="right" valign="top"><a id="a891369f3429271688fcaa93f05f85537" name="a891369f3429271688fcaa93f05f85537"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>allows_insecure_downgrade</b> () const</td></tr>
+<tr class="separator:a891369f3429271688fcaa93f05f85537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eff3555a1ff0f4aea596b5d8e07da5a"><td class="memItemLeft" align="right" valign="top"><a id="a9eff3555a1ff0f4aea596b5d8e07da5a" name="a9eff3555a1ff0f4aea596b5d8e07da5a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_credentials</b> (boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1Credentials.html">Credentials</a> &gt; creds)</td></tr>
+<tr class="separator:a9eff3555a1ff0f4aea596b5d8e07da5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b3636f54b6a373997dc1792f79ef7d"><td class="memItemLeft" align="right" valign="top"><a id="af9b3636f54b6a373997dc1792f79ef7d" name="af9b3636f54b6a373997dc1792f79ef7d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_allow_insecure_downgrade</b> (bool allow)</td></tr>
+<tr class="separator:af9b3636f54b6a373997dc1792f79ef7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a482b9846695a0d94f35249cd8e9b1aa7" name="a482b9846695a0d94f35249cd8e9b1aa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a482b9846695a0d94f35249cd8e9b1aa7">&#9670;&#160;</a></span>allow_insecure_downgrade</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool viam::sdk::DialOptions::allow_insecure_downgrade</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>allow the RPC connection to be downgraded to an insecure connection if detected. This is only used when credentials are not present </p>
-
-</div>
-</div>
-<a id="abf53a825efba4323a128504190d98fc0" name="abf53a825efba4323a128504190d98fc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf53a825efba4323a128504190d98fc0">&#9670;&#160;</a></span>allow_insecure_with_creds_downgrade</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool viam::sdk::DialOptions::allow_insecure_with_creds_downgrade</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>allow the RPC connection to be downgraded to an insecure connection if detected, even with credentials present. This is generally unsafe to do, but can be requested </p>
-
-</div>
-</div>
-<a id="ae96bbe1d868c07fec2040b08cd5675cf" name="ae96bbe1d868c07fec2040b08cd5675cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae96bbe1d868c07fec2040b08cd5675cf">&#9670;&#160;</a></span>insecure</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool viam::sdk::DialOptions::insecure</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Determine if the connection is TLS-based. Must be set to <code>true</code> to establish an insecure connection. Otherwise, a TLS-based connection will be assumed </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/viam/sdk/rpc/<a class="el" href="dial_8hpp_source.html">dial.hpp</a></li>
 </ul>

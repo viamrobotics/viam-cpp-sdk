@@ -115,15 +115,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0e40b6f8a1faf4cf4324d72531bc238e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31519ca9603c11b9843a1122a4fa3ac5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1CameraServer.html#a31519ca9603c11b9843a1122a4fa3ac5">register_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &gt; server) override</td></tr>
 <tr class="separator:a31519ca9603c11b9843a1122a4fa3ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94f79f7b9db834f249eea3b1501214c4"><td class="memItemLeft" align="right" valign="top"><a id="a94f79f7b9db834f249eea3b1501214c4" name="a94f79f7b9db834f249eea3b1501214c4"></a>
-std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_sub_svc</b> ()</td></tr>
-<tr class="separator:a94f79f7b9db834f249eea3b1501214c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dd92192313948c628b4ca70fdaf35d3"><td class="memItemLeft" align="right" valign="top"><a id="a8dd92192313948c628b4ca70fdaf35d3" name="a8dd92192313948c628b4ca70fdaf35d3"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CameraServer</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt; sub_svc)</td></tr>
 <tr class="separator:a8dd92192313948c628b4ca70fdaf35d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac29e19d53907c27c5934cb3592895356"><td class="memItemLeft" align="right" valign="top"><a id="ac29e19d53907c27c5934cb3592895356" name="ac29e19d53907c27c5934cb3592895356"></a>
+<tr class="inherit_header pub_methods_classviam_1_1sdk_1_1ResourceServerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classviam_1_1sdk_1_1ResourceServerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1ResourceServerBase.html">viam::sdk::ResourceServerBase</a></td></tr>
+<tr class="memitem:ac29e19d53907c27c5934cb3592895356 inherit pub_methods_classviam_1_1sdk_1_1ResourceServerBase"><td class="memItemLeft" align="right" valign="top"><a id="ac29e19d53907c27c5934cb3592895356" name="ac29e19d53907c27c5934cb3592895356"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>register_server</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &gt; server)=0</td></tr>
-<tr class="separator:ac29e19d53907c27c5934cb3592895356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ac29e19d53907c27c5934cb3592895356 inherit pub_methods_classviam_1_1sdk_1_1ResourceServerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0ce4a1a9836d38aef0a64c5771e792 inherit pub_methods_classviam_1_1sdk_1_1ResourceServerBase"><td class="memItemLeft" align="right" valign="top"><a id="a0b0ce4a1a9836d38aef0a64c5771e792" name="a0b0ce4a1a9836d38aef0a64c5771e792"></a>
+const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_sub_svc</b> () const</td></tr>
+<tr class="separator:a0b0ce4a1a9836d38aef0a64c5771e792 inherit pub_methods_classviam_1_1sdk_1_1ResourceServerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classviam_1_1sdk_1_1ResourceServerBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classviam_1_1sdk_1_1ResourceServerBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1ResourceServerBase.html">viam::sdk::ResourceServerBase</a></td></tr>
+<tr class="memitem:ac813e4d051e29b1613bfefd6c91f95cc inherit pro_methods_classviam_1_1sdk_1_1ResourceServerBase"><td class="memItemLeft" align="right" valign="top"><a id="ac813e4d051e29b1613bfefd6c91f95cc" name="ac813e4d051e29b1613bfefd6c91f95cc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceServerBase</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt; sub_svc)</td></tr>
+<tr class="separator:ac813e4d051e29b1613bfefd6c91f95cc inherit pro_methods_classviam_1_1sdk_1_1ResourceServerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>gRPC server implementation of a <code><a class="el" href="classviam_1_1sdk_1_1Camera.html" title="A Camera represents any physical hardware that can capture frames.">Camera</a></code> component. </p>

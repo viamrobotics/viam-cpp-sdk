@@ -89,20 +89,31 @@ $(function() {
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Module.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1Module.html">Module</a> {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::mutex lock;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    std::string name;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::string addr;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">bool</span> ready;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1HandlerMap__.html">HandlerMap_</a> handles;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::shared_ptr&lt;grpc::Channel&gt; channel;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    std::unordered_map&lt;Subtype, std::shared_ptr&lt;SubtypeService&gt;&gt; services;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::vector&lt;std::shared_ptr&lt;ResourceServerBase&gt;&gt; servers;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> set_ready();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Module.html">Module</a>(std::string addr);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">void</span> set_ready();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Module.html">Module</a>(std::string addr);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">const</span> std::string&amp; name() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">const</span> std::string&amp; addr() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">bool</span> ready() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1HandlerMap__.html">HandlerMap_</a>&amp; handles() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1HandlerMap__.html">HandlerMap_</a>&amp; mutable_handles();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">const</span> std::shared_ptr&lt;grpc::Channel&gt;&amp; channel() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">const</span> std::unordered_map&lt;Subtype, std::shared_ptr&lt;SubtypeService&gt;&gt;&amp; services() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    std::unordered_map&lt;Subtype, std::shared_ptr&lt;SubtypeService&gt;&gt;&amp; mutable_services();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">const</span> std::vector&lt;std::shared_ptr&lt;ResourceServerBase&gt;&gt;&amp; servers() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::vector&lt;std::shared_ptr&lt;ResourceServerBase&gt;&gt;&amp; mutable_servers();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::string name_;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::string addr_;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">bool</span> ready_;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1HandlerMap__.html">HandlerMap_</a> handles_;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::unordered_map&lt;Subtype, std::shared_ptr&lt;SubtypeService&gt;&gt; services_;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::vector&lt;std::shared_ptr&lt;ResourceServerBase&gt;&gt; servers_;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1HandlerMap___html"><div class="ttname"><a href="classviam_1_1sdk_1_1HandlerMap__.html">viam::sdk::HandlerMap_</a></div><div class="ttdef"><b>Definition:</b> handler_map.hpp:10</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Module_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Module.html">viam::sdk::Module</a></div><div class="ttdef"><b>Definition:</b> module.hpp:12</div></div>
 </div><!-- fragment --></div><!-- contents -->

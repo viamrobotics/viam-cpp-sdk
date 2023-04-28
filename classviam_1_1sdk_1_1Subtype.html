@@ -76,7 +76,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classviam_1_1sdk_1_1Subtype-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::Subtype Class Reference</div></div>
@@ -105,9 +104,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ffb1e0512954cc2546e42e21639b5e6"><td class="memItemLeft" align="right" valign="top"><a id="a5ffb1e0512954cc2546e42e21639b5e6" name="a5ffb1e0512954cc2546e42e21639b5e6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Subtype</b> (<a class="el" href="classviam_1_1sdk_1_1Type.html">Type</a> type, std::string resource_subtype)</td></tr>
 <tr class="separator:a5ffb1e0512954cc2546e42e21639b5e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e633c3329240c1dc696645d4a03795d"><td class="memItemLeft" align="right" valign="top"><a id="a2e633c3329240c1dc696645d4a03795d" name="a2e633c3329240c1dc696645d4a03795d"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>resource_subtype</b> ()</td></tr>
-<tr class="separator:a2e633c3329240c1dc696645d4a03795d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f5ba7886e795165958bedb22bac968"><td class="memItemLeft" align="right" valign="top"><a id="a26f5ba7886e795165958bedb22bac968" name="a26f5ba7886e795165958bedb22bac968"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resource_subtype</b> () const</td></tr>
+<tr class="separator:a26f5ba7886e795165958bedb22bac968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1363bcf4b8229939d449344363196cf6"><td class="memItemLeft" align="right" valign="top"><a id="a1363bcf4b8229939d449344363196cf6" name="a1363bcf4b8229939d449344363196cf6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_resource_subtype</b> (const std::string subtype)</td></tr>
+<tr class="separator:a1363bcf4b8229939d449344363196cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd3da9f794cf3f2e9171a4d93b5404e3"><td class="memItemLeft" align="right" valign="top"><a id="afd3da9f794cf3f2e9171a4d93b5404e3" name="afd3da9f794cf3f2e9171a4d93b5404e3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_component_type</b> ()</td></tr>
 <tr class="separator:afd3da9f794cf3f2e9171a4d93b5404e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,31 +123,24 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_service_type</b> (
 <tr class="memitem:a6d87de22912139a044a50a4f902f2dc4 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="a6d87de22912139a044a50a4f902f2dc4" name="a6d87de22912139a044a50a4f902f2dc4"></a>
 virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>to_string</b> () const</td></tr>
 <tr class="separator:a6d87de22912139a044a50a4f902f2dc4 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf1a8ec6aefbb8ee19baabcf3f932ca0 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="acf1a8ec6aefbb8ee19baabcf3f932ca0" name="acf1a8ec6aefbb8ee19baabcf3f932ca0"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>type_namespace</b> ()</td></tr>
-<tr class="separator:acf1a8ec6aefbb8ee19baabcf3f932ca0 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1e83659a7e64afdd07bf7d01cfaf264 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="af1e83659a7e64afdd07bf7d01cfaf264" name="af1e83659a7e64afdd07bf7d01cfaf264"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>resource_type</b> ()</td></tr>
-<tr class="separator:af1e83659a7e64afdd07bf7d01cfaf264 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23fef896d468c4d44ff6762837dd75ac inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="a23fef896d468c4d44ff6762837dd75ac" name="a23fef896d468c4d44ff6762837dd75ac"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>type_namespace</b> () const</td></tr>
+<tr class="separator:a23fef896d468c4d44ff6762837dd75ac inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae509b9b21875a487f23207def5289b58 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="ae509b9b21875a487f23207def5289b58" name="ae509b9b21875a487f23207def5289b58"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resource_type</b> () const</td></tr>
+<tr class="separator:ae509b9b21875a487f23207def5289b58 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb5f5f5422b311897b5574fd5cec2676 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="afb5f5f5422b311897b5574fd5cec2676" name="afb5f5f5422b311897b5574fd5cec2676"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_namespace</b> (const std::string type_namespace)</td></tr>
+<tr class="separator:afb5f5f5422b311897b5574fd5cec2676 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18b8b791db829d0d7eec0a38f7678f79 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="a18b8b791db829d0d7eec0a38f7678f79" name="a18b8b791db829d0d7eec0a38f7678f79"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_resource_type</b> (const std::string resource_type)</td></tr>
+<tr class="separator:a18b8b791db829d0d7eec0a38f7678f79 inherit pub_methods_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a77c537b76e9f395ee9b70d08c94b478b"><td class="memItemLeft" align="right" valign="top"><a id="a77c537b76e9f395ee9b70d08c94b478b" name="a77c537b76e9f395ee9b70d08c94b478b"></a>
 static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_string</b> (std::string subtype)</td></tr>
 <tr class="separator:a77c537b76e9f395ee9b70d08c94b478b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a02a0f0d39183ca97b198baab1be5bda4"><td class="memItemLeft" align="right" valign="top"><a id="a02a0f0d39183ca97b198baab1be5bda4" name="a02a0f0d39183ca97b198baab1be5bda4"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>resource_subtype_</b></td></tr>
-<tr class="separator:a02a0f0d39183ca97b198baab1be5bda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classviam_1_1sdk_1_1Type"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classviam_1_1sdk_1_1Type')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classviam_1_1sdk_1_1Type.html">viam::sdk::Type</a></td></tr>
-<tr class="memitem:a373c239877c21d9c39692a1cad6871be inherit pro_attribs_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="a373c239877c21d9c39692a1cad6871be" name="a373c239877c21d9c39692a1cad6871be"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>namespace_</b></td></tr>
-<tr class="separator:a373c239877c21d9c39692a1cad6871be inherit pro_attribs_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a569414c24b91a1f1ee181bde5ef41d7f inherit pro_attribs_classviam_1_1sdk_1_1Type"><td class="memItemLeft" align="right" valign="top"><a id="a569414c24b91a1f1ee181bde5ef41d7f" name="a569414c24b91a1f1ee181bde5ef41d7f"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>resource_type_</b></td></tr>
-<tr class="separator:a569414c24b91a1f1ee181bde5ef41d7f inherit pro_attribs_classviam_1_1sdk_1_1Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
