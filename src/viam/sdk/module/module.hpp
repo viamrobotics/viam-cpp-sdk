@@ -15,7 +15,7 @@ class Module {
     Module(std::string addr);
     const std::string& name() const;
     const std::string& addr() const;
-    const bool ready() const;
+    bool ready() const;
     const HandlerMap_& handles() const;
     HandlerMap_& mutable_handles();
     const std::shared_ptr<grpc::Channel>& channel() const;

@@ -90,7 +90,7 @@ void Resource::fix_api() {
     }
 }
 
-const Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
+Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     Resource resource(proto_cfg.type());
     resource.name_ = proto_cfg.name();
     resource.namespace__ = proto_cfg.namespace_();
@@ -115,7 +115,7 @@ const Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     return resource;
 };
 
-const viam::app::v1::ComponentConfig Resource::to_proto() const {
+viam::app::v1::ComponentConfig Resource::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
     google::protobuf::Struct s = map_to_struct(attributes_);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;

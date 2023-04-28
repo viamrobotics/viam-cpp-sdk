@@ -99,14 +99,14 @@ std::string Name::to_string() const {
     return subtype_name + "/" + remote_name_ + ":" + name_;
 }
 
-const std::string Name::short_name() const {
+std::string Name::short_name() const {
     if (remote_name_ != "") {
         return remote_name_ + ":" + name_;
     }
     return name_;
 }
 
-const viam::common::v1::ResourceName Name::to_proto() const {
+viam::common::v1::ResourceName Name::to_proto() const {
     viam::common::v1::ResourceName rn;
     *rn.mutable_namespace_() = this->type_namespace();
     *rn.mutable_name() = this->name();

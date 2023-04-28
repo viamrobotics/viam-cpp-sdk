@@ -50,7 +50,7 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
 void DialOptions::set_allow_insecure_downgrade(bool allow) {
     allow_insecure_downgrade_ = allow;
 }
-const bool DialOptions::allows_insecure_downgrade() const {
+bool DialOptions::allows_insecure_downgrade() const {
     return allow_insecure_downgrade_;
 }
 
@@ -80,7 +80,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
 };
 
-const unsigned int Options::refresh_interval() const {
+unsigned int Options::refresh_interval() const {
     return refresh_interval_;
 }
 

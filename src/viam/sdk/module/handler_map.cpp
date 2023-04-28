@@ -14,7 +14,7 @@
 namespace viam {
 namespace sdk {
 
-const viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
+viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
     viam::module::v1::HandlerMap proto;
     for (auto& h : this->handles_) {
         viam::module::v1::HandlerDefinition hd;

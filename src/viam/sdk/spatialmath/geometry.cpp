@@ -10,13 +10,13 @@
 namespace viam {
 namespace sdk {
 
-const viam::common::v1::Sphere GeometryConfig::sphere_proto() const {
+viam::common::v1::Sphere GeometryConfig::sphere_proto() const {
     viam::common::v1::Sphere sphere;
     sphere.set_radius_mm(r_);
     return sphere;
 }
 
-const viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
+viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
     viam::common::v1::RectangularPrism box;
     viam::common::v1::Vector3 vec3;
     vec3.set_x(x_);
@@ -26,7 +26,7 @@ const viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
     return box;
 }
 
-const viam::common::v1::Pose GeometryConfig::pose_proto() const {
+viam::common::v1::Pose GeometryConfig::pose_proto() const {
     viam::common::v1::Pose pose;
     pose.set_x(x_);
     pose.set_y(y_);
@@ -38,7 +38,7 @@ const viam::common::v1::Pose GeometryConfig::pose_proto() const {
     return pose;
 }
 
-const GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
+GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
     GeometryConfig cfg;
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
@@ -64,7 +64,7 @@ const GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto
     }
 }
 
-const viam::common::v1::Geometry GeometryConfig::to_proto() const {
+viam::common::v1::Geometry GeometryConfig::to_proto() const {
     viam::common::v1::Geometry geometry_;
     *geometry_.mutable_label() = label_;
     switch (geometry_type_) {

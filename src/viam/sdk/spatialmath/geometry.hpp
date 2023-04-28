@@ -19,11 +19,11 @@ enum GeometryType {
 
 class GeometryConfig {
    public:
-    const viam::common::v1::Geometry to_proto() const;
-    const viam::common::v1::RectangularPrism box_proto() const;
-    const viam::common::v1::Sphere sphere_proto() const;
-    const viam::common::v1::Pose pose_proto() const;
-    static const GeometryConfig from_proto(viam::common::v1::Geometry proto);
+    viam::common::v1::Geometry to_proto() const;
+    viam::common::v1::RectangularPrism box_proto() const;
+    viam::common::v1::Sphere sphere_proto() const;
+    viam::common::v1::Pose pose_proto() const;
+    static GeometryConfig from_proto(viam::common::v1::Geometry proto);
 
    private:
     GeometryType geometry_type_;

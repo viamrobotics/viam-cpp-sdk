@@ -12,8 +12,8 @@ namespace sdk {
 
 class LinkConfig {
    public:
-    const viam::app::v1::Frame to_proto() const;
-    static const LinkConfig from_proto(viam::app::v1::Frame proto);
+    viam::app::v1::Frame to_proto() const;
+    static LinkConfig from_proto(viam::app::v1::Frame proto);
 
    private:
     std::string id_;

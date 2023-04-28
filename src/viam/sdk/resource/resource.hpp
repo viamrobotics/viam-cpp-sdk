@@ -49,11 +49,11 @@ class Subtype : public Type {
 // Subtype as a member
 class Name : public Subtype {
    public:
-    const std::string short_name() const;
+    std::string short_name() const;
     virtual std::string to_string() const override;
     // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
-    const viam::common::v1::ResourceName to_proto() const;
+    viam::common::v1::ResourceName to_proto() const;
     static Name from_string(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();

@@ -15,7 +15,7 @@ namespace sdk {
 
 namespace proto = viam::app::v1;
 
-const OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
+OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     OrientationConfig cfg;
     switch (proto.type_case()) {
         case proto::Orientation::TypeCase::kAxisAngles: {
@@ -87,7 +87,7 @@ const OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) 
     return cfg;
 }
 
-const proto::Orientation OrientationConfig::to_proto() const {
+proto::Orientation OrientationConfig::to_proto() const {
     proto::Orientation orientation;
     switch (type_) {
         case AxisAngles: {

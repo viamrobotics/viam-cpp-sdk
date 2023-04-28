@@ -52,7 +52,7 @@ google::protobuf::RepeatedField<double> vector_to_repeated_field(std::vector<dou
     return rf;
 }
 
-const Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
+Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
     Camera::raw_image raw_image;
     std::string img_string = proto.image();
     std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
@@ -61,8 +61,7 @@ const Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImage
     return raw_image;
 }
 
-const Camera::point_cloud Camera::from_proto(
-    viam::component::camera::v1::GetPointCloudResponse proto) {
+Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto) {
     Camera::point_cloud point_cloud;
     std::string pc_string = proto.point_cloud();
     std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
@@ -71,7 +70,7 @@ const Camera::point_cloud Camera::from_proto(
     return point_cloud;
 }
 
-const Camera::intrinsic_parameters Camera::from_proto(
+Camera::intrinsic_parameters Camera::from_proto(
     viam::component::camera::v1::IntrinsicParameters proto) {
     Camera::intrinsic_parameters params;
     params.width_px = proto.width_px();
@@ -83,7 +82,7 @@ const Camera::intrinsic_parameters Camera::from_proto(
     return params;
 }
 
-const Camera::distortion_parameters Camera::from_proto(
+Camera::distortion_parameters Camera::from_proto(
     viam::component::camera::v1::DistortionParameters proto) {
     Camera::distortion_parameters params;
     params.model = proto.model();
@@ -91,8 +90,7 @@ const Camera::distortion_parameters Camera::from_proto(
     return params;
 }
 
-const Camera::properties Camera::from_proto(
-    viam::component::camera::v1::GetPropertiesResponse proto) {
+Camera::properties Camera::from_proto(viam::component::camera::v1::GetPropertiesResponse proto) {
     Camera::distortion_parameters distortion_parameters;
     Camera::intrinsic_parameters intrinsic_parameters;
     Camera::properties properties;
@@ -112,7 +110,7 @@ const Camera::properties Camera::from_proto(
     return properties;
 }
 
-const viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
+viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
     Camera::intrinsic_parameters params) {
     viam::component::camera::v1::IntrinsicParameters proto;
     proto.set_width_px(params.width_px);
@@ -123,7 +121,7 @@ const viam::component::camera::v1::IntrinsicParameters Camera::to_proto(
     proto.set_center_y_px(params.center_y_px);
     return proto;
 }
-const viam::component::camera::v1::DistortionParameters Camera::to_proto(
+viam::component::camera::v1::DistortionParameters Camera::to_proto(
     Camera::distortion_parameters params) {
     viam::component::camera::v1::DistortionParameters proto;
     *proto.mutable_model() = params.model;

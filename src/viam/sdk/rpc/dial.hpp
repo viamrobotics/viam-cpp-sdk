@@ -41,7 +41,7 @@ class DialOptions {
         : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false) {}
 
     const boost::optional<Credentials>& credentials() const;
-    const bool allows_insecure_downgrade() const;
+    bool allows_insecure_downgrade() const;
 
     void set_credentials(boost::optional<Credentials> creds);
     void set_allow_insecure_downgrade(bool allow);
@@ -67,7 +67,7 @@ class Options {
     Options(unsigned int refresh_interval, boost::optional<DialOptions> dial_options)
         : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
 
-    const unsigned int refresh_interval() const;
+    unsigned int refresh_interval() const;
     const boost::optional<DialOptions>& dial_options() const;
 
    private:

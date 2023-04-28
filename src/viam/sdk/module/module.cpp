@@ -22,7 +22,7 @@ const std::string& Module::name() const {
 const std::string& Module::addr() const {
     return addr_;
 };
-const bool Module::ready() const {
+bool Module::ready() const {
     return ready_;
 };
 const HandlerMap_& Module::handles() const {

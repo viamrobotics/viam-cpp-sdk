@@ -66,7 +66,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
                                            ::viam::module::v1::AddResourceResponse* response) {
     viam::app::v1::ComponentConfig proto = request->config();
     Resource cfg = Resource::from_proto(proto);
-    std::shared_ptr<Module> module = this->module_;
+    auto module = this->module_;
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<ResourceBase> res;
