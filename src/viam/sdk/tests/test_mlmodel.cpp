@@ -299,16 +299,14 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
 
     BOOST_TEST(detection_results(0, 0, 0) == 0);
 
-    BOOST_TEST(detection_results(0,
-                                 detection_results_shape[1] - 1,
-                                 detection_results_shape[2] - 1) ==
-               k_detection_results_buffer_size/2 - 1);
+    BOOST_TEST(
+        detection_results(0, detection_results_shape[1] - 1, detection_results_shape[2] - 1) ==
+        k_detection_results_buffer_size / 2 - 1);
 
     BOOST_TEST(detection_results(detection_results_shape[0] - 1,
                                  detection_results_shape[1] - 1,
                                  detection_results_shape[2] - 1) ==
                k_detection_results_buffer_size - 1);
-
 
     // TODO: Validate that we can efficiently fragement to 50 newly
     // allocated 4 element vectors with 50 copies, as we would need to

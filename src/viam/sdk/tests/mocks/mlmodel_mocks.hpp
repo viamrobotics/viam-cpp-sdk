@@ -23,14 +23,15 @@ namespace sdktests {
 
 class MockMLModelService : public sdk::MLModelService {
    public:
-    explicit MockMLModelService(std::string name = "mock_mlmodel") : MLModelService(std::move(name)) {}
+    explicit MockMLModelService(std::string name = "mock_mlmodel")
+        : MLModelService(std::move(name)) {}
 
     infer_result infer(const tensor_map& inputs) override;
 
     MockMLModelService& metadata(struct metadata metadata);
     struct metadata metadata() override;
 
-private:
+   private:
     struct metadata metadata_;
 };
 

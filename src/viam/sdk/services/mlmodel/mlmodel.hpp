@@ -48,7 +48,9 @@ class MLModelService : public ServiceBase {
 
     using signed_integral_types =
         boost::mpl::list<std::int8_t, std::int16_t, std::int32_t, std::int64_t>;
-    using unsigned_integral_types = boost::mpl::transform_view<signed_integral_types, std::make_unsigned<boost::mpl::placeholders::_1>>;
+    using unsigned_integral_types =
+        boost::mpl::transform_view<signed_integral_types,
+                                   std::make_unsigned<boost::mpl::placeholders::_1>>;
     using integral_types = boost::mpl::joint_view<signed_integral_types, unsigned_integral_types>;
 
     using fp_types = boost::mpl::list<float, double>;
