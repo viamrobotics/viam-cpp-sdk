@@ -32,7 +32,7 @@ class EncoderSubtype : public ResourceSubtype {
 };
 
 /// @class Encoder encoder.hpp "components/encoder/encoder.hpp"
-/// @brief TODO
+/// @brief An encoder is a device that is hooked up to motors to report a position
 /// @ingroup Encoder
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
@@ -40,24 +40,26 @@ class EncoderSubtype : public ResourceSubtype {
 class Encoder : public ComponentBase {
    public:
     /// @enum position_type
-    /// @brief TODO.
-    enum position_type { UNSPECIFIED, TICKS_COUNT, ANGLE_DEGREES };
+    enum position_type {
+        // Unspecified position type
+        UNSPECIFIED,
+        // Provided by incremental encoders
+        TICKS_COUNT,
+        // Provided by absolute encoders
+        ANGLE_DEGREES
+    };
 
     /// @struct position
-    /// @brief TODO.
+    /// @brief reported position.
     struct position {
-        /// TODO
         float value;
-        /// TODO
         position_type type;
     };
 
     /// @struct properties
-    /// @brief TODO.
+    /// @brief Encodes the supported modes of this encoder
     struct properties {
-        /// TODO
         bool ticks_count_supported;
-        /// TODO
         bool angle_degrees_supported;
     };
 
@@ -65,11 +67,17 @@ class Encoder : public ComponentBase {
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
 
+    /// @brief Creates a `properties` struct from its proto representation.
+    static position_type from_proto(viam::component::encoder::v1::PositionType proto);
+
     /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::encoder::v1::GetPositionResponse proto);
 
     /// @brief Creates a `properties` struct from its proto representation.
     static properties from_proto(viam::component::encoder::v1::GetPropertiesResponse proto);
+
+    /// @brief Converts a `position` struct to its proto representation.
+    static viam::component::encoder::v1::PositionType to_proto(position_type position_type);
 
     /// @brief Converts a `position` struct to its proto representation.
     static viam::component::encoder::v1::GetPositionResponse to_proto(position position);
@@ -84,14 +92,15 @@ class Encoder : public ComponentBase {
     /// position type is UNSPECIFIED, the response will return a default according to the driver.
     virtual position get_position(position_type position_type) = 0;
 
-    /// @brief TODO
+    /// @brief Reset the value of the position
     virtual void reset_position() = 0;
 
     /// @brief Returns a list of all the position_types that are supported by the encoder.
     virtual properties get_properties() = 0;
 
-    /// @brief TODO
-    /// @param TODO TODO
+    /// @brief Send/receive arbitrary commands to the resource.
+    /// @param Command the command to execute.
+    /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
    protected:

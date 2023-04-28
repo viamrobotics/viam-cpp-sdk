@@ -38,11 +38,28 @@ Subtype Encoder::subtype() {
     return Subtype(RDK, COMPONENT, "encoder");
 }
 
+Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
+    switch (proto) {
+        case viam::component::encoder::v1::POSITION_TYPE_UNSPECIFIED: {
+            return Encoder::position_type::UNSPECIFIED;
+        }
+        case viam::component::encoder::v1::POSITION_TYPE_ANGLE_DEGREES: {
+            return Encoder::position_type::ANGLE_DEGREES;
+        }
+        case viam::component::encoder::v1::POSITION_TYPE_TICKS_COUNT: {
+            return Encoder::position_type::TICKS_COUNT;
+        }
+        default: {
+            throw std::runtime_error("Invalid proto encoder type to decode");
+        }
+    }
+}
+
 Encoder::position Encoder::from_proto(viam::component::encoder::v1::GetPositionResponse proto) {
     Encoder::position position;
     position.value = proto.value();
 
-    position.type = proto.position_type();
+    position.type = from_proto(proto.position_type());
     return position;
 }
 
@@ -54,11 +71,27 @@ Encoder::properties Encoder::from_proto(viam::component::encoder::v1::GetPropert
     return properties;
 }
 
+viam::component::encoder::v1::PositionType Encoder::to_proto(position_type position_type) {
+    switch (position_type) {
+        case Encoder::position_type::UNSPECIFIED: {
+        }
+        case Encoder::position_type::ANGLE_DEGREES: {
+            return viam::component::encoder::v1::POSITION_TYPE_ANGLE_DEGREES;
+        }
+        case Encoder::position_type::TICKS_COUNT: {
+            return viam::component::encoder::v1::POSITION_TYPE_TICKS_COUNT;
+        }
+        default: {
+            throw std::runtime_error("Invalid proto encoder type to encode");
+        }
+    }
+}
+
 viam::component::encoder::v1::GetPositionResponse Encoder::to_proto(position position) {
     viam::component::encoder::v1::GetPositionResponse proto;
     proto.set_value(position.value);
 
-    proto.set_position_type(position.position_type);
+    proto.set_position_type(to_proto(position.type));
     return proto;
 }
 
@@ -71,7 +104,7 @@ viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto(properties
 }
 
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs) {
-    return (lhs.value == rhs.value && lhs.position_type == rhs.position_type);
+    return (lhs.value == rhs.value && lhs.type == rhs.type);
 }
 
 bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) {

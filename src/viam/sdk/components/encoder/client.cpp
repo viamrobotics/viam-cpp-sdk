@@ -17,7 +17,6 @@
 namespace viam {
 namespace sdk {
 
-
 Encoder::position EncoderClient::get_position(position_type position_type) {
     viam::component::encoder::v1::GetPositionRequest request;
     viam::component::encoder::v1::GetPositionResponse response;
@@ -25,14 +24,13 @@ Encoder::position EncoderClient::get_position(position_type position_type) {
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
-    request.set_position_type(position_type);
+    request.set_position_type(to_proto(position_type));
 
     grpc::Status status = stub_->GetPosition(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
     return from_proto(response);
-    
 }
 
 void EncoderClient::reset_position() {
@@ -62,26 +60,24 @@ Encoder::properties EncoderClient::get_properties() {
         throw std::runtime_error(status.error_message());
     }
     return from_proto(response);
-    
 }
 
-AttributeMap EncoderClient::do_command(ERROR TODO) {
-    viam::component::encoder::v1::common.v1.DoCommandRequest request;
-    viam::component::encoder::v1::common.v1.DoCommandResponse response;
+AttributeMap EncoderClient::do_command(AttributeMap command) {
+    viam::common::v1::DoCommandRequest request;
+    viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
 
+    google::protobuf::Struct proto_command = map_to_struct(command);
+    *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
-    request.set_TODO(TODO);
 
     grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return from_proto(response);
-    
+    return struct_to_map(response.result());
 }
-
 
 }  // namespace sdk
 }  // namespace viam

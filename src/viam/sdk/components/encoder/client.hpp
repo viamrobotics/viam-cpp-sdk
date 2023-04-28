@@ -20,10 +20,10 @@ namespace sdk {
 /// @ingroup Encoder
 class EncoderClient : public Encoder {
    public:
-   position get_position(position_type position_type) override;
-   void reset_position() override;
-   properties get_properties() override;
-   AttributeMap do_command(ERROR TODO) override;
+    position get_position(position_type position_type) override;
+    void reset_position() override;
+    properties get_properties() override;
+    AttributeMap do_command(AttributeMap command) override;
     EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
         : Encoder(std::move(name)),
           stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
@@ -34,5 +34,5 @@ class EncoderClient : public Encoder {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-}  // namespace sdk 
+}  // namespace sdk
 }  // namespace viam

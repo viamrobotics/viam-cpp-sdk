@@ -16,29 +16,30 @@ namespace sdk {
 /// @brief gRPC server implementation of a `Encoder` component.
 /// @ingroup Encoder
 class EncoderServer : public ResourceServerBase,
-                     public viam::component::encoder::v1::EncoderService::Service {
+                      public viam::component::encoder::v1::EncoderService::Service {
    public:
-   
-    ::grpc::Status GetPosition(::grpc::ServerContext* context,
-                            const ::viam::component::encoder::v1::GetPositionRequest* request,
-                            ::viam::component::encoder::v1::GetPositionResponse* response) override;
-   
-    ::grpc::Status ResetPosition(::grpc::ServerContext* context,
-                            const ::viam::component::encoder::v1::ResetPositionRequest* request,
-                            ::viam::component::encoder::v1::ResetPositionResponse* response) override;
-   
-    ::grpc::Status GetProperties(::grpc::ServerContext* context,
-                            const ::viam::component::encoder::v1::GetPropertiesRequest* request,
-                            ::viam::component::encoder::v1::GetPropertiesResponse* response) override;
-   
-    ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                            const ::viam::component::encoder::v1::common.v1.DoCommandRequest* request,
-                            ::viam::component::encoder::v1::common.v1.DoCommandResponse* response) override;
-   
+    ::grpc::Status GetPosition(
+        ::grpc::ServerContext* context,
+        const ::viam::component::encoder::v1::GetPositionRequest* request,
+        ::viam::component::encoder::v1::GetPositionResponse* response) override;
+
+    ::grpc::Status ResetPosition(
+        ::grpc::ServerContext* context,
+        const ::viam::component::encoder::v1::ResetPositionRequest* request,
+        ::viam::component::encoder::v1::ResetPositionResponse* response) override;
+
+    ::grpc::Status GetProperties(
+        ::grpc::ServerContext* context,
+        const ::viam::component::encoder::v1::GetPropertiesRequest* request,
+        ::viam::component::encoder::v1::GetPropertiesResponse* response) override;
+
+    ::grpc::Status DoCommand(grpc::ServerContext* context,
+                             const viam::common::v1::DoCommandRequest* request,
+                             viam::common::v1::DoCommandResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    std::shared_ptr<SubtypeService> get_sub_svc();
+    std::shared_ptr<SubtypeService> resource_manager();
 
     EncoderServer() : sub_svc(std::make_shared<SubtypeService>()){};
     EncoderServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
