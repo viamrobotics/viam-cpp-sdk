@@ -57,12 +57,8 @@ void BaseClient::set_power(Vector3 linear, Vector3 angular) {
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
-    request.mutable_linear()->set_x(linear.at(0));
-    request.mutable_linear()->set_y(linear.at(1));
-    request.mutable_linear()->set_z(linear.at(2));
-    request.mutable_angular()->set_x(angular.at(0));
-    request.mutable_angular()->set_y(angular.at(1));
-    request.mutable_angular()->set_z(angular.at(2));
+    *request.mutable_linear() = Vector3::to_proto(linear);
+    *request.mutable_angular() = Vector3::to_proto(angular);
 
     grpc::Status status = stub_->SetPower(&ctx, request, &response);
     if (!status.ok()) {
@@ -70,19 +66,15 @@ void BaseClient::set_power(Vector3 linear, Vector3 angular) {
     }
 }
 
-void BaseClient::set_velocity(std::array<double, 3> linear, std::array<double, 3> angular) {
+void BaseClient::set_velocity(Vector3 linear, Vector3 angular) {
     viam::component::base::v1::SetVelocityRequest request;
     viam::component::base::v1::SetVelocityResponse response;
 
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
-    request.mutable_linear()->set_x(linear.at(0));
-    request.mutable_linear()->set_y(linear.at(1));
-    request.mutable_linear()->set_z(linear.at(2));
-    request.mutable_angular()->set_x(angular.at(0));
-    request.mutable_angular()->set_y(angular.at(1));
-    request.mutable_angular()->set_z(angular.at(2));
+    *request.mutable_linear() = Vector3::to_proto(linear);
+    *request.mutable_angular() = Vector3::to_proto(angular);
 
     grpc::Status status = stub_->SetVelocity(&ctx, request, &response);
     if (!status.ok()) {

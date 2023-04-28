@@ -41,6 +41,7 @@ target_sources(viamsdk
     registry/registry.cpp
     common/proto_type.cpp
     common/utils.cpp
+    common/linear_algebra.cpp
     components/base/base.cpp
     components/base/client.cpp
     components/base/server.cpp
@@ -87,6 +88,7 @@ target_sources(viamsdk
     FILES
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/utils.hpp
+      ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/components/base/base.hpp
       ../../viam/sdk/components/base/client.hpp
       ../../viam/sdk/components/base/server.hpp

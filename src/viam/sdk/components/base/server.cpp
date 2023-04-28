@@ -65,8 +65,9 @@ namespace sdk {
 
     std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    Vector3 linear = {request->linear().x(), request->linear().y(), request->linear().z()};
-    Vector3 angular = {request->angular().x(), request->angular().y(), request->angular().z()};
+    auto linear = Vector3::from_proto(request->linear());
+    auto angular = Vector3::from_proto(request->angular());
+
     base->set_power(linear, angular);
 
     return ::grpc::Status();
@@ -88,8 +89,9 @@ namespace sdk {
 
     std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    Vector3 linear = {request->linear().x(), request->linear().y(), request->linear().z()};
-    Vector3 angular = {request->angular().x(), request->angular().y(), request->angular().z()};
+    auto linear = Vector3::from_proto(request->linear());
+    auto angular = Vector3::from_proto(request->angular());
+
     base->set_velocity(linear, angular);
 
     return ::grpc::Status();

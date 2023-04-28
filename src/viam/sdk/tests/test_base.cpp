@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 
+#include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -24,6 +25,9 @@ namespace sdktests {
 using namespace base;
 
 using namespace viam::sdk;
+
+using boost::qvm::operator-;
+using boost::qvm::mag;
 
 BOOST_AUTO_TEST_SUITE(test_base)
 
@@ -70,16 +74,16 @@ void server_to_mock_pipeline(Lambda&& func) {
 BOOST_AUTO_TEST_CASE(test_move_straight) {
     server_to_mock_pipeline([](Base& client, std::shared_ptr<MockBase> mock) -> void {
         client.move_straight(32, 0.75);
-        BOOST_CHECK(mock->peek_move_straight_distance_mm == 32);
-        BOOST_CHECK(mock->peek_move_straight_mm_per_sec == 0.75);
+        BOOST_CHECK_EQUAL(mock->peek_move_straight_distance_mm, 32);
+        BOOST_CHECK_EQUAL(mock->peek_move_straight_mm_per_sec, 0.75);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_spin) {
     server_to_mock_pipeline([](Base& client, std::shared_ptr<MockBase> mock) -> void {
         client.spin(57.1, -21.1);
-        BOOST_CHECK(mock->peek_spin_angle_deg == 57.1);
-        BOOST_CHECK(mock->peek_spin_degs_per_sec == -21.1);
+        BOOST_CHECK_EQUAL(mock->peek_spin_angle_deg, 57.1);
+        BOOST_CHECK_EQUAL(mock->peek_spin_degs_per_sec, -21.1);
     });
 }
 
@@ -88,8 +92,9 @@ BOOST_AUTO_TEST_CASE(test_set_power) {
         Vector3 linear = {0.1, -0.1, 1.0};
         Vector3 angular = {0.5, -1.0, 1.0};
         client.set_power(linear, angular);
-        BOOST_CHECK(mock->peek_set_power_linear == linear);
-        BOOST_CHECK(mock->peek_set_power_angular == angular);
+
+        BOOST_CHECK_SMALL(mag(mock->peek_set_power_linear - linear), 0.01);
+        BOOST_CHECK_SMALL(mag(mock->peek_set_power_angular - angular), 0.01);
     });
 }
 
@@ -98,8 +103,9 @@ BOOST_AUTO_TEST_CASE(test_set_velocity) {
         Vector3 linear = {0.1, -0.1, 1.0};
         Vector3 angular = {0.5, -1.0, 1.0};
         client.set_velocity(linear, angular);
-        BOOST_CHECK(mock->peek_set_velocity_linear == linear);
-        BOOST_CHECK(mock->peek_set_velocity_angular == angular);
+
+        BOOST_CHECK_SMALL(mag(mock->peek_set_velocity_linear - linear), 0.01);
+        BOOST_CHECK_SMALL(mag(mock->peek_set_velocity_angular - angular), 0.01);
     });
 }
 
