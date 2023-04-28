@@ -6,8 +6,8 @@
 #include <viam/api/common/v1/common.grpc.pb.h>
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
-#include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/resource_server_base.hpp>
 
 namespace viam {
 namespace sdk {

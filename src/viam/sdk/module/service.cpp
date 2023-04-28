@@ -31,10 +31,10 @@
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {

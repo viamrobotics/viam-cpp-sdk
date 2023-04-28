@@ -2,9 +2,9 @@
 
 #include <viam/sdk/module/handler_map.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
