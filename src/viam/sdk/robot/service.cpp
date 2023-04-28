@@ -30,7 +30,7 @@ using viam::robot::v1::Status;
 
 std::vector<ResourceName> RobotService_::generate_metadata() {
     std::vector<ResourceName> metadata;
-    for (const auto& key_and_val : get_sub_svc()->resources()) {
+    for (const auto& key_and_val : resource_manager()->resources()) {
         for (ResourceName resource : resource_names_for_resource(key_and_val.second)) {
             metadata.push_back(resource);
         }
@@ -40,7 +40,7 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
-    for (auto& cmp : get_sub_svc()->resources()) {
+    for (auto& cmp : resource_manager()->resources()) {
         std::shared_ptr<ResourceBase> resource = cmp.second;
         for (auto& registry : Registry::registered_resources()) {
             std::shared_ptr<ModelRegistration> registration = registry.second;
@@ -153,7 +153,7 @@ void RobotService_::stream_status(
         std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
 
-        for (auto& r : get_sub_svc()->resources()) {
+        for (auto& r : resource_manager()->resources()) {
             std::shared_ptr<ResourceBase> resource = r.second;
             ResourceName rn = resource->get_resource_name(resource->name());
             std::string rn_ = rn.SerializeAsString();
@@ -174,7 +174,7 @@ void RobotService_::stream_status(
 std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
     std::shared_ptr<ResourceBase> r;
     std::lock_guard<std::mutex> lock(lock_);
-    auto resources = get_sub_svc()->resources();
+    auto resources = resource_manager()->resources();
     if (resources.find(name.name()) != resources.end()) {
         r = resources.at(name.name());
     }

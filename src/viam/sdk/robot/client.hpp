@@ -152,7 +152,7 @@ class RobotClient {
     std::unique_ptr<RobotService::Stub> stub_;
     std::mutex lock_;
     std::vector<ResourceName> resource_names_;
-    SubtypeService resource_manager_;
+    ResourceManager resource_manager_;
     void refresh_every();
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
@@ -9,13 +9,13 @@ namespace sdk {
 class ResourceServerBase {
    public:
     virtual void register_server(std::shared_ptr<Server> server) = 0;
-    const std::shared_ptr<SubtypeService>& get_sub_svc() const;
+    const std::shared_ptr<ResourceManager>& resource_manager() const;
 
    protected:
-    ResourceServerBase(std::shared_ptr<SubtypeService> sub_svc) : sub_svc_(sub_svc){};
+    ResourceServerBase(std::shared_ptr<ResourceManager> manager) : manager_(manager){};
 
    private:
-    std::shared_ptr<SubtypeService> sub_svc_;
+    std::shared_ptr<ResourceManager> manager_;
 };
 
 }  // namespace sdk

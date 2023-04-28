@@ -9,7 +9,7 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
@@ -24,7 +24,7 @@ class GenericSubtype : public ResourceSubtype {
    public:
     virtual ~GenericSubtype();
     std::shared_ptr<ResourceServerBase> create_resource_server(
-        std::shared_ptr<SubtypeService> svc) override;
+        std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
                                                     std::shared_ptr<grpc::Channel> chan) override;
     GenericSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)

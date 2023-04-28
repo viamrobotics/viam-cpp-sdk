@@ -7,7 +7,7 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
@@ -24,8 +24,8 @@ class GenericServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    GenericServer() : ResourceServerBase(std::make_shared<SubtypeService>()){};
-    GenericServer(std::shared_ptr<SubtypeService> sub_svc) : ResourceServerBase(sub_svc){};
+    GenericServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+    GenericServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
 };
 
 }  // namespace sdk

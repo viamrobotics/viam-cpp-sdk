@@ -15,11 +15,7 @@
 namespace viam {
 namespace sdk {
 
-// TODO (RSDK-2889): the name `SubtypeService` isn't quite right here. It's true that we use
-// this for subtype services, but it's also a more generic resource_manager. We should move
-// the resource management aspects into a different type that is included as a member of the
-// SubtypeService.
-class SubtypeService {
+class ResourceManager {
    public:
     std::shared_ptr<ResourceBase> resource(std::string name);
     void replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> resources);
@@ -28,7 +24,7 @@ class SubtypeService {
     void remove(Name name);
     void replace_one(Name name, std::shared_ptr<ResourceBase> resource);
     const std::unordered_map<std::string, std::shared_ptr<ResourceBase>>& resources() const;
-    SubtypeService(){};
+    ResourceManager(){};
 
    private:
     std::mutex lock_;

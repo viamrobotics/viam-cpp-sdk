@@ -5,7 +5,7 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
-#include <viam/sdk/subtype/subtype.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
@@ -34,10 +34,10 @@ HandlerMap_& Module::mutable_handles() {
 const std::shared_ptr<grpc::Channel>& Module::channel() const {
     return channel_;
 };
-const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& Module::services() const {
+const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& Module::services() const {
     return services_;
 };
-std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& Module::mutable_services() {
+std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& Module::mutable_services() {
     return services_;
 };
 const std::vector<std::shared_ptr<ResourceServerBase>>& Module::servers() const {

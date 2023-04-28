@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE(test_camera_service)
 std::shared_ptr<CameraServer> get_camera_server() {
     auto server = std::make_shared<CameraServer>();
-    server->get_sub_svc()->add(std::string("camera"), MockCamera::get_mock_camera());
+    server->resource_manager()->add(std::string("camera"), MockCamera::get_mock_camera());
     return server;
 }
 

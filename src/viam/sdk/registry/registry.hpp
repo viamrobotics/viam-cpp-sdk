@@ -16,9 +16,9 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/resource/resource_type.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
@@ -37,10 +37,10 @@ class ResourceSubtype {
     std::function<ProtoType(ResourceBase)> create_status;
 
     /// @brief Create a resource's gRPC server.
-    /// @param svc The server's `SubtypeService`.
+    /// @param manager The server's `ResourceManager`.
     /// @return a `shared_ptr` to the gRPC server.
     virtual std::shared_ptr<ResourceServerBase> create_resource_server(
-        std::shared_ptr<SubtypeService> svc) = 0;
+        std::shared_ptr<ResourceManager> manager) = 0;
 
     /// @brief Returns a reference to the `ResourceSubtype`'s service descriptor.
     const google::protobuf::ServiceDescriptor* service_descriptor();

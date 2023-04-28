@@ -32,8 +32,8 @@ using viam::robot::v1::Status;
 /// @ingroup Robot
 class RobotService_ : public ResourceServerBase, public viam::robot::v1::RobotService::Service {
    public:
-    RobotService_() : ResourceServerBase(std::make_shared<SubtypeService>()){};
-    RobotService_(std::shared_ptr<SubtypeService> sub_svc) : ResourceServerBase(sub_svc){};
+    RobotService_() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+    RobotService_(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
     static std::shared_ptr<RobotService_> create();
     std::shared_ptr<ResourceBase> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,

@@ -58,6 +58,7 @@ target_sources(viamsdk
     referenceframe/frame.cpp
     resource/resource.cpp
     resource/resource_base.cpp
+    resource/resource_manager.cpp
     resource/resource_server_base.cpp
     resource/resource_type.cpp
     robot/client.cpp
@@ -68,7 +69,6 @@ target_sources(viamsdk
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
-    subtype/subtype.cpp
     tests/test_utils.cpp
     tests/mocks/camera_mocks.cpp
     tests/mocks/generic_mocks.cpp
@@ -97,6 +97,7 @@ target_sources(viamsdk
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/resource.hpp
       ../../viam/sdk/resource/resource_base.hpp
+      ../../viam/sdk/resource/resource_manager.hpp
       ../../viam/sdk/resource/resource_server_base.hpp
       ../../viam/sdk/resource/resource_type.hpp
       ../../viam/sdk/robot/client.hpp
@@ -107,7 +108,6 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
-      ../../viam/sdk/subtype/subtype.hpp
       ../../viam/sdk/tests/test_utils.hpp
       ../../viam/sdk/tests/mocks/camera_mocks.hpp
       ../../viam/sdk/tests/mocks/generic_mocks.hpp

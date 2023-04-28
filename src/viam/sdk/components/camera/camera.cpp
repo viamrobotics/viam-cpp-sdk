@@ -17,8 +17,8 @@ namespace sdk {
 CameraSubtype::~CameraSubtype() = default;
 
 std::shared_ptr<ResourceServerBase> CameraSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> svc) {
-    return std::make_shared<CameraServer>(svc);
+    std::shared_ptr<ResourceManager> manager) {
+    return std::make_shared<CameraServer>(manager);
 };
 
 std::shared_ptr<ResourceBase> CameraSubtype::create_rpc_client(
