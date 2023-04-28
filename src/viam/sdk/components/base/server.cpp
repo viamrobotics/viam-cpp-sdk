@@ -1,5 +1,6 @@
 #include <viam/sdk/components/base/server.hpp>
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -64,10 +65,8 @@ namespace sdk {
 
     std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    std::array<double, 3> linear = {
-        request->linear().x(), request->linear().y(), request->linear().z()};
-    std::array<double, 3> angular = {
-        request->angular().x(), request->angular().y(), request->angular().z()};
+    Vector3 linear = {request->linear().x(), request->linear().y(), request->linear().z()};
+    Vector3 angular = {request->angular().x(), request->angular().y(), request->angular().z()};
     base->set_power(linear, angular);
 
     return ::grpc::Status();
@@ -89,10 +88,8 @@ namespace sdk {
 
     std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    std::array<double, 3> linear = {
-        request->linear().x(), request->linear().y(), request->linear().z()};
-    std::array<double, 3> angular = {
-        request->angular().x(), request->angular().y(), request->angular().z()};
+    Vector3 linear = {request->linear().x(), request->linear().y(), request->linear().z()};
+    Vector3 angular = {request->angular().x(), request->angular().y(), request->angular().z()};
     base->set_velocity(linear, angular);
 
     return ::grpc::Status();

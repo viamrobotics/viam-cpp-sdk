@@ -7,6 +7,7 @@
 
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/components/base/server.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -22,8 +23,8 @@ class BaseClient : public Base {
    public:
     void move_straight(int64_t distance_mm, double mm_per_sec) override;
     void spin(double angle_deg, double degs_per_sec) override;
-    void set_power(std::array<double, 3> linear, std::array<double, 3> angular) override;
-    void set_velocity(std::array<double, 3> linear, std::array<double, 3> angular) override;
+    void set_power(Vector3 linear, Vector3 angular) override;
+    void set_velocity(Vector3 linear, Vector3 angular) override;
     grpc::StatusCode stop() override;
     bool is_moving() override;
     AttributeMap do_command(AttributeMap command) override;

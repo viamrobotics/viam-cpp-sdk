@@ -10,6 +10,7 @@
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 #include <viam/api/component/base/v1/base.pb.h>
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/components/base/client.hpp>
@@ -84,8 +85,8 @@ BOOST_AUTO_TEST_CASE(test_spin) {
 
 BOOST_AUTO_TEST_CASE(test_set_power) {
     server_to_mock_pipeline([](Base& client, std::shared_ptr<MockBase> mock) -> void {
-        std::array<double, 3> linear = {0.1, -0.1, 1.0};
-        std::array<double, 3> angular = {0.5, -1.0, 1.0};
+        Vector3 linear = {0.1, -0.1, 1.0};
+        Vector3 angular = {0.5, -1.0, 1.0};
         client.set_power(linear, angular);
         BOOST_CHECK(mock->peek_set_power_linear == linear);
         BOOST_CHECK(mock->peek_set_power_angular == angular);
@@ -94,8 +95,8 @@ BOOST_AUTO_TEST_CASE(test_set_power) {
 
 BOOST_AUTO_TEST_CASE(test_set_velocity) {
     server_to_mock_pipeline([](Base& client, std::shared_ptr<MockBase> mock) -> void {
-        std::array<double, 3> linear = {0.1, -0.1, 1.0};
-        std::array<double, 3> angular = {0.5, -1.0, 1.0};
+        Vector3 linear = {0.1, -0.1, 1.0};
+        Vector3 angular = {0.5, -1.0, 1.0};
         client.set_velocity(linear, angular);
         BOOST_CHECK(mock->peek_set_velocity_linear == linear);
         BOOST_CHECK(mock->peek_set_velocity_angular == angular);

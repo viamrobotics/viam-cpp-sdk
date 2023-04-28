@@ -7,6 +7,7 @@
 
 #include <viam/api/component/base/v1/base.pb.h>
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -59,12 +60,12 @@ class Base : public ComponentBase {
     /// each direction
     /// @param linear Desired linear power percentage (-1 <= % <= 1) for each direction
     /// @param angular Desired angular power percentage (-1 <= % <= 1) for each direction
-    virtual void set_power(std::array<double, 3> linear, std::array<double, 3> angular) = 0;
+    virtual void set_power(Vector3 linear, Vector3 angular) = 0;
 
     /// @brief Set the linear and angular velocity of a base
     /// @param linear Desired linear velocity in mm per second for each direction
     /// @param angular Desired angular velocity in degrees per second for each direction
-    virtual void set_velocity(std::array<double, 3> linear, std::array<double, 3> angular) = 0;
+    virtual void set_velocity(Vector3 linear, Vector3 angular) = 0;
 
     /// @brief Stop stops a robot's base
     virtual grpc::StatusCode stop() override = 0;

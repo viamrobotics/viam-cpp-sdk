@@ -9,6 +9,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -49,7 +50,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec) {
     }
 }
 
-void BaseClient::set_power(std::array<double, 3> linear, std::array<double, 3> angular) {
+void BaseClient::set_power(Vector3 linear, Vector3 angular) {
     viam::component::base::v1::SetPowerRequest request;
     viam::component::base::v1::SetPowerResponse response;
 
