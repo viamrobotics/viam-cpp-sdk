@@ -18,7 +18,7 @@ namespace sdk {
                               "Called [Base::MoveStraight] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -38,7 +38,7 @@ namespace sdk {
                               "Called [Base::Spin] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -58,7 +58,7 @@ namespace sdk {
                               "Called [Base::SetPower] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -81,7 +81,7 @@ namespace sdk {
                               "Called [Base::SetVelocity] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -103,7 +103,7 @@ namespace sdk {
                               "Called [Base::Stop] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -123,7 +123,7 @@ namespace sdk {
                               "Called [Base::IsMoving] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -144,7 +144,7 @@ namespace sdk {
                               "Called [Base::DoCommand] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
+    auto rb = get_sub_svc()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
