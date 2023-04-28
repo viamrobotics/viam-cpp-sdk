@@ -20,25 +20,25 @@ MockGeneric::~MockGeneric() = default;
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
 MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
-    return map;
+    return map_;
 }
 
 std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
     auto generic = std::make_shared<MockGeneric>("generic");
-    generic->map = fake_map();
+    generic->map_ = fake_map();
 
     return generic;
 }
 
-MockGenericStub::MockGenericStub() : server(std::make_shared<GenericServer>()) {
-    this->server->get_sub_svc()->add(std::string("generic"), MockGeneric::get_mock_generic());
+MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) {
+    this->server_->get_sub_svc()->add(std::string("generic"), MockGeneric::get_mock_generic());
 }
 
 ::grpc::Status MockGenericStub::DoCommand(::grpc::ClientContext* context,
                                           const ::viam::common::v1::DoCommandRequest& request,
                                           ::viam::common::v1::DoCommandResponse* response) {
     grpc::ServerContext ctx;
-    return server->DoCommand(&ctx, &request, response);
+    return server_->DoCommand(&ctx, &request, response);
 }
 
 }  // namespace generic

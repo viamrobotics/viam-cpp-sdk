@@ -11,16 +11,27 @@ namespace sdk {
 
 class Module {
    public:
-    std::mutex lock;
-    std::string name;
-    std::string addr;
-    bool ready;
-    HandlerMap_ handles;
-    std::shared_ptr<grpc::Channel> channel;
-    std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> services;
-    std::vector<std::shared_ptr<ResourceServerBase>> servers;
     void set_ready();
     Module(std::string addr);
+    const std::string& name() const;
+    const std::string& addr() const;
+    bool ready() const;
+    const HandlerMap_& handles() const;
+    HandlerMap_& mutable_handles();
+    const std::shared_ptr<grpc::Channel>& channel() const;
+    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services() const;
+    std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& mutable_services();
+    const std::vector<std::shared_ptr<ResourceServerBase>>& servers() const;
+    std::vector<std::shared_ptr<ResourceServerBase>>& mutable_servers();
+
+   private:
+    std::string name_;
+    std::string addr_;
+    bool ready_;
+    HandlerMap_ handles_;
+    std::shared_ptr<grpc::Channel> channel_;
+    std::unordered_map<Subtype, std::shared_ptr<SubtypeService>> services_;
+    std::vector<std::shared_ptr<ResourceServerBase>> servers_;
 };
 
 }  // namespace sdk

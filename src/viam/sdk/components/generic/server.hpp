@@ -23,13 +23,9 @@ class GenericServer : public ResourceServerBase,
                              ::viam::common::v1::DoCommandResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
-    std::shared_ptr<SubtypeService> get_sub_svc();
 
-    GenericServer() : sub_svc(std::make_shared<SubtypeService>()){};
-    GenericServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
-
-   private:
-    std::shared_ptr<SubtypeService> sub_svc;
+    GenericServer() : ResourceServerBase(std::make_shared<SubtypeService>()){};
+    GenericServer(std::shared_ptr<SubtypeService> sub_svc) : ResourceServerBase(sub_svc){};
 };
 
 }  // namespace sdk

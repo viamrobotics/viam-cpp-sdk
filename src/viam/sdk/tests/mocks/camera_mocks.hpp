@@ -25,12 +25,12 @@ class MockCamera : public Camera {
     MockCamera(std::string name) : Camera(std::move(name)){};
 
    private:
-    Camera::intrinsic_parameters intrinsic_parameters;
-    Camera::distortion_parameters distortion_parameters;
-    Camera::properties camera_properties;
-    Camera::raw_image image;
-    Camera::point_cloud pc;
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map;
+    Camera::intrinsic_parameters intrinsic_parameters_;
+    Camera::distortion_parameters distortion_parameters_;
+    Camera::properties camera_properties_;
+    Camera::raw_image image_;
+    Camera::point_cloud pc_;
+    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
 };
 
 Camera::raw_image fake_raw_image();
@@ -65,7 +65,7 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
                              ::viam::common::v1::DoCommandResponse* response) override;
 
    private:
-    std::shared_ptr<CameraServer> server;
+    std::shared_ptr<CameraServer> server_;
 
     ::grpc::ClientAsyncResponseReaderInterface<::viam::component::camera::v1::GetImageResponse>*
     AsyncGetImageRaw(::grpc::ClientContext* context,

@@ -19,7 +19,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     OrientationConfig cfg;
     switch (proto.type_case()) {
         case proto::Orientation::TypeCase::kAxisAngles: {
-            cfg.type = AxisAngles;
+            cfg.type_ = AxisAngles;
             axis_angles aa;
             aa.x = proto.axis_angles().x();
             aa.y = proto.axis_angles().y();
@@ -29,7 +29,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kEulerAngles: {
-            cfg.type = EulerAngles;
+            cfg.type_ = EulerAngles;
             euler_angles ea;
             ea.yaw = proto.euler_angles().yaw();
             ea.pitch = proto.euler_angles().pitch();
@@ -38,7 +38,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kQuaternion: {
-            cfg.type = Quaternion;
+            cfg.type_ = Quaternion;
             quaternion quat;
             quat.w = proto.quaternion().w();
             quat.x = proto.quaternion().x();
@@ -48,7 +48,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kVectorDegrees: {
-            cfg.type = OrientationVectorDegrees;
+            cfg.type_ = OrientationVectorDegrees;
             orientation_vector_degrees ovd;
             ovd.x = proto.vector_degrees().x();
             ovd.y = proto.vector_degrees().y();
@@ -58,7 +58,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
             break;
         }
         case proto::Orientation::TypeCase::kVectorRadians: {
-            cfg.type = OrientationVector;
+            cfg.type_ = OrientationVector;
             orientation_vector ov;
             ov.x = proto.vector_radians().x();
             ov.y = proto.vector_radians().y();
@@ -70,7 +70,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
         case proto::Orientation::TypeCase::kNoOrientation: {
             // if type is NoOrientation, we put a sentinel
             // orientation that indicates no rotation
-            cfg.type = Quaternion;
+            cfg.type_ = Quaternion;
             quaternion quat;
             quat.w = 1;
             quat.x = 0;
@@ -87,9 +87,9 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     return cfg;
 }
 
-proto::Orientation OrientationConfig::to_proto() {
+proto::Orientation OrientationConfig::to_proto() const {
     proto::Orientation orientation;
-    switch (type) {
+    switch (type_) {
         case AxisAngles: {
             proto::Orientation_AxisAngles aa;
             axis_angles a = boost::get<axis_angles>(orientation_);

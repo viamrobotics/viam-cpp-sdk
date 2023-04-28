@@ -13,35 +13,29 @@ enum OrientationType {
     Quaternion,
 };
 
-class axis_angles {
-   public:
+struct axis_angles {
     double x, y, z, theta;
 };
 
-class euler_angles {
-   public:
+struct euler_angles {
     double yaw, roll, pitch;
 };
 
-class orientation_vector {
-   public:
+struct orientation_vector {
     double x, y, z, theta;
 };
 
-class orientation_vector_degrees {
-   public:
+struct orientation_vector_degrees {
     double x, y, z, theta;
 };
 
-class quaternion {
-   public:
+struct quaternion {
     double x, y, z, w;
 };
 
-class translation {
-   public:
+struct translation {
     double x, y, z;
-    viam::app::v1::Translation to_proto();
+    viam::app::v1::Translation to_proto() const;
 };
 }  // namespace sdk
 }  // namespace viam

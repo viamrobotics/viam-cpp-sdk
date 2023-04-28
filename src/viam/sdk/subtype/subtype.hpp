@@ -26,9 +26,9 @@ class SubtypeService : public grpc::Service {
     SubtypeService(){};
 
    private:
-    std::mutex lock;
-    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources;
-    std::unordered_map<std::string, std::string> short_names;
+    std::mutex lock_;
+    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> resources_;
+    std::unordered_map<std::string, std::string> short_names_;
     void do_add(Name name, std::shared_ptr<ResourceBase> resource);
     void do_add(std::string name, std::shared_ptr<ResourceBase> resource);
     void do_remove(Name name);

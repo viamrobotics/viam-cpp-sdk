@@ -7,12 +7,12 @@ namespace sdk {
 
 class ResourceType {
    public:
-    std::string to_string();
+    const std::string& to_string() const;
     friend bool operator==(const ResourceType& lhs, const ResourceType& rhs);
-    ResourceType(std::string type) : type(std::move(type)){};
+    ResourceType(std::string type) : type_(std::move(type)){};
 
    private:
-    std::string type;
+    std::string type_;
 };
 
 }  // namespace sdk

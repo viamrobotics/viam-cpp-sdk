@@ -30,7 +30,7 @@ int main() {
     DialOptions dial_options;
     std::string payload = "<your payload here>";
     Credentials credentials(payload);
-    dial_options.credentials = credentials;
+    dial_options.set_credentials(credentials);
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);
     Options options = Options(1, opts);

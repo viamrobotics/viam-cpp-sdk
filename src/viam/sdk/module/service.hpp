@@ -41,14 +41,14 @@ class ModuleService_ : public ComponentServiceBase,
                                   const ::viam::module::v1::ValidateConfigRequest* request,
                                   ::viam::module::v1::ValidateConfigResponse* response) override;
 
-    std::shared_ptr<Module> module;
-
     ModuleService_(std::string addr);
     ~ModuleService_();
 
    private:
-    std::shared_ptr<RobotClient> parent;
-    std::string parent_addr;
+    std::mutex lock_;
+    std::shared_ptr<Module> module_;
+    std::shared_ptr<RobotClient> parent_;
+    std::string parent_addr_;
 };
 
 }  // namespace sdk

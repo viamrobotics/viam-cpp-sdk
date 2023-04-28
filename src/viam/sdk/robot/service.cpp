@@ -30,7 +30,7 @@ using viam::robot::v1::Status;
 
 std::vector<ResourceName> RobotService_::generate_metadata() {
     std::vector<ResourceName> metadata;
-    for (const auto& key_and_val : manager.resources) {
+    for (const auto& key_and_val : manager().resources()) {
         for (ResourceName resource : resource_names_for_resource(key_and_val.second)) {
             metadata.push_back(resource);
         }
@@ -40,11 +40,11 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
-    for (auto& cmp : manager.resources) {
+    for (auto& cmp : manager().resources()) {
         std::shared_ptr<ResourceBase> resource = cmp.second;
         for (auto& registry : Registry::registered_resources()) {
             std::shared_ptr<ModelRegistration> registration = registry.second;
-            if (registration->resource_type == resource->type()) {
+            if (registration->resource_type() == resource->type()) {
                 bool resource_present = false;
                 ResourceName name = resource->get_resource_name(resource->name());
                 for (auto& resource_name : resource_names) {
@@ -153,7 +153,7 @@ void RobotService_::stream_status(
         std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
 
-        for (auto& r : manager.resources) {
+        for (auto& r : manager().resources()) {
             std::shared_ptr<ResourceBase> resource = r.second;
             ResourceName rn = resource->get_resource_name(resource->name());
             std::string rn_ = rn.SerializeAsString();
@@ -173,12 +173,11 @@ void RobotService_::stream_status(
 
 std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
     std::shared_ptr<ResourceBase> r;
-    lock.lock();
-    if (manager.resources.find(name.name) != manager.resources.end()) {
-        r = manager.resources.at(name.name);
+    std::lock_guard<std::mutex> lock(lock_);
+    if (manager().resources().find(name.name()) != manager().resources().end()) {
+        r = manager().resources().at(name.name());
     }
 
-    lock.unlock();
     return r;
 }
 

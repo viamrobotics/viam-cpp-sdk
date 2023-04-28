@@ -23,22 +23,26 @@ ResourceManager::ResourceManager(std::vector<std::shared_ptr<ResourceBase>> reso
 }
 
 void ResourceManager::register_resource(std::shared_ptr<ResourceBase> resource) {
-    if (resources.find(resource->name()) != resources.end()) {
+    if (resources_.find(resource->name()) != resources_.end()) {
         std::string err =
             "Cannot add resource with name " + resource->name() + " as it already exists.";
         throw std::runtime_error(err);
     }
 
-    resources[resource->name()] = resource;
+    resources_[resource->name()] = resource;
+}
+const std::unordered_map<std::string, std::shared_ptr<ResourceBase>>& ResourceManager::resources()
+    const {
+    return resources_;
 }
 
 std::shared_ptr<ResourceBase> ResourceManager::get_resource(std::string name,
                                                             ResourceType of_type) {
-    if (resources.find(name) == resources.end()) {
+    if (resources_.find(name) == resources_.end()) {
         throw std::runtime_error("Resource name " + name + " doesn't exist!");
     }
 
-    std::shared_ptr<ResourceBase> resource = resources.at(name);
+    std::shared_ptr<ResourceBase> resource = resources_.at(name);
     if (resource->type() == of_type) {
         return resource;
     }

@@ -10,30 +10,30 @@
 namespace viam {
 namespace sdk {
 
-viam::common::v1::Sphere GeometryConfig::sphere_proto() {
+viam::common::v1::Sphere GeometryConfig::sphere_proto() const {
     viam::common::v1::Sphere sphere;
-    sphere.set_radius_mm(r);
+    sphere.set_radius_mm(r_);
     return sphere;
 }
 
-viam::common::v1::RectangularPrism GeometryConfig::box_proto() {
+viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
     viam::common::v1::RectangularPrism box;
     viam::common::v1::Vector3 vec3;
-    vec3.set_x(x);
-    vec3.set_y(y);
-    vec3.set_z(z);
+    vec3.set_x(x_);
+    vec3.set_y(y_);
+    vec3.set_z(z_);
     *box.mutable_dims_mm() = vec3;
     return box;
 }
 
-viam::common::v1::Pose GeometryConfig::pose_proto() {
+viam::common::v1::Pose GeometryConfig::pose_proto() const {
     viam::common::v1::Pose pose;
-    pose.set_x(x);
-    pose.set_y(y);
-    pose.set_z(z);
-    pose.set_o_x(o_x);
-    pose.set_o_y(o_y);
-    pose.set_o_z(o_z);
+    pose.set_x(x_);
+    pose.set_y(y_);
+    pose.set_z(z_);
+    pose.set_o_x(o_x_);
+    pose.set_o_y(o_y_);
+    pose.set_o_z(o_z_);
     pose.set_theta(0);
     return pose;
 }
@@ -42,18 +42,18 @@ GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
     GeometryConfig cfg;
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
-            cfg.geometry_type = box;
-            cfg.x = proto.box().dims_mm().x();
-            cfg.y = proto.box().dims_mm().y();
-            cfg.z = proto.box().dims_mm().z();
+            cfg.geometry_type_ = box;
+            cfg.x_ = proto.box().dims_mm().x();
+            cfg.y_ = proto.box().dims_mm().y();
+            cfg.z_ = proto.box().dims_mm().z();
             return cfg;
         }
         case viam::common::v1::Geometry::GeometryTypeCase::kSphere: {
-            cfg.r = proto.sphere().radius_mm();
-            if (cfg.r == 0) {
-                cfg.geometry_type = point;
+            cfg.r_ = proto.sphere().radius_mm();
+            if (cfg.r_ == 0) {
+                cfg.geometry_type_ = point;
             } else {
-                cfg.geometry_type = sphere;
+                cfg.geometry_type_ = sphere;
             }
             return cfg;
         }
@@ -64,10 +64,10 @@ GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
     }
 }
 
-viam::common::v1::Geometry GeometryConfig::to_proto() {
+viam::common::v1::Geometry GeometryConfig::to_proto() const {
     viam::common::v1::Geometry geometry_;
-    *geometry_.mutable_label() = label;
-    switch (geometry_type) {
+    *geometry_.mutable_label() = label_;
+    switch (geometry_type_) {
         case box: {
             *geometry_.mutable_box() = box_proto();
             return geometry_;
@@ -86,7 +86,7 @@ viam::common::v1::Geometry GeometryConfig::to_proto() {
         }
         case unknown:
         default: {
-            if (x == 0 && y == 0 && z == 0) {
+            if (x_ == 0 && y_ == 0 && z_ == 0) {
                 *geometry_.mutable_box() = box_proto();
             } else {
                 *geometry_.mutable_sphere() = sphere_proto();

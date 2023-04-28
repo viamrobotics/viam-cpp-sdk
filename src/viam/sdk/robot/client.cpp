@@ -58,18 +58,18 @@ using viam::robot::v1::Status;
 const std::string k_stream_removed = "Stream removed";
 
 RobotClient::~RobotClient() {
-    if (should_close_channel) {
+    if (should_close_channel_) {
         this->close();
     }
 }
 
 void RobotClient::close() {
-    should_refresh.store(false);
+    should_refresh_.store(false);
     for (std::shared_ptr<std::thread> t : threads_) {
         t->~thread();
     }
     stop_all();
-    viam_channel->close();
+    viam_channel_->close();
 }
 
 bool is_error_response(grpc::Status response) {
@@ -180,7 +180,7 @@ void RobotClient::refresh() {
         if (rs) {
             try {
                 std::shared_ptr<ResourceBase> rpc_client =
-                    rs->create_rpc_client(name.name(), channel);
+                    rs->create_rpc_client(name.name(), channel_);
                 new_resource_manager.register_resource(rpc_client);
             } catch (std::exception& exc) {
                 BOOST_LOG_TRIVIAL(debug)
@@ -201,16 +201,15 @@ void RobotClient::refresh() {
         return;
     }
 
-    lock.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     resource_names_ = current_resources;
-    resource_manager = new_resource_manager;
-    lock.unlock();
+    resource_manager_ = new_resource_manager;
 }
 
 void RobotClient::refresh_every() {
-    while (should_refresh.load()) {
+    while (should_refresh_.load()) {
         try {
-            std::this_thread::sleep_for(std::chrono::seconds(refresh_interval));
+            std::this_thread::sleep_for(std::chrono::seconds(refresh_interval_));
             refresh();
 
         } catch (std::exception& exc) {
@@ -220,24 +219,23 @@ void RobotClient::refresh_every() {
 };
 
 RobotClient::RobotClient(std::shared_ptr<ViamChannel> vc)
-    : viam_channel(vc),
-      channel(vc->channel),
-      should_close_channel(false),
-      stub_(RobotService::NewStub(channel)) {}
+    : viam_channel_(vc),
+      channel_(vc->channel()),
+      should_close_channel_(false),
+      stub_(RobotService::NewStub(channel_)) {}
 
 std::vector<ResourceName>* RobotClient::resource_names() {
-    lock.lock();
+    std::lock_guard<std::mutex> lock(lock_);
     std::vector<ResourceName>* resources = &resource_names_;
-    lock.unlock();
     return resources;
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
                                                        Options options) {
     std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(channel);
-    robot->refresh_interval = options.refresh_interval;
-    robot->should_refresh = (robot->refresh_interval > 0);
-    if (robot->should_refresh) {
+    robot->refresh_interval_ = options.refresh_interval();
+    robot->should_refresh_ = (robot->refresh_interval_ > 0);
+    if (robot->should_refresh_) {
         std::shared_ptr<std::thread> t =
             std::make_shared<std::thread>(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
@@ -253,9 +251,9 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
 
 std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Options options) {
     const char* uri = address.c_str();
-    auto channel = ViamChannel::dial(uri, options.dial_options);
+    auto channel = ViamChannel::dial(uri, options.dial_options());
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
-    robot->should_close_channel = true;
+    robot->should_close_channel_ = true;
 
     return robot;
 };
@@ -269,7 +267,7 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, O
         viam::robot::v1::RobotService::NewStub(channel);
     auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
-    robot->should_close_channel = true;
+    robot->should_close_channel_ = true;
 
     return robot;
 };
@@ -350,7 +348,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 }
 
 std::shared_ptr<ResourceBase> RobotClient::resource_by_name(const ResourceName& name) {
-    return resource_manager.get_resource(name.name(), name.type());
+    return resource_manager_.get_resource(name.name(), name.type());
 }
 
 void RobotClient::stop_all() {

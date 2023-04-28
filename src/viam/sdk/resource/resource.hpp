@@ -15,10 +15,13 @@ class Type {
     Type(){};
     virtual std::string to_string() const;
 
-    std::string type_namespace();
-    std::string resource_type();
+    const std::string& type_namespace() const;
+    const std::string& resource_type() const;
 
-   protected:
+    void set_namespace(const std::string type_namespace);
+    void set_resource_type(const std::string resource_type);
+
+   private:
     std::string namespace_;
     std::string resource_type_;
 };
@@ -31,13 +34,14 @@ class Subtype : public Type {
     Subtype(Type type, std::string resource_subtype);
     static Subtype from_string(std::string subtype);
 
-    std::string resource_subtype();
+    const std::string& resource_subtype() const;
+    void set_resource_subtype(const std::string subtype);
     bool is_component_type();
     bool is_service_type();
     friend bool operator==(Subtype const& lhs, Subtype const& rhs);
     friend bool operator<(const Subtype& lhs, const Subtype& rhs);
 
-   protected:
+   private:
     std::string resource_subtype_;
 };
 
@@ -45,51 +49,56 @@ class Subtype : public Type {
 // Subtype as a member
 class Name : public Subtype {
    public:
-    std::string remote_name;
-    std::string name;
-
     std::string short_name() const;
     virtual std::string to_string() const override;
     // TODO: this isn't necessary, instead this->Subtype::to_string();
     const Subtype* to_subtype() const;
-    viam::common::v1::ResourceName to_proto();
+    viam::common::v1::ResourceName to_proto() const;
     static Name from_string(std::string name);
     Name(Subtype subtype, std::string remote_name, std::string name);
     Name();
+    const std::string& name() const;
+    const std::string& remote_name() const;
     friend bool operator==(const Name& lhs, const Name& rhs);
+
+   private:
+    std::string remote_name_;
+    std::string name_;
 };
 
 class RPCSubtype {
    public:
-    const google::protobuf::ServiceDescriptor* descriptor;
-    std::string proto_service_name;
-    Subtype subtype;
-
     bool operator<(const RPCSubtype& rhs) const {
-        return (subtype.to_string() + proto_service_name + descriptor->DebugString()) <
-               (rhs.subtype.to_string() + rhs.proto_service_name + rhs.descriptor->DebugString());
+        return (subtype_.to_string() + proto_service_name_ + descriptor_.DebugString()) <
+               (rhs.subtype_.to_string() + rhs.proto_service_name_ + rhs.descriptor_.DebugString());
     };
+    const std::string& proto_service_name() const;
+    const Subtype& subtype() const;
 
     RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor);
     RPCSubtype(Subtype subtype,
                std::string proto_service_name,
                const google::protobuf::ServiceDescriptor& descriptor);
     friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
+
+   private:
+    const google::protobuf::ServiceDescriptor& descriptor_;
+    std::string proto_service_name_;
+    Subtype subtype_;
 };
 
 class ModelFamily {
    public:
-    std::string namespace_;
-    std::string family;
-
     ModelFamily(std::string namespace_, std::string family);
     std::string to_string() const;
+
+   private:
+    std::string namespace_;
+    std::string family_;
 };
 
 class Model {
    public:
-    ModelFamily model_family;
-    std::string model_name;
     std::string to_string() const;
 
     Model(std::string namespace_, std::string family, std::string model_name);
@@ -103,6 +112,10 @@ class Model {
     /// non-word characters)
     static Model from_str(std::string model);
     friend bool operator==(const Model& lhs, const Model& rhs);
+
+   private:
+    ModelFamily model_family_;
+    std::string model_name_;
 };
 
 }  // namespace sdk
@@ -118,8 +131,8 @@ struct std::hash<::viam::sdk::Name> {
 template <>
 struct std::hash<::viam::sdk::RPCSubtype> {
     size_t operator()(::viam::sdk::RPCSubtype const& key) const noexcept {
-        ::viam::sdk::Subtype subtype = key.subtype;
-        std::string hash = subtype.to_string() + key.proto_service_name;
+        ::viam::sdk::Subtype subtype = key.subtype();
+        std::string hash = subtype.to_string() + key.proto_service_name();
         return std::hash<std::string>()(hash);
     };
 };

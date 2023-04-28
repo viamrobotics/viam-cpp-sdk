@@ -83,33 +83,33 @@ AttributeMap struct_to_map(Struct struct_) {
 
 Value ProtoType::proto_value() {
     Value v;
-    switch (proto_type.which()) {
+    switch (proto_type_.which()) {
         case 0: {
             v.set_null_value(::google::protobuf::NULL_VALUE);
             break;
         }
         case 1: {
-            const bool b = boost::get<bool>(proto_type);
+            const bool b = boost::get<bool>(proto_type_);
             v.set_bool_value(b);
             break;
         }
         case 2: {
-            const std::string s = boost::get<std::string>(proto_type);
+            const std::string s = boost::get<std::string>(proto_type_);
             *v.mutable_string_value() = s;
             break;
         }
         case 3: {
-            const int i = boost::get<int>(proto_type);
+            const int i = boost::get<int>(proto_type_);
             v.set_number_value(i);
             break;
         }
         case 4: {
-            const double i = boost::get<double>(proto_type);
+            const double i = boost::get<double>(proto_type_);
             v.set_number_value(i);
             break;
         }
         case 5: {
-            const AttributeMap map = boost::get<AttributeMap>(proto_type);
+            const AttributeMap map = boost::get<AttributeMap>(proto_type_);
             Struct s = map_to_struct(map);
             *v.mutable_struct_value() = s;
             break;
@@ -117,7 +117,7 @@ Value ProtoType::proto_value() {
         case 6: {
             ::google::protobuf::ListValue l = *v.mutable_list_value();
             google::protobuf::RepeatedPtrField<Value>* values = l.mutable_values();
-            std::vector<ProtoType*> vec = boost::get<std::vector<ProtoType*>>(proto_type);
+            std::vector<ProtoType*> vec = boost::get<std::vector<ProtoType*>>(proto_type_);
             for (auto& val : vec) {
                 *values->Add() = val->proto_value();
             }
@@ -134,37 +134,37 @@ Value ProtoType::proto_value() {
 }
 
 bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
-    if (lhs.proto_type.which() != rhs.proto_type.which()) {
+    if (lhs.proto_type_.which() != rhs.proto_type_.which()) {
         return false;
     }
-    switch (lhs.proto_type.which()) {
+    switch (lhs.proto_type_.which()) {
         case 0: {
             // both null values
             return true;
         }
         case 1: {
-            const bool lhs_b = boost::get<bool>(lhs.proto_type);
-            const bool rhs_b = boost::get<bool>(rhs.proto_type);
+            const bool lhs_b = boost::get<bool>(lhs.proto_type_);
+            const bool rhs_b = boost::get<bool>(rhs.proto_type_);
             return lhs_b == rhs_b;
         }
         case 2: {
-            const std::string lhs_s = boost::get<std::string>(lhs.proto_type);
-            const std::string rhs_s = boost::get<std::string>(rhs.proto_type);
+            const std::string lhs_s = boost::get<std::string>(lhs.proto_type_);
+            const std::string rhs_s = boost::get<std::string>(rhs.proto_type_);
             return lhs_s == rhs_s;
         }
         case 3: {
-            const int lhs_i = boost::get<int>(lhs.proto_type);
-            const int rhs_i = boost::get<int>(rhs.proto_type);
+            const int lhs_i = boost::get<int>(lhs.proto_type_);
+            const int rhs_i = boost::get<int>(rhs.proto_type_);
             return lhs_i == rhs_i;
         }
         case 4: {
-            const double lhs_i = boost::get<double>(lhs.proto_type);
-            const double rhs_i = boost::get<double>(rhs.proto_type);
+            const double lhs_i = boost::get<double>(lhs.proto_type_);
+            const double rhs_i = boost::get<double>(rhs.proto_type_);
             return lhs_i == rhs_i;
         }
         case 5: {
-            AttributeMap lhs_map = boost::get<AttributeMap>(lhs.proto_type);
-            AttributeMap rhs_map = boost::get<AttributeMap>(rhs.proto_type);
+            AttributeMap lhs_map = boost::get<AttributeMap>(lhs.proto_type_);
+            AttributeMap rhs_map = boost::get<AttributeMap>(rhs.proto_type_);
 
             if (lhs_map->size() != rhs_map->size()) {
                 return false;
@@ -180,8 +180,8 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
         }
 
         case 6: {
-            std::vector<ProtoType*> lhs_vec = boost::get<std::vector<ProtoType*>>(lhs.proto_type);
-            std::vector<ProtoType*> rhs_vec = boost::get<std::vector<ProtoType*>>(rhs.proto_type);
+            std::vector<ProtoType*> lhs_vec = boost::get<std::vector<ProtoType*>>(lhs.proto_type_);
+            std::vector<ProtoType*> rhs_vec = boost::get<std::vector<ProtoType*>>(rhs.proto_type_);
             return lhs_vec == rhs_vec;
         }
         default: {

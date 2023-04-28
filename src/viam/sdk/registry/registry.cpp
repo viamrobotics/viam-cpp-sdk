@@ -25,32 +25,42 @@ namespace sdk {
 
 using viam::robot::v1::Status;
 
+const ResourceType& ModelRegistration::resource_type() const {
+    return resource_type_;
+};
+const Subtype& ModelRegistration::subtype() const {
+    return subtype_;
+};
+const Model& ModelRegistration::model() const {
+    return model_;
+};
+
 void Registry::register_resource(std::shared_ptr<ModelRegistration> resource) {
-    std::string reg_key = resource->subtype.to_string() + "/" + resource->model.to_string();
-    if (resources.find(reg_key) != resources.end()) {
+    std::string reg_key = resource->subtype().to_string() + "/" + resource->model().to_string();
+    if (resources_.find(reg_key) != resources_.end()) {
         std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
         throw std::runtime_error(err);
     }
 
-    resources.emplace(reg_key, resource);
+    resources_.emplace(reg_key, resource);
 }
 
 void Registry::register_subtype(Subtype subtype,
                                 std::shared_ptr<ResourceSubtype> resource_subtype) {
-    if (subtypes.find(subtype) != subtypes.end()) {
+    if (subtypes_.find(subtype) != subtypes_.end()) {
         throw std::runtime_error("Cannot add subtype " + subtype.to_string() +
                                  " as it already exists");
     }
 
-    subtypes.emplace(std::move(subtype), std::move(resource_subtype));
+    subtypes_.emplace(std::move(subtype), std::move(resource_subtype));
 }
 
 std::shared_ptr<ModelRegistration> Registry::lookup_resource(std::string name) {
-    if (resources.find(name) == resources.end()) {
+    if (resources_.find(name) == resources_.end()) {
         return nullptr;
     }
 
-    return resources.at(name);
+    return resources_.at(name);
 }
 
 std::shared_ptr<ModelRegistration> Registry::lookup_resource(Subtype subtype, Model model) {
@@ -59,17 +69,17 @@ std::shared_ptr<ModelRegistration> Registry::lookup_resource(Subtype subtype, Mo
 }
 
 std::shared_ptr<ResourceSubtype> Registry::lookup_subtype(Subtype subtype) {
-    if (subtypes.find(subtype) == subtypes.end()) {
+    if (subtypes_.find(subtype) == subtypes_.end()) {
         return nullptr;
     }
 
-    return subtypes.at(subtype);
+    return subtypes_.at(subtype);
 }
 
 std::unordered_map<std::string, std::shared_ptr<ModelRegistration>>
 Registry::registered_resources() {
     std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> registry;
-    for (auto& resource : resources) {
+    for (auto& resource : resources_) {
         registry.emplace(resource.first, resource.second);
     }
     return registry;
@@ -82,8 +92,12 @@ Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) 
     return status;
 }
 
-std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::resources;
-std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes;
+const google::protobuf::ServiceDescriptor* ResourceSubtype::service_descriptor() {
+    return service_descriptor_;
+}
+
+std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> Registry::resources_;
+std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> Registry::subtypes_;
 
 }  // namespace sdk
 }  // namespace viam
