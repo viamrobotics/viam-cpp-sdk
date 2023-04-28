@@ -26,6 +26,7 @@ class BaseClient : public Base {
     void set_power(Vector3 linear, Vector3 angular) override;
     void set_velocity(Vector3 linear, Vector3 angular) override;
     grpc::StatusCode stop() override;
+    grpc::StatusCode stop(AttributeMap extra) override;
     bool is_moving() override;
     AttributeMap do_command(AttributeMap command) override;
     BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)

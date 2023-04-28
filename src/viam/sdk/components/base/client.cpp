@@ -90,6 +90,10 @@ void BaseClient::set_velocity(std::array<double, 3> linear, std::array<double, 3
     }
 }
 
+grpc::StatusCode BaseClient::stop(AttributeMap extra) {
+    return this->stop();
+}
+
 grpc::StatusCode BaseClient::stop() {
     viam::component::base::v1::StopRequest request;
     viam::component::base::v1::StopResponse response;

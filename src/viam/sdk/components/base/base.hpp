@@ -56,7 +56,7 @@ class Base : public ComponentBase {
     /// @param degs_per_sec Desired angular velocity
     virtual void spin(double angle_deg, double degs_per_sec) = 0;
 
-    /// @brief SetPower sets the linear and angular power of a base -1 -> 1 in terms of power for
+    /// @brief Sets the linear and angular power of a base -1 -> 1 in terms of power for
     /// each direction
     /// @param linear Desired linear power percentage (-1 <= % <= 1) for each direction
     /// @param angular Desired angular power percentage (-1 <= % <= 1) for each direction
@@ -67,10 +67,10 @@ class Base : public ComponentBase {
     /// @param angular Desired angular velocity in degrees per second for each direction
     virtual void set_velocity(Vector3 linear, Vector3 angular) = 0;
 
-    /// @brief Stop stops a robot's base
+    /// @brief Stops a robot's base
     virtual grpc::StatusCode stop() override = 0;
 
-    /// @brief IsMoving reports if a component is in motion
+    /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
