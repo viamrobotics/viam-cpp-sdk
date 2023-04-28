@@ -19,6 +19,10 @@
 #include <viam/sdk/services/mlmodel/server.hpp>
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 
+#include <xtensor/xadapt.hpp>
+#include <xtensor/xarray.hpp>
+#include <xtensor/xchunked_array.hpp>
+
 #define BOOST_TEST_MODULE test module test_mlmodel
 #include <boost/test/included/unit_test.hpp>
 
@@ -89,7 +93,7 @@ const struct MLModelService::metadata test_metadata {
               {"path/to/file1.2", "i1f2", MLModelService::tensor_info::file::k_type_tensor_axis}},
 
              // XXX ACM TODO: `extra`
-             },
+         },
 
          {
              "input2",
@@ -125,18 +129,24 @@ const struct MLModelService::metadata test_metadata {
 
                // `label_type`
                MLModelService::tensor_info::file::k_type_tensor_axis},
-              {"path/to/output_file1.2", "o1f2", MLModelService::tensor_info::file::k_type_tensor_value}},
+              {"path/to/output_file1.2",
+               "o1f2",
+               MLModelService::tensor_info::file::k_type_tensor_value}},
 
              // XXX ACM TODO: `extra`
-             },
+         },
 
          {
              "output2",
              "the second output",
              "float32",
              {-1, -1, 4},
-             {{"path/to/output_file2.1", "o2f1", MLModelService::tensor_info::file::k_type_tensor_axis},
-              {"path/to/output_file2.2", "o2f2", MLModelService::tensor_info::file::k_type_tensor_value}},
+             {{"path/to/output_file2.1",
+               "o2f1",
+               MLModelService::tensor_info::file::k_type_tensor_axis},
+              {"path/to/output_file2.2",
+               "o2f2",
+               MLModelService::tensor_info::file::k_type_tensor_value}},
              // XXX ACM TODO: `extra`
          }},
 };
@@ -181,6 +191,130 @@ BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     mock->metadata(test_metadata);
     client_server_test(mock, [](auto& client) { BOOST_TEST(test_metadata == client.metadata()); });
 }
+BOOST_AUTO_TEST_SUITE_END()
+
+// This test suite is to validate that we can use xtensor for all of
+// the tensor data shuttling we need in order to provide a nice
+// presentation layer over the fragemented buffers that proto is going
+// to give us for inference data / results. We want to be able to do
+// this zero copy, where we just use xtensor to synthesize a properly
+// shaped view over the data. We will use the input and output shapes
+// from the examples in the scope document.
+BOOST_AUTO_TEST_SUITE(xtensor_experiment)
+
+// Test based on getting two 800*600 input images.
+BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_input_image) {
+    // Pretend proto arrays for two 800/600 8-bit color images.
+    auto image_all_zero = std::vector<uint8_t>(800 * 600, 0);
+    auto image_all_ones = std::vector<uint8_t>(800 * 600, 1);
+
+    BOOST_TEST(image_all_zero[0] == 0);
+    BOOST_TEST(image_all_ones[0] == 1);
+
+    const std::vector<std::size_t> shape{800, 600};
+
+    // Adopt the data via adapt without taking ownership,
+    // this is zero copy.
+    auto xtia0 = xt::adapt(image_all_zero.data(), image_all_zero.size(), xt::no_ownership(), shape);
+
+    auto xtia1 = xt::adapt(image_all_ones.data(), image_all_ones.size(), xt::no_ownership(), shape);
+
+    // Create vectors to describe the shape of the tensor and the
+    // chunks.
+    std::vector<std::size_t> cshape{2, 800, 600};
+    std::vector<std::size_t> chunked_shape{1, 800, 600};
+
+    // Make a vector that holds the views on the linear buffers. This
+    // is our only allocation.
+    std::vector<decltype(xtia0)> xtias_holder{std::move(xtia0), std::move(xtia1)};
+
+    // Adopt the vector with adapt without an ownership transfer.
+    auto xtias_adapter = xt::adapt(
+        xtias_holder.data(), xtias_holder.size(), xt::no_ownership(), std::vector<std::size_t>{2});
+
+    // Create a chunked array over the vector of chunks. We now have our final view.
+    xt::xchunked_array<decltype(xtias_adapter)> xtias(
+        std::move(xtias_adapter), cshape, chunked_shape);
+
+    // Validate that dereferencing through the underlying arrays and
+    // dereferencing through the chunked array gets the same values.
+    BOOST_TEST(image_all_zero[0] == xtias(0, 0, 0));
+    BOOST_TEST(image_all_ones[0] == xtias(1, 0, 0));
+
+    // Validate that obtaining references through the underlying
+    // arrays and dereferencing through the chunked array gets the
+    // same objects..
+    BOOST_TEST(&image_all_zero[0] == &xtias(0, 0, 0));
+    BOOST_TEST(&image_all_ones[0] == &xtias(1, 0, 0));
+
+    // Mutate the data via the underlying vectors
+    image_all_zero[0] = 42;
+    image_all_ones[0] = 24;
+
+    // Validate that the mutation is visible when observing through the
+    // chunked arary.
+    BOOST_TEST(xtias(0, 0, 0) == 42);
+    BOOST_TEST(xtias(1, 0, 0) == 24);
+
+    // Mutate the data through the chunked array.
+    xtias(0, 0, 0) -= 1;
+    xtias(1, 0, 0) -= 1;
+
+    // Validate that the mutations are visible when observing through
+    // the underlying buffers.
+    BOOST_TEST(image_all_zero[0] == 41);
+    BOOST_TEST(image_all_ones[0] == 23);
+
+    // TODO: Validate that we can efficiently linearize to a flat buffer,
+    // as we probably need to do to feed into tf / triton.
+}
+
+// Test based on getting two sets of 25 bounding boxes (one per input
+// image), 25 being arbitrary, represented as float 32.
+BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_boxes) {
+    // Pretend that the model gives us back a linear buffer to represent the tensor
+
+    const std::vector<std::size_t> detection_results_shape{2, 25, 4};
+
+    const std::size_t k_detection_results_buffer_size =
+        std::accumulate(begin(detection_results_shape),
+                        end(detection_results_shape),
+                        1,
+                        std::multiplies<std::size_t>());
+
+    const std::vector<float> detection_results_buffer = [&] {
+        std::vector<float> temp(k_detection_results_buffer_size, 0);
+        std::iota(std::begin(temp), std::end(temp), float{0});
+        return temp;
+    }();
+
+    BOOST_TEST(detection_results_buffer.front() == 0);
+    BOOST_TEST(detection_results_buffer.back() == k_detection_results_buffer_size - 1);
+
+    // Shape the buffer as a tensor and validate that we find the right things at the right indexes.
+    auto detection_results = xt::adapt(detection_results_buffer.data(),
+                                       detection_results_buffer.size(),
+                                       xt::no_ownership(),
+                                       detection_results_shape);
+
+    BOOST_TEST(detection_results(0, 0, 0) == 0);
+
+    BOOST_TEST(detection_results(0,
+                                 detection_results_shape[1] - 1,
+                                 detection_results_shape[2] - 1) ==
+               k_detection_results_buffer_size/2 - 1);
+
+    BOOST_TEST(detection_results(detection_results_shape[0] - 1,
+                                 detection_results_shape[1] - 1,
+                                 detection_results_shape[2] - 1) ==
+               k_detection_results_buffer_size - 1);
+
+
+    // TODO: Validate that we can efficiently fragement to 50 newly
+    // allocated 4 element vectors with 50 copies, as we would need to
+    // do to push it back as a proto `struct`.
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace
