@@ -29,10 +29,8 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component_base.hpp>
-#include <viam/sdk/components/service_base.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service_base.hpp>
 
@@ -157,7 +155,7 @@ void RobotClient::refresh() {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
 
-    ResourceManager new_resource_manager;
+    std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_resources;
     RepeatedPtrField<ResourceName> resources = resp.resources();
 
     std::vector<ResourceName> current_resources;
@@ -181,8 +179,9 @@ void RobotClient::refresh() {
             try {
                 std::shared_ptr<ResourceBase> rpc_client =
                     rs->create_rpc_client(name.name(), channel_);
-                new_resource_manager.register_resource(rpc_client);
-            } catch (std::exception& exc) {
+                Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
+                new_resources.emplace(name_, rpc_client);
+            } catch (const std::exception& exc) {
                 BOOST_LOG_TRIVIAL(debug)
                     << "Error registering component " << name.subtype() << ": " << exc.what();
             }
@@ -203,7 +202,7 @@ void RobotClient::refresh() {
 
     std::lock_guard<std::mutex> lock(lock_);
     resource_names_ = current_resources;
-    resource_manager_ = new_resource_manager;
+    this->resource_manager_.replace_all(new_resources);
 }
 
 void RobotClient::refresh_every() {
@@ -348,7 +347,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 }
 
 std::shared_ptr<ResourceBase> RobotClient::resource_by_name(const ResourceName& name) {
-    return resource_manager_.get_resource(name.name(), name.type());
+    return resource_manager_.resource(name.name());
 }
 
 void RobotClient::stop_all() {

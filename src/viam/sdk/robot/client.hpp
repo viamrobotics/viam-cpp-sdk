@@ -16,7 +16,6 @@
 #include <viam/sdk/components/component_base.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
-#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service_base.hpp>
 
@@ -153,7 +152,7 @@ class RobotClient {
     std::unique_ptr<RobotService::Stub> stub_;
     std::mutex lock_;
     std::vector<ResourceName> resource_names_;
-    ResourceManager resource_manager_;
+    SubtypeService resource_manager_;
     void refresh_every();
 };
 

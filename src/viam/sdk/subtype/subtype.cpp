@@ -143,6 +143,11 @@ void SubtypeService::replace_one(Name name, std::shared_ptr<ResourceBase> resour
     }
 }
 
+const std::unordered_map<std::string, std::shared_ptr<ResourceBase>>& SubtypeService::resources()
+    const {
+    return resources_;
+}
+
 void SubtypeService::add(std::string name, std::shared_ptr<ResourceBase> resource) {
     std::lock_guard<std::mutex> lock(lock_);
     do_add(name, resource);

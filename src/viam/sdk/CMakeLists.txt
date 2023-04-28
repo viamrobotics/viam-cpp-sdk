@@ -59,7 +59,6 @@ target_sources(viamsdk
     referenceframe/frame.cpp
     resource/resource.cpp
     resource/resource_base.cpp
-    resource/resource_manager.cpp
     resource/resource_server_base.cpp
     resource/resource_type.cpp
     robot/client.cpp
@@ -91,7 +90,6 @@ target_sources(viamsdk
       ../../viam/sdk/components/motor/motor.hpp
       ../../viam/sdk/components/motor/client.hpp
       ../../viam/sdk/components/motor/server.hpp
-      ../../viam/sdk/components/service_base.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
@@ -100,7 +98,6 @@ target_sources(viamsdk
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/resource.hpp
       ../../viam/sdk/resource/resource_base.hpp
-      ../../viam/sdk/resource/resource_manager.hpp
       ../../viam/sdk/resource/resource_server_base.hpp
       ../../viam/sdk/resource/resource_type.hpp
       ../../viam/sdk/robot/client.hpp

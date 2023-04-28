@@ -26,7 +26,6 @@
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component_base.hpp>
-#include <viam/sdk/components/service_base.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/handler_map.hpp>
 #include <viam/sdk/registry/registry.hpp>
