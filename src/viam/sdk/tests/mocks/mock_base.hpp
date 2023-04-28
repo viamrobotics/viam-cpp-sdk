@@ -35,9 +35,6 @@ class MockBase : public viam::sdk::Base {
     viam::sdk::AttributeMap peek_do_command_command;
 
     MockBase(std::string name) : Base(std::move(name)){};
-
-   private:
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<viam::sdk::ProtoType>>> map;
 };
 
 }  // namespace base
