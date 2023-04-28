@@ -38,58 +38,46 @@ Subtype Encoder::subtype() {
     return Subtype(RDK, COMPONENT, "encoder");
 }
 
-
-Encoder::position Encoder::from_proto(viam::component::encoder::v1::GetPositionResponse proto){
+Encoder::position Encoder::from_proto(viam::component::encoder::v1::GetPositionResponse proto) {
     Encoder::position position;
     position.value = proto.value();
-    
-    position.position_type = proto.position_type();
+
+    position.type = proto.position_type();
     return position;
 }
 
-Encoder::properties Encoder::from_proto(viam::component::encoder::v1::GetPropertiesResponse proto){
+Encoder::properties Encoder::from_proto(viam::component::encoder::v1::GetPropertiesResponse proto) {
     Encoder::properties properties;
     properties.ticks_count_supported = proto.ticks_count_supported();
-    
+
     properties.angle_degrees_supported = proto.angle_degrees_supported();
     return properties;
 }
 
-
-
-
-viam::component::encoder::v1::GetPositionResponse Encoder::to_proto( position position) {
+viam::component::encoder::v1::GetPositionResponse Encoder::to_proto(position position) {
     viam::component::encoder::v1::GetPositionResponse proto;
     proto.set_value(position.value);
-    
+
     proto.set_position_type(position.position_type);
     return proto;
 }
 
-
-viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto( properties properties) {
+viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto(properties properties) {
     viam::component::encoder::v1::GetPropertiesResponse proto;
     proto.set_ticks_count_supported(properties.ticks_count_supported);
-    
+
     proto.set_angle_degrees_supported(properties.angle_degrees_supported);
     return proto;
 }
 
-
-
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs) {
-    return (
-        lhs.value == rhs.value && 
-        lhs.position_type == rhs.position_type);
+    return (lhs.value == rhs.value && lhs.position_type == rhs.position_type);
 }
 
 bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) {
-    return (
-        lhs.ticks_count_supported == rhs.ticks_count_supported && 
-        lhs.angle_degrees_supported == rhs.angle_degrees_supported);
+    return (lhs.ticks_count_supported == rhs.ticks_count_supported &&
+            lhs.angle_degrees_supported == rhs.angle_degrees_supported);
 }
-
-
 
 namespace {
 bool init() {
