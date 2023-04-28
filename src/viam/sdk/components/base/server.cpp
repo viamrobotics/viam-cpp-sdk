@@ -13,13 +13,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::base::v1::MoveStraightRequest* request,
     ::viam::component::base::v1::MoveStraightResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::MoveStraight] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -33,13 +33,13 @@ namespace sdk {
 ::grpc::Status BaseServer::Spin(::grpc::ServerContext* context,
                                 const ::viam::component::base::v1::SpinRequest* request,
                                 ::viam::component::base::v1::SpinResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::Spin] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -53,13 +53,13 @@ namespace sdk {
 ::grpc::Status BaseServer::SetPower(::grpc::ServerContext* context,
                                     const ::viam::component::base::v1::SetPowerRequest* request,
                                     ::viam::component::base::v1::SetPowerResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::SetPower] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -76,13 +76,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::base::v1::SetVelocityRequest* request,
     ::viam::component::base::v1::SetVelocityResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::SetVelocity] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -98,13 +98,13 @@ namespace sdk {
 ::grpc::Status BaseServer::Stop(::grpc::ServerContext* context,
                                 const ::viam::component::base::v1::StopRequest* request,
                                 ::viam::component::base::v1::StopResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::Stop] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -118,13 +118,13 @@ namespace sdk {
 ::grpc::Status BaseServer::IsMoving(::grpc::ServerContext* context,
                                     const ::viam::component::base::v1::IsMovingRequest* request,
                                     ::viam::component::base::v1::IsMovingResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::IsMoving] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -139,13 +139,13 @@ namespace sdk {
 ::grpc::Status BaseServer::DoCommand(grpc::ServerContext* context,
                                      const viam::common::v1::DoCommandRequest* request,
                                      viam::common::v1::DoCommandResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Base::DoCommand] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = sub_svc->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
