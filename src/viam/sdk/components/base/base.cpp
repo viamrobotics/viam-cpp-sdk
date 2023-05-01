@@ -15,8 +15,8 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceServerBase> BaseSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> svc) {
-    return std::make_shared<BaseServer>(svc);
+    std::shared_ptr<ResourceManager> manager) {
+    return std::make_shared<BaseServer>(manager);
 };
 
 std::shared_ptr<ResourceBase> BaseSubtype::create_rpc_client(std::string name,
@@ -28,7 +28,7 @@ std::shared_ptr<ResourceSubtype> Base::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::base::v1::BaseService::service_full_name());
-    if (sd == nullptr) {
+    if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the base service");
     }
     return std::make_shared<BaseSubtype>(sd);

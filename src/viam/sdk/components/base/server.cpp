@@ -18,7 +18,7 @@ namespace sdk {
                               "Called [Base::MoveStraight] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -38,7 +38,7 @@ namespace sdk {
                               "Called [Base::Spin] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -58,7 +58,7 @@ namespace sdk {
                               "Called [Base::SetPower] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -82,7 +82,7 @@ namespace sdk {
                               "Called [Base::SetVelocity] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -105,7 +105,7 @@ namespace sdk {
                               "Called [Base::Stop] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -125,7 +125,7 @@ namespace sdk {
                               "Called [Base::IsMoving] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -146,7 +146,7 @@ namespace sdk {
                               "Called [Base::DoCommand] without a request");
     };
 
-    auto rb = get_sub_svc()->resource(request->name());
+    auto rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -160,13 +160,7 @@ namespace sdk {
 }
 
 void BaseServer::register_server(std::shared_ptr<Server> server) {
-    viam::component::base::v1::BaseService::Service* base =
-        static_cast<viam::component::base::v1::BaseService::Service*>(this);
-    server->register_service(base);
-}
-
-std::shared_ptr<SubtypeService> BaseServer::get_sub_svc() {
-    return sub_svc;
+    server->register_service(this);
 }
 
 }  // namespace sdk

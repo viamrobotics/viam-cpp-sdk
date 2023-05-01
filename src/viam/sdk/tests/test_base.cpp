@@ -55,7 +55,7 @@ template <typename Lambda>
 void server_to_mock_pipeline(Lambda&& func) {
     BaseServer base_server;
     std::shared_ptr<MockBase> mock = MockBase::get_mock_base();
-    base_server.get_sub_svc()->add(std::string("mock_base"), mock);
+    base_server.resource_manager()->add(std::string("mock_base"), mock);
 
     grpc::ServerBuilder builder;
     builder.RegisterService(&base_server);
