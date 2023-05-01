@@ -16,8 +16,8 @@
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component_base.hpp>
-#include <viam/sdk/components/service_base.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/robot/client.hpp>
 
 namespace viam {
@@ -30,9 +30,10 @@ using viam::robot::v1::Status;
 /// @class RobotService_ service.hpp "robot/service.hpp"
 /// @brief a gRPC service for a robot.
 /// @ingroup Robot
-class RobotService_ : public ComponentServiceBase, public viam::robot::v1::RobotService::Service {
+class RobotService_ : public ResourceServerBase, public viam::robot::v1::RobotService::Service {
    public:
-    RobotService_();
+    RobotService_() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+    RobotService_(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
     static std::shared_ptr<RobotService_> create();
     std::shared_ptr<ResourceBase> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
@@ -48,6 +49,8 @@ class RobotService_ : public ComponentServiceBase, public viam::robot::v1::Robot
     ::grpc::Status StopAll(::grpc::ServerContext* context,
                            const ::viam::robot::v1::StopAllRequest* request,
                            ::viam::robot::v1::StopAllResponse* response) override;
+
+    void register_server(std::shared_ptr<Server> server) override;
 
    private:
     std::mutex lock_;

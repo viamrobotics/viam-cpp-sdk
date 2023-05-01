@@ -51,7 +51,6 @@ target_sources(viamsdk
     components/motor/motor.cpp
     components/motor/client.cpp
     components/motor/server.cpp
-    components/service_base.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -70,7 +69,6 @@ target_sources(viamsdk
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
-    subtype/subtype.cpp
     tests/test_utils.cpp
     tests/mocks/camera_mocks.cpp
     tests/mocks/generic_mocks.cpp
@@ -91,7 +89,6 @@ target_sources(viamsdk
       ../../viam/sdk/components/motor/motor.hpp
       ../../viam/sdk/components/motor/client.hpp
       ../../viam/sdk/components/motor/server.hpp
-      ../../viam/sdk/components/service_base.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
@@ -111,7 +108,6 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
-      ../../viam/sdk/subtype/subtype.hpp
       ../../viam/sdk/tests/test_utils.hpp
       ../../viam/sdk/tests/mocks/camera_mocks.hpp
       ../../viam/sdk/tests/mocks/generic_mocks.hpp

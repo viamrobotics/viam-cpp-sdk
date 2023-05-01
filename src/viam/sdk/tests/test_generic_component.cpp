@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(test_do) {
 
 BOOST_AUTO_TEST_CASE(test_do_service) {
     auto server = std::make_shared<GenericServer>();
-    server->get_sub_svc()->add(std::string("generic"), MockGeneric::get_mock_generic());
+    server->resource_manager()->add(std::string("generic"), MockGeneric::get_mock_generic());
 
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;

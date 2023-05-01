@@ -6,8 +6,8 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
@@ -63,8 +63,8 @@ class MotorServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    MotorServer() : ResourceServerBase(std::make_shared<SubtypeService>()){};
-    MotorServer(std::shared_ptr<SubtypeService> sub_svc) : ResourceServerBase(sub_svc){};
+    MotorServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+    MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
 };
 
 }  // namespace sdk

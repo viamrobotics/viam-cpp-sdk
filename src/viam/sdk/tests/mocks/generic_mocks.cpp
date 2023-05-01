@@ -31,7 +31,7 @@ std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
 }
 
 MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) {
-    this->server_->get_sub_svc()->add(std::string("generic"), MockGeneric::get_mock_generic());
+    this->server_->resource_manager()->add(std::string("generic"), MockGeneric::get_mock_generic());
 }
 
 ::grpc::Status MockGenericStub::DoCommand(::grpc::ClientContext* context,

@@ -14,7 +14,6 @@
 
 #include <viam/sdk/components/component_base.hpp>
 #include <viam/sdk/components/generic/generic.hpp>
-#include <viam/sdk/components/service_base.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
 #include <viam/sdk/resource/resource_type.hpp>

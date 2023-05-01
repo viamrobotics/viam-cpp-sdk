@@ -26,16 +26,15 @@
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component_base.hpp>
-#include <viam/sdk/components/service_base.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/handler_map.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
@@ -75,14 +74,14 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     if (reg) {
         res = reg->construct_resource(deps, cfg);
     };
-    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+    const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& services =
         module->services();
     if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "module cannot service api " + cfg.api().to_string());
     }
 
-    std::shared_ptr<SubtypeService> sub_svc = services.at(cfg.api());
-    sub_svc->add(cfg.resource_name(), res);
+    std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
+    manager->add(cfg.resource_name(), res);
 
     return grpc::Status();
 };
@@ -97,15 +96,15 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     Dependencies deps = get_dependencies(this, request->dependencies());
 
-    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+    const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& services =
         module->services();
     if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string());
     }
-    std::shared_ptr<SubtypeService> sub_svc = services.at(cfg.api());
+    std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
 
     // see if our resource is reconfigurable. if it is, reconfigure
-    std::shared_ptr<ResourceBase> res = sub_svc->resource(cfg.resource_name().name());
+    std::shared_ptr<ResourceBase> res = manager->resource(cfg.resource_name().name());
     if (!res) {
         return grpc::Status(grpc::UNKNOWN,
                             "unable to reconfigure resource " + cfg.resource_name().name() +
@@ -127,7 +126,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.name());
     if (reg) {
         std::shared_ptr<ResourceBase> res = reg->construct_resource(deps, cfg);
-        sub_svc->replace_one(cfg.resource_name(), res);
+        manager->replace_one(cfg.resource_name(), res);
     }
 
     return grpc::Status();
@@ -164,13 +163,13 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     ::viam::module::v1::RemoveResourceResponse* response) {
     auto name = Name::from_string(request->name());
     const Subtype* subtype = name.to_subtype();
-    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+    const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& services =
         module_->services();
     if (services.find(*subtype) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no grpc service for " + subtype->to_string());
     }
-    std::shared_ptr<SubtypeService> svc = services.at(*name.to_subtype());
-    std::shared_ptr<ResourceBase> res = svc->resource(name.name());
+    std::shared_ptr<ResourceManager> manager = services.at(*name.to_subtype());
+    std::shared_ptr<ResourceBase> res = manager->resource(name.name());
     if (!res) {
         return grpc::Status(
             grpc::UNKNOWN,
@@ -183,7 +182,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
-    svc->remove(name);
+    manager->remove(name);
     return grpc::Status();
 };
 
@@ -234,25 +233,25 @@ void ModuleService_::close() {
 }
 
 void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subtype api) {
-    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+    const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& services =
         module_->services();
     if (services.find(api) != services.end()) {
         return;
     }
     const std::lock_guard<std::mutex> lock(lock_);
-    std::shared_ptr<SubtypeService> new_svc = std::make_shared<SubtypeService>();
+    auto new_manager = std::make_shared<ResourceManager>();
 
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
-    std::shared_ptr<ResourceServerBase> resource_server = rs->create_resource_server(new_svc);
+    std::shared_ptr<ResourceServerBase> resource_server = rs->create_resource_server(new_manager);
     resource_server->register_server(server);
-    module_->mutable_services().emplace(api, new_svc);
+    module_->mutable_services().emplace(api, new_manager);
     module_->mutable_servers().push_back(resource_server);
 }
 
 void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server,
                                              Subtype api,
                                              Model model) {
-    const std::unordered_map<Subtype, std::shared_ptr<SubtypeService>>& services =
+    const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& services =
         module_->services();
     if (services.find(api) == services.end()) {
         add_api_from_registry(server, api);

@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_SUITE(test_motor_client_server)
 template <typename Lambda>
 void server_to_mock_pipeline(Lambda&& func) {
     MotorServer motor_server;
-    motor_server.get_sub_svc()->add(std::string("mock_motor"), MockMotor::get_mock_motor());
+    motor_server.resource_manager()->add(std::string("mock_motor"), MockMotor::get_mock_motor());
 
     grpc::ServerBuilder builder;
     builder.RegisterService(&motor_server);

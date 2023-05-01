@@ -16,8 +16,8 @@ namespace sdk {
 
 MotorSubtype::~MotorSubtype() = default;
 std::shared_ptr<ResourceServerBase> MotorSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> svc) {
-    return std::make_shared<MotorServer>(svc);
+    std::shared_ptr<ResourceManager> manager) {
+    return std::make_shared<MotorServer>(manager);
 };
 
 std::shared_ptr<ResourceBase> MotorSubtype::create_rpc_client(std::string name,

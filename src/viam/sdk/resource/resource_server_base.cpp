@@ -2,8 +2,8 @@
 
 namespace viam {
 namespace sdk {
-const std::shared_ptr<SubtypeService>& ResourceServerBase::get_sub_svc() const {
-    return sub_svc_;
+const std::shared_ptr<ResourceManager>& ResourceServerBase::resource_manager() const {
+    return manager_;
 };
 
 }  // namespace sdk

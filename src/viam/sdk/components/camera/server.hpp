@@ -6,8 +6,8 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
@@ -38,8 +38,8 @@ class CameraServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    CameraServer() : ResourceServerBase(std::make_shared<SubtypeService>()){};
-    CameraServer(std::shared_ptr<SubtypeService> sub_svc) : ResourceServerBase(sub_svc){};
+    CameraServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+    CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
 };
 
 }  // namespace sdk

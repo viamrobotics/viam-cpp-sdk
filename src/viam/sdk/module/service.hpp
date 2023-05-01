@@ -3,7 +3,6 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/module/v1/module.grpc.pb.h>
 
-#include <viam/sdk/components/service_base.hpp>
 #include <viam/sdk/module/module.hpp>
 #include <viam/sdk/resource/resource_base.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -11,8 +10,7 @@
 namespace viam {
 namespace sdk {
 
-class ModuleService_ : public ComponentServiceBase,
-                       public viam::module::v1::ModuleService::Service {
+class ModuleService_ : public viam::module::v1::ModuleService::Service {
    public:
     void start(std::shared_ptr<Server> server);
     void close();
