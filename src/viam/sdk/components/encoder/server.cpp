@@ -78,13 +78,13 @@ namespace sdk {
 ::grpc::Status EncoderServer::DoCommand(grpc::ServerContext* context,
                                         const viam::common::v1::DoCommandRequest* request,
                                         viam::common::v1::DoCommandResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Encoder::DoCommand] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -97,13 +97,7 @@ namespace sdk {
 }
 
 void EncoderServer::register_server(std::shared_ptr<Server> server) {
-    viam::component::encoder::v1::EncoderService::Service* encoder =
-        static_cast<viam::component::encoder::v1::EncoderService::Service*>(this);
-    server->register_service(encoder);
-}
-
-std::shared_ptr<SubtypeService> EncoderServer::resource_manager() {
-    return sub_svc;
+    server->register_service(this);
 }
 
 }  // namespace sdk

@@ -15,8 +15,8 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceServerBase> EncoderSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> svc) {
-    return std::make_shared<EncoderServer>(svc);
+    std::shared_ptr<ResourceManager> manager) {
+    return std::make_shared<EncoderServer>(manager);
 };
 
 std::shared_ptr<ResourceBase> EncoderSubtype::create_rpc_client(
@@ -28,7 +28,7 @@ std::shared_ptr<ResourceSubtype> Encoder::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::encoder::v1::EncoderService::service_full_name());
-    if (sd == nullptr) {
+    if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the encoder service");
     }
     return std::make_shared<EncoderSubtype>(sd);

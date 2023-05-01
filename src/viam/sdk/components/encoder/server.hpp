@@ -6,8 +6,8 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
 
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
@@ -39,13 +39,8 @@ class EncoderServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    std::shared_ptr<SubtypeService> resource_manager();
-
-    EncoderServer() : sub_svc(std::make_shared<SubtypeService>()){};
-    EncoderServer(std::shared_ptr<SubtypeService> sub_svc) : sub_svc(sub_svc){};
-
-   private:
-    std::shared_ptr<SubtypeService> sub_svc;
+    EncoderServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+    EncoderServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
 };
 
 }  // namespace sdk
