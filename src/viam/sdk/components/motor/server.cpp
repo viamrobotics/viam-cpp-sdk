@@ -11,13 +11,13 @@ namespace sdk {
 ::grpc::Status MotorServer::SetPower(::grpc::ServerContext* context,
                                      const ::viam::component::motor::v1::SetPowerRequest* request,
                                      ::viam::component::motor::v1::SetPowerResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::SetPower] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -31,13 +31,13 @@ namespace sdk {
 ::grpc::Status MotorServer::GoFor(::grpc::ServerContext* context,
                                   const ::viam::component::motor::v1::GoForRequest* request,
                                   ::viam::component::motor::v1::GoForResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::GoFor] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -51,13 +51,13 @@ namespace sdk {
 ::grpc::Status MotorServer::GoTo(::grpc::ServerContext* context,
                                  const ::viam::component::motor::v1::GoToRequest* request,
                                  ::viam::component::motor::v1::GoToResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::GoTo] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -72,13 +72,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::motor::v1::ResetZeroPositionRequest* request,
     ::viam::component::motor::v1::ResetZeroPositionResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::ResetZeroPosition] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -93,13 +93,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::motor::v1::GetPositionRequest* request,
     ::viam::component::motor::v1::GetPositionResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::GetPosition] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -115,13 +115,13 @@ namespace sdk {
     ::grpc::ServerContext* context,
     const ::viam::component::motor::v1::GetPropertiesRequest* request,
     ::viam::component::motor::v1::GetPropertiesResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::GetProperties] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -136,13 +136,13 @@ namespace sdk {
 ::grpc::Status MotorServer::Stop(::grpc::ServerContext* context,
                                  const ::viam::component::motor::v1::StopRequest* request,
                                  ::viam::component::motor::v1::StopResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::Stop] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -156,13 +156,13 @@ namespace sdk {
 ::grpc::Status MotorServer::IsPowered(::grpc::ServerContext* context,
                                       const ::viam::component::motor::v1::IsPoweredRequest* request,
                                       ::viam::component::motor::v1::IsPoweredResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::IsPowered] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -178,13 +178,13 @@ namespace sdk {
 ::grpc::Status MotorServer::IsMoving(::grpc::ServerContext* context,
                                      const ::viam::component::motor::v1::IsMovingRequest* request,
                                      ::viam::component::motor::v1::IsMovingResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::IsMoving] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
@@ -199,13 +199,13 @@ namespace sdk {
 ::grpc::Status MotorServer::DoCommand(grpc::ServerContext* context,
                                       const viam::common::v1::DoCommandRequest* request,
                                       viam::common::v1::DoCommandResponse* response) {
-    if (request == nullptr) {
+    if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [Motor::DoCommand] without a request");
     };
 
     std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
-    if (rb == nullptr) {
+    if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
