@@ -36,7 +36,7 @@ std::shared_ptr<ResourceBase> ResourceManager::resource(std::string name) {
             return resources_.at(short_name);
         }
     }
-    return nullptr;
+    throw std::runtime_error("Unable to find resource named " + name);
 }
 
 void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
