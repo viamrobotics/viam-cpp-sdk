@@ -26,76 +26,123 @@ using namespace board;
 using namespace viam::sdk;
 
 BOOST_AUTO_TEST_SUITE(test_board)
+// This sets up the following architecture
+// -- MockComponent
+//        /\
+//
+//        | (function calls)
+//
+//        \/
+// -- ComponentServer (Real)
+//        /\
+//
+//        | (grpc InProcessChannel)
+//
+//        \/
+// -- ComponentClient (Real)
+//
+// This is as close to a real setup as we can get
+// without starting another process
+//
+// The passed in lambda function has access to the ComponentClient
+//
+template <typename Lambda>
+void server_to_mock_pipeline(Lambda&& func) {
+    BoardServer board_server;
+    std::shared_ptr<MockBoard> mock = std::make_shared<MockBoard>("mock_board");
+    board_server.resource_manager()->add(std::string("mock_board"), mock);
 
+    grpc::ServerBuilder builder;
+    builder.RegisterService(&board_server);
+
+    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
+
+    grpc::ChannelArguments args;
+    auto grpc_channel = server->InProcessChannel(args);
+    BoardClient client("mock_board", grpc_channel);
+    // Run the passed test on the created stack
+    std::forward<Lambda>(func)(client, mock);
+    server->Shutdown();
+}
 
 BOOST_AUTO_TEST_CASE(test_status) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_gpio) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_gpio) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_pwm) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_pwm) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_pwm_frequency) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_pwm_frequency) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_read_analog) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_power_mode) {
-    std::shared_ptr<MockBoard> board = MockBoard::get_mock_board();
-    // TODO impl
-    BOOST_CHECK(false);
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        // TODO impl
+        BOOST_CHECK(false);
+    });
 }
-
 
 BOOST_AUTO_TEST_SUITE_END()
 
-} // namespace sdktests
-} // namespace viam
+}  // namespace sdktests
+}  // namespace viam

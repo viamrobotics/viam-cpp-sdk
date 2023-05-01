@@ -11,7 +11,7 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 
 namespace viam {
 namespace sdk {
@@ -24,7 +24,7 @@ namespace sdk {
 class BoardSubtype : public ResourceSubtype {
    public:
     std::shared_ptr<ResourceServerBase> create_resource_server(
-        std::shared_ptr<SubtypeService> svc) override;
+        std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
                                                     std::shared_ptr<grpc::Channel> chan) override;
     BoardSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
@@ -60,19 +60,12 @@ class Board : public ComponentBase {
         uint64_t frequency_hz;
     };
 
-    /// @struct analog_value
-    /// @brief TODO.
-    struct analog_value {
-        /// TODO
-        int32_t value;
-    };
+    // TODO
+    typedef int32_t analog_value;
 
-    /// @struct digital_value
-    /// @brief TODO.
-    struct digital_value {
-        /// TODO
-        int64_t value;
-    };
+    // TODO
+    typedef int64_t digital_value;
+
     /// @struct status
     /// @brief TODO.
     struct status {
@@ -89,7 +82,7 @@ class Board : public ComponentBase {
     static Subtype subtype();
 
     /// @brief Creates a `status` struct from its proto representation.
-    static status from_proto(viam::component::board::v1::StatusResponse proto);
+    static status from_proto(viam::common::v1::BoardStatus proto);
 
     /// @brief Creates a `gpio_pin` struct from its proto representation.
     static gpio_pin from_proto(viam::component::board::v1::GetGPIOResponse proto);
@@ -97,18 +90,20 @@ class Board : public ComponentBase {
     /// @brief Creates a `duty_cycle` struct from its proto representation.
     static duty_cycle from_proto(viam::component::board::v1::PWMResponse proto);
 
-    /// @brief Creates a `pwm_frequency` struct from its proto representation.
-    static pwm_frequency from_proto(viam::component::board::v1::PWMFrequencyResponse proto);
-
     /// @brief Creates a `analog_value` struct from its proto representation.
-    static analog_value from_proto(viam::component::board::v1::ReadAnalogReaderResponse proto);
+    static analog_value from_proto(viam::common::v1::AnalogStatus proto);
 
     /// @brief Creates a `digital_value` struct from its proto representation.
-    static digital_value from_proto(
-        viam::component::board::v1::GetDigitalInterruptValueResponse proto);
+    static digital_value from_proto(viam::common::v1::DigitalInterruptStatus proto);
+
+    /// @brief Creates a `power_mode` enum from its proto representation.
+    static power_mode from_proto(viam::component::board::v1::PowerMode proto);
+
+    /// @brief Creates a `power_mode` enum from its proto representation.
+    static std::chrono::duration<double> from_proto(google::protobuf::Duration proto);
 
     /// @brief Converts a `status` struct to its proto representation.
-    static viam::component::board::v1::StatusResponse to_proto(status status);
+    static viam::common::v1::BoardStatus to_proto(status status);
 
     /// @brief Converts a `gpio_pin` struct to its proto representation.
     static viam::component::board::v1::GetGPIOResponse to_proto(gpio_pin gpio_pin);
@@ -116,18 +111,20 @@ class Board : public ComponentBase {
     /// @brief Converts a `duty_cycle` struct to its proto representation.
     static viam::component::board::v1::PWMResponse to_proto(duty_cycle duty_cycle);
 
-    /// @brief Converts a `pwm_frequency` struct to its proto representation.
-    static viam::component::board::v1::PWMFrequencyResponse to_proto(pwm_frequency pwm_frequency);
-
     /// @brief Converts a `analog_value` struct to its proto representation.
-    static viam::component::board::v1::ReadAnalogReaderResponse to_proto(analog_value analog_value);
+    static viam::common::v1::AnalogStatus to_proto(analog_value analog_value);
 
     /// @brief Converts a `digital_value` struct to its proto representation.
-    static viam::component::board::v1::GetDigitalInterruptValueResponse to_proto(
-        digital_value digital_value);
+    static viam::common::v1::DigitalInterruptStatus to_proto(digital_value digital_value);
+
+    /// @brief Converts a `power_mode` enum to its proto representation.
+    static viam::component::board::v1::PowerMode to_proto(power_mode power_mode);
+
+    /// @brief Converts a `duration` struct to its proto representation.
+    static google::protobuf::Duration to_proto(std::chrono::duration<double> duration);
 
     /// @brief TODO
-    virtual status status() = 0;
+    virtual status get_status() = 0;
 
     /// @brief TODO
     /// @param pin TODO
@@ -150,7 +147,7 @@ class Board : public ComponentBase {
     /// @brief PWMFrequency gets the PWM frequency of the given pin of a board of the underlying
     /// robot.
     /// @param pin TODO
-    virtual pwm_frequency get_pwm_frequency(std::string pin) = 0;
+    virtual uint64_t get_pwm_frequency(std::string pin) = 0;
 
     /// @brief SetPWMFrequency sets the given pin of a board of the underlying robot to the given
     /// PWM frequency. 0 will use the board's default PWM frequency.
@@ -158,28 +155,28 @@ class Board : public ComponentBase {
     /// @param frequency_hz TODO
     virtual void set_pwm_frequency(std::string pin, uint64_t frequency_hz) = 0;
 
-    /// @brief DoCommand sends/receives arbitrary commands
-    /// @param TODO TODO
-    virtual AttributeMap do_command(ERROR TODO) = 0;
+    /// @brief Send/receive arbitrary commands to the resource.
+    /// @param Command the command to execute.
+    /// @return The result of the executed command.
+    virtual AttributeMap do_command(AttributeMap command) = 0;
 
     /// @brief Analog Reader ReadAnalogReader reads off the current value of an analog reader of a
     /// board of the underlying robot.
     /// @param board_name TODO
     /// @param analog_reader_name TODO
-    virtual analog_value read_analog(std::string board_name, std::string analog_reader_name) = 0;
+    virtual analog_value read_analog(std::string analog_reader_name) = 0;
 
     /// @brief Digital Interrupt GetDigitalInterruptValue returns the current value of the interrupt
     /// which is based on the type of interrupt.
     /// @param board_name TODO
     /// @param digital_interrupt_name TODO
-    virtual digital_value read_digital_interrupt(std::string board_name,
-                                                 std::string digital_interrupt_name) = 0;
+    virtual digital_value read_digital_interrupt(std::string digital_interrupt_name) = 0;
 
     /// @brief Power Management `SetPowerMode` sets the power consumption mode of the board to the
     /// requested setting for the given duration.
     /// @param power_mode Requested power mode
     /// @param duration Requested duration to stay in `power_mode`
-    virtual void set_power_mode(power_mode power_mode, google.protobuf.Duration duration) = 0;
+    virtual void set_power_mode(power_mode power_mode, std::chrono::duration<double> duration) = 0;
 
    protected:
     explicit Board(std::string name) : ComponentBase(std::move(name)){};
@@ -188,9 +185,6 @@ class Board : public ComponentBase {
 bool operator==(const Board::status& lhs, const Board::status& rhs);
 bool operator==(const Board::gpio_pin& lhs, const Board::gpio_pin& rhs);
 bool operator==(const Board::duty_cycle& lhs, const Board::duty_cycle& rhs);
-bool operator==(const Board::pwm_frequency& lhs, const Board::pwm_frequency& rhs);
-bool operator==(const Board::analog_value& lhs, const Board::analog_value& rhs);
-bool operator==(const Board::digital_value& lhs, const Board::digital_value& rhs);
 
 }  // namespace sdk
 }  // namespace viam

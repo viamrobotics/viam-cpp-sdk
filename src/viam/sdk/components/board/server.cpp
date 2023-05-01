@@ -24,8 +24,9 @@ namespace sdk {
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::status result = board->status();
-    response->set_status(result.status);
+    viam::common::v1::BoardStatus status = Board::to_proto(board->get_status());
+
+    *response->mutable_status() = status;
 
     return ::grpc::Status();
 }
@@ -128,8 +129,8 @@ namespace sdk {
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::pwm_frequency result = board->get_pwm_frequency(request->pin());
-    response->set_frequency_hz(result.frequency_hz);
+    uint64_t result = board->get_pwm_frequency(request->pin());
+    response->set_frequency_hz(result);
 
     return ::grpc::Status();
 }
@@ -185,16 +186,15 @@ namespace sdk {
                               "Called [Board::ReadAnalogReader] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
     }
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::analog_value result =
-        board->read_analog(request->board_name(), request->analog_reader_name());
-    response->set_value(result.value);
+    Board::analog_value result = board->read_analog(request->analog_reader_name());
+    response->set_value(result);
 
     return ::grpc::Status();
 }
@@ -208,16 +208,15 @@ namespace sdk {
                               "Called [Board::GetDigitalInterruptValue] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
     }
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::digital_value result =
-        board->read_digital_interrupt(request->board_name(), request->digital_interrupt_name());
-    response->set_value(result.value);
+    Board::digital_value result = board->read_digital_interrupt(request->digital_interrupt_name());
+    response->set_value(result);
 
     return ::grpc::Status();
 }
@@ -238,13 +237,14 @@ namespace sdk {
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    board->set_power_mode(request->power_mode(), request->duration());
+    board->set_power_mode(Board::from_proto(request->power_mode()),
+                          Board::from_proto(request->duration()));
 
     return ::grpc::Status();
 }
 
 void BoardServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(board);
+    server->register_service(this);
 }
 
 }  // namespace sdk

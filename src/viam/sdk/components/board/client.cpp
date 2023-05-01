@@ -17,8 +17,7 @@
 namespace viam {
 namespace sdk {
 
-
-Board::status BoardClient::status() {
+Board::status BoardClient::get_status() {
     viam::component::board::v1::StatusRequest request;
     viam::component::board::v1::StatusResponse response;
 
@@ -30,8 +29,7 @@ Board::status BoardClient::status() {
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return from_proto(response);
-    
+    return from_proto(response.status());
 }
 
 void BoardClient::set_gpio(std::string pin, bool high) {
@@ -64,7 +62,6 @@ Board::gpio_pin BoardClient::get_gpio(std::string pin) {
         throw std::runtime_error(status.error_message());
     }
     return from_proto(response);
-    
 }
 
 Board::duty_cycle BoardClient::get_pwm(std::string pin) {
@@ -81,7 +78,6 @@ Board::duty_cycle BoardClient::get_pwm(std::string pin) {
         throw std::runtime_error(status.error_message());
     }
     return from_proto(response);
-    
 }
 
 void BoardClient::set_pwm(std::string pin, double duty_cycle_pct) {
@@ -100,7 +96,7 @@ void BoardClient::set_pwm(std::string pin, double duty_cycle_pct) {
     }
 }
 
-Board::pwm_frequency BoardClient::get_pwm_frequency(std::string pin) {
+uint64_t BoardClient::get_pwm_frequency(std::string pin) {
     viam::component::board::v1::PWMFrequencyRequest request;
     viam::component::board::v1::PWMFrequencyResponse response;
 
@@ -113,8 +109,7 @@ Board::pwm_frequency BoardClient::get_pwm_frequency(std::string pin) {
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return from_proto(response);
-    
+    return response.frequency_hz();
 }
 
 void BoardClient::set_pwm_frequency(std::string pin, uint64_t frequency_hz) {
@@ -133,75 +128,70 @@ void BoardClient::set_pwm_frequency(std::string pin, uint64_t frequency_hz) {
     }
 }
 
-AttributeMap BoardClient::do_command(ERROR TODO) {
-    viam::component::board::v1::common.v1.DoCommandRequest request;
-    viam::component::board::v1::common.v1.DoCommandResponse response;
+AttributeMap BoardClient::do_command(AttributeMap command) {
+    viam::common::v1::DoCommandRequest request;
+    viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
 
+    google::protobuf::Struct proto_command = map_to_struct(command);
+    *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
-    request.set_TODO(TODO);
 
     grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return from_proto(response);
-    
+    return struct_to_map(response.result());
 }
 
-Board::analog_value BoardClient::read_analog(std::string board_name, std::string analog_reader_name) {
+Board::analog_value BoardClient::read_analog(std::string analog_reader_name) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
     viam::component::board::v1::ReadAnalogReaderResponse response;
 
     grpc::ClientContext ctx;
 
-    *request.mutable_name() = this->name();
-    request.set_board_name(board_name);
+    request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
 
     grpc::Status status = stub_->ReadAnalogReader(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return from_proto(response);
-    
+    return response.value();
 }
 
-Board::digital_value BoardClient::read_digital_interrupt(std::string board_name, std::string digital_interrupt_name) {
+Board::digital_value BoardClient::read_digital_interrupt(std::string digital_interrupt_name) {
     viam::component::board::v1::GetDigitalInterruptValueRequest request;
     viam::component::board::v1::GetDigitalInterruptValueResponse response;
 
     grpc::ClientContext ctx;
 
-    *request.mutable_name() = this->name();
-    request.set_board_name(board_name);
+    request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
 
     grpc::Status status = stub_->GetDigitalInterruptValue(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return from_proto(response);
-    
+    return response.value();
 }
 
-void BoardClient::set_power_mode(power_mode power_mode, google.protobuf.Duration duration) {
+void BoardClient::set_power_mode(power_mode power_mode, std::chrono::duration<double> duration) {
     viam::component::board::v1::SetPowerModeRequest request;
     viam::component::board::v1::SetPowerModeResponse response;
 
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
-    request.set_power_mode(power_mode);
-    request.set_duration(duration);
+    request.set_power_mode(to_proto(power_mode));
+    *request.mutable_duration() = to_proto(duration);
 
     grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
 }
-
 
 }  // namespace sdk
 }  // namespace viam
