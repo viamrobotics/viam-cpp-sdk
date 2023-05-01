@@ -101,9 +101,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7a156b51d5807403dd342ce4af8cc4fd"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServerBase.html">ResourceServerBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceSubtype.html#a7a156b51d5807403dd342ce4af8cc4fd">create_resource_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt; svc)=0</td></tr>
-<tr class="memdesc:a7a156b51d5807403dd342ce4af8cc4fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resource's gRPC server.  <br /></td></tr>
-<tr class="separator:a7a156b51d5807403dd342ce4af8cc4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0e569d94213aa1ac01933a35dbde1b"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServerBase.html">ResourceServerBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceSubtype.html#afb0e569d94213aa1ac01933a35dbde1b">create_resource_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; manager)=0</td></tr>
+<tr class="memdesc:afb0e569d94213aa1ac01933a35dbde1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resource's gRPC server.  <br /></td></tr>
+<tr class="separator:afb0e569d94213aa1ac01933a35dbde1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0be0b057fdfa730c3dfd8d4b7174825"><td class="memItemLeft" align="right" valign="top"><a id="ae0be0b057fdfa730c3dfd8d4b7174825" name="ae0be0b057fdfa730c3dfd8d4b7174825"></a>
 const google::protobuf::ServiceDescriptor *&#160;</td><td class="memItemRight" valign="bottom"><b>service_descriptor</b> ()</td></tr>
 <tr class="memdesc:ae0be0b057fdfa730c3dfd8d4b7174825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the <code><a class="el" href="classviam_1_1sdk_1_1ResourceSubtype.html" title="Defines registered Resource creation functionality.">ResourceSubtype</a></code>'s service descriptor. <br /></td></tr>
@@ -128,8 +128,8 @@ std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ProtoType.html">ProtoT
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines registered <code><a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a></code> creation functionality. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7a156b51d5807403dd342ce4af8cc4fd" name="a7a156b51d5807403dd342ce4af8cc4fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a156b51d5807403dd342ce4af8cc4fd">&#9670;&#160;</a></span>create_resource_server()</h2>
+<a id="afb0e569d94213aa1ac01933a35dbde1b" name="afb0e569d94213aa1ac01933a35dbde1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb0e569d94213aa1ac01933a35dbde1b">&#9670;&#160;</a></span>create_resource_server()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,8 +140,8 @@ std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ProtoType.html">ProtoT
         <tr>
           <td class="memname">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServerBase.html">ResourceServerBase</a> &gt; viam::sdk::ResourceSubtype::create_resource_server </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt;&#160;</td>
-          <td class="paramname"><em>svc</em></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt;&#160;</td>
+          <td class="paramname"><em>manager</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -155,13 +155,13 @@ std::function&lt; <a class="el" href="classviam_1_1sdk_1_1ProtoType.html">ProtoT
 <p>Create a resource's gRPC server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">svc</td><td>The server's <code><a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a></code>. </td></tr>
+    <tr><td class="paramname">manager</td><td>The server's <code><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html" title="Defines a resource manager for use by anything that tracks resources.">ResourceManager</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the gRPC server. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraSubtype.html#a0a4defb60b86869ab6a506e65239c5b2">viam::sdk::CameraSubtype</a>, <a class="el" href="classviam_1_1sdk_1_1GenericSubtype.html#a4d572b24d0e4d45da35fdda0fa3a1c4c">viam::sdk::GenericSubtype</a>, and <a class="el" href="classviam_1_1sdk_1_1MotorSubtype.html#a2186e4e8f2c907e53d75fb40b19eb34b">viam::sdk::MotorSubtype</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraSubtype.html#a3f1939e810ea4f33b0cf8aa66ef2c18a">viam::sdk::CameraSubtype</a>, <a class="el" href="classviam_1_1sdk_1_1GenericSubtype.html#aed4d225a2b628917527aa5868185b8ff">viam::sdk::GenericSubtype</a>, and <a class="el" href="classviam_1_1sdk_1_1MotorSubtype.html#a2cc9573e533efd8942a5a6c9fe5380f0">viam::sdk::MotorSubtype</a>.</p>
 
 </div>
 </div>

@@ -79,36 +79,57 @@ $(function() {
   <div class="headertitle"><div class="title">viam::sdk::ResourceManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines a resource manager for use by anything that tracks resources.  
+ <a href="classviam_1_1sdk_1_1ResourceManager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="resource__manager_8hpp_source.html">resource_manager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2bb15a2afa6963160ffa872542733c8b"><td class="memItemLeft" align="right" valign="top"><a id="a2bb15a2afa6963160ffa872542733c8b" name="a2bb15a2afa6963160ffa872542733c8b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>register_resource</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a>)</td></tr>
-<tr class="separator:a2bb15a2afa6963160ffa872542733c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47979b635ff26163dd4d16d08a9efda8"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a47979b635ff26163dd4d16d08a9efda8">get_resource</a> (std::string name, <a class="el" href="classviam_1_1sdk_1_1ResourceType.html">ResourceType</a> of_type)</td></tr>
-<tr class="separator:a47979b635ff26163dd4d16d08a9efda8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab86b39932683975d08c62d2c5ddbf759"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#ab86b39932683975d08c62d2c5ddbf759">resource</a> (std::string name)</td></tr>
+<tr class="memdesc:ab86b39932683975d08c62d2c5ddbf759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a resource.  <br /></td></tr>
+<tr class="separator:ab86b39932683975d08c62d2c5ddbf759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa330526df7ca7252a1162212a0a86ffa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#aa330526df7ca7252a1162212a0a86ffa">replace_all</a> (std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; &gt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a57c25dee2134a301bdfd5edcd1b95250">resources</a>)</td></tr>
+<tr class="memdesc:aa330526df7ca7252a1162212a0a86ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all resources in the manager.  <br /></td></tr>
+<tr class="separator:aa330526df7ca7252a1162212a0a86ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a454401ed4b4c5dba89fd789ec88e4a05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a454401ed4b4c5dba89fd789ec88e4a05">add</a> (<a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> name, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#ab86b39932683975d08c62d2c5ddbf759">resource</a>)</td></tr>
+<tr class="memdesc:a454401ed4b4c5dba89fd789ec88e4a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a single resource to the manager.  <br /></td></tr>
+<tr class="separator:a454401ed4b4c5dba89fd789ec88e4a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad1df8d51044bfbe52e62190fbe61c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#acad1df8d51044bfbe52e62190fbe61c3">add</a> (std::string name, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#ab86b39932683975d08c62d2c5ddbf759">resource</a>)</td></tr>
+<tr class="memdesc:acad1df8d51044bfbe52e62190fbe61c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a single resource to the manager.  <br /></td></tr>
+<tr class="separator:acad1df8d51044bfbe52e62190fbe61c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3914ebc6fedf964abea19eefcc1207d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a3914ebc6fedf964abea19eefcc1207d3">remove</a> (<a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> name)</td></tr>
+<tr class="memdesc:a3914ebc6fedf964abea19eefcc1207d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remodes a single resource from the manager.  <br /></td></tr>
+<tr class="separator:a3914ebc6fedf964abea19eefcc1207d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec61df3f125508854993df52cd7421cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#aec61df3f125508854993df52cd7421cd">replace_one</a> (<a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> name, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#ab86b39932683975d08c62d2c5ddbf759">resource</a>)</td></tr>
+<tr class="memdesc:aec61df3f125508854993df52cd7421cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces an existing resource. No-op if the named resource does not exist.  <br /></td></tr>
+<tr class="separator:aec61df3f125508854993df52cd7421cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57c25dee2134a301bdfd5edcd1b95250"><td class="memItemLeft" align="right" valign="top"><a id="a57c25dee2134a301bdfd5edcd1b95250" name="a57c25dee2134a301bdfd5edcd1b95250"></a>
 const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resources</b> () const</td></tr>
+<tr class="memdesc:a57c25dee2134a301bdfd5edcd1b95250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the existing resources within the manager. <br /></td></tr>
 <tr class="separator:a57c25dee2134a301bdfd5edcd1b95250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a47979b635ff26163dd4d16d08a9efda8" name="a47979b635ff26163dd4d16d08a9efda8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47979b635ff26163dd4d16d08a9efda8">&#9670;&#160;</a></span>get_resource()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines a resource manager for use by anything that tracks resources. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a454401ed4b4c5dba89fd789ec88e4a05" name="a454401ed4b4c5dba89fd789ec88e4a05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454401ed4b4c5dba89fd789ec88e4a05">&#9670;&#160;</a></span>add() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; viam::sdk::ResourceManager::get_resource </td>
+          <td class="memname">void viam::sdk::ResourceManager::add </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ResourceType.html">ResourceType</a>&#160;</td>
-          <td class="paramname"><em>of_type</em>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt;&#160;</td>
+          <td class="paramname"><em>resource</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -117,8 +138,173 @@ const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href
         </tr>
       </table>
 </div><div class="memdoc">
-<p>returns a resource from the registry. Args: std::string name: the name of the resource</p>
-<p>Raises: If the name is not within the <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> or the registered resource's type is not the expected type, then get_resource will throw an error. </p>
+
+<p>Adds a single resource to the manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the resource. </td></tr>
+    <tr><td class="paramname">resource</td><td>The resource being added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acad1df8d51044bfbe52e62190fbe61c3" name="acad1df8d51044bfbe52e62190fbe61c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad1df8d51044bfbe52e62190fbe61c3">&#9670;&#160;</a></span>add() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::ResourceManager::add </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt;&#160;</td>
+          <td class="paramname"><em>resource</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a single resource to the manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the resource. </td></tr>
+    <tr><td class="paramname">resource</td><td>The resource being added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3914ebc6fedf964abea19eefcc1207d3" name="a3914ebc6fedf964abea19eefcc1207d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3914ebc6fedf964abea19eefcc1207d3">&#9670;&#160;</a></span>remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::ResourceManager::remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remodes a single resource from the manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the resource to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa330526df7ca7252a1162212a0a86ffa" name="aa330526df7ca7252a1162212a0a86ffa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa330526df7ca7252a1162212a0a86ffa">&#9670;&#160;</a></span>replace_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::ResourceManager::replace_all </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; &gt;&#160;</td>
+          <td class="paramname"><em>resources</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces all resources in the manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resources</td><td>The resources to replace with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aec61df3f125508854993df52cd7421cd" name="aec61df3f125508854993df52cd7421cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec61df3f125508854993df52cd7421cd">&#9670;&#160;</a></span>replace_one()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::ResourceManager::replace_one </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt;&#160;</td>
+          <td class="paramname"><em>resource</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces an existing resource. No-op if the named resource does not exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the resource to replace. </td></tr>
+    <tr><td class="paramname">resource</td><td>The new resource that is replacing the existing one. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab86b39932683975d08c62d2c5ddbf759" name="ab86b39932683975d08c62d2c5ddbf759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab86b39932683975d08c62d2c5ddbf759">&#9670;&#160;</a></span>resource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; viam::sdk::ResourceManager::resource </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a resource. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name of the desired resource. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`std::runtime_error`</td><td>if the desired resource does not exist. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

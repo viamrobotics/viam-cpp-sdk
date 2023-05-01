@@ -91,6 +91,7 @@ $(function() {
 <area href="classviam_1_1sdk_1_1CameraServer.html" title="gRPC server implementation of a Camera component." alt="viam::sdk::CameraServer" shape="rect" coords="0,56,190,80"/>
 <area href="classviam_1_1sdk_1_1GenericServer.html" title="gRPC server implementation of a Generic component." alt="viam::sdk::GenericServer" shape="rect" coords="200,56,390,80"/>
 <area href="classviam_1_1sdk_1_1MotorServer.html" title="gRPC server implementation of a Motor component." alt="viam::sdk::MotorServer" shape="rect" coords="400,56,590,80"/>
+<area href="classviam_1_1sdk_1_1RobotService__.html" title="a gRPC service for a robot." alt="viam::sdk::RobotService_" shape="rect" coords="600,56,790,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -99,15 +100,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac29e19d53907c27c5934cb3592895356"><td class="memItemLeft" align="right" valign="top"><a id="ac29e19d53907c27c5934cb3592895356" name="ac29e19d53907c27c5934cb3592895356"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>register_server</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &gt; server)=0</td></tr>
 <tr class="separator:ac29e19d53907c27c5934cb3592895356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b0ce4a1a9836d38aef0a64c5771e792"><td class="memItemLeft" align="right" valign="top"><a id="a0b0ce4a1a9836d38aef0a64c5771e792" name="a0b0ce4a1a9836d38aef0a64c5771e792"></a>
-const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_sub_svc</b> () const</td></tr>
-<tr class="separator:a0b0ce4a1a9836d38aef0a64c5771e792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aaa3cd9948adabaa9ef0e1bd5ccbd14"><td class="memItemLeft" align="right" valign="top"><a id="a6aaa3cd9948adabaa9ef0e1bd5ccbd14" name="a6aaa3cd9948adabaa9ef0e1bd5ccbd14"></a>
+const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resource_manager</b> () const</td></tr>
+<tr class="separator:a6aaa3cd9948adabaa9ef0e1bd5ccbd14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ac813e4d051e29b1613bfefd6c91f95cc"><td class="memItemLeft" align="right" valign="top"><a id="ac813e4d051e29b1613bfefd6c91f95cc" name="ac813e4d051e29b1613bfefd6c91f95cc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceServerBase</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1SubtypeService.html">SubtypeService</a> &gt; sub_svc)</td></tr>
-<tr class="separator:ac813e4d051e29b1613bfefd6c91f95cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3689d443309efcf1d810fde4dc28b424"><td class="memItemLeft" align="right" valign="top"><a id="a3689d443309efcf1d810fde4dc28b424" name="a3689d443309efcf1d810fde4dc28b424"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceServerBase</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; manager)</td></tr>
+<tr class="separator:a3689d443309efcf1d810fde4dc28b424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/viam/sdk/resource/<a class="el" href="resource__server__base_8hpp_source.html">resource_server_base.hpp</a></li>
