@@ -18,6 +18,9 @@ namespace sdk {
 class BaseServer : public ResourceServerBase,
                    public viam::component::base::v1::BaseService::Service {
    public:
+    BaseServer();
+    BaseServer(std::shared_ptr<ResourceManager> manager);
+
     ::grpc::Status MoveStraight(
         ::grpc::ServerContext* context,
         const ::viam::component::base::v1::MoveStraightRequest* request,
@@ -48,9 +51,6 @@ class BaseServer : public ResourceServerBase,
                              viam::common::v1::DoCommandResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
-
-    BaseServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-    BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
 };
 
 }  // namespace sdk

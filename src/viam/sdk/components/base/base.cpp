@@ -14,6 +14,11 @@
 namespace viam {
 namespace sdk {
 
+BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+    : Base(std::move(name)),
+      stub_(viam::component::base::v1::BaseService::NewStub(channel)),
+      channel_(std::move(channel)){};
+
 std::shared_ptr<ResourceServerBase> BaseSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<BaseServer>(manager);
@@ -38,13 +43,15 @@ Subtype Base::subtype() {
     return Subtype(RDK, COMPONENT, "base");
 }
 
+Base::Base(std::string name) : ComponentBase(std::move(name)){};
+
 namespace {
 bool init() {
     Registry::register_subtype(Base::subtype(), Base::resource_subtype());
     return true;
 };
 
-bool inited = init();
+const bool inited = init();
 }  // namespace
 
 }  // namespace sdk

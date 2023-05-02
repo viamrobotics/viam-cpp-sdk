@@ -17,8 +17,8 @@ class MockBase : public viam::sdk::Base {
    public:
     void move_straight(int64_t distance_mm, double mm_per_sec) override;
     void spin(double angle_deg, double degs_per_sec) override;
-    void set_power(viam::sdk::Vector3 linear, viam::sdk::Vector3 angular) override;
-    void set_velocity(viam::sdk::Vector3 linear, viam::sdk::Vector3 angular) override;
+    void set_power(const viam::sdk::Vector3& linear, const viam::sdk::Vector3& angular) override;
+    void set_velocity(const viam::sdk::Vector3& linear, const viam::sdk::Vector3& angular) override;
     grpc::StatusCode stop() override;
     bool is_moving() override;
     viam::sdk::AttributeMap do_command(viam::sdk::AttributeMap command) override;

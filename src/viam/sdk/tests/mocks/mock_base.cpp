@@ -23,11 +23,11 @@ void MockBase::spin(double angle_deg, double degs_per_sec) {
     this->peek_spin_angle_deg = angle_deg;
     this->peek_spin_degs_per_sec = degs_per_sec;
 };
-void MockBase::set_power(Vector3 linear, Vector3 angular) {
+void MockBase::set_power(const Vector3& linear, const Vector3& angular) {
     this->peek_set_power_linear = linear;
     this->peek_set_power_angular = angular;
 };
-void MockBase::set_velocity(Vector3 linear, Vector3 angular) {
+void MockBase::set_velocity(const Vector3& linear, const Vector3& angular) {
     this->peek_set_velocity_linear = linear;
     this->peek_set_velocity_angular = angular;
 };

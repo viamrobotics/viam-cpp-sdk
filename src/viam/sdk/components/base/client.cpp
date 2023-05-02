@@ -50,7 +50,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec) {
     }
 }
 
-void BaseClient::set_power(Vector3 linear, Vector3 angular) {
+void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
     viam::component::base::v1::SetPowerRequest request;
     viam::component::base::v1::SetPowerResponse response;
 
@@ -66,7 +66,7 @@ void BaseClient::set_power(Vector3 linear, Vector3 angular) {
     }
 }
 
-void BaseClient::set_velocity(Vector3 linear, Vector3 angular) {
+void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
     viam::component::base::v1::SetVelocityRequest request;
     viam::component::base::v1::SetVelocityResponse response;
 

@@ -60,12 +60,12 @@ class Base : public ComponentBase {
     /// each direction
     /// @param linear Desired linear power percentage (-1 <= % <= 1) for each direction
     /// @param angular Desired angular power percentage (-1 <= % <= 1) for each direction
-    virtual void set_power(Vector3 linear, Vector3 angular) = 0;
+    virtual void set_power(const Vector3& linear, const Vector3& angular) = 0;
 
     /// @brief Set the linear and angular velocity of a base
     /// @param linear Desired linear velocity in mm per second for each direction
     /// @param angular Desired angular velocity in degrees per second for each direction
-    virtual void set_velocity(Vector3 linear, Vector3 angular) = 0;
+    virtual void set_velocity(const Vector3& linear, const Vector3& angular) = 0;
 
     /// @brief Stops a robot's base
     virtual grpc::StatusCode stop() override = 0;
@@ -79,7 +79,7 @@ class Base : public ComponentBase {
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
    protected:
-    explicit Base(std::string name) : ComponentBase(std::move(name)){};
+    explicit Base(std::string name);
 };
 
 }  // namespace sdk
