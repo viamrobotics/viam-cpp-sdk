@@ -17,6 +17,11 @@
 namespace viam {
 namespace sdk {
 
+EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+    : Encoder(std::move(name)),
+      stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
+      channel_(std::move(channel)){};
+
 Encoder::position EncoderClient::get_position(position_type position_type) {
     viam::component::encoder::v1::GetPositionRequest request;
     viam::component::encoder::v1::GetPositionResponse response;

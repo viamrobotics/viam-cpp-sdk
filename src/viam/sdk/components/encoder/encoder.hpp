@@ -40,13 +40,13 @@ class EncoderSubtype : public ResourceSubtype {
 class Encoder : public ComponentBase {
    public:
     /// @enum position_type
-    enum position_type {
+    enum class position_type : uint8_t {
         // Unspecified position type
-        UNSPECIFIED,
+        unspecified = 0,
         // Provided by incremental encoders
-        TICKS_COUNT,
+        ticks_count = 1,
         // Provided by absolute encoders
-        ANGLE_DEGREES
+        angle_degrees = 2
     };
 
     /// @struct position
@@ -67,7 +67,7 @@ class Encoder : public ComponentBase {
     static std::shared_ptr<ResourceSubtype> resource_subtype();
     static Subtype subtype();
 
-    /// @brief Creates a `properties` struct from its proto representation.
+    /// @brief Creates a `position_type` struct from its proto representation.
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);
 
     /// @brief Creates a `position` struct from its proto representation.
@@ -76,7 +76,7 @@ class Encoder : public ComponentBase {
     /// @brief Creates a `properties` struct from its proto representation.
     static properties from_proto(viam::component::encoder::v1::GetPropertiesResponse proto);
 
-    /// @brief Converts a `position` struct to its proto representation.
+    /// @brief Converts a `position_type` struct to its proto representation.
     static viam::component::encoder::v1::PositionType to_proto(position_type position_type);
 
     /// @brief Converts a `position` struct to its proto representation.
@@ -87,10 +87,10 @@ class Encoder : public ComponentBase {
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
     /// incremental encoder or degrees for an absolute encoder.
-    /// @param position_type If supplied, the response will return the specified position type. If
-    /// the driver does not implement the requested type, this call will return an error. If
-    /// position type is UNSPECIFIED, the response will return a default according to the driver.
-    virtual position get_position(position_type position_type) = 0;
+    /// @param position_type The type of position you are requesting. If  the driver does not
+    /// implement the requested type, this call will return an error. If position type is
+    /// `unspecified`, the response will return a default according to the driver.
+    virtual position get_position(position_type position_type = position_type::unspecified) = 0;
 
     /// @brief Reset the value of the position
     virtual void reset_position() = 0;
@@ -104,7 +104,7 @@ class Encoder : public ComponentBase {
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
    protected:
-    explicit Encoder(std::string name) : ComponentBase(std::move(name)){};
+    explicit Encoder(std::string name);
 };
 
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs);

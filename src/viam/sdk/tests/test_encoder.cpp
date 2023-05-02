@@ -67,10 +67,13 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_get_position) {
     server_to_mock_pipeline([](Encoder& client, std::shared_ptr<MockEncoder> mock) -> void {
-        mock->peek_get_position_ret = Encoder::position{1.0, Encoder::position_type::ANGLE_DEGREES};
-        auto returned_position = client.get_position(Encoder::position_type::TICKS_COUNT);
-        BOOST_CHECK(mock->peek_get_position_position_type == Encoder::position_type::TICKS_COUNT);
+        mock->peek_get_position_ret = Encoder::position{1.0, Encoder::position_type::angle_degrees};
+        auto returned_position = client.get_position(Encoder::position_type::ticks_count);
+        BOOST_CHECK(mock->peek_get_position_position_type == Encoder::position_type::ticks_count);
         BOOST_CHECK(returned_position == mock->peek_get_position_ret);
+        // Check that an empty get_position() request has unspecified position_type
+        client.get_position();
+        BOOST_CHECK(mock->peek_get_position_position_type == Encoder::position_type::unspecified);
     });
 }
 

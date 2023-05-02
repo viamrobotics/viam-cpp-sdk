@@ -41,13 +41,13 @@ Subtype Encoder::subtype() {
 Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
     switch (proto) {
         case viam::component::encoder::v1::POSITION_TYPE_UNSPECIFIED: {
-            return Encoder::position_type::UNSPECIFIED;
+            return Encoder::position_type::unspecified;
         }
         case viam::component::encoder::v1::POSITION_TYPE_ANGLE_DEGREES: {
-            return Encoder::position_type::ANGLE_DEGREES;
+            return Encoder::position_type::angle_degrees;
         }
         case viam::component::encoder::v1::POSITION_TYPE_TICKS_COUNT: {
-            return Encoder::position_type::TICKS_COUNT;
+            return Encoder::position_type::ticks_count;
         }
         default: {
             throw std::runtime_error("Invalid proto encoder type to decode");
@@ -73,12 +73,13 @@ Encoder::properties Encoder::from_proto(viam::component::encoder::v1::GetPropert
 
 viam::component::encoder::v1::PositionType Encoder::to_proto(position_type position_type) {
     switch (position_type) {
-        case Encoder::position_type::UNSPECIFIED: {
+        case Encoder::position_type::unspecified: {
+            return viam::component::encoder::v1::PositionType::POSITION_TYPE_UNSPECIFIED;
         }
-        case Encoder::position_type::ANGLE_DEGREES: {
+        case Encoder::position_type::angle_degrees: {
             return viam::component::encoder::v1::POSITION_TYPE_ANGLE_DEGREES;
         }
-        case Encoder::position_type::TICKS_COUNT: {
+        case Encoder::position_type::ticks_count: {
             return viam::component::encoder::v1::POSITION_TYPE_TICKS_COUNT;
         }
         default: {
@@ -103,6 +104,8 @@ viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto(properties
     return proto;
 }
 
+Encoder::Encoder(std::string name) : ComponentBase(std::move(name)){};
+
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs) {
     return (lhs.value == rhs.value && lhs.type == rhs.type);
 }
@@ -118,7 +121,7 @@ bool init() {
     return true;
 };
 
-bool inited = init();
+const bool inited = init();
 }  // namespace
 
 }  // namespace sdk
