@@ -8,27 +8,38 @@ namespace sdk {
 double Vector3::x() const {
     return this->data_[0];
 }
+
 double Vector3::y() const {
     return this->data_[1];
 }
+
 double Vector3::z() const {
     return this->data_[2];
 }
-void Vector3::set_x(double x) {
+
+Vector3& Vector3::set_x(double x) {
     this->data_[0] = x;
+    return *this;
 }
-void Vector3::set_y(double y) {
+
+Vector3& Vector3::set_y(double y) {
     this->data_[1] = y;
+    return *this;
 }
-void Vector3::set_z(double z) {
+
+Vector3& Vector3::set_z(double z) {
     this->data_[2] = z;
+    return *this;
 }
-std::array<double, 3> Vector3::data() const {
+
+const std::array<double, 3>& Vector3::data() const {
     return this->data_;
 }
+
 std::array<double, 3>& Vector3::mutable_data() {
     return this->data_;
 }
+
 viam::common::v1::Vector3 Vector3::to_proto(const Vector3& vec) {
     viam::common::v1::Vector3 result;
     result.set_x(vec.x());
@@ -36,8 +47,9 @@ viam::common::v1::Vector3 Vector3::to_proto(const Vector3& vec) {
     result.set_z(vec.z());
     return result;
 };
+
 Vector3 Vector3::from_proto(viam::common::v1::Vector3 vec) {
-    return Vector3(vec.x(), vec.y(), vec.z());
+    return {vec.x(), vec.y(), vec.z()};
 }
 
 }  // namespace sdk
