@@ -204,7 +204,8 @@ BOOST_AUTO_TEST_SUITE(xtensor_experiment)
 
 // Test based on getting two 800*600 input images.
 BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_input_image) {
-    // Pretend proto arrays for two 800/600 8-bit color images.
+    // Pretend proto arrays for two 800/600 8-bit color images that we imagine
+    // we want to fuse in to a single input tensor.
     auto image_all_zero = std::vector<uint8_t>(800 * 600, 0);
     auto image_all_ones = std::vector<uint8_t>(800 * 600, 1);
 
@@ -264,9 +265,89 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_input_image) {
     // the underlying buffers.
     BOOST_TEST(image_all_zero[0] == 41);
     BOOST_TEST(image_all_ones[0] == 23);
+}
 
-    // TODO: Validate that we can efficiently linearize to a flat buffer,
-    // as we probably need to do to feed into tf / triton.
+BOOST_AUTO_TEST_CASE(xtensor_experiment_flatten_three_dimensions) {
+    // TODO: Validate that we can efficiently linearize from a chunked
+    // array to a flat buffer, as we probably need to do to feed into
+    // tf / triton.
+
+    // Create a 10x10x10 cube of doubles.
+    std::size_t depth = 10;
+    std::vector<double> flat(depth * depth * depth, 0);
+    std::iota(begin(flat), end(flat), 0.0);
+    auto flat_iter = std::begin(flat);
+
+    // Turn that into a vector of vector of vector. This will give us
+    // depth^2 memory regions containing our real data.
+    std::vector<std::vector<std::vector<double>>> data;
+    data.assign(depth, {});
+    for (std::size_t i = 0; i < depth; ++i) {
+        auto& icurrent = data[i];
+        icurrent.assign(depth, {});
+        for (std::size_t j = 0; j < depth; j++) {
+            auto& jcurrent = icurrent[j];
+            jcurrent.assign(flat_iter, flat_iter + depth);
+            flat_iter += depth;
+        }
+    }
+    // BOOST_TEST(flat_iter == std::end(flat));
+    BOOST_TEST(data[0][0][0] == 0.0);
+    BOOST_TEST(data[depth - 1][depth - 1][depth - 1] == flat.back());
+
+
+    // Create a linear 100 element array of xarray's viewing over the
+    // inner contiguous float arrays of `data`.
+    //
+    // TODO: These shape vectors need dynamic storage. Can we avoid that?
+    using base_type = decltype(xt::adapt(
+        data[0][0].data(), depth, xt::no_ownership(), std::vector<std::size_t>{depth}));
+    std::vector<base_type> chunk_storage;
+    chunk_storage.reserve(depth * depth);
+
+    for (std::size_t i = 0; i < depth; ++i) {
+        auto& icurrent = data[i];
+        for (std::size_t j = 0; j < depth; j++) {
+            auto& jcurrent = icurrent[j];
+            chunk_storage.emplace_back(xt::adapt(jcurrent.data(),
+                                                 jcurrent.size(),
+                                                 xt::no_ownership(),
+                                                 std::vector<std::size_t>{jcurrent.size()}));
+        }
+    }
+
+    // Adapt the linear array so we can injest it into a chunked_array.
+    auto chunk_adapter = xt::adapt(chunk_storage.data(),
+                                   chunk_storage.size(),
+                                   xt::no_ownership(),
+                                   std::vector<size_t>{chunk_storage.size()});
+
+    // Construct a chunked_array over the adapted linear array. This now looks
+    // like a 10x10x10 array over the 100 1x10 chunks.
+    std::vector<std::size_t> chunked_shape{depth, depth, depth};
+    std::vector<std::size_t> chunk_shape{1, 1, depth};
+    xt::xchunked_array<decltype(chunk_adapter)> tensor_view(
+        std::move(chunk_adapter), std::move(chunked_shape), std::move(chunk_shape));
+
+    // Validate that we are index for index and reference for reference between
+    // the memory held in `data` and the memory viewed by `tensor_view`.
+    for (std::size_t i = 0; i < depth; ++i) {
+        for (std::size_t j = 0; j < depth; j++) {
+            for (std::size_t k = 0; k < depth; k++) {
+                BOOST_TEST(tensor_view(i, j, k) == data[i][j][k]);
+                BOOST_TEST(&tensor_view(i, j, k) == &data[i][j][k]);
+            }
+        }
+    }
+
+    // Chunkwise copy the data back into a flattened array and ensure
+    // we arrive back at something with the same contents as `flat`.
+    std::vector<double> flattened;
+    for (auto ci = tensor_view.chunk_begin(); ci != tensor_view.chunk_end(); ++ci) {
+        // TODO: How can we test that this is a bulk copy and not an element by element copy?
+        flattened.insert(flattened.end(), (*ci).begin(), (*ci).end());
+    }
+    BOOST_TEST(flat == flattened);
 }
 
 // Test based on getting two sets of 25 bounding boxes (one per input
