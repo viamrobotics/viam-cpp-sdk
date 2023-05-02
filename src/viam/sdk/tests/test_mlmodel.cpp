@@ -326,7 +326,7 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_flatten_three_dimensions) {
     // like a 10x10x10 array over the 100 1x10 chunks.
     std::vector<std::size_t> chunked_shape{depth, depth, depth};
     std::vector<std::size_t> chunk_shape{1, 1, depth};
-    xt::xchunked_array<decltype(chunk_adapter)> tensor_view(
+    const xt::xchunked_array<decltype(chunk_adapter)> tensor_view(
         std::move(chunk_adapter), std::move(chunked_shape), std::move(chunk_shape));
 
     // Validate that we are index for index and reference for reference between
@@ -355,7 +355,8 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_flatten_three_dimensions) {
 BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_boxes) {
     // Pretend that the model gives us back a linear buffer to represent the tensor
 
-    const std::vector<std::size_t> detection_results_shape{2, 25, 4};
+    constexpr std::array<size_t, 3> dimensions{2, 25, 4};
+    const std::vector<std::size_t> detection_results_shape{dimensions.begin(), dimensions.end()};
 
     const std::size_t k_detection_results_buffer_size =
         std::accumulate(begin(detection_results_shape),
@@ -373,6 +374,8 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
     BOOST_TEST(detection_results_buffer.back() == k_detection_results_buffer_size - 1);
 
     // Shape the buffer as a tensor and validate that we find the right things at the right indexes.
+    //
+    // TODO: Things break when I declare this as `const auto`. Why?
     auto detection_results = xt::adapt(detection_results_buffer.data(),
                                        detection_results_buffer.size(),
                                        xt::no_ownership(),
@@ -389,12 +392,36 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
                                  detection_results_shape[2] - 1) ==
                k_detection_results_buffer_size - 1);
 
-    // TODO: Validate that we can view this as an `xchuncked_array` over a single element
-    // vector.
+    BOOST_TEST(&detection_results(0, 0, 0) == &detection_results_buffer[0]);
+    BOOST_TEST(&detection_results(detection_results_shape[0] - 1,
+                                  detection_results_shape[1] - 1,
+                                  detection_results_shape[2] - 1) == &detection_results_buffer.back());
+
+    // TODO: Validate that we can view this as an `xchunked_array`
+    // over a single element vector. This makes it easier to use the
+    // same data types for input and output in our API.
+    std::vector<decltype(detection_results)> chunk_storage{detection_results};
+    auto chunk_adapter = xt::adapt(chunk_storage.data(), chunk_storage.size(), xt::no_ownership(), std::vector{chunk_storage.size()});
+
+    const xt::xchunked_array<decltype(chunk_adapter)> detection_results_chunked(
+        std::move(chunk_adapter), detection_results_shape, detection_results_shape
+    );
+
+    BOOST_TEST(detection_results == detection_results_chunked);
+
+    BOOST_TEST(&detection_results_chunked(0, 0, 0) == &detection_results_buffer[0]);
+    BOOST_TEST(&detection_results_chunked(detection_results_shape[0] - 1,
+                                          detection_results_shape[1] - 1,
+                                          detection_results_shape[2] - 1) == &detection_results_buffer.back());
 
     // TODO: Validate that we can efficiently fragement to 50 newly
-    // allocated 4 element vectors with 50 copies, as we would need to
+    // 4 element vectors with 50 copies, as we would need to
     // do to push it back as a proto `struct`.
+    std::array<std::vector<float>, dimensions[0] * dimensions[1]> storage;
+    for (auto& storage_item : storage)
+        storage_item = std::vector(dimensions[2], float{0});
+
+    // XXX
 }
 
 BOOST_AUTO_TEST_SUITE_END()
