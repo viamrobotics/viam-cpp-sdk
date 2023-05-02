@@ -21,17 +21,13 @@ namespace viam {
 namespace sdk {
 
 MLModelServiceServer::MLModelServiceServer()
-    : MLModelServiceServer(std::make_shared<SubtypeService>()) {}
+    : MLModelServiceServer(std::make_shared<ResourceManager>()) {}
 
-MLModelServiceServer::MLModelServiceServer(std::shared_ptr<SubtypeService> subtype_service)
-    : subtype_service_(std::move(subtype_service)) {}
+MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> manager)
+    : ResourceServerBase(std::move(manager)) {}
 
 void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
-}
-
-const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
-    return subtype_service_;
 }
 
 ::grpc::Status MLModelServiceServer::Infer(
@@ -42,7 +38,7 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] without a request"};
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return {::grpc::UNKNOWN, "resource not found: " + request->name()};
     }
@@ -65,7 +61,7 @@ const std::shared_ptr<SubtypeService>& MLModelServiceServer::get_sub_svc() {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Metadata] without a request"};
     };
 
-    std::shared_ptr<ResourceBase> rb = get_sub_svc()->resource(request->name());
+    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return {grpc::UNKNOWN, "resource not found: " + request->name()};
     }

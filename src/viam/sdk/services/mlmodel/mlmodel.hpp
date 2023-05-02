@@ -24,8 +24,8 @@
 #include <xtensor/xchunked_array.hpp>
 
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/services/service_base.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
 
 namespace viam {
 namespace sdk {
@@ -35,7 +35,7 @@ class MLModelServiceSubtype : public ResourceSubtype {
     explicit MLModelServiceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
 
     std::shared_ptr<ResourceServerBase> create_resource_server(
-        std::shared_ptr<SubtypeService> service) override;
+        std::shared_ptr<ResourceManager> manager) override;
 
     std::shared_ptr<ResourceBase> create_rpc_client(
         std::string name, std::shared_ptr<grpc::Channel> channel) override;

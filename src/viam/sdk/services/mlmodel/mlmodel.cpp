@@ -25,8 +25,8 @@ MLModelServiceSubtype::MLModelServiceSubtype(
     : ResourceSubtype(service_descriptor) {}
 
 std::shared_ptr<ResourceServerBase> MLModelServiceSubtype::create_resource_server(
-    std::shared_ptr<SubtypeService> service) {
-    return std::make_shared<MLModelServiceServer>(std::move(service));
+    std::shared_ptr<ResourceManager> manager) {
+    return std::make_shared<MLModelServiceServer>(std::move(manager));
 };
 
 std::shared_ptr<ResourceBase> MLModelServiceSubtype::create_rpc_client(

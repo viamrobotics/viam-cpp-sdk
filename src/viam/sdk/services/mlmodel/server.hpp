@@ -16,8 +16,9 @@
 
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
 
+#include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/subtype/subtype.hpp>
+
 
 namespace viam {
 namespace sdk {
@@ -30,11 +31,9 @@ class MLModelServiceServer : public ResourceServerBase,
                              public ::viam::service::mlmodel::v1::MLModelService::Service {
    public:
     MLModelServiceServer();
-    explicit MLModelServiceServer(std::shared_ptr<SubtypeService> subtype_service);
+    explicit MLModelServiceServer(std::shared_ptr<ResourceManager> manager);
 
     void register_server(std::shared_ptr<Server> server) override;
-
-    const std::shared_ptr<SubtypeService>& get_sub_svc();
 
     ::grpc::Status Infer(::grpc::ServerContext* context,
                          const ::viam::service::mlmodel::v1::InferRequest* request,
@@ -44,8 +43,6 @@ class MLModelServiceServer : public ResourceServerBase,
                             const ::viam::service::mlmodel::v1::MetadataRequest* request,
                             ::viam::service::mlmodel::v1::MetadataResponse* response) override;
 
-   private:
-    std::shared_ptr<SubtypeService> subtype_service_;
 };
 
 }  // namespace sdk

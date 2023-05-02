@@ -174,7 +174,7 @@ void client_server_test(std::shared_ptr<MockMLModelService> mock, F&& f) {
     const auto k_service_name = "mock_mlmodel_service";
 
     MLModelServiceServer mlmodel_server;
-    mlmodel_server.get_sub_svc()->add(k_service_name, std::move(mock));
+    mlmodel_server.resource_manager()->add(k_service_name, std::move(mock));
 
     grpc::ServerBuilder builder;
     builder.RegisterService(&mlmodel_server);
