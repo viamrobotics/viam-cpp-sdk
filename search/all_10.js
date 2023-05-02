@@ -1,7 +1,7 @@
 var searchData=
 [
   ['server_0',['Server',['../classviam_1_1sdk_1_1Server.html',1,'viam::sdk']]],
-  ['server_2ehpp_1',['server.hpp',['../components_2camera_2server_8hpp.html',1,'(Global Namespace)'],['../components_2generic_2server_8hpp.html',1,'(Global Namespace)'],['../components_2motor_2server_8hpp.html',1,'(Global Namespace)'],['../rpc_2server_8hpp.html',1,'(Global Namespace)']]],
+  ['server_2ehpp_1',['server.hpp',['../components_2camera_2server_8hpp.html',1,'(Global Namespace)'],['../components_2encoder_2server_8hpp.html',1,'(Global Namespace)'],['../components_2generic_2server_8hpp.html',1,'(Global Namespace)'],['../components_2motor_2server_8hpp.html',1,'(Global Namespace)'],['../rpc_2server_8hpp.html',1,'(Global Namespace)']]],
   ['service_5fdescriptor_2',['service_descriptor',['../classviam_1_1sdk_1_1ResourceSubtype.html#ae0be0b057fdfa730c3dfd8d4b7174825',1,'viam::sdk::ResourceSubtype']]],
   ['servicebase_3',['ServiceBase',['../classviam_1_1sdk_1_1ServiceBase.html',1,'viam::sdk']]],
   ['set_5fpower_4',['set_power',['../classviam_1_1sdk_1_1MotorClient.html#a0f8ff872316e311466ec946470319d74',1,'viam::sdk::MotorClient::set_power()'],['../classviam_1_1sdk_1_1Motor.html#afeaba36a9157897790beb003e81b0c20',1,'viam::sdk::Motor::set_power()']]],

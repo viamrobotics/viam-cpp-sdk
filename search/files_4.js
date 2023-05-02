@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['server_2ehpp_0',['server.hpp',['../components_2camera_2server_8hpp.html',1,'(Global Namespace)'],['../components_2generic_2server_8hpp.html',1,'(Global Namespace)'],['../components_2motor_2server_8hpp.html',1,'(Global Namespace)'],['../rpc_2server_8hpp.html',1,'(Global Namespace)']]]
+  ['registry_2ehpp_0',['registry.hpp',['../registry_8hpp.html',1,'']]],
+  ['resource_5fmanager_2ehpp_1',['resource_manager.hpp',['../resource__manager_8hpp.html',1,'']]]
 ];
