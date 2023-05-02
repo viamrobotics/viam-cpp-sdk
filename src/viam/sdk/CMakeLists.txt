@@ -44,8 +44,8 @@ target_sources(viamsdk
     components/camera/camera.cpp
     components/camera/client.cpp
     components/camera/server.cpp
-    components/encoder/encoder.cpp
     components/encoder/client.cpp
+    components/encoder/encoder.cpp
     components/encoder/server.cpp
     components/component_base.cpp
     components/generic/client.cpp
@@ -86,8 +86,8 @@ target_sources(viamsdk
       ../../viam/sdk/components/camera/camera.hpp
       ../../viam/sdk/components/camera/client.hpp
       ../../viam/sdk/components/camera/server.hpp
-      ../../viam/sdk/components/encoder/encoder.hpp
       ../../viam/sdk/components/encoder/client.hpp
+      ../../viam/sdk/components/encoder/encoder.hpp
       ../../viam/sdk/components/encoder/server.hpp
       ../../viam/sdk/components/component_base.hpp
       ../../viam/sdk/components/generic/client.hpp
