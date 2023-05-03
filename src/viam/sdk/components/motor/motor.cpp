@@ -14,14 +14,13 @@
 namespace viam {
 namespace sdk {
 
-MotorSubtype::~MotorSubtype() = default;
-std::shared_ptr<ResourceServerBase> MotorSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> MotorSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<MotorServer>(manager);
 };
 
-std::shared_ptr<ResourceBase> MotorSubtype::create_rpc_client(std::string name,
-                                                              std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> MotorSubtype::create_rpc_client(std::string name,
+                                                          std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<MotorClient>(std::move(name), std::move(chan));
 };
 

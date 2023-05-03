@@ -155,7 +155,7 @@ void RobotClient::refresh() {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
 
-    std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_resources;
+    std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
     RepeatedPtrField<ResourceName> resources = resp.resources();
 
     std::vector<ResourceName> current_resources;
@@ -177,8 +177,7 @@ void RobotClient::refresh() {
             Registry::lookup_subtype({name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
-                std::shared_ptr<ResourceBase> rpc_client =
-                    rs->create_rpc_client(name.name(), channel_);
+                std::shared_ptr<Resource> rpc_client = rs->create_rpc_client(name.name(), channel_);
                 Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {
@@ -346,7 +345,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     return components;
 }
 
-std::shared_ptr<ResourceBase> RobotClient::resource_by_name(const ResourceName& name) {
+std::shared_ptr<Resource> RobotClient::resource_by_name(const ResourceName& name) {
     return resource_manager_.resource(name.name());
 }
 

@@ -16,7 +16,6 @@
 namespace viam {
 namespace sdk {
 
-CameraClient::~CameraClient() = default;
 std::string normalize_mime_type(const std::string& str) {
     std::string mime_type = str;
     if (str.size() >= Camera::lazy_suffix.size() &&

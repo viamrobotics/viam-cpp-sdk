@@ -1,4 +1,7 @@
 #pragma once
+
+#include <array>
+
 #include <boost/qvm/vec.hpp>
 #include <boost/qvm/vec_traits.hpp>
 

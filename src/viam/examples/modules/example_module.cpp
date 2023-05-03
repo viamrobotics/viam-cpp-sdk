@@ -23,9 +23,9 @@
 using viam::component::generic::v1::GenericService;
 using namespace viam::sdk;
 
-class MyModule : public GenericService::Service, public ComponentBase {
+class MyModule : public GenericService::Service, public Component {
    public:
-    void reconfigure(Dependencies deps, Resource cfg) override {
+    void reconfigure(Dependencies deps, ResourceConfig cfg) override {
         std::cout << "Calling reconfigure on MyModule" << std::endl;
         for (auto& dep : deps) {
             std::cout << "dependency: " << dep.first.to_string() << std::endl;
@@ -39,7 +39,7 @@ class MyModule : public GenericService::Service, public ComponentBase {
         which_ += 1;
     };
 
-    MyModule(Resource cfg) {
+    MyModule(ResourceConfig cfg) {
         name_ = cfg.name();
         std::cout << "Creating module with name " + name_ << std::endl;
         inner_which_ = which_;
@@ -93,12 +93,12 @@ int main(int argc, char** argv) {
         ResourceType("MyModule"),
         generic,
         m,
-        [](Dependencies, Resource cfg) { return std::make_unique<MyModule>(cfg); },
+        [](Dependencies, ResourceConfig cfg) { return std::make_unique<MyModule>(cfg); },
         // Custom validation can be done by specifying a validate function like
         // this one. Validate functions can `throw` error strings that will be
         // returned to the parent through gRPC. Validate functions can also return
         // a vector of strings representing the implicit dependencies of the resource.
-        [](Resource cfg) -> std::vector<std::string> {
+        [](ResourceConfig cfg) -> std::vector<std::string> {
             if (cfg.attributes()->find("invalidattribute") != cfg.attributes()->end()) {
                 throw std::string(
                     "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");

@@ -14,13 +14,13 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceServerBase> EncoderSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> EncoderSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<EncoderServer>(manager);
 };
 
-std::shared_ptr<ResourceBase> EncoderSubtype::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> EncoderSubtype::create_rpc_client(std::string name,
+                                                            std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<EncoderClient>(std::move(name), std::move(chan));
 };
 
@@ -104,7 +104,7 @@ viam::component::encoder::v1::GetPropertiesResponse Encoder::to_proto(properties
     return proto;
 }
 
-Encoder::Encoder(std::string name) : ComponentBase(std::move(name)){};
+Encoder::Encoder(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs) {
     return (lhs.value == rhs.value && lhs.type == rhs.type);

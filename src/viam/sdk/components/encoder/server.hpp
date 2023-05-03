@@ -15,7 +15,7 @@ namespace sdk {
 /// @class EncoderServer
 /// @brief gRPC server implementation of a `Encoder` component.
 /// @ingroup Encoder
-class EncoderServer : public ResourceServerBase,
+class EncoderServer : public ResourceServer,
                       public viam::component::encoder::v1::EncoderService::Service {
    public:
     EncoderServer();

@@ -41,7 +41,7 @@ std::vector<ResourceName> RobotService_::generate_metadata() {
 std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName> resource_names) {
     std::vector<Status> statuses;
     for (auto& cmp : resource_manager()->resources()) {
-        std::shared_ptr<ResourceBase> resource = cmp.second;
+        std::shared_ptr<Resource> resource = cmp.second;
         for (auto& registry : Registry::registered_resources()) {
             std::shared_ptr<ModelRegistration> registration = registry.second;
             if (registration->resource_type() == resource->type()) {
@@ -154,7 +154,7 @@ void RobotService_::stream_status(
         extra.emplace(name, value_map);
 
         for (auto& r : resource_manager()->resources()) {
-            std::shared_ptr<ResourceBase> resource = r.second;
+            std::shared_ptr<Resource> resource = r.second;
             ResourceName rn = resource->get_resource_name(resource->name());
             std::string rn_ = rn.SerializeAsString();
             if (extra.find(rn_) != extra.end()) {
@@ -171,8 +171,8 @@ void RobotService_::stream_status(
     return grpc::Status(status, "");
 }
 
-std::shared_ptr<ResourceBase> RobotService_::resource_by_name(Name name) {
-    std::shared_ptr<ResourceBase> r;
+std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
+    std::shared_ptr<Resource> r;
     std::lock_guard<std::mutex> lock(lock_);
     auto resources = resource_manager()->resources();
     if (resources.find(name.name()) != resources.end()) {

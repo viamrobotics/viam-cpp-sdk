@@ -9,8 +9,8 @@
 namespace viam {
 namespace sdk {
 
-BaseServer::BaseServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+BaseServer::BaseServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 
 ::grpc::Status BaseServer::MoveStraight(
     ::grpc::ServerContext* context,

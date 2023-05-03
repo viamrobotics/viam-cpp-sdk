@@ -30,12 +30,12 @@ using viam::robot::v1::Status;
 /// @class RobotService_ service.hpp "robot/service.hpp"
 /// @brief a gRPC service for a robot.
 /// @ingroup Robot
-class RobotService_ : public ResourceServerBase, public viam::robot::v1::RobotService::Service {
+class RobotService_ : public ResourceServer, public viam::robot::v1::RobotService::Service {
    public:
-    RobotService_() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-    RobotService_(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+    RobotService_() : ResourceServer(std::make_shared<ResourceManager>()){};
+    RobotService_(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
     static std::shared_ptr<RobotService_> create();
-    std::shared_ptr<ResourceBase> resource_by_name(Name name);
+    std::shared_ptr<Resource> resource_by_name(Name name);
     ::grpc::Status ResourceNames(::grpc::ServerContext* context,
                                  const ::viam::robot::v1::ResourceNamesRequest* request,
                                  ::viam::robot::v1::ResourceNamesResponse* response) override;

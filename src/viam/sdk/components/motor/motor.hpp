@@ -23,11 +23,10 @@ namespace sdk {
 /// @ingroup Motor
 class MotorSubtype : public ResourceSubtype {
    public:
-    virtual ~MotorSubtype();
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> chan) override;
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override;
     MotorSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : ResourceSubtype(service_descriptor){};
 };
@@ -38,7 +37,7 @@ class MotorSubtype : public ResourceSubtype {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific motor implementations. This class cannot be used on its own.
-class Motor : public ComponentBase {
+class Motor : public Component {
    public:
     /// @struct position
     /// @brief Current position of the motor relative to its home
@@ -131,7 +130,7 @@ class Motor : public ComponentBase {
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
    protected:
-    explicit Motor(std::string name) : ComponentBase(std::move(name)){};
+    explicit Motor(std::string name) : Component(std::move(name)){};
 };
 
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs);

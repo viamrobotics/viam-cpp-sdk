@@ -15,7 +15,7 @@ namespace sdk {
 /// @class MotorServer
 /// @brief gRPC server implementation of a `Motor` component.
 /// @ingroup Motor
-class MotorServer : public ResourceServerBase,
+class MotorServer : public ResourceServer,
                     public viam::component::motor::v1::MotorService::Service {
    public:
     ::grpc::Status SetPower(::grpc::ServerContext* context,
@@ -63,8 +63,8 @@ class MotorServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    MotorServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-    MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+    MotorServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+    MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 };
 
 }  // namespace sdk

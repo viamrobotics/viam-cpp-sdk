@@ -25,11 +25,10 @@ namespace sdk {
 /// @ingroup Camera
 class CameraSubtype : public ResourceSubtype {
    public:
-    virtual ~CameraSubtype();
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> chan) override;
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override;
     CameraSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : ResourceSubtype(service_descriptor){};
 };
@@ -40,7 +39,7 @@ class CameraSubtype : public ResourceSubtype {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific camera implementations. This class cannot be used on its own.
-class Camera : public ComponentBase {
+class Camera : public Component {
    public:
     /// @struct intrinsic parameters
     /// @brief The properties of the camera.
@@ -138,7 +137,7 @@ class Camera : public ComponentBase {
     virtual properties get_properties() = 0;
 
    protected:
-    explicit Camera(std::string name) : ComponentBase(std::move(name)){};
+    explicit Camera(std::string name) : Component(std::move(name)){};
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);

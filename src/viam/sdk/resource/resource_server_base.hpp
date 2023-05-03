@@ -6,13 +6,13 @@
 namespace viam {
 namespace sdk {
 
-class ResourceServerBase {
+class ResourceServer {
    public:
     virtual void register_server(std::shared_ptr<Server> server) = 0;
     const std::shared_ptr<ResourceManager>& resource_manager() const;
 
    protected:
-    ResourceServerBase(std::shared_ptr<ResourceManager> manager) : manager_(manager){};
+    ResourceServer(std::shared_ptr<ResourceManager> manager) : manager_(manager){};
 
    private:
     std::shared_ptr<ResourceManager> manager_;
