@@ -29,10 +29,21 @@ MLModelServiceClient::MLModelServiceClient(std::string name,
     : MLModelService(name), stub_(std::move(stub)) {}
 
 MLModelService::infer_response MLModelServiceClient::infer(const infer_request& inputs) {
-    // TODO: Encode `infer` arguments into an `InferRequest`
-    // TODO: Call `stub_`
-    // TODO: Decode result from an `InferResponse` into results
-    return {};
+
+    viam::service::mlmodel::v1::InferRequest req;
+    viam::service::mlmodel::v1::InferResponse resp;
+
+    // TODO Encode `inputs` into `req`
+
+    grpc::ClientContext ctx;
+    auto result = stub_->Infer(&ctx, req, &resp);
+
+    // TODO: Deal with fail `result`.
+
+    MLModelService::infer_response infer_response;
+    // TODO Decode `resp` into `infer_response`
+
+    return infer_response;
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata() {

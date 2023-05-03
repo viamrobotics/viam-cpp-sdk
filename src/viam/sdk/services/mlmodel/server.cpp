@@ -44,11 +44,17 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
-    mlms->infer({});
 
-    //*response->mutable_result() = map_to_struct(result);
+    MLModelService::infer_request infer_request;
+    // TODO: decode data from `request` into `infer_request`
 
-    // TODO: encode result of `infer` call into `response`
+    try {
+        auto infer_result = mlms->infer(infer_request);
+        // TODO: encode `infer_result` into `response`
+    }
+    catch (const std::exception& ex) {
+        // TODO: return a grpc error
+    }
 
     return ::grpc::Status();
 }

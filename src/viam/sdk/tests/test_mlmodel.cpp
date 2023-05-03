@@ -191,6 +191,16 @@ BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     mock->metadata(test_metadata);
     client_server_test(mock, [](auto& client) { BOOST_TEST(test_metadata == client.metadata()); });
 }
+
+BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
+    auto mock = std::make_shared<MockMLModelService>();
+    client_server_test(mock, [](auto& client) {
+        MLModelService::infer_request request;
+        auto response = client.infer(request);
+        BOOST_TEST(true);
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 // This test suite is to validate that we can use xtensor for all of
