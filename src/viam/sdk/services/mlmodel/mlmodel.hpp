@@ -34,17 +34,17 @@ class MLModelServiceSubtype : public ResourceSubtype {
    public:
     explicit MLModelServiceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
 
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
 
-    std::shared_ptr<ResourceBase> create_rpc_client(
+    std::shared_ptr<Resource> create_rpc_client(
         std::string name, std::shared_ptr<grpc::Channel> channel) override;
 };
 
 ///
 /// The `MLModelService` presents the API for an ML Model Service.
 ///
-class MLModelService : public ServiceBase {
+class MLModelService : public Service {
    public:
     // Ultimately, we want an xchunked_array backed by a std::vector
     // of adapted linear buffers over T. Explicitly naming that type

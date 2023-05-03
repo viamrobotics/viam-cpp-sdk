@@ -27,7 +27,7 @@ namespace sdk {
 /// The `MLModelServiceServer` is used to implement new modular
 /// resources implementing the ML Model Service.
 ///
-class MLModelServiceServer : public ResourceServerBase,
+class MLModelServiceServer : public ResourceServer,
                              public ::viam::service::mlmodel::v1::MLModelService::Service {
    public:
     MLModelServiceServer();

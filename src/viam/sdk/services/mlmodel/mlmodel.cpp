@@ -24,17 +24,17 @@ MLModelServiceSubtype::MLModelServiceSubtype(
     const google::protobuf::ServiceDescriptor* service_descriptor)
     : ResourceSubtype(service_descriptor) {}
 
-std::shared_ptr<ResourceServerBase> MLModelServiceSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> MLModelServiceSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<MLModelServiceServer>(std::move(manager));
 };
 
-std::shared_ptr<ResourceBase> MLModelServiceSubtype::create_rpc_client(
+std::shared_ptr<Resource> MLModelServiceSubtype::create_rpc_client(
     std::string name, std::shared_ptr<grpc::Channel> channel) {
     return std::make_shared<MLModelServiceClient>(std::move(name), std::move(channel));
 };
 
-MLModelService::MLModelService(std::string name) : ServiceBase(std::move(name)) {}
+MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 std::shared_ptr<ResourceSubtype> MLModelService::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
