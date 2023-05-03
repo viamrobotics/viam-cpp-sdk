@@ -340,11 +340,16 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_flatten_three_dimensions) {
         }
     }
 
+    // Test that the result of dereferencing the beginning of a chunk gets us a raw pointer
+    // to double so that we know that we can get bulk rather than per-element copies in calls
+    // like the `insert` in the above below.
+    BOOST_TEST(std::is_pointer<decltype((*tensor_view.chunk_begin()).begin())>::value);
+    BOOST_TEST((std::is_same<decltype((*tensor_view.chunk_begin()).begin()), const double*>::value));
+
     // Chunkwise copy the data back into a flattened array and ensure
     // we arrive back at something with the same contents as `flat`.
     std::vector<double> flattened;
     for (auto ci = tensor_view.chunk_begin(); ci != tensor_view.chunk_end(); ++ci) {
-        // TODO: How can we test that this is a bulk copy and not an element by element copy?
         flattened.insert(flattened.end(), (*ci).begin(), (*ci).end());
     }
     BOOST_TEST(flat == flattened);
