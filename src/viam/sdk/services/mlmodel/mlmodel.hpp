@@ -114,11 +114,11 @@ class MLModelService : public ServiceBase {
 
     // Outputs are also the name / tensor_view mapping, but tupled together
     // with an opaque state handle that owns the backing memory.
-    struct infer_result_state;
-    using infer_result = std::tuple<std::shared_ptr<infer_result_state>, tensor_map>;
+    struct infer_response_state;
+    using infer_response = std::tuple<std::shared_ptr<infer_response_state>, tensor_map>;
 
     // XXX ACM TODO: doc comment
-    virtual infer_result infer(const infer_request& inputs) = 0;
+    virtual infer_response infer(const infer_request& inputs) = 0;
 
     struct tensor_info {
         struct file {

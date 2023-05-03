@@ -26,7 +26,7 @@ class MockMLModelService : public sdk::MLModelService {
     explicit MockMLModelService(std::string name = "mock_mlmodel")
         : MLModelService(std::move(name)) {}
 
-    infer_result infer(const infer_request& inputs) override;
+    infer_response infer(const infer_request& inputs) override;
 
     MockMLModelService& metadata(struct metadata metadata);
     struct metadata metadata() override;

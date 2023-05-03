@@ -17,7 +17,7 @@
 namespace viam {
 namespace sdktests {
 
-sdk::MLModelService::infer_result MockMLModelService::infer(const infer_request& inputs) {
+sdk::MLModelService::infer_response MockMLModelService::infer(const infer_request& inputs) {
     return {};
 }
 

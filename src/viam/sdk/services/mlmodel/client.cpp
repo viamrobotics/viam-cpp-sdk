@@ -28,7 +28,7 @@ MLModelServiceClient::MLModelServiceClient(std::string name,
                                            std::unique_ptr<service_type::StubInterface> stub)
     : MLModelService(name), stub_(std::move(stub)) {}
 
-MLModelService::infer_result MLModelServiceClient::infer(const infer_request& inputs) {
+MLModelService::infer_response MLModelServiceClient::infer(const infer_request& inputs) {
     // TODO: Encode `infer` arguments into an `InferRequest`
     // TODO: Call `stub_`
     // TODO: Decode result from an `InferResponse` into results
