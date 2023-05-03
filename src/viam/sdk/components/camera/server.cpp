@@ -16,7 +16,7 @@ namespace sdk {
                               "Called [DoCommand] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -37,7 +37,7 @@ namespace sdk {
                               "Called [GetImage] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -63,7 +63,7 @@ namespace sdk {
                               "Called [RenderFrame] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -87,7 +87,7 @@ namespace sdk {
                               "Called [GetPointCloud] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
 
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
@@ -112,7 +112,7 @@ namespace sdk {
                               "Called [GetProperties] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }

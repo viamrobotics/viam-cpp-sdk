@@ -8,9 +8,9 @@
 namespace viam {
 namespace sdk {
 
-EncoderServer::EncoderServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+EncoderServer::EncoderServer() : ResourceServer(std::make_shared<ResourceManager>()){};
 EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServerBase(manager){};
+    : ResourceServer(manager){};
 
 ::grpc::Status EncoderServer::GetPosition(
     ::grpc::ServerContext* context,
@@ -21,7 +21,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
                               "Called [Encoder::GetPosition] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -44,7 +44,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
                               "Called [Encoder::ResetPosition] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -65,7 +65,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
                               "Called [Encoder::GetProperties] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -87,7 +87,7 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
                               "Called [Encoder::DoCommand] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }

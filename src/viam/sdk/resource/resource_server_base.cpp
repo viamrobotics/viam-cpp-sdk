@@ -2,7 +2,7 @@
 
 namespace viam {
 namespace sdk {
-const std::shared_ptr<ResourceManager>& ResourceServerBase::resource_manager() const {
+const std::shared_ptr<ResourceManager>& ResourceServer::resource_manager() const {
     return manager_;
 };
 

@@ -15,7 +15,7 @@ namespace sdk {
 /// @class GenericServer
 /// @brief gRPC server implementation of a `Generic` component.
 /// @ingroup Generic
-class GenericServer : public ResourceServerBase,
+class GenericServer : public ResourceServer,
                       public viam::component::generic::v1::GenericService::Service {
    public:
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
@@ -24,8 +24,8 @@ class GenericServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    GenericServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-    GenericServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+    GenericServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+    GenericServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 };
 
 }  // namespace sdk

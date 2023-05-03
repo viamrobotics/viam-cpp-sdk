@@ -15,8 +15,6 @@ namespace generic {
 
 using namespace viam::sdk;
 
-MockGeneric::~MockGeneric() = default;
-
 std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>
 MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {

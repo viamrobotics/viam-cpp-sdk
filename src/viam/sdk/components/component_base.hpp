@@ -11,14 +11,14 @@
 namespace viam {
 namespace sdk {
 
-class ComponentBase : public ResourceBase {
+class Component : public Resource {
    public:
     virtual ResourceType type() override;
     viam::common::v1::ResourceName get_resource_name(std::string name) override;
-    ComponentBase() : ResourceBase("component"){};
+    Component() : Resource("component"){};
 
    protected:
-    explicit ComponentBase(std::string name) : ResourceBase(std::move(name)){};
+    explicit Component(std::string name) : Resource(std::move(name)){};
 };
 
 }  // namespace sdk

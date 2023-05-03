@@ -16,7 +16,6 @@ using viam::sdk::Motor;
 
 class MockMotor : public Motor {
    public:
-    virtual ~MockMotor();
     void set_power(double power_pct) override;
     void go_for(double rpm, double revolutions) override;
     void go_to(double rpm, double position_revolutions) override;

@@ -11,29 +11,31 @@
 namespace viam {
 namespace sdk {
 
-grpc::StatusCode ResourceBase::stop(AttributeMap extra) {
+Resource::~Resource() = default;
+
+grpc::StatusCode Resource::stop(AttributeMap extra) {
     return stop();
 }
 
-grpc::StatusCode ResourceBase::stop() {
+grpc::StatusCode Resource::stop() {
     return grpc::StatusCode::UNIMPLEMENTED;
 }
 
-std::string ResourceBase::name() {
+std::string Resource::name() {
     return name_;
 }
 
-Subtype ResourceBase::subtype() {
-    return {RDK, RESOURCE, "ResourceBase"};
+Subtype Resource::subtype() {
+    return {RDK, RESOURCE, "Resource"};
 }
 
-void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
+void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
 
-ResourceType ResourceBase::type() {
+ResourceType Resource::type() {
     return {RESOURCE};
 }
 
-ResourceName ResourceBase::get_resource_name(std::string name) {
+ResourceName Resource::get_resource_name(std::string name) {
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = RESOURCE;

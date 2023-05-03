@@ -15,7 +15,7 @@ namespace sdk {
 /// @class BaseServer
 /// @brief gRPC server implementation of a `Base` component.
 /// @ingroup Base
-class BaseServer : public ResourceServerBase,
+class BaseServer : public ResourceServer,
                    public viam::component::base::v1::BaseService::Service {
    public:
     BaseServer();

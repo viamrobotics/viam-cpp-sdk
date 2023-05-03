@@ -13,16 +13,17 @@
 namespace viam {
 namespace sdk {
 
-class ResourceBase;
-using Dependencies = std::unordered_map<Name, std::shared_ptr<ResourceBase>>;
-class ResourceBase {
+class Resource;
+using Dependencies = std::unordered_map<Name, std::shared_ptr<Resource>>;
+class Resource {
    public:
-    explicit ResourceBase(std::string name) : name_(std::move(name)){};
+    virtual ~Resource();
+    explicit Resource(std::string name) : name_(std::move(name)){};
     static Subtype subtype();
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);
     virtual grpc::StatusCode stop(AttributeMap extra);
     virtual grpc::StatusCode stop();
-    virtual void reconfigure(Dependencies deps, Resource cfg);
+    virtual void reconfigure(Dependencies deps, ResourceConfig cfg);
     virtual std::string name();
     virtual ResourceType type();
 

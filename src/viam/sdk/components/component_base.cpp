@@ -15,13 +15,13 @@ namespace sdk {
 
 using viam::common::v1::ResourceName;
 
-ResourceName ComponentBase::get_resource_name(std::string name) {
-    auto r = this->ResourceBase::get_resource_name(name);
+ResourceName Component::get_resource_name(std::string name) {
+    auto r = this->Resource::get_resource_name(name);
     *r.mutable_type() = COMPONENT;
     return r;
 }
 
-ResourceType ComponentBase::type() {
+ResourceType Component::type() {
     return {COMPONENT};
 }
 

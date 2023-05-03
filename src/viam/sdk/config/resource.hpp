@@ -22,11 +22,11 @@ class ResourceLevelServiceConfig {
     ProtoType converted_attributes;
 };
 
-class Resource {
+class ResourceConfig {
    public:
-    static Resource from_proto(viam::app::v1::ComponentConfig proto_cfg);
+    static ResourceConfig from_proto(viam::app::v1::ComponentConfig proto_cfg);
     viam::app::v1::ComponentConfig to_proto() const;
-    Resource(std::string type);
+    ResourceConfig(std::string type);
     Name resource_name();
     const Subtype& api() const;
     const LinkConfig& frame() const;

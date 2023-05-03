@@ -16,7 +16,7 @@ namespace sdk {
                               "Called [Motor::SetPower] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -36,7 +36,7 @@ namespace sdk {
                               "Called [Motor::GoFor] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -56,7 +56,7 @@ namespace sdk {
                               "Called [Motor::GoTo] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -77,7 +77,7 @@ namespace sdk {
                               "Called [Motor::ResetZeroPosition] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -98,7 +98,7 @@ namespace sdk {
                               "Called [Motor::GetPosition] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -120,7 +120,7 @@ namespace sdk {
                               "Called [Motor::GetProperties] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -141,7 +141,7 @@ namespace sdk {
                               "Called [Motor::Stop] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -161,7 +161,7 @@ namespace sdk {
                               "Called [Motor::IsPowered] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -183,7 +183,7 @@ namespace sdk {
                               "Called [Motor::IsMoving] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -204,7 +204,7 @@ namespace sdk {
                               "Called [Motor::DoCommand] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }

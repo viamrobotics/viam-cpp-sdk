@@ -45,14 +45,14 @@ Dependencies get_dependencies(ModuleService_* m,
     Dependencies deps;
     for (auto& dep : proto) {
         auto name = Name::from_string(dep);
-        std::shared_ptr<ResourceBase> resource = m->get_parent_resource(name);
+        std::shared_ptr<Resource> resource = m->get_parent_resource(name);
         deps.emplace(name, resource);
     }
     return deps;
 }
 }  // namespace
    //
-std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
+std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     if (!parent_) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
@@ -64,11 +64,11 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
                                            const ::viam::module::v1::AddResourceRequest* request,
                                            ::viam::module::v1::AddResourceResponse* response) {
     viam::app::v1::ComponentConfig proto = request->config();
-    Resource cfg = Resource::from_proto(proto);
+    ResourceConfig cfg = ResourceConfig::from_proto(proto);
     auto module = this->module_;
     const std::lock_guard<std::mutex> lock(lock_);
 
-    std::shared_ptr<ResourceBase> res;
+    std::shared_ptr<Resource> res;
     Dependencies deps = get_dependencies(this, request->dependencies());
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api(), cfg.model());
     if (reg) {
@@ -91,7 +91,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse* response) {
     viam::app::v1::ComponentConfig proto = request->config();
-    Resource cfg = Resource::from_proto(proto);
+    ResourceConfig cfg = ResourceConfig::from_proto(proto);
     std::shared_ptr<Module> module = this->module_;
 
     Dependencies deps = get_dependencies(this, request->dependencies());
@@ -104,7 +104,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
 
     // see if our resource is reconfigurable. if it is, reconfigure
-    std::shared_ptr<ResourceBase> res = manager->resource(cfg.resource_name().name());
+    std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
     if (!res) {
         return grpc::Status(grpc::UNKNOWN,
                             "unable to reconfigure resource " + cfg.resource_name().name() +
@@ -125,7 +125,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
 
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.name());
     if (reg) {
-        std::shared_ptr<ResourceBase> res = reg->construct_resource(deps, cfg);
+        std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
         manager->replace_one(cfg.resource_name(), res);
     }
 
@@ -137,7 +137,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
     viam::app::v1::ComponentConfig proto = request->config();
-    Resource cfg = Resource::from_proto(proto);
+    ResourceConfig cfg = ResourceConfig::from_proto(proto);
 
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api(), cfg.model());
     if (!reg) {
@@ -169,7 +169,7 @@ std::shared_ptr<ResourceBase> ModuleService_::get_parent_resource(Name name) {
         return grpc::Status(grpc::UNKNOWN, "no grpc service for " + subtype->to_string());
     }
     std::shared_ptr<ResourceManager> manager = services.at(*name.to_subtype());
-    std::shared_ptr<ResourceBase> res = manager->resource(name.name());
+    std::shared_ptr<Resource> res = manager->resource(name.name());
     if (!res) {
         return grpc::Status(
             grpc::UNKNOWN,
@@ -242,7 +242,7 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, Subty
     auto new_manager = std::make_shared<ResourceManager>();
 
     std::shared_ptr<ResourceSubtype> rs = Registry::lookup_subtype(api);
-    std::shared_ptr<ResourceServerBase> resource_server = rs->create_resource_server(new_manager);
+    std::shared_ptr<ResourceServer> resource_server = rs->create_resource_server(new_manager);
     resource_server->register_server(server);
     module_->mutable_services().emplace(api, new_manager);
     module_->mutable_servers().push_back(resource_server);

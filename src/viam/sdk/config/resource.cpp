@@ -17,7 +17,7 @@
 namespace viam {
 namespace sdk {
 
-Name Resource::resource_name() {
+Name ResourceConfig::resource_name() {
     try {
         this->fix_api();
     } catch (std::string err) {
@@ -34,35 +34,35 @@ Name Resource::resource_name() {
     return Name(this->api_, "", remotes.at(0));
 }
 
-const Subtype& Resource::api() const {
+const Subtype& ResourceConfig::api() const {
     return api_;
 }
 
-const LinkConfig& Resource::frame() const {
+const LinkConfig& ResourceConfig::frame() const {
     return frame_;
 }
 
-const Model& Resource::model() const {
+const Model& ResourceConfig::model() const {
     return model_;
 }
 
-const std::string& Resource::name() const {
+const std::string& ResourceConfig::name() const {
     return name_;
 }
 
-const std::string& Resource::namespace_() const {
+const std::string& ResourceConfig::namespace_() const {
     return namespace__;
 }
 
-const std::string& Resource::type() const {
+const std::string& ResourceConfig::type() const {
     return type_;
 }
 
-const AttributeMap& Resource::attributes() const {
+const AttributeMap& ResourceConfig::attributes() const {
     return attributes_;
 }
 
-void Resource::fix_api() {
+void ResourceConfig::fix_api() {
     if (this->api_.type_namespace() == "" && this->namespace__ == "") {
         this->namespace__ = RDK;
         this->api_.set_namespace(RDK);
@@ -90,8 +90,8 @@ void Resource::fix_api() {
     }
 }
 
-Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
-    Resource resource(proto_cfg.type());
+ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
+    ResourceConfig resource(proto_cfg.type());
     resource.name_ = proto_cfg.name();
     resource.namespace__ = proto_cfg.namespace_();
     resource.type_ = proto_cfg.type();
@@ -115,7 +115,7 @@ Resource Resource::from_proto(viam::app::v1::ComponentConfig proto_cfg) {
     return resource;
 };
 
-viam::app::v1::ComponentConfig Resource::to_proto() const {
+viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
     google::protobuf::Struct s = map_to_struct(attributes_);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
@@ -142,7 +142,7 @@ viam::app::v1::ComponentConfig Resource::to_proto() const {
     return proto_cfg;
 }
 
-Resource::Resource(std::string type) : api_({RDK, type, ""}), type_(type){};
+ResourceConfig::ResourceConfig(std::string type) : api_({RDK, type, ""}), type_(type){};
 
 }  // namespace sdk
 }  // namespace viam

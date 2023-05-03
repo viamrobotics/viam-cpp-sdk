@@ -21,8 +21,8 @@ class Module {
     const std::shared_ptr<grpc::Channel>& channel() const;
     const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& services() const;
     std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& mutable_services();
-    const std::vector<std::shared_ptr<ResourceServerBase>>& servers() const;
-    std::vector<std::shared_ptr<ResourceServerBase>>& mutable_servers();
+    const std::vector<std::shared_ptr<ResourceServer>>& servers() const;
+    std::vector<std::shared_ptr<ResourceServer>>& mutable_servers();
 
    private:
     std::string name_;
@@ -31,7 +31,7 @@ class Module {
     HandlerMap_ handles_;
     std::shared_ptr<grpc::Channel> channel_;
     std::unordered_map<Subtype, std::shared_ptr<ResourceManager>> services_;
-    std::vector<std::shared_ptr<ResourceServerBase>> servers_;
+    std::vector<std::shared_ptr<ResourceServer>> servers_;
 };
 
 }  // namespace sdk

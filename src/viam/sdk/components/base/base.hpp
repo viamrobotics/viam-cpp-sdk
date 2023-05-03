@@ -24,9 +24,9 @@ namespace sdk {
 /// @ingroup Base
 class BaseSubtype : public ResourceSubtype {
    public:
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                     std::shared_ptr<grpc::Channel> chan) override;
     BaseSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : ResourceSubtype(service_descriptor){};
@@ -38,7 +38,7 @@ class BaseSubtype : public ResourceSubtype {
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific base implementations. This class cannot be used on its own.
-class Base : public ComponentBase {
+class Base : public Component {
    public:
     // functions shared across all components
     static std::shared_ptr<ResourceSubtype> resource_subtype();

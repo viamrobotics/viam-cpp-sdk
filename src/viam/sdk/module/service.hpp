@@ -14,7 +14,7 @@ class ModuleService_ : public viam::module::v1::ModuleService::Service {
    public:
     void start(std::shared_ptr<Server> server);
     void close();
-    std::shared_ptr<ResourceBase> get_parent_resource(Name name);
+    std::shared_ptr<Resource> get_parent_resource(Name name);
 
     void add_api_from_registry(std::shared_ptr<Server> server, Subtype api);
     void add_model_from_registry(std::shared_ptr<Server> server, Subtype api, Model model);

@@ -23,7 +23,7 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceBase> ResourceManager::resource(std::string name) {
+std::shared_ptr<Resource> ResourceManager::resource(std::string name) {
     std::lock_guard<std::mutex> lock(lock_);
 
     if (resources_.find(name) != resources_.end()) {
@@ -39,9 +39,9 @@ std::shared_ptr<ResourceBase> ResourceManager::resource(std::string name) {
     throw std::runtime_error("Unable to find resource named " + name);
 }
 
-void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<ResourceBase>> new_map) {
+void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> new_map) {
     std::lock_guard<std::mutex> lock(lock_);
-    std::unordered_map<std::string, std::shared_ptr<ResourceBase>> new_resources;
+    std::unordered_map<std::string, std::shared_ptr<Resource>> new_resources;
     std::unordered_map<std::string, std::string> new_short_names;
     this->resources_ = new_resources;
     this->short_names_ = new_short_names;
@@ -62,7 +62,7 @@ std::string get_shortcut_name(std::string name) {
     return name_split.at(name_split.size() - 1);
 }
 
-void ResourceManager::do_add(Name name, std::shared_ptr<ResourceBase> resource) {
+void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
     if (name.name() == "") {
         throw "Empty name used for resource: " + name.to_string();
     }
@@ -71,7 +71,7 @@ void ResourceManager::do_add(Name name, std::shared_ptr<ResourceBase> resource) 
     do_add(short_name, resource);
 }
 
-void ResourceManager::do_add(std::string name, std::shared_ptr<ResourceBase> resource) {
+void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
     if (resources_.find(name) != resources_.end()) {
         throw "Attempted to add resource that already existed: " + name;
     }
@@ -88,7 +88,7 @@ void ResourceManager::do_add(std::string name, std::shared_ptr<ResourceBase> res
     }
 }
 
-void ResourceManager::add(Name name, std::shared_ptr<ResourceBase> resource) {
+void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
     std::lock_guard<std::mutex> lock(lock_);
     try {
         do_add(name, resource);
@@ -132,7 +132,7 @@ void ResourceManager::remove(Name name) {
     };
 };
 
-void ResourceManager::replace_one(Name name, std::shared_ptr<ResourceBase> resource) {
+void ResourceManager::replace_one(Name name, std::shared_ptr<Resource> resource) {
     std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
@@ -143,12 +143,12 @@ void ResourceManager::replace_one(Name name, std::shared_ptr<ResourceBase> resou
     }
 }
 
-const std::unordered_map<std::string, std::shared_ptr<ResourceBase>>& ResourceManager::resources()
+const std::unordered_map<std::string, std::shared_ptr<Resource>>& ResourceManager::resources()
     const {
     return resources_;
 }
 
-void ResourceManager::add(std::string name, std::shared_ptr<ResourceBase> resource) {
+void ResourceManager::add(std::string name, std::shared_ptr<Resource> resource) {
     std::lock_guard<std::mutex> lock(lock_);
     do_add(name, resource);
 }
