@@ -24,7 +24,7 @@ class MockBase : public viam::sdk::Base {
     viam::sdk::AttributeMap do_command(viam::sdk::AttributeMap command) override;
     static std::shared_ptr<MockBase> get_mock_base();
 
-    // This variables allow the testing infra to `peek` into the mock
+    // These variables allow the testing infra to `peek` into the mock
     // and ensure that the correct values were passed
     int64_t peek_move_straight_distance_mm;
     double peek_move_straight_mm_per_sec;

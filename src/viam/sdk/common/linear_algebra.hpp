@@ -12,9 +12,8 @@ namespace sdk {
 class Vector3 {
    public:
     using scalar_type = double;
-
-    Vector3(scalar_type x, scalar_type y, scalar_type z) : data_{x, y, z} {};
-    Vector3() : Vector3(0.0, 0.0, 0.0){};
+    Vector3(scalar_type x, scalar_type y, scalar_type z);
+    Vector3();
 
     scalar_type x() const;
     scalar_type y() const;
@@ -27,7 +26,7 @@ class Vector3 {
     Vector3& set_z(scalar_type z);
 
     const std::array<scalar_type, 3>& data() const;
-    std::array<scalar_type, 3>& mutable_data();
+    std::array<scalar_type, 3>& data();
     static viam::common::v1::Vector3 to_proto(const Vector3& vec);
     static Vector3 from_proto(viam::common::v1::Vector3 vec);
 
@@ -49,7 +48,7 @@ struct vec_traits<viam::sdk::Vector3> {
 
     template <int I>
     static inline scalar_type& write_element(vec_type& v) {
-        return v.mutable_data()[I];
+        return v.data()[I];
     }
 
     template <int I>
@@ -58,7 +57,7 @@ struct vec_traits<viam::sdk::Vector3> {
     }
 
     static inline scalar_type& write_element_idx(int i, vec_type& v) {
-        return v.mutable_data()[i];
+        return v.data()[i];
     }
 
     static inline scalar_type read_element_idx(int i, vec_type const& v) {
