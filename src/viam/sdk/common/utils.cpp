@@ -63,8 +63,8 @@ google::protobuf::Duration duration_to_proto(const std::chrono::duration<double>
     google::protobuf::Duration proto;
     using namespace std::chrono_literals;
     double total_seconds = duration / 1.0s;
-    long integer_seconds = std::floor(total_seconds);
-    long integer_nanos = std::floor(1e9 * (total_seconds - integer_seconds));
+    long integer_seconds = std::truncl(total_seconds);
+    long integer_nanos = std::truncl(1e9 * (total_seconds - integer_seconds));
 
     proto.set_seconds(integer_seconds);
     proto.set_nanos(integer_nanos);

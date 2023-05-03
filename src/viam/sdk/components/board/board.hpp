@@ -51,7 +51,7 @@ class Board : public Component {
     /// documentation for more details.
     typedef int64_t digital_value;
 
-    /// @struct board_reader_status
+    /// @struct status
     /// @brief This contains all of the values for all of the registered analog readers and digital
     /// interrupts that have been registered on the board.
     struct status {
