@@ -30,13 +30,28 @@ MLModelServiceClient::MLModelServiceClient(std::string name,
 
 MLModelService::infer_response MLModelServiceClient::infer(const infer_request& inputs) {
 
-    viam::service::mlmodel::v1::InferRequest req;
-    viam::service::mlmodel::v1::InferResponse resp;
+    namespace pb = ::google::protobuf;
+    namespace mlpb = ::viam::service::mlmodel::v1;
 
-    // TODO Encode `inputs` into `req`
+    pb::Arena arena;
+    auto req = pb::Arena::CreateMessage<mlpb::InferRequest>(&arena);
 
+    req->set_name(this->name());
+#if 0
+    auto& mutable_input_data = *req->mutable_input_data();
+    auto& mutable_input_data_fields = *mutable_input_data.mutable_fields();
+    for (const auto& kv : inputs) {
+        // Create a new `Value` entry in the struct under the name associated
+        // with the current input tensor.
+        auto ib = mutable_input_data_fields.emplace(kv.first);
+        // TODO: check `b`, should always be `true`
+        pb::Value& value = ib.first->second;
+    }
+#endif
     grpc::ClientContext ctx;
-    auto result = stub_->Infer(&ctx, req, &resp);
+    mlpb::InferResponse resp;
+
+    auto result = stub_->Infer(&ctx, *req, &resp);
 
     // TODO: Deal with fail `result`.
 
