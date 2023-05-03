@@ -17,38 +17,38 @@ using namespace viam::sdk;
 Board::status MockBoard::get_status() {
     return this->peek_get_status_ret;
 };
-void MockBoard::set_gpio(std::string pin, bool high) {
+void MockBoard::set_gpio(const std::string& pin, bool high) {
     this->peek_pin = pin;
     this->peek_set_gpio_high = high;
 };
-Board::gpio_pin MockBoard::get_gpio(std::string pin) {
+bool MockBoard::get_gpio(const std::string& pin) {
     this->peek_pin = pin;
     return this->peek_get_gpio_ret;
 };
-Board::duty_cycle MockBoard::get_pwm(std::string pin) {
+double MockBoard::get_pwm(const std::string& pin) {
     this->peek_pin = pin;
     return this->peek_get_pwm_ret;
 };
-void MockBoard::set_pwm(std::string pin, double duty_cycle_pct) {
+void MockBoard::set_pwm(const std::string& pin, double duty_cycle_pct) {
     this->peek_pin = pin;
     this->peek_set_pwm_duty_cycle_pct = duty_cycle_pct;
 };
-uint64_t MockBoard::get_pwm_frequency(std::string pin) {
+uint64_t MockBoard::get_pwm_frequency(const std::string& pin) {
     this->peek_pin = pin;
     return this->peek_get_pwm_frequency_ret;
 };
-void MockBoard::set_pwm_frequency(std::string pin, uint64_t frequency_hz) {
+void MockBoard::set_pwm_frequency(const std::string& pin, uint64_t frequency_hz) {
     this->peek_pin = pin;
     this->peek_set_pwm_frequency_hz = frequency_hz;
 };
 AttributeMap MockBoard::do_command(AttributeMap command) {
     return command;
 };
-Board::analog_value MockBoard::read_analog(std::string pin) {
+Board::analog_value MockBoard::read_analog(const std::string& pin) {
     this->peek_pin = pin;
     return this->peek_read_analog_ret;
 };
-Board::digital_value MockBoard::read_digital_interrupt(std::string pin) {
+Board::digital_value MockBoard::read_digital_interrupt(const std::string& pin) {
     this->peek_pin = pin;
     return this->peek_read_digital_interrupt_ret;
 };
@@ -56,6 +56,16 @@ void MockBoard::set_power_mode(power_mode power_mode, std::chrono::duration<doub
     this->peek_set_power_mode_power_mode = power_mode;
     this->peek_set_power_mode_duration = duration;
 };
+
+std::vector<std::string> MockBoard::get_analog_reader_names() {
+    // TODO
+    return {};
+}
+
+std::vector<std::string> MockBoard::get_digital_interrupt_names() {
+    // TODO
+    return {};
+}
 
 }  // namespace board
 }  // namespace sdktests

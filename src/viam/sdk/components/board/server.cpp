@@ -9,6 +9,9 @@
 namespace viam {
 namespace sdk {
 
+BoardServer::BoardServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
+BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+
 ::grpc::Status BoardServer::Status(::grpc::ServerContext* context,
                                    const ::viam::component::board::v1::StatusRequest* request,
                                    ::viam::component::board::v1::StatusResponse* response) {
@@ -66,8 +69,7 @@ namespace sdk {
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::gpio_pin result = board->get_gpio(request->pin());
-    response->set_high(result.high);
+    response->set_high(board->get_gpio(request->pin()));
 
     return ::grpc::Status();
 }
@@ -87,8 +89,7 @@ namespace sdk {
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::duty_cycle result = board->get_pwm(request->pin());
-    response->set_duty_cycle_pct(result.duty_cycle_pct);
+    response->set_duty_cycle_pct(board->get_gpio(request->pin()));
 
     return ::grpc::Status();
 }
@@ -238,7 +239,7 @@ namespace sdk {
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     board->set_power_mode(Board::from_proto(request->power_mode()),
-                          Board::from_proto(request->duration()));
+                          duration::from_proto(request->duration()));
 
     return ::grpc::Status();
 }

@@ -41,24 +41,12 @@ Subtype Board::subtype() {
 Board::status Board::from_proto(viam::common::v1::BoardStatus proto) {
     Board::status status;
     for (const auto& analog : proto.analogs()) {
-        status.analog_values.emplace(analog.first, analog.second.value());
+        status.analog_reader_values.emplace(analog.first, analog.second.value());
     }
     for (const auto& digital : proto.digital_interrupts()) {
-        status.digital_values.emplace(digital.first, digital.second.value());
+        status.digital_interrupt_values.emplace(digital.first, digital.second.value());
     }
     return status;
-}
-
-Board::gpio_pin Board::from_proto(viam::component::board::v1::GetGPIOResponse proto) {
-    Board::gpio_pin gpio_pin;
-    gpio_pin.high = proto.high();
-    return gpio_pin;
-}
-
-Board::duty_cycle Board::from_proto(viam::component::board::v1::PWMResponse proto) {
-    Board::duty_cycle duty_cycle;
-    duty_cycle.duty_cycle_pct = proto.duty_cycle_pct();
-    return duty_cycle;
 }
 
 Board::analog_value Board::from_proto(viam::common::v1::AnalogStatus proto) {
@@ -72,47 +60,27 @@ Board::digital_value Board::from_proto(viam::common::v1::DigitalInterruptStatus 
 Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto) {
     switch (proto) {
         case viam::component::board::v1::POWER_MODE_NORMAL: {
-            return Board::power_mode::POWER_MODE_NORMAL;
-        }
-        case viam::component::board::v1::POWER_MODE_UNSPECIFIED: {
-            return Board::power_mode::POWER_MODE_UNSPECIFIED;
+            return Board::power_mode::normal;
         }
         case viam::component::board::v1::POWER_MODE_OFFLINE_DEEP: {
-            return Board::power_mode::POWER_MODE_OFFLINE_DEEP;
+            return Board::power_mode::offline_deep;
         }
+        case viam::component::board::v1::POWER_MODE_UNSPECIFIED:
         default: {
             throw std::runtime_error("Invalid proto board power_mode to decode");
         }
     }
 }
-std::chrono::duration<double> Board::from_proto(google::protobuf::Duration proto) {
-    /* std::chrono::duration<double, std::chrono::seconds> value(0); */
-    auto value = std::chrono::seconds(10);
-    /* value += std::chrono::duration<double, std::chrono::nanoseconds>((double)proto.nanos()); */
-    return value;
-}
 
 viam::common::v1::BoardStatus Board::to_proto(status status) {
     viam::common::v1::BoardStatus proto;
-    for (const auto& analog : status.analog_values) {
+    for (const auto& analog : status.analog_reader_values) {
         proto.mutable_analogs()->insert({analog.first, to_proto(analog.second)});
     }
 
-    for (const auto& digital : status.digital_values) {
+    for (const auto& digital : status.digital_interrupt_values) {
         proto.mutable_digital_interrupts()->insert({digital.first, to_proto(digital.second)});
     }
-    return proto;
-}
-
-viam::component::board::v1::GetGPIOResponse Board::to_proto(gpio_pin gpio_pin) {
-    viam::component::board::v1::GetGPIOResponse proto;
-    proto.set_high(gpio_pin.high);
-    return proto;
-}
-
-viam::component::board::v1::PWMResponse Board::to_proto(duty_cycle duty_cycle) {
-    viam::component::board::v1::PWMResponse proto;
-    proto.set_duty_cycle_pct(duty_cycle.duty_cycle_pct);
     return proto;
 }
 
@@ -130,14 +98,11 @@ viam::common::v1::DigitalInterruptStatus Board::to_proto(digital_value digital_v
 
 viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode proto) {
     switch (proto) {
-        case Board::power_mode::POWER_MODE_NORMAL: {
+        case Board::power_mode::normal: {
             return viam::component::board::v1::POWER_MODE_NORMAL;
         }
-        case Board::power_mode::POWER_MODE_OFFLINE_DEEP: {
+        case Board::power_mode::offline_deep: {
             return viam::component::board::v1::POWER_MODE_OFFLINE_DEEP;
-        }
-        case Board::power_mode::POWER_MODE_UNSPECIFIED: {
-            return viam::component::board::v1::POWER_MODE_UNSPECIFIED;
         }
         default: {
             throw std::runtime_error("Invalid board power_mode to encode");
@@ -145,28 +110,11 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode proto) {
     }
 }
 
-google::protobuf::Duration Board::to_proto(std::chrono::duration<double> duration) {
-    google::protobuf::Duration proto;
-    // TODO
-    proto.set_nanos(0);
-    proto.set_seconds(0);
-    return proto;
-}
+Board::Board(std::string name) : ComponentBase(std::move(name)){};
 
 bool operator==(const Board::status& lhs, const Board::status& rhs) {
-    return (lhs.analog_values == rhs.analog_values && lhs.digital_values == rhs.digital_values);
-}
-
-bool operator==(const Board::gpio_pin& lhs, const Board::gpio_pin& rhs) {
-    return (lhs.high == rhs.high);
-}
-
-bool operator==(const Board::duty_cycle& lhs, const Board::duty_cycle& rhs) {
-    return (lhs.duty_cycle_pct == rhs.duty_cycle_pct);
-}
-
-bool operator==(const Board::pwm_frequency& lhs, const Board::pwm_frequency& rhs) {
-    return (lhs.frequency_hz == rhs.frequency_hz);
+    return (lhs.analog_reader_values == rhs.analog_reader_values &&
+            lhs.digital_interrupt_values == rhs.digital_interrupt_values);
 }
 
 namespace {
@@ -175,7 +123,7 @@ bool init() {
     return true;
 };
 
-bool inited = init();
+const bool inited = init();
 }  // namespace
 
 }  // namespace sdk

@@ -20,21 +20,21 @@ namespace sdk {
 /// @ingroup Board
 class BoardClient : public Board {
    public:
+    BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+
     status get_status() override;
-    void set_gpio(std::string pin, bool high) override;
-    gpio_pin get_gpio(std::string pin) override;
-    duty_cycle get_pwm(std::string pin) override;
-    void set_pwm(std::string pin, double duty_cycle_pct) override;
-    uint64_t get_pwm_frequency(std::string pin) override;
-    void set_pwm_frequency(std::string pin, uint64_t frequency_hz) override;
+    void set_gpio(const std::string& pin, bool high) override;
+    bool get_gpio(const std::string& pin) override;
+    double get_pwm(const std::string& pin) override;
+    void set_pwm(const std::string& pin, double duty_cycle_pct) override;
+    uint64_t get_pwm_frequency(const std::string& pin) override;
+    void set_pwm_frequency(const std::string& pin, uint64_t frequency_hz) override;
     AttributeMap do_command(AttributeMap command) override;
-    analog_value read_analog(std::string analog_reader_name) override;
-    digital_value read_digital_interrupt(std::string digital_interrupt_name) override;
+    analog_value read_analog(const std::string& analog_reader_name) override;
+    digital_value read_digital_interrupt(const std::string& digital_interrupt_name) override;
+    std::vector<std::string> get_analog_reader_names() override;
+    std::vector<std::string> get_digital_interrupt_names() override;
     void set_power_mode(power_mode power_mode, std::chrono::duration<double> duration) override;
-    BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-        : Board(std::move(name)),
-          stub_(viam::component::board::v1::BoardService::NewStub(channel)),
-          channel_(std::move(channel)){};
 
    private:
     std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;

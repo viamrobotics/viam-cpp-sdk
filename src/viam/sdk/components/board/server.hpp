@@ -18,6 +18,9 @@ namespace sdk {
 class BoardServer : public ResourceServerBase,
                     public viam::component::board::v1::BoardService::Service {
    public:
+    BoardServer();
+    explicit BoardServer(std::shared_ptr<ResourceManager> manager);
+
     ::grpc::Status Status(::grpc::ServerContext* context,
                           const ::viam::component::board::v1::StatusRequest* request,
                           ::viam::component::board::v1::StatusResponse* response) override;
@@ -68,9 +71,6 @@ class BoardServer : public ResourceServerBase,
         ::viam::component::board::v1::SetPowerModeResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
-
-    BoardServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-    BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
 };
 
 }  // namespace sdk
