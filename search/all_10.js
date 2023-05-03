@@ -2,8 +2,8 @@ var searchData=
 [
   ['server_0',['Server',['../classviam_1_1sdk_1_1Server.html',1,'viam::sdk']]],
   ['server_2ehpp_1',['server.hpp',['../components_2base_2server_8hpp.html',1,'(Global Namespace)'],['../components_2camera_2server_8hpp.html',1,'(Global Namespace)'],['../components_2encoder_2server_8hpp.html',1,'(Global Namespace)'],['../components_2generic_2server_8hpp.html',1,'(Global Namespace)'],['../components_2motor_2server_8hpp.html',1,'(Global Namespace)'],['../rpc_2server_8hpp.html',1,'(Global Namespace)']]],
-  ['service_5fdescriptor_2',['service_descriptor',['../classviam_1_1sdk_1_1ResourceSubtype.html#ae0be0b057fdfa730c3dfd8d4b7174825',1,'viam::sdk::ResourceSubtype']]],
-  ['servicebase_3',['ServiceBase',['../classviam_1_1sdk_1_1ServiceBase.html',1,'viam::sdk']]],
+  ['service_2',['Service',['../classviam_1_1sdk_1_1Service.html',1,'viam::sdk']]],
+  ['service_5fdescriptor_3',['service_descriptor',['../classviam_1_1sdk_1_1ResourceSubtype.html#ae0be0b057fdfa730c3dfd8d4b7174825',1,'viam::sdk::ResourceSubtype']]],
   ['set_5fpower_4',['set_power',['../classviam_1_1sdk_1_1Base.html#a23806e120caf5174b7c60b6b2379ab63',1,'viam::sdk::Base::set_power()'],['../classviam_1_1sdk_1_1BaseClient.html#a5525b3b27ed7e9e8cd67998d0f979de0',1,'viam::sdk::BaseClient::set_power()'],['../classviam_1_1sdk_1_1MotorClient.html#a0f8ff872316e311466ec946470319d74',1,'viam::sdk::MotorClient::set_power()'],['../classviam_1_1sdk_1_1Motor.html#afeaba36a9157897790beb003e81b0c20',1,'viam::sdk::Motor::set_power()']]],
   ['set_5fvelocity_5',['set_velocity',['../classviam_1_1sdk_1_1Base.html#adb650bdc2909d92b66df25ea387134c1',1,'viam::sdk::Base::set_velocity()'],['../classviam_1_1sdk_1_1BaseClient.html#a57e9da0bde28deca20ad327271666a98',1,'viam::sdk::BaseClient::set_velocity()']]],
   ['set_5fx_6',['set_x',['../classviam_1_1sdk_1_1Vector3.html#ae2a1d640ef21ea4a76e2f76ae0983389',1,'viam::sdk::Vector3']]],

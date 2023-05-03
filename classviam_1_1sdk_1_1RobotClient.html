@@ -98,9 +98,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr
 <tr class="memitem:a71a56328284b28fc71805817747561e6"><td class="memItemLeft" align="right" valign="top"><a id="a71a56328284b28fc71805817747561e6" name="a71a56328284b28fc71805817747561e6"></a>
 std::vector&lt; ResourceName &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>resource_names</b> ()</td></tr>
 <tr class="separator:a71a56328284b28fc71805817747561e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4210fe63c9fb2ef83f5a767519b3111"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#aa4210fe63c9fb2ef83f5a767519b3111">resource_by_name</a> (const ResourceName &amp;name)</td></tr>
-<tr class="memdesc:aa4210fe63c9fb2ef83f5a767519b3111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup and return a <code>shared_ptr</code> to a resource.  <br /></td></tr>
-<tr class="separator:aa4210fe63c9fb2ef83f5a767519b3111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bbdc1535b4a9f672b2f980b7010e6c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a05bbdc1535b4a9f672b2f980b7010e6c">resource_by_name</a> (const ResourceName &amp;name)</td></tr>
+<tr class="memdesc:a05bbdc1535b4a9f672b2f980b7010e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup and return a <code>shared_ptr</code> to a resource.  <br /></td></tr>
+<tr class="separator:a05bbdc1535b4a9f672b2f980b7010e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f04ae183a30f21e666a74f7ab172413"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a6f04ae183a30f21e666a74f7ab172413"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a6f04ae183a30f21e666a74f7ab172413">resource_by_name</a> (std::string name)</td></tr>
 <tr class="memdesc:a6f04ae183a30f21e666a74f7ab172413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup and return a <code>shared_ptr</code> to a resource of the requested type.  <br /></td></tr>
@@ -364,14 +364,14 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa4210fe63c9fb2ef83f5a767519b3111" name="aa4210fe63c9fb2ef83f5a767519b3111"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4210fe63c9fb2ef83f5a767519b3111">&#9670;&#160;</a></span>resource_by_name() <span class="overload">[1/2]</span></h2>
+<a id="a05bbdc1535b4a9f672b2f980b7010e6c" name="a05bbdc1535b4a9f672b2f980b7010e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05bbdc1535b4a9f672b2f980b7010e6c">&#9670;&#160;</a></span>resource_by_name() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a> &gt; viam::sdk::RobotClient::resource_by_name </td>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; viam::sdk::RobotClient::resource_by_name </td>
           <td>(</td>
           <td class="paramtype">const ResourceName &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
@@ -393,9 +393,9 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the requested resource as an uncasted <code><a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a></code>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a <code>shared_ptr</code> to the requested resource as an uncasted <code><a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a></code>.</dd></dl>
 <p>This method should not be called directly except in specific cases. The type-annotated <code>resource_by_name&lt;T&gt;(name)</code> overload is the preferred method for obtaining resources.</p>
-<p>Because the return type here is a <code><a class="el" href="classviam_1_1sdk_1_1ResourceBase.html">ResourceBase</a></code>, the user will need to manually cast to the desired type. </p>
+<p>Because the return type here is a <code><a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a></code>, the user will need to manually cast to the desired type. </p>
 
 </div>
 </div>

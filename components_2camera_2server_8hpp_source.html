@@ -88,7 +88,7 @@ $(function() {
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>viam {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>sdk {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1CameraServer.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1CameraServer.html">CameraServer</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServerBase.html">ResourceServerBase</a>,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1CameraServer.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1CameraServer.html">CameraServer</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>,</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                     <span class="keyword">public</span> viam::component::camera::v1::CameraService::Service {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>   <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
@@ -111,14 +111,14 @@ $(function() {
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1CameraServer.html">CameraServer</a>() : <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServerBase.html">ResourceServerBase</a>(std::make_shared&lt;ResourceManager&gt;()){};</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1CameraServer.html">CameraServer</a>(std::shared_ptr&lt;ResourceManager&gt; manager) : <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServerBase.html">ResourceServerBase</a>(manager){};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1CameraServer.html">CameraServer</a>() : <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>(std::make_shared&lt;ResourceManager&gt;()){};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1CameraServer.html">CameraServer</a>(std::shared_ptr&lt;ResourceManager&gt; manager) : <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>(manager){};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}  <span class="comment">// namespace sdk</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1CameraServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1CameraServer.html">viam::sdk::CameraServer</a></div><div class="ttdoc">gRPC server implementation of a Camera component.</div><div class="ttdef"><b>Definition:</b> server.hpp:19</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServerBase_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServerBase.html">viam::sdk::ResourceServerBase</a></div><div class="ttdef"><b>Definition:</b> resource_server_base.hpp:9</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition:</b> resource_server_base.hpp:9</div></div>
 <div class="ttc" id="aresource__manager_8hpp_html"><div class="ttname"><a href="resource__manager_8hpp.html">resource_manager.hpp</a></div><div class="ttdoc">Defines a general-purpose resource manager.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
