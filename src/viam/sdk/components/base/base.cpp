@@ -25,7 +25,7 @@ std::shared_ptr<ResourceServer> BaseSubtype::create_resource_server(
 };
 
 std::shared_ptr<Resource> BaseSubtype::create_rpc_client(std::string name,
-                                                             std::shared_ptr<grpc::Channel> chan) {
+                                                         std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<BaseClient>(std::move(name), std::move(chan));
 };
 

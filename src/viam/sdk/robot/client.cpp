@@ -177,8 +177,7 @@ void RobotClient::refresh() {
             Registry::lookup_subtype({name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
-                std::shared_ptr<Resource> rpc_client =
-                    rs->create_rpc_client(name.name(), channel_);
+                std::shared_ptr<Resource> rpc_client = rs->create_rpc_client(name.name(), channel_);
                 Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {

@@ -27,7 +27,7 @@ class BaseSubtype : public ResourceSubtype {
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> chan) override;
+                                                std::shared_ptr<grpc::Channel> chan) override;
     BaseSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : ResourceSubtype(service_descriptor){};
 };
