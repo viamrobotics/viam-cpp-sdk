@@ -15,7 +15,7 @@ namespace sdk {
 /// @class BoardServer
 /// @brief gRPC server implementation of a `Board` component.
 /// @ingroup Board
-class BoardServer : public ResourceServerBase,
+class BoardServer : public ResourceServer,
                     public viam::component::board::v1::BoardService::Service {
    public:
     BoardServer();

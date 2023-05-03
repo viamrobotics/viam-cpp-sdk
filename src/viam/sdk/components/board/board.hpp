@@ -23,12 +23,11 @@ namespace sdk {
 /// @ingroup Board
 class BoardSubtype : public ResourceSubtype {
    public:
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    explicit BoardSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> chan) override;
-    BoardSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceSubtype(service_descriptor){};
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override;
 };
 
 /// @class Board board.hpp "components/board/board.hpp"
@@ -38,7 +37,7 @@ class BoardSubtype : public ResourceSubtype {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific board implementations. This class cannot be used on its own.
-class Board : public ComponentBase {
+class Board : public Component {
    public:
     /// @brief Represents the value received by the registered analog to digital converter (ADC).
     /// The range and conversion mechanism to voltage will vary depending on the specific ADC
@@ -145,7 +144,8 @@ class Board : public ComponentBase {
     /// duration.
     /// @param power_mode Requested power mode
     /// @param duration Requested duration to stay in `power_mode`
-    virtual void set_power_mode(power_mode power_mode, std::chrono::duration<double> duration) = 0;
+    virtual void set_power_mode(power_mode power_mode,
+                                const std::chrono::duration<double>& duration) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

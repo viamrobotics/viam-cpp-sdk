@@ -14,15 +14,18 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceServerBase> BoardSubtype::create_resource_server(
+BoardSubtype::BoardSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceSubtype(service_descriptor) {}
+
+std::shared_ptr<ResourceServer> BoardSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<BoardServer>(manager);
-};
+}
 
-std::shared_ptr<ResourceBase> BoardSubtype::create_rpc_client(std::string name,
-                                                              std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> BoardSubtype::create_rpc_client(std::string name,
+                                                          std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<BoardClient>(std::move(name), std::move(chan));
-};
+}
 
 std::shared_ptr<ResourceSubtype> Board::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
@@ -110,7 +113,7 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode proto) {
     }
 }
 
-Board::Board(std::string name) : ComponentBase(std::move(name)){};
+Board::Board(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Board::status& lhs, const Board::status& rhs) {
     return (lhs.analog_reader_values == rhs.analog_reader_values &&

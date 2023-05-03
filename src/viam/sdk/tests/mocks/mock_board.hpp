@@ -14,6 +14,7 @@ namespace board {
 
 class MockBoard : public viam::sdk::Board {
    public:
+    MockBoard(std::string name);
     Board::status get_status() override;
     void set_gpio(const std::string& pin, bool high) override;
     bool get_gpio(const std::string& pin) override;
@@ -24,7 +25,8 @@ class MockBoard : public viam::sdk::Board {
     viam::sdk::AttributeMap do_command(viam::sdk::AttributeMap command) override;
     Board::analog_value read_analog(const std::string& analog_reader_name) override;
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name) override;
-    void set_power_mode(power_mode power_mode, std::chrono::duration<double> duration) override;
+    void set_power_mode(power_mode power_mode,
+                        const std::chrono::duration<double>& duration) override;
     std::vector<std::string> get_analog_reader_names() override;
     std::vector<std::string> get_digital_interrupt_names() override;
 
@@ -40,8 +42,6 @@ class MockBoard : public viam::sdk::Board {
     Board::digital_value peek_read_digital_interrupt_ret;
     Board::power_mode peek_set_power_mode_power_mode;
     std::chrono::duration<double> peek_set_power_mode_duration;
-
-    MockBoard(std::string name) : Board(std::move(name)){};
 };
 
 }  // namespace board

@@ -34,11 +34,12 @@ class BoardClient : public Board {
     digital_value read_digital_interrupt(const std::string& digital_interrupt_name) override;
     std::vector<std::string> get_analog_reader_names() override;
     std::vector<std::string> get_digital_interrupt_names() override;
-    void set_power_mode(power_mode power_mode, std::chrono::duration<double> duration) override;
+    void set_power_mode(power_mode power_mode,
+                        const std::chrono::duration<double>& duration) override;
 
    private:
     std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const std::shared_ptr<grpc::Channel> channel_;
 };
 
 }  // namespace sdk

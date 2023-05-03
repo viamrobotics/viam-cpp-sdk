@@ -9,8 +9,8 @@
 namespace viam {
 namespace sdk {
 
-BoardServer::BoardServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+BoardServer::BoardServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 
 ::grpc::Status BoardServer::Status(::grpc::ServerContext* context,
                                    const ::viam::component::board::v1::StatusRequest* request,
@@ -20,7 +20,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::Status] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -42,7 +42,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetGPIO] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -62,7 +62,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::GetGPIO] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -82,7 +82,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::PWM] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -102,7 +102,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetPWM] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -123,7 +123,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::PWMFrequency] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -145,7 +145,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetPWMFrequency] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -165,7 +165,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::DoCommand] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
@@ -187,7 +187,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::ReadAnalogReader] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->board_name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
     }
@@ -209,7 +209,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::GetDigitalInterruptValue] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->board_name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
     }
@@ -231,7 +231,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetPowerMode] without a request");
     };
 
-    std::shared_ptr<ResourceBase> rb = resource_manager()->resource(request->name());
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
