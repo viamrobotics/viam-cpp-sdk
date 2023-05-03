@@ -268,10 +268,6 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_input_image) {
 }
 
 BOOST_AUTO_TEST_CASE(xtensor_experiment_flatten_three_dimensions) {
-    // TODO: Validate that we can efficiently linearize from a chunked
-    // array to a flat buffer, as we probably need to do to feed into
-    // tf / triton.
-
     // Create a 10x10x10 cube of doubles.
     std::size_t depth = 10;
     std::vector<double> flat(depth * depth * depth, 0);
@@ -402,9 +398,9 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
                                   detection_results_shape[1] - 1,
                                   detection_results_shape[2] - 1) == &detection_results_buffer.back());
 
-    // TODO: Validate that we can view this as an `xchunked_array`
-    // over a single element vector. This makes it easier to use the
-    // same data types for input and output in our API.
+    // Validate that we can view this as an `xchunked_array` over a
+    // single element vector. This makes it easier to use the same
+    // data types for input and output in our `infer` API.
     std::vector<decltype(detection_results)> chunk_storage{detection_results};
     auto chunk_adapter = xt::adapt(chunk_storage.data(), chunk_storage.size(), xt::no_ownership(), std::vector{chunk_storage.size()});
 
@@ -425,7 +421,6 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
     std::array<std::vector<float>, dimensions[0] * dimensions[1]> storage;
     for (auto& storage_item : storage)
         storage_item = std::vector(dimensions[2], float{0});
-
     // XXX
 }
 
