@@ -137,6 +137,8 @@ class Camera : public ComponentBase {
     /// @return The camera properties.
     virtual properties get_properties() = 0;
 
+    Subtype instance_subtype() override;
+
    protected:
     explicit Camera(std::string name) : ComponentBase(std::move(name)){};
 };

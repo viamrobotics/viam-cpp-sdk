@@ -31,10 +31,10 @@ namespace sdk {
 class ResourceSubtype {
    public:
     /// @brief Add `Reconfigure` functionality to a resource.
-    std::function<ResourceBase(ResourceBase, Name)> create_reconfigurable;
+    std::function<ResourceBase(std::shared_ptr<ResourceBase>, Name)> create_reconfigurable;
 
     // TODO: it doesn't look like we actually use this. Confirm, then remove.
-    std::function<ProtoType(ResourceBase)> create_status;
+    std::function<ProtoType(std::shared_ptr<ResourceBase>)> create_status;
 
     /// @brief Create a resource's gRPC server.
     /// @param manager The server's `ResourceManager`.

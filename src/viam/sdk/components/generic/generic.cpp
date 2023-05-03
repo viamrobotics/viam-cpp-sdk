@@ -41,6 +41,10 @@ Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
 }
 
+Subtype Generic::instance_subtype() {
+    return subtype();
+}
+
 namespace {
 bool init() {
     Registry::register_subtype(Generic::subtype(), Generic::resource_subtype());

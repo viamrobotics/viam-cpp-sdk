@@ -24,14 +24,15 @@ MockGeneric::do_command(
 }
 
 std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
-    auto generic = std::make_shared<MockGeneric>("generic");
+    auto generic = std::make_shared<MockGeneric>("mock_generic");
     generic->map_ = fake_map();
 
     return generic;
 }
 
 MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) {
-    this->server_->resource_manager()->add(std::string("generic"), MockGeneric::get_mock_generic());
+    this->server_->resource_manager()->add(std::string("mock_generic"),
+                                           MockGeneric::get_mock_generic());
 }
 
 ::grpc::Status MockGenericStub::DoCommand(::grpc::ClientContext* context,

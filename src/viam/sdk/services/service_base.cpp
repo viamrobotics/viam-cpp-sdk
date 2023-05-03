@@ -18,7 +18,7 @@ ResourceName ServiceBase::get_resource_name(std::string name) {
 
 ServiceBase::ServiceBase() : ResourceBase("service"){};
 
-ResourceType ServiceBase::type() {
+ResourceType ServiceBase::type() const {
     return {SERVICE};
 }
 

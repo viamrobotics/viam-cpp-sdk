@@ -40,13 +40,13 @@ BOOST_AUTO_TEST_CASE(test_do) {
 
 BOOST_AUTO_TEST_CASE(test_do_service) {
     auto server = std::make_shared<GenericServer>();
-    server->resource_manager()->add(std::string("generic"), MockGeneric::get_mock_generic());
+    server->resource_manager()->add(std::string("mock_generic"), MockGeneric::get_mock_generic());
 
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
     grpc::ServerContext ctx;
 
-    *req.mutable_name() = "generic";
+    *req.mutable_name() = "mock_generic";
     grpc::Status status = server->DoCommand(&ctx, &req, &resp);
 
     AttributeMap result_map = struct_to_map(resp.result());
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(test_do_service) {
 }
 
 BOOST_AUTO_TEST_CASE(test_do_client) {
-    MockGenericClient client("generic");
+    MockGenericClient client("mock_generic");
 
     AttributeMap command = fake_map();
     AttributeMap expected_map = fake_map();

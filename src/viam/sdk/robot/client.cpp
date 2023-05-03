@@ -73,18 +73,19 @@ void RobotClient::close() {
 bool is_error_response(grpc::Status response) {
     return !response.ok() && (response.error_message() != k_stream_removed);
 }
-
+std::vector<Status> RobotClient::get_status() {
+    auto resources = resource_names();
+    return get_status(*resources);
+}
 // gets Statuses of components associated with robot. If a specific component
 // vector is provided, only statuses for the given ResourceNames will be
 // returned
-std::vector<Status> RobotClient::get_status(std::vector<ResourceName> components) {
+std::vector<Status> RobotClient::get_status(std::vector<ResourceName>& components) {
     viam::robot::v1::GetStatusRequest req;
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
-    RepeatedPtrField<ResourceName>* request_resource_names = req.mutable_resource_names();
-
-    for (ResourceName name : components) {
-        *request_resource_names->Add() = name;
+    for (ResourceName& name : components) {
+        *req.mutable_resource_names()->Add() = name;
     }
 
     grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
@@ -162,10 +163,6 @@ void RobotClient::refresh() {
 
     for (auto& name : resources) {
         current_resources.push_back(name);
-        // TODO(RSDK-2066): stop filtering on COMPONENT
-        if (name.type() != COMPONENT) {
-            continue;
-        }
         if (name.subtype() == "remote") {
             continue;
         }

@@ -47,10 +47,12 @@ class RobotClient {
     ~RobotClient();
     void refresh();
     void close();
+
     /// @brief Create a robot client connected to the robot at the provided address.
-    /// @param address The addrxess of the robot (IP address, URI, URL, etc.)
+    /// @param address The address of the robot (IP address, URI, URL, etc.)
     /// @param options Options for connecting and refreshing.
     static std::shared_ptr<RobotClient> at_address(std::string address, Options options);
+
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
     /// @param options Options for connecting and refreshing.
@@ -107,10 +109,14 @@ class RobotClient {
     /// @return The list of operations currently running on the calling robot.
     std::vector<viam::robot::v1::Operation> get_operations();
 
-    /// @brief Get the status of the robot's components.
-    /// @param components An optional list of the specific components for which status is desired.
+    /// @brief Get the status of the requested robot components.
+    /// @param components A list of the specific components for which status is desired.
     /// @return A list of statuses.
-    std::vector<Status> get_status(std::vector<ResourceName> components = {});
+    std::vector<Status> get_status(std::vector<ResourceName>& components);
+
+    /// @brief Get the status of all robot components.
+    /// @return A list of statuses.
+    std::vector<Status> get_status();
 
     std::vector<viam::robot::v1::Discovery> discover_components(
         std::vector<viam::robot::v1::DiscoveryQuery> queries);

@@ -13,7 +13,7 @@ namespace sdk {
 
 class ComponentBase : public ResourceBase {
    public:
-    virtual ResourceType type() override;
+    virtual ResourceType type() const override;
     viam::common::v1::ResourceName get_resource_name(std::string name) override;
     ComponentBase() : ResourceBase("component"){};
 

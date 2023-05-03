@@ -130,6 +130,8 @@ class Motor : public ComponentBase {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
+    Subtype instance_subtype() override;
+
    protected:
     explicit Motor(std::string name) : ComponentBase(std::move(name)){};
 };

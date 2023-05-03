@@ -21,7 +21,7 @@ ResourceName ComponentBase::get_resource_name(std::string name) {
     return r;
 }
 
-ResourceType ComponentBase::type() {
+ResourceType ComponentBase::type() const {
     return {COMPONENT};
 }
 

@@ -42,6 +42,10 @@ Subtype Camera::subtype() {
     return Subtype(RDK, COMPONENT, "camera");
 }
 
+Subtype Camera::instance_subtype() {
+    return subtype();
+}
+
 std::vector<double> repeated_field_to_vector(google::protobuf::RepeatedField<double> const& f) {
     std::vector<double> v(f.begin(), f.end());
     return v;

@@ -12,7 +12,7 @@ namespace sdk {
 class ServiceBase : public ResourceBase {
    public:
     viam::common::v1::ResourceName get_resource_name(std::string name) override;
-    ResourceType type() override;
+    ResourceType type() const override;
     ServiceBase();
 
    protected:

@@ -19,7 +19,7 @@ grpc::StatusCode ResourceBase::stop() {
     return grpc::StatusCode::UNIMPLEMENTED;
 }
 
-std::string ResourceBase::name() {
+std::string ResourceBase::name() const {
     return name_;
 }
 
@@ -29,7 +29,7 @@ Subtype ResourceBase::subtype() {
 
 void ResourceBase::reconfigure(Dependencies deps, Resource cfg){};
 
-ResourceType ResourceBase::type() {
+ResourceType ResourceBase::type() const {
     return {RESOURCE};
 }
 
@@ -37,7 +37,7 @@ ResourceName ResourceBase::get_resource_name(std::string name) {
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = RESOURCE;
-    *r.mutable_subtype() = this->type().to_string();
+    *r.mutable_subtype() = this->instance_subtype().resource_subtype();
     *r.mutable_name() = std::move(name);
 
     return r;

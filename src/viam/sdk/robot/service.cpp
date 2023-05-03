@@ -44,11 +44,12 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
         std::shared_ptr<ResourceBase> resource = cmp.second;
         for (auto& registry : Registry::registered_resources()) {
             std::shared_ptr<ModelRegistration> registration = registry.second;
-            if (registration->resource_type() == resource->type()) {
+            if (registration->subtype().resource_subtype() ==
+                resource->instance_subtype().resource_subtype()) {
                 bool resource_present = false;
                 ResourceName name = resource->get_resource_name(resource->name());
                 for (auto& resource_name : resource_names) {
-                    if (&name == &resource_name) {
+                    if (ResourceNameEqual::check_equal(name, resource_name)) {
                         resource_present = true;
                         break;
                     }
@@ -152,19 +153,19 @@ void RobotService_::stream_status(
         AttributeMap value_map = struct_to_map(struct_);
         std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
+    }
 
-        for (auto& r : resource_manager()->resources()) {
-            std::shared_ptr<ResourceBase> resource = r.second;
-            ResourceName rn = resource->get_resource_name(resource->name());
-            std::string rn_ = rn.SerializeAsString();
-            if (extra.find(rn_) != extra.end()) {
-                grpc::StatusCode status = resource->stop(extra.at(rn_));
-                if (status != grpc::StatusCode::OK) {
-                    status = resource->stop();
-                }
-            } else {
+    for (auto& r : resource_manager()->resources()) {
+        std::shared_ptr<ResourceBase> resource = r.second;
+        ResourceName rn = resource->get_resource_name(resource->name());
+        std::string rn_ = rn.SerializeAsString();
+        if (extra.find(rn_) != extra.end()) {
+            grpc::StatusCode status = resource->stop(extra.at(rn_));
+            if (status != grpc::StatusCode::OK) {
                 status = resource->stop();
             }
+        } else {
+            status = resource->stop();
         }
     }
 
