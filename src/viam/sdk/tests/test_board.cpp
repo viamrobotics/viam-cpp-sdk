@@ -67,78 +67,107 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_status) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        std::map<std::string, Board::analog_value> analogs;
+        analogs.emplace("analog", 1);
+        std::map<std::string, Board::digital_value> digitals;
+        digitals.emplace("digital", 2);
+        mock->peek_get_status_ret = Board::status{analogs, digitals};
+
+        BOOST_CHECK(client.get_status() == mock->peek_get_status_ret);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_gpio) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        client.set_gpio("t1", true);
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
+        BOOST_CHECK(mock->peek_set_gpio_high);
+        client.set_gpio("t2", false);
+        BOOST_CHECK_EQUAL("t2", mock->peek_pin);
+        BOOST_CHECK(!mock->peek_set_gpio_high);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_gpio) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        mock->peek_get_gpio_ret = true;
+        BOOST_CHECK(client.get_gpio("t1"));
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
     });
 }
 
-BOOST_AUTO_TEST_CASE(test_get_pwm) {
+BOOST_AUTO_TEST_CASE(test_get_pwm_duty_cycle) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        mock->peek_get_pwm_duty_cycle_ret = 55;
+        BOOST_CHECK_EQUAL(55, client.get_pwm_duty_cycle("t1"));
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
     });
 }
 
-BOOST_AUTO_TEST_CASE(test_set_pwm) {
+BOOST_AUTO_TEST_CASE(test_set_pwm_duty_cycle) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        client.set_pwm_duty_cycle("t1", 0.512);
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
+        BOOST_CHECK_EQUAL(0.512, mock->peek_set_pwm_duty_cycle_pct);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_pwm_frequency) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        mock->peek_get_pwm_frequency_ret = 510;
+        BOOST_CHECK_EQUAL(510, client.get_pwm_frequency("t1"));
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_pwm_frequency) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        client.set_pwm_frequency("t1", 10);
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
+        BOOST_CHECK_EQUAL(10, mock->peek_set_pwm_frequency_hz);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        AttributeMap expected = fake_map();
+
+        AttributeMap command = fake_map();
+        AttributeMap result_map = client.do_command(command);
+
+        ProtoType expected_pt = *(expected->at(std::string("test")));
+        ProtoType result_pt = *(result_map->at(std::string("test")));
+        BOOST_CHECK(result_pt == expected_pt);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_read_analog) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        mock->peek_read_analog_ret = 5150;
+        BOOST_CHECK_EQUAL(5150, client.read_analog("t1"));
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        mock->peek_read_digital_interrupt_ret = 515;
+        BOOST_CHECK_EQUAL(515, client.read_digital_interrupt("t1"));
+        BOOST_CHECK_EQUAL("t1", mock->peek_pin);
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_set_power_mode) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        // TODO impl
-        BOOST_CHECK(false);
+        auto mode = Board::power_mode::normal;
+        auto duration = std::chrono::milliseconds(15531);
+        client.set_power_mode(mode, duration);
+        BOOST_CHECK(mode == mock->peek_set_power_mode_power_mode);
+        BOOST_CHECK(duration == mock->peek_set_power_mode_duration);
+        // Check with units denominated in nanoseconds
+        auto duration_large = std::chrono::nanoseconds(3213000000);
+        client.set_power_mode(mode, duration_large);
+        BOOST_CHECK(duration_large == mock->peek_set_power_mode_duration);
     });
 }
 

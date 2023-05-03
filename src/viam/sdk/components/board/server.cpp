@@ -89,7 +89,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    response->set_duty_cycle_pct(board->get_gpio(request->pin()));
+    response->set_duty_cycle_pct(board->get_pwm_duty_cycle(request->pin()));
 
     return ::grpc::Status();
 }
@@ -109,7 +109,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    board->set_pwm(request->pin(), request->duty_cycle_pct());
+    board->set_pwm_duty_cycle(request->pin(), request->duty_cycle_pct());
 
     return ::grpc::Status();
 }
@@ -239,7 +239,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     board->set_power_mode(Board::from_proto(request->power_mode()),
-                          duration::from_proto(request->duration()));
+                          duration_from_proto(request->duration()));
 
     return ::grpc::Status();
 }

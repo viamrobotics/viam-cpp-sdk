@@ -44,11 +44,8 @@ class ResourceNameEqual {
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
 
-/// @brief Creates a `duration` struct from its proto representation.
-static std::chrono::duration<double> from_proto(const google::protobuf::Duration& proto);
-
-/// @brief Converts a `duration` struct to its proto representation.
-static google::protobuf::Duration to_proto(const std::chrono::duration<double>& duration);
+std::chrono::duration<double> duration_from_proto(const google::protobuf::Duration& proto);
+google::protobuf::Duration duration_to_proto(const std::chrono::duration<double>& duration);
 
 }  // namespace sdk
 }  // namespace viam

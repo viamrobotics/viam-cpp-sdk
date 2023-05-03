@@ -25,8 +25,8 @@ class BoardClient : public Board {
     status get_status() override;
     void set_gpio(const std::string& pin, bool high) override;
     bool get_gpio(const std::string& pin) override;
-    double get_pwm(const std::string& pin) override;
-    void set_pwm(const std::string& pin, double duty_cycle_pct) override;
+    double get_pwm_duty_cycle(const std::string& pin) override;
+    void set_pwm_duty_cycle(const std::string& pin, double duty_cycle_pct) override;
     uint64_t get_pwm_frequency(const std::string& pin) override;
     void set_pwm_frequency(const std::string& pin, uint64_t frequency_hz) override;
     AttributeMap do_command(AttributeMap command) override;

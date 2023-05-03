@@ -46,7 +46,6 @@ void BoardClient::set_gpio(const std::string& pin, bool high) {
     *request.mutable_name() = this->name();
     request.set_pin(pin);
     request.set_high(high);
-
     grpc::Status status = stub_->SetGPIO(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
@@ -69,7 +68,7 @@ bool BoardClient::get_gpio(const std::string& pin) {
     return response.high();
 }
 
-double BoardClient::get_pwm(const std::string& pin) {
+double BoardClient::get_pwm_duty_cycle(const std::string& pin) {
     viam::component::board::v1::PWMRequest request;
     viam::component::board::v1::PWMResponse response;
 
@@ -85,7 +84,7 @@ double BoardClient::get_pwm(const std::string& pin) {
     return response.duty_cycle_pct();
 }
 
-void BoardClient::set_pwm(const std::string& pin, double duty_cycle_pct) {
+void BoardClient::set_pwm_duty_cycle(const std::string& pin, double duty_cycle_pct) {
     viam::component::board::v1::SetPWMRequest request;
     viam::component::board::v1::SetPWMResponse response;
 
@@ -191,7 +190,7 @@ void BoardClient::set_power_mode(power_mode power_mode, std::chrono::duration<do
 
     *request.mutable_name() = this->name();
     request.set_power_mode(to_proto(power_mode));
-    *request.mutable_duration() = duration::to_proto(duration);
+    *request.mutable_duration() = duration_to_proto(duration);
 
     grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
     if (!status.ok()) {

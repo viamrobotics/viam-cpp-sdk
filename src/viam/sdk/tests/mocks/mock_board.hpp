@@ -17,8 +17,8 @@ class MockBoard : public viam::sdk::Board {
     Board::status get_status() override;
     void set_gpio(const std::string& pin, bool high) override;
     bool get_gpio(const std::string& pin) override;
-    double get_pwm(const std::string& pin) override;
-    void set_pwm(const std::string& pin, double duty_cycle_pct) override;
+    double get_pwm_duty_cycle(const std::string& pin) override;
+    void set_pwm_duty_cycle(const std::string& pin, double duty_cycle_pct) override;
     uint64_t get_pwm_frequency(const std::string& pin) override;
     void set_pwm_frequency(const std::string& pin, uint64_t frequency_hz) override;
     viam::sdk::AttributeMap do_command(viam::sdk::AttributeMap command) override;
@@ -32,7 +32,7 @@ class MockBoard : public viam::sdk::Board {
     Board::status peek_get_status_ret;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;
-    double peek_get_pwm_ret;
+    double peek_get_pwm_duty_cycle_ret;
     double peek_set_pwm_duty_cycle_pct;
     uint64_t peek_get_pwm_frequency_ret;
     uint64_t peek_set_pwm_frequency_hz;

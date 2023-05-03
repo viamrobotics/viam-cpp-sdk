@@ -54,17 +54,20 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     return img_string;
 };
 
-std::chrono::duration<double> from_proto(const google::protobuf::Duration& proto) {
+std::chrono::duration<double> duration_from_proto(const google::protobuf::Duration& proto) {
     return std::chrono::duration<double, std::ratio<1>>(proto.seconds() +
                                                         proto.nanos() / (double)1e9);
 }
 
-google::protobuf::Duration to_proto(const std::chrono::duration<double>& duration) {
+google::protobuf::Duration duration_to_proto(const std::chrono::duration<double>& duration) {
     google::protobuf::Duration proto;
-    // TODO do this
-    auto tp_sec = std::chrono::time_point_cast<std::chrono::seconds>(duration);
-    proto.set_nanos(0);
-    proto.set_seconds(0);
+    using namespace std::chrono_literals;
+    double total_seconds = duration / 1.0s;
+    long integer_seconds = std::floor(total_seconds);
+    long integer_nanos = std::floor(1e9 * (total_seconds - integer_seconds));
+
+    proto.set_seconds(integer_seconds);
+    proto.set_nanos(integer_nanos);
     return proto;
 }
 

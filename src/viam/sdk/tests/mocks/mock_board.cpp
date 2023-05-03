@@ -25,11 +25,11 @@ bool MockBoard::get_gpio(const std::string& pin) {
     this->peek_pin = pin;
     return this->peek_get_gpio_ret;
 };
-double MockBoard::get_pwm(const std::string& pin) {
+double MockBoard::get_pwm_duty_cycle(const std::string& pin) {
     this->peek_pin = pin;
-    return this->peek_get_pwm_ret;
+    return this->peek_get_pwm_duty_cycle_ret;
 };
-void MockBoard::set_pwm(const std::string& pin, double duty_cycle_pct) {
+void MockBoard::set_pwm_duty_cycle(const std::string& pin, double duty_cycle_pct) {
     this->peek_pin = pin;
     this->peek_set_pwm_duty_cycle_pct = duty_cycle_pct;
 };
