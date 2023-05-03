@@ -44,6 +44,9 @@ target_sources(viamsdk
     components/camera/camera.cpp
     components/camera/client.cpp
     components/camera/server.cpp
+    components/encoder/client.cpp
+    components/encoder/encoder.cpp
+    components/encoder/server.cpp
     components/component_base.cpp
     components/generic/client.cpp
     components/generic/generic.cpp
@@ -72,6 +75,7 @@ target_sources(viamsdk
     tests/test_utils.cpp
     tests/mocks/camera_mocks.cpp
     tests/mocks/generic_mocks.cpp
+    tests/mocks/mock_encoder.cpp
     tests/mocks/mock_motor.cpp
     tests/mocks/mock_robot.cpp
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
@@ -83,6 +87,9 @@ target_sources(viamsdk
       ../../viam/sdk/components/camera/camera.hpp
       ../../viam/sdk/components/camera/client.hpp
       ../../viam/sdk/components/camera/server.hpp
+      ../../viam/sdk/components/encoder/client.hpp
+      ../../viam/sdk/components/encoder/encoder.hpp
+      ../../viam/sdk/components/encoder/server.hpp
       ../../viam/sdk/components/component_base.hpp
       ../../viam/sdk/components/generic/client.hpp
       ../../viam/sdk/components/generic/generic.hpp
@@ -112,6 +119,7 @@ target_sources(viamsdk
       ../../viam/sdk/tests/test_utils.hpp
       ../../viam/sdk/tests/mocks/camera_mocks.hpp
       ../../viam/sdk/tests/mocks/generic_mocks.hpp
+      ../../viam/sdk/tests/mocks/mock_encoder.hpp
       ../../viam/sdk/tests/mocks/mock_motor.hpp
       ../../viam/sdk/tests/mocks/mock_robot.hpp
 )
