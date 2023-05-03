@@ -39,8 +39,12 @@ target_sources(viamsdk
     # consider making all necessary runtime values a single `context` that has to
     # be initialized within main before anything else happens?
     registry/registry.cpp
+    common/linear_algebra.cpp
     common/proto_type.cpp
     common/utils.cpp
+    components/base/base.cpp
+    components/base/client.cpp
+    components/base/server.cpp
     components/camera/camera.cpp
     components/camera/client.cpp
     components/camera/server.cpp
@@ -75,14 +79,19 @@ target_sources(viamsdk
     tests/test_utils.cpp
     tests/mocks/camera_mocks.cpp
     tests/mocks/generic_mocks.cpp
+    tests/mocks/mock_base.cpp
     tests/mocks/mock_encoder.cpp
     tests/mocks/mock_motor.cpp
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
     FILES
+      ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/utils.hpp
+      ../../viam/sdk/components/base/base.hpp
+      ../../viam/sdk/components/base/client.hpp
+      ../../viam/sdk/components/base/server.hpp
       ../../viam/sdk/components/camera/camera.hpp
       ../../viam/sdk/components/camera/client.hpp
       ../../viam/sdk/components/camera/server.hpp
@@ -118,6 +127,7 @@ target_sources(viamsdk
       ../../viam/sdk/tests/test_utils.hpp
       ../../viam/sdk/tests/mocks/camera_mocks.hpp
       ../../viam/sdk/tests/mocks/generic_mocks.hpp
+      ../../viam/sdk/tests/mocks/mock_base.hpp
       ../../viam/sdk/tests/mocks/mock_encoder.hpp
       ../../viam/sdk/tests/mocks/mock_motor.hpp
 )
