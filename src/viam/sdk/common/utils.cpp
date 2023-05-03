@@ -53,19 +53,20 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     std::string img_string(b.begin(), b.end());
     return img_string;
 };
-namespace duration {
-std::chrono::duration<double> from_proto(google::protobuf::Duration proto) {
-    // TODO minimize overflow risk
-    return std::chrono::nanoseconds(proto.seconds() * 1000000000 + proto.nanos());
+
+std::chrono::duration<double> from_proto(const google::protobuf::Duration& proto) {
+    return std::chrono::duration<double, std::ratio<1>>(proto.seconds() +
+                                                        proto.nanos() / (double)1e9);
 }
 
-google::protobuf::Duration to_proto(std::chrono::duration<double> duration) {
+google::protobuf::Duration to_proto(const std::chrono::duration<double>& duration) {
     google::protobuf::Duration proto;
     // TODO do this
+    auto tp_sec = std::chrono::time_point_cast<std::chrono::seconds>(duration);
     proto.set_nanos(0);
     proto.set_seconds(0);
     return proto;
 }
-}  // namespace duration
+
 }  // namespace sdk
 }  // namespace viam

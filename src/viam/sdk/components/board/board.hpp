@@ -62,12 +62,8 @@ class Board : public ComponentBase {
 
     /// @enum power_mode
     /// @brief Power mode of the board
-    enum class power_mode : uint8_t {
-        // BLOCKING-TODO ask RDK team. Docs do not explain this.
-        normal = 0,
-        // BLOCKING-TODO ask RDK team. Docs do not explain this.
-        offline_deep = 1
-    };
+    /// The effect of these power modes depends on your physical board
+    enum class power_mode : uint8_t { normal = 0, offline_deep = 1 };
 
     // functions shared across all components
     static std::shared_ptr<ResourceSubtype> resource_subtype();
