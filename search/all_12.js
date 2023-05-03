@@ -1,6 +1,8 @@
 var searchData=
 [
   ['validate_0',['validate',['../classviam_1_1sdk_1_1ModelRegistration.html#aaec9b5942317ba52e27a6147940f1dfb',1,'viam::sdk::ModelRegistration']]],
-  ['viam_20c_2b_2b_20sdk_1',['Viam C++ SDK',['../index.html',1,'']]],
-  ['viamchannel_2',['ViamChannel',['../classviam_1_1sdk_1_1ViamChannel.html',1,'viam::sdk']]]
+  ['vec_5ftraits_3c_20viam_3a_3asdk_3a_3avector3_20_3e_1',['vec_traits&lt; viam::sdk::Vector3 &gt;',['../structboost_1_1qvm_1_1vec__traits_3_01viam_1_1sdk_1_1Vector3_01_4.html',1,'boost::qvm']]],
+  ['vector3_2',['Vector3',['../classviam_1_1sdk_1_1Vector3.html',1,'viam::sdk']]],
+  ['viam_20c_2b_2b_20sdk_3',['Viam C++ SDK',['../index.html',1,'']]],
+  ['viamchannel_4',['ViamChannel',['../classviam_1_1sdk_1_1ViamChannel.html',1,'viam::sdk']]]
 ];

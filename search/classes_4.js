@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['generic_0',['Generic',['../classviam_1_1sdk_1_1Generic.html',1,'viam::sdk']]],
-  ['genericclient_1',['GenericClient',['../classviam_1_1sdk_1_1GenericClient.html',1,'viam::sdk']]],
-  ['genericserver_2',['GenericServer',['../classviam_1_1sdk_1_1GenericServer.html',1,'viam::sdk']]],
-  ['genericsubtype_3',['GenericSubtype',['../classviam_1_1sdk_1_1GenericSubtype.html',1,'viam::sdk']]],
-  ['geometryconfig_4',['GeometryConfig',['../classviam_1_1sdk_1_1GeometryConfig.html',1,'viam::sdk']]]
+  ['encoder_0',['Encoder',['../classviam_1_1sdk_1_1Encoder.html',1,'viam::sdk']]],
+  ['encoderclient_1',['EncoderClient',['../classviam_1_1sdk_1_1EncoderClient.html',1,'viam::sdk']]],
+  ['encoderserver_2',['EncoderServer',['../classviam_1_1sdk_1_1EncoderServer.html',1,'viam::sdk']]],
+  ['encodersubtype_3',['EncoderSubtype',['../classviam_1_1sdk_1_1EncoderSubtype.html',1,'viam::sdk']]],
+  ['euler_5fangles_4',['euler_angles',['../structviam_1_1sdk_1_1euler__angles.html',1,'viam::sdk']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['translation_0',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]],
-  ['type_1',['Type',['../classviam_1_1sdk_1_1Type.html',1,'viam::sdk']]]
+  ['server_0',['Server',['../classviam_1_1sdk_1_1Server.html',1,'viam::sdk']]],
+  ['servicebase_1',['ServiceBase',['../classviam_1_1sdk_1_1ServiceBase.html',1,'viam::sdk']]],
+  ['subtype_2',['Subtype',['../classviam_1_1sdk_1_1Subtype.html',1,'viam::sdk']]]
 ];
