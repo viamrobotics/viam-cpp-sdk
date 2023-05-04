@@ -4,6 +4,7 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
 
 #include <viam/api/component/board/v1/board.pb.h>
 
@@ -55,8 +56,8 @@ class Board : public Component {
     /// @brief This contains all of the values for all of the registered analog readers and digital
     /// interrupts that have been registered on the board.
     struct status {
-        std::map<std::string, analog_value> analog_reader_values;
-        std::map<std::string, digital_value> digital_interrupt_values;
+        std::unordered_map<std::string, analog_value> analog_reader_values;
+        std::unordered_map<std::string, digital_value> digital_interrupt_values;
     };
 
     /// @enum power_mode

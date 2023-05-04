@@ -1,5 +1,6 @@
 #define BOOST_TEST_MODULE test module test_board
 
+#include <algorithm>
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
@@ -67,9 +68,9 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_status) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        std::map<std::string, Board::analog_value> analogs;
+        std::unordered_map<std::string, Board::analog_value> analogs;
         analogs.emplace("analog", 1);
-        std::map<std::string, Board::digital_value> digitals;
+        std::unordered_map<std::string, Board::digital_value> digitals;
         digitals.emplace("digital", 2);
         mock->peek_get_status_ret = Board::status{analogs, digitals};
 
@@ -159,11 +160,12 @@ BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
 
 BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        std::map<std::string, Board::analog_value> analogs;
+        std::unordered_map<std::string, Board::analog_value> analogs;
         analogs.emplace("analog1", 2);
         analogs.emplace("analog2", 2);
         mock->peek_get_status_ret = Board::status{analogs, {}};
         auto ret = client.get_analog_reader_names();
+        std::sort(ret.begin(), ret.end());
         BOOST_CHECK(ret[0] == "analog1");
         BOOST_CHECK(ret[1] == "analog2");
     });
@@ -171,11 +173,12 @@ BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
 
 BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
-        std::map<std::string, Board::digital_value> digitals;
+        std::unordered_map<std::string, Board::digital_value> digitals;
         digitals.emplace("digital1", 2);
         digitals.emplace("digital2", 2);
         mock->peek_get_status_ret = Board::status{{}, digitals};
         auto ret = client.get_digital_interrupt_names();
+        std::sort(ret.begin(), ret.end());
         BOOST_CHECK(ret[0] == "digital1");
         BOOST_CHECK(ret[1] == "digital2");
     });
