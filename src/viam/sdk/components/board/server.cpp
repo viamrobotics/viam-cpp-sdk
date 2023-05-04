@@ -239,7 +239,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     board->set_power_mode(Board::from_proto(request->power_mode()),
-                          duration_from_proto(request->duration()));
+                          ::viam::sdk::from_proto(request->duration()));
 
     return ::grpc::Status();
 }

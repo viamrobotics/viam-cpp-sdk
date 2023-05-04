@@ -191,7 +191,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
 
     *request.mutable_name() = this->name();
     request.set_power_mode(to_proto(power_mode));
-    *request.mutable_duration() = duration_to_proto(duration);
+    *request.mutable_duration() = ::viam::sdk::to_proto(duration);
 
     grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
     if (!status.ok()) {

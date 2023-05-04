@@ -54,12 +54,12 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     return img_string;
 };
 
-std::chrono::duration<double> duration_from_proto(const google::protobuf::Duration& proto) {
+std::chrono::duration<double> from_proto(const google::protobuf::Duration& proto) {
     return std::chrono::duration<double, std::ratio<1>>(proto.seconds() +
                                                         proto.nanos() / (double)1e9);
 }
 
-google::protobuf::Duration duration_to_proto(const std::chrono::duration<double>& duration) {
+google::protobuf::Duration to_proto(const std::chrono::duration<double>& duration) {
     google::protobuf::Duration proto;
     using namespace std::chrono_literals;
     double total_seconds = duration / 1.0s;
