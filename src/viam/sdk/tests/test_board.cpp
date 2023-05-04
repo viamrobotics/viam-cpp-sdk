@@ -166,8 +166,8 @@ BOOST_AUTO_TEST_CASE(test_get_analog_reader_names) {
         mock->peek_get_status_ret = Board::status{analogs, {}};
         auto ret = client.get_analog_reader_names();
         std::sort(ret.begin(), ret.end());
-        BOOST_CHECK(ret[0] == "analog1");
-        BOOST_CHECK(ret[1] == "analog2");
+        BOOST_CHECK_EQUAL(ret[0], "analog1");
+        BOOST_CHECK_EQUAL(ret[1], "analog2");
     });
 }
 
@@ -179,8 +179,8 @@ BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
         mock->peek_get_status_ret = Board::status{{}, digitals};
         auto ret = client.get_digital_interrupt_names();
         std::sort(ret.begin(), ret.end());
-        BOOST_CHECK(ret[0] == "digital1");
-        BOOST_CHECK(ret[1] == "digital2");
+        BOOST_CHECK_EQUAL(ret[0], "digital1");
+        BOOST_CHECK_EQUAL(ret[1], "digital2");
     });
 }
 
