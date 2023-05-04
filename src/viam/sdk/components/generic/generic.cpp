@@ -35,13 +35,17 @@ std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
     return std::make_shared<GenericSubtype>(sd);
 }
 
-Subtype Generic::subtype() {
+Subtype Generic::static_subtype() {
     return Subtype(RDK, COMPONENT, "generic");
+}
+
+Subtype Generic::dynamic_subtype() const {
+    return static_subtype();
 }
 
 namespace {
 bool init() {
-    Registry::register_subtype(Generic::subtype(), Generic::resource_subtype());
+    Registry::register_subtype(Generic::static_subtype(), Generic::resource_subtype());
     return true;
 };
 

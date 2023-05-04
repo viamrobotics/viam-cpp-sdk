@@ -34,6 +34,10 @@ class MyModule : public GenericService::Service, public Component {
         std::cout << "config in reconfigure: " << cfg.name() << std::endl;
     }
 
+    Subtype dynamic_subtype() const override {
+        return Generic::static_subtype();
+    }
+
     MyModule() {
         inner_which_ = which_;
         which_ += 1;
@@ -86,7 +90,7 @@ int main(int argc, char** argv) {
     sigaddset(&sigset, SIGTERM);
     pthread_sigmask(SIG_BLOCK, &sigset, NULL);
 
-    Subtype generic = Generic::subtype();
+    Subtype generic = Generic::static_subtype();
     Model m("acme", "demo", "printer");
 
     std::shared_ptr<ModelRegistration> rr = std::make_shared<ModelRegistration>(

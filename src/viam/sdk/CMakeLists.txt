@@ -82,6 +82,7 @@ target_sources(viamsdk
     tests/mocks/mock_base.cpp
     tests/mocks/mock_encoder.cpp
     tests/mocks/mock_motor.cpp
+    tests/mocks/mock_robot.cpp
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
@@ -130,6 +131,7 @@ target_sources(viamsdk
       ../../viam/sdk/tests/mocks/mock_base.hpp
       ../../viam/sdk/tests/mocks/mock_encoder.hpp
       ../../viam/sdk/tests/mocks/mock_motor.hpp
+      ../../viam/sdk/tests/mocks/mock_robot.hpp
 )
 
 set_target_properties(

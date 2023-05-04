@@ -36,8 +36,12 @@ std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
 
 const std::string Camera::lazy_suffix = "+lazy";
 
-Subtype Camera::subtype() {
+Subtype Camera::static_subtype() {
     return Subtype(RDK, COMPONENT, "camera");
+}
+
+Subtype Camera::dynamic_subtype() const {
+    return static_subtype();
 }
 
 std::vector<double> repeated_field_to_vector(google::protobuf::RepeatedField<double> const& f) {
@@ -153,7 +157,7 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_subtype(Camera::subtype(), Camera::resource_subtype());
+    Registry::register_subtype(Camera::static_subtype(), Camera::resource_subtype());
     return true;
 };
 

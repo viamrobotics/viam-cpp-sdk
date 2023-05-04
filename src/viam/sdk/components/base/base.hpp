@@ -42,7 +42,7 @@ class Base : public Component {
    public:
     // functions shared across all components
     static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype subtype();
+    static Subtype static_subtype();
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled
@@ -77,6 +77,8 @@ class Base : public Component {
     /// @param Command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
+
+    Subtype dynamic_subtype() const override;
 
    protected:
     explicit Base(std::string name);

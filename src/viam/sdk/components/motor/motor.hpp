@@ -63,7 +63,7 @@ class Motor : public Component {
 
     // functions shared across all components
     static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype subtype();
+    static Subtype static_subtype();
 
     /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::motor::v1::GetPositionResponse proto);
@@ -128,6 +128,8 @@ class Motor : public Component {
     /// @param Command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
+
+    Subtype dynamic_subtype() const override;
 
    protected:
     explicit Motor(std::string name) : Component(std::move(name)){};

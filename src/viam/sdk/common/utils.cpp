@@ -24,16 +24,15 @@ std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<Resource> 
     std::vector<ResourceName> resource_names;
     for (auto& a : Registry::registered_resources()) {
         std::shared_ptr<ModelRegistration> reg = a.second;
-        if (reg->resource_type().to_string() == resource->type().to_string()) {
-            resource_type = reg->resource_type().to_string();
+        if (reg->subtype().to_string() == resource->dynamic_subtype().to_string()) {
+            resource_type = reg->subtype().resource_subtype();
+        } else {
+            continue;
         }
 
         if (resource_type == "") {
             resource_type = resource->name();
         }
-
-        // TODO (RSDK-1631): make sure we split properly on "viam.components."
-        // within component_type as needed
 
         ResourceName r;
         *r.mutable_namespace_() = RDK;

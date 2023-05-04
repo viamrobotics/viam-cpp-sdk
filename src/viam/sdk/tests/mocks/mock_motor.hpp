@@ -7,6 +7,7 @@
 #include <viam/sdk/components/motor/client.hpp>
 #include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/components/motor/server.hpp>
+#include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdktests {

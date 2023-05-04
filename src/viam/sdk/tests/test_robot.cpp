@@ -1,323 +1,215 @@
+#include <algorithm>
 #include <memory>
+#include <typeinfo>
+#include <unordered_set>
 #include <utility>
 
-#include <google/protobuf/struct.pb.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/security/credentials.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/support/stub_options.h>
+#define BOOST_TEST_MODULE test module test_robot
+#include <boost/test/included/unit_test.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/arm/v1/arm.grpc.pb.h>
-#include <viam/api/component/arm/v1/arm.pb.h>
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/components/camera/camera.hpp>
+#include <viam/sdk/components/generic/client.hpp>
+#include <viam/sdk/components/motor/client.hpp>
+#include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/robot/service.hpp>
+#include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/tests/mocks/camera_mocks.hpp>
+#include <viam/sdk/tests/mocks/generic_mocks.hpp>
+#include <viam/sdk/tests/mocks/mock_motor.hpp>
+#include <viam/sdk/tests/mocks/mock_robot.hpp>
 
 namespace viam {
 namespace sdktests {
+namespace robot {
 
 using namespace viam::sdk;
 
-using google::protobuf::RepeatedPtrField;
-using viam::common::v1::PoseInFrame;
-using viam::common::v1::ResourceName;
-class TestService : public RobotService_ {
-   public:
-    ::grpc::Status FrameSystemConfig(
-        ::grpc::ServerContext* context,
-        const ::viam::robot::v1::FrameSystemConfigRequest* request,
-        ::viam::robot::v1::FrameSystemConfigResponse* response) override;
+BOOST_AUTO_TEST_SUITE(test_robot)
 
-    ::grpc::Status TransformPose(::grpc::ServerContext* context,
-                                 const ::viam::robot::v1::TransformPoseRequest* request,
-                                 ::viam::robot::v1::TransformPoseResponse* response) override;
+template <typename Lambda>
+void server_to_client_pipeline(Lambda&& func) {
+    MockRobotService service;
+    auto manager = service.resource_manager();
 
-    ::grpc::Status DiscoverComponents(
-        ::grpc::ServerContext* context,
-        const ::viam::robot::v1::DiscoverComponentsRequest* request,
-        ::viam::robot::v1::DiscoverComponentsResponse* response) override;
+    manager->add(std::string("mock_generic"), generic::MockGeneric::get_mock_generic());
+    manager->add(std::string("mock_motor"), motor::MockMotor::get_mock_motor());
+    manager->add(std::string("mock_camera"), camera::MockCamera::get_mock_camera());
 
-    ::grpc::Status GetOperations(::grpc::ServerContext* context,
-                                 const ::viam::robot::v1::GetOperationsRequest* request,
-                                 ::viam::robot::v1::GetOperationsResponse* response) override;
+    ::grpc::ServerBuilder builder;
+    builder.RegisterService(&service);
 
-    TestService();
-};
+    std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
 
-// TODO(RSDK-1629): when we flesh out the tests here, move MockStub into its own
-// file.
-class MockStub : public RobotService::StubInterface {
-   public:
-    TestService service;
-    MockStub(TestService service) {
-        service = service;
-    };
+    grpc::ChannelArguments args;
+    auto grpc_channel = server->InProcessChannel(args);
+    auto viam_channel = std::make_shared<ViamChannel>(grpc_channel, "", nullptr);
+    auto client = RobotClient::with_channel(viam_channel, Options(0, boost::none));
 
-    ::grpc::Status ResourceNames(::grpc::ClientContext* context,
-                                 const ::viam::robot::v1::ResourceNamesRequest& request,
-                                 ::viam::robot::v1::ResourceNamesResponse* response) override {
-        grpc::ServerContext* ctx;
-        return service.ResourceNames(ctx, &request, response);
+    // Run the passed test on the created std::stack
+    std::forward<Lambda>(func)(client, service);
+
+    //  shutdown afterwards
+    server->Shutdown();
+}
+
+BOOST_AUTO_TEST_CASE(test_registering_resources) {
+    // To test with mock resources we need to be able to create them, which means registering
+    // constructors. This tests that we register correctly.
+    Model camera_model("fake", "fake", "mock_camera");
+    std::shared_ptr<ModelRegistration> cr = std::make_shared<ModelRegistration>(
+        ResourceType("Camera"),
+        Camera::static_subtype(),
+        camera_model,
+        [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
+        [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
+    Registry::register_resource(cr);
+
+    Model generic_model("fake", "fake", "mock_generic");
+    std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
+        ResourceType("Generic"),
+        Generic::static_subtype(),
+        generic_model,
+        [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
+        [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
+    Registry::register_resource(gr);
+
+    Model motor_model("fake", "fake", "mock_motor");
+    std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
+        ResourceType("Motor"),
+        Motor::static_subtype(),
+        motor_model,
+        [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },
+        [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
+    Registry::register_resource(mr);
+
+    BOOST_CHECK(Registry::lookup_resource(Camera::static_subtype(), camera_model));
+    BOOST_CHECK(Registry::lookup_resource(Generic::static_subtype(), generic_model));
+    BOOST_CHECK(Registry::lookup_resource(Motor::static_subtype(), motor_model));
+}
+
+template <typename T>
+// Sorts our vecs and converts to strings for consistent comparisons
+std::vector<std::string> vec_to_string_util(std::vector<T>& vec) {
+    std::vector<std::string> ret;
+    for (auto& v : vec) {
+        ret.push_back(v.SerializeAsString());
     }
-
-    ::grpc::Status GetStatus(::grpc::ClientContext* context,
-                             const ::viam::robot::v1::GetStatusRequest& request,
-                             ::viam::robot::v1::GetStatusResponse* response) override {
-        grpc::ServerContext* ctx;
-        return service.GetStatus(ctx, &request, response);
-    }
-
-    ::grpc::Status GetOperations(::grpc::ClientContext* context,
-                                 const ::viam::robot::v1::GetOperationsRequest& request,
-                                 ::viam::robot::v1::GetOperationsResponse* response) override;
-
-    ::grpc::Status GetSessions(::grpc::ClientContext* context,
-                               const ::viam::robot::v1::GetSessionsRequest& request,
-                               ::viam::robot::v1::GetSessionsResponse* response) override;
-
-    ::grpc::Status ResourceRPCSubtypes(
-        ::grpc::ClientContext* context,
-        const ::viam::robot::v1::ResourceRPCSubtypesRequest& request,
-        ::viam::robot::v1::ResourceRPCSubtypesResponse* response) override;
-
-    ::grpc::Status CancelOperation(::grpc::ClientContext* context,
-                                   const ::viam::robot::v1::CancelOperationRequest& request,
-                                   ::viam::robot::v1::CancelOperationResponse* response) override;
-
-    ::grpc::Status BlockForOperation(
-        ::grpc::ClientContext* context,
-        const ::viam::robot::v1::BlockForOperationRequest& request,
-        ::viam::robot::v1::BlockForOperationResponse* response) override;
-
-    ::grpc::Status DiscoverComponents(
-        ::grpc::ClientContext* context,
-        const ::viam::robot::v1::DiscoverComponentsRequest& request,
-        ::viam::robot::v1::DiscoverComponentsResponse* response) override;
-
-    ::grpc::Status FrameSystemConfig(
-        ::grpc::ClientContext* context,
-        const ::viam::robot::v1::FrameSystemConfigRequest& request,
-        ::viam::robot::v1::FrameSystemConfigResponse* response) override;
-
-    ::grpc::Status TransformPose(::grpc::ClientContext* context,
-                                 const ::viam::robot::v1::TransformPoseRequest& request,
-                                 ::viam::robot::v1::TransformPoseResponse* response) override;
-
-    ::grpc::Status StopAll(::grpc::ClientContext* context,
-                           const ::viam::robot::v1::StopAllRequest& request,
-                           ::viam::robot::v1::StopAllResponse* response) override;
-
-    ::grpc::Status StartSession(::grpc::ClientContext* context,
-                                const ::viam::robot::v1::StartSessionRequest& request,
-                                ::viam::robot::v1::StartSessionResponse* response) override;
-
-    ::grpc::Status SendSessionHeartbeat(
-        ::grpc::ClientContext* context,
-        const ::viam::robot::v1::SendSessionHeartbeatRequest& request,
-        ::viam::robot::v1::SendSessionHeartbeatResponse* response) override;
-
-    class async_interface* async() override;
-};
-
-std::vector<ResourceName> names_for_testing() {
-    std::vector<ResourceName> vec;
-    ResourceName arm1;
-    *arm1.mutable_namespace_() = RDK;
-    *arm1.mutable_type() = COMPONENT;
-    *arm1.mutable_name() = "arm";
-    *arm1.mutable_subtype() = "arm1";
-
-    ResourceName camera1;
-    *camera1.mutable_namespace_() = RDK;
-    *camera1.mutable_type() = COMPONENT;
-    *camera1.mutable_name() = "camera";
-    *camera1.mutable_subtype() = "camera1";
-
-    ResourceName motor1;
-    *motor1.mutable_namespace_() = RDK;
-    *motor1.mutable_type() = COMPONENT;
-    *motor1.mutable_name() = "motor";
-    *motor1.mutable_subtype() = "motor1";
-
-    vec.push_back(arm1);
-    vec.push_back(camera1);
-    vec.push_back(motor1);
-    return vec;
+    std::sort(ret.begin(), ret.end());
+    return ret;
 }
 
-viam::common::v1::Pose default_pose() {
-    viam::common::v1::Pose pose;
-    pose.set_x(1);
-    pose.set_y(2);
-    pose.set_z(3);
-    pose.set_o_x(2);
-    pose.set_o_y(3);
-    pose.set_o_z(4);
-    pose.set_theta(20);
-    return pose;
+BOOST_AUTO_TEST_CASE(test_resource_names) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            std::vector<ResourceName>* resource_names = client->resource_names();
+            auto names = vec_to_string_util(*resource_names);
+            auto mocks = mock_resource_names_response();
+
+            auto mock_resp = vec_to_string_util(mocks);
+            BOOST_TEST(names == mock_resp, boost::test_tools::per_element());
+        });
 }
 
-RepeatedPtrField<FrameSystemConfig> config_response() {
-    FrameSystemConfig config;
-    *config.mutable_name() = "config0";
-    *config.mutable_model_json() = "some fake json";
-    viam::common::v1::Pose pose = default_pose();
-    PoseInFrame pif;
-    *pif.mutable_reference_frame() = "reference0";
-    *pif.mutable_pose() = pose;
-    *config.mutable_pose_in_parent_frame() = pif;
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto mock_statuses = mock_status_response();
 
-    FrameSystemConfig config1;
-    *config1.mutable_name() = "config1";
-    *config1.mutable_model_json() = "some fake json part 2";
-    viam::common::v1::Pose pose1;
-    pose.set_x(2);
-    pose.set_y(3);
-    pose.set_z(4);
-    pose.set_o_x(3);
-    pose.set_o_y(4);
-    pose.set_o_z(5);
-    pose.set_theta(21);
-    PoseInFrame pif1;
-    *pif1.mutable_reference_frame() = "reference1";
-    *pif.mutable_pose() = pose1;
-    *config1.mutable_pose_in_parent_frame() = pif1;
+            // get all resource statuses
+            auto statuses = client->get_status();
 
-    RepeatedPtrField<FrameSystemConfig> response;
-    *response.Add() = config;
-    *response.Add() = config1;
-    return response;
+            auto status_strs = vec_to_string_util(statuses);
+            auto mock_strs = vec_to_string_util(mock_statuses);
+
+            // ensure we get statuses for all resources, and that they are as expected.
+            BOOST_CHECK_EQUAL(statuses.size(), 3);
+            BOOST_TEST(status_strs == mock_strs, boost::test_tools::per_element());
+
+            // get only a subset of status responses
+            auto names = mock_resource_names_response();
+            std::vector<ResourceName> some_names{names[0], names[1]};
+            auto some_statuses = client->get_status(some_names);
+            auto some_status_strs = vec_to_string_util(some_statuses);
+
+            // ensure that we only get two of the three existing statuses
+            BOOST_CHECK_EQUAL(some_status_strs.size(), 2);
+
+            // unfortunately the sorting is a bit odd so we end up with a mismatch of index,
+            // but this ensures that the statuses we received do exist in the mocks, as
+            // expected.
+            std::vector<std::string> some_mock_strs{mock_strs[1], mock_strs[2]};
+
+            BOOST_TEST(some_status_strs == some_mock_strs, boost::test_tools::per_element());
+        });
 }
 
-PoseInFrame transform_response() {
-    PoseInFrame response;
-    *response.mutable_reference_frame() = "arm";
-    *response.mutable_pose() = default_pose();
-    return response;
+BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto mock_fs_config = mock_config_response();
+            auto fs_config = client->get_frame_system_config();
+
+            BOOST_TEST(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config),
+                       boost::test_tools::per_element());
+        });
 }
 
-RepeatedPtrField<viam::robot::v1::Discovery> discovery_response() {
-    viam::robot::v1::DiscoveryQuery query;
-    *query.mutable_subtype() = "camera";
-    *query.mutable_model() = "webcam";
+BOOST_AUTO_TEST_CASE(test_get_operations) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto ops = client->get_operations();
+            auto mock_ops = mock_operations_response();
 
-    google::protobuf::Struct results;
-    google::protobuf::Value str;
-    *str.mutable_string_value() = "bar";
-    google::protobuf::MapPair<std::string, google::protobuf::Value> str_pair("foo", str);
-
-    google::protobuf::Value i;
-    i.set_number_value(1);
-    google::protobuf::MapPair<std::string, google::protobuf::Value> int_pair("one", i);
-
-    google::protobuf::Map<std::string, google::protobuf::Value>* map = results.mutable_fields();
-    map->insert(str_pair);
-    map->insert(int_pair);
-
-    viam::robot::v1::Discovery discovery;
-    *discovery.mutable_query() = query;
-    *discovery.mutable_results() = results;
-    RepeatedPtrField<viam::robot::v1::Discovery> resp;
-    *resp.Add() = discovery;
-    return resp;
+            BOOST_TEST(vec_to_string_util(ops) == vec_to_string_util(mock_ops),
+                       boost::test_tools::per_element());
+        });
 }
 
-RepeatedPtrField<viam::robot::v1::Operation> operations_response() {
-    viam::robot::v1::Operation op;
-    *op.mutable_id() = "abc";
-    RepeatedPtrField<viam::robot::v1::Operation> resp;
-    *resp.Add() = op;
-    return resp;
+BOOST_AUTO_TEST_CASE(test_discover_components) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto components = client->discover_components({});
+            auto mock_components = mock_discovery_response();
+
+            BOOST_TEST(vec_to_string_util(components) == vec_to_string_util(mock_components),
+                       boost::test_tools::per_element());
+        });
 }
 
-viam::component::arm::v1::Status default_status() {
-    viam::common::v1::Pose pose;
-    pose.set_x(1);
-    pose.set_y(2);
-    pose.set_z(3);
-    pose.set_o_x(4);
-    pose.set_o_y(5);
-    pose.set_o_z(6);
-    pose.set_theta(20);
+BOOST_AUTO_TEST_CASE(test_transform_pose) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            viam::common::v1::PoseInFrame pif;
+            auto pose = client->transform_pose(pif, "", {});
+            auto mock_pose = mock_transform_response();
 
-    viam::component::arm::v1::JointPositions jp;
-    for (auto i = 0; i < 6; ++i) {
-        jp.add_values(0);
-    }
-
-    viam::component::arm::v1::Status status;
-    *status.mutable_end_position() = pose;
-    *status.mutable_joint_positions() = jp;
-    status.set_is_moving(false);
-
-    return status;
+            BOOST_CHECK_EQUAL(pose.DebugString(), mock_pose.DebugString());
+        });
 }
 
-::grpc::Status TestService::FrameSystemConfig(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::FrameSystemConfigRequest* request,
-    ::viam::robot::v1::FrameSystemConfigResponse* response) {
-    *response->mutable_frame_system_configs() = config_response();
-    return ::grpc::Status();
+BOOST_AUTO_TEST_CASE(test_stop_all) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            std::shared_ptr<Resource> rb = service.resource_manager()->resource("mock_motor");
+            auto motor = std::dynamic_pointer_cast<motor::MockMotor>(rb);
+            BOOST_CHECK(motor);
+
+            motor->set_power(10.0);
+            BOOST_CHECK_EQUAL(motor->get_power_status().power_pct, 10.0);
+
+            // stop all should stop the motor, setting its power to 0.0
+            client->stop_all();
+            BOOST_CHECK_EQUAL(motor->get_power_status().power_pct, 0.0);
+        });
 }
 
-::grpc::Status TestService::TransformPose(::grpc::ServerContext* context,
-                                          const ::viam::robot::v1::TransformPoseRequest* request,
-                                          ::viam::robot::v1::TransformPoseResponse* response) {
-    *response->mutable_pose() = transform_response();
-    return ::grpc::Status();
-}
+BOOST_AUTO_TEST_SUITE_END()
 
-::grpc::Status TestService::DiscoverComponents(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::DiscoverComponentsRequest* request,
-    ::viam::robot::v1::DiscoverComponentsResponse* response) {
-    *response->mutable_discovery() = discovery_response();
-    return ::grpc::Status();
-}
-
-::grpc::Status TestService::GetOperations(::grpc::ServerContext* context,
-                                          const ::viam::robot::v1::GetOperationsRequest* request,
-                                          ::viam::robot::v1::GetOperationsResponse* response) {
-    *response->mutable_operations() = operations_response();
-    return ::grpc::Status();
-}
-
-TestService service() {
-    TestService service;
-    // TODO(RSDK-1629): add extra components to the manager here once
-    // they're defined in subsequent features
-
-    return service;
-}
-
-int test_resource_names(TestService service) {
-    MockStub mock_(service);
-    grpc::ClientContext ctx;
-    viam::robot::v1::ResourceNamesRequest req;
-    viam::robot::v1::ResourceNamesResponse resp;
-    grpc::Status status = mock_.ResourceNames(&ctx, req, &resp);
-
-    RepeatedPtrField<ResourceName> resources = resp.resources();
-    std::vector<ResourceName> from_call;
-    for (auto& resource : resources) {
-        from_call.push_back(resource);
-    }
-
-    if (from_call == names_for_testing()) {
-        return 0;
-    }
-    return 1;
-}
-
+}  // namespace robot
 }  // namespace sdktests
 }  // namespace viam

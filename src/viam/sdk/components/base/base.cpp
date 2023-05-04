@@ -39,15 +39,19 @@ std::shared_ptr<ResourceSubtype> Base::resource_subtype() {
     return std::make_shared<BaseSubtype>(sd);
 }
 
-Subtype Base::subtype() {
+Subtype Base::static_subtype() {
     return Subtype(RDK, COMPONENT, "base");
+}
+
+Subtype Base::dynamic_subtype() const {
+    return static_subtype();
 }
 
 Base::Base(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {
-    Registry::register_subtype(Base::subtype(), Base::resource_subtype());
+    Registry::register_subtype(Base::static_subtype(), Base::resource_subtype());
     return true;
 };
 

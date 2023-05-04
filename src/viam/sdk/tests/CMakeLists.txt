@@ -14,10 +14,11 @@
 
 enable_testing()
 include(viamcppsdk_utils)
-viamcppsdk_add_boost_test(test_generic_component.cpp)
 viamcppsdk_add_boost_test(test_base.cpp)
-viamcppsdk_add_boost_test(test_motor.cpp)
 viamcppsdk_add_boost_test(test_camera.cpp)
 viamcppsdk_add_boost_test(test_encoder.cpp)
+viamcppsdk_add_boost_test(test_generic_component.cpp)
+viamcppsdk_add_boost_test(test_motor.cpp)
+viamcppsdk_add_boost_test(test_robot.cpp)
 viamcppsdk_add_boost_test(test_types.cpp)
 

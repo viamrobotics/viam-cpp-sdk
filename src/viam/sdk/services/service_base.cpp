@@ -18,7 +18,7 @@ ResourceName Service::get_resource_name(std::string name) {
 
 Service::Service() : Resource("service"){};
 
-ResourceType Service::type() {
+ResourceType Service::type() const {
     return {SERVICE};
 }
 
