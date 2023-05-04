@@ -43,13 +43,13 @@ class Board : public Component {
     /// The range and conversion mechanism to voltage will vary depending on the specific ADC
     /// registered to the pin. Consult your ADC's documentation and Viam's `Board` documentation for
     /// more details.
-    typedef int32_t analog_value;
+    using analog_value = int32_t;
 
     /// @brief Depending on the type of digital interrupt, this can have different meanings. If a
     /// `basic` (default) interrupt is configured, then this is the total interrupt count. If a
     /// `servo` interrupt is configured this tracks the pulse width value. Consult Viam's `Board`
     /// documentation for more details.
-    typedef int64_t digital_value;
+    using digital_value = int64_t;
 
     /// @struct status
     /// @brief This contains all of the values for all of the registered analog readers and digital
