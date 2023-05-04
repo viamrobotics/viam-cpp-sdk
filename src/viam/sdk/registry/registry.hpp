@@ -32,7 +32,7 @@ class ResourceSubtype {
    public:
     virtual ~ResourceSubtype();
     /// @brief Add `Reconfigure` functionality to a resource.
-    std::function<Resource(std::shared_ptr<Resource>, Name)> create_reconfigurable;
+    std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 
     // TODO: it doesn't look like we actually use this. Confirm, then remove.
     std::function<ProtoType(std::shared_ptr<Resource>)> create_status;
