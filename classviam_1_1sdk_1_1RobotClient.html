@@ -111,9 +111,12 @@ std::vector&lt; ResourceName &gt; *&#160;</td><td class="memItemRight" valign="b
 <tr class="memitem:a7c09925ae19eaeda5b4b8cbf31077738"><td class="memItemLeft" align="right" valign="top">std::vector&lt; viam::robot::v1::Operation &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a7c09925ae19eaeda5b4b8cbf31077738">get_operations</a> ()</td></tr>
 <tr class="memdesc:a7c09925ae19eaeda5b4b8cbf31077738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of operations currently running on a robot.  <br /></td></tr>
 <tr class="separator:a7c09925ae19eaeda5b4b8cbf31077738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4040337c1d9b6b6f710455ac23f1742"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#ae4040337c1d9b6b6f710455ac23f1742">get_status</a> (std::vector&lt; ResourceName &gt; components={})</td></tr>
-<tr class="memdesc:ae4040337c1d9b6b6f710455ac23f1742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the robot's components.  <br /></td></tr>
-<tr class="separator:ae4040337c1d9b6b6f710455ac23f1742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8fb12a6083ed71dbe07bb4c90c2b30a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#ad8fb12a6083ed71dbe07bb4c90c2b30a">get_status</a> (std::vector&lt; ResourceName &gt; &amp;components)</td></tr>
+<tr class="memdesc:ad8fb12a6083ed71dbe07bb4c90c2b30a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the requested robot components.  <br /></td></tr>
+<tr class="separator:ad8fb12a6083ed71dbe07bb4c90c2b30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af022eb33ec273f819628b11c13edb616"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Status &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1RobotClient.html#af022eb33ec273f819628b11c13edb616">get_status</a> ()</td></tr>
+<tr class="memdesc:af022eb33ec273f819628b11c13edb616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of all robot components.  <br /></td></tr>
+<tr class="separator:af022eb33ec273f819628b11c13edb616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48943f31362d796f4adfff54a6c53c5b"><td class="memItemLeft" align="right" valign="top"><a id="a48943f31362d796f4adfff54a6c53c5b" name="a48943f31362d796f4adfff54a6c53c5b"></a>
 std::vector&lt; viam::robot::v1::Discovery &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>discover_components</b> (std::vector&lt; viam::robot::v1::DiscoveryQuery &gt; queries)</td></tr>
 <tr class="separator:a48943f31362d796f4adfff54a6c53c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,7 +194,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Create a robot client connected to the robot at the provided address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">address</td><td>The addrxess of the robot (IP address, URI, URL, etc.) </td></tr>
+    <tr><td class="paramname">address</td><td>The address of the robot (IP address, URI, URL, etc.) </td></tr>
     <tr><td class="paramname">options</td><td><a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> for connecting and refreshing. </td></tr>
   </table>
   </dd>
@@ -337,8 +340,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae4040337c1d9b6b6f710455ac23f1742" name="ae4040337c1d9b6b6f710455ac23f1742"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4040337c1d9b6b6f710455ac23f1742">&#9670;&#160;</a></span>get_status()</h2>
+<a id="af022eb33ec273f819628b11c13edb616" name="af022eb33ec273f819628b11c13edb616"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af022eb33ec273f819628b11c13edb616">&#9670;&#160;</a></span>get_status() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,17 +349,37 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; Status &gt; viam::sdk::RobotClient::get_status </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; ResourceName &gt;&#160;</td>
-          <td class="paramname"><em>components</em> = <code>{}</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the status of the robot's components. </p>
+<p>Get the status of all robot components. </p>
+<dl class="section return"><dt>Returns</dt><dd>A list of statuses. </dd></dl>
+
+</div>
+</div>
+<a id="ad8fb12a6083ed71dbe07bb4c90c2b30a" name="ad8fb12a6083ed71dbe07bb4c90c2b30a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8fb12a6083ed71dbe07bb4c90c2b30a">&#9670;&#160;</a></span>get_status() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; Status &gt; viam::sdk::RobotClient::get_status </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; ResourceName &gt; &amp;&#160;</td>
+          <td class="paramname"><em>components</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the status of the requested robot components. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">components</td><td>An optional list of the specific components for which status is desired. </td></tr>
+    <tr><td class="paramname">components</td><td>A list of the specific components for which status is desired. </td></tr>
   </table>
   </dd>
 </dl>

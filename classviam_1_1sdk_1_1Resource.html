@@ -77,7 +77,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Resource-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">viam::sdk::Resource Class Reference</div></div>
+  <div class="headertitle"><div class="title">viam::sdk::Resource Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -106,35 +106,144 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memItemLeft" align="right" valign="top"><a id="abf8ddf617ac01708fb4a8b2a868b27f0" name="abf8ddf617ac01708fb4a8b2a868b27f0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string name)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af50e9df63d6e7c4358867e07d3810617"><td class="memItemLeft" align="right" valign="top"><a id="af50e9df63d6e7c4358867e07d3810617" name="af50e9df63d6e7c4358867e07d3810617"></a>
-virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><b>get_resource_name</b> (std::string name)</td></tr>
+<tr class="memitem:ab19ddd1998775ce21b09fc1f9411571a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#ab19ddd1998775ce21b09fc1f9411571a">dynamic_subtype</a> () const =0</td></tr>
+<tr class="memdesc:ab19ddd1998775ce21b09fc1f9411571a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a></code> associated with a particular resource.  <br /></td></tr>
+<tr class="separator:ab19ddd1998775ce21b09fc1f9411571a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50e9df63d6e7c4358867e07d3810617"><td class="memItemLeft" align="right" valign="top">virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#af50e9df63d6e7c4358867e07d3810617">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
+<tr class="memdesc:af50e9df63d6e7c4358867e07d3810617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:af50e9df63d6e7c4358867e07d3810617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56fd7d11a256f642d5548e7d9f37c01c"><td class="memItemLeft" align="right" valign="top"><a id="a56fd7d11a256f642d5548e7d9f37c01c" name="a56fd7d11a256f642d5548e7d9f37c01c"></a>
-virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> (AttributeMap extra)</td></tr>
+<tr class="memitem:a56fd7d11a256f642d5548e7d9f37c01c"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a56fd7d11a256f642d5548e7d9f37c01c">stop</a> (AttributeMap extra)</td></tr>
+<tr class="memdesc:a56fd7d11a256f642d5548e7d9f37c01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
 <tr class="separator:a56fd7d11a256f642d5548e7d9f37c01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8ee2641abb334e575269d6f54074d43"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#ae8ee2641abb334e575269d6f54074d43">stop</a> ()</td></tr>
+<tr class="memdesc:ae8ee2641abb334e575269d6f54074d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
 <tr class="separator:ae8ee2641abb334e575269d6f54074d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a491cf8741f92ce5712cc3866eee412c0"><td class="memItemLeft" align="right" valign="top"><a id="a491cf8741f92ce5712cc3866eee412c0" name="a491cf8741f92ce5712cc3866eee412c0"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>reconfigure</b> (Dependencies deps, <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> cfg)</td></tr>
+<tr class="memitem:a491cf8741f92ce5712cc3866eee412c0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a491cf8741f92ce5712cc3866eee412c0">reconfigure</a> (Dependencies deps, <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> cfg)</td></tr>
+<tr class="memdesc:a491cf8741f92ce5712cc3866eee412c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
 <tr class="separator:a491cf8741f92ce5712cc3866eee412c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab79d4593a215d576c7cce0ea1ebc1d3c"><td class="memItemLeft" align="right" valign="top"><a id="ab79d4593a215d576c7cce0ea1ebc1d3c" name="ab79d4593a215d576c7cce0ea1ebc1d3c"></a>
-virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> ()</td></tr>
-<tr class="separator:ab79d4593a215d576c7cce0ea1ebc1d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3998436949dd38805561b03518f3c0ae"><td class="memItemLeft" align="right" valign="top"><a id="a3998436949dd38805561b03518f3c0ae" name="a3998436949dd38805561b03518f3c0ae"></a>
-virtual <a class="el" href="classviam_1_1sdk_1_1ResourceType.html">ResourceType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> ()</td></tr>
-<tr class="separator:a3998436949dd38805561b03518f3c0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ea612e31f5c09785b500bd2610d97d"><td class="memItemLeft" align="right" valign="top"><a id="a52ea612e31f5c09785b500bd2610d97d" name="a52ea612e31f5c09785b500bd2610d97d"></a>
+virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> () const</td></tr>
+<tr class="memdesc:a52ea612e31f5c09785b500bd2610d97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's name. <br /></td></tr>
+<tr class="separator:a52ea612e31f5c09785b500bd2610d97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a939639fde1186434e36215d7a6d16c7b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1ResourceType.html">ResourceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a939639fde1186434e36215d7a6d16c7b">type</a> () const</td></tr>
+<tr class="memdesc:a939639fde1186434e36215d7a6d16c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's type.  <br /></td></tr>
+<tr class="separator:a939639fde1186434e36215d7a6d16c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac35f2c95a91b33746e0741970070c8c7"><td class="memItemLeft" align="right" valign="top"><a id="ac35f2c95a91b33746e0741970070c8c7" name="ac35f2c95a91b33746e0741970070c8c7"></a>
-static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</td><td class="memItemRight" valign="bottom"><b>subtype</b> ()</td></tr>
-<tr class="separator:ac35f2c95a91b33746e0741970070c8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae86fe452691e29ef132398d8a66845fa"><td class="memItemLeft" align="right" valign="top"><a id="ae86fe452691e29ef132398d8a66845fa" name="ae86fe452691e29ef132398d8a66845fa"></a>
+static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</td><td class="memItemRight" valign="bottom"><b>static_subtype</b> ()</td></tr>
+<tr class="separator:ae86fe452691e29ef132398d8a66845fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab19ddd1998775ce21b09fc1f9411571a" name="ab19ddd1998775ce21b09fc1f9411571a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab19ddd1998775ce21b09fc1f9411571a">&#9670;&#160;</a></span>dynamic_subtype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a> viam::sdk::Resource::dynamic_subtype </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the <code><a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a></code> associated with a particular resource. </p>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1Base.html#aada9953396b60db9c72d554c33ce72e7">viam::sdk::Base</a>, <a class="el" href="classviam_1_1sdk_1_1Camera.html#a83f17ab92001831ae81947ae7eae6a6a">viam::sdk::Camera</a>, <a class="el" href="classviam_1_1sdk_1_1Encoder.html#acd00055e1b48594894c545030e23b4dc">viam::sdk::Encoder</a>, <a class="el" href="classviam_1_1sdk_1_1Generic.html#aba025692c22f242f4893d568a46f6cfc">viam::sdk::Generic</a>, and <a class="el" href="classviam_1_1sdk_1_1Motor.html#a6e74d8ea102f0f1035fd20ec7a1447e9">viam::sdk::Motor</a>.</p>
+
+</div>
+</div>
+<a id="af50e9df63d6e7c4358867e07d3810617" name="af50e9df63d6e7c4358867e07d3810617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50e9df63d6e7c4358867e07d3810617">&#9670;&#160;</a></span>get_resource_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual viam::common::v1::ResourceName viam::sdk::Resource::get_resource_name </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a <code>ResourceName</code> for a particular resource name. </p>
+
+<p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1Component.html#a612a37a7818008bbb8cada250cb391ed">viam::sdk::Component</a>, and <a class="el" href="classviam_1_1sdk_1_1Service.html#a14bac589004cf106ee9c1bbb08cf1cea">viam::sdk::Service</a>.</p>
+
+</div>
+</div>
+<a id="a491cf8741f92ce5712cc3866eee412c0" name="a491cf8741f92ce5712cc3866eee412c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a491cf8741f92ce5712cc3866eee412c0">&#9670;&#160;</a></span>reconfigure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void viam::sdk::Resource::reconfigure </td>
+          <td>(</td>
+          <td class="paramtype">Dependencies&#160;</td>
+          <td class="paramname"><em>deps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>&#160;</td>
+          <td class="paramname"><em>cfg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reconfigures a resource. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deps</td><td>Dependencies of the resource. </td></tr>
+    <tr><td class="paramname">cfg</td><td>The resource's config. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae8ee2641abb334e575269d6f54074d43" name="ae8ee2641abb334e575269d6f54074d43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8ee2641abb334e575269d6f54074d43">&#9670;&#160;</a></span>stop()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8ee2641abb334e575269d6f54074d43">&#9670;&#160;</a></span>stop() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +265,74 @@ static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</
 </table>
 </div><div class="memdoc">
 
+<p>Stops a resource from running. </p>
+
 <p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1BaseClient.html#aece8204fbd9ffa547506eecfe1b8cd17">viam::sdk::BaseClient</a>, and <a class="el" href="classviam_1_1sdk_1_1Base.html#a470ac7e967f28f27ad33114773005420">viam::sdk::Base</a>.</p>
+
+</div>
+</div>
+<a id="a56fd7d11a256f642d5548e7d9f37c01c" name="a56fd7d11a256f642d5548e7d9f37c01c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56fd7d11a256f642d5548e7d9f37c01c">&#9670;&#160;</a></span>stop() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual grpc::StatusCode viam::sdk::Resource::stop </td>
+          <td>(</td>
+          <td class="paramtype">AttributeMap&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stops a resource from running. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Extra arguments to pass to the resource's <code>stop</code> method. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1BaseClient.html#af269011d3877e321fef06726d129c576">viam::sdk::BaseClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotorClient.html#a1b910566a0e587b0df989c904bb24494">viam::sdk::MotorClient</a>.</p>
+
+</div>
+</div>
+<a id="a939639fde1186434e36215d7a6d16c7b" name="a939639fde1186434e36215d7a6d16c7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a939639fde1186434e36215d7a6d16c7b">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1ResourceType.html">ResourceType</a> viam::sdk::Resource::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the resource's type. </p>
+
+<p>Reimplemented in <a class="el" href="classviam_1_1sdk_1_1Component.html#a35b9204d8b98164c57520a5e5ae95b57">viam::sdk::Component</a>, and <a class="el" href="classviam_1_1sdk_1_1Service.html#ab943a330f091cae783ba426cdfc929b2">viam::sdk::Service</a>.</p>
 
 </div>
 </div>
