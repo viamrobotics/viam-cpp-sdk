@@ -34,9 +34,6 @@ class ResourceSubtype {
     /// @brief Add `Reconfigure` functionality to a resource.
     std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 
-    // TODO: it doesn't look like we actually use this. Confirm, then remove.
-    std::function<ProtoType(std::shared_ptr<Resource>)> create_status;
-
     /// @brief Create a resource's gRPC server.
     /// @param manager The server's `ResourceManager`.
     /// @return a `shared_ptr` to the gRPC server.
