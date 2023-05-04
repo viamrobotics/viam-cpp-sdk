@@ -34,15 +34,15 @@ std::shared_ptr<ResourceSubtype> Motor::resource_subtype() {
     return std::make_shared<MotorSubtype>(sd);
 }
 
-Subtype Motor::subtype() {
+Subtype Motor::static_subtype() {
     return Subtype(RDK, COMPONENT, "motor");
 }
 
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
     return proto.position();
 }
-Subtype Motor::instance_subtype() const {
-    return subtype();
+Subtype Motor::dynamic_subtype() const {
+    return static_subtype();
 }
 
 Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
@@ -89,7 +89,7 @@ bool operator==(const Motor::properties& lhs, const Motor::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_subtype(Motor::subtype(), Motor::resource_subtype());
+    Registry::register_subtype(Motor::static_subtype(), Motor::resource_subtype());
     return true;
 };
 

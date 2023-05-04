@@ -42,14 +42,14 @@ class Generic : public Component {
     static std::shared_ptr<ResourceSubtype> resource_subtype();
 
     /// @brief Creates a `Generic` `Subtype`.
-    static Subtype subtype();
+    static Subtype static_subtype();
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
-    Subtype instance_subtype() const override;
+    Subtype dynamic_subtype() const override;
 
    protected:
     explicit Generic(std::string name) : Component(std::move(name)){};

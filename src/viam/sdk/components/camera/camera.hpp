@@ -93,7 +93,7 @@ class Camera : public Component {
     static std::shared_ptr<ResourceSubtype> resource_subtype();
 
     /// @brief Creates a `Camera` `Subtype`.
-    static Subtype subtype();
+    static Subtype static_subtype();
 
     /// @brief Creates a `raw_image` struct from its proto representation.
     static raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);
@@ -136,7 +136,7 @@ class Camera : public Component {
     /// @return The camera properties.
     virtual properties get_properties() = 0;
 
-    Subtype instance_subtype() const override;
+    Subtype dynamic_subtype() const override;
 
    protected:
     explicit Camera(std::string name) : Component(std::move(name)){};

@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     Model camera_model("fake", "fake", "mock_camera");
     std::shared_ptr<ModelRegistration> cr = std::make_shared<ModelRegistration>(
         ResourceType("Camera"),
-        Camera::subtype(),
+        Camera::static_subtype(),
         camera_model,
         [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
         ResourceType("Generic"),
-        Generic::subtype(),
+        Generic::static_subtype(),
         generic_model,
         [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
@@ -81,15 +81,15 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     Model motor_model("fake", "fake", "mock_motor");
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
         ResourceType("Motor"),
-        Motor::subtype(),
+        Motor::static_subtype(),
         motor_model,
         [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
     Registry::register_resource(mr);
 
-    BOOST_CHECK(Registry::lookup_resource(Camera::subtype(), camera_model));
-    BOOST_CHECK(Registry::lookup_resource(Generic::subtype(), generic_model));
-    BOOST_CHECK(Registry::lookup_resource(Motor::subtype(), motor_model));
+    BOOST_CHECK(Registry::lookup_resource(Camera::static_subtype(), camera_model));
+    BOOST_CHECK(Registry::lookup_resource(Generic::static_subtype(), generic_model));
+    BOOST_CHECK(Registry::lookup_resource(Motor::static_subtype(), motor_model));
 }
 
 template <typename T>
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(test_resource_names) {
             auto mocks = mock_resource_names_response();
 
             auto mock_resp = vec_to_string_util(mocks);
-            BOOST_CHECK(names == mock_resp);
+            BOOST_TEST(names == mock_resp, boost::test_tools::per_element());
         });
 }
 
@@ -127,8 +127,8 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
             auto mock_strs = vec_to_string_util(mock_statuses);
 
             // ensure we get statuses for all resources, and that they are as expected.
-            BOOST_CHECK(statuses.size() == 3);
-            BOOST_CHECK(vec_to_string_util(statuses) == vec_to_string_util(mock_statuses));
+            BOOST_CHECK_EQUAL(statuses.size(), 3);
+            BOOST_TEST(status_strs == mock_strs, boost::test_tools::per_element());
 
             // get only a subset of status responses
             auto names = mock_resource_names_response();
@@ -137,14 +137,14 @@ BOOST_AUTO_TEST_CASE(test_get_status) {
             auto some_status_strs = vec_to_string_util(some_statuses);
 
             // ensure that we only get two of the three existing statuses
-            BOOST_CHECK(some_status_strs.size() == 2);
+            BOOST_CHECK_EQUAL(some_status_strs.size(), 2);
 
             // unfortunately the sorting is a bit odd so we end up with a mismatch of index,
             // but this ensures that the statuses we received do exist in the mocks, as
             // expected.
             std::vector<std::string> some_mock_strs{mock_strs[1], mock_strs[2]};
 
-            BOOST_CHECK(some_status_strs == some_mock_strs);
+            BOOST_TEST(some_status_strs == some_mock_strs, boost::test_tools::per_element());
         });
 }
 
@@ -154,7 +154,8 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
             auto mock_fs_config = mock_config_response();
             auto fs_config = client->get_frame_system_config();
 
-            BOOST_CHECK(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config));
+            BOOST_TEST(vec_to_string_util(mock_fs_config) == vec_to_string_util(fs_config),
+                       boost::test_tools::per_element());
         });
 }
 
@@ -164,7 +165,8 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
 
-            BOOST_CHECK(vec_to_string_util(ops) == vec_to_string_util(mock_ops));
+            BOOST_TEST(vec_to_string_util(ops) == vec_to_string_util(mock_ops),
+                       boost::test_tools::per_element());
         });
 }
 
@@ -174,7 +176,8 @@ BOOST_AUTO_TEST_CASE(test_discover_components) {
             auto components = client->discover_components({});
             auto mock_components = mock_discovery_response();
 
-            BOOST_CHECK(vec_to_string_util(components) == vec_to_string_util(mock_components));
+            BOOST_TEST(vec_to_string_util(components) == vec_to_string_util(mock_components),
+                       boost::test_tools::per_element());
         });
 }
 
@@ -185,7 +188,7 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
             auto pose = client->transform_pose(pif, "", {});
             auto mock_pose = mock_transform_response();
 
-            BOOST_CHECK(pose.DebugString() == mock_pose.DebugString());
+            BOOST_CHECK_EQUAL(pose.DebugString(), mock_pose.DebugString());
         });
 }
 
@@ -197,11 +200,11 @@ BOOST_AUTO_TEST_CASE(test_stop_all) {
             BOOST_CHECK(motor);
 
             motor->set_power(10.0);
-            BOOST_CHECK(motor->get_power_status().power_pct == 10.0);
+            BOOST_CHECK_EQUAL(motor->get_power_status().power_pct, 10.0);
 
             // stop all should stop the motor, setting its power to 0.0
             client->stop_all();
-            BOOST_CHECK(motor->get_power_status().power_pct == 0.0);
+            BOOST_CHECK_EQUAL(motor->get_power_status().power_pct, 0.0);
         });
 }
 

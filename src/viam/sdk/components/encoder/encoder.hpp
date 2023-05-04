@@ -65,7 +65,7 @@ class Encoder : public Component {
 
     // functions shared across all components
     static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype subtype();
+    static Subtype static_subtype();
 
     /// @brief Creates a `position_type` struct from its proto representation.
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);
@@ -103,7 +103,7 @@ class Encoder : public Component {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
-    Subtype instance_subtype() const override;
+    Subtype dynamic_subtype() const override;
 
    protected:
     explicit Encoder(std::string name);

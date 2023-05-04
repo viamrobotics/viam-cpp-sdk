@@ -34,12 +34,12 @@ std::shared_ptr<ResourceSubtype> Encoder::resource_subtype() {
     return std::make_shared<EncoderSubtype>(sd);
 }
 
-Subtype Encoder::subtype() {
+Subtype Encoder::static_subtype() {
     return Subtype(RDK, COMPONENT, "encoder");
 }
 
-Subtype Encoder::instance_subtype() const {
-    return subtype();
+Subtype Encoder::dynamic_subtype() const {
+    return static_subtype();
 }
 
 Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
@@ -121,7 +121,7 @@ bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) 
 
 namespace {
 bool init() {
-    Registry::register_subtype(Encoder::subtype(), Encoder::resource_subtype());
+    Registry::register_subtype(Encoder::static_subtype(), Encoder::resource_subtype());
     return true;
 };
 
