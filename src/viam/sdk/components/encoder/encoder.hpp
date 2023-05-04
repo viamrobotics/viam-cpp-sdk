@@ -23,10 +23,10 @@ namespace sdk {
 /// @ingroup Encoder
 class EncoderSubtype : public ResourceSubtype {
    public:
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> chan) override;
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override;
     EncoderSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : ResourceSubtype(service_descriptor){};
 };
@@ -37,7 +37,7 @@ class EncoderSubtype : public ResourceSubtype {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific encoder implementations. This class cannot be used on its own.
-class Encoder : public ComponentBase {
+class Encoder : public Component {
    public:
     /// @enum position_type
     enum class position_type : uint8_t {

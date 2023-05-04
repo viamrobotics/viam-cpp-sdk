@@ -14,15 +14,13 @@
 namespace viam {
 namespace sdk {
 
-CameraSubtype::~CameraSubtype() = default;
-
-std::shared_ptr<ResourceServerBase> CameraSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> CameraSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<CameraServer>(manager);
 };
 
-std::shared_ptr<ResourceBase> CameraSubtype::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> CameraSubtype::create_rpc_client(std::string name,
+                                                           std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<CameraClient>(std::move(name), std::move(chan));
 };
 

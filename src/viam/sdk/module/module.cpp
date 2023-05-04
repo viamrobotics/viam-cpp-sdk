@@ -40,10 +40,10 @@ const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& Module::ser
 std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& Module::mutable_services() {
     return services_;
 };
-const std::vector<std::shared_ptr<ResourceServerBase>>& Module::servers() const {
+const std::vector<std::shared_ptr<ResourceServer>>& Module::servers() const {
     return servers_;
 };
-std::vector<std::shared_ptr<ResourceServerBase>>& Module::mutable_servers() {
+std::vector<std::shared_ptr<ResourceServer>>& Module::mutable_servers() {
     return servers_;
 };
 

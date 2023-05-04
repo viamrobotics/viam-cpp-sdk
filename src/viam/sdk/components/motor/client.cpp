@@ -17,8 +17,6 @@
 namespace viam {
 namespace sdk {
 
-MotorClient::~MotorClient() = default;
-
 void MotorClient::set_power(double power_pct) {
     viam::component::motor::v1::SetPowerRequest request;
     viam::component::motor::v1::SetPowerResponse response;

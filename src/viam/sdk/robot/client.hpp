@@ -73,15 +73,15 @@ class RobotClient {
     /// @brief Lookup and return a `shared_ptr` to a resource.
     /// @param name The `ResourceName` of the resource.
     /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
-    /// @return a `shared_ptr` to the requested resource as an uncasted `ResourceBase`.
+    /// @return a `shared_ptr` to the requested resource as an uncasted `Resource`.
     ///
     /// This method should not be called directly except in specific cases. The
     /// type-annotated `resource_by_name<T>(name)` overload is the preferred method
     /// for obtaining resources.
     ///
-    /// Because the return type here is a `ResourceBase`, the user will need to manually
+    /// Because the return type here is a `Resource`, the user will need to manually
     /// cast to the desired type.
-    std::shared_ptr<ResourceBase> resource_by_name(const ResourceName& name);
+    std::shared_ptr<Resource> resource_by_name(const ResourceName& name);
 
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.

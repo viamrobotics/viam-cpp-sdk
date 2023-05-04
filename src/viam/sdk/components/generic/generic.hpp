@@ -22,11 +22,10 @@ namespace sdk {
 /// @ingroup Generic
 class GenericSubtype : public ResourceSubtype {
    public:
-    virtual ~GenericSubtype();
-    std::shared_ptr<ResourceServerBase> create_resource_server(
+    std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
-    std::shared_ptr<ResourceBase> create_rpc_client(std::string name,
-                                                    std::shared_ptr<grpc::Channel> chan) override;
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override;
     GenericSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : ResourceSubtype(service_descriptor){};
 };
@@ -37,7 +36,7 @@ class GenericSubtype : public ResourceSubtype {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific generic implementations. This class cannot be used on its own.
-class Generic : public ComponentBase {
+class Generic : public Component {
    public:
     /// @brief Creates a `ResourceSubtype` for the `Generic` component.
     static std::shared_ptr<ResourceSubtype> resource_subtype();
@@ -53,7 +52,7 @@ class Generic : public ComponentBase {
     Subtype instance_subtype() override;
 
    protected:
-    explicit Generic(std::string name) : ComponentBase(std::move(name)){};
+    explicit Generic(std::string name) : Component(std::move(name)){};
 };
 
 }  // namespace sdk

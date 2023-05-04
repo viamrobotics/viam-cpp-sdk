@@ -9,14 +9,14 @@
 namespace viam {
 namespace sdk {
 
-class ServiceBase : public ResourceBase {
+class Service : public Resource {
    public:
     viam::common::v1::ResourceName get_resource_name(std::string name) override;
     ResourceType type() const override;
-    ServiceBase();
+    Service();
 
    protected:
-    explicit ServiceBase(std::string name) : ResourceBase(std::move(name)){};
+    explicit Service(std::string name) : Resource(std::move(name)){};
 };
 
 }  // namespace sdk

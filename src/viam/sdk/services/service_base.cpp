@@ -10,15 +10,15 @@
 namespace viam {
 namespace sdk {
 
-ResourceName ServiceBase::get_resource_name(std::string name) {
-    auto r = this->ResourceBase::get_resource_name(name);
+ResourceName Service::get_resource_name(std::string name) {
+    auto r = this->Resource::get_resource_name(name);
     *r.mutable_type() = SERVICE;
     return r;
 }
 
-ServiceBase::ServiceBase() : ResourceBase("service"){};
+Service::Service() : Resource("service"){};
 
-ResourceType ServiceBase::type() const {
+ResourceType Service::type() const {
     return {SERVICE};
 }
 

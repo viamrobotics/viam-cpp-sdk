@@ -13,11 +13,12 @@
 namespace viam {
 namespace sdk {
 
-class ResourceBase;
-using Dependencies = std::unordered_map<Name, std::shared_ptr<ResourceBase>>;
-class ResourceBase {
+class Resource;
+using Dependencies = std::unordered_map<Name, std::shared_ptr<Resource>>;
+class Resource {
    public:
-    explicit ResourceBase(std::string name) : name_(std::move(name)){};
+    virtual ~Resource();
+    explicit Resource(std::string name) : name_(std::move(name)){};
     static Subtype subtype();
 
     /// @brief Returns the `Subtype` associated with a particular resource.
@@ -36,7 +37,7 @@ class ResourceBase {
     /// @brief Reconfigures a resource. By default a no-op.
     /// @param deps Dependencies of the resource.
     /// @param cfg The resource's config.
-    virtual void reconfigure(Dependencies deps, Resource cfg);
+    virtual void reconfigure(Dependencies deps, ResourceConfig cfg);
 
     /// @brief Return the resource's name.
     virtual std::string name() const;

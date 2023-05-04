@@ -30,16 +30,17 @@ namespace sdk {
 /// @brief Defines registered `Resource` creation functionality.
 class ResourceSubtype {
    public:
+    virtual ~ResourceSubtype();
     /// @brief Add `Reconfigure` functionality to a resource.
-    std::function<ResourceBase(std::shared_ptr<ResourceBase>, Name)> create_reconfigurable;
+    std::function<Resource(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 
     // TODO: it doesn't look like we actually use this. Confirm, then remove.
-    std::function<ProtoType(std::shared_ptr<ResourceBase>)> create_status;
+    std::function<ProtoType(std::shared_ptr<Resource>)> create_status;
 
     /// @brief Create a resource's gRPC server.
     /// @param manager The server's `ResourceManager`.
     /// @return a `shared_ptr` to the gRPC server.
-    virtual std::shared_ptr<ResourceServerBase> create_resource_server(
+    virtual std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) = 0;
 
     /// @brief Returns a reference to the `ResourceSubtype`'s service descriptor.
@@ -49,8 +50,8 @@ class ResourceSubtype {
     /// @param name The name of the resource.
     /// @param channel A channel connected to the client.
     /// @return A `shared_ptr` to the resource client.
-    virtual std::shared_ptr<ResourceBase> create_rpc_client(
-        std::string name, std::shared_ptr<grpc::Channel> channel) = 0;
+    virtual std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                        std::shared_ptr<grpc::Channel> channel) = 0;
 
     ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor_(service_descriptor){};
@@ -70,7 +71,7 @@ class ModelRegistration {
         ResourceType rt,
         Subtype subtype,
         Model model,
-        std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor)
+        std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
         : construct_resource(std::move(constructor)),
           validate(default_validator),
           model_(std::move(model)),
@@ -81,8 +82,8 @@ class ModelRegistration {
         ResourceType rt,
         Subtype subtype,
         Model model,
-        std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> constructor,
-        std::function<std::vector<std::string>(Resource)> validator)
+        std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
+        std::function<std::vector<std::string>(ResourceConfig)> validator)
         : construct_resource(std::move(constructor)),
           validate(std::move(validator)),
           model_(std::move(model)),
@@ -94,13 +95,13 @@ class ModelRegistration {
     const Model& model() const;
 
     /// @brief Constructs a resource from a map of dependencies and a resource config.
-    std::function<std::shared_ptr<ResourceBase>(Dependencies, Resource)> construct_resource;
+    std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> construct_resource;
 
     /// @brief Validates a resource config.
-    std::function<std::vector<std::string>(Resource)> validate;
+    std::function<std::vector<std::string>(ResourceConfig)> validate;
 
     /// @brief Creates a `Status` object for a given resource.
-    viam::robot::v1::Status create_status(std::shared_ptr<ResourceBase> resource);
+    viam::robot::v1::Status create_status(std::shared_ptr<Resource> resource);
 
    private:
     // default_validator is the default validator for all models if no validator
@@ -108,7 +109,7 @@ class ModelRegistration {
     Model model_;
     ResourceType resource_type_;
     Subtype subtype_;
-    static const std::vector<std::string> default_validator(Resource cfg) {
+    static const std::vector<std::string> default_validator(ResourceConfig cfg) {
         return {};
     };
 };

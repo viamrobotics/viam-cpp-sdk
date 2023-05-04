@@ -15,15 +15,13 @@
 namespace viam {
 namespace sdk {
 
-GenericSubtype::~GenericSubtype() = default;
-
-std::shared_ptr<ResourceServerBase> GenericSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> GenericSubtype::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<GenericServer>(manager);
 };
 
-std::shared_ptr<ResourceBase> GenericSubtype::create_rpc_client(
-    std::string name, std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> GenericSubtype::create_rpc_client(std::string name,
+                                                            std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<GenericClient>(std::move(name), std::move(chan));
 };
 

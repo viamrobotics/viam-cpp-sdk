@@ -24,6 +24,8 @@ namespace sdk {
 
 using viam::robot::v1::Status;
 
+ResourceSubtype::~ResourceSubtype() = default;
+
 const ResourceType& ModelRegistration::resource_type() const {
     return resource_type_;
 };
@@ -84,7 +86,7 @@ Registry::registered_resources() {
     return registry;
 }
 
-Status ModelRegistration::create_status(std::shared_ptr<ResourceBase> resource) {
+Status ModelRegistration::create_status(std::shared_ptr<Resource> resource) {
     Status status;
     *status.mutable_name() = resource->get_resource_name(resource->name());
     *status.mutable_status() = google::protobuf::Struct();

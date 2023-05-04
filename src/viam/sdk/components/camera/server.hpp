@@ -15,7 +15,7 @@ namespace sdk {
 /// @class CameraServer
 /// @brief gRPC server implementation of a `Camera` component.
 /// @ingroup Camera
-class CameraServer : public ResourceServerBase,
+class CameraServer : public ResourceServer,
                      public viam::component::camera::v1::CameraService::Service {
    public:
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
@@ -38,8 +38,8 @@ class CameraServer : public ResourceServerBase,
 
     void register_server(std::shared_ptr<Server> server) override;
 
-    CameraServer() : ResourceServerBase(std::make_shared<ResourceManager>()){};
-    CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceServerBase(manager){};
+    CameraServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+    CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 };
 
 }  // namespace sdk
