@@ -40,7 +40,7 @@ Subtype Camera::subtype() {
     return Subtype(RDK, COMPONENT, "camera");
 }
 
-Subtype Camera::instance_subtype() {
+Subtype Camera::instance_subtype() const {
     return subtype();
 }
 

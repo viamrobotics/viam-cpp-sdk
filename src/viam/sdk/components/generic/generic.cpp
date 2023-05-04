@@ -39,7 +39,7 @@ Subtype Generic::subtype() {
     return Subtype(RDK, COMPONENT, "generic");
 }
 
-Subtype Generic::instance_subtype() {
+Subtype Generic::instance_subtype() const {
     return subtype();
 }
 

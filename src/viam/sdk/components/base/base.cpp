@@ -43,6 +43,10 @@ Subtype Base::subtype() {
     return Subtype(RDK, COMPONENT, "base");
 }
 
+Subtype Base::instance_subtype() const {
+    return subtype();
+}
+
 Base::Base(std::string name) : Component(std::move(name)){};
 
 namespace {

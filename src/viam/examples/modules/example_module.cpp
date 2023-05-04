@@ -34,7 +34,7 @@ class MyModule : public GenericService::Service, public Component {
         std::cout << "config in reconfigure: " << cfg.name() << std::endl;
     }
 
-    Subtype instance_subtype() override {
+    Subtype instance_subtype() const override {
         return Generic::subtype();
     }
 

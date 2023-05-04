@@ -136,7 +136,7 @@ class Camera : public Component {
     /// @return The camera properties.
     virtual properties get_properties() = 0;
 
-    Subtype instance_subtype() override;
+    Subtype instance_subtype() const override;
 
    protected:
     explicit Camera(std::string name) : Component(std::move(name)){};

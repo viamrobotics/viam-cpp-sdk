@@ -22,7 +22,7 @@ class Resource {
     static Subtype subtype();
 
     /// @brief Returns the `Subtype` associated with a particular resource.
-    virtual Subtype instance_subtype() = 0;
+    virtual Subtype instance_subtype() const = 0;
 
     /// @brief Returns a `ResourceName` for a particular resource name.
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);

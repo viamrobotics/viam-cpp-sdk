@@ -65,8 +65,8 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         ResourceType("Camera"),
         Camera::subtype(),
         camera_model,
-        [](Dependencies, Resource cfg) { return camera::MockCamera::get_mock_camera(); },
-        [](Resource cfg) -> std::vector<std::string> { return {}; });
+        [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
+        [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
     Registry::register_resource(cr);
 
     Model generic_model("fake", "fake", "mock_generic");
@@ -74,8 +74,8 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         ResourceType("Generic"),
         Generic::subtype(),
         generic_model,
-        [](Dependencies, Resource cfg) { return generic::MockGeneric::get_mock_generic(); },
-        [](Resource cfg) -> std::vector<std::string> { return {}; });
+        [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
+        [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
     Registry::register_resource(gr);
 
     Model motor_model("fake", "fake", "mock_motor");
@@ -83,8 +83,8 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         ResourceType("Motor"),
         Motor::subtype(),
         motor_model,
-        [](Dependencies, Resource cfg) { return motor::MockMotor::get_mock_motor(); },
-        [](Resource cfg) -> std::vector<std::string> { return {}; });
+        [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },
+        [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
     Registry::register_resource(mr);
 
     BOOST_CHECK(Registry::lookup_resource(Camera::subtype(), camera_model));
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
 BOOST_AUTO_TEST_CASE(test_stop_all) {
     server_to_client_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            std::shared_ptr<ResourceBase> rb = service.resource_manager()->resource("mock_motor");
+            std::shared_ptr<Resource> rb = service.resource_manager()->resource("mock_motor");
             auto motor = std::dynamic_pointer_cast<motor::MockMotor>(rb);
             BOOST_CHECK(motor);
 

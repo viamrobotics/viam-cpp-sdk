@@ -38,6 +38,10 @@ Subtype Encoder::subtype() {
     return Subtype(RDK, COMPONENT, "encoder");
 }
 
+Subtype Encoder::instance_subtype() const {
+    return subtype();
+}
+
 Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
     switch (proto) {
         case viam::component::encoder::v1::POSITION_TYPE_UNSPECIFIED: {

@@ -41,7 +41,7 @@ Subtype Motor::subtype() {
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
     return proto.position();
 }
-Subtype Motor::instance_subtype() {
+Subtype Motor::instance_subtype() const {
     return subtype();
 }
 
