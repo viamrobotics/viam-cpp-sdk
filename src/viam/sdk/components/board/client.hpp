@@ -35,7 +35,7 @@ class BoardClient : public Board {
     std::vector<std::string> get_analog_reader_names() override;
     std::vector<std::string> get_digital_interrupt_names() override;
     void set_power_mode(power_mode power_mode,
-                        const std::chrono::duration<double>& duration) override;
+                        boost::optional<const std::chrono::duration<double>&> duration) override;
 
    private:
     std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;

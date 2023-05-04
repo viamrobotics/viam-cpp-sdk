@@ -26,7 +26,7 @@ class MockBoard : public viam::sdk::Board {
     Board::analog_value read_analog(const std::string& analog_reader_name) override;
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name) override;
     void set_power_mode(power_mode power_mode,
-                        const std::chrono::duration<double>& duration) override;
+                        boost::optional<const std::chrono::duration<double>&> duration) override;
     std::vector<std::string> get_analog_reader_names() override;
     std::vector<std::string> get_digital_interrupt_names() override;
 
@@ -41,7 +41,7 @@ class MockBoard : public viam::sdk::Board {
     Board::analog_value peek_read_analog_ret;
     Board::digital_value peek_read_digital_interrupt_ret;
     Board::power_mode peek_set_power_mode_power_mode;
-    std::chrono::duration<double> peek_set_power_mode_duration;
+    boost::optional<std::chrono::duration<double>> peek_set_power_mode_duration;
 };
 
 }  // namespace board

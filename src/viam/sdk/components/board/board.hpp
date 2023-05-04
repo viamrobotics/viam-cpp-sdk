@@ -145,8 +145,9 @@ class Board : public Component {
     /// duration.
     /// @param power_mode Requested power mode
     /// @param duration Requested duration to stay in `power_mode`
-    virtual void set_power_mode(power_mode power_mode,
-                                const std::chrono::duration<double>& duration) = 0;
+    virtual void set_power_mode(
+        power_mode power_mode,
+        boost::optional<const std::chrono::duration<double>&> duration = boost::none) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

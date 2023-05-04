@@ -187,14 +187,17 @@ BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
 BOOST_AUTO_TEST_CASE(test_set_power_mode) {
     server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
         auto mode = Board::power_mode::normal;
-        auto duration = std::chrono::milliseconds(15531);
+        std::chrono::duration<double> duration = std::chrono::milliseconds(15531);
         client.set_power_mode(mode, duration);
         BOOST_CHECK(mode == mock->peek_set_power_mode_power_mode);
-        BOOST_CHECK(duration == mock->peek_set_power_mode_duration);
+        BOOST_CHECK(duration == mock->peek_set_power_mode_duration.get());
         // Check with units denominated in nanoseconds
-        auto duration_large = std::chrono::nanoseconds(3213000000);
+        std::chrono::duration<double> duration_large = std::chrono::nanoseconds(3213000000);
         client.set_power_mode(mode, duration_large);
-        BOOST_CHECK(duration_large == mock->peek_set_power_mode_duration);
+        BOOST_CHECK(duration_large == mock->peek_set_power_mode_duration.get());
+
+        client.set_power_mode(mode);
+        BOOST_CHECK(!mock->peek_set_power_mode_duration.has_value());
     });
 }
 

@@ -183,7 +183,7 @@ Board::digital_value BoardClient::read_digital_interrupt(
 }
 
 void BoardClient::set_power_mode(power_mode power_mode,
-                                 const std::chrono::duration<double>& duration) {
+                                 boost::optional<const std::chrono::duration<double>&> duration) {
     viam::component::board::v1::SetPowerModeRequest request;
     viam::component::board::v1::SetPowerModeResponse response;
 
@@ -191,7 +191,9 @@ void BoardClient::set_power_mode(power_mode power_mode,
 
     *request.mutable_name() = this->name();
     request.set_power_mode(to_proto(power_mode));
-    *request.mutable_duration() = ::viam::sdk::to_proto(duration);
+    if (duration.has_value()) {
+        *request.mutable_duration() = ::viam::sdk::to_proto(duration.get());
+    }
 
     grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
     if (!status.ok()) {

@@ -65,7 +65,7 @@ Board::digital_value MockBoard::read_digital_interrupt(const std::string& pin) {
 }
 
 void MockBoard::set_power_mode(power_mode power_mode,
-                               const std::chrono::duration<double>& duration) {
+                               boost::optional<const std::chrono::duration<double>&> duration) {
     this->peek_set_power_mode_power_mode = power_mode;
     this->peek_set_power_mode_duration = duration;
 }
