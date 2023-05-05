@@ -111,13 +111,15 @@ std::vector<Operation> RobotClient::get_operations() {
     viam::robot::v1::GetOperationsResponse resp;
     ClientContext ctx;
 
+    std::vector<Operation> operations;
+
     grpc::Status response = stub_->GetOperations(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
-    std::vector<Operation> operations(resp.operations().size());
 
     for (int i = 0; i < resp.operations().size(); ++i) {
+        // NOLINTNEXTLINE
         operations.push_back(resp.operations().at(i));
     }
     return operations;
