@@ -6,8 +6,8 @@
 # readability-named-parameter: Useful to fix lints about unused parameters
 # readability-implicit-bool-conversion: We have decided that !ptr-type is cleaner than ptr-type==nullptr
 # readability-magic-numbers: This encourages useless variables and extra lint lines
-# performance-unnecessary-value-param: TODO remove this and fix all lints.
-# misc-unused-parameters: TODO remove this and fix all lints.
+# performance-unnecessary-value-param: TODO(RSDK-3007) remove this and fix all lints.
+# misc-unused-parameters: TODO(RSDK-3008) remove this and fix all lints.
 #
 Checks: >
   -*,
@@ -28,7 +28,6 @@ Checks: >
   -performance-unnecessary-value-param,
   -misc-unused-parameters,
 WarningsAsErrors: ''
-HeaderFilterRegex: ''
 FormatStyle: none
 CheckOptions:
   - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
