@@ -1,0 +1,35 @@
+# Globally Disabled checks:
+#
+# bugprone-easily-swappable-parameters: This warning is loud with no clear advice on how to fix the potential problem
+# bugprone-macro-parentheses: Can break with boost macros
+# readability-identifier-length: This complains about identifiers with length < 3 which is often not useful.
+# readability-named-parameter: Useful to fix lints about unused parameters
+# readability-implicit-bool-conversion: We have decided that !ptr-type is cleaner than ptr-type==nullptr 
+# performance-unnecessary-value-param: TODO remove this and fix all lints.
+# misc-unused-parameters: TODO remove this and fix all lints.
+#
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  concurrency-*,
+  misc-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-macro-parentheses,
+  -readability-identifier-length,
+  -readability-named-parameter,
+  -readability-implicit-bool-conversion,
+  -performance-unnecessary-value-param,
+  -misc-unused-parameters,
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle: none
+CheckOptions:
+  - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+    value: true
+  - key: readability-function-cognitive-complexity.Threshold
+    value: 30
