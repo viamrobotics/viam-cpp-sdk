@@ -63,7 +63,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 ::grpc::Status ModuleService_::AddResource(::grpc::ServerContext* context,
                                            const ::viam::module::v1::AddResourceRequest* request,
                                            ::viam::module::v1::AddResourceResponse* response) {
-    viam::app::v1::ComponentConfig proto = request->config();
+    const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     auto module = this->module_;
     const std::lock_guard<std::mutex> lock(lock_);
@@ -90,7 +90,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     ::grpc::ServerContext* context,
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse* response) {
-    viam::app::v1::ComponentConfig proto = request->config();
+    const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     std::shared_ptr<Module> module = this->module_;
 
@@ -119,7 +119,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     // if the type isn't reconfigurable by default, replace it
     try {
         res->stop();
-    } catch (std::string err) {
+    } catch (std::string err) {  // NOLINT
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 
@@ -136,7 +136,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     ::grpc::ServerContext* context,
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
-    viam::app::v1::ComponentConfig proto = request->config();
+    const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
 
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_resource(cfg.api(), cfg.model());
@@ -150,7 +150,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
         for (auto& dep : implicit_deps) {
             response->add_dependencies(dep);
         }
-    } catch (std::string err) {
+    } catch (std::string err) {  // NOLINT
         return grpc::Status(grpc::UNKNOWN,
                             "validation failure in resource " + cfg.name() + ": " + err);
     }
@@ -178,7 +178,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     try {
         res->stop();
-    } catch (std::string err) {
+    } catch (std::string err) {  // NOLINT
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
     }
 

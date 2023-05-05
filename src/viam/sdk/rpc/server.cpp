@@ -44,8 +44,9 @@ void Server::add_listening_port(std::string address,
 }
 
 void Server::wait() {
-    if (server_)
+    if (server_) {
         server_->Wait();
+    }
 }
 
 void Server::shutdown() {

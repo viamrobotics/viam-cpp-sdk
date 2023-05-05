@@ -15,9 +15,13 @@
 namespace viam {
 namespace sdk {
 
+// NOLINTNEXTLINE
 const std::regex NAME_REGEX("^([\\w-]+:[\\w-]+:(?:[\\w-]+))\\/?([\\w-]+:(?:[\\w-]+:)*)?(.+)?$");
 
+// NOLINTNEXTLINE
 const std::regex MODEL_REGEX("^([\\w-]+):([\\w-]+):([\\w-]+)$");
+
+// NOLINTNEXTLINE
 std::regex SINGLE_FIELD_REGEX("^([\\w-]+)$");
 
 std::string Type::to_string() const {
@@ -60,9 +64,8 @@ Subtype Subtype::from_string(std::string subtype) {
         std::vector<std::string> subtype_parts;
         boost::split(subtype_parts, subtype, boost::is_any_of(":"));
         return {subtype_parts.at(0), subtype_parts.at(1), subtype_parts.at(2)};
-    } else {
-        throw "string " + subtype + " is not a valid subtype name";
     }
+    throw "string " + subtype + " is not a valid subtype name";
 }
 
 Subtype::Subtype(Type type, std::string resource_subtype)
@@ -93,14 +96,14 @@ const std::string& Name::remote_name() const {
 
 std::string Name::to_string() const {
     std::string subtype_name = Subtype::to_string();
-    if (remote_name_ == "") {
+    if (remote_name_.empty()) {
         return subtype_name + "/" + name_;
     }
     return subtype_name + "/" + remote_name_ + ":" + name_;
 }
 
 std::string Name::short_name() const {
-    if (remote_name_ != "") {
+    if (!remote_name_.empty()) {
         return remote_name_ + ":" + name_;
     }
     return name_;
@@ -126,7 +129,7 @@ Name Name::from_string(std::string name) {
 
     std::vector<std::string> colon_splits;
     boost::split(colon_splits, slash_splits.at(1), boost::is_any_of(":"));
-    std::string remote = "";
+    std::string remote;
     std::string resource_name = colon_splits.at(0);
     if (colon_splits.size() > 1) {
         remote = colon_splits.at(0);
@@ -193,15 +196,15 @@ Model Model::from_str(std::string model) {
         std::vector<std::string> model_parts;
         boost::split(model_parts, model, boost::is_any_of(":"));
         return {model_parts.at(0), model_parts.at(1), model_parts.at(2)};
-    } else if (std::regex_match(model, SINGLE_FIELD_REGEX)) {
-        return {"rdk", "builtin", model};
-    } else {
-        throw "string " + model + " is not a valid model name";
     }
+    if (std::regex_match(model, SINGLE_FIELD_REGEX)) {
+        return {"rdk", "builtin", model};
+    }
+    throw "string " + model + " is not a valid model name";
 }
 
 std::string ModelFamily::to_string() const {
-    if (namespace_ == "") {
+    if (namespace_.empty()) {
         return family_;
     }
     return namespace_ + ":" + family_;
@@ -209,7 +212,7 @@ std::string ModelFamily::to_string() const {
 
 std::string Model::to_string() const {
     const std::string mf = model_family_.to_string();
-    if (mf == "") {
+    if (mf.empty()) {
         return model_name_;
     }
     return mf + ":" + model_name_;

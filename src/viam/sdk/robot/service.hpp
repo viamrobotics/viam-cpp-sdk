@@ -55,7 +55,7 @@ class RobotService_ : public ResourceServer, public viam::robot::v1::RobotServic
    private:
     std::mutex lock_;
     std::vector<ResourceName> generate_metadata();
-    std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resources);
+    std::vector<Status> generate_status(RepeatedPtrField<ResourceName> resource_names);
 
     void stream_status(const ::viam::robot::v1::StreamStatusRequest* request,
                        ::grpc::ServerWriter<::viam::robot::v1::StreamStatusResponse>* writer,

@@ -49,7 +49,8 @@ bool init() {
     return true;
 };
 
-bool inited = init();
+// NOLINTNEXTLINE
+const bool inited = init();
 }  // namespace
 
 }  // namespace sdk

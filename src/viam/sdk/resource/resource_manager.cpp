@@ -39,14 +39,14 @@ std::shared_ptr<Resource> ResourceManager::resource(std::string name) {
     throw std::runtime_error("Unable to find resource named " + name);
 }
 
-void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> new_map) {
+void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> resources) {
     std::lock_guard<std::mutex> lock(lock_);
     std::unordered_map<std::string, std::shared_ptr<Resource>> new_resources;
     std::unordered_map<std::string, std::string> new_short_names;
     this->resources_ = new_resources;
     this->short_names_ = new_short_names;
 
-    for (auto& resource : new_map) {
+    for (auto& resource : resources) {
         try {
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
@@ -58,12 +58,14 @@ void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resou
 
 std::string get_shortcut_name(std::string name) {
     std::vector<std::string> name_split;
+    // clang-tidy thinks this is a possible memory leak
+    // NOLINTNEXTLINE
     boost::split(name_split, name, boost::is_any_of(":"));
     return name_split.at(name_split.size() - 1);
 }
 
 void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
-    if (name.name() == "") {
+    if (name.name().empty()) {
         throw "Empty name used for resource: " + name.to_string();
     }
     std::string short_name = name.short_name();
@@ -150,6 +152,7 @@ const std::unordered_map<std::string, std::shared_ptr<Resource>>& ResourceManage
 
 void ResourceManager::add(std::string name, std::shared_ptr<Resource> resource) {
     std::lock_guard<std::mutex> lock(lock_);
+    // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     do_add(name, resource);
 }
 

@@ -86,6 +86,7 @@ Registry::registered_resources() {
     return registry;
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 Status ModelRegistration::create_status(std::shared_ptr<Resource> resource) {
     Status status;
     *status.mutable_name() = resource->get_resource_name(resource->name());
