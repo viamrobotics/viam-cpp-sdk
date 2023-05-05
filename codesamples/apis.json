@@ -1,0 +1,25 @@
+{
+    "base": {
+        "client": "BaseClient",
+        "func": "is_moving",
+		"args": []
+    },
+    "camera": {
+        "client": "CameraClient",
+        "func": "get_image",
+		"args": [
+				"image/png"
+		],
+		"comment": "Note that the supplied MIME type is just a placeholder. Please update as necessary."
+    },
+    "encoder": {
+        "client": "EncoderClient",
+        "func": "get_properties",
+		"args": []
+    },
+    "motor": {
+        "client": "MotorClient",
+        "func": "is_moving",
+        "args": []
+    }
+}
