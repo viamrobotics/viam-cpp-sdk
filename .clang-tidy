@@ -27,7 +27,7 @@ Checks: >
   -readability-magic-numbers,
   -performance-unnecessary-value-param,
   -misc-unused-parameters,
-WarningsAsErrors: ''
+WarningsAsErrors: '*'
 FormatStyle: none
 CheckOptions:
   - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
