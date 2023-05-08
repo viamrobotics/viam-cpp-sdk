@@ -202,28 +202,5 @@ void BoardClient::set_power_mode(
     }
 }
 
-std::vector<std::string> BoardClient::get_analog_reader_names() {
-    std::vector<std::string> names;
-    auto status = this->get_status();
-    names.reserve(status.analog_reader_values.size());
-    for (auto it = status.analog_reader_values.begin(); it != status.analog_reader_values.end();
-         ++it) {
-        names.push_back(it->first);
-    }
-    return names;
-}
-
-std::vector<std::string> BoardClient::get_digital_interrupt_names() {
-    std::vector<std::string> names;
-    auto status = this->get_status();
-    names.reserve(status.digital_interrupt_values.size());
-    for (auto it = status.digital_interrupt_values.begin();
-         it != status.digital_interrupt_values.end();
-         ++it) {
-        names.push_back(it->first);
-    }
-    return names;
-}
-
 }  // namespace sdk
 }  // namespace viam

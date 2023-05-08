@@ -71,16 +71,6 @@ void MockBoard::set_power_mode(
     this->peek_set_power_mode_duration = duration;
 }
 
-std::vector<std::string> MockBoard::get_analog_reader_names() {
-    // This is tested through the client, not the mock
-    return {};
-}
-
-std::vector<std::string> MockBoard::get_digital_interrupt_names() {
-    // This is tested through the client, not the mock
-    return {};
-}
-
 }  // namespace board
 }  // namespace sdktests
 }  // namespace viam

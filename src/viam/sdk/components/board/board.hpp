@@ -96,6 +96,22 @@ class Board : public Component {
     /// @brief Get the status of all of the registered analog readers and digital interrupt readers
     virtual status get_status() = 0;
 
+    /// @brief Get the names of the defined analog readers defined for this board
+    /// This information comes from calling `get_status()`
+    std::vector<std::string> get_analog_reader_names();
+
+    /// @brief Get the names of the defined digital interrupts for this board
+    /// This information comes from calling `get_status()`
+    std::vector<std::string> get_digital_interrupt_names();
+
+    /// @brief Get all defined analog readers defined for this board
+    /// This information comes from calling `get_status()`
+    std::unordered_map<std::string, analog_value> get_analog_readers();
+
+    /// @brief Get all defined digital interrupts for this board
+    /// This information comes from calling `get_status()`
+    std::unordered_map<std::string, digital_value> get_digital_interrupts();
+
     /// @brief Gets the high/low state of the given pin on a board.
     /// @param pin board pin name
     /// @return high/low state of the given pin. High = on, low = off
@@ -134,12 +150,6 @@ class Board : public Component {
     /// Consult Viam's `Board` docs for more information.
     /// @param digital_interrupt_name digital interrupt to check
     virtual digital_value read_digital_interrupt(const std::string& digital_interrupt_name) = 0;
-
-    /// @brief Get all defined analog readers defined for this board
-    virtual std::vector<std::string> get_analog_reader_names() = 0;
-
-    /// @brief Get all defined digital interrupts for this board
-    virtual std::vector<std::string> get_digital_interrupt_names() = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
     /// duration.

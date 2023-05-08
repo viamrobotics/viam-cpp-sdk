@@ -113,6 +113,36 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode proto) {
     }
 }
 
+std::vector<std::string> Board::get_analog_reader_names() {
+    std::vector<std::string> names;
+    auto status = this->get_status();
+    names.reserve(status.analog_reader_values.size());
+    for (auto it = status.analog_reader_values.begin(); it != status.analog_reader_values.end();
+         ++it) {
+        names.push_back(it->first);
+    }
+    return names;
+}
+
+std::vector<std::string> Board::get_digital_interrupt_names() {
+    std::vector<std::string> names;
+    auto status = this->get_status();
+    names.reserve(status.digital_interrupt_values.size());
+    for (auto it = status.digital_interrupt_values.begin();
+         it != status.digital_interrupt_values.end();
+         ++it) {
+        names.push_back(it->first);
+    }
+    return names;
+}
+
+std::unordered_map<std::string, Board::analog_value> Board::get_analog_readers() {
+    return this->get_status().analog_reader_values;
+}
+
+std::unordered_map<std::string, Board::digital_value> Board::get_digital_interrupts() {
+    return this->get_status().digital_interrupt_values;
+}
 Board::Board(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Board::status& lhs, const Board::status& rhs) {

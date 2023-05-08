@@ -28,8 +28,6 @@ class MockBoard : public viam::sdk::Board {
     void set_power_mode(
         power_mode power_mode,
         boost::optional<const std::chrono::duration<int64_t, std::micro>&> duration) override;
-    std::vector<std::string> get_analog_reader_names() override;
-    std::vector<std::string> get_digital_interrupt_names() override;
 
     std::string peek_pin;
     Board::status peek_get_status_ret;
