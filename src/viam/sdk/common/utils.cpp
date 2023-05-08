@@ -71,14 +71,14 @@ std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
 }
 
 google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
+    namespace sc = std::chrono;
+
+    const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
+    const sc::nanoseconds nanos = duration - seconds;
+
     google::protobuf::Duration proto;
-    int64_t total_micros = duration.count();
-
-    int32_t micros_part = static_cast<int32_t>(total_micros % 1000000);
-    int64_t seconds_part = (total_micros - micros_part) / 1000000;
-
-    proto.set_nanos(micros_part * 1000);
-    proto.set_seconds(seconds_part);
+    proto.set_nanos(static_cast<int32_t>(nanos.count()));
+    proto.set_seconds(seconds.count());
     return proto;
 }
 
