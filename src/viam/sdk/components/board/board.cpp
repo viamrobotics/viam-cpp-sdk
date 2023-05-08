@@ -117,9 +117,8 @@ std::vector<std::string> Board::get_analog_reader_names() {
     std::vector<std::string> names;
     auto status = this->get_status();
     names.reserve(status.analog_reader_values.size());
-    for (auto it = status.analog_reader_values.begin(); it != status.analog_reader_values.end();
-         ++it) {
-        names.push_back(it->first);
+    for (const auto& kv : status.analog_reader_values) {
+        names.push_back(kv.first);
     }
     return names;
 }
@@ -128,10 +127,8 @@ std::vector<std::string> Board::get_digital_interrupt_names() {
     std::vector<std::string> names;
     auto status = this->get_status();
     names.reserve(status.digital_interrupt_values.size());
-    for (auto it = status.digital_interrupt_values.begin();
-         it != status.digital_interrupt_values.end();
-         ++it) {
-        names.push_back(it->first);
+    for (const auto& kv : status.digital_interrupt_values) {
+        names.push_back(kv.first);
     }
     return names;
 }

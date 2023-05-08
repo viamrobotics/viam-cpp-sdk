@@ -32,9 +32,8 @@ class BoardClient : public Board {
     AttributeMap do_command(AttributeMap command) override;
     analog_value read_analog(const std::string& analog_reader_name) override;
     digital_value read_digital_interrupt(const std::string& digital_interrupt_name) override;
-    void set_power_mode(
-        power_mode power_mode,
-        boost::optional<const std::chrono::duration<int64_t, std::micro>&> duration) override;
+    void set_power_mode(power_mode power_mode,
+                        const boost::optional<std::chrono::microseconds>& duration) override;
 
    private:
     std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;

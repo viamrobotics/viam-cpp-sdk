@@ -154,10 +154,9 @@ class Board : public Component {
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
     /// duration.
     /// @param power_mode Requested power mode
-    /// @param duration Requested duration to stay in `power_mode`
-    virtual void set_power_mode(power_mode power_mode,
-                                boost::optional<const std::chrono::duration<int64_t, std::micro>&>
-                                    duration = boost::none) = 0;
+    /// @param duration Requested duration to stay in `power_mode` (in microseconds)
+    virtual void set_power_mode(
+        power_mode power_mode, const boost::optional<std::chrono::microseconds>& duration = {}) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

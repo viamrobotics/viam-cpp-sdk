@@ -54,19 +54,30 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     return img_string;
 };
 
-std::chrono::duration<int64_t, std::micro> from_proto(const google::protobuf::Duration& proto) {
-    return std::chrono::microseconds(
-        (int64_t)std::ceil(proto.seconds() * 1e6 + proto.nanos() / 1e3));
+std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
+    namespace sc = std::chrono;
+    const sc::seconds seconds_part{proto.seconds()};
+    const sc::nanoseconds nanos_part{proto.nanos()};
+
+    const sc::microseconds from_seconds = sc::duration_cast<sc::microseconds>(seconds_part);
+    sc::microseconds from_nanos = sc::duration_cast<sc::microseconds>(nanos_part);
+
+    if ((nanos_part.count() < 0) && (from_nanos > nanos_part)) {
+        from_nanos -= sc::microseconds(1);
+    } else if ((nanos_part.count() > 0) && (from_nanos < nanos_part)) {
+        from_nanos += sc::microseconds(1);
+    }
+    return from_seconds + from_nanos;
 }
 
-google::protobuf::Duration to_proto(const std::chrono::duration<int64_t, std::micro>& duration) {
+google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
     google::protobuf::Duration proto;
     int64_t total_micros = duration.count();
-    long part_micros = total_micros % 1000000;
-    long part_seconds = (total_micros - part_micros) / 1000000;
+    int64_t micros_part = total_micros % 1000000;
+    int64_t seconds_part = (total_micros - micros_part) / 1000000;
 
-    proto.set_nanos(part_micros * 1000);
-    proto.set_seconds(part_seconds);
+    proto.set_nanos(micros_part * 1000);
+    proto.set_seconds(seconds_part);
     return proto;
 }
 
