@@ -128,7 +128,7 @@ $(function() {
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>   <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    std::mutex lock_;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    std::vector&lt;ResourceName&gt; generate_metadata();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    std::vector&lt;Status&gt; generate_status(RepeatedPtrField&lt;ResourceName&gt; resources);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    std::vector&lt;Status&gt; generate_status(RepeatedPtrField&lt;ResourceName&gt; resource_names);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> stream_status(const ::viam::robot::v1::StreamStatusRequest* request,</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                       ::grpc::ServerWriter&lt;::viam::robot::v1::StreamStatusResponse&gt;* writer,</div>
