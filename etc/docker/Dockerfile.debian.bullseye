@@ -10,12 +10,12 @@ RUN apt-get -y dist-upgrade
 RUN apt-get -y --no-install-recommends install \
     build-essential \
     ca-certificates \
-    clang \
     doxygen \
     curl \
     g++ \
     gdb \
     git \
+    gnupg \
     less \
     libboost-all-dev \
     libgrpc++-dev \
@@ -27,10 +27,16 @@ RUN apt-get -y --no-install-recommends install \
     software-properties-common \
     wget
 
-
+# Add the public key for the llvm repository
+RUN bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+RUN apt-add-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main'
 RUN apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main'
 
 RUN apt-get update
+
+RUN apt-get -y --no-install-recommends install -t llvm-toolchain-bullseye \
+    clang-13 \
+    clang-tidy-13
 
 RUN apt-get -y --no-install-recommends install -t bullseye-backports \
     cmake
