@@ -37,8 +37,12 @@ std::shared_ptr<ResourceSubtype> Board::resource_subtype() {
     return std::make_shared<BoardSubtype>(sd);
 }
 
-Subtype Board::subtype() {
+Subtype Board::static_subtype() {
     return Subtype(RDK, COMPONENT, "board");
+}
+
+Subtype Board::dynamic_subtype() const {
+    return static_subtype();
 }
 
 Board::status Board::from_proto(viam::common::v1::BoardStatus proto) {
@@ -99,8 +103,8 @@ viam::common::v1::DigitalInterruptStatus Board::to_proto(digital_value digital_v
     return proto;
 }
 
-viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode proto) {
-    switch (proto) {
+viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode power_mode) {
+    switch (power_mode) {
         case Board::power_mode::normal: {
             return viam::component::board::v1::POWER_MODE_NORMAL;
         }
@@ -149,10 +153,11 @@ bool operator==(const Board::status& lhs, const Board::status& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_subtype(Board::subtype(), Board::resource_subtype());
+    Registry::register_subtype(Board::static_subtype(), Board::resource_subtype());
     return true;
 };
 
+// NOLINTNEXTLINE(cert-err58-cpp)
 const bool inited = init();
 }  // namespace
 

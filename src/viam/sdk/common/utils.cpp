@@ -73,7 +73,8 @@ std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
 google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
     google::protobuf::Duration proto;
     int64_t total_micros = duration.count();
-    int64_t micros_part = total_micros % 1000000;
+    // NOLINTNEXTLINE
+    int32_t micros_part = total_micros % 1000000;
     int64_t seconds_part = (total_micros - micros_part) / 1000000;
 
     proto.set_nanos(micros_part * 1000);

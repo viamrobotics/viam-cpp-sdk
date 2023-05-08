@@ -26,9 +26,9 @@ class MockBoard : public viam::sdk::Board {
     Board::analog_value read_analog(const std::string& analog_reader_name) override;
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name) override;
     void set_power_mode(power_mode power_mode,
-                        boost::optional<const std::chrono::microseconds&> duration) override;
+                        const boost::optional<std::chrono::microseconds>& duration) override;
 
-    std::string peek_pin;
+    std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
     Board::status peek_get_status_ret;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;

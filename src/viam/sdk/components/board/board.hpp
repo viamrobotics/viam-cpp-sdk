@@ -67,7 +67,8 @@ class Board : public Component {
 
     // functions shared across all components
     static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype subtype();
+    static Subtype static_subtype();
+    Subtype dynamic_subtype() const override;
 
     /// @brief Creates a `status` struct from its proto representation.
     static status from_proto(viam::common::v1::BoardStatus proto);

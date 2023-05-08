@@ -54,18 +54,18 @@ AttributeMap MockBoard::do_command(AttributeMap command) {
     return command;
 }
 
-Board::analog_value MockBoard::read_analog(const std::string& pin) {
-    this->peek_pin = pin;
+Board::analog_value MockBoard::read_analog(const std::string& analog_reader_name) {
+    this->peek_analog_reader_name = analog_reader_name;
     return this->peek_read_analog_ret;
 }
 
-Board::digital_value MockBoard::read_digital_interrupt(const std::string& pin) {
-    this->peek_pin = pin;
+Board::digital_value MockBoard::read_digital_interrupt(const std::string& digital_interrupt_name) {
+    this->peek_digital_interrupt_name = digital_interrupt_name;
     return this->peek_read_digital_interrupt_ret;
 }
 
 void MockBoard::set_power_mode(power_mode power_mode,
-                               boost::optional<const std::chrono::microseconds&> duration) {
+                               const boost::optional<std::chrono::microseconds>& duration) {
     this->peek_set_power_mode_power_mode = power_mode;
     this->peek_set_power_mode_duration = duration;
 }
