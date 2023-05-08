@@ -35,7 +35,8 @@ std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
             return resources_.at(short_name);
         }
     }
-    throw std::runtime_error("Unable to find resource named " + name);
+
+    return nullptr;
 }
 
 void ResourceManager::replace_all(

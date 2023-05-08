@@ -24,7 +24,8 @@ MLModelServiceServer::MLModelServiceServer()
     : MLModelServiceServer(std::make_shared<ResourceManager>()) {}
 
 MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {}
+    : ResourceServer(std::move(manager)) {
+}
 
 void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
@@ -34,11 +35,13 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) {
+
     if (!request) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] without a request"};
     };
 
     std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+
     if (!rb) {
         return {::grpc::UNKNOWN, "resource not found: " + request->name()};
     }
@@ -63,6 +66,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::MetadataRequest* request,
     ::viam::service::mlmodel::v1::MetadataResponse* response) {
+
     if (!request) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Metadata] without a request"};
     };

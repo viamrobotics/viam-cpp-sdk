@@ -14,6 +14,7 @@
 
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/mlmodel/client.hpp>
 #include <viam/sdk/services/mlmodel/server.hpp>
 
@@ -45,6 +46,19 @@ std::shared_ptr<ResourceSubtype> MLModelService::resource_subtype() {
     }
     return std::make_shared<MLModelServiceSubtype>(sd);
 }
+
+Subtype MLModelService::subtype() {
+    return Subtype(RDK, SERVICE, "mlmodel");
+}
+
+namespace {
+bool init() {
+    Registry::register_subtype(MLModelService::subtype(), MLModelService::resource_subtype());
+    return true;
+};
+
+const bool inited = init();
+}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

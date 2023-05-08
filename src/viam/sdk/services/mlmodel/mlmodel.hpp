@@ -157,6 +157,8 @@ class MLModelService : public Service {
 
     static std::shared_ptr<ResourceSubtype> resource_subtype();
 
+    static Subtype subtype();
+
    protected:
     explicit MLModelService(std::string name);
 };

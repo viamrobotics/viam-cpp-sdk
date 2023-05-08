@@ -29,7 +29,6 @@ MLModelServiceClient::MLModelServiceClient(std::string name,
     : MLModelService(name), stub_(std::move(stub)) {}
 
 MLModelService::infer_response MLModelServiceClient::infer(const infer_request& inputs) {
-
     namespace pb = ::google::protobuf;
     namespace mlpb = ::viam::service::mlmodel::v1;
 
@@ -37,7 +36,7 @@ MLModelService::infer_response MLModelServiceClient::infer(const infer_request& 
     auto req = pb::Arena::CreateMessage<mlpb::InferRequest>(&arena);
 
     req->set_name(this->name());
-#if 0
+
     auto& mutable_input_data = *req->mutable_input_data();
     auto& mutable_input_data_fields = *mutable_input_data.mutable_fields();
     for (const auto& kv : inputs) {
@@ -45,9 +44,9 @@ MLModelService::infer_response MLModelServiceClient::infer(const infer_request& 
         // with the current input tensor.
         auto ib = mutable_input_data_fields.emplace(kv.first);
         // TODO: check `b`, should always be `true`
-        pb::Value& value = ib.first->second;
+        [[gnu::unused]] pb::Value& value = ib.first->second;
     }
-#endif
+
     grpc::ClientContext ctx;
     mlpb::InferResponse resp;
 
