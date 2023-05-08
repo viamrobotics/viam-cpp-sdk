@@ -182,8 +182,9 @@ Board::digital_value BoardClient::read_digital_interrupt(
     return response.value();
 }
 
-void BoardClient::set_power_mode(power_mode power_mode,
-                                 boost::optional<const std::chrono::duration<double>&> duration) {
+void BoardClient::set_power_mode(
+    power_mode power_mode,
+    boost::optional<const std::chrono::duration<int64_t, std::micro>&> duration) {
     viam::component::board::v1::SetPowerModeRequest request;
     viam::component::board::v1::SetPowerModeResponse response;
 

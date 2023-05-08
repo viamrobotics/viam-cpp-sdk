@@ -45,8 +45,8 @@ class ResourceNameEqual {
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
 
-std::chrono::duration<double> from_proto(const google::protobuf::Duration& proto);
-google::protobuf::Duration to_proto(const std::chrono::duration<double>& duration);
+std::chrono::duration<int64_t, std::micro> from_proto(const google::protobuf::Duration& proto);
+google::protobuf::Duration to_proto(const std::chrono::duration<int64_t, std::micro>& duration);
 
 }  // namespace sdk
 }  // namespace viam

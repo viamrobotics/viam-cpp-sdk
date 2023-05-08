@@ -54,20 +54,19 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     return img_string;
 };
 
-std::chrono::duration<double> from_proto(const google::protobuf::Duration& proto) {
-    return std::chrono::duration<double, std::ratio<1>>(proto.seconds() +
-                                                        proto.nanos() / (double)1e9);
+std::chrono::duration<int64_t, std::micro> from_proto(const google::protobuf::Duration& proto) {
+    return std::chrono::microseconds(
+        (int64_t)std::ceil(proto.seconds() * 1e6 + proto.nanos() / 1e3));
 }
 
-google::protobuf::Duration to_proto(const std::chrono::duration<double>& duration) {
+google::protobuf::Duration to_proto(const std::chrono::duration<int64_t, std::micro>& duration) {
     google::protobuf::Duration proto;
-    using namespace std::chrono_literals;
-    double total_seconds = duration / 1.0s;
-    long integer_seconds = std::truncl(total_seconds);
-    long integer_nanos = std::truncl(1e9 * (total_seconds - integer_seconds));
+    int64_t total_micros = duration.count();
+    long part_micros = total_micros % 1000000;
+    long part_seconds = (total_micros - part_micros) / 1000000;
 
-    proto.set_seconds(integer_seconds);
-    proto.set_nanos(integer_nanos);
+    proto.set_nanos(part_micros * 1000);
+    proto.set_seconds(part_seconds);
     return proto;
 }
 
