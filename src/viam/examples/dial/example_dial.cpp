@@ -33,7 +33,7 @@ int main() {
     dial_options.set_credentials(credentials);
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);
-    Options options = Options(1, opts);
+    Options options(1, opts);
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
