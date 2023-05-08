@@ -34,6 +34,7 @@ std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
     return std::make_shared<CameraSubtype>(sd);
 }
 
+// NOLINTNEXTLINE
 const std::string Camera::lazy_suffix = "+lazy";
 
 Subtype Camera::static_subtype() {
@@ -75,7 +76,9 @@ Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointClou
 Camera::intrinsic_parameters Camera::from_proto(
     viam::component::camera::v1::IntrinsicParameters proto) {
     Camera::intrinsic_parameters params;
+    // NOLINTNEXTLINE(bugprone-narrowing-conversions)
     params.width_px = proto.width_px();
+    // NOLINTNEXTLINE(bugprone-narrowing-conversions)
     params.height_px = proto.height_px();
     params.focal_x_px = proto.focal_x_px();
     params.focal_y_px = proto.focal_y_px();
@@ -97,11 +100,11 @@ Camera::properties Camera::from_proto(viam::component::camera::v1::GetProperties
     Camera::intrinsic_parameters intrinsic_parameters;
     Camera::properties properties;
 
-    viam::component::camera::v1::DistortionParameters distortion_parameters_proto =
+    const viam::component::camera::v1::DistortionParameters& distortion_parameters_proto =
         proto.distortion_parameters();
     distortion_parameters = from_proto(distortion_parameters_proto);
 
-    viam::component::camera::v1::IntrinsicParameters intrinsic_parameters_proto =
+    const viam::component::camera::v1::IntrinsicParameters& intrinsic_parameters_proto =
         proto.intrinsic_parameters();
     intrinsic_parameters = from_proto(intrinsic_parameters_proto);
 
@@ -161,7 +164,8 @@ bool init() {
     return true;
 };
 
-bool inited = init();
+// NOLINTNEXTLINE
+const bool inited = init();
 }  // namespace
 
 }  // namespace sdk

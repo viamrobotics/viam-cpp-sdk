@@ -28,7 +28,11 @@ if (VIAMCPPSDK_SANITIZED_BUILD)
   target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
   target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
 endif()
-
+if (VIAMCPPSDK_CLANG_TIDY)
+  find_program(CLANG_TIDY_EXE NAMES "clang-tidy-13" "clang-tidy")
+  set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "--config-file=../.clang-tidy")
+  set_target_properties(viamsdk PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
+endif()
 
 target_sources(viamsdk
   PRIVATE

@@ -92,6 +92,11 @@ option(VIAMCPPSDK_USE_WALL_WERROR "Build with -Wall and -Werror flags" ON)
 option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less performant)" OFF)
 
 
+# # - `VIAMCPPSDK_CLANG_TIDY`: This causes the SDK to run clang-tidy
+# with the options specified in the .clang-tidy file. 
+option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
+
+
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")

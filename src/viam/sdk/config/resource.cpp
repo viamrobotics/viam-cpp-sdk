@@ -20,10 +20,11 @@ namespace sdk {
 Name ResourceConfig::resource_name() {
     try {
         this->fix_api();
-    } catch (std::string err) {
+    } catch (std::string err) {  // NOLINT
         throw err;
     }
     std::vector<std::string> remotes;
+    // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     boost::split(remotes, this->name_, boost::is_any_of(":"));
     if (remotes.size() > 1) {
         std::string str_name = remotes.at(remotes.size() - 1);
@@ -63,22 +64,22 @@ const AttributeMap& ResourceConfig::attributes() const {
 }
 
 void ResourceConfig::fix_api() {
-    if (this->api_.type_namespace() == "" && this->namespace__ == "") {
+    if (this->api_.type_namespace().empty() && this->namespace__.empty()) {
         this->namespace__ = RDK;
         this->api_.set_namespace(RDK);
-    } else if (this->api_.type_namespace() == "") {
+    } else if (this->api_.type_namespace().empty()) {
         this->api_.set_namespace(this->namespace__);
     } else {
         this->namespace__ = this->api_.type_namespace();
     }
 
-    if (this->api_.resource_type() == "") {
+    if (this->api_.resource_type().empty()) {
         this->api_.set_resource_type(COMPONENT);
     }
 
-    if (this->api_.resource_subtype() == "") {
+    if (this->api_.resource_subtype().empty()) {
         this->api_.set_resource_subtype(this->type_);
-    } else if (this->type_ == "") {
+    } else if (this->type_.empty()) {
         this->type_ = this->api_.resource_subtype();
     }
 
@@ -96,15 +97,15 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
     resource.namespace__ = proto_cfg.namespace_();
     resource.type_ = proto_cfg.type();
     resource.attributes_ = struct_to_map(proto_cfg.attributes());
-    std::string api = proto_cfg.api();
-    if (api.find(":") != std::string::npos) {
+    const std::string& api = proto_cfg.api();
+    if (api.find(':') != std::string::npos) {
         resource.api_ = Subtype::from_string(api);
     }
     resource.model_ = Model::from_str(proto_cfg.model());
 
     try {
         resource.fix_api();
-    } catch (std::string err) {
+    } catch (std::string err) {  // NOLINT
         throw err;
     }
 
@@ -120,7 +121,7 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     google::protobuf::Struct s = map_to_struct(attributes_);
     google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
 
-    for (auto& svc_cfg : service_config_) {
+    for (const auto& svc_cfg : service_config_) {
         viam::app::v1::ResourceLevelServiceConfig cfg;
         *cfg.mutable_type() = svc_cfg.type;
         *cfg.mutable_attributes() = map_to_struct(svc_cfg.attributes);
@@ -134,7 +135,7 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     const std::string mm = model_.to_string();
     *proto_cfg.mutable_model() = mm;
     *proto_cfg.mutable_attributes() = map_to_struct(attributes_);
-    for (auto& dep : depends_on_) {
+    for (const auto& dep : depends_on_) {
         *proto_cfg.mutable_depends_on()->Add() = dep;
     }
     *proto_cfg.mutable_frame() = frame_.to_proto();

@@ -16,9 +16,9 @@ namespace sdk {
 
 viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
     viam::module::v1::HandlerMap proto;
-    for (auto& h : this->handles_) {
+    for (const auto& h : this->handles_) {
         viam::module::v1::HandlerDefinition hd;
-        for (auto& model : h.second) {
+        for (const auto& model : h.second) {
             const std::string m = model.to_string();
             *hd.mutable_models()->Add() = m;
         }
@@ -36,13 +36,14 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
 
 HandlerMap_::HandlerMap_(){};
 
+// NOLINTNEXTLINE(readability-const-return-type)
 const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
     HandlerMap_ hm;
 
     google::protobuf::RepeatedPtrField<viam::module::v1::HandlerDefinition> handlers =
         proto.handlers();
 
-    for (auto& handler : handlers) {
+    for (const auto& handler : handlers) {
         std::vector<Model> models;
         viam::common::v1::ResourceName name = handler.subtype().subtype();
         Subtype subtype(name.namespace_(), name.type(), name.subtype());
@@ -50,11 +51,11 @@ const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
             google::protobuf::DescriptorPool::generated_pool();
         const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(name.type());
         RPCSubtype handle(subtype, *sd);
-        for (auto& mod : handler.models()) {
+        for (const auto& mod : handler.models()) {
             try {
                 Model model = Model::from_str(mod);
                 models.push_back(model);
-            } catch (std::string error) {
+            } catch (std::string error) {  // NOLINT
                 BOOST_LOG_TRIVIAL(error) << "Error processing model " + mod;
             }
         }

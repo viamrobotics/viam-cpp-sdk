@@ -53,7 +53,8 @@ using viam::robot::v1::Status;
 // error, leading to unhelpful and misleading logging. We should figure out why
 // and fix that in `rust-utils`, but in the meantime this cleans up the logging
 // error on the C++ side.
-const std::string k_stream_removed = "Stream removed";
+// NOLINTNEXTLINE
+const std::string k_stream_removed("Stream removed");
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
@@ -63,7 +64,7 @@ RobotClient::~RobotClient() {
 
 void RobotClient::close() {
     should_refresh_.store(false);
-    for (std::shared_ptr<std::thread> t : threads_) {
+    for (const std::shared_ptr<std::thread>& t : threads_) {
         t->~thread();
     }
     stop_all();
@@ -74,7 +75,7 @@ bool is_error_response(grpc::Status response) {
     return !response.ok() && (response.error_message() != k_stream_removed);
 }
 std::vector<Status> RobotClient::get_status() {
-    auto resources = resource_names();
+    auto* resources = resource_names();
     return get_status(*resources);
 }
 // gets Statuses of components associated with robot. If a specific component
@@ -98,7 +99,7 @@ std::vector<Status> RobotClient::get_status(std::vector<ResourceName>& component
 
     std::vector<Status> statuses = std::vector<Status>();
 
-    for (Status s : status) {
+    for (const Status& s : status) {
         statuses.push_back(s);
     }
 
@@ -116,7 +117,9 @@ std::vector<Operation> RobotClient::get_operations() {
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
+
     for (int i = 0; i < resp.operations().size(); ++i) {
+        // NOLINTNEXTLINE
         operations.push_back(resp.operations().at(i));
     }
     return operations;
@@ -213,9 +216,9 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(std::shared_ptr<ViamChannel> vc)
-    : viam_channel_(vc),
-      channel_(vc->channel()),
+RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
+    : viam_channel_(channel),
+      channel_(channel->channel()),
       should_close_channel_(false),
       stub_(RobotService::NewStub(channel_)) {}
 
@@ -274,7 +277,7 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
     ClientContext ctx;
 
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
-    for (Transform transform : additional_transforms) {
+    for (const Transform& transform : additional_transforms) {
         *req_transforms->Add() = transform;
     }
 
@@ -288,7 +291,7 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
     std::vector<FrameSystemConfig> fs_configs = std::vector<FrameSystemConfig>();
 
-    for (FrameSystemConfig fs : configs) {
+    for (const FrameSystemConfig& fs : configs) {
         fs_configs.push_back(fs);
     }
 
@@ -305,7 +308,7 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
     *req.mutable_destination() = destination;
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
 
-    for (Transform transform : additional_transforms) {
+    for (const Transform& transform : additional_transforms) {
         *req_transforms->Add() = transform;
     }
 
@@ -324,7 +327,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 
     RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
 
-    for (DiscoveryQuery query : queries) {
+    for (const DiscoveryQuery& query : queries) {
         *req_queries->Add() = query;
     }
 
@@ -335,7 +338,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
 
     std::vector<Discovery> components = std::vector<Discovery>();
 
-    for (Discovery d : resp.discovery()) {
+    for (const Discovery& d : resp.discovery()) {
         components.push_back(d);
     }
 
@@ -352,7 +355,7 @@ void RobotClient::stop_all() {
                        ResourceNameHasher,
                        ResourceNameEqual>
         map;
-    for (ResourceName name : *resource_names()) {
+    for (const ResourceName& name : *resource_names()) {
         std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
         map.emplace(name, val);
     }

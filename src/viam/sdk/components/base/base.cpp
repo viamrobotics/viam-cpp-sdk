@@ -55,6 +55,7 @@ bool init() {
     return true;
 };
 
+// NOLINTNEXTLINE
 const bool inited = init();
 }  // namespace
 

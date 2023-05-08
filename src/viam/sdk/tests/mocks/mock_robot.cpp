@@ -155,8 +155,8 @@ std::vector<FrameSystemConfig> mock_config_response() {
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::FrameSystemConfigRequest* request,
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
-    auto configs = response->mutable_frame_system_configs();
-    for (auto& c : mock_config_response()) {
+    auto* configs = response->mutable_frame_system_configs();
+    for (const auto& c : mock_config_response()) {
         *configs->Add() = c;
     }
     return ::grpc::Status();
@@ -166,7 +166,7 @@ std::vector<FrameSystemConfig> mock_config_response() {
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::DiscoverComponentsRequest* request,
     ::viam::robot::v1::DiscoverComponentsResponse* response) {
-    auto discovery = response->mutable_discovery();
+    auto* discovery = response->mutable_discovery();
     for (auto& d : mock_discovery_response()) {
         *discovery->Add() = d;
     }
@@ -185,7 +185,7 @@ std::vector<FrameSystemConfig> mock_config_response() {
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::GetOperationsRequest* request,
     ::viam::robot::v1::GetOperationsResponse* response) {
-    auto ops = response->mutable_operations();
+    auto* ops = response->mutable_operations();
     for (auto& op : mock_operations_response()) {
         *ops->Add() = op;
     }

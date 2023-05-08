@@ -30,7 +30,7 @@ std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<Resource> 
             continue;
         }
 
-        if (resource_type == "") {
+        if (resource_type.empty()) {
             resource_type = resource->name();
         }
 

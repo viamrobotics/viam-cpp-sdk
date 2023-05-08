@@ -1,0 +1,37 @@
+# Globally Disabled checks:
+#
+# bugprone-easily-swappable-parameters: This warning is loud with no clear advice on how to fix the potential problem
+# bugprone-macro-parentheses: Can break with boost macros
+# readability-identifier-length: This complains about identifiers with length < 3 which is often not useful.
+# readability-named-parameter: Useful to fix lints about unused parameters
+# readability-implicit-bool-conversion: We have decided that !ptr-type is cleaner than ptr-type==nullptr
+# readability-magic-numbers: This encourages useless variables and extra lint lines
+# performance-unnecessary-value-param: TODO(RSDK-3007) remove this and fix all lints.
+# performance-move-const-arg: TODO(RSDK-3019)
+# misc-unused-parameters: TODO(RSDK-3008) remove this and fix all lints.
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  concurrency-*,
+  misc-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-macro-parentheses,
+  -readability-identifier-length,
+  -readability-named-parameter,
+  -readability-implicit-bool-conversion,
+  -readability-magic-numbers,
+  -performance-unnecessary-value-param,
+  -performance-move-const-arg,
+  -misc-unused-parameters,
+WarningsAsErrors: '*'
+FormatStyle: none
+CheckOptions:
+  - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+    value: true
+  - key: readability-function-cognitive-complexity.Threshold
+    value: 30
