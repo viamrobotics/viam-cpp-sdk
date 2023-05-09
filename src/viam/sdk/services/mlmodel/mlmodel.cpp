@@ -35,7 +35,9 @@ std::shared_ptr<Resource> MLModelServiceSubtype::create_rpc_client(
     return std::make_shared<MLModelServiceClient>(std::move(name), std::move(channel));
 };
 
-MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
+Subtype MLModelService::static_subtype() {
+    return Subtype(RDK, SERVICE, "mlmodel");
+}
 
 std::shared_ptr<ResourceSubtype> MLModelService::resource_subtype() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
@@ -47,13 +49,15 @@ std::shared_ptr<ResourceSubtype> MLModelService::resource_subtype() {
     return std::make_shared<MLModelServiceSubtype>(sd);
 }
 
-Subtype MLModelService::subtype() {
-    return Subtype(RDK, SERVICE, "mlmodel");
+Subtype MLModelService::dynamic_subtype() const {
+    return static_subtype();
 }
+
+MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 namespace {
 bool init() {
-    Registry::register_subtype(MLModelService::subtype(), MLModelService::resource_subtype());
+    Registry::register_subtype(MLModelService::static_subtype(), MLModelService::resource_subtype());
     return true;
 };
 

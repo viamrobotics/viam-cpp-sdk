@@ -183,7 +183,7 @@ int serve(const std::string& socket_path) {
         vs::ResourceType{"ExampleMLModelServiceModule"},
 
         // NOTE: This feels like an opportunity to take the type
-        vs::MLModelService::subtype(),
+        vs::MLModelService::static_subtype(),
 
         // NOTE: What do these strings do/mean/constrain/affect?
         vs::Model{"viam", "example", "mlmodel"},

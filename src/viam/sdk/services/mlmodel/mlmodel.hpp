@@ -46,6 +46,12 @@ class MLModelServiceSubtype : public ResourceSubtype {
 ///
 class MLModelService : public Service {
    public:
+
+    static Subtype static_subtype();
+    static std::shared_ptr<ResourceSubtype> resource_subtype();
+
+    Subtype dynamic_subtype() const override;
+
     // Ultimately, we want an xchunked_array backed by a std::vector
     // of adapted linear buffers over T. Explicitly naming that type
     // would be profoundly difficult given how `xtensor` works. Use
@@ -154,10 +160,6 @@ class MLModelService : public Service {
 
     // XXX ACM TODO: doc comment
     virtual struct metadata metadata() = 0;
-
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
-
-    static Subtype subtype();
 
    protected:
     explicit MLModelService(std::string name);
