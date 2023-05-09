@@ -19,10 +19,10 @@ class Resource {
    public:
     virtual ~Resource();
     explicit Resource(std::string name) : name_(std::move(name)){};
-    static Subtype static_subtype();
+    static API static_api();
 
-    /// @brief Returns the `Subtype` associated with a particular resource.
-    virtual Subtype dynamic_subtype() const = 0;
+    /// @brief Returns the `API` associated with a particular resource.
+    virtual API dynamic_api() const = 0;
 
     /// @brief Returns a `ResourceName` for a particular resource name.
     virtual viam::common::v1::ResourceName get_resource_name(std::string name);

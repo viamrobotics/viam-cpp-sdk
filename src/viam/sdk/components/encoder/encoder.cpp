@@ -14,32 +14,32 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceServer> EncoderSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> EncoderRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<EncoderServer>(manager);
 };
 
-std::shared_ptr<Resource> EncoderSubtype::create_rpc_client(std::string name,
-                                                            std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> EncoderRegistration::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<EncoderClient>(std::move(name), std::move(chan));
 };
 
-std::shared_ptr<ResourceSubtype> Encoder::resource_subtype() {
+std::shared_ptr<ResourceRegistration> Encoder::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::encoder::v1::EncoderService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the encoder service");
     }
-    return std::make_shared<EncoderSubtype>(sd);
+    return std::make_shared<EncoderRegistration>(sd);
 }
 
-Subtype Encoder::static_subtype() {
-    return Subtype(RDK, COMPONENT, "encoder");
+API Encoder::static_api() {
+    return API(RDK, COMPONENT, "encoder");
 }
 
-Subtype Encoder::dynamic_subtype() const {
-    return static_subtype();
+API Encoder::dynamic_api() const {
+    return static_api();
 }
 
 Encoder::position_type Encoder::from_proto(viam::component::encoder::v1::PositionType proto) {
@@ -121,7 +121,7 @@ bool operator==(const Encoder::properties& lhs, const Encoder::properties& rhs) 
 
 namespace {
 bool init() {
-    Registry::register_subtype(Encoder::static_subtype(), Encoder::resource_subtype());
+    Registry::register_resource(Encoder::static_api(), Encoder::resource_registration());
     return true;
 };
 

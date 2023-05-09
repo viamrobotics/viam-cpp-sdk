@@ -18,17 +18,17 @@ namespace sdk {
 
 /// @defgroup Motor Classes related to the `Motor` component.
 
-/// @class MotorSubtype
-/// @brief Defines a `ResourceSubtype` for the `Motor` component.
+/// @class MotorRegistration
+/// @brief Defines a `ResourceRegistration` for the `Motor` component.
 /// @ingroup Motor
-class MotorSubtype : public ResourceSubtype {
+class MotorRegistration : public ResourceRegistration {
    public:
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    MotorSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceSubtype(service_descriptor){};
+    MotorRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Motor motor.hpp "components/motor/motor.hpp"
@@ -62,8 +62,8 @@ class Motor : public Component {
     };
 
     // functions shared across all components
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype static_subtype();
+    static std::shared_ptr<ResourceRegistration> resource_registration();
+    static API static_api();
 
     /// @brief Creates a `position` struct from its proto representation.
     static position from_proto(viam::component::motor::v1::GetPositionResponse proto);
@@ -129,7 +129,7 @@ class Motor : public Component {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
-    Subtype dynamic_subtype() const override;
+    API dynamic_api() const override;
 
    protected:
     explicit Motor(std::string name) : Component(std::move(name)){};

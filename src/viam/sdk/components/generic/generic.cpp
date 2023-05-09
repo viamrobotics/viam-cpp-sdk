@@ -15,37 +15,37 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceServer> GenericSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> GenericRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<GenericServer>(manager);
 };
 
-std::shared_ptr<Resource> GenericSubtype::create_rpc_client(std::string name,
-                                                            std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> GenericRegistration::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<GenericClient>(std::move(name), std::move(chan));
 };
 
-std::shared_ptr<ResourceSubtype> Generic::resource_subtype() {
+std::shared_ptr<ResourceRegistration> Generic::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::generic::v1::GenericService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the generic service");
     }
-    return std::make_shared<GenericSubtype>(sd);
+    return std::make_shared<GenericRegistration>(sd);
 }
 
-Subtype Generic::static_subtype() {
-    return Subtype(RDK, COMPONENT, "generic");
+API Generic::static_api() {
+    return API(RDK, COMPONENT, "generic");
 }
 
-Subtype Generic::dynamic_subtype() const {
-    return static_subtype();
+API Generic::dynamic_api() const {
+    return static_api();
 }
 
 namespace {
 bool init() {
-    Registry::register_subtype(Generic::static_subtype(), Generic::resource_subtype());
+    Registry::register_resource(Generic::static_api(), Generic::resource_registration());
     return true;
 };
 

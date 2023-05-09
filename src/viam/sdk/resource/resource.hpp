@@ -9,10 +9,10 @@
 namespace viam {
 namespace sdk {
 
-class Type {
+class APIType {
    public:
-    Type(std::string namespace_, std::string resource_type);
-    Type(){};
+    APIType(std::string namespace_, std::string resource_type);
+    APIType(){};
     virtual std::string to_string() const;
 
     const std::string& type_namespace() const;
@@ -26,36 +26,36 @@ class Type {
     std::string resource_type_;
 };
 
-class Subtype : public Type {
+class API : public APIType {
    public:
     virtual std::string to_string() const override;
-    Subtype(){};
-    Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype);
-    Subtype(Type type, std::string resource_subtype);
-    static Subtype from_string(std::string subtype);
+    API(){};
+    API(std::string namespace_, std::string resource_type, std::string resource_subtype);
+    API(APIType type, std::string resource_subtype);
+    static API from_string(std::string api);
 
     const std::string& resource_subtype() const;
     void set_resource_subtype(const std::string subtype);
     bool is_component_type();
     bool is_service_type();
-    friend bool operator==(Subtype const& lhs, Subtype const& rhs);
-    friend bool operator<(const Subtype& lhs, const Subtype& rhs);
+    friend bool operator==(API const& lhs, API const& rhs);
+    friend bool operator<(const API& lhs, const API& rhs);
 
    private:
     std::string resource_subtype_;
 };
 
-// TODO: instead of inheriting from Subtype probably this should just have a
-// Subtype as a member
-class Name : public Subtype {
+// TODO: instead of inheriting from API probably this should just have a
+// API as a member
+class Name : public API {
    public:
     std::string short_name() const;
     virtual std::string to_string() const override;
-    // TODO: this isn't necessary, instead this->Subtype::to_string();
-    const Subtype* to_subtype() const;
+    // TODO: this isn't necessary, instead this->API::to_string();
+    const API* to_api() const;
     viam::common::v1::ResourceName to_proto() const;
     static Name from_string(std::string name);
-    Name(Subtype subtype, std::string remote_name, std::string name);
+    Name(API api, std::string remote_name, std::string name);
     Name();
     const std::string& name() const;
     const std::string& remote_name() const;
@@ -69,14 +69,14 @@ class Name : public Subtype {
 class RPCSubtype {
    public:
     bool operator<(const RPCSubtype& rhs) const {
-        return (subtype_.to_string() + proto_service_name_ + descriptor_.DebugString()) <
-               (rhs.subtype_.to_string() + rhs.proto_service_name_ + rhs.descriptor_.DebugString());
+        return (api_.to_string() + proto_service_name_ + descriptor_.DebugString()) <
+               (rhs.api_.to_string() + rhs.proto_service_name_ + rhs.descriptor_.DebugString());
     };
     const std::string& proto_service_name() const;
-    const Subtype& subtype() const;
+    const API& api() const;
 
-    RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor);
-    RPCSubtype(Subtype subtype,
+    RPCSubtype(API api, const google::protobuf::ServiceDescriptor& descriptor);
+    RPCSubtype(API api,
                std::string proto_service_name,
                const google::protobuf::ServiceDescriptor& descriptor);
     friend bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs);
@@ -84,7 +84,7 @@ class RPCSubtype {
    private:
     const google::protobuf::ServiceDescriptor& descriptor_;
     std::string proto_service_name_;
-    Subtype subtype_;
+    API api_;
 };
 
 class ModelFamily {
@@ -131,15 +131,15 @@ struct std::hash<::viam::sdk::Name> {
 template <>
 struct std::hash<::viam::sdk::RPCSubtype> {
     size_t operator()(::viam::sdk::RPCSubtype const& key) const noexcept {
-        ::viam::sdk::Subtype subtype = key.subtype();
-        std::string hash = subtype.to_string() + key.proto_service_name();
+        const ::viam::sdk::API& api = key.api();
+        std::string hash = api.to_string() + key.proto_service_name();
         return std::hash<std::string>()(hash);
     };
 };
 
 template <>
-struct std::hash<::viam::sdk::Subtype> {
-    size_t operator()(const ::viam::sdk::Subtype& key) const noexcept {
+struct std::hash<::viam::sdk::API> {
+    size_t operator()(const ::viam::sdk::API& key) const noexcept {
         return std::hash<std::string>()(key.to_string());
     };
 };

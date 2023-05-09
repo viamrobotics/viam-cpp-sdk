@@ -23,7 +23,7 @@ viam::module::v1::HandlerMap HandlerMap_::to_proto() const {
             *hd.mutable_models()->Add() = m;
         }
         viam::robot::v1::ResourceRPCSubtype rpc_subtype;
-        Name name(h.first.subtype(), "", "");
+        Name name(h.first.api(), "", "");
         viam::common::v1::ResourceName resource_name = name.to_proto();
         *rpc_subtype.mutable_subtype() = resource_name;
         *rpc_subtype.mutable_proto_service() = h.first.proto_service_name();
@@ -46,11 +46,11 @@ const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
     for (const auto& handler : handlers) {
         std::vector<Model> models;
         viam::common::v1::ResourceName name = handler.subtype().subtype();
-        Subtype subtype(name.namespace_(), name.type(), name.subtype());
+        API api(name.namespace_(), name.type(), name.subtype());
         const google::protobuf::DescriptorPool* pool =
             google::protobuf::DescriptorPool::generated_pool();
         const google::protobuf::ServiceDescriptor* sd = pool->FindServiceByName(name.type());
-        RPCSubtype handle(subtype, *sd);
+        RPCSubtype handle(api, *sd);
         for (const auto& mod : handler.models()) {
             try {
                 Model model = Model::from_str(mod);

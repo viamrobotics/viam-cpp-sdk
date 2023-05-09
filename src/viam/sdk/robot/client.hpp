@@ -90,10 +90,10 @@ class RobotClient {
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         ResourceName r;
-        Subtype subtype = T::static_subtype();
-        *r.mutable_namespace_() = subtype.type_namespace();
-        *r.mutable_type() = subtype.resource_type();
-        *r.mutable_subtype() = subtype.resource_subtype();
+        API api = T::static_api();
+        *r.mutable_namespace_() = api.type_namespace();
+        *r.mutable_type() = api.resource_type();
+        *r.mutable_subtype() = api.resource_subtype();
         *r.mutable_name() = std::move(name);
 
         auto resource = this->resource_by_name(std::move(r));

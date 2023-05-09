@@ -24,65 +24,65 @@ const std::regex MODEL_REGEX("^([\\w-]+):([\\w-]+):([\\w-]+)$");
 // NOLINTNEXTLINE
 std::regex SINGLE_FIELD_REGEX("^([\\w-]+)$");
 
-std::string Type::to_string() const {
+std::string APIType::to_string() const {
     return namespace_ + ":" + resource_type_;
 }
 
-Type::Type(std::string namespace_, std::string resource_type)
+APIType::APIType(std::string namespace_, std::string resource_type)
     : namespace_(namespace_), resource_type_(resource_type){};
 
-std::string Subtype::to_string() const {
-    return Type::to_string() + ":" + resource_subtype_;
+std::string API::to_string() const {
+    return APIType::to_string() + ":" + resource_subtype_;
 }
 
-const std::string& Type::type_namespace() const {
+const std::string& APIType::type_namespace() const {
     return namespace_;
 }
 
-void Type::set_namespace(const std::string type_namespace) {
+void APIType::set_namespace(const std::string type_namespace) {
     this->namespace_ = type_namespace;
 }
 
-void Type::set_resource_type(const std::string resource_type) {
+void APIType::set_resource_type(const std::string resource_type) {
     this->resource_type_ = resource_type;
 }
 
-const std::string& Type::resource_type() const {
+const std::string& APIType::resource_type() const {
     return resource_type_;
 }
 
-const std::string& Subtype::resource_subtype() const {
+const std::string& API::resource_subtype() const {
     return resource_subtype_;
 }
 
-void Subtype::set_resource_subtype(const std::string subtype) {
+void API::set_resource_subtype(const std::string subtype) {
     this->resource_subtype_ = subtype;
 }
 
-Subtype Subtype::from_string(std::string subtype) {
-    if (std::regex_match(subtype, MODEL_REGEX)) {
-        std::vector<std::string> subtype_parts;
-        boost::split(subtype_parts, subtype, boost::is_any_of(":"));
-        return {subtype_parts.at(0), subtype_parts.at(1), subtype_parts.at(2)};
+API API::from_string(std::string api) {
+    if (std::regex_match(api, MODEL_REGEX)) {
+        std::vector<std::string> api_parts;
+        boost::split(api_parts, api, boost::is_any_of(":"));
+        return {api_parts.at(0), api_parts.at(1), api_parts.at(2)};
     }
-    throw "string " + subtype + " is not a valid subtype name";
+    throw "string " + api + " is not a valid api name";
 }
 
-Subtype::Subtype(Type type, std::string resource_subtype)
-    : Type(type), resource_subtype_(resource_subtype) {}
+API::API(APIType type, std::string resource_subtype)
+    : APIType(type), resource_subtype_(resource_subtype) {}
 
-Subtype::Subtype(std::string namespace_, std::string resource_type, std::string resource_subtype)
-    : Type(namespace_, resource_type), resource_subtype_(resource_subtype) {}
+API::API(std::string namespace_, std::string resource_type, std::string resource_subtype)
+    : APIType(namespace_, resource_type), resource_subtype_(resource_subtype) {}
 
-bool Subtype::is_service_type() {
+bool API::is_service_type() {
     return (this->resource_type() == "service");
 }
 
-bool Subtype::is_component_type() {
+bool API::is_component_type() {
     return (this->resource_type() == "component");
 }
 
-const Subtype* Name::to_subtype() const {
+const API* Name::to_api() const {
     return this;
 }
 
@@ -95,7 +95,7 @@ const std::string& Name::remote_name() const {
 }
 
 std::string Name::to_string() const {
-    std::string subtype_name = Subtype::to_string();
+    std::string subtype_name = API::to_string();
     if (remote_name_.empty()) {
         return subtype_name + "/" + name_;
     }
@@ -125,7 +125,7 @@ Name Name::from_string(std::string name) {
     std::vector<std::string> slash_splits;
     boost::split(slash_splits, name, boost::is_any_of("/"));
 
-    Subtype subtype = Subtype::from_string(slash_splits.at(0));
+    API api = API::from_string(slash_splits.at(0));
 
     std::vector<std::string> colon_splits;
     boost::split(colon_splits, slash_splits.at(1), boost::is_any_of(":"));
@@ -136,17 +136,17 @@ Name Name::from_string(std::string name) {
         resource_name = colon_splits.at(1);
     }
 
-    return Name(subtype, remote, resource_name);
+    return Name(api, remote, resource_name);
 }
 
-Name::Name(Subtype subtype, std::string remote, std::string name)
-    : Subtype(subtype), remote_name_(std::move(remote)), name_(std::move(name)) {}
+Name::Name(API api, std::string remote, std::string name)
+    : API(api), remote_name_(std::move(remote)), name_(std::move(name)) {}
 
-bool operator==(const Subtype& lhs, const Subtype& rhs) {
+bool operator==(const API& lhs, const API& rhs) {
     return lhs.to_string() == rhs.to_string();
 }
 
-bool operator<(const Subtype& lhs, const Subtype& rhs) {
+bool operator<(const API& lhs, const API& rhs) {
     return lhs.to_string() < rhs.to_string();
 }
 
@@ -155,7 +155,7 @@ bool operator==(const Name& lhs, const Name& rhs) {
 }
 
 bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {
-    return lhs.subtype_.to_string() == rhs.subtype_.to_string() &&
+    return lhs.api_.to_string() == rhs.api_.to_string() &&
            lhs.proto_service_name_ == rhs.proto_service_name_ &&
            lhs.descriptor_.DebugString() == rhs.descriptor_.DebugString();
 }
@@ -164,22 +164,22 @@ bool operator==(const Model& lhs, const Model& rhs) {
     return lhs.to_string() == rhs.to_string();
 }
 
-RPCSubtype::RPCSubtype(Subtype subtype,
+RPCSubtype::RPCSubtype(API api,
                        std::string proto_service_name,
                        const google::protobuf::ServiceDescriptor& descriptor)
     : descriptor_(std::move(descriptor)),
       proto_service_name_(std::move(proto_service_name)),
-      subtype_(std::move(subtype)) {}
+      api_(std::move(api)) {}
 
-RPCSubtype::RPCSubtype(Subtype subtype, const google::protobuf::ServiceDescriptor& descriptor)
-    : descriptor_(std::move(descriptor)), subtype_(std::move(subtype)) {}
+RPCSubtype::RPCSubtype(API api, const google::protobuf::ServiceDescriptor& descriptor)
+    : descriptor_(std::move(descriptor)), api_(std::move(api)) {}
 
 const std::string& RPCSubtype::proto_service_name() const {
     return proto_service_name_;
 };
 
-const Subtype& RPCSubtype::subtype() const {
-    return subtype_;
+const API& RPCSubtype::api() const {
+    return api_;
 };
 
 ModelFamily::ModelFamily(std::string namespace_, std::string family)

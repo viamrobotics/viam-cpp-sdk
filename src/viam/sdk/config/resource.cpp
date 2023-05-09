@@ -35,7 +35,7 @@ Name ResourceConfig::resource_name() {
     return Name(this->api_, "", remotes.at(0));
 }
 
-const Subtype& ResourceConfig::api() const {
+const API& ResourceConfig::api() const {
     return api_;
 }
 
@@ -99,7 +99,7 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
     resource.attributes_ = struct_to_map(proto_cfg.attributes());
     const std::string& api = proto_cfg.api();
     if (api.find(':') != std::string::npos) {
-        resource.api_ = Subtype::from_string(api);
+        resource.api_ = API::from_string(api);
     }
     resource.model_ = Model::from_str(proto_cfg.model());
 

@@ -25,7 +25,7 @@ std::string Resource::name() const {
     return name_;
 }
 
-Subtype Resource::static_subtype() {
+API Resource::static_api() {
     return {RDK, RESOURCE, "Resource"};
 }
 
@@ -39,7 +39,7 @@ ResourceName Resource::get_resource_name(std::string name) {
     ResourceName r;
     *r.mutable_namespace_() = RDK;
     *r.mutable_type() = RESOURCE;
-    *r.mutable_subtype() = this->dynamic_subtype().resource_subtype();
+    *r.mutable_subtype() = this->dynamic_api().resource_subtype();
     *r.mutable_name() = std::move(name);
 
     return r;

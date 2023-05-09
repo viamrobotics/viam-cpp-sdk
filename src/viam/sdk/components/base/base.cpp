@@ -19,39 +19,39 @@ BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
       stub_(viam::component::base::v1::BaseService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-std::shared_ptr<ResourceServer> BaseSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> BaseRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<BaseServer>(manager);
 };
 
-std::shared_ptr<Resource> BaseSubtype::create_rpc_client(std::string name,
-                                                         std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> BaseRegistration::create_rpc_client(std::string name,
+                                                              std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<BaseClient>(std::move(name), std::move(chan));
 };
 
-std::shared_ptr<ResourceSubtype> Base::resource_subtype() {
+std::shared_ptr<ResourceRegistration> Base::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::base::v1::BaseService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the base service");
     }
-    return std::make_shared<BaseSubtype>(sd);
+    return std::make_shared<BaseRegistration>(sd);
 }
 
-Subtype Base::static_subtype() {
-    return Subtype(RDK, COMPONENT, "base");
+API Base::static_api() {
+    return API(RDK, COMPONENT, "base");
 }
 
-Subtype Base::dynamic_subtype() const {
-    return static_subtype();
+API Base::dynamic_api() const {
+    return static_api();
 }
 
 Base::Base(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {
-    Registry::register_subtype(Base::static_subtype(), Base::resource_subtype());
+    Registry::register_resource(Base::static_api(), Base::resource_registration());
     return true;
 };
 

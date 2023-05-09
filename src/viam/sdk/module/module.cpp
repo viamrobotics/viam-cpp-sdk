@@ -34,10 +34,10 @@ HandlerMap_& Module::mutable_handles() {
 const std::shared_ptr<grpc::Channel>& Module::channel() const {
     return channel_;
 };
-const std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& Module::services() const {
+const std::unordered_map<API, std::shared_ptr<ResourceManager>>& Module::services() const {
     return services_;
 };
-std::unordered_map<Subtype, std::shared_ptr<ResourceManager>>& Module::mutable_services() {
+std::unordered_map<API, std::shared_ptr<ResourceManager>>& Module::mutable_services() {
     return services_;
 };
 const std::vector<std::shared_ptr<ResourceServer>>& Module::servers() const {
