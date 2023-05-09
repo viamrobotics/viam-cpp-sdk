@@ -18,20 +18,6 @@ namespace vs = ::viam::sdk;
 
 const std::string service_name = "example_mlmodel";
 
-// Robot config:
-// {
-//     "services" : [ {
-//         "namespace" : "rdk",
-//         "type" : "mlmodel",
-//         "name" : "example_mlmodel",
-//         "model" : "viam:example:mlmodel"
-//     } ],
-//     "modules" : [ {
-//         "name" : "example-mlmodel-service",
-//         "executable_path" : "/path/to/viam-cpp-sdk/build/install/bin/example_mlmodel"
-//     } ],
-//     "components" : []
-// }
 class ExampleMLModelService : public vs::MLModelService {
    public:
     explicit ExampleMLModelService(std::string name) : MLModelService(std::move(name)) {
@@ -45,7 +31,143 @@ class ExampleMLModelService : public vs::MLModelService {
 
     struct metadata metadata() override {
         std::cout << "ExampleMLModelService: recieved `metadata` invocation" << std::endl;
-        return {};
+
+        // This metadata is modelled on the results obtained from
+        // invoking `Metadata` on a instance of tflite_cpu configured
+        // per the instructions and data at
+        // https://github.com/viamrobotics/vision-service-examples/tree/aa4195485754151fccbfd61fbe8bed63db7f300f
+
+        return {
+            // name
+            "EfficientDet Lite0 V1",
+
+            // type
+            "tflite_detector",
+
+            // description
+            "Identify which of a known set of objects might be present and provide information about their positions within the given image or a video stream.",
+
+            // `inputs`
+            {
+                {
+                    // name
+                    "image",
+
+                    // description
+                    "Input image to be detected. The expected image is 320 x 320, with three channels (red, blue, and green) per pixel. Each value in the tensor is a single byte between 0 and 255.",
+
+                    // data_type
+                    "uint8",
+
+                    // shape
+                    {1, 320, 320, 3},
+
+                    // associated_files
+                    {},
+
+                    // extra
+                    // {}
+                },
+            },
+
+            // outputs
+            {
+                {
+                    // name
+                    "location",
+
+                    // description
+                    "The locations of the detected boxes.",
+
+                    // data_type
+                    "float32",
+
+                    // shape
+                    {},
+
+                    // associated_files
+                    {}
+
+                    // extra {
+                    // fields {
+                    // key: "labels"
+                    // value {
+                    //     string_value: "/example/labels.txt"
+                    //    }
+                    // }
+
+                },
+
+                {
+                    // name
+                    "category",
+
+                    // description
+                    "The categories of the detected boxes.",
+
+                    // data_type
+                    "float32",
+
+                    // shape
+                    {},
+
+                    // associated files
+                    {{
+                        // name
+                        "labelmap.txt",
+
+                        // description
+                        "Label of objects that this model can recognize.",
+
+                        MLModelService::tensor_info::file::k_type_tensor_value,
+                    }}
+
+                    // extra
+                    // {}
+                },
+
+                {
+                    // name
+                    "score",
+
+                    // description
+                    "The scores of the detected boxes.",
+
+                    // data_type
+                    "float32",
+
+                    // shape
+                    {},
+
+                    // associated_files
+                    {}
+
+                    // extra
+                    // {}
+
+                },
+
+                {
+                    // name
+                    "number of detections",
+
+                    // description,
+                    "The number of the detected boxes."
+
+                    // data_type
+                    "float32",
+
+                    // shape
+                    {},
+
+                    // associated_files
+                    {}
+
+                    // extra
+                    // {}
+                }
+            }
+        };
     }
 };
 
