@@ -19,12 +19,12 @@ namespace sdk {
 
 /// @defgroup Board Classes related to the `Board` component.
 
-/// @class BoardSubtype
-/// @brief Defines a `ResourceSubtype` for the `Board` component.
+/// @class BoardRegistration
+/// @brief Defines a `ResourceRegistration` for the `Board` component.
 /// @ingroup Board
-class BoardSubtype : public ResourceSubtype {
+class BoardRegistration : public ResourceRegistration {
    public:
-    explicit BoardSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
+    explicit BoardRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
@@ -66,9 +66,9 @@ class Board : public Component {
     enum class power_mode : uint8_t { normal = 0, offline_deep = 1 };
 
     // functions shared across all components
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype static_subtype();
-    Subtype dynamic_subtype() const override;
+    static std::shared_ptr<ResourceRegistration> resource_registration();
+    static API static_api();
+    API dynamic_api() const override;
 
     /// @brief Creates a `status` struct from its proto representation.
     static status from_proto(viam::common::v1::BoardStatus proto);
