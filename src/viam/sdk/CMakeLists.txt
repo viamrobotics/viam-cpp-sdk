@@ -49,6 +49,9 @@ target_sources(viamsdk
     components/base/base.cpp
     components/base/client.cpp
     components/base/server.cpp
+    components/board/board.cpp
+    components/board/client.cpp
+    components/board/server.cpp
     components/camera/camera.cpp
     components/camera/client.cpp
     components/camera/server.cpp
@@ -84,6 +87,7 @@ target_sources(viamsdk
     tests/mocks/camera_mocks.cpp
     tests/mocks/generic_mocks.cpp
     tests/mocks/mock_base.cpp
+    tests/mocks/mock_board.cpp
     tests/mocks/mock_encoder.cpp
     tests/mocks/mock_motor.cpp
     tests/mocks/mock_robot.cpp
@@ -97,6 +101,9 @@ target_sources(viamsdk
       ../../viam/sdk/components/base/base.hpp
       ../../viam/sdk/components/base/client.hpp
       ../../viam/sdk/components/base/server.hpp
+      ../../viam/sdk/components/board/board.hpp
+      ../../viam/sdk/components/board/client.hpp
+      ../../viam/sdk/components/board/server.hpp
       ../../viam/sdk/components/camera/camera.hpp
       ../../viam/sdk/components/camera/client.hpp
       ../../viam/sdk/components/camera/server.hpp
@@ -133,6 +140,7 @@ target_sources(viamsdk
       ../../viam/sdk/tests/mocks/camera_mocks.hpp
       ../../viam/sdk/tests/mocks/generic_mocks.hpp
       ../../viam/sdk/tests/mocks/mock_base.hpp
+      ../../viam/sdk/tests/mocks/mock_board.hpp
       ../../viam/sdk/tests/mocks/mock_encoder.hpp
       ../../viam/sdk/tests/mocks/mock_motor.hpp
       ../../viam/sdk/tests/mocks/mock_robot.hpp

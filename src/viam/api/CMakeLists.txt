@@ -93,6 +93,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/base/v1/base.grpc.pb.h
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.cc
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.h
+    ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/board/v1/board.pb.cc
+    ${PROTO_GEN_DIR}/component/board/v1/board.pb.h
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.h
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
@@ -178,6 +182,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/component/base/v1/base.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.cc
+    ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/board/v1/board.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
     ${PROTO_GEN_DIR}/component/encoder/v1/encoder.grpc.pb.cc
@@ -207,6 +213,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/common/v1/common.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/base/v1/base.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/base/v1/base.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/camera/v1/camera.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/camera/v1/camera.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/encoder/v1/encoder.grpc.pb.h

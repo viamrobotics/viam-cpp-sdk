@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <unordered_map>
 
 #include <boost/optional/optional.hpp>
@@ -43,6 +44,9 @@ class ResourceNameEqual {
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
+
+std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
+google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
 
 }  // namespace sdk
 }  // namespace viam

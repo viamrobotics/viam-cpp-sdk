@@ -54,5 +54,33 @@ std::string bytes_to_string(std::vector<unsigned char> const& b) {
     return img_string;
 };
 
+std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
+    namespace sc = std::chrono;
+    const sc::seconds seconds_part{proto.seconds()};
+    const sc::nanoseconds nanos_part{proto.nanos()};
+
+    const sc::microseconds from_seconds = sc::duration_cast<sc::microseconds>(seconds_part);
+    sc::microseconds from_nanos = sc::duration_cast<sc::microseconds>(nanos_part);
+
+    if ((nanos_part.count() < 0) && (from_nanos > nanos_part)) {
+        from_nanos -= sc::microseconds(1);
+    } else if ((nanos_part.count() > 0) && (from_nanos < nanos_part)) {
+        from_nanos += sc::microseconds(1);
+    }
+    return from_seconds + from_nanos;
+}
+
+google::protobuf::Duration to_proto(const std::chrono::microseconds& duration) {
+    namespace sc = std::chrono;
+
+    const sc::seconds seconds = sc::duration_cast<sc::seconds>(duration);
+    const sc::nanoseconds nanos = duration - seconds;
+
+    google::protobuf::Duration proto;
+    proto.set_nanos(static_cast<int32_t>(nanos.count()));
+    proto.set_seconds(seconds.count());
+    return proto;
+}
+
 }  // namespace sdk
 }  // namespace viam
