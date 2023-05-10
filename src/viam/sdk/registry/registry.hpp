@@ -15,7 +15,7 @@
 
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/resource/resource_type.hpp>
@@ -26,11 +26,11 @@ namespace sdk {
 // TODO(RSDK-1742): instead of std::functions, consider making these functions
 // virtual
 // TODO(RSDK-1742): one class per header
-/// @class ResourceSubtype registry.hpp "registry/registry.hpp"
+/// @class ResourceRegistration registry.hpp "registry/registry.hpp"
 /// @brief Defines registered `Resource` creation functionality.
-class ResourceSubtype {
+class ResourceRegistration {
    public:
-    virtual ~ResourceSubtype();
+    virtual ~ResourceRegistration();
     /// @brief Add `Reconfigure` functionality to a resource.
     std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 
@@ -40,7 +40,7 @@ class ResourceSubtype {
     virtual std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) = 0;
 
-    /// @brief Returns a reference to the `ResourceSubtype`'s service descriptor.
+    /// @brief Returns a reference to the `ResourceRegistration`'s service descriptor.
     const google::protobuf::ServiceDescriptor* service_descriptor();
 
     /// @brief Create gRPC client to a resource.
@@ -50,7 +50,7 @@ class ResourceSubtype {
     virtual std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                         std::shared_ptr<grpc::Channel> channel) = 0;
 
-    ResourceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
+    ResourceRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
         : service_descriptor_(service_descriptor){};
 
    private:
@@ -66,18 +66,18 @@ class ModelRegistration {
 
     ModelRegistration(
         ResourceType rt,
-        Subtype subtype,
+        API api,
         Model model,
         std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
         : construct_resource(std::move(constructor)),
           validate(default_validator),
           model_(std::move(model)),
           resource_type_(std::move(rt)),
-          subtype_(std::move(subtype)){};
+          api_(std::move(api)){};
 
     ModelRegistration(
         ResourceType rt,
-        Subtype subtype,
+        API api,
         Model model,
         std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
         std::function<std::vector<std::string>(ResourceConfig)> validator)
@@ -85,10 +85,10 @@ class ModelRegistration {
           validate(std::move(validator)),
           model_(std::move(model)),
           resource_type_(std::move(rt)),
-          subtype_(std::move(subtype)){};
+          api_(std::move(api)){};
 
     const ResourceType& resource_type() const;
-    const Subtype& subtype() const;
+    const API& api() const;
     const Model& model() const;
 
     /// @brief Constructs a resource from a map of dependencies and a resource config.
@@ -105,7 +105,7 @@ class ModelRegistration {
     // is provided in construction. No dependencies are returned.
     Model model_;
     ResourceType resource_type_;
-    Subtype subtype_;
+    API api_;
     static const std::vector<std::string> default_validator(ResourceConfig cfg) {
         return {};
     };
@@ -118,38 +118,37 @@ class Registry {
     /// @brief Registers a resource with the Registry.
     /// @param resource An object containing resource registration information.
     /// @throws `std::runtime_error` if the resource has already been registered.
-    static void register_resource(std::shared_ptr<ModelRegistration> resource);
+    static void register_model(std::shared_ptr<ModelRegistration> resource);
 
     /// @brief Lookup a given registered resource.
     /// @param name The name of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    static std::shared_ptr<ModelRegistration> lookup_resource(std::string name);
+    static std::shared_ptr<ModelRegistration> lookup_model(std::string name);
 
     /// @brief Lookup a given registered resource.
-    /// @param subtype The subtype of the resource to lookup.
+    /// @param api The api of the resource to lookup.
     /// @param model The model of the resource to lookup.
     /// @return a `shared_ptr` to the resource's registration data.
-    static std::shared_ptr<ModelRegistration> lookup_resource(Subtype subtype, Model model);
+    static std::shared_ptr<ModelRegistration> lookup_model(API api, Model model);
 
-    /// @brief Register a subtype.
-    /// @param subtype The subtype to be registered.
-    /// @param resource_subtype `ResourceSubtype` with resource functionality.
-    static void register_subtype(Subtype subtype,
-                                 std::shared_ptr<ResourceSubtype> resource_subtype);
+    /// @brief Register an api.
+    /// @param api The api to be registered.
+    /// @param resource_registration `ResourceRegistration` with resource functionality.
+    static void register_resource(API api,
+                                  std::shared_ptr<ResourceRegistration> resource_registration);
 
-    /// @brief Lookup a registered subtype.
-    /// @param subtype The subtype to lookup.
-    /// @return A `shared_ptr` to the registered subtype's `ResourceSubtype`.
-    static std::shared_ptr<ResourceSubtype> lookup_subtype(Subtype subtype);
+    /// @brief Lookup a registered api.
+    /// @param api The api to lookup.
+    /// @return A `shared_ptr` to the registered api's `ResourceRegistration`.
+    static std::shared_ptr<ResourceRegistration> lookup_resource(API api);
 
     /// @brief Provide information on registered resources.
     /// @return A map from name to `ModelRegistration` of all registered resources.
-    static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>>
-    registered_resources();
+    static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> registered_models();
 
    private:
     static std::unordered_map<std::string, std::shared_ptr<ModelRegistration>> resources_;
-    static std::unordered_map<Subtype, std::shared_ptr<ResourceSubtype>> subtypes_;
+    static std::unordered_map<API, std::shared_ptr<ResourceRegistration>> apis_;
 };
 
 }  // namespace sdk

@@ -28,11 +28,11 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
-#include <viam/sdk/services/service_base.hpp>
+#include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
@@ -173,8 +173,8 @@ void RobotClient::refresh() {
         // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
-        std::shared_ptr<ResourceSubtype> rs =
-            Registry::lookup_subtype({name.namespace_(), name.type(), name.subtype()});
+        std::shared_ptr<ResourceRegistration> rs =
+            Registry::lookup_resource({name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
                 std::shared_ptr<Resource> rpc_client = rs->create_rpc_client(name.name(), channel_);

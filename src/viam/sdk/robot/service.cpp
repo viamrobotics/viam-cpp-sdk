@@ -14,12 +14,12 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/services/service_base.hpp>
+#include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
@@ -42,10 +42,10 @@ std::vector<Status> RobotService_::generate_status(RepeatedPtrField<ResourceName
     std::vector<Status> statuses;
     for (const auto& cmp : resource_manager()->resources()) {
         std::shared_ptr<Resource> resource = cmp.second;
-        for (auto& registry : Registry::registered_resources()) {
-            std::shared_ptr<ModelRegistration> registration = registry.second;
-            if (registration->subtype().resource_subtype() ==
-                resource->dynamic_subtype().resource_subtype()) {
+        for (const auto& kv : Registry::registered_models()) {
+            std::shared_ptr<ModelRegistration> registration = kv.second;
+            if (registration->api().resource_subtype() ==
+                resource->dynamic_api().resource_subtype()) {
                 bool resource_present = false;
                 ResourceName name = resource->get_resource_name(resource->name());
                 for (auto& resource_name : resource_names) {

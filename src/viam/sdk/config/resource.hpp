@@ -8,7 +8,7 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
-#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {
@@ -28,7 +28,7 @@ class ResourceConfig {
     viam::app::v1::ComponentConfig to_proto() const;
     ResourceConfig(std::string type);
     Name resource_name();
-    const Subtype& api() const;
+    const API& api() const;
     const LinkConfig& frame() const;
     const Model& model() const;
     const std::string& name() const;
@@ -37,7 +37,7 @@ class ResourceConfig {
     const AttributeMap& attributes() const;
 
    private:
-    Subtype api_;
+    API api_;
     LinkConfig frame_;
     Model model_;
     std::string name_;

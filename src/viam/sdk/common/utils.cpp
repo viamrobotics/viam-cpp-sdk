@@ -11,7 +11,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
 namespace viam {
@@ -22,10 +22,10 @@ using viam::common::v1::ResourceName;
 std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<Resource> resource) {
     std::string resource_type;
     std::vector<ResourceName> resource_names;
-    for (auto& a : Registry::registered_resources()) {
-        std::shared_ptr<ModelRegistration> reg = a.second;
-        if (reg->subtype().to_string() == resource->dynamic_subtype().to_string()) {
-            resource_type = reg->subtype().resource_subtype();
+    for (auto& kv : Registry::registered_models()) {
+        std::shared_ptr<ModelRegistration> reg = kv.second;
+        if (reg->api().to_string() == resource->dynamic_api().to_string()) {
+            resource_type = reg->api().resource_subtype();
         } else {
             continue;
         }

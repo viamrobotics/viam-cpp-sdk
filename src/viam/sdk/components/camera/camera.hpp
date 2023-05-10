@@ -20,17 +20,17 @@ namespace sdk {
 
 /// @defgroup Camera Classes related to the `Camera` component.
 
-/// @class CameraSubtype
-/// @brief Defines a `ResourceSubtype` for the `Camera` component.
+/// @class CameraRegistration
+/// @brief Defines a `ResourceRegistration` for the `Camera` component.
 /// @ingroup Camera
-class CameraSubtype : public ResourceSubtype {
+class CameraRegistration : public ResourceRegistration {
    public:
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    CameraSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceSubtype(service_descriptor){};
+    CameraRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Camera camera.hpp "components/camera/camera.hpp"
@@ -89,11 +89,11 @@ class Camera : public Component {
         std::vector<unsigned char> bytes;
     };
 
-    /// @brief Creates a `ResourceSubtype` for the `Camera` component.
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
+    /// @brief Creates a `ResourceRegistration` for the `Camera` component.
+    static std::shared_ptr<ResourceRegistration> resource_registration();
 
-    /// @brief Creates a `Camera` `Subtype`.
-    static Subtype static_subtype();
+    /// @brief Creates a `Camera` `API`.
+    static API static_api();
 
     /// @brief Creates a `raw_image` struct from its proto representation.
     static raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);
@@ -136,7 +136,7 @@ class Camera : public Component {
     /// @return The camera properties.
     virtual properties get_properties() = 0;
 
-    Subtype dynamic_subtype() const override;
+    API dynamic_api() const override;
 
    protected:
     explicit Camera(std::string name) : Component(std::move(name)){};

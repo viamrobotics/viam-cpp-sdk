@@ -19,17 +19,17 @@ namespace sdk {
 
 /// @defgroup Base Classes related to the `Base` component.
 
-/// @class BaseSubtype
-/// @brief Defines a `ResourceSubtype` for the `Base` component.
+/// @class BaseRegistration
+/// @brief Defines a `ResourceRegistration` for the `Base` component.
 /// @ingroup Base
-class BaseSubtype : public ResourceSubtype {
+class BaseRegistration : public ResourceRegistration {
    public:
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    BaseSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceSubtype(service_descriptor){};
+    BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Base base.hpp "components/base/base.hpp"
@@ -41,8 +41,8 @@ class BaseSubtype : public ResourceSubtype {
 class Base : public Component {
    public:
     // functions shared across all components
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype static_subtype();
+    static std::shared_ptr<ResourceRegistration> resource_registration();
+    static API static_api();
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled
@@ -78,7 +78,7 @@ class Base : public Component {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
-    Subtype dynamic_subtype() const override;
+    API dynamic_api() const override;
 
    protected:
     explicit Base(std::string name);

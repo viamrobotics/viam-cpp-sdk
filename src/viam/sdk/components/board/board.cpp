@@ -14,35 +14,35 @@
 namespace viam {
 namespace sdk {
 
-BoardSubtype::BoardSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceSubtype(service_descriptor) {}
+BoardRegistration::BoardRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor) {}
 
-std::shared_ptr<ResourceServer> BoardSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> BoardRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<BoardServer>(manager);
 }
 
-std::shared_ptr<Resource> BoardSubtype::create_rpc_client(std::string name,
-                                                          std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> BoardRegistration::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<BoardClient>(std::move(name), std::move(chan));
 }
 
-std::shared_ptr<ResourceSubtype> Board::resource_subtype() {
+std::shared_ptr<ResourceRegistration> Board::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::board::v1::BoardService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the board service");
     }
-    return std::make_shared<BoardSubtype>(sd);
+    return std::make_shared<BoardRegistration>(sd);
 }
 
-Subtype Board::static_subtype() {
-    return Subtype(RDK, COMPONENT, "board");
+API Board::static_api() {
+    return API(RDK, COMPONENT, "board");
 }
 
-Subtype Board::dynamic_subtype() const {
-    return static_subtype();
+API Board::dynamic_api() const {
+    return static_api();
 }
 
 Board::status Board::from_proto(viam::common::v1::BoardStatus proto) {
@@ -153,7 +153,7 @@ bool operator==(const Board::status& lhs, const Board::status& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_subtype(Board::static_subtype(), Board::resource_subtype());
+    Registry::register_resource(Board::static_api(), Board::resource_registration());
     return true;
 };
 

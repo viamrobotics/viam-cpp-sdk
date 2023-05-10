@@ -18,17 +18,17 @@ namespace sdk {
 
 /// @defgroup Encoder Classes related to the `Encoder` component.
 
-/// @class EncoderSubtype
-/// @brief Defines a `ResourceSubtype` for the `Encoder` component.
+/// @class EncoderRegistration
+/// @brief Defines a `ResourceRegistration` for the `Encoder` component.
 /// @ingroup Encoder
-class EncoderSubtype : public ResourceSubtype {
+class EncoderRegistration : public ResourceRegistration {
    public:
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    EncoderSubtype(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceSubtype(service_descriptor){};
+    EncoderRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Encoder encoder.hpp "components/encoder/encoder.hpp"
@@ -64,8 +64,8 @@ class Encoder : public Component {
     };
 
     // functions shared across all components
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
-    static Subtype static_subtype();
+    static std::shared_ptr<ResourceRegistration> resource_registration();
+    static API static_api();
 
     /// @brief Creates a `position_type` struct from its proto representation.
     static position_type from_proto(viam::component::encoder::v1::PositionType proto);
@@ -103,7 +103,7 @@ class Encoder : public Component {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
-    Subtype dynamic_subtype() const override;
+    API dynamic_api() const override;
 
    protected:
     explicit Encoder(std::string name);

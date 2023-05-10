@@ -14,35 +14,35 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceServer> CameraSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> CameraRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<CameraServer>(manager);
 };
 
-std::shared_ptr<Resource> CameraSubtype::create_rpc_client(std::string name,
-                                                           std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> CameraRegistration::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<CameraClient>(std::move(name), std::move(chan));
 };
 
-std::shared_ptr<ResourceSubtype> Camera::resource_subtype() {
+std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::camera::v1::CameraService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the camera service");
     }
-    return std::make_shared<CameraSubtype>(sd);
+    return std::make_shared<CameraRegistration>(sd);
 }
 
 // NOLINTNEXTLINE
 const std::string Camera::lazy_suffix = "+lazy";
 
-Subtype Camera::static_subtype() {
-    return Subtype(RDK, COMPONENT, "camera");
+API Camera::static_api() {
+    return API(RDK, COMPONENT, "camera");
 }
 
-Subtype Camera::dynamic_subtype() const {
-    return static_subtype();
+API Camera::dynamic_api() const {
+    return static_api();
 }
 
 std::vector<double> repeated_field_to_vector(google::protobuf::RepeatedField<double> const& f) {
@@ -160,7 +160,7 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_subtype(Camera::static_subtype(), Camera::resource_subtype());
+    Registry::register_resource(Camera::static_api(), Camera::resource_registration());
     return true;
 };
 

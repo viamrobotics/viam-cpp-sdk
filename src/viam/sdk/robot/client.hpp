@@ -13,11 +13,11 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
-#include <viam/sdk/services/service_base.hpp>
+#include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
@@ -90,10 +90,10 @@ class RobotClient {
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         ResourceName r;
-        Subtype subtype = T::static_subtype();
-        *r.mutable_namespace_() = subtype.type_namespace();
-        *r.mutable_type() = subtype.resource_type();
-        *r.mutable_subtype() = subtype.resource_subtype();
+        API api = T::static_api();
+        *r.mutable_namespace_() = api.type_namespace();
+        *r.mutable_type() = api.resource_type();
+        *r.mutable_subtype() = api.resource_subtype();
         *r.mutable_name() = std::move(name);
 
         auto resource = this->resource_by_name(std::move(r));

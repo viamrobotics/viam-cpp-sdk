@@ -13,7 +13,7 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/resource/resource.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {

@@ -10,7 +10,7 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/module.hpp>
@@ -34,8 +34,8 @@ class MyModule : public GenericService::Service, public Component {
         std::cout << "config in reconfigure: " << cfg.name() << std::endl;
     }
 
-    Subtype dynamic_subtype() const override {
-        return Generic::static_subtype();
+    API dynamic_api() const override {
+        return Generic::static_api();
     }
 
     MyModule() {
@@ -58,7 +58,7 @@ class MyModule : public GenericService::Service, public Component {
                              ::viam::common::v1::DoCommandResponse* response) override {
         std::cout << "Received DoCommand request for MyModule number " << inner_which_
                   << " and name " << name_ << std::endl;
-        for (auto& req : request->command().fields()) {
+        for (const auto& req : request->command().fields()) {
             std::cout << "request key: " << req.first.c_str()
                       << "\trequest value: " << req.second.SerializeAsString();
         }
@@ -90,10 +90,10 @@ int main(int argc, char** argv) {
     sigaddset(&sigset, SIGTERM);
     pthread_sigmask(SIG_BLOCK, &sigset, NULL);
 
-    Subtype generic = Generic::static_subtype();
+    API generic = Generic::static_api();
     Model m("acme", "demo", "printer");
 
-    std::shared_ptr<ModelRegistration> rr = std::make_shared<ModelRegistration>(
+    std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
         ResourceType("MyModule"),
         generic,
         m,
@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
             return {"component1"};
         });
 
-    Registry::register_resource(rr);
+    Registry::register_model(mr);
 
     // The `ModuleService_` must outlive the Server, so the declaration order
     // here matters.

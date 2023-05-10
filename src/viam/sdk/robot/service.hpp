@@ -15,7 +15,7 @@
 #include <viam/api/robot/v1/robot.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/robot/client.hpp>

@@ -63,33 +63,33 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     Model camera_model("fake", "fake", "mock_camera");
     std::shared_ptr<ModelRegistration> cr = std::make_shared<ModelRegistration>(
         ResourceType("Camera"),
-        Camera::static_subtype(),
+        Camera::static_api(),
         camera_model,
         [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_resource(cr);
+    Registry::register_model(cr);
 
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
         ResourceType("Generic"),
-        Generic::static_subtype(),
+        Generic::static_api(),
         generic_model,
         [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_resource(gr);
+    Registry::register_model(gr);
 
     Model motor_model("fake", "fake", "mock_motor");
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
         ResourceType("Motor"),
-        Motor::static_subtype(),
+        Motor::static_api(),
         motor_model,
         [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_resource(mr);
+    Registry::register_model(mr);
 
-    BOOST_CHECK(Registry::lookup_resource(Camera::static_subtype(), camera_model));
-    BOOST_CHECK(Registry::lookup_resource(Generic::static_subtype(), generic_model));
-    BOOST_CHECK(Registry::lookup_resource(Motor::static_subtype(), motor_model));
+    BOOST_CHECK(Registry::lookup_model(Camera::static_api(), camera_model));
+    BOOST_CHECK(Registry::lookup_model(Generic::static_api(), generic_model));
+    BOOST_CHECK(Registry::lookup_model(Motor::static_api(), motor_model));
 }
 
 template <typename T>
@@ -205,6 +205,14 @@ BOOST_AUTO_TEST_CASE(test_stop_all) {
             // stop all should stop the motor, setting its power to 0.0
             client->stop_all();
             BOOST_CHECK_EQUAL(motor->get_power_status().power_pct, 0.0);
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_resource) {
+    server_to_client_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto mock_motor = client->resource_by_name<MotorClient>("mock_motor");
+            BOOST_CHECK(mock_motor);
         });
 }
 

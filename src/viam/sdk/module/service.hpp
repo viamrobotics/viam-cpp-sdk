@@ -4,7 +4,7 @@
 #include <viam/api/module/v1/module.grpc.pb.h>
 
 #include <viam/sdk/module/module.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
 namespace viam {
@@ -16,8 +16,8 @@ class ModuleService_ : public viam::module::v1::ModuleService::Service {
     void close();
     std::shared_ptr<Resource> get_parent_resource(Name name);
 
-    void add_api_from_registry(std::shared_ptr<Server> server, Subtype api);
-    void add_model_from_registry(std::shared_ptr<Server> server, Subtype api, Model model);
+    void add_api_from_registry(std::shared_ptr<Server> server, API api);
+    void add_model_from_registry(std::shared_ptr<Server> server, API api, Model model);
     ::grpc::Status AddResource(::grpc::ServerContext* context,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse* response) override;

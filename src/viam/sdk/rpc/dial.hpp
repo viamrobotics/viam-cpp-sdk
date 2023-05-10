@@ -50,15 +50,14 @@ class DialOptions {
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
     // `local` uri. We should update dial logic to consider such a flag.
 
-    /// the URL to authenticate against
+    /// @brief the URL to authenticate against.
     boost::optional<std::string> auth_entity_;
 
-    /// Credentials for connecting to the robot
+    /// @brief Credentials for connecting to the robot.
     boost::optional<Credentials> credentials_;
 
-    /// allow the RPC connection to be downgraded to an insecure
-    /// connection if detected. This is only used when credentials
-    /// are not present
+    /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
+    /// This is only used when credentials are not present.
     bool allow_insecure_downgrade_;
 };
 
@@ -71,8 +70,8 @@ class Options {
     const boost::optional<DialOptions>& dial_options() const;
 
    private:
-    /// How often to refresh the status/parts of the robot, in seconds.
-    /// if set to 0, the robot will not automatically refresh.
+    /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
+    /// robot will not automatically refresh.
     unsigned int refresh_interval_;
     boost::optional<DialOptions> dial_options_;
 };

@@ -14,35 +14,35 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<ResourceServer> MotorSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> MotorRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<MotorServer>(manager);
 };
 
-std::shared_ptr<Resource> MotorSubtype::create_rpc_client(std::string name,
-                                                          std::shared_ptr<grpc::Channel> chan) {
+std::shared_ptr<Resource> MotorRegistration::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<MotorClient>(std::move(name), std::move(chan));
 };
 
-std::shared_ptr<ResourceSubtype> Motor::resource_subtype() {
+std::shared_ptr<ResourceRegistration> Motor::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::motor::v1::MotorService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the motor service");
     }
-    return std::make_shared<MotorSubtype>(sd);
+    return std::make_shared<MotorRegistration>(sd);
 }
 
-Subtype Motor::static_subtype() {
-    return Subtype(RDK, COMPONENT, "motor");
+API Motor::static_api() {
+    return API(RDK, COMPONENT, "motor");
 }
 
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {
     return proto.position();
 }
-Subtype Motor::dynamic_subtype() const {
-    return static_subtype();
+API Motor::dynamic_api() const {
+    return static_api();
 }
 
 Motor::power_status Motor::from_proto(viam::component::motor::v1::IsPoweredResponse proto) {
@@ -89,7 +89,7 @@ bool operator==(const Motor::properties& lhs, const Motor::properties& rhs) {
 
 namespace {
 bool init() {
-    Registry::register_subtype(Motor::static_subtype(), Motor::resource_subtype());
+    Registry::register_resource(Motor::static_api(), Motor::resource_registration());
     return true;
 };
 

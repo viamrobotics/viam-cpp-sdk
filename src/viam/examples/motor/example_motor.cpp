@@ -58,7 +58,7 @@ int main() {
         std::vector<vs::ResourceName>* resource_names = robot->resource_names();
 
         cout << "Resources of the robot:" << endl;
-        for (vs::ResourceName resource : *resource_names) {
+        for (const vs::ResourceName& resource : *resource_names) {
             cout << " - " << resource.name() << " (" << resource.subtype() << ")" << endl;
         }
 
