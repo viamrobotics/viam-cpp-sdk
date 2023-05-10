@@ -51,6 +51,8 @@ class API : public APIType {
 
 // TODO: instead of inheriting from API probably this should just have a
 // API as a member
+/// @class Name
+/// @brief Extends `API` class by adding a name for specific instances of resources.
 class Name : public API {
    public:
     std::string short_name() const;
@@ -101,6 +103,8 @@ class ModelFamily {
     std::string family_;
 };
 
+/// @class Model
+/// @brief Defines the namespace_, family, and name for a particular resource model.
 class Model {
    public:
     std::string to_string() const;
@@ -108,12 +112,11 @@ class Model {
     Model(std::string namespace_, std::string family, std::string model_name);
     Model(ModelFamily model, std::string model_name);
     Model();
-    /// Parses a single model string into a Model. If only a model_name is
-    /// included, then default values will be used for namespace and family.
+
+    /// @brief Parses a single model string into a Model, using default values for namespace and
+    /// family if not provided.
     ///
-    /// Raises:
-    /// 	Will throw an error if an invalid model string is passed (i.e., using
-    /// non-word characters)
+    /// @throws `std::runtime_error` if given an invalid model (i.e., one with non-word characters).
     static Model from_str(std::string model);
     friend bool operator==(const Model& lhs, const Model& rhs);
 

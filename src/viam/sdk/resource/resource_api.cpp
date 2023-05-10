@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <viam/sdk/resource/resource_api.hpp>
 
 #include <regex>
@@ -200,7 +201,7 @@ Model Model::from_str(std::string model) {
     if (std::regex_match(model, SINGLE_FIELD_REGEX)) {
         return {"rdk", "builtin", model};
     }
-    throw "string " + model + " is not a valid model name";
+    throw std::runtime_error("string " + model + " is not a valid model name");
 }
 
 std::string ModelFamily::to_string() const {
