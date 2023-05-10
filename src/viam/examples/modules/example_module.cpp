@@ -10,7 +10,7 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/module.hpp>

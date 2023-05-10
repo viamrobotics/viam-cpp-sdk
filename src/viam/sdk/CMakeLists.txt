@@ -70,7 +70,7 @@ target_sources(viamsdk
     module/module.cpp
     module/service.cpp
     referenceframe/frame.cpp
-    resource/resource_base.cpp
+    resource/resource.cpp
     resource/resource_api.cpp
     resource/resource_manager.cpp
     resource/resource_server_base.cpp
