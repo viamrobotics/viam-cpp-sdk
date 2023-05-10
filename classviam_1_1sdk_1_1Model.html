@@ -81,6 +81,11 @@ $(function() {
   <div class="headertitle"><div class="title">viam::sdk::Model Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines the namespace_, family, and name for a particular resource model.  
+ <a href="classviam_1_1sdk_1_1Model.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="resource__api_8hpp_source.html">resource_api.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -97,6 +102,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>to_string</b> 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a556dde7b55041d14d6ee4afc208615d6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Model.html#a556dde7b55041d14d6ee4afc208615d6">from_str</a> (std::string model)</td></tr>
+<tr class="memdesc:a556dde7b55041d14d6ee4afc208615d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a single model string into a <a class="el" href="classviam_1_1sdk_1_1Model.html" title="Defines the namespace_, family, and name for a particular resource model.">Model</a>, using default values for namespace and family if not provided.  <br /></td></tr>
 <tr class="separator:a556dde7b55041d14d6ee4afc208615d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
@@ -105,7 +111,9 @@ Friends</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;lhs, const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;rhs)</td></tr>
 <tr class="separator:a268b30882917f3fccdce5593cc3493ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines the namespace_, family, and name for a particular resource model. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a556dde7b55041d14d6ee4afc208615d6" name="a556dde7b55041d14d6ee4afc208615d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a556dde7b55041d14d6ee4afc208615d6">&#9670;&#160;</a></span>from_str()</h2>
 
@@ -129,13 +137,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Parses a single model string into a <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a>. If only a model_name is included, then default values will be used for namespace and family.</p>
-<p>Raises: Will throw an error if an invalid model string is passed (i.e., using non-word characters) </p>
+
+<p>Parses a single model string into a <a class="el" href="classviam_1_1sdk_1_1Model.html" title="Defines the namespace_, family, and name for a particular resource model.">Model</a>, using default values for namespace and family if not provided. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`std::runtime_error`</td><td>if given an invalid model (i.e., one with non-word characters). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/viam/sdk/resource/<a class="el" href="resource_2resource_8hpp_source.html">resource.hpp</a></li>
+<li>src/viam/sdk/resource/<a class="el" href="resource__api_8hpp_source.html">resource_api.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

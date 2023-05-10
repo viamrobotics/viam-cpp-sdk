@@ -110,9 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memItemLeft" align="right" valign="top"><a id="abf8ddf617ac01708fb4a8b2a868b27f0" name="abf8ddf617ac01708fb4a8b2a868b27f0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab19ddd1998775ce21b09fc1f9411571a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#ab19ddd1998775ce21b09fc1f9411571a">dynamic_subtype</a> () const =0</td></tr>
-<tr class="memdesc:ab19ddd1998775ce21b09fc1f9411571a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a></code> associated with a particular resource.  <br /></td></tr>
-<tr class="separator:ab19ddd1998775ce21b09fc1f9411571a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a689c2db1817335f7bef1954e3fac3c88"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a689c2db1817335f7bef1954e3fac3c88">dynamic_api</a> () const =0</td></tr>
+<tr class="memdesc:a689c2db1817335f7bef1954e3fac3c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
+<tr class="separator:a689c2db1817335f7bef1954e3fac3c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af50e9df63d6e7c4358867e07d3810617"><td class="memItemLeft" align="right" valign="top">virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#af50e9df63d6e7c4358867e07d3810617">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="memdesc:af50e9df63d6e7c4358867e07d3810617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:af50e9df63d6e7c4358867e07d3810617"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,13 +135,13 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae86fe452691e29ef132398d8a66845fa"><td class="memItemLeft" align="right" valign="top"><a id="ae86fe452691e29ef132398d8a66845fa" name="ae86fe452691e29ef132398d8a66845fa"></a>
-static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</td><td class="memItemRight" valign="bottom"><b>static_subtype</b> ()</td></tr>
-<tr class="separator:ae86fe452691e29ef132398d8a66845fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5583866c1139c3630fd026cfe2553b9d"><td class="memItemLeft" align="right" valign="top"><a id="a5583866c1139c3630fd026cfe2553b9d" name="a5583866c1139c3630fd026cfe2553b9d"></a>
+static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><b>static_api</b> ()</td></tr>
+<tr class="separator:a5583866c1139c3630fd026cfe2553b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab19ddd1998775ce21b09fc1f9411571a" name="ab19ddd1998775ce21b09fc1f9411571a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab19ddd1998775ce21b09fc1f9411571a">&#9670;&#160;</a></span>dynamic_subtype()</h2>
+<a id="a689c2db1817335f7bef1954e3fac3c88" name="a689c2db1817335f7bef1954e3fac3c88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a689c2db1817335f7bef1954e3fac3c88">&#9670;&#160;</a></span>dynamic_api()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,7 +150,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a> viam::sdk::Resource::dynamic_subtype </td>
+          <td class="memname">virtual <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> viam::sdk::Resource::dynamic_api </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -163,9 +163,9 @@ static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</
 </table>
 </div><div class="memdoc">
 
-<p>Returns the <code><a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a></code> associated with a particular resource. </p>
+<p>Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource. </p>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1Base.html#aada9953396b60db9c72d554c33ce72e7">viam::sdk::Base</a>, <a class="el" href="classviam_1_1sdk_1_1Board.html#a7aabbb21608e4dee1b8e4af87f46c187">viam::sdk::Board</a>, <a class="el" href="classviam_1_1sdk_1_1Camera.html#a83f17ab92001831ae81947ae7eae6a6a">viam::sdk::Camera</a>, <a class="el" href="classviam_1_1sdk_1_1Encoder.html#acd00055e1b48594894c545030e23b4dc">viam::sdk::Encoder</a>, <a class="el" href="classviam_1_1sdk_1_1Generic.html#aba025692c22f242f4893d568a46f6cfc">viam::sdk::Generic</a>, and <a class="el" href="classviam_1_1sdk_1_1Motor.html#a6e74d8ea102f0f1035fd20ec7a1447e9">viam::sdk::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1Base.html#a436300656ad96c4f638285d16a57d840">viam::sdk::Base</a>, <a class="el" href="classviam_1_1sdk_1_1Board.html#ab49d35c256d81edfa56d1a308c7924ca">viam::sdk::Board</a>, <a class="el" href="classviam_1_1sdk_1_1Camera.html#a7773d3863a7f88e927b3dc47ef34a0bc">viam::sdk::Camera</a>, <a class="el" href="classviam_1_1sdk_1_1Encoder.html#a20d32c2be8569d4d22f05cad3db157c2">viam::sdk::Encoder</a>, <a class="el" href="classviam_1_1sdk_1_1Generic.html#a6a9aab1429b01d0b534a502bed8808ae">viam::sdk::Generic</a>, and <a class="el" href="classviam_1_1sdk_1_1Motor.html#a15928ee235772790bab1af2739d3921b">viam::sdk::Motor</a>.</p>
 
 </div>
 </div>
@@ -339,7 +339,7 @@ static <a class="el" href="classviam_1_1sdk_1_1Subtype.html">Subtype</a>&#160;</
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/viam/sdk/resource/<a class="el" href="resource__base_8hpp_source.html">resource_base.hpp</a></li>
+<li>src/viam/sdk/resource/<a class="el" href="resource_2resource_8hpp_source.html">resource.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -89,7 +89,7 @@ $(function() {
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;viam/api/component/generic/v1/generic.grpc.pb.h&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;viam/sdk/resource/resource.hpp&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;viam/sdk/resource/resource_base.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;viam/sdk/resource/resource_api.hpp&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>viam {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span>sdk {</div>
@@ -123,7 +123,7 @@ $(function() {
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}  <span class="comment">// namespace sdk</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}  <span class="comment">// namespace viam</span></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1Name_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Name.html">viam::sdk::Name</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:50</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1Name_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Name.html">viam::sdk::Name</a></div><div class="ttdoc">Extends API class by adding a name for specific instances of resources.</div><div class="ttdef"><b>Definition:</b> resource_api.hpp:56</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceManager_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceManager.html">viam::sdk::ResourceManager</a></div><div class="ttdoc">Defines a resource manager for use by anything that tracks resources.</div><div class="ttdef"><b>Definition:</b> resource_manager.hpp:23</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceManager_html_a2233eabc462a53457f94737421a1b0eb"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceManager.html#a2233eabc462a53457f94737421a1b0eb">viam::sdk::ResourceManager::add</a></div><div class="ttdeci">void add(std::string name, std::shared_ptr&lt; Resource &gt; resource)</div><div class="ttdoc">Adds a single resource to the manager.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceManager_html_a323be0adf53638472c2c7f4500fbbcc7"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceManager.html#a323be0adf53638472c2c7f4500fbbcc7">viam::sdk::ResourceManager::resource</a></div><div class="ttdeci">std::shared_ptr&lt; Resource &gt; resource(std::string name)</div><div class="ttdoc">Returns a resource.</div></div>

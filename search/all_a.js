@@ -8,7 +8,7 @@ var searchData=
   ['motor_5',['Motor',['../classviam_1_1sdk_1_1Motor.html',1,'viam::sdk']]],
   ['motor_2ehpp_6',['motor.hpp',['../motor_8hpp.html',1,'']]],
   ['motorclient_7',['MotorClient',['../classviam_1_1sdk_1_1MotorClient.html',1,'viam::sdk']]],
-  ['motorserver_8',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]],
-  ['motorsubtype_9',['MotorSubtype',['../classviam_1_1sdk_1_1MotorSubtype.html',1,'viam::sdk']]],
+  ['motorregistration_8',['MotorRegistration',['../classviam_1_1sdk_1_1MotorRegistration.html',1,'viam::sdk']]],
+  ['motorserver_9',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]],
   ['move_5fstraight_10',['move_straight',['../classviam_1_1sdk_1_1Base.html#af1e9a0882e06a1ee6e328d65afeb51ec',1,'viam::sdk::Base::move_straight()'],['../classviam_1_1sdk_1_1BaseClient.html#a62d49b8fb31ab2025ded48309a0e90d6',1,'viam::sdk::BaseClient::move_straight()']]]
 ];
