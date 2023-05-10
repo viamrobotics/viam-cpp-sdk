@@ -1,11 +1,11 @@
-#include <viam/sdk/services/service_base.hpp>
+#include <viam/sdk/services/service.hpp>
 
 #include <string>
 
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {

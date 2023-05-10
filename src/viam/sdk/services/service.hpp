@@ -4,7 +4,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 
 namespace viam {
 namespace sdk {

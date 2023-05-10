@@ -11,7 +11,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/registry/registry.hpp>
 
 namespace viam {

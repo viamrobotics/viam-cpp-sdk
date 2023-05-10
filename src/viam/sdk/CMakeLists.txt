@@ -55,10 +55,10 @@ target_sources(viamsdk
     components/camera/camera.cpp
     components/camera/client.cpp
     components/camera/server.cpp
+    components/component.cpp
     components/encoder/client.cpp
     components/encoder/encoder.cpp
     components/encoder/server.cpp
-    components/component_base.cpp
     components/generic/client.cpp
     components/generic/generic.cpp
     components/generic/server.cpp
@@ -70,8 +70,8 @@ target_sources(viamsdk
     module/module.cpp
     module/service.cpp
     referenceframe/frame.cpp
-    resource/resource.cpp
     resource/resource_base.cpp
+    resource/resource_api.cpp
     resource/resource_manager.cpp
     resource/resource_server_base.cpp
     resource/resource_type.cpp
@@ -79,7 +79,7 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
-    services/service_base.cpp
+    services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
@@ -107,10 +107,10 @@ target_sources(viamsdk
       ../../viam/sdk/components/camera/camera.hpp
       ../../viam/sdk/components/camera/client.hpp
       ../../viam/sdk/components/camera/server.hpp
+      ../../viam/sdk/components/component.hpp
       ../../viam/sdk/components/encoder/client.hpp
       ../../viam/sdk/components/encoder/encoder.hpp
       ../../viam/sdk/components/encoder/server.hpp
-      ../../viam/sdk/components/component_base.hpp
       ../../viam/sdk/components/generic/client.hpp
       ../../viam/sdk/components/generic/generic.hpp
       ../../viam/sdk/components/generic/server.hpp
@@ -124,7 +124,7 @@ target_sources(viamsdk
       ../../viam/sdk/referenceframe/frame.hpp
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/resource.hpp
-      ../../viam/sdk/resource/resource_base.hpp
+      ../../viam/sdk/resource/resource_api.hpp
       ../../viam/sdk/resource/resource_manager.hpp
       ../../viam/sdk/resource/resource_server_base.hpp
       ../../viam/sdk/resource/resource_type.hpp
@@ -132,7 +132,7 @@ target_sources(viamsdk
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/server.hpp
-      ../../viam/sdk/services/service_base.hpp
+      ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
       ../../viam/sdk/spatialmath/orientation.hpp

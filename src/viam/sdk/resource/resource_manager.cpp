@@ -16,9 +16,8 @@
 
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/rpc/server.hpp>
-#include <viam/sdk/services/service_base.hpp>
 
 namespace viam {
 namespace sdk {

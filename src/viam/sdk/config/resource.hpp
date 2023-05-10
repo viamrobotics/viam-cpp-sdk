@@ -8,7 +8,7 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
-#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {

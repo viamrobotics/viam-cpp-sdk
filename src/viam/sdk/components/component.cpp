@@ -1,4 +1,4 @@
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 
 #include <string>
 
@@ -7,7 +7,7 @@
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_type.hpp>
 
 namespace viam {

@@ -4,7 +4,7 @@
 #include <viam/api/module/v1/module.grpc.pb.h>
 
 #include <viam/sdk/module/module.hpp>
-#include <viam/sdk/resource/resource_base.hpp>
+#include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
 namespace viam {

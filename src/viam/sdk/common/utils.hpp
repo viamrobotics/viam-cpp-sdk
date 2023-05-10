@@ -10,7 +10,7 @@
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 
 namespace viam {
 namespace sdk {
