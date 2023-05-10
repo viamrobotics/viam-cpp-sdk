@@ -30,7 +30,7 @@
 #include <viam/sdk/module/handler_map.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
-#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
