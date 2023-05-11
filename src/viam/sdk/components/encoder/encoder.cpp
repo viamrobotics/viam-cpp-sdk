@@ -35,7 +35,7 @@ std::shared_ptr<ResourceRegistration> Encoder::resource_registration() {
 }
 
 API Encoder::static_api() {
-    return API(RDK, COMPONENT, "encoder");
+    return {kRDK, kComponent, "encoder"};
 }
 
 API Encoder::dynamic_api() const {

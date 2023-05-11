@@ -38,7 +38,7 @@ std::shared_ptr<ResourceRegistration> Board::resource_registration() {
 }
 
 API Board::static_api() {
-    return API(RDK, COMPONENT, "board");
+    return {kRDK, kComponent, "board"};
 }
 
 API Board::dynamic_api() const {

@@ -89,20 +89,20 @@ common::v1::PoseInFrame mock_transform_response() {
 std::vector<ResourceName> mock_resource_names_response() {
     std::vector<ResourceName> vec;
     ResourceName camera;
-    *camera.mutable_namespace_() = RDK;
-    *camera.mutable_type() = COMPONENT;
+    *camera.mutable_namespace_() = kRDK;
+    *camera.mutable_type() = kComponent;
     *camera.mutable_name() = "mock_camera";
     *camera.mutable_subtype() = "camera";
 
     ResourceName generic;
-    *generic.mutable_namespace_() = RDK;
-    *generic.mutable_type() = COMPONENT;
+    *generic.mutable_namespace_() = kRDK;
+    *generic.mutable_type() = kComponent;
     *generic.mutable_name() = "mock_generic";
     *generic.mutable_subtype() = "generic";
 
     ResourceName motor;
-    *motor.mutable_namespace_() = RDK;
-    *motor.mutable_type() = COMPONENT;
+    *motor.mutable_namespace_() = kRDK;
+    *motor.mutable_type() = kComponent;
     *motor.mutable_name() = "mock_motor";
     *motor.mutable_subtype() = "motor";
 

@@ -26,19 +26,19 @@ std::string Resource::name() const {
 }
 
 API Resource::static_api() {
-    return {RDK, RESOURCE, "Resource"};
+    return {kRDK, kResource, "Resource"};
 }
 
 void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
 
 ResourceType Resource::type() const {
-    return {RESOURCE};
+    return {kResource};
 }
 
 ResourceName Resource::get_resource_name(std::string name) {
     ResourceName r;
-    *r.mutable_namespace_() = RDK;
-    *r.mutable_type() = RESOURCE;
+    *r.mutable_namespace_() = kRDK;
+    *r.mutable_type() = kResource;
     *r.mutable_subtype() = this->dynamic_api().resource_subtype();
     *r.mutable_name() = std::move(name);
 

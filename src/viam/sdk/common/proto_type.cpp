@@ -20,7 +20,7 @@ using google::protobuf::Value;
 // NOLINTNEXTLINE(misc-no-recursion)
 Struct map_to_struct(AttributeMap dict) {
     Struct s;
-    for (auto& key_and_value : *dict) {
+    for (const auto& key_and_value : *dict) {
         const std::string key = key_and_value.first;
         Value value = key_and_value.second->proto_value();
         google::protobuf::MapPair<std::string, Value> val(key, value);
@@ -37,44 +37,45 @@ AttributeMap struct_to_map(Struct struct_) {
 
     for (const auto& val : struct_.fields()) {
         std::string key = val.first;
-        std::shared_ptr<Value> val_ptr = std::make_shared<Value>(val.second);
-        std::shared_ptr<ProtoType> value =
-            std::make_shared<ProtoType>(ProtoType::of_value(val.second));
+        auto value = std::make_shared<ProtoType>(val.second);
         map->emplace(key, value);
     }
     return map;
 }
 
-// float, string, struct, array, struct(map from string to any of the above)
-
-// NOLINTNEXTLINE(misc-no-recursion)
-ProtoType ProtoType::of_value(Value value) {
+ProtoType::ProtoType(const Value& value) {
     switch (value.kind_case()) {
         case Value::KindCase::kBoolValue: {
-            return ProtoType(value.bool_value());
+            proto_type_ = value.bool_value();
+            break;
         }
         case Value::KindCase::kStringValue: {
-            return ProtoType(value.string_value());
+            proto_type_ = value.string_value();
+            break;
         }
         case Value::KindCase::kNumberValue: {
-            return ProtoType(value.number_value());
+            proto_type_ = value.number_value();
+            break;
         }
         case Value::KindCase::kListValue: {
-            std::vector<ProtoType*> vec;
+            std::vector<std::shared_ptr<ProtoType>> vec;
             for (const auto& val : value.list_value().values()) {
-                ProtoType p = ProtoType::of_value(val);
-                vec.push_back(&p);
+                auto p = std::make_shared<ProtoType>(val);
+                vec.push_back(p);
             }
-            return ProtoType(vec);
+            proto_type_ = vec;
+            break;
         }
         case Value::KindCase::kStructValue: {
             AttributeMap map = struct_to_map(value.struct_value());
-            return ProtoType(map);
+            proto_type_ = map;
+            break;
         }
         case Value::KindCase::KIND_NOT_SET:
         case Value::KindCase::kNullValue:
         default: {
-            return ProtoType();
+            proto_type_ = boost::blank();
+            break;
         }
     }
 }
@@ -114,12 +115,13 @@ Value ProtoType::proto_value() {
             break;
         }
         case 6: {
-            ::google::protobuf::ListValue l = *v.mutable_list_value();
-            google::protobuf::RepeatedPtrField<Value>* values = l.mutable_values();
-            std::vector<ProtoType*> vec = boost::get<std::vector<ProtoType*>>(proto_type_);
-            for (auto& val : vec) {
-                *values->Add() = val->proto_value();
+            ::google::protobuf::ListValue l;
+            google::protobuf::RepeatedPtrField<Value> values;
+            auto vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(proto_type_);
+            for (const auto& val : vec) {
+                *l.add_values() = val->proto_value();
             }
+            *v.mutable_list_value() = l;
             break;
         }
         default: {
@@ -170,16 +172,21 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
                 return false;
             }
             // NOLINTNEXTLINE(misc-no-recursion)
-            auto pred = [](auto lhs_map, auto rhs_map) {
-                return lhs_map.first == rhs_map.first && *lhs_map.second == *rhs_map.second;
-            };
-
-            return std::equal(lhs_map->begin(), lhs_map->end(), rhs_map->begin(), pred);
+            for (const auto& kv : *lhs_map) {
+                auto rhs_find = rhs_map->at(kv.first);
+                if (rhs_map->find(kv.first) == rhs_map->end() ||
+                    !(*rhs_map->at(kv.first) == *kv.second)) {
+                    return false;
+                }
+            }
+            return true;
         }
         case 6: {
-            std::vector<ProtoType*> lhs_vec = boost::get<std::vector<ProtoType*>>(lhs.proto_type_);
-            std::vector<ProtoType*> rhs_vec = boost::get<std::vector<ProtoType*>>(rhs.proto_type_);
-            return lhs_vec == rhs_vec;
+            auto pred = [](auto lhs, auto rhs) { return *lhs == *rhs; };
+
+            auto lhs_vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(lhs.proto_type_);
+            auto rhs_vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(rhs.proto_type_);
+            return std::equal(lhs_vec.begin(), lhs_vec.end(), rhs_vec.begin(), pred);
         }
         default: {
             throw "Invalid proto_value conversion type. This should never happen;\

@@ -54,7 +54,7 @@ using viam::robot::v1::Status;
 // and fix that in `rust-utils`, but in the meantime this cleans up the logging
 // error on the C++ side.
 // NOLINTNEXTLINE
-const std::string k_stream_removed("Stream removed");
+const std::string kStreamRemoved("Stream removed");
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
@@ -72,7 +72,7 @@ void RobotClient::close() {
 }
 
 bool is_error_response(grpc::Status response) {
-    return !response.ok() && (response.error_message() != k_stream_removed);
+    return !response.ok() && (response.error_message() != kStreamRemoved);
 }
 std::vector<Status> RobotClient::get_status() {
     auto* resources = resource_names();

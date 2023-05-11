@@ -19,7 +19,7 @@ namespace sdk {
 
 using viam::common::v1::ResourceName;
 
-std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<Resource> resource) {
+std::vector<ResourceName> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
     std::string resource_type;
     std::vector<ResourceName> resource_names;
     for (auto& kv : Registry::registered_models()) {
@@ -35,7 +35,7 @@ std::vector<ResourceName> resource_names_for_resource(std::shared_ptr<Resource> 
         }
 
         ResourceName r;
-        *r.mutable_namespace_() = RDK;
+        *r.mutable_namespace_() = kRDK;
         *r.mutable_type() = resource->type().to_string();
         *r.mutable_name() = resource->name();
         *r.mutable_subtype() = resource_type;

@@ -38,7 +38,7 @@ std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
 const std::string Camera::lazy_suffix = "+lazy";
 
 API Camera::static_api() {
-    return API(RDK, COMPONENT, "camera");
+    return {kRDK, kComponent, "camera"};
 }
 
 API Camera::dynamic_api() const {

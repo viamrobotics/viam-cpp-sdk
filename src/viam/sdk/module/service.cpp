@@ -230,11 +230,11 @@ void ModuleService_::close() {
 }
 
 void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, API api) {
+    const std::lock_guard<std::mutex> lock(lock_);
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(api) != services.end()) {
         return;
     }
-    const std::lock_guard<std::mutex> lock(lock_);
     auto new_manager = std::make_shared<ResourceManager>();
 
     std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
@@ -249,6 +249,7 @@ void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server, API
     if (services.find(api) == services.end()) {
         add_api_from_registry(server, api);
     }
+    const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<ResourceRegistration> creator = Registry::lookup_resource(api);
     std::string name;

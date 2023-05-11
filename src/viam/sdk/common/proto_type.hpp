@@ -28,12 +28,11 @@ class ProtoType {
     ProtoType(std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> m) {
         proto_type_ = m;
     }
-    ProtoType(std::vector<ProtoType*> v) {
+    ProtoType(std::vector<std::shared_ptr<ProtoType>> v) {
         proto_type_ = v;
     }
 
-    // TODO: RSDK-2421 consider switching this to a constructor
-    static ProtoType of_value(google::protobuf::Value value);
+    ProtoType(const google::protobuf::Value& value);
 
     google::protobuf::Value proto_value();
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
@@ -45,7 +44,7 @@ class ProtoType {
                    int,
                    double,
                    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>,
-                   std::vector<ProtoType*>>
+                   std::vector<std::shared_ptr<ProtoType>>>
         proto_type_;
 };
 

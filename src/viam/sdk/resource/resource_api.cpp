@@ -219,7 +219,7 @@ std::string Model::to_string() const {
     return mf + ":" + model_name_;
 }
 
-Model::Model() : Model(ModelFamily(RDK, BUILTIN), BUILTIN) {}
+Model::Model() : Model(ModelFamily(kRDK, kBuiltin), kBuiltin) {}
 
 }  // namespace sdk
 }  // namespace viam

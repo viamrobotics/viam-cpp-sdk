@@ -17,12 +17,12 @@ using viam::common::v1::ResourceName;
 
 ResourceName Component::get_resource_name(std::string name) {
     auto r = this->Resource::get_resource_name(name);
-    *r.mutable_type() = COMPONENT;
+    *r.mutable_type() = kComponent;
     return r;
 }
 
 ResourceType Component::type() const {
-    return {COMPONENT};
+    return {kComponent};
 }
 
 }  // namespace sdk

@@ -16,15 +16,14 @@ namespace viam {
 namespace sdk {
 
 using viam::common::v1::ResourceName;
-const std::string COMPONENT = "component";
-const std::string RESOURCE = "resource";
-const std::string SERVICE = "service";
-const std::string RDK = "rdk";
-const std::string GENERIC = "generic";
-const std::string BUILTIN = "builtin";
+const std::string kComponent = "component";
+const std::string kResource = "resource";
+const std::string kService = "service";
+const std::string kRDK = "rdk";
+const std::string kBuiltin = "builtin";
 
 std::vector<viam::common::v1::ResourceName> resource_names_for_resource(
-    std::shared_ptr<Resource> resource);
+    const std::shared_ptr<Resource>& resource);
 
 class ResourceNameHasher {
    public:

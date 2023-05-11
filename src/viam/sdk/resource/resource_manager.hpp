@@ -25,30 +25,30 @@ class ResourceManager {
     /// @brief Returns a resource.
     /// @param name the name of the desired resource.
     /// @throws `std::runtime_error` if the desired resource does not exist.
-    std::shared_ptr<Resource> resource(std::string name);
+    std::shared_ptr<Resource> resource(const std::string& name);
 
     /// @brief Replaces all resources in the manager.
     /// @param resources The resources to replace with.
-    void replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> resources);
+    void replace_all(const std::unordered_map<Name, std::shared_ptr<Resource>>& resources);
 
     /// @brief Adds a single resource to the manager.
     /// @param name The name of the resource.
     /// @param resource The resource being added.
-    void add(Name name, std::shared_ptr<Resource> resource);
+    void add(const Name& name, const std::shared_ptr<Resource>& resource);
 
     /// @brief Adds a single resource to the manager.
     /// @param name The name of the resource.
     /// @param resource The resource being added.
-    void add(std::string name, std::shared_ptr<Resource> resource);
+    void add(const std::string& name, const std::shared_ptr<Resource>& resource);
 
     /// @brief Remodes a single resource from the manager.
     /// @param name The name of the resource to remove.
-    void remove(Name name);
+    void remove(const Name& name);
 
     /// @brief Replaces an existing resource. No-op if the named resource does not exist.
     /// @param name The name of the resource to replace.
     /// @param resource The new resource that is replacing the existing one.
-    void replace_one(Name name, std::shared_ptr<Resource> resource);
+    void replace_one(const Name& name, const std::shared_ptr<Resource>& resource);
 
     /// @brief Returns a reference to the existing resources within the manager.
     const std::unordered_map<std::string, std::shared_ptr<Resource>>& resources() const;
@@ -60,9 +60,9 @@ class ResourceManager {
     std::unordered_map<std::string, std::shared_ptr<Resource>> resources_;
     /// @brief `short_names_` is a shortened version of `Name` N of form <remote>:<name>.
     std::unordered_map<std::string, std::string> short_names_;
-    void do_add(Name name, std::shared_ptr<Resource> resource);
-    void do_add(std::string name, std::shared_ptr<Resource> resource);
-    void do_remove(Name name);
+    void do_add(const Name& name, const std::shared_ptr<Resource>& resource);
+    void do_add(const std::string& name, const std::shared_ptr<Resource>& resource);
+    void do_remove(const Name& name);
 };
 
 }  // namespace sdk
