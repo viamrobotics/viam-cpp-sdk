@@ -6,6 +6,9 @@
 namespace viam {
 namespace sdk {
 
+GenericServer::GenericServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+
 ::grpc::Status GenericServer::DoCommand(::grpc::ServerContext* context,
                                         const ::viam::common::v1::DoCommandRequest* request,
                                         ::viam::common::v1::DoCommandResponse* response) {

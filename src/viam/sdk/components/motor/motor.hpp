@@ -23,12 +23,11 @@ namespace sdk {
 /// @ingroup Motor
 class MotorRegistration : public ResourceRegistration {
    public:
+    explicit MotorRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    MotorRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Motor motor.hpp "components/motor/motor.hpp"
@@ -132,7 +131,7 @@ class Motor : public Component {
     API dynamic_api() const override;
 
    protected:
-    explicit Motor(std::string name) : Component(std::move(name)){};
+    explicit Motor(std::string name);
 };
 
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs);

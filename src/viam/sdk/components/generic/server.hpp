@@ -18,14 +18,14 @@ namespace sdk {
 class GenericServer : public ResourceServer,
                       public viam::component::generic::v1::GenericService::Service {
    public:
+    GenericServer();
+    explicit GenericServer(std::shared_ptr<ResourceManager> manager);
+
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
-
-    GenericServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-    GenericServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 };
 
 }  // namespace sdk

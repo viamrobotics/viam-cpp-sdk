@@ -23,6 +23,8 @@ std::shared_ptr<Resource> MotorRegistration::create_rpc_client(
     std::string name, std::shared_ptr<grpc::Channel> chan) {
     return std::make_shared<MotorClient>(std::move(name), std::move(chan));
 };
+MotorRegistration::MotorRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceRegistration> Motor::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
@@ -78,6 +80,8 @@ viam::component::motor::v1::GetPropertiesResponse Motor::to_proto(properties pro
     proto.set_position_reporting(properties.position_reporting);
     return proto;
 }
+
+Motor::Motor(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs) {
     return (lhs.is_on == rhs.is_on && lhs.power_pct == rhs.power_pct);

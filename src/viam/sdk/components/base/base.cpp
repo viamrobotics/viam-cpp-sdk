@@ -14,10 +14,8 @@
 namespace viam {
 namespace sdk {
 
-BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : Base(std::move(name)),
-      stub_(viam::component::base::v1::BaseService::NewStub(channel)),
-      channel_(std::move(channel)){};
+BaseRegistration::BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> BaseRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {

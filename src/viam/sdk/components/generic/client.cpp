@@ -12,6 +12,11 @@
 namespace viam {
 namespace sdk {
 
+GenericClient::GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+    : Generic(std::move(name)),
+      stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
+      channel_(std::move(channel)){};
+
 AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
