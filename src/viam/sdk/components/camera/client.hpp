@@ -21,7 +21,6 @@ namespace sdk {
 class CameraClient : public Camera {
    public:
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;

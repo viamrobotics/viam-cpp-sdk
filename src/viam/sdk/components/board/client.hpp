@@ -21,7 +21,6 @@ namespace sdk {
 class BoardClient : public Board {
    public:
     BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-
     status get_status() override;
     void set_gpio(const std::string& pin, bool high) override;
     bool get_gpio(const std::string& pin) override;
