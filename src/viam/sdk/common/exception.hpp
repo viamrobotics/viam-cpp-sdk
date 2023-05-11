@@ -12,6 +12,7 @@ namespace sdk {
 enum class ViamErrorCode : uint8_t {
     // Used to indicate no error
     ok = 0,
+    // Default error code for ViamException
     unknown = 1,
     permission_denied = 2,
     duplicate_resource = 3,
