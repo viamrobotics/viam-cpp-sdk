@@ -60,10 +60,10 @@ ProtoType::ProtoType(const Value& value) {
             proto_type_ = value.number_value();
             break;
         }
-            // NOLINTNEXTLINE(misc-no-recursion)
         case Value::KindCase::kListValue: {
             std::vector<std::shared_ptr<ProtoType>> vec;
             for (const auto& val : value.list_value().values()) {
+                // NOLINTNEXTLINE(misc-no-recursion)
                 auto p = std::make_shared<ProtoType>(val);
                 vec.push_back(p);
             }
