@@ -5,7 +5,6 @@
 
 #include <google/protobuf/descriptor.h>
 
-#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>

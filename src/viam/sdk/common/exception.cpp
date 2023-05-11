@@ -4,24 +4,23 @@ namespace viam {
 namespace sdk {
 
 ViamException::ViamException(const std::string& what)
-    : std::runtime_error("ViamException: " + what), _error_code(ViamErrorCode::generic){};
+    : std::runtime_error("ViamException: " + what), error_code_(ViamErrorCode::unknown){};
 
 ViamException::ViamException(const std::string& type,
                              const ViamErrorCode& code,
                              const std::string& what)
-    : std::runtime_error("ViamException(" + type + "): " + what), _error_code(code){};
+    : std::runtime_error("ViamException(" + type + "): " + what), error_code_(code){};
 
 ViamException::~ViamException() = default;
-ViamException::ViamException(const ::grpc::Status& status_code)
 
+ViamException::ViamException(const ::grpc::Status& status_code)
     : ViamException(status_code.error_message() + " " + status_code.error_details()) {}
 
 ViamException ViamException::from_viam_error_code(ViamErrorCode code) {
     switch (code) {
         case ViamErrorCode::ok: {
             return ViamException(
-                "Ran ViamException::from_viam_error_code on an \'ok\' value. Check the code "
-                "value "
+                "Ran ViamException::from_viam_error_code on an \'ok\' value. Check the code value "
                 "first.");
         }
         case ViamErrorCode::permission_denied: {
@@ -39,7 +38,7 @@ ViamException ViamException::from_viam_error_code(ViamErrorCode code) {
         case ViamErrorCode::connection: {
             return ConnectionException();
         }
-        case ViamErrorCode::generic:
+        case ViamErrorCode::unknown:
         default: {
             return ViamException();
         }
@@ -47,7 +46,7 @@ ViamException ViamException::from_viam_error_code(ViamErrorCode code) {
 }
 
 ViamErrorCode ViamException::get_error_code() const noexcept {
-    return _error_code;
+    return error_code_;
 }
 
 PermissionDeniedException::PermissionDeniedException(const std::string& what)

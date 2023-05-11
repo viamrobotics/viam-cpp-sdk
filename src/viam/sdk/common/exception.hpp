@@ -12,7 +12,7 @@ namespace sdk {
 enum class ViamErrorCode : uint8_t {
     // Used to indicate no error
     ok = 0,
-    generic = 1,
+    unknown = 1,
     permission_denied = 2,
     duplicate_resource = 3,
     unimplemented = 4,
@@ -37,7 +37,7 @@ class ViamException : public std::runtime_error {
     ViamErrorCode get_error_code() const noexcept;
 
    private:
-    ViamErrorCode _error_code;
+    ViamErrorCode error_code_;
 };
 
 class PermissionDeniedException : public ViamException {
