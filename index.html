@@ -72,16 +72,50 @@ $(function() {
   <div class="headertitle"><div class="title">Viam C++ SDK </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_etc_apidocmenu"></a> </p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-SDK Status</h1>
-<p>Stability indicates whether the SDK is recommended for production use. This document - and the SDK in general - is a work in progress. The SDK is in alpha/beta state, and offers no guarantee on API or ABI stability.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Family/version   </th><th class="markdownTableHeadNone">Stability   </th><th class="markdownTableHeadNone">Development   </th><th class="markdownTableHeadNone">Purpose    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">(repo main branch)   </td><td class="markdownTableBodyNone">Unstable   </td><td class="markdownTableBodyNone">Active development   </td><td class="markdownTableBodyNone">New feature development   </td></tr>
-</table>
+(In)stability Notice</h1>
+<blockquote class="doxtable">
+<p>&zwj;<b>Warning</b> This is a alpha release of the Viam C++ SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Resources</h1>
+<ul>
+<li><a href="https://cpp.viam.dev">Documentation</a></li>
+<li><a href="https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples">Examples</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Repository Layout</h1>
+<ul>
+<li><code>src/viam/sdk</code> The implementation of the C++ sdk library</li>
+<li><code>src/viam/api</code> All the google and viam api autogen files</li>
+<li><code>src/viam/examples</code> A list of examples</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Getting Started</h1>
+<p>NOTE: Please see <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md">BUILDING.md</a> for instructions on how to use CMake-based build system for this project.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Using Docker for Development</h1>
+<p>A Docker description is included which will install the required packages.</p><ol type="1">
+<li>Create a new docker image from one of the provided docker files. From the root directory of this project (where this README is located), run <code>docker build -t cpp . -f etc/docker/Dockerfile.debian.bullseye</code> (other files are provided for Ubuntu Focal and Ubuntu Jammy as well as Debian Sid). Run the new image in a container that has your local project directory mounted to the filesystem. This will ensure that you can continue to develop locally on your machine, and all files will be automatically synced into the docker environment. To create the environment and open a shell to it, run the command `docker run &ndash;rm -it -v "$PWD":/usr/src/viam-cpp-sdk -w /usr/src/viam-cpp-sdk cpp /bin/bash`</li>
+</ol>
+<ol type="1">
+<li>Start developing! You can develop as you normally would, using the files on your local filesystem. When it comes time to testing/building/running the program, do so inside the docker environment you opened in the previous step.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Building Documentation Locally for Testing</h1>
+<p>The C++ sdk uses <a href="https://www.doxygen.nl/">Doxygen</a> to generate documentation. An automated workflow will generate and update our documentation on each merge, and publish it to <a href="https://cpp.viam.dev">cpp.viam.dev</a>.</p>
+<p>Generating documentation locally to observe changes while developing with the C++ SDK is simple. First, make sure doxygen is installed, e.g., </p><div class="fragment"><div class="line">(on mac) brew install doxygen</div>
+<div class="line">(on linux) apt-get install -y doxygen</div>
+</div><!-- fragment --><p>Next, generate the documentation. From the SDK root, run: </p><div class="fragment"><div class="line">./bin/build-docs.sh</div>
+</div><!-- fragment --><p>That will run <code>doxygen Doxyfile</code> and create the <code>etc/docs/api/current</code> folder. Then simply open the <code>index.html</code> file in your preferred browser to view the documentation.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+A Note on Connectivity and webRTC Functionality</h1>
+<p>The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to <code>ShellService::shell()</code> have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+License</h1>
+<p>Copyright 2022 Viam Inc.</p>
+<p>Apache 2.0 - See <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE">LICENSE</a> file </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
