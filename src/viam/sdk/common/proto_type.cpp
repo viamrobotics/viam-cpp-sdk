@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <viam/sdk/common/proto_type.hpp>
 
 #include <memory>
@@ -173,16 +174,13 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
                 return false;
             }
             // NOLINTNEXTLINE(misc-no-recursion)
-            for (const auto& kv : *lhs_map) {
-                auto rhs_find = rhs_map->at(kv.first);
-                if (rhs_map->find(kv.first) == rhs_map->end() ||
-                    !(*rhs_map->at(kv.first) == *kv.second)) {
-                    return false;
-                }
-            }
-            return true;
+            return std::all_of(lhs_map->begin(), lhs_map->end(), [rhs_map](auto lhs) {
+                return (rhs_map->find(lhs.first) != rhs_map->end() &&
+                        (*rhs_map->at(lhs.first) == *lhs.second));
+            });
         }
         case 6: {
+            // NOLINTNEXTLINE(misc-no-recursion)
             auto pred = [](auto lhs, auto rhs) { return *lhs == *rhs; };
 
             auto lhs_vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(lhs.proto_type_);
