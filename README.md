@@ -76,3 +76,4 @@ quickly as possible.
 ## License
 Copyright 2022 Viam Inc.
 
+Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE) file
