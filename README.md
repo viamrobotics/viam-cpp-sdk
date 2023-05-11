@@ -17,7 +17,7 @@
 
 ## Getting Started
 
-NOTE: Please see `BUILDING.md` for instructions on how to use
+NOTE: Please see [BUILDING.md](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md) for instructions on how to use
 CMake-based build system for this project.
 
 ## Using Docker for Development
@@ -54,17 +54,12 @@ First, make sure doxygen is installed, e.g.,
 (on linux) apt-get install -y doxygen
 ```
 
-Second, make sure the documentation directory exists. From the SDK root, run:
+Next, generate the documentation. From the SDK root, run:
 ```
-mkdir -p etc/docs/api/current
-```
-
-Finally, generate the documentation. From the SDK root, run:
-```
-doxygen Doxyfile
+./bin/build-docs.sh
 ```
 
-That will generate all documentation in the `etc/docs/api/current` folder. Then 
+That will run `doxygen Doxyfile` and create the `etc/docs/api/current` folder. Then
 simply open the `index.html` file in your preferred browser to view the documentation.
 
 ## A Note on Connectivity and webRTC Functionality
