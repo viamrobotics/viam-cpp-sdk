@@ -38,6 +38,7 @@ AttributeMap struct_to_map(Struct struct_) {
 
     for (const auto& val : struct_.fields()) {
         std::string key = val.first;
+        // NOLINTNEXTLINE(misc-no-recursion)
         auto value = std::make_shared<ProtoType>(val.second);
         map->emplace(key, value);
     }
@@ -59,6 +60,7 @@ ProtoType::ProtoType(const Value& value) {
             proto_type_ = value.number_value();
             break;
         }
+            // NOLINTNEXTLINE(misc-no-recursion)
         case Value::KindCase::kListValue: {
             std::vector<std::shared_ptr<ProtoType>> vec;
             for (const auto& val : value.list_value().values()) {
@@ -167,8 +169,8 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
             return lhs_i == rhs_i;
         }
         case 5: {
-            AttributeMap lhs_map = boost::get<AttributeMap>(lhs.proto_type_);
-            AttributeMap rhs_map = boost::get<AttributeMap>(rhs.proto_type_);
+            const AttributeMap& lhs_map = boost::get<AttributeMap>(lhs.proto_type_);
+            const AttributeMap& rhs_map = boost::get<AttributeMap>(rhs.proto_type_);
 
             if (lhs_map->size() != rhs_map->size()) {
                 return false;
@@ -183,8 +185,10 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
             // NOLINTNEXTLINE(misc-no-recursion)
             auto pred = [](auto lhs, auto rhs) { return *lhs == *rhs; };
 
-            auto lhs_vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(lhs.proto_type_);
-            auto rhs_vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(rhs.proto_type_);
+            const auto& lhs_vec =
+                boost::get<std::vector<std::shared_ptr<ProtoType>>>(lhs.proto_type_);
+            const auto& rhs_vec =
+                boost::get<std::vector<std::shared_ptr<ProtoType>>>(rhs.proto_type_);
             return std::equal(lhs_vec.begin(), lhs_vec.end(), rhs_vec.begin(), pred);
         }
         default: {
