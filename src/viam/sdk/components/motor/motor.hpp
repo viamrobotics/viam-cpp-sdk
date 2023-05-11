@@ -95,23 +95,23 @@ class Motor : public Component {
     /// `revolutions` == 0, this will run the motor at `rpm` indefinetely. If `revolutions` != 0,
     /// this will block until the number of revolutions has been completed or another operation
     /// comes in.
-    /// @throws ViamException if position reporting is not supported
+    /// @throws `ViamException` if position reporting is not supported
     virtual void go_for(double rpm, double revolutions) = 0;
 
     /// @brief Move the motor to a specific position that is relative to its
     /// home position at a specified speed which is expressed in RPM.
     /// @param rpm Speed of motor travel in rotations per minute
     /// @param position_revolutions Number of revolutions relative to motor's home home/zero
-    /// @throws ViamException if position reporting is not supported
+    /// @throws `ViamException` if position reporting is not supported
     virtual void go_to(double rpm, double position_revolutions) = 0;
 
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
-    /// @throws ViamException if position reporting is not supported
+    /// @throws `ViamException` if position reporting is not supported
     virtual void reset_zero_position(double offset) = 0;
 
     /// @brief Reports the position of the robot's motor relative to its zero position.
-    /// @throws ViamException if position reporting is not supported
+    /// @throws `ViamException` if position reporting is not supported
     virtual position get_position() = 0;
 
     /// @brief Returns the properties of the motor which comprises the booleans indicating

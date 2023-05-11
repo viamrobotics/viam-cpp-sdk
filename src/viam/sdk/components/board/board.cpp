@@ -5,6 +5,7 @@
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 #include <viam/api/component/board/v1/board.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board/client.hpp>
 #include <viam/sdk/components/board/server.hpp>
@@ -32,7 +33,7 @@ std::shared_ptr<ResourceRegistration> Board::resource_registration() {
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::board::v1::BoardService::service_full_name());
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the board service");
+        throw ViamException("Unable to get service descriptor for the board service");
     }
     return std::make_shared<BoardRegistration>(sd);
 }
@@ -74,7 +75,7 @@ Board::power_mode Board::from_proto(viam::component::board::v1::PowerMode proto)
         }
         case viam::component::board::v1::POWER_MODE_UNSPECIFIED:
         default: {
-            throw std::runtime_error("Invalid proto board power_mode to decode");
+            throw ViamException("Invalid proto board power_mode to decode");
         }
     }
 }
@@ -112,7 +113,7 @@ viam::component::board::v1::PowerMode Board::to_proto(Board::power_mode power_mo
             return viam::component::board::v1::POWER_MODE_OFFLINE_DEEP;
         }
         default: {
-            throw std::runtime_error("Invalid board power_mode to encode");
+            throw ViamException("Invalid board power_mode to encode");
         }
     }
 }

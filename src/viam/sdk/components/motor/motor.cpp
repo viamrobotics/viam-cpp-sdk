@@ -5,6 +5,7 @@
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 #include <viam/api/component/motor/v1/motor.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/motor/client.hpp>
 #include <viam/sdk/components/motor/server.hpp>
@@ -29,7 +30,7 @@ std::shared_ptr<ResourceRegistration> Motor::resource_registration() {
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::motor::v1::MotorService::service_full_name());
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the motor service");
+        throw ViamException("Unable to get service descriptor for the motor service");
     }
     return std::make_shared<MotorRegistration>(sd);
 }

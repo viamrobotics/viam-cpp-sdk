@@ -8,6 +8,7 @@
 
 #include <viam/api/app/v1/robot.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
 namespace viam {
@@ -81,7 +82,7 @@ OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
         }
         case proto::Orientation::TypeCase::TYPE_NOT_SET:
         default: {
-            throw std::runtime_error("orientation type not known");
+            throw ViamException("orientation type not known");
         }
     }
     return cfg;
@@ -140,7 +141,7 @@ proto::Orientation OrientationConfig::to_proto() const {
             return orientation;
         };
         default: {
-            throw std::runtime_error("orientation type not known");
+            throw ViamException("orientation type not known");
         }
     }
 }

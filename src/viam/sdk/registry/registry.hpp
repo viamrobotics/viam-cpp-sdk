@@ -117,7 +117,7 @@ class Registry {
    public:
     /// @brief Registers a resource with the Registry.
     /// @param resource An object containing resource registration information.
-    /// @throws `std::runtime_error` if the resource has already been registered.
+    /// @throws `DuplicateResourceException` if the resource has already been registered.
     static void register_model(std::shared_ptr<ModelRegistration> resource);
 
     /// @brief Lookup a given registered resource.

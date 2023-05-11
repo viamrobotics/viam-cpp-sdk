@@ -5,6 +5,7 @@
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 #include <viam/api/component/base/v1/base.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/base/client.hpp>
 #include <viam/sdk/components/base/server.hpp>
@@ -34,7 +35,7 @@ std::shared_ptr<ResourceRegistration> Base::resource_registration() {
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::base::v1::BaseService::service_full_name());
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the base service");
+        throw ViamException("Unable to get service descriptor for the base service");
     }
     return std::make_shared<BaseRegistration>(sd);
 }

@@ -5,6 +5,7 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/client.hpp>
 #include <viam/sdk/components/camera/server.hpp>
@@ -29,7 +30,7 @@ std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::camera::v1::CameraService::service_full_name());
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the camera service");
+        throw ViamException("Unable to get service descriptor for the camera service");
     }
     return std::make_shared<CameraRegistration>(sd);
 }

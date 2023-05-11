@@ -116,7 +116,7 @@ class Model {
     /// @brief Parses a single model string into a Model, using default values for namespace and
     /// family if not provided.
     ///
-    /// @throws `std::runtime_error` if given an invalid model (i.e., one with non-word characters).
+    /// @throws `ViamException` if given an invalid model (i.e., one with non-word characters).
     static Model from_str(std::string model);
     friend bool operator==(const Model& lhs, const Model& rhs);
 

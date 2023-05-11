@@ -9,6 +9,7 @@
 #include <viam/api/app/v1/robot.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
@@ -18,11 +19,7 @@ namespace viam {
 namespace sdk {
 
 Name ResourceConfig::resource_name() {
-    try {
-        this->fix_api();
-    } catch (std::string err) {  // NOLINT
-        throw err;
-    }
+    this->fix_api();
     std::vector<std::string> remotes;
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     boost::split(remotes, this->name_, boost::is_any_of(":"));
@@ -87,7 +84,7 @@ void ResourceConfig::fix_api() {
     // config structs
     if (this->api_.type_namespace() != this->namespace__ ||
         this->api_.resource_subtype() != this->type_) {
-        throw "component namespace and/or type do not match component api field";
+        throw ViamException("component namespace and/or type do not match component api field");
     }
 }
 
@@ -103,11 +100,7 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
     }
     resource.model_ = Model::from_str(proto_cfg.model());
 
-    try {
-        resource.fix_api();
-    } catch (std::string err) {  // NOLINT
-        throw err;
-    }
+    resource.fix_api();
 
     if (proto_cfg.has_frame()) {
         LinkConfig lc = LinkConfig::from_proto(proto_cfg.frame());

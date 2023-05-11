@@ -72,7 +72,7 @@ class RobotClient {
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
     /// @param name The `ResourceName` of the resource.
-    /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
+    /// @throws `ViamException` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource as an uncasted `Resource`.
     ///
     /// This method should not be called directly except in specific cases. The
@@ -86,7 +86,7 @@ class RobotClient {
     template <typename T>
     /// @brief Lookup and return a `shared_ptr` to a resource of the requested type.
     /// @param name The ordinary name of the resource.
-    /// @throws `std::runtime_error` if the requested resource doesn't exist or is the wrong type.
+    /// @throws `ViamException` if the requested resource doesn't exist or is the wrong type.
     /// @return a `shared_ptr` to the requested resource.
     std::shared_ptr<T> resource_by_name(std::string name) {
         ResourceName r;

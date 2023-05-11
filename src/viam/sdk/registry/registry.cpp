@@ -12,6 +12,7 @@
 
 #include <viam/api/robot/v1/robot.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -40,7 +41,7 @@ void Registry::register_model(std::shared_ptr<ModelRegistration> resource) {
     std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
     if (resources_.find(reg_key) != resources_.end()) {
         std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
-        throw std::runtime_error(err);
+        throw DuplicateResourceException(err);
     }
 
     resources_.emplace(reg_key, resource);
@@ -49,7 +50,7 @@ void Registry::register_model(std::shared_ptr<ModelRegistration> resource) {
 void Registry::register_resource(API api,
                                  std::shared_ptr<ResourceRegistration> resource_registration) {
     if (apis_.find(api) != apis_.end()) {
-        throw std::runtime_error("Cannot add api " + api.to_string() + " as it already exists");
+        throw ViamException("Cannot add api " + api.to_string() + " as it already exists");
     }
 
     apis_.emplace(std::move(api), std::move(resource_registration));

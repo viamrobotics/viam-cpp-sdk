@@ -77,7 +77,7 @@ int MyModule::which_ = 0;
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        throw "need socket path as command line argument";
+        throw std::runtime_error("need socket path as command line argument");
     }
 
     // C++ modules must handle SIGINT and SIGTERM. Make sure to create a sigset
@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
         // a vector of strings representing the implicit dependencies of the resource.
         [](ResourceConfig cfg) -> std::vector<std::string> {
             if (cfg.attributes()->find("invalidattribute") != cfg.attributes()->end()) {
-                throw std::string(
+                throw std::runtime_error(
                     "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
             }
 

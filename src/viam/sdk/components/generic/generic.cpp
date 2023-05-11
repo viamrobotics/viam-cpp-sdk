@@ -6,6 +6,7 @@
 
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/generic/client.hpp>
 #include <viam/sdk/components/generic/server.hpp>
@@ -30,7 +31,7 @@ std::shared_ptr<ResourceRegistration> Generic::resource_registration() {
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::component::generic::v1::GenericService::service_full_name());
     if (!sd) {
-        throw std::runtime_error("Unable to get service descriptor for the generic service");
+        throw ViamException("Unable to get service descriptor for the generic service");
     }
     return std::make_shared<GenericRegistration>(sd);
 }

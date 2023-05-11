@@ -9,6 +9,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board/board.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -32,7 +33,7 @@ Board::status BoardClient::get_status() {
 
     grpc::Status status = stub_->Status(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return from_proto(response.status());
 }
@@ -48,7 +49,7 @@ void BoardClient::set_gpio(const std::string& pin, bool high) {
     request.set_high(high);
     grpc::Status status = stub_->SetGPIO(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -63,7 +64,7 @@ bool BoardClient::get_gpio(const std::string& pin) {
 
     grpc::Status status = stub_->GetGPIO(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return response.high();
 }
@@ -79,7 +80,7 @@ double BoardClient::get_pwm_duty_cycle(const std::string& pin) {
 
     grpc::Status status = stub_->PWM(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return response.duty_cycle_pct();
 }
@@ -96,7 +97,7 @@ void BoardClient::set_pwm_duty_cycle(const std::string& pin, double duty_cycle_p
 
     grpc::Status status = stub_->SetPWM(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -111,7 +112,7 @@ uint64_t BoardClient::get_pwm_frequency(const std::string& pin) {
 
     grpc::Status status = stub_->PWMFrequency(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return response.frequency_hz();
 }
@@ -128,7 +129,7 @@ void BoardClient::set_pwm_frequency(const std::string& pin, uint64_t frequency_h
 
     grpc::Status status = stub_->SetPWMFrequency(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
@@ -144,7 +145,7 @@ AttributeMap BoardClient::do_command(AttributeMap command) {
 
     grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return struct_to_map(response.result());
 }
@@ -160,7 +161,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
 
     grpc::Status status = stub_->ReadAnalogReader(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return response.value();
 }
@@ -177,7 +178,7 @@ Board::digital_value BoardClient::read_digital_interrupt(
 
     grpc::Status status = stub_->GetDigitalInterruptValue(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
     return response.value();
 }
@@ -197,7 +198,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
 
     grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
     if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
+        throw ViamException(status);
     }
 }
 
