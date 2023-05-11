@@ -189,7 +189,7 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
                 boost::get<std::vector<std::shared_ptr<ProtoType>>>(lhs.proto_type_);
             const auto& rhs_vec =
                 boost::get<std::vector<std::shared_ptr<ProtoType>>>(rhs.proto_type_);
-            return std::equal(lhs_vec.begin(), lhs_vec.end(), rhs_vec.begin(), pred);
+            return std::equal(lhs_vec.begin(), lhs_vec.end(), rhs_vec.begin(), rhs_vec.end(), pred);
         }
         default: {
             throw "Invalid proto_value conversion type. This should never happen;\
