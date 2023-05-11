@@ -43,6 +43,7 @@ AttributeMap struct_to_map(Struct struct_) {
     return map;
 }
 
+// NOLINTNEXTLINE(misc-no-recursion)
 ProtoType::ProtoType(const Value& value) {
     switch (value.kind_case()) {
         case Value::KindCase::kBoolValue: {
