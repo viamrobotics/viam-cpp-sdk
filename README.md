@@ -17,7 +17,7 @@
 
 ## Getting Started
 
-NOTE: Please see `BUILDING.md` for instructions on how to use
+NOTE: Please see [BUILDING.md](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md) for instructions on how to use
 CMake-based build system for this project.
 
 ## Using Docker for Development
