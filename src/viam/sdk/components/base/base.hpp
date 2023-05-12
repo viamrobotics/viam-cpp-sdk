@@ -24,12 +24,11 @@ namespace sdk {
 /// @ingroup Base
 class BaseRegistration : public ResourceRegistration {
    public:
+    explicit BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    BaseRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Base base.hpp "components/base/base.hpp"

@@ -8,6 +8,9 @@
 namespace viam {
 namespace sdk {
 
+MotorServer::MotorServer() : ResourceServer(std::make_shared<ResourceManager>()){};
+MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+
 ::grpc::Status MotorServer::SetPower(::grpc::ServerContext* context,
                                      const ::viam::component::motor::v1::SetPowerRequest* request,
                                      ::viam::component::motor::v1::SetPowerResponse* response) {

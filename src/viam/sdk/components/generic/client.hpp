@@ -18,11 +18,8 @@ namespace sdk {
 /// @ingroup Generic
 class GenericClient : public Generic {
    public:
+    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
-    GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-        : Generic(std::move(name)),
-          stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
-          channel_(std::move(channel)){};
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

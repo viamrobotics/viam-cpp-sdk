@@ -13,12 +13,12 @@ namespace sdk {
 
 class Component : public Resource {
    public:
+    Component();
     virtual ResourceType type() const override;
     viam::common::v1::ResourceName get_resource_name(std::string name) override;
-    Component() : Resource("component"){};
 
    protected:
-    explicit Component(std::string name) : Resource(std::move(name)){};
+    explicit Component(std::string name);
 };
 
 }  // namespace sdk
