@@ -19,7 +19,6 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
 
-
 namespace viam {
 namespace sdk {
 
@@ -42,7 +41,6 @@ class MLModelServiceServer : public ResourceServer,
     ::grpc::Status Metadata(::grpc::ServerContext* context,
                             const ::viam::service::mlmodel::v1::MetadataRequest* request,
                             ::viam::service::mlmodel::v1::MetadataResponse* response) override;
-
 };
 
 }  // namespace sdk

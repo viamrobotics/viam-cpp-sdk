@@ -5,7 +5,7 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
-#include <viam/sdk/components/component_base.hpp>
+#include <viam/sdk/components/component.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -42,8 +42,10 @@ class ExampleMLModelService : public vs::MLModelService {
                                          xt::no_ownership(),
                                          std::vector<std::size_t>{1, 1});
 
-        auto score_tensor = xt::adapt(
-            score_data.data(), score_data.size(), xt::no_ownership(), std::vector<std::size_t>{1, 1});
+        auto score_tensor = xt::adapt(score_data.data(),
+                                      score_data.size(),
+                                      xt::no_ownership(),
+                                      std::vector<std::size_t>{1, 1});
 
         auto num_dets_tensor = xt::adapt(num_dets_data.data(),
                                          num_dets_data.size(),
@@ -212,7 +214,7 @@ int serve(const std::string& socket_path) {
         vs::ResourceType{"ExampleMLModelServiceModule"},
 
         // NOTE: This feels like an opportunity to take the type
-        vs::MLModelService::static_subtype(),
+        vs::MLModelService::static_api(),
 
         // NOTE: What do these strings do/mean/constrain/affect?
         vs::Model{"viam", "example", "mlmodel"},
@@ -223,12 +225,12 @@ int serve(const std::string& socket_path) {
 
         [](vs::ResourceConfig resource_config) -> std::vector<std::string> { return {}; });
 
-    vs::Registry::register_resource(module_registration);
+    vs::Registry::register_model(module_registration);
     auto module_service = std::make_shared<vs::ModuleService_>(socket_path);
 
     auto server = std::make_shared<vs::Server>();
     module_service->add_model_from_registry(
-        server, module_registration->subtype(), module_registration->model());
+        server, module_registration->api(), module_registration->model());
 
     module_service->start(server);
 

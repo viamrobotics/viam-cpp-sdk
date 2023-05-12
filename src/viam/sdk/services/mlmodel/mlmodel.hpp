@@ -24,20 +24,21 @@
 
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
-#include <viam/sdk/services/service_base.hpp>
+#include <viam/sdk/services/service.hpp>
 
 namespace viam {
 namespace sdk {
 
-class MLModelServiceSubtype : public ResourceSubtype {
+class MLModelServiceRegistration : public ResourceRegistration {
    public:
-    explicit MLModelServiceSubtype(const google::protobuf::ServiceDescriptor* service_descriptor);
+    explicit MLModelServiceRegistration(
+        const google::protobuf::ServiceDescriptor* service_descriptor);
 
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
 
-    std::shared_ptr<Resource> create_rpc_client(
-        std::string name, std::shared_ptr<grpc::Channel> channel) override;
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> channel) override;
 };
 
 ///
@@ -45,11 +46,10 @@ class MLModelServiceSubtype : public ResourceSubtype {
 ///
 class MLModelService : public Service {
    public:
+    static API static_api();
+    static std::shared_ptr<ResourceRegistration> resource_registration();
 
-    static Subtype static_subtype();
-    static std::shared_ptr<ResourceSubtype> resource_subtype();
-
-    Subtype dynamic_subtype() const override;
+    API dynamic_api() const override;
 
     template <typename T>
     class tensor_view {
@@ -58,7 +58,7 @@ class MLModelService : public Service {
 
         using xt_no_ownership_t = decltype(xt::no_ownership());
 
-    public:
+       public:
         using type = decltype(xt::adapt(std::declval<const T*>(),
                                         std::declval<std::size_t>(),
                                         std::declval<xt_no_ownership_t>(),
@@ -98,7 +98,7 @@ class MLModelService : public Service {
 
     // Outputs are also the name / tensor_view mapping, but tupled together
     // with an opaque state handle that owns the backing memory.
-    struct infer_response_state{};
+    struct infer_response_state {};
     using infer_response = std::pair<std::shared_ptr<infer_response_state>, tensor_map>;
 
     // XXX ACM TODO: doc comment

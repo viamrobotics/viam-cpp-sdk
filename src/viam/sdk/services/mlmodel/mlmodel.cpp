@@ -21,43 +21,44 @@
 namespace viam {
 namespace sdk {
 
-MLModelServiceSubtype::MLModelServiceSubtype(
+MLModelServiceRegistration::MLModelServiceRegistration(
     const google::protobuf::ServiceDescriptor* service_descriptor)
-    : ResourceSubtype(service_descriptor) {}
+    : ResourceRegistration(service_descriptor) {}
 
-std::shared_ptr<ResourceServer> MLModelServiceSubtype::create_resource_server(
+std::shared_ptr<ResourceServer> MLModelServiceRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<MLModelServiceServer>(std::move(manager));
 };
 
-std::shared_ptr<Resource> MLModelServiceSubtype::create_rpc_client(
+std::shared_ptr<Resource> MLModelServiceRegistration::create_rpc_client(
     std::string name, std::shared_ptr<grpc::Channel> channel) {
     return std::make_shared<MLModelServiceClient>(std::move(name), std::move(channel));
 };
 
-Subtype MLModelService::static_subtype() {
-    return Subtype(RDK, SERVICE, "mlmodel");
+API MLModelService::static_api() {
+    return API(RDK, SERVICE, "mlmodel");
 }
 
-std::shared_ptr<ResourceSubtype> MLModelService::resource_subtype() {
+std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::service::mlmodel::v1::MLModelService::service_full_name());
     if (!sd) {
         throw std::runtime_error("Unable to get service descriptor for the camera service");
     }
-    return std::make_shared<MLModelServiceSubtype>(sd);
+    return std::make_shared<MLModelServiceRegistration>(sd);
 }
 
-Subtype MLModelService::dynamic_subtype() const {
-    return static_subtype();
+API MLModelService::dynamic_api() const {
+    return static_api();
 }
 
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 namespace {
 bool init() {
-    Registry::register_subtype(MLModelService::static_subtype(), MLModelService::resource_subtype());
+    Registry::register_resource(MLModelService::static_api(),
+                                MLModelService::resource_registration());
     return true;
 };
 
