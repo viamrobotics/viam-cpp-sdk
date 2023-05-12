@@ -91,14 +91,14 @@ $(function() {
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1GenericServer.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1GenericServer.html">GenericServer</a> : <span class="keyword">public</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>,</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                      <span class="keyword">public</span> viam::component::generic::v1::GenericService::Service {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                             const ::viam::common::v1::DoCommandRequest* request,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                             ::viam::common::v1::DoCommandResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1GenericServer.html">GenericServer</a>() : <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>(std::make_shared&lt;ResourceManager&gt;()){};</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1GenericServer.html">GenericServer</a>(std::shared_ptr&lt;ResourceManager&gt; manager) : <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a>(manager){};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1GenericServer.html">GenericServer</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classviam_1_1sdk_1_1GenericServer.html">GenericServer</a>(std::shared_ptr&lt;ResourceManager&gt; manager);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                             const ::viam::common::v1::DoCommandRequest* request,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                             ::viam::common::v1::DoCommandResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}  <span class="comment">// namespace sdk</span></div>
