@@ -21,7 +21,6 @@ namespace sdk {
 class EncoderClient : public Encoder {
    public:
     EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-
     position get_position(position_type position_type) override;
     void reset_position() override;
     properties get_properties() override;

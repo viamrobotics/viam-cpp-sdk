@@ -20,6 +20,7 @@ namespace sdk {
 /// @ingroup Motor
 class MotorClient : public Motor {
    public:
+    MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     void set_power(double power_pct) override;
     void go_for(double rpm, double revolutions) override;
     void go_to(double rpm, double position_revolutions) override;
@@ -30,10 +31,6 @@ class MotorClient : public Motor {
     power_status get_power_status() override;
     bool is_moving() override;
     AttributeMap do_command(AttributeMap command) override;
-    MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-        : Motor(std::move(name)),
-          stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
-          channel_(std::move(channel)){};
 
    private:
     std::unique_ptr<viam::component::motor::v1::MotorService::StubInterface> stub_;

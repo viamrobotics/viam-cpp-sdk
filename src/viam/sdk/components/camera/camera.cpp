@@ -15,6 +15,10 @@
 namespace viam {
 namespace sdk {
 
+CameraRegistration::CameraRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor){};
+
 std::shared_ptr<ResourceServer> CameraRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<CameraServer>(manager);
@@ -134,6 +138,8 @@ viam::component::camera::v1::DistortionParameters Camera::to_proto(
     *proto.mutable_parameters() = vector_to_repeated_field(params.parameters);
     return proto;
 }
+
+Camera::Camera(std::string name) : Component(std::move(name)){};
 
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) {
     return lhs.mime_type == rhs.mime_type && lhs.pc == rhs.pc;

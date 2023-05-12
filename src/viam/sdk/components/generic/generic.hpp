@@ -22,12 +22,11 @@ namespace sdk {
 /// @ingroup Generic
 class GenericRegistration : public ResourceRegistration {
    public:
+    explicit GenericRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    GenericRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Generic generic.hpp "components/generic/generic.hpp"
@@ -52,7 +51,7 @@ class Generic : public Component {
     API dynamic_api() const override;
 
    protected:
-    explicit Generic(std::string name) : Component(std::move(name)){};
+    explicit Generic(std::string name);
 };
 
 }  // namespace sdk

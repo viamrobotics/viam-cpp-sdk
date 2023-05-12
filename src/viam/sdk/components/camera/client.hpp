@@ -20,14 +20,11 @@ namespace sdk {
 /// @ingroup Camera
 class CameraClient : public Camera {
    public:
+    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
-    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-        : Camera(std::move(name)),
-          stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
-          channel_(std::move(channel)){};
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

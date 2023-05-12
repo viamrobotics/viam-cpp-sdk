@@ -15,6 +15,10 @@
 namespace viam {
 namespace sdk {
 
+EncoderRegistration::EncoderRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor){};
+
 std::shared_ptr<ResourceServer> EncoderRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<EncoderServer>(manager);
