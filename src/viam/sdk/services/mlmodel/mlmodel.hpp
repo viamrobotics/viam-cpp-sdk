@@ -21,7 +21,6 @@
 #include <boost/variant/variant.hpp>
 
 #include <xtensor/xadapt.hpp>
-#include <xtensor/xchunked_array.hpp>
 
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
@@ -52,10 +51,6 @@ class MLModelService : public Service {
 
     Subtype dynamic_subtype() const override;
 
-    // Ultimately, we want an xchunked_array backed by a std::vector
-    // of adapted linear buffers over T. Explicitly naming that type
-    // would be profoundly difficult given how `xtensor` works. Use
-    // decltype/declval to metaprogram up the type we want instead.
     template <typename T>
     class tensor_view {
        private:
@@ -63,28 +58,11 @@ class MLModelService : public Service {
 
         using xt_no_ownership_t = decltype(xt::no_ownership());
 
-        // The type for the first layer of adapt over the raw buffer
-        using adapt_l1_t = decltype(xt::adapt(std::declval<T*>(),
-                                              std::declval<std::size_t>(),
-                                              std::declval<xt_no_ownership_t>(),
-                                              std::declval<shape_t>()));
-
-        // The l1 adapts will be stored in a vector.
-        using adapt_l1_storage_t = std::vector<adapt_l1_t>;
-
-        // The type for the second layer of adapt over a vector of l1 adapts.
-        using adapt_l2_t = decltype(xt::adapt(std::declval<adapt_l1_storage_t>().data(),
-                                              std::declval<adapt_l1_storage_t>().size(),
-                                              std::declval<xt_no_ownership_t>(),
-                                              std::declval<shape_t>()));
-
-       public:
-        // The type for an `xchunked_array` viewing over the l2 adapt.
-        //
-        // Hooray! we made it!
-        using type = decltype(xt::xchunked_array<adapt_l2_t>(std::move(std::declval<adapt_l2_t>()),
-                                                             std::declval<shape_t>(),
-                                                             std::declval<shape_t>()));
+    public:
+        using type = decltype(xt::adapt(std::declval<const T*>(),
+                                        std::declval<std::size_t>(),
+                                        std::declval<xt_no_ownership_t>(),
+                                        std::declval<shape_t>()));
     };
 
     // Now that we have a factory for our tensor view types, use mpl
@@ -120,8 +98,8 @@ class MLModelService : public Service {
 
     // Outputs are also the name / tensor_view mapping, but tupled together
     // with an opaque state handle that owns the backing memory.
-    struct infer_response_state;
-    using infer_response = std::tuple<std::shared_ptr<infer_response_state>, tensor_map>;
+    struct infer_response_state{};
+    using infer_response = std::pair<std::shared_ptr<infer_response_state>, tensor_map>;
 
     // XXX ACM TODO: doc comment
     virtual infer_response infer(const infer_request& inputs) = 0;

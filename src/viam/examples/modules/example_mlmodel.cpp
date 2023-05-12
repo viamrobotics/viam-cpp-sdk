@@ -26,7 +26,37 @@ class ExampleMLModelService : public vs::MLModelService {
 
     infer_response infer(const infer_request& inputs) override {
         std::cout << "ExampleMLModelService: recieved `infer` invocation" << std::endl;
-        return {};
+
+        static constexpr std::array<float, 4> location_data = {0.25, 0.25, 0.75, 0.75};
+        static constexpr std::array<float, 1> category_data = {0};
+        static constexpr std::array<float, 1> score_data = {.99};
+        static constexpr std::array<float, 1> num_dets_data = {1};
+
+        auto location_tensor = xt::adapt(location_data.data(),
+                                         location_data.size(),
+                                         xt::no_ownership(),
+                                         std::vector<std::size_t>{1, 1, 4});
+
+        auto category_tensor = xt::adapt(category_data.data(),
+                                         category_data.size(),
+                                         xt::no_ownership(),
+                                         std::vector<std::size_t>{1, 1});
+
+        auto score_tensor = xt::adapt(
+            score_data.data(), score_data.size(), xt::no_ownership(), std::vector<std::size_t>{1, 1});
+
+        auto num_dets_tensor = xt::adapt(num_dets_data.data(),
+                                         num_dets_data.size(),
+                                         xt::no_ownership(),
+                                         std::vector<std::size_t>{1});
+
+        using namespace std::literals::string_literals;
+        infer_response::second_type tensors{{"location"s, std::move(location_tensor)},
+                                            {"category"s, std::move(category_tensor)},
+                                            {"score"s, std::move(score_tensor)},
+                                            {"n_detections"s, std::move(num_dets_tensor)}};
+
+        return {std::make_shared<infer_response_state>(), std::move(tensors)};
     }
 
     struct metadata metadata() override {
@@ -37,137 +67,136 @@ class ExampleMLModelService : public vs::MLModelService {
         // per the instructions and data at
         // https://github.com/viamrobotics/vision-service-examples/tree/aa4195485754151fccbfd61fbe8bed63db7f300f
 
-        return {
-            // name
-            "EfficientDet Lite0 V1",
+        return {// name
+                "C++ SDK Example MLModel - Faking EfficientDet Lite0 V1",
 
-            // type
-            "tflite_detector",
+                // type
+                "tflite_detector",
 
-            // description
-            "Identify which of a known set of objects might be present and provide information about their positions within the given image or a video stream.",
+                // description
+                "Identify which of a known set of objects might be present and provide information "
+                "about their positions within the given image or a video stream.",
 
-            // `inputs`
-            {
+                // `inputs`
                 {
-                    // name
-                    "image",
-
-                    // description
-                    "Input image to be detected. The expected image is 320 x 320, with three channels (red, blue, and green) per pixel. Each value in the tensor is a single byte between 0 and 255.",
-
-                    // data_type
-                    "uint8",
-
-                    // shape
-                    {1, 320, 320, 3},
-
-                    // associated_files
-                    {},
-
-                    // extra
-                    // {}
-                },
-            },
-
-            // outputs
-            {
-                {
-                    // name
-                    "location",
-
-                    // description
-                    "The locations of the detected boxes.",
-
-                    // data_type
-                    "float32",
-
-                    // shape
-                    {},
-
-                    // associated_files
-                    {}
-
-                    // extra {
-                    // fields {
-                    // key: "labels"
-                    // value {
-                    //     string_value: "/example/labels.txt"
-                    //    }
-                    // }
-
-                },
-
-                {
-                    // name
-                    "category",
-
-                    // description
-                    "The categories of the detected boxes.",
-
-                    // data_type
-                    "float32",
-
-                    // shape
-                    {},
-
-                    // associated files
-                    {{
+                    {
                         // name
-                        "labelmap.txt",
+                        "image",
 
                         // description
-                        "Label of objects that this model can recognize.",
+                        "Input image to be detected. The expected image is 320 x 320, with three "
+                        "channels (red, blue, and green) per pixel. Each value in the tensor is a "
+                        "single byte between 0 and 255.",
 
-                        MLModelService::tensor_info::file::k_type_tensor_value,
-                    }}
+                        // data_type
+                        "uint8",
 
-                    // extra
-                    // {}
+                        // shape
+                        {1, 320, 320, 3},
+
+                        // associated_files
+                        {},
+
+                        // extra
+                        // {}
+                    },
                 },
 
-                {
-                    // name
-                    "score",
+                // outputs
+                {{
+                     // name
+                     "location",
 
-                    // description
-                    "The scores of the detected boxes.",
+                     // description
+                     "The locations of the detected boxes.",
 
-                    // data_type
-                    "float32",
+                     // data_type
+                     "float32",
 
-                    // shape
-                    {},
+                     // shape
+                     {},
 
-                    // associated_files
-                    {}
+                     // associated_files
+                     {}
 
-                    // extra
-                    // {}
+                     // extra {
+                     // fields {
+                     // key: "labels"
+                     // value {
+                     //     string_value: "/example/labels.txt"
+                     //    }
+                     // }
 
-                },
+                 },
 
-                {
-                    // name
-                    "number of detections",
+                 {
+                     // name
+                     "category",
 
-                    // description,
-                    "The number of the detected boxes."
+                     // description
+                     "The categories of the detected boxes.",
 
-                    // data_type
-                    "float32",
+                     // data_type
+                     "float32",
 
-                    // shape
-                    {},
+                     // shape
+                     {},
 
-                    // associated_files
-                    {}
+                     // associated files
+                     {{
+                         // name
+                         "labelmap.txt",
 
-                    // extra
-                    // {}
-                }
-            }
-        };
+                         // description
+                         "Label of objects that this model can recognize.",
+
+                         MLModelService::tensor_info::file::k_type_tensor_value,
+                     }}
+
+                     // extra
+                     // {}
+                 },
+
+                 {
+                     // name
+                     "score",
+
+                     // description
+                     "The scores of the detected boxes.",
+
+                     // data_type
+                     "float32",
+
+                     // shape
+                     {},
+
+                     // associated_files
+                     {}
+
+                     // extra
+                     // {}
+
+                 },
+
+                 {
+                     // name
+                     "n_detections",
+
+                     // description,
+                     "The number of the detected boxes."
+
+                     // data_type
+                     "float32",
+
+                     // shape
+                     {},
+
+                     // associated_files
+                     {}
+
+                     // extra
+                     // {}
+                 }}};
     }
 };
 
@@ -192,9 +221,7 @@ int serve(const std::string& socket_path) {
             return std::make_shared<ExampleMLModelService>(resource_config.name());
         },
 
-        [](vs::ResourceConfig resource_config) -> std::vector<std::string> {
-            return {};
-        });
+        [](vs::ResourceConfig resource_config) -> std::vector<std::string> { return {}; });
 
     vs::Registry::register_resource(module_registration);
     auto module_service = std::make_shared<vs::ModuleService_>(socket_path);
