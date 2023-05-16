@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <cstdint>
+#include <type_traits>
 #include <viam/sdk/services/mlmodel/server.hpp>
 
-#include <strstream>
+#include <stack>
+#include <vector>
 
 #include <boost/variant/get.hpp>
 
@@ -25,6 +28,90 @@ namespace viam {
 namespace sdk {
 
 namespace {
+
+// A tricky little bit of work to serialize floating point tensors to
+// a ListValue of ListValue of ... ListValue of Value objects holding
+// doubles, without recursion.
+//
+// This could probably be cleaned up a little more. In particular,
+// it'd be nice if we didn't need the special case for bailing out and
+// just naturally fell out of the loop with the top level ListValue in
+// place.
+class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> {
+   public:
+    explicit tensor_to_pb_value_visitor(::google::protobuf::Value* value)
+        : value_{std::move(value)} {}
+
+    ::grpc::Status operator()(
+        const typename MLModelService::tensor_view<float>::type& tensor) const {
+        return tensor_to_pb_value_<float>(tensor);
+    }
+
+    ::grpc::Status operator()(
+        const typename MLModelService::tensor_view<double>::type& tensor) const {
+        return tensor_to_pb_value_<double>(tensor);
+    }
+
+    template <typename T>
+    ::grpc::Status operator()(const T&) const {
+        return {::grpc::UNIMPLEMENTED, "Only float, double, and uint8_t tensors may be serialized"};
+    }
+
+   private:
+    template <typename T>
+    ::grpc::Status tensor_to_pb_value_(
+        const typename MLModelService::tensor_view<T>::type& tensor) const {
+
+        // TODO: Generalize to support serializing uint8_t, which is the other
+        // case we can handle.
+
+        auto begin = tensor.shape().cbegin();
+        if (begin != tensor.shape().cend()) {
+            std::stack<std::unique_ptr<::google::protobuf::ListValue>> lvs;
+            std::vector<size_t> ixes;
+            ixes.reserve(tensor.shape().size());
+            while (true) {
+                if (ixes.size() == tensor.shape().size()) {
+                    // The base case: working over the last
+                    // index. Create Value objects holding doubles for
+                    // each value in the range of the last index.
+                    for (; ixes.back() != *tensor.shape().rbegin(); ++ixes.back()) {
+                        auto new_value = std::make_unique<::google::protobuf::Value>();
+                        new_value->set_number_value(tensor.element(ixes.begin(), ixes.end()));
+                        lvs.top()->mutable_values()->AddAllocated(new_value.release());
+                    }
+                }
+                if (ixes.empty() || (ixes.back() < tensor.shape()[ixes.size() - 1])) {
+                    // The "recursive" step where we make a new list and "descend".
+                    lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
+                    ixes.push_back(0);
+                } else if (ixes.size() > 1) {
+                    // The step-out case where we have exhausted a
+                    // stride. Wrap up the list we created in a value node
+                    // and unwind to the next set of values one level up.
+                    auto list_value = std::make_unique<::google::protobuf::Value>();
+                    list_value->set_allocated_list_value(lvs.top().release());
+                    lvs.pop();
+                    lvs.top()->mutable_values()->AddAllocated(list_value.release());
+                    ixes.pop_back();
+                    ++ixes.back();
+                } else {
+                    // If we can't recur, and we can't unwind, then we
+                    // must be done. We must break so that we don't throw
+                    // away our result. I'd like to find a way to make
+                    // that happen more naturally.
+                    break;
+                }
+            }
+            value_->set_allocated_list_value(lvs.top().release());
+            lvs.pop();
+        }
+
+        return ::grpc::Status();
+    }
+
+    ::google::protobuf::Value* value_;
+    };
 
 ::grpc::Status to_infer_request(const MLModelService::tensor_info& tensor_info,
                                 const ::google::protobuf::Value& pb,
@@ -37,61 +124,8 @@ namespace {
     const MLModelService::tensor_views& tensor,
     decltype(std::declval<::google::protobuf::Struct>().mutable_fields()) fields) {
     auto emplace_result = fields->try_emplace(tensor_info.name);
-    auto contained = boost::get<MLModelService::tensor_view<float>::type>(&tensor);
-
-    // TODO: Write the iterative version, but for now I need no more than
-    // depth 3 double array to make a detector work.
-    if (contained->shape().size() == 1) {
-        auto lv = std::make_unique<::google::protobuf::ListValue>();
-        auto* lv_mutable_vals = lv->mutable_values();
-        for (size_t i = 0; i != contained->shape()[0]; ++i) {
-            auto new_value = std::make_unique<::google::protobuf::Value>();
-            new_value->set_number_value((*contained)(i));
-            lv_mutable_vals->AddAllocated(new_value.release());
-        }
-        emplace_result.first->second.set_allocated_list_value(lv.release());
-    } else if (contained->shape().size() == 2) {
-        auto lv1 = std::make_unique<::google::protobuf::ListValue>();
-        auto* lv1_mutable_vals = lv1->mutable_values();
-        for (size_t i = 0; i != contained->shape()[0]; ++i) {
-            auto lv2 = std::make_unique<::google::protobuf::ListValue>();
-            auto* lv2_mutable_vals = lv2->mutable_values();
-            for (size_t j = 0; j != contained->shape()[1]; ++j) {
-                auto new_value = std::make_unique<::google::protobuf::Value>();
-                new_value->set_number_value((*contained)(i, j));
-                lv2_mutable_vals->AddAllocated(new_value.release());
-            }
-            auto wrap_value = std::make_unique<::google::protobuf::Value>();
-            wrap_value->set_allocated_list_value(lv2.release());
-            lv1_mutable_vals->AddAllocated(wrap_value.release());
-        }
-        emplace_result.first->second.set_allocated_list_value(lv1.release());
-    } else if (contained->shape().size() == 3) {
-        auto lv1 = std::make_unique<::google::protobuf::ListValue>();
-        auto* lv1_mutable_vals = lv1->mutable_values();
-        for (size_t i = 0; i != contained->shape()[0]; ++i) {
-            auto lv2 = std::make_unique<::google::protobuf::ListValue>();
-            auto* lv2_mutable_vals = lv2->mutable_values();
-            for (size_t j = 0; j != contained->shape()[1]; ++j) {
-                auto lv3 = std::make_unique<::google::protobuf::ListValue>();
-                auto* lv3_mutable_vals = lv3->mutable_values();
-                for (size_t k = 0; k != contained->shape()[2]; ++k) {
-                    auto new_value = std::make_unique<::google::protobuf::Value>();
-                    new_value->set_number_value((*contained)(i, j, k));
-                    lv3_mutable_vals->AddAllocated(new_value.release());
-                }
-                auto wrap_value = std::make_unique<::google::protobuf::Value>();
-                wrap_value->set_allocated_list_value(lv3.release());
-                lv2_mutable_vals->AddAllocated(wrap_value.release());
-            }
-            auto wrap_value = std::make_unique<::google::protobuf::Value>();
-            wrap_value->set_allocated_list_value(lv2.release());
-            lv1_mutable_vals->AddAllocated(wrap_value.release());
-        }
-        emplace_result.first->second.set_allocated_list_value(lv1.release());
-    }
-
-    return ::grpc::Status();
+    // TODO: check result of try_emplace
+    return boost::apply_visitor(tensor_to_pb_value_visitor{&emplace_result.first->second}, tensor);
 }
 
 }  // namespace
@@ -125,7 +159,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     // TODO: Caching for metadata. It is a complex structure with
     // dynamic allocations, so ideally we don't need to make a copy
     // for every inference. Unfortunately, we can't make the
-    // `metadata` method in the base class reutrn a `const&` because
+    // `metadata` method in the base class return a `const&` because
     // on the client side it needs to synthesize a new object to
     // return on each call.
     const auto md = mlms->metadata();
@@ -140,16 +174,17 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     for (const auto& input : md.inputs) {
         const auto where = pb_input_data_fields.find(input.name);
         if (where == pb_input_data_fields.end()) {
-            std::strstream message;
+            std::stringstream message;
             message << "Call to [Infer] missing metadata-specified input tensor '" << input.name
                     << "'";
             return {::grpc::StatusCode::INVALID_ARGUMENT, message.str()};
         }
 
-        const auto status = to_infer_request(input, where->second, &infer_request);
+        auto status = to_infer_request(input, where->second, &infer_request);
 
-        if (!status.ok())
+        if (!status.ok()) {
             return status;
+        }
     }
 
     // TODO: Should we handle exceptions here? Or is it ok to let them
@@ -160,16 +195,17 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     for (const auto& output : md.outputs) {
         const auto where = infer_result.second.find(output.name);
         if (where == infer_result.second.end()) {
-            std::strstream message;
+            std::stringstream message;
             message << "MLModelService::infer results missing metadata-mandated output tensor'"
                     << output.name << "' for [Infer] invocation";
             return {::grpc::StatusCode::INTERNAL, message.str()};
         }
 
-        const auto status = from_infer_response(output, where->second, &pb_output_data_fields);
+        auto status = from_infer_response(output, where->second, &pb_output_data_fields);
 
-        if (!status.ok())
+        if (!status.ok()) {
             return status;
+        }
     }
 
     return ::grpc::Status();
