@@ -54,7 +54,7 @@ template <typename T>
             if (shape[depth] == 0) {
                 shape[depth] = children.size();
             } else if (shape[depth] != children.size()) {
-                // XXX RAGGED TENSOR
+                // XXX ACM TODO RAGGED TENSOR
             }
             vs.top() = nullptr;
             ++depth;
@@ -69,18 +69,18 @@ template <typename T>
                 if (shape[depth] == 0) {
                     shape[depth] = decoded.size();
                 } else if (shape[depth] != decoded.size()) {
-                    // XXX RAGGED TENSOR
+                    // XXX ACM TODO RAGGED TENSOR
                 }
             } else {
                 std::cout << "XXX ACM sv BAD DECODE: " << sv << std::endl;
-                /// XXX BAD ENCODING
+                /// XXX ACM TODO BAD ENCODING
             }
             vs.pop();
         } else if (vs.top()->has_number_value()) {
             storage.push_back(vs.top()->number_value());
             vs.pop();
         } else {
-            // XXX UNHANDLED TYPE;
+            // XXX ACM TODO UNHANDLED TYPE;
         }
     }
 
@@ -90,7 +90,7 @@ template <typename T>
     // all input tensors invalid.
     if (!tensor_info.shape.empty()) {
         if (shape.size() != tensor_info.shape.size()) {
-            // XXX DIMENSION MISMATCH
+            // XXX ACM TODO DIMENSION MISMATCH
         } else {
             const auto compare = [](const auto& spec, const auto& real) {
                 if (spec < 0 && spec != -1) {
@@ -105,7 +105,7 @@ template <typename T>
                 return true;
             };
             if (!std::equal(tensor_info.shape.begin(), tensor_info.shape.end(), shape.begin(), shape.end(), compare)) {
-                /// XXX ERROR
+                /// XXX ACM TODO ERROR
             }
         }
     }
@@ -113,7 +113,7 @@ template <typename T>
     // Register the tensor_view over our storage into the map of named
     // tensor views.
     //
-    // TODO: Provide a helper function in MLModel to make it easier to
+    // XXX ACM TODO: Provide a helper function in MLModel to make it easier to
     // do these next three lines correctly, since MLModel implementers
     // will need to do it too.
     const auto& const_storage = storage;
@@ -265,7 +265,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                                   const ::google::protobuf::Value& pb,
                                   tensor_storage* iis,
                                   MLModelService::named_tensor_views* ntvs) {
-    // TODO: I'm guessing at the string names here, because the scope
+    // XXX ACM TODO: I'm guessing at the string names here, because the scope
     // doesn't actually specify them.
     if (tensor_info.data_type == "int8") {
         return pb_value_to_tensor_t<std::int8_t>(tensor_info, pb, iis, ntvs);

@@ -304,7 +304,7 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_flatten_three_dimensions) {
     // Create a linear 100 element array of xarray's viewing over the
     // inner contiguous float arrays of `data`.
     //
-    // TODO: These shape vectors need dynamic storage. Can we avoid that?
+    // XXX ACM TODO: These shape vectors need dynamic storage. Can we avoid that?
     using base_type = decltype(xt::adapt(
         data[0][0].data(), depth, xt::no_ownership(), std::vector<std::size_t>{depth}));
     std::vector<base_type> chunk_storage;
@@ -386,7 +386,7 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
 
     // Shape the buffer as a tensor and validate that we find the right things at the right indexes.
     //
-    // TODO: Things break when I declare this as `const auto`. Why?
+    // XXX ACM TODO: Things break when I declare this as `const auto`. Why?
     auto detection_results = xt::adapt(detection_results_buffer.data(),
                                        detection_results_buffer.size(),
                                        xt::no_ownership(),
@@ -429,7 +429,7 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
                                           detection_results_shape[2] - 1) ==
                &detection_results_buffer.back());
 
-    // TODO: Validate that we can efficiently fragement to 50 newly
+    // XXX ACM TODO: Validate that we can efficiently fragement to 50 newly
     // 4 element vectors with 50 copies, as we would need to
     // do to push it back as a proto `struct`.
     std::array<std::vector<float>, dimensions[0] * dimensions[1]> storage;

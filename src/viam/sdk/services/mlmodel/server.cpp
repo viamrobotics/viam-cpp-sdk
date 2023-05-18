@@ -51,7 +51,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no input data"};
     }
 
-    // TODO: cache this?
+    // XXX ACM TODO: cache this?
     const auto md = mlms->metadata();
 
     mlmodel_details::tensor_storage input_storage;
@@ -64,7 +64,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         // Ignore any inputs for which we don't have metadata, since
         // we can't know what type they should decode to.
         //
-        // TODO: Should this be an error? For now we just don't decode
+        // XXX ACM TODO: Should this be an error? For now we just don't decode
         // those tensors.
         if (where == input_fields.end()) {
             continue;
@@ -76,13 +76,13 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         }
     }
 
-    // TODO: Should we handle exceptions here? Or is it ok to let them
+    // XXX ACM TODO: Should we handle exceptions here? Or is it ok to let them
     // bubble up and have a higher layer deal with it?
     const auto outputs = mlms->infer(inputs);
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
         auto emplace_result = pb_output_data_fields.try_emplace(kv.first);
-        // TODO: check result of emplace
+        // XXX ACM TODO: check result of emplace
         auto status = mlmodel_details::tensor_to_pb_value(kv.second, &emplace_result.first->second);
         if (!status.ok()) {
             return status;
