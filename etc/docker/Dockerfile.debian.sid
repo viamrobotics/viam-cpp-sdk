@@ -22,6 +22,7 @@ RUN apt-get -y --no-install-recommends install \
     libgrpc++-dev \
     libprotobuf-dev \
     libssl-dev \
+    libxtensor-dev \
     ninja-build \
     pkg-config \
     protobuf-compiler-grpc \
