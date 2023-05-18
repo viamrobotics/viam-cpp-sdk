@@ -81,6 +81,7 @@ target_sources(viamsdk
     rpc/server.cpp
     services/mlmodel/client.cpp
     services/mlmodel/mlmodel.cpp
+    services/mlmodel/private/proto.cpp
     services/mlmodel/server.cpp
     services/service.cpp
     spatialmath/geometry.cpp

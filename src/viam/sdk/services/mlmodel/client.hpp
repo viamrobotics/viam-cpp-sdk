@@ -32,7 +32,7 @@ class MLModelServiceClient : public MLModelService {
 
     MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
-    infer_response infer(const infer_request& inputs) override;
+    std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override;
     struct metadata metadata() override;
 
    protected:

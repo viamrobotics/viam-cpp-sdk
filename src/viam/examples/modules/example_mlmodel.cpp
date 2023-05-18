@@ -24,10 +24,10 @@ class ExampleMLModelService : public vs::MLModelService {
         std::cout << "ExampleMLModelService: instantiated as '" << this->name() << "'" << std::endl;
     }
 
-    infer_response infer(const infer_request& inputs) override {
+    std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override {
         std::cout << "ExampleMLModelService: recieved `infer` invocation" << std::endl;
 
-        static constexpr std::array<float, 4> location_data = {0.25, 0.25, 0.75, 0.75};
+        static constexpr std::array<float, 4> location_data = {0.1, 0.1, 0.75, 0.75};
         static constexpr std::array<float, 1> category_data = {0};
         static constexpr std::array<float, 1> score_data = {.99};
         static constexpr std::array<float, 1> num_dets_data = {1};
@@ -53,12 +53,12 @@ class ExampleMLModelService : public vs::MLModelService {
                                          std::vector<std::size_t>{1});
 
         using namespace std::literals::string_literals;
-        infer_response::second_type tensors{{"location"s, std::move(location_tensor)},
-                                            {"category"s, std::move(category_tensor)},
-                                            {"score"s, std::move(score_tensor)},
-                                            {"n_detections"s, std::move(num_dets_tensor)}};
+        named_tensor_views tensors{{"location"s, std::move(location_tensor)},
+                                   {"category"s, std::move(category_tensor)},
+                                   {"score"s, std::move(score_tensor)},
+                                   {"n_detections"s, std::move(num_dets_tensor)}};
 
-        return {std::make_shared<infer_response_state>(), std::move(tensors)};
+        return std::make_shared<named_tensor_views>(std::move(tensors));
     }
 
     struct metadata metadata() override {

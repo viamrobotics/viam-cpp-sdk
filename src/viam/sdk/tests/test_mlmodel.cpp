@@ -195,7 +195,7 @@ BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
 BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
     auto mock = std::make_shared<MockMLModelService>();
     client_server_test(mock, [](auto& client) {
-        MLModelService::infer_request request;
+        MLModelService::named_tensor_views request;
         auto response = client.infer(request);
         BOOST_TEST(true);
     });
@@ -416,7 +416,7 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
     auto chunk_adapter = xt::adapt(chunk_storage.data(),
                                    chunk_storage.size(),
                                    xt::no_ownership(),
-                                   std::vector{chunk_storage.size()});
+                                   std::vector<size_t>{chunk_storage.size()});
 
     const xt::xchunked_array<decltype(chunk_adapter)> detection_results_chunked(
         std::move(chunk_adapter), detection_results_shape, detection_results_shape);
@@ -434,7 +434,7 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
     // do to push it back as a proto `struct`.
     std::array<std::vector<float>, dimensions[0] * dimensions[1]> storage;
     for (auto& storage_item : storage)
-        storage_item = std::vector(dimensions[2], float{0});
+        storage_item = std::vector<float>(dimensions[2], float{0});
     // XXX
 }
 

@@ -22,6 +22,8 @@
 
 #include <xtensor/xadapt.hpp>
 
+#include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
+
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/services/service.hpp>
@@ -45,25 +47,28 @@ class MLModelServiceRegistration : public ResourceRegistration {
 /// The `MLModelService` presents the API for an ML Model Service.
 ///
 class MLModelService : public Service {
+private:
+
+    template <typename T>
+    struct make_tensor_view_ {
+        using shape_t = std::vector<std::size_t>;
+
+        using xt_no_ownership_t = decltype(xt::no_ownership());
+
+        using type = decltype(xt::adapt(std::declval<const T*>(),
+                                        std::declval<std::size_t>(),
+                                        std::declval<xt_no_ownership_t>(),
+                                        std::declval<shape_t>()));
+    };
+
    public:
     static API static_api();
     static std::shared_ptr<ResourceRegistration> resource_registration();
 
     API dynamic_api() const override;
 
-    template <typename T>
-    class tensor_view {
-       private:
-        using shape_t = std::vector<std::size_t>;
-
-        using xt_no_ownership_t = decltype(xt::no_ownership());
-
-       public:
-        using type = decltype(xt::adapt(std::declval<const T*>(),
-                                        std::declval<std::size_t>(),
-                                        std::declval<xt_no_ownership_t>(),
-                                        std::declval<shape_t>()));
-    };
+    template<typename T>
+    using tensor_view = typename make_tensor_view_<T>::type;
 
     // Now that we have a factory for our tensor view types, use mpl
     // to produce a variant over tensor views over the primitive types
@@ -85,24 +90,15 @@ class MLModelService : public Service {
     using base_types = boost::mpl::joint_view<integral_base_types, fp_base_types>;
 
     using tensor_view_types =
-        boost::mpl::transform_view<base_types, tensor_view<boost::mpl::placeholders::_1>>;
+        boost::mpl::transform_view<base_types, make_tensor_view_<boost::mpl::placeholders::_1>>;
 
     // Union the tensor views for the various base types.
     using tensor_views = boost::make_variant_over<tensor_view_types>::type;
 
     // Our parameters to and from the model come as named tensor_views.
-    using tensor_map = std::unordered_map<std::string, tensor_views>;
+    using named_tensor_views = std::unordered_map<std::string, tensor_views>;
 
-    // Inputs are just the name / tensor_view mapping.
-    using infer_request = tensor_map;
-
-    // Outputs are also the name / tensor_view mapping, but tupled together
-    // with an opaque state handle that owns the backing memory.
-    struct infer_response_state {};
-    using infer_response = std::pair<std::shared_ptr<infer_response_state>, tensor_map>;
-
-    // XXX ACM TODO: doc comment
-    virtual infer_response infer(const infer_request& inputs) = 0;
+    virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) = 0;
 
     struct tensor_info {
         struct file {

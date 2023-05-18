@@ -14,10 +14,21 @@
 
 #include <viam/sdk/services/mlmodel/client.hpp>
 
+#include <viam/sdk/services/mlmodel/private/proto.hpp>
+
 #include <grpcpp/channel.h>
 
 namespace viam {
 namespace sdk {
+
+namespace {
+
+struct tensor_storage_and_views {
+    mlmodel_details::tensor_storage storage;
+    MLModelService::named_tensor_views views;
+};
+
+}  // namespace
 
 MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : MLModelServiceClient(std::move(name), service_type::NewStub(channel)) {
@@ -28,7 +39,7 @@ MLModelServiceClient::MLModelServiceClient(std::string name,
                                            std::unique_ptr<service_type::StubInterface> stub)
     : MLModelService(name), stub_(std::move(stub)) {}
 
-MLModelService::infer_response MLModelServiceClient::infer(const infer_request& inputs) {
+std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(const named_tensor_views& inputs) {
     namespace pb = ::google::protobuf;
     namespace mlpb = ::viam::service::mlmodel::v1;
 
@@ -39,25 +50,39 @@ MLModelService::infer_response MLModelServiceClient::infer(const infer_request& 
 
     auto& mutable_input_data = *req->mutable_input_data();
     auto& mutable_input_data_fields = *mutable_input_data.mutable_fields();
+
     for (const auto& kv : inputs) {
-        // Create a new `Value` entry in the struct under the name associated
-        // with the current input tensor.
         auto ib = mutable_input_data_fields.emplace(kv.first);
-        // TODO: check `b`, should always be `true`
-        [[gnu::unused]] pb::Value& value = ib.first->second;
+        // TODO: check bool
+        pb::Value& value = ib.first->second;
+        mlmodel_details::tensor_to_pb_value(kv.second, &value);
     }
 
+    auto resp = pb::Arena::CreateMessage<mlpb::InferResponse>(&arena);
+
     grpc::ClientContext ctx;
-    mlpb::InferResponse resp;
+    auto result = stub_->Infer(&ctx, *req, resp);
 
-    auto result = stub_->Infer(&ctx, *req, &resp);
+    // Make a copy of metadata so we don't need to lock
+    const auto md = metadata(); // _get_cached_metadata();
 
-    // TODO: Deal with fail `result`.
+    auto tsav = std::make_shared<tensor_storage_and_views>();
+    const auto& output_fields = resp->output_data().fields();
+    for (const auto& output : md.outputs) {
+        const auto where = output_fields.find(output.name);
 
-    MLModelService::infer_response infer_response;
-    // TODO Decode `resp` into `infer_response`
+        // Ignore any outputs for which we don't have metadata, since
+        // we can't know what type they should decode to.
+        //
+        // TODO: Should this be an error?
+        if (where == output_fields.end()) {
+            continue;
+        }
 
-    return infer_response;
+        mlmodel_details::pb_value_to_tensor(output, where->second, &tsav->storage, &tsav->views);
+    }
+
+    return {std::move(tsav), &tsav->views};
 }
 
 struct MLModelService::metadata MLModelServiceClient::metadata() {
