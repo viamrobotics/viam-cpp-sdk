@@ -53,6 +53,61 @@ API MLModelService::dynamic_api() const {
     return static_api();
 }
 
+boost::optional<enum MLModelService::tensor_info::data_type>
+MLModelService::tensor_info::string_to_data_type(const std::string& str) {
+    // TODO: I'm guessing at the string names here, because the scope
+    // doesn't actually specify them.
+    if (str == "int8") {
+        return data_type::k_int8;
+    } else if (str == "uint8") {
+        return data_type::k_uint8;
+    } else if (str == "int16") {
+        return data_type::k_int16;
+    } else if (str == "uint16") {
+        return data_type::k_uint16;
+    } else if (str == "int32") {
+        return data_type::k_int32;
+    } else if (str == "uint32") {
+        return data_type::k_uint32;
+    } else if (str == "int64") {
+        return data_type::k_int64;
+    } else if (str == "uint64") {
+        return data_type::k_uint64;
+    } else if (str == "float32") {
+        return data_type::k_float32;
+    } else if (str == "float64") {
+        return data_type::k_float64;
+    }
+    return {};
+}
+
+const char* MLModelService::tensor_info::data_type_to_string(const enum data_type data_type) {
+    // TODO: I'm guessing at the string names here, because the scope
+    // doesn't actually specify them.
+    if (data_type == data_type::k_int8) {
+        return "int8";
+    } else if (data_type == data_type::k_uint8) {
+        return "uint8";
+    } else if (data_type == data_type::k_int16) {
+        return "int16";
+    } else if (data_type == data_type::k_uint16) {
+        return "uint16";
+    } else if (data_type == data_type::k_int32) {
+        return "int32";
+    } else if (data_type == data_type::k_uint32) {
+        return "uint32";
+    } else if (data_type == data_type::k_int64) {
+        return "int64";
+    } else if (data_type == data_type::k_uint64) {
+        return "uint64";
+    } else if (data_type == data_type::k_float32) {
+        return "float32";
+    } else if (data_type == data_type::k_float64) {
+        return "float64";
+    }
+    return {};
+}
+
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 namespace {

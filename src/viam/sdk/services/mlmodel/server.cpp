@@ -51,7 +51,8 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no input data"};
     }
 
-    // XXX ACM TODO: cache this?
+    // TODO: Metadata should be cached client side so we don't need to
+    // do two round trips for every inference.
     const auto md = mlms->metadata();
 
     mlmodel_details::tensor_storage input_storage;
@@ -64,7 +65,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         // Ignore any inputs for which we don't have metadata, since
         // we can't know what type they should decode to.
         //
-        // XXX ACM TODO: Should this be an error? For now we just don't decode
+        // TODO: Should this be an error? For now we just don't decode
         // those tensors.
         if (where == input_fields.end()) {
             continue;
@@ -76,8 +77,9 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         }
     }
 
-    // XXX ACM TODO: Should we handle exceptions here? Or is it ok to let them
-    // bubble up and have a higher layer deal with it?
+    // TODO: Should we handle exceptions here? Or is it ok to let them
+    // bubble up and have a higher layer deal with it? Perhaps all of
+    // our server side overrides should be `noexcept`.
     const auto outputs = mlms->infer(inputs);
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
@@ -106,12 +108,12 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
-    auto result = mlms->metadata();
+    auto md = mlms->metadata();
 
     auto& metadata_pb = *response->mutable_metadata();
-    *metadata_pb.mutable_name() = std::move(result.name);
-    *metadata_pb.mutable_type() = std::move(result.type);
-    *metadata_pb.mutable_description() = std::move(result.description);
+    *metadata_pb.mutable_name() = std::move(md.name);
+    *metadata_pb.mutable_type() = std::move(md.type);
+    *metadata_pb.mutable_description() = std::move(md.description);
 
     const auto pack_tensor_info = [](auto& target,
                                      const std::vector<MLModelService::tensor_info>& source) {
@@ -120,7 +122,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             auto& new_entry = *target.Add();
             *new_entry.mutable_name() = std::move(s.name);
             *new_entry.mutable_description() = std::move(s.description);
-            *new_entry.mutable_data_type() = std::move(s.data_type);
+            *new_entry.mutable_data_type() = MLModelService::tensor_info::data_type_to_string(s.data_type);
             auto& shape = *new_entry.mutable_shape();
             shape.Reserve(s.shape.size());
             shape.Assign(s.shape.begin(), s.shape.end());
@@ -131,11 +133,11 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                 *new_af.mutable_name() = std::move(af.name);
                 *new_af.mutable_description() = std::move(af.description);
                 switch (af.label_type) {
-                    case MLModelService::tensor_info::file::k_type_tensor_value:
+                    case MLModelService::tensor_info::file::k_label_type_tensor_value:
                         new_af.set_label_type(
                             ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE);
                         break;
-                    case MLModelService::tensor_info::file::k_type_tensor_axis:
+                    case MLModelService::tensor_info::file::k_label_type_tensor_axis:
                         new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS);
                         break;
                     default:
@@ -143,12 +145,12 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                         // XXX ACM TODO
                 }
             }
-            // XXX ACM TODO: `extra` field
+            *new_entry.mutable_extra() = map_to_struct(s.extra);
         }
     };
 
-    pack_tensor_info(*metadata_pb.mutable_input_info(), result.inputs);
-    pack_tensor_info(*metadata_pb.mutable_output_info(), result.outputs);
+    pack_tensor_info(*metadata_pb.mutable_input_info(), md.inputs);
+    pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
 
     return ::grpc::Status();
 }

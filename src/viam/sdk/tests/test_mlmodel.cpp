@@ -36,9 +36,16 @@ bool operator==(const MLModelService::tensor_info::file& l,
 
 bool operator==(const struct MLModelService::tensor_info& l,
                 const struct MLModelService::tensor_info& r) {
-    // XXX ACM TODO: `extra`
-    return std::tie(l.name, l.description, l.data_type, l.shape, l.associated_files) ==
-           std::tie(r.name, r.description, r.data_type, r.shape, r.associated_files);
+    if (std::tie(l.name, l.description, l.data_type, l.shape, l.associated_files) !=
+        std::tie(r.name, r.description, r.data_type, r.shape, r.associated_files)) {
+        return false;
+    }
+
+    if (!l.extra != !r.extra)
+        return false;
+    // ACM TODO: extra comparison, waiting on upstream PR 101
+    // return *l.extra == *r.extra;
+    return true;
 }
 
 bool operator==(const struct MLModelService::metadata& l,
@@ -76,7 +83,7 @@ const struct MLModelService::metadata test_metadata {
              "the first input",
 
              // `data_type`
-             "float32",
+             MLModelService::tensor_info::data_type::k_float32,
 
              // `shape`
              {640, 480, -1},
@@ -89,21 +96,23 @@ const struct MLModelService::metadata test_metadata {
                "i1f1",
 
                // `label_type`
-               MLModelService::tensor_info::file::k_type_tensor_value},
-              {"path/to/file1.2", "i1f2", MLModelService::tensor_info::file::k_type_tensor_axis}},
+               MLModelService::tensor_info::file::k_label_type_tensor_value},
+              {"path/to/file1.2", "i1f2", MLModelService::tensor_info::file::k_label_type_tensor_axis}},
 
-             // XXX ACM TODO: `extra`
-         },
+             // `extra`
+             std::make_shared<AttributeMap::element_type>(
+                 std::initializer_list<AttributeMap::element_type::value_type>{
+                     {"foo", std::make_shared<ProtoType>("bar")}})},
 
-         {
-             "input2",
-             "the second input",
-             "int32",
-             {4096, 2160, 3, -1},
-             {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_type_tensor_axis},
-              {"path/to/file2.2", "i2f2", MLModelService::tensor_info::file::k_type_tensor_value}},
-             // XXX ACM TODO: `extra`
-         }},
+         {"input2",
+          "the second input",
+          MLModelService::tensor_info::data_type::k_int32,
+          {4096, 2160, 3, -1},
+          {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_label_type_tensor_axis},
+           {"path/to/file2.2", "i2f2", MLModelService::tensor_info::file::k_label_type_tensor_value}},
+          std::make_shared<AttributeMap::element_type>(
+              std::initializer_list<AttributeMap::element_type::value_type>{
+                  {"bar", std::make_shared<ProtoType>(false)}})}},
 
         // `outputs`
         {{
@@ -115,7 +124,7 @@ const struct MLModelService::metadata test_metadata {
              "the first output",
 
              // `data_type`
-             "int32",
+             MLModelService::tensor_info::data_type::k_int32,
 
              // `shape`
              {-1, -1},
@@ -128,27 +137,29 @@ const struct MLModelService::metadata test_metadata {
                "o1f1",
 
                // `label_type`
-               MLModelService::tensor_info::file::k_type_tensor_axis},
+               MLModelService::tensor_info::file::k_label_type_tensor_axis},
               {"path/to/output_file1.2",
                "o1f2",
-               MLModelService::tensor_info::file::k_type_tensor_value}},
+               MLModelService::tensor_info::file::k_label_type_tensor_value}},
 
-             // XXX ACM TODO: `extra`
-         },
+             // `extra`
+             std::make_shared<AttributeMap::element_type>(
+                 std::initializer_list<AttributeMap::element_type::value_type>{
+                     {"baz", std::make_shared<ProtoType>()}})},
 
-         {
-             "output2",
-             "the second output",
-             "float32",
-             {-1, -1, 4},
-             {{"path/to/output_file2.1",
-               "o2f1",
-               MLModelService::tensor_info::file::k_type_tensor_axis},
-              {"path/to/output_file2.2",
-               "o2f2",
-               MLModelService::tensor_info::file::k_type_tensor_value}},
-             // XXX ACM TODO: `extra`
-         }},
+         {"output2",
+          "the second output",
+          MLModelService::tensor_info::data_type::k_float32,
+          {-1, -1, 4},
+          {{"path/to/output_file2.1",
+            "o2f1",
+            MLModelService::tensor_info::file::k_label_type_tensor_axis},
+           {"path/to/output_file2.2",
+            "o2f2",
+            MLModelService::tensor_info::file::k_label_type_tensor_value}},
+          std::make_shared<AttributeMap::element_type>(
+              std::initializer_list<AttributeMap::element_type::value_type>{
+                  {"quux", std::make_shared<ProtoType>(3.14)}})}},
 };
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
@@ -212,6 +223,8 @@ BOOST_AUTO_TEST_SUITE_END()
 // this zero copy, where we just use xtensor to synthesize a properly
 // shaped view over the data. We will use the input and output shapes
 // from the examples in the scope document.
+//
+// XXX ACM TODO: Don't need to test chunked.
 BOOST_AUTO_TEST_SUITE(xtensor_experiment)
 
 // Test based on getting two 800*600 input images.

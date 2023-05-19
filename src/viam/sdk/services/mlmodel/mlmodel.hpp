@@ -43,12 +43,14 @@ class MLModelServiceRegistration : public ResourceRegistration {
                                                 std::shared_ptr<grpc::Channel> channel) override;
 };
 
+/// @class MLModelService mlmodel.hpp "services/mlmodel/mlmodel.hpp"
+/// @brief Represents a machine trained learning model instance
 ///
-/// The `MLModelService` presents the API for an ML Model Service.
-///
+/// This class acts as an abstract base class to be used by any driver
+/// implementing an MLModel. It is also used as the base class for the
+/// gRPC client for communicating with a remote MLModel instance.
 class MLModelService : public Service {
-private:
-
+   private:
     template <typename T>
     struct make_tensor_view_ {
         using shape_t = std::vector<std::size_t>;
@@ -64,17 +66,15 @@ private:
    public:
     static API static_api();
     static std::shared_ptr<ResourceRegistration> resource_registration();
-
     API dynamic_api() const override;
 
-    template<typename T>
+    template <typename T>
     using tensor_view = typename make_tensor_view_<T>::type;
 
     // Now that we have a factory for our tensor view types, use mpl
     // to produce a variant over tensor views over the primitive types
     // we care about, which are the signed and unsigned fixed width
     // integral types and the two floating point types.
-
     using signed_integral_base_types =
         boost::mpl::list<std::int8_t, std::int16_t, std::int32_t, std::int64_t>;
 
@@ -98,6 +98,7 @@ private:
     // Our parameters to and from the model come as named tensor_views.
     using named_tensor_views = std::unordered_map<std::string, tensor_views>;
 
+    /// @brief Runs the model against the input tensors and returns inference results as tensosrs.
     virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) = 0;
 
     struct tensor_info {
@@ -105,23 +106,35 @@ private:
             std::string name;
             std::string description;
 
-            enum {
-                k_type_tensor_value,
-                k_type_tensor_axis,
+            enum : std::uint8_t {
+                k_label_type_tensor_value = 0,
+                k_label_type_tensor_axis = 1,
             } label_type;
         };
 
         std::string name;
         std::string description;
 
-        // XXX ACM TODO: make `data_type` an enum.
-        std::string data_type;
+        enum class data_type : std::uint8_t {
+            k_int8 = 0,
+            k_uint8 = 1,
+            k_int16 = 2,
+            k_uint16 = 3,
+            k_int32 = 4,
+            k_uint32 = 5,
+            k_int64 = 6,
+            k_uint64 = 7,
+            k_float32 = 8,
+            k_float64 = 9,
+        } data_type;
+
+        static boost::optional<enum data_type> string_to_data_type(const std::string& str);
+        static const char* data_type_to_string(enum data_type data_type);
 
         std::vector<int> shape;
         std::vector<file> associated_files;
 
-        // XXX ACM TODO: support `extra` field
-        // extra;
+        AttributeMap extra;
     };
 
     struct metadata {
@@ -132,7 +145,7 @@ private:
         std::vector<tensor_info> outputs;
     };
 
-    // XXX ACM TODO: doc comment
+    /// @brief Returns metadata describing the inputs and outputs of the model
     virtual struct metadata metadata() = 0;
 
    protected:

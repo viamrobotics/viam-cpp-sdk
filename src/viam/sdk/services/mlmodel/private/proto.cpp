@@ -54,8 +54,10 @@ template <typename T>
             if (shape[depth] == 0) {
                 shape[depth] = children.size();
             } else if (shape[depth] != children.size()) {
-                // XXX ACM TODO RAGGED TENSOR
-            }
+                std::ostringstream message;
+                message << "Ragged tensor '" << tensor_info.name << "' at depth " << depth;
+                return {grpc::INTERNAL, message.str()};
+                }
             vs.top() = nullptr;
             ++depth;
             std::for_each(
@@ -63,24 +65,28 @@ template <typename T>
         } else if (std::is_same<T, std::uint8_t>::value && vs.top()->has_string_value()) {
             const auto& sv = vs.top()->string_value();
             std::string decoded;
-            if (::google::protobuf::Base64Unescape(sv, &decoded)) {
-                std::cout << "XXX ACM sv DECODE TO " << decoded.size() << " bytes" << std::endl;
-                storage.insert(storage.end(), decoded.begin(), decoded.end());
-                if (shape[depth] == 0) {
-                    shape[depth] = decoded.size();
-                } else if (shape[depth] != decoded.size()) {
-                    // XXX ACM TODO RAGGED TENSOR
-                }
-            } else {
-                std::cout << "XXX ACM sv BAD DECODE: " << sv << std::endl;
-                /// XXX ACM TODO BAD ENCODING
+            if (!::google::protobuf::Base64Unescape(sv, &decoded)) {
+                std::ostringstream message;
+                message << "Failed to Base64 decode stride at depth " << depth << "in tensor '"
+                        << tensor_info.name << "'";
+                return {grpc::INTERNAL, message.str()};
+            }
+            storage.insert(storage.end(), decoded.begin(), decoded.end());
+            if (shape[depth] == 0) {
+                shape[depth] = decoded.size();
+            } else if (shape[depth] != decoded.size()) {
+                std::ostringstream message;
+                message << "Ragged tensor '" << tensor_info.name << "' at depth " << depth;
+                return {grpc::INTERNAL, message.str()};
             }
             vs.pop();
         } else if (vs.top()->has_number_value()) {
             storage.push_back(vs.top()->number_value());
             vs.pop();
         } else {
-            // XXX ACM TODO UNHANDLED TYPE;
+            std::ostringstream message;
+            message << "Unsupported Struct type '" << vs.top()->kind_case() << "' in tensor '" << tensor_info.name << "'";
+            return {grpc::INTERNAL, message.str()};
         }
     }
 
@@ -89,31 +95,47 @@ template <typename T>
     // the shape info in the metadata. If it isn't sane, we consider
     // all input tensors invalid.
     if (!tensor_info.shape.empty()) {
-        if (shape.size() != tensor_info.shape.size()) {
-            // XXX ACM TODO DIMENSION MISMATCH
-        } else {
-            const auto compare = [](const auto& spec, const auto& real) {
-                if (spec < 0 && spec != -1) {
-                    return false;
+        const auto make_error =
+            [&name=tensor_info.name, &expected=tensor_info.shape, &actual=shape]() {
+                std::ostringstream message;
+                message << "After decoding tensor '" << name
+                        << "', the discovered dimensions do not match the shape metadata:";
+                message << "prototype [";
+                for (const auto& i : expected) {
+                    message << i << ", ";
                 }
-                if (real < 1) {
-                    return false;
+                message << "], actual [";
+                for (const auto& i : actual) {
+                    message << i << ", ";
                 }
-                if (spec != -1 && spec != real) {
-                    return false;
-                }
-                return true;
+                message << "]";
+                return message.str();
             };
-            if (!std::equal(tensor_info.shape.begin(), tensor_info.shape.end(), shape.begin(), shape.end(), compare)) {
-                /// XXX ACM TODO ERROR
+
+        if (shape.size() != tensor_info.shape.size()) {
+            return {grpc::INTERNAL, make_error()};
+        }
+        const auto compare = [](const auto& spec, const auto& real) {
+            if (spec < 0 && spec != -1) {
+                return false;
             }
+            if (real < 1) {
+                return false;
+            }
+            if (spec != -1 && spec != real) {
+                return false;
+            }
+            return true;
+        };
+        if (!std::equal(tensor_info.shape.begin(), tensor_info.shape.end(), shape.begin(), shape.end(), compare)) {
+            return {grpc::INTERNAL, make_error()};
         }
     }
 
     // Register the tensor_view over our storage into the map of named
     // tensor views.
     //
-    // XXX ACM TODO: Provide a helper function in MLModel to make it easier to
+    // TODO: Provide a helper function in MLModel to make it easier to
     // do these next three lines correctly, since MLModel implementers
     // will need to do it too.
     const auto& const_storage = storage;
@@ -265,32 +287,30 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                                   const ::google::protobuf::Value& pb,
                                   tensor_storage* iis,
                                   MLModelService::named_tensor_views* ntvs) {
-    // XXX ACM TODO: I'm guessing at the string names here, because the scope
-    // doesn't actually specify them.
-    if (tensor_info.data_type == "int8") {
+    if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int8) {
         return pb_value_to_tensor_t<std::int8_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "uint8") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint8) {
         return pb_value_to_tensor_t<std::uint8_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "int16") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int16) {
         return pb_value_to_tensor_t<std::int16_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "uint16") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint16) {
         return pb_value_to_tensor_t<std::uint16_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "int32") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int32) {
         return pb_value_to_tensor_t<std::int32_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "uint32") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint32) {
         return pb_value_to_tensor_t<std::uint32_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "int64") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int64) {
         return pb_value_to_tensor_t<std::int64_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "uint64") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint64) {
         return pb_value_to_tensor_t<std::uint64_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "float32") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_float32) {
         return pb_value_to_tensor_t<float>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == "float64") {
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_float64) {
         return pb_value_to_tensor_t<double>(tensor_info, pb, iis, ntvs);
     } else {
         std::ostringstream message;
         message << "Called [Infer] with unsupported tensor `data_type` of `"
-                << tensor_info.data_type << "`";
+                << static_cast<std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(tensor_info.data_type) << "`";
         return {::grpc::StatusCode::INVALID_ARGUMENT, message.str()};
     }
 }

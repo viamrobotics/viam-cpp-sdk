@@ -91,7 +91,7 @@ class ExampleMLModelService : public vs::MLModelService {
                         "single byte between 0 and 255.",
 
                         // data_type
-                        "uint8",
+                        tensor_info::data_type::k_uint8,
 
                         // shape
                         {1, 320, 320, 3},
@@ -113,7 +113,7 @@ class ExampleMLModelService : public vs::MLModelService {
                      "The locations of the detected boxes.",
 
                      // data_type
-                     "float32",
+                     tensor_info::data_type::k_float32,
 
                      // shape
                      {},
@@ -139,7 +139,7 @@ class ExampleMLModelService : public vs::MLModelService {
                      "The categories of the detected boxes.",
 
                      // data_type
-                     "float32",
+                     tensor_info::data_type::k_float32,
 
                      // shape
                      {},
@@ -152,7 +152,7 @@ class ExampleMLModelService : public vs::MLModelService {
                          // description
                          "Label of objects that this model can recognize.",
 
-                         MLModelService::tensor_info::file::k_type_tensor_value,
+                         MLModelService::tensor_info::file::k_label_type_tensor_value,
                      }}
 
                      // extra
@@ -167,7 +167,7 @@ class ExampleMLModelService : public vs::MLModelService {
                      "The scores of the detected boxes.",
 
                      // data_type
-                     "float32",
+                     tensor_info::data_type::k_float32,
 
                      // shape
                      {},
