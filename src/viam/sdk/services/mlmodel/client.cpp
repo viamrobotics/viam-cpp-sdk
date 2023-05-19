@@ -129,7 +129,9 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                             throw -1;  // XXX ACM TODO
                     }
                 }
-                if (s.has_extra()) {
+                // XXX ACM TODO: Currently, struct_to_map seems broken,
+                // wait on PR 101 for fixes, hopefully.
+                if (false && s.has_extra()) {
                     ti.extra = struct_to_map(s.extra());
                 }
             }
