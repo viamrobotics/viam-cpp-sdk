@@ -121,7 +121,7 @@ endif()
 # info. This is probably the right build type for packaging and
 # release.
 if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE "Debug")
+  set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 endif()
 
 

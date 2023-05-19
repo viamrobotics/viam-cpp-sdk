@@ -35,47 +35,5 @@ class MockMLModelService : public sdk::MLModelService {
     struct metadata metadata_;
 };
 
-#if 0
-class MockMLModelStub : public viam::service::mlmodel::v1::MLModelService::StubInterface {
-   public:
-    MockMLModelStub();
-
-    ::grpc::Status Infer(::grpc::ClientContext* context,
-                         const ::viam::service::mlmodel::v1::InferRequest& request,
-                         ::viam::service::mlmodel::v1::InferResponse* response) override;
-
-    ::grpc::Status Metadata(::grpc::ClientContext* context,
-                            const ::viam::service::mlmodel::v1::MetadataRequest& request,
-                            ::viam::service::mlmodel::v1::MetadataResponse* response) override;
-
-   private:
-    ::grpc::ClientAsyncResponseReaderInterface<::viam::service::mlmodel::v1::InferResponse>*
-    AsyncInferRaw(::grpc::ClientContext* context,
-                  const ::viam::service::mlmodel::v1::InferRequest& request,
-                  ::grpc::CompletionQueue* cq) override;
-
-    ::grpc::ClientAsyncResponseReaderInterface<::viam::service::mlmodel::v1::InferResponse>*
-    PrepareAsyncInferRaw(::grpc::ClientContext* context,
-                         const ::viam::service::mlmodel::v1::InferRequest& request,
-                         ::grpc::CompletionQueue* cq) override;
-
-    ::grpc::ClientAsyncResponseReaderInterface<::viam::service::mlmodel::v1::MetadataResponse>*
-    AsyncMetadataRaw(::grpc::ClientContext* context,
-                     const ::viam::service::mlmodel::v1::MetadataRequest& request,
-                     ::grpc::CompletionQueue* cq) override;
-
-    ::grpc::ClientAsyncResponseReaderInterface<::viam::service::mlmodel::v1::MetadataResponse>*
-    PrepareAsyncMetadataRaw(::grpc::ClientContext* context,
-                            const ::viam::service::mlmodel::v1::MetadataRequest& request,
-                            ::grpc::CompletionQueue* cq) override;
-};
-
-class MockMLModelServiceClient : public sdk::MLModelServiceClient {
-   public:
-    explicit MockMLModelServiceClient(std::string name)
-        : MLModelServiceClient(std::move(name), std::make_unique<MockMLModelStub>()) {}
-};
-
-#endif
 }  // namespace sdktests
 }  // namespace viam
