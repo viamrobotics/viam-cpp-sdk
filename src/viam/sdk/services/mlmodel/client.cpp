@@ -108,7 +108,9 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                 auto data_type = MLModelService::tensor_info::string_to_data_type(s.data_type());
                 if (!data_type) {
                     std::ostringstream message;
-                    message << "Failed to deserialize returned Metadata.TensorInfo.data_type field with value `" << s.data_type() << "` to one of the known tensor data types";
+                    message << "Failed to deserialize returned Metadata.TensorInfo.data_type field "
+                               "with value `"
+                            << s.data_type() << "` to one of the known tensor data types";
                     throw std::runtime_error(message.str());
                 }
                 ti.data_type = *data_type;
@@ -121,22 +123,24 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                     new_file.name = std::move(*af.mutable_name());
                     new_file.description = std::move(*af.mutable_description());
                     switch (af.label_type()) {
-                    case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE: {
-                        new_file.label_type = tensor_info::file::k_label_type_tensor_value;
-                        break;
-                    }
-                    case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS: {
+                        case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE: {
+                            new_file.label_type = tensor_info::file::k_label_type_tensor_value;
+                            break;
+                        }
+                        case ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS: {
                             new_file.label_type = tensor_info::file::k_label_type_tensor_axis;
                             break;
-                    }
-                    default: {
-                        std::ostringstream message;
-                        message << "Failed to deserialize returned Metadata.TensorInfo.File.label_type field with value `" << af.label_type() << "` to one of the known label types";
-                        throw std::runtime_error(message.str());
-                    }
+                        }
+                        default: {
+                            std::ostringstream message;
+                            message << "Failed to deserialize returned "
+                                       "Metadata.TensorInfo.File.label_type field with value `"
+                                    << af.label_type() << "` to one of the known label types";
+                            throw std::runtime_error(message.str());
+                        }
                     }
                 }
-                // ACM TODO: Currently, struct_to_map seems broken,
+                // TODO: Currently, struct_to_map seems broken,
                 // wait on PR 101 for fixes, hopefully.
                 if (false && s.has_extra()) {
                     ti.extra = struct_to_map(s.extra());

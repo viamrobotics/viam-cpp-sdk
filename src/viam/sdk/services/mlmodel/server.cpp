@@ -85,7 +85,10 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
         auto emplace_result = pb_output_data_fields.try_emplace(kv.first);
-        // XXX ACM TODO: check result of emplace
+        // This assert should be impossible: `outputs` is a map and we
+        // are iterating its unique keys, and our `InferResponse`
+        // should have empty output data fields.
+        assert(emplace_result.second);
         auto status = mlmodel_details::tensor_to_pb_value(kv.second, &emplace_result.first->second);
         if (!status.ok()) {
             return status;
@@ -124,10 +127,16 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             *new_entry.mutable_name() = std::move(s.name);
             *new_entry.mutable_description() = std::move(s.description);
 
-            const auto* string_for_data_type = MLModelService::tensor_info::data_type_to_string(s.data_type);
+            const auto* string_for_data_type =
+                MLModelService::tensor_info::data_type_to_string(s.data_type);
             if (!string_for_data_type) {
                 std::ostringstream message;
-                message << "Served MLModelService returned an unknown data type with value `" << static_cast<std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(s.data_type) << "` in its metadata";
+                message
+                    << "Served MLModelService returned an unknown data type with value `"
+                    << static_cast<
+                           std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(
+                           s.data_type)
+                    << "` in its metadata";
                 return ::grpc::Status{grpc::INTERNAL, message.str()};
             }
             new_entry.set_data_type(string_for_data_type);
@@ -160,7 +169,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                         break;
                 }
             }
-            // ACM TODO: Currently, map_to_struct seems broken,
+            // TODO: Currently, map_to_struct seems broken,
             // wait on PR 101 for fixes, hopefully.
             // *new_entry.mutable_extra() = map_to_struct(s.extra);
         }

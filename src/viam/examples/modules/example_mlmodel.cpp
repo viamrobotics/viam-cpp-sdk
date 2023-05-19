@@ -73,7 +73,7 @@ class ExampleMLModelService : public vs::MLModelService {
                 "C++ SDK Example MLModel - Faking EfficientDet Lite0 V1",
 
                 // type
-                "tflite_detector",
+                "fake_tflite_detector",
 
                 // description
                 "Identify which of a known set of objects might be present and provide information "
@@ -81,27 +81,23 @@ class ExampleMLModelService : public vs::MLModelService {
 
                 // `inputs`
                 {
-                    {
-                        // name
-                        "image",
+                    {// name
+                     "image",
 
-                        // description
-                        "Input image to be detected. The expected image is 320 x 320, with three "
-                        "channels (red, blue, and green) per pixel. Each value in the tensor is a "
-                        "single byte between 0 and 255.",
+                     // description
+                     "Input image to be detected.",
 
-                        // data_type
-                        tensor_info::data_type::k_uint8,
+                     // data_type
+                     tensor_info::data_type::k_uint8,
 
-                        // shape
-                        {1, 320, 320, 3},
+                     // shape
+                     {1, 320, 320, 3},
 
-                        // associated_files
-                        {},
+                     // associated_files
+                     {},
 
-                        // extra
-                        // {}
-                    },
+                     // extra
+                     {}},
                 },
 
                 // outputs
@@ -119,9 +115,13 @@ class ExampleMLModelService : public vs::MLModelService {
                      {},
 
                      // associated_files
+                     {},
+
+                     // extra
                      {}
 
-                     // extra {
+                     // TODO, once PR 101
+                     // {
                      // fields {
                      // key: "labels"
                      // value {
@@ -131,74 +131,69 @@ class ExampleMLModelService : public vs::MLModelService {
 
                  },
 
-                 {
-                     // name
-                     "category",
+                 {// name
+                  "category",
 
-                     // description
-                     "The categories of the detected boxes.",
+                  // description
+                  "The categories of the detected boxes.",
 
-                     // data_type
-                     tensor_info::data_type::k_float32,
+                  // data_type
+                  tensor_info::data_type::k_float32,
 
-                     // shape
-                     {},
+                  // shape
+                  {},
 
-                     // associated files
-                     {{
-                         // name
-                         "labelmap.txt",
+                  // associated files
+                  {{
+                      // name
+                      "labelmap.txt",
 
-                         // description
-                         "Label of objects that this model can recognize.",
+                      // description
+                      "Label of objects that this model can recognize.",
 
-                         MLModelService::tensor_info::file::k_label_type_tensor_value,
-                     }}
+                      MLModelService::tensor_info::file::k_label_type_tensor_value,
+                  }},
 
-                     // extra
-                     // {}
-                 },
+                  // extra
+                  {}},
 
-                 {
-                     // name
-                     "score",
+                 {// name
+                  "score",
 
-                     // description
-                     "The scores of the detected boxes.",
+                  // description
+                  "The scores of the detected boxes.",
 
-                     // data_type
-                     tensor_info::data_type::k_float32,
+                  // data_type
+                  tensor_info::data_type::k_float32,
 
-                     // shape
-                     {},
+                  // shape
+                  {},
 
-                     // associated_files
-                     {}
+                  // associated_files
+                  {},
 
-                     // extra
-                     // {}
+                  // extra
+                  {}
 
                  },
 
-                 {
-                     // name
-                     "n_detections",
+                 {// name
+                  "n_detections",
 
-                     // description,
-                     "The number of the detected boxes."
+                  // description,
+                  "The number of the detected boxes.",
 
-                     // data_type
-                     "float32",
+                  // data_type
+                  tensor_info::data_type::k_float32,
 
-                     // shape
-                     {},
+                  // shape
+                  {},
 
-                     // associated_files
-                     {}
+                  // associated_files
+                  {},
 
-                     // extra
-                     // {}
-                 }}};
+                  // extra
+                  {}}}};
     }
 };
 
