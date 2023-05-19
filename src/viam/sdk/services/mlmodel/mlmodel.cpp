@@ -105,7 +105,7 @@ const char* MLModelService::tensor_info::data_type_to_string(const enum data_typ
     } else if (data_type == data_type::k_float64) {
         return "float64";
     }
-    return {};
+    return nullptr;
 }
 
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}

@@ -123,8 +123,12 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             auto& new_entry = *target.Add();
             *new_entry.mutable_name() = std::move(s.name);
             *new_entry.mutable_description() = std::move(s.description);
-            *new_entry.mutable_data_type() =
-                MLModelService::tensor_info::data_type_to_string(s.data_type);
+
+            const auto* string_for_data_type = MLModelService::tensor_info::data_type_to_string(s.data_type);
+            if (!string_for_data_type) {
+                // XXX ACM TODO: error
+            }
+            new_entry.set_data_type(string_for_data_type);
             auto& shape = *new_entry.mutable_shape();
             shape.Reserve(s.shape.size());
             shape.Assign(s.shape.begin(), s.shape.end());
