@@ -126,7 +126,9 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 
             const auto* string_for_data_type = MLModelService::tensor_info::data_type_to_string(s.data_type);
             if (!string_for_data_type) {
-                // XXX ACM TODO: error
+                std::ostringstream message;
+                message << "Served MLModelService returned an unknown data type with value `" << static_cast<std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(s.data_type) << "` in its metadata";
+                return ::grpc::Status{grpc::INTERNAL, message.str()};
             }
             new_entry.set_data_type(string_for_data_type);
             auto& shape = *new_entry.mutable_shape();
@@ -147,20 +149,29 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                         new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS);
                         break;
                     default:
+                        // In practice this shouldn't really happen
+                        // since we shouldn't see an MLMS instance
+                        // that we are serving return metadata
+                        // containing values not contained in the
+                        // enumeration. If it does, we just map it to
+                        // unspecified - the client is likely to
+                        // interpret it as an error.
+                        new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_UNSPECIFIED);
                         break;
-                        // XXX ACM TODO
                 }
             }
-            // XXX ACM TODO: Currently, map_to_struct seems broken,
+            // ACM TODO: Currently, map_to_struct seems broken,
             // wait on PR 101 for fixes, hopefully.
             // *new_entry.mutable_extra() = map_to_struct(s.extra);
         }
+        return ::grpc::Status();
     };
 
-    pack_tensor_info(*metadata_pb.mutable_input_info(), md.inputs);
-    pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
+    auto status = pack_tensor_info(*metadata_pb.mutable_input_info(), md.inputs);
+    if (!status.ok())
+        return status;
 
-    return ::grpc::Status();
+    return pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
 }
 
 }  // namespace sdk

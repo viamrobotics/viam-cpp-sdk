@@ -41,9 +41,7 @@ bool operator==(const struct MLModelService::tensor_info& l,
         return false;
     }
 
-    if (!l.extra != !r.extra)
-        return false;
-    // ACM TODO: extra comparison, waiting on upstream PR 101
+    // ACM TODO: `extra`` comparison, waiting on upstream PR 101
     // return *l.extra == *r.extra;
     return true;
 }
