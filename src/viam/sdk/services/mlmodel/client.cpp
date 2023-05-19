@@ -73,7 +73,8 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
         // Ignore any outputs for which we don't have metadata, since
         // we can't know what type they should decode to.
         if (where != output_fields.end()) {
-            mlmodel_details::pb_value_to_tensor(output, where->second, &tsav->storage, &tsav->views);
+            mlmodel_details::pb_value_to_tensor(
+                output, where->second, &tsav->storage, &tsav->views);
         }
     }
 

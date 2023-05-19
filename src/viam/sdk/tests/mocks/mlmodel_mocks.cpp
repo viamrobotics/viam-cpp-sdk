@@ -17,7 +17,8 @@
 namespace viam {
 namespace sdktests {
 
-std::shared_ptr<sdk::MLModelService::named_tensor_views> MockMLModelService::infer(const named_tensor_views& inputs) {
+std::shared_ptr<sdk::MLModelService::named_tensor_views> MockMLModelService::infer(
+    const named_tensor_views& inputs) {
     return {};
 }
 

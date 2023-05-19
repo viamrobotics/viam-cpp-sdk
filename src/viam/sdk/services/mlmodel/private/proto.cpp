@@ -57,7 +57,7 @@ template <typename T>
                 std::ostringstream message;
                 message << "Ragged tensor '" << tensor_info.name << "' at depth " << depth;
                 return {grpc::INTERNAL, message.str()};
-                }
+            }
             vs.top() = nullptr;
             ++depth;
             std::for_each(
@@ -85,7 +85,8 @@ template <typename T>
             vs.pop();
         } else {
             std::ostringstream message;
-            message << "Unsupported Struct type '" << vs.top()->kind_case() << "' in tensor '" << tensor_info.name << "'";
+            message << "Unsupported Struct type '" << vs.top()->kind_case() << "' in tensor '"
+                    << tensor_info.name << "'";
             return {grpc::INTERNAL, message.str()};
         }
     }
@@ -96,7 +97,7 @@ template <typename T>
     // all input tensors invalid.
     if (!tensor_info.shape.empty()) {
         const auto make_error =
-            [&name=tensor_info.name, &expected=tensor_info.shape, &actual=shape]() {
+            [&name = tensor_info.name, &expected = tensor_info.shape, &actual = shape]() {
                 std::ostringstream message;
                 message << "After decoding tensor '" << name
                         << "', the discovered dimensions do not match the shape metadata:";
@@ -127,7 +128,11 @@ template <typename T>
             }
             return true;
         };
-        if (!std::equal(tensor_info.shape.begin(), tensor_info.shape.end(), shape.begin(), shape.end(), compare)) {
+        if (!std::equal(tensor_info.shape.begin(),
+                        tensor_info.shape.end(),
+                        shape.begin(),
+                        shape.end(),
+                        compare)) {
             return {grpc::INTERNAL, make_error()};
         }
     }
@@ -309,15 +314,17 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
         return pb_value_to_tensor_t<double>(tensor_info, pb, iis, ntvs);
     } else {
         std::ostringstream message;
-        message << "Called [Infer] with unsupported tensor `data_type` of `"
-                << static_cast<std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(tensor_info.data_type) << "`";
+        message
+            << "Called [Infer] with unsupported tensor `data_type` of `"
+            << static_cast<std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(
+                   tensor_info.data_type)
+            << "`";
         return {::grpc::StatusCode::INVALID_ARGUMENT, message.str()};
     }
 }
 
-::grpc::Status tensor_to_pb_value(
-    const MLModelService::tensor_views& tensor,
-    ::google::protobuf::Value* value) {
+::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor,
+                                  ::google::protobuf::Value* value) {
     return boost::apply_visitor(tensor_to_pb_value_visitor{value}, tensor);
 }
 

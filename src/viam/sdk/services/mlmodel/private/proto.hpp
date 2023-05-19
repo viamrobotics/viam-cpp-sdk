@@ -37,9 +37,8 @@ using tensor_storage = std::vector<boost::make_variant_over<tensor_storage_types
                                   tensor_storage* iis,
                                   MLModelService::named_tensor_views* ntvs);
 
-::grpc::Status tensor_to_pb_value(
-    const MLModelService::tensor_views& tensor,
-    ::google::protobuf::Value* value);
+::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor,
+                                  ::google::protobuf::Value* value);
 
 }  // namespace mlmodel_details
 }  // namespace sdk

@@ -71,7 +71,8 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             continue;
         }
 
-        auto status = mlmodel_details::pb_value_to_tensor(input, where->second, &input_storage, &inputs);
+        auto status =
+            mlmodel_details::pb_value_to_tensor(input, where->second, &input_storage, &inputs);
         if (!status.ok()) {
             return status;
         }
@@ -122,7 +123,8 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             auto& new_entry = *target.Add();
             *new_entry.mutable_name() = std::move(s.name);
             *new_entry.mutable_description() = std::move(s.description);
-            *new_entry.mutable_data_type() = MLModelService::tensor_info::data_type_to_string(s.data_type);
+            *new_entry.mutable_data_type() =
+                MLModelService::tensor_info::data_type_to_string(s.data_type);
             auto& shape = *new_entry.mutable_shape();
             shape.Reserve(s.shape.size());
             shape.Assign(s.shape.begin(), s.shape.end());
