@@ -21,7 +21,7 @@ class ProtoType {
     explicit ProtoType(std::string s) : proto_type_(std::move(s)) {}
     explicit ProtoType(int i) : proto_type_(std::move(i)) {}
     explicit ProtoType(double d) : proto_type_(std::move(d)) {}
-    explicit ProtoType(AtributeMap m) : proto_type_(std::move(m)) {}
+    explicit ProtoType(AttributeMap m) : proto_type_(std::move(m)) {}
     explicit ProtoType(std::vector<std::shared_ptr<ProtoType>> v) : proto_type_(std::move(v)) {}
     explicit ProtoType(const google::protobuf::Value& value);
 

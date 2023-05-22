@@ -36,7 +36,7 @@ std::shared_ptr<Resource> MLModelServiceRegistration::create_rpc_client(
 };
 
 API MLModelService::static_api() {
-    return API(RDK, SERVICE, "mlmodel");
+    return API(kRDK, kService, "mlmodel");
 }
 
 std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
