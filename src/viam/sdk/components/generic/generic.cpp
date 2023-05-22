@@ -15,6 +15,10 @@
 namespace viam {
 namespace sdk {
 
+GenericRegistration::GenericRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor){};
+
 std::shared_ptr<ResourceServer> GenericRegistration::create_resource_server(
     std::shared_ptr<ResourceManager> manager) {
     return std::make_shared<GenericServer>(manager);
@@ -42,6 +46,8 @@ API Generic::static_api() {
 API Generic::dynamic_api() const {
     return static_api();
 }
+
+Generic::Generic(std::string name) : Component(std::move(name)){};
 
 namespace {
 bool init() {

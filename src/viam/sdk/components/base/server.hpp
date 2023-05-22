@@ -18,7 +18,7 @@ namespace sdk {
 class BaseServer : public ResourceServer, public viam::component::base::v1::BaseService::Service {
    public:
     BaseServer();
-    BaseServer(std::shared_ptr<ResourceManager> manager);
+    explicit BaseServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status MoveStraight(
         ::grpc::ServerContext* context,

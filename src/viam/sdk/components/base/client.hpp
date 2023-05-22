@@ -22,7 +22,6 @@ namespace sdk {
 class BaseClient : public Base {
    public:
     BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-
     void move_straight(int64_t distance_mm, double mm_per_sec) override;
     void spin(double angle_deg, double degs_per_sec) override;
     void set_power(const Vector3& linear, const Vector3& angular) override;
