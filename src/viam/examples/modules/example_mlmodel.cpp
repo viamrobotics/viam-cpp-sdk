@@ -32,25 +32,14 @@ class ExampleMLModelService : public vs::MLModelService {
         static constexpr std::array<float, 1> score_data = {.99};
         static constexpr std::array<float, 1> num_dets_data = {1};
 
-        auto location_tensor = xt::adapt(location_data.data(),
-                                         location_data.size(),
-                                         xt::no_ownership(),
-                                         std::vector<std::size_t>{1, 1, 4});
+        auto location_tensor =
+            make_tensor_view(location_data.data(), location_data.size(), {1, 1, 4});
 
-        auto category_tensor = xt::adapt(category_data.data(),
-                                         category_data.size(),
-                                         xt::no_ownership(),
-                                         std::vector<std::size_t>{1, 1});
+        auto category_tensor = make_tensor_view(category_data.data(), category_data.size(), {1, 1});
 
-        auto score_tensor = xt::adapt(score_data.data(),
-                                      score_data.size(),
-                                      xt::no_ownership(),
-                                      std::vector<std::size_t>{1, 1});
+        auto score_tensor = make_tensor_view(score_data.data(), score_data.size(), {1, 1});
 
-        auto num_dets_tensor = xt::adapt(num_dets_data.data(),
-                                         num_dets_data.size(),
-                                         xt::no_ownership(),
-                                         std::vector<std::size_t>{1});
+        auto num_dets_tensor = make_tensor_view(num_dets_data.data(), num_dets_data.size(), {1});
 
         using namespace std::literals::string_literals;
         named_tensor_views tensors{{"location"s, std::move(location_tensor)},
@@ -88,7 +77,7 @@ class ExampleMLModelService : public vs::MLModelService {
                      "Input image to be detected.",
 
                      // data_type
-                     tensor_info::data_type::k_uint8,
+                     tensor_info::data_types::k_uint8,
 
                      // shape
                      {1, 320, 320, 3},
@@ -109,7 +98,7 @@ class ExampleMLModelService : public vs::MLModelService {
                      "The locations of the detected boxes.",
 
                      // data_type
-                     tensor_info::data_type::k_float32,
+                     tensor_info::data_types::k_float32,
 
                      // shape
                      {},
@@ -138,7 +127,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   "The categories of the detected boxes.",
 
                   // data_type
-                  tensor_info::data_type::k_float32,
+                  tensor_info::data_types::k_float32,
 
                   // shape
                   {},
@@ -164,7 +153,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   "The scores of the detected boxes.",
 
                   // data_type
-                  tensor_info::data_type::k_float32,
+                  tensor_info::data_types::k_float32,
 
                   // shape
                   {},
@@ -184,7 +173,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   "The number of the detected boxes.",
 
                   // data_type
-                  tensor_info::data_type::k_float32,
+                  tensor_info::data_types::k_float32,
 
                   // shape
                   {},

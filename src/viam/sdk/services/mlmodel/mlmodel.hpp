@@ -71,6 +71,13 @@ class MLModelService : public Service {
     template <typename T>
     using tensor_view = typename make_tensor_view_<T>::type;
 
+    template <typename T>
+    static tensor_view<T> make_tensor_view(const T* data,
+                                           std::size_t size,
+                                           typename tensor_view<T>::shape_type shape) {
+        return xt::adapt(std::move(data), std::move(size), xt::no_ownership(), std::move(shape));
+    }
+
     // Now that we have a factory for our tensor view types, use mpl
     // to produce a variant over tensor views over the primitive types
     // we care about, which are the signed and unsigned fixed width
@@ -98,7 +105,7 @@ class MLModelService : public Service {
     // Our parameters to and from the model come as named tensor_views.
     using named_tensor_views = std::unordered_map<std::string, tensor_views>;
 
-    /// @brief Runs the model against the input tensors and returns inference results as tensosrs.
+    /// @brief Runs the model against the input tensors and returns inference results as tensors.
     virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) = 0;
 
     struct tensor_info {
@@ -115,7 +122,7 @@ class MLModelService : public Service {
         std::string name;
         std::string description;
 
-        enum class data_type : std::uint8_t {
+        enum class data_types : std::uint8_t {
             k_int8 = 0,
             k_uint8 = 1,
             k_int16 = 2,
@@ -128,13 +135,13 @@ class MLModelService : public Service {
             k_float64 = 9,
         } data_type;
 
-        static boost::optional<enum data_type> string_to_data_type(const std::string& str);
-        static const char* data_type_to_string(enum data_type data_type);
-
         std::vector<int> shape;
         std::vector<file> associated_files;
 
         AttributeMap extra;
+
+        static boost::optional<data_types> string_to_data_type(const std::string& str);
+        static const char* data_type_to_string(data_types data_type);
     };
 
     struct metadata {

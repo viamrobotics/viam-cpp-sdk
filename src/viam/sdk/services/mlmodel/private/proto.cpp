@@ -27,20 +27,18 @@ namespace {
 template <typename T>
 ::grpc::Status pb_value_to_tensor_t(const MLModelService::tensor_info& tensor_info,
                                     const ::google::protobuf::Value& pb,
-                                    tensor_storage* iis,
+                                    tensor_storage* ts,
                                     MLModelService::named_tensor_views* ntvs) {
-    // Stage our backing vector into `iis` and obtain a reference to it.
-    std::vector<T> storage_prototype;
-    auto storage_variant =
-        *iis->emplace(iis->end(), tensor_storage::value_type{std::move(storage_prototype)});
-    auto& storage = *boost::get<std::vector<T>>(&storage_variant);
+    // Stage our backing vector into `ts` and obtain a reference to it.
+    auto& storage_variant = *ts->emplace(ts->end(), std::vector<T>{});
+    auto& storage = boost::get<std::vector<T>>(storage_variant);
 
     // Seed our shape vector as starting with one unknown dimension.
     // We will populate it while walking the protobuf. Also create a
     // stack of Value pointers which we will use to manage our
     // walk. Start a depth counter so we know the index of the
     // dimension we are iterating.
-    typename MLModelService::tensor_view<T>::shape_type shape{0};
+    typename MLModelService::tensor_view<T>::shape_type shape{};
     std::stack<const ::google::protobuf::Value*> vs{{&pb}};
     size_t depth = 0;
 
@@ -51,6 +49,9 @@ template <typename T>
         } else if (vs.top()->has_list_value()) {
             const auto* lv = &vs.top()->list_value();
             const auto& children = lv->values();
+            if (shape.size() == depth) {
+                shape.push_back(0);
+            }
             if (shape[depth] == 0) {
                 shape[depth] = children.size();
             } else if (shape[depth] !=
@@ -140,15 +141,9 @@ template <typename T>
 
     // Register the tensor_view over our storage into the map of named
     // tensor views.
-    //
-    // TODO: Provide a helper function in MLModel to make it easier to
-    // do these next three lines correctly, since MLModel implementers
-    // will need to do it too.
-    const auto& const_storage = storage;
     ntvs->emplace(
         tensor_info.name,
-        std::move(xt::adapt(
-            const_storage.data(), const_storage.size(), xt::no_ownership(), std::move(shape))));
+        MLModelService::make_tensor_view(storage.data(), storage.size(), std::move(shape)));
 
     return ::grpc::Status();
 }
@@ -291,35 +286,34 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
 
 ::grpc::Status pb_value_to_tensor(const MLModelService::tensor_info& tensor_info,
                                   const ::google::protobuf::Value& pb,
-                                  tensor_storage* iis,
+                                  tensor_storage* ts,
                                   MLModelService::named_tensor_views* ntvs) {
-    if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int8) {
-        return pb_value_to_tensor_t<std::int8_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint8) {
-        return pb_value_to_tensor_t<std::uint8_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int16) {
-        return pb_value_to_tensor_t<std::int16_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint16) {
-        return pb_value_to_tensor_t<std::uint16_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int32) {
-        return pb_value_to_tensor_t<std::int32_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint32) {
-        return pb_value_to_tensor_t<std::uint32_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_int64) {
-        return pb_value_to_tensor_t<std::int64_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_uint64) {
-        return pb_value_to_tensor_t<std::uint64_t>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_float32) {
-        return pb_value_to_tensor_t<float>(tensor_info, pb, iis, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_type::k_float64) {
-        return pb_value_to_tensor_t<double>(tensor_info, pb, iis, ntvs);
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int8) {
+        return pb_value_to_tensor_t<std::int8_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint8) {
+        return pb_value_to_tensor_t<std::uint8_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int16) {
+        return pb_value_to_tensor_t<std::int16_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint16) {
+        return pb_value_to_tensor_t<std::uint16_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int32) {
+        return pb_value_to_tensor_t<std::int32_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint32) {
+        return pb_value_to_tensor_t<std::uint32_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int64) {
+        return pb_value_to_tensor_t<std::int64_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint64) {
+        return pb_value_to_tensor_t<std::uint64_t>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_float32) {
+        return pb_value_to_tensor_t<float>(tensor_info, pb, ts, ntvs);
+    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_float64) {
+        return pb_value_to_tensor_t<double>(tensor_info, pb, ts, ntvs);
     } else {
         std::ostringstream message;
-        message
-            << "Called [Infer] with unsupported tensor `data_type` of `"
-            << static_cast<std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(
-                   tensor_info.data_type)
-            << "`";
+        message << "Called [Infer] with unsupported tensor `data_type` of `"
+                << static_cast<std::underlying_type<MLModelService::tensor_info::data_types>::type>(
+                       tensor_info.data_type)
+                << "`";
         return {::grpc::StatusCode::INVALID_ARGUMENT, message.str()};
     }
 }

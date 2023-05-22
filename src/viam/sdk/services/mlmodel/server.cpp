@@ -131,12 +131,11 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                 MLModelService::tensor_info::data_type_to_string(s.data_type);
             if (!string_for_data_type) {
                 std::ostringstream message;
-                message
-                    << "Served MLModelService returned an unknown data type with value `"
-                    << static_cast<
-                           std::underlying_type<enum MLModelService::tensor_info::data_type>::type>(
-                           s.data_type)
-                    << "` in its metadata";
+                message << "Served MLModelService returned an unknown data type with value `"
+                        << static_cast<
+                               std::underlying_type<MLModelService::tensor_info::data_types>::type>(
+                               s.data_type)
+                        << "` in its metadata";
                 return ::grpc::Status{grpc::INTERNAL, message.str()};
             }
             new_entry.set_data_type(string_for_data_type);

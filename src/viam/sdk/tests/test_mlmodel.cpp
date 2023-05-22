@@ -13,21 +13,21 @@
 // limitations under the License.
 
 #include <tuple>
+#include <unordered_map>
+
+#include <boost/variant/get.hpp>
 
 #include <viam/sdk/services/mlmodel/client.hpp>
-#include <viam/sdk/services/mlmodel/mlmodel.hpp>
+#include <viam/sdk/services/mlmodel/private/proto.hpp>
 #include <viam/sdk/services/mlmodel/server.hpp>
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
-
-#include <xtensor/xadapt.hpp>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xchunked_array.hpp>
 
 #define BOOST_TEST_MODULE test module test_mlmodel
 #include <boost/test/included/unit_test.hpp>
 
 namespace viam {
 namespace sdk {
+
 bool operator==(const MLModelService::tensor_info::file& l,
                 const MLModelService::tensor_info::file& r) {
     return std::tie(l.name, l.description, l.label_type) ==
@@ -51,6 +51,7 @@ bool operator==(const struct MLModelService::metadata& l,
     return std::tie(l.name, l.type, l.description, l.inputs, l.outputs) ==
            std::tie(r.name, r.type, r.description, r.inputs, r.outputs);
 }
+
 }  // namespace sdk
 }  // namespace viam
 
@@ -81,7 +82,7 @@ const struct MLModelService::metadata test_metadata {
              "the first input",
 
              // `data_type`
-             MLModelService::tensor_info::data_type::k_float32,
+             MLModelService::tensor_info::data_types::k_float32,
 
              // `shape`
              {640, 480, -1},
@@ -106,7 +107,7 @@ const struct MLModelService::metadata test_metadata {
 
          {"input2",
           "the second input",
-          MLModelService::tensor_info::data_type::k_int32,
+          MLModelService::tensor_info::data_types::k_int32,
           {4096, 2160, 3, -1},
           {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_label_type_tensor_axis},
            {"path/to/file2.2",
@@ -126,7 +127,7 @@ const struct MLModelService::metadata test_metadata {
              "the first output",
 
              // `data_type`
-             MLModelService::tensor_info::data_type::k_int32,
+             MLModelService::tensor_info::data_types::k_int32,
 
              // `shape`
              {-1, -1},
@@ -151,7 +152,7 @@ const struct MLModelService::metadata test_metadata {
 
          {"output2",
           "the second output",
-          MLModelService::tensor_info::data_type::k_float32,
+          MLModelService::tensor_info::data_types::k_float32,
           {-1, -1, 4},
           {{"path/to/output_file2.1",
             "o2f1",
@@ -302,6 +303,297 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
                                   detection_results_shape[1] - 1,
                                   detection_results_shape[2] - 1) ==
                &detection_results_buffer.back());
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(proto)
+
+// TODO: This might be a generally needed facility. Maybe move it to MLModelService.
+template <typename T>
+struct data_type_for;
+
+template <>
+struct data_type_for<std::int8_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_int8;
+};
+
+template <>
+struct data_type_for<std::uint8_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_uint8;
+};
+
+template <>
+struct data_type_for<std::int16_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_int16;
+};
+
+template <>
+struct data_type_for<std::uint16_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_uint16;
+};
+
+template <>
+struct data_type_for<std::int32_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_int32;
+};
+
+template <>
+struct data_type_for<std::uint32_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_uint32;
+};
+
+template <>
+struct data_type_for<std::int64_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_int64;
+};
+
+template <>
+struct data_type_for<std::uint64_t> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_uint64;
+};
+
+template <>
+struct data_type_for<float> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_float32;
+};
+
+template <>
+struct data_type_for<double> {
+    static constexpr auto value = MLModelService::tensor_info::data_types::k_float64;
+};
+
+// A wrapper around a T which will not exhibit UB on signed overflow -
+// useful with std::iota with narrow types.
+template <typename T>
+struct safe_increment {
+    safe_increment& operator++() {
+        if (val < std::numeric_limits<T>::max())
+            ++val;
+        else
+            val = std::numeric_limits<T>::min();
+        return *this;
+    }
+
+    operator T() const {
+        return val;
+    }
+
+    T val;
+};
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
+    using base_type = T;
+    const std::array<base_type, 1> data = {T{42}};
+    const auto scalar_tv =
+        MLModelService::make_tensor_view(data.data(), data.size(), {data.size()});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(scalar_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {data.size()},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == scalar_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == scalar_tv);
+}
+
+// TODO: All of the following tests could probably be made data driven
+// over the shape as one test. Consider doing that.
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_1d, T, MLModelService::base_types) {
+    using base_type = T;
+    std::array<base_type, 4096> data{};
+    std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
+    const auto array_tv = MLModelService::make_tensor_view(data.data(), data.size(), {data.size()});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {data.size()},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == array_tv);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_1_by_n, T, MLModelService::base_types) {
+    using base_type = T;
+    std::array<base_type, 4096> data{};
+    std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
+    const auto array_tv =
+        MLModelService::make_tensor_view(data.data(), data.size(), {1, data.size()});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {1, data.size()},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == array_tv);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_m_by_1, T, MLModelService::base_types) {
+    using base_type = T;
+    std::array<base_type, 4096> data{};
+    std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
+    const auto array_tv =
+        MLModelService::make_tensor_view(data.data(), data.size(), {data.size(), 1});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {data.size(), 1},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == array_tv);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_m_by_n, T, MLModelService::base_types) {
+    using base_type = T;
+    std::array<base_type, 4096> data{};
+    std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
+    const auto matrix_tv = MLModelService::make_tensor_view(data.data(), data.size(), {64, 64});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {64, 64},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == matrix_tv);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_3d, T, MLModelService::base_types) {
+    using base_type = T;
+    std::array<base_type, 4096> data{};
+    std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
+    const auto matrix_tv = MLModelService::make_tensor_view(data.data(), data.size(), {16, 16, 16});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {16, 16, 16},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == matrix_tv);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rt_4d, T, MLModelService::base_types) {
+    using base_type = T;
+    std::array<base_type, 4096> data{};
+    std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});
+    const auto matrix_tv = MLModelService::make_tensor_view(data.data(), data.size(), {8, 8, 8, 8});
+    ::viam::service::mlmodel::v1::InferRequest request;
+    ::google::protobuf::Struct* input_data = request.mutable_input_data();
+    auto emplace_result = input_data->mutable_fields()->emplace("foo");
+    ::google::protobuf::Value& pb_value = emplace_result.first->second;
+    BOOST_TEST(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
+
+    const MLModelService::tensor_info ti{
+        "foo",
+        "foobar",
+        data_type_for<base_type>::value,
+        {8, 8, 8, 8},
+    };
+
+    mlmodel_details::tensor_storage ts;
+    MLModelService::named_tensor_views ntvs;
+    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST(ntvs.count("foo") == 1);
+    const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
+    const auto* const foo_view_as_base_type =
+        boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
+    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
+    BOOST_TEST(*foo_view_as_base_type == matrix_tv);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
