@@ -53,7 +53,7 @@ template <typename T>
             const auto& children = lv->values();
             if (shape[depth] == 0) {
                 shape[depth] = children.size();
-            } else if (shape[depth] != children.size()) {
+            } else if (shape[depth] != static_cast<typename decltype(shape)::size_type>(children.size())) {
                 std::ostringstream message;
                 message << "Ragged tensor '" << tensor_info.name << "' at depth " << depth;
                 return {grpc::INTERNAL, message.str()};
@@ -123,7 +123,7 @@ template <typename T>
             if (real < 1) {
                 return false;
             }
-            if (spec != -1 && spec != real) {
+            if (spec != -1 && static_cast<decltype(real)>(spec) != real) {
                 return false;
             }
             return true;
