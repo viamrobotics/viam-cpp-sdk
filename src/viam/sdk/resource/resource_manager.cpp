@@ -22,7 +22,7 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<Resource> ResourceManager::resource(std::string name) {
+std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
     std::lock_guard<std::mutex> lock(lock_);
 
     if (resources_.find(name) != resources_.end()) {
@@ -38,14 +38,15 @@ std::shared_ptr<Resource> ResourceManager::resource(std::string name) {
     throw std::runtime_error("Unable to find resource named " + name);
 }
 
-void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> resources) {
+void ResourceManager::replace_all(
+    const std::unordered_map<Name, std::shared_ptr<Resource>>& resources) {
     std::lock_guard<std::mutex> lock(lock_);
     std::unordered_map<std::string, std::shared_ptr<Resource>> new_resources;
     std::unordered_map<std::string, std::string> new_short_names;
     this->resources_ = new_resources;
     this->short_names_ = new_short_names;
 
-    for (auto& resource : resources) {
+    for (const auto& resource : resources) {
         try {
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
@@ -55,7 +56,7 @@ void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resou
     }
 }
 
-std::string get_shortcut_name(std::string name) {
+std::string get_shortcut_name(const std::string& name) {
     std::vector<std::string> name_split;
     // clang-tidy thinks this is a possible memory leak
     // NOLINTNEXTLINE
@@ -63,7 +64,7 @@ std::string get_shortcut_name(std::string name) {
     return name_split.at(name_split.size() - 1);
 }
 
-void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::do_add(const Name& name, const std::shared_ptr<Resource>& resource) {
     if (name.name().empty()) {
         throw "Empty name used for resource: " + name.to_string();
     }
@@ -72,7 +73,7 @@ void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
     do_add(short_name, resource);
 }
 
-void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
+void ResourceManager::do_add(const std::string& name, const std::shared_ptr<Resource>& resource) {
     if (resources_.find(name) != resources_.end()) {
         throw "Attempted to add resource that already existed: " + name;
     }
@@ -89,7 +90,7 @@ void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resourc
     }
 }
 
-void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::add(const Name& name, const std::shared_ptr<Resource>& resource) {
     std::lock_guard<std::mutex> lock(lock_);
     try {
         do_add(name, resource);
@@ -98,7 +99,7 @@ void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
     }
 };
 
-void ResourceManager::do_remove(Name name) {
+void ResourceManager::do_remove(const Name& name) {
     std::string short_name = name.short_name();
     if (resources_.find(short_name) == resources_.end()) {
         throw "attempted to remove resource " + name.to_string() + " but it didn't exist!";
@@ -124,7 +125,7 @@ void ResourceManager::do_remove(Name name) {
     }
 }
 
-void ResourceManager::remove(Name name) {
+void ResourceManager::remove(const Name& name) {
     std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
@@ -133,7 +134,7 @@ void ResourceManager::remove(Name name) {
     };
 };
 
-void ResourceManager::replace_one(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::replace_one(const Name& name, const std::shared_ptr<Resource>& resource) {
     std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
@@ -149,7 +150,7 @@ const std::unordered_map<std::string, std::shared_ptr<Resource>>& ResourceManage
     return resources_;
 }
 
-void ResourceManager::add(std::string name, std::shared_ptr<Resource> resource) {
+void ResourceManager::add(const std::string& name, const std::shared_ptr<Resource>& resource) {
     std::lock_guard<std::mutex> lock(lock_);
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     do_add(name, resource);

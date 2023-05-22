@@ -40,7 +40,7 @@ std::shared_ptr<ResourceRegistration> Generic::resource_registration() {
 }
 
 API Generic::static_api() {
-    return API(RDK, COMPONENT, "generic");
+    return {kRDK, kComponent, "generic"};
 }
 
 API Generic::dynamic_api() const {

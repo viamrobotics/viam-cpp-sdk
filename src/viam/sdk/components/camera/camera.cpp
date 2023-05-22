@@ -42,7 +42,7 @@ std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
 const std::string Camera::lazy_suffix = "+lazy";
 
 API Camera::static_api() {
-    return API(RDK, COMPONENT, "camera");
+    return {kRDK, kComponent, "camera"};
 }
 
 API Camera::dynamic_api() const {
@@ -71,7 +71,7 @@ Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageRespon
 Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto) {
     Camera::point_cloud point_cloud;
     std::string pc_string = proto.point_cloud();
-    std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
+    const std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
     point_cloud.pc = bytes;
     point_cloud.mime_type = proto.mime_type();
     return point_cloud;
