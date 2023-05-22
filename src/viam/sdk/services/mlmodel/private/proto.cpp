@@ -185,9 +185,9 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
         while (true) {
             if (ixes.size() == tensor.shape().size()) {
                 // Base64 encode the entire last dimension stride into a string.
-                const auto bytes_begin = &tensor.element(ixes.begin(), ixes.end());
+                const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
                 ixes.back() = tensor.shape().back();
-                const auto bytes_end = &tensor.element(ixes.begin(), ixes.end());
+                const auto* const bytes_end = &tensor.element(ixes.begin(), ixes.end());
                 const google::protobuf::StringPiece bytes{
                     reinterpret_cast<const char*>(bytes_begin),
                     std::size_t(bytes_end - bytes_begin)};
