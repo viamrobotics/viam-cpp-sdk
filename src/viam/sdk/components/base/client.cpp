@@ -18,6 +18,11 @@
 namespace viam {
 namespace sdk {
 
+BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+    : Base(std::move(name)),
+      stub_(viam::component::base::v1::BaseService::NewStub(channel)),
+      channel_(std::move(channel)){};
+
 void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
     viam::component::base::v1::MoveStraightRequest request;
     viam::component::base::v1::MoveStraightResponse response;

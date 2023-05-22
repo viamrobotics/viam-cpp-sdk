@@ -25,12 +25,11 @@ namespace sdk {
 /// @ingroup Camera
 class CameraRegistration : public ResourceRegistration {
    public:
+    explicit CameraRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) override;
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) override;
-    CameraRegistration(const google::protobuf::ServiceDescriptor* service_descriptor)
-        : ResourceRegistration(service_descriptor){};
 };
 
 /// @class Camera camera.hpp "components/camera/camera.hpp"
@@ -139,7 +138,7 @@ class Camera : public Component {
     API dynamic_api() const override;
 
    protected:
-    explicit Camera(std::string name) : Component(std::move(name)){};
+    explicit Camera(std::string name);
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);
