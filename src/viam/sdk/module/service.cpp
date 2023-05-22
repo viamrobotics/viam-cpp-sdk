@@ -229,8 +229,9 @@ void ModuleService_::close() {
     }
 }
 
-void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, API api) {
-    const std::lock_guard<std::mutex> lock(lock_);
+void ModuleService_::_add_api_from_registry_inlock(std::shared_ptr<Server> server,
+                                                   API api,
+                                                   const std::lock_guard<std::mutex>&) {
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(api) != services.end()) {
         return;
@@ -244,12 +245,14 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, API a
     module_->mutable_servers().push_back(resource_server);
 }
 
-void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server, API api, Model model) {
+void ModuleService_::_add_model_from_registry_inlock(std::shared_ptr<Server> server,
+                                                     API api,
+                                                     Model model,
+                                                     const std::lock_guard<std::mutex>& lock) {
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(api) == services.end()) {
-        add_api_from_registry(server, api);
+        _add_api_from_registry_inlock(server, api, lock);
     }
-    const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<ResourceRegistration> creator = Registry::lookup_resource(api);
     std::string name;
@@ -261,6 +264,16 @@ void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server, API
     RPCSubtype rpc_subtype(api, name, *sd);
     module_->mutable_handles().add_model(model, rpc_subtype);
 };
+
+void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, API api) {
+    const std::lock_guard<std::mutex> lock(lock_);
+    return _add_api_from_registry_inlock(server, api, lock);
+}
+
+void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server, API api, Model model) {
+    const std::lock_guard<std::mutex> lock(lock_);
+    return _add_model_from_registry_inlock(server, api, model, lock);
+}
 
 }  // namespace sdk
 }  // namespace viam

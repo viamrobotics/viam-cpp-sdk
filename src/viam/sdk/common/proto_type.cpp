@@ -1,6 +1,6 @@
-#include <algorithm>
 #include <viam/sdk/common/proto_type.hpp>
 
+#include <algorithm>
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -39,8 +39,7 @@ AttributeMap struct_to_map(Struct struct_) {
     for (const auto& val : struct_.fields()) {
         std::string key = val.first;
         // NOLINTNEXTLINE(misc-no-recursion)
-        auto value = std::make_shared<ProtoType>(val.second);
-        map->emplace(key, value);
+        map->emplace(std::move(key), std::make_shared<ProtoType>(val.second));
     }
     return map;
 }
@@ -67,12 +66,11 @@ ProtoType::ProtoType(const Value& value) {
                 auto p = std::make_shared<ProtoType>(val);
                 vec.push_back(p);
             }
-            proto_type_ = vec;
+            proto_type_ = std::move(vec);
             break;
         }
         case Value::KindCase::kStructValue: {
-            AttributeMap map = struct_to_map(value.struct_value());
-            proto_type_ = map;
+            proto_type_ = struct_to_map(value.struct_value());
             break;
         }
         case Value::KindCase::KIND_NOT_SET:
