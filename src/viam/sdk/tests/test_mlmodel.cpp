@@ -411,12 +411,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == scalar_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == scalar_tv);
 }
@@ -432,7 +432,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_1d, T, MLModelService::base_types) {
     ::google::protobuf::Struct* input_data = request.mutable_input_data();
     auto emplace_result = input_data->mutable_fields()->emplace("foo");
     ::google::protobuf::Value& pb_value = emplace_result.first->second;
-    BOOST_TEST(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+    BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
 
     const MLModelService::tensor_info ti{
         "foo",
@@ -443,16 +443,16 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_1d, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == array_tv);
 }
-#if 0
+
 BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_1_by_n, T, MLModelService::base_types) {
     using base_type = T;
     std::array<base_type, 4096> data{};
@@ -463,7 +463,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_1_by_n, T, MLModelService::base_types) {
     ::google::protobuf::Struct* input_data = request.mutable_input_data();
     auto emplace_result = input_data->mutable_fields()->emplace("foo");
     ::google::protobuf::Value& pb_value = emplace_result.first->second;
-    BOOST_TEST(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+    BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
 
     const MLModelService::tensor_info ti{
         "foo",
@@ -474,12 +474,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_1_by_n, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == array_tv);
 }
@@ -494,7 +494,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_m_by_1, T, MLModelService::base_types) {
     ::google::protobuf::Struct* input_data = request.mutable_input_data();
     auto emplace_result = input_data->mutable_fields()->emplace("foo");
     ::google::protobuf::Value& pb_value = emplace_result.first->second;
-    BOOST_TEST(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+    BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
 
     const MLModelService::tensor_info ti{
         "foo",
@@ -505,12 +505,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_m_by_1, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == array_tv);
 }
@@ -524,7 +524,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_m_by_n, T, MLModelService::base_types) {
     ::google::protobuf::Struct* input_data = request.mutable_input_data();
     auto emplace_result = input_data->mutable_fields()->emplace("foo");
     ::google::protobuf::Value& pb_value = emplace_result.first->second;
-    BOOST_TEST(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
+    BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
 
     const MLModelService::tensor_info ti{
         "foo",
@@ -535,12 +535,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_m_by_n, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == matrix_tv);
 }
@@ -554,7 +554,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_3d, T, MLModelService::base_types) {
     ::google::protobuf::Struct* input_data = request.mutable_input_data();
     auto emplace_result = input_data->mutable_fields()->emplace("foo");
     ::google::protobuf::Value& pb_value = emplace_result.first->second;
-    BOOST_TEST(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
+    BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
 
     const MLModelService::tensor_info ti{
         "foo",
@@ -565,12 +565,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_3d, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == matrix_tv);
 }
@@ -584,7 +584,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_4d, T, MLModelService::base_types) {
     ::google::protobuf::Struct* input_data = request.mutable_input_data();
     auto emplace_result = input_data->mutable_fields()->emplace("foo");
     ::google::protobuf::Value& pb_value = emplace_result.first->second;
-    BOOST_TEST(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
+    BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(matrix_tv, &pb_value).ok());
 
     const MLModelService::tensor_info ti{
         "foo",
@@ -595,16 +595,16 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_4d, T, MLModelService::base_types) {
 
     mlmodel_details::tensor_storage ts;
     MLModelService::named_tensor_views ntvs;
-    BOOST_TEST(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-    BOOST_TEST(ntvs.count("foo") == 1);
+    BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
+    BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
     const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
     const auto* const foo_view_as_base_type =
         boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-    BOOST_TEST(foo_view_as_base_type != nullptr);
+    BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
     BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == matrix_tv);
 }
-#endif
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace
