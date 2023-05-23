@@ -1753,6 +1753,7 @@ class Property final :
     kFrameFormatFieldNumber = 3,
     kWidthPxFieldNumber = 1,
     kHeightPxFieldNumber = 2,
+    kFrameRateFieldNumber = 4,
   };
   // string frame_format = 3 [json_name = "frameFormat"];
   void clear_frame_format();
@@ -1786,6 +1787,15 @@ class Property final :
   void _internal_set_height_px(int32_t value);
   public:
 
+  // float frame_rate = 4 [json_name = "frameRate"];
+  void clear_frame_rate();
+  float frame_rate() const;
+  void set_frame_rate(float value);
+  private:
+  float _internal_frame_rate() const;
+  void _internal_set_frame_rate(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.component.camera.v1.Property)
  private:
   class _Internal;
@@ -1796,6 +1806,7 @@ class Property final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr frame_format_;
   int32_t width_px_;
   int32_t height_px_;
+  float frame_rate_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
 };
@@ -3334,6 +3345,26 @@ inline void Property::set_allocated_frame_format(std::string* frame_format) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Property.frame_format)
+}
+
+// float frame_rate = 4 [json_name = "frameRate"];
+inline void Property::clear_frame_rate() {
+  frame_rate_ = 0;
+}
+inline float Property::_internal_frame_rate() const {
+  return frame_rate_;
+}
+inline float Property::frame_rate() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.Property.frame_rate)
+  return _internal_frame_rate();
+}
+inline void Property::_internal_set_frame_rate(float value) {
+  
+  frame_rate_ = value;
+}
+inline void Property::set_frame_rate(float value) {
+  _internal_set_frame_rate(value);
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.Property.frame_rate)
 }
 
 // -------------------------------------------------------------------

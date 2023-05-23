@@ -69,6 +69,12 @@ extern GetPoseResponseDefaultTypeInternal _GetPoseResponse_default_instance_;
 class LinearConstraint;
 struct LinearConstraintDefaultTypeInternal;
 extern LinearConstraintDefaultTypeInternal _LinearConstraint_default_instance_;
+class MoveOnGlobeRequest;
+struct MoveOnGlobeRequestDefaultTypeInternal;
+extern MoveOnGlobeRequestDefaultTypeInternal _MoveOnGlobeRequest_default_instance_;
+class MoveOnGlobeResponse;
+struct MoveOnGlobeResponseDefaultTypeInternal;
+extern MoveOnGlobeResponseDefaultTypeInternal _MoveOnGlobeResponse_default_instance_;
 class MoveOnMapRequest;
 struct MoveOnMapRequestDefaultTypeInternal;
 extern MoveOnMapRequestDefaultTypeInternal _MoveOnMapRequest_default_instance_;
@@ -101,6 +107,8 @@ template<> ::viam::service::motion::v1::Constraints* Arena::CreateMaybeMessage<:
 template<> ::viam::service::motion::v1::GetPoseRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseRequest>(Arena*);
 template<> ::viam::service::motion::v1::GetPoseResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseResponse>(Arena*);
 template<> ::viam::service::motion::v1::LinearConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::LinearConstraint>(Arena*);
+template<> ::viam::service::motion::v1::MoveOnGlobeRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeRequest>(Arena*);
+template<> ::viam::service::motion::v1::MoveOnGlobeResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnMapRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnMapResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveRequest>(Arena*);
@@ -879,6 +887,443 @@ class MoveOnMapResponse final :
 };
 // -------------------------------------------------------------------
 
+class MoveOnGlobeRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnGlobeRequest) */ {
+ public:
+  inline MoveOnGlobeRequest() : MoveOnGlobeRequest(nullptr) {}
+  ~MoveOnGlobeRequest() override;
+  explicit PROTOBUF_CONSTEXPR MoveOnGlobeRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MoveOnGlobeRequest(const MoveOnGlobeRequest& from);
+  MoveOnGlobeRequest(MoveOnGlobeRequest&& from) noexcept
+    : MoveOnGlobeRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveOnGlobeRequest& operator=(const MoveOnGlobeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveOnGlobeRequest& operator=(MoveOnGlobeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveOnGlobeRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveOnGlobeRequest* internal_default_instance() {
+    return reinterpret_cast<const MoveOnGlobeRequest*>(
+               &_MoveOnGlobeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(MoveOnGlobeRequest& a, MoveOnGlobeRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveOnGlobeRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveOnGlobeRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveOnGlobeRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveOnGlobeRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MoveOnGlobeRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MoveOnGlobeRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MoveOnGlobeRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.MoveOnGlobeRequest";
+  }
+  protected:
+  explicit MoveOnGlobeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObstaclesFieldNumber = 6,
+    kNameFieldNumber = 1,
+    kDestinationFieldNumber = 2,
+    kComponentNameFieldNumber = 4,
+    kMovementSensorNameFieldNumber = 5,
+    kExtraFieldNumber = 99,
+    kHeadingFieldNumber = 3,
+    kLinearMetersPerSecFieldNumber = 7,
+    kAngularDegPerSecFieldNumber = 8,
+  };
+  // repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
+  int obstacles_size() const;
+  private:
+  int _internal_obstacles_size() const;
+  public:
+  void clear_obstacles();
+  ::viam::common::v1::GeoObstacle* mutable_obstacles(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+      mutable_obstacles();
+  private:
+  const ::viam::common::v1::GeoObstacle& _internal_obstacles(int index) const;
+  ::viam::common::v1::GeoObstacle* _internal_add_obstacles();
+  public:
+  const ::viam::common::v1::GeoObstacle& obstacles(int index) const;
+  ::viam::common::v1::GeoObstacle* add_obstacles();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+      obstacles() const;
+
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .viam.common.v1.GeoPoint destination = 2 [json_name = "destination"];
+  bool has_destination() const;
+  private:
+  bool _internal_has_destination() const;
+  public:
+  void clear_destination();
+  const ::viam::common::v1::GeoPoint& destination() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::GeoPoint* release_destination();
+  ::viam::common::v1::GeoPoint* mutable_destination();
+  void set_allocated_destination(::viam::common::v1::GeoPoint* destination);
+  private:
+  const ::viam::common::v1::GeoPoint& _internal_destination() const;
+  ::viam::common::v1::GeoPoint* _internal_mutable_destination();
+  public:
+  void unsafe_arena_set_allocated_destination(
+      ::viam::common::v1::GeoPoint* destination);
+  ::viam::common::v1::GeoPoint* unsafe_arena_release_destination();
+
+  // .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
+  bool has_component_name() const;
+  private:
+  bool _internal_has_component_name() const;
+  public:
+  void clear_component_name();
+  const ::viam::common::v1::ResourceName& component_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
+  ::viam::common::v1::ResourceName* mutable_component_name();
+  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  public:
+  void unsafe_arena_set_allocated_component_name(
+      ::viam::common::v1::ResourceName* component_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
+  bool has_movement_sensor_name() const;
+  private:
+  bool _internal_has_movement_sensor_name() const;
+  public:
+  void clear_movement_sensor_name();
+  const ::viam::common::v1::ResourceName& movement_sensor_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_movement_sensor_name();
+  ::viam::common::v1::ResourceName* mutable_movement_sensor_name();
+  void set_allocated_movement_sensor_name(::viam::common::v1::ResourceName* movement_sensor_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_movement_sensor_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_movement_sensor_name();
+  public:
+  void unsafe_arena_set_allocated_movement_sensor_name(
+      ::viam::common::v1::ResourceName* movement_sensor_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_movement_sensor_name();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // optional double heading = 3 [json_name = "heading"];
+  bool has_heading() const;
+  private:
+  bool _internal_has_heading() const;
+  public:
+  void clear_heading();
+  double heading() const;
+  void set_heading(double value);
+  private:
+  double _internal_heading() const;
+  void _internal_set_heading(double value);
+  public:
+
+  // optional float linear_meters_per_sec = 7 [json_name = "linearMetersPerSec"];
+  bool has_linear_meters_per_sec() const;
+  private:
+  bool _internal_has_linear_meters_per_sec() const;
+  public:
+  void clear_linear_meters_per_sec();
+  float linear_meters_per_sec() const;
+  void set_linear_meters_per_sec(float value);
+  private:
+  float _internal_linear_meters_per_sec() const;
+  void _internal_set_linear_meters_per_sec(float value);
+  public:
+
+  // optional float angular_deg_per_sec = 8 [json_name = "angularDegPerSec"];
+  bool has_angular_deg_per_sec() const;
+  private:
+  bool _internal_has_angular_deg_per_sec() const;
+  public:
+  void clear_angular_deg_per_sec();
+  float angular_deg_per_sec() const;
+  void set_angular_deg_per_sec(float value);
+  private:
+  float _internal_angular_deg_per_sec() const;
+  void _internal_set_angular_deg_per_sec(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnGlobeRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle > obstacles_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::viam::common::v1::GeoPoint* destination_;
+  ::viam::common::v1::ResourceName* component_name_;
+  ::viam::common::v1::ResourceName* movement_sensor_name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  double heading_;
+  float linear_meters_per_sec_;
+  float angular_deg_per_sec_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MoveOnGlobeResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnGlobeResponse) */ {
+ public:
+  inline MoveOnGlobeResponse() : MoveOnGlobeResponse(nullptr) {}
+  ~MoveOnGlobeResponse() override;
+  explicit PROTOBUF_CONSTEXPR MoveOnGlobeResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MoveOnGlobeResponse(const MoveOnGlobeResponse& from);
+  MoveOnGlobeResponse(MoveOnGlobeResponse&& from) noexcept
+    : MoveOnGlobeResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveOnGlobeResponse& operator=(const MoveOnGlobeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveOnGlobeResponse& operator=(MoveOnGlobeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveOnGlobeResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveOnGlobeResponse* internal_default_instance() {
+    return reinterpret_cast<const MoveOnGlobeResponse*>(
+               &_MoveOnGlobeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(MoveOnGlobeResponse& a, MoveOnGlobeResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveOnGlobeResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveOnGlobeResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveOnGlobeResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveOnGlobeResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MoveOnGlobeResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MoveOnGlobeResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MoveOnGlobeResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.MoveOnGlobeResponse";
+  }
+  protected:
+  explicit MoveOnGlobeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSuccessFieldNumber = 1,
+  };
+  // bool success = 1 [json_name = "success"];
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnGlobeResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  bool success_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MoveSingleComponentRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveSingleComponentRequest) */ {
  public:
@@ -927,7 +1372,7 @@ class MoveSingleComponentRequest final :
                &_MoveSingleComponentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(MoveSingleComponentRequest& a, MoveSingleComponentRequest& b) {
     a.Swap(&b);
@@ -1156,7 +1601,7 @@ class MoveSingleComponentResponse final :
                &_MoveSingleComponentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(MoveSingleComponentResponse& a, MoveSingleComponentResponse& b) {
     a.Swap(&b);
@@ -1299,7 +1744,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -1523,7 +1968,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -1675,7 +2120,7 @@ class Constraints final :
                &_Constraints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(Constraints& a, Constraints& b) {
     a.Swap(&b);
@@ -1867,7 +2312,7 @@ class LinearConstraint final :
                &_LinearConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(LinearConstraint& a, LinearConstraint& b) {
     a.Swap(&b);
@@ -2030,7 +2475,7 @@ class OrientationConstraint final :
                &_OrientationConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
     a.Swap(&b);
@@ -2178,7 +2623,7 @@ class CollisionSpecification_AllowedFrameCollisions final :
                &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
     a.Swap(&b);
@@ -2342,7 +2787,7 @@ class CollisionSpecification final :
                &_CollisionSpecification_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
     a.Swap(&b);
@@ -3379,6 +3824,545 @@ inline void MoveOnMapResponse::_internal_set_success(bool value) {
 inline void MoveOnMapResponse::set_success(bool value) {
   _internal_set_success(value);
   // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapResponse.success)
+}
+
+// -------------------------------------------------------------------
+
+// MoveOnGlobeRequest
+
+// string name = 1 [json_name = "name"];
+inline void MoveOnGlobeRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& MoveOnGlobeRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnGlobeRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.name)
+}
+inline std::string* MoveOnGlobeRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.name)
+  return _s;
+}
+inline const std::string& MoveOnGlobeRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void MoveOnGlobeRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.name)
+  return name_.Release();
+}
+inline void MoveOnGlobeRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.name)
+}
+
+// .viam.common.v1.GeoPoint destination = 2 [json_name = "destination"];
+inline bool MoveOnGlobeRequest::_internal_has_destination() const {
+  return this != internal_default_instance() && destination_ != nullptr;
+}
+inline bool MoveOnGlobeRequest::has_destination() const {
+  return _internal_has_destination();
+}
+inline const ::viam::common::v1::GeoPoint& MoveOnGlobeRequest::_internal_destination() const {
+  const ::viam::common::v1::GeoPoint* p = destination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::GeoPoint&>(
+      ::viam::common::v1::_GeoPoint_default_instance_);
+}
+inline const ::viam::common::v1::GeoPoint& MoveOnGlobeRequest::destination() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.destination)
+  return _internal_destination();
+}
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_destination(
+    ::viam::common::v1::GeoPoint* destination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
+  }
+  destination_ = destination;
+  if (destination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.destination)
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeRequest::release_destination() {
+  
+  ::viam::common::v1::GeoPoint* temp = destination_;
+  destination_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeRequest::unsafe_arena_release_destination() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.destination)
+  
+  ::viam::common::v1::GeoPoint* temp = destination_;
+  destination_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeRequest::_internal_mutable_destination() {
+  
+  if (destination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::GeoPoint>(GetArenaForAllocation());
+    destination_ = p;
+  }
+  return destination_;
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeRequest::mutable_destination() {
+  ::viam::common::v1::GeoPoint* _msg = _internal_mutable_destination();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.destination)
+  return _msg;
+}
+inline void MoveOnGlobeRequest::set_allocated_destination(::viam::common::v1::GeoPoint* destination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
+  }
+  if (destination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination));
+    if (message_arena != submessage_arena) {
+      destination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, destination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  destination_ = destination;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.destination)
+}
+
+// optional double heading = 3 [json_name = "heading"];
+inline bool MoveOnGlobeRequest::_internal_has_heading() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool MoveOnGlobeRequest::has_heading() const {
+  return _internal_has_heading();
+}
+inline void MoveOnGlobeRequest::clear_heading() {
+  heading_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline double MoveOnGlobeRequest::_internal_heading() const {
+  return heading_;
+}
+inline double MoveOnGlobeRequest::heading() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.heading)
+  return _internal_heading();
+}
+inline void MoveOnGlobeRequest::_internal_set_heading(double value) {
+  _has_bits_[0] |= 0x00000001u;
+  heading_ = value;
+}
+inline void MoveOnGlobeRequest::set_heading(double value) {
+  _internal_set_heading(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.heading)
+}
+
+// .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
+inline bool MoveOnGlobeRequest::_internal_has_component_name() const {
+  return this != internal_default_instance() && component_name_ != nullptr;
+}
+inline bool MoveOnGlobeRequest::has_component_name() const {
+  return _internal_has_component_name();
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::_internal_component_name() const {
+  const ::viam::common::v1::ResourceName* p = component_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  return _internal_component_name();
+}
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_component_name(
+    ::viam::common::v1::ResourceName* component_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  component_name_ = component_name;
+  if (component_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_component_name() {
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::unsafe_arena_release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::_internal_mutable_component_name() {
+  
+  if (component_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    component_name_ = p;
+  }
+  return component_name_;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::mutable_component_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  return _msg;
+}
+inline void MoveOnGlobeRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  if (component_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+    if (message_arena != submessage_arena) {
+      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  component_name_ = component_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+}
+
+// .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
+inline bool MoveOnGlobeRequest::_internal_has_movement_sensor_name() const {
+  return this != internal_default_instance() && movement_sensor_name_ != nullptr;
+}
+inline bool MoveOnGlobeRequest::has_movement_sensor_name() const {
+  return _internal_has_movement_sensor_name();
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::_internal_movement_sensor_name() const {
+  const ::viam::common::v1::ResourceName* p = movement_sensor_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::movement_sensor_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  return _internal_movement_sensor_name();
+}
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_movement_sensor_name(
+    ::viam::common::v1::ResourceName* movement_sensor_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_);
+  }
+  movement_sensor_name_ = movement_sensor_name;
+  if (movement_sensor_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_movement_sensor_name() {
+  
+  ::viam::common::v1::ResourceName* temp = movement_sensor_name_;
+  movement_sensor_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::unsafe_arena_release_movement_sensor_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  
+  ::viam::common::v1::ResourceName* temp = movement_sensor_name_;
+  movement_sensor_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::_internal_mutable_movement_sensor_name() {
+  
+  if (movement_sensor_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    movement_sensor_name_ = p;
+  }
+  return movement_sensor_name_;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::mutable_movement_sensor_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_movement_sensor_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  return _msg;
+}
+inline void MoveOnGlobeRequest::set_allocated_movement_sensor_name(::viam::common::v1::ResourceName* movement_sensor_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_);
+  }
+  if (movement_sensor_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name));
+    if (message_arena != submessage_arena) {
+      movement_sensor_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, movement_sensor_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  movement_sensor_name_ = movement_sensor_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+}
+
+// repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
+inline int MoveOnGlobeRequest::_internal_obstacles_size() const {
+  return obstacles_.size();
+}
+inline int MoveOnGlobeRequest::obstacles_size() const {
+  return _internal_obstacles_size();
+}
+inline ::viam::common::v1::GeoObstacle* MoveOnGlobeRequest::mutable_obstacles(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
+  return obstacles_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+MoveOnGlobeRequest::mutable_obstacles() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
+  return &obstacles_;
+}
+inline const ::viam::common::v1::GeoObstacle& MoveOnGlobeRequest::_internal_obstacles(int index) const {
+  return obstacles_.Get(index);
+}
+inline const ::viam::common::v1::GeoObstacle& MoveOnGlobeRequest::obstacles(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
+  return _internal_obstacles(index);
+}
+inline ::viam::common::v1::GeoObstacle* MoveOnGlobeRequest::_internal_add_obstacles() {
+  return obstacles_.Add();
+}
+inline ::viam::common::v1::GeoObstacle* MoveOnGlobeRequest::add_obstacles() {
+  ::viam::common::v1::GeoObstacle* _add = _internal_add_obstacles();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+MoveOnGlobeRequest::obstacles() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnGlobeRequest.obstacles)
+  return obstacles_;
+}
+
+// optional float linear_meters_per_sec = 7 [json_name = "linearMetersPerSec"];
+inline bool MoveOnGlobeRequest::_internal_has_linear_meters_per_sec() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool MoveOnGlobeRequest::has_linear_meters_per_sec() const {
+  return _internal_has_linear_meters_per_sec();
+}
+inline void MoveOnGlobeRequest::clear_linear_meters_per_sec() {
+  linear_meters_per_sec_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline float MoveOnGlobeRequest::_internal_linear_meters_per_sec() const {
+  return linear_meters_per_sec_;
+}
+inline float MoveOnGlobeRequest::linear_meters_per_sec() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.linear_meters_per_sec)
+  return _internal_linear_meters_per_sec();
+}
+inline void MoveOnGlobeRequest::_internal_set_linear_meters_per_sec(float value) {
+  _has_bits_[0] |= 0x00000002u;
+  linear_meters_per_sec_ = value;
+}
+inline void MoveOnGlobeRequest::set_linear_meters_per_sec(float value) {
+  _internal_set_linear_meters_per_sec(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.linear_meters_per_sec)
+}
+
+// optional float angular_deg_per_sec = 8 [json_name = "angularDegPerSec"];
+inline bool MoveOnGlobeRequest::_internal_has_angular_deg_per_sec() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool MoveOnGlobeRequest::has_angular_deg_per_sec() const {
+  return _internal_has_angular_deg_per_sec();
+}
+inline void MoveOnGlobeRequest::clear_angular_deg_per_sec() {
+  angular_deg_per_sec_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline float MoveOnGlobeRequest::_internal_angular_deg_per_sec() const {
+  return angular_deg_per_sec_;
+}
+inline float MoveOnGlobeRequest::angular_deg_per_sec() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.angular_deg_per_sec)
+  return _internal_angular_deg_per_sec();
+}
+inline void MoveOnGlobeRequest::_internal_set_angular_deg_per_sec(float value) {
+  _has_bits_[0] |= 0x00000004u;
+  angular_deg_per_sec_ = value;
+}
+inline void MoveOnGlobeRequest::set_angular_deg_per_sec(float value) {
+  _internal_set_angular_deg_per_sec(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.angular_deg_per_sec)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool MoveOnGlobeRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool MoveOnGlobeRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& MoveOnGlobeRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& MoveOnGlobeRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.extra)
+  return _internal_extra();
+}
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.extra)
+  return _msg;
+}
+inline void MoveOnGlobeRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// MoveOnGlobeResponse
+
+// bool success = 1 [json_name = "success"];
+inline void MoveOnGlobeResponse::clear_success() {
+  success_ = false;
+}
+inline bool MoveOnGlobeResponse::_internal_success() const {
+  return success_;
+}
+inline bool MoveOnGlobeResponse::success() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeResponse.success)
+  return _internal_success();
+}
+inline void MoveOnGlobeResponse::_internal_set_success(bool value) {
+  
+  success_ = value;
+}
+inline void MoveOnGlobeResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeResponse.success)
 }
 
 // -------------------------------------------------------------------
@@ -4568,6 +5552,10 @@ CollisionSpecification::allows() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

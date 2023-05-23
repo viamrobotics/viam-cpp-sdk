@@ -1864,6 +1864,7 @@ class ServiceConfig final :
     kNamespaceFieldNumber = 2,
     kTypeFieldNumber = 3,
     kModelFieldNumber = 6,
+    kApiFieldNumber = 9,
     kAttributesFieldNumber = 4,
   };
   // repeated string depends_on = 5 [json_name = "dependsOn"];
@@ -1946,6 +1947,20 @@ class ServiceConfig final :
   std::string* _internal_mutable_model();
   public:
 
+  // string api = 9 [json_name = "api"];
+  void clear_api();
+  const std::string& api() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_api(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_api();
+  PROTOBUF_NODISCARD std::string* release_api();
+  void set_allocated_api(std::string* api);
+  private:
+  const std::string& _internal_api() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_api(const std::string& value);
+  std::string* _internal_mutable_api();
+  public:
+
   // .google.protobuf.Struct attributes = 4 [json_name = "attributes"];
   bool has_attributes() const;
   private:
@@ -1976,6 +1991,7 @@ class ServiceConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_;
   ::PROTOBUF_NAMESPACE_ID::Struct* attributes_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
@@ -6727,6 +6743,7 @@ class ModuleConfig final :
   enum : int {
     kNameFieldNumber = 1,
     kPathFieldNumber = 2,
+    kLogLevelFieldNumber = 3,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -6756,6 +6773,20 @@ class ModuleConfig final :
   std::string* _internal_mutable_path();
   public:
 
+  // string log_level = 3 [json_name = "logLevel"];
+  void clear_log_level();
+  const std::string& log_level() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_log_level(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_log_level();
+  PROTOBUF_NODISCARD std::string* release_log_level();
+  void set_allocated_log_level(std::string* log_level);
+  private:
+  const std::string& _internal_log_level() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_log_level(const std::string& value);
+  std::string* _internal_mutable_log_level();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleConfig)
  private:
   class _Internal;
@@ -6765,6 +6796,7 @@ class ModuleConfig final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr log_level_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -9462,6 +9494,56 @@ inline void ServiceConfig::set_allocated_model(std::string* model) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ServiceConfig.model)
+}
+
+// string api = 9 [json_name = "api"];
+inline void ServiceConfig::clear_api() {
+  api_.ClearToEmpty();
+}
+inline const std::string& ServiceConfig::api() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ServiceConfig.api)
+  return _internal_api();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ServiceConfig::set_api(ArgT0&& arg0, ArgT... args) {
+ 
+ api_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ServiceConfig.api)
+}
+inline std::string* ServiceConfig::mutable_api() {
+  std::string* _s = _internal_mutable_api();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ServiceConfig.api)
+  return _s;
+}
+inline const std::string& ServiceConfig::_internal_api() const {
+  return api_.Get();
+}
+inline void ServiceConfig::_internal_set_api(const std::string& value) {
+  
+  api_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ServiceConfig::_internal_mutable_api() {
+  
+  return api_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ServiceConfig::release_api() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ServiceConfig.api)
+  return api_.Release();
+}
+inline void ServiceConfig::set_allocated_api(std::string* api) {
+  if (api != nullptr) {
+    
+  } else {
+    
+  }
+  api_.SetAllocated(api, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (api_.IsDefault()) {
+    api_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ServiceConfig.api)
 }
 
 // -------------------------------------------------------------------
@@ -13380,6 +13462,56 @@ inline void ModuleConfig::set_allocated_path(std::string* path) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.path)
+}
+
+// string log_level = 3 [json_name = "logLevel"];
+inline void ModuleConfig::clear_log_level() {
+  log_level_.ClearToEmpty();
+}
+inline const std::string& ModuleConfig::log_level() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleConfig.log_level)
+  return _internal_log_level();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleConfig::set_log_level(ArgT0&& arg0, ArgT... args) {
+ 
+ log_level_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleConfig.log_level)
+}
+inline std::string* ModuleConfig::mutable_log_level() {
+  std::string* _s = _internal_mutable_log_level();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleConfig.log_level)
+  return _s;
+}
+inline const std::string& ModuleConfig::_internal_log_level() const {
+  return log_level_.Get();
+}
+inline void ModuleConfig::_internal_set_log_level(const std::string& value) {
+  
+  log_level_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleConfig::_internal_mutable_log_level() {
+  
+  return log_level_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleConfig::release_log_level() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleConfig.log_level)
+  return log_level_.Release();
+}
+inline void ModuleConfig::set_allocated_log_level(std::string* log_level) {
+  if (log_level != nullptr) {
+    
+  } else {
+    
+  }
+  log_level_.SetAllocated(log_level, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (log_level_.IsDefault()) {
+    log_level_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.log_level)
 }
 
 // -------------------------------------------------------------------
