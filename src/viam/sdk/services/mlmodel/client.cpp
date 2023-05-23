@@ -141,9 +141,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                         }
                     }
                 }
-                // TODO: Currently, struct_to_map seems broken,
-                // wait on PR 101 for fixes, hopefully.
-                if (false && s.has_extra()) {
+                if (s.has_extra()) {
                     ti.extra = struct_to_map(s.extra());
                 }
             }

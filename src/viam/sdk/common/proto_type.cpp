@@ -174,14 +174,14 @@ bool operator==(const ProtoType& lhs, const ProtoType& rhs) {
                 return false;
             }
             // NOLINTNEXTLINE(misc-no-recursion)
-            return std::all_of(lhs_map->begin(), lhs_map->end(), [rhs_map](auto lhs) {
+            return std::all_of(lhs_map->begin(), lhs_map->end(), [&rhs_map](const auto& lhs) {
                 return (rhs_map->find(lhs.first) != rhs_map->end() &&
                         (*rhs_map->at(lhs.first) == *lhs.second));
             });
         }
         case 6: {
             // NOLINTNEXTLINE(misc-no-recursion)
-            auto pred = [](auto lhs, auto rhs) { return *lhs == *rhs; };
+            auto pred = [](const auto& lhs, const auto& rhs) { return *lhs == *rhs; };
 
             const auto& lhs_vec =
                 boost::get<std::vector<std::shared_ptr<ProtoType>>>(lhs.proto_type_);

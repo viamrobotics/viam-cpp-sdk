@@ -168,9 +168,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                         break;
                 }
             }
-            // TODO: Currently, map_to_struct seems broken,
-            // wait on PR 101 for fixes, hopefully.
-            // *new_entry.mutable_extra() = map_to_struct(s.extra);
+            *new_entry.mutable_extra() = map_to_struct(s.extra);
         }
         return ::grpc::Status();
     };
