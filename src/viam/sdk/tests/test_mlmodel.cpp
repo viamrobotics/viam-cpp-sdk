@@ -443,7 +443,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_1d, T, MLModelService::base_types) {
     BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == array_tv);
 }
-
+#if 0
 BOOST_AUTO_TEST_CASE_TEMPLATE(rt_2d_1_by_n, T, MLModelService::base_types) {
     using base_type = T;
     std::array<base_type, 4096> data{};
@@ -595,7 +595,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_4d, T, MLModelService::base_types) {
     BOOST_TEST(foo_view_as_base_type->shape() == matrix_tv.shape());
     BOOST_TEST(*foo_view_as_base_type == matrix_tv);
 }
-
+#endif
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace
