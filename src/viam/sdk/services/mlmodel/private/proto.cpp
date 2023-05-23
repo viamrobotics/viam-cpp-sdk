@@ -74,6 +74,9 @@ template <typename T>
                 return {grpc::INTERNAL, message.str()};
             }
             storage.insert(storage.end(), decoded.begin(), decoded.end());
+            if (shape.size() == depth) {
+                shape.push_back(0);
+            }
             if (shape[depth] == 0) {
                 shape[depth] = decoded.size();
             } else if (shape[depth] != decoded.size()) {
@@ -153,11 +156,38 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     explicit tensor_to_pb_value_visitor(::google::protobuf::Value* value)
         : value_{std::move(value)} {}
 
-    template <typename T>
-    ::grpc::Status operator()(const T& t) const {
-        return tensor_to_pb_<typename T::value_type>(t);
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::int8_t>& tensor) const {
+        return tensor_to_pb_t<std::int8_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint8_t>& tensor) const {
+        return tensor_to_pb_(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::int16_t>& tensor) const {
+        return tensor_to_pb_t<std::int16_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint16_t>& tensor) const {
+        return tensor_to_pb_t<std::uint16_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::int32_t>& tensor) const {
+        return tensor_to_pb_t<std::int32_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint32_t>& tensor) const {
+        return tensor_to_pb_t<std::uint32_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::int64_t>& tensor) const {
+        return tensor_to_pb_t<std::int64_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint64_t>& tensor) const {
+        return tensor_to_pb_t<std::uint64_t>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<float>& tensor) const {
+        return tensor_to_pb_t<float>(tensor);
+    }
+    ::grpc::Status operator()(const MLModelService::tensor_view<double>& tensor) const {
+        return tensor_to_pb_t<double>(tensor);
     }
 
+   private:
     // A tricky little bit of work to serialize floating point tensors to
     // a ListValue of ListValue of ... ListValue of Value objects holding
     // doubles, without recursion.
@@ -166,74 +196,9 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     // it'd be nice if we didn't need the special case for bailing out and
     // just naturally fell out of the loop with the top level ListValue in
     // place.
-   private:
-    ::grpc::Status tensor_to_pb_(
-        const typename MLModelService::tensor_view<unsigned char>& tensor) const {
-        if (tensor.shape().empty()) {
-            return ::grpc::Status();
-        }
-
-        std::stack<std::unique_ptr<::google::protobuf::ListValue>> lvs;
-        std::vector<size_t> ixes;
-        ixes.reserve(tensor.shape().size());
-
-        while (true) {
-            if (ixes.size() == tensor.shape().size()) {
-                // Base64 encode the entire last dimension stride into a string.
-                const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
-                ixes.back() = tensor.shape().back();
-                const auto* const bytes_end = &tensor.element(ixes.begin(), ixes.end());
-                const google::protobuf::StringPiece bytes{
-                    reinterpret_cast<const char*>(bytes_begin),
-                    std::size_t(bytes_end - bytes_begin)};
-                std::string encoded;
-                google::protobuf::WebSafeBase64EscapeWithPadding(bytes, &encoded);
-                if (lvs.empty()) {
-                    value_->set_string_value(std::move(encoded));
-                } else {
-                    auto new_value = std::make_unique<::google::protobuf::Value>();
-                    new_value->set_string_value(std::move(encoded));
-                    lvs.top()->mutable_values()->AddAllocated(new_value.release());
-                }
-            }
-            if (ixes.empty() || (ixes.back() < tensor.shape()[ixes.size() - 1])) {
-                // The "recursive" step where we make a new list and "descend".
-                if (tensor.shape().size() > 1) {
-                    lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
-                }
-                ixes.push_back(0);
-            } else if (ixes.size() > 1) {
-                // The step-out case where we have exhausted a
-                // stride. Wrap up the list we created in a value node
-                // and unwind to the next set of values one level up.
-                auto list_value = std::make_unique<::google::protobuf::Value>();
-                list_value->set_allocated_list_value(lvs.top().release());
-                lvs.pop();
-                lvs.top()->mutable_values()->AddAllocated(list_value.release());
-                ixes.pop_back();
-                ++ixes.back();
-            } else {
-                // If we can't recur, and we can't unwind, then we
-                // must be done. We must break so that we don't throw
-                // away our result. I'd like to find a way to make
-                // that happen more naturally.
-                break;
-            }
-        }
-
-        if (!lvs.empty()) {
-            value_->set_allocated_list_value(lvs.top().release());
-            lvs.pop();
-        }
-
-        return ::grpc::Status();
-    }
-
-    // A similar tricky bit of work, but for the special case of
-    // `byte` tensors where we must honor golang protobuf convention
-    // of storing byte arrays as Base64 encoded strings.
     template <typename T>
-    ::grpc::Status tensor_to_pb_(const typename MLModelService::tensor_view<T>& tensor) const {
+    ::grpc::Status tensor_to_pb_t(const MLModelService::tensor_view<T>& tensor) const {
+        static_assert(!std::is_same<T, std::uint8_t>::value);
         if (tensor.shape().empty()) {
             return ::grpc::Status();
         }
@@ -276,6 +241,70 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
         }
         value_->set_allocated_list_value(lvs.top().release());
         lvs.pop();
+        return ::grpc::Status();
+    }
+
+    // A similar tricky bit of work, but for the special case of
+    // `byte` tensors where we must honor golang protobuf convention
+    // of storing byte arrays as Base64 encoded strings.
+    ::grpc::Status tensor_to_pb_(const MLModelService::tensor_view<std::uint8_t>& tensor) const {
+        if (tensor.shape().empty()) {
+            return ::grpc::Status();
+        }
+
+        std::stack<std::unique_ptr<::google::protobuf::ListValue>> lvs;
+        std::vector<size_t> ixes;
+        ixes.reserve(tensor.shape().size());
+
+        while (true) {
+            if (ixes.size() == tensor.shape().size()) {
+                // Base64 encode the entire last dimension stride into a string.
+                const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
+                ixes.back() = tensor.shape().back();
+                const auto* const bytes_end = bytes_begin + ixes.back();
+                const google::protobuf::StringPiece bytes{
+                    reinterpret_cast<const char*>(bytes_begin),
+                    std::size_t(bytes_end - bytes_begin)};
+                std::string encoded;
+                google::protobuf::Base64Escape(bytes, &encoded);
+                if (lvs.empty()) {
+                    value_->set_string_value(std::move(encoded));
+                } else {
+                    auto new_value = std::make_unique<::google::protobuf::Value>();
+                    new_value->set_string_value(std::move(encoded));
+                    lvs.top()->mutable_values()->AddAllocated(new_value.release());
+                }
+            }
+            if (ixes.empty() || (ixes.back() < tensor.shape()[ixes.size() - 1])) {
+                // The "recursive" step where we make a new list and "descend".
+                if (tensor.shape().size() > 1) {
+                    lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
+                }
+                ixes.push_back(0);
+            } else if (ixes.size() > 1) {
+                // The step-out case where we have exhausted a
+                // stride. Wrap up the list we created in a value node
+                // and unwind to the next set of values one level up.
+                auto list_value = std::make_unique<::google::protobuf::Value>();
+                list_value->set_allocated_list_value(lvs.top().release());
+                lvs.pop();
+                lvs.top()->mutable_values()->AddAllocated(list_value.release());
+                ixes.pop_back();
+                ++ixes.back();
+            } else {
+                // If we can't recur, and we can't unwind, then we
+                // must be done. We must break so that we don't throw
+                // away our result. I'd like to find a way to make
+                // that happen more naturally.
+                break;
+            }
+        }
+
+        if (!lvs.empty()) {
+            value_->set_allocated_list_value(lvs.top().release());
+            lvs.pop();
+        }
+
         return ::grpc::Status();
     }
 
