@@ -39,38 +39,6 @@ class VisionService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // GetModelParameterSchema takes the model name and returns the parameters needed to add one to the vision registry.
-    virtual ::grpc::Status GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetModelParameterSchemaResponse>> AsyncGetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetModelParameterSchemaResponse>>(AsyncGetModelParameterSchemaRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetModelParameterSchemaResponse>> PrepareAsyncGetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetModelParameterSchemaResponse>>(PrepareAsyncGetModelParameterSchemaRaw(context, request, cq));
-    }
-    // GetDetectorNames returns the list of detectors in the registry.
-    virtual ::grpc::Status GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::viam::service::vision::v1::GetDetectorNamesResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectorNamesResponse>> AsyncGetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectorNamesResponse>>(AsyncGetDetectorNamesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectorNamesResponse>> PrepareAsyncGetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectorNamesResponse>>(PrepareAsyncGetDetectorNamesRaw(context, request, cq));
-    }
-    // AddDetector adds a new detector to the registry.
-    virtual ::grpc::Status AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::viam::service::vision::v1::AddDetectorResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddDetectorResponse>> AsyncAddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddDetectorResponse>>(AsyncAddDetectorRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddDetectorResponse>> PrepareAsyncAddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddDetectorResponse>>(PrepareAsyncAddDetectorRaw(context, request, cq));
-    }
-    // RemoveDetector removes a detector from the registry.
-    virtual ::grpc::Status RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::viam::service::vision::v1::RemoveDetectorResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveDetectorResponse>> AsyncRemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveDetectorResponse>>(AsyncRemoveDetectorRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveDetectorResponse>> PrepareAsyncRemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveDetectorResponse>>(PrepareAsyncRemoveDetectorRaw(context, request, cq));
-    }
     // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
     virtual ::grpc::Status GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>> AsyncGetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
@@ -87,32 +55,6 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>> PrepareAsyncGetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>>(PrepareAsyncGetDetectionsRaw(context, request, cq));
     }
-    // Classification methods
-    //
-    // GetClassifierNames returns the list of classifiers in the registry.
-    virtual ::grpc::Status GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::viam::service::vision::v1::GetClassifierNamesResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassifierNamesResponse>> AsyncGetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassifierNamesResponse>>(AsyncGetClassifierNamesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassifierNamesResponse>> PrepareAsyncGetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassifierNamesResponse>>(PrepareAsyncGetClassifierNamesRaw(context, request, cq));
-    }
-    // AddClassifier adds a new classifier to the registry.
-    virtual ::grpc::Status AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::viam::service::vision::v1::AddClassifierResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddClassifierResponse>> AsyncAddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddClassifierResponse>>(AsyncAddClassifierRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddClassifierResponse>> PrepareAsyncAddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddClassifierResponse>>(PrepareAsyncAddClassifierRaw(context, request, cq));
-    }
-    // RemoveClassifier adds a new classifier to the registry.
-    virtual ::grpc::Status RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::viam::service::vision::v1::RemoveClassifierResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveClassifierResponse>> AsyncRemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveClassifierResponse>>(AsyncRemoveClassifierRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveClassifierResponse>> PrepareAsyncRemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveClassifierResponse>>(PrepareAsyncRemoveClassifierRaw(context, request, cq));
-    }
     // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
     virtual ::grpc::Status GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>> AsyncGetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
@@ -128,32 +70,6 @@ class VisionService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>> PrepareAsyncGetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>>(PrepareAsyncGetClassificationsRaw(context, request, cq));
-    }
-    // Segmentation methods
-    //
-    // GetSegmenterNames returns the list of segmenters in the registry.
-    virtual ::grpc::Status GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetSegmenterNamesResponse>> AsyncGetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetSegmenterNamesResponse>>(AsyncGetSegmenterNamesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetSegmenterNamesResponse>> PrepareAsyncGetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetSegmenterNamesResponse>>(PrepareAsyncGetSegmenterNamesRaw(context, request, cq));
-    }
-    // AddSegmenter adds a new segmenter to the registry.
-    virtual ::grpc::Status AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::viam::service::vision::v1::AddSegmenterResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddSegmenterResponse>> AsyncAddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddSegmenterResponse>>(AsyncAddSegmenterRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddSegmenterResponse>> PrepareAsyncAddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddSegmenterResponse>>(PrepareAsyncAddSegmenterRaw(context, request, cq));
-    }
-    // RemoveSegmenter removes a segmenter from the registry.
-    virtual ::grpc::Status RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::viam::service::vision::v1::RemoveSegmenterResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveSegmenterResponse>> AsyncRemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveSegmenterResponse>>(AsyncRemoveSegmenterRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveSegmenterResponse>> PrepareAsyncRemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveSegmenterResponse>>(PrepareAsyncRemoveSegmenterRaw(context, request, cq));
     }
     // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
     // as well as the 3-vector center of each of the found objects.
@@ -176,52 +92,18 @@ class VisionService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // GetModelParameterSchema takes the model name and returns the parameters needed to add one to the vision registry.
-      virtual void GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetDetectorNames returns the list of detectors in the registry.
-      virtual void GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // AddDetector adds a new detector to the registry.
-      virtual void AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // RemoveDetector removes a detector from the registry.
-      virtual void RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
       virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetDetections will return a list of detections in the next image given the image bytes and a detector
       virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // Classification methods
-      //
-      // GetClassifierNames returns the list of classifiers in the registry.
-      virtual void GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // AddClassifier adds a new classifier to the registry.
-      virtual void AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // RemoveClassifier adds a new classifier to the registry.
-      virtual void RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
       virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
       virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // Segmentation methods
-      //
-      // GetSegmenterNames returns the list of segmenters in the registry.
-      virtual void GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // AddSegmenter adds a new segmenter to the registry.
-      virtual void AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // RemoveSegmenter removes a segmenter from the registry.
-      virtual void RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
       // as well as the 3-vector center of each of the found objects.
       // A specific MIME type can be requested but may not necessarily be the same one returned.
@@ -235,34 +117,14 @@ class VisionService final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* AsyncGetModelParameterSchemaRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* PrepareAsyncGetModelParameterSchemaRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectorNamesResponse>* AsyncGetDetectorNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectorNamesResponse>* PrepareAsyncGetDetectorNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddDetectorResponse>* AsyncAddDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddDetectorResponse>* PrepareAsyncAddDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveDetectorResponse>* AsyncRemoveDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveDetectorResponse>* PrepareAsyncRemoveDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* AsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* PrepareAsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>* AsyncGetDetectionsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>* PrepareAsyncGetDetectionsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassifierNamesResponse>* AsyncGetClassifierNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassifierNamesResponse>* PrepareAsyncGetClassifierNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddClassifierResponse>* AsyncAddClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddClassifierResponse>* PrepareAsyncAddClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveClassifierResponse>* AsyncRemoveClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveClassifierResponse>* PrepareAsyncRemoveClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* AsyncGetClassificationsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* PrepareAsyncGetClassificationsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>* AsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>* PrepareAsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetSegmenterNamesResponse>* AsyncGetSegmenterNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetSegmenterNamesResponse>* PrepareAsyncGetSegmenterNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddSegmenterResponse>* AsyncAddSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::AddSegmenterResponse>* PrepareAsyncAddSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveSegmenterResponse>* AsyncRemoveSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::RemoveSegmenterResponse>* PrepareAsyncRemoveSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* AsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* PrepareAsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -271,34 +133,6 @@ class VisionService final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>> AsyncGetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>>(AsyncGetModelParameterSchemaRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>> PrepareAsyncGetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>>(PrepareAsyncGetModelParameterSchemaRaw(context, request, cq));
-    }
-    ::grpc::Status GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::viam::service::vision::v1::GetDetectorNamesResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>> AsyncGetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>>(AsyncGetDetectorNamesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>> PrepareAsyncGetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>>(PrepareAsyncGetDetectorNamesRaw(context, request, cq));
-    }
-    ::grpc::Status AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::viam::service::vision::v1::AddDetectorResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>> AsyncAddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>>(AsyncAddDetectorRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>> PrepareAsyncAddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>>(PrepareAsyncAddDetectorRaw(context, request, cq));
-    }
-    ::grpc::Status RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::viam::service::vision::v1::RemoveDetectorResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>> AsyncRemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>>(AsyncRemoveDetectorRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>> PrepareAsyncRemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>>(PrepareAsyncRemoveDetectorRaw(context, request, cq));
-    }
     ::grpc::Status GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>> AsyncGetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>>(AsyncGetDetectionsFromCameraRaw(context, request, cq));
@@ -313,27 +147,6 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsResponse>> PrepareAsyncGetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsResponse>>(PrepareAsyncGetDetectionsRaw(context, request, cq));
     }
-    ::grpc::Status GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::viam::service::vision::v1::GetClassifierNamesResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>> AsyncGetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>>(AsyncGetClassifierNamesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>> PrepareAsyncGetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>>(PrepareAsyncGetClassifierNamesRaw(context, request, cq));
-    }
-    ::grpc::Status AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::viam::service::vision::v1::AddClassifierResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>> AsyncAddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>>(AsyncAddClassifierRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>> PrepareAsyncAddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>>(PrepareAsyncAddClassifierRaw(context, request, cq));
-    }
-    ::grpc::Status RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::viam::service::vision::v1::RemoveClassifierResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>> AsyncRemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>>(AsyncRemoveClassifierRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>> PrepareAsyncRemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>>(PrepareAsyncRemoveClassifierRaw(context, request, cq));
-    }
     ::grpc::Status GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>> AsyncGetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>>(AsyncGetClassificationsFromCameraRaw(context, request, cq));
@@ -347,27 +160,6 @@ class VisionService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsResponse>> PrepareAsyncGetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsResponse>>(PrepareAsyncGetClassificationsRaw(context, request, cq));
-    }
-    ::grpc::Status GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>> AsyncGetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>>(AsyncGetSegmenterNamesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>> PrepareAsyncGetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>>(PrepareAsyncGetSegmenterNamesRaw(context, request, cq));
-    }
-    ::grpc::Status AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::viam::service::vision::v1::AddSegmenterResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>> AsyncAddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>>(AsyncAddSegmenterRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>> PrepareAsyncAddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>>(PrepareAsyncAddSegmenterRaw(context, request, cq));
-    }
-    ::grpc::Status RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::viam::service::vision::v1::RemoveSegmenterResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>> AsyncRemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>>(AsyncRemoveSegmenterRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>> PrepareAsyncRemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>>(PrepareAsyncRemoveSegmenterRaw(context, request, cq));
     }
     ::grpc::Status GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>> AsyncGetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -386,34 +178,14 @@ class VisionService final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response, std::function<void(::grpc::Status)>) override;
-      void AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response, std::function<void(::grpc::Status)>) override;
-      void RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
       void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response, std::function<void(::grpc::Status)>) override;
-      void AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response, std::function<void(::grpc::Status)>) override;
-      void RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
       void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response, std::function<void(::grpc::Status)>) override;
-      void AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response, std::function<void(::grpc::Status)>) override;
-      void RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
@@ -429,52 +201,22 @@ class VisionService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* AsyncGetModelParameterSchemaRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* PrepareAsyncGetModelParameterSchemaRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>* AsyncGetDetectorNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>* PrepareAsyncGetDetectorNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>* AsyncAddDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>* PrepareAsyncAddDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>* AsyncRemoveDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>* PrepareAsyncRemoveDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* AsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* PrepareAsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsResponse>* AsyncGetDetectionsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsResponse>* PrepareAsyncGetDetectionsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>* AsyncGetClassifierNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>* PrepareAsyncGetClassifierNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>* AsyncAddClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>* PrepareAsyncAddClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>* AsyncRemoveClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>* PrepareAsyncRemoveClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* AsyncGetClassificationsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* PrepareAsyncGetClassificationsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsResponse>* AsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsResponse>* PrepareAsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>* AsyncGetSegmenterNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>* PrepareAsyncGetSegmenterNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>* AsyncAddSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>* PrepareAsyncAddSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>* AsyncRemoveSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>* PrepareAsyncRemoveSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* AsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* PrepareAsyncGetObjectPointCloudsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_GetModelParameterSchema_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetDetectorNames_;
-    const ::grpc::internal::RpcMethod rpcmethod_AddDetector_;
-    const ::grpc::internal::RpcMethod rpcmethod_RemoveDetector_;
     const ::grpc::internal::RpcMethod rpcmethod_GetDetectionsFromCamera_;
     const ::grpc::internal::RpcMethod rpcmethod_GetDetections_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetClassifierNames_;
-    const ::grpc::internal::RpcMethod rpcmethod_AddClassifier_;
-    const ::grpc::internal::RpcMethod rpcmethod_RemoveClassifier_;
     const ::grpc::internal::RpcMethod rpcmethod_GetClassificationsFromCamera_;
     const ::grpc::internal::RpcMethod rpcmethod_GetClassifications_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetSegmenterNames_;
-    const ::grpc::internal::RpcMethod rpcmethod_AddSegmenter_;
-    const ::grpc::internal::RpcMethod rpcmethod_RemoveSegmenter_;
     const ::grpc::internal::RpcMethod rpcmethod_GetObjectPointClouds_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
   };
@@ -484,38 +226,14 @@ class VisionService final {
    public:
     Service();
     virtual ~Service();
-    // GetModelParameterSchema takes the model name and returns the parameters needed to add one to the vision registry.
-    virtual ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response);
-    // GetDetectorNames returns the list of detectors in the registry.
-    virtual ::grpc::Status GetDetectorNames(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response);
-    // AddDetector adds a new detector to the registry.
-    virtual ::grpc::Status AddDetector(::grpc::ServerContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response);
-    // RemoveDetector removes a detector from the registry.
-    virtual ::grpc::Status RemoveDetector(::grpc::ServerContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response);
     // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
     virtual ::grpc::Status GetDetectionsFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response);
     // GetDetections will return a list of detections in the next image given the image bytes and a detector
     virtual ::grpc::Status GetDetections(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response);
-    // Classification methods
-    //
-    // GetClassifierNames returns the list of classifiers in the registry.
-    virtual ::grpc::Status GetClassifierNames(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response);
-    // AddClassifier adds a new classifier to the registry.
-    virtual ::grpc::Status AddClassifier(::grpc::ServerContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response);
-    // RemoveClassifier adds a new classifier to the registry.
-    virtual ::grpc::Status RemoveClassifier(::grpc::ServerContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response);
     // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
     virtual ::grpc::Status GetClassificationsFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response);
     // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
     virtual ::grpc::Status GetClassifications(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response);
-    // Segmentation methods
-    //
-    // GetSegmenterNames returns the list of segmenters in the registry.
-    virtual ::grpc::Status GetSegmenterNames(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response);
-    // AddSegmenter adds a new segmenter to the registry.
-    virtual ::grpc::Status AddSegmenter(::grpc::ServerContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response);
-    // RemoveSegmenter removes a segmenter from the registry.
-    virtual ::grpc::Status RemoveSegmenter(::grpc::ServerContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response);
     // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
     // as well as the 3-vector center of each of the found objects.
     // A specific MIME type can be requested but may not necessarily be the same one returned.
@@ -524,92 +242,12 @@ class VisionService final {
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetModelParameterSchema : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetModelParameterSchema() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_GetModelParameterSchema() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetModelParameterSchema(::grpc::ServerContext* context, ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetDetectorNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetDetectorNames() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_GetDetectorNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetDetectorNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetDetectorNames(::grpc::ServerContext* context, ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetDetectorNamesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_AddDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_AddDetector() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_AddDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAddDetector(::grpc::ServerContext* context, ::viam::service::vision::v1::AddDetectorRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::AddDetectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_RemoveDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_RemoveDetector() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_RemoveDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestRemoveDetector(::grpc::ServerContext* context, ::viam::service::vision::v1::RemoveDetectorRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::RemoveDetectorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDetectionsFromCamera() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(0);
     }
     ~WithAsyncMethod_GetDetectionsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
@@ -620,7 +258,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDetectionsFromCamera(::grpc::ServerContext* context, ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -629,7 +267,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDetections() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_GetDetections() override {
       BaseClassMustBeDerivedFromService(this);
@@ -640,67 +278,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDetections(::grpc::ServerContext* context, ::viam::service::vision::v1::GetDetectionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetDetectionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetClassifierNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetClassifierNames() {
-      ::grpc::Service::MarkMethodAsync(6);
-    }
-    ~WithAsyncMethod_GetClassifierNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetClassifierNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetClassifierNames(::grpc::ServerContext* context, ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetClassifierNamesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_AddClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_AddClassifier() {
-      ::grpc::Service::MarkMethodAsync(7);
-    }
-    ~WithAsyncMethod_AddClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAddClassifier(::grpc::ServerContext* context, ::viam::service::vision::v1::AddClassifierRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::AddClassifierResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_RemoveClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_RemoveClassifier() {
-      ::grpc::Service::MarkMethodAsync(8);
-    }
-    ~WithAsyncMethod_RemoveClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestRemoveClassifier(::grpc::ServerContext* context, ::viam::service::vision::v1::RemoveClassifierRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::RemoveClassifierResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -709,7 +287,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetClassificationsFromCamera() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_GetClassificationsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
@@ -720,7 +298,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetClassificationsFromCamera(::grpc::ServerContext* context, ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -729,7 +307,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetClassifications() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetClassifications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -740,67 +318,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetClassifications(::grpc::ServerContext* context, ::viam::service::vision::v1::GetClassificationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetClassificationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetSegmenterNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetSegmenterNames() {
-      ::grpc::Service::MarkMethodAsync(11);
-    }
-    ~WithAsyncMethod_GetSegmenterNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetSegmenterNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetSegmenterNames(::grpc::ServerContext* context, ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetSegmenterNamesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_AddSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_AddSegmenter() {
-      ::grpc::Service::MarkMethodAsync(12);
-    }
-    ~WithAsyncMethod_AddSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAddSegmenter(::grpc::ServerContext* context, ::viam::service::vision::v1::AddSegmenterRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::AddSegmenterResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_RemoveSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_RemoveSegmenter() {
-      ::grpc::Service::MarkMethodAsync(13);
-    }
-    ~WithAsyncMethod_RemoveSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestRemoveSegmenter(::grpc::ServerContext* context, ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::RemoveSegmenterResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -809,7 +327,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetObjectPointClouds() {
-      ::grpc::Service::MarkMethodAsync(14);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_GetObjectPointClouds() override {
       BaseClassMustBeDerivedFromService(this);
@@ -820,7 +338,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetObjectPointClouds(::grpc::ServerContext* context, ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::vision::v1::GetObjectPointCloudsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -829,7 +347,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(15);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -840,131 +358,23 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetModelParameterSchema<WithAsyncMethod_GetDetectorNames<WithAsyncMethod_AddDetector<WithAsyncMethod_RemoveDetector<WithAsyncMethod_GetDetectionsFromCamera<WithAsyncMethod_GetDetections<WithAsyncMethod_GetClassifierNames<WithAsyncMethod_AddClassifier<WithAsyncMethod_RemoveClassifier<WithAsyncMethod_GetClassificationsFromCamera<WithAsyncMethod_GetClassifications<WithAsyncMethod_GetSegmenterNames<WithAsyncMethod_AddSegmenter<WithAsyncMethod_RemoveSegmenter<WithAsyncMethod_GetObjectPointClouds<WithAsyncMethod_DoCommand<Service > > > > > > > > > > > > > > > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_GetModelParameterSchema : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetModelParameterSchema() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response) { return this->GetModelParameterSchema(context, request, response); }));}
-    void SetMessageAllocatorFor_GetModelParameterSchema(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetModelParameterSchema() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetModelParameterSchema(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetDetectorNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetDetectorNames() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response) { return this->GetDetectorNames(context, request, response); }));}
-    void SetMessageAllocatorFor_GetDetectorNames(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetDetectorNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetDetectorNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetDetectorNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_AddDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_AddDetector() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response) { return this->AddDetector(context, request, response); }));}
-    void SetMessageAllocatorFor_AddDetector(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_AddDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* AddDetector(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_RemoveDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_RemoveDetector() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response) { return this->RemoveDetector(context, request, response); }));}
-    void SetMessageAllocatorFor_RemoveDetector(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_RemoveDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* RemoveDetector(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/)  { return nullptr; }
-  };
+  typedef WithAsyncMethod_GetDetectionsFromCamera<WithAsyncMethod_GetDetections<WithAsyncMethod_GetClassificationsFromCamera<WithAsyncMethod_GetClassifications<WithAsyncMethod_GetObjectPointClouds<WithAsyncMethod_DoCommand<Service > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDetectionsFromCamera() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) { return this->GetDetectionsFromCamera(context, request, response); }));}
     void SetMessageAllocatorFor_GetDetectionsFromCamera(
         ::grpc::MessageAllocator< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -985,13 +395,13 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDetections() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response) { return this->GetDetections(context, request, response); }));}
     void SetMessageAllocatorFor_GetDetections(
         ::grpc::MessageAllocator< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1007,99 +417,18 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetClassifierNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetClassifierNames() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response) { return this->GetClassifierNames(context, request, response); }));}
-    void SetMessageAllocatorFor_GetClassifierNames(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetClassifierNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetClassifierNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetClassifierNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_AddClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_AddClassifier() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response) { return this->AddClassifier(context, request, response); }));}
-    void SetMessageAllocatorFor_AddClassifier(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_AddClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* AddClassifier(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_RemoveClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_RemoveClassifier() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response) { return this->RemoveClassifier(context, request, response); }));}
-    void SetMessageAllocatorFor_RemoveClassifier(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_RemoveClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* RemoveClassifier(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithCallbackMethod_GetClassificationsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetClassificationsFromCamera() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) { return this->GetClassificationsFromCamera(context, request, response); }));}
     void SetMessageAllocatorFor_GetClassificationsFromCamera(
         ::grpc::MessageAllocator< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1120,13 +449,13 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetClassifications() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response) { return this->GetClassifications(context, request, response); }));}
     void SetMessageAllocatorFor_GetClassifications(
         ::grpc::MessageAllocator< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1142,99 +471,18 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetSegmenterNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetSegmenterNames() {
-      ::grpc::Service::MarkMethodCallback(11,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response) { return this->GetSegmenterNames(context, request, response); }));}
-    void SetMessageAllocatorFor_GetSegmenterNames(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetSegmenterNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetSegmenterNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetSegmenterNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_AddSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_AddSegmenter() {
-      ::grpc::Service::MarkMethodCallback(12,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response) { return this->AddSegmenter(context, request, response); }));}
-    void SetMessageAllocatorFor_AddSegmenter(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_AddSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* AddSegmenter(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_RemoveSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_RemoveSegmenter() {
-      ::grpc::Service::MarkMethodCallback(13,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response) { return this->RemoveSegmenter(context, request, response); }));}
-    void SetMessageAllocatorFor_RemoveSegmenter(
-        ::grpc::MessageAllocator< ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_RemoveSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* RemoveSegmenter(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithCallbackMethod_GetObjectPointClouds : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetObjectPointClouds() {
-      ::grpc::Service::MarkMethodCallback(14,
+      ::grpc::Service::MarkMethodCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response) { return this->GetObjectPointClouds(context, request, response); }));}
     void SetMessageAllocatorFor_GetObjectPointClouds(
         ::grpc::MessageAllocator< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1255,13 +503,13 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(15,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1276,83 +524,15 @@ class VisionService final {
     virtual ::grpc::ServerUnaryReactor* DoCommand(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetModelParameterSchema<WithCallbackMethod_GetDetectorNames<WithCallbackMethod_AddDetector<WithCallbackMethod_RemoveDetector<WithCallbackMethod_GetDetectionsFromCamera<WithCallbackMethod_GetDetections<WithCallbackMethod_GetClassifierNames<WithCallbackMethod_AddClassifier<WithCallbackMethod_RemoveClassifier<WithCallbackMethod_GetClassificationsFromCamera<WithCallbackMethod_GetClassifications<WithCallbackMethod_GetSegmenterNames<WithCallbackMethod_AddSegmenter<WithCallbackMethod_RemoveSegmenter<WithCallbackMethod_GetObjectPointClouds<WithCallbackMethod_DoCommand<Service > > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetDetectionsFromCamera<WithCallbackMethod_GetDetections<WithCallbackMethod_GetClassificationsFromCamera<WithCallbackMethod_GetClassifications<WithCallbackMethod_GetObjectPointClouds<WithCallbackMethod_DoCommand<Service > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_GetModelParameterSchema : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetModelParameterSchema() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_GetModelParameterSchema() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetDetectorNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetDetectorNames() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_GetDetectorNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetDetectorNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_AddDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_AddDetector() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_AddDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_RemoveDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_RemoveDetector() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_RemoveDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
   template <class BaseClass>
   class WithGenericMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDetectionsFromCamera() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(0);
     }
     ~WithGenericMethod_GetDetectionsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1369,7 +549,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDetections() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_GetDetections() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1381,63 +561,12 @@ class VisionService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetClassifierNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetClassifierNames() {
-      ::grpc::Service::MarkMethodGeneric(6);
-    }
-    ~WithGenericMethod_GetClassifierNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetClassifierNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_AddClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_AddClassifier() {
-      ::grpc::Service::MarkMethodGeneric(7);
-    }
-    ~WithGenericMethod_AddClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_RemoveClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_RemoveClassifier() {
-      ::grpc::Service::MarkMethodGeneric(8);
-    }
-    ~WithGenericMethod_RemoveClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_GetClassificationsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetClassificationsFromCamera() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_GetClassificationsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1454,7 +583,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetClassifications() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetClassifications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1466,63 +595,12 @@ class VisionService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetSegmenterNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetSegmenterNames() {
-      ::grpc::Service::MarkMethodGeneric(11);
-    }
-    ~WithGenericMethod_GetSegmenterNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetSegmenterNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_AddSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_AddSegmenter() {
-      ::grpc::Service::MarkMethodGeneric(12);
-    }
-    ~WithGenericMethod_AddSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_RemoveSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_RemoveSegmenter() {
-      ::grpc::Service::MarkMethodGeneric(13);
-    }
-    ~WithGenericMethod_RemoveSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_GetObjectPointClouds : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetObjectPointClouds() {
-      ::grpc::Service::MarkMethodGeneric(14);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_GetObjectPointClouds() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1539,7 +617,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(15);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1551,92 +629,12 @@ class VisionService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetModelParameterSchema : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetModelParameterSchema() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_GetModelParameterSchema() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetModelParameterSchema(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetDetectorNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetDetectorNames() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_GetDetectorNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetDetectorNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetDetectorNames(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_AddDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_AddDetector() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_AddDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAddDetector(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_RemoveDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_RemoveDetector() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_RemoveDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestRemoveDetector(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDetectionsFromCamera() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(0);
     }
     ~WithRawMethod_GetDetectionsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1647,7 +645,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDetectionsFromCamera(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1656,7 +654,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDetections() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_GetDetections() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1667,67 +665,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDetections(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetClassifierNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetClassifierNames() {
-      ::grpc::Service::MarkMethodRaw(6);
-    }
-    ~WithRawMethod_GetClassifierNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetClassifierNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetClassifierNames(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_AddClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_AddClassifier() {
-      ::grpc::Service::MarkMethodRaw(7);
-    }
-    ~WithRawMethod_AddClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAddClassifier(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_RemoveClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_RemoveClassifier() {
-      ::grpc::Service::MarkMethodRaw(8);
-    }
-    ~WithRawMethod_RemoveClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestRemoveClassifier(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1736,7 +674,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetClassificationsFromCamera() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_GetClassificationsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1747,7 +685,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetClassificationsFromCamera(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1756,7 +694,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetClassifications() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetClassifications() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1767,67 +705,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetClassifications(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetSegmenterNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetSegmenterNames() {
-      ::grpc::Service::MarkMethodRaw(11);
-    }
-    ~WithRawMethod_GetSegmenterNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetSegmenterNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetSegmenterNames(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_AddSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_AddSegmenter() {
-      ::grpc::Service::MarkMethodRaw(12);
-    }
-    ~WithRawMethod_AddSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAddSegmenter(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_RemoveSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_RemoveSegmenter() {
-      ::grpc::Service::MarkMethodRaw(13);
-    }
-    ~WithRawMethod_RemoveSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestRemoveSegmenter(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1836,7 +714,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetObjectPointClouds() {
-      ::grpc::Service::MarkMethodRaw(14);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_GetObjectPointClouds() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1847,7 +725,7 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetObjectPointClouds(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1856,7 +734,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(15);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1867,96 +745,8 @@ class VisionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetModelParameterSchema : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetModelParameterSchema() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetModelParameterSchema(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetModelParameterSchema() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetModelParameterSchema(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetDetectorNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetDetectorNames() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetectorNames(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetDetectorNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetDetectorNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetDetectorNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_AddDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_AddDetector() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddDetector(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_AddDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* AddDetector(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_RemoveDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_RemoveDetector() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveDetector(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_RemoveDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* RemoveDetector(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_GetDetectionsFromCamera : public BaseClass {
@@ -1964,7 +754,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDetectionsFromCamera() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetectionsFromCamera(context, request, response); }));
@@ -1986,7 +776,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDetections() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetections(context, request, response); }));
@@ -2003,78 +793,12 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetClassifierNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetClassifierNames() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassifierNames(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetClassifierNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetClassifierNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetClassifierNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_AddClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_AddClassifier() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddClassifier(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_AddClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* AddClassifier(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_RemoveClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_RemoveClassifier() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveClassifier(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_RemoveClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* RemoveClassifier(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_GetClassificationsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetClassificationsFromCamera() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassificationsFromCamera(context, request, response); }));
@@ -2096,7 +820,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetClassifications() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassifications(context, request, response); }));
@@ -2113,78 +837,12 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetSegmenterNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetSegmenterNames() {
-      ::grpc::Service::MarkMethodRawCallback(11,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSegmenterNames(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetSegmenterNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetSegmenterNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetSegmenterNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_AddSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_AddSegmenter() {
-      ::grpc::Service::MarkMethodRawCallback(12,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddSegmenter(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_AddSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status AddSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* AddSegmenter(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_RemoveSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_RemoveSegmenter() {
-      ::grpc::Service::MarkMethodRawCallback(13,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveSegmenter(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_RemoveSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status RemoveSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* RemoveSegmenter(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_GetObjectPointClouds : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetObjectPointClouds() {
-      ::grpc::Service::MarkMethodRawCallback(14,
+      ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetObjectPointClouds(context, request, response); }));
@@ -2206,7 +864,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(15,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -2223,120 +881,12 @@ class VisionService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetModelParameterSchema : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetModelParameterSchema() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse>* streamer) {
-                       return this->StreamedGetModelParameterSchema(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetModelParameterSchema() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetModelParameterSchema(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* /*request*/, ::viam::service::vision::v1::GetModelParameterSchemaResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetModelParameterSchema(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetModelParameterSchemaRequest,::viam::service::vision::v1::GetModelParameterSchemaResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetDetectorNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetDetectorNames() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse>* streamer) {
-                       return this->StreamedGetDetectorNames(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetDetectorNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetDetectorNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectorNamesRequest* /*request*/, ::viam::service::vision::v1::GetDetectorNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetDetectorNames(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetDetectorNamesRequest,::viam::service::vision::v1::GetDetectorNamesResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_AddDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_AddDetector() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse>* streamer) {
-                       return this->StreamedAddDetector(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_AddDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status AddDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddDetectorRequest* /*request*/, ::viam::service::vision::v1::AddDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedAddDetector(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::AddDetectorRequest,::viam::service::vision::v1::AddDetectorResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_RemoveDetector : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_RemoveDetector() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse>* streamer) {
-                       return this->StreamedRemoveDetector(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_RemoveDetector() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status RemoveDetector(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveDetectorRequest* /*request*/, ::viam::service::vision::v1::RemoveDetectorResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedRemoveDetector(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::RemoveDetectorRequest,::viam::service::vision::v1::RemoveDetectorResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDetectionsFromCamera() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>(
             [this](::grpc::ServerContext* context,
@@ -2363,7 +913,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDetections() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>(
             [this](::grpc::ServerContext* context,
@@ -2385,93 +935,12 @@ class VisionService final {
     virtual ::grpc::Status StreamedGetDetections(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetDetectionsRequest,::viam::service::vision::v1::GetDetectionsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetClassifierNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetClassifierNames() {
-      ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse>* streamer) {
-                       return this->StreamedGetClassifierNames(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetClassifierNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetClassifierNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetClassifierNamesRequest* /*request*/, ::viam::service::vision::v1::GetClassifierNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetClassifierNames(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetClassifierNamesRequest,::viam::service::vision::v1::GetClassifierNamesResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_AddClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_AddClassifier() {
-      ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse>* streamer) {
-                       return this->StreamedAddClassifier(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_AddClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status AddClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddClassifierRequest* /*request*/, ::viam::service::vision::v1::AddClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedAddClassifier(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::AddClassifierRequest,::viam::service::vision::v1::AddClassifierResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_RemoveClassifier : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_RemoveClassifier() {
-      ::grpc::Service::MarkMethodStreamed(8,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse>* streamer) {
-                       return this->StreamedRemoveClassifier(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_RemoveClassifier() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status RemoveClassifier(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveClassifierRequest* /*request*/, ::viam::service::vision::v1::RemoveClassifierResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedRemoveClassifier(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::RemoveClassifierRequest,::viam::service::vision::v1::RemoveClassifierResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetClassificationsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetClassificationsFromCamera() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>(
             [this](::grpc::ServerContext* context,
@@ -2498,7 +967,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetClassifications() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>(
             [this](::grpc::ServerContext* context,
@@ -2520,93 +989,12 @@ class VisionService final {
     virtual ::grpc::Status StreamedGetClassifications(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetClassificationsRequest,::viam::service::vision::v1::GetClassificationsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetSegmenterNames : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetSegmenterNames() {
-      ::grpc::Service::MarkMethodStreamed(11,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse>* streamer) {
-                       return this->StreamedGetSegmenterNames(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetSegmenterNames() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetSegmenterNames(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::GetSegmenterNamesRequest* /*request*/, ::viam::service::vision::v1::GetSegmenterNamesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetSegmenterNames(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::GetSegmenterNamesRequest,::viam::service::vision::v1::GetSegmenterNamesResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_AddSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_AddSegmenter() {
-      ::grpc::Service::MarkMethodStreamed(12,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse>* streamer) {
-                       return this->StreamedAddSegmenter(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_AddSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status AddSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::AddSegmenterRequest* /*request*/, ::viam::service::vision::v1::AddSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedAddSegmenter(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::AddSegmenterRequest,::viam::service::vision::v1::AddSegmenterResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_RemoveSegmenter : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_RemoveSegmenter() {
-      ::grpc::Service::MarkMethodStreamed(13,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse>* streamer) {
-                       return this->StreamedRemoveSegmenter(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_RemoveSegmenter() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status RemoveSegmenter(::grpc::ServerContext* /*context*/, const ::viam::service::vision::v1::RemoveSegmenterRequest* /*request*/, ::viam::service::vision::v1::RemoveSegmenterResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedRemoveSegmenter(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::vision::v1::RemoveSegmenterRequest,::viam::service::vision::v1::RemoveSegmenterResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetObjectPointClouds : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetObjectPointClouds() {
-      ::grpc::Service::MarkMethodStreamed(14,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>(
             [this](::grpc::ServerContext* context,
@@ -2633,7 +1021,7 @@ class VisionService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(15,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -2654,9 +1042,9 @@ class VisionService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetModelParameterSchema<WithStreamedUnaryMethod_GetDetectorNames<WithStreamedUnaryMethod_AddDetector<WithStreamedUnaryMethod_RemoveDetector<WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassifierNames<WithStreamedUnaryMethod_AddClassifier<WithStreamedUnaryMethod_RemoveClassifier<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetSegmenterNames<WithStreamedUnaryMethod_AddSegmenter<WithStreamedUnaryMethod_RemoveSegmenter<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_DoCommand<Service > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetModelParameterSchema<WithStreamedUnaryMethod_GetDetectorNames<WithStreamedUnaryMethod_AddDetector<WithStreamedUnaryMethod_RemoveDetector<WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassifierNames<WithStreamedUnaryMethod_AddClassifier<WithStreamedUnaryMethod_RemoveClassifier<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetSegmenterNames<WithStreamedUnaryMethod_AddSegmenter<WithStreamedUnaryMethod_RemoveSegmenter<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_DoCommand<Service > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetDetectionsFromCamera<WithStreamedUnaryMethod_GetDetections<WithStreamedUnaryMethod_GetClassificationsFromCamera<WithStreamedUnaryMethod_GetClassifications<WithStreamedUnaryMethod_GetObjectPointClouds<WithStreamedUnaryMethod_DoCommand<Service > > > > > > StreamedService;
 };
 
 }  // namespace v1

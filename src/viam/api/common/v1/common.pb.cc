@@ -247,6 +247,19 @@ struct GeoPointDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
+PROTOBUF_CONSTEXPR GeoObstacle::GeoObstacle(
+    ::_pbi::ConstantInitialized)
+  : geometries_()
+  , location_(nullptr){}
+struct GeoObstacleDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GeoObstacleDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GeoObstacleDefaultTypeInternal() {}
+  union {
+    GeoObstacle _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoObstacleDefaultTypeInternal _GeoObstacle_default_instance_;
 PROTOBUF_CONSTEXPR Transform::Transform(
     ::_pbi::ConstantInitialized)
   : reference_frame_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -314,7 +327,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[22];
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[23];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
@@ -469,6 +482,14 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, latitude_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, longitude_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoObstacle, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoObstacle, location_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoObstacle, geometries_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -530,11 +551,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 126, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
   { 134, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
   { 142, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-  { 150, 159, -1, sizeof(::viam::common::v1::Transform)},
-  { 162, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 170, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-  { 177, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-  { 185, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 150, -1, -1, sizeof(::viam::common::v1::GeoObstacle)},
+  { 158, 167, -1, sizeof(::viam::common::v1::Transform)},
+  { 170, -1, -1, sizeof(::viam::common::v1::WorldState)},
+  { 178, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 185, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 193, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -555,6 +577,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_GeometriesInFrame_default_instance_._instance,
   &::viam::common::v1::_PointCloudObject_default_instance_._instance,
   &::viam::common::v1::_GeoPoint_default_instance_._instance,
+  &::viam::common::v1::_GeoObstacle_default_instance_._instance,
   &::viam::common::v1::_Transform_default_instance_._instance,
   &::viam::common::v1::_WorldState_default_instance_._instance,
   &::viam::common::v1::_ActuatorStatus_default_instance_._instance,
@@ -607,26 +630,29 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "\014R\npointCloud\022A\n\ngeometries\030\002 \001(\0132!.viam"
   ".common.v1.GeometriesInFrameR\ngeometries"
   "\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010latitude"
-  "\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"\342\001\n\tTrans"
-  "form\022\'\n\017reference_frame\030\001 \001(\tR\016reference"
-  "Frame\022P\n\026pose_in_observer_frame\030\002 \001(\0132\033."
-  "viam.common.v1.PoseInFrameR\023poseInObserv"
-  "erFrame\022F\n\017physical_object\030\003 \001(\0132\030.viam."
-  "common.v1.GeometryH\000R\016physicalObject\210\001\001B"
-  "\022\n\020_physical_object\"\210\001\n\nWorldState\022\?\n\tob"
-  "stacles\030\001 \003(\0132!.viam.common.v1.Geometrie"
-  "sInFrameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132"
-  "\031.viam.common.v1.TransformR\ntransforms\"-"
-  "\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isM"
-  "oving\"Y\n\020DoCommandRequest\022\022\n\004name\030\001 \001(\tR"
-  "\004name\0221\n\007command\030\002 \001(\0132\027.google.protobuf"
-  ".StructR\007command\"D\n\021DoCommandResponse\022/\n"
-  "\006result\030\001 \001(\0132\027.google.protobuf.StructR\006"
-  "result:a\n\032safety_heartbeat_monitored\022\036.g"
-  "oogle.protobuf.MethodOptions\030\244\222\005 \001(\010R\030sa"
-  "fetyHeartbeatMonitored\210\001\001B/\n\022com.viam.co"
-  "mmon.v1Z\031go.viam.com/api/common/v1b\006prot"
-  "o3"
+  "\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"}\n\013GeoObs"
+  "tacle\0224\n\010location\030\001 \001(\0132\030.viam.common.v1"
+  ".GeoPointR\010location\0228\n\ngeometries\030\002 \003(\0132"
+  "\030.viam.common.v1.GeometryR\ngeometries\"\342\001"
+  "\n\tTransform\022\'\n\017reference_frame\030\001 \001(\tR\016re"
+  "ferenceFrame\022P\n\026pose_in_observer_frame\030\002"
+  " \001(\0132\033.viam.common.v1.PoseInFrameR\023poseI"
+  "nObserverFrame\022F\n\017physical_object\030\003 \001(\0132"
+  "\030.viam.common.v1.GeometryH\000R\016physicalObj"
+  "ect\210\001\001B\022\n\020_physical_object\"\210\001\n\nWorldStat"
+  "e\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1.Ge"
+  "ometriesInFrameR\tobstacles\0229\n\ntransforms"
+  "\030\003 \003(\0132\031.viam.common.v1.TransformR\ntrans"
+  "forms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001"
+  "(\010R\010isMoving\"Y\n\020DoCommandRequest\022\022\n\004name"
+  "\030\001 \001(\tR\004name\0221\n\007command\030\002 \001(\0132\027.google.p"
+  "rotobuf.StructR\007command\"D\n\021DoCommandResp"
+  "onse\022/\n\006result\030\001 \001(\0132\027.google.protobuf.S"
+  "tructR\006result:a\n\032safety_heartbeat_monito"
+  "red\022\036.google.protobuf.MethodOptions\030\244\222\005 "
+  "\001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022com."
+  "viam.common.v1Z\031go.viam.com/api/common/v"
+  "1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -634,9 +660,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommo
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 2522, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 2649, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 2, 22,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 2, 23,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -4547,6 +4573,226 @@ void GeoPoint::InternalSwap(GeoPoint* other) {
 
 // ===================================================================
 
+class GeoObstacle::_Internal {
+ public:
+  static const ::viam::common::v1::GeoPoint& location(const GeoObstacle* msg);
+};
+
+const ::viam::common::v1::GeoPoint&
+GeoObstacle::_Internal::location(const GeoObstacle* msg) {
+  return *msg->location_;
+}
+GeoObstacle::GeoObstacle(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  geometries_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GeoObstacle)
+}
+GeoObstacle::GeoObstacle(const GeoObstacle& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      geometries_(from.geometries_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_location()) {
+    location_ = new ::viam::common::v1::GeoPoint(*from.location_);
+  } else {
+    location_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GeoObstacle)
+}
+
+inline void GeoObstacle::SharedCtor() {
+location_ = nullptr;
+}
+
+GeoObstacle::~GeoObstacle() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GeoObstacle)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GeoObstacle::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete location_;
+}
+
+void GeoObstacle::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GeoObstacle::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GeoObstacle)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  geometries_.Clear();
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GeoObstacle::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_location(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_geometries(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GeoObstacle::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GeoObstacle)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  if (this->_internal_has_location()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::location(this),
+        _Internal::location(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_geometries_size()); i < n; i++) {
+    const auto& repfield = this->_internal_geometries(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GeoObstacle)
+  return target;
+}
+
+size_t GeoObstacle::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GeoObstacle)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+  total_size += 1UL * this->_internal_geometries_size();
+  for (const auto& msg : this->geometries_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  if (this->_internal_has_location()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *location_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GeoObstacle::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GeoObstacle::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GeoObstacle::GetClassData() const { return &_class_data_; }
+
+void GeoObstacle::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GeoObstacle *>(to)->MergeFrom(
+      static_cast<const GeoObstacle &>(from));
+}
+
+
+void GeoObstacle::MergeFrom(const GeoObstacle& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GeoObstacle)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  geometries_.MergeFrom(from.geometries_);
+  if (from._internal_has_location()) {
+    _internal_mutable_location()->::viam::common::v1::GeoPoint::MergeFrom(from._internal_location());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GeoObstacle::CopyFrom(const GeoObstacle& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GeoObstacle)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GeoObstacle::IsInitialized() const {
+  return true;
+}
+
+void GeoObstacle::InternalSwap(GeoObstacle* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  geometries_.InternalSwap(&other->geometries_);
+  swap(location_, other->location_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GeoObstacle::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
+}
+
+// ===================================================================
+
 class Transform::_Internal {
  public:
   using HasBits = decltype(std::declval<Transform>()._has_bits_);
@@ -4838,7 +5084,7 @@ void Transform::InternalSwap(Transform* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Transform::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
 }
 
 // ===================================================================
@@ -5049,7 +5295,7 @@ void WorldState::InternalSwap(WorldState* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata WorldState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
 }
 
 // ===================================================================
@@ -5220,7 +5466,7 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ActuatorStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
 }
 
 // ===================================================================
@@ -5463,7 +5709,7 @@ void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
 }
 
 // ===================================================================
@@ -5656,7 +5902,7 @@ void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
 }
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
@@ -5734,6 +5980,10 @@ Arena::CreateMaybeMessage< ::viam::common::v1::PointCloudObject >(Arena* arena) 
 template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoPoint*
 Arena::CreateMaybeMessage< ::viam::common::v1::GeoPoint >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::GeoPoint >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoObstacle*
+Arena::CreateMaybeMessage< ::viam::common::v1::GeoObstacle >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GeoObstacle >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::common::v1::Transform*
 Arena::CreateMaybeMessage< ::viam::common::v1::Transform >(Arena* arena) {

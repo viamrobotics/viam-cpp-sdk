@@ -60,9 +60,9 @@ extern GetAccuracyRequestDefaultTypeInternal _GetAccuracyRequest_default_instanc
 class GetAccuracyResponse;
 struct GetAccuracyResponseDefaultTypeInternal;
 extern GetAccuracyResponseDefaultTypeInternal _GetAccuracyResponse_default_instance_;
-class GetAccuracyResponse_AccuracyMmEntry_DoNotUse;
-struct GetAccuracyResponse_AccuracyMmEntry_DoNotUseDefaultTypeInternal;
-extern GetAccuracyResponse_AccuracyMmEntry_DoNotUseDefaultTypeInternal _GetAccuracyResponse_AccuracyMmEntry_DoNotUse_default_instance_;
+class GetAccuracyResponse_AccuracyEntry_DoNotUse;
+struct GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal;
+extern GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal _GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_;
 class GetAngularVelocityRequest;
 struct GetAngularVelocityRequestDefaultTypeInternal;
 extern GetAngularVelocityRequestDefaultTypeInternal _GetAngularVelocityRequest_default_instance_;
@@ -112,7 +112,7 @@ extern GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_i
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::component::movementsensor::v1::GetAccuracyRequest* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetAccuracyRequest>(Arena*);
 template<> ::viam::component::movementsensor::v1::GetAccuracyResponse* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetAccuracyResponse>(Arena*);
-template<> ::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyMmEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyMmEntry_DoNotUse>(Arena*);
+template<> ::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse>(Arena*);
 template<> ::viam::component::movementsensor::v1::GetAngularVelocityRequest* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetAngularVelocityRequest>(Arena*);
 template<> ::viam::component::movementsensor::v1::GetAngularVelocityResponse* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetAngularVelocityResponse>(Arena*);
 template<> ::viam::component::movementsensor::v1::GetCompassHeadingRequest* Arena::CreateMaybeMessage<::viam::component::movementsensor::v1::GetCompassHeadingRequest>(Arena*);
@@ -1694,7 +1694,7 @@ class GetPositionResponse final :
 
   enum : int {
     kCoordinateFieldNumber = 1,
-    kAltitudeMmFieldNumber = 2,
+    kAltitudeMFieldNumber = 2,
   };
   // .viam.common.v1.GeoPoint coordinate = 1 [json_name = "coordinate"];
   bool has_coordinate() const;
@@ -1714,13 +1714,13 @@ class GetPositionResponse final :
       ::viam::common::v1::GeoPoint* coordinate);
   ::viam::common::v1::GeoPoint* unsafe_arena_release_coordinate();
 
-  // float altitude_mm = 2 [json_name = "altitudeMm"];
-  void clear_altitude_mm();
-  float altitude_mm() const;
-  void set_altitude_mm(float value);
+  // float altitude_m = 2 [json_name = "altitudeM"];
+  void clear_altitude_m();
+  float altitude_m() const;
+  void set_altitude_m(float value);
   private:
-  float _internal_altitude_mm() const;
-  void _internal_set_altitude_mm(float value);
+  float _internal_altitude_m() const;
+  void _internal_set_altitude_m(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:viam.component.movementsensor.v1.GetPositionResponse)
@@ -1731,7 +1731,7 @@ class GetPositionResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::viam::common::v1::GeoPoint* coordinate_;
-  float altitude_mm_;
+  float altitude_m_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto;
 };
@@ -2271,23 +2271,23 @@ class GetAccuracyRequest final :
 };
 // -------------------------------------------------------------------
 
-class GetAccuracyResponse_AccuracyMmEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetAccuracyResponse_AccuracyMmEntry_DoNotUse, 
+class GetAccuracyResponse_AccuracyEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetAccuracyResponse_AccuracyEntry_DoNotUse, 
     std::string, float,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT> {
 public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetAccuracyResponse_AccuracyMmEntry_DoNotUse, 
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<GetAccuracyResponse_AccuracyEntry_DoNotUse, 
     std::string, float,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT> SuperType;
-  GetAccuracyResponse_AccuracyMmEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR GetAccuracyResponse_AccuracyMmEntry_DoNotUse(
+  GetAccuracyResponse_AccuracyEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR GetAccuracyResponse_AccuracyEntry_DoNotUse(
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit GetAccuracyResponse_AccuracyMmEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const GetAccuracyResponse_AccuracyMmEntry_DoNotUse& other);
-  static const GetAccuracyResponse_AccuracyMmEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetAccuracyResponse_AccuracyMmEntry_DoNotUse*>(&_GetAccuracyResponse_AccuracyMmEntry_DoNotUse_default_instance_); }
+  explicit GetAccuracyResponse_AccuracyEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const GetAccuracyResponse_AccuracyEntry_DoNotUse& other);
+  static const GetAccuracyResponse_AccuracyEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetAccuracyResponse_AccuracyEntry_DoNotUse*>(&_GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_); }
   static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.component.movementsensor.v1.GetAccuracyResponse.AccuracyMmEntry.key");
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.component.movementsensor.v1.GetAccuracyResponse.AccuracyEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
@@ -2419,24 +2419,24 @@ class GetAccuracyResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kAccuracyMmFieldNumber = 1,
+    kAccuracyFieldNumber = 1,
   };
-  // map<string, float> accuracy_mm = 1 [json_name = "accuracyMm"];
-  int accuracy_mm_size() const;
+  // map<string, float> accuracy = 1 [json_name = "accuracy"];
+  int accuracy_size() const;
   private:
-  int _internal_accuracy_mm_size() const;
+  int _internal_accuracy_size() const;
   public:
-  void clear_accuracy_mm();
+  void clear_accuracy();
   private:
   const ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >&
-      _internal_accuracy_mm() const;
+      _internal_accuracy() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >*
-      _internal_mutable_accuracy_mm();
+      _internal_mutable_accuracy();
   public:
   const ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >&
-      accuracy_mm() const;
+      accuracy() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >*
-      mutable_accuracy_mm();
+      mutable_accuracy();
 
   // @@protoc_insertion_point(class_scope:viam.component.movementsensor.v1.GetAccuracyResponse)
  private:
@@ -2446,10 +2446,10 @@ class GetAccuracyResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      GetAccuracyResponse_AccuracyMmEntry_DoNotUse,
+      GetAccuracyResponse_AccuracyEntry_DoNotUse,
       std::string, float,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT> accuracy_mm_;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT> accuracy_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto;
 };
@@ -3855,24 +3855,24 @@ inline void GetPositionResponse::set_allocated_coordinate(::viam::common::v1::Ge
   // @@protoc_insertion_point(field_set_allocated:viam.component.movementsensor.v1.GetPositionResponse.coordinate)
 }
 
-// float altitude_mm = 2 [json_name = "altitudeMm"];
-inline void GetPositionResponse::clear_altitude_mm() {
-  altitude_mm_ = 0;
+// float altitude_m = 2 [json_name = "altitudeM"];
+inline void GetPositionResponse::clear_altitude_m() {
+  altitude_m_ = 0;
 }
-inline float GetPositionResponse::_internal_altitude_mm() const {
-  return altitude_mm_;
+inline float GetPositionResponse::_internal_altitude_m() const {
+  return altitude_m_;
 }
-inline float GetPositionResponse::altitude_mm() const {
-  // @@protoc_insertion_point(field_get:viam.component.movementsensor.v1.GetPositionResponse.altitude_mm)
-  return _internal_altitude_mm();
+inline float GetPositionResponse::altitude_m() const {
+  // @@protoc_insertion_point(field_get:viam.component.movementsensor.v1.GetPositionResponse.altitude_m)
+  return _internal_altitude_m();
 }
-inline void GetPositionResponse::_internal_set_altitude_mm(float value) {
+inline void GetPositionResponse::_internal_set_altitude_m(float value) {
   
-  altitude_mm_ = value;
+  altitude_m_ = value;
 }
-inline void GetPositionResponse::set_altitude_mm(float value) {
-  _internal_set_altitude_mm(value);
-  // @@protoc_insertion_point(field_set:viam.component.movementsensor.v1.GetPositionResponse.altitude_mm)
+inline void GetPositionResponse::set_altitude_m(float value) {
+  _internal_set_altitude_m(value);
+  // @@protoc_insertion_point(field_set:viam.component.movementsensor.v1.GetPositionResponse.altitude_m)
 }
 
 // -------------------------------------------------------------------
@@ -4283,33 +4283,33 @@ inline void GetAccuracyRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Str
 
 // GetAccuracyResponse
 
-// map<string, float> accuracy_mm = 1 [json_name = "accuracyMm"];
-inline int GetAccuracyResponse::_internal_accuracy_mm_size() const {
-  return accuracy_mm_.size();
+// map<string, float> accuracy = 1 [json_name = "accuracy"];
+inline int GetAccuracyResponse::_internal_accuracy_size() const {
+  return accuracy_.size();
 }
-inline int GetAccuracyResponse::accuracy_mm_size() const {
-  return _internal_accuracy_mm_size();
+inline int GetAccuracyResponse::accuracy_size() const {
+  return _internal_accuracy_size();
 }
-inline void GetAccuracyResponse::clear_accuracy_mm() {
-  accuracy_mm_.Clear();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >&
-GetAccuracyResponse::_internal_accuracy_mm() const {
-  return accuracy_mm_.GetMap();
+inline void GetAccuracyResponse::clear_accuracy() {
+  accuracy_.Clear();
 }
 inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >&
-GetAccuracyResponse::accuracy_mm() const {
-  // @@protoc_insertion_point(field_map:viam.component.movementsensor.v1.GetAccuracyResponse.accuracy_mm)
-  return _internal_accuracy_mm();
+GetAccuracyResponse::_internal_accuracy() const {
+  return accuracy_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >&
+GetAccuracyResponse::accuracy() const {
+  // @@protoc_insertion_point(field_map:viam.component.movementsensor.v1.GetAccuracyResponse.accuracy)
+  return _internal_accuracy();
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >*
-GetAccuracyResponse::_internal_mutable_accuracy_mm() {
-  return accuracy_mm_.MutableMap();
+GetAccuracyResponse::_internal_mutable_accuracy() {
+  return accuracy_.MutableMap();
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, float >*
-GetAccuracyResponse::mutable_accuracy_mm() {
-  // @@protoc_insertion_point(field_mutable_map:viam.component.movementsensor.v1.GetAccuracyResponse.accuracy_mm)
-  return _internal_mutable_accuracy_mm();
+GetAccuracyResponse::mutable_accuracy() {
+  // @@protoc_insertion_point(field_mutable_map:viam.component.movementsensor.v1.GetAccuracyResponse.accuracy)
+  return _internal_mutable_accuracy();
 }
 
 // -------------------------------------------------------------------

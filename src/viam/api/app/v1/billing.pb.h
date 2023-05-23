@@ -29,6 +29,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
@@ -60,6 +61,12 @@ extern GetBillingSummaryRequestDefaultTypeInternal _GetBillingSummaryRequest_def
 class GetBillingSummaryResponse;
 struct GetBillingSummaryResponseDefaultTypeInternal;
 extern GetBillingSummaryResponseDefaultTypeInternal _GetBillingSummaryResponse_default_instance_;
+class GetCurrentMonthUsageRequest;
+struct GetCurrentMonthUsageRequestDefaultTypeInternal;
+extern GetCurrentMonthUsageRequestDefaultTypeInternal _GetCurrentMonthUsageRequest_default_instance_;
+class GetCurrentMonthUsageResponse;
+struct GetCurrentMonthUsageResponseDefaultTypeInternal;
+extern GetCurrentMonthUsageResponseDefaultTypeInternal _GetCurrentMonthUsageResponse_default_instance_;
 class GetCurrentMonthUsageSummaryRequest;
 struct GetCurrentMonthUsageSummaryRequestDefaultTypeInternal;
 extern GetCurrentMonthUsageSummaryRequestDefaultTypeInternal _GetCurrentMonthUsageSummaryRequest_default_instance_;
@@ -72,12 +79,30 @@ extern GetInvoiceHistoryRequestDefaultTypeInternal _GetInvoiceHistoryRequest_def
 class GetInvoiceHistoryResponse;
 struct GetInvoiceHistoryResponseDefaultTypeInternal;
 extern GetInvoiceHistoryResponseDefaultTypeInternal _GetInvoiceHistoryResponse_default_instance_;
+class GetInvoicePdfRequest;
+struct GetInvoicePdfRequestDefaultTypeInternal;
+extern GetInvoicePdfRequestDefaultTypeInternal _GetInvoicePdfRequest_default_instance_;
+class GetInvoicePdfResponse;
+struct GetInvoicePdfResponseDefaultTypeInternal;
+extern GetInvoicePdfResponseDefaultTypeInternal _GetInvoicePdfResponse_default_instance_;
+class GetInvoicesSummaryRequest;
+struct GetInvoicesSummaryRequestDefaultTypeInternal;
+extern GetInvoicesSummaryRequestDefaultTypeInternal _GetInvoicesSummaryRequest_default_instance_;
+class GetInvoicesSummaryResponse;
+struct GetInvoicesSummaryResponseDefaultTypeInternal;
+extern GetInvoicesSummaryResponseDefaultTypeInternal _GetInvoicesSummaryResponse_default_instance_;
 class GetItemizedInvoiceRequest;
 struct GetItemizedInvoiceRequestDefaultTypeInternal;
 extern GetItemizedInvoiceRequestDefaultTypeInternal _GetItemizedInvoiceRequest_default_instance_;
 class GetItemizedInvoiceResponse;
 struct GetItemizedInvoiceResponseDefaultTypeInternal;
 extern GetItemizedInvoiceResponseDefaultTypeInternal _GetItemizedInvoiceResponse_default_instance_;
+class GetOrgBillingInformationRequest;
+struct GetOrgBillingInformationRequestDefaultTypeInternal;
+extern GetOrgBillingInformationRequestDefaultTypeInternal _GetOrgBillingInformationRequest_default_instance_;
+class GetOrgBillingInformationResponse;
+struct GetOrgBillingInformationResponseDefaultTypeInternal;
+extern GetOrgBillingInformationResponseDefaultTypeInternal _GetOrgBillingInformationResponse_default_instance_;
 class GetUnpaidBalanceRequest;
 struct GetUnpaidBalanceRequestDefaultTypeInternal;
 extern GetUnpaidBalanceRequestDefaultTypeInternal _GetUnpaidBalanceRequest_default_instance_;
@@ -90,6 +115,9 @@ extern InvoiceDefaultTypeInternal _Invoice_default_instance_;
 class InvoiceSummary;
 struct InvoiceSummaryDefaultTypeInternal;
 extern InvoiceSummaryDefaultTypeInternal _InvoiceSummary_default_instance_;
+class PaymentMethodCard;
+struct PaymentMethodCardDefaultTypeInternal;
+extern PaymentMethodCardDefaultTypeInternal _PaymentMethodCard_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
@@ -98,21 +126,55 @@ template<> ::viam::app::v1::BillableResourceEvent* Arena::CreateMaybeMessage<::v
 template<> ::viam::app::v1::CurrentMonthUsageSummary* Arena::CreateMaybeMessage<::viam::app::v1::CurrentMonthUsageSummary>(Arena*);
 template<> ::viam::app::v1::GetBillingSummaryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetBillingSummaryRequest>(Arena*);
 template<> ::viam::app::v1::GetBillingSummaryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetBillingSummaryResponse>(Arena*);
+template<> ::viam::app::v1::GetCurrentMonthUsageRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageRequest>(Arena*);
+template<> ::viam::app::v1::GetCurrentMonthUsageResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageResponse>(Arena*);
 template<> ::viam::app::v1::GetCurrentMonthUsageSummaryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageSummaryRequest>(Arena*);
 template<> ::viam::app::v1::GetCurrentMonthUsageSummaryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageSummaryResponse>(Arena*);
 template<> ::viam::app::v1::GetInvoiceHistoryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoiceHistoryRequest>(Arena*);
 template<> ::viam::app::v1::GetInvoiceHistoryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoiceHistoryResponse>(Arena*);
+template<> ::viam::app::v1::GetInvoicePdfRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoicePdfRequest>(Arena*);
+template<> ::viam::app::v1::GetInvoicePdfResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoicePdfResponse>(Arena*);
+template<> ::viam::app::v1::GetInvoicesSummaryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoicesSummaryRequest>(Arena*);
+template<> ::viam::app::v1::GetInvoicesSummaryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoicesSummaryResponse>(Arena*);
 template<> ::viam::app::v1::GetItemizedInvoiceRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetItemizedInvoiceRequest>(Arena*);
 template<> ::viam::app::v1::GetItemizedInvoiceResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetItemizedInvoiceResponse>(Arena*);
+template<> ::viam::app::v1::GetOrgBillingInformationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetOrgBillingInformationRequest>(Arena*);
+template<> ::viam::app::v1::GetOrgBillingInformationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetOrgBillingInformationResponse>(Arena*);
 template<> ::viam::app::v1::GetUnpaidBalanceRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetUnpaidBalanceRequest>(Arena*);
 template<> ::viam::app::v1::GetUnpaidBalanceResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetUnpaidBalanceResponse>(Arena*);
 template<> ::viam::app::v1::Invoice* Arena::CreateMaybeMessage<::viam::app::v1::Invoice>(Arena*);
 template<> ::viam::app::v1::InvoiceSummary* Arena::CreateMaybeMessage<::viam::app::v1::InvoiceSummary>(Arena*);
+template<> ::viam::app::v1::PaymentMethodCard* Arena::CreateMaybeMessage<::viam::app::v1::PaymentMethodCard>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace app {
 namespace v1 {
 
+enum PaymentMethodType : int {
+  PAYMENT_METHOD_TYPE_UNSPECIFIED = 0,
+  PAYMENT_METHOD_TYPE_CARD = 1,
+  PaymentMethodType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PaymentMethodType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool PaymentMethodType_IsValid(int value);
+constexpr PaymentMethodType PaymentMethodType_MIN = PAYMENT_METHOD_TYPE_UNSPECIFIED;
+constexpr PaymentMethodType PaymentMethodType_MAX = PAYMENT_METHOD_TYPE_CARD;
+constexpr int PaymentMethodType_ARRAYSIZE = PaymentMethodType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PaymentMethodType_descriptor();
+template<typename T>
+inline const std::string& PaymentMethodType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PaymentMethodType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PaymentMethodType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PaymentMethodType_descriptor(), enum_t_value);
+}
+inline bool PaymentMethodType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PaymentMethodType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PaymentMethodType>(
+    PaymentMethodType_descriptor(), name, value);
+}
 // ===================================================================
 
 class CurrentMonthUsageSummary final :
@@ -491,6 +553,7 @@ class InvoiceSummary final :
     kStatusFieldNumber = 4,
     kInvoiceDateFieldNumber = 2,
     kDueDateFieldNumber = 5,
+    kPaidDateFieldNumber = 6,
     kInvoiceAmountFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
@@ -557,6 +620,24 @@ class InvoiceSummary final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* due_date);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_due_date();
 
+  // .google.protobuf.Timestamp paid_date = 6 [json_name = "paidDate"];
+  bool has_paid_date() const;
+  private:
+  bool _internal_has_paid_date() const;
+  public:
+  void clear_paid_date();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& paid_date() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_paid_date();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_paid_date();
+  void set_allocated_paid_date(::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_paid_date() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_paid_date();
+  public:
+  void unsafe_arena_set_allocated_paid_date(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_paid_date();
+
   // double invoice_amount = 3 [json_name = "invoiceAmount"];
   void clear_invoice_amount();
   double invoice_amount() const;
@@ -577,6 +658,7 @@ class InvoiceSummary final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* invoice_date_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* due_date_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date_;
   double invoice_amount_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
@@ -1077,6 +1159,170 @@ class Invoice final :
 };
 // -------------------------------------------------------------------
 
+class PaymentMethodCard final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.PaymentMethodCard) */ {
+ public:
+  inline PaymentMethodCard() : PaymentMethodCard(nullptr) {}
+  ~PaymentMethodCard() override;
+  explicit PROTOBUF_CONSTEXPR PaymentMethodCard(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PaymentMethodCard(const PaymentMethodCard& from);
+  PaymentMethodCard(PaymentMethodCard&& from) noexcept
+    : PaymentMethodCard() {
+    *this = ::std::move(from);
+  }
+
+  inline PaymentMethodCard& operator=(const PaymentMethodCard& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PaymentMethodCard& operator=(PaymentMethodCard&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PaymentMethodCard& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PaymentMethodCard* internal_default_instance() {
+    return reinterpret_cast<const PaymentMethodCard*>(
+               &_PaymentMethodCard_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(PaymentMethodCard& a, PaymentMethodCard& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PaymentMethodCard* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PaymentMethodCard* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PaymentMethodCard* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PaymentMethodCard>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PaymentMethodCard& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PaymentMethodCard& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PaymentMethodCard* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.PaymentMethodCard";
+  }
+  protected:
+  explicit PaymentMethodCard(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBrandFieldNumber = 1,
+    kLastFourDigitsFieldNumber = 2,
+  };
+  // string brand = 1 [json_name = "brand"];
+  void clear_brand();
+  const std::string& brand() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_brand(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_brand();
+  PROTOBUF_NODISCARD std::string* release_brand();
+  void set_allocated_brand(std::string* brand);
+  private:
+  const std::string& _internal_brand() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_brand(const std::string& value);
+  std::string* _internal_mutable_brand();
+  public:
+
+  // string last_four_digits = 2 [json_name = "lastFourDigits"];
+  void clear_last_four_digits();
+  const std::string& last_four_digits() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_last_four_digits(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_last_four_digits();
+  PROTOBUF_NODISCARD std::string* release_last_four_digits();
+  void set_allocated_last_four_digits(std::string* last_four_digits);
+  private:
+  const std::string& _internal_last_four_digits() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last_four_digits(const std::string& value);
+  std::string* _internal_mutable_last_four_digits();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.PaymentMethodCard)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr brand_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_four_digits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetCurrentMonthUsageSummaryRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetCurrentMonthUsageSummaryRequest) */ {
  public:
@@ -1125,7 +1371,7 @@ class GetCurrentMonthUsageSummaryRequest final :
                &_GetCurrentMonthUsageSummaryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(GetCurrentMonthUsageSummaryRequest& a, GetCurrentMonthUsageSummaryRequest& b) {
     a.Swap(&b);
@@ -1273,7 +1519,7 @@ class GetCurrentMonthUsageSummaryResponse final :
                &_GetCurrentMonthUsageSummaryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(GetCurrentMonthUsageSummaryResponse& a, GetCurrentMonthUsageSummaryResponse& b) {
     a.Swap(&b);
@@ -1478,6 +1724,414 @@ class GetCurrentMonthUsageSummaryResponse final :
 };
 // -------------------------------------------------------------------
 
+class GetCurrentMonthUsageRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetCurrentMonthUsageRequest) */ {
+ public:
+  inline GetCurrentMonthUsageRequest() : GetCurrentMonthUsageRequest(nullptr) {}
+  ~GetCurrentMonthUsageRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetCurrentMonthUsageRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetCurrentMonthUsageRequest(const GetCurrentMonthUsageRequest& from);
+  GetCurrentMonthUsageRequest(GetCurrentMonthUsageRequest&& from) noexcept
+    : GetCurrentMonthUsageRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetCurrentMonthUsageRequest& operator=(const GetCurrentMonthUsageRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCurrentMonthUsageRequest& operator=(GetCurrentMonthUsageRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCurrentMonthUsageRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCurrentMonthUsageRequest* internal_default_instance() {
+    return reinterpret_cast<const GetCurrentMonthUsageRequest*>(
+               &_GetCurrentMonthUsageRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(GetCurrentMonthUsageRequest& a, GetCurrentMonthUsageRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetCurrentMonthUsageRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCurrentMonthUsageRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCurrentMonthUsageRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetCurrentMonthUsageRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetCurrentMonthUsageRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetCurrentMonthUsageRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetCurrentMonthUsageRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetCurrentMonthUsageRequest";
+  }
+  protected:
+  explicit GetCurrentMonthUsageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetCurrentMonthUsageRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetCurrentMonthUsageResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetCurrentMonthUsageResponse) */ {
+ public:
+  inline GetCurrentMonthUsageResponse() : GetCurrentMonthUsageResponse(nullptr) {}
+  ~GetCurrentMonthUsageResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetCurrentMonthUsageResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetCurrentMonthUsageResponse(const GetCurrentMonthUsageResponse& from);
+  GetCurrentMonthUsageResponse(GetCurrentMonthUsageResponse&& from) noexcept
+    : GetCurrentMonthUsageResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetCurrentMonthUsageResponse& operator=(const GetCurrentMonthUsageResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCurrentMonthUsageResponse& operator=(GetCurrentMonthUsageResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCurrentMonthUsageResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCurrentMonthUsageResponse* internal_default_instance() {
+    return reinterpret_cast<const GetCurrentMonthUsageResponse*>(
+               &_GetCurrentMonthUsageResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(GetCurrentMonthUsageResponse& a, GetCurrentMonthUsageResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetCurrentMonthUsageResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCurrentMonthUsageResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCurrentMonthUsageResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetCurrentMonthUsageResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetCurrentMonthUsageResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetCurrentMonthUsageResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetCurrentMonthUsageResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetCurrentMonthUsageResponse";
+  }
+  protected:
+  explicit GetCurrentMonthUsageResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStartDateFieldNumber = 1,
+    kEndDateFieldNumber = 2,
+    kCloudStorageUsageCostFieldNumber = 3,
+    kDataUploadUsageCostFieldNumber = 4,
+    kDataEgresUsageCostFieldNumber = 5,
+    kRemoteControlUsageCostFieldNumber = 6,
+    kStandardComputeUsageCostFieldNumber = 7,
+    kDiscountAmountFieldNumber = 8,
+    kTotalUsageWithDiscountFieldNumber = 9,
+    kTotalUsageWithoutDiscountFieldNumber = 10,
+  };
+  // .google.protobuf.Timestamp start_date = 1 [json_name = "startDate"];
+  bool has_start_date() const;
+  private:
+  bool _internal_has_start_date() const;
+  public:
+  void clear_start_date();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& start_date() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_start_date();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start_date();
+  void set_allocated_start_date(::PROTOBUF_NAMESPACE_ID::Timestamp* start_date);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start_date() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start_date();
+  public:
+  void unsafe_arena_set_allocated_start_date(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* start_date);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_start_date();
+
+  // .google.protobuf.Timestamp end_date = 2 [json_name = "endDate"];
+  bool has_end_date() const;
+  private:
+  bool _internal_has_end_date() const;
+  public:
+  void clear_end_date();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& end_date() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_end_date();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_end_date();
+  void set_allocated_end_date(::PROTOBUF_NAMESPACE_ID::Timestamp* end_date);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_end_date() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_end_date();
+  public:
+  void unsafe_arena_set_allocated_end_date(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* end_date);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end_date();
+
+  // double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+  void clear_cloud_storage_usage_cost();
+  double cloud_storage_usage_cost() const;
+  void set_cloud_storage_usage_cost(double value);
+  private:
+  double _internal_cloud_storage_usage_cost() const;
+  void _internal_set_cloud_storage_usage_cost(double value);
+  public:
+
+  // double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+  void clear_data_upload_usage_cost();
+  double data_upload_usage_cost() const;
+  void set_data_upload_usage_cost(double value);
+  private:
+  double _internal_data_upload_usage_cost() const;
+  void _internal_set_data_upload_usage_cost(double value);
+  public:
+
+  // double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+  void clear_data_egres_usage_cost();
+  double data_egres_usage_cost() const;
+  void set_data_egres_usage_cost(double value);
+  private:
+  double _internal_data_egres_usage_cost() const;
+  void _internal_set_data_egres_usage_cost(double value);
+  public:
+
+  // double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+  void clear_remote_control_usage_cost();
+  double remote_control_usage_cost() const;
+  void set_remote_control_usage_cost(double value);
+  private:
+  double _internal_remote_control_usage_cost() const;
+  void _internal_set_remote_control_usage_cost(double value);
+  public:
+
+  // double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+  void clear_standard_compute_usage_cost();
+  double standard_compute_usage_cost() const;
+  void set_standard_compute_usage_cost(double value);
+  private:
+  double _internal_standard_compute_usage_cost() const;
+  void _internal_set_standard_compute_usage_cost(double value);
+  public:
+
+  // double discount_amount = 8 [json_name = "discountAmount"];
+  void clear_discount_amount();
+  double discount_amount() const;
+  void set_discount_amount(double value);
+  private:
+  double _internal_discount_amount() const;
+  void _internal_set_discount_amount(double value);
+  public:
+
+  // double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+  void clear_total_usage_with_discount();
+  double total_usage_with_discount() const;
+  void set_total_usage_with_discount(double value);
+  private:
+  double _internal_total_usage_with_discount() const;
+  void _internal_set_total_usage_with_discount(double value);
+  public:
+
+  // double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+  void clear_total_usage_without_discount();
+  double total_usage_without_discount() const;
+  void set_total_usage_without_discount(double value);
+  private:
+  double _internal_total_usage_without_discount() const;
+  void _internal_set_total_usage_without_discount(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetCurrentMonthUsageResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* start_date_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* end_date_;
+  double cloud_storage_usage_cost_;
+  double data_upload_usage_cost_;
+  double data_egres_usage_cost_;
+  double remote_control_usage_cost_;
+  double standard_compute_usage_cost_;
+  double discount_amount_;
+  double total_usage_with_discount_;
+  double total_usage_without_discount_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetUnpaidBalanceRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetUnpaidBalanceRequest) */ {
  public:
@@ -1526,7 +2180,7 @@ class GetUnpaidBalanceRequest final :
                &_GetUnpaidBalanceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    9;
 
   friend void swap(GetUnpaidBalanceRequest& a, GetUnpaidBalanceRequest& b) {
     a.Swap(&b);
@@ -1674,7 +2328,7 @@ class GetUnpaidBalanceResponse final :
                &_GetUnpaidBalanceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    10;
 
   friend void swap(GetUnpaidBalanceResponse& a, GetUnpaidBalanceResponse& b) {
     a.Swap(&b);
@@ -1837,7 +2491,7 @@ class GetInvoiceHistoryRequest final :
                &_GetInvoiceHistoryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    11;
 
   friend void swap(GetInvoiceHistoryRequest& a, GetInvoiceHistoryRequest& b) {
     a.Swap(&b);
@@ -1985,7 +2639,7 @@ class GetInvoiceHistoryResponse final :
                &_GetInvoiceHistoryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    12;
 
   friend void swap(GetInvoiceHistoryResponse& a, GetInvoiceHistoryResponse& b) {
     a.Swap(&b);
@@ -2137,7 +2791,7 @@ class GetItemizedInvoiceRequest final :
                &_GetItemizedInvoiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    13;
 
   friend void swap(GetItemizedInvoiceRequest& a, GetItemizedInvoiceRequest& b) {
     a.Swap(&b);
@@ -2285,7 +2939,7 @@ class GetItemizedInvoiceResponse final :
                &_GetItemizedInvoiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    14;
 
   friend void swap(GetItemizedInvoiceResponse& a, GetItemizedInvoiceResponse& b) {
     a.Swap(&b);
@@ -2389,6 +3043,645 @@ class GetItemizedInvoiceResponse final :
 };
 // -------------------------------------------------------------------
 
+class GetOrgBillingInformationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetOrgBillingInformationRequest) */ {
+ public:
+  inline GetOrgBillingInformationRequest() : GetOrgBillingInformationRequest(nullptr) {}
+  ~GetOrgBillingInformationRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetOrgBillingInformationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetOrgBillingInformationRequest(const GetOrgBillingInformationRequest& from);
+  GetOrgBillingInformationRequest(GetOrgBillingInformationRequest&& from) noexcept
+    : GetOrgBillingInformationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetOrgBillingInformationRequest& operator=(const GetOrgBillingInformationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetOrgBillingInformationRequest& operator=(GetOrgBillingInformationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetOrgBillingInformationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetOrgBillingInformationRequest* internal_default_instance() {
+    return reinterpret_cast<const GetOrgBillingInformationRequest*>(
+               &_GetOrgBillingInformationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(GetOrgBillingInformationRequest& a, GetOrgBillingInformationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetOrgBillingInformationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetOrgBillingInformationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetOrgBillingInformationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetOrgBillingInformationRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetOrgBillingInformationRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetOrgBillingInformationRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetOrgBillingInformationRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetOrgBillingInformationRequest";
+  }
+  protected:
+  explicit GetOrgBillingInformationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetOrgBillingInformationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetOrgBillingInformationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetOrgBillingInformationResponse) */ {
+ public:
+  inline GetOrgBillingInformationResponse() : GetOrgBillingInformationResponse(nullptr) {}
+  ~GetOrgBillingInformationResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetOrgBillingInformationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetOrgBillingInformationResponse(const GetOrgBillingInformationResponse& from);
+  GetOrgBillingInformationResponse(GetOrgBillingInformationResponse&& from) noexcept
+    : GetOrgBillingInformationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetOrgBillingInformationResponse& operator=(const GetOrgBillingInformationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetOrgBillingInformationResponse& operator=(GetOrgBillingInformationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetOrgBillingInformationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetOrgBillingInformationResponse* internal_default_instance() {
+    return reinterpret_cast<const GetOrgBillingInformationResponse*>(
+               &_GetOrgBillingInformationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(GetOrgBillingInformationResponse& a, GetOrgBillingInformationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetOrgBillingInformationResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetOrgBillingInformationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetOrgBillingInformationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetOrgBillingInformationResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetOrgBillingInformationResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetOrgBillingInformationResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetOrgBillingInformationResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetOrgBillingInformationResponse";
+  }
+  protected:
+  explicit GetOrgBillingInformationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBillingEmailFieldNumber = 2,
+    kMethodFieldNumber = 3,
+    kTypeFieldNumber = 1,
+  };
+  // string billing_email = 2 [json_name = "billingEmail"];
+  void clear_billing_email();
+  const std::string& billing_email() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_billing_email(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_billing_email();
+  PROTOBUF_NODISCARD std::string* release_billing_email();
+  void set_allocated_billing_email(std::string* billing_email);
+  private:
+  const std::string& _internal_billing_email() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_billing_email(const std::string& value);
+  std::string* _internal_mutable_billing_email();
+  public:
+
+  // optional .viam.app.v1.PaymentMethodCard method = 3 [json_name = "method"];
+  bool has_method() const;
+  private:
+  bool _internal_has_method() const;
+  public:
+  void clear_method();
+  const ::viam::app::v1::PaymentMethodCard& method() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::PaymentMethodCard* release_method();
+  ::viam::app::v1::PaymentMethodCard* mutable_method();
+  void set_allocated_method(::viam::app::v1::PaymentMethodCard* method);
+  private:
+  const ::viam::app::v1::PaymentMethodCard& _internal_method() const;
+  ::viam::app::v1::PaymentMethodCard* _internal_mutable_method();
+  public:
+  void unsafe_arena_set_allocated_method(
+      ::viam::app::v1::PaymentMethodCard* method);
+  ::viam::app::v1::PaymentMethodCard* unsafe_arena_release_method();
+
+  // .viam.app.v1.PaymentMethodType type = 1 [json_name = "type"];
+  void clear_type();
+  ::viam::app::v1::PaymentMethodType type() const;
+  void set_type(::viam::app::v1::PaymentMethodType value);
+  private:
+  ::viam::app::v1::PaymentMethodType _internal_type() const;
+  void _internal_set_type(::viam::app::v1::PaymentMethodType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetOrgBillingInformationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_email_;
+  ::viam::app::v1::PaymentMethodCard* method_;
+  int type_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetInvoicesSummaryRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetInvoicesSummaryRequest) */ {
+ public:
+  inline GetInvoicesSummaryRequest() : GetInvoicesSummaryRequest(nullptr) {}
+  ~GetInvoicesSummaryRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetInvoicesSummaryRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetInvoicesSummaryRequest(const GetInvoicesSummaryRequest& from);
+  GetInvoicesSummaryRequest(GetInvoicesSummaryRequest&& from) noexcept
+    : GetInvoicesSummaryRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetInvoicesSummaryRequest& operator=(const GetInvoicesSummaryRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetInvoicesSummaryRequest& operator=(GetInvoicesSummaryRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetInvoicesSummaryRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetInvoicesSummaryRequest* internal_default_instance() {
+    return reinterpret_cast<const GetInvoicesSummaryRequest*>(
+               &_GetInvoicesSummaryRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(GetInvoicesSummaryRequest& a, GetInvoicesSummaryRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetInvoicesSummaryRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetInvoicesSummaryRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetInvoicesSummaryRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetInvoicesSummaryRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetInvoicesSummaryRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetInvoicesSummaryRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetInvoicesSummaryRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetInvoicesSummaryRequest";
+  }
+  protected:
+  explicit GetInvoicesSummaryRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetInvoicesSummaryRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetInvoicesSummaryResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetInvoicesSummaryResponse) */ {
+ public:
+  inline GetInvoicesSummaryResponse() : GetInvoicesSummaryResponse(nullptr) {}
+  ~GetInvoicesSummaryResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetInvoicesSummaryResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetInvoicesSummaryResponse(const GetInvoicesSummaryResponse& from);
+  GetInvoicesSummaryResponse(GetInvoicesSummaryResponse&& from) noexcept
+    : GetInvoicesSummaryResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetInvoicesSummaryResponse& operator=(const GetInvoicesSummaryResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetInvoicesSummaryResponse& operator=(GetInvoicesSummaryResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetInvoicesSummaryResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetInvoicesSummaryResponse* internal_default_instance() {
+    return reinterpret_cast<const GetInvoicesSummaryResponse*>(
+               &_GetInvoicesSummaryResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(GetInvoicesSummaryResponse& a, GetInvoicesSummaryResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetInvoicesSummaryResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetInvoicesSummaryResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetInvoicesSummaryResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetInvoicesSummaryResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetInvoicesSummaryResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetInvoicesSummaryResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetInvoicesSummaryResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetInvoicesSummaryResponse";
+  }
+  protected:
+  explicit GetInvoicesSummaryResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInvoicesFieldNumber = 2,
+    kOutstandingBalanceFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.InvoiceSummary invoices = 2 [json_name = "invoices"];
+  int invoices_size() const;
+  private:
+  int _internal_invoices_size() const;
+  public:
+  void clear_invoices();
+  ::viam::app::v1::InvoiceSummary* mutable_invoices(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::InvoiceSummary >*
+      mutable_invoices();
+  private:
+  const ::viam::app::v1::InvoiceSummary& _internal_invoices(int index) const;
+  ::viam::app::v1::InvoiceSummary* _internal_add_invoices();
+  public:
+  const ::viam::app::v1::InvoiceSummary& invoices(int index) const;
+  ::viam::app::v1::InvoiceSummary* add_invoices();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::InvoiceSummary >&
+      invoices() const;
+
+  // double outstanding_balance = 1 [json_name = "outstandingBalance"];
+  void clear_outstanding_balance();
+  double outstanding_balance() const;
+  void set_outstanding_balance(double value);
+  private:
+  double _internal_outstanding_balance() const;
+  void _internal_set_outstanding_balance(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetInvoicesSummaryResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::InvoiceSummary > invoices_;
+  double outstanding_balance_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetBillingSummaryRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetBillingSummaryRequest) */ {
  public:
@@ -2437,7 +3730,7 @@ class GetBillingSummaryRequest final :
                &_GetBillingSummaryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    19;
 
   friend void swap(GetBillingSummaryRequest& a, GetBillingSummaryRequest& b) {
     a.Swap(&b);
@@ -2585,7 +3878,7 @@ class GetBillingSummaryResponse final :
                &_GetBillingSummaryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    20;
 
   friend void swap(GetBillingSummaryResponse& a, GetBillingSummaryResponse& b) {
     a.Swap(&b);
@@ -2660,6 +3953,7 @@ class GetBillingSummaryResponse final :
     kInvoiceEmailFieldNumber = 8,
     kUsageSummaryFieldNumber = 1,
     kCurrentMonthDueDateFieldNumber = 7,
+    kPaymentMethodFieldNumber = 9,
     kStatementBalanceFieldNumber = 3,
     kCurrentBalanceFieldNumber = 4,
     kCurrentMonthBalanceFieldNumber = 5,
@@ -2732,6 +4026,24 @@ class GetBillingSummaryResponse final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* current_month_due_date);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_current_month_due_date();
 
+  // .viam.app.v1.PaymentMethodCard payment_method = 9 [json_name = "paymentMethod"];
+  bool has_payment_method() const;
+  private:
+  bool _internal_has_payment_method() const;
+  public:
+  void clear_payment_method();
+  const ::viam::app::v1::PaymentMethodCard& payment_method() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::PaymentMethodCard* release_payment_method();
+  ::viam::app::v1::PaymentMethodCard* mutable_payment_method();
+  void set_allocated_payment_method(::viam::app::v1::PaymentMethodCard* payment_method);
+  private:
+  const ::viam::app::v1::PaymentMethodCard& _internal_payment_method() const;
+  ::viam::app::v1::PaymentMethodCard* _internal_mutable_payment_method();
+  public:
+  void unsafe_arena_set_allocated_payment_method(
+      ::viam::app::v1::PaymentMethodCard* payment_method);
+  ::viam::app::v1::PaymentMethodCard* unsafe_arena_release_payment_method();
+
   // double statement_balance = 3 [json_name = "statementBalance"];
   void clear_statement_balance();
   double statement_balance() const;
@@ -2770,9 +4082,306 @@ class GetBillingSummaryResponse final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr invoice_email_;
   ::viam::app::v1::CurrentMonthUsageSummary* usage_summary_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* current_month_due_date_;
+  ::viam::app::v1::PaymentMethodCard* payment_method_;
   double statement_balance_;
   double current_balance_;
   double current_month_balance_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetInvoicePdfRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetInvoicePdfRequest) */ {
+ public:
+  inline GetInvoicePdfRequest() : GetInvoicePdfRequest(nullptr) {}
+  ~GetInvoicePdfRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetInvoicePdfRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetInvoicePdfRequest(const GetInvoicePdfRequest& from);
+  GetInvoicePdfRequest(GetInvoicePdfRequest&& from) noexcept
+    : GetInvoicePdfRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetInvoicePdfRequest& operator=(const GetInvoicePdfRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetInvoicePdfRequest& operator=(GetInvoicePdfRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetInvoicePdfRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetInvoicePdfRequest* internal_default_instance() {
+    return reinterpret_cast<const GetInvoicePdfRequest*>(
+               &_GetInvoicePdfRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(GetInvoicePdfRequest& a, GetInvoicePdfRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetInvoicePdfRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetInvoicePdfRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetInvoicePdfRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetInvoicePdfRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetInvoicePdfRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetInvoicePdfRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetInvoicePdfRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetInvoicePdfRequest";
+  }
+  protected:
+  explicit GetInvoicePdfRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetInvoicePdfRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetInvoicePdfResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetInvoicePdfResponse) */ {
+ public:
+  inline GetInvoicePdfResponse() : GetInvoicePdfResponse(nullptr) {}
+  ~GetInvoicePdfResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetInvoicePdfResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetInvoicePdfResponse(const GetInvoicePdfResponse& from);
+  GetInvoicePdfResponse(GetInvoicePdfResponse&& from) noexcept
+    : GetInvoicePdfResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetInvoicePdfResponse& operator=(const GetInvoicePdfResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetInvoicePdfResponse& operator=(GetInvoicePdfResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetInvoicePdfResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetInvoicePdfResponse* internal_default_instance() {
+    return reinterpret_cast<const GetInvoicePdfResponse*>(
+               &_GetInvoicePdfResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(GetInvoicePdfResponse& a, GetInvoicePdfResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetInvoicePdfResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetInvoicePdfResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetInvoicePdfResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetInvoicePdfResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetInvoicePdfResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetInvoicePdfResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetInvoicePdfResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetInvoicePdfResponse";
+  }
+  protected:
+  explicit GetInvoicePdfResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kChunkFieldNumber = 1,
+  };
+  // bytes chunk = 1 [json_name = "chunk"];
+  void clear_chunk();
+  const std::string& chunk() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_chunk(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_chunk();
+  PROTOBUF_NODISCARD std::string* release_chunk();
+  void set_allocated_chunk(std::string* chunk);
+  private:
+  const std::string& _internal_chunk() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_chunk(const std::string& value);
+  std::string* _internal_mutable_chunk();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetInvoicePdfResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr chunk_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
@@ -3299,6 +4908,91 @@ inline void InvoiceSummary::set_allocated_due_date(::PROTOBUF_NAMESPACE_ID::Time
   }
   due_date_ = due_date;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.InvoiceSummary.due_date)
+}
+
+// .google.protobuf.Timestamp paid_date = 6 [json_name = "paidDate"];
+inline bool InvoiceSummary::_internal_has_paid_date() const {
+  return this != internal_default_instance() && paid_date_ != nullptr;
+}
+inline bool InvoiceSummary::has_paid_date() const {
+  return _internal_has_paid_date();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& InvoiceSummary::_internal_paid_date() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = paid_date_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& InvoiceSummary::paid_date() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.InvoiceSummary.paid_date)
+  return _internal_paid_date();
+}
+inline void InvoiceSummary::unsafe_arena_set_allocated_paid_date(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(paid_date_);
+  }
+  paid_date_ = paid_date;
+  if (paid_date) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.InvoiceSummary.paid_date)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::release_paid_date() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = paid_date_;
+  paid_date_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::unsafe_arena_release_paid_date() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.InvoiceSummary.paid_date)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = paid_date_;
+  paid_date_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::_internal_mutable_paid_date() {
+  
+  if (paid_date_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    paid_date_ = p;
+  }
+  return paid_date_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::mutable_paid_date() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_paid_date();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.InvoiceSummary.paid_date)
+  return _msg;
+}
+inline void InvoiceSummary::set_allocated_paid_date(::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(paid_date_);
+  }
+  if (paid_date) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(paid_date));
+    if (message_arena != submessage_arena) {
+      paid_date = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, paid_date, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  paid_date_ = paid_date;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.InvoiceSummary.paid_date)
 }
 
 // -------------------------------------------------------------------
@@ -4046,6 +5740,110 @@ inline void Invoice::set_allocated_emailed_to(std::string* emailed_to) {
 
 // -------------------------------------------------------------------
 
+// PaymentMethodCard
+
+// string brand = 1 [json_name = "brand"];
+inline void PaymentMethodCard::clear_brand() {
+  brand_.ClearToEmpty();
+}
+inline const std::string& PaymentMethodCard::brand() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodCard.brand)
+  return _internal_brand();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PaymentMethodCard::set_brand(ArgT0&& arg0, ArgT... args) {
+ 
+ brand_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PaymentMethodCard.brand)
+}
+inline std::string* PaymentMethodCard::mutable_brand() {
+  std::string* _s = _internal_mutable_brand();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodCard.brand)
+  return _s;
+}
+inline const std::string& PaymentMethodCard::_internal_brand() const {
+  return brand_.Get();
+}
+inline void PaymentMethodCard::_internal_set_brand(const std::string& value) {
+  
+  brand_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PaymentMethodCard::_internal_mutable_brand() {
+  
+  return brand_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PaymentMethodCard::release_brand() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodCard.brand)
+  return brand_.Release();
+}
+inline void PaymentMethodCard::set_allocated_brand(std::string* brand) {
+  if (brand != nullptr) {
+    
+  } else {
+    
+  }
+  brand_.SetAllocated(brand, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (brand_.IsDefault()) {
+    brand_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodCard.brand)
+}
+
+// string last_four_digits = 2 [json_name = "lastFourDigits"];
+inline void PaymentMethodCard::clear_last_four_digits() {
+  last_four_digits_.ClearToEmpty();
+}
+inline const std::string& PaymentMethodCard::last_four_digits() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodCard.last_four_digits)
+  return _internal_last_four_digits();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PaymentMethodCard::set_last_four_digits(ArgT0&& arg0, ArgT... args) {
+ 
+ last_four_digits_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PaymentMethodCard.last_four_digits)
+}
+inline std::string* PaymentMethodCard::mutable_last_four_digits() {
+  std::string* _s = _internal_mutable_last_four_digits();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodCard.last_four_digits)
+  return _s;
+}
+inline const std::string& PaymentMethodCard::_internal_last_four_digits() const {
+  return last_four_digits_.Get();
+}
+inline void PaymentMethodCard::_internal_set_last_four_digits(const std::string& value) {
+  
+  last_four_digits_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PaymentMethodCard::_internal_mutable_last_four_digits() {
+  
+  return last_four_digits_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PaymentMethodCard::release_last_four_digits() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodCard.last_four_digits)
+  return last_four_digits_.Release();
+}
+inline void PaymentMethodCard::set_allocated_last_four_digits(std::string* last_four_digits) {
+  if (last_four_digits != nullptr) {
+    
+  } else {
+    
+  }
+  last_four_digits_.SetAllocated(last_four_digits, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (last_four_digits_.IsDefault()) {
+    last_four_digits_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodCard.last_four_digits)
+}
+
+// -------------------------------------------------------------------
+
 // GetCurrentMonthUsageSummaryRequest
 
 // string org_id = 1 [json_name = "orgId"];
@@ -4320,6 +6118,394 @@ inline void GetCurrentMonthUsageSummaryResponse::_internal_set_total_usage_witho
 inline void GetCurrentMonthUsageSummaryResponse::set_total_usage_without_discount(double value) {
   _internal_set_total_usage_without_discount(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageSummaryResponse.total_usage_without_discount)
+}
+
+// -------------------------------------------------------------------
+
+// GetCurrentMonthUsageRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void GetCurrentMonthUsageRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& GetCurrentMonthUsageRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetCurrentMonthUsageRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageRequest.org_id)
+}
+inline std::string* GetCurrentMonthUsageRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetCurrentMonthUsageRequest.org_id)
+  return _s;
+}
+inline const std::string& GetCurrentMonthUsageRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void GetCurrentMonthUsageRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetCurrentMonthUsageRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetCurrentMonthUsageRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetCurrentMonthUsageRequest.org_id)
+  return org_id_.Release();
+}
+inline void GetCurrentMonthUsageRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetCurrentMonthUsageRequest.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetCurrentMonthUsageResponse
+
+// .google.protobuf.Timestamp start_date = 1 [json_name = "startDate"];
+inline bool GetCurrentMonthUsageResponse::_internal_has_start_date() const {
+  return this != internal_default_instance() && start_date_ != nullptr;
+}
+inline bool GetCurrentMonthUsageResponse::has_start_date() const {
+  return _internal_has_start_date();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetCurrentMonthUsageResponse::_internal_start_date() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = start_date_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetCurrentMonthUsageResponse::start_date() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.start_date)
+  return _internal_start_date();
+}
+inline void GetCurrentMonthUsageResponse::unsafe_arena_set_allocated_start_date(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* start_date) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_date_);
+  }
+  start_date_ = start_date;
+  if (start_date) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetCurrentMonthUsageResponse.start_date)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::release_start_date() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_date_;
+  start_date_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::unsafe_arena_release_start_date() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetCurrentMonthUsageResponse.start_date)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_date_;
+  start_date_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::_internal_mutable_start_date() {
+  
+  if (start_date_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    start_date_ = p;
+  }
+  return start_date_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::mutable_start_date() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_start_date();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetCurrentMonthUsageResponse.start_date)
+  return _msg;
+}
+inline void GetCurrentMonthUsageResponse::set_allocated_start_date(::PROTOBUF_NAMESPACE_ID::Timestamp* start_date) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_date_);
+  }
+  if (start_date) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_date));
+    if (message_arena != submessage_arena) {
+      start_date = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, start_date, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  start_date_ = start_date;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetCurrentMonthUsageResponse.start_date)
+}
+
+// .google.protobuf.Timestamp end_date = 2 [json_name = "endDate"];
+inline bool GetCurrentMonthUsageResponse::_internal_has_end_date() const {
+  return this != internal_default_instance() && end_date_ != nullptr;
+}
+inline bool GetCurrentMonthUsageResponse::has_end_date() const {
+  return _internal_has_end_date();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetCurrentMonthUsageResponse::_internal_end_date() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = end_date_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetCurrentMonthUsageResponse::end_date() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.end_date)
+  return _internal_end_date();
+}
+inline void GetCurrentMonthUsageResponse::unsafe_arena_set_allocated_end_date(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* end_date) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_date_);
+  }
+  end_date_ = end_date;
+  if (end_date) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetCurrentMonthUsageResponse.end_date)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::release_end_date() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_date_;
+  end_date_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::unsafe_arena_release_end_date() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetCurrentMonthUsageResponse.end_date)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_date_;
+  end_date_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::_internal_mutable_end_date() {
+  
+  if (end_date_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    end_date_ = p;
+  }
+  return end_date_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetCurrentMonthUsageResponse::mutable_end_date() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_end_date();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetCurrentMonthUsageResponse.end_date)
+  return _msg;
+}
+inline void GetCurrentMonthUsageResponse::set_allocated_end_date(::PROTOBUF_NAMESPACE_ID::Timestamp* end_date) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_date_);
+  }
+  if (end_date) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_date));
+    if (message_arena != submessage_arena) {
+      end_date = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, end_date, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  end_date_ = end_date;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetCurrentMonthUsageResponse.end_date)
+}
+
+// double cloud_storage_usage_cost = 3 [json_name = "cloudStorageUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_cloud_storage_usage_cost() {
+  cloud_storage_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_cloud_storage_usage_cost() const {
+  return cloud_storage_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::cloud_storage_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.cloud_storage_usage_cost)
+  return _internal_cloud_storage_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_cloud_storage_usage_cost(double value) {
+  
+  cloud_storage_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_cloud_storage_usage_cost(double value) {
+  _internal_set_cloud_storage_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.cloud_storage_usage_cost)
+}
+
+// double data_upload_usage_cost = 4 [json_name = "dataUploadUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_data_upload_usage_cost() {
+  data_upload_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_data_upload_usage_cost() const {
+  return data_upload_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::data_upload_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.data_upload_usage_cost)
+  return _internal_data_upload_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_data_upload_usage_cost(double value) {
+  
+  data_upload_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_data_upload_usage_cost(double value) {
+  _internal_set_data_upload_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.data_upload_usage_cost)
+}
+
+// double data_egres_usage_cost = 5 [json_name = "dataEgresUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_data_egres_usage_cost() {
+  data_egres_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_data_egres_usage_cost() const {
+  return data_egres_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::data_egres_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.data_egres_usage_cost)
+  return _internal_data_egres_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_data_egres_usage_cost(double value) {
+  
+  data_egres_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_data_egres_usage_cost(double value) {
+  _internal_set_data_egres_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.data_egres_usage_cost)
+}
+
+// double remote_control_usage_cost = 6 [json_name = "remoteControlUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_remote_control_usage_cost() {
+  remote_control_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_remote_control_usage_cost() const {
+  return remote_control_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::remote_control_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.remote_control_usage_cost)
+  return _internal_remote_control_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_remote_control_usage_cost(double value) {
+  
+  remote_control_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_remote_control_usage_cost(double value) {
+  _internal_set_remote_control_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.remote_control_usage_cost)
+}
+
+// double standard_compute_usage_cost = 7 [json_name = "standardComputeUsageCost"];
+inline void GetCurrentMonthUsageResponse::clear_standard_compute_usage_cost() {
+  standard_compute_usage_cost_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_standard_compute_usage_cost() const {
+  return standard_compute_usage_cost_;
+}
+inline double GetCurrentMonthUsageResponse::standard_compute_usage_cost() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.standard_compute_usage_cost)
+  return _internal_standard_compute_usage_cost();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_standard_compute_usage_cost(double value) {
+  
+  standard_compute_usage_cost_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_standard_compute_usage_cost(double value) {
+  _internal_set_standard_compute_usage_cost(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.standard_compute_usage_cost)
+}
+
+// double discount_amount = 8 [json_name = "discountAmount"];
+inline void GetCurrentMonthUsageResponse::clear_discount_amount() {
+  discount_amount_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_discount_amount() const {
+  return discount_amount_;
+}
+inline double GetCurrentMonthUsageResponse::discount_amount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.discount_amount)
+  return _internal_discount_amount();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_discount_amount(double value) {
+  
+  discount_amount_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_discount_amount(double value) {
+  _internal_set_discount_amount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.discount_amount)
+}
+
+// double total_usage_with_discount = 9 [json_name = "totalUsageWithDiscount"];
+inline void GetCurrentMonthUsageResponse::clear_total_usage_with_discount() {
+  total_usage_with_discount_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_total_usage_with_discount() const {
+  return total_usage_with_discount_;
+}
+inline double GetCurrentMonthUsageResponse::total_usage_with_discount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.total_usage_with_discount)
+  return _internal_total_usage_with_discount();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_total_usage_with_discount(double value) {
+  
+  total_usage_with_discount_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_total_usage_with_discount(double value) {
+  _internal_set_total_usage_with_discount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.total_usage_with_discount)
+}
+
+// double total_usage_without_discount = 10 [json_name = "totalUsageWithoutDiscount"];
+inline void GetCurrentMonthUsageResponse::clear_total_usage_without_discount() {
+  total_usage_without_discount_ = 0;
+}
+inline double GetCurrentMonthUsageResponse::_internal_total_usage_without_discount() const {
+  return total_usage_without_discount_;
+}
+inline double GetCurrentMonthUsageResponse::total_usage_without_discount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetCurrentMonthUsageResponse.total_usage_without_discount)
+  return _internal_total_usage_without_discount();
+}
+inline void GetCurrentMonthUsageResponse::_internal_set_total_usage_without_discount(double value) {
+  
+  total_usage_without_discount_ = value;
+}
+inline void GetCurrentMonthUsageResponse::set_total_usage_without_discount(double value) {
+  _internal_set_total_usage_without_discount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetCurrentMonthUsageResponse.total_usage_without_discount)
 }
 
 // -------------------------------------------------------------------
@@ -4733,6 +6919,342 @@ inline void GetItemizedInvoiceResponse::set_allocated_invoice(::viam::app::v1::I
 
 // -------------------------------------------------------------------
 
+// GetOrgBillingInformationRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void GetOrgBillingInformationRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& GetOrgBillingInformationRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrgBillingInformationRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetOrgBillingInformationRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetOrgBillingInformationRequest.org_id)
+}
+inline std::string* GetOrgBillingInformationRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrgBillingInformationRequest.org_id)
+  return _s;
+}
+inline const std::string& GetOrgBillingInformationRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void GetOrgBillingInformationRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetOrgBillingInformationRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetOrgBillingInformationRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrgBillingInformationRequest.org_id)
+  return org_id_.Release();
+}
+inline void GetOrgBillingInformationRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationRequest.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetOrgBillingInformationResponse
+
+// .viam.app.v1.PaymentMethodType type = 1 [json_name = "type"];
+inline void GetOrgBillingInformationResponse::clear_type() {
+  type_ = 0;
+}
+inline ::viam::app::v1::PaymentMethodType GetOrgBillingInformationResponse::_internal_type() const {
+  return static_cast< ::viam::app::v1::PaymentMethodType >(type_);
+}
+inline ::viam::app::v1::PaymentMethodType GetOrgBillingInformationResponse::type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrgBillingInformationResponse.type)
+  return _internal_type();
+}
+inline void GetOrgBillingInformationResponse::_internal_set_type(::viam::app::v1::PaymentMethodType value) {
+  
+  type_ = value;
+}
+inline void GetOrgBillingInformationResponse::set_type(::viam::app::v1::PaymentMethodType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetOrgBillingInformationResponse.type)
+}
+
+// string billing_email = 2 [json_name = "billingEmail"];
+inline void GetOrgBillingInformationResponse::clear_billing_email() {
+  billing_email_.ClearToEmpty();
+}
+inline const std::string& GetOrgBillingInformationResponse::billing_email() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrgBillingInformationResponse.billing_email)
+  return _internal_billing_email();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetOrgBillingInformationResponse::set_billing_email(ArgT0&& arg0, ArgT... args) {
+ 
+ billing_email_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetOrgBillingInformationResponse.billing_email)
+}
+inline std::string* GetOrgBillingInformationResponse::mutable_billing_email() {
+  std::string* _s = _internal_mutable_billing_email();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrgBillingInformationResponse.billing_email)
+  return _s;
+}
+inline const std::string& GetOrgBillingInformationResponse::_internal_billing_email() const {
+  return billing_email_.Get();
+}
+inline void GetOrgBillingInformationResponse::_internal_set_billing_email(const std::string& value) {
+  
+  billing_email_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetOrgBillingInformationResponse::_internal_mutable_billing_email() {
+  
+  return billing_email_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetOrgBillingInformationResponse::release_billing_email() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrgBillingInformationResponse.billing_email)
+  return billing_email_.Release();
+}
+inline void GetOrgBillingInformationResponse::set_allocated_billing_email(std::string* billing_email) {
+  if (billing_email != nullptr) {
+    
+  } else {
+    
+  }
+  billing_email_.SetAllocated(billing_email, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (billing_email_.IsDefault()) {
+    billing_email_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.billing_email)
+}
+
+// optional .viam.app.v1.PaymentMethodCard method = 3 [json_name = "method"];
+inline bool GetOrgBillingInformationResponse::_internal_has_method() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || method_ != nullptr);
+  return value;
+}
+inline bool GetOrgBillingInformationResponse::has_method() const {
+  return _internal_has_method();
+}
+inline void GetOrgBillingInformationResponse::clear_method() {
+  if (method_ != nullptr) method_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::PaymentMethodCard& GetOrgBillingInformationResponse::_internal_method() const {
+  const ::viam::app::v1::PaymentMethodCard* p = method_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::PaymentMethodCard&>(
+      ::viam::app::v1::_PaymentMethodCard_default_instance_);
+}
+inline const ::viam::app::v1::PaymentMethodCard& GetOrgBillingInformationResponse::method() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrgBillingInformationResponse.method)
+  return _internal_method();
+}
+inline void GetOrgBillingInformationResponse::unsafe_arena_set_allocated_method(
+    ::viam::app::v1::PaymentMethodCard* method) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(method_);
+  }
+  method_ = method;
+  if (method) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method)
+}
+inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::release_method() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::PaymentMethodCard* temp = method_;
+  method_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::unsafe_arena_release_method() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrgBillingInformationResponse.method)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::PaymentMethodCard* temp = method_;
+  method_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::_internal_mutable_method() {
+  _has_bits_[0] |= 0x00000001u;
+  if (method_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::PaymentMethodCard>(GetArenaForAllocation());
+    method_ = p;
+  }
+  return method_;
+}
+inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::mutable_method() {
+  ::viam::app::v1::PaymentMethodCard* _msg = _internal_mutable_method();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrgBillingInformationResponse.method)
+  return _msg;
+}
+inline void GetOrgBillingInformationResponse::set_allocated_method(::viam::app::v1::PaymentMethodCard* method) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete method_;
+  }
+  if (method) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(method);
+    if (message_arena != submessage_arena) {
+      method = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, method, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  method_ = method;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method)
+}
+
+// -------------------------------------------------------------------
+
+// GetInvoicesSummaryRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void GetInvoicesSummaryRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& GetInvoicesSummaryRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetInvoicesSummaryRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetInvoicesSummaryRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetInvoicesSummaryRequest.org_id)
+}
+inline std::string* GetInvoicesSummaryRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetInvoicesSummaryRequest.org_id)
+  return _s;
+}
+inline const std::string& GetInvoicesSummaryRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void GetInvoicesSummaryRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetInvoicesSummaryRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetInvoicesSummaryRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetInvoicesSummaryRequest.org_id)
+  return org_id_.Release();
+}
+inline void GetInvoicesSummaryRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetInvoicesSummaryRequest.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetInvoicesSummaryResponse
+
+// double outstanding_balance = 1 [json_name = "outstandingBalance"];
+inline void GetInvoicesSummaryResponse::clear_outstanding_balance() {
+  outstanding_balance_ = 0;
+}
+inline double GetInvoicesSummaryResponse::_internal_outstanding_balance() const {
+  return outstanding_balance_;
+}
+inline double GetInvoicesSummaryResponse::outstanding_balance() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetInvoicesSummaryResponse.outstanding_balance)
+  return _internal_outstanding_balance();
+}
+inline void GetInvoicesSummaryResponse::_internal_set_outstanding_balance(double value) {
+  
+  outstanding_balance_ = value;
+}
+inline void GetInvoicesSummaryResponse::set_outstanding_balance(double value) {
+  _internal_set_outstanding_balance(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetInvoicesSummaryResponse.outstanding_balance)
+}
+
+// repeated .viam.app.v1.InvoiceSummary invoices = 2 [json_name = "invoices"];
+inline int GetInvoicesSummaryResponse::_internal_invoices_size() const {
+  return invoices_.size();
+}
+inline int GetInvoicesSummaryResponse::invoices_size() const {
+  return _internal_invoices_size();
+}
+inline void GetInvoicesSummaryResponse::clear_invoices() {
+  invoices_.Clear();
+}
+inline ::viam::app::v1::InvoiceSummary* GetInvoicesSummaryResponse::mutable_invoices(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetInvoicesSummaryResponse.invoices)
+  return invoices_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::InvoiceSummary >*
+GetInvoicesSummaryResponse::mutable_invoices() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.GetInvoicesSummaryResponse.invoices)
+  return &invoices_;
+}
+inline const ::viam::app::v1::InvoiceSummary& GetInvoicesSummaryResponse::_internal_invoices(int index) const {
+  return invoices_.Get(index);
+}
+inline const ::viam::app::v1::InvoiceSummary& GetInvoicesSummaryResponse::invoices(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetInvoicesSummaryResponse.invoices)
+  return _internal_invoices(index);
+}
+inline ::viam::app::v1::InvoiceSummary* GetInvoicesSummaryResponse::_internal_add_invoices() {
+  return invoices_.Add();
+}
+inline ::viam::app::v1::InvoiceSummary* GetInvoicesSummaryResponse::add_invoices() {
+  ::viam::app::v1::InvoiceSummary* _add = _internal_add_invoices();
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetInvoicesSummaryResponse.invoices)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::InvoiceSummary >&
+GetInvoicesSummaryResponse::invoices() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.GetInvoicesSummaryResponse.invoices)
+  return invoices_;
+}
+
+// -------------------------------------------------------------------
+
 // GetBillingSummaryRequest
 
 // string org_id = 1 [json_name = "orgId"];
@@ -5114,9 +7636,225 @@ inline void GetBillingSummaryResponse::set_allocated_invoice_email(std::string* 
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetBillingSummaryResponse.invoice_email)
 }
 
+// .viam.app.v1.PaymentMethodCard payment_method = 9 [json_name = "paymentMethod"];
+inline bool GetBillingSummaryResponse::_internal_has_payment_method() const {
+  return this != internal_default_instance() && payment_method_ != nullptr;
+}
+inline bool GetBillingSummaryResponse::has_payment_method() const {
+  return _internal_has_payment_method();
+}
+inline void GetBillingSummaryResponse::clear_payment_method() {
+  if (GetArenaForAllocation() == nullptr && payment_method_ != nullptr) {
+    delete payment_method_;
+  }
+  payment_method_ = nullptr;
+}
+inline const ::viam::app::v1::PaymentMethodCard& GetBillingSummaryResponse::_internal_payment_method() const {
+  const ::viam::app::v1::PaymentMethodCard* p = payment_method_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::PaymentMethodCard&>(
+      ::viam::app::v1::_PaymentMethodCard_default_instance_);
+}
+inline const ::viam::app::v1::PaymentMethodCard& GetBillingSummaryResponse::payment_method() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetBillingSummaryResponse.payment_method)
+  return _internal_payment_method();
+}
+inline void GetBillingSummaryResponse::unsafe_arena_set_allocated_payment_method(
+    ::viam::app::v1::PaymentMethodCard* payment_method) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(payment_method_);
+  }
+  payment_method_ = payment_method;
+  if (payment_method) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetBillingSummaryResponse.payment_method)
+}
+inline ::viam::app::v1::PaymentMethodCard* GetBillingSummaryResponse::release_payment_method() {
+  
+  ::viam::app::v1::PaymentMethodCard* temp = payment_method_;
+  payment_method_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::PaymentMethodCard* GetBillingSummaryResponse::unsafe_arena_release_payment_method() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetBillingSummaryResponse.payment_method)
+  
+  ::viam::app::v1::PaymentMethodCard* temp = payment_method_;
+  payment_method_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::PaymentMethodCard* GetBillingSummaryResponse::_internal_mutable_payment_method() {
+  
+  if (payment_method_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::PaymentMethodCard>(GetArenaForAllocation());
+    payment_method_ = p;
+  }
+  return payment_method_;
+}
+inline ::viam::app::v1::PaymentMethodCard* GetBillingSummaryResponse::mutable_payment_method() {
+  ::viam::app::v1::PaymentMethodCard* _msg = _internal_mutable_payment_method();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetBillingSummaryResponse.payment_method)
+  return _msg;
+}
+inline void GetBillingSummaryResponse::set_allocated_payment_method(::viam::app::v1::PaymentMethodCard* payment_method) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete payment_method_;
+  }
+  if (payment_method) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(payment_method);
+    if (message_arena != submessage_arena) {
+      payment_method = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, payment_method, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  payment_method_ = payment_method;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetBillingSummaryResponse.payment_method)
+}
+
+// -------------------------------------------------------------------
+
+// GetInvoicePdfRequest
+
+// string id = 1 [json_name = "id"];
+inline void GetInvoicePdfRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& GetInvoicePdfRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetInvoicePdfRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetInvoicePdfRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetInvoicePdfRequest.id)
+}
+inline std::string* GetInvoicePdfRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetInvoicePdfRequest.id)
+  return _s;
+}
+inline const std::string& GetInvoicePdfRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void GetInvoicePdfRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetInvoicePdfRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetInvoicePdfRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetInvoicePdfRequest.id)
+  return id_.Release();
+}
+inline void GetInvoicePdfRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetInvoicePdfRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// GetInvoicePdfResponse
+
+// bytes chunk = 1 [json_name = "chunk"];
+inline void GetInvoicePdfResponse::clear_chunk() {
+  chunk_.ClearToEmpty();
+}
+inline const std::string& GetInvoicePdfResponse::chunk() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetInvoicePdfResponse.chunk)
+  return _internal_chunk();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetInvoicePdfResponse::set_chunk(ArgT0&& arg0, ArgT... args) {
+ 
+ chunk_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetInvoicePdfResponse.chunk)
+}
+inline std::string* GetInvoicePdfResponse::mutable_chunk() {
+  std::string* _s = _internal_mutable_chunk();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetInvoicePdfResponse.chunk)
+  return _s;
+}
+inline const std::string& GetInvoicePdfResponse::_internal_chunk() const {
+  return chunk_.Get();
+}
+inline void GetInvoicePdfResponse::_internal_set_chunk(const std::string& value) {
+  
+  chunk_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetInvoicePdfResponse::_internal_mutable_chunk() {
+  
+  return chunk_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetInvoicePdfResponse::release_chunk() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetInvoicePdfResponse.chunk)
+  return chunk_.Release();
+}
+inline void GetInvoicePdfResponse::set_allocated_chunk(std::string* chunk) {
+  if (chunk != nullptr) {
+    
+  } else {
+    
+  }
+  chunk_.SetAllocated(chunk, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (chunk_.IsDefault()) {
+    chunk_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetInvoicePdfResponse.chunk)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5149,6 +7887,16 @@ inline void GetBillingSummaryResponse::set_allocated_invoice_email(std::string* 
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::viam::app::v1::PaymentMethodType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::PaymentMethodType>() {
+  return ::viam::app::v1::PaymentMethodType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

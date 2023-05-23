@@ -25,20 +25,10 @@ namespace vision {
 namespace v1 {
 
 static const char* VisionService_method_names[] = {
-  "/viam.service.vision.v1.VisionService/GetModelParameterSchema",
-  "/viam.service.vision.v1.VisionService/GetDetectorNames",
-  "/viam.service.vision.v1.VisionService/AddDetector",
-  "/viam.service.vision.v1.VisionService/RemoveDetector",
   "/viam.service.vision.v1.VisionService/GetDetectionsFromCamera",
   "/viam.service.vision.v1.VisionService/GetDetections",
-  "/viam.service.vision.v1.VisionService/GetClassifierNames",
-  "/viam.service.vision.v1.VisionService/AddClassifier",
-  "/viam.service.vision.v1.VisionService/RemoveClassifier",
   "/viam.service.vision.v1.VisionService/GetClassificationsFromCamera",
   "/viam.service.vision.v1.VisionService/GetClassifications",
-  "/viam.service.vision.v1.VisionService/GetSegmenterNames",
-  "/viam.service.vision.v1.VisionService/AddSegmenter",
-  "/viam.service.vision.v1.VisionService/RemoveSegmenter",
   "/viam.service.vision.v1.VisionService/GetObjectPointClouds",
   "/viam.service.vision.v1.VisionService/DoCommand",
 };
@@ -50,115 +40,13 @@ std::unique_ptr< VisionService::Stub> VisionService::NewStub(const std::shared_p
 }
 
 VisionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetModelParameterSchema_(VisionService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDetectorNames_(VisionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddDetector_(VisionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveDetector_(VisionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDetectionsFromCamera_(VisionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDetections_(VisionService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetClassifierNames_(VisionService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddClassifier_(VisionService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveClassifier_(VisionService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetClassificationsFromCamera_(VisionService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetClassifications_(VisionService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSegmenterNames_(VisionService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddSegmenter_(VisionService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveSegmenter_(VisionService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetObjectPointClouds_(VisionService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(VisionService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_GetDetectionsFromCamera_(VisionService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDetections_(VisionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetClassificationsFromCamera_(VisionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetClassifications_(VisionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetObjectPointClouds_(VisionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(VisionService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
-
-::grpc::Status VisionService::Stub::GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetModelParameterSchema_, context, request, response);
-}
-
-void VisionService::Stub::async::GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelParameterSchema_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::GetModelParameterSchema(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetModelParameterSchema_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* VisionService::Stub::PrepareAsyncGetModelParameterSchemaRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::GetModelParameterSchemaResponse, ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetModelParameterSchema_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetModelParameterSchemaResponse>* VisionService::Stub::AsyncGetModelParameterSchemaRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetModelParameterSchemaRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::viam::service::vision::v1::GetDetectorNamesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDetectorNames_, context, request, response);
-}
-
-void VisionService::Stub::async::GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDetectorNames_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::GetDetectorNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDetectorNames_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>* VisionService::Stub::PrepareAsyncGetDetectorNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::GetDetectorNamesResponse, ::viam::service::vision::v1::GetDetectorNamesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDetectorNames_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectorNamesResponse>* VisionService::Stub::AsyncGetDetectorNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDetectorNamesRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::viam::service::vision::v1::AddDetectorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddDetector_, context, request, response);
-}
-
-void VisionService::Stub::async::AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddDetector_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::AddDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddDetector_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>* VisionService::Stub::PrepareAsyncAddDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::AddDetectorResponse, ::viam::service::vision::v1::AddDetectorRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddDetector_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddDetectorResponse>* VisionService::Stub::AsyncAddDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncAddDetectorRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::viam::service::vision::v1::RemoveDetectorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveDetector_, context, request, response);
-}
-
-void VisionService::Stub::async::RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveDetector_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::RemoveDetector(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveDetector_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>* VisionService::Stub::PrepareAsyncRemoveDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::RemoveDetectorResponse, ::viam::service::vision::v1::RemoveDetectorRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveDetector_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveDetectorResponse>* VisionService::Stub::AsyncRemoveDetectorRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRemoveDetectorRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
 
 ::grpc::Status VisionService::Stub::GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDetectionsFromCamera_, context, request, response);
@@ -206,75 +94,6 @@ void VisionService::Stub::async::GetDetections(::grpc::ClientContext* context, c
   return result;
 }
 
-::grpc::Status VisionService::Stub::GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::viam::service::vision::v1::GetClassifierNamesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetClassifierNames_, context, request, response);
-}
-
-void VisionService::Stub::async::GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetClassifierNames_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::GetClassifierNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetClassifierNames_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>* VisionService::Stub::PrepareAsyncGetClassifierNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::GetClassifierNamesResponse, ::viam::service::vision::v1::GetClassifierNamesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetClassifierNames_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassifierNamesResponse>* VisionService::Stub::AsyncGetClassifierNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetClassifierNamesRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::viam::service::vision::v1::AddClassifierResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddClassifier_, context, request, response);
-}
-
-void VisionService::Stub::async::AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddClassifier_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::AddClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddClassifier_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>* VisionService::Stub::PrepareAsyncAddClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::AddClassifierResponse, ::viam::service::vision::v1::AddClassifierRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddClassifier_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddClassifierResponse>* VisionService::Stub::AsyncAddClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncAddClassifierRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::viam::service::vision::v1::RemoveClassifierResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveClassifier_, context, request, response);
-}
-
-void VisionService::Stub::async::RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveClassifier_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::RemoveClassifier(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveClassifier_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>* VisionService::Stub::PrepareAsyncRemoveClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::RemoveClassifierResponse, ::viam::service::vision::v1::RemoveClassifierRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveClassifier_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveClassifierResponse>* VisionService::Stub::AsyncRemoveClassifierRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRemoveClassifierRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
 ::grpc::Status VisionService::Stub::GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetClassificationsFromCamera_, context, request, response);
 }
@@ -317,75 +136,6 @@ void VisionService::Stub::async::GetClassifications(::grpc::ClientContext* conte
 ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetClassificationsResponse>* VisionService::Stub::AsyncGetClassificationsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetClassificationsRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSegmenterNames_, context, request, response);
-}
-
-void VisionService::Stub::async::GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSegmenterNames_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::GetSegmenterNames(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSegmenterNames_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>* VisionService::Stub::PrepareAsyncGetSegmenterNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::GetSegmenterNamesResponse, ::viam::service::vision::v1::GetSegmenterNamesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSegmenterNames_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetSegmenterNamesResponse>* VisionService::Stub::AsyncGetSegmenterNamesRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetSegmenterNamesRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::viam::service::vision::v1::AddSegmenterResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddSegmenter_, context, request, response);
-}
-
-void VisionService::Stub::async::AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddSegmenter_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::AddSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddSegmenter_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>* VisionService::Stub::PrepareAsyncAddSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::AddSegmenterResponse, ::viam::service::vision::v1::AddSegmenterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddSegmenter_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::AddSegmenterResponse>* VisionService::Stub::AsyncAddSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::AddSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncAddSegmenterRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status VisionService::Stub::RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::viam::service::vision::v1::RemoveSegmenterResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveSegmenter_, context, request, response);
-}
-
-void VisionService::Stub::async::RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveSegmenter_, context, request, response, std::move(f));
-}
-
-void VisionService::Stub::async::RemoveSegmenter(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveSegmenter_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>* VisionService::Stub::PrepareAsyncRemoveSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::vision::v1::RemoveSegmenterResponse, ::viam::service::vision::v1::RemoveSegmenterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveSegmenter_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::RemoveSegmenterResponse>* VisionService::Stub::AsyncRemoveSegmenterRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncRemoveSegmenterRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -440,46 +190,6 @@ VisionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       VisionService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetModelParameterSchemaRequest, ::viam::service::vision::v1::GetModelParameterSchemaResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::GetModelParameterSchemaRequest* req,
-             ::viam::service::vision::v1::GetModelParameterSchemaResponse* resp) {
-               return service->GetModelParameterSchema(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetDetectorNamesRequest, ::viam::service::vision::v1::GetDetectorNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::GetDetectorNamesRequest* req,
-             ::viam::service::vision::v1::GetDetectorNamesResponse* resp) {
-               return service->GetDetectorNames(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[2],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::AddDetectorRequest, ::viam::service::vision::v1::AddDetectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::AddDetectorRequest* req,
-             ::viam::service::vision::v1::AddDetectorResponse* resp) {
-               return service->AddDetector(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[3],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::RemoveDetectorRequest, ::viam::service::vision::v1::RemoveDetectorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::RemoveDetectorRequest* req,
-             ::viam::service::vision::v1::RemoveDetectorResponse* resp) {
-               return service->RemoveDetector(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[4],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VisionService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -488,7 +198,7 @@ VisionService::Service::Service() {
                return service->GetDetectionsFromCamera(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[5],
+      VisionService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VisionService::Service* service,
@@ -498,37 +208,7 @@ VisionService::Service::Service() {
                return service->GetDetections(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[6],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetClassifierNamesRequest, ::viam::service::vision::v1::GetClassifierNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::GetClassifierNamesRequest* req,
-             ::viam::service::vision::v1::GetClassifierNamesResponse* resp) {
-               return service->GetClassifierNames(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[7],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::AddClassifierRequest, ::viam::service::vision::v1::AddClassifierResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::AddClassifierRequest* req,
-             ::viam::service::vision::v1::AddClassifierResponse* resp) {
-               return service->AddClassifier(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[8],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::RemoveClassifierRequest, ::viam::service::vision::v1::RemoveClassifierResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::RemoveClassifierRequest* req,
-             ::viam::service::vision::v1::RemoveClassifierResponse* resp) {
-               return service->RemoveClassifier(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[9],
+      VisionService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VisionService::Service* service,
@@ -538,7 +218,7 @@ VisionService::Service::Service() {
                return service->GetClassificationsFromCamera(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[10],
+      VisionService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VisionService::Service* service,
@@ -548,37 +228,7 @@ VisionService::Service::Service() {
                return service->GetClassifications(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[11],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetSegmenterNamesRequest, ::viam::service::vision::v1::GetSegmenterNamesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::GetSegmenterNamesRequest* req,
-             ::viam::service::vision::v1::GetSegmenterNamesResponse* resp) {
-               return service->GetSegmenterNames(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[12],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::AddSegmenterRequest, ::viam::service::vision::v1::AddSegmenterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::AddSegmenterRequest* req,
-             ::viam::service::vision::v1::AddSegmenterResponse* resp) {
-               return service->AddSegmenter(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[13],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::RemoveSegmenterRequest, ::viam::service::vision::v1::RemoveSegmenterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](VisionService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::viam::service::vision::v1::RemoveSegmenterRequest* req,
-             ::viam::service::vision::v1::RemoveSegmenterResponse* resp) {
-               return service->RemoveSegmenter(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[14],
+      VisionService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VisionService::Service* service,
@@ -588,7 +238,7 @@ VisionService::Service::Service() {
                return service->GetObjectPointClouds(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VisionService_method_names[15],
+      VisionService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VisionService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VisionService::Service* service,
@@ -600,34 +250,6 @@ VisionService::Service::Service() {
 }
 
 VisionService::Service::~Service() {
-}
-
-::grpc::Status VisionService::Service::GetModelParameterSchema(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetModelParameterSchemaRequest* request, ::viam::service::vision::v1::GetModelParameterSchemaResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::GetDetectorNames(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectorNamesRequest* request, ::viam::service::vision::v1::GetDetectorNamesResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::AddDetector(::grpc::ServerContext* context, const ::viam::service::vision::v1::AddDetectorRequest* request, ::viam::service::vision::v1::AddDetectorResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::RemoveDetector(::grpc::ServerContext* context, const ::viam::service::vision::v1::RemoveDetectorRequest* request, ::viam::service::vision::v1::RemoveDetectorResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status VisionService::Service::GetDetectionsFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) {
@@ -644,27 +266,6 @@ VisionService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status VisionService::Service::GetClassifierNames(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassifierNamesRequest* request, ::viam::service::vision::v1::GetClassifierNamesResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::AddClassifier(::grpc::ServerContext* context, const ::viam::service::vision::v1::AddClassifierRequest* request, ::viam::service::vision::v1::AddClassifierResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::RemoveClassifier(::grpc::ServerContext* context, const ::viam::service::vision::v1::RemoveClassifierRequest* request, ::viam::service::vision::v1::RemoveClassifierResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
 ::grpc::Status VisionService::Service::GetClassificationsFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) {
   (void) context;
   (void) request;
@@ -673,27 +274,6 @@ VisionService::Service::~Service() {
 }
 
 ::grpc::Status VisionService::Service::GetClassifications(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::GetSegmenterNames(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetSegmenterNamesRequest* request, ::viam::service::vision::v1::GetSegmenterNamesResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::AddSegmenter(::grpc::ServerContext* context, const ::viam::service::vision::v1::AddSegmenterRequest* request, ::viam::service::vision::v1::AddSegmenterResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status VisionService::Service::RemoveSegmenter(::grpc::ServerContext* context, const ::viam::service::vision::v1::RemoveSegmenterRequest* request, ::viam::service::vision::v1::RemoveSegmenterResponse* response) {
   (void) context;
   (void) request;
   (void) response;
