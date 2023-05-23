@@ -208,19 +208,20 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
         ixes.reserve(tensor.shape().size());
         while (true) {
             if (ixes.size() == tensor.shape().size()) {
-                // The base case: working over the last
-                // index. Create Value objects holding doubles for
-                // each value in the range of the last index.
+                // The base case: working over the last index. Create
+                // Value objects holding doubles for each value in the
+                // range of the last index.
                 for (; ixes.back() != *tensor.shape().rbegin(); ++ixes.back()) {
                     auto new_value = std::make_unique<::google::protobuf::Value>();
                     new_value->set_number_value(tensor.element(ixes.begin(), ixes.end()));
                     lvs.top()->mutable_values()->AddAllocated(new_value.release());
                 }
             }
+
             if (ixes.empty() || (ixes.back() < tensor.shape()[ixes.size() - 1])) {
                 // The "recursive" step where we make a new list and "descend".
-                lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
                 ixes.push_back(0);
+                lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
             } else if (ixes.size() > 1) {
                 // The step-out case where we have exhausted a
                 // stride. Wrap up the list we created in a value node
@@ -275,20 +276,25 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                     lvs.top()->mutable_values()->AddAllocated(new_value.release());
                 }
             }
+
             if (ixes.empty() || (ixes.back() < tensor.shape()[ixes.size() - 1])) {
                 // The "recursive" step where we make a new list and "descend".
-                if (tensor.shape().size() > 1) {
+                ixes.push_back(0);
+                if ((tensor.shape().size() > 1) && (ixes.size() < tensor.shape().size())) {
                     lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
                 }
-                ixes.push_back(0);
             } else if (ixes.size() > 1) {
                 // The step-out case where we have exhausted a
                 // stride. Wrap up the list we created in a value node
-                // and unwind to the next set of values one level up.
-                auto list_value = std::make_unique<::google::protobuf::Value>();
-                list_value->set_allocated_list_value(lvs.top().release());
-                lvs.pop();
-                lvs.top()->mutable_values()->AddAllocated(list_value.release());
+                // and unwind to the next set of values one level
+                // up. We must create a special case for the deepest
+                // index since they are managed differently.
+                if (ixes.size() != tensor.shape().size()) {
+                    auto list_value = std::make_unique<::google::protobuf::Value>();
+                    list_value->set_allocated_list_value(lvs.top().release());
+                    lvs.pop();
+                    lvs.top()->mutable_values()->AddAllocated(list_value.release());
+                }
                 ixes.pop_back();
                 ++ixes.back();
             } else {
