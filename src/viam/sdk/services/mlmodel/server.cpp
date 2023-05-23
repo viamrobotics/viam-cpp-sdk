@@ -88,6 +88,8 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         // This assert should be impossible: `outputs` is a map and we
         // are iterating its unique keys, and our `InferResponse`
         // should have empty output data fields.
+        //
+        // TODO(RDSK-3285): Use `invariant` or something similar for this instead.
         assert(emplace_result.second);
         auto status = mlmodel_details::tensor_to_pb_value(kv.second, &emplace_result.first->second);
         if (!status.ok()) {

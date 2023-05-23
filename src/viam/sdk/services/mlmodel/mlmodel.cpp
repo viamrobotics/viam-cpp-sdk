@@ -44,6 +44,7 @@ std::shared_ptr<ResourceRegistration> MLModelService::resource_registration() {
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(viam::service::mlmodel::v1::MLModelService::service_full_name());
     if (!sd) {
+        // TODO: Throw viam exception once PR #100 merges.
         throw std::runtime_error("Unable to get service descriptor for the camera service");
     }
     return std::make_shared<MLModelServiceRegistration>(sd);

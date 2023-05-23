@@ -101,6 +101,9 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
+                  //
+                  // TODO(RSDK-3033): Once tflite_cpu reports output
+                  // shape metadata, fill this in.
                   {},
 
                   // `associated_files`
@@ -121,6 +124,9 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
+                  //
+                  // TODO(RSDK-3033): Once tflite_cpu reports output
+                  // shape metadata, fill this in.
                   {},
 
                   // `associated files`
@@ -147,6 +153,9 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
+                  //
+                  // TODO(RSDK-3033): Once tflite_cpu reports output
+                  // shape metadata, fill this in.
                   {},
 
                   // `associated_files`
@@ -165,6 +174,9 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
+                  //
+                  // TODO(RSDK-3033): Once tflite_cpu reports output
+                  // shape metadata, fill this in.
                   {},
 
                   // `associated_files`
@@ -183,19 +195,12 @@ int serve(const std::string& socket_path) {
     pthread_sigmask(SIG_BLOCK, &sigset, NULL);
 
     auto module_registration = std::make_shared<vs::ModelRegistration>(
-        // NOTE: What does this string do/mean/constrain/affect?
         vs::ResourceType{"ExampleMLModelServiceModule"},
-
-        // NOTE: This feels like an opportunity to take the type
         vs::MLModelService::static_api(),
-
-        // NOTE: What do these strings do/mean/constrain/affect?
         vs::Model{"viam", "example", "mlmodel"},
-
         [](vs::Dependencies, vs::ResourceConfig resource_config) -> std::shared_ptr<vs::Resource> {
             return std::make_shared<ExampleMLModelService>(resource_config.name());
         },
-
         [](vs::ResourceConfig resource_config) -> std::vector<std::string> { return {}; });
 
     vs::Registry::register_model(module_registration);

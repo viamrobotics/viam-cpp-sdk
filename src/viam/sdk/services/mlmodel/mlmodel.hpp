@@ -17,9 +17,7 @@
 #include <boost/mpl/joint_view.hpp>
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/transform_view.hpp>
-
 #include <boost/variant/variant.hpp>
-
 #include <xtensor/xadapt.hpp>
 
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
@@ -106,6 +104,11 @@ class MLModelService : public Service {
     using named_tensor_views = std::unordered_map<std::string, tensor_views>;
 
     /// @brief Runs the model against the input tensors and returns inference results as tensors.
+    ///
+    /// @param `inputs`: The input tensors on which to run inference.
+    ///
+    /// @returns The results of the inference as a shared pointer to `named_tensor_views`. The data viewed
+    /// by the views is only valid for the lifetime of the returned shared_ptr.
     virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) = 0;
 
     struct tensor_info {

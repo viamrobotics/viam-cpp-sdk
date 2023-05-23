@@ -112,6 +112,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                     message << "Failed to deserialize returned Metadata.TensorInfo.data_type field "
                                "with value `"
                             << s.data_type() << "` to one of the known tensor data types";
+                    // TODO: Throw viam exception once PR #100 merges.
                     throw std::runtime_error(message.str());
                 }
                 ti.data_type = *data_type;
@@ -137,6 +138,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata() {
                             message << "Failed to deserialize returned "
                                        "Metadata.TensorInfo.File.label_type field with value `"
                                     << af.label_type() << "` to one of the known label types";
+                            // TODO: Throw viam exception once PR #100 merges.
                             throw std::runtime_error(message.str());
                         }
                     }
