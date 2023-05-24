@@ -26,7 +26,8 @@ class MockMLModelService : public sdk::MLModelService {
     explicit MockMLModelService(std::string name = "mock_mlmodel")
         : MLModelService(std::move(name)) {}
 
-    using infer_handler = std::function<std::shared_ptr<named_tensor_views>(const named_tensor_views&)>;
+    using infer_handler =
+        std::function<std::shared_ptr<named_tensor_views>(const named_tensor_views&)>;
     MockMLModelService& set_infer_handler(infer_handler handler);
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override;
 
