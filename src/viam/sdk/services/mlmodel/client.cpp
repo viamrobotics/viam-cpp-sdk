@@ -63,7 +63,9 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     grpc::ClientContext ctx;
     auto result = stub_->Infer(&ctx, *req, resp);
 
-    // TODO: Metadata caching.
+    // TODO(RSDK-3298): This is an extra RPC on every inference, but
+    // it is not obvious that caching it is safe across
+    // reconfigurations.
     const auto md = metadata();
 
     auto tsav = std::make_shared<tensor_storage_and_views>();

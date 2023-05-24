@@ -51,8 +51,11 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no input data"};
     }
 
-    // TODO: Metadata should be cached client side so we don't need to
-    // do two round trips for every inference.
+    // TODO: We need shape and type information from the metadata to
+    // be able to unpack input tensors. It would be nice to find some
+    // way to cache this information. This isn't exactly the same
+    // issue as the client side (see RSDK-3298), but is closely
+    // related.
     const auto md = mlms->metadata();
 
     mlmodel_details::tensor_storage input_storage;
