@@ -17,12 +17,17 @@
 namespace viam {
 namespace sdktests {
 
-std::shared_ptr<sdk::MLModelService::named_tensor_views> MockMLModelService::infer(
-    const named_tensor_views& inputs) {
-    return {};
+MockMLModelService& MockMLModelService::set_infer_handler(infer_handler handler) {
+    infer_handler_ = std::move(handler);
+    return *this;
 }
 
-MockMLModelService& MockMLModelService::metadata(struct metadata metadata) {
+std::shared_ptr<sdk::MLModelService::named_tensor_views> MockMLModelService::infer(
+    const named_tensor_views& inputs) {
+    return infer_handler_(inputs);
+}
+
+MockMLModelService& MockMLModelService::set_metadata(struct metadata metadata) {
     metadata_ = std::move(metadata);
     return *this;
 }

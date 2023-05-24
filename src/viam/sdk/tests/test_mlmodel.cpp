@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "viam/sdk/services/mlmodel/mlmodel.hpp"
 #include <tuple>
 #include <unordered_map>
 
@@ -181,7 +182,7 @@ BOOST_AUTO_TEST_CASE(mock_construction) {
 
 BOOST_AUTO_TEST_CASE(mock_metadata_roundtrip) {
     MockMLModelService mock_mlms;
-    mock_mlms.metadata(test_metadata);
+    mock_mlms.set_metadata(test_metadata);
     BOOST_TEST(mock_mlms.metadata() == test_metadata);
 }
 
@@ -208,7 +209,7 @@ void client_server_test(std::shared_ptr<MockMLModelService> mock, F&& f) {
 
 BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     auto mock = std::make_shared<MockMLModelService>();
-    mock->metadata(test_metadata);
+    mock->set_metadata(test_metadata);
     client_server_test(mock, [](auto& client) {
         const auto returned_metadata = client.metadata();
         BOOST_TEST(test_metadata == returned_metadata);
@@ -216,13 +217,120 @@ BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
 }
 
 BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
-    // TODO: Implement the Inference test.
-    // auto mock = std::make_shared<MockMLModelService>();
-    // client_server_test(mock, [](auto& client) {
-    //     MLModelService::named_tensor_views request;
-    //     auto response = client.infer(request);
-    //     BOOST_TEST(true);
-    // });
+    auto mock = std::make_shared<MockMLModelService>();
+
+    mock->set_metadata({"foo",
+                        "bar",
+                        "baz",
+                        // `inputs`
+                        {{"input1",
+                          "the first input",
+                          MLModelService::tensor_info::data_types::k_float32,
+                          {32, 32},
+                          {},
+                          {}},
+                         {"input2",
+                          "the second input",
+                          MLModelService::tensor_info::data_types::k_int32,
+                          {16, 16},
+                          {},
+                          {}}},
+                        // `outputs`
+                        {{"output1",
+                          "the first output",
+                          MLModelService::tensor_info::data_types::k_float32,
+                          {32, 32},
+                          {},
+                          {}},
+                         {"output2",
+                          "the second output",
+                          MLModelService::tensor_info::data_types::k_int32,
+                          {16, 16},
+                          {},
+                          {}}}});
+
+    mock->set_infer_handler([](const MLModelService::named_tensor_views& request) {
+        BOOST_REQUIRE(request.size() == 2);
+        BOOST_REQUIRE(request.count("input1") == 1);
+        BOOST_REQUIRE(request.count("input2") == 1);
+        auto input1_var = request.find("input1")->second;
+        auto input2_var = request.find("input2")->second;
+        const auto* const pinput1_view =
+            boost::get<MLModelService::tensor_view<float>>(&input1_var);
+        BOOST_REQUIRE(pinput1_view);
+        const auto* const pinput2_view =
+            boost::get<MLModelService::tensor_view<std::int32_t>>(&input2_var);
+        BOOST_REQUIRE(pinput2_view);
+
+        const auto& input1_view = *pinput1_view;
+        const auto& input2_view = *pinput2_view;
+
+        auto output1_result = xt::eval(input1_view + xt::ones<float>({32, 32}));
+        auto output2_result = xt::eval(input2_view + xt::ones<std::int32_t>({16, 16}));
+        struct output_holder {
+            decltype(output1_result) output1_holder;
+            decltype(output2_result) output2_holder;
+            MLModelService::named_tensor_views ntvs;
+        };
+
+        auto output = std::make_shared<output_holder>();
+        output->output1_holder = std::move(output1_result);
+        output->output2_holder = std::move(output2_result);
+        output->ntvs.emplace(
+            "output1",
+            MLModelService::make_tensor_view(
+                output->output1_holder.data(),
+                output->output1_holder.size(),
+                {output->output1_holder.shape().begin(), output->output1_holder.shape().end()}));
+        output->ntvs.emplace(
+            "output2",
+            MLModelService::make_tensor_view(
+                output->output2_holder.data(),
+                output->output2_holder.size(),
+                {output->output2_holder.shape().begin(), output->output2_holder.shape().end()}));
+        auto* const ntvs = &output->ntvs;
+        return std::shared_ptr<MLModelService::named_tensor_views>{std::move(output), ntvs};
+    });
+
+    client_server_test(mock, [](auto& client) {
+        MLModelService::named_tensor_views request;
+
+        std::array<float, 1024> input1_data{};
+        input1_data[1] = 1.0;
+        auto input1_view =
+            MLModelService::make_tensor_view(input1_data.data(), input1_data.size(), {32, 32});
+
+        request.emplace("input1", input1_view);
+
+        std::array<std::int32_t, 256> input2_data{};
+        input2_data[2] = 2;
+        auto input2_view =
+            MLModelService::make_tensor_view(input2_data.data(), input2_data.size(), {16, 16});
+        request.emplace("input2", input2_view);
+
+        auto response = client.infer(request);
+
+        BOOST_REQUIRE(response->size() == 2);
+        BOOST_REQUIRE(response->count("output1") == 1);
+        BOOST_REQUIRE(response->count("output2") == 1);
+
+        auto output1_var = response->find("output1")->second;
+        auto output2_var = response->find("output2")->second;
+
+        const auto* const poutput1_view =
+            boost::get<MLModelService::tensor_view<float>>(&output1_var);
+        BOOST_REQUIRE(poutput1_view);
+        const auto* const poutput2_view =
+            boost::get<MLModelService::tensor_view<std::int32_t>>(&output2_var);
+        BOOST_REQUIRE(poutput2_view);
+
+        const auto& output1_view = *poutput1_view;
+        const auto& output2_view = *poutput2_view;
+        const bool r1 = (output1_view == input1_view + xt::ones<float>({32, 32}));
+        BOOST_TEST(r1);
+        const bool r2 = (output2_view == input2_view + xt::ones<std::int32_t>({16, 16}));
+        BOOST_TEST(r2);
+    });
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -290,7 +398,8 @@ BOOST_AUTO_TEST_CASE(xtensor_experiment_mlmodel_scope_detector_output_detection_
     BOOST_TEST(detection_results_buffer.front() == 0);
     BOOST_TEST(detection_results_buffer.back() == k_detection_results_buffer_size - 1);
 
-    // Shape the buffer as a tensor and validate that we find the right things at the right indexes.
+    // Shape the buffer as a tensor and validate that we find the right things at the right
+    // indexes.
     auto detection_results = xt::adapt(detection_results_buffer.data(),
                                        detection_results_buffer.size(),
                                        xt::no_ownership(),
@@ -444,9 +553,9 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
     };
 
     for (const auto& shape : shapes) {
-
         BOOST_TEST_REQUIRE(
-            std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<std::size_t>()) == data_size);
+            std::accumulate(shape.begin(), shape.end(), 1, std::multiplies<std::size_t>()) ==
+            data_size);
 
         std::array<base_type, data_size> data{};
         std::iota(data.begin(), data.end(), safe_increment<T>{base_type{0}});

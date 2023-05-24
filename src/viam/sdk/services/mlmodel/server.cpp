@@ -81,6 +81,9 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     // TODO: Should we handle exceptions here? Or is it ok to let them
     // bubble up and have a higher layer deal with it? Perhaps all of
     // our server side overrides should be `noexcept`.
+    //
+    // NOTE: Exceptions from here will result in an empty reply. We do
+    // need to handle them and convert into a failing reply status.
     const auto outputs = mlms->infer(inputs);
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
@@ -170,7 +173,9 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                         break;
                 }
             }
-            *new_entry.mutable_extra() = map_to_struct(s.extra);
+            if (s.extra) {
+                *new_entry.mutable_extra() = map_to_struct(s.extra);
+            }
         }
         return ::grpc::Status();
     };

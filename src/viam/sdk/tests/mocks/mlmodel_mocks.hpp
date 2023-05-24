@@ -14,9 +14,9 @@
 
 #pragma once
 
-#include <viam/sdk/services/mlmodel/client.hpp>
+#include <functional>
+
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
-#include <viam/sdk/services/mlmodel/server.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -26,12 +26,15 @@ class MockMLModelService : public sdk::MLModelService {
     explicit MockMLModelService(std::string name = "mock_mlmodel")
         : MLModelService(std::move(name)) {}
 
+    using infer_handler = std::function<std::shared_ptr<named_tensor_views>(const named_tensor_views&)>;
+    MockMLModelService& set_infer_handler(infer_handler handler);
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override;
 
-    MockMLModelService& metadata(struct metadata metadata);
+    MockMLModelService& set_metadata(struct metadata metadata);
     struct metadata metadata() override;
 
    private:
+    infer_handler infer_handler_;
     struct metadata metadata_;
 };
 
