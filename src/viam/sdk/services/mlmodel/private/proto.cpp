@@ -216,7 +216,6 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     // A similar tricky bit of work, but for the special case of
     // `byte` tensors where we must honor golang protobuf convention
     // of storing byte arrays as Base64 encoded strings.
-    template <>
     ::grpc::Status operator()(const MLModelService::tensor_view<std::uint8_t>& tensor) const {
         if (tensor.shape().empty()) {
             return ::grpc::Status();
