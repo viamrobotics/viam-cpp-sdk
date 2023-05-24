@@ -90,6 +90,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     const auto outputs = mlms->infer(inputs);
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
+        // TODO: Can't use try_emplace with older protobuf, downgrade this.
         auto emplace_result = pb_output_data_fields.try_emplace(kv.first);
         // This assert should be impossible: `outputs` is a map and we
         // are iterating its unique keys, and our `InferResponse`

@@ -14,9 +14,9 @@
 
 #include <viam/sdk/services/mlmodel/client.hpp>
 
-#include <viam/sdk/services/mlmodel/private/proto.hpp>
-
 #include <grpcpp/channel.h>
+
+#include <viam/sdk/services/mlmodel/private/proto.hpp>
 
 namespace viam {
 namespace sdk {
@@ -31,13 +31,9 @@ struct tensor_storage_and_views {
 }  // namespace
 
 MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : MLModelServiceClient(std::move(name), service_type::NewStub(channel)) {
-    channel_ = std::move(channel);
-}
-
-MLModelServiceClient::MLModelServiceClient(std::string name,
-                                           std::unique_ptr<service_type::StubInterface> stub)
-    : MLModelService(name), stub_(std::move(stub)) {}
+    : MLModelService(std::move(name)),
+      channel_(std::move(channel)),
+      stub_(service_type::NewStub(channel_)) {}
 
 std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     const named_tensor_views& inputs) {

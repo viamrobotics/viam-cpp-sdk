@@ -35,9 +35,6 @@ class MLModelServiceClient : public MLModelService {
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override;
     struct metadata metadata() override;
 
-   protected:
-    MLModelServiceClient(std::string name, std::unique_ptr<service_type::StubInterface> stub);
-
    private:
     std::shared_ptr<grpc::Channel> channel_;
     std::unique_ptr<service_type::StubInterface> stub_;

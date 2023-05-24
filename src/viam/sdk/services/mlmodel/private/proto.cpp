@@ -156,38 +156,6 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     explicit tensor_to_pb_value_visitor(::google::protobuf::Value* value)
         : value_{std::move(value)} {}
 
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::int8_t>& tensor) const {
-        return tensor_to_pb_t<std::int8_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint8_t>& tensor) const {
-        return tensor_to_pb_(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::int16_t>& tensor) const {
-        return tensor_to_pb_t<std::int16_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint16_t>& tensor) const {
-        return tensor_to_pb_t<std::uint16_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::int32_t>& tensor) const {
-        return tensor_to_pb_t<std::int32_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint32_t>& tensor) const {
-        return tensor_to_pb_t<std::uint32_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::int64_t>& tensor) const {
-        return tensor_to_pb_t<std::int64_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint64_t>& tensor) const {
-        return tensor_to_pb_t<std::uint64_t>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<float>& tensor) const {
-        return tensor_to_pb_t<float>(tensor);
-    }
-    ::grpc::Status operator()(const MLModelService::tensor_view<double>& tensor) const {
-        return tensor_to_pb_t<double>(tensor);
-    }
-
-   private:
     // A tricky little bit of work to serialize floating point tensors to
     // a ListValue of ListValue of ... ListValue of Value objects holding
     // doubles, without recursion.
@@ -197,7 +165,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     // just naturally fell out of the loop with the top level ListValue in
     // place.
     template <typename T>
-    ::grpc::Status tensor_to_pb_t(const MLModelService::tensor_view<T>& tensor) const {
+    ::grpc::Status operator()(const T& tensor) const {
         static_assert(!std::is_same<T, std::uint8_t>::value);
         if (tensor.shape().empty()) {
             return ::grpc::Status();
@@ -248,7 +216,8 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     // A similar tricky bit of work, but for the special case of
     // `byte` tensors where we must honor golang protobuf convention
     // of storing byte arrays as Base64 encoded strings.
-    ::grpc::Status tensor_to_pb_(const MLModelService::tensor_view<std::uint8_t>& tensor) const {
+    template <>
+    ::grpc::Status operator()(const MLModelService::tensor_view<std::uint8_t>& tensor) const {
         if (tensor.shape().empty()) {
             return ::grpc::Status();
         }
