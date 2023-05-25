@@ -16,7 +16,7 @@
 namespace viam {
 namespace sdk {
 
-/// @defgroup Motor Classes related to the `Motor` component.
+/// @defgroup Motor Classes related to the Motor component.
 
 /// @class MotorRegistration
 /// @brief Defines a `ResourceRegistration` for the `Motor` component.

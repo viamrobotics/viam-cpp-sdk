@@ -99,12 +99,12 @@ int main(int argc, char** argv) {
         m,
         [](Dependencies, ResourceConfig cfg) { return std::make_unique<MyModule>(cfg); },
         // Custom validation can be done by specifying a validate function like
-        // this one. Validate functions can `throw` error strings that will be
+        // this one. Validate functions can `throw` exceptions that will be
         // returned to the parent through gRPC. Validate functions can also return
         // a vector of strings representing the implicit dependencies of the resource.
         [](ResourceConfig cfg) -> std::vector<std::string> {
             if (cfg.attributes()->find("invalidattribute") != cfg.attributes()->end()) {
-                throw std::string(
+                throw std::runtime_error(
                     "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
             }
 

@@ -18,7 +18,7 @@
 namespace viam {
 namespace sdk {
 
-/// @defgroup Camera Classes related to the `Camera` component.
+/// @defgroup Camera Classes related to the Camera component.
 
 /// @class CameraRegistration
 /// @brief Defines a `ResourceRegistration` for the `Camera` component.
