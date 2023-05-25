@@ -193,7 +193,7 @@ target_link_libraries(viamsdk
   PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
   PUBLIC Boost::headers
-  PRIVATE Boost::log
+  PUBLIC Boost::log
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )

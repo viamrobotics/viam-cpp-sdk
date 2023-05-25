@@ -3,6 +3,7 @@
 #include <pthread.h>
 #include <signal.h>
 
+#include <boost/log/trivial.hpp>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 
@@ -79,6 +80,11 @@ int main(int argc, char** argv) {
     if (argc < 2) {
         throw "need socket path as command line argument";
     }
+
+    // Use set_logger_severity_from_args to set the boost trivial logger's
+    // severity depending on commandline arguments.
+    set_logger_severity_from_args(argc, argv);
+    BOOST_LOG_TRIVIAL(debug) << "Starting module with debug level logging";
 
     // C++ modules must handle SIGINT and SIGTERM. Make sure to create a sigset
     // for SIGINT and SIGTERM that can be later awaited in a thread that cleanly
