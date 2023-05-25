@@ -15,7 +15,7 @@ namespace viam {
 namespace sdk {
 
 // TODO(RSDK-1742): one class per header
-/// @defgroup Generic Classes related to the `Generic` component.
+/// @defgroup Generic Classes related to the Generic component.
 
 /// @class GenericRegistration
 /// @brief Defines a `ResourceRegistration` for the `Generic` component.

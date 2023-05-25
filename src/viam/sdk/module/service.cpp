@@ -1,8 +1,10 @@
 #include <viam/sdk/module/service.hpp>
 
 #include <csignal>
+#include <exception>
 #include <iostream>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -111,14 +113,14 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     try {
         res->reconfigure(deps, cfg);
         return grpc::Status();
-    } catch (std::exception& exc) {
+    } catch (const std::exception& exc) {
     }
 
     // if the type isn't reconfigurable by default, replace it
     try {
         res->stop();
-    } catch (std::string err) {  // NOLINT
-        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
+    } catch (const std::exception& err) {
+        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
 
     std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.name());
@@ -148,9 +150,9 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
         for (auto& dep : implicit_deps) {
             response->add_dependencies(dep);
         }
-    } catch (std::string err) {  // NOLINT
+    } catch (const std::exception& err) {
         return grpc::Status(grpc::UNKNOWN,
-                            "validation failure in resource " + cfg.name() + ": " + err);
+                            "validation failure in resource " + cfg.name() + ": " + err.what());
     }
     return grpc::Status();
 };
@@ -175,8 +177,8 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     try {
         res->stop();
-    } catch (std::string err) {  // NOLINT
-        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err;
+    } catch (const std::exception& err) {
+        BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
 
     manager->remove(name);
@@ -223,7 +225,7 @@ void ModuleService_::close() {
     if (parent_) {
         try {
             parent_->close();
-        } catch (std::exception& exc) {
+        } catch (const std::exception& exc) {
             BOOST_LOG_TRIVIAL(error) << exc.what();
         }
     }
