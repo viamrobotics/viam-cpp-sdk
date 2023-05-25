@@ -119,7 +119,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     // if the type isn't reconfigurable by default, replace it
     try {
         res->stop();
-    } catch (const std::exception& err) {  // NOLINT
+    } catch (const std::exception& err) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
 
@@ -150,7 +150,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
         for (auto& dep : implicit_deps) {
             response->add_dependencies(dep);
         }
-    } catch (const std::exception& err) {  // NOLINT
+    } catch (const std::exception& err) {
         return grpc::Status(grpc::UNKNOWN,
                             "validation failure in resource " + cfg.name() + ": " + err.what());
     }
@@ -177,7 +177,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     try {
         res->stop();
-    } catch (const std::exception& err) {  // NOLINT
+    } catch (const std::exception& err) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
 
