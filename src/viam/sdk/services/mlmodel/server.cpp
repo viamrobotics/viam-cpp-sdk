@@ -185,8 +185,9 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     };
 
     auto status = pack_tensor_info(*metadata_pb.mutable_input_info(), md.inputs);
-    if (!status.ok())
+    if (!status.ok()) {
         return status;
+    }
 
     return pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
 }
