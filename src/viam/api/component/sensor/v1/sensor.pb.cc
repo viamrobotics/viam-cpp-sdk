@@ -118,7 +118,7 @@ const char descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto[] 
   "am.component.sensor.v1.GetReadingsRespon"
   "se.ReadingsEntryR\010readings\032S\n\rReadingsEn"
   "try\022\020\n\003key\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.g"
-  "oogle.protobuf.ValueR\005value:\0028\0012\277\002\n\rSens"
+  "oogle.protobuf.ValueR\005value:\0028\0012\327\003\n\rSens"
   "orService\022\241\001\n\013GetReadings\022,.viam.compone"
   "nt.sensor.v1.GetReadingsRequest\032-.viam.c"
   "omponent.sensor.v1.GetReadingsResponse\"5"
@@ -126,9 +126,13 @@ const char descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto[] 
   "ame}/readings\022\211\001\n\tDoCommand\022 .viam.commo"
   "n.v1.DoCommandRequest\032!.viam.common.v1.D"
   "oCommandResponse\"7\202\323\344\223\0021\"//viam/api/v1/c"
-  "omponent/sensor/{name}/do_commandBC\n\034com"
-  ".viam.component.sensor.v1Z#go.viam.com/a"
-  "pi/component/sensor/v1b\006proto3"
+  "omponent/sensor/{name}/do_command\022\225\001\n\rGe"
+  "tGeometries\022$.viam.common.v1.GetGeometri"
+  "esRequest\032%.viam.common.v1.GetGeometries"
+  "Response\"7\202\323\344\223\0021\022//viam/api/v1/component"
+  "/sensor/{name}/geometriesBC\n\034com.viam.co"
+  "mponent.sensor.v1Z#go.viam.com/api/compo"
+  "nent/sensor/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -137,7 +141,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fsensor_
 };
 static ::_pbi::once_flag descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto = {
-    false, false, 830, descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto,
+    false, false, 982, descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto,
     "component/sensor/v1/sensor.proto",
     &descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once, descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps, 3, 3,
     schemas, file_default_instances, TableStruct_component_2fsensor_2fv1_2fsensor_2eproto::offsets,

@@ -369,7 +369,7 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "Px\022\036\n\013center_x_px\030\005 \001(\001R\tcenterXPx\022\036\n\013ce"
   "nter_y_px\030\006 \001(\001R\tcenterYPx\"L\n\024Distortion"
   "Parameters\022\024\n\005model\030\001 \001(\tR\005model\022\036\n\npara"
-  "meters\030\002 \003(\001R\nparameters2\233\006\n\rCameraServi"
+  "meters\030\002 \003(\001R\nparameters2\263\007\n\rCameraServi"
   "ce\022\225\001\n\010GetImage\022).viam.component.camera."
   "v1.GetImageRequest\032*.viam.component.came"
   "ra.v1.GetImageResponse\"2\202\323\344\223\002,\022*/viam/ap"
@@ -389,9 +389,13 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "es\022\211\001\n\tDoCommand\022 .viam.common.v1.DoComm"
   "andRequest\032!.viam.common.v1.DoCommandRes"
   "ponse\"7\202\323\344\223\0021\"//viam/api/v1/component/ca"
-  "mera/{name}/do_commandBC\n\034com.viam.compo"
-  "nent.camera.v1Z#go.viam.com/api/componen"
-  "t/camera/v1b\006proto3"
+  "mera/{name}/do_command\022\225\001\n\rGetGeometries"
+  "\022$.viam.common.v1.GetGeometriesRequest\032%"
+  ".viam.common.v1.GetGeometriesResponse\"7\202"
+  "\323\344\223\0021\022//viam/api/v1/component/camera/{na"
+  "me}/geometriesBC\n\034com.viam.component.cam"
+  "era.v1Z#go.viam.com/api/component/camera"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -400,7 +404,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_
 };
 static ::_pbi::once_flag descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto = {
-    false, false, 2339, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
+    false, false, 2491, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
     "component/camera/v1/camera.proto",
     &descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once, descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps, 3, 12,
     schemas, file_default_instances, TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets,
