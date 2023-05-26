@@ -40,7 +40,7 @@ project(viam-cpp-sdk
   VERSION 0.0.0
   DESCRIPTION "Viam Robotics C++ SDK"
   HOMEPAGE_URL https://github.com/viamrobotics/viam-cpp-sdk
-  LANGUAGES CXX
+  LANGUAGES C CXX
 )
 
 

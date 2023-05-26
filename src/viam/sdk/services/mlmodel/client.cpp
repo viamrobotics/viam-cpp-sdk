@@ -57,7 +57,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     grpc::ClientContext ctx;
 
-    auto result = stub_->Infer(&ctx, *req, resp);
+    const auto result = stub_->Infer(&ctx, *req, resp);
     if (!result.ok()) {
         throw std::runtime_error(result.error_message());
     }

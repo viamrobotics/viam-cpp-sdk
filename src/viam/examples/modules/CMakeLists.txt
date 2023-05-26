@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include(CheckIncludeFile)
+
 add_executable(example_module
   example_module.cpp
 )
@@ -40,3 +42,29 @@ install(
   TARGETS example_mlmodel
   COMPONENT examples
 )
+
+
+include_directories(/opt/homebrew/include)
+get_directory_property(includes INCLUDE_DIRECTORIES)
+set(CMAKE_REQUIRED_INCLUDES ${includes})
+CHECK_INCLUDE_FILE("tensorflow/lite/c/c_api.h" VIAMCPPSDK_HAVE_TFLITE_C_API)
+
+if (VIAMCPPSDK_HAVE_TFLITE_C_API)
+
+  add_executable(mlmodelservice_tflite
+    mlmodelservice_tflite.cpp
+  )
+
+  target_link_libraries(mlmodelservice_tflite
+    PRIVATE Threads::Threads
+    PRIVATE viam-cpp-sdk::viamsdk
+    PRIVATE tensorflowlite_c
+  )
+
+  install(
+    TARGETS mlmodelservice_tflite
+    COMPONENT examples
+  )
+else()
+  message("XXX ACM")
+endif()
