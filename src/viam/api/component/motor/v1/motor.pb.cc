@@ -501,7 +501,7 @@ const char descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto[] PR
   "\001(\001R\010position\022\033\n\tis_moving\030\004 \001(\010R\010isMovi"
   "ng\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004nam"
   "e\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001(\010"
-  "R\010isMoving2\202\014\n\014MotorService\022\226\001\n\010SetPower"
+  "R\010isMoving2\231\r\n\014MotorService\022\226\001\n\010SetPower"
   "\022(.viam.component.motor.v1.SetPowerReque"
   "st\032).viam.component.motor.v1.SetPowerRes"
   "ponse\"5\240\222)\001\202\323\344\223\002+\032)/viam/api/v1/componen"
@@ -539,9 +539,13 @@ const char descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto[] PR
   "e}/is_moving\022\210\001\n\tDoCommand\022 .viam.common"
   ".v1.DoCommandRequest\032!.viam.common.v1.Do"
   "CommandResponse\"6\202\323\344\223\0020\"./viam/api/v1/co"
-  "mponent/motor/{name}/do_commandBA\n\033com.v"
-  "iam.component.motor.v1Z\"go.viam.com/api/"
-  "component/motor/v1b\006proto3"
+  "mponent/motor/{name}/do_command\022\224\001\n\rGetG"
+  "eometries\022$.viam.common.v1.GetGeometries"
+  "Request\032%.viam.common.v1.GetGeometriesRe"
+  "sponse\"6\202\323\344\223\0020\022./viam/api/v1/component/m"
+  "otor/{name}/geometriesBA\n\033com.viam.compo"
+  "nent.motor.v1Z\"go.viam.com/api/component"
+  "/motor/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -550,7 +554,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmotor_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto = {
-    false, false, 3106, descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto,
+    false, false, 3257, descriptor_table_protodef_component_2fmotor_2fv1_2fmotor_2eproto,
     "component/motor/v1/motor.proto",
     &descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_once, descriptor_table_component_2fmotor_2fv1_2fmotor_2eproto_deps, 3, 19,
     schemas, file_default_instances, TableStruct_component_2fmotor_2fv1_2fmotor_2eproto::offsets,

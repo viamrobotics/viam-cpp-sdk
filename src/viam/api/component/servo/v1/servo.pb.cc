@@ -252,7 +252,7 @@ const char descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto[] PR
   "tus\022!\n\014position_deg\030\001 \001(\rR\013positionDeg\022\033"
   "\n\tis_moving\030\002 \001(\010R\010isMoving\"%\n\017IsMovingR"
   "equest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsMovingRe"
-  "sponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving2\347\005\n\014"
+  "sponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving2\376\006\n\014"
   "ServoService\022\211\001\n\004Move\022$.viam.component.s"
   "ervo.v1.MoveRequest\032%.viam.component.ser"
   "vo.v1.MoveResponse\"4\240\222)\001\202\323\344\223\002*\032(/viam/ap"
@@ -271,9 +271,13 @@ const char descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto[] PR
   "ng\022\210\001\n\tDoCommand\022 .viam.common.v1.DoComm"
   "andRequest\032!.viam.common.v1.DoCommandRes"
   "ponse\"6\202\323\344\223\0020\"./viam/api/v1/component/se"
-  "rvo/{name}/do_commandBA\n\033com.viam.compon"
-  "ent.servo.v1Z\"go.viam.com/api/component/"
-  "servo/v1b\006proto3"
+  "rvo/{name}/do_command\022\224\001\n\rGetGeometries\022"
+  "$.viam.common.v1.GetGeometriesRequest\032%."
+  "viam.common.v1.GetGeometriesResponse\"6\202\323"
+  "\344\223\0020\022./viam/api/v1/component/servo/{name"
+  "}/geometriesBA\n\033com.viam.component.servo"
+  ".v1Z\"go.viam.com/api/component/servo/v1b"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fservo_2fv1_2fservo_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -282,7 +286,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fservo_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fservo_2fv1_2fservo_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fservo_2fv1_2fservo_2eproto = {
-    false, false, 1496, descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto,
+    false, false, 1647, descriptor_table_protodef_component_2fservo_2fv1_2fservo_2eproto,
     "component/servo/v1/servo.proto",
     &descriptor_table_component_2fservo_2fv1_2fservo_2eproto_once, descriptor_table_component_2fservo_2fv1_2fservo_2eproto_deps, 3, 9,
     schemas, file_default_instances, TableStruct_component_2fservo_2fv1_2fservo_2eproto::offsets,
