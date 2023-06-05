@@ -22,13 +22,8 @@ namespace viam {
 namespace sdk {
 namespace mlmodel_details {
 
-template <typename T>
-struct make_vector {
-    using type = std::vector<T>;
-};
-
 using tensor_storage_types = boost::mpl::transform_view<MLModelService::base_types,
-                                                        make_vector<boost::mpl::placeholders::_1>>;
+                                                        std::vector<boost::mpl::placeholders::_1>>;
 
 using tensor_storage = std::vector<boost::make_variant_over<tensor_storage_types>::type>;
 

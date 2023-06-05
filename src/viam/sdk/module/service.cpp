@@ -114,6 +114,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
         res->reconfigure(deps, cfg);
         return grpc::Status();
     } catch (const std::exception& exc) {
+        return grpc::Status(::grpc::INTERNAL, exc.what());
     }
 
     // if the type isn't reconfigurable by default, replace it

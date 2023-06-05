@@ -119,8 +119,60 @@ template <typename T>
             };
 
         if (shape.size() != tensor_info.shape.size()) {
-            return {grpc::INTERNAL, make_error()};
+            // We will try to fix up a flat buffer when there should
+            // have been structure, because RDK does that for vision
+            // service inputs, but we won't get into the weeds of
+            // trying to make sense of any more complex dimensional
+            // mixups.
+            if (shape.size() > 1) {
+                return {grpc::INTERNAL, make_error()};
+            }
+
+            // If there are multiple free extents, the situation is
+            // hopeless.
+            const auto num_unbounded =
+                std::count(tensor_info.shape.begin(), tensor_info.shape.end(), -1);
+            if (num_unbounded > 1) {
+                return {grpc::INTERNAL, make_error()};
+            }
+
+            // Compute divisor, and invert if it is negative.
+            auto ti_product = std::accumulate(
+                tensor_info.shape.begin(), tensor_info.shape.end(), 1, std::multiplies<int>());
+            if (num_unbounded != 0) {
+                ti_product = -ti_product;
+            }
+
+            // If we have no unbounded extents, then we can reshape as
+            // long as the total number of elements in the flat buffer
+            // is equal to the product of the expected extents. If we
+            // do have an unbounded extent, then it only works if the
+            // number of elements in the flat buffer is a multiple of
+            // the product of the expected extents, in which case we
+            // should replace the unknown.
+            if (num_unbounded == 0) {
+                if (shape[0] != ti_product) {
+                    return {grpc::INTERNAL, make_error()};
+                }
+                shape.clear();
+                std::transform(tensor_info.shape.begin(),
+                               tensor_info.shape.end(),
+                               std::back_inserter(shape),
+                               [](int s) { return static_cast<size_t>(s); });
+            } else {
+                if (shape[0] % ti_product != 0) {
+                    return {grpc::INTERNAL, make_error()};
+                }
+                const auto extent = shape[0] / ti_product;
+                shape.clear();
+                std::transform(
+                    tensor_info.shape.begin(),
+                    tensor_info.shape.end(),
+                    std::back_inserter(shape),
+                    [&extent](int s) { return (s == -1) ? extent : static_cast<size_t>(s); });
+            }
         }
+
         const auto compare = [](const auto& spec, const auto& real) {
             if (spec < 0 && spec != -1) {
                 return false;

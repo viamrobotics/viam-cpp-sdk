@@ -34,7 +34,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 ::grpc::Status MLModelServiceServer::Infer(
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::InferRequest* request,
-    ::viam::service::mlmodel::v1::InferResponse* response) {
+    ::viam::service::mlmodel::v1::InferResponse* response) noexcept try {
     if (!request) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] without a request"};
     };
@@ -81,13 +81,8 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         }
     }
 
-    // TODO: Should we handle exceptions here? Or is it ok to let them
-    // bubble up and have a higher layer deal with it? Perhaps all of
-    // our server side overrides should be `noexcept`.
-    //
-    // NOTE: Exceptions from here will result in an empty reply. We do
-    // need to handle them and convert into a failing reply status.
     const auto outputs = mlms->infer(inputs);
+
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
         // TODO: Can't use try_emplace with older protobuf, downgrade this.
@@ -105,12 +100,17 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     return ::grpc::Status();
+} catch (const std::exception& ex) {
+    return ::grpc::Status(grpc::INTERNAL,
+                          std::string("[Infer]: Failed with exception: ") + ex.what());
+} catch (...) {
+    return ::grpc::Status(grpc::INTERNAL, "[Infer]: Failed with an unknown exception");
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::MetadataRequest* request,
-    ::viam::service::mlmodel::v1::MetadataResponse* response) {
+    ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept try {
     if (!request) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Metadata] without a request"};
     };
@@ -190,6 +190,11 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     return pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
+} catch (const std::exception& ex) {
+    return ::grpc::Status(grpc::INTERNAL,
+                          std::string("[Metadata]: Failed with exception: ") + ex.what());
+} catch (...) {
+    return ::grpc::Status(grpc::INTERNAL, "[Metadata]: Failed with an unknown exception");
 }
 
 }  // namespace sdk

@@ -57,11 +57,14 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto* const resp = pb::Arena::CreateMessage<mlpb::InferResponse>(&arena);
 
     grpc::ClientContext ctx;
+
     auto result = stub_->Infer(&ctx, *req, resp);
+    if (!result.ok()) {
+        throw std::runtime_error(result.error_message());
+    }
 
     // TODO(RSDK-3298): This is an extra RPC on every inference, but
-    // it is not obvious that caching it is safe across
-    // reconfigurations.
+    // it is not clear that caching it is safe.
     const auto md = metadata();
 
     auto tsav = std::make_shared<tensor_storage_and_views>();

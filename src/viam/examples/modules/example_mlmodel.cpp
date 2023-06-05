@@ -27,17 +27,18 @@ class ExampleMLModelService : public vs::MLModelService {
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override {
         std::cout << "ExampleMLModelService: recieved `infer` invocation" << std::endl;
 
-        static constexpr std::array<float, 4> location_data = {0.1, 0.1, 0.75, 0.75};
-        static constexpr std::array<float, 1> category_data = {0};
-        static constexpr std::array<float, 1> score_data = {.99};
-        static constexpr std::array<float, 1> num_dets_data = {1};
+        static constexpr std::array<float, 100> location_data = {0.1, 0.1, 0.75, 0.75};
+        static constexpr std::array<float, 25> category_data = {0};
+        static constexpr std::array<float, 25> score_data = {.99};
+        static constexpr std::array<float, 1> num_dets_data = {25};
 
         auto location_tensor =
-            make_tensor_view(location_data.data(), location_data.size(), {1, 1, 4});
+            make_tensor_view(location_data.data(), location_data.size(), {1, 25, 4});
 
-        auto category_tensor = make_tensor_view(category_data.data(), category_data.size(), {1, 1});
+        auto category_tensor =
+            make_tensor_view(category_data.data(), category_data.size(), {1, 25});
 
-        auto score_tensor = make_tensor_view(score_data.data(), score_data.size(), {1, 1});
+        auto score_tensor = make_tensor_view(score_data.data(), score_data.size(), {1, 25});
 
         auto num_dets_tensor = make_tensor_view(num_dets_data.data(), num_dets_data.size(), {1});
 
@@ -101,10 +102,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
-                  //
-                  // TODO(RSDK-3033): Once tflite_cpu reports output
-                  // shape metadata, fill this in.
-                  {},
+                  {1, 25, 4},
 
                   // `associated_files`
                   {},
@@ -124,10 +122,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
-                  //
-                  // TODO(RSDK-3033): Once tflite_cpu reports output
-                  // shape metadata, fill this in.
-                  {},
+                  {1, 25},
 
                   // `associated files`
                   {{
@@ -153,10 +148,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
-                  //
-                  // TODO(RSDK-3033): Once tflite_cpu reports output
-                  // shape metadata, fill this in.
-                  {},
+                  {1, 25},
 
                   // `associated_files`
                   {},
@@ -174,10 +166,7 @@ class ExampleMLModelService : public vs::MLModelService {
                   tensor_info::data_types::k_float32,
 
                   // `shape`
-                  //
-                  // TODO(RSDK-3033): Once tflite_cpu reports output
-                  // shape metadata, fill this in.
-                  {},
+                  {1},
 
                   // `associated_files`
                   {},

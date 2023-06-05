@@ -2,6 +2,7 @@
 
 #include <unordered_map>
 
+#include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
 #include <google/protobuf/struct.pb.h>
 
@@ -27,6 +28,16 @@ class ProtoType {
 
     google::protobuf::Value proto_value();
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
+
+    template <typename T>
+    T* get() {
+        return boost::get<T>(&proto_type_);
+    }
+
+    template <typename T>
+    const T* get() const {
+        return boost::get<T>(&proto_type_);
+    }
 
    private:
     boost::variant<boost::blank,
