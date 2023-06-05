@@ -38,9 +38,10 @@ class MLModelServiceServer : public ResourceServer,
                          const ::viam::service::mlmodel::v1::InferRequest* request,
                          ::viam::service::mlmodel::v1::InferResponse* response) noexcept override;
 
-    ::grpc::Status Metadata(::grpc::ServerContext* context,
-                            const ::viam::service::mlmodel::v1::MetadataRequest* request,
-                            ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept override;
+    ::grpc::Status Metadata(
+        ::grpc::ServerContext* context,
+        const ::viam::service::mlmodel::v1::MetadataRequest* request,
+        ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept override;
 };
 
 }  // namespace sdk
