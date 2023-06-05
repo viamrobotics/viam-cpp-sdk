@@ -151,7 +151,7 @@ template <typename T>
             // the product of the expected extents, in which case we
             // should replace the unknown.
             if (num_unbounded == 0) {
-                if (shape[0] != ti_product) {
+                if (shape[0] != static_cast<size_t>(ti_product)) {
                     return {grpc::INTERNAL, make_error()};
                 }
                 shape.clear();
