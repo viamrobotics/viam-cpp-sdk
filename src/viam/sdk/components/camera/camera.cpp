@@ -10,6 +10,7 @@
 #include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -58,6 +59,11 @@ google::protobuf::RepeatedField<double> vector_to_repeated_field(std::vector<dou
     google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
     return rf;
 }
+
+// google::protobuf::RepeatedField<Geometry> vector_to_repeated_field(std::vector<Geometry> const& v) {
+//     google::protobuf::RepeatedField<Geometry> rf = {v.begin(), v.end()};
+//     return rf;
+// }
 
 Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
     Camera::raw_image raw_image;

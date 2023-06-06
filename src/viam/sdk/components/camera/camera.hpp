@@ -14,6 +14,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -130,6 +131,11 @@ class Camera : public Component {
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
     /// @return The requested `point_cloud`.
     virtual point_cloud get_point_cloud(std::string mime_type) = 0;
+
+    /// @brief Get all geometries associated with the component.
+    /// @param  name the component name.
+    /// @return The requested `geometries`.
+    virtual std::vector<viam::common::v1::Geometry> get_geometries(std::string name) = 0;
 
     /// @brief Get the camera's properties.
     /// @return The camera properties.

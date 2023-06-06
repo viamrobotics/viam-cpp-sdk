@@ -11,6 +11,7 @@
 #include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -25,6 +26,7 @@ class CameraClient : public Camera {
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
+    std::vector<common::v1::Geometry> get_geometries(std::string name) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

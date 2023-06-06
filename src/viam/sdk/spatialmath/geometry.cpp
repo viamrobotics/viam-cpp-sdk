@@ -94,6 +94,14 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
             return geometry_;
         }
     }
+}
+
+google::protobuf::RepeatedField<viam::common::v1::Geometry> GeometryConfig::to_proto(const std::vector<viam::common::v1::Geometry> & geometries) {
+    google::protobuf::RepeatedField<const viam::common::v1::Geometry> geometries_proto;
+    for (const auto& geometry : geometries) {
+        *geometries_proto.Add() = GeometryConfig::to_proto(geometry);
+    }
+    return geometries_proto;
 };
 
 }  // namespace sdk

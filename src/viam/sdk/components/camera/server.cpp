@@ -4,6 +4,7 @@
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {
@@ -102,6 +103,29 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     *response->mutable_mime_type() = "pointcloud/pcd";
     *response->mutable_point_cloud() = bytes_to_string(point_cloud.pc);
+
+    return ::grpc::Status();
+}
+
+::grpc::Status CameraServer::GetGeometries(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetGeometriesRequest* request,
+    ::viam::common::v1::GetGeometriesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetGeometries] without a request");
+    };
+
+    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+
+    std::vector<viam::common::v1::Geometry> geometries = camera->get_geometries(request->name());
+    //*response->mutable_geometries() = viam::common::v1::Geometry::to_proto(geometries); 
+    *response->mutable_geometries() = GeometryConfig::to_proto(geometries); 
 
     return ::grpc::Status();
 }

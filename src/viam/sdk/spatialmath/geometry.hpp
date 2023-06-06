@@ -24,6 +24,7 @@ class GeometryConfig {
     viam::common::v1::Sphere sphere_proto() const;
     viam::common::v1::Pose pose_proto() const;
     static GeometryConfig from_proto(viam::common::v1::Geometry proto);
+    google::protobuf::RepeatedField<viam::common::v1::Geometry> to_proto(const std::vector<viam::common::v1::Geometry>& geometries);
 
    private:
     GeometryType geometry_type_;
