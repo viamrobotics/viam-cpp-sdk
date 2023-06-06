@@ -90,8 +90,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
         // TODO: Can't use try_emplace with older protobuf, downgrade this.
-        auto insert_result = pb_output_data_fields.insert({
-                kv.first, gp::Value{}});
+        auto insert_result = pb_output_data_fields.insert({kv.first, gp::Value{}});
         // This assert should be impossible: `outputs` is a map and we
         // are iterating its unique keys, and our `InferResponse`
         // should have empty output data fields.

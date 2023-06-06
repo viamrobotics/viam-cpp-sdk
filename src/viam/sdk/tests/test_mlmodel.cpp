@@ -562,7 +562,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
         const auto array_tv = MLModelService::make_tensor_view(data.data(), data.size(), shape);
         ::viam::service::mlmodel::v1::InferRequest request;
         ::google::protobuf::Struct* input_data = request.mutable_input_data();
-        auto insert_result = input_data->mutable_fields()->insert({"foo", ::google::protobuf::Value{}});
+        auto insert_result =
+            input_data->mutable_fields()->insert({"foo", ::google::protobuf::Value{}});
         ::google::protobuf::Value& pb_value = insert_result.first->second;
         BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
 

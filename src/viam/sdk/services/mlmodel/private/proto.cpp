@@ -67,7 +67,8 @@ template <typename T>
             ++depth;
             std::for_each(
                 children.rbegin(), children.rend(), [&vs](const auto& v) { vs.push(&v); });
-        } else if (std::is_same<T, std::uint8_t>::value && (vs.top()->kind_case() == gp::Value::kStringValue)) {
+        } else if (std::is_same<T, std::uint8_t>::value &&
+                   (vs.top()->kind_case() == gp::Value::kStringValue)) {
             const auto& sv = vs.top()->string_value();
             std::string decoded;
             if (!gp::Base64Unescape(sv, &decoded)) {
@@ -208,8 +209,7 @@ template <typename T>
 
 class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> {
    public:
-    explicit tensor_to_pb_value_visitor(gp::Value* value)
-        : value_{std::move(value)} {}
+    explicit tensor_to_pb_value_visitor(gp::Value* value) : value_{std::move(value)} {}
 
     // A tricky little bit of work to serialize floating point tensors to
     // a ListValue of ListValue of ... ListValue of Value objects holding
@@ -286,7 +286,8 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
                 ixes.back() = tensor.shape().back();
                 // TODO(RSDK-3285): Make this an invariant
-                if (ixes.back() > std::numeric_limits<decltype(std::declval<gp::StringPiece>().size())>::max()) {
+                if (ixes.back() >
+                    std::numeric_limits<decltype(std::declval<gp::StringPiece>().size())>::max()) {
                     abort();
                 }
                 const gp::StringPiece bytes{
@@ -379,8 +380,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
     }
 }
 
-::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor,
-                                  gp::Value* value) {
+::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor, gp::Value* value) {
     return boost::apply_visitor(tensor_to_pb_value_visitor{value}, tensor);
 }
 
