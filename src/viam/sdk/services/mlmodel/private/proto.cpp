@@ -15,6 +15,7 @@
 #include <viam/sdk/services/mlmodel/private/proto.hpp>
 
 #include <stack>
+#include <utility>
 
 #include <boost/variant/get.hpp>
 
@@ -24,9 +25,11 @@ namespace mlmodel_details {
 
 namespace {
 
+namespace gp = ::google::protobuf;
+
 template <typename T>
 ::grpc::Status pb_value_to_tensor_t(const MLModelService::tensor_info& tensor_info,
-                                    const ::google::protobuf::Value& pb,
+                                    const gp::Value& pb,
                                     tensor_storage* ts,
                                     MLModelService::named_tensor_views* ntvs) {
     // Stage our backing vector into `ts` and obtain a reference to it.
@@ -39,7 +42,7 @@ template <typename T>
     // walk. Start a depth counter so we know the index of the
     // dimension we are iterating.
     typename MLModelService::tensor_view<T>::shape_type shape{};
-    std::stack<const ::google::protobuf::Value*> vs{{&pb}};
+    std::stack<const gp::Value*> vs{{&pb}};
     size_t depth = 0;
 
     while (!vs.empty()) {
@@ -64,10 +67,10 @@ template <typename T>
             ++depth;
             std::for_each(
                 children.rbegin(), children.rend(), [&vs](const auto& v) { vs.push(&v); });
-        } else if (std::is_same<T, std::uint8_t>::value && vs.top()->has_string_value()) {
+        } else if (std::is_same<T, std::uint8_t>::value && (vs.top()->kind_case() == gp::Value::kStringValue)) {
             const auto& sv = vs.top()->string_value();
             std::string decoded;
-            if (!::google::protobuf::Base64Unescape(sv, &decoded)) {
+            if (!gp::Base64Unescape(sv, &decoded)) {
                 std::ostringstream message;
                 message << "Failed to Base64 decode stride at depth " << depth << "in tensor '"
                         << tensor_info.name << "'";
@@ -85,7 +88,7 @@ template <typename T>
                 return {grpc::INTERNAL, message.str()};
             }
             vs.pop();
-        } else if (vs.top()->has_number_value()) {
+        } else if (vs.top()->kind_case() == gp::Value::kNumberValue) {
             storage.push_back(vs.top()->number_value());
             vs.pop();
         } else {
@@ -205,7 +208,7 @@ template <typename T>
 
 class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> {
    public:
-    explicit tensor_to_pb_value_visitor(::google::protobuf::Value* value)
+    explicit tensor_to_pb_value_visitor(gp::Value* value)
         : value_{std::move(value)} {}
 
     // A tricky little bit of work to serialize floating point tensors to
@@ -223,7 +226,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
             return ::grpc::Status();
         }
 
-        std::stack<std::unique_ptr<::google::protobuf::ListValue>> lvs;
+        std::stack<std::unique_ptr<gp::ListValue>> lvs;
         std::vector<size_t> ixes;
         ixes.reserve(tensor.shape().size());
         while (true) {
@@ -232,7 +235,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 // Value objects holding doubles for each value in the
                 // range of the last index.
                 for (; ixes.back() != *tensor.shape().rbegin(); ++ixes.back()) {
-                    auto new_value = std::make_unique<::google::protobuf::Value>();
+                    auto new_value = std::make_unique<gp::Value>();
                     new_value->set_number_value(tensor.element(ixes.begin(), ixes.end()));
                     lvs.top()->mutable_values()->AddAllocated(new_value.release());
                 }
@@ -241,12 +244,12 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
             if (ixes.empty() || (ixes.back() < tensor.shape()[ixes.size() - 1])) {
                 // The "recursive" step where we make a new list and "descend".
                 ixes.push_back(0);
-                lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
+                lvs.emplace(std::make_unique<gp::ListValue>());
             } else if (ixes.size() > 1) {
                 // The step-out case where we have exhausted a
                 // stride. Wrap up the list we created in a value node
                 // and unwind to the next set of values one level up.
-                auto list_value = std::make_unique<::google::protobuf::Value>();
+                auto list_value = std::make_unique<gp::Value>();
                 list_value->set_allocated_list_value(lvs.top().release());
                 lvs.pop();
                 lvs.top()->mutable_values()->AddAllocated(list_value.release());
@@ -273,7 +276,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
             return ::grpc::Status();
         }
 
-        std::stack<std::unique_ptr<::google::protobuf::ListValue>> lvs;
+        std::stack<std::unique_ptr<gp::ListValue>> lvs;
         std::vector<size_t> ixes;
         ixes.reserve(tensor.shape().size());
 
@@ -282,16 +285,19 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 // Base64 encode the entire last dimension stride into a string.
                 const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
                 ixes.back() = tensor.shape().back();
-                const auto* const bytes_end = bytes_begin + ixes.back();
-                const google::protobuf::StringPiece bytes{
+                // TODO(RSDK-3285): Make this an invariant
+                if (ixes.back() > std::numeric_limits<decltype(std::declval<gp::StringPiece>().size())>::max()) {
+                    abort();
+                }
+                const gp::StringPiece bytes{
                     reinterpret_cast<const char*>(bytes_begin),
-                    std::size_t(bytes_end - bytes_begin)};
+                    static_cast<decltype(std::declval<gp::StringPiece>().size())>(ixes.back())};
                 std::string encoded;
-                google::protobuf::Base64Escape(bytes, &encoded);
+                gp::Base64Escape(bytes, &encoded);
                 if (lvs.empty()) {
                     value_->set_string_value(std::move(encoded));
                 } else {
-                    auto new_value = std::make_unique<::google::protobuf::Value>();
+                    auto new_value = std::make_unique<gp::Value>();
                     new_value->set_string_value(std::move(encoded));
                     lvs.top()->mutable_values()->AddAllocated(new_value.release());
                 }
@@ -301,7 +307,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 // The "recursive" step where we make a new list and "descend".
                 ixes.push_back(0);
                 if ((tensor.shape().size() > 1) && (ixes.size() < tensor.shape().size())) {
-                    lvs.emplace(std::make_unique<::google::protobuf::ListValue>());
+                    lvs.emplace(std::make_unique<gp::ListValue>());
                 }
             } else if (ixes.size() > 1) {
                 // The step-out case where we have exhausted a
@@ -310,7 +316,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 // up. We must create a special case for the deepest
                 // index since they are managed differently.
                 if (ixes.size() != tensor.shape().size()) {
-                    auto list_value = std::make_unique<::google::protobuf::Value>();
+                    auto list_value = std::make_unique<gp::Value>();
                     list_value->set_allocated_list_value(lvs.top().release());
                     lvs.pop();
                     lvs.top()->mutable_values()->AddAllocated(list_value.release());
@@ -334,13 +340,13 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
         return ::grpc::Status();
     }
 
-    ::google::protobuf::Value* value_;
+    gp::Value* value_;
 };
 
 }  // namespace
 
 ::grpc::Status pb_value_to_tensor(const MLModelService::tensor_info& tensor_info,
-                                  const ::google::protobuf::Value& pb,
+                                  const gp::Value& pb,
                                   tensor_storage* ts,
                                   MLModelService::named_tensor_views* ntvs) {
     if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int8) {
@@ -374,7 +380,7 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
 }
 
 ::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor,
-                                  ::google::protobuf::Value* value) {
+                                  gp::Value* value) {
     return boost::apply_visitor(tensor_to_pb_value_visitor{value}, tensor);
 }
 

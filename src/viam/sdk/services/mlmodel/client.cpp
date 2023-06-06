@@ -49,8 +49,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto& mutable_input_data_fields = *mutable_input_data.mutable_fields();
 
     for (const auto& kv : inputs) {
-        auto ib = mutable_input_data_fields.emplace(kv.first);
-        pb::Value& value = ib.first->second;
+        pb::Value& value = mutable_input_data_fields[kv.first];
         mlmodel_details::tensor_to_pb_value(kv.second, &value);
     }
 

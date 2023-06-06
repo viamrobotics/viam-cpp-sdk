@@ -93,7 +93,7 @@ option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less pe
 
 
 # # - `VIAMCPPSDK_CLANG_TIDY`: This causes the SDK to run clang-tidy
-# with the options specified in the .clang-tidy file. 
+# with the options specified in the .clang-tidy file.
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 

@@ -21,6 +21,10 @@
 namespace viam {
 namespace sdk {
 
+namespace {
+namespace gp = ::google::protobuf;
+}  // namespace
+
 MLModelServiceServer::MLModelServiceServer()
     : MLModelServiceServer(std::make_shared<ResourceManager>()) {}
 
@@ -86,14 +90,15 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
     for (const auto& kv : *outputs) {
         // TODO: Can't use try_emplace with older protobuf, downgrade this.
-        auto emplace_result = pb_output_data_fields.try_emplace(kv.first);
+        auto insert_result = pb_output_data_fields.insert({
+                kv.first, gp::Value{}});
         // This assert should be impossible: `outputs` is a map and we
         // are iterating its unique keys, and our `InferResponse`
         // should have empty output data fields.
         //
         // TODO(RDSK-3285): Use `invariant` or something similar for this instead.
-        assert(emplace_result.second);
-        auto status = mlmodel_details::tensor_to_pb_value(kv.second, &emplace_result.first->second);
+        assert(insert_result.second);
+        auto status = mlmodel_details::tensor_to_pb_value(kv.second, &insert_result.first->second);
         if (!status.ok()) {
             return status;
         }
@@ -149,8 +154,12 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             }
             new_entry.set_data_type(string_for_data_type);
             auto& shape = *new_entry.mutable_shape();
+            // This would be nicer as `Reserve/Assign`, but older
+            // protubuf lacks Assign. The implementation of `Assign`
+            // is just `Clear/Add` though, so do that instead.
+            shape.Clear();
             shape.Reserve(s.shape.size());
-            shape.Assign(s.shape.begin(), s.shape.end());
+            shape.Add(s.shape.begin(), s.shape.end());
             auto& associated_files = *new_entry.mutable_associated_files();
             associated_files.Reserve(s.associated_files.size());
             for (auto&& af : s.associated_files) {
