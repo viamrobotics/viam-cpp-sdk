@@ -26,14 +26,16 @@ guide, before continuing further.
 
 The project depends on [CMake](https://cmake.org/) >= 3.25,
 [Boost](https://www.boost.org/) >= 1.74, [gRPC](https://grpc.io/) >=
-1.30.2, and [protobuf](https://protobuf.dev/overview/) >= 3.12.4, and
-on the transitive dependencies of those projects.
+1.30.2, [protobuf](https://protobuf.dev/overview/) >= 3.12.4,
+[xtensor](https://github.com/xtensor-stack/xtensor) >= 0.24.3,
+[abseil](https://abseil.io/) and on the transitive dependencies of
+those projects.
 
 You will need to install these required dependencies before building
 the Viam C++ SDK, preferably by way of your system package manager:
 
-- Debian: `apt-get install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev`
-- MacOS with Homebrew: `brew install cmake boost grpc protobuf`
+- Debian: `apt-get install cmake build-essential libabsl-dev libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev`
+- MacOS with Homebrew: `brew install abseil cmake boost grpc protobuf xtensor`
 
 There are also several optional or conditionally required dependencies:
 
