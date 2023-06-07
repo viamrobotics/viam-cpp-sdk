@@ -17,6 +17,7 @@
 #include <stack>
 #include <utility>
 
+#include <absl/strings/escaping.h>
 #include <boost/variant/get.hpp>
 
 namespace viam {
@@ -71,7 +72,7 @@ template <typename T>
                    (vs.top()->kind_case() == gp::Value::kStringValue)) {
             const auto& sv = vs.top()->string_value();
             std::string decoded;
-            if (!gp::Base64Unescape(sv, &decoded)) {
+            if (!absl::Base64Unescape(sv, &decoded)) {
                 std::ostringstream message;
                 message << "Failed to Base64 decode stride at depth " << depth << "in tensor '"
                         << tensor_info.name << "'";
@@ -286,15 +287,9 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
                 ixes.back() = tensor.shape().back();
                 // TODO(RSDK-3285): Make this an invariant
-                if (ixes.back() >
-                    std::numeric_limits<decltype(std::declval<gp::StringPiece>().size())>::max()) {
-                    abort();
-                }
-                const gp::StringPiece bytes{
-                    reinterpret_cast<const char*>(bytes_begin),
-                    static_cast<decltype(std::declval<gp::StringPiece>().size())>(ixes.back())};
                 std::string encoded;
-                gp::Base64Escape(bytes, &encoded);
+                absl::Base64Escape({reinterpret_cast<const char*>(bytes_begin), ixes.back()},
+                                   &encoded);
                 if (lvs.empty()) {
                     value_->set_string_value(std::move(encoded));
                 } else {

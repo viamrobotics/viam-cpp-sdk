@@ -186,6 +186,7 @@ target_link_libraries(viamsdk
   PUBLIC Boost::log
   PUBLIC xtensor
   PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
+  PRIVATE absl::strings
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
