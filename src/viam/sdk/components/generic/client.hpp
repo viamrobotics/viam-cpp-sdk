@@ -20,6 +20,7 @@ class GenericClient : public Generic {
    public:
     GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
+    std::vector<GeometryConfig> get_geometries(std::string name) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

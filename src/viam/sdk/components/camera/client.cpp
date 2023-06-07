@@ -70,7 +70,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
     return from_proto(resp);
 };
 
-std::vector<viam::common::v1::Geometry> CameraClient::get_geometries(std::string name) {
+std::vector<GeometryConfig> CameraClient::get_geometries(std::string name) {
     //viam::component::camera::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;

@@ -122,11 +122,12 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     }
 
     std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-
-    std::vector<viam::common::v1::Geometry> geometries = camera->get_geometries(request->name());
-    //*response->mutable_geometries() = viam::common::v1::Geometry::to_proto(geometries); 
-    *response->mutable_geometries() = GeometryConfig::to_proto(geometries); 
-
+    std::vector<GeometryConfig> geometries = camera->get_geometries(request->name());
+    
+    auto response_geometries = *response->mutable_geometries();
+    for (const auto& geometry : geometries) {
+        *response_geometries.Add() = geometry.to_proto();
+    }
     return ::grpc::Status();
 }
 

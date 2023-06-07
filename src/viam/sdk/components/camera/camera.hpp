@@ -135,7 +135,7 @@ class Camera : public Component {
     /// @brief Get all geometries associated with the component.
     /// @param  name the component name.
     /// @return The requested `geometries`.
-    virtual std::vector<viam::common::v1::Geometry> get_geometries(std::string name) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(std::string name) = 0;
 
     /// @brief Get the camera's properties.
     /// @return The camera properties.

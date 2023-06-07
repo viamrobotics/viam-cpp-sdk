@@ -38,7 +38,7 @@ viam::common::v1::Pose GeometryConfig::pose_proto() const {
     return pose;
 }
 
-GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
+GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry &proto) {
     GeometryConfig cfg;
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
@@ -62,6 +62,13 @@ GeometryConfig GeometryConfig::from_proto(viam::common::v1::Geometry proto) {
             throw "Geometry type is not supported";
         }
     }
+}
+std::vector<GeometryConfig> GeometryConfig::from_proto(const viam::common::v1::GetGeometriesResponse &proto){
+    std::vector<GeometryConfig> response;
+    for(const viam::common::v1::Geometry &geometry : proto.geometries()){
+        response.push_back(from_proto(geometry));
+    }
+    return response;
 }
 
 viam::common::v1::Geometry GeometryConfig::to_proto() const {
@@ -95,14 +102,6 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
         }
     }
 }
-
-google::protobuf::RepeatedField<viam::common::v1::Geometry> GeometryConfig::to_proto(const std::vector<viam::common::v1::Geometry> & geometries) {
-    google::protobuf::RepeatedField<const viam::common::v1::Geometry> geometries_proto;
-    for (const auto& geometry : geometries) {
-        *geometries_proto.Add() = GeometryConfig::to_proto(geometry);
-    }
-    return geometries_proto;
-};
 
 }  // namespace sdk
 }  // namespace viam

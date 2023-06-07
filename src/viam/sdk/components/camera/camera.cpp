@@ -60,11 +60,6 @@ google::protobuf::RepeatedField<double> vector_to_repeated_field(std::vector<dou
     return rf;
 }
 
-// google::protobuf::RepeatedField<Geometry> vector_to_repeated_field(std::vector<Geometry> const& v) {
-//     google::protobuf::RepeatedField<Geometry> rf = {v.begin(), v.end()};
-//     return rf;
-// }
-
 Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
     Camera::raw_image raw_image;
     std::string img_string = proto.image();

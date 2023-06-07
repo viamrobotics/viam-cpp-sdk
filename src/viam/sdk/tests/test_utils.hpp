@@ -10,6 +10,7 @@ namespace sdktests {
 using namespace viam::sdk;
 
 AttributeMap fake_map();
+std::vector<GeometryConfig> fake_geometries();
 
 }  // namespace sdktests
 }  // namespace viam

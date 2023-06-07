@@ -19,7 +19,7 @@ class MockCamera : public Camera {
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
-    std::vector<viam::common::v1::Geometry> get_geometries(std::string name) override;
+    std::vector<GeometryConfig> get_geometries(std::string name) override;
     properties get_properties() override;
     static std::shared_ptr<MockCamera> get_mock_camera();
     MockCamera(std::string name) : Camera(std::move(name)){};
@@ -31,7 +31,7 @@ class MockCamera : public Camera {
     Camera::raw_image image_;
     Camera::point_cloud pc_;
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
-    std::vector<viam::common::v1::Geometry> geometries_;
+    std::vector<GeometryConfig> geometries_;
     
 };
 
@@ -40,7 +40,6 @@ Camera::point_cloud fake_point_cloud();
 Camera::intrinsic_parameters fake_intrinsic_parameters();
 Camera::distortion_parameters fake_distortion_parameters();
 Camera::properties fake_properties();
-//Camera::name fake_name();
 
 class MockCameraStub : public viam::component::camera::v1::CameraService::StubInterface {
    public:
@@ -115,13 +114,6 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
     };
 
     ::grpc::ClientAsyncResponseReaderInterface<
-        ::viam::component::camera::v1::GetPointCloudResponse>*
-    PrepareAsyncGetPointCloudRaw(::grpc::ClientContext* context,
-                                 const ::viam::component::camera::v1::GetPointCloudRequest& request,
-                                 ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("unimplemented");
-    };
-    ::grpc::ClientAsyncResponseReaderInterface<
         ::viam::common::v1::GetGeometriesResponse>*
     AsyncGetGeometriesRaw(::grpc::ClientContext* context,
                           const ::viam::common::v1::GetGeometriesRequest& request,
@@ -129,7 +121,6 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
         throw std::runtime_error("unimplemented");
     };
     
-
     ::grpc::ClientAsyncResponseReaderInterface<
         ::viam::common::v1::GetGeometriesResponse>*
     PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context,
@@ -141,6 +132,13 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
     ::grpc::ClientAsyncResponseReaderInterface<
         ::viam::component::camera::v1::GetPropertiesResponse>*
     PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context,
+                                 const ::viam::component::camera::v1::GetPropertiesRequest& request,
+                                 ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("unimplemented");
+    };
+    ::grpc::ClientAsyncResponseReaderInterface<
+        ::viam::component::camera::v1::GetPropertiesResponse>*
+    AsyncGetPropertiesRaw(::grpc::ClientContext* context,
                                  const ::viam::component::camera::v1::GetPropertiesRequest& request,
                                  ::grpc::CompletionQueue* cq) override {
         throw std::runtime_error("unimplemented");
