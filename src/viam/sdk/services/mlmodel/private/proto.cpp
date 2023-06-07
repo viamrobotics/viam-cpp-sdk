@@ -286,7 +286,6 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                 // Base64 encode the entire last dimension stride into a string.
                 const auto* const bytes_begin = &tensor.element(ixes.begin(), ixes.end());
                 ixes.back() = tensor.shape().back();
-                // TODO(RSDK-3285): Make this an invariant
                 std::string encoded;
                 absl::Base64Escape({reinterpret_cast<const char*>(bytes_begin), ixes.back()},
                                    &encoded);
