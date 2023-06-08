@@ -105,6 +105,10 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 
     return ::grpc::Status();
 } catch (...) {
+    // TODO(RSDK-3556): This is pretty bad. Investigate ways to
+    // simplify this, or decide against having clang-tidy enforce
+    // noexcept, or decide that letting gRPC deal with thrown
+    // exceptions is OK.
     try {
         try {
             throw;
