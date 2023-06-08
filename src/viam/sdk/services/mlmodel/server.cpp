@@ -104,11 +104,19 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     return ::grpc::Status();
-} catch (const std::exception& ex) {
-    return ::grpc::Status(grpc::INTERNAL,
-                          std::string("[Infer]: Failed with exception: ") + ex.what());
 } catch (...) {
-    return ::grpc::Status(grpc::INTERNAL, "[Infer]: Failed with an unknown exception");
+    try {
+        try {
+            throw;
+        } catch (const std::exception& ex) {
+            return ::grpc::Status(grpc::INTERNAL,
+                                  std::string("[Infer]: Failed with exception: ") + ex.what());
+        } catch (...) {
+            return ::grpc::Status(grpc::INTERNAL, "[Infer]: Failed with an unknown exception");
+        }
+    } catch (...) {
+        std::abort();
+    }
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
@@ -198,11 +206,19 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     return pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
-} catch (const std::exception& ex) {
-    return ::grpc::Status(grpc::INTERNAL,
-                          std::string("[Metadata]: Failed with exception: ") + ex.what());
 } catch (...) {
-    return ::grpc::Status(grpc::INTERNAL, "[Metadata]: Failed with an unknown exception");
+    try {
+        try {
+            throw;
+        } catch (const std::exception& ex) {
+            return ::grpc::Status(grpc::INTERNAL,
+                                  std::string("[Metadata]: Failed with exception: ") + ex.what());
+        } catch (...) {
+            return ::grpc::Status(grpc::INTERNAL, "[Metadata]: Failed with an unknown exception");
+        }
+    } catch (...) {
+        std::abort();
+    }
 }
 
 }  // namespace sdk

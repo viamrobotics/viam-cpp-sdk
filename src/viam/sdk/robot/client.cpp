@@ -58,7 +58,9 @@ const std::string kStreamRemoved("Stream removed");
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
-        this->close();
+        try {
+            this->close();
+        } catch(...) {}
     }
 }
 
@@ -160,11 +162,8 @@ void RobotClient::refresh() {
     }
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
-    const RepeatedPtrField<ResourceName> resources = resp.resources();
-
     std::vector<ResourceName> current_resources;
-
-    for (auto& name : resources) {
+    for (const auto& name : resp.resources()) {
         current_resources.push_back(name);
         if (name.subtype() == "remote") {
             continue;
@@ -371,7 +370,6 @@ void RobotClient::stop_all(
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
-    const OrientationConfig o;
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (auto& xtra : extra) {

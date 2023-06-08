@@ -148,7 +148,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     }
     try {
         const std::vector<std::string> implicit_deps = reg->validate(cfg);
-        for (auto& dep : implicit_deps) {
+        for (const auto& dep : implicit_deps) {
             response->add_dependencies(dep);
         }
     } catch (const std::exception& err) {

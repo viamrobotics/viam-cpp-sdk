@@ -346,32 +346,40 @@ class tensor_to_pb_value_visitor : public boost::static_visitor<::grpc::Status> 
                                   MLModelService::named_tensor_views* ntvs) {
     if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int8) {
         return pb_value_to_tensor_t<std::int8_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint8) {
-        return pb_value_to_tensor_t<std::uint8_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int16) {
-        return pb_value_to_tensor_t<std::int16_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint16) {
-        return pb_value_to_tensor_t<std::uint16_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int32) {
-        return pb_value_to_tensor_t<std::int32_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint32) {
-        return pb_value_to_tensor_t<std::uint32_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int64) {
-        return pb_value_to_tensor_t<std::int64_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint64) {
-        return pb_value_to_tensor_t<std::uint64_t>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_float32) {
-        return pb_value_to_tensor_t<float>(tensor_info, pb, ts, ntvs);
-    } else if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_float64) {
-        return pb_value_to_tensor_t<double>(tensor_info, pb, ts, ntvs);
-    } else {
-        std::ostringstream message;
-        message << "Called [Infer] with unsupported tensor `data_type` of `"
-                << static_cast<std::underlying_type<MLModelService::tensor_info::data_types>::type>(
-                       tensor_info.data_type)
-                << "`";
-        return {::grpc::StatusCode::INVALID_ARGUMENT, message.str()};
     }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint8) {
+        return pb_value_to_tensor_t<std::uint8_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int16) {
+        return pb_value_to_tensor_t<std::int16_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint16) {
+        return pb_value_to_tensor_t<std::uint16_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int32) {
+        return pb_value_to_tensor_t<std::int32_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint32) {
+        return pb_value_to_tensor_t<std::uint32_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_int64) {
+        return pb_value_to_tensor_t<std::int64_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_uint64) {
+        return pb_value_to_tensor_t<std::uint64_t>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_float32) {
+        return pb_value_to_tensor_t<float>(tensor_info, pb, ts, ntvs);
+    }
+    if (tensor_info.data_type == MLModelService::tensor_info::data_types::k_float64) {
+        return pb_value_to_tensor_t<double>(tensor_info, pb, ts, ntvs);
+    }
+    std::ostringstream message;
+    message << "Called [Infer] with unsupported tensor `data_type` of `"
+            << static_cast<std::underlying_type<MLModelService::tensor_info::data_types>::type>(
+                   tensor_info.data_type)
+            << "`";
+    return {::grpc::StatusCode::INVALID_ARGUMENT, message.str()};
 }
 
 ::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor, gp::Value* value) {
