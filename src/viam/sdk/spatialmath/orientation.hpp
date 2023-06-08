@@ -19,10 +19,14 @@ typedef boost::
 class OrientationConfig {
    public:
     viam::app::v1::Orientation to_proto() const;
-
     static OrientationConfig from_proto(viam::app::v1::Orientation proto);
-    OrientationConfig(OrientationType type_, std::vector<std::uint8_t> value, orientation orientation): type_(std::move(type_)), value_(std::move(value)), orientation_(std::move(orientation)){}
+    OrientationConfig(OrientationType type_,
+                      std::vector<std::uint8_t> value,
+                      orientation orientation)
+        : type_(std::move(type_)), value_(std::move(value)), orientation_(std::move(orientation)) {}
     OrientationConfig(){};
+    friend bool operator==(const OrientationConfig& lhs, const OrientationConfig& rhs);
+
    private:
     OrientationType type_;
     std::vector<std::uint8_t> value_;

@@ -5,13 +5,13 @@
 
 #include <grpcpp/channel.h>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {

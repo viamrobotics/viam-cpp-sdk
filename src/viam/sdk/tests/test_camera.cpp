@@ -62,6 +62,23 @@ BOOST_AUTO_TEST_CASE(test_do) {
     BOOST_CHECK(result_pt == expected_pt);
 }
 
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> result_geometries = camera->get_geometries("test");
+
+    // bool flag = false;
+    // for (int i = 0; i < result_geometries.size(); ++i){
+    //     if (result_geometries[i] == expected_geometries[i] &&
+    //     result_geometries.size() == expected_geometries.size()){
+    //         flag = true;
+    //     }
+    // }
+    // BOOST_CHECK(flag);
+    // BOOST_CHECK(result_geometries.orientation_config_ ==
+    // expected_geometries.orientation_config_);
+    BOOST_CHECK(result_geometries == expected_geometries);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(test_camera_service)
@@ -146,6 +163,32 @@ BOOST_AUTO_TEST_CASE(test_get_properties_service) {
     BOOST_CHECK(expected.distortion_parameters == Camera::from_proto(resp.distortion_parameters()));
 }
 
+BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    *req.mutable_name() = "mock_camera";
+    grpc::Status status = server->GetGeometries(&ctx, &req, &resp);
+
+    BOOST_CHECK(status.error_code() == 0);
+
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> response_geometries = GeometryConfig::from_proto(resp);
+
+    // bool flag = false;
+    // for (int i = 0; i < response_geometries.size(); ++i){
+    //     if (response_geometries[i] == expected_geometries[i] &&
+    //     response_geometries.size() == expected_geometries.size()){
+    //         flag = true;
+    //     }
+    // }
+    // BOOST_CHECK(flag);
+    // BOOST_CHECK(response_geometries.orientation_config_ ==
+    // expected_geometries.orientation_config_);
+    BOOST_CHECK(response_geometries == expected_geometries);
+}
+
 BOOST_AUTO_TEST_CASE(test_do_service) {
     auto server = get_camera_server();
     grpc::ServerContext ctx;
@@ -188,6 +231,24 @@ BOOST_AUTO_TEST_CASE(test_get_properties_client) {
     Camera::properties expected = fake_properties();
 
     BOOST_CHECK(expected == props);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
+    std::vector<GeometryConfig> result_geometries = client.get_geometries("test");
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+
+    // bool flag = false;
+    // for (int i = 0; i < result_geometries.size(); ++i){
+    //     if (result_geometries[i] == expected_geometries[i] &&
+    //     result_geometries.size() == expected_geometries.size()){
+    //         flag = true;
+    //     }
+    // }
+    // BOOST_CHECK(flag);
+
+    // BOOST_CHECK(result_geometries.orientation_config_ ==
+    // expected_geometries.orientation_config_);
+    BOOST_CHECK(result_geometries == expected_geometries);
 }
 
 BOOST_AUTO_TEST_CASE(test_do_client) {

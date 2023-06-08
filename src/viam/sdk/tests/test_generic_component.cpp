@@ -71,6 +71,40 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     BOOST_CHECK(expected_pt == result_pt);
 }
 
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> result_geometries = generic->get_geometries("test");
+
+    BOOST_CHECK(expected_geometries == result_geometries);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
+    auto server = std::make_shared<GenericServer>();
+    server->resource_manager()->add(std::string("mock_generic"), MockGeneric::get_mock_generic());
+
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    grpc::ServerContext ctx;
+
+    *req.mutable_name() = "mock_generic";
+    grpc::Status status = server->GetGeometries(&ctx, &req, &resp);
+
+    BOOST_CHECK(status.error_code() == 0);
+
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> response_geometries = GeometryConfig::from_proto(resp);
+
+    BOOST_CHECK(expected_geometries == response_geometries);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
+    MockGenericClient client("mock_generic");
+    std::vector<GeometryConfig> result_geometries = client.get_geometries("test");
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+
+    BOOST_CHECK(result_geometries == expected_geometries);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

@@ -71,10 +71,8 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
 };
 
 std::vector<GeometryConfig> CameraClient::get_geometries(std::string name) {
-    //viam::component::camera::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
-    //viam::component::camera::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
 
     *req.mutable_name() = this->name();

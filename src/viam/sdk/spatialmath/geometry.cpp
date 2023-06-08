@@ -5,6 +5,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include "geometry.hpp"
 #include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
@@ -38,7 +39,7 @@ viam::common::v1::Pose GeometryConfig::pose_proto() const {
     return pose;
 }
 
-GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry &proto) {
+GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
     GeometryConfig cfg;
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
@@ -63,9 +64,10 @@ GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry &prot
         }
     }
 }
-std::vector<GeometryConfig> GeometryConfig::from_proto(const viam::common::v1::GetGeometriesResponse &proto){
+std::vector<GeometryConfig> GeometryConfig::from_proto(
+    const viam::common::v1::GetGeometriesResponse& proto) {
     std::vector<GeometryConfig> response;
-    for(const viam::common::v1::Geometry &geometry : proto.geometries()){
+    for (const auto& geometry : proto.geometries()) {
         response.push_back(from_proto(geometry));
     }
     return response;
@@ -101,6 +103,68 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
             return geometry_;
         }
     }
+}
+void GeometryConfig::set_coordinates(GeometryConfig::coordinates coord) {
+    x_ = coord.x;
+    y_ = coord.y;
+    z_ = coord.z;
+}
+
+void GeometryConfig::set_pose(GeometryConfig::pose pos) {
+    o_x_ = pos.x;
+    o_y_ = pos.y;
+    o_z_ = pos.z;
+}
+void GeometryConfig::set_radius(double r) {
+    r_ = r;
+}
+void GeometryConfig::set_geometry_type(GeometryType type) {
+    geometry_type_ = type;
+}
+void GeometryConfig::set_orientation_config(OrientationConfig config) {
+    orientation_config_ = config;
+}
+void GeometryConfig::set_label(std::string label) {
+    label_ = label;
+}
+GeometryConfig::coordinates GeometryConfig::get_coordinates() const {
+    return {x_, y_, z_};
+}
+
+GeometryConfig::pose GeometryConfig::get_pose() const {
+    return {o_x_, o_y_, o_z_};
+}
+
+double GeometryConfig::get_radius() const {
+    return r_;
+}
+
+GeometryType GeometryConfig::get_geometry_type() const {
+    return geometry_type_;
+}
+
+OrientationConfig GeometryConfig::get_orientation_config() const {
+    return orientation_config_;
+}
+
+std::string GeometryConfig::get_label() const {
+    return label_;
+}
+
+// bool GeometryConfig::operator==(const GeometryConfig& rhs) {
+//     return this->get_coordinates() == rhs.get_coordinates() &&
+//     this->get_pose() == rhs.get_pose() &&
+//     this->get_radius() == rhs.get_radius() &&
+//     this->get_geometry_type() == rhs.get_geometry_type() &&
+//     this->get_label() == rhs.get_label();
+// }
+
+bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
+    return lhs.x_ == rhs.x_ && lhs.y_ == rhs.y_ && lhs.z_ == rhs.z_ && lhs.x_ == rhs.x_ &&
+           lhs.o_x_ == rhs.o_x_ && lhs.o_y_ == rhs.o_y_ && lhs.o_z_ == rhs.o_z_ &&
+           lhs.r_ == rhs.r_ && lhs.label_ == rhs.label_ &&
+           lhs.geometry_type_ == rhs.geometry_type_ &&
+           lhs.orientation_config_ == rhs.orientation_config_;
 }
 
 }  // namespace sdk

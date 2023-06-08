@@ -2,6 +2,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
@@ -10,7 +11,6 @@
 #include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
-#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {

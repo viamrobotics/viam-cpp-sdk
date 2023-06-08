@@ -107,10 +107,9 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     return ::grpc::Status();
 }
 
-::grpc::Status CameraServer::GetGeometries(
-    ::grpc::ServerContext* context,
-    const ::viam::common::v1::GetGeometriesRequest* request,
-    ::viam::common::v1::GetGeometriesResponse* response) {
+::grpc::Status CameraServer::GetGeometries(::grpc::ServerContext* context,
+                                           const ::viam::common::v1::GetGeometriesRequest* request,
+                                           ::viam::common::v1::GetGeometriesResponse* response) {
     if (!request) {
         return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
                               "Called [GetGeometries] without a request");
@@ -123,7 +122,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
     std::vector<GeometryConfig> geometries = camera->get_geometries(request->name());
-    
+
     auto response_geometries = *response->mutable_geometries();
     for (const auto& geometry : geometries) {
         *response_geometries.Add() = geometry.to_proto();

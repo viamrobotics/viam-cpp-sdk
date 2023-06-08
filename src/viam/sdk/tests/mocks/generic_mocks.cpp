@@ -36,9 +36,10 @@ MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) 
                                            MockGeneric::get_mock_generic());
 }
 
-::grpc::Status MockGenericStub::GetGeometries(::grpc::ClientContext* context,
-                                          const ::viam::common::v1::GetGeometriesRequest& request,
-                                          ::viam::common::v1::GetGeometriesResponse* response) {
+::grpc::Status MockGenericStub::GetGeometries(
+    ::grpc::ClientContext* context,
+    const ::viam::common::v1::GetGeometriesRequest& request,
+    ::viam::common::v1::GetGeometriesResponse* response) {
     grpc::ServerContext ctx;
     return server_->GetGeometries(&ctx, &request, response);
 }

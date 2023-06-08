@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
@@ -14,7 +15,6 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
-#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -132,9 +132,9 @@ class Camera : public Component {
     /// @return The requested `point_cloud`.
     virtual point_cloud get_point_cloud(std::string mime_type) = 0;
 
-    /// @brief Get all geometries associated with the component.
+    /// @brief A `GeometryConfig` specifies the format of geometries associated with the component.
     /// @param  name the component name.
-    /// @return The requested `geometries`.
+    /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries(std::string name) = 0;
 
     /// @brief Get the camera's properties.
