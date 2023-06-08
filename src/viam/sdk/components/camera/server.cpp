@@ -73,7 +73,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
-    Camera::raw_image image = camera->get_image(request->mime_type());
+    const Camera::raw_image image = camera->get_image(request->mime_type());
 
     response->set_data(bytes_to_string(image.bytes));
     response->set_content_type(image.mime_type);
