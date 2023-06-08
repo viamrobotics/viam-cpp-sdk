@@ -10,8 +10,17 @@ if (@gRPC_FOUND@)
   find_dependency(gRPC @gRPC_VERSION_MAJOR@.@gRPC_VERSION_MINOR@ CONFIG)
 endif()
 
-find_dependency(xtl @xtl_VERSION_MAJOR@.@xtl_VERSION_MINOR@)
-find_dependency(xtensor @xtensor_VERSION_MAJOR@.@xtensor_VERSION_MINOR@)
+if (@xtl_VERSION_MAJOR@)
+  find_dependency(xtl @xtl_VERSION_MAJOR@.@xtl_VERSION_MINOR@)
+else()
+  find_dependency(xtl)
+endif()
+
+if (@xtensor_VERSION_MAJOR@)
+  find_dependency(xtensor @xtensor_VERSION_MAJOR@.@xtensor_VERSION_MINOR@)
+else()
+  find_dependency(xtensor)
+endif()
 
 # NOTE(acm): It is up to us to decide what components to get if none
 # are specified. Since the common use case should be getting the SDK,
