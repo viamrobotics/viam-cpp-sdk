@@ -60,7 +60,8 @@ RobotClient::~RobotClient() {
     if (should_close_channel_) {
         try {
             this->close();
-        } catch(...) {}
+        } catch (...) {
+        }
     }
 }
 
