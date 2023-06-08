@@ -92,7 +92,7 @@ proto::Orientation OrientationConfig::to_proto() const {
     switch (type_) {
         case AxisAngles: {
             proto::Orientation_AxisAngles aa;
-            axis_angles a = boost::get<axis_angles>(orientation_);
+            const axis_angles a = boost::get<axis_angles>(orientation_);
             aa.set_x(a.x);
             aa.set_y(a.y);
             aa.set_z(a.z);
@@ -102,7 +102,7 @@ proto::Orientation OrientationConfig::to_proto() const {
         };
         case OrientationVector: {
             proto::Orientation_OrientationVectorRadians ovec;
-            orientation_vector ov = boost::get<orientation_vector>(orientation_);
+            const orientation_vector ov = boost::get<orientation_vector>(orientation_);
             ovec.set_x(ov.x);
             ovec.set_y(ov.y);
             ovec.set_z(ov.z);
@@ -112,7 +112,8 @@ proto::Orientation OrientationConfig::to_proto() const {
         };
         case OrientationVectorDegrees: {
             proto::Orientation_OrientationVectorDegrees ovec;
-            orientation_vector_degrees ovd = boost::get<orientation_vector_degrees>(orientation_);
+            const orientation_vector_degrees ovd =
+                boost::get<orientation_vector_degrees>(orientation_);
             ovec.set_x(ovd.x);
             ovec.set_y(ovd.y);
             ovec.set_z(ovd.z);
@@ -122,7 +123,7 @@ proto::Orientation OrientationConfig::to_proto() const {
         };
         case EulerAngles: {
             proto::Orientation_EulerAngles euler;
-            euler_angles ea = boost::get<euler_angles>(orientation_);
+            const euler_angles ea = boost::get<euler_angles>(orientation_);
             euler.set_pitch(ea.pitch);
             euler.set_roll(ea.roll);
             euler.set_yaw(ea.yaw);
@@ -131,7 +132,7 @@ proto::Orientation OrientationConfig::to_proto() const {
         };
         case Quaternion: {
             proto::Orientation_Quaternion quat;
-            quaternion q = boost::get<quaternion>(orientation_);
+            const quaternion q = boost::get<quaternion>(orientation_);
             quat.set_w(q.w);
             quat.set_x(q.x);
             quat.set_y(q.y);

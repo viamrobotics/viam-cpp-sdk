@@ -57,7 +57,7 @@ bool DialOptions::allows_insecure_downgrade() const {
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();
-    DialOptions opts = options.get_value_or(DialOptions());
+    const DialOptions opts = options.get_value_or(DialOptions());
     const char* payload = nullptr;
 
     if (opts.credentials()) {
@@ -73,9 +73,9 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
 
     std::string address("unix://");
     address += socket_path;
-    std::shared_ptr<grpc::Channel> channel =
+    const std::shared_ptr<grpc::Channel> channel =
         grpc::CreateChannel(address, grpc::InsecureChannelCredentials());
-    std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
+    const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
 };

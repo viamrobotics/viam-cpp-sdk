@@ -19,12 +19,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::SetPower] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     motor->set_power(request->power_pct());
 
@@ -39,12 +39,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::GoFor] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     motor->go_for(request->rpm(), request->revolutions());
 
@@ -59,12 +59,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::GoTo] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     motor->go_to(request->rpm(), request->position_revolutions());
 
@@ -80,12 +80,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::ResetZeroPosition] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     motor->reset_zero_position(request->offset());
 
@@ -101,14 +101,14 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::GetPosition] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
-    Motor::position result = motor->get_position();
+    const Motor::position result = motor->get_position();
     response->set_position(result);
 
     return ::grpc::Status();
@@ -123,14 +123,14 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::GetProperties] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
-    Motor::properties result = motor->get_properties();
+    const Motor::properties result = motor->get_properties();
     response->set_position_reporting(result.position_reporting);
 
     return ::grpc::Status();
@@ -144,12 +144,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::Stop] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
     motor->stop(AttributeMap());
 
@@ -164,14 +164,14 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::IsPowered] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
-    Motor::power_status result = motor->get_power_status();
+    const Motor::power_status result = motor->get_power_status();
     response->set_is_on(result.is_on);
     response->set_power_pct(result.power_pct);
 
@@ -186,14 +186,14 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::IsMoving] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
 
-    bool result = motor->is_moving();
+    const bool result = motor->is_moving();
     response->set_is_moving(result);
 
     return ::grpc::Status();
@@ -207,13 +207,13 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Motor::DoCommand] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
-    AttributeMap result = motor->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const AttributeMap result = motor->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 

@@ -47,7 +47,7 @@ Dependencies get_dependencies(ModuleService_* m,
     Dependencies deps;
     for (auto& dep : proto) {
         auto name = Name::from_string(dep);
-        std::shared_ptr<Resource> resource = m->get_parent_resource(name);
+        const std::shared_ptr<Resource> resource = m->get_parent_resource(name);
         deps.emplace(name, resource);
     }
     return deps;
@@ -71,8 +71,8 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
-    Dependencies deps = get_dependencies(this, request->dependencies());
-    std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
+    const Dependencies deps = get_dependencies(this, request->dependencies());
+    const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
         res = reg->construct_resource(deps, cfg);
     };
@@ -81,7 +81,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
         return grpc::Status(grpc::UNKNOWN, "module cannot service api " + cfg.api().to_string());
     }
 
-    std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
+    const std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
     manager->add(cfg.resource_name(), res);
 
     return grpc::Status();
@@ -93,18 +93,18 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     ::viam::module::v1::ReconfigureResourceResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
-    std::shared_ptr<Module> module = this->module_;
+    const std::shared_ptr<Module> module = this->module_;
 
-    Dependencies deps = get_dependencies(this, request->dependencies());
+    const Dependencies deps = get_dependencies(this, request->dependencies());
 
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string());
     }
-    std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
+    const std::shared_ptr<ResourceManager> manager = services.at(cfg.api());
 
     // see if our resource is reconfigurable. if it is, reconfigure
-    std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
+    const std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
     if (!res) {
         return grpc::Status(grpc::UNKNOWN,
                             "unable to reconfigure resource " + cfg.resource_name().name() +
@@ -124,9 +124,9 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
 
-    std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.name());
+    const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.name());
     if (reg) {
-        std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
+        const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
         manager->replace_one(cfg.resource_name(), res);
     }
 
@@ -140,14 +140,14 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
 
-    std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
+    const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (!reg) {
         return grpc::Status(grpc::UNKNOWN,
                             "unable to validate resource " + cfg.resource_name().name() +
                                 " as it hasn't been registered.");
     }
     try {
-        std::vector<std::string> implicit_deps = reg->validate(cfg);
+        const std::vector<std::string> implicit_deps = reg->validate(cfg);
         for (auto& dep : implicit_deps) {
             response->add_dependencies(dep);
         }
@@ -168,8 +168,8 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     if (services.find(*api) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no grpc service for " + api->to_string());
     }
-    std::shared_ptr<ResourceManager> manager = services.at(*name.to_api());
-    std::shared_ptr<Resource> res = manager->resource(name.name());
+    const std::shared_ptr<ResourceManager> manager = services.at(*name.to_api());
+    const std::shared_ptr<Resource> res = manager->resource(name.name());
     if (!res) {
         return grpc::Status(
             grpc::UNKNOWN,
@@ -203,14 +203,14 @@ ModuleService_::ModuleService_(std::string addr) {
 
 void ModuleService_::start(std::shared_ptr<Server> server) {
     const std::lock_guard<std::mutex> lock(lock_);
-    mode_t old_mask = umask(0077);
-    int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
+    const mode_t old_mask = umask(0077);
+    const int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     listen(sockfd, 10);
     umask(old_mask);
 
     // TODO(RSDK-1742) see if we can/want to do this in an init instead
     server->register_service(this);
-    std::string address = "unix://" + module_->addr();
+    const std::string address = "unix://" + module_->addr();
     server->add_listening_port(address);
 
     module_->set_ready();
@@ -241,8 +241,8 @@ void ModuleService_::add_api_from_registry_inlock_(std::shared_ptr<Server> serve
     }
     auto new_manager = std::make_shared<ResourceManager>();
 
-    std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
-    std::shared_ptr<ResourceServer> resource_server = rs->create_resource_server(new_manager);
+    const std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
+    const std::shared_ptr<ResourceServer> resource_server = rs->create_resource_server(new_manager);
     resource_server->register_server(server);
     module_->mutable_services().emplace(api, new_manager);
     module_->mutable_servers().push_back(resource_server);
@@ -257,14 +257,14 @@ void ModuleService_::add_model_from_registry_inlock_(std::shared_ptr<Server> ser
         add_api_from_registry_inlock_(server, api, lock);
     }
 
-    std::shared_ptr<ResourceRegistration> creator = Registry::lookup_resource(api);
+    const std::shared_ptr<ResourceRegistration> creator = Registry::lookup_resource(api);
     std::string name;
     const google::protobuf::ServiceDescriptor* sd = nullptr;
     if (creator && creator->service_descriptor()) {
         name = creator->service_descriptor()->full_name();
         sd = creator->service_descriptor();
     }
-    RPCSubtype rpc_subtype(api, name, *sd);
+    const RPCSubtype rpc_subtype(api, name, *sd);
     module_->mutable_handles().add_model(model, rpc_subtype);
 };
 

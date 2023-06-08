@@ -19,13 +19,13 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                               "Called [DoCommand] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-    AttributeMap result = camera->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+    const AttributeMap result = camera->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 
@@ -40,16 +40,16 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                               "Called [GetImage] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
-    Camera::raw_image image = camera->get_image(request->mime_type());
+    const Camera::raw_image image = camera->get_image(request->mime_type());
 
-    std::string img_string = bytes_to_string(image.bytes);
+    const std::string img_string = bytes_to_string(image.bytes);
 
     *response->mutable_mime_type() = image.mime_type;
     *response->mutable_image() = img_string;
@@ -66,12 +66,12 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                               "Called [RenderFrame] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
     Camera::raw_image image = camera->get_image(request->mime_type());
 
@@ -90,15 +90,15 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                               "Called [GetPointCloud] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
 
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
-    Camera::point_cloud point_cloud = camera->get_point_cloud(request->mime_type());
+    const Camera::point_cloud point_cloud = camera->get_point_cloud(request->mime_type());
 
     *response->mutable_mime_type() = "pointcloud/pcd";
     *response->mutable_point_cloud() = bytes_to_string(point_cloud.pc);
@@ -115,14 +115,14 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                               "Called [GetProperties] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
-    Camera::properties properties = camera->get_properties();
+    const Camera::properties properties = camera->get_properties();
 
     *response->mutable_distortion_parameters() = Camera::to_proto(properties.distortion_parameters);
     *response->mutable_intrinsic_parameters() = Camera::to_proto(properties.intrinsic_parameters);

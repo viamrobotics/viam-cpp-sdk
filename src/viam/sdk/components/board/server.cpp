@@ -20,14 +20,14 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::Status] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    viam::common::v1::BoardStatus status = Board::to_proto(board->get_status());
+    const viam::common::v1::BoardStatus status = Board::to_proto(board->get_status());
 
     *response->mutable_status() = status;
 
@@ -42,12 +42,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetGPIO] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     board->set_gpio(request->pin(), request->high());
 
@@ -62,12 +62,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::GetGPIO] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     response->set_high(board->get_gpio(request->pin()));
 
@@ -82,12 +82,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::PWM] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     response->set_duty_cycle_pct(board->get_pwm_duty_cycle(request->pin()));
 
@@ -102,12 +102,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetPWM] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     board->set_pwm_duty_cycle(request->pin(), request->duty_cycle_pct());
 
@@ -123,14 +123,14 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::PWMFrequency] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    uint64_t result = board->get_pwm_frequency(request->pin());
+    const uint64_t result = board->get_pwm_frequency(request->pin());
     response->set_frequency_hz(result);
 
     return ::grpc::Status();
@@ -145,12 +145,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetPWMFrequency] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     board->set_pwm_frequency(request->pin(), request->frequency_hz());
 
@@ -165,13 +165,13 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::DoCommand] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
-    AttributeMap result = board->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const AttributeMap result = board->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 
@@ -187,14 +187,14 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::ReadAnalogReader] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::analog_value result = board->read_analog(request->analog_reader_name());
+    const Board::analog_value result = board->read_analog(request->analog_reader_name());
     response->set_value(result);
 
     return ::grpc::Status();
@@ -209,14 +209,15 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::GetDigitalInterruptValue] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    Board::digital_value result = board->read_digital_interrupt(request->digital_interrupt_name());
+    const Board::digital_value result =
+        board->read_digital_interrupt(request->digital_interrupt_name());
     response->set_value(result);
 
     return ::grpc::Status();
@@ -231,12 +232,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
                               "Called [Board::SetPowerMode] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
     if (request->has_duration()) {
         auto duration = ::viam::sdk::from_proto(request->duration());

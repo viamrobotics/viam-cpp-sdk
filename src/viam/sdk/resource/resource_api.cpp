@@ -96,7 +96,7 @@ const std::string& Name::remote_name() const {
 }
 
 std::string Name::to_string() const {
-    std::string subtype_name = API::to_string();
+    const std::string subtype_name = API::to_string();
     if (remote_name_.empty()) {
         return subtype_name + "/" + name_;
     }
@@ -126,7 +126,7 @@ Name Name::from_string(std::string name) {
     std::vector<std::string> slash_splits;
     boost::split(slash_splits, name, boost::is_any_of("/"));
 
-    API api = API::from_string(slash_splits.at(0));
+    const API api = API::from_string(slash_splits.at(0));
 
     std::vector<std::string> colon_splits;
     boost::split(colon_splits, slash_splits.at(1), boost::is_any_of(":"));

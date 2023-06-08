@@ -23,8 +23,8 @@ Struct map_to_struct(AttributeMap dict) {
     Struct s;
     for (const auto& key_and_value : *dict) {
         const std::string key = key_and_value.first;
-        Value value = key_and_value.second->proto_value();
-        google::protobuf::MapPair<std::string, Value> val(key, value);
+        const Value value = key_and_value.second->proto_value();
+        const google::protobuf::MapPair<std::string, Value> val(key, value);
         s.mutable_fields()->insert(val);
     }
 
@@ -112,13 +112,13 @@ Value ProtoType::proto_value() {
         }
         case 5: {
             const AttributeMap map = boost::get<AttributeMap>(proto_type_);
-            Struct s = map_to_struct(map);
+            const Struct s = map_to_struct(map);
             *v.mutable_struct_value() = s;
             break;
         }
         case 6: {
             ::google::protobuf::ListValue l;
-            google::protobuf::RepeatedPtrField<Value> values;
+            const google::protobuf::RepeatedPtrField<Value> values;
             auto vec = boost::get<std::vector<std::shared_ptr<ProtoType>>>(proto_type_);
             for (const auto& val : vec) {
                 *l.add_values() = val->proto_value();
