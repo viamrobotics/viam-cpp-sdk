@@ -133,9 +133,8 @@ class Camera : public Component {
     virtual point_cloud get_point_cloud(std::string mime_type) = 0;
 
     /// @brief A `GeometryConfig` specifies the format of geometries associated with the component.
-    /// @param  name the component name.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(std::string name) = 0;
+    virtual std::vector<GeometryConfig> get_geometries() = 0;
 
     /// @brief Get the camera's properties.
     /// @return The camera properties.

@@ -26,7 +26,7 @@ class CameraClient : public Camera {
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
-    std::vector<GeometryConfig> get_geometries(std::string name) override;
+    std::vector<GeometryConfig> get_geometries() override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

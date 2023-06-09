@@ -25,7 +25,6 @@ class OrientationConfig {
                       orientation orientation)
         : type_(std::move(type_)), value_(std::move(value)), orientation_(std::move(orientation)) {}
     OrientationConfig(){};
-    friend bool operator==(const OrientationConfig& lhs, const OrientationConfig& rhs);
 
    private:
     OrientationType type_;

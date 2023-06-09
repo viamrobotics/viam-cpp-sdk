@@ -23,7 +23,7 @@ Camera::raw_image MockCamera::get_image(std::string mime_type) {
 Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
     return pc_;
 }
-std::vector<GeometryConfig> MockCamera::get_geometries(std::string name) {
+std::vector<GeometryConfig> MockCamera::get_geometries() {
     return geometries_;
 }
 Camera::properties MockCamera::get_properties() {

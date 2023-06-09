@@ -15,6 +15,7 @@
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/client.hpp>
 #include <viam/sdk/components/camera/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -64,18 +65,8 @@ BOOST_AUTO_TEST_CASE(test_do) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
-    std::vector<GeometryConfig> result_geometries = camera->get_geometries("test");
+    std::vector<GeometryConfig> result_geometries = camera->get_geometries();
 
-    // bool flag = false;
-    // for (int i = 0; i < result_geometries.size(); ++i){
-    //     if (result_geometries[i] == expected_geometries[i] &&
-    //     result_geometries.size() == expected_geometries.size()){
-    //         flag = true;
-    //     }
-    // }
-    // BOOST_CHECK(flag);
-    // BOOST_CHECK(result_geometries.orientation_config_ ==
-    // expected_geometries.orientation_config_);
     BOOST_CHECK(result_geometries == expected_geometries);
 }
 
@@ -176,16 +167,6 @@ BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
     std::vector<GeometryConfig> response_geometries = GeometryConfig::from_proto(resp);
 
-    // bool flag = false;
-    // for (int i = 0; i < response_geometries.size(); ++i){
-    //     if (response_geometries[i] == expected_geometries[i] &&
-    //     response_geometries.size() == expected_geometries.size()){
-    //         flag = true;
-    //     }
-    // }
-    // BOOST_CHECK(flag);
-    // BOOST_CHECK(response_geometries.orientation_config_ ==
-    // expected_geometries.orientation_config_);
     BOOST_CHECK(response_geometries == expected_geometries);
 }
 
@@ -234,20 +215,9 @@ BOOST_AUTO_TEST_CASE(test_get_properties_client) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
-    std::vector<GeometryConfig> result_geometries = client.get_geometries("test");
+    std::vector<GeometryConfig> result_geometries = client.get_geometries();
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
 
-    // bool flag = false;
-    // for (int i = 0; i < result_geometries.size(); ++i){
-    //     if (result_geometries[i] == expected_geometries[i] &&
-    //     result_geometries.size() == expected_geometries.size()){
-    //         flag = true;
-    //     }
-    // }
-    // BOOST_CHECK(flag);
-
-    // BOOST_CHECK(result_geometries.orientation_config_ ==
-    // expected_geometries.orientation_config_);
     BOOST_CHECK(result_geometries == expected_geometries);
 }
 

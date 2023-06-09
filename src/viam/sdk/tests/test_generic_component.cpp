@@ -12,6 +12,7 @@
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/components/generic/server.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -73,7 +74,7 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
-    std::vector<GeometryConfig> result_geometries = generic->get_geometries("test");
+    std::vector<GeometryConfig> result_geometries = generic->get_geometries();
 
     BOOST_CHECK(expected_geometries == result_geometries);
 }
@@ -99,7 +100,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
     MockGenericClient client("mock_generic");
-    std::vector<GeometryConfig> result_geometries = client.get_geometries("test");
+    std::vector<GeometryConfig> result_geometries = client.get_geometries();
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
 
     BOOST_CHECK(result_geometries == expected_geometries);

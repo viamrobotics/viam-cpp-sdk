@@ -43,11 +43,9 @@ GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : Resourc
     }
 
     std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
-    std::vector<GeometryConfig> geometries = generic->get_geometries(request->name());
-
-    auto response_geometries = *response->mutable_geometries();
+    std::vector<GeometryConfig> geometries = generic->get_geometries();
     for (const auto& geometry : geometries) {
-        *response_geometries.Add() = geometry.to_proto();
+        *response->mutable_geometries()->Add() = geometry.to_proto();
     }
     return ::grpc::Status();
 }

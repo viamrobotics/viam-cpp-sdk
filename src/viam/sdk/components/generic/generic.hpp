@@ -49,9 +49,8 @@ class Generic : public Component {
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
     /// @brief A `GeometryConfig` specifies the format of geometries associated with the component.
-    /// @param  name the component name.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(std::string name) = 0;
+    virtual std::vector<GeometryConfig> get_geometries() = 0;
 
     API dynamic_api() const override;
 

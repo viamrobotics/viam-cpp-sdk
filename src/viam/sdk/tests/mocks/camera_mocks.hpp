@@ -19,7 +19,7 @@ class MockCamera : public Camera {
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
     point_cloud get_point_cloud(std::string mime_type) override;
-    std::vector<GeometryConfig> get_geometries(std::string name) override;
+    std::vector<GeometryConfig> get_geometries() override;
     properties get_properties() override;
     static std::shared_ptr<MockCamera> get_mock_camera();
     MockCamera(std::string name) : Camera(std::move(name)){};

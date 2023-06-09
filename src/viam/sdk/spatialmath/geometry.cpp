@@ -5,7 +5,6 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include "geometry.hpp"
 #include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
@@ -41,6 +40,15 @@ viam::common::v1::Pose GeometryConfig::pose_proto() const {
 
 GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
     GeometryConfig cfg;
+    auto& pose = proto.center();
+    cfg.x_ = pose.x();
+    cfg.y_ = pose.y();
+    cfg.z_ = pose.z();
+    cfg.o_x_ = pose.o_x();
+    cfg.o_y_ = pose.o_y();
+    cfg.o_z_ = pose.o_z();
+    cfg.label_ = proto.label();
+
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
             cfg.geometry_type_ = box;
@@ -68,7 +76,7 @@ std::vector<GeometryConfig> GeometryConfig::from_proto(
     const viam::common::v1::GetGeometriesResponse& proto) {
     std::vector<GeometryConfig> response;
     for (const auto& geometry : proto.geometries()) {
-        response.push_back(from_proto(geometry));
+        response.push_back(from_proto(std::move(geometry)));
     }
     return response;
 }
@@ -76,6 +84,7 @@ std::vector<GeometryConfig> GeometryConfig::from_proto(
 viam::common::v1::Geometry GeometryConfig::to_proto() const {
     viam::common::v1::Geometry geometry_;
     *geometry_.mutable_label() = label_;
+    *geometry_.mutable_center() = pose_proto();
     switch (geometry_type_) {
         case box: {
             *geometry_.mutable_box() = box_proto();
@@ -90,7 +99,6 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
             viam::common::v1::Sphere sphere;
             sphere.set_radius_mm(0);
             *geometry_.mutable_sphere() = sphere;
-
             return geometry_;
         }
         case unknown:
@@ -151,20 +159,13 @@ std::string GeometryConfig::get_label() const {
     return label_;
 }
 
-// bool GeometryConfig::operator==(const GeometryConfig& rhs) {
-//     return this->get_coordinates() == rhs.get_coordinates() &&
-//     this->get_pose() == rhs.get_pose() &&
-//     this->get_radius() == rhs.get_radius() &&
-//     this->get_geometry_type() == rhs.get_geometry_type() &&
-//     this->get_label() == rhs.get_label();
-// }
-
 bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
-    return lhs.x_ == rhs.x_ && lhs.y_ == rhs.y_ && lhs.z_ == rhs.z_ && lhs.x_ == rhs.x_ &&
-           lhs.o_x_ == rhs.o_x_ && lhs.o_y_ == rhs.o_y_ && lhs.o_z_ == rhs.o_z_ &&
-           lhs.r_ == rhs.r_ && lhs.label_ == rhs.label_ &&
-           lhs.geometry_type_ == rhs.geometry_type_ &&
-           lhs.orientation_config_ == rhs.orientation_config_;
+    if (lhs.geometry_type_ == GeometryType::sphere && lhs.r_ != rhs.r_) {
+        return false;
+    }
+    return lhs.x_ == rhs.x_ && lhs.y_ == rhs.y_ && lhs.z_ == rhs.z_ && lhs.o_x_ == rhs.o_x_ &&
+           lhs.o_y_ == rhs.o_y_ && lhs.o_z_ == rhs.o_z_ && lhs.label_ == rhs.label_ &&
+           lhs.geometry_type_ == rhs.geometry_type_;
 }
 
 }  // namespace sdk

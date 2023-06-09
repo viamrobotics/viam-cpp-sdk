@@ -145,13 +145,5 @@ proto::Orientation OrientationConfig::to_proto() const {
         }
     }
 }
-bool OrientationConfig::operator==(const OrientationConfig& lhs, const OrientationConfig& rhs) {
-    if (lhs.orientation_ == rhs.orientation_) {
-        return lhs.type_ == rhs.type_ && lhs.value_ == rhs.value_;
-    } else {
-        return false;
-    }
-}
-
 }  // namespace sdk
 }  // namespace viam
