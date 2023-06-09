@@ -241,6 +241,51 @@ class MLModelServiceTFLite : public vs::MLModelService {
             throw std::invalid_argument(buffer.str());
         }
 
+        // Process any tensor name remappings provided in the config.
+        auto remappings = attributes->find("tensor_name_remappings");
+        if (remappings != attributes->end()) {
+            const auto remappings_attributes = remappings->second->get<vs::AttributeMap>();
+            if (!remappings_attributes) {
+                std::ostringstream buffer;
+                buffer
+                    << service_name
+                    << ": Optional parameter `tensor_name_remappings` must be a dictionary";
+                throw std::invalid_argument(buffer.str());
+            }
+
+            const auto populate_remappings = [](const vs::ProtoType& source, auto& target) {
+                const auto source_attributes = source.get<vs::AttributeMap>();
+                if (!source_attributes) {
+                    std::ostringstream buffer;
+                    buffer << service_name
+                           << ": Fields `inputs` and `outputs` of `tensor_name_remappings` must be dictionaries";
+                    throw std::invalid_argument(buffer.str());
+                }
+                for (const auto& kv : *source_attributes) {
+                    const auto& k = kv.first;
+                    const auto* const kv_string = kv.second->get<std::string>();
+                    if (!kv_string) {
+                        std::ostringstream buffer;
+                        buffer << service_name
+                               << ": Fields `inputs` and `outputs` of `tensor_name_remappings` must "
+                                  "be dictionaries with string values";
+                        throw std::invalid_argument(buffer.str());
+                    }
+                    target[kv.first] = *kv_string;
+                    std::cout << "Remapped " << kv.first << " to " << *kv_string << std::endl;
+                }
+            };
+
+            const auto inputs_where = remappings_attributes->find("inputs");
+            if (inputs_where != remappings_attributes->end()) {
+                populate_remappings(*inputs_where->second, state->input_name_remappings);
+            }
+            const auto outputs_where = remappings_attributes->find("outputs");
+            if (outputs_where != remappings_attributes->end()) {
+                populate_remappings(*outputs_where->second, state->output_name_remappings);
+            }
+        }
+
         // The TFLite API declares that if you use
         // `TfLiteModelCreateFromFile` that the file must remain
         // unaltered during execution. That's not a guarantee I'm
@@ -318,14 +363,7 @@ class MLModelServiceTFLite : public vs::MLModelService {
         auto num_input_tensors = TfLiteInterpreterGetInputTensorCount(state->interpreter.get());
         for (decltype(num_input_tensors) i = 0; i != num_input_tensors; ++i) {
             const auto* const tensor = TfLiteInterpreterGetInputTensor(state->interpreter.get(), i);
-            MLModelService::tensor_info input_info;
-            const auto* name = TfLiteTensorName(tensor);
-            if (i == 0) {
-                name = "image";
-            }
-            input_info.name = name;
-            input_info.data_type =
-                service_data_type_from_tflite_data_type_(TfLiteTensorType(tensor));
+
             auto ndims = TfLiteTensorNumDims(tensor);
             if (ndims == -1) {
                 std::ostringstream buffer;
@@ -334,13 +372,24 @@ class MLModelServiceTFLite : public vs::MLModelService {
                           "inference not possible";
                 throw std::runtime_error(buffer.str());
             }
+
+            MLModelService::tensor_info input_info;
+            const auto* name = TfLiteTensorName(tensor);
+            const auto input_name_remapping = state->input_name_remappings.find(name);
+            if (input_name_remapping != state->input_name_remappings.end()) {
+                input_info.name = input_name_remapping->second;
+            } else {
+                input_info.name = name;
+            }
+            input_info.data_type =
+                service_data_type_from_tflite_data_type_(TfLiteTensorType(tensor));
             for (decltype(ndims) j = 0; j != ndims; ++j) {
                 input_info.shape.push_back(TfLiteTensorDim(tensor, j));
                 // std::cout << "XXX ACM ADDED DIM " << input_info.shape.back()
                 //<< " to input tensor `" << name << "` (" << i << ")" << std::endl;
             }
+            temp_itibn[input_info.name] = i;
             temp_inputs.emplace_back(std::move(input_info));
-            temp_itibn[name] = i;
         }
         state->metadata.inputs = std::move(temp_inputs);
         state->input_tensor_indices_by_name = std::move(temp_itibn);
@@ -357,20 +406,7 @@ class MLModelServiceTFLite : public vs::MLModelService {
         for (decltype(num_output_tensors) i = 0; i != num_output_tensors; ++i) {
             const auto* const tensor =
                 TfLiteInterpreterGetOutputTensor(state->interpreter.get(), i);
-            MLModelService::tensor_info output_info;
-            const auto* name = TfLiteTensorName(tensor);
-            if (i == 3) {
-                name = "n_detections";
-            } else if (i == 1) {
-                name = "category";
-            } else if (i == 2) {
-                name = "score";
-            } else if (i == 0) {
-                name = "location";
-            }
-            output_info.name = name;
-            output_info.data_type =
-                service_data_type_from_tflite_data_type_(TfLiteTensorType(tensor));
+
             auto ndims = TfLiteTensorNumDims(tensor);
             if (ndims == -1) {
                 std::ostringstream buffer;
@@ -379,14 +415,25 @@ class MLModelServiceTFLite : public vs::MLModelService {
                           "inference not possible";
                 throw std::runtime_error(buffer.str());
             }
+
+            MLModelService::tensor_info output_info;
+            const auto* name = TfLiteTensorName(tensor);
+            const auto output_name_remapping = state->output_name_remappings.find(name);
+            if (output_name_remapping != state->output_name_remappings.end()) {
+                output_info.name = output_name_remapping->second;
+            } else {
+                output_info.name = name;
+            }
+            output_info.data_type =
+                service_data_type_from_tflite_data_type_(TfLiteTensorType(tensor));
             for (decltype(ndims) j = 0; j != ndims; ++j) {
                 output_info.shape.push_back(TfLiteTensorDim(tensor, j));
                 // std::cout << "XXX ACM ADDED DIM " << output_info.shape.back()
                 //<< " to output tensor `" << output_info.name << "` (" << i << ", "
                 //<< output_tensor_ixes[i] << ")" << std::endl;
             }
+            temp_otibn[output_info.name] = i;
             temp_outputs.emplace_back(std::move(output_info));
-            temp_otibn[name] = i;
         }
         state->metadata.outputs = std::move(temp_outputs);
         state->output_tensor_indices_by_name = std::move(temp_otibn);
@@ -466,6 +513,9 @@ class MLModelServiceTFLite : public vs::MLModelService {
             nullptr, &TfLiteInterpreterDelete};
 
         struct MLModelService::metadata metadata;
+
+        std::unordered_map<std::string, std::string> input_name_remappings;
+        std::unordered_map<std::string, std::string> output_name_remappings;
 
         std::unordered_map<std::string, int> input_tensor_indices_by_name;
         std::unordered_map<std::string, int> output_tensor_indices_by_name;

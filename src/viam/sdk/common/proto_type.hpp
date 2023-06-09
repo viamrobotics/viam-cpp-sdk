@@ -13,6 +13,21 @@ class ProtoType;
 using AttributeMap = std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>;
 
 class ProtoType {
+    template <typename T>
+    struct get_return_t {
+        using type = T*;
+    };
+
+    template <>
+    struct get_return_t<AttributeMap> {
+        using type = AttributeMap;
+    };
+
+    template <>
+    struct get_return_t<const AttributeMap> {
+        using type = std::shared_ptr<const AttributeMap::element_type>;
+    };
+
    public:
     ProtoType() {
         proto_type_ = boost::blank();
@@ -30,16 +45,29 @@ class ProtoType {
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
 
     template <typename T>
-    T* get() {
+    typename get_return_t<T>::type get() {
         return boost::get<T>(&proto_type_);
+    }
+
+    template<>
+    typename get_return_t<AttributeMap>::type get<AttributeMap>() {
+        const auto* const result = boost::get<AttributeMap>(&proto_type_);
+        return result ? *result : nullptr;
     }
 
     template <typename T>
-    const T* get() const {
+    typename get_return_t<const T>::type get() const {
         return boost::get<T>(&proto_type_);
     }
 
+    template <>
+    typename get_return_t<const AttributeMap>::type get<AttributeMap>() const {
+        const auto* const result = boost::get<const AttributeMap>(&proto_type_);
+        return result ? *result : nullptr;
+    }
+
    private:
+
     boost::variant<boost::blank,
                    bool,
                    std::string,
