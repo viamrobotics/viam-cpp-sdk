@@ -12,22 +12,39 @@ namespace sdk {
 class ProtoType;
 using AttributeMap = std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>;
 
+namespace prototype_details {
+
+template <typename T>
+struct get_helper {
+    template<typename V>
+    static T* get(V& v) {
+        return boost::get<T>(&v);
+    }
+
+    template<typename V>
+    static const T* get(const V& v) {
+        return boost::get<T>(&v);
+    }
+};
+
+template <>
+struct get_helper<AttributeMap> {
+    template<typename V>
+    static AttributeMap get(V& v) {
+        auto* const result = boost::get<AttributeMap>(&v);
+        return result ? *result : nullptr;
+    }
+
+    template<typename V>
+    static std::shared_ptr<const AttributeMap::element_type> get(const V& v) {
+        auto* const result = boost::get<AttributeMap>(&v);
+        return result ? *result : nullptr;
+    }
+};
+
+}  // namespace prototype_details
+
 class ProtoType {
-    template <typename T>
-    struct get_return_t {
-        using type = T*;
-    };
-
-    template <>
-    struct get_return_t<AttributeMap> {
-        using type = AttributeMap;
-    };
-
-    template <>
-    struct get_return_t<const AttributeMap> {
-        using type = std::shared_ptr<const AttributeMap::element_type>;
-    };
-
    public:
     ProtoType() {
         proto_type_ = boost::blank();
@@ -44,26 +61,14 @@ class ProtoType {
     google::protobuf::Value proto_value();
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
 
-    template <typename T>
-    typename get_return_t<T>::type get() {
-        return boost::get<T>(&proto_type_);
-    }
-
-    template<>
-    typename get_return_t<AttributeMap>::type get<AttributeMap>() {
-        const auto* const result = boost::get<AttributeMap>(&proto_type_);
-        return result ? *result : nullptr;
+    template<typename T>
+    auto get() {
+        return prototype_details::get_helper<T>::get(proto_type_);
     }
 
     template <typename T>
-    typename get_return_t<const T>::type get() const {
-        return boost::get<T>(&proto_type_);
-    }
-
-    template <>
-    typename get_return_t<const AttributeMap>::type get<AttributeMap>() const {
-        const auto* const result = boost::get<const AttributeMap>(&proto_type_);
-        return result ? *result : nullptr;
+    auto get() const {
+        return prototype_details::get_helper<T>::get(proto_type_);
     }
 
    private:

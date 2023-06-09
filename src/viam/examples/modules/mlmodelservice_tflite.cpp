@@ -36,6 +36,10 @@ class MLModelServiceTFLite : public vs::MLModelService {
     }
 
     void reconfigure(vs::Dependencies dependencies, vs::ResourceConfig configuration) override {
+        // TODO: Is this whole dance around allowing concurrent
+        // requests against existing state during reconfigruation
+        // required? Should we just block requests during
+        // reconfiguration instead?
         using std::swap;
         std::shared_ptr<state> state;
         {
@@ -158,6 +162,8 @@ class MLModelServiceTFLite : public vs::MLModelService {
                                                vs::ResourceConfig configuration) {
         auto state =
             std::make_shared<struct state>(std::move(dependencies), std::move(configuration));
+
+        // TODO: What are we supposed to do with `dependencies` here?
 
         const auto& attributes = state->configuration.attributes();
         auto model_path = attributes->find("model_path");
