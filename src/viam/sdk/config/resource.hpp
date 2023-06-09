@@ -13,8 +13,6 @@
 namespace viam {
 namespace sdk {
 
-typedef std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> AttributeMap;
-
 class ResourceLevelServiceConfig {
    public:
     std::string type;

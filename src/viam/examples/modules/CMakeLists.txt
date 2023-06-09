@@ -25,3 +25,18 @@ install(
   TARGETS example_module
   COMPONENT examples
 )
+
+
+add_executable(example_mlmodel
+  example_mlmodel.cpp
+)
+
+target_link_libraries(example_mlmodel
+  PRIVATE Threads::Threads
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS example_mlmodel
+  COMPONENT examples
+)

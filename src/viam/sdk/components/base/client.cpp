@@ -33,7 +33,7 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
     request.set_distance_mm(distance_mm);
     request.set_mm_per_sec(mm_per_sec);
 
-    grpc::Status status = stub_->MoveStraight(&ctx, request, &response);
+    const grpc::Status status = stub_->MoveStraight(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -49,7 +49,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec) {
     request.set_angle_deg(angle_deg);
     request.set_degs_per_sec(degs_per_sec);
 
-    grpc::Status status = stub_->Spin(&ctx, request, &response);
+    const grpc::Status status = stub_->Spin(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -65,7 +65,7 @@ void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
     *request.mutable_linear() = Vector3::to_proto(linear);
     *request.mutable_angular() = Vector3::to_proto(angular);
 
-    grpc::Status status = stub_->SetPower(&ctx, request, &response);
+    const grpc::Status status = stub_->SetPower(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -81,7 +81,7 @@ void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
     *request.mutable_linear() = Vector3::to_proto(linear);
     *request.mutable_angular() = Vector3::to_proto(angular);
 
-    grpc::Status status = stub_->SetVelocity(&ctx, request, &response);
+    const grpc::Status status = stub_->SetVelocity(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -99,7 +99,7 @@ grpc::StatusCode BaseClient::stop() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->Stop(&ctx, request, &response);
+    const grpc::Status status = stub_->Stop(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -114,7 +114,7 @@ bool BaseClient::is_moving() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->IsMoving(&ctx, request, &response);
+    const grpc::Status status = stub_->IsMoving(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -127,11 +127,11 @@ AttributeMap BaseClient::do_command(AttributeMap command) {
 
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->DoCommand(&ctx, request, &response);
+    const grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }

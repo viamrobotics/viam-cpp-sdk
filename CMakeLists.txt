@@ -93,7 +93,7 @@ option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less pe
 
 
 # # - `VIAMCPPSDK_CLANG_TIDY`: This causes the SDK to run clang-tidy
-# with the options specified in the .clang-tidy file. 
+# with the options specified in the .clang-tidy file.
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 
@@ -275,9 +275,16 @@ add_custom_target(
 )
 
 
+set(VIAMCPPSDK_ABSL_VERSION_MINIMUM)  # Someday?
 set(VIAMCPPSDK_BOOST_VERSION_MINIMUM 1.71)
 set(VIAMCPPSDK_GRPC_VERSION_MINIMUM 1.30.2)
 set(VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM 3.12.4)
+set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.2)
+set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
+
+# Time to find absl. Note that the version min value is currently empty,
+# because absl doesn't use a versioning scheme that works here.
+find_package(absl ${VIAMCPPSDK_ABSL_VERSION_MINIMUM} REQUIRED)
 
 # Time to find `BOOST`.
 find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log)
@@ -355,6 +362,24 @@ else()
   set(VIAMCPPSDK_GRPCXX_REFLECTION_LIB ${VIAMCPPSDK_GRPCXX_ROOT}_reflection)
   list(PREPEND VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES ${VIAMCPPSDK_GRPCXX_REFLECTION_LIB})
 endif()
+
+include(FetchContent)
+
+FetchContent_Declare(
+  xtl
+  GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
+  GIT_TAG        e0f00666d90086bb245ae73abb6123d0e2c1b30b # 0.7.2
+  FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTL_VERSION_MINIMUM} CONFIG
+)
+
+FetchContent_Declare(
+  xtensor
+  GIT_REPOSITORY https://github.com/xtensor-stack/xtensor
+  GIT_TAG        9e8662ddad7fcd1a96969b96bf8955e59cf44978 # 0.24.3
+  FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTENSOR_VERSION_MINIMUM} CONFIG
+)
+
+FetchContent_MakeAvailable(xtl xtensor)
 
 # Pull in our subdirectories
 add_subdirectory(src/viam)

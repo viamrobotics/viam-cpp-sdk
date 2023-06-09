@@ -27,9 +27,10 @@ Name ResourceConfig::resource_name() {
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     boost::split(remotes, this->name_, boost::is_any_of(":"));
     if (remotes.size() > 1) {
-        std::string str_name(remotes.back());
+        const std::string str_name(remotes.back());
         remotes.pop_back();
-        std::string remote = std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
+        const std::string remote =
+            std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
         return Name(this->api_, remote, str_name);
     }
     return Name(this->api_, "", remotes.at(0));
@@ -118,8 +119,9 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
 
 viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
-    google::protobuf::Struct s = map_to_struct(attributes_);
-    google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
+    const google::protobuf::Struct s = map_to_struct(attributes_);
+    const google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig>
+        service_configs;
 
     for (const auto& svc_cfg : service_config_) {
         viam::app::v1::ResourceLevelServiceConfig cfg;

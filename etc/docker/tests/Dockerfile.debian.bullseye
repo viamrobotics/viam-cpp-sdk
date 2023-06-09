@@ -13,13 +13,15 @@ RUN apt-get -y dist-upgrade
 RUN apt-get -y --no-install-recommends install \
     build-essential \
     ca-certificates \
-    doxygen \
     curl \
+    doxygen \
     g++ \
     gdb \
     git \
     gnupg \
+    gpg \
     less \
+    libabsl-dev \
     libboost-all-dev \
     libgrpc++-dev \
     libprotobuf-dev \
@@ -28,22 +30,22 @@ RUN apt-get -y --no-install-recommends install \
     pkg-config \
     protobuf-compiler-grpc \
     software-properties-common \
+    sudo \
     wget
 
 # Add the public key for the llvm repository
 RUN bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-RUN apt-add-repository 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main'
-RUN apt-add-repository 'deb http://deb.debian.org/debian bullseye-backports main'
+RUN apt-add-repository -y 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-15 main'
+RUN apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
 
 RUN apt-get update
 
-RUN apt-get -y --no-install-recommends install -t llvm-toolchain-bullseye \
-    clang-13 \
-    clang-tidy-13
+RUN apt-get -y --no-install-recommends install -t llvm-toolchain-bullseye-15 \
+    clang-15 \
+    clang-tidy-15
 
 RUN apt-get -y --no-install-recommends install -t bullseye-backports \
     cmake
 
 COPY . /tmp/
 ENTRYPOINT ["etc/docker/tests/run_test.sh"]
-

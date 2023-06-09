@@ -138,7 +138,7 @@ AttributeMap BoardClient::do_command(AttributeMap command) {
 
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 

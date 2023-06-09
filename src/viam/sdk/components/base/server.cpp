@@ -26,7 +26,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
     base->move_straight(request->distance_mm(), request->mm_per_sec());
 
@@ -46,7 +46,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
     base->spin(request->angle_deg(), request->degs_per_sec());
 
@@ -66,7 +66,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
     auto linear = Vector3::from_proto(request->linear());
     auto angular = Vector3::from_proto(request->angular());
@@ -90,7 +90,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
     auto linear = Vector3::from_proto(request->linear());
     auto angular = Vector3::from_proto(request->angular());
@@ -113,7 +113,7 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
     base->stop();
 
@@ -133,9 +133,9 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    bool result = base->is_moving();
+    const bool result = base->is_moving();
     response->set_is_moving(result);
 
     return ::grpc::Status();
@@ -154,8 +154,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Base> motor = std::dynamic_pointer_cast<Base>(rb);
-    AttributeMap result = motor->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Base> motor = std::dynamic_pointer_cast<Base>(rb);
+    const AttributeMap result = motor->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 

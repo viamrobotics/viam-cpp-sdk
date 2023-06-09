@@ -31,7 +31,7 @@ Encoder::position EncoderClient::get_position(position_type position_type) {
     *request.mutable_name() = this->name();
     request.set_position_type(to_proto(position_type));
 
-    grpc::Status status = stub_->GetPosition(&ctx, request, &response);
+    const grpc::Status status = stub_->GetPosition(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -46,7 +46,7 @@ void EncoderClient::reset_position() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->ResetPosition(&ctx, request, &response);
+    const grpc::Status status = stub_->ResetPosition(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -60,7 +60,7 @@ Encoder::properties EncoderClient::get_properties() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->GetProperties(&ctx, request, &response);
+    const grpc::Status status = stub_->GetProperties(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -73,11 +73,11 @@ AttributeMap EncoderClient::do_command(AttributeMap command) {
 
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->DoCommand(&ctx, request, &response);
+    const grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }

@@ -10,17 +10,21 @@ RUN apt-get -y dist-upgrade
 RUN apt-get -y --no-install-recommends install \
     build-essential \
     ca-certificates \
+    curl \
+    doxygen \
     g++ \
     gdb \
     git \
     gnupg \
     gpg \
+    less \
     libboost-all-dev \
     libc-ares-dev \
     libre2-dev \
     libssl-dev \
     ninja-build \
     pkg-config \
+    software-properties-common \
     sudo \
     wget \
     zlib1g-dev
@@ -28,7 +32,7 @@ RUN apt-get -y --no-install-recommends install \
 
 # Add the public key for the llvm repository to get the correct clang version
 RUN bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-RUN apt-add-repository 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal main'
+RUN apt-add-repository -y 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-15 main'
 
 # Add public key and repository to get cmake 3.25+
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
@@ -36,9 +40,9 @@ RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https:
 
 RUN apt-get update
 
-RUN apt-get -y --no-install-recommends install -t llvm-toolchain-focal \
-    clang-13 \
-    clang-tidy-13
+RUN apt-get -y --no-install-recommends install -t llvm-toolchain-focal-15 \
+    clang-15 \
+    clang-tidy-15
 
 RUN apt-get -y install cmake
 
