@@ -310,7 +310,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
             [](void* ud, const char* fmt, va_list args) {
                 char buffer[4096];
                 static_cast<void>(vsnprintf(buffer, sizeof(buffer), fmt, args));
-                // TODO: thread local state?
                 *reinterpret_cast<std::string*>(ud) = buffer;
             },
             &state->error_reporter_data));
@@ -490,8 +489,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
         vs::ResourceConfig configuration;
 
         // The configured error reporter will overwrite this string.
-        //
-        // TODO: thread-local?
         std::string error_reporter_data;
 
         // This data must outlive any interpreters created from the model
