@@ -29,7 +29,6 @@ constexpr char service_name[] = "mlmodelservice_tflite";
 
 class MLModelServiceTFLite : public vs::MLModelService {
     class write_to_tflite_tensor_visitor_;
-    class read_from_tflite_tensor_visitor_;
 
    public:
     explicit MLModelServiceTFLite(vs::Dependencies dependencies, vs::ResourceConfig configuration)
@@ -73,7 +72,12 @@ class MLModelServiceTFLite : public vs::MLModelService {
             state = state_;
         }
 
-        std::scoped_lock<std::mutex> lock(state->interpreter_mutex);
+        // We serialize access to the interpreter. We use a
+        // unique_lock because we will move the lock into the shared
+        // state that we return, allowing the higher level to effect a
+        // direct copy out of the tflite buffers while the interpreter
+        // is still locked.
+        std::unique_lock<std::mutex> lock(state->interpreter_mutex);
 
         if (inputs.empty()) {
             std::ostringstream buffer;
@@ -120,17 +124,12 @@ class MLModelServiceTFLite : public vs::MLModelService {
         }
 
         struct inference_result_type {
-            using tensor_storage_types =
-                boost::mpl::transform_view<MLModelService::base_types,
-                                           std::vector<boost::mpl::placeholders::_1>>;
-            using tensor_storage =
-                std::vector<boost::make_variant_over<tensor_storage_types>::type>;
-
-            tensor_storage storage;
+            std::unique_lock<std::mutex> interpreter_lock;
             named_tensor_views views;
         };
 
         auto inference_result = std::make_shared<inference_result_type>();
+        inference_result->interpreter_lock = std::move(lock);
 
         for (const auto& output : state->metadata.outputs) {
             // std::cout << "XXX ACM ENCODING OUTPUT " << output.name << std::endl;
@@ -141,62 +140,7 @@ class MLModelServiceTFLite : public vs::MLModelService {
             }
             const auto* const tflite_tensor =
                 TfLiteInterpreterGetOutputTensor(state->interpreter.get(), where->second);
-            const auto tflite_tensor_type = TfLiteTensorType(tflite_tensor);
-
-            switch (tflite_tensor_type) {
-                case kTfLiteInt8: {
-                    inference_result->storage.emplace_back(std::vector<std::int8_t>{});
-                    break;
-                }
-                case kTfLiteUInt8: {
-                    inference_result->storage.emplace_back(std::vector<std::uint8_t>{});
-                    break;
-                }
-                case kTfLiteInt16: {
-                    inference_result->storage.emplace_back(std::vector<std::int16_t>{});
-                    break;
-                }
-                case kTfLiteUInt16: {
-                    inference_result->storage.emplace_back(std::vector<std::uint16_t>{});
-                    break;
-                }
-                case kTfLiteInt32: {
-                    inference_result->storage.emplace_back(std::vector<std::int32_t>{});
-                    break;
-                }
-                case kTfLiteUInt32: {
-                    inference_result->storage.emplace_back(std::vector<std::uint32_t>{});
-                    break;
-                }
-                case kTfLiteInt64: {
-                    inference_result->storage.emplace_back(std::vector<std::int64_t>{});
-                    break;
-                }
-                case kTfLiteUInt64: {
-                    inference_result->storage.emplace_back(std::vector<std::uint64_t>{});
-                    break;
-                }
-                case kTfLiteFloat32: {
-                    inference_result->storage.emplace_back(std::vector<float>{});
-                    break;
-                }
-                case kTfLiteFloat64: {
-                    inference_result->storage.emplace_back(std::vector<double>{});
-                    break;
-                }
-                default: {
-                    std::ostringstream buffer;
-                    buffer << service_name << ": Model returned unsupported tflite data type: "
-                           << tflite_tensor_type;
-                    throw std::invalid_argument(buffer.str());
-                }
-            }
-
-            auto tensor_view =
-                boost::apply_visitor(read_from_tflite_tensor_visitor_{&output, tflite_tensor},
-                                     inference_result->storage.back());
-
-            inference_result->views.emplace(output.name, std::move(tensor_view));
+            inference_result->views.emplace(output.name, std::move(make_tensor_view_(output, tflite_tensor)));
         }
 
         auto* const views = &inference_result->views;
@@ -547,58 +491,67 @@ class MLModelServiceTFLite : public vs::MLModelService {
         TfLiteTensor* tflite_tensor_;
     };
 
-    class read_from_tflite_tensor_visitor_
-        : public boost::static_visitor<MLModelService::tensor_views> {
-       public:
-        read_from_tflite_tensor_visitor_(const MLModelService::tensor_info* info,
-                                         const TfLiteTensor* tflite_tensor)
-            : info_(info), tflite_tensor_(tflite_tensor) {}
-
-        template <typename T>
-        MLModelService::tensor_views operator()(T& storage) const {
-            try {
-                const auto* const tensor_data = TfLiteTensorData(tflite_tensor_);
-                const auto tensor_size_bytes = TfLiteTensorByteSize(tflite_tensor_);
-                const auto* const tensor_data_begin =
-                    reinterpret_cast<const typename T::value_type*>(tensor_data);
-                const auto* const tensor_data_end =
-                    tensor_data_begin + (tensor_size_bytes / sizeof(typename T::value_type));
-                storage.assign(tensor_data_begin, tensor_data_end);
-                std::vector<std::size_t> shape;
-                // TODO: Not very clean
-                for (const auto s : info_->shape) {
-                    shape.push_back(static_cast<std::size_t>(s));
-                }
-                // std::ostringstream buffer;
-                // buffer << "OUTPUT TENSOR `" << info_->name << "`"
-                //        << "[";
-                // for (const auto s : info_->shape) {
-                //     buffer << s << ", ";
-                // }
-                // buffer << "] / " << storage.size() << ": ";
-                // for (const auto v : storage) {
-                //     buffer << v << ", ";
-                // }
-                // std::cout << buffer.str() << std::endl;
-
-                return MLModelService::make_tensor_view(
-                    storage.data(), storage.size(), std::move(shape));
-            } catch (const std::exception& ex) {
+    MLModelService::tensor_views make_tensor_view_(const MLModelService::tensor_info& info,
+                                                   const TfLiteTensor* const tflite_tensor) {
+        const auto tflite_tensor_type = TfLiteTensorType(tflite_tensor);
+        switch (tflite_tensor_type) {
+            case kTfLiteInt8: {
+                return make_tensor_view_t_<std::int8_t>(info, tflite_tensor);
+            }
+            case kTfLiteUInt8: {
+                return make_tensor_view_t_<std::uint8_t>(info, tflite_tensor);
+            }
+            case kTfLiteInt16: {
+                return make_tensor_view_t_<std::int16_t>(info, tflite_tensor);
+            }
+            case kTfLiteUInt16: {
+                return make_tensor_view_t_<std::uint16_t>(info, tflite_tensor);
+            }
+            case kTfLiteInt32: {
+                return make_tensor_view_t_<std::int32_t>(info, tflite_tensor);
+            }
+            case kTfLiteUInt32: {
+                return make_tensor_view_t_<std::uint32_t>(info, tflite_tensor);
+            }
+            case kTfLiteInt64: {
+                return make_tensor_view_t_<std::int64_t>(info, tflite_tensor);
+            }
+            case kTfLiteUInt64: {
+                return make_tensor_view_t_<std::uint64_t>(info, tflite_tensor);
+            }
+            case kTfLiteFloat32: {
+                return make_tensor_view_t_<float>(info, tflite_tensor);
+            }
+            case kTfLiteFloat64: {
+                return make_tensor_view_t_<double>(info, tflite_tensor);
+            }
+            default: {
                 std::ostringstream buffer;
-                buffer << service_name << ": failed to adapt tensor result: " << ex.what();
-                throw std::runtime_error(buffer.str());
+                buffer << service_name
+                       << ": Model returned unsupported tflite data type: " << tflite_tensor_type;
+                throw std::invalid_argument(buffer.str());
             }
         }
+    }
 
-       private:
-        const MLModelService::tensor_info* info_;
-        const TfLiteTensor* tflite_tensor_;
-    };
+    template <typename T>
+    MLModelService::tensor_views make_tensor_view_t_(const MLModelService::tensor_info& info,
+                                                     const TfLiteTensor* const tflite_tensor) {
+        const auto* const tensor_data = reinterpret_cast<const T*>(TfLiteTensorData(tflite_tensor));
+        const auto tensor_size_bytes = TfLiteTensorByteSize(tflite_tensor);
+        const auto tensor_size_t = tensor_size_bytes / sizeof(T);
+        std::vector<std::size_t> shape;
+        // TODO: Not very clean
+        for (const auto s : info.shape) {
+            shape.push_back(static_cast<std::size_t>(s));
+        }
+        return MLModelService::make_tensor_view(tensor_data, tensor_size_t, std::move(shape));
+    }
 
     std::mutex state_lock_;
     std::condition_variable state_ready_;
     std::shared_ptr<state> state_;
-};
+    };
 
 int serve(const std::string& socket_path) {
     sigset_t sigset;
