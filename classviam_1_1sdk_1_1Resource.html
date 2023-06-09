@@ -88,20 +88,22 @@ $(function() {
  <div class="center">
   <img src="classviam_1_1sdk_1_1Resource.png" usemap="#viam::sdk::Resource_map" alt=""/>
   <map id="viam::sdk::Resource_map" name="viam::sdk::Resource_map">
-<area href="classviam_1_1sdk_1_1Component.html" alt="viam::sdk::Component" shape="rect" coords="397,56,546,80"/>
-<area href="classviam_1_1sdk_1_1Service.html" alt="viam::sdk::Service" shape="rect" coords="556,56,705,80"/>
-<area href="classviam_1_1sdk_1_1Base.html" title="A Base is the platform that the other parts of a mobile robot attach to." alt="viam::sdk::Base" shape="rect" coords="0,112,149,136"/>
-<area href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading." alt="viam::sdk::Board" shape="rect" coords="159,112,308,136"/>
-<area href="classviam_1_1sdk_1_1Camera.html" title="A Camera represents any physical hardware that can capture frames." alt="viam::sdk::Camera" shape="rect" coords="318,112,467,136"/>
-<area href="classviam_1_1sdk_1_1Encoder.html" title="An encoder is a device that is hooked up to motors to report a position." alt="viam::sdk::Encoder" shape="rect" coords="477,112,626,136"/>
-<area href="classviam_1_1sdk_1_1Generic.html" title="A Generic represents any component that can execute arbitrary commands." alt="viam::sdk::Generic" shape="rect" coords="636,112,785,136"/>
-<area href="classviam_1_1sdk_1_1Motor.html" title="A Motor represents physical hardware that controls the rotation of an axle." alt="viam::sdk::Motor" shape="rect" coords="795,112,944,136"/>
-<area href="classviam_1_1sdk_1_1BaseClient.html" title="gRPC client implementation of a Base component." alt="viam::sdk::BaseClient" shape="rect" coords="0,168,149,192"/>
-<area href="classviam_1_1sdk_1_1BoardClient.html" title="gRPC client implementation of a Board component." alt="viam::sdk::BoardClient" shape="rect" coords="159,168,308,192"/>
-<area href="classviam_1_1sdk_1_1CameraClient.html" title="gRPC client implementation of a Camera component." alt="viam::sdk::CameraClient" shape="rect" coords="318,168,467,192"/>
-<area href="classviam_1_1sdk_1_1EncoderClient.html" title="gRPC client implementation of a Encoder component." alt="viam::sdk::EncoderClient" shape="rect" coords="477,168,626,192"/>
-<area href="classviam_1_1sdk_1_1GenericClient.html" title="gRPC client implementation of a Generic component." alt="viam::sdk::GenericClient" shape="rect" coords="636,168,785,192"/>
-<area href="classviam_1_1sdk_1_1MotorClient.html" title="gRPC client implementation of a Motor component." alt="viam::sdk::MotorClient" shape="rect" coords="795,168,944,192"/>
+<area href="classviam_1_1sdk_1_1Component.html" alt="viam::sdk::Component" shape="rect" coords="520,56,718,80"/>
+<area href="classviam_1_1sdk_1_1Service.html" alt="viam::sdk::Service" shape="rect" coords="1248,56,1446,80"/>
+<area href="classviam_1_1sdk_1_1Base.html" title="A Base is the platform that the other parts of a mobile robot attach to." alt="viam::sdk::Base" shape="rect" coords="0,112,198,136"/>
+<area href="classviam_1_1sdk_1_1Board.html" title="Represents a physical board with gpio pins, digital interrupts, and analog voltage reading." alt="viam::sdk::Board" shape="rect" coords="208,112,406,136"/>
+<area href="classviam_1_1sdk_1_1Camera.html" title="A Camera represents any physical hardware that can capture frames." alt="viam::sdk::Camera" shape="rect" coords="416,112,614,136"/>
+<area href="classviam_1_1sdk_1_1Encoder.html" title="An encoder is a device that is hooked up to motors to report a position." alt="viam::sdk::Encoder" shape="rect" coords="624,112,822,136"/>
+<area href="classviam_1_1sdk_1_1Generic.html" title="A Generic represents any component that can execute arbitrary commands." alt="viam::sdk::Generic" shape="rect" coords="832,112,1030,136"/>
+<area href="classviam_1_1sdk_1_1Motor.html" title="A Motor represents physical hardware that controls the rotation of an axle." alt="viam::sdk::Motor" shape="rect" coords="1040,112,1238,136"/>
+<area href="classviam_1_1sdk_1_1MLModelService.html" title="Represents a machine trained learning model instance." alt="viam::sdk::MLModelService" shape="rect" coords="1248,112,1446,136"/>
+<area href="classviam_1_1sdk_1_1BaseClient.html" title="gRPC client implementation of a Base component." alt="viam::sdk::BaseClient" shape="rect" coords="0,168,198,192"/>
+<area href="classviam_1_1sdk_1_1BoardClient.html" title="gRPC client implementation of a Board component." alt="viam::sdk::BoardClient" shape="rect" coords="208,168,406,192"/>
+<area href="classviam_1_1sdk_1_1CameraClient.html" title="gRPC client implementation of a Camera component." alt="viam::sdk::CameraClient" shape="rect" coords="416,168,614,192"/>
+<area href="classviam_1_1sdk_1_1EncoderClient.html" title="gRPC client implementation of a Encoder component." alt="viam::sdk::EncoderClient" shape="rect" coords="624,168,822,192"/>
+<area href="classviam_1_1sdk_1_1GenericClient.html" title="gRPC client implementation of a Generic component." alt="viam::sdk::GenericClient" shape="rect" coords="832,168,1030,192"/>
+<area href="classviam_1_1sdk_1_1MotorClient.html" title="gRPC client implementation of a Motor component." alt="viam::sdk::MotorClient" shape="rect" coords="1040,168,1238,192"/>
+<area href="classviam_1_1sdk_1_1MLModelServiceClient.html" alt="viam::sdk::MLModelServiceClient" shape="rect" coords="1248,168,1446,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -165,7 +167,7 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
 
 <p>Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource. </p>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1Base.html#a436300656ad96c4f638285d16a57d840">viam::sdk::Base</a>, <a class="el" href="classviam_1_1sdk_1_1Board.html#ab49d35c256d81edfa56d1a308c7924ca">viam::sdk::Board</a>, <a class="el" href="classviam_1_1sdk_1_1Camera.html#a7773d3863a7f88e927b3dc47ef34a0bc">viam::sdk::Camera</a>, <a class="el" href="classviam_1_1sdk_1_1Encoder.html#a20d32c2be8569d4d22f05cad3db157c2">viam::sdk::Encoder</a>, <a class="el" href="classviam_1_1sdk_1_1Generic.html#a6a9aab1429b01d0b534a502bed8808ae">viam::sdk::Generic</a>, and <a class="el" href="classviam_1_1sdk_1_1Motor.html#a15928ee235772790bab1af2739d3921b">viam::sdk::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1Base.html#a436300656ad96c4f638285d16a57d840">viam::sdk::Base</a>, <a class="el" href="classviam_1_1sdk_1_1Board.html#ab49d35c256d81edfa56d1a308c7924ca">viam::sdk::Board</a>, <a class="el" href="classviam_1_1sdk_1_1Camera.html#a7773d3863a7f88e927b3dc47ef34a0bc">viam::sdk::Camera</a>, <a class="el" href="classviam_1_1sdk_1_1Encoder.html#a20d32c2be8569d4d22f05cad3db157c2">viam::sdk::Encoder</a>, <a class="el" href="classviam_1_1sdk_1_1Generic.html#a6a9aab1429b01d0b534a502bed8808ae">viam::sdk::Generic</a>, <a class="el" href="classviam_1_1sdk_1_1Motor.html#a15928ee235772790bab1af2739d3921b">viam::sdk::Motor</a>, and <a class="el" href="classviam_1_1sdk_1_1MLModelService.html#a4ee3b0d20b84d4132fff45c92b761a18">viam::sdk::MLModelService</a>.</p>
 
 </div>
 </div>

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['vec_5ftraits_3c_20viam_3a_3asdk_3a_3avector3_20_3e_0',['vec_traits&lt; viam::sdk::Vector3 &gt;',['../structboost_1_1qvm_1_1vec__traits_3_01viam_1_1sdk_1_1Vector3_01_4.html',1,'boost::qvm']]],
-  ['vector3_1',['Vector3',['../classviam_1_1sdk_1_1Vector3.html',1,'viam::sdk']]],
-  ['viamchannel_2',['ViamChannel',['../classviam_1_1sdk_1_1ViamChannel.html',1,'viam::sdk']]]
+  ['tensor_5finfo_0',['tensor_info',['../structviam_1_1sdk_1_1MLModelService_1_1tensor__info.html',1,'viam::sdk::MLModelService']]],
+  ['translation_1',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
 ];

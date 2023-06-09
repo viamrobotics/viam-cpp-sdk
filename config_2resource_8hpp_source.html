@@ -91,53 +91,51 @@ $(function() {
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>viam {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>sdk {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">typedef</span> std::shared_ptr&lt;std::unordered_map&lt;std::string, std::shared_ptr&lt;ProtoType&gt;&gt;&gt; AttributeMap;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ResourceLevelServiceConfig.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1ResourceLevelServiceConfig.html">ResourceLevelServiceConfig</a> {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    std::string type;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    AttributeMap attributes;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ProtoType.html">ProtoType</a> converted_attributes;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ResourceConfig.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> from_proto(viam::app::v1::ComponentConfig proto_cfg);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    viam::app::v1::ComponentConfig to_proto() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>(std::string type);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Name.html">Name</a> resource_name();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a>&amp; api() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1LinkConfig.html">LinkConfig</a>&amp; frame() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Model.html">Model</a>&amp; model() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> std::string&amp; name() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> std::string&amp; namespace_() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> std::string&amp; type() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> AttributeMap&amp; attributes() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api_;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1LinkConfig.html">LinkConfig</a> frame_;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Model.html">Model</a> model_;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::string name_;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::string namespace__;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::string type_;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::vector&lt;std::string&gt; depends_on_;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::vector&lt;ResourceLevelServiceConfig&gt; service_config_;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    AttributeMap attributes_;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ProtoType.html">ProtoType</a> converted_attributes_;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::vector&lt;std::string&gt; implicit_depends_on_;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> fix_api();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ResourceLevelServiceConfig.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1ResourceLevelServiceConfig.html">ResourceLevelServiceConfig</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    std::string type;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    AttributeMap attributes;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ProtoType.html">ProtoType</a> converted_attributes;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ResourceConfig.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">static</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> from_proto(viam::app::v1::ComponentConfig proto_cfg);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    viam::app::v1::ComponentConfig to_proto() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a>(std::string type);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Name.html">Name</a> resource_name();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a>&amp; api() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1LinkConfig.html">LinkConfig</a>&amp; frame() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> <a class="code hl_class" href="classviam_1_1sdk_1_1Model.html">Model</a>&amp; model() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">const</span> std::string&amp; name() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">const</span> std::string&amp; namespace_() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> std::string&amp; type() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> AttributeMap&amp; attributes() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1API.html">API</a> api_;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1LinkConfig.html">LinkConfig</a> frame_;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1Model.html">Model</a> model_;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::string name_;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::string namespace__;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::string type_;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::vector&lt;std::string&gt; depends_on_;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::vector&lt;ResourceLevelServiceConfig&gt; service_config_;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    AttributeMap attributes_;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ProtoType.html">ProtoType</a> converted_attributes_;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::vector&lt;std::string&gt; implicit_depends_on_;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> fix_api();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1API_html"><div class="ttname"><a href="classviam_1_1sdk_1_1API.html">viam::sdk::API</a></div><div class="ttdoc">Extends APIType to additionally define a resource's subtype (e.g., camera).</div><div class="ttdef"><b>Definition:</b> resource_api.hpp:33</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1LinkConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1LinkConfig.html">viam::sdk::LinkConfig</a></div><div class="ttdef"><b>Definition:</b> frame.hpp:13</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Model_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Model.html">viam::sdk::Model</a></div><div class="ttdoc">Defines the namespace_, family, and name for a particular resource model.</div><div class="ttdef"><b>Definition:</b> resource_api.hpp:108</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Name_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Name.html">viam::sdk::Name</a></div><div class="ttdoc">Extends API class by adding a name for specific instances of resources.</div><div class="ttdef"><b>Definition:</b> resource_api.hpp:56</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ProtoType_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoType.html">viam::sdk::ProtoType</a></div><div class="ttdef"><b>Definition:</b> proto_type.hpp:11</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceConfig.html">viam::sdk::ResourceConfig</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:25</div></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceLevelServiceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceLevelServiceConfig.html">viam::sdk::ResourceLevelServiceConfig</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:18</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ProtoType_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ProtoType.html">viam::sdk::ProtoType</a></div><div class="ttdef"><b>Definition:</b> proto_type.hpp:15</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceConfig.html">viam::sdk::ResourceConfig</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:23</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ResourceLevelServiceConfig_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceLevelServiceConfig.html">viam::sdk::ResourceLevelServiceConfig</a></div><div class="ttdef"><b>Definition:</b> resource.hpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
