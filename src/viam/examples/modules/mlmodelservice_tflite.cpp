@@ -2,12 +2,11 @@
 #include <signal.h>
 
 #include <fstream>
+#include <iostream>
 #include <mutex>
 #include <sstream>
 #include <stdexcept>
 
-#include <boost/algorithm/string/join.hpp>
-#include <boost/variant/get.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
@@ -33,13 +32,11 @@ class MLModelServiceTFLite : public vs::MLModelService {
    public:
     explicit MLModelServiceTFLite(vs::Dependencies dependencies, vs::ResourceConfig configuration)
         : MLModelService(configuration.name()) {
-        std::cout << "MLModelServiceTFLite instantiated as '" << this->name() << "'" << std::endl;
         reconfigure(std::move(dependencies), std::move(configuration));
     }
 
     void reconfigure(vs::Dependencies dependencies, vs::ResourceConfig configuration) override {
         using std::swap;
-        std::cout << "MLModelServiceTFLite: recieved `reconfigure` invocation" << std::endl;
         std::shared_ptr<state> state;
         {
             std::scoped_lock<std::mutex> lock(state_lock_);
@@ -61,8 +58,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
     }
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override {
-        // std::cout << "MLModelServiceTFLite: recieved `infer` invocation with " << inputs.size()
-        // << "inputs" << std::endl;
         std::shared_ptr<state> state;
         {
             std::unique_lock<std::mutex> lock(state_lock_);
@@ -111,8 +106,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
                        << "` failed population: " << state->error_reporter_data;
                 throw std::invalid_argument(buffer.str());
             }
-
-            // std::cout << "XXX Populated input tensor " << kv.first << std::endl;
         }
 
         const auto tflite_status = TfLiteInterpreterInvoke(state->interpreter.get());
@@ -132,15 +125,14 @@ class MLModelServiceTFLite : public vs::MLModelService {
         inference_result->interpreter_lock = std::move(lock);
 
         for (const auto& output : state->metadata.outputs) {
-            // std::cout << "XXX ACM ENCODING OUTPUT " << output.name << std::endl;
             const auto where = state->output_tensor_indices_by_name.find(output.name);
             if (where == state->output_tensor_indices_by_name.end()) {
-                // std::cout << "XXX ACM IMPOSSABLE!" << std::endl;
                 continue;  // Should be impossible
             }
             const auto* const tflite_tensor =
                 TfLiteInterpreterGetOutputTensor(state->interpreter.get(), where->second);
-            inference_result->views.emplace(output.name, std::move(make_tensor_view_(output, tflite_tensor)));
+            inference_result->views.emplace(output.name,
+                                            std::move(make_tensor_view_(output, tflite_tensor)));
         }
 
         auto* const views = &inference_result->views;
@@ -148,7 +140,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
     }
 
     struct metadata metadata() override {
-        // std::cout << "MLModelServiceTFLite: recieved `metadata` invocation" << std::endl;
         std::shared_ptr<state> state;
         {
             std::unique_lock<std::mutex> lock(state_lock_);
@@ -191,9 +182,8 @@ class MLModelServiceTFLite : public vs::MLModelService {
             const auto remappings_attributes = remappings->second->get<vs::AttributeMap>();
             if (!remappings_attributes) {
                 std::ostringstream buffer;
-                buffer
-                    << service_name
-                    << ": Optional parameter `tensor_name_remappings` must be a dictionary";
+                buffer << service_name
+                       << ": Optional parameter `tensor_name_remappings` must be a dictionary";
                 throw std::invalid_argument(buffer.str());
             }
 
@@ -202,7 +192,8 @@ class MLModelServiceTFLite : public vs::MLModelService {
                 if (!source_attributes) {
                     std::ostringstream buffer;
                     buffer << service_name
-                           << ": Fields `inputs` and `outputs` of `tensor_name_remappings` must be dictionaries";
+                           << ": Fields `inputs` and `outputs` of `tensor_name_remappings` must be "
+                              "dictionaries";
                     throw std::invalid_argument(buffer.str());
                 }
                 for (const auto& kv : *source_attributes) {
@@ -210,13 +201,13 @@ class MLModelServiceTFLite : public vs::MLModelService {
                     const auto* const kv_string = kv.second->get<std::string>();
                     if (!kv_string) {
                         std::ostringstream buffer;
-                        buffer << service_name
-                               << ": Fields `inputs` and `outputs` of `tensor_name_remappings` must "
-                                  "be dictionaries with string values";
+                        buffer
+                            << service_name
+                            << ": Fields `inputs` and `outputs` of `tensor_name_remappings` must "
+                               "be dictionaries with string values";
                         throw std::invalid_argument(buffer.str());
                     }
                     target[kv.first] = *kv_string;
-                    std::cout << "Remapped " << kv.first << " to " << *kv_string << std::endl;
                 }
             };
 
@@ -328,8 +319,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
                 service_data_type_from_tflite_data_type_(TfLiteTensorType(tensor));
             for (decltype(ndims) j = 0; j != ndims; ++j) {
                 input_info.shape.push_back(TfLiteTensorDim(tensor, j));
-                // std::cout << "XXX ACM ADDED DIM " << input_info.shape.back()
-                //<< " to input tensor `" << name << "` (" << i << ")" << std::endl;
             }
             temp_itibn[input_info.name] = i;
             temp_inputs.emplace_back(std::move(input_info));
@@ -371,9 +360,6 @@ class MLModelServiceTFLite : public vs::MLModelService {
                 service_data_type_from_tflite_data_type_(TfLiteTensorType(tensor));
             for (decltype(ndims) j = 0; j != ndims; ++j) {
                 output_info.shape.push_back(TfLiteTensorDim(tensor, j));
-                // std::cout << "XXX ACM ADDED DIM " << output_info.shape.back()
-                //<< " to output tensor `" << output_info.name << "` (" << i << ", "
-                //<< output_tensor_ixes[i] << ")" << std::endl;
             }
             temp_otibn[output_info.name] = i;
             temp_outputs.emplace_back(std::move(output_info));
@@ -551,7 +537,7 @@ class MLModelServiceTFLite : public vs::MLModelService {
     std::mutex state_lock_;
     std::condition_variable state_ready_;
     std::shared_ptr<state> state_;
-    };
+};
 
 int serve(const std::string& socket_path) {
     sigset_t sigset;
