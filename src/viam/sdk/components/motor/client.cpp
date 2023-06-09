@@ -31,7 +31,7 @@ void MotorClient::set_power(double power_pct) {
     *request.mutable_name() = this->name();
     request.set_power_pct(power_pct);
 
-    grpc::Status status = stub_->SetPower(&ctx, request, &response);
+    const grpc::Status status = stub_->SetPower(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -47,7 +47,7 @@ void MotorClient::go_for(double rpm, double revolutions) {
     request.set_rpm(rpm);
     request.set_revolutions(revolutions);
 
-    grpc::Status status = stub_->GoFor(&ctx, request, &response);
+    const grpc::Status status = stub_->GoFor(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -63,7 +63,7 @@ void MotorClient::go_to(double rpm, double position_revolutions) {
     request.set_rpm(rpm);
     request.set_position_revolutions(position_revolutions);
 
-    grpc::Status status = stub_->GoTo(&ctx, request, &response);
+    const grpc::Status status = stub_->GoTo(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -78,7 +78,7 @@ void MotorClient::reset_zero_position(double offset) {
     *request.mutable_name() = this->name();
     request.set_offset(offset);
 
-    grpc::Status status = stub_->ResetZeroPosition(&ctx, request, &response);
+    const grpc::Status status = stub_->ResetZeroPosition(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -92,7 +92,7 @@ Motor::position MotorClient::get_position() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->GetPosition(&ctx, request, &response);
+    const grpc::Status status = stub_->GetPosition(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -107,7 +107,7 @@ Motor::properties MotorClient::get_properties() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->GetProperties(&ctx, request, &response);
+    const grpc::Status status = stub_->GetProperties(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -122,7 +122,7 @@ grpc::StatusCode MotorClient::stop(AttributeMap extra) {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->Stop(&ctx, request, &response);
+    const grpc::Status status = stub_->Stop(&ctx, request, &response);
     return status.error_code();
 }
 
@@ -134,7 +134,7 @@ Motor::power_status MotorClient::get_power_status() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->IsPowered(&ctx, request, &response);
+    const grpc::Status status = stub_->IsPowered(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -149,7 +149,7 @@ bool MotorClient::is_moving() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->IsMoving(&ctx, request, &response);
+    const grpc::Status status = stub_->IsMoving(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -162,11 +162,11 @@ AttributeMap MotorClient::do_command(AttributeMap command) {
 
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->DoCommand(&ctx, request, &response);
+    const grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }

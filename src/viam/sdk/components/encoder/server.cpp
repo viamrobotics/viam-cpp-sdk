@@ -20,14 +20,15 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
                               "Called [Encoder::GetPosition] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
+    const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
 
-    Encoder::position result = encoder->get_position(Encoder::from_proto(request->position_type()));
+    const Encoder::position result =
+        encoder->get_position(Encoder::from_proto(request->position_type()));
     response->set_value(result.value);
     response->set_position_type(Encoder::to_proto(result.type));
 
@@ -43,12 +44,12 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
                               "Called [Encoder::ResetPosition] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
+    const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
 
     encoder->reset_position();
 
@@ -64,14 +65,14 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
                               "Called [Encoder::GetProperties] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
+    const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
 
-    Encoder::properties result = encoder->get_properties();
+    const Encoder::properties result = encoder->get_properties();
     response->set_ticks_count_supported(result.ticks_count_supported);
     response->set_angle_degrees_supported(result.angle_degrees_supported);
 
@@ -86,13 +87,13 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
                               "Called [Encoder::DoCommand] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
-    AttributeMap result = encoder->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
+    const AttributeMap result = encoder->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 

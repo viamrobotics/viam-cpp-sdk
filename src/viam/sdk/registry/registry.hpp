@@ -31,6 +31,7 @@ namespace sdk {
 class ResourceRegistration {
    public:
     virtual ~ResourceRegistration();
+
     /// @brief Add `Reconfigure` functionality to a resource.
     std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 

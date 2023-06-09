@@ -37,7 +37,7 @@ AttributeMap CameraClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandResponse resp;
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *req.mutable_command() = proto_command;
     *req.mutable_name() = this->name();
     stub_->DoCommand(&ctx, req, &resp);

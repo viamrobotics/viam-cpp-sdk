@@ -29,7 +29,7 @@ if (VIAMCPPSDK_SANITIZED_BUILD)
   target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
 endif()
 if (VIAMCPPSDK_CLANG_TIDY)
-  find_program(CLANG_TIDY_EXE NAMES "clang-tidy-13" "clang-tidy")
+  find_program(CLANG_TIDY_EXE NAMES "clang-tidy-15" "clang-tidy")
   set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "--config-file=../.clang-tidy")
   set_target_properties(viamsdk PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
@@ -79,18 +79,14 @@ target_sources(viamsdk
     robot/service.cpp
     rpc/dial.cpp
     rpc/server.cpp
+    services/mlmodel/client.cpp
+    services/mlmodel/mlmodel.cpp
+    services/mlmodel/private/proto.cpp
+    services/mlmodel/server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
     spatialmath/orientation.cpp
-    tests/test_utils.cpp
-    tests/mocks/camera_mocks.cpp
-    tests/mocks/generic_mocks.cpp
-    tests/mocks/mock_base.cpp
-    tests/mocks/mock_board.cpp
-    tests/mocks/mock_encoder.cpp
-    tests/mocks/mock_motor.cpp
-    tests/mocks/mock_robot.cpp
   PUBLIC FILE_SET viamsdk_public_includes TYPE HEADERS
     BASE_DIRS
       ../..
@@ -132,18 +128,13 @@ target_sources(viamsdk
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp
       ../../viam/sdk/rpc/server.hpp
+      ../../viam/sdk/services/mlmodel/client.hpp
+      ../../viam/sdk/services/mlmodel/mlmodel.hpp
+      ../../viam/sdk/services/mlmodel/server.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
-      ../../viam/sdk/tests/test_utils.hpp
-      ../../viam/sdk/tests/mocks/camera_mocks.hpp
-      ../../viam/sdk/tests/mocks/generic_mocks.hpp
-      ../../viam/sdk/tests/mocks/mock_base.hpp
-      ../../viam/sdk/tests/mocks/mock_board.hpp
-      ../../viam/sdk/tests/mocks/mock_encoder.hpp
-      ../../viam/sdk/tests/mocks/mock_motor.hpp
-      ../../viam/sdk/tests/mocks/mock_robot.hpp
 )
 
 set_target_properties(
@@ -191,9 +182,11 @@ target_link_libraries(viamsdk
   PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   PUBLIC ${VIAMCPPSDK_GRPC_LIBRARIES}
   PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
-  PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
   PUBLIC Boost::headers
   PUBLIC Boost::log
+  PUBLIC xtensor
+  PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
+  PRIVATE absl::strings
   PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
