@@ -121,12 +121,11 @@ class MLModelServiceTFLite : public vs::MLModelService {
         }
 
         struct inference_result_type {
+            std::shared_ptr<struct state> state;
             std::unique_lock<std::mutex> interpreter_lock;
             named_tensor_views views;
         };
-
         auto inference_result = std::make_shared<inference_result_type>();
-        inference_result->interpreter_lock = std::move(lock);
 
         for (const auto& output : state->metadata.outputs) {
             const auto where = state->output_tensor_indices_by_name.find(output.name);
@@ -138,6 +137,9 @@ class MLModelServiceTFLite : public vs::MLModelService {
             inference_result->views.emplace(output.name,
                                             std::move(make_tensor_view_(output, tflite_tensor)));
         }
+
+        inference_result->state = std::move(state);
+        inference_result->interpreter_lock = std::move(lock);
 
         auto* const views = &inference_result->views;
         return {std::move(inference_result), views};
