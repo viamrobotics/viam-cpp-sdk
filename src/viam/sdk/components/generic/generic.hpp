@@ -48,7 +48,7 @@ class Generic : public Component {
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
 
-    /// @brief A `GeometryConfig` specifies the format of geometries associated with the component.
+    /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries() = 0;
 
