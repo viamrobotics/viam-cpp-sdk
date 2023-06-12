@@ -138,7 +138,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
     COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/goutils --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api
-    COMMAND ${BUF_COMMAND} generate "https://github.com/viamrobotics/api#format=git,ref=0f18896259f5a317129370560769f7d2f08b14d7,subdir=proto/viam" --template buf.gen.yaml --path proto/viam/common,proto/viam/component,proto/viam/robot,proto/viam/service,proto/viam/module,proto/viam/tagger,proto/viam/app/v1
+    COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module,tagger,app/v1
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
