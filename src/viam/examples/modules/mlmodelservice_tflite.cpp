@@ -35,23 +35,33 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
           state_(reconfigure_(std::move(dependencies), std::move(configuration))) {}
 
     ~MLModelServiceTFLite() final {
-        // All invocations arrive via gRPC, so we know we are idle. It
-        // should be safe to tear down all state automatically without
-        // needing to wait for anything more to drain.
+        // All invocations arrive via gRPC, so we know we are idle
+        // here. It should be safe to tear down all state
+        // automatically without needing to wait for anything more to
+        // drain.
     }
 
     void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final {
-        // TODO: Is this whole dance around allowing concurrent
-        // requests against existing state during reconfiguration
-        // required? Should we just block requests during
-        // reconfiguration instead?
-        //
+        // Care needs to be taken during reconfiguration. There may
+        // not be higher level protection against invocation during
+        // reconfiguration. Keep all state in a shared_ptr managed
+        // block, and allow client invocations to act against current
+        // state while a new configuration is built, then swap in the
+        // new state. State which is in use by existing invocations
+        // will remain valid until the clients drain. If
+        // reconfiguration fails, fall back to the old state, though
+        // in practice the component is likely to get restarted.
+
         // Swap out the state_ member with nullptr. Existing infocations
         using std::swap;
         std::shared_ptr<state> state;
         {
-            // TODO: Do we need to `wait` here against concurrent reconfiguration?
-            std::scoped_lock<std::mutex> lock(state_lock_);
+            // Wait until we have a state in play, then take
+            // ownership, so that we don't race with other
+            // reconfigurations and so other invocations wait on a new
+            // state.
+            std::unique_lock<std::mutex> lock(state_lock_);
+            state_ready_.wait(lock, [this]() { return state_ != nullptr; });
             swap(state_, state);
         }
         try {
@@ -186,7 +196,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
     }
 
     struct metadata metadata() final {
-        // Just return our metadata from leased state.
+        // Just return a copy of our metadata from leased state.
         return lease_state_()->metadata;
     }
 
@@ -218,7 +228,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // downcast them to the right thing and store them in our
         // state so we could use them as needed.
         //
-        // TODO(RSDK-XXXX): Validating that dependencies are present
+        // TODO(RSDK-3601): Validating that dependencies are present
         // should be handled by the ModuleService automatically,
         // rather than requiring each component to validate the
         // presence of dependencies.
@@ -644,8 +654,17 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         const auto* const tensor_data = reinterpret_cast<const T*>(TfLiteTensorData(tflite_tensor));
         const auto tensor_size_bytes = TfLiteTensorByteSize(tflite_tensor);
         const auto tensor_size_t = tensor_size_bytes / sizeof(T);
+        // TODO: We are just feeding back out what we cached in the
+        // metadata for shape. Should this instead be re-querying the
+        // output tensor NumDims / DimN after each invocation in case
+        // the shape is dynamic? The possibility of a dynamically
+        // sized extent is why we represent the dimensions as signed
+        // quantities in the tensor metadata. But an actual tensor has
+        // a real extent. How would tflite ever communicate that to us
+        // differently given that we use the same API to obtain
+        // metadata as we would here?
         std::vector<std::size_t> shape;
-        // TODO: Not very clean
+        shape.reserve(info.shape.size());
         for (const auto s : info.shape) {
             shape.push_back(static_cast<std::size_t>(s));
         }
@@ -669,14 +688,21 @@ int serve(const std::string& socket_path) try {
 
     // Create a new model registration for the service.
     auto module_registration = std::make_shared<vsdk::ModelRegistration>(
+        // TODO: Document me.
         vsdk::ResourceType{"MLModelServiceTFLiteModule"},
+
+        // Identify that this resource offers the MLModelService API
         vsdk::MLModelService::static_api(),
+
+        // Declare a model triple for this service.
         vsdk::Model{"viam", "mlmodelservice", "tflite"},
+
+        // Define the factory for instances of the resource.
         [](vsdk::Dependencies deps, vsdk::ResourceConfig config) {
             return std::make_shared<MLModelServiceTFLite>(std::move(deps), std::move(config));
         });
 
-    // Register the new registration with the Registry.
+    // Register the newly created registration with the Registry.
     vsdk::Registry::register_model(module_registration);
 
     // Construct the module service and tell it where to place the socket path.
