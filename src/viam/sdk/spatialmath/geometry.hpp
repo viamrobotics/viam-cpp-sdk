@@ -19,15 +19,11 @@ enum GeometryType {
 
 class GeometryConfig {
    public:
-   struct coordinates {
-    double x;
-    double y;
-    double z;
+    struct coordinates {
+        double x, y, z;
     };
     struct pose {
-    double o_x;
-    double o_y;
-    double o_z;
+        double o_x, o_y, o_z;
     };
     viam::common::v1::Geometry to_proto() const;
     viam::common::v1::RectangularPrism box_proto() const;

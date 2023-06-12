@@ -156,8 +156,7 @@ bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
     if (lhs.geometry_type_ == GeometryType::sphere && lhs.r_ != rhs.r_) {
         return false;
     }
-    return lhs.coordinates_.x == rhs.coordinates_.x &&
-           lhs.coordinates_.y == rhs.coordinates_.y &&
+    return lhs.coordinates_.x == rhs.coordinates_.x && lhs.coordinates_.y == rhs.coordinates_.y &&
            lhs.coordinates_.z == rhs.coordinates_.z && lhs.pose_.o_x == rhs.pose_.o_x &&
            lhs.pose_.o_y == rhs.pose_.o_y && lhs.pose_.o_z == rhs.pose_.o_z &&
            lhs.label_ == rhs.label_ && lhs.geometry_type_ == rhs.geometry_type_;
