@@ -16,12 +16,12 @@ namespace prototype_details {
 
 template <typename T>
 struct get_helper {
-    template<typename V>
+    template <typename V>
     static T* get(V& v) {
         return boost::get<T>(&v);
     }
 
-    template<typename V>
+    template <typename V>
     static const T* get(const V& v) {
         return boost::get<T>(&v);
     }
@@ -29,13 +29,13 @@ struct get_helper {
 
 template <>
 struct get_helper<AttributeMap> {
-    template<typename V>
+    template <typename V>
     static AttributeMap get(V& v) {
         auto* const result = boost::get<AttributeMap>(&v);
         return result ? *result : nullptr;
     }
 
-    template<typename V>
+    template <typename V>
     static std::shared_ptr<const AttributeMap::element_type> get(const V& v) {
         auto* const result = boost::get<AttributeMap>(&v);
         return result ? *result : nullptr;
@@ -61,7 +61,7 @@ class ProtoType {
     google::protobuf::Value proto_value();
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
 
-    template<typename T>
+    template <typename T>
     auto get() {
         return prototype_details::get_helper<T>::get(proto_type_);
     }
@@ -72,7 +72,6 @@ class ProtoType {
     }
 
    private:
-
     boost::variant<boost::blank,
                    bool,
                    std::string,

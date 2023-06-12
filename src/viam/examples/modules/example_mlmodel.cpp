@@ -187,7 +187,8 @@ int serve(const std::string& socket_path) {
         vsdk::ResourceType{"ExampleMLModelServiceModule"},
         vsdk::MLModelService::static_api(),
         vsdk::Model{"viam", "example", "mlmodel"},
-        [](vsdk::Dependencies, vsdk::ResourceConfig resource_config) -> std::shared_ptr<vsdk::Resource> {
+        [](vsdk::Dependencies,
+           vsdk::ResourceConfig resource_config) -> std::shared_ptr<vsdk::Resource> {
             return std::make_shared<ExampleMLModelService>(resource_config.name());
         },
         [](vsdk::ResourceConfig resource_config) -> std::vector<std::string> { return {}; });
