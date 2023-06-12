@@ -22,9 +22,11 @@ class MockGeneric : public Generic {
         override;
 
     static std::shared_ptr<MockGeneric> get_mock_generic();
+    std::vector<GeometryConfig> get_geometries() override;
 
    private:
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
+    std::vector<GeometryConfig> geometries_;
 };
 
 class MockGenericStub : public viam::component::generic::v1::GenericService::StubInterface {
@@ -34,6 +36,9 @@ class MockGenericStub : public viam::component::generic::v1::GenericService::Stu
     ::grpc::Status DoCommand(::grpc::ClientContext* context,
                              const ::viam::common::v1::DoCommandRequest& request,
                              ::viam::common::v1::DoCommandResponse* response) override;
+    ::grpc::Status GetGeometries(::grpc::ClientContext* context,
+                                 const ::viam::common::v1::GetGeometriesRequest& request,
+                                 ::viam::common::v1::GetGeometriesResponse* response) override;
 
    private:
     std::shared_ptr<GenericServer> server_;
@@ -49,6 +54,20 @@ class MockGenericStub : public viam::component::generic::v1::GenericService::Stu
     PrepareAsyncDoCommandRaw(::grpc::ClientContext* context,
                              const ::viam::common::v1::DoCommandRequest& request,
                              ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("Unimplemented");
+    };
+
+    ::grpc::ClientAsyncResponseReaderInterface<::viam::common::v1::GetGeometriesResponse>*
+    AsyncGetGeometriesRaw(::grpc::ClientContext* context,
+                          const ::viam::common::v1::GetGeometriesRequest& request,
+                          ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("Unimplemented");
+    };
+
+    ::grpc::ClientAsyncResponseReaderInterface<::viam::common::v1::GetGeometriesResponse>*
+    PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context,
+                                 const ::viam::common::v1::GetGeometriesRequest& request,
+                                 ::grpc::CompletionQueue* cq) override {
         throw std::runtime_error("Unimplemented");
     };
 };

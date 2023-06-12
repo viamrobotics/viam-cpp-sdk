@@ -2,6 +2,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 

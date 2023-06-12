@@ -23,6 +23,9 @@ Camera::raw_image MockCamera::get_image(std::string mime_type) {
 Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
     return pc_;
 }
+std::vector<GeometryConfig> MockCamera::get_geometries() {
+    return geometries_;
+}
 Camera::properties MockCamera::get_properties() {
     return camera_properties_;
 }
@@ -77,7 +80,7 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     camera->intrinsic_parameters_ = fake_intrinsic_parameters();
     camera->distortion_parameters_ = fake_distortion_parameters();
     camera->map_ = fake_map();
-
+    camera->geometries_ = fake_geometries();
     return camera;
 }
 
@@ -106,6 +109,13 @@ MockCameraStub::MockCameraStub() : server_(std::make_shared<CameraServer>()) {
     ::viam::component::camera::v1::GetPointCloudResponse* response) {
     grpc::ServerContext ctx;
     return server_->GetPointCloud(&ctx, &request, response);
+}
+::grpc::Status MockCameraStub::GetGeometries(
+    ::grpc::ClientContext* context,
+    const ::viam::common::v1::GetGeometriesRequest& request,
+    ::viam::common::v1::GetGeometriesResponse* response) {
+    grpc::ServerContext ctx;
+    return server_->GetGeometries(&ctx, &request, response);
 }
 ::grpc::Status MockCameraStub::GetProperties(
     ::grpc::ClientContext* context,

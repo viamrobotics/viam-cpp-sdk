@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
@@ -130,6 +131,10 @@ class Camera : public Component {
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
     /// @return The requested `point_cloud`.
     virtual point_cloud get_point_cloud(std::string mime_type) = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling camera.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries() = 0;
 
     /// @brief Get the camera's properties.
     /// @return The camera properties.

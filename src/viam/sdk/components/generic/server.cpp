@@ -29,6 +29,26 @@ GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : Resourc
 
     return ::grpc::Status();
 }
+::grpc::Status GenericServer::GetGeometries(::grpc::ServerContext* context,
+                                            const ::viam::common::v1::GetGeometriesRequest* request,
+                                            ::viam::common::v1::GetGeometriesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetGeometries] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
+    const std::vector<GeometryConfig> geometries = generic->get_geometries();
+    for (const auto& geometry : geometries) {
+        *response->mutable_geometries()->Add() = geometry.to_proto();
+    }
+    return ::grpc::Status();
+}
 
 void GenericServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);

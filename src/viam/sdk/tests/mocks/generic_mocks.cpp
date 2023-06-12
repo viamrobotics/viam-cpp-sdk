@@ -20,10 +20,13 @@ MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
     return map_;
 }
-
+std::vector<GeometryConfig> MockGeneric::get_geometries() {
+    return geometries_;
+}
 std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
     auto generic = std::make_shared<MockGeneric>("mock_generic");
     generic->map_ = fake_map();
+    generic->geometries_ = fake_geometries();
 
     return generic;
 }
@@ -31,6 +34,14 @@ std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
 MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) {
     this->server_->resource_manager()->add(std::string("mock_generic"),
                                            MockGeneric::get_mock_generic());
+}
+
+::grpc::Status MockGenericStub::GetGeometries(
+    ::grpc::ClientContext* context,
+    const ::viam::common::v1::GetGeometriesRequest& request,
+    ::viam::common::v1::GetGeometriesResponse* response) {
+    grpc::ServerContext ctx;
+    return server_->GetGeometries(&ctx, &request, response);
 }
 
 ::grpc::Status MockGenericStub::DoCommand(::grpc::ClientContext* context,
