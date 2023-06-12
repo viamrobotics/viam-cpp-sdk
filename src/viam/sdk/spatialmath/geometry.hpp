@@ -32,8 +32,8 @@ class GeometryConfig {
     static GeometryConfig from_proto(const viam::common::v1::Geometry& proto);
     static std::vector<GeometryConfig> from_proto(
         const viam::common::v1::GetGeometriesResponse& proto);
-    void set_coordinates(const coordinates& coordinates);
-    void set_pose(const pose& pose);
+    void set_coordinates(coordinates coordinates);
+    void set_pose(pose pose);
     void set_radius(double r);
     void set_geometry_type(GeometryType type);
     void set_orientation_config(OrientationConfig config);

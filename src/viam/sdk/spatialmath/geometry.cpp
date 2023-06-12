@@ -112,23 +112,23 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
         }
     }
 }
-void GeometryConfig::set_coordinates(const coordinates& coordinates) {
-    coordinates_ = coordinates;
+void GeometryConfig::set_coordinates(coordinates coordinates) {
+    coordinates_ = std::move(coordinates);
 }
-void GeometryConfig::set_pose(const pose& pose) {
-    pose_ = pose;
+void GeometryConfig::set_pose(pose pose) {
+    pose_ = std::move(pose);
 }
 void GeometryConfig::set_radius(double r) {
-    r_ = r;
+    r_ = std::move(r);
 }
 void GeometryConfig::set_geometry_type(GeometryType type) {
-    geometry_type_ = type;
+    geometry_type_ = std::move(type);
 }
 void GeometryConfig::set_orientation_config(OrientationConfig config) {
-    orientation_config_ = config;
+    orientation_config_ = std::move(config);
 }
 void GeometryConfig::set_label(std::string label) {
-    label_ = label;
+    label_ = std::move(label);
 }
 double GeometryConfig::get_radius() const {
     return r_;

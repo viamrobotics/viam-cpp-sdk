@@ -145,5 +145,6 @@ proto::Orientation OrientationConfig::to_proto() const {
         }
     }
 }
+
 }  // namespace sdk
 }  // namespace viam
