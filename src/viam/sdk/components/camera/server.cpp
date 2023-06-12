@@ -115,13 +115,13 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                               "Called [GetGeometries] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-    std::vector<GeometryConfig> geometries = camera->get_geometries();
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+    const std::vector<GeometryConfig> geometries = camera->get_geometries();
     for (const auto& geometry : geometries) {
         *response->mutable_geometries()->Add() = geometry.to_proto();
     }

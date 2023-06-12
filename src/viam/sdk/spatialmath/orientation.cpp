@@ -8,7 +8,6 @@
 
 #include <viam/api/app/v1/robot.pb.h>
 
-#include <viam/sdk/spatialmath/orientation.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
 namespace viam {

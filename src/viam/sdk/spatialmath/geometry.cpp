@@ -19,21 +19,21 @@ viam::common::v1::Sphere GeometryConfig::sphere_proto() const {
 viam::common::v1::RectangularPrism GeometryConfig::box_proto() const {
     viam::common::v1::RectangularPrism box;
     viam::common::v1::Vector3 vec3;
-    vec3.set_x(coordinates_.x_);
-    vec3.set_y(coordinates_.y_);
-    vec3.set_z(coordinates_.z_);
+    vec3.set_x(coordinates_.x);
+    vec3.set_y(coordinates_.y);
+    vec3.set_z(coordinates_.z);
     *box.mutable_dims_mm() = vec3;
     return box;
 }
 
 viam::common::v1::Pose GeometryConfig::pose_proto() const {
     viam::common::v1::Pose pose;
-    pose.set_x(coordinates_.x_);
-    pose.set_y(coordinates_.y_);
-    pose.set_z(coordinates_.z_);
-    pose.set_o_x(pose_.o_x_);
-    pose.set_o_y(pose_.o_y_);
-    pose.set_o_z(pose_.o_z_);
+    pose.set_x(coordinates_.x);
+    pose.set_y(coordinates_.y);
+    pose.set_z(coordinates_.z);
+    pose.set_o_x(pose_.o_x);
+    pose.set_o_y(pose_.o_y);
+    pose.set_o_z(pose_.o_z);
     pose.set_theta(0);
     return pose;
 }
@@ -41,20 +41,20 @@ viam::common::v1::Pose GeometryConfig::pose_proto() const {
 GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& proto) {
     GeometryConfig cfg;
     const auto& pose = proto.center();
-    cfg.coordinates_.x_ = pose.x();
-    cfg.coordinates_.y_ = pose.y();
-    cfg.coordinates_.z_ = pose.z();
-    cfg.pose_.o_x_ = pose.o_x();
-    cfg.pose_.o_y_ = pose.o_y();
-    cfg.pose_.o_z_ = pose.o_z();
+    cfg.coordinates_.x = pose.x();
+    cfg.coordinates_.y = pose.y();
+    cfg.coordinates_.z = pose.z();
+    cfg.pose_.o_x = pose.o_x();
+    cfg.pose_.o_y = pose.o_y();
+    cfg.pose_.o_z = pose.o_z();
     cfg.label_ = proto.label();
 
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
             cfg.geometry_type_ = box;
-            cfg.coordinates_.x_ = proto.box().dims_mm().x();
-            cfg.coordinates_.y_ = proto.box().dims_mm().y();
-            cfg.coordinates_.z_ = proto.box().dims_mm().z();
+            cfg.coordinates_.x = proto.box().dims_mm().x();
+            cfg.coordinates_.y = proto.box().dims_mm().y();
+            cfg.coordinates_.z = proto.box().dims_mm().z();
             return cfg;
         }
         case viam::common::v1::Geometry::GeometryTypeCase::kSphere: {
@@ -103,7 +103,7 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
         }
         case unknown:
         default: {
-            if (coordinates_.x_ == 0 && coordinates_.y_ == 0 && coordinates_.z_ == 0) {
+            if (coordinates_.x == 0 && coordinates_.y == 0 && coordinates_.z == 0) {
                 *geometry_.mutable_box() = box_proto();
             } else {
                 *geometry_.mutable_sphere() = sphere_proto();
@@ -112,10 +112,10 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
         }
     }
 }
-void GeometryConfig::set_coordinates(const Coordinates& coordinates) {
+void GeometryConfig::set_coordinates(const coordinates& coordinates) {
     coordinates_ = coordinates;
 }
-void GeometryConfig::set_pose(const Pose& pose) {
+void GeometryConfig::set_pose(const pose& pose) {
     pose_ = pose;
 }
 void GeometryConfig::set_radius(double r) {
@@ -137,10 +137,10 @@ double GeometryConfig::get_radius() const {
 GeometryType GeometryConfig::get_geometry_type() const {
     return geometry_type_;
 }
-Coordinates GeometryConfig::get_coordinates() const {
+GeometryConfig::coordinates GeometryConfig::get_coordinates() const {
     return coordinates_;
 }
-Pose GeometryConfig::get_pose() const {
+GeometryConfig::pose GeometryConfig::get_pose() const {
     return pose_;
 }
 OrientationConfig GeometryConfig::get_orientation_config() const {
@@ -156,10 +156,10 @@ bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
     if (lhs.geometry_type_ == GeometryType::sphere && lhs.r_ != rhs.r_) {
         return false;
     }
-    return lhs.coordinates_.x_ == rhs.coordinates_.x_ &&
-           lhs.coordinates_.y_ == rhs.coordinates_.y_ &&
-           lhs.coordinates_.z_ == rhs.coordinates_.z_ && lhs.pose_.o_x_ == rhs.pose_.o_x_ &&
-           lhs.pose_.o_y_ == rhs.pose_.o_y_ && lhs.pose_.o_z_ == rhs.pose_.o_z_ &&
+    return lhs.coordinates_.x == rhs.coordinates_.x &&
+           lhs.coordinates_.y == rhs.coordinates_.y &&
+           lhs.coordinates_.z == rhs.coordinates_.z && lhs.pose_.o_x == rhs.pose_.o_x &&
+           lhs.pose_.o_y == rhs.pose_.o_y && lhs.pose_.o_z == rhs.pose_.o_z &&
            lhs.label_ == rhs.label_ && lhs.geometry_type_ == rhs.geometry_type_;
 }
 
