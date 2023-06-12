@@ -43,14 +43,9 @@ install(
   COMPONENT examples
 )
 
-
-include_directories(/opt/homebrew/include)
-get_directory_property(includes INCLUDE_DIRECTORIES)
-set(CMAKE_REQUIRED_INCLUDES ${includes})
-CHECK_INCLUDE_FILE("tensorflow/lite/c/c_api.h" VIAMCPPSDK_HAVE_TFLITE_C_API)
-
-if (VIAMCPPSDK_HAVE_TFLITE_C_API)
-
+find_path(TFLITE_INCLUDE_PATH "tensorflow/lite/c/c_api.h")
+find_library(TFLITE_LIBRARY "tensorflowlite_c")
+if (EXISTS ${TFLITE_INCLUDE_PATH} AND EXISTS ${TFLITE_LIBRARY})
   add_executable(mlmodelservice_tflite
     mlmodelservice_tflite.cpp
   )
@@ -66,5 +61,6 @@ if (VIAMCPPSDK_HAVE_TFLITE_C_API)
     COMPONENT examples
   )
 else()
-  message("XXX ACM")
+  message(WARNING "Failed to find tflite C headers/library: tflite example module will not be built")
+  message(WARNING "If you have tflite in a non-standard location, add -DCMAKE_PREFIX_PATH=/path/to/tflite to your CMake invocation")
 endif()
