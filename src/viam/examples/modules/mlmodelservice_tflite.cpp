@@ -25,6 +25,7 @@ namespace {
 namespace vsdk = ::viam::sdk;
 constexpr char service_name[] = "mlmodelservice_tflite";
 
+// An example MLModelService instance which runs TensorFlow Lite models.
 class MLModelServiceTFLite : public vsdk::MLModelService {
     class write_to_tflite_tensor_visitor_;
 
