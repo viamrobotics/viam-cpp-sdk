@@ -26,6 +26,23 @@ namespace vsdk = ::viam::sdk;
 constexpr char service_name[] = "mlmodelservice_tflite";
 
 // An example MLModelService instance which runs TensorFlow Lite models.
+//
+// Configuration requires the following parameters:
+//   -- `model_path`: An absolute filesystem path to a tensorflow lite model file.
+//
+// The following optional parameters are honored:
+//   -- `num_threads`: Sets the number of threads to be used, wher applicable
+//
+//   -- `tensor_name_remappings`: A pair of string-string maps keyed
+//      as `inputs` and `outputs`. Keys of the string-string maps are
+//      tensor names per the model, and the mapped strings are the
+//      names by which those tensors will be presented in the
+//      metadata. This is useful if you have an upstream service
+//      (e.g. the vision service) which expects to find specific
+//      tensor names in the metadata in order to properly interact
+//      with the model.
+//
+// Any additional configuration fields are ignored.
 class MLModelServiceTFLite : public vsdk::MLModelService {
     class write_to_tflite_tensor_visitor_;
 
@@ -42,7 +59,26 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // drain.
     }
 
-    void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final {
+    grpc::StatusCode stop(vsdk::AttributeMap extra) noexcept final {
+        return stop();
+    }
+
+    /// @brief Stops a resource from running.
+    grpc::StatusCode stop() noexcept final {
+        using std::swap;
+        try {
+            std::scoped_lock<std::mutex> lock(state_lock_);
+            if (!stopped_) {
+                stopped_ = true;
+                std::shared_ptr<state> state;
+                swap(state_, state);
+                state_ready_.notify_all();
+            }
+        } catch(...) {}
+        return grpc::StatusCode::OK;
+    }
+
+    void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final try {
         // Care needs to be taken during reconfiguration. There may
         // not be higher level protection against invocation during
         // reconfiguration. Keep all state in a shared_ptr managed
@@ -50,10 +86,12 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // state while a new configuration is built, then swap in the
         // new state. State which is in use by existing invocations
         // will remain valid until the clients drain. If
-        // reconfiguration fails, fall back to the old state, though
-        // in practice the component is likely to get restarted.
+        // reconfiguration fails, the component will `stop`.
 
-        // Swap out the state_ member with nullptr. Existing infocations
+        // Swap out the state_ member with nullptr. Existing
+        // invocations will continue to operate against the state they
+        // hold, and new invocations will block on the state becoming
+        // populated.
         using std::swap;
         std::shared_ptr<state> state;
         {
@@ -62,27 +100,26 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             // reconfigurations and so other invocations wait on a new
             // state.
             std::unique_lock<std::mutex> lock(state_lock_);
-            state_ready_.wait(lock, [this]() { return state_ != nullptr; });
+            state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
+            check_stopped_();
             swap(state_, state);
-        }
-        try {
-            state = reconfigure_(std::move(dependencies), std::move(configuration));
-        } catch (...) {
-            // If we failed to reconfigure, restore the original state and unblock waiters.
-            std::scoped_lock<std::mutex> lock(state_lock_);
-            swap(state_, state);
-            state_ready_.notify_all();
-            throw;
         }
 
-        // Otherwise, reconfiguration worked, put the state in under
-        // the lock, release the lock, and then notify any callers
-        // waiting on reconfiguration to complete.
+        state = reconfigure_(std::move(dependencies), std::move(configuration));
+
+        // Reconfiguration worked, put the state in under the lock,
+        // release the lock, and then notify any callers waiting on
+        // reconfiguration to complete.
         {
             std::scoped_lock<std::mutex> lock(state_lock_);
+            check_stopped_();
             swap(state_, state);
         }
         state_ready_.notify_all();
+    } catch (...) {
+        // If reconfiguration fails for any reason, become stopped and rethrow.
+        stop();
+        throw;
     }
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) final {
@@ -187,8 +224,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         inference_result->state = std::move(state);
         inference_result->interpreter_lock = std::move(lock);
 
-        // Finally, construct an aliasing shared_pointer which appears
-        // to the caller as a shared_ptr to views, but in fact manages
+        // Finally, construct an aliasing shared_ptr which appears to
+        // the caller as a shared_ptr to views, but in fact manages
         // the lifetime of the inference_result. When the
         // inference_result object is destroyed, the lock will be
         // released and the next caller can invoke the interpreter.
@@ -204,6 +241,18 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
    private:
     struct state;
 
+    void check_stopped_inlock() {
+        if (stopped_) {
+                        if (stopped_) {
+                std::ostringstream buffer;
+                buffer << service_name
+                       << ": component is stoped: ";
+                throw std::runtime_error(buffer.str());
+            }
+
+        }
+    }
+    
     std::shared_ptr<state> lease_state_() {
         // Wait for our state to be valid and then an incrementing
         // shared_ptr to it. We don't need to deal with interruption
@@ -211,7 +260,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // during shutdown, so it shouldn't be possible for callers to
         // get stuck here.
         std::unique_lock<std::mutex> lock(state_lock_);
-        state_ready_.wait(lock, [this]() { return state_ != nullptr; });
+        state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
+        checked_stopped_inlock_();
         return state_;
     }
 
@@ -677,6 +727,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
     std::mutex state_lock_;
     std::condition_variable state_ready_;
     std::shared_ptr<state> state_;
+    bool stopped_ = false;
 };
 
 int serve(const std::string& socket_path) try {
