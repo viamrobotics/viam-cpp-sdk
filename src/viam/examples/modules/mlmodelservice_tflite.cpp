@@ -246,7 +246,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
     void check_stopped_inlock_() const {
         if (stopped_) {
             std::ostringstream buffer;
-            buffer << service_name << ": component is stopped: ";
+            buffer << service_name << ": service is stopped: ";
             throw std::runtime_error(buffer.str());
         }
     }
