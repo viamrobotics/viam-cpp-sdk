@@ -74,11 +74,13 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
                 swap(state_, state);
                 state_ready_.notify_all();
             }
-        } catch(...) {}
+        } catch (...) {
+        }
         return grpc::StatusCode::OK;
     }
 
-    void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final try {
+    void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final
+        try {
         // Care needs to be taken during reconfiguration. There may
         // not be higher level protection against invocation during
         // reconfiguration. Keep all state in a shared_ptr managed
@@ -101,18 +103,18 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             // state.
             std::unique_lock<std::mutex> lock(state_lock_);
             state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
-            check_stopped_();
+            check_stopped_inlock_();
             swap(state_, state);
         }
 
         state = reconfigure_(std::move(dependencies), std::move(configuration));
 
-        // Reconfiguration worked, put the state in under the lock,
+        // Reconfiguration worked: put the state in under the lock,
         // release the lock, and then notify any callers waiting on
         // reconfiguration to complete.
         {
             std::scoped_lock<std::mutex> lock(state_lock_);
-            check_stopped_();
+            check_stopped_inlock_();
             swap(state_, state);
         }
         state_ready_.notify_all();
@@ -241,18 +243,14 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
    private:
     struct state;
 
-    void check_stopped_inlock() {
+    void check_stopped_inlock_() const {
         if (stopped_) {
-                        if (stopped_) {
-                std::ostringstream buffer;
-                buffer << service_name
-                       << ": component is stoped: ";
-                throw std::runtime_error(buffer.str());
-            }
-
+            std::ostringstream buffer;
+            buffer << service_name << ": component is stopped: ";
+            throw std::runtime_error(buffer.str());
         }
     }
-    
+
     std::shared_ptr<state> lease_state_() {
         // Wait for our state to be valid and then an incrementing
         // shared_ptr to it. We don't need to deal with interruption
@@ -261,7 +259,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // get stuck here.
         std::unique_lock<std::mutex> lock(state_lock_);
         state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
-        checked_stopped_inlock_();
+        check_stopped_inlock_();
         return state_;
     }
 
