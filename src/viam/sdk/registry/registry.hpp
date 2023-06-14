@@ -31,6 +31,7 @@ namespace sdk {
 class ResourceRegistration {
    public:
     virtual ~ResourceRegistration();
+
     /// @brief Add `Reconfigure` functionality to a resource.
     std::function<std::shared_ptr<Resource>(std::shared_ptr<Resource>, Name)> create_reconfigurable;
 
@@ -95,6 +96,8 @@ class ModelRegistration {
     std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> construct_resource;
 
     /// @brief Validates a resource config.
+    /// @return a list of the resource's implicit dependencies.
+    /// @throws Can throw exceptions, which will be returned to the parent via gRPC.
     std::function<std::vector<std::string>(ResourceConfig)> validate;
 
     /// @brief Creates a `Status` object for a given resource.

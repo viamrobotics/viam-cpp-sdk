@@ -555,7 +555,7 @@ const char descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto[] PR
   "ion\"\026\n\024SetPowerModeResponse*[\n\tPowerMode"
   "\022\032\n\026POWER_MODE_UNSPECIFIED\020\000\022\025\n\021POWER_MO"
   "DE_NORMAL\020\001\022\033\n\027POWER_MODE_OFFLINE_DEEP\020\002"
-  "2\236\016\n\014BoardService\022\215\001\n\006Status\022&.viam.comp"
+  "2\265\017\n\014BoardService\022\215\001\n\006Status\022&.viam.comp"
   "onent.board.v1.StatusRequest\032\'.viam.comp"
   "onent.board.v1.StatusResponse\"2\202\323\344\223\002,\022*/"
   "viam/api/v1/component/board/{name}/statu"
@@ -600,9 +600,13 @@ const char descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto[] PR
   "iam.component.board.v1.SetPowerModeReque"
   "st\032-.viam.component.board.v1.SetPowerMod"
   "eResponse\"6\202\323\344\223\0020\032./viam/api/v1/componen"
-  "t/board/{name}/power_modeBA\n\033com.viam.co"
-  "mponent.board.v1Z\"go.viam.com/api/compon"
-  "ent/board/v1b\006proto3"
+  "t/board/{name}/power_mode\022\224\001\n\rGetGeometr"
+  "ies\022$.viam.common.v1.GetGeometriesReques"
+  "t\032%.viam.common.v1.GetGeometriesResponse"
+  "\"6\202\323\344\223\0020\022./viam/api/v1/component/board/{"
+  "name}/geometriesBA\n\033com.viam.component.b"
+  "oard.v1Z\"go.viam.com/api/component/board"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -612,7 +616,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fboard_2
 };
 static ::_pbi::once_flag descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fboard_2fv1_2fboard_2eproto = {
-    false, false, 3940, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
+    false, false, 4091, descriptor_table_protodef_component_2fboard_2fv1_2fboard_2eproto,
     "component/board/v1/board.proto",
     &descriptor_table_component_2fboard_2fv1_2fboard_2eproto_once, descriptor_table_component_2fboard_2fv1_2fboard_2eproto_deps, 4, 20,
     schemas, file_default_instances, TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets,

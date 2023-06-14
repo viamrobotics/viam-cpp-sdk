@@ -31,7 +31,7 @@ Board::status BoardClient::get_status() {
 
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->Status(&ctx, request, &response);
+    const grpc::Status status = stub_->Status(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -47,7 +47,7 @@ void BoardClient::set_gpio(const std::string& pin, bool high) {
     *request.mutable_name() = this->name();
     request.set_pin(pin);
     request.set_high(high);
-    grpc::Status status = stub_->SetGPIO(&ctx, request, &response);
+    const grpc::Status status = stub_->SetGPIO(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -62,7 +62,7 @@ bool BoardClient::get_gpio(const std::string& pin) {
     *request.mutable_name() = this->name();
     request.set_pin(pin);
 
-    grpc::Status status = stub_->GetGPIO(&ctx, request, &response);
+    const grpc::Status status = stub_->GetGPIO(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -78,7 +78,7 @@ double BoardClient::get_pwm_duty_cycle(const std::string& pin) {
     *request.mutable_name() = this->name();
     request.set_pin(pin);
 
-    grpc::Status status = stub_->PWM(&ctx, request, &response);
+    const grpc::Status status = stub_->PWM(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -95,7 +95,7 @@ void BoardClient::set_pwm_duty_cycle(const std::string& pin, double duty_cycle_p
     request.set_pin(pin);
     request.set_duty_cycle_pct(duty_cycle_pct);
 
-    grpc::Status status = stub_->SetPWM(&ctx, request, &response);
+    const grpc::Status status = stub_->SetPWM(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -110,7 +110,7 @@ uint64_t BoardClient::get_pwm_frequency(const std::string& pin) {
     *request.mutable_name() = this->name();
     request.set_pin(pin);
 
-    grpc::Status status = stub_->PWMFrequency(&ctx, request, &response);
+    const grpc::Status status = stub_->PWMFrequency(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -127,7 +127,7 @@ void BoardClient::set_pwm_frequency(const std::string& pin, uint64_t frequency_h
     request.set_pin(pin);
     request.set_frequency_hz(frequency_hz);
 
-    grpc::Status status = stub_->SetPWMFrequency(&ctx, request, &response);
+    const grpc::Status status = stub_->SetPWMFrequency(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -139,11 +139,11 @@ AttributeMap BoardClient::do_command(AttributeMap command) {
 
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    grpc::Status status = stub_->DoCommand(&ctx, request, &response);
+    const grpc::Status status = stub_->DoCommand(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -159,7 +159,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
 
-    grpc::Status status = stub_->ReadAnalogReader(&ctx, request, &response);
+    const grpc::Status status = stub_->ReadAnalogReader(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -176,7 +176,7 @@ Board::digital_value BoardClient::read_digital_interrupt(
     request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
 
-    grpc::Status status = stub_->GetDigitalInterruptValue(&ctx, request, &response);
+    const grpc::Status status = stub_->GetDigitalInterruptValue(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }
@@ -196,7 +196,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
         *request.mutable_duration() = ::viam::sdk::to_proto(duration.get());
     }
 
-    grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
+    const grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
     if (!status.ok()) {
         throw ViamException(status);
     }

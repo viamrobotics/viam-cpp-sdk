@@ -247,6 +247,19 @@ struct GeoPointDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
+PROTOBUF_CONSTEXPR GeoObstacle::GeoObstacle(
+    ::_pbi::ConstantInitialized)
+  : geometries_()
+  , location_(nullptr){}
+struct GeoObstacleDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GeoObstacleDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GeoObstacleDefaultTypeInternal() {}
+  union {
+    GeoObstacle _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GeoObstacleDefaultTypeInternal _GeoObstacle_default_instance_;
 PROTOBUF_CONSTEXPR Transform::Transform(
     ::_pbi::ConstantInitialized)
   : reference_frame_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -311,11 +324,61 @@ struct DoCommandResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DoCommandResponseDefaultTypeInternal _DoCommandResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetKinematicsRequest::GetKinematicsRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetKinematicsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetKinematicsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetKinematicsRequestDefaultTypeInternal() {}
+  union {
+    GetKinematicsRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetKinematicsRequestDefaultTypeInternal _GetKinematicsRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetKinematicsResponse::GetKinematicsResponse(
+    ::_pbi::ConstantInitialized)
+  : kinematics_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , format_(0)
+{}
+struct GetKinematicsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetKinematicsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetKinematicsResponseDefaultTypeInternal() {}
+  union {
+    GetKinematicsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetKinematicsResponseDefaultTypeInternal _GetKinematicsResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetGeometriesRequest::GetGeometriesRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetGeometriesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetGeometriesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetGeometriesRequestDefaultTypeInternal() {}
+  union {
+    GetGeometriesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetGeometriesRequestDefaultTypeInternal _GetGeometriesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetGeometriesResponse::GetGeometriesResponse(
+    ::_pbi::ConstantInitialized)
+  : geometries_(){}
+struct GetGeometriesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetGeometriesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetGeometriesResponseDefaultTypeInternal() {}
+  union {
+    GetGeometriesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetGeometriesResponseDefaultTypeInternal _GetGeometriesResponse_default_instance_;
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[22];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[27];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
 const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -469,6 +532,14 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, latitude_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoPoint, longitude_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoObstacle, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoObstacle, location_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GeoObstacle, geometries_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Transform, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -511,6 +582,35 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandResponse, result_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, format_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, kinematics_data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesRequest, name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesResponse, geometries_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::common::v1::ResourceName)},
@@ -530,11 +630,16 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 126, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
   { 134, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
   { 142, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-  { 150, 159, -1, sizeof(::viam::common::v1::Transform)},
-  { 162, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 170, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-  { 177, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-  { 185, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 150, -1, -1, sizeof(::viam::common::v1::GeoObstacle)},
+  { 158, 167, -1, sizeof(::viam::common::v1::Transform)},
+  { 170, -1, -1, sizeof(::viam::common::v1::WorldState)},
+  { 178, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 185, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 193, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 200, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
+  { 207, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
+  { 215, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
+  { 222, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -555,11 +660,16 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_GeometriesInFrame_default_instance_._instance,
   &::viam::common::v1::_PointCloudObject_default_instance_._instance,
   &::viam::common::v1::_GeoPoint_default_instance_._instance,
+  &::viam::common::v1::_GeoObstacle_default_instance_._instance,
   &::viam::common::v1::_Transform_default_instance_._instance,
   &::viam::common::v1::_WorldState_default_instance_._instance,
   &::viam::common::v1::_ActuatorStatus_default_instance_._instance,
   &::viam::common::v1::_DoCommandRequest_default_instance_._instance,
   &::viam::common::v1::_DoCommandResponse_default_instance_._instance,
+  &::viam::common::v1::_GetKinematicsRequest_default_instance_._instance,
+  &::viam::common::v1::_GetKinematicsResponse_default_instance_._instance,
+  &::viam::common::v1::_GetGeometriesRequest_default_instance_._instance,
+  &::viam::common::v1::_GetGeometriesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -607,26 +717,39 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "\014R\npointCloud\022A\n\ngeometries\030\002 \001(\0132!.viam"
   ".common.v1.GeometriesInFrameR\ngeometries"
   "\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010latitude"
-  "\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"\342\001\n\tTrans"
-  "form\022\'\n\017reference_frame\030\001 \001(\tR\016reference"
-  "Frame\022P\n\026pose_in_observer_frame\030\002 \001(\0132\033."
-  "viam.common.v1.PoseInFrameR\023poseInObserv"
-  "erFrame\022F\n\017physical_object\030\003 \001(\0132\030.viam."
-  "common.v1.GeometryH\000R\016physicalObject\210\001\001B"
-  "\022\n\020_physical_object\"\210\001\n\nWorldState\022\?\n\tob"
-  "stacles\030\001 \003(\0132!.viam.common.v1.Geometrie"
-  "sInFrameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132"
-  "\031.viam.common.v1.TransformR\ntransforms\"-"
-  "\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isM"
-  "oving\"Y\n\020DoCommandRequest\022\022\n\004name\030\001 \001(\tR"
-  "\004name\0221\n\007command\030\002 \001(\0132\027.google.protobuf"
-  ".StructR\007command\"D\n\021DoCommandResponse\022/\n"
-  "\006result\030\001 \001(\0132\027.google.protobuf.StructR\006"
-  "result:a\n\032safety_heartbeat_monitored\022\036.g"
-  "oogle.protobuf.MethodOptions\030\244\222\005 \001(\010R\030sa"
-  "fetyHeartbeatMonitored\210\001\001B/\n\022com.viam.co"
-  "mmon.v1Z\031go.viam.com/api/common/v1b\006prot"
-  "o3"
+  "\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"}\n\013GeoObs"
+  "tacle\0224\n\010location\030\001 \001(\0132\030.viam.common.v1"
+  ".GeoPointR\010location\0228\n\ngeometries\030\002 \003(\0132"
+  "\030.viam.common.v1.GeometryR\ngeometries\"\342\001"
+  "\n\tTransform\022\'\n\017reference_frame\030\001 \001(\tR\016re"
+  "ferenceFrame\022P\n\026pose_in_observer_frame\030\002"
+  " \001(\0132\033.viam.common.v1.PoseInFrameR\023poseI"
+  "nObserverFrame\022F\n\017physical_object\030\003 \001(\0132"
+  "\030.viam.common.v1.GeometryH\000R\016physicalObj"
+  "ect\210\001\001B\022\n\020_physical_object\"\210\001\n\nWorldStat"
+  "e\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1.Ge"
+  "ometriesInFrameR\tobstacles\0229\n\ntransforms"
+  "\030\003 \003(\0132\031.viam.common.v1.TransformR\ntrans"
+  "forms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001"
+  "(\010R\010isMoving\"Y\n\020DoCommandRequest\022\022\n\004name"
+  "\030\001 \001(\tR\004name\0221\n\007command\030\002 \001(\0132\027.google.p"
+  "rotobuf.StructR\007command\"D\n\021DoCommandResp"
+  "onse\022/\n\006result\030\001 \001(\0132\027.google.protobuf.S"
+  "tructR\006result\"*\n\024GetKinematicsRequest\022\022\n"
+  "\004name\030\001 \001(\tR\004name\"~\n\025GetKinematicsRespon"
+  "se\022<\n\006format\030\001 \001(\0162$.viam.common.v1.Kine"
+  "maticsFileFormatR\006format\022\'\n\017kinematics_d"
+  "ata\030\002 \001(\014R\016kinematicsData\"*\n\024GetGeometri"
+  "esRequest\022\022\n\004name\030\001 \001(\tR\004name\"Q\n\025GetGeom"
+  "etriesResponse\0228\n\ngeometries\030\001 \003(\0132\030.via"
+  "m.common.v1.GeometryR\ngeometries*\177\n\024Kine"
+  "maticsFileFormat\022&\n\"KINEMATICS_FILE_FORM"
+  "AT_UNSPECIFIED\020\000\022\036\n\032KINEMATICS_FILE_FORM"
+  "AT_SVA\020\001\022\037\n\033KINEMATICS_FILE_FORMAT_URDF\020"
+  "\002:a\n\032safety_heartbeat_monitored\022\036.google"
+  ".protobuf.MethodOptions\030\244\222\005 \001(\010R\030safetyH"
+  "eartbeatMonitored\210\001\001B/\n\022com.viam.common."
+  "v1Z\031go.viam.com/api/common/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -634,9 +757,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommo
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 2522, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 3077, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 2, 22,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 2, 27,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -650,6 +773,21 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_in
 namespace viam {
 namespace common {
 namespace v1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* KinematicsFileFormat_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_common_2fv1_2fcommon_2eproto);
+  return file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[0];
+}
+bool KinematicsFileFormat_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -4547,6 +4685,226 @@ void GeoPoint::InternalSwap(GeoPoint* other) {
 
 // ===================================================================
 
+class GeoObstacle::_Internal {
+ public:
+  static const ::viam::common::v1::GeoPoint& location(const GeoObstacle* msg);
+};
+
+const ::viam::common::v1::GeoPoint&
+GeoObstacle::_Internal::location(const GeoObstacle* msg) {
+  return *msg->location_;
+}
+GeoObstacle::GeoObstacle(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  geometries_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GeoObstacle)
+}
+GeoObstacle::GeoObstacle(const GeoObstacle& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      geometries_(from.geometries_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_location()) {
+    location_ = new ::viam::common::v1::GeoPoint(*from.location_);
+  } else {
+    location_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GeoObstacle)
+}
+
+inline void GeoObstacle::SharedCtor() {
+location_ = nullptr;
+}
+
+GeoObstacle::~GeoObstacle() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GeoObstacle)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GeoObstacle::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete location_;
+}
+
+void GeoObstacle::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GeoObstacle::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GeoObstacle)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  geometries_.Clear();
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GeoObstacle::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_location(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_geometries(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GeoObstacle::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GeoObstacle)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  if (this->_internal_has_location()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::location(this),
+        _Internal::location(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_geometries_size()); i < n; i++) {
+    const auto& repfield = this->_internal_geometries(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GeoObstacle)
+  return target;
+}
+
+size_t GeoObstacle::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GeoObstacle)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+  total_size += 1UL * this->_internal_geometries_size();
+  for (const auto& msg : this->geometries_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  if (this->_internal_has_location()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *location_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GeoObstacle::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GeoObstacle::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GeoObstacle::GetClassData() const { return &_class_data_; }
+
+void GeoObstacle::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GeoObstacle *>(to)->MergeFrom(
+      static_cast<const GeoObstacle &>(from));
+}
+
+
+void GeoObstacle::MergeFrom(const GeoObstacle& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GeoObstacle)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  geometries_.MergeFrom(from.geometries_);
+  if (from._internal_has_location()) {
+    _internal_mutable_location()->::viam::common::v1::GeoPoint::MergeFrom(from._internal_location());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GeoObstacle::CopyFrom(const GeoObstacle& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GeoObstacle)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GeoObstacle::IsInitialized() const {
+  return true;
+}
+
+void GeoObstacle::InternalSwap(GeoObstacle* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  geometries_.InternalSwap(&other->geometries_);
+  swap(location_, other->location_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GeoObstacle::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
+}
+
+// ===================================================================
+
 class Transform::_Internal {
  public:
   using HasBits = decltype(std::declval<Transform>()._has_bits_);
@@ -4838,7 +5196,7 @@ void Transform::InternalSwap(Transform* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Transform::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
 }
 
 // ===================================================================
@@ -5049,7 +5407,7 @@ void WorldState::InternalSwap(WorldState* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata WorldState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
 }
 
 // ===================================================================
@@ -5220,7 +5578,7 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ActuatorStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
 }
 
 // ===================================================================
@@ -5463,7 +5821,7 @@ void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
 }
 
 // ===================================================================
@@ -5656,7 +6014,794 @@ void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
+}
+
+// ===================================================================
+
+class GetKinematicsRequest::_Internal {
+ public:
+};
+
+GetKinematicsRequest::GetKinematicsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GetKinematicsRequest)
+}
+GetKinematicsRequest::GetKinematicsRequest(const GetKinematicsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetKinematicsRequest)
+}
+
+inline void GetKinematicsRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetKinematicsRequest::~GetKinematicsRequest() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GetKinematicsRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetKinematicsRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+}
+
+void GetKinematicsRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetKinematicsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GetKinematicsRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetKinematicsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.GetKinematicsRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetKinematicsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GetKinematicsRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.GetKinematicsRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GetKinematicsRequest)
+  return target;
+}
+
+size_t GetKinematicsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GetKinematicsRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetKinematicsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetKinematicsRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetKinematicsRequest::GetClassData() const { return &_class_data_; }
+
+void GetKinematicsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetKinematicsRequest *>(to)->MergeFrom(
+      static_cast<const GetKinematicsRequest &>(from));
+}
+
+
+void GetKinematicsRequest::MergeFrom(const GetKinematicsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GetKinematicsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetKinematicsRequest::CopyFrom(const GetKinematicsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GetKinematicsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetKinematicsRequest::IsInitialized() const {
+  return true;
+}
+
+void GetKinematicsRequest::InternalSwap(GetKinematicsRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
+}
+
+// ===================================================================
+
+class GetKinematicsResponse::_Internal {
+ public:
+};
+
+GetKinematicsResponse::GetKinematicsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GetKinematicsResponse)
+}
+GetKinematicsResponse::GetKinematicsResponse(const GetKinematicsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  kinematics_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    kinematics_data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_kinematics_data().empty()) {
+    kinematics_data_.Set(from._internal_kinematics_data(), 
+      GetArenaForAllocation());
+  }
+  format_ = from.format_;
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetKinematicsResponse)
+}
+
+inline void GetKinematicsResponse::SharedCtor() {
+kinematics_data_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  kinematics_data_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+format_ = 0;
+}
+
+GetKinematicsResponse::~GetKinematicsResponse() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GetKinematicsResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetKinematicsResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  kinematics_data_.Destroy();
+}
+
+void GetKinematicsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetKinematicsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GetKinematicsResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  kinematics_data_.ClearToEmpty();
+  format_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetKinematicsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_format(static_cast<::viam::common::v1::KinematicsFileFormat>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_kinematics_data();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetKinematicsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GetKinematicsResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+  if (this->_internal_format() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_format(), target);
+  }
+
+  // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+  if (!this->_internal_kinematics_data().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_kinematics_data(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GetKinematicsResponse)
+  return target;
+}
+
+size_t GetKinematicsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GetKinematicsResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+  if (!this->_internal_kinematics_data().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_kinematics_data());
+  }
+
+  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+  if (this->_internal_format() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetKinematicsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetKinematicsResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetKinematicsResponse::GetClassData() const { return &_class_data_; }
+
+void GetKinematicsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetKinematicsResponse *>(to)->MergeFrom(
+      static_cast<const GetKinematicsResponse &>(from));
+}
+
+
+void GetKinematicsResponse::MergeFrom(const GetKinematicsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GetKinematicsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_kinematics_data().empty()) {
+    _internal_set_kinematics_data(from._internal_kinematics_data());
+  }
+  if (from._internal_format() != 0) {
+    _internal_set_format(from._internal_format());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetKinematicsResponse::CopyFrom(const GetKinematicsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GetKinematicsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetKinematicsResponse::IsInitialized() const {
+  return true;
+}
+
+void GetKinematicsResponse::InternalSwap(GetKinematicsResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &kinematics_data_, lhs_arena,
+      &other->kinematics_data_, rhs_arena
+  );
+  swap(format_, other->format_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
+}
+
+// ===================================================================
+
+class GetGeometriesRequest::_Internal {
+ public:
+};
+
+GetGeometriesRequest::GetGeometriesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GetGeometriesRequest)
+}
+GetGeometriesRequest::GetGeometriesRequest(const GetGeometriesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetGeometriesRequest)
+}
+
+inline void GetGeometriesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetGeometriesRequest::~GetGeometriesRequest() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GetGeometriesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetGeometriesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+}
+
+void GetGeometriesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetGeometriesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GetGeometriesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetGeometriesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.GetGeometriesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetGeometriesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GetGeometriesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.common.v1.GetGeometriesRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GetGeometriesRequest)
+  return target;
+}
+
+size_t GetGeometriesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GetGeometriesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetGeometriesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetGeometriesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetGeometriesRequest::GetClassData() const { return &_class_data_; }
+
+void GetGeometriesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetGeometriesRequest *>(to)->MergeFrom(
+      static_cast<const GetGeometriesRequest &>(from));
+}
+
+
+void GetGeometriesRequest::MergeFrom(const GetGeometriesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GetGeometriesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetGeometriesRequest::CopyFrom(const GetGeometriesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GetGeometriesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetGeometriesRequest::IsInitialized() const {
+  return true;
+}
+
+void GetGeometriesRequest::InternalSwap(GetGeometriesRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
+}
+
+// ===================================================================
+
+class GetGeometriesResponse::_Internal {
+ public:
+};
+
+GetGeometriesResponse::GetGeometriesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  geometries_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.GetGeometriesResponse)
+}
+GetGeometriesResponse::GetGeometriesResponse(const GetGeometriesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      geometries_(from.geometries_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetGeometriesResponse)
+}
+
+inline void GetGeometriesResponse::SharedCtor() {
+}
+
+GetGeometriesResponse::~GetGeometriesResponse() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.GetGeometriesResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetGeometriesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetGeometriesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetGeometriesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.GetGeometriesResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  geometries_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetGeometriesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.common.v1.Geometry geometries = 1 [json_name = "geometries"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_geometries(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetGeometriesResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.GetGeometriesResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.Geometry geometries = 1 [json_name = "geometries"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_geometries_size()); i < n; i++) {
+    const auto& repfield = this->_internal_geometries(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.GetGeometriesResponse)
+  return target;
+}
+
+size_t GetGeometriesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.GetGeometriesResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.Geometry geometries = 1 [json_name = "geometries"];
+  total_size += 1UL * this->_internal_geometries_size();
+  for (const auto& msg : this->geometries_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetGeometriesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetGeometriesResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetGeometriesResponse::GetClassData() const { return &_class_data_; }
+
+void GetGeometriesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetGeometriesResponse *>(to)->MergeFrom(
+      static_cast<const GetGeometriesResponse &>(from));
+}
+
+
+void GetGeometriesResponse::MergeFrom(const GetGeometriesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.GetGeometriesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  geometries_.MergeFrom(from.geometries_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetGeometriesResponse::CopyFrom(const GetGeometriesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.GetGeometriesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetGeometriesResponse::IsInitialized() const {
+  return true;
+}
+
+void GetGeometriesResponse::InternalSwap(GetGeometriesResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  geometries_.InternalSwap(&other->geometries_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
 }
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
@@ -5735,6 +6880,10 @@ template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoPoint*
 Arena::CreateMaybeMessage< ::viam::common::v1::GeoPoint >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::GeoPoint >(arena);
 }
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GeoObstacle*
+Arena::CreateMaybeMessage< ::viam::common::v1::GeoObstacle >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GeoObstacle >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::common::v1::Transform*
 Arena::CreateMaybeMessage< ::viam::common::v1::Transform >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::Transform >(arena);
@@ -5754,6 +6903,22 @@ Arena::CreateMaybeMessage< ::viam::common::v1::DoCommandRequest >(Arena* arena) 
 template<> PROTOBUF_NOINLINE ::viam::common::v1::DoCommandResponse*
 Arena::CreateMaybeMessage< ::viam::common::v1::DoCommandResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::DoCommandResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GetKinematicsRequest*
+Arena::CreateMaybeMessage< ::viam::common::v1::GetKinematicsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GetKinematicsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GetKinematicsResponse*
+Arena::CreateMaybeMessage< ::viam::common::v1::GetKinematicsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GetKinematicsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GetGeometriesRequest*
+Arena::CreateMaybeMessage< ::viam::common::v1::GetGeometriesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GetGeometriesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::GetGeometriesResponse*
+Arena::CreateMaybeMessage< ::viam::common::v1::GetGeometriesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::GetGeometriesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

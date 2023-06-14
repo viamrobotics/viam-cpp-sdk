@@ -17,7 +17,7 @@
 namespace viam {
 namespace sdk {
 
-/// @defgroup Board Classes related to the `Board` component.
+/// @defgroup Board Classes related to the Board component.
 
 /// @class BoardRegistration
 /// @brief Defines a `ResourceRegistration` for the `Board` component.

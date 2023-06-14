@@ -137,6 +137,7 @@ PROTOBUF_CONSTEXPR ServiceConfig::ServiceConfig(
   , namespace__(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , model_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , api_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , attributes_(nullptr){}
 struct ServiceConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ServiceConfigDefaultTypeInternal()
@@ -508,7 +509,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR ModuleConfig::ModuleConfig(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , path_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , path_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , log_level_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct ModuleConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ModuleConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -640,6 +642,7 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ServiceConfig, attributes_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ServiceConfig, depends_on_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ServiceConfig, model_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ServiceConfig, api_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NetworkConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -885,6 +888,7 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, name_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, path_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, log_level_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -903,34 +907,34 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 66, -1, -1, sizeof(::viam::app::v1::ResourceLevelServiceConfig)},
   { 74, -1, -1, sizeof(::viam::app::v1::ProcessConfig)},
   { 88, -1, -1, sizeof(::viam::app::v1::ServiceConfig)},
-  { 100, -1, -1, sizeof(::viam::app::v1::NetworkConfig)},
-  { 110, 119, -1, sizeof(::viam::app::v1::AuthConfig)},
-  { 122, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
-  { 129, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
-  { 136, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
-  { 144, -1, -1, sizeof(::viam::app::v1::Frame)},
-  { 154, -1, -1, sizeof(::viam::app::v1::Translation)},
-  { 163, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
-  { 169, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
-  { 179, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
-  { 189, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
-  { 198, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
-  { 208, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
-  { 218, -1, -1, sizeof(::viam::app::v1::Orientation)},
-  { 231, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
-  { 247, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
-  { 255, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
-  { 263, -1, -1, sizeof(::viam::app::v1::AgentInfo)},
-  { 274, 282, -1, sizeof(::viam::app::v1::ConfigRequest)},
-  { 284, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
-  { 291, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
-  { 298, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
-  { 307, -1, -1, sizeof(::viam::app::v1::LogRequest)},
-  { 315, -1, -1, sizeof(::viam::app::v1::LogResponse)},
-  { 321, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
-  { 328, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
-  { 337, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
-  { 345, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
+  { 101, -1, -1, sizeof(::viam::app::v1::NetworkConfig)},
+  { 111, 120, -1, sizeof(::viam::app::v1::AuthConfig)},
+  { 123, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
+  { 130, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
+  { 137, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
+  { 145, -1, -1, sizeof(::viam::app::v1::Frame)},
+  { 155, -1, -1, sizeof(::viam::app::v1::Translation)},
+  { 164, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
+  { 170, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
+  { 180, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
+  { 190, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
+  { 199, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
+  { 209, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
+  { 219, -1, -1, sizeof(::viam::app::v1::Orientation)},
+  { 232, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
+  { 248, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
+  { 256, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
+  { 264, -1, -1, sizeof(::viam::app::v1::AgentInfo)},
+  { 275, 283, -1, sizeof(::viam::app::v1::ConfigRequest)},
+  { 285, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
+  { 292, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
+  { 299, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
+  { 308, -1, -1, sizeof(::viam::app::v1::LogRequest)},
+  { 316, -1, -1, sizeof(::viam::app::v1::LogResponse)},
+  { 322, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
+  { 329, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
+  { 338, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
+  { 347, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1020,111 +1024,113 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   "\005 \001(\010R\007oneShot\022\020\n\003log\030\006 \001(\010R\003log\022\037\n\013stop"
   "_signal\030\007 \001(\005R\nstopSignal\022<\n\014stop_timeou"
   "t\030\010 \001(\0132\031.google.protobuf.DurationR\013stop"
-  "Timeout\"\303\001\n\rServiceConfig\022\022\n\004name\030\001 \001(\tR"
+  "Timeout\"\325\001\n\rServiceConfig\022\022\n\004name\030\001 \001(\tR"
   "\004name\022\034\n\tnamespace\030\002 \001(\tR\tnamespace\022\022\n\004t"
   "ype\030\003 \001(\tR\004type\0227\n\nattributes\030\004 \001(\0132\027.go"
   "ogle.protobuf.StructR\nattributes\022\035\n\ndepe"
   "nds_on\030\005 \003(\tR\tdependsOn\022\024\n\005model\030\006 \001(\tR\005"
-  "model\"\214\001\n\rNetworkConfig\022\022\n\004fqdn\030\001 \001(\tR\004f"
-  "qdn\022!\n\014bind_address\030\002 \001(\tR\013bindAddress\022\""
-  "\n\rtls_cert_file\030\003 \001(\tR\013tlsCertFile\022 \n\014tl"
-  "s_key_file\030\004 \001(\tR\ntlsKeyFile\"\345\001\n\nAuthCon"
-  "fig\022:\n\010handlers\030\001 \003(\0132\036.viam.app.v1.Auth"
-  "HandlerConfigR\010handlers\022*\n\021tls_auth_enti"
-  "ties\030\002 \003(\tR\017tlsAuthEntities\022V\n\024external_"
-  "auth_config\030\003 \001(\0132\037.viam.app.v1.External"
-  "AuthConfigH\000R\022externalAuthConfig\210\001\001B\027\n\025_"
-  "external_auth_config\"7\n\010JWKSFile\022+\n\004json"
-  "\030\001 \001(\0132\027.google.protobuf.StructR\004json\"\?\n"
-  "\022ExternalAuthConfig\022)\n\004jwks\030\001 \001(\0132\025.viam"
-  ".app.v1.JWKSFileR\004jwks\"v\n\021AuthHandlerCon"
-  "fig\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Credenti"
-  "alsTypeR\004type\022/\n\006config\030\005 \001(\0132\027.google.p"
-  "rotobuf.StructR\006config\"\315\001\n\005Frame\022\026\n\006pare"
-  "nt\030\001 \001(\tR\006parent\022:\n\013translation\030\002 \001(\0132\030."
-  "viam.app.v1.TranslationR\013translation\022:\n\013"
-  "orientation\030\003 \001(\0132\030.viam.app.v1.Orientat"
-  "ionR\013orientation\0224\n\010geometry\030\004 \001(\0132\030.via"
-  "m.common.v1.GeometryR\010geometry\"7\n\013Transl"
-  "ation\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003"
-  " \001(\001R\001z\"\320\007\n\013Orientation\022O\n\016no_orientatio"
-  "n\030\001 \001(\0132&.viam.app.v1.Orientation.NoOrie"
-  "ntationH\000R\rnoOrientation\022Z\n\016vector_radia"
-  "ns\030\002 \001(\01321.viam.app.v1.Orientation.Orien"
-  "tationVectorRadiansH\000R\rvectorRadians\022Z\n\016"
-  "vector_degrees\030\003 \001(\01321.viam.app.v1.Orien"
-  "tation.OrientationVectorDegreesH\000R\rvecto"
-  "rDegrees\022I\n\014euler_angles\030\004 \001(\0132$.viam.ap"
-  "p.v1.Orientation.EulerAnglesH\000R\013eulerAng"
-  "les\022F\n\013axis_angles\030\005 \001(\0132#.viam.app.v1.O"
-  "rientation.AxisAnglesH\000R\naxisAngles\022E\n\nq"
-  "uaternion\030\006 \001(\0132#.viam.app.v1.Orientatio"
-  "n.QuaternionH\000R\nquaternion\032\017\n\rNoOrientat"
-  "ion\032j\n\030OrientationVectorRadians\022$\n\005theta"
-  "\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001"
-  "R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j\n\030Orien"
-  "tationVectorDegrees\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003"
-  "\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001"
-  "(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032I\n\013EulerAngles\022\022\n\004ro"
-  "ll\030\001 \001(\001R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pitch\022\020\n\003"
-  "yaw\030\003 \001(\001R\003yaw\032\\\n\nAxisAngles\022$\n\005theta\030\001 "
-  "\001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x"
-  "\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQuaterni"
-  "on\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001("
-  "\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006\n\004type\"\365\003\n\014RemoteCon"
-  "fig\022\022\n\004name\030\001 \001(\tR\004name\022\030\n\007address\030\002 \001(\t"
-  "R\007address\022(\n\005frame\030\003 \001(\0132\022.viam.app.v1.F"
-  "rameR\005frame\022+\n\004auth\030\004 \001(\0132\027.viam.app.v1."
-  "RemoteAuthR\004auth\022\035\n\nmanaged_by\030\005 \001(\tR\tma"
-  "nagedBy\022\032\n\010insecure\030\006 \001(\010R\010insecure\022U\n\031c"
-  "onnection_check_interval\030\007 \001(\0132\031.google."
-  "protobuf.DurationR\027connectionCheckInterv"
-  "al\022H\n\022reconnect_interval\030\010 \001(\0132\031.google."
-  "protobuf.DurationR\021reconnectInterval\022l\n\017"
-  "service_configs\030\t \003(\0132\'.viam.app.v1.Reso"
-  "urceLevelServiceConfigB\032\232\204\236\003\025json:\"servi"
-  "ce_config\"R\016serviceConfigs\022\026\n\006secret\030\n \001"
-  "(\tR\006secret\"\306\001\n\nRemoteAuth\022E\n\013credentials"
-  "\030\001 \001(\0132#.viam.app.v1.RemoteAuth.Credenti"
-  "alsR\013credentials\022\026\n\006entity\030\002 \001(\tR\006entity"
-  "\032Y\n\013Credentials\0220\n\004type\030\001 \001(\0162\034.viam.app"
-  ".v1.CredentialsTypeR\004type\022\030\n\007payload\030\002 \001"
-  "(\tR\007payload\"~\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004"
-  "host\022\016\n\002os\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030"
-  "\n\007version\030\004 \001(\tR\007version\022!\n\014git_revision"
-  "\030\005 \001(\tR\013gitRevision\"j\n\rConfigRequest\022\016\n\002"
-  "id\030\001 \001(\tR\002id\022:\n\nagent_info\030\002 \001(\0132\026.viam."
-  "app.v1.AgentInfoH\000R\tagentInfo\210\001\001B\r\n\013_age"
-  "nt_info\"B\n\016ConfigResponse\0220\n\006config\030\001 \001("
-  "\0132\030.viam.app.v1.RobotConfigR\006config\"$\n\022C"
-  "ertificateRequest\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023Cer"
-  "tificateResponse\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_"
-  "certificate\030\002 \001(\tR\016tlsCertificate\022&\n\017tls"
-  "_private_key\030\003 \001(\tR\rtlsPrivateKey\"G\n\nLog"
-  "Request\022\016\n\002id\030\001 \001(\tR\002id\022)\n\004logs\030\002 \003(\0132\025."
-  "viam.app.v1.LogEntryR\004logs\"\r\n\013LogRespons"
-  "e\"%\n\023NeedsRestartRequest\022\016\n\002id\030\001 \001(\tR\002id"
-  "\"\232\001\n\024NeedsRestartResponse\022\016\n\002id\030\001 \001(\tR\002i"
-  "d\022!\n\014must_restart\030\002 \001(\010R\013mustRestart\022O\n\026"
-  "restart_check_interval\030\003 \001(\0132\031.google.pr"
-  "otobuf.DurationR\024restartCheckInterval\"6\n"
-  "\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004pat"
-  "h\030\002 \001(\tR\004path\"W\n\rPackageConfig\022\022\n\004name\030\001"
-  " \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007package\022\030\n\007"
-  "version\030\003 \001(\tR\007version*\277\001\n\017CredentialsTy"
-  "pe\022 \n\034CREDENTIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031"
-  "CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENTIA"
-  "LS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_RO"
-  "BOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT_L"
-  "OCATION_SECRET\020\0042\262\002\n\014RobotService\022A\n\006Con"
-  "fig\022\032.viam.app.v1.ConfigRequest\032\033.viam.a"
-  "pp.v1.ConfigResponse\022P\n\013Certificate\022\037.vi"
-  "am.app.v1.CertificateRequest\032 .viam.app."
-  "v1.CertificateResponse\0228\n\003Log\022\027.viam.app"
-  ".v1.LogRequest\032\030.viam.app.v1.LogResponse"
-  "\022S\n\014NeedsRestart\022 .viam.app.v1.NeedsRest"
-  "artRequest\032!.viam.app.v1.NeedsRestartRes"
-  "ponseB\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "model\022\020\n\003api\030\t \001(\tR\003api\"\214\001\n\rNetworkConfi"
+  "g\022\022\n\004fqdn\030\001 \001(\tR\004fqdn\022!\n\014bind_address\030\002 "
+  "\001(\tR\013bindAddress\022\"\n\rtls_cert_file\030\003 \001(\tR"
+  "\013tlsCertFile\022 \n\014tls_key_file\030\004 \001(\tR\ntlsK"
+  "eyFile\"\345\001\n\nAuthConfig\022:\n\010handlers\030\001 \003(\0132"
+  "\036.viam.app.v1.AuthHandlerConfigR\010handler"
+  "s\022*\n\021tls_auth_entities\030\002 \003(\tR\017tlsAuthEnt"
+  "ities\022V\n\024external_auth_config\030\003 \001(\0132\037.vi"
+  "am.app.v1.ExternalAuthConfigH\000R\022external"
+  "AuthConfig\210\001\001B\027\n\025_external_auth_config\"7"
+  "\n\010JWKSFile\022+\n\004json\030\001 \001(\0132\027.google.protob"
+  "uf.StructR\004json\"\?\n\022ExternalAuthConfig\022)\n"
+  "\004jwks\030\001 \001(\0132\025.viam.app.v1.JWKSFileR\004jwks"
+  "\"v\n\021AuthHandlerConfig\0220\n\004type\030\001 \001(\0162\034.vi"
+  "am.app.v1.CredentialsTypeR\004type\022/\n\006confi"
+  "g\030\005 \001(\0132\027.google.protobuf.StructR\006config"
+  "\"\315\001\n\005Frame\022\026\n\006parent\030\001 \001(\tR\006parent\022:\n\013tr"
+  "anslation\030\002 \001(\0132\030.viam.app.v1.Translatio"
+  "nR\013translation\022:\n\013orientation\030\003 \001(\0132\030.vi"
+  "am.app.v1.OrientationR\013orientation\0224\n\010ge"
+  "ometry\030\004 \001(\0132\030.viam.common.v1.GeometryR\010"
+  "geometry\"7\n\013Translation\022\014\n\001x\030\001 \001(\001R\001x\022\014\n"
+  "\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"\320\007\n\013Orientatio"
+  "n\022O\n\016no_orientation\030\001 \001(\0132&.viam.app.v1."
+  "Orientation.NoOrientationH\000R\rnoOrientati"
+  "on\022Z\n\016vector_radians\030\002 \001(\01321.viam.app.v1"
+  ".Orientation.OrientationVectorRadiansH\000R"
+  "\rvectorRadians\022Z\n\016vector_degrees\030\003 \001(\01321"
+  ".viam.app.v1.Orientation.OrientationVect"
+  "orDegreesH\000R\rvectorDegrees\022I\n\014euler_angl"
+  "es\030\004 \001(\0132$.viam.app.v1.Orientation.Euler"
+  "AnglesH\000R\013eulerAngles\022F\n\013axis_angles\030\005 \001"
+  "(\0132#.viam.app.v1.Orientation.AxisAnglesH"
+  "\000R\naxisAngles\022E\n\nquaternion\030\006 \001(\0132#.viam"
+  ".app.v1.Orientation.QuaternionH\000R\nquater"
+  "nion\032\017\n\rNoOrientation\032j\n\030OrientationVect"
+  "orRadians\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\""
+  "R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z"
+  "\030\004 \001(\001R\001z\032j\n\030OrientationVectorDegrees\022$\n"
+  "\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x"
+  "\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032I\n"
+  "\013EulerAngles\022\022\n\004roll\030\001 \001(\001R\004roll\022\024\n\005pitc"
+  "h\030\002 \001(\001R\005pitch\022\020\n\003yaw\030\003 \001(\001R\003yaw\032\\\n\nAxis"
+  "Angles\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R\005t"
+  "heta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 "
+  "\001(\001R\001z\032D\n\nQuaternion\022\014\n\001w\030\001 \001(\001R\001w\022\014\n\001x\030"
+  "\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001zB\006\n\004"
+  "type\"\365\003\n\014RemoteConfig\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022\030\n\007address\030\002 \001(\tR\007address\022(\n\005frame\030\003 \001"
+  "(\0132\022.viam.app.v1.FrameR\005frame\022+\n\004auth\030\004 "
+  "\001(\0132\027.viam.app.v1.RemoteAuthR\004auth\022\035\n\nma"
+  "naged_by\030\005 \001(\tR\tmanagedBy\022\032\n\010insecure\030\006 "
+  "\001(\010R\010insecure\022U\n\031connection_check_interv"
+  "al\030\007 \001(\0132\031.google.protobuf.DurationR\027con"
+  "nectionCheckInterval\022H\n\022reconnect_interv"
+  "al\030\010 \001(\0132\031.google.protobuf.DurationR\021rec"
+  "onnectInterval\022l\n\017service_configs\030\t \003(\0132"
+  "\'.viam.app.v1.ResourceLevelServiceConfig"
+  "B\032\232\204\236\003\025json:\"service_config\"R\016serviceCon"
+  "figs\022\026\n\006secret\030\n \001(\tR\006secret\"\306\001\n\nRemoteA"
+  "uth\022E\n\013credentials\030\001 \001(\0132#.viam.app.v1.R"
+  "emoteAuth.CredentialsR\013credentials\022\026\n\006en"
+  "tity\030\002 \001(\tR\006entity\032Y\n\013Credentials\0220\n\004typ"
+  "e\030\001 \001(\0162\034.viam.app.v1.CredentialsTypeR\004t"
+  "ype\022\030\n\007payload\030\002 \001(\tR\007payload\"~\n\tAgentIn"
+  "fo\022\022\n\004host\030\001 \001(\tR\004host\022\016\n\002os\030\002 \001(\tR\002os\022\020"
+  "\n\003ips\030\003 \003(\tR\003ips\022\030\n\007version\030\004 \001(\tR\007versi"
+  "on\022!\n\014git_revision\030\005 \001(\tR\013gitRevision\"j\n"
+  "\rConfigRequest\022\016\n\002id\030\001 \001(\tR\002id\022:\n\nagent_"
+  "info\030\002 \001(\0132\026.viam.app.v1.AgentInfoH\000R\tag"
+  "entInfo\210\001\001B\r\n\013_agent_info\"B\n\016ConfigRespo"
+  "nse\0220\n\006config\030\001 \001(\0132\030.viam.app.v1.RobotC"
+  "onfigR\006config\"$\n\022CertificateRequest\022\016\n\002i"
+  "d\030\001 \001(\tR\002id\"v\n\023CertificateResponse\022\016\n\002id"
+  "\030\001 \001(\tR\002id\022\'\n\017tls_certificate\030\002 \001(\tR\016tls"
+  "Certificate\022&\n\017tls_private_key\030\003 \001(\tR\rtl"
+  "sPrivateKey\"G\n\nLogRequest\022\016\n\002id\030\001 \001(\tR\002i"
+  "d\022)\n\004logs\030\002 \003(\0132\025.viam.app.v1.LogEntryR\004"
+  "logs\"\r\n\013LogResponse\"%\n\023NeedsRestartReque"
+  "st\022\016\n\002id\030\001 \001(\tR\002id\"\232\001\n\024NeedsRestartRespo"
+  "nse\022\016\n\002id\030\001 \001(\tR\002id\022!\n\014must_restart\030\002 \001("
+  "\010R\013mustRestart\022O\n\026restart_check_interval"
+  "\030\003 \001(\0132\031.google.protobuf.DurationR\024resta"
+  "rtCheckInterval\"S\n\014ModuleConfig\022\022\n\004name\030"
+  "\001 \001(\tR\004name\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_l"
+  "evel\030\003 \001(\tR\010logLevel\"W\n\rPackageConfig\022\022\n"
+  "\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007pack"
+  "age\022\030\n\007version\030\003 \001(\tR\007version*\277\001\n\017Creden"
+  "tialsType\022 \n\034CREDENTIALS_TYPE_UNSPECIFIE"
+  "D\020\000\022\035\n\031CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CR"
+  "EDENTIALS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_"
+  "TYPE_ROBOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE_"
+  "ROBOT_LOCATION_SECRET\020\0042\262\002\n\014RobotService"
+  "\022A\n\006Config\022\032.viam.app.v1.ConfigRequest\032\033"
+  ".viam.app.v1.ConfigResponse\022P\n\013Certifica"
+  "te\022\037.viam.app.v1.CertificateRequest\032 .vi"
+  "am.app.v1.CertificateResponse\0228\n\003Log\022\027.v"
+  "iam.app.v1.LogRequest\032\030.viam.app.v1.LogR"
+  "esponse\022S\n\014NeedsRestart\022 .viam.app.v1.Ne"
+  "edsRestartRequest\032!.viam.app.v1.NeedsRes"
+  "tartResponseB\030Z\026go.viam.com/api/app/v1b\006"
+  "proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[5] = {
   &::descriptor_table_app_2fv1_2fapp_2eproto,
@@ -1135,7 +1141,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2e
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
-    false, false, 6119, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
+    false, false, 6166, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
     &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 5, 35,
     schemas, file_default_instances, TableStruct_app_2fv1_2frobot_2eproto::offsets,
@@ -3821,6 +3827,14 @@ ServiceConfig::ServiceConfig(const ServiceConfig& from)
     model_.Set(from._internal_model(), 
       GetArenaForAllocation());
   }
+  api_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    api_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_api().empty()) {
+    api_.Set(from._internal_api(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_attributes()) {
     attributes_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.attributes_);
   } else {
@@ -3846,6 +3860,10 @@ model_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   model_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+api_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  api_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 attributes_ = nullptr;
 }
 
@@ -3864,6 +3882,7 @@ inline void ServiceConfig::SharedDtor() {
   namespace__.Destroy();
   type_.Destroy();
   model_.Destroy();
+  api_.Destroy();
   if (this != internal_default_instance()) delete attributes_;
 }
 
@@ -3882,6 +3901,7 @@ void ServiceConfig::Clear() {
   namespace__.ClearToEmpty();
   type_.ClearToEmpty();
   model_.ClearToEmpty();
+  api_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && attributes_ != nullptr) {
     delete attributes_;
   }
@@ -3955,6 +3975,16 @@ const char* ServiceConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ServiceConfig.model"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string api = 9 [json_name = "api"];
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          auto str = _internal_mutable_api();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ServiceConfig.api"));
         } else
           goto handle_unusual;
         continue;
@@ -4044,6 +4074,16 @@ uint8_t* ServiceConfig::_InternalSerialize(
         6, this->_internal_model(), target);
   }
 
+  // string api = 9 [json_name = "api"];
+  if (!this->_internal_api().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_api().data(), static_cast<int>(this->_internal_api().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ServiceConfig.api");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_api(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4096,6 +4136,13 @@ size_t ServiceConfig::ByteSizeLong() const {
         this->_internal_model());
   }
 
+  // string api = 9 [json_name = "api"];
+  if (!this->_internal_api().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_api());
+  }
+
   // .google.protobuf.Struct attributes = 4 [json_name = "attributes"];
   if (this->_internal_has_attributes()) {
     total_size += 1 +
@@ -4138,6 +4185,9 @@ void ServiceConfig::MergeFrom(const ServiceConfig& from) {
   if (!from._internal_model().empty()) {
     _internal_set_model(from._internal_model());
   }
+  if (!from._internal_api().empty()) {
+    _internal_set_api(from._internal_api());
+  }
   if (from._internal_has_attributes()) {
     _internal_mutable_attributes()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_attributes());
   }
@@ -4176,6 +4226,10 @@ void ServiceConfig::InternalSwap(ServiceConfig* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &model_, lhs_arena,
       &other->model_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &api_, lhs_arena,
+      &other->api_, rhs_arena
   );
   swap(attributes_, other->attributes_);
 }
@@ -11109,6 +11163,14 @@ ModuleConfig::ModuleConfig(const ModuleConfig& from)
     path_.Set(from._internal_path(), 
       GetArenaForAllocation());
   }
+  log_level_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    log_level_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_log_level().empty()) {
+    log_level_.Set(from._internal_log_level(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.ModuleConfig)
 }
 
@@ -11120,6 +11182,10 @@ name_.InitDefault();
 path_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   path_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+log_level_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  log_level_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -11136,6 +11202,7 @@ inline void ModuleConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   path_.Destroy();
+  log_level_.Destroy();
 }
 
 void ModuleConfig::SetCachedSize(int size) const {
@@ -11150,6 +11217,7 @@ void ModuleConfig::Clear() {
 
   name_.ClearToEmpty();
   path_.ClearToEmpty();
+  log_level_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -11176,6 +11244,16 @@ const char* ModuleConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ModuleConfig.path"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string log_level = 3 [json_name = "logLevel"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_log_level();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ModuleConfig.log_level"));
         } else
           goto handle_unusual;
         continue;
@@ -11228,6 +11306,16 @@ uint8_t* ModuleConfig::_InternalSerialize(
         2, this->_internal_path(), target);
   }
 
+  // string log_level = 3 [json_name = "logLevel"];
+  if (!this->_internal_log_level().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_log_level().data(), static_cast<int>(this->_internal_log_level().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ModuleConfig.log_level");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_log_level(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -11258,6 +11346,13 @@ size_t ModuleConfig::ByteSizeLong() const {
         this->_internal_path());
   }
 
+  // string log_level = 3 [json_name = "logLevel"];
+  if (!this->_internal_log_level().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_log_level());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -11286,6 +11381,9 @@ void ModuleConfig::MergeFrom(const ModuleConfig& from) {
   if (!from._internal_path().empty()) {
     _internal_set_path(from._internal_path());
   }
+  if (!from._internal_log_level().empty()) {
+    _internal_set_log_level(from._internal_log_level());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -11312,6 +11410,10 @@ void ModuleConfig::InternalSwap(ModuleConfig* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &path_, lhs_arena,
       &other->path_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &log_level_, lhs_arena,
+      &other->log_level_, rhs_arena
   );
 }
 

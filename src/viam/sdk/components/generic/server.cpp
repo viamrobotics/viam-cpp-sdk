@@ -17,16 +17,36 @@ GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : Resourc
                               "Called [DoCommand] without a request");
     };
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
-    AttributeMap result = generic->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
+    const AttributeMap result = generic->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 
+    return ::grpc::Status();
+}
+::grpc::Status GenericServer::GetGeometries(::grpc::ServerContext* context,
+                                            const ::viam::common::v1::GetGeometriesRequest* request,
+                                            ::viam::common::v1::GetGeometriesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetGeometries] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Generic> generic = std::dynamic_pointer_cast<Generic>(rb);
+    const std::vector<GeometryConfig> geometries = generic->get_geometries();
+    for (const auto& geometry : geometries) {
+        *response->mutable_geometries()->Add() = geometry.to_proto();
+    }
     return ::grpc::Status();
 }
 

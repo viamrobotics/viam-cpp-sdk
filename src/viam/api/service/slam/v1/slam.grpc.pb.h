@@ -48,7 +48,8 @@ class SLAMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::slam::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
     }
-    // GetPointCloudMap returns the latest point cloud map available
+    // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+    // plane and positive Z is up, following the Right Hand Rule.
     std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>> GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest& request) {
       return std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::service::slam::v1::GetPointCloudMapResponse>>(GetPointCloudMapRaw(context, request));
     }
@@ -70,7 +71,7 @@ class SLAMService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>> PrepareAsyncGetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::service::slam::v1::GetInternalStateResponse>>(PrepareAsyncGetInternalStateRaw(context, request, cq));
     }
-    // DoCommand sends/receives arbitrary commands
+    // DoCommand sends/receives arbitrary commands.
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -85,13 +86,14 @@ class SLAMService final {
       // respect to a returned component reference.
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPosition(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetPointCloudMap returns the latest point cloud map available
+      // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+      // plane and positive Z is up, following the Right Hand Rule.
       virtual void GetPointCloudMap(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetPointCloudMapResponse>* reactor) = 0;
       // GetInternalState returns the internal map as defined by the specified slam
       // algorithm required to continue mapping/localizing.
       // This endpoint is not intended for end users.
       virtual void GetInternalState(::grpc::ClientContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ClientReadReactor< ::viam::service::slam::v1::GetInternalStateResponse>* reactor) = 0;
-      // DoCommand sends/receives arbitrary commands
+      // DoCommand sends/receives arbitrary commands.
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -189,13 +191,14 @@ class SLAMService final {
     // GetPosition returns the current estimated position of the robot with
     // respect to a returned component reference.
     virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPositionRequest* request, ::viam::service::slam::v1::GetPositionResponse* response);
-    // GetPointCloudMap returns the latest point cloud map available
+    // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
+    // plane and positive Z is up, following the Right Hand Rule.
     virtual ::grpc::Status GetPointCloudMap(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetPointCloudMapRequest* request, ::grpc::ServerWriter< ::viam::service::slam::v1::GetPointCloudMapResponse>* writer);
     // GetInternalState returns the internal map as defined by the specified slam
     // algorithm required to continue mapping/localizing.
     // This endpoint is not intended for end users.
     virtual ::grpc::Status GetInternalState(::grpc::ServerContext* context, const ::viam::service::slam::v1::GetInternalStateRequest* request, ::grpc::ServerWriter< ::viam::service::slam::v1::GetInternalStateResponse>* writer);
-    // DoCommand sends/receives arbitrary commands
+    // DoCommand sends/receives arbitrary commands.
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
   template <class BaseClass>

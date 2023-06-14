@@ -37,13 +37,17 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_component_2fgeneric_2fv1_2fgeneric_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\"component/generic/v1/generic.proto\022\031vi"
   "am.component.generic.v1\032\026common/v1/commo"
-  "n.proto\032\034google/api/annotations.proto2\235\001"
+  "n.proto\032\034google/api/annotations.proto2\266\002"
   "\n\016GenericService\022\212\001\n\tDoCommand\022 .viam.co"
   "mmon.v1.DoCommandRequest\032!.viam.common.v"
   "1.DoCommandResponse\"8\202\323\344\223\0022\"0/viam/api/v"
-  "1/component/generic/{name}/do_commandBE\n"
-  "\035com.viam.component.generic.v1Z$go.viam."
-  "com/api/component/generic/v1b\006proto3"
+  "1/component/generic/{name}/do_command\022\226\001"
+  "\n\rGetGeometries\022$.viam.common.v1.GetGeom"
+  "etriesRequest\032%.viam.common.v1.GetGeomet"
+  "riesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/compo"
+  "nent/generic/{name}/geometriesBE\n\035com.vi"
+  "am.component.generic.v1Z$go.viam.com/api"
+  "/component/generic/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgeneric_2fv1_2fgeneric_2eproto_deps[2] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -51,7 +55,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgeneric
 };
 static ::_pbi::once_flag descriptor_table_component_2fgeneric_2fv1_2fgeneric_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgeneric_2fv1_2fgeneric_2eproto = {
-    false, false, 356, descriptor_table_protodef_component_2fgeneric_2fv1_2fgeneric_2eproto,
+    false, false, 509, descriptor_table_protodef_component_2fgeneric_2fv1_2fgeneric_2eproto,
     "component/generic/v1/generic.proto",
     &descriptor_table_component_2fgeneric_2fv1_2fgeneric_2eproto_once, descriptor_table_component_2fgeneric_2fv1_2fgeneric_2eproto_deps, 2, 0,
     schemas, file_default_instances, TableStruct_component_2fgeneric_2fv1_2fgeneric_2eproto::offsets,

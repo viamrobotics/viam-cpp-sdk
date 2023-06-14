@@ -12,14 +12,14 @@ namespace sdk {
 
 ResourceName Service::get_resource_name(std::string name) {
     auto r = this->Resource::get_resource_name(name);
-    *r.mutable_type() = SERVICE;
+    *r.mutable_type() = kService;
     return r;
 }
 
 Service::Service() : Resource("service"){};
 
 ResourceType Service::type() const {
-    return {SERVICE};
+    return {kService};
 }
 
 }  // namespace sdk

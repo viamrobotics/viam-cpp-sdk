@@ -2,41 +2,42 @@
 
 #include <unordered_map>
 
+#include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
 #include <google/protobuf/struct.pb.h>
 
 namespace viam {
 namespace sdk {
 
+class ProtoType;
+using AttributeMap = std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>;
+
 class ProtoType {
    public:
     ProtoType() {
         proto_type_ = boost::blank();
     }
-    ProtoType(bool b) {
-        proto_type_ = b;
-    }
-    ProtoType(std::string s) {
-        proto_type_ = s;
-    }
-    ProtoType(int i) {
-        proto_type_ = i;
-    }
-    ProtoType(double d) {
-        proto_type_ = d;
-    }
-    ProtoType(std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> m) {
-        proto_type_ = m;
-    }
-    ProtoType(std::vector<ProtoType*> v) {
-        proto_type_ = v;
-    }
 
-    // TODO: RSDK-2421 consider switching this to a constructor
-    static ProtoType of_value(google::protobuf::Value value);
+    explicit ProtoType(bool b) : proto_type_(std::move(b)) {}
+    explicit ProtoType(std::string s) : proto_type_(std::move(s)) {}
+    explicit ProtoType(int i) : proto_type_(std::move(i)) {}
+    explicit ProtoType(double d) : proto_type_(std::move(d)) {}
+    explicit ProtoType(AttributeMap m) : proto_type_(std::move(m)) {}
+    explicit ProtoType(std::vector<std::shared_ptr<ProtoType>> v) : proto_type_(std::move(v)) {}
+    explicit ProtoType(const google::protobuf::Value& value);
 
     google::protobuf::Value proto_value();
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
+
+    template <typename T>
+    T* get() {
+        return boost::get<T>(&proto_type_);
+    }
+
+    template <typename T>
+    const T* get() const {
+        return boost::get<T>(&proto_type_);
+    }
 
    private:
     boost::variant<boost::blank,
@@ -44,16 +45,13 @@ class ProtoType {
                    std::string,
                    int,
                    double,
-                   std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>,
-                   std::vector<ProtoType*>>
+                   AttributeMap,
+                   std::vector<std::shared_ptr<ProtoType>>>
         proto_type_;
 };
 
-std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> struct_to_map(
-    google::protobuf::Struct struct_);
-
-google::protobuf::Struct map_to_struct(
-    std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> dict);
+AttributeMap struct_to_map(google::protobuf::Struct struct_);
+google::protobuf::Struct map_to_struct(AttributeMap dict);
 
 }  // namespace sdk
 }  // namespace viam

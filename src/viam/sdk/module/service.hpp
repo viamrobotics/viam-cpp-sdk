@@ -43,6 +43,13 @@ class ModuleService_ : public viam::module::v1::ModuleService::Service {
     ~ModuleService_();
 
    private:
+    void add_model_from_registry_inlock_(std::shared_ptr<Server> server,
+                                         API api,
+                                         Model model,
+                                         const std::lock_guard<std::mutex>&);
+    void add_api_from_registry_inlock_(std::shared_ptr<Server> server,
+                                       API api,
+                                       const std::lock_guard<std::mutex>& lock);
     std::mutex lock_;
     std::shared_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;

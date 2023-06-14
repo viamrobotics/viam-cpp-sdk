@@ -122,7 +122,7 @@ const char descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftrack
   "esponse.BodyPosesEntryR\tbodyPoses\032Y\n\016Bod"
   "yPosesEntry\022\020\n\003key\030\001 \001(\tR\003key\0221\n\005value\030\002"
   " \001(\0132\033.viam.common.v1.PoseInFrameR\005value"
-  ":\0028\0012\316\002\n\022PoseTrackerService\022\245\001\n\010GetPoses"
+  ":\0028\0012\354\003\n\022PoseTrackerService\022\245\001\n\010GetPoses"
   "\022..viam.component.posetracker.v1.GetPose"
   "sRequest\032/.viam.component.posetracker.v1"
   ".GetPosesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/"
@@ -130,9 +130,13 @@ const char descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftrack
   "DoCommand\022 .viam.common.v1.DoCommandRequ"
   "est\032!.viam.common.v1.DoCommandResponse\"="
   "\202\323\344\223\0027\"5/viam/api/v1/component/pose_trac"
-  "ker/{name}/do_commandB5\n\025com.viam.compon"
-  "ent.v1Z\034go.viam.com/api/component/v1b\006pr"
-  "oto3"
+  "ker/{name}/do_command\022\233\001\n\rGetGeometries\022"
+  "$.viam.common.v1.GetGeometriesRequest\032%."
+  "viam.common.v1.GetGeometriesResponse\"=\202\323"
+  "\344\223\0027\0225/viam/api/v1/component/pose_tracke"
+  "r/{name}/geometriesB5\n\025com.viam.componen"
+  "t.v1Z\034go.viam.com/api/component/v1b\006prot"
+  "o3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -141,7 +145,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fposetra
 };
 static ::_pbi::once_flag descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto = {
-    false, false, 884, descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
+    false, false, 1042, descriptor_table_protodef_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto,
     "component/posetracker/v1/pose_tracker.proto",
     &descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_once, descriptor_table_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto_deps, 3, 3,
     schemas, file_default_instances, TableStruct_component_2fposetracker_2fv1_2fpose_5ftracker_2eproto::offsets,

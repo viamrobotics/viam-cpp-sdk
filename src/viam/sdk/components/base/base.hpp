@@ -17,7 +17,7 @@
 namespace viam {
 namespace sdk {
 
-/// @defgroup Base Classes related to the `Base` component.
+/// @defgroup Base Classes related to the Base component.
 
 /// @class BaseRegistration
 /// @brief Defines a `ResourceRegistration` for the `Base` component.

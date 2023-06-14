@@ -30,7 +30,7 @@ using viam::robot::v1::RobotService;
 using viam::robot::v1::Status;
 
 // TODO(RSDK-1742) replace all `ResourceName` references in API with `Name`
-/// @defgroup Robot Classes related to a `Robot` representation.
+/// @defgroup Robot Classes related to a Robot representation.
 
 /// @class RobotClient client.h "robot/client.h"
 /// @brief gRPC client for a robot, to be used for all interactions with a robot.

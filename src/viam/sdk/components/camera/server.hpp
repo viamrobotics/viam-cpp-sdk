@@ -34,6 +34,9 @@ class CameraServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPointCloudRequest* request,
         ::viam::component::camera::v1::GetPointCloudResponse* response) override;
+    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
+                                 const ::viam::common::v1::GetGeometriesRequest* request,
+                                 ::viam::common::v1::GetGeometriesResponse* response) override;
     ::grpc::Status GetProperties(
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPropertiesRequest* request,

@@ -524,21 +524,22 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "_delay\030\003 \001(\0132\031.google.protobuf.DurationR"
   "\014maxPollDelay\022G\n\022total_poll_timeout\030\004 \001("
   "\0132\031.google.protobuf.DurationR\020totalPollT"
-  "imeout*y\n\031ClientLibraryOrganization\022+\n\'C"
-  "LIENT_LIBRARY_ORGANIZATION_UNSPECIFIED\020\000"
-  "\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STRE"
-  "ET_VIEW\020\004*g\n\030ClientLibraryDestination\022*\n"
-  "&CLIENT_LIBRARY_DESTINATION_UNSPECIFIED\020"
-  "\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n\020me"
-  "thod_signature\022\036.google.protobuf.MethodO"
-  "ptions\030\233\010 \003(\tR\017methodSignature:C\n\014defaul"
-  "t_host\022\037.google.protobuf.ServiceOptions\030"
-  "\231\010 \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037.go"
-  "ogle.protobuf.ServiceOptions\030\232\010 \001(\tR\013oau"
-  "thScopesBi\n\016com.google.apiB\013ClientProtoP"
-  "\001ZAgoogle.golang.org/genproto/googleapis"
-  "/api/annotations;annotations\242\002\004GAPIb\006pro"
-  "to3"
+  "imeout*\243\001\n\031ClientLibraryOrganization\022+\n\'"
+  "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED\020"
+  "\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STR"
+  "EET_VIEW\020\004\022\014\n\010SHOPPING\020\005\022\007\n\003GEO\020\006\022\021\n\rGEN"
+  "ERATIVE_AI\020\007*g\n\030ClientLibraryDestination"
+  "\022*\n&CLIENT_LIBRARY_DESTINATION_UNSPECIFI"
+  "ED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024:J\n"
+  "\020method_signature\022\036.google.protobuf.Meth"
+  "odOptions\030\233\010 \003(\tR\017methodSignature:C\n\014def"
+  "ault_host\022\037.google.protobuf.ServiceOptio"
+  "ns\030\231\010 \001(\tR\013defaultHost:C\n\014oauth_scopes\022\037"
+  ".google.protobuf.ServiceOptions\030\232\010 \001(\tR\013"
+  "oauthScopesBi\n\016com.google.apiB\013ClientPro"
+  "toP\001ZAgoogle.golang.org/genproto/googlea"
+  "pis/api/annotations;annotations\242\002\004GAPIb\006"
+  "proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -547,7 +548,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 3763, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 3806, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
     &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 16,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
@@ -573,6 +574,9 @@ bool ClientLibraryOrganization_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
+    case 6:
+    case 7:
       return true;
     default:
       return false;

@@ -54,11 +54,14 @@ using viam::robot::v1::Status;
 // and fix that in `rust-utils`, but in the meantime this cleans up the logging
 // error on the C++ side.
 // NOLINTNEXTLINE
-const std::string k_stream_removed("Stream removed");
+const std::string kStreamRemoved("Stream removed");
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
-        this->close();
+        try {
+            this->close();
+        } catch (...) {
+        }
     }
 }
 
@@ -72,7 +75,7 @@ void RobotClient::close() {
 }
 
 bool is_error_response(grpc::Status response) {
-    return !response.ok() && (response.error_message() != k_stream_removed);
+    return !response.ok() && (response.error_message() != kStreamRemoved);
 }
 std::vector<Status> RobotClient::get_status() {
     auto* resources = resource_names();
@@ -85,17 +88,17 @@ std::vector<Status> RobotClient::get_status(std::vector<ResourceName>& component
     viam::robot::v1::GetStatusRequest req;
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
-    for (ResourceName& name : components) {
+    for (const ResourceName& name : components) {
         *req.mutable_resource_names()->Add() = name;
     }
 
-    grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
+    const grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
                                  << response.error_details();
     }
 
-    RepeatedPtrField<Status> status = resp.status();
+    const RepeatedPtrField<Status> status = resp.status();
 
     std::vector<Status> statuses = std::vector<Status>();
 
@@ -107,13 +110,13 @@ std::vector<Status> RobotClient::get_status(std::vector<ResourceName>& component
 }
 
 std::vector<Operation> RobotClient::get_operations() {
-    viam::robot::v1::GetOperationsRequest req;
+    const viam::robot::v1::GetOperationsRequest req;
     viam::robot::v1::GetOperationsResponse resp;
     ClientContext ctx;
 
     std::vector<Operation> operations;
 
-    grpc::Status response = stub_->GetOperations(&ctx, req, &resp);
+    grpc::Status const response = stub_->GetOperations(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
@@ -131,7 +134,7 @@ void RobotClient::cancel_operation(std::string id) {
     ClientContext ctx;
 
     req.set_id(id);
-    grpc::Status response = stub_->CancelOperation(&ctx, req, &resp);
+    const grpc::Status response = stub_->CancelOperation(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
     }
@@ -144,27 +147,24 @@ void RobotClient::block_for_operation(std::string id) {
 
     req.set_id(id);
 
-    grpc::Status response = stub_->BlockForOperation(&ctx, req, &resp);
+    const grpc::Status response = stub_->BlockForOperation(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
     }
 }
 
 void RobotClient::refresh() {
-    viam::robot::v1::ResourceNamesRequest req;
+    const viam::robot::v1::ResourceNamesRequest req;
     viam::robot::v1::ResourceNamesResponse resp;
     ClientContext ctx;
-    grpc::Status response = stub_->ResourceNames(&ctx, req, &resp);
+    const grpc::Status response = stub_->ResourceNames(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
-    RepeatedPtrField<ResourceName> resources = resp.resources();
-
     std::vector<ResourceName> current_resources;
-
-    for (auto& name : resources) {
+    for (const auto& name : resp.resources()) {
         current_resources.push_back(name);
         if (name.subtype() == "remote") {
             continue;
@@ -173,12 +173,13 @@ void RobotClient::refresh() {
         // TODO(RSDK-2066): as we create wrappers, make sure components in wrappers
         // are being properly registered from name.subtype(), or update what we're
         // using for lookup
-        std::shared_ptr<ResourceRegistration> rs =
+        const std::shared_ptr<ResourceRegistration> rs =
             Registry::lookup_resource({name.namespace_(), name.type(), name.subtype()});
         if (rs) {
             try {
-                std::shared_ptr<Resource> rpc_client = rs->create_rpc_client(name.name(), channel_);
-                Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
+                const std::shared_ptr<Resource> rpc_client =
+                    rs->create_rpc_client(name.name(), channel_);
+                const Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {
                 BOOST_LOG_TRIVIAL(debug)
@@ -199,7 +200,7 @@ void RobotClient::refresh() {
         return;
     }
 
-    std::lock_guard<std::mutex> lock(lock_);
+    const std::lock_guard<std::mutex> lock(lock_);
     resource_names_ = current_resources;
     this->resource_manager_.replace_all(new_resources);
 }
@@ -223,7 +224,7 @@ RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
       stub_(RobotService::NewStub(channel_)) {}
 
 std::vector<ResourceName>* RobotClient::resource_names() {
-    std::lock_guard<std::mutex> lock(lock_);
+    const std::lock_guard<std::mutex> lock(lock_);
     std::vector<ResourceName>* resources = &resource_names_;
     return resources;
 }
@@ -234,7 +235,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
-        std::shared_ptr<std::thread> t =
+        const std::shared_ptr<std::thread> t =
             std::make_shared<std::thread>(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
         // close/destructor lets us shutdown gracefully. See also address sanitizer,
@@ -257,11 +258,11 @@ std::shared_ptr<RobotClient> RobotClient::at_address(std::string address, Option
 };
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(std::string address, Options options) {
-    std::string addr = "unix://" + address;
+    const std::string addr = "unix://" + address;
     const char* uri = addr.c_str();
-    std::shared_ptr<grpc::Channel> channel =
+    const std::shared_ptr<grpc::Channel> channel =
         grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
-    std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
+    const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
     auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
     std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
@@ -281,13 +282,13 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
         *req_transforms->Add() = transform;
     }
 
-    grpc::Status response = stub_->FrameSystemConfig(&ctx, req, &resp);
+    const grpc::Status response = stub_->FrameSystemConfig(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
                                  << response.error_message();
     }
 
-    RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
+    const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
 
     std::vector<FrameSystemConfig> fs_configs = std::vector<FrameSystemConfig>();
 
@@ -312,7 +313,7 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
         *req_transforms->Add() = transform;
     }
 
-    grpc::Status response = stub_->TransformPose(&ctx, req, &resp);
+    const grpc::Status response = stub_->TransformPose(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
@@ -331,7 +332,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
         *req_queries->Add() = query;
     }
 
-    grpc::Status response = stub_->DiscoverComponents(&ctx, req, &resp);
+    const grpc::Status response = stub_->DiscoverComponents(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
     }
@@ -356,7 +357,7 @@ void RobotClient::stop_all() {
                        ResourceNameEqual>
         map;
     for (const ResourceName& name : *resource_names()) {
-        std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
+        const std::unordered_map<std::string, std::shared_ptr<ProtoType>> val;
         map.emplace(name, val);
     }
     stop_all(map);
@@ -370,21 +371,20 @@ void RobotClient::stop_all(
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
-    OrientationConfig o;
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (auto& xtra : extra) {
-        ResourceName name = xtra.first;
-        std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> params =
+        const ResourceName name = xtra.first;
+        const std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> params =
             std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>(
                 xtra.second);
-        google::protobuf::Struct s = map_to_struct(params);
+        const google::protobuf::Struct s = map_to_struct(params);
         viam::robot::v1::StopExtraParameters stop;
         *stop.mutable_name() = name;
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }
-    grpc::Status response = stub_->StopAll(&ctx, req, &resp);
+    const grpc::Status response = stub_->StopAll(&ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
                                  << response.error_details();

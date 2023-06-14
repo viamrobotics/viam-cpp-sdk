@@ -38,9 +38,9 @@ const Model& ModelRegistration::model() const {
 };
 
 void Registry::register_model(std::shared_ptr<ModelRegistration> resource) {
-    std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
+    const std::string reg_key = resource->api().to_string() + "/" + resource->model().to_string();
     if (resources_.find(reg_key) != resources_.end()) {
-        std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
+        const std::string err = "Cannot add resource with name " + reg_key + "as it already exists";
         throw DuplicateResourceException(err);
     }
 

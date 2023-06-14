@@ -15,6 +15,7 @@
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/client.hpp>
 #include <viam/sdk/components/camera/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -60,6 +61,13 @@ BOOST_AUTO_TEST_CASE(test_do) {
     ProtoType result_pt = *(result_map->at(std::string("test")));
 
     BOOST_CHECK(result_pt == expected_pt);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> result_geometries = camera->get_geometries();
+
+    BOOST_CHECK(result_geometries == expected_geometries);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -146,6 +154,22 @@ BOOST_AUTO_TEST_CASE(test_get_properties_service) {
     BOOST_CHECK(expected.distortion_parameters == Camera::from_proto(resp.distortion_parameters()));
 }
 
+BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    *req.mutable_name() = "mock_camera";
+    grpc::Status status = server->GetGeometries(&ctx, &req, &resp);
+
+    BOOST_CHECK(status.error_code() == 0);
+
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> response_geometries = GeometryConfig::from_proto(resp);
+
+    BOOST_CHECK(response_geometries == expected_geometries);
+}
+
 BOOST_AUTO_TEST_CASE(test_do_service) {
     auto server = get_camera_server();
     grpc::ServerContext ctx;
@@ -188,6 +212,13 @@ BOOST_AUTO_TEST_CASE(test_get_properties_client) {
     Camera::properties expected = fake_properties();
 
     BOOST_CHECK(expected == props);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
+    std::vector<GeometryConfig> result_geometries = client.get_geometries();
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+
+    BOOST_CHECK(result_geometries == expected_geometries);
 }
 
 BOOST_AUTO_TEST_CASE(test_do_client) {

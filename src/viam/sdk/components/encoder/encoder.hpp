@@ -16,7 +16,7 @@
 namespace viam {
 namespace sdk {
 
-/// @defgroup Encoder Classes related to the `Encoder` component.
+/// @defgroup Encoder Classes related to the Encoder component.
 
 /// @class EncoderRegistration
 /// @brief Defines a `ResourceRegistration` for the `Encoder` component.

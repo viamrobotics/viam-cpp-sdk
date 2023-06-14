@@ -244,7 +244,7 @@ const char descriptor_table_protodef_component_2faudioinput_2fv1_2faudioinput_2e
   "\030\007 \001(\010R\risInterleaved*y\n\014SampleFormat\022\035\n"
   "\031SAMPLE_FORMAT_UNSPECIFIED\020\000\022#\n\037SAMPLE_F"
   "ORMAT_INT16_INTERLEAVED\020\001\022%\n!SAMPLE_FORM"
-  "AT_FLOAT32_INTERLEAVED\020\0022\300\004\n\021AudioInputS"
+  "AT_FLOAT32_INTERLEAVED\020\0022\334\005\n\021AudioInputS"
   "ervice\022e\n\006Chunks\022+.viam.component.audioi"
   "nput.v1.ChunksRequest\032,.viam.component.a"
   "udioinput.v1.ChunksResponse0\001\022\254\001\n\nProper"
@@ -259,9 +259,13 @@ const char descriptor_table_protodef_component_2faudioinput_2fv1_2faudioinput_2e
   ".common.v1.DoCommandRequest\032!.viam.commo"
   "n.v1.DoCommandResponse\";\202\323\344\223\0025\"3/viam/ap"
   "i/v1/component/audioinput/{name}/do_comm"
-  "andBK\n com.viam.component.audioinput.v1Z"
-  "\'go.viam.com/api/component/audioinput/v1"
-  "b\006proto3"
+  "and\022\231\001\n\rGetGeometries\022$.viam.common.v1.G"
+  "etGeometriesRequest\032%.viam.common.v1.Get"
+  "GeometriesResponse\";\202\323\344\223\0025\0223/viam/api/v1"
+  "/component/audioinput/{name}/geometriesB"
+  "K\n com.viam.component.audioinput.v1Z\'go."
+  "viam.com/api/component/audioinput/v1b\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioinput_2fv1_2faudioinput_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -271,7 +275,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioin
 };
 static ::_pbi::once_flag descriptor_table_component_2faudioinput_2fv1_2faudioinput_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2faudioinput_2fv1_2faudioinput_2eproto = {
-    false, false, 1888, descriptor_table_protodef_component_2faudioinput_2fv1_2faudioinput_2eproto,
+    false, false, 2044, descriptor_table_protodef_component_2faudioinput_2fv1_2faudioinput_2eproto,
     "component/audioinput/v1/audioinput.proto",
     &descriptor_table_component_2faudioinput_2fv1_2faudioinput_2eproto_once, descriptor_table_component_2faudioinput_2fv1_2faudioinput_2eproto_deps, 4, 7,
     schemas, file_default_instances, TableStruct_component_2faudioinput_2fv1_2faudioinput_2eproto::offsets,

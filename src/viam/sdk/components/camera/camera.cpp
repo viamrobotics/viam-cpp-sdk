@@ -2,6 +2,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
@@ -43,19 +44,19 @@ std::shared_ptr<ResourceRegistration> Camera::resource_registration() {
 const std::string Camera::lazy_suffix = "+lazy";
 
 API Camera::static_api() {
-    return API(RDK, COMPONENT, "camera");
+    return {kRDK, kComponent, "camera"};
 }
 
 API Camera::dynamic_api() const {
     return static_api();
 }
 
-std::vector<double> repeated_field_to_vector(google::protobuf::RepeatedField<double> const& f) {
+std::vector<double> repeated_field_to_vector(const google::protobuf::RepeatedField<double>& f) {
     std::vector<double> v(f.begin(), f.end());
     return v;
 }
 
-google::protobuf::RepeatedField<double> vector_to_repeated_field(std::vector<double> const& v) {
+google::protobuf::RepeatedField<double> vector_to_repeated_field(const std::vector<double>& v) {
     google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
     return rf;
 }
@@ -63,7 +64,7 @@ google::protobuf::RepeatedField<double> vector_to_repeated_field(std::vector<dou
 Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
     Camera::raw_image raw_image;
     std::string img_string = proto.image();
-    std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
+    const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
     raw_image.bytes = bytes;
     raw_image.mime_type = proto.mime_type();
     return raw_image;
@@ -72,7 +73,7 @@ Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageRespon
 Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto) {
     Camera::point_cloud point_cloud;
     std::string pc_string = proto.point_cloud();
-    std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
+    const std::vector<unsigned char> bytes(pc_string.begin(), pc_string.end());
     point_cloud.pc = bytes;
     point_cloud.mime_type = proto.mime_type();
     return point_cloud;

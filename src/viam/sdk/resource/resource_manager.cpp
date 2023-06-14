@@ -23,30 +23,32 @@
 namespace viam {
 namespace sdk {
 
-std::shared_ptr<Resource> ResourceManager::resource(std::string name) {
-    std::lock_guard<std::mutex> lock(lock_);
+std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
+    const std::lock_guard<std::mutex> lock(lock_);
 
     if (resources_.find(name) != resources_.end()) {
         return resources_.at(name);
     }
 
     if (short_names_.find(name) != short_names_.end()) {
-        std::string short_name = short_names_.at(name);
+        const std::string short_name = short_names_.at(name);
         if (resources_.find(short_name) != resources_.end()) {
             return resources_.at(short_name);
         }
     }
-    throw ViamException("Unable to find resource named " + name);
+
+    return nullptr;
 }
 
-void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resource>> resources) {
-    std::lock_guard<std::mutex> lock(lock_);
-    std::unordered_map<std::string, std::shared_ptr<Resource>> new_resources;
-    std::unordered_map<std::string, std::string> new_short_names;
+void ResourceManager::replace_all(
+    const std::unordered_map<Name, std::shared_ptr<Resource>>& resources) {
+    const std::lock_guard<std::mutex> lock(lock_);
+    const std::unordered_map<std::string, std::shared_ptr<Resource>> new_resources;
+    const std::unordered_map<std::string, std::string> new_short_names;
     this->resources_ = new_resources;
     this->short_names_ = new_short_names;
 
-    for (auto& resource : resources) {
+    for (const auto& resource : resources) {
         try {
             do_add(resource.first, resource.second);
         } catch (std::exception& exc) {
@@ -56,7 +58,7 @@ void ResourceManager::replace_all(std::unordered_map<Name, std::shared_ptr<Resou
     }
 }
 
-std::string get_shortcut_name(std::string name) {
+std::string get_shortcut_name(const std::string& name) {
     std::vector<std::string> name_split;
     // clang-tidy thinks this is a possible memory leak
     // NOLINTNEXTLINE
@@ -64,23 +66,23 @@ std::string get_shortcut_name(std::string name) {
     return name_split.at(name_split.size() - 1);
 }
 
-void ResourceManager::do_add(Name name, std::shared_ptr<Resource> resource) {
+void ResourceManager::do_add(const Name& name, const std::shared_ptr<Resource>& resource) {
     if (name.name().empty()) {
         throw ViamException("Empty name used for resource: " + name.to_string());
     }
-    std::string short_name = name.short_name();
+    const std::string short_name = name.short_name();
 
     do_add(short_name, resource);
 }
 
-void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resource) {
+void ResourceManager::do_add(const std::string& name, const std::shared_ptr<Resource>& resource) {
     if (resources_.find(name) != resources_.end()) {
         throw DuplicateResourceException("Attempted to add resource that already existed: " + name);
     }
 
     resources_.emplace(name, resource);
 
-    std::string shortcut = get_shortcut_name(name);
+    const std::string shortcut = get_shortcut_name(name);
     if (shortcut != name) {
         if (short_names_.find(shortcut) != short_names_.end()) {
             short_names_.emplace(shortcut, "");
@@ -90,8 +92,8 @@ void ResourceManager::do_add(std::string name, std::shared_ptr<Resource> resourc
     }
 }
 
-void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
-    std::lock_guard<std::mutex> lock(lock_);
+void ResourceManager::add(const Name& name, const std::shared_ptr<Resource>& resource) {
+    const std::lock_guard<std::mutex> lock(lock_);
     try {
         do_add(name, resource);
     } catch (std::exception& exc) {
@@ -99,15 +101,15 @@ void ResourceManager::add(Name name, std::shared_ptr<Resource> resource) {
     }
 };
 
-void ResourceManager::do_remove(Name name) {
-    std::string short_name = name.short_name();
+void ResourceManager::do_remove(const Name& name) {
+    const std::string short_name = name.short_name();
     if (resources_.find(short_name) == resources_.end()) {
         throw ViamException("attempted to remove resource " + name.to_string() +
                             " but it didn't exist!");
     }
     resources_.erase(short_name);
 
-    std::string shortcut = get_shortcut_name(short_name);
+    std::string const shortcut = get_shortcut_name(short_name);
     if (short_names_.find(shortcut) != short_names_.end()) {
         short_names_.erase(shortcut);
     }
@@ -115,7 +117,7 @@ void ResourceManager::do_remove(Name name) {
     // case: remote1:nameA and remote2:nameA both existed, and remote2:nameA is
     // being deleted, restore shortcut to remote1:nameA
     for (auto& res : resources_) {
-        std::string key = res.first;
+        const std::string key = res.first;
         if (shortcut == get_shortcut_name(key) && short_name != get_shortcut_name(key)) {
             if (short_names_.find(shortcut) != short_names_.end()) {
                 short_names_.emplace(shortcut, "");
@@ -126,8 +128,8 @@ void ResourceManager::do_remove(Name name) {
     }
 }
 
-void ResourceManager::remove(Name name) {
-    std::lock_guard<std::mutex> lock(lock_);
+void ResourceManager::remove(const Name& name) {
+    const std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
     } catch (std::exception& exc) {
@@ -135,8 +137,8 @@ void ResourceManager::remove(Name name) {
     };
 };
 
-void ResourceManager::replace_one(Name name, std::shared_ptr<Resource> resource) {
-    std::lock_guard<std::mutex> lock(lock_);
+void ResourceManager::replace_one(const Name& name, const std::shared_ptr<Resource>& resource) {
+    const std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);
         do_add(name, resource);
@@ -151,8 +153,8 @@ const std::unordered_map<std::string, std::shared_ptr<Resource>>& ResourceManage
     return resources_;
 }
 
-void ResourceManager::add(std::string name, std::shared_ptr<Resource> resource) {
-    std::lock_guard<std::mutex> lock(lock_);
+void ResourceManager::add(const std::string& name, const std::shared_ptr<Resource>& resource) {
+    const std::lock_guard<std::mutex> lock(lock_);
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     do_add(name, resource);
 }

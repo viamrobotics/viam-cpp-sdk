@@ -3,6 +3,7 @@
 #include <pthread.h>
 #include <signal.h>
 
+#include <boost/log/trivial.hpp>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 
@@ -80,6 +81,11 @@ int main(int argc, char** argv) {
         throw std::runtime_error("need socket path as command line argument");
     }
 
+    // Use set_logger_severity_from_args to set the boost trivial logger's
+    // severity depending on commandline arguments.
+    set_logger_severity_from_args(argc, argv);
+    BOOST_LOG_TRIVIAL(debug) << "Starting module with debug level logging";
+
     // C++ modules must handle SIGINT and SIGTERM. Make sure to create a sigset
     // for SIGINT and SIGTERM that can be later awaited in a thread that cleanly
     // shuts down your module. pthread_sigmask should be called near the start
@@ -99,7 +105,7 @@ int main(int argc, char** argv) {
         m,
         [](Dependencies, ResourceConfig cfg) { return std::make_unique<MyModule>(cfg); },
         // Custom validation can be done by specifying a validate function like
-        // this one. Validate functions can `throw` error strings that will be
+        // this one. Validate functions can `throw` exceptions that will be
         // returned to the parent through gRPC. Validate functions can also return
         // a vector of strings representing the implicit dependencies of the resource.
         [](ResourceConfig cfg) -> std::vector<std::string> {

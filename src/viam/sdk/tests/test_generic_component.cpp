@@ -12,6 +12,7 @@
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/components/generic/server.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -69,6 +70,40 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
     ProtoType result_pt = *(result_map->at(std::string("test")));
 
     BOOST_CHECK(expected_pt == result_pt);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> result_geometries = generic->get_geometries();
+
+    BOOST_CHECK(expected_geometries == result_geometries);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
+    auto server = std::make_shared<GenericServer>();
+    server->resource_manager()->add(std::string("mock_generic"), MockGeneric::get_mock_generic());
+
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    grpc::ServerContext ctx;
+
+    *req.mutable_name() = "mock_generic";
+    grpc::Status status = server->GetGeometries(&ctx, &req, &resp);
+
+    BOOST_CHECK(status.error_code() == 0);
+
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> response_geometries = GeometryConfig::from_proto(resp);
+
+    BOOST_CHECK(expected_geometries == response_geometries);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
+    MockGenericClient client("mock_generic");
+    std::vector<GeometryConfig> result_geometries = client.get_geometries();
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+
+    BOOST_CHECK(result_geometries == expected_geometries);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

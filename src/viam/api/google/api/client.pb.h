@@ -130,12 +130,15 @@ enum ClientLibraryOrganization : int {
   ADS = 2,
   PHOTOS = 3,
   STREET_VIEW = 4,
+  SHOPPING = 5,
+  GEO = 6,
+  GENERATIVE_AI = 7,
   ClientLibraryOrganization_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ClientLibraryOrganization_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ClientLibraryOrganization_IsValid(int value);
 constexpr ClientLibraryOrganization ClientLibraryOrganization_MIN = CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED;
-constexpr ClientLibraryOrganization ClientLibraryOrganization_MAX = STREET_VIEW;
+constexpr ClientLibraryOrganization ClientLibraryOrganization_MAX = GENERATIVE_AI;
 constexpr int ClientLibraryOrganization_ARRAYSIZE = ClientLibraryOrganization_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ClientLibraryOrganization_descriptor();

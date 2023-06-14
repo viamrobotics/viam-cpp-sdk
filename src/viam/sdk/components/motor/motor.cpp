@@ -38,7 +38,7 @@ std::shared_ptr<ResourceRegistration> Motor::resource_registration() {
 }
 
 API Motor::static_api() {
-    return API(RDK, COMPONENT, "motor");
+    return {kRDK, kComponent, "motor"};
 }
 
 Motor::position Motor::from_proto(viam::component::motor::v1::GetPositionResponse proto) {

@@ -32,6 +32,7 @@
 #include <google/protobuf/map.h>  // IWYU pragma: export
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/struct.pb.h>
@@ -79,6 +80,9 @@ extern DoCommandRequestDefaultTypeInternal _DoCommandRequest_default_instance_;
 class DoCommandResponse;
 struct DoCommandResponseDefaultTypeInternal;
 extern DoCommandResponseDefaultTypeInternal _DoCommandResponse_default_instance_;
+class GeoObstacle;
+struct GeoObstacleDefaultTypeInternal;
+extern GeoObstacleDefaultTypeInternal _GeoObstacle_default_instance_;
 class GeoPoint;
 struct GeoPointDefaultTypeInternal;
 extern GeoPointDefaultTypeInternal _GeoPoint_default_instance_;
@@ -88,6 +92,18 @@ extern GeometriesInFrameDefaultTypeInternal _GeometriesInFrame_default_instance_
 class Geometry;
 struct GeometryDefaultTypeInternal;
 extern GeometryDefaultTypeInternal _Geometry_default_instance_;
+class GetGeometriesRequest;
+struct GetGeometriesRequestDefaultTypeInternal;
+extern GetGeometriesRequestDefaultTypeInternal _GetGeometriesRequest_default_instance_;
+class GetGeometriesResponse;
+struct GetGeometriesResponseDefaultTypeInternal;
+extern GetGeometriesResponseDefaultTypeInternal _GetGeometriesResponse_default_instance_;
+class GetKinematicsRequest;
+struct GetKinematicsRequestDefaultTypeInternal;
+extern GetKinematicsRequestDefaultTypeInternal _GetKinematicsRequest_default_instance_;
+class GetKinematicsResponse;
+struct GetKinematicsResponseDefaultTypeInternal;
+extern GetKinematicsResponseDefaultTypeInternal _GetKinematicsResponse_default_instance_;
 class Orientation;
 struct OrientationDefaultTypeInternal;
 extern OrientationDefaultTypeInternal _Orientation_default_instance_;
@@ -131,9 +147,14 @@ template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common
 template<> ::viam::common::v1::DigitalInterruptStatus* Arena::CreateMaybeMessage<::viam::common::v1::DigitalInterruptStatus>(Arena*);
 template<> ::viam::common::v1::DoCommandRequest* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandRequest>(Arena*);
 template<> ::viam::common::v1::DoCommandResponse* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandResponse>(Arena*);
+template<> ::viam::common::v1::GeoObstacle* Arena::CreateMaybeMessage<::viam::common::v1::GeoObstacle>(Arena*);
 template<> ::viam::common::v1::GeoPoint* Arena::CreateMaybeMessage<::viam::common::v1::GeoPoint>(Arena*);
 template<> ::viam::common::v1::GeometriesInFrame* Arena::CreateMaybeMessage<::viam::common::v1::GeometriesInFrame>(Arena*);
 template<> ::viam::common::v1::Geometry* Arena::CreateMaybeMessage<::viam::common::v1::Geometry>(Arena*);
+template<> ::viam::common::v1::GetGeometriesRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetGeometriesRequest>(Arena*);
+template<> ::viam::common::v1::GetGeometriesResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetGeometriesResponse>(Arena*);
+template<> ::viam::common::v1::GetKinematicsRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetKinematicsRequest>(Arena*);
+template<> ::viam::common::v1::GetKinematicsResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetKinematicsResponse>(Arena*);
 template<> ::viam::common::v1::Orientation* Arena::CreateMaybeMessage<::viam::common::v1::Orientation>(Arena*);
 template<> ::viam::common::v1::PointCloudObject* Arena::CreateMaybeMessage<::viam::common::v1::PointCloudObject>(Arena*);
 template<> ::viam::common::v1::Pose* Arena::CreateMaybeMessage<::viam::common::v1::Pose>(Arena*);
@@ -149,6 +170,32 @@ namespace viam {
 namespace common {
 namespace v1 {
 
+enum KinematicsFileFormat : int {
+  KINEMATICS_FILE_FORMAT_UNSPECIFIED = 0,
+  KINEMATICS_FILE_FORMAT_SVA = 1,
+  KINEMATICS_FILE_FORMAT_URDF = 2,
+  KinematicsFileFormat_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  KinematicsFileFormat_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool KinematicsFileFormat_IsValid(int value);
+constexpr KinematicsFileFormat KinematicsFileFormat_MIN = KINEMATICS_FILE_FORMAT_UNSPECIFIED;
+constexpr KinematicsFileFormat KinematicsFileFormat_MAX = KINEMATICS_FILE_FORMAT_URDF;
+constexpr int KinematicsFileFormat_ARRAYSIZE = KinematicsFileFormat_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* KinematicsFileFormat_descriptor();
+template<typename T>
+inline const std::string& KinematicsFileFormat_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, KinematicsFileFormat>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function KinematicsFileFormat_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    KinematicsFileFormat_descriptor(), enum_t_value);
+}
+inline bool KinematicsFileFormat_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, KinematicsFileFormat* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<KinematicsFileFormat>(
+    KinematicsFileFormat_descriptor(), name, value);
+}
 // ===================================================================
 
 class ResourceName final :
@@ -2772,6 +2819,178 @@ class GeoPoint final :
 };
 // -------------------------------------------------------------------
 
+class GeoObstacle final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GeoObstacle) */ {
+ public:
+  inline GeoObstacle() : GeoObstacle(nullptr) {}
+  ~GeoObstacle() override;
+  explicit PROTOBUF_CONSTEXPR GeoObstacle(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GeoObstacle(const GeoObstacle& from);
+  GeoObstacle(GeoObstacle&& from) noexcept
+    : GeoObstacle() {
+    *this = ::std::move(from);
+  }
+
+  inline GeoObstacle& operator=(const GeoObstacle& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GeoObstacle& operator=(GeoObstacle&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GeoObstacle& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GeoObstacle* internal_default_instance() {
+    return reinterpret_cast<const GeoObstacle*>(
+               &_GeoObstacle_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(GeoObstacle& a, GeoObstacle& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GeoObstacle* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GeoObstacle* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GeoObstacle* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GeoObstacle>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GeoObstacle& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GeoObstacle& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GeoObstacle* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GeoObstacle";
+  }
+  protected:
+  explicit GeoObstacle(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGeometriesFieldNumber = 2,
+    kLocationFieldNumber = 1,
+  };
+  // repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+  int geometries_size() const;
+  private:
+  int _internal_geometries_size() const;
+  public:
+  void clear_geometries();
+  ::viam::common::v1::Geometry* mutable_geometries(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+      mutable_geometries();
+  private:
+  const ::viam::common::v1::Geometry& _internal_geometries(int index) const;
+  ::viam::common::v1::Geometry* _internal_add_geometries();
+  public:
+  const ::viam::common::v1::Geometry& geometries(int index) const;
+  ::viam::common::v1::Geometry* add_geometries();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+      geometries() const;
+
+  // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+  bool has_location() const;
+  private:
+  bool _internal_has_location() const;
+  public:
+  void clear_location();
+  const ::viam::common::v1::GeoPoint& location() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::GeoPoint* release_location();
+  ::viam::common::v1::GeoPoint* mutable_location();
+  void set_allocated_location(::viam::common::v1::GeoPoint* location);
+  private:
+  const ::viam::common::v1::GeoPoint& _internal_location() const;
+  ::viam::common::v1::GeoPoint* _internal_mutable_location();
+  public:
+  void unsafe_arena_set_allocated_location(
+      ::viam::common::v1::GeoPoint* location);
+  ::viam::common::v1::GeoPoint* unsafe_arena_release_location();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GeoObstacle)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry > geometries_;
+  ::viam::common::v1::GeoPoint* location_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Transform final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Transform) */ {
  public:
@@ -2820,7 +3039,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -3009,7 +3228,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3181,7 +3400,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -3324,7 +3543,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -3492,7 +3711,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -3591,6 +3810,613 @@ class DoCommandResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::Struct* result_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetKinematicsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetKinematicsRequest) */ {
+ public:
+  inline GetKinematicsRequest() : GetKinematicsRequest(nullptr) {}
+  ~GetKinematicsRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetKinematicsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetKinematicsRequest(const GetKinematicsRequest& from);
+  GetKinematicsRequest(GetKinematicsRequest&& from) noexcept
+    : GetKinematicsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetKinematicsRequest& operator=(const GetKinematicsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetKinematicsRequest& operator=(GetKinematicsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetKinematicsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetKinematicsRequest* internal_default_instance() {
+    return reinterpret_cast<const GetKinematicsRequest*>(
+               &_GetKinematicsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetKinematicsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetKinematicsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetKinematicsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetKinematicsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetKinematicsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetKinematicsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetKinematicsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetKinematicsRequest";
+  }
+  protected:
+  explicit GetKinematicsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetKinematicsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetKinematicsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetKinematicsResponse) */ {
+ public:
+  inline GetKinematicsResponse() : GetKinematicsResponse(nullptr) {}
+  ~GetKinematicsResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetKinematicsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetKinematicsResponse(const GetKinematicsResponse& from);
+  GetKinematicsResponse(GetKinematicsResponse&& from) noexcept
+    : GetKinematicsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetKinematicsResponse& operator=(const GetKinematicsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetKinematicsResponse& operator=(GetKinematicsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetKinematicsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetKinematicsResponse* internal_default_instance() {
+    return reinterpret_cast<const GetKinematicsResponse*>(
+               &_GetKinematicsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetKinematicsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetKinematicsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetKinematicsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetKinematicsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetKinematicsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetKinematicsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetKinematicsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetKinematicsResponse";
+  }
+  protected:
+  explicit GetKinematicsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kKinematicsDataFieldNumber = 2,
+    kFormatFieldNumber = 1,
+  };
+  // bytes kinematics_data = 2 [json_name = "kinematicsData"];
+  void clear_kinematics_data();
+  const std::string& kinematics_data() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_kinematics_data(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_kinematics_data();
+  PROTOBUF_NODISCARD std::string* release_kinematics_data();
+  void set_allocated_kinematics_data(std::string* kinematics_data);
+  private:
+  const std::string& _internal_kinematics_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_kinematics_data(const std::string& value);
+  std::string* _internal_mutable_kinematics_data();
+  public:
+
+  // .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+  void clear_format();
+  ::viam::common::v1::KinematicsFileFormat format() const;
+  void set_format(::viam::common::v1::KinematicsFileFormat value);
+  private:
+  ::viam::common::v1::KinematicsFileFormat _internal_format() const;
+  void _internal_set_format(::viam::common::v1::KinematicsFileFormat value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetKinematicsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr kinematics_data_;
+  int format_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetGeometriesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetGeometriesRequest) */ {
+ public:
+  inline GetGeometriesRequest() : GetGeometriesRequest(nullptr) {}
+  ~GetGeometriesRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetGeometriesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetGeometriesRequest(const GetGeometriesRequest& from);
+  GetGeometriesRequest(GetGeometriesRequest&& from) noexcept
+    : GetGeometriesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetGeometriesRequest& operator=(const GetGeometriesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetGeometriesRequest& operator=(GetGeometriesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetGeometriesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetGeometriesRequest* internal_default_instance() {
+    return reinterpret_cast<const GetGeometriesRequest*>(
+               &_GetGeometriesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetGeometriesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetGeometriesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetGeometriesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetGeometriesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetGeometriesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetGeometriesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetGeometriesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetGeometriesRequest";
+  }
+  protected:
+  explicit GetGeometriesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetGeometriesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetGeometriesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetGeometriesResponse) */ {
+ public:
+  inline GetGeometriesResponse() : GetGeometriesResponse(nullptr) {}
+  ~GetGeometriesResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetGeometriesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetGeometriesResponse(const GetGeometriesResponse& from);
+  GetGeometriesResponse(GetGeometriesResponse&& from) noexcept
+    : GetGeometriesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetGeometriesResponse& operator=(const GetGeometriesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetGeometriesResponse& operator=(GetGeometriesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetGeometriesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetGeometriesResponse* internal_default_instance() {
+    return reinterpret_cast<const GetGeometriesResponse*>(
+               &_GetGeometriesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetGeometriesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetGeometriesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetGeometriesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetGeometriesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetGeometriesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetGeometriesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetGeometriesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetGeometriesResponse";
+  }
+  protected:
+  explicit GetGeometriesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGeometriesFieldNumber = 1,
+  };
+  // repeated .viam.common.v1.Geometry geometries = 1 [json_name = "geometries"];
+  int geometries_size() const;
+  private:
+  int _internal_geometries_size() const;
+  public:
+  void clear_geometries();
+  ::viam::common::v1::Geometry* mutable_geometries(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+      mutable_geometries();
+  private:
+  const ::viam::common::v1::Geometry& _internal_geometries(int index) const;
+  ::viam::common::v1::Geometry* _internal_add_geometries();
+  public:
+  const ::viam::common::v1::Geometry& geometries(int index) const;
+  ::viam::common::v1::Geometry* add_geometries();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+      geometries() const;
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetGeometriesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry > geometries_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
@@ -5180,6 +6006,140 @@ inline void GeoPoint::set_longitude(double value) {
 
 // -------------------------------------------------------------------
 
+// GeoObstacle
+
+// .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
+inline bool GeoObstacle::_internal_has_location() const {
+  return this != internal_default_instance() && location_ != nullptr;
+}
+inline bool GeoObstacle::has_location() const {
+  return _internal_has_location();
+}
+inline void GeoObstacle::clear_location() {
+  if (GetArenaForAllocation() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+}
+inline const ::viam::common::v1::GeoPoint& GeoObstacle::_internal_location() const {
+  const ::viam::common::v1::GeoPoint* p = location_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::GeoPoint&>(
+      ::viam::common::v1::_GeoPoint_default_instance_);
+}
+inline const ::viam::common::v1::GeoPoint& GeoObstacle::location() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoObstacle.location)
+  return _internal_location();
+}
+inline void GeoObstacle::unsafe_arena_set_allocated_location(
+    ::viam::common::v1::GeoPoint* location) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(location_);
+  }
+  location_ = location;
+  if (location) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GeoObstacle.location)
+}
+inline ::viam::common::v1::GeoPoint* GeoObstacle::release_location() {
+  
+  ::viam::common::v1::GeoPoint* temp = location_;
+  location_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* GeoObstacle::unsafe_arena_release_location() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GeoObstacle.location)
+  
+  ::viam::common::v1::GeoPoint* temp = location_;
+  location_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* GeoObstacle::_internal_mutable_location() {
+  
+  if (location_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::GeoPoint>(GetArenaForAllocation());
+    location_ = p;
+  }
+  return location_;
+}
+inline ::viam::common::v1::GeoPoint* GeoObstacle::mutable_location() {
+  ::viam::common::v1::GeoPoint* _msg = _internal_mutable_location();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoObstacle.location)
+  return _msg;
+}
+inline void GeoObstacle::set_allocated_location(::viam::common::v1::GeoPoint* location) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete location_;
+  }
+  if (location) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(location);
+    if (message_arena != submessage_arena) {
+      location = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, location, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  location_ = location;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GeoObstacle.location)
+}
+
+// repeated .viam.common.v1.Geometry geometries = 2 [json_name = "geometries"];
+inline int GeoObstacle::_internal_geometries_size() const {
+  return geometries_.size();
+}
+inline int GeoObstacle::geometries_size() const {
+  return _internal_geometries_size();
+}
+inline void GeoObstacle::clear_geometries() {
+  geometries_.Clear();
+}
+inline ::viam::common::v1::Geometry* GeoObstacle::mutable_geometries(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GeoObstacle.geometries)
+  return geometries_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+GeoObstacle::mutable_geometries() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.GeoObstacle.geometries)
+  return &geometries_;
+}
+inline const ::viam::common::v1::Geometry& GeoObstacle::_internal_geometries(int index) const {
+  return geometries_.Get(index);
+}
+inline const ::viam::common::v1::Geometry& GeoObstacle::geometries(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GeoObstacle.geometries)
+  return _internal_geometries(index);
+}
+inline ::viam::common::v1::Geometry* GeoObstacle::_internal_add_geometries() {
+  return geometries_.Add();
+}
+inline ::viam::common::v1::Geometry* GeoObstacle::add_geometries() {
+  ::viam::common::v1::Geometry* _add = _internal_add_geometries();
+  // @@protoc_insertion_point(field_add:viam.common.v1.GeoObstacle.geometries)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+GeoObstacle::geometries() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.GeoObstacle.geometries)
+  return geometries_;
+}
+
+// -------------------------------------------------------------------
+
 // Transform
 
 // string reference_frame = 1 [json_name = "referenceFrame"];
@@ -5748,9 +6708,245 @@ inline void DoCommandResponse::set_allocated_result(::PROTOBUF_NAMESPACE_ID::Str
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.DoCommandResponse.result)
 }
 
+// -------------------------------------------------------------------
+
+// GetKinematicsRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetKinematicsRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetKinematicsRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetKinematicsRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetKinematicsRequest.name)
+}
+inline std::string* GetKinematicsRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetKinematicsRequest.name)
+  return _s;
+}
+inline const std::string& GetKinematicsRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetKinematicsRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetKinematicsRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetKinematicsRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetKinematicsRequest.name)
+  return name_.Release();
+}
+inline void GetKinematicsRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// GetKinematicsResponse
+
+// .viam.common.v1.KinematicsFileFormat format = 1 [json_name = "format"];
+inline void GetKinematicsResponse::clear_format() {
+  format_ = 0;
+}
+inline ::viam::common::v1::KinematicsFileFormat GetKinematicsResponse::_internal_format() const {
+  return static_cast< ::viam::common::v1::KinematicsFileFormat >(format_);
+}
+inline ::viam::common::v1::KinematicsFileFormat GetKinematicsResponse::format() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsResponse.format)
+  return _internal_format();
+}
+inline void GetKinematicsResponse::_internal_set_format(::viam::common::v1::KinematicsFileFormat value) {
+  
+  format_ = value;
+}
+inline void GetKinematicsResponse::set_format(::viam::common::v1::KinematicsFileFormat value) {
+  _internal_set_format(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetKinematicsResponse.format)
+}
+
+// bytes kinematics_data = 2 [json_name = "kinematicsData"];
+inline void GetKinematicsResponse::clear_kinematics_data() {
+  kinematics_data_.ClearToEmpty();
+}
+inline const std::string& GetKinematicsResponse::kinematics_data() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsResponse.kinematics_data)
+  return _internal_kinematics_data();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetKinematicsResponse::set_kinematics_data(ArgT0&& arg0, ArgT... args) {
+ 
+ kinematics_data_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetKinematicsResponse.kinematics_data)
+}
+inline std::string* GetKinematicsResponse::mutable_kinematics_data() {
+  std::string* _s = _internal_mutable_kinematics_data();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetKinematicsResponse.kinematics_data)
+  return _s;
+}
+inline const std::string& GetKinematicsResponse::_internal_kinematics_data() const {
+  return kinematics_data_.Get();
+}
+inline void GetKinematicsResponse::_internal_set_kinematics_data(const std::string& value) {
+  
+  kinematics_data_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetKinematicsResponse::_internal_mutable_kinematics_data() {
+  
+  return kinematics_data_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetKinematicsResponse::release_kinematics_data() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetKinematicsResponse.kinematics_data)
+  return kinematics_data_.Release();
+}
+inline void GetKinematicsResponse::set_allocated_kinematics_data(std::string* kinematics_data) {
+  if (kinematics_data != nullptr) {
+    
+  } else {
+    
+  }
+  kinematics_data_.SetAllocated(kinematics_data, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (kinematics_data_.IsDefault()) {
+    kinematics_data_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsResponse.kinematics_data)
+}
+
+// -------------------------------------------------------------------
+
+// GetGeometriesRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetGeometriesRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetGeometriesRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetGeometriesRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetGeometriesRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetGeometriesRequest.name)
+}
+inline std::string* GetGeometriesRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetGeometriesRequest.name)
+  return _s;
+}
+inline const std::string& GetGeometriesRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetGeometriesRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetGeometriesRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetGeometriesRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetGeometriesRequest.name)
+  return name_.Release();
+}
+inline void GetGeometriesRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetGeometriesRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// GetGeometriesResponse
+
+// repeated .viam.common.v1.Geometry geometries = 1 [json_name = "geometries"];
+inline int GetGeometriesResponse::_internal_geometries_size() const {
+  return geometries_.size();
+}
+inline int GetGeometriesResponse::geometries_size() const {
+  return _internal_geometries_size();
+}
+inline void GetGeometriesResponse::clear_geometries() {
+  geometries_.Clear();
+}
+inline ::viam::common::v1::Geometry* GetGeometriesResponse::mutable_geometries(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetGeometriesResponse.geometries)
+  return geometries_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >*
+GetGeometriesResponse::mutable_geometries() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.GetGeometriesResponse.geometries)
+  return &geometries_;
+}
+inline const ::viam::common::v1::Geometry& GetGeometriesResponse::_internal_geometries(int index) const {
+  return geometries_.Get(index);
+}
+inline const ::viam::common::v1::Geometry& GetGeometriesResponse::geometries(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetGeometriesResponse.geometries)
+  return _internal_geometries(index);
+}
+inline ::viam::common::v1::Geometry* GetGeometriesResponse::_internal_add_geometries() {
+  return geometries_.Add();
+}
+inline ::viam::common::v1::Geometry* GetGeometriesResponse::add_geometries() {
+  ::viam::common::v1::Geometry* _add = _internal_add_geometries();
+  // @@protoc_insertion_point(field_add:viam.common.v1.GetGeometriesResponse.geometries)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry >&
+GetGeometriesResponse::geometries() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.GetGeometriesResponse.geometries)
+  return geometries_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5799,6 +6995,16 @@ inline void DoCommandResponse::set_allocated_result(::PROTOBUF_NAMESPACE_ID::Str
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::viam::common::v1::KinematicsFileFormat> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::common::v1::KinematicsFileFormat>() {
+  return ::viam::common::v1::KinematicsFileFormat_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

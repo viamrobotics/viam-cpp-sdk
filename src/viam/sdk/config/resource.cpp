@@ -24,9 +24,10 @@ Name ResourceConfig::resource_name() {
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     boost::split(remotes, this->name_, boost::is_any_of(":"));
     if (remotes.size() > 1) {
-        std::string str_name = remotes.at(remotes.size() - 1);
+        const std::string str_name(remotes.back());
         remotes.pop_back();
-        std::string remote = std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
+        const std::string remote =
+            std::accumulate(remotes.begin(), remotes.end(), std::string(":"));
         return Name(this->api_, remote, str_name);
     }
     return Name(this->api_, "", remotes.at(0));
@@ -62,8 +63,8 @@ const AttributeMap& ResourceConfig::attributes() const {
 
 void ResourceConfig::fix_api() {
     if (this->api_.type_namespace().empty() && this->namespace__.empty()) {
-        this->namespace__ = RDK;
-        this->api_.set_namespace(RDK);
+        this->namespace__ = kRDK;
+        this->api_.set_namespace(kRDK);
     } else if (this->api_.type_namespace().empty()) {
         this->api_.set_namespace(this->namespace__);
     } else {
@@ -71,7 +72,7 @@ void ResourceConfig::fix_api() {
     }
 
     if (this->api_.resource_type().empty()) {
-        this->api_.set_resource_type(COMPONENT);
+        this->api_.set_resource_type(kComponent);
     }
 
     if (this->api_.resource_subtype().empty()) {
@@ -103,7 +104,7 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
     resource.fix_api();
 
     if (proto_cfg.has_frame()) {
-        LinkConfig lc = LinkConfig::from_proto(proto_cfg.frame());
+        resource.frame_ = LinkConfig::from_proto(proto_cfg.frame());
     }
 
     return resource;
@@ -111,8 +112,9 @@ ResourceConfig ResourceConfig::from_proto(viam::app::v1::ComponentConfig proto_c
 
 viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     viam::app::v1::ComponentConfig proto_cfg;
-    google::protobuf::Struct s = map_to_struct(attributes_);
-    google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig> service_configs;
+    const google::protobuf::Struct s = map_to_struct(attributes_);
+    const google::protobuf::RepeatedPtrField<viam::app::v1::ResourceLevelServiceConfig>
+        service_configs;
 
     for (const auto& svc_cfg : service_config_) {
         viam::app::v1::ResourceLevelServiceConfig cfg;
@@ -136,7 +138,7 @@ viam::app::v1::ComponentConfig ResourceConfig::to_proto() const {
     return proto_cfg;
 }
 
-ResourceConfig::ResourceConfig(std::string type) : api_({RDK, type, ""}), type_(type){};
+ResourceConfig::ResourceConfig(std::string type) : api_({kRDK, type, ""}), type_(type){};
 
 }  // namespace sdk
 }  // namespace viam

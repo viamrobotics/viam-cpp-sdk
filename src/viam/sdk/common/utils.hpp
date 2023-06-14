@@ -16,15 +16,14 @@ namespace viam {
 namespace sdk {
 
 using viam::common::v1::ResourceName;
-const std::string COMPONENT = "component";
-const std::string RESOURCE = "resource";
-const std::string SERVICE = "service";
-const std::string RDK = "rdk";
-const std::string GENERIC = "generic";
-const std::string BUILTIN = "builtin";
+const std::string kComponent = "component";
+const std::string kResource = "resource";
+const std::string kService = "service";
+const std::string kRDK = "rdk";
+const std::string kBuiltin = "builtin";
 
 std::vector<viam::common::v1::ResourceName> resource_names_for_resource(
-    std::shared_ptr<Resource> resource);
+    const std::shared_ptr<Resource>& resource);
 
 class ResourceNameHasher {
    public:
@@ -47,6 +46,16 @@ std::string bytes_to_string(std::vector<unsigned char> const& b);
 
 std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
 google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
+
+/// @brief Set the boost trivial logger's severity depending on args.
+/// @param argc The number of args.
+/// @param argv The commandline arguments to parse.
+///
+/// Sets the boost trivial logger's severity to debug if "--log-level=debug" is the
+/// the third argument. Sets severity to info otherwise. Useful for module
+/// implementations. See LogLevel documentation in the RDK for more information on
+/// how to start modules with a "log-level" commandline argument.
+void set_logger_severity_from_args(int argc, char** argv);
 
 }  // namespace sdk
 }  // namespace viam

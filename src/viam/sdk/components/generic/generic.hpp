@@ -15,7 +15,7 @@ namespace viam {
 namespace sdk {
 
 // TODO(RSDK-1742): one class per header
-/// @defgroup Generic Classes related to the `Generic` component.
+/// @defgroup Generic Classes related to the Generic component.
 
 /// @class GenericRegistration
 /// @brief Defines a `ResourceRegistration` for the `Generic` component.
@@ -47,6 +47,10 @@ class Generic : public Component {
     /// @param command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling camera.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries() = 0;
 
     API dynamic_api() const override;
 

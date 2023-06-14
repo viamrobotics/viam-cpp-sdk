@@ -378,7 +378,7 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "ointPositions\022\033\n\tis_moving\030\003 \001(\010R\010isMovi"
   "ng\"%\n\017IsMovingRequest\022\022\n\004name\030\001 \001(\tR\004nam"
   "e\"/\n\020IsMovingResponse\022\033\n\tis_moving\030\001 \001(\010"
-  "R\010isMoving2\352\010\n\nArmService\022\241\001\n\016GetEndPosi"
+  "R\010isMoving2\224\013\n\nArmService\022\241\001\n\016GetEndPosi"
   "tion\022,.viam.component.arm.v1.GetEndPosit"
   "ionRequest\032-.viam.component.arm.v1.GetEn"
   "dPositionResponse\"2\202\323\344\223\002,\022*/viam/api/v1/"
@@ -406,9 +406,16 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "moving\022\206\001\n\tDoCommand\022 .viam.common.v1.Do"
   "CommandRequest\032!.viam.common.v1.DoComman"
   "dResponse\"4\202\323\344\223\002.\",/viam/api/v1/componen"
-  "t/arm/{name}/do_commandB=\n\031com.viam.comp"
-  "onent.arm.v1Z go.viam.com/api/component/"
-  "arm/v1b\006proto3"
+  "t/arm/{name}/do_command\022\222\001\n\rGetKinematic"
+  "s\022$.viam.common.v1.GetKinematicsRequest\032"
+  "%.viam.common.v1.GetKinematicsResponse\"4"
+  "\202\323\344\223\002.\022,/viam/api/v1/component/arm/{name"
+  "}/kinematics\022\222\001\n\rGetGeometries\022$.viam.co"
+  "mmon.v1.GetGeometriesRequest\032%.viam.comm"
+  "on.v1.GetGeometriesResponse\"4\202\323\344\223\002.\022,/vi"
+  "am/api/v1/component/arm/{name}/geometrie"
+  "sB=\n\031com.viam.component.arm.v1Z go.viam."
+  "com/api/component/arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -417,7 +424,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 2454, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 2752, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,

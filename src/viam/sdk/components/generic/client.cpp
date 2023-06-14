@@ -22,11 +22,21 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandResponse resp;
     grpc::ClientContext ctx;
 
-    google::protobuf::Struct proto_command = map_to_struct(command);
+    const google::protobuf::Struct proto_command = map_to_struct(command);
     *req.mutable_command() = proto_command;
     *req.mutable_name() = this->name();
     stub_->DoCommand(&ctx, req, &resp);
     return struct_to_map(resp.result());
+};
+std::vector<GeometryConfig> GenericClient::get_geometries() {
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    grpc::ClientContext ctx;
+
+    *req.mutable_name() = this->name();
+
+    stub_->GetGeometries(&ctx, req, &resp);
+    return GeometryConfig::from_proto(resp);
 };
 
 }  // namespace sdk
