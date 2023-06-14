@@ -14,11 +14,11 @@
 
 namespace {
 
-namespace vs = ::viam::sdk;
+namespace vsdk = ::viam::sdk;
 
 const std::string service_name = "example_mlmodel";
 
-class ExampleMLModelService : public vs::MLModelService {
+class ExampleMLModelService : public vsdk::MLModelService {
    public:
     explicit ExampleMLModelService(std::string name) : MLModelService(std::move(name)) {
         std::cout << "ExampleMLModelService: instantiated as '" << this->name() << "'" << std::endl;
@@ -108,9 +108,9 @@ class ExampleMLModelService : public vs::MLModelService {
                   {},
 
                   // `extra`
-                  std::make_shared<vs::AttributeMap::element_type>(
-                      std::initializer_list<vs::AttributeMap::element_type::value_type>{
-                          {"labels", std::make_shared<vs::ProtoType>("/example/labels.txt")}})},
+                  std::make_shared<vsdk::AttributeMap::element_type>(
+                      std::initializer_list<vsdk::AttributeMap::element_type::value_type>{
+                          {"labels", std::make_shared<vsdk::ProtoType>("/example/labels.txt")}})},
 
                  {// `name`
                   "category",
@@ -183,19 +183,20 @@ int serve(const std::string& socket_path) {
     sigaddset(&sigset, SIGTERM);
     pthread_sigmask(SIG_BLOCK, &sigset, NULL);
 
-    auto module_registration = std::make_shared<vs::ModelRegistration>(
-        vs::ResourceType{"ExampleMLModelServiceModule"},
-        vs::MLModelService::static_api(),
-        vs::Model{"viam", "example", "mlmodel"},
-        [](vs::Dependencies, vs::ResourceConfig resource_config) -> std::shared_ptr<vs::Resource> {
+    auto module_registration = std::make_shared<vsdk::ModelRegistration>(
+        vsdk::ResourceType{"ExampleMLModelServiceModule"},
+        vsdk::MLModelService::static_api(),
+        vsdk::Model{"viam", "example", "mlmodel"},
+        [](vsdk::Dependencies,
+           vsdk::ResourceConfig resource_config) -> std::shared_ptr<vsdk::Resource> {
             return std::make_shared<ExampleMLModelService>(resource_config.name());
         },
-        [](vs::ResourceConfig resource_config) -> std::vector<std::string> { return {}; });
+        [](vsdk::ResourceConfig resource_config) -> std::vector<std::string> { return {}; });
 
-    vs::Registry::register_model(module_registration);
-    auto module_service = std::make_shared<vs::ModuleService_>(socket_path);
+    vsdk::Registry::register_model(module_registration);
+    auto module_service = std::make_shared<vsdk::ModuleService_>(socket_path);
 
-    auto server = std::make_shared<vs::Server>();
+    auto server = std::make_shared<vsdk::Server>();
     module_service->add_model_from_registry(
         server, module_registration->api(), module_registration->model());
 

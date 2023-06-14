@@ -48,6 +48,9 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto& mutable_input_data = *req->mutable_input_data();
     auto& mutable_input_data_fields = *mutable_input_data.mutable_fields();
 
+    // TODO: Currently, this doesn't validate that we are passing the
+    // right input type in. We could query the metadata here and
+    // consult it.
     for (const auto& kv : inputs) {
         pb::Value& value = mutable_input_data_fields[kv.first];
         mlmodel_details::tensor_to_pb_value(kv.second, &value);
@@ -57,7 +60,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     grpc::ClientContext ctx;
 
-    auto result = stub_->Infer(&ctx, *req, resp);
+    const auto result = stub_->Infer(&ctx, *req, resp);
     if (!result.ok()) {
         throw std::runtime_error(result.error_message());
     }

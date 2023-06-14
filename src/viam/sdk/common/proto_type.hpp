@@ -12,6 +12,38 @@ namespace sdk {
 class ProtoType;
 using AttributeMap = std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>;
 
+namespace prototype_details {
+
+template <typename T>
+struct get_helper {
+    template <typename V>
+    static T* get(V& v) {
+        return boost::get<T>(&v);
+    }
+
+    template <typename V>
+    static const T* get(const V& v) {
+        return boost::get<T>(&v);
+    }
+};
+
+template <>
+struct get_helper<AttributeMap> {
+    template <typename V>
+    static AttributeMap get(V& v) {
+        auto* const result = boost::get<AttributeMap>(&v);
+        return result ? *result : nullptr;
+    }
+
+    template <typename V>
+    static std::shared_ptr<const AttributeMap::element_type> get(const V& v) {
+        auto* const result = boost::get<AttributeMap>(&v);
+        return result ? *result : nullptr;
+    }
+};
+
+}  // namespace prototype_details
+
 class ProtoType {
    public:
     ProtoType() {
@@ -30,13 +62,13 @@ class ProtoType {
     friend bool operator==(const ProtoType& lhs, const ProtoType& rhs);
 
     template <typename T>
-    T* get() {
-        return boost::get<T>(&proto_type_);
+    auto get() {
+        return prototype_details::get_helper<T>::get(proto_type_);
     }
 
     template <typename T>
-    const T* get() const {
-        return boost::get<T>(&proto_type_);
+    auto get() const {
+        return prototype_details::get_helper<T>::get(proto_type_);
     }
 
    private:
