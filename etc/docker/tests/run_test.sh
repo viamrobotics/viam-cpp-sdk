@@ -8,4 +8,4 @@ cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
 ninja all
 ninja install
 cd src/viam/sdk/tests
-ctest --output-on-failure
+UBSAN_OPTIONS="print_stacktrace=1" ctest --output-on-failure
