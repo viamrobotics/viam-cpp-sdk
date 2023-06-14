@@ -8,4 +8,4 @@ cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
 ninja all
 ninja install
 cd src/viam/sdk/tests
-ctest
+ctest --output-on-failure
