@@ -1,9 +1,8 @@
-#include <pthread.h>
-#include <signal.h>
-
 #include <fstream>
 #include <iostream>
 #include <mutex>
+#include <pthread.h>
+#include <signal.h>
 #include <sstream>
 #include <stdexcept>
 
@@ -81,13 +80,13 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
 
     void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final
         try {
-        // Care needs to be taken during reconfiguration. There may
-        // not be higher level protection against invocation during
-        // reconfiguration. Keep all state in a shared_ptr managed
-        // block, and allow client invocations to act against current
-        // state while a new configuration is built, then swap in the
-        // new state. State which is in use by existing invocations
-        // will remain valid until the clients drain. If
+        // Care needs to be taken during reconfiguration. The
+        // framework does not offer protection against invocation
+        // during reconfiguration. Keep all state in a shared_ptr
+        // managed block, and allow client invocations to act against
+        // current state while a new configuration is built, then swap
+        // in the new state. State which is in use by existing
+        // invocations will remain valid until the clients drain. If
         // reconfiguration fails, the component will `stop`.
 
         // Swap out the state_ member with nullptr. Existing
@@ -134,13 +133,10 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // is still locked.
         std::unique_lock<std::mutex> lock(state->interpreter_mutex);
 
-        // We need at least one input in order to do
-        // inference. Potentially, we need all of them, so this check
-        // maybe should compare the number of inputs provided to the
-        // number of entries in the input metadata.
-        if (inputs.empty()) {
+        // Ensure that enough inputs were provided.
+        if (inputs.size() < state->input_tensor_indices_by_name.size()) {
             std::ostringstream buffer;
-            buffer << service_name << ": No inputs provided for inference";
+            buffer << service_name << ": Too few inputs provided for inference";
             throw std::invalid_argument(buffer.str());
         }
 
@@ -151,8 +147,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             const auto where = state->input_tensor_indices_by_name.find(kv.first);
             if (where == state->input_tensor_indices_by_name.end()) {
                 std::ostringstream buffer;
-                buffer << service_name << ": No found index for input tensor name `" << kv.first
-                       << "`";
+                buffer << service_name << ": Tensor name `" << kv.first << "`"
+                       << " is not a known input tensor name for the model";
                 throw std::invalid_argument(buffer.str());
             }
             auto* const tensor =
@@ -252,11 +248,12 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
     }
 
     std::shared_ptr<state> lease_state_() {
-        // Wait for our state to be valid and then an incrementing
-        // shared_ptr to it. We don't need to deal with interruption
-        // or shutdown because the gRPC layer will drain requests
-        // during shutdown, so it shouldn't be possible for callers to
-        // get stuck here.
+        // Wait for our state to be valid or stopped and then obtain a
+        // shared_ptr to state if valid, incrementing the refcount, or
+        // throws if the service is stopped. We don't need to deal
+        // with interruption or shutdown because the gRPC layer will
+        // drain requests during shutdown, so it shouldn't be possible
+        // for callers to get stuck here.
         std::unique_lock<std::mutex> lock(state_lock_);
         state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
         check_stopped_inlock_();
@@ -360,11 +357,12 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
 
         // Try to load the provided `model_path`. The TFLite API
         // declares that if you use `TfLiteModelCreateFromFile` that
-        // the file must remain unaltered during execution. That's not
-        // a guarantee I'm willing to provide, so instead we read the
-        // file into a buffer which we can use with
-        // `TfLiteModelCreate`. That still requires that the buffer be
-        // kept valid, but that's more easily done.
+        // the file must remain unaltered during execution, but
+        // reconfiguration might cause it to change on disk while
+        // inference is in progress. Instead we read the file into a
+        // buffer which we can use with `TfLiteModelCreate`. That
+        // still requires that the buffer be kept valid, but that's
+        // more easily done.
         std::ifstream in(*model_path_string, std::ios::in | std::ios::binary);
         if (!in) {
             std::ostringstream buffer;
