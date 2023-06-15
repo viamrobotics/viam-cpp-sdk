@@ -93,7 +93,7 @@ option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (net
 # - `VIAMCPPSDK_USE_LOCAL_PROTOS`
 #
 # Builds against local proto definitions, as opposed to those in the
-# buf registry. This flag assumes that there is a `buf.workspace` file
+# buf registry. This flag assumes that there is a `buf.work.yaml` file
 # in the parent directory of the C++ SDK source directory, and that
 # the API repo is in a sibling directory to the C++ SDK source, with
 # the directory name `api`. This flag requires

@@ -1,7 +1,15 @@
 set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(BUF_PROTO_SOURCE buf.build/viamrobotics/api)
-set(BUF_PROTO_COMPONENTS common component robot service module tagger app/v1)
+set(BUF_PROTO_COMPONENTS
+  app/v1
+  common
+  component
+  module
+  robot
+  service
+  tagger
+)
 
 # If we are using local proto generation, rework the
 # `BUF_PROTO_SOURCE` and `BUF_PROTO_COMPONENTS` as required to make
