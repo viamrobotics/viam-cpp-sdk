@@ -83,8 +83,8 @@ bool API::is_component_type() {
     return (this->resource_type() == "component");
 }
 
-const API* Name::to_api() const {
-    return this;
+API Name::api() const {
+    return api_;
 }
 
 const std::string& Name::name() const {
@@ -96,11 +96,10 @@ const std::string& Name::remote_name() const {
 }
 
 std::string Name::to_string() const {
-    const std::string subtype_name = API::to_string();
     if (remote_name_.empty()) {
-        return subtype_name + "/" + name_;
+        return api_.to_string() + "/" + name_;
     }
-    return subtype_name + "/" + remote_name_ + ":" + name_;
+    return api_.to_string() + "/" + remote_name_ + ":" + name_;
 }
 
 std::string Name::short_name() const {
@@ -112,10 +111,10 @@ std::string Name::short_name() const {
 
 viam::common::v1::ResourceName Name::to_proto() const {
     viam::common::v1::ResourceName rn;
-    *rn.mutable_namespace_() = this->type_namespace();
+    *rn.mutable_namespace_() = this->api().type_namespace();
     *rn.mutable_name() = this->name();
-    *rn.mutable_type() = this->resource_type();
-    *rn.mutable_subtype() = this->resource_subtype();
+    *rn.mutable_type() = this->api().resource_type();
+    *rn.mutable_subtype() = this->api().resource_subtype();
     return rn;
 }
 
@@ -141,7 +140,7 @@ Name Name::from_string(std::string name) {
 }
 
 Name::Name(API api, std::string remote, std::string name)
-    : API(api), remote_name_(std::move(remote)), name_(std::move(name)) {}
+    : api_(api), remote_name_(std::move(remote)), name_(std::move(name)) {}
 
 bool operator==(const API& lhs, const API& rhs) {
     return lhs.to_string() == rhs.to_string();

@@ -49,25 +49,23 @@ class API : public APIType {
     std::string resource_subtype_;
 };
 
-// TODO: instead of inheriting from API probably this should just have a
-// API as a member
 /// @class Name
-/// @brief Extends `API` class by adding a name for specific instances of resources.
-class Name : public API {
+/// @brief A name for specific instances of resources.
+class Name {
    public:
     std::string short_name() const;
-    virtual std::string to_string() const override;
-    // TODO: this isn't necessary, instead this->API::to_string();
-    const API* to_api() const;
+    std::string to_string() const;
     viam::common::v1::ResourceName to_proto() const;
     static Name from_string(std::string name);
     Name(API api, std::string remote_name, std::string name);
     Name();
+    API api() const;
     const std::string& name() const;
     const std::string& remote_name() const;
     friend bool operator==(const Name& lhs, const Name& rhs);
 
    private:
+    API api_;
     std::string remote_name_;
     std::string name_;
 };
