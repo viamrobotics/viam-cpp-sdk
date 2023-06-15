@@ -1,5 +1,39 @@
 set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+set(BUF_PROTO_SOURCE buf.build/viamrobotics/api)
+set(BUF_PROTO_COMPONENTS
+  app/v1
+  common
+  component
+  module
+  robot
+  service
+  tagger
+)
+
+# If we are using local proto generation, rework the
+# `BUF_PROTO_SOURCE` and `BUF_PROTO_COMPONENTS` as required to make
+# use of the API repo as positioned relative to us.
+if (VIAMCPPSDK_USE_LOCAL_PROTOS)
+  if (NOT VIAMCPPSDK_USE_DYNAMIC_PROTOS)
+    message(FATAL_ERROR "The VIAMCPPSDK_USE_LOCAL_PROTOS option requires VIAMCPPSDK_USE_DYNAMIC_PROTOS=ON")
+  endif()
+
+  if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../buf.work.yaml)
+    message(FATAL_ERROR "No `buf.work.yaml` file was found in the parent directory")
+  endif()
+
+  if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../api/proto/viam)
+    message(FATAL_ERROR "No Viam api repository was found in the parent directory")
+  endif()
+
+  file(RELATIVE_PATH BUF_LOCAL_PROTO_PATH ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/..)
+  set(BUF_PROTO_SOURCE ${BUF_LOCAL_PROTO_PATH})
+  list(TRANSFORM BUF_PROTO_COMPONENTS PREPEND ${BUF_LOCAL_PROTO_PATH}/api/proto/viam/)
+endif()
+
+list(JOIN BUF_PROTO_COMPONENTS , BUF_PROTO_COMPONENTS_JOINED)
+
 if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
   # Look for the `buf` command in the usual places, and use it if
@@ -138,7 +172,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
     COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/goutils --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api
-    COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module,tagger,app/v1
+    COMMAND ${BUF_COMMAND} generate ${BUF_PROTO_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
     MAIN_DEPENDENCY buf.gen.yaml
   )
 

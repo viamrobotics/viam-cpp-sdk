@@ -45,8 +45,10 @@ project(viam-cpp-sdk
 
 
 # Configure cmake-level options:
+
+# - `BUILD_SHARED_LIBS`
 #
-# - `BUILD_SHARED_LIBS`: Enabled by default so that we produce a
+# Enabled by default so that we produce a
 # modern SDK, this option can be set to `OFF` to build a static
 # library. Note that this may result in non-functional examples.
 #
@@ -54,46 +56,74 @@ option(BUILD_SHARED_LIBS "If enabled, build shared libraries" ON)
 
 
 # Configure project-global options:
+
+# - `VIAMCPPSDK_ENFORCE_COMPILER_MINIMA`
 #
-# - `VIAMCPPSDK_ENFORCE_COMPILER_MINIMA`: The user can elect to
-# disable enforcement of compiler minima (at their peril).
+# The user can elect to disable enforcement of compiler minima (at
+# their peril).
+#
 option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selected compiler against known minima" ON)
 
 
-# # - `VIAMCPPSDK_OFFLINE_PROTO_GENERATION`: Do not use buf.builds remote
-# definitions or services and use the local proto compiler plugins to
-# do generation.
+# - `VIAMCPPSDK_OFFLINE_PROTO_GENERATION`
+#
+# Do not use buf.builds remote definitions or services and use the
+# local proto compiler plugins to do generation.
+#
 option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
 
 
-# - `VIAMCPPSDK_USE_DYNAMIC_PROTOS`: The user can select whether to
-# use the prebuilt proto files under the `gen` directory, or to
-# dynamically regenerate them as part of the build. In the latter
-# mode, additional targets are defined that will copy the newly
-# generated protos back to the source directory so they can be
-# committed:
+# - `VIAMCPPSDK_USE_DYNAMIC_PROTOS`
+#
+# The user can select whether to use the prebuilt proto files under
+# the `gen` directory, or to dynamically regenerate them as part of
+# the build. In the latter mode, additional targets are defined that
+# will copy the newly generated protos back to the source directory so
+# they can be committed:
 #
 # ```
 # cmake ... -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON
 # [make|ninja|...] update-static-protos
 # ```
 # Remember to check-in the results after regenerating!
+#
 option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (network access may be required)" OFF)
 
 
-# # - `VIAMCPPSDK_USE_WALL_WERROR`: This causes the SDK's internal
-# code to compile with `-Wall` and `-Werror` flags.
+# - `VIAMCPPSDK_USE_LOCAL_PROTOS`
+#
+# Builds against local proto definitions, as opposed to those in the
+# buf registry. This flag assumes that there is a `buf.work.yaml` file
+# in the parent directory of the C++ SDK source directory, and that
+# the API repo is in a sibling directory to the C++ SDK source, with
+# the directory name `api`. This flag requires
+# `VIAMCPPSDK_USE_DYNAMIC_PROTOS=ON` to be set.
+#
+option(VIAMCPPSDK_USE_LOCAL_PROTOS "Generate protos against sibling `api` directory per parent directory `buf.workspace` file")
+
+
+# - `VIAMCPPSDK_USE_WALL_WERROR`
+#
+# This causes the SDK's internal code to compile with `-Wall` and
+# `-Werror` flags.
+#
 option(VIAMCPPSDK_USE_WALL_WERROR "Build with -Wall and -Werror flags" ON)
 
 
-# # - `VIAMCPPSDK_SANITIZED_BUILD`: This causes the SDK to build with
-# UBSan, helping in the detection of undefined behavior. Note that builds
-# with this flag will be less performant.
+# - `VIAMCPPSDK_SANITIZED_BUILD`
+#
+# This causes the SDK to build with UBSan, helping in the detection of
+# undefined behavior. Note that builds with this flag will be less
+# performant.
+#
 option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less performant)" OFF)
 
 
-# # - `VIAMCPPSDK_CLANG_TIDY`: This causes the SDK to run clang-tidy
-# with the options specified in the .clang-tidy file.
+# - `VIAMCPPSDK_CLANG_TIDY`
+#
+# This causes the SDK to run clang-tidy with the options specified in
+# the .clang-tidy file.
+#
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 
