@@ -59,7 +59,7 @@ class Name {
     static Name from_string(std::string name);
     Name(API api, std::string remote_name, std::string name);
     Name();
-    API api() const;
+    const API& api() const;
     const std::string& name() const;
     const std::string& remote_name() const;
     friend bool operator==(const Name& lhs, const Name& rhs);

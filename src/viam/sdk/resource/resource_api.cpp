@@ -83,7 +83,7 @@ bool API::is_component_type() {
     return (this->resource_type() == "component");
 }
 
-API Name::api() const {
+const API& Name::api() const {
     return api_;
 }
 
