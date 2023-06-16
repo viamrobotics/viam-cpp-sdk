@@ -13,7 +13,7 @@ namespace viam {
 namespace sdk {
 
 typedef boost::
-    variant<axis_angles, euler_angles, orientation_vector, orientation_vector_degrees, quaternion>
+    variant<axis_angles, orientation_vector, orientation_vector_degrees, euler_angles, quaternion>
         orientation;
 
 class OrientationConfig {
@@ -24,7 +24,8 @@ class OrientationConfig {
                       std::vector<std::uint8_t> value,
                       orientation orientation)
         : type_(std::move(type_)), value_(std::move(value)), orientation_(std::move(orientation)) {}
-    OrientationConfig(){};
+    // Defaults to sentinel no rotation value
+    OrientationConfig();
 
    private:
     OrientationType type_;
