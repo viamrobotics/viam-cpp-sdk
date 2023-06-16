@@ -15,6 +15,16 @@ namespace sdk {
 
 namespace proto = viam::app::v1;
 
+OrientationConfig::OrientationConfig() {
+    type_ = Quaternion;
+    quaternion quat;
+    quat.w = 1;
+    quat.x = 0;
+    quat.y = 0;
+    quat.z = 0;
+    orientation_ = quat;
+} 
+
 OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     OrientationConfig cfg;
     switch (proto.type_case()) {
