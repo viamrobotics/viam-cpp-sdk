@@ -24,7 +24,7 @@ class OrientationConfig {
                       std::vector<std::uint8_t> value,
                       orientation orientation)
         : type_(std::move(type_)), value_(std::move(value)), orientation_(std::move(orientation)) {}
-    // Defaults to sentinel no rotation value 
+    // Defaults to sentinel no rotation value
     OrientationConfig();
 
    private:

@@ -23,7 +23,7 @@ OrientationConfig::OrientationConfig() {
     quat.y = 0;
     quat.z = 0;
     orientation_ = quat;
-} 
+}
 
 OrientationConfig OrientationConfig::from_proto(proto::Orientation proto) {
     OrientationConfig cfg;
