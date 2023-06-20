@@ -163,12 +163,11 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     const ::viam::module::v1::RemoveResourceRequest* request,
     ::viam::module::v1::RemoveResourceResponse* response) {
     auto name = Name::from_string(request->name());
-    const API* api = name.to_api();
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
-    if (services.find(*api) == services.end()) {
-        return grpc::Status(grpc::UNKNOWN, "no grpc service for " + api->to_string());
+    if (services.find(name.api()) == services.end()) {
+        return grpc::Status(grpc::UNKNOWN, "no grpc service for " + name.api().to_string());
     }
-    const std::shared_ptr<ResourceManager> manager = services.at(*name.to_api());
+    const std::shared_ptr<ResourceManager> manager = services.at(name.api());
     const std::shared_ptr<Resource> res = manager->resource(name.name());
     if (!res) {
         return grpc::Status(
