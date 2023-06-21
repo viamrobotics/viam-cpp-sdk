@@ -35,6 +35,12 @@ using tensor_storage = std::vector<boost::make_variant_over<tensor_storage_types
 ::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor,
                                   ::google::protobuf::Value* value);
 
+void copy_sdk_tensor_to_api_tensor(const MLModelService::tensor_views& source,
+                                   ::viam::service::mlmodel::v1::FlatTensor* target);
+
+MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
+    const ::viam::service::mlmodel::v1::FlatTensor& api_tensor, tensor_storage* storage = nullptr);
+
 }  // namespace mlmodel_details
 }  // namespace sdk
 }  // namespace viam

@@ -127,6 +127,53 @@ const char* MLModelService::tensor_info::data_type_to_string(const data_types da
     return nullptr;
 }
 
+MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_views_to_data_type(
+    const tensor_views& view) {
+    class visitor : public boost::static_visitor<data_types> {
+       public:
+        data_types operator()(const MLModelService::tensor_view<std::int8_t>& t) const {
+            return data_types::k_int8;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::uint8_t>& t) const {
+            return data_types::k_uint8;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::int16_t>& t) const {
+            return data_types::k_int16;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::uint16_t>& t) const {
+            return data_types::k_uint16;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::int32_t>& t) const {
+            return data_types::k_int32;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::uint32_t>& t) const {
+            return data_types::k_uint32;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::int64_t>& t) const {
+            return data_types::k_int64;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<std::uint64_t>& t) const {
+            return data_types::k_uint64;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<float>& t) const {
+            return data_types::k_float32;
+        }
+
+        data_types operator()(const MLModelService::tensor_view<double>& t) const {
+            return data_types::k_float64;
+        }
+    };
+    return boost::apply_visitor(visitor(), view);
+}
+
 MLModelService::MLModelService(std::string name) : Service(std::move(name)) {}
 
 namespace {
