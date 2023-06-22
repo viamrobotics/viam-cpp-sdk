@@ -27,10 +27,10 @@ constexpr char service_name[] = "mlmodelservice_tflite";
 // An example MLModelService instance which runs TensorFlow Lite models.
 //
 // Configuration requires the following parameters:
-//   -- `model_path`: An absolute filesystem path to a tensorflow lite model file.
+//   -- `model_path`: An absolute filesystem path to a TensorFlow Lite model file.
 //
 // The following optional parameters are honored:
-//   -- `num_threads`: Sets the number of threads to be used, wher applicable
+//   -- `num_threads`: Sets the number of threads to be used, where applicable.
 //
 //   -- `tensor_name_remappings`: A pair of string-string maps keyed
 //      as `inputs` and `outputs`. Keys of the string-string maps are
