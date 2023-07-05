@@ -26,10 +26,11 @@ using viam::robot::v1::Status;
 using namespace viam::sdk;
 
 int main() {
-    const char* uri = "<your robot URI here>";
+    const char* uri = "<your robot URI here>";;
     DialOptions dial_options;
     std::string payload = "<your payload here>";
-    Credentials credentials(payload);
+    std::string type = "<your secret type here>";
+    Credentials credentials(type, payload);
     dial_options.set_credentials(credentials);
     boost::optional<DialOptions> opts(dial_options);
     std::string address(uri);

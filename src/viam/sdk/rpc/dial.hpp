@@ -28,11 +28,13 @@ class ViamChannel {
 class Credentials {
    public:
     Credentials(std::string payload);
+    Credentials(std::string type, std::string payload);
+    const std::string& type() const;
     const std::string& payload() const;
 
    private:
-    std::string type_;
-    std::string payload_;
+   std::string type_;
+   std::string payload_;
 };
 
 class DialOptions {
