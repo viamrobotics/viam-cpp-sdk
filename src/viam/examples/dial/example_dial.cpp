@@ -26,7 +26,7 @@ using viam::robot::v1::Status;
 using namespace viam::sdk;
 
 int main() {
-    const char* uri = "<your robot URI here>";;
+    const char* uri = "<your robot URI here>";
     DialOptions dial_options;
     std::string payload = "<your payload here>";
     std::string type = "<your secret type here>";
