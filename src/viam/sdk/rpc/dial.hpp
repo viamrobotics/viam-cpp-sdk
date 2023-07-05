@@ -33,8 +33,8 @@ class Credentials {
     const std::string& payload() const;
 
    private:
-   std::string type_;
-   std::string payload_;
+    std::string type_;
+    std::string payload_;
 };
 
 class DialOptions {

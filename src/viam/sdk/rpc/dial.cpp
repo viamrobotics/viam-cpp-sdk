@@ -15,7 +15,8 @@
 extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
 extern "C" void free_string(const char* s);
-extern "C" char* dial(const char* uri, const char* type, const char* payload, bool allow_insecure, void* ptr);
+extern "C" char* dial(
+    const char* uri, const char* type, const char* payload, bool allow_insecure, void* ptr);
 namespace viam {
 namespace sdk {
 
@@ -95,7 +96,7 @@ const boost::optional<DialOptions>& Options::dial_options() const {
     return dial_options_;
 }
 
-//Deprecated! use Credentials(std::string payload, std::string type) instead
+// Deprecated! use Credentials(std::string payload, std::string type) instead
 Credentials::Credentials(std::string payload)
     : type_("robot-location-secret"), payload_(std::move(payload)){};
 
