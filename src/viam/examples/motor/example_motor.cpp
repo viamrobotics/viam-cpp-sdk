@@ -32,7 +32,7 @@ int main() {
         std::string robot_address("localhost:8080");
         // If you want to connect to a remote robot, you need the robot location secret (not
         // the part secret) You can find this on app.viam.com
-        vs::Credentials credentials("", "fake-credential-type");
+        vs::Credentials credentials("fake-credential-type", "");
 
         vs::DialOptions dial_options;
 
