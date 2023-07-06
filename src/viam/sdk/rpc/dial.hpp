@@ -27,6 +27,7 @@ class ViamChannel {
 
 class Credentials {
    public:
+    /// Deprecated use Credentials(std::string type, std::string payload)
     Credentials(std::string payload);
     Credentials(std::string type, std::string payload);
     const std::string& type() const;

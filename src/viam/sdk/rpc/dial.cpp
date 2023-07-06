@@ -96,7 +96,6 @@ const boost::optional<DialOptions>& Options::dial_options() const {
     return dial_options_;
 }
 
-// Deprecated! use Credentials(std::string payload, std::string type) instead
 Credentials::Credentials(std::string payload)
     : type_("robot-location-secret"), payload_(std::move(payload)){};
 
