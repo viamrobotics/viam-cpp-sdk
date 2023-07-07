@@ -71,7 +71,7 @@ If you want to run this locally, you can download and build the C++ SDK by follo
 Then run:
 
 ``` shell
-./build/viam/examples/dial/example_dial
+./build/src/viam/examples/dial/example_dial
 ```
 
 If you want to connect to a robot without credentials then just simply
