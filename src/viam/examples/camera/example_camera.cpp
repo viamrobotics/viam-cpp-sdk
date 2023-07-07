@@ -21,7 +21,7 @@ int main() {
         // If you want to connect to a remote robot, you need some authentication secret
         // You can find this on app.viam.com
         vs::Credentials credentials("","");
-
+        
         vs::DialOptions dial_options;
 
         // If you have credentials, use this to pass them to the robot
