@@ -107,6 +107,14 @@ class BaseService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
+    // GetProperties returns the properties of a base in its current configuration
+    virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::viam::component::base::v1::GetPropertiesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -139,6 +147,9 @@ class BaseService final {
       // GetGeometries returns the geometries of the component in their current configuration
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetProperties returns the properties of a base in its current configuration
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -160,6 +171,8 @@ class BaseService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::base::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -220,6 +233,13 @@ class BaseService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
+    ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::viam::component::base::v1::GetPropertiesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>> PrepareAsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>>(PrepareAsyncGetPropertiesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -239,6 +259,8 @@ class BaseService final {
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -266,6 +288,8 @@ class BaseService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_MoveStraight_;
     const ::grpc::internal::RpcMethod rpcmethod_Spin_;
     const ::grpc::internal::RpcMethod rpcmethod_SetPower_;
@@ -274,6 +298,7 @@ class BaseService final {
     const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGeometries_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -302,6 +327,8 @@ class BaseService final {
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
     // GetGeometries returns the geometries of the component in their current configuration
     virtual ::grpc::Status GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response);
+    // GetProperties returns the properties of a base in its current configuration
+    virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_MoveStraight : public BaseClass {
@@ -463,7 +490,27 @@ class BaseService final {
       ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_MoveStraight<WithAsyncMethod_Spin<WithAsyncMethod_SetPower<WithAsyncMethod_SetVelocity<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetProperties() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::viam::component::base::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::base::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_MoveStraight<WithAsyncMethod_Spin<WithAsyncMethod_SetPower<WithAsyncMethod_SetVelocity<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<WithAsyncMethod_GetProperties<Service > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_MoveStraight : public BaseClass {
    private:
@@ -680,7 +727,34 @@ class BaseService final {
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_MoveStraight<WithCallbackMethod_Spin<WithCallbackMethod_SetPower<WithCallbackMethod_SetVelocity<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+    void SetMessageAllocatorFor_GetProperties(
+        ::grpc::MessageAllocator< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_MoveStraight<WithCallbackMethod_Spin<WithCallbackMethod_SetPower<WithCallbackMethod_SetVelocity<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<WithCallbackMethod_GetProperties<Service > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_MoveStraight : public BaseClass {
@@ -814,6 +888,23 @@ class BaseService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetGeometries(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetProperties() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -976,6 +1067,26 @@ class BaseService final {
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1152,6 +1263,28 @@ class BaseService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetProperties(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1370,9 +1503,36 @@ class BaseService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetProperties : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetProperties() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse>* streamer) {
+                       return this->StreamedGetProperties(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetProperties() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetProperties(::grpc::ServerContext* /*context*/, const ::viam::component::base::v1::GetPropertiesRequest* /*request*/, ::viam::component::base::v1::GetPropertiesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetProperties(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::base::v1::GetPropertiesRequest,::viam::component::base::v1::GetPropertiesResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetProperties<Service > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_MoveStraight<WithStreamedUnaryMethod_Spin<WithStreamedUnaryMethod_SetPower<WithStreamedUnaryMethod_SetVelocity<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetProperties<Service > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

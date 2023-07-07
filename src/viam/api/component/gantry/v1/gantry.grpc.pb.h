@@ -55,6 +55,14 @@ class GantryService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::MoveToPositionResponse>> PrepareAsyncMoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::MoveToPositionResponse>>(PrepareAsyncMoveToPositionRaw(context, request, cq));
     }
+    // Home runs the homing sequence of a gantry and returns true once it's completed.
+    virtual ::grpc::Status Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::viam::component::gantry::v1::HomeResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::HomeResponse>> AsyncHome(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::HomeResponse>>(AsyncHomeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::HomeResponse>> PrepareAsyncHome(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::HomeResponse>>(PrepareAsyncHomeRaw(context, request, cq));
+    }
     // GetLengths gets the lengths of a gantry of the underlying robot.
     virtual ::grpc::Status GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::viam::component::gantry::v1::GetLengthsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::GetLengthsResponse>> AsyncGetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -104,6 +112,9 @@ class GantryService final {
       // MoveToPosition moves a gantry of the underlying robot to the requested position.
       virtual void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Home runs the homing sequence of a gantry and returns true once it's completed.
+      virtual void Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // GetLengths gets the lengths of a gantry of the underlying robot.
       virtual void GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -128,6 +139,8 @@ class GantryService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::MoveToPositionResponse>* AsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::MoveToPositionResponse>* PrepareAsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::HomeResponse>* AsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::HomeResponse>* PrepareAsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::GetLengthsResponse>* AsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::GetLengthsResponse>* PrepareAsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gantry::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -155,6 +168,13 @@ class GantryService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>> PrepareAsyncMoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>>(PrepareAsyncMoveToPositionRaw(context, request, cq));
+    }
+    ::grpc::Status Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::viam::component::gantry::v1::HomeResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>> AsyncHome(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>>(AsyncHomeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>> PrepareAsyncHome(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>>(PrepareAsyncHomeRaw(context, request, cq));
     }
     ::grpc::Status GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::viam::component::gantry::v1::GetLengthsResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetLengthsResponse>> AsyncGetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) {
@@ -198,6 +218,8 @@ class GantryService final {
       void GetPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest* request, ::viam::component::gantry::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)>) override;
       void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, std::function<void(::grpc::Status)>) override;
+      void Home(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetLengths(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Stop(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response, std::function<void(::grpc::Status)>) override;
@@ -223,6 +245,8 @@ class GantryService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>* AsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::MoveToPositionResponse>* PrepareAsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>* AsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::HomeResponse>* PrepareAsyncHomeRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::HomeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetLengthsResponse>* AsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::GetLengthsResponse>* PrepareAsyncGetLengthsRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::GetLengthsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gantry::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::gantry::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -235,6 +259,7 @@ class GantryService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToPosition_;
+    const ::grpc::internal::RpcMethod rpcmethod_Home_;
     const ::grpc::internal::RpcMethod rpcmethod_GetLengths_;
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
     const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
@@ -251,6 +276,8 @@ class GantryService final {
     virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::component::gantry::v1::GetPositionRequest* request, ::viam::component::gantry::v1::GetPositionResponse* response);
     // MoveToPosition moves a gantry of the underlying robot to the requested position.
     virtual ::grpc::Status MoveToPosition(::grpc::ServerContext* context, const ::viam::component::gantry::v1::MoveToPositionRequest* request, ::viam::component::gantry::v1::MoveToPositionResponse* response);
+    // Home runs the homing sequence of a gantry and returns true once it's completed.
+    virtual ::grpc::Status Home(::grpc::ServerContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response);
     // GetLengths gets the lengths of a gantry of the underlying robot.
     virtual ::grpc::Status GetLengths(::grpc::ServerContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response);
     // Stop stops a robot's gantry
@@ -303,12 +330,32 @@ class GantryService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_Home : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Home() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Home() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Home(::grpc::ServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHome(::grpc::ServerContext* context, ::viam::component::gantry::v1::HomeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gantry::v1::HomeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetLengths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetLengths() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetLengths() override {
       BaseClassMustBeDerivedFromService(this);
@@ -319,7 +366,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLengths(::grpc::ServerContext* context, ::viam::component::gantry::v1::GetLengthsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gantry::v1::GetLengthsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -328,7 +375,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Stop() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -339,7 +386,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::viam::component::gantry::v1::StopRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gantry::v1::StopResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -348,7 +395,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_IsMoving() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -359,7 +406,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::viam::component::gantry::v1::IsMovingRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gantry::v1::IsMovingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -368,7 +415,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -379,7 +426,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -388,7 +435,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -399,10 +446,10 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetLengths<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_Home<WithAsyncMethod_GetLengths<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetPosition : public BaseClass {
    private:
@@ -458,18 +505,45 @@ class GantryService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gantry::v1::MoveToPositionRequest* /*request*/, ::viam::component::gantry::v1::MoveToPositionResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_Home : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Home() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gantry::v1::HomeRequest* request, ::viam::component::gantry::v1::HomeResponse* response) { return this->Home(context, request, response); }));}
+    void SetMessageAllocatorFor_Home(
+        ::grpc::MessageAllocator< ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Home() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Home(::grpc::ServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Home(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetLengths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetLengths() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::gantry::v1::GetLengthsRequest* request, ::viam::component::gantry::v1::GetLengthsResponse* response) { return this->GetLengths(context, request, response); }));}
     void SetMessageAllocatorFor_GetLengths(
         ::grpc::MessageAllocator< ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -490,13 +564,13 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodCallback(3,
+      ::grpc::Service::MarkMethodCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::gantry::v1::StopRequest* request, ::viam::component::gantry::v1::StopResponse* response) { return this->Stop(context, request, response); }));}
     void SetMessageAllocatorFor_Stop(
         ::grpc::MessageAllocator< ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -517,13 +591,13 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::gantry::v1::IsMovingRequest* request, ::viam::component::gantry::v1::IsMovingResponse* response) { return this->IsMoving(context, request, response); }));}
     void SetMessageAllocatorFor_IsMoving(
         ::grpc::MessageAllocator< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -544,13 +618,13 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -571,13 +645,13 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -592,7 +666,7 @@ class GantryService final {
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetLengths<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_Home<WithCallbackMethod_GetLengths<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetPosition : public BaseClass {
@@ -629,12 +703,29 @@ class GantryService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_Home : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Home() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Home() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Home(::grpc::ServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetLengths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetLengths() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetLengths() override {
       BaseClassMustBeDerivedFromService(this);
@@ -651,7 +742,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Stop() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -668,7 +759,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_IsMoving() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -685,7 +776,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -702,7 +793,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -754,12 +845,32 @@ class GantryService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Home : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Home() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Home() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Home(::grpc::ServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHome(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetLengths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetLengths() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetLengths() override {
       BaseClassMustBeDerivedFromService(this);
@@ -770,7 +881,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLengths(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -779,7 +890,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Stop() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -790,7 +901,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -799,7 +910,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -810,7 +921,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -819,7 +930,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -830,7 +941,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -839,7 +950,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -850,7 +961,7 @@ class GantryService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -898,12 +1009,34 @@ class GantryService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_Home : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Home() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Home(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Home() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Home(::grpc::ServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Home(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetLengths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetLengths() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLengths(context, request, response); }));
@@ -925,7 +1058,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+      ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Stop(context, request, response); }));
@@ -947,7 +1080,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsMoving(context, request, response); }));
@@ -969,7 +1102,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -991,7 +1124,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -1062,12 +1195,39 @@ class GantryService final {
     virtual ::grpc::Status StreamedMoveToPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gantry::v1::MoveToPositionRequest,::viam::component::gantry::v1::MoveToPositionResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_Home : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Home() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gantry::v1::HomeRequest, ::viam::component::gantry::v1::HomeResponse>* streamer) {
+                       return this->StreamedHome(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Home() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Home(::grpc::ServerContext* /*context*/, const ::viam::component::gantry::v1::HomeRequest* /*request*/, ::viam::component::gantry::v1::HomeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedHome(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gantry::v1::HomeRequest,::viam::component::gantry::v1::HomeResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetLengths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetLengths() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::gantry::v1::GetLengthsRequest, ::viam::component::gantry::v1::GetLengthsResponse>(
             [this](::grpc::ServerContext* context,
@@ -1094,7 +1254,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Stop() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::gantry::v1::StopRequest, ::viam::component::gantry::v1::StopResponse>(
             [this](::grpc::ServerContext* context,
@@ -1121,7 +1281,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_IsMoving() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::gantry::v1::IsMovingRequest, ::viam::component::gantry::v1::IsMovingResponse>(
             [this](::grpc::ServerContext* context,
@@ -1148,7 +1308,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1175,7 +1335,7 @@ class GantryService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1196,9 +1356,9 @@ class GantryService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetLengths<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_Home<WithStreamedUnaryMethod_GetLengths<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetLengths<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_Home<WithStreamedUnaryMethod_GetLengths<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
