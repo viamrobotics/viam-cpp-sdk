@@ -22,7 +22,7 @@
 namespace {
 
 namespace vsdk = ::viam::sdk;
-constexpr char service_name[] = "mlmodelservice_tflite";
+constexpr char service_name[] = "example_mlmodelservice_tflite";
 
 // An example MLModelService instance which runs TensorFlow Lite models.
 //
@@ -744,7 +744,7 @@ int serve(const std::string& socket_path) try {
         vsdk::MLModelService::static_api(),
 
         // Declare a model triple for this service.
-        vsdk::Model{"viam", "mlmodelservice", "tflite"},
+        vsdk::Model{"viam", "mlmodelservice", "example_mlmodelservice_tflite"},
 
         // Define the factory for instances of the resource.
         [](vsdk::Dependencies deps, vsdk::ResourceConfig config) {

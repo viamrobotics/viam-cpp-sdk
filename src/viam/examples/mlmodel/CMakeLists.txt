@@ -12,8 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(dial)
-add_subdirectory(modules)
-add_subdirectory(mlmodel)
-add_subdirectory(motor)
-add_subdirectory(camera)
+add_executable(example_audio_classification_client
+  example_audio_classification_client.cpp
+)
+
+target_link_libraries(example_audio_classification_client
+  Boost::headers
+  Boost::program_options
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS example_audio_classification_client
+  COMPONENT viam-cpp-sdk_examples
+)

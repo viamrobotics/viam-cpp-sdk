@@ -27,35 +27,21 @@ install(
 )
 
 
-add_executable(example_mlmodel
-  example_mlmodel.cpp
-)
-
-target_link_libraries(example_mlmodel
-  PRIVATE Threads::Threads
-  viam-cpp-sdk::viamsdk
-)
-
-install(
-  TARGETS example_mlmodel
-  COMPONENT examples
-)
-
 find_path(TFLITE_INCLUDE_PATH "tensorflow/lite/c/c_api.h")
 find_library(TFLITE_LIBRARY "tensorflowlite_c")
 if (EXISTS ${TFLITE_INCLUDE_PATH} AND EXISTS ${TFLITE_LIBRARY})
-  add_executable(mlmodelservice_tflite
-    mlmodelservice_tflite.cpp
+  add_executable(example_mlmodelservice_tflite
+    example_mlmodelservice_tflite.cpp
   )
 
-  target_link_libraries(mlmodelservice_tflite
+  target_link_libraries(example_mlmodelservice_tflite
     PRIVATE Threads::Threads
     PRIVATE viam-cpp-sdk::viamsdk
     PRIVATE tensorflowlite_c
   )
 
   install(
-    TARGETS mlmodelservice_tflite
+    TARGETS example_mlmodelservice_tflite
     COMPONENT examples
   )
 else()
