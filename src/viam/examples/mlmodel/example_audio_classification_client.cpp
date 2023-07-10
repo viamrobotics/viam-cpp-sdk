@@ -83,7 +83,7 @@ int main(int argc, char* argv[]) try {
     // modes. In the "--generate" mode, it takes command line
     // parameters needed to satisfy the interpolation points in the
     // robot configuration and then emits a robot configuration which
-    // can be pasted into a new robot on viam.com. Otherwise, the
+    // can be pasted into a new robot on app.viam.com. Otherwise, the
     // example operates in classification mode.
     bpo::options_description options_desc("options");
 
@@ -293,7 +293,7 @@ int main(int argc, char* argv[]) try {
         // expect based on the model in use. In this case, we know
         // that yamnet returns a vector of floats, so we can directly
         // query the `categories` result to see if it is actually a
-        // tensor view of floats. It is is, great. Otherwise, error
+        // tensor view of floats. If it is, great. Otherwise, error
         // out.
         const auto* const categories_float =
             boost::get<vsdk::MLModelService::tensor_view<float>>(&categories->second);
