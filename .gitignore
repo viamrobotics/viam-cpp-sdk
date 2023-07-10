@@ -12,4 +12,3 @@
 
 # ignore doxygen output
 /etc/docs/api/*
-.DS_Store
