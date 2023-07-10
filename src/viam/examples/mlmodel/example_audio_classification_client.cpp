@@ -38,7 +38,6 @@ namespace bacc = ::boost::accumulators;
 namespace bf = ::boost::filesystem;
 namespace bpo = ::boost::program_options;
 
-
 // A template for a robot configuration which will serve the
 // yamnet/classification model in the C++ SDK's tflite example
 // module. It expects two interpolations - one for the path to the
@@ -78,7 +77,6 @@ constexpr char kRobotConfigTemplate[] = R"(
 }  // namespace
 
 int main(int argc, char* argv[]) try {
-
     // Build up our command line options. The example operates in two
     // modes. In the "--generate" mode, it takes command line
     // parameters needed to satisfy the interpolation points in the
@@ -155,7 +153,6 @@ int main(int argc, char* argv[]) try {
     }
 
     if (opt_generating) {
-
         // Validate that we have the right options for generation.
         if (opt_robot_host || opt_robot_secret) {
             std::cout << argv[0] << ": With `--generate`, do not provide `--robot-{host,secret}`"
@@ -199,7 +196,6 @@ int main(int argc, char* argv[]) try {
         std::cout << config << std::endl;
 
     } else {
-
         // Validate that we have the right options for classification mode.
         if (opt_model_path || opt_tflite_module_path) {
             std::cout << argv[0] << ": Without `--generate`, do not provide `--*path*` arguments"
@@ -242,8 +238,8 @@ int main(int argc, char* argv[]) try {
             return EXIT_FAILURE;
         }
 
-        // Create two sample signals that match the input requirements of the yamnet model. The first
-        // signal is just silence, and the second is just noise.
+        // Create two sample signals that match the input requirements of the yamnet model. The
+        // first signal is just silence, and the second is just noise.
         const std::vector<float> silence(15600, 0.0);
         const std::vector<float> noise = [&silence]() {
             std::vector temp{silence};
@@ -363,30 +359,31 @@ int main(int argc, char* argv[]) try {
             for (size_t i = 0; i != std::min(5UL, scored_labels.size()); ++i) {
                 // TODO: Avoid hardcdoding the width here.
                 std::cout << boost::format("%1%: %2% %|40t|%3%\n") % i % *scored_labels[i].label %
-                    scored_labels[i].score;
+                                 scored_labels[i].score;
             }
             std::cout.flush();
-
         }
 
         // Run 100 rounds of inference, accumulate some descriptive
         // statistics, and report them.
         std::cout << "\nMeasuring inference latency ...\n";
-        bacc::accumulator_set<double, bacc::stats<bacc::tag::mean, bacc::tag::moment<2>>> accumulator;
+        bacc::accumulator_set<double, bacc::stats<bacc::tag::mean, bacc::tag::moment<2>>>
+            accumulator;
         for (std::size_t i = 0; i != 100; ++i) {
             const auto start = std::chrono::steady_clock::now();
             static_cast<void>(yamnet_service->infer(inputs));
             const auto finish = std::chrono::steady_clock::now();
-            const std::chrono::duration<double> elapsed = finish - start;;
+            const std::chrono::duration<double> elapsed = finish - start;
+            ;
             accumulator(elapsed.count());
         }
         std::cout << "Inference latency (seconds), Mean: " << bacc::mean(accumulator) << std::endl;
-        std::cout << "Inference latency (seconds), Var : " << bacc::moment<2>(accumulator) << std::endl;
+        std::cout << "Inference latency (seconds), Var : " << bacc::moment<2>(accumulator)
+                  << std::endl;
 
         return EXIT_SUCCESS;
     }
-}
-catch (const std::exception& ex) {
+} catch (const std::exception& ex) {
     std::cout << argv[0] << ": "
               << "Failed: a std::exception was thrown: `" << ex.what() << "``" << std::endl;
     return EXIT_FAILURE;
