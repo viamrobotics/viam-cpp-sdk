@@ -317,7 +317,7 @@ set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
 find_package(absl ${VIAMCPPSDK_ABSL_VERSION_MINIMUM} REQUIRED)
 
 # Time to find `BOOST`.
-find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log)
+find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options)
 
 # Time to find `protobuf` and `gRPC[++]`. Normally this would just be
 # something like `find_package(gRPC <version> CONFIG REQUIRED)`, and

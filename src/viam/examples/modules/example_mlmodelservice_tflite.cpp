@@ -1,3 +1,17 @@
+// Copyright 2023 Viam Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 #include <fstream>
 #include <iostream>
 #include <mutex>
@@ -22,7 +36,7 @@
 namespace {
 
 namespace vsdk = ::viam::sdk;
-constexpr char service_name[] = "mlmodelservice_tflite";
+constexpr char service_name[] = "example_mlmodelservice_tflite";
 
 // An example MLModelService instance which runs TensorFlow Lite models.
 //
@@ -744,7 +758,7 @@ int serve(const std::string& socket_path) try {
         vsdk::MLModelService::static_api(),
 
         // Declare a model triple for this service.
-        vsdk::Model{"viam", "mlmodelservice", "tflite"},
+        vsdk::Model{"viam", "mlmodelservice", "example_mlmodelservice_tflite"},
 
         // Define the factory for instances of the resource.
         [](vsdk::Dependencies deps, vsdk::ResourceConfig config) {
