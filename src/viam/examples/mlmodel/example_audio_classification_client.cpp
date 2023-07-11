@@ -112,10 +112,10 @@ int main(int argc, char* argv[]) try {
     // `mlmodelservice_tflite` modular resource example from the Viam
     // C++ SDK.
     boost::optional<std::string> opt_tflite_module_path;
-    options_desc.add_options()(
-        "tflite-module-path",
-        bpo::value(&opt_tflite_module_path),
-        "Path to a mlmodelservice modular resource that provides viam:mlmodelservice:tflite\n");
+    options_desc.add_options()("tflite-module-path",
+                               bpo::value(&opt_tflite_module_path),
+                               "Path to a mlmodelservice modular resource that provides "
+                               "viam:mlmodelservice:example_mlmodelservice_tflite\n");
 
     // In classification mode, this optional parameter should contain
     // the filesystem path to the labels file for the model. The
@@ -141,7 +141,7 @@ int main(int argc, char* argv[]) try {
     boost::optional<std::string> opt_robot_secret;
     options_desc.add_options()("robot-secret",
                                bpo::value(&opt_robot_secret),
-                               "Secret for accessing the robot running at --robot-host\n");
+                               "Secret for accessing the robot running at `--robot-host`\n");
 
     // Parse the command line, and print the options summary if the user requested `--help`.
     bpo::variables_map option_variables;
@@ -161,7 +161,7 @@ int main(int argc, char* argv[]) try {
         }
 
         if (!opt_model_path) {
-            std::cout << argv[0] << ": With `--generate`, a `--model-path` is required`"
+            std::cout << argv[0] << ": With `--generate`, a `--model-path` is required"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -205,14 +205,14 @@ int main(int argc, char* argv[]) try {
 
         if (!opt_robot_host) {
             std::cout << argv[0]
-                      << ": The --robot-host argument is required when connecting to a robot"
+                      << ": The `--robot-host` argument is required when connecting to a robot"
                       << std::endl;
             return EXIT_FAILURE;
         }
 
         if (!opt_robot_secret) {
             std::cout << argv[0]
-                      << ": The --robot-secret argument is required when connecting to a robot"
+                      << ": The `--robot-secret` argument is required when connecting to a robot"
                       << std::endl;
             return EXIT_FAILURE;
         }
