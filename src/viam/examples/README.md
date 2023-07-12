@@ -38,7 +38,7 @@ add credentials. Update path code :
 
 ``` c++
 void *ptr = init_rust_runtime();
-char *path = dial("<your robot uri here>", "<your robot credentials here>", false, ptr);
+char *path = dial("<your robot uri here>", "<your authentication type>", "<your authentication payload>", false, ptr);
 ```
 
 Then to obtain a robot client do :
