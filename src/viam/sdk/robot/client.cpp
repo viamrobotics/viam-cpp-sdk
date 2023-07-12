@@ -298,6 +298,7 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
     return fs_configs;
 }
+
 PoseInFrame RobotClient::transform_pose(PoseInFrame query,
                                         std::string destination,
                                         std::vector<Transform> additional_transforms) {
