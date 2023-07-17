@@ -336,7 +336,8 @@ struct GetBillingSummaryResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetBillingSummaryResponseDefaultTypeInternal _GetBillingSummaryResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetInvoicePdfRequest::GetInvoicePdfRequest(
     ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct GetInvoicePdfRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetInvoicePdfRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -581,6 +582,7 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetInvoicePdfRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetInvoicePdfRequest, org_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetInvoicePdfResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -612,7 +614,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 187, -1, -1, sizeof(::viam::app::v1::GetBillingSummaryRequest)},
   { 194, -1, -1, sizeof(::viam::app::v1::GetBillingSummaryResponse)},
   { 208, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
-  { 215, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+  { 216, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -754,43 +756,44 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "stampR\023currentMonthDueDate\022#\n\rinvoice_em"
   "ail\030\010 \001(\tR\014invoiceEmail\022E\n\016payment_metho"
   "d\030\t \001(\0132\036.viam.app.v1.PaymentMethodCardR"
-  "\rpaymentMethod\"&\n\024GetInvoicePdfRequest\022\016"
-  "\n\002id\030\001 \001(\tR\002id\"-\n\025GetInvoicePdfResponse\022"
-  "\024\n\005chunk\030\001 \001(\014R\005chunk*V\n\021PaymentMethodTy"
-  "pe\022#\n\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022"
-  "\034\n\030PAYMENT_METHOD_TYPE_CARD\020\0012\312\007\n\016Billin"
-  "gService\022\200\001\n\033GetCurrentMonthUsageSummary"
-  "\022/.viam.app.v1.GetCurrentMonthUsageSumma"
-  "ryRequest\0320.viam.app.v1.GetCurrentMonthU"
-  "sageSummaryResponse\022_\n\020GetUnpaidBalance\022"
-  "$.viam.app.v1.GetUnpaidBalanceRequest\032%."
-  "viam.app.v1.GetUnpaidBalanceResponse\022b\n\021"
-  "GetInvoiceHistory\022%.viam.app.v1.GetInvoi"
-  "ceHistoryRequest\032&.viam.app.v1.GetInvoic"
-  "eHistoryResponse\022e\n\022GetItemizedInvoice\022&"
-  ".viam.app.v1.GetItemizedInvoiceRequest\032\'"
-  ".viam.app.v1.GetItemizedInvoiceResponse\022"
-  "b\n\021GetBillingSummary\022%.viam.app.v1.GetBi"
-  "llingSummaryRequest\032&.viam.app.v1.GetBil"
-  "lingSummaryResponse\022k\n\024GetCurrentMonthUs"
-  "age\022(.viam.app.v1.GetCurrentMonthUsageRe"
-  "quest\032).viam.app.v1.GetCurrentMonthUsage"
-  "Response\022w\n\030GetOrgBillingInformation\022,.v"
-  "iam.app.v1.GetOrgBillingInformationReque"
-  "st\032-.viam.app.v1.GetOrgBillingInformatio"
-  "nResponse\022e\n\022GetInvoicesSummary\022&.viam.a"
-  "pp.v1.GetInvoicesSummaryRequest\032\'.viam.a"
-  "pp.v1.GetInvoicesSummaryResponse\022X\n\rGetI"
-  "nvoicePdf\022!.viam.app.v1.GetInvoicePdfReq"
-  "uest\032\".viam.app.v1.GetInvoicePdfResponse"
-  "0\001B\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "\rpaymentMethod\"=\n\024GetInvoicePdfRequest\022\016"
+  "\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 \001(\tR\005orgId\"-\n"
+  "\025GetInvoicePdfResponse\022\024\n\005chunk\030\001 \001(\014R\005c"
+  "hunk*V\n\021PaymentMethodType\022#\n\037PAYMENT_MET"
+  "HOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PAYMENT_METHOD"
+  "_TYPE_CARD\020\0012\312\007\n\016BillingService\022\200\001\n\033GetC"
+  "urrentMonthUsageSummary\022/.viam.app.v1.Ge"
+  "tCurrentMonthUsageSummaryRequest\0320.viam."
+  "app.v1.GetCurrentMonthUsageSummaryRespon"
+  "se\022_\n\020GetUnpaidBalance\022$.viam.app.v1.Get"
+  "UnpaidBalanceRequest\032%.viam.app.v1.GetUn"
+  "paidBalanceResponse\022b\n\021GetInvoiceHistory"
+  "\022%.viam.app.v1.GetInvoiceHistoryRequest\032"
+  "&.viam.app.v1.GetInvoiceHistoryResponse\022"
+  "e\n\022GetItemizedInvoice\022&.viam.app.v1.GetI"
+  "temizedInvoiceRequest\032\'.viam.app.v1.GetI"
+  "temizedInvoiceResponse\022b\n\021GetBillingSumm"
+  "ary\022%.viam.app.v1.GetBillingSummaryReque"
+  "st\032&.viam.app.v1.GetBillingSummaryRespon"
+  "se\022k\n\024GetCurrentMonthUsage\022(.viam.app.v1"
+  ".GetCurrentMonthUsageRequest\032).viam.app."
+  "v1.GetCurrentMonthUsageResponse\022w\n\030GetOr"
+  "gBillingInformation\022,.viam.app.v1.GetOrg"
+  "BillingInformationRequest\032-.viam.app.v1."
+  "GetOrgBillingInformationResponse\022e\n\022GetI"
+  "nvoicesSummary\022&.viam.app.v1.GetInvoices"
+  "SummaryRequest\032\'.viam.app.v1.GetInvoices"
+  "SummaryResponse\022X\n\rGetInvoicePdf\022!.viam."
+  "app.v1.GetInvoicePdfRequest\032\".viam.app.v"
+  "1.GetInvoicePdfResponse0\001B\030Z\026go.viam.com"
+  "/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 5676, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 5699, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 23,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -7183,6 +7186,14 @@ GetInvoicePdfRequest::GetInvoicePdfRequest(const GetInvoicePdfRequest& from)
     id_.Set(from._internal_id(), 
       GetArenaForAllocation());
   }
+  org_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_org_id().empty()) {
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetInvoicePdfRequest)
 }
 
@@ -7190,6 +7201,10 @@ inline void GetInvoicePdfRequest::SharedCtor() {
 id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -7205,6 +7220,7 @@ GetInvoicePdfRequest::~GetInvoicePdfRequest() {
 inline void GetInvoicePdfRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   id_.Destroy();
+  org_id_.Destroy();
 }
 
 void GetInvoicePdfRequest::SetCachedSize(int size) const {
@@ -7218,6 +7234,7 @@ void GetInvoicePdfRequest::Clear() {
   (void) cached_has_bits;
 
   id_.ClearToEmpty();
+  org_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -7234,6 +7251,16 @@ const char* GetInvoicePdfRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetInvoicePdfRequest.id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string org_id = 2 [json_name = "orgId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_org_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetInvoicePdfRequest.org_id"));
         } else
           goto handle_unusual;
         continue;
@@ -7276,6 +7303,16 @@ uint8_t* GetInvoicePdfRequest::_InternalSerialize(
         1, this->_internal_id(), target);
   }
 
+  // string org_id = 2 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id().data(), static_cast<int>(this->_internal_org_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetInvoicePdfRequest.org_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_org_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -7297,6 +7334,13 @@ size_t GetInvoicePdfRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_id());
+  }
+
+  // string org_id = 2 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_org_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -7324,6 +7368,9 @@ void GetInvoicePdfRequest::MergeFrom(const GetInvoicePdfRequest& from) {
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
+  if (!from._internal_org_id().empty()) {
+    _internal_set_org_id(from._internal_org_id());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -7346,6 +7393,10 @@ void GetInvoicePdfRequest::InternalSwap(GetInvoicePdfRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &id_, lhs_arena,
       &other->id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
   );
 }
 
