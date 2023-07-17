@@ -100,26 +100,29 @@ $(function() {
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    ::grpc::Status GetImage(::grpc::ServerContext* context,</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                            const ::viam::component::camera::v1::GetImageRequest* request,</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                            ::viam::component::camera::v1::GetImageResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    ::grpc::Status RenderFrame(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                               const ::viam::component::camera::v1::RenderFrameRequest* request,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                               ::google::api::HttpBody* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ::grpc::Status GetPointCloud(</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        ::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        const ::viam::component::camera::v1::GetPointCloudRequest* request,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        ::viam::component::camera::v1::GetPointCloudResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ::grpc::Status GetGeometries(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                 const ::viam::common::v1::GetGeometriesRequest* request,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                 ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    ::grpc::Status GetProperties(</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        ::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        const ::viam::component::camera::v1::GetPropertiesRequest* request,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        ::viam::component::camera::v1::GetPropertiesResponse* response) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    ::grpc::Status GetImages(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                             const ::viam::component::camera::v1::GetImagesRequest* request,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                             ::viam::component::camera::v1::GetImagesResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ::grpc::Status RenderFrame(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                               const ::viam::component::camera::v1::RenderFrameRequest* request,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                               ::google::api::HttpBody* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    ::grpc::Status GetPointCloud(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        ::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        const ::viam::component::camera::v1::GetPointCloudRequest* request,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        ::viam::component::camera::v1::GetPointCloudResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    ::grpc::Status GetGeometries(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                 const ::viam::common::v1::GetGeometriesRequest* request,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                 ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    ::grpc::Status GetProperties(</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        ::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        const ::viam::component::camera::v1::GetPropertiesRequest* request,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        ::viam::component::camera::v1::GetPropertiesResponse* response) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1CameraServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1CameraServer.html">viam::sdk::CameraServer</a></div><div class="ttdoc">gRPC server implementation of a Camera component.</div><div class="ttdef"><b>Definition</b> server.hpp:19</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:9</div></div>
 <div class="ttc" id="aresource__manager_8hpp_html"><div class="ttname"><a href="resource__manager_8hpp.html">resource_manager.hpp</a></div><div class="ttdoc">Defines a general-purpose resource manager.</div></div>
