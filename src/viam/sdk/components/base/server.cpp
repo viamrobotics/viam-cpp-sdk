@@ -163,12 +163,6 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
     return ::grpc::Status();
 }
 
-::grpc::Status GetProperties(::grpc::ServerContext* context,
-                             const ::viam::component::base::v1::GetPropertiesRequest* request,
-                             ::viam::component::base::v1::GetPropertiesResponse* response) {
-    return ::grpc::Status(grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
 void BaseServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
 }
