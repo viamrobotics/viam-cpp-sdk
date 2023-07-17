@@ -54,7 +54,8 @@ Camera::image_collection fake_raw_images() {
     std::chrono::seconds seconds(12345);
     std::chrono::nanoseconds nanos(0);
     collection.images = images;
-    collection.captured_at = std::chrono::system_clock::time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+    collection.captured_at = std::chrono::system_clock::time_point(
+        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
     return collection;
 }
 

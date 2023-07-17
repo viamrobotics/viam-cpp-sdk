@@ -92,26 +92,28 @@ std::string format_to_MIME_string(viam::component::camera::v1::Format format) {
 }
 
 // Convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point
-std::chrono::system_clock::time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
+std::chrono::system_clock::time_point timestamp_to_time_pt(
+    const google::protobuf::Timestamp& timestamp) {
     std::chrono::seconds seconds(timestamp.seconds());
     std::chrono::nanoseconds nanos(timestamp.nanos());
-    return std::chrono::system_clock::time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+    return std::chrono::system_clock::time_point(
+        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
 }
 
 Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImagesResponse proto) {
     Camera::image_collection image_collection;
     std::vector<Camera::raw_image> images;
     for (const auto& img : proto.images()) {
-		Camera::raw_image raw_image;
+        Camera::raw_image raw_image;
         std::string img_string = img.image();
         const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
         raw_image.bytes = bytes;
         raw_image.mime_type = format_to_MIME_string(img.format());
-		raw_image.source_name = img.source_name();
-		images.push_back(raw_image);
+        raw_image.source_name = img.source_name();
+        images.push_back(raw_image);
     }
-	image_collection.images = images;
-	image_collection.captured_at = timestamp_to_time_pt(proto.response_metadata().captured_at());
+    image_collection.images = images;
+    image_collection.captured_at = timestamp_to_time_pt(proto.response_metadata().captured_at());
     return image_collection;
 }
 
@@ -192,7 +194,8 @@ bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) 
 }
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs) {
-    return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes && lhs.source_name == rhs.source_name;
+    return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes &&
+           lhs.source_name == rhs.source_name;
 }
 
 bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs) {
