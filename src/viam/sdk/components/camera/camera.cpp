@@ -1,6 +1,7 @@
 #include <viam/sdk/components/camera/camera.hpp>
 
 #include <google/protobuf/descriptor.h>
+#include <google/protobuf/util/time_util.h>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
@@ -66,7 +67,43 @@ Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageRespon
     const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
     raw_image.bytes = bytes;
     raw_image.mime_type = proto.mime_type();
+    raw_image.source_name = "":
     return raw_image;
+}
+
+// helper function to replace every protobuf format enum with a MIME type string
+std::string format_to_MIME_string(viam::component::camera::v1::Format format) {
+    switch (format) {
+        case viam::component::camera::v1::Format_FORMAT_UNSPECIFIED:
+            return "";
+        case viam::component::camera::v1::Format_FORMAT_RAW_RGBA:
+            return "image/vnd.viam.rgba";
+        case viam::component::camera::v1::Format_FORMAT_RAW_DEPTH:
+            return "image/vnd.viam.dep";
+        case viam::component::camera::v1::Format_FORMAT_JPEG:
+            return "image/jpeg";
+        case viam::component::camera::v1::Format_FORMAT_PNG:
+            return "image/png";
+    }
+}
+
+Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImagesResponse proto) {
+    Camera::image_collection image_collection;
+    std::vector<Camera::raw_image> images;
+    for (const auto& img : proto.images()) {
+		Camera::raw_image raw_image;
+        std::string img_string = img.image();
+        const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
+        raw_image.bytes = bytes;
+        raw_image.mime_type = format_to_MIME_string(img.format());
+		raw_image.source_name = img.source_name();
+		images.push_back(raw_image);
+    }
+    chrono::nanoseconds ns = chrono::nanoseconds(google::protobuf::util::TimeUtil::TimestampToNanoseconds(proto.response_metadata.captured_at()));
+    chrono::time_point<chrono::system_clock> ts(ns);
+	image_collection.images = images;
+	image_collection.time_captured_at = ts;
+    return image_collection;
 }
 
 Camera::point_cloud Camera::from_proto(viam::component::camera::v1::GetPointCloudResponse proto) {
@@ -146,7 +183,11 @@ bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) 
 }
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs) {
-    return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes;
+    return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes && lsh.source_name == rhs.source_name;
+}
+
+bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs) {
+    return lhs.images == rhs.images && lhs.time_captured_at == rhs.time_captured_at;
 }
 
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs) {

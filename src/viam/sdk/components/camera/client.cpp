@@ -58,6 +58,17 @@ Camera::raw_image CameraClient::get_image(std::string mime_type) {
     return from_proto(resp);
 };
 
+Camera::image_collection CameraClient::get_images() {
+    viam::component::camera::v1::GetImagesRequest req;
+    viam::component::camera::v1::GetImagesResponse resp;
+    grpc::ClientContext ctx;
+
+    *req.mutable_name() = this->name();
+
+    stub_->GetImages(&ctx, req, &resp);
+    return from_proto(resp);
+};
+
 Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
     viam::component::camera::v1::GetPointCloudRequest req;
     viam::component::camera::v1::GetPointCloudResponse resp;

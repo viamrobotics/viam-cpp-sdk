@@ -60,11 +60,51 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     return ::grpc::Status();
 }
 
+// helper function to replace a MIME string with a protobuf format enum
+::viam::component::camera::v1::Format MIME_string_to_format(std::string mime_string) {
+    switch (mime_string) {
+        case "image/vnd.viam.rgba":
+            return viam::component::camera::v1::Format_FORMAT_RAW_RGBA;
+        case "image/vnd.viam.dep":
+            return viam::component::camera::v1::Format_FORMAT_RAW_DEPTH;
+        case "image/jpeg":
+            return  viam::component::camera::v1::Format_FORMAT_JPEG;
+        case "image/png":
+            return viam::component::camera::v1::Format_FORMAT_PNG
+        default:
+            return viam::component::camera::v1::Format_FORMAT_UNSPECIFIED:
+    }
+}
+
 ::grpc::Status CameraServer::GetImages(
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImagesRequest* request,
     ::viam::component::camera::v1::GetImagesResponse* response) {
-    return ::grpc::Status(grpc::StatusCode::UNIMPLEMENTED, "");
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetImages] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+
+    const Camera::image_collection image_coll = camera->get_images();
+    for (const auto& img : image_coll.images()) {
+        ::viam::component::camera::v1::Image proto_image;
+        const std::string img_string = bytes_to_string(img.bytes);
+        proto_image.set_source_name(img.source_name);
+        proto_image.set_format(MIME_string_to_format(img.mime_type);
+        proto_image.set_image(img_string);
+        *response->mutable_images()->Add() = std::move(proto_image);
+    }
+    auto ts = google::protobuf::util::TimeUtil::NanosecondsToTimestamp(chrono::nanoseconds(image_coll.time_captured_at));
+    *response->mutable_response_metadata()->set_captured_at(ts);
+
+    return ::grpc::Status();
 }
 
 ::grpc::Status CameraServer::RenderFrame(
