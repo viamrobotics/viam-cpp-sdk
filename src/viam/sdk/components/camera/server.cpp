@@ -1,6 +1,9 @@
+#include <chrono>
+
 #include <viam/sdk/components/camera/server.hpp>
 
 #include <grpcpp/support/status.h>
+#include <google/protobuf/util/time_util.h>
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
@@ -62,18 +65,27 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
 // helper function to replace a MIME string with a protobuf format enum
 ::viam::component::camera::v1::Format MIME_string_to_format(std::string mime_string) {
-    switch (mime_string) {
-        case "image/vnd.viam.rgba":
-            return viam::component::camera::v1::Format_FORMAT_RAW_RGBA;
-        case "image/vnd.viam.dep":
-            return viam::component::camera::v1::Format_FORMAT_RAW_DEPTH;
-        case "image/jpeg":
-            return  viam::component::camera::v1::Format_FORMAT_JPEG;
-        case "image/png":
-            return viam::component::camera::v1::Format_FORMAT_PNG
-        default:
-            return viam::component::camera::v1::Format_FORMAT_UNSPECIFIED:
+    if (mime_string == "image/vnd.viam.rgba") {
+            return viam::component::camera::v1::FORMAT_RAW_RGBA;
+    } else if (mime_string == "image/vnd.viam.dep") {
+            return viam::component::camera::v1::FORMAT_RAW_DEPTH;
+    } else if (mime_string == "image/jpeg") {
+            return  viam::component::camera::v1::FORMAT_JPEG;
+    } else if (mime_string == "image/png") {
+            return viam::component::camera::v1::FORMAT_PNG;
+    } else {
+            return viam::component::camera::v1::FORMAT_UNSPECIFIED;
     }
+}
+
+// Convert a std::chrono::system_clock::time_point to a google::protobuf::Timestamp
+ google::protobuf::Timestamp time_pt_to_timestamp(const std::chrono::system_clock::time_point& time_pt) {
+    std::chrono::seconds duration_s = std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
+    std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
+    google::protobuf::Timestamp timestamp;
+    timestamp.set_seconds(duration_s.count());
+    timestamp.set_nanos(duration_ns.count());
+    return timestamp;
 }
 
 ::grpc::Status CameraServer::GetImages(
@@ -93,16 +105,17 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
     const Camera::image_collection image_coll = camera->get_images();
-    for (const auto& img : image_coll.images()) {
+    for (const auto& img : image_coll.images) {
         ::viam::component::camera::v1::Image proto_image;
         const std::string img_string = bytes_to_string(img.bytes);
         proto_image.set_source_name(img.source_name);
-        proto_image.set_format(MIME_string_to_format(img.mime_type);
+        proto_image.set_format(MIME_string_to_format(img.mime_type));
         proto_image.set_image(img_string);
         *response->mutable_images()->Add() = std::move(proto_image);
     }
-    auto ts = google::protobuf::util::TimeUtil::NanosecondsToTimestamp(chrono::nanoseconds(image_coll.time_captured_at));
-    *response->mutable_response_metadata()->set_captured_at(ts);
+    viam::common::v1::ResponseMetadata* resp_metadata = response->mutable_response_metadata();
+    google::protobuf::Timestamp ts = time_pt_to_timestamp(image_coll.captured_at);
+    resp_metadata->mutable_captured_at()->CopyFrom(ts);
 
     return ::grpc::Status();
 }

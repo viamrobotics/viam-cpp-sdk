@@ -1,3 +1,5 @@
+#include <chrono>
+
 #include <viam/sdk/components/camera/camera.hpp>
 
 #include <google/protobuf/descriptor.h>
@@ -67,24 +69,33 @@ Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageRespon
     const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
     raw_image.bytes = bytes;
     raw_image.mime_type = proto.mime_type();
-    raw_image.source_name = "":
+    raw_image.source_name = "";
     return raw_image;
 }
 
 // helper function to replace every protobuf format enum with a MIME type string
 std::string format_to_MIME_string(viam::component::camera::v1::Format format) {
     switch (format) {
-        case viam::component::camera::v1::Format_FORMAT_UNSPECIFIED:
-            return "";
-        case viam::component::camera::v1::Format_FORMAT_RAW_RGBA:
+        case viam::component::camera::v1::FORMAT_RAW_RGBA:
             return "image/vnd.viam.rgba";
-        case viam::component::camera::v1::Format_FORMAT_RAW_DEPTH:
+        case viam::component::camera::v1::FORMAT_RAW_DEPTH:
             return "image/vnd.viam.dep";
-        case viam::component::camera::v1::Format_FORMAT_JPEG:
+        case viam::component::camera::v1::FORMAT_JPEG:
             return "image/jpeg";
-        case viam::component::camera::v1::Format_FORMAT_PNG:
+        case viam::component::camera::v1::FORMAT_PNG:
             return "image/png";
+        case viam::component::camera::v1::FORMAT_UNSPECIFIED:
+            return "";
+        default:
+            return "";
     }
+}
+
+// Convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point
+std::chrono::system_clock::time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
+    std::chrono::seconds seconds(timestamp.seconds());
+    std::chrono::nanoseconds nanos(timestamp.nanos());
+    return std::chrono::system_clock::time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
 }
 
 Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImagesResponse proto) {
@@ -99,10 +110,8 @@ Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImag
 		raw_image.source_name = img.source_name();
 		images.push_back(raw_image);
     }
-    chrono::nanoseconds ns = chrono::nanoseconds(google::protobuf::util::TimeUtil::TimestampToNanoseconds(proto.response_metadata.captured_at()));
-    chrono::time_point<chrono::system_clock> ts(ns);
 	image_collection.images = images;
-	image_collection.time_captured_at = ts;
+	image_collection.captured_at = timestamp_to_time_pt(proto.response_metadata().captured_at());
     return image_collection;
 }
 
@@ -183,11 +192,11 @@ bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) 
 }
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs) {
-    return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes && lsh.source_name == rhs.source_name;
+    return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes && lhs.source_name == rhs.source_name;
 }
 
 bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs) {
-    return lhs.images == rhs.images && lhs.time_captured_at == rhs.time_captured_at;
+    return lhs.images == rhs.images && lhs.captured_at == rhs.captured_at;
 }
 
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs) {

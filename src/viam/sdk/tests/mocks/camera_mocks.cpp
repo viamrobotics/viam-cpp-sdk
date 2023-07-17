@@ -20,6 +20,9 @@ AttributeMap MockCamera::do_command(AttributeMap command) {
 Camera::raw_image MockCamera::get_image(std::string mime_type) {
     return image_;
 }
+Camera::image_collection MockCamera::get_images() {
+    return images_;
+}
 Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
     return pc_;
 }
@@ -33,9 +36,26 @@ Camera::properties MockCamera::get_properties() {
 Camera::raw_image fake_raw_image() {
     Camera::raw_image image;
     image.mime_type = "JPEG";
+    image.source_name = "";
     std::vector<unsigned char> bytes = {'a', 'b', 'c'};
     image.bytes = bytes;
     return image;
+}
+
+Camera::image_collection fake_raw_images() {
+    Camera::image_collection collection;
+    std::vector<Camera::raw_image> images;
+    Camera::raw_image image;
+    image.mime_type = "image/jpeg";
+    image.source_name = "color_sensor";
+    std::vector<unsigned char> bytes = {'a', 'b', 'c'};
+    image.bytes = bytes;
+    images.push_back(image);
+    std::chrono::seconds seconds(12345);
+    std::chrono::nanoseconds nanos(0);
+    collection.images = images;
+    collection.captured_at = std::chrono::system_clock::time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+    return collection;
 }
 
 Camera::point_cloud fake_point_cloud() {
@@ -75,6 +95,7 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     auto camera = std::make_shared<MockCamera>("mock_camera");
 
     camera->image_ = fake_raw_image();
+    camera->images_ = fake_raw_images();
     camera->pc_ = fake_point_cloud();
     camera->camera_properties_ = fake_properties();
     camera->intrinsic_parameters_ = fake_intrinsic_parameters();

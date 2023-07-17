@@ -94,7 +94,7 @@ class Camera : public Component {
     /// @brief a collection of images that were collected from a camera all at the same time.
     struct image_collection {
         std::vector<raw_image> images;
-        std::chrono::time_point<std::chrono::system_clock> time_captured_at;
+        std::chrono::system_clock::time_point captured_at;
     };
 
     /// @brief Creates a `ResourceRegistration` for the `Camera` component.
