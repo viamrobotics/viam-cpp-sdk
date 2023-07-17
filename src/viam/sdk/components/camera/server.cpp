@@ -1,5 +1,7 @@
 #include <viam/sdk/components/camera/server.hpp>
 
+#include <grpcpp/support/status.h>
+
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -56,6 +58,13 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     *response->mutable_image() = img_string;
 
     return ::grpc::Status();
+}
+
+::grpc::Status CameraServer::GetImages(
+    ::grpc::ServerContext* context,
+    const ::viam::component::camera::v1::GetImagesRequest* request,
+    ::viam::component::camera::v1::GetImagesResponse* response) {
+    return ::grpc::Status(grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status CameraServer::RenderFrame(
