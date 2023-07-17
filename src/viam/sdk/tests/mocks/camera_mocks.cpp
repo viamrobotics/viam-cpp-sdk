@@ -96,6 +96,13 @@ MockCameraStub::MockCameraStub() : server_(std::make_shared<CameraServer>()) {
     grpc::ServerContext ctx;
     return server_->GetImage(&ctx, &request, response);
 }
+::grpc::Status MockCameraStub::GetImages(
+    ::grpc::ClientContext* context,
+    const ::viam::component::camera::v1::GetImagesRequest& request,
+    ::viam::component::camera::v1::GetImagesResponse* response) {
+    grpc::ServerContext ctx;
+    return server_->GetImages(&ctx, &request, response);
+}
 ::grpc::Status MockCameraStub::RenderFrame(
     ::grpc::ClientContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest& request,

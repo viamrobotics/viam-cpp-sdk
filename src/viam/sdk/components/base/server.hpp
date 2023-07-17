@@ -49,6 +49,11 @@ class BaseServer : public ResourceServer, public viam::component::base::v1::Base
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) override;
 
+    ::grpc::Status GetProperties(
+        ::grpc::ServerContext* context,
+        const ::viam::component::base::v1::GetPropertiesRequest* request,
+        ::viam::component::base::v1::GetPropertiesResponse* response) override;
+
     void register_server(std::shared_ptr<Server> server) override;
 };
 

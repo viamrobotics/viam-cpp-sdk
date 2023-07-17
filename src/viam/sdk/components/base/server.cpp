@@ -1,3 +1,4 @@
+#include <grpcpp/support/status.h>
 #include <viam/sdk/components/base/server.hpp>
 
 #include <viam/sdk/common/linear_algebra.hpp>
@@ -160,6 +161,12 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
     *response->mutable_result() = map_to_struct(result);
 
     return ::grpc::Status();
+}
+
+::grpc::Status GetProperties(::grpc::ServerContext* context,
+                             const ::viam::component::base::v1::GetPropertiesRequest* request,
+                             ::viam::component::base::v1::GetPropertiesResponse* response) {
+    return ::grpc::Status(grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 void BaseServer::register_server(std::shared_ptr<Server> server) {

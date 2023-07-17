@@ -47,6 +47,10 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
                             const ::viam::component::camera::v1::GetImageRequest& request,
                             ::viam::component::camera::v1::GetImageResponse* response) override;
 
+    ::grpc::Status GetImages(::grpc::ClientContext* context,
+                             const ::viam::component::camera::v1::GetImagesRequest& request,
+                             ::viam::component::camera::v1::GetImagesResponse* response) override;
+
     ::grpc::Status RenderFrame(::grpc::ClientContext* context,
                                const ::viam::component::camera::v1::RenderFrameRequest& request,
                                ::google::api::HttpBody* response) override;
@@ -82,6 +86,18 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
     PrepareAsyncGetImageRaw(::grpc::ClientContext* context,
                             const ::viam::component::camera::v1::GetImageRequest& request,
                             ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("unimplemented");
+    };
+    ::grpc::ClientAsyncResponseReaderInterface<::viam::component::camera::v1::GetImagesResponse>*
+    AsyncGetImagesRaw(::grpc::ClientContext* context,
+                      const ::viam::component::camera::v1::GetImagesRequest& request,
+                      ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("unimplemented");
+    };
+    ::grpc::ClientAsyncResponseReaderInterface<::viam::component::camera::v1::GetImagesResponse>*
+    PrepareAsyncGetImagesRaw(::grpc::ClientContext* context,
+                             const ::viam::component::camera::v1::GetImagesRequest& request,
+                             ::grpc::CompletionQueue* cq) override {
         throw std::runtime_error("unimplemented");
     };
     ::grpc::ClientAsyncResponseReaderInterface<::google::api::HttpBody>* AsyncRenderFrameRaw(

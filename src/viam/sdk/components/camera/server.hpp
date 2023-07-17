@@ -3,6 +3,7 @@
 /// @brief Implements a gRPC server for the `Camera` component.
 #pragma once
 
+#include "component/camera/v1/camera.pb.h"
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
@@ -27,6 +28,9 @@ class CameraServer : public ResourceServer,
     ::grpc::Status GetImage(::grpc::ServerContext* context,
                             const ::viam::component::camera::v1::GetImageRequest* request,
                             ::viam::component::camera::v1::GetImageResponse* response) override;
+    ::grpc::Status GetImages(::grpc::ServerContext* context,
+                             const ::viam::component::camera::v1::GetImagesRequest* request,
+                             ::viam::component::camera::v1::GetImagesResponse* response) override;
     ::grpc::Status RenderFrame(::grpc::ServerContext* context,
                                const ::viam::component::camera::v1::RenderFrameRequest* request,
                                ::google::api::HttpBody* response) override;
