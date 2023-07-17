@@ -3,7 +3,6 @@
 /// @brief Implements a gRPC server for the `Camera` component.
 #pragma once
 
-#include <component/camera/v1/camera.pb.h>
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
