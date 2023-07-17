@@ -1,4 +1,3 @@
-#include <grpcpp/support/status.h>
 #include <viam/sdk/components/base/server.hpp>
 
 #include <viam/sdk/common/linear_algebra.hpp>

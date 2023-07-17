@@ -1,5 +1,6 @@
-#include <grpcpp/support/status.h>
 #include <viam/sdk/components/camera/server.hpp>
+
+#include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
