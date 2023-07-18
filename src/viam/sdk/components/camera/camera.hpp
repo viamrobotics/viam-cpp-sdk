@@ -4,6 +4,7 @@
 #pragma once
 
 #include <bitset>
+#include <chrono>
 #include <string>
 #include <vector>
 
@@ -82,11 +83,19 @@ class Camera : public Component {
     const static std::string lazy_suffix;
 
     /// @struct raw_image
-    /// @brief the raw bytes and mime type of an image.
+    /// @brief the raw bytes, mime type of an image, and name of the source that produced it.
     // TODO: update documentaiton to show how to deserialize a `raw_image`
     struct raw_image {
         std::string mime_type;
         std::vector<unsigned char> bytes;
+        std::string source_name;
+    };
+
+    /// @struct image_collection
+    /// @brief a collection of images that were collected from a camera all at the same time.
+    struct image_collection {
+        std::vector<raw_image> images;
+        std::chrono::system_clock::time_point captured_at;
     };
 
     /// @brief Creates a `ResourceRegistration` for the `Camera` component.
@@ -95,8 +104,28 @@ class Camera : public Component {
     /// @brief Creates a `Camera` `API`.
     static API static_api();
 
+    /// @brief remove any extra suffix's from the mime type string.
+    static std::string normalize_mime_type(const std::string& str);
+
+    /// @brief convert a protobuf format enum with a MIME type string.
+    static std::string format_to_MIME_string(viam::component::camera::v1::Format format);
+
+    /// @brief convert a MIME type string with a protobuf format enum.
+    static viam::component::camera::v1::Format MIME_string_to_format(std::string mime_string);
+
+    /// @brief convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point.
+    static std::chrono::system_clock::time_point timestamp_to_time_pt(
+        const google::protobuf::Timestamp& timestamp);
+
+    /// @brief convert a std::chrono::system_clock::time_point to a google::protobuf::Timestamp.
+    static google::protobuf::Timestamp time_pt_to_timestamp(
+        const std::chrono::system_clock::time_point& time_pt);
+
     /// @brief Creates a `raw_image` struct from its proto representation.
     static raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);
+
+    /// @brief Creates a `image_collection` struct from its proto representation.
+    static image_collection from_proto(viam::component::camera::v1::GetImagesResponse proto);
 
     /// @brief Creates a `point_cloud` struct from its proto representation.
     static point_cloud from_proto(viam::component::camera::v1::GetPointCloudResponse proto);
@@ -127,6 +156,11 @@ class Camera : public Component {
     /// @return The frame as a `raw_image`.
     virtual raw_image get_image(std::string mime_type) = 0;
 
+    /// @brief Get the next images from the camera as a vector of raw images with names and
+    /// metadata.
+    /// @return a vector of raw_images and associated response metadata.
+    virtual image_collection get_images() = 0;
+
     /// @brief Get the next `point_cloud` from the camera.
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
     /// @return The requested `point_cloud`.
@@ -147,6 +181,7 @@ class Camera : public Component {
 };
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);
+bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs);
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs);
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);

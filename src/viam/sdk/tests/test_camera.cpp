@@ -37,6 +37,13 @@ BOOST_AUTO_TEST_CASE(test_get_image) {
     BOOST_CHECK(expected_image == image);
 }
 
+BOOST_AUTO_TEST_CASE(test_get_images) {
+    Camera::image_collection expected_images = fake_raw_images();
+    Camera::image_collection images = camera->get_images();
+
+    BOOST_CHECK(expected_images == images);
+}
+
 BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
     Camera::point_cloud expected_pc = fake_point_cloud();
     Camera::point_cloud pc = camera->get_point_cloud("pointcloud/pcd");
@@ -96,6 +103,29 @@ BOOST_AUTO_TEST_CASE(test_get_image_service) {
     std::vector<unsigned char> bytes = string_to_bytes(resp.image());
 
     BOOST_CHECK(image.bytes == bytes);
+}
+
+BOOST_AUTO_TEST_CASE(test_get_images_service) {
+    auto server = get_camera_server();
+    grpc::ServerContext ctx;
+    viam::component::camera::v1::GetImagesRequest req;
+    viam::component::camera::v1::GetImagesResponse resp;
+
+    *req.mutable_name() = "mock_camera";
+
+    grpc::Status status = server->GetImages(&ctx, &req, &resp);
+    BOOST_CHECK(status.error_code() == 0);
+
+    Camera::image_collection images = fake_raw_images();
+
+    BOOST_CHECK(resp.images().size() == images.images.size());
+    BOOST_CHECK(resp.images()[0].source_name() == images.images[0].source_name);
+    BOOST_CHECK(resp.images()[1].source_name() == images.images[1].source_name);
+
+    std::vector<unsigned char> bytes0 = string_to_bytes(resp.images()[0].image());
+    BOOST_CHECK(bytes0 == images.images[0].bytes);
+    std::vector<unsigned char> bytes1 = string_to_bytes(resp.images()[1].image());
+    BOOST_CHECK(bytes1 == images.images[1].bytes);
 }
 
 BOOST_AUTO_TEST_CASE(test_get_point_cloud_service) {

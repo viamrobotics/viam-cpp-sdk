@@ -1,5 +1,6 @@
 #include <viam/sdk/components/camera/server.hpp>
 
+#include <google/protobuf/util/time_util.h>
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/utils.hpp>
@@ -64,7 +65,33 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImagesRequest* request,
     ::viam::component::camera::v1::GetImagesResponse* response) {
-    return ::grpc::Status(grpc::StatusCode::UNIMPLEMENTED, "");
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetImages] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+
+    const Camera::image_collection image_coll = camera->get_images();
+    for (const auto& img : image_coll.images) {
+        ::viam::component::camera::v1::Image proto_image;
+        const std::string img_string = bytes_to_string(img.bytes);
+        proto_image.set_source_name(img.source_name);
+        proto_image.set_format(
+            Camera::MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
+        proto_image.set_image(img_string);
+        *response->mutable_images()->Add() = std::move(proto_image);
+    }
+    viam::common::v1::ResponseMetadata* resp_metadata = response->mutable_response_metadata();
+    google::protobuf::Timestamp ts = Camera::time_pt_to_timestamp(image_coll.captured_at);
+    *resp_metadata->mutable_captured_at() = std::move(ts);
+
+    return ::grpc::Status();
 }
 
 ::grpc::Status CameraServer::RenderFrame(
