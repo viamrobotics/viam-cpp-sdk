@@ -123,9 +123,9 @@ BOOST_AUTO_TEST_CASE(test_get_images_service) {
     BOOST_CHECK(resp.images()[1].source_name() == images.images[1].source_name);
 
     std::vector<unsigned char> bytes0 = string_to_bytes(resp.images()[0].image());
-    BOOST_CHECK(bytes0 == images.images[0].bytes); 
+    BOOST_CHECK(bytes0 == images.images[0].bytes);
     std::vector<unsigned char> bytes1 = string_to_bytes(resp.images()[1].image());
-    BOOST_CHECK(bytes1 == images.images[1].bytes); 
+    BOOST_CHECK(bytes1 == images.images[1].bytes);
 }
 
 BOOST_AUTO_TEST_CASE(test_get_point_cloud_service) {
