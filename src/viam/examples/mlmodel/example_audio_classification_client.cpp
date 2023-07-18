@@ -357,7 +357,7 @@ int main(int argc, char* argv[]) try {
 
             // Print out the top 5 (or fewer) label/score pairs.
             for (size_t i = 0; i != std::min(5UL, scored_labels.size()); ++i) {
-                // TODO: Avoid hardcdoding the width here.
+                // TODO: Avoid hardcoding the width here.
                 std::cout << boost::format("%1%: %2% %|40t|%3%\n") % i % *scored_labels[i].label %
                                  scored_labels[i].score;
             }

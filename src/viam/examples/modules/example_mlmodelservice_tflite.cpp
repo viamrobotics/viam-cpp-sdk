@@ -584,7 +584,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             : dependencies(std::move(dependencies)), configuration(std::move(configuration)) {}
 
         // The dependencies and configuration we were given at
-        // constuction / reconfiguration.
+        // construction / reconfiguration.
         vsdk::Dependencies dependencies;
         vsdk::ResourceConfig configuration;
 
