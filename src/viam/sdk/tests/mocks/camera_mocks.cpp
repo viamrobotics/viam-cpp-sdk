@@ -45,12 +45,18 @@ Camera::raw_image fake_raw_image() {
 Camera::image_collection fake_raw_images() {
     Camera::image_collection collection;
     std::vector<Camera::raw_image> images;
-    Camera::raw_image image;
-    image.mime_type = "image/jpeg";
-    image.source_name = "color_sensor";
-    std::vector<unsigned char> bytes = {'a', 'b', 'c'};
-    image.bytes = bytes;
-    images.push_back(image);
+    Camera::raw_image image1;
+    image1.mime_type = "image/jpeg";
+    image1.source_name = "color_sensor";
+    std::vector<unsigned char> bytes1 = {'a', 'b', 'c'};
+    image1.bytes = bytes1;
+    images.push_back(image1);
+    Camera::raw_image image2;
+    image2.mime_type = "image/vnd.viam.dep";
+    image2.source_name = "depth_sensor";
+    std::vector<unsigned char> bytes2 = {'d', 'e', 'f'};
+    image2.bytes = bytes2;
+    images.push_back(image2);
     std::chrono::seconds seconds(12345);
     std::chrono::nanoseconds nanos(0);
     collection.images = images;

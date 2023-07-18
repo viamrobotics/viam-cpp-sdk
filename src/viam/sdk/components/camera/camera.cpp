@@ -80,33 +80,35 @@ std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format fo
 ::viam::component::camera::v1::Format Camera::MIME_string_to_format(std::string mime_string) {
     if (mime_string == "image/vnd.viam.rgba") {
         return viam::component::camera::v1::FORMAT_RAW_RGBA;
-    } else if (mime_string == "image/vnd.viam.dep") {
-        return viam::component::camera::v1::FORMAT_RAW_DEPTH;
-    } else if (mime_string == "image/jpeg") {
-        return viam::component::camera::v1::FORMAT_JPEG;
-    } else if (mime_string == "image/png") {
-        return viam::component::camera::v1::FORMAT_PNG;
-    } else {
-        return viam::component::camera::v1::FORMAT_UNSPECIFIED;
     }
+    if (mime_string == "image/vnd.viam.dep") {
+        return viam::component::camera::v1::FORMAT_RAW_DEPTH;
+    }
+    if (mime_string == "image/jpeg") {
+        return viam::component::camera::v1::FORMAT_JPEG;
+    }
+    if (mime_string == "image/png") {
+        return viam::component::camera::v1::FORMAT_PNG;
+    }
+    return viam::component::camera::v1::FORMAT_UNSPECIFIED;
 }
 
 std::chrono::system_clock::time_point Camera::timestamp_to_time_pt(
     const google::protobuf::Timestamp& timestamp) {
-    std::chrono::seconds seconds(timestamp.seconds());
-    std::chrono::nanoseconds nanos(timestamp.nanos());
+    const std::chrono::seconds seconds(timestamp.seconds());
+    const std::chrono::nanoseconds nanos(timestamp.nanos());
     return std::chrono::system_clock::time_point(
         std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
 }
 
 google::protobuf::Timestamp Camera::time_pt_to_timestamp(
     const std::chrono::system_clock::time_point& time_pt) {
-    std::chrono::seconds duration_s =
+    const std::chrono::seconds duration_s =
         std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
-    std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
+    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
     google::protobuf::Timestamp timestamp;
     timestamp.set_seconds(duration_s.count());
-    timestamp.set_nanos(duration_ns.count());
+    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
     return timestamp;
 }
 
