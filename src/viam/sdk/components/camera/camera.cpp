@@ -1,5 +1,3 @@
-#include <chrono>
-
 #include <viam/sdk/components/camera/camera.hpp>
 
 #include <google/protobuf/descriptor.h>
@@ -53,6 +51,65 @@ API Camera::dynamic_api() const {
     return static_api();
 }
 
+std::string Camera::normalize_mime_type(const std::string& str) {
+    std::string mime_type = str;
+    if (str.size() >= Camera::lazy_suffix.size() &&
+        str.compare(str.size() - Camera::lazy_suffix.size(),
+                    Camera::lazy_suffix.size(),
+                    Camera::lazy_suffix) == 0) {
+        mime_type = mime_type.substr(0, mime_type.length() - Camera::lazy_suffix.length());
+    }
+    return mime_type;
+}
+
+std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format format) {
+    switch (format) {
+        case viam::component::camera::v1::FORMAT_RAW_RGBA:
+            return "image/vnd.viam.rgba";
+        case viam::component::camera::v1::FORMAT_RAW_DEPTH:
+            return "image/vnd.viam.dep";
+        case viam::component::camera::v1::FORMAT_JPEG:
+            return "image/jpeg";
+        case viam::component::camera::v1::FORMAT_PNG:
+            return "image/png";
+        default:
+            return "";
+    }
+}
+
+::viam::component::camera::v1::Format Camera::MIME_string_to_format(std::string mime_string) {
+    if (mime_string == "image/vnd.viam.rgba") {
+        return viam::component::camera::v1::FORMAT_RAW_RGBA;
+    } else if (mime_string == "image/vnd.viam.dep") {
+        return viam::component::camera::v1::FORMAT_RAW_DEPTH;
+    } else if (mime_string == "image/jpeg") {
+        return viam::component::camera::v1::FORMAT_JPEG;
+    } else if (mime_string == "image/png") {
+        return viam::component::camera::v1::FORMAT_PNG;
+    } else {
+        return viam::component::camera::v1::FORMAT_UNSPECIFIED;
+    }
+}
+
+std::chrono::system_clock::time_point Camera::timestamp_to_time_pt(
+    const google::protobuf::Timestamp& timestamp) {
+    std::chrono::seconds seconds(timestamp.seconds());
+    std::chrono::nanoseconds nanos(timestamp.nanos());
+    return std::chrono::system_clock::time_point(
+        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+}
+
+google::protobuf::Timestamp Camera::time_pt_to_timestamp(
+    const std::chrono::system_clock::time_point& time_pt) {
+    std::chrono::seconds duration_s =
+        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
+    std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
+    google::protobuf::Timestamp timestamp;
+    timestamp.set_seconds(duration_s.count());
+    timestamp.set_nanos(duration_ns.count());
+    return timestamp;
+}
+
 std::vector<double> repeated_field_to_vector(const google::protobuf::RepeatedField<double>& f) {
     std::vector<double> v(f.begin(), f.end());
     return v;
@@ -73,33 +130,6 @@ Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageRespon
     return raw_image;
 }
 
-// helper function to replace every protobuf format enum with a MIME type string
-std::string format_to_MIME_string(viam::component::camera::v1::Format format) {
-    switch (format) {
-        case viam::component::camera::v1::FORMAT_RAW_RGBA:
-            return "image/vnd.viam.rgba";
-        case viam::component::camera::v1::FORMAT_RAW_DEPTH:
-            return "image/vnd.viam.dep";
-        case viam::component::camera::v1::FORMAT_JPEG:
-            return "image/jpeg";
-        case viam::component::camera::v1::FORMAT_PNG:
-            return "image/png";
-        case viam::component::camera::v1::FORMAT_UNSPECIFIED:
-            return "";
-        default:
-            return "";
-    }
-}
-
-// Convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point
-std::chrono::system_clock::time_point timestamp_to_time_pt(
-    const google::protobuf::Timestamp& timestamp) {
-    std::chrono::seconds seconds(timestamp.seconds());
-    std::chrono::nanoseconds nanos(timestamp.nanos());
-    return std::chrono::system_clock::time_point(
-        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
-}
-
 Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImagesResponse proto) {
     Camera::image_collection image_collection;
     std::vector<Camera::raw_image> images;
@@ -112,7 +142,7 @@ Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImag
         raw_image.source_name = img.source_name();
         images.push_back(raw_image);
     }
-    image_collection.images = images;
+    image_collection.images = std::move(images);
     image_collection.captured_at = timestamp_to_time_pt(proto.response_metadata().captured_at());
     return image_collection;
 }

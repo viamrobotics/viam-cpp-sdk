@@ -4,6 +4,7 @@
 #pragma once
 
 #include <bitset>
+#include <chrono>
 #include <string>
 #include <vector>
 
@@ -82,7 +83,7 @@ class Camera : public Component {
     const static std::string lazy_suffix;
 
     /// @struct raw_image
-    /// @brief the raw bytes and mime type of an image.
+    /// @brief the raw bytes, mime type of an image, and name of the source that produced it.
     // TODO: update documentaiton to show how to deserialize a `raw_image`
     struct raw_image {
         std::string mime_type;
@@ -102,6 +103,23 @@ class Camera : public Component {
 
     /// @brief Creates a `Camera` `API`.
     static API static_api();
+
+    /// @brief remove any extra suffix's from the mime type string.
+    static std::string normalize_mime_type(const std::string& str);
+
+    /// @brief convert a protobuf format enum with a MIME type string.
+    static std::string format_to_MIME_string(viam::component::camera::v1::Format format);
+
+    /// @brief convert a MIME type string with a protobuf format enum.
+    static viam::component::camera::v1::Format MIME_string_to_format(std::string mime_string);
+
+    /// @brief convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point.
+    static std::chrono::system_clock::time_point timestamp_to_time_pt(
+        const google::protobuf::Timestamp& timestamp);
+
+    /// @brief convert a std::chrono::system_clock::time_point to a google::protobuf::Timestamp.
+    static google::protobuf::Timestamp time_pt_to_timestamp(
+        const std::chrono::system_clock::time_point& time_pt);
 
     /// @brief Creates a `raw_image` struct from its proto representation.
     static raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);

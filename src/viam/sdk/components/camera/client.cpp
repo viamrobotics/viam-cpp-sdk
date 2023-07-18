@@ -21,17 +21,6 @@ CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> chan
       stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-std::string normalize_mime_type(const std::string& str) {
-    std::string mime_type = str;
-    if (str.size() >= Camera::lazy_suffix.size() &&
-        str.compare(str.size() - Camera::lazy_suffix.size(),
-                    Camera::lazy_suffix.size(),
-                    Camera::lazy_suffix) == 0) {
-        mime_type = mime_type.substr(0, mime_type.length() - Camera::lazy_suffix.length());
-    }
-    return mime_type;
-}
-
 AttributeMap CameraClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
@@ -49,7 +38,7 @@ Camera::raw_image CameraClient::get_image(std::string mime_type) {
     viam::component::camera::v1::GetImageResponse resp;
     grpc::ClientContext ctx;
 
-    normalize_mime_type(mime_type);
+    Camera::normalize_mime_type(mime_type);
 
     *req.mutable_mime_type() = mime_type;
     *req.mutable_name() = this->name();
