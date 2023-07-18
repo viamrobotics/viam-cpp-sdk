@@ -242,7 +242,7 @@ int main(int argc, char* argv[]) try {
         // first signal is just silence, and the second is just noise.
         const std::vector<float> silence(15600, 0.0);
         const std::vector<float> noise = [&silence]() {
-            std::vector temp{silence};
+            std::vector<float> temp{silence};
             std::random_device seed;
             std::uniform_real_distribution<float> dist{-1.0, 1.0};
             std::generate(begin(temp), end(temp), [&dist, e = std::mt19937(seed())]() mutable {
@@ -387,8 +387,11 @@ int main(int argc, char* argv[]) try {
     std::cout << argv[0] << ": "
               << "Failed: a std::exception was thrown: `" << ex.what() << "``" << std::endl;
     return EXIT_FAILURE;
+} catch (const std::string& ex) {
+    std::cout << argv[0] << ": "
+              << "Failed: a std::string was thrown: `" << ex << "``" << std::endl;
 } catch (...) {
     std::cout << argv[0] << ": "
-              << "Failed: an unknown excetion was thrown" << std::endl;
+              << "Failed: an unknown exception was thrown" << std::endl;
     return EXIT_FAILURE;
 }
