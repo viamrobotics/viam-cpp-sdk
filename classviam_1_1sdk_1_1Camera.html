@@ -107,6 +107,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html">distortion_parameters</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The distortion parameters of the camera.  <a href="structviam_1_1sdk_1_1Camera_1_1distortion__parameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a collection of images that were collected from a camera all at the same time.  <a href="structviam_1_1sdk_1_1Camera_1_1image__collection.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1intrinsic__parameters.html">intrinsic_parameters</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a></td></tr>
@@ -116,7 +119,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The camera's supported features and settings.  <a href="structviam_1_1sdk_1_1Camera_1_1properties.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the raw bytes and mime type of an image.  <a href="structviam_1_1sdk_1_1Camera_1_1raw__image.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the raw bytes, mime type of an image, and name of the source that produced it.  <a href="structviam_1_1sdk_1_1Camera_1_1raw__image.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -127,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae7e53a2c57e939869a29dae5247a3c21"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Camera.html#ae7e53a2c57e939869a29dae5247a3c21">get_image</a> (std::string mime_type)=0</td></tr>
 <tr class="memdesc:ae7e53a2c57e939869a29dae5247a3c21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next image from the camera as a raw image.  <br /></td></tr>
 <tr class="separator:ae7e53a2c57e939869a29dae5247a3c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69526705dcf1559c99f89a84aa38f4a0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Camera.html#a69526705dcf1559c99f89a84aa38f4a0">get_images</a> ()=0</td></tr>
+<tr class="memdesc:a69526705dcf1559c99f89a84aa38f4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next images from the camera as a vector of raw images with names and metadata.  <br /></td></tr>
+<tr class="separator:a69526705dcf1559c99f89a84aa38f4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaca4a180545ee6ae16c2fac6956961b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Camera.html#acaca4a180545ee6ae16c2fac6956961b">get_point_cloud</a> (std::string mime_type)=0</td></tr>
 <tr class="memdesc:acaca4a180545ee6ae16c2fac6956961b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code> from the camera.  <br /></td></tr>
 <tr class="separator:acaca4a180545ee6ae16c2fac6956961b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,10 +189,34 @@ static std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceRegis
 static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><b>static_api</b> ()</td></tr>
 <tr class="memdesc:a67008ae21a9e3cbc81ae5c0481b984e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="classviam_1_1sdk_1_1Camera.html" title="A Camera represents any physical hardware that can capture frames.">Camera</a></code> <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code>. <br /></td></tr>
 <tr class="separator:a67008ae21a9e3cbc81ae5c0481b984e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1347ee02a13c6027cc7cb166de3b56b"><td class="memItemLeft" align="right" valign="top"><a id="ae1347ee02a13c6027cc7cb166de3b56b" name="ae1347ee02a13c6027cc7cb166de3b56b"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>normalize_mime_type</b> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:ae1347ee02a13c6027cc7cb166de3b56b"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove any extra suffix's from the mime type string. <br /></td></tr>
+<tr class="separator:ae1347ee02a13c6027cc7cb166de3b56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af352e8696f1cc9fffaffd990d63ad63e"><td class="memItemLeft" align="right" valign="top"><a id="af352e8696f1cc9fffaffd990d63ad63e" name="af352e8696f1cc9fffaffd990d63ad63e"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>format_to_MIME_string</b> (viam::component::camera::v1::Format format)</td></tr>
+<tr class="memdesc:af352e8696f1cc9fffaffd990d63ad63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a protobuf format enum with a MIME type string. <br /></td></tr>
+<tr class="separator:af352e8696f1cc9fffaffd990d63ad63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a393d46f2920e7461f7ea0a25825f3c0b"><td class="memItemLeft" align="right" valign="top"><a id="a393d46f2920e7461f7ea0a25825f3c0b" name="a393d46f2920e7461f7ea0a25825f3c0b"></a>
+static viam::component::camera::v1::Format&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_string_to_format</b> (std::string mime_string)</td></tr>
+<tr class="memdesc:a393d46f2920e7461f7ea0a25825f3c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a MIME type string with a protobuf format enum. <br /></td></tr>
+<tr class="separator:a393d46f2920e7461f7ea0a25825f3c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6b98485417447853bc8bf09719c1cb"><td class="memItemLeft" align="right" valign="top"><a id="a4a6b98485417447853bc8bf09719c1cb" name="a4a6b98485417447853bc8bf09719c1cb"></a>
+static std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><b>timestamp_to_time_pt</b> (const google::protobuf::Timestamp &amp;timestamp)</td></tr>
+<tr class="memdesc:a4a6b98485417447853bc8bf09719c1cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point. <br /></td></tr>
+<tr class="separator:a4a6b98485417447853bc8bf09719c1cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dabccc2898c8fc039f97a8eef0b5304"><td class="memItemLeft" align="right" valign="top"><a id="a4dabccc2898c8fc039f97a8eef0b5304" name="a4dabccc2898c8fc039f97a8eef0b5304"></a>
+static google::protobuf::Timestamp&#160;</td><td class="memItemRight" valign="bottom"><b>time_pt_to_timestamp</b> (const std::chrono::system_clock::time_point &amp;time_pt)</td></tr>
+<tr class="memdesc:a4dabccc2898c8fc039f97a8eef0b5304"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert a std::chrono::system_clock::time_point to a google::protobuf::Timestamp. <br /></td></tr>
+<tr class="separator:a4dabccc2898c8fc039f97a8eef0b5304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e3c04843f154afa8f7d7e889e840ada"><td class="memItemLeft" align="right" valign="top"><a id="a9e3c04843f154afa8f7d7e889e840ada" name="a9e3c04843f154afa8f7d7e889e840ada"></a>
 static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (viam::component::camera::v1::GetImageResponse proto)</td></tr>
-<tr class="memdesc:a9e3c04843f154afa8f7d7e889e840ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes and mime type of an image.">raw_image</a></code> struct from its proto representation. <br /></td></tr>
+<tr class="memdesc:a9e3c04843f154afa8f7d7e889e840ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code> struct from its proto representation. <br /></td></tr>
 <tr class="separator:a9e3c04843f154afa8f7d7e889e840ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50cd8b38b286fa5370d0f1b8f86b0528"><td class="memItemLeft" align="right" valign="top"><a id="a50cd8b38b286fa5370d0f1b8f86b0528" name="a50cd8b38b286fa5370d0f1b8f86b0528"></a>
+static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (viam::component::camera::v1::GetImagesResponse proto)</td></tr>
+<tr class="memdesc:a50cd8b38b286fa5370d0f1b8f86b0528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html" title="a collection of images that were collected from a camera all at the same time.">image_collection</a></code> struct from its proto representation. <br /></td></tr>
+<tr class="separator:a50cd8b38b286fa5370d0f1b8f86b0528"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3663a976f114303a19ab0236d84c4c9a"><td class="memItemLeft" align="right" valign="top"><a id="a3663a976f114303a19ab0236d84c4c9a" name="a3663a976f114303a19ab0236d84c4c9a"></a>
 static <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">point_cloud</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (viam::component::camera::v1::GetPointCloudResponse proto)</td></tr>
 <tr class="memdesc:a3663a976f114303a19ab0236d84c4c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html" title="The points and mime type of a point cloud.">point_cloud</a></code> struct from its proto representation. <br /></td></tr>
@@ -363,9 +393,39 @@ Protected Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The frame as a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes and mime type of an image.">raw_image</a></code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The frame as a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code>. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a894535c1b6fe42faa121cc021b8a48e0">viam::sdk::CameraClient</a>.</p>
+
+</div>
+</div>
+<a id="a69526705dcf1559c99f89a84aa38f4a0" name="a69526705dcf1559c99f89a84aa38f4a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69526705dcf1559c99f89a84aa38f4a0">&#9670;&#160;</a></span>get_images()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a> viam::sdk::Camera::get_images </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the next images from the camera as a vector of raw images with names and metadata. </p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of raw_images and associated response metadata. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1CameraClient.html#a8b6119f4697b4ed57fc9b809211525d7">viam::sdk::CameraClient</a>.</p>
 
 </div>
 </div>

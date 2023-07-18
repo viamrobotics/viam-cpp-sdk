@@ -83,6 +83,7 @@ $(function() {
 <p>Defines a <code>Camera</code> component.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;bitset&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;viam/api/common/v1/common.pb.h&gt;</code><br />
@@ -115,7 +116,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The points and mime type of a point cloud.  <a href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">viam::sdk::Camera::raw_image</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the raw bytes and mime type of an image.  <a href="structviam_1_1sdk_1_1Camera_1_1raw__image.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the raw bytes, mime type of an image, and name of the source that produced it.  <a href="structviam_1_1sdk_1_1Camera_1_1raw__image.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">viam::sdk::Camera::image_collection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a collection of images that were collected from a camera all at the same time.  <a href="structviam_1_1sdk_1_1Camera_1_1image__collection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -123,6 +127,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8e7bb647a34604da949d6ebcc19865e3"><td class="memItemLeft" align="right" valign="top"><a id="a8e7bb647a34604da949d6ebcc19865e3" name="a8e7bb647a34604da949d6ebcc19865e3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::operator==</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">Camera::raw_image</a> &amp;lhs, const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">Camera::raw_image</a> &amp;rhs)</td></tr>
 <tr class="separator:a8e7bb647a34604da949d6ebcc19865e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e7e947293fa45e8dc60a8fb16ce707"><td class="memItemLeft" align="right" valign="top"><a id="ab9e7e947293fa45e8dc60a8fb16ce707" name="ab9e7e947293fa45e8dc60a8fb16ce707"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::operator==</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">Camera::image_collection</a> &amp;lhs, const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">Camera::image_collection</a> &amp;rhs)</td></tr>
+<tr class="separator:ab9e7e947293fa45e8dc60a8fb16ce707"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1864bf7df0e1d523da7d561bce06706e"><td class="memItemLeft" align="right" valign="top"><a id="a1864bf7df0e1d523da7d561bce06706e" name="a1864bf7df0e1d523da7d561bce06706e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::operator==</b> (const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">Camera::point_cloud</a> &amp;lhs, const <a class="el" href="structviam_1_1sdk_1_1Camera_1_1point__cloud.html">Camera::point_cloud</a> &amp;rhs)</td></tr>
 <tr class="separator:a1864bf7df0e1d523da7d561bce06706e"><td class="memSeparator" colspan="2">&#160;</td></tr>
