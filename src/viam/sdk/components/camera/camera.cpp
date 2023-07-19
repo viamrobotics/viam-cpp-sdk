@@ -93,25 +93,6 @@ std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format fo
     return viam::component::camera::v1::FORMAT_UNSPECIFIED;
 }
 
-std::chrono::time_point<long long, std::chrono::nanoseconds> Camera::timestamp_to_time_pt(
-    const google::protobuf::Timestamp& timestamp) {
-    const std::chrono::seconds seconds(timestamp.seconds());
-    const std::chrono::nanoseconds nanos(timestamp.nanos());
-    return std::chrono::time_point<long long, std::chrono::nanoseconds>(
-        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
-}
-
-google::protobuf::Timestamp Camera::time_pt_to_timestamp(
-    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt) {
-    const std::chrono::seconds duration_s =
-        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
-    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
-    google::protobuf::Timestamp timestamp;
-    timestamp.set_seconds(duration_s.count());
-    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
-    return timestamp;
-}
-
 std::vector<double> repeated_field_to_vector(const google::protobuf::RepeatedField<double>& f) {
     std::vector<double> v(f.begin(), f.end());
     return v;
@@ -145,7 +126,7 @@ Camera::image_collection Camera::from_proto(viam::component::camera::v1::GetImag
         images.push_back(raw_image);
     }
     image_collection.images = std::move(images);
-    image_collection.captured_at = timestamp_to_time_pt(proto.response_metadata().captured_at());
+    image_collection.metadata = response_metadata::from_proto(proto.response_metadata());
     return image_collection;
 }
 
@@ -231,7 +212,7 @@ bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs) {
 }
 
 bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs) {
-    return lhs.images == rhs.images && lhs.captured_at == rhs.captured_at;
+    return lhs.images == rhs.images && lhs.metadata == rhs.metadata;
 }
 
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs) {

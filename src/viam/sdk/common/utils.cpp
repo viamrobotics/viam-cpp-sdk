@@ -57,6 +57,38 @@ std::string bytes_to_string(const std::vector<unsigned char>& b) {
     return img_string;
 };
 
+std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
+    const google::protobuf::Timestamp& timestamp) {
+    const std::chrono::seconds seconds(timestamp.seconds());
+    const std::chrono::nanoseconds nanos(timestamp.nanos());
+    return std::chrono::time_point<long long, std::chrono::nanoseconds>(
+        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+}
+
+google::protobuf::Timestamp time_pt_to_timestamp(
+    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt) {
+    const std::chrono::seconds duration_s =
+        std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
+    const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
+    google::protobuf::Timestamp timestamp;
+    timestamp.set_seconds(duration_s.count());
+    timestamp.set_nanos(static_cast<int32_t>(duration_ns.count()));
+    return timestamp;
+}
+
+response_metadata response_metadata::from_proto(const viam::common::v1::ResponseMetadata& proto) {
+    response_metadata metadata;
+    metadata.captured_at = timestamp_to_time_pt(proto.captured_at());
+    return metadata;
+}
+
+viam::common::v1::ResponseMetadata response_metadata::to_proto(const response_metadata& metadata) {
+    viam::common::v1::ResponseMetadata proto;
+    google::protobuf::Timestamp ts = time_pt_to_timestamp(metadata.captured_at);
+    *proto.mutable_captured_at() = std::move(ts);
+    return proto;
+}
+
 std::chrono::microseconds from_proto(const google::protobuf::Duration& proto) {
     namespace sc = std::chrono;
     const sc::seconds seconds_part{proto.seconds()};
@@ -92,6 +124,10 @@ void set_logger_severity_from_args(int argc, char** argv) {
         return;
     }
     boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
+}
+
+bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
+    return lhs.captured_at == rhs.captured_at;
 }
 
 }  // namespace sdk

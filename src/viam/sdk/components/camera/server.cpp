@@ -87,9 +87,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         proto_image.set_image(img_string);
         *response->mutable_images()->Add() = std::move(proto_image);
     }
-    viam::common::v1::ResponseMetadata* resp_metadata = response->mutable_response_metadata();
-    google::protobuf::Timestamp ts = Camera::time_pt_to_timestamp(image_coll.captured_at);
-    *resp_metadata->mutable_captured_at() = std::move(ts);
+    *response->mutable_response_metadata() = response_metadata::to_proto(image_coll.metadata);
 
     return ::grpc::Status();
 }
