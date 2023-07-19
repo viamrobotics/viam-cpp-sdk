@@ -93,16 +93,16 @@ std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format fo
     return viam::component::camera::v1::FORMAT_UNSPECIFIED;
 }
 
-std::chrono::system_clock::time_point Camera::timestamp_to_time_pt(
+std::chrono::time_point<long long, std::chrono::nanoseconds> Camera::timestamp_to_time_pt(
     const google::protobuf::Timestamp& timestamp) {
     const std::chrono::seconds seconds(timestamp.seconds());
     const std::chrono::nanoseconds nanos(timestamp.nanos());
-    return std::chrono::system_clock::time_point(
+    return std::chrono::time_point<long long, std::chrono::nanoseconds>(
         std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
 }
 
 google::protobuf::Timestamp Camera::time_pt_to_timestamp(
-    const std::chrono::system_clock::time_point& time_pt) {
+    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt) {
     const std::chrono::seconds duration_s =
         std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
     const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;
