@@ -1,4 +1,3 @@
-#include <chrono>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
