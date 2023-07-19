@@ -26,10 +26,31 @@ install(
   COMPONENT examples
 )
 
+option(VIAMCPPSDK_BUILD_TFLITE_EXAMPLE_MODULE "Select whether to build the tflite module (builds tflite too!)" OFF)
 
-find_path(TFLITE_INCLUDE_PATH "tensorflow/lite/c/c_api.h")
-find_library(TFLITE_LIBRARY "tensorflowlite_c")
-if (EXISTS ${TFLITE_INCLUDE_PATH} AND EXISTS ${TFLITE_LIBRARY})
+if (VIAMCPPSDK_BUILD_TFLITE_EXAMPLE_MODULE)
+
+  # In theory, this should make the change of `BUILD_SHARED_LIBS`
+  # scoped just to the tensorflow build. We always want to build
+  # tensorflow statically. If it is built dynamically, then we need to
+  # install it. However, that requires building with
+  # `TFLITE_ENABLE_INSTALL` in order to ensure that the dynamic
+  # libraries get installed to the instalation root, which seems to
+  # just not really work. Yes, this feels bad.
+  function(fetchcontent_tflite)
+    set(BUILD_SHARED_LIBS OFF)
+    set(TFLITE_C_BUILD_SHARED_LIBS OFF)
+    FetchContent_Declare(
+      tensorflow
+      GIT_REPOSITORY https://github.com/tensorflow/tensorflow.git
+      GIT_PROGRESS TRUE
+      GIT_TAG v2.13.0
+      SOURCE_SUBDIR tensorflow/lite/c
+    )
+    FetchContent_MakeAvailable(tensorflow)
+  endfunction()
+  fetchcontent_tflite()
+
   add_executable(example_mlmodelservice_tflite
     example_mlmodelservice_tflite.cpp
   )
@@ -44,7 +65,5 @@ if (EXISTS ${TFLITE_INCLUDE_PATH} AND EXISTS ${TFLITE_LIBRARY})
     TARGETS example_mlmodelservice_tflite
     COMPONENT examples
   )
-else()
-  message(WARNING "Failed to find tflite C headers/library: tflite example module will not be built")
-  message(WARNING "If you have tflite in a non-standard location, add -DCMAKE_PREFIX_PATH=/path/to/tflite to your CMake invocation")
+
 endif()

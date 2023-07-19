@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <condition_variable>
 #include <fstream>
 #include <iostream>
 #include <mutex>
@@ -80,7 +81,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
     grpc::StatusCode stop() noexcept final {
         using std::swap;
         try {
-            std::scoped_lock<std::mutex> lock(state_lock_);
+            std::lock_guard<std::mutex> lock(state_lock_);
             if (!stopped_) {
                 stopped_ = true;
                 std::shared_ptr<state> state;
@@ -126,7 +127,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // release the lock, and then notify any callers waiting on
         // reconfiguration to complete.
         {
-            std::scoped_lock<std::mutex> lock(state_lock_);
+            std::lock_guard<std::mutex> lock(state_lock_);
             check_stopped_inlock_();
             swap(state_, state);
         }
@@ -583,7 +584,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             : dependencies(std::move(dependencies)), configuration(std::move(configuration)) {}
 
         // The dependencies and configuration we were given at
-        // constuction / reconfiguration.
+        // construction / reconfiguration.
         vsdk::Dependencies dependencies;
         vsdk::ResourceConfig configuration;
 
