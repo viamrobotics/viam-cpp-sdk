@@ -119,18 +119,34 @@ $(function() {
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>std::vector&lt;unsigned char&gt; string_to_bytes(std::string <span class="keyword">const</span>&amp; s);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>std::string bytes_to_string(std::vector&lt;unsigned char&gt; <span class="keyword">const</span>&amp; b);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structviam_1_1sdk_1_1response__metadata.html">   44</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::chrono::time_point&lt;long long, std::chrono::nanoseconds&gt; captured_at;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>std::chrono::microseconds from_proto(<span class="keyword">const</span> google::protobuf::Duration&amp; proto);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>google::protobuf::Duration to_proto(<span class="keyword">const</span> std::chrono::microseconds&amp; duration);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> set_logger_severity_from_args(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">static</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a> from_proto(<span class="keyword">const</span> viam::common::v1::ResponseMetadata&amp; proto);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">static</span> viam::common::v1::ResponseMetadata to_proto(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a>&amp; metadata);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a>&amp; rhs);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>std::chrono::time_point&lt;long long, std::chrono::nanoseconds&gt; timestamp_to_time_pt(</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">const</span> google::protobuf::Timestamp&amp; timestamp);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>google::protobuf::Timestamp time_pt_to_timestamp(</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> std::chrono::time_point&lt;long long, std::chrono::nanoseconds&gt;&amp; time_pt);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>std::vector&lt;unsigned char&gt; string_to_bytes(std::string <span class="keyword">const</span>&amp; s);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>std::string bytes_to_string(std::vector&lt;unsigned char&gt; <span class="keyword">const</span>&amp; b);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>std::chrono::microseconds from_proto(<span class="keyword">const</span> google::protobuf::Duration&amp; proto);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>google::protobuf::Duration to_proto(<span class="keyword">const</span> std::chrono::microseconds&amp; duration);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> set_logger_severity_from_args(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceNameEqual_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceNameEqual.html">viam::sdk::ResourceNameEqual</a></div><div class="ttdef"><b>Definition</b> utils.hpp:34</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceNameHasher_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceNameHasher.html">viam::sdk::ResourceNameHasher</a></div><div class="ttdef"><b>Definition</b> utils.hpp:28</div></div>
+<div class="ttc" id="astructviam_1_1sdk_1_1response__metadata_html"><div class="ttname"><a href="structviam_1_1sdk_1_1response__metadata.html">viam::sdk::response_metadata</a></div><div class="ttdef"><b>Definition</b> utils.hpp:44</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

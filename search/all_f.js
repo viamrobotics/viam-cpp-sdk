@@ -29,7 +29,8 @@ var searchData=
   ['resources_26',['resources',['../classviam_1_1sdk_1_1ResourceManager.html#a3685e45eba4a51f6bb666049d3cc5c51',1,'viam::sdk::ResourceManager']]],
   ['resourceserver_27',['ResourceServer',['../classviam_1_1sdk_1_1ResourceServer.html',1,'viam::sdk']]],
   ['resourcetype_28',['ResourceType',['../classviam_1_1sdk_1_1ResourceType.html',1,'viam::sdk']]],
-  ['robotclient_29',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
-  ['robotservice_5f_30',['RobotService_',['../classviam_1_1sdk_1_1RobotService__.html',1,'viam::sdk']]],
-  ['rpcsubtype_31',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
+  ['response_5fmetadata_29',['response_metadata',['../structviam_1_1sdk_1_1response__metadata.html',1,'viam::sdk']]],
+  ['robotclient_30',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
+  ['robotservice_5f_31',['RobotService_',['../classviam_1_1sdk_1_1RobotService__.html',1,'viam::sdk']]],
+  ['rpcsubtype_32',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
 ];

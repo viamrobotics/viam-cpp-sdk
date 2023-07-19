@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: viam::sdk::Camera::image_collection Struct Reference</title>
+<title>Viam C++ SDK: viam::sdk::response_metadata Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,35 +69,35 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1Camera.html">Camera</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a></li>  </ul>
+<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structviam_1_1sdk_1_1Camera_1_1image__collection-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">viam::sdk::Camera::image_collection Struct Reference</div></div>
+<a href="structviam_1_1sdk_1_1response__metadata-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">viam::sdk::response_metadata Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>a collection of images that were collected from a camera all at the same time.  
- <a href="structviam_1_1sdk_1_1Camera_1_1image__collection.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="camera_8hpp_source.html">camera.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a1b5fc0a46ac58948a45006af23eff73c"><td class="memItemLeft" align="right" valign="top"><a id="a1b5fc0a46ac58948a45006af23eff73c" name="a1b5fc0a46ac58948a45006af23eff73c"></a>
+static <a class="el" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const viam::common::v1::ResponseMetadata &amp;proto)</td></tr>
+<tr class="separator:a1b5fc0a46ac58948a45006af23eff73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66770abd3b5249bfe9e8092ed14c46b"><td class="memItemLeft" align="right" valign="top"><a id="ab66770abd3b5249bfe9e8092ed14c46b" name="ab66770abd3b5249bfe9e8092ed14c46b"></a>
+static viam::common::v1::ResponseMetadata&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (const <a class="el" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a> &amp;metadata)</td></tr>
+<tr class="separator:ab66770abd3b5249bfe9e8092ed14c46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a789d4174c248a934357c965f131dab8f"><td class="memItemLeft" align="right" valign="top"><a id="a789d4174c248a934357c965f131dab8f" name="a789d4174c248a934357c965f131dab8f"></a>
-std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>images</b></td></tr>
-<tr class="separator:a789d4174c248a934357c965f131dab8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4c2310677b56ec3ecf48c09b3fc740a"><td class="memItemLeft" align="right" valign="top"><a id="ab4c2310677b56ec3ecf48c09b3fc740a" name="ab4c2310677b56ec3ecf48c09b3fc740a"></a>
-<a class="el" href="structviam_1_1sdk_1_1response__metadata.html">response_metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><b>metadata</b></td></tr>
-<tr class="separator:ab4c2310677b56ec3ecf48c09b3fc740a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdc1feefd209ba1bf592045e65929b1a"><td class="memItemLeft" align="right" valign="top"><a id="afdc1feefd209ba1bf592045e65929b1a" name="afdc1feefd209ba1bf592045e65929b1a"></a>
+std::chrono::time_point&lt; long long, std::chrono::nanoseconds &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>captured_at</b></td></tr>
+<tr class="separator:afdc1feefd209ba1bf592045e65929b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>a collection of images that were collected from a camera all at the same time. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/viam/sdk/components/camera/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/viam/sdk/common/<a class="el" href="utils_8hpp_source.html">utils.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
