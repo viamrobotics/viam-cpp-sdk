@@ -122,6 +122,15 @@ BOOST_AUTO_TEST_CASE(test_get_images_service) {
     BOOST_CHECK(resp.images()[0].source_name() == images.images[0].source_name);
     BOOST_CHECK(resp.images()[1].source_name() == images.images[1].source_name);
 
+    auto converted_proto_timestamp = Camera::time_pt_to_timestamp(images.captured_at);
+    BOOST_CHECK(resp.response_metadata().captured_at().seconds() ==
+                converted_proto_timestamp.seconds());
+    BOOST_CHECK(resp.response_metadata().captured_at().nanos() ==
+                converted_proto_timestamp.nanos());
+
+    auto tp_from_proto = Camera::timestamp_to_time_pt(resp.response_metadata().captured_at());
+    BOOST_CHECK(tp_from_proto == images.captured_at);
+
     std::vector<unsigned char> bytes0 = string_to_bytes(resp.images()[0].image());
     BOOST_CHECK(bytes0 == images.images[0].bytes);
     std::vector<unsigned char> bytes1 = string_to_bytes(resp.images()[1].image());

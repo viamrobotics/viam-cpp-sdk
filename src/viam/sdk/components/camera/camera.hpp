@@ -95,7 +95,7 @@ class Camera : public Component {
     /// @brief a collection of images that were collected from a camera all at the same time.
     struct image_collection {
         std::vector<raw_image> images;
-        std::chrono::system_clock::time_point captured_at;
+        std::chrono::time_point<long long, std::chrono::nanoseconds> captured_at;
     };
 
     /// @brief Creates a `ResourceRegistration` for the `Camera` component.
@@ -114,12 +114,12 @@ class Camera : public Component {
     static viam::component::camera::v1::Format MIME_string_to_format(std::string mime_string);
 
     /// @brief convert a google::protobuf::Timestamp to std::chrono::system_clock::time_point.
-    static std::chrono::system_clock::time_point timestamp_to_time_pt(
+    static std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
         const google::protobuf::Timestamp& timestamp);
 
     /// @brief convert a std::chrono::system_clock::time_point to a google::protobuf::Timestamp.
     static google::protobuf::Timestamp time_pt_to_timestamp(
-        const std::chrono::system_clock::time_point& time_pt);
+        const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt);
 
     /// @brief Creates a `raw_image` struct from its proto representation.
     static raw_image from_proto(viam::component::camera::v1::GetImageResponse proto);
