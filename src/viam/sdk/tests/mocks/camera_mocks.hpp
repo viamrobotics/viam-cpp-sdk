@@ -18,6 +18,7 @@ class MockCamera : public Camera {
    public:
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
+    image_collection get_images() override;
     point_cloud get_point_cloud(std::string mime_type) override;
     std::vector<GeometryConfig> get_geometries() override;
     properties get_properties() override;
@@ -29,12 +30,14 @@ class MockCamera : public Camera {
     Camera::distortion_parameters distortion_parameters_;
     Camera::properties camera_properties_;
     Camera::raw_image image_;
+    Camera::image_collection images_;
     Camera::point_cloud pc_;
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;
     std::vector<GeometryConfig> geometries_;
 };
 
 Camera::raw_image fake_raw_image();
+Camera::image_collection fake_raw_images();
 Camera::point_cloud fake_point_cloud();
 Camera::intrinsic_parameters fake_intrinsic_parameters();
 Camera::distortion_parameters fake_distortion_parameters();
@@ -46,6 +49,10 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
     ::grpc::Status GetImage(::grpc::ClientContext* context,
                             const ::viam::component::camera::v1::GetImageRequest& request,
                             ::viam::component::camera::v1::GetImageResponse* response) override;
+
+    ::grpc::Status GetImages(::grpc::ClientContext* context,
+                             const ::viam::component::camera::v1::GetImagesRequest& request,
+                             ::viam::component::camera::v1::GetImagesResponse* response) override;
 
     ::grpc::Status RenderFrame(::grpc::ClientContext* context,
                                const ::viam::component::camera::v1::RenderFrameRequest& request,
@@ -82,6 +89,18 @@ class MockCameraStub : public viam::component::camera::v1::CameraService::StubIn
     PrepareAsyncGetImageRaw(::grpc::ClientContext* context,
                             const ::viam::component::camera::v1::GetImageRequest& request,
                             ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("unimplemented");
+    };
+    ::grpc::ClientAsyncResponseReaderInterface<::viam::component::camera::v1::GetImagesResponse>*
+    AsyncGetImagesRaw(::grpc::ClientContext* context,
+                      const ::viam::component::camera::v1::GetImagesRequest& request,
+                      ::grpc::CompletionQueue* cq) override {
+        throw std::runtime_error("unimplemented");
+    };
+    ::grpc::ClientAsyncResponseReaderInterface<::viam::component::camera::v1::GetImagesResponse>*
+    PrepareAsyncGetImagesRaw(::grpc::ClientContext* context,
+                             const ::viam::component::camera::v1::GetImagesRequest& request,
+                             ::grpc::CompletionQueue* cq) override {
         throw std::runtime_error("unimplemented");
     };
     ::grpc::ClientAsyncResponseReaderInterface<::google::api::HttpBody>* AsyncRenderFrameRaw(

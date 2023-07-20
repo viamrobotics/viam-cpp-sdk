@@ -156,6 +156,9 @@ extern RobotConfigDefaultTypeInternal _RobotConfig_default_instance_;
 class ServiceConfig;
 struct ServiceConfigDefaultTypeInternal;
 extern ServiceConfigDefaultTypeInternal _ServiceConfig_default_instance_;
+class SessionsConfig;
+struct SessionsConfigDefaultTypeInternal;
+extern SessionsConfigDefaultTypeInternal _SessionsConfig_default_instance_;
 class Translation;
 struct TranslationDefaultTypeInternal;
 extern TranslationDefaultTypeInternal _Translation_default_instance_;
@@ -197,6 +200,7 @@ template<> ::viam::app::v1::RemoteConfig* Arena::CreateMaybeMessage<::viam::app:
 template<> ::viam::app::v1::ResourceLevelServiceConfig* Arena::CreateMaybeMessage<::viam::app::v1::ResourceLevelServiceConfig>(Arena*);
 template<> ::viam::app::v1::RobotConfig* Arena::CreateMaybeMessage<::viam::app::v1::RobotConfig>(Arena*);
 template<> ::viam::app::v1::ServiceConfig* Arena::CreateMaybeMessage<::viam::app::v1::ServiceConfig>(Arena*);
+template<> ::viam::app::v1::SessionsConfig* Arena::CreateMaybeMessage<::viam::app::v1::SessionsConfig>(Arena*);
 template<> ::viam::app::v1::Translation* Arena::CreateMaybeMessage<::viam::app::v1::Translation>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
@@ -2121,6 +2125,7 @@ class NetworkConfig final :
     kBindAddressFieldNumber = 2,
     kTlsCertFileFieldNumber = 3,
     kTlsKeyFileFieldNumber = 4,
+    kSessionsFieldNumber = 5,
   };
   // string fqdn = 1 [json_name = "fqdn"];
   void clear_fqdn();
@@ -2178,6 +2183,24 @@ class NetworkConfig final :
   std::string* _internal_mutable_tls_key_file();
   public:
 
+  // .viam.app.v1.SessionsConfig sessions = 5 [json_name = "sessions"];
+  bool has_sessions() const;
+  private:
+  bool _internal_has_sessions() const;
+  public:
+  void clear_sessions();
+  const ::viam::app::v1::SessionsConfig& sessions() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::SessionsConfig* release_sessions();
+  ::viam::app::v1::SessionsConfig* mutable_sessions();
+  void set_allocated_sessions(::viam::app::v1::SessionsConfig* sessions);
+  private:
+  const ::viam::app::v1::SessionsConfig& _internal_sessions() const;
+  ::viam::app::v1::SessionsConfig* _internal_mutable_sessions();
+  public:
+  void unsafe_arena_set_allocated_sessions(
+      ::viam::app::v1::SessionsConfig* sessions);
+  ::viam::app::v1::SessionsConfig* unsafe_arena_release_sessions();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.NetworkConfig)
  private:
   class _Internal;
@@ -2189,6 +2212,159 @@ class NetworkConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bind_address_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tls_cert_file_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tls_key_file_;
+  ::viam::app::v1::SessionsConfig* sessions_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SessionsConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.SessionsConfig) */ {
+ public:
+  inline SessionsConfig() : SessionsConfig(nullptr) {}
+  ~SessionsConfig() override;
+  explicit PROTOBUF_CONSTEXPR SessionsConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SessionsConfig(const SessionsConfig& from);
+  SessionsConfig(SessionsConfig&& from) noexcept
+    : SessionsConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline SessionsConfig& operator=(const SessionsConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SessionsConfig& operator=(SessionsConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SessionsConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SessionsConfig* internal_default_instance() {
+    return reinterpret_cast<const SessionsConfig*>(
+               &_SessionsConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(SessionsConfig& a, SessionsConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SessionsConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SessionsConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SessionsConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SessionsConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SessionsConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SessionsConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SessionsConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.SessionsConfig";
+  }
+  protected:
+  explicit SessionsConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHeartbeatWindowFieldNumber = 1,
+  };
+  // .google.protobuf.Duration heartbeat_window = 1 [json_name = "heartbeatWindow"];
+  bool has_heartbeat_window() const;
+  private:
+  bool _internal_has_heartbeat_window() const;
+  public:
+  void clear_heartbeat_window();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& heartbeat_window() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_heartbeat_window();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_heartbeat_window();
+  void set_allocated_heartbeat_window(::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_heartbeat_window() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_heartbeat_window();
+  public:
+  void unsafe_arena_set_allocated_heartbeat_window(
+      ::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_heartbeat_window();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.SessionsConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -2242,7 +2418,7 @@ class AuthConfig final :
                &_AuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(AuthConfig& a, AuthConfig& b) {
     a.Swap(&b);
@@ -2441,7 +2617,7 @@ class JWKSFile final :
                &_JWKSFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(JWKSFile& a, JWKSFile& b) {
     a.Swap(&b);
@@ -2593,7 +2769,7 @@ class ExternalAuthConfig final :
                &_ExternalAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(ExternalAuthConfig& a, ExternalAuthConfig& b) {
     a.Swap(&b);
@@ -2745,7 +2921,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -2908,7 +3084,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -3116,7 +3292,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -3280,7 +3456,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -3397,7 +3573,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -3573,7 +3749,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -3749,7 +3925,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -3914,7 +4090,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -4090,7 +4266,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -4276,7 +4452,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -4552,7 +4728,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -4859,7 +5035,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -5018,7 +5194,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -5188,7 +5364,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -5264,6 +5440,7 @@ class AgentInfo final :
     kOsFieldNumber = 2,
     kVersionFieldNumber = 4,
     kGitRevisionFieldNumber = 5,
+    kPlatformFieldNumber = 6,
   };
   // repeated string ips = 3 [json_name = "ips"];
   int ips_size() const;
@@ -5345,6 +5522,24 @@ class AgentInfo final :
   std::string* _internal_mutable_git_revision();
   public:
 
+  // optional string platform = 6 [json_name = "platform"];
+  bool has_platform() const;
+  private:
+  bool _internal_has_platform() const;
+  public:
+  void clear_platform();
+  const std::string& platform() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_platform(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_platform();
+  PROTOBUF_NODISCARD std::string* release_platform();
+  void set_allocated_platform(std::string* platform);
+  private:
+  const std::string& _internal_platform() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_platform(const std::string& value);
+  std::string* _internal_mutable_platform();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.AgentInfo)
  private:
   class _Internal;
@@ -5352,12 +5547,14 @@ class AgentInfo final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> ips_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr host_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr os_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr git_revision_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr platform_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
 // -------------------------------------------------------------------
@@ -5410,7 +5607,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -5579,7 +5776,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -5731,7 +5928,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -5879,7 +6076,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -6059,7 +6256,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -6226,7 +6423,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -6343,7 +6540,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -6491,7 +6688,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -6670,7 +6867,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -6850,7 +7047,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -6924,6 +7121,7 @@ class PackageConfig final :
     kNameFieldNumber = 1,
     kPackageFieldNumber = 2,
     kVersionFieldNumber = 3,
+    kTypeFieldNumber = 4,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -6967,6 +7165,20 @@ class PackageConfig final :
   std::string* _internal_mutable_version();
   public:
 
+  // string type = 4 [json_name = "type"];
+  void clear_type();
+  const std::string& type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* type);
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(const std::string& value);
+  std::string* _internal_mutable_type();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.PackageConfig)
  private:
   class _Internal;
@@ -6977,6 +7189,7 @@ class PackageConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr package_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -9748,6 +9961,185 @@ inline void NetworkConfig::set_allocated_tls_key_file(std::string* tls_key_file)
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.NetworkConfig.tls_key_file)
+}
+
+// .viam.app.v1.SessionsConfig sessions = 5 [json_name = "sessions"];
+inline bool NetworkConfig::_internal_has_sessions() const {
+  return this != internal_default_instance() && sessions_ != nullptr;
+}
+inline bool NetworkConfig::has_sessions() const {
+  return _internal_has_sessions();
+}
+inline void NetworkConfig::clear_sessions() {
+  if (GetArenaForAllocation() == nullptr && sessions_ != nullptr) {
+    delete sessions_;
+  }
+  sessions_ = nullptr;
+}
+inline const ::viam::app::v1::SessionsConfig& NetworkConfig::_internal_sessions() const {
+  const ::viam::app::v1::SessionsConfig* p = sessions_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::SessionsConfig&>(
+      ::viam::app::v1::_SessionsConfig_default_instance_);
+}
+inline const ::viam::app::v1::SessionsConfig& NetworkConfig::sessions() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.NetworkConfig.sessions)
+  return _internal_sessions();
+}
+inline void NetworkConfig::unsafe_arena_set_allocated_sessions(
+    ::viam::app::v1::SessionsConfig* sessions) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(sessions_);
+  }
+  sessions_ = sessions;
+  if (sessions) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.NetworkConfig.sessions)
+}
+inline ::viam::app::v1::SessionsConfig* NetworkConfig::release_sessions() {
+  
+  ::viam::app::v1::SessionsConfig* temp = sessions_;
+  sessions_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::SessionsConfig* NetworkConfig::unsafe_arena_release_sessions() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.NetworkConfig.sessions)
+  
+  ::viam::app::v1::SessionsConfig* temp = sessions_;
+  sessions_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::SessionsConfig* NetworkConfig::_internal_mutable_sessions() {
+  
+  if (sessions_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::SessionsConfig>(GetArenaForAllocation());
+    sessions_ = p;
+  }
+  return sessions_;
+}
+inline ::viam::app::v1::SessionsConfig* NetworkConfig::mutable_sessions() {
+  ::viam::app::v1::SessionsConfig* _msg = _internal_mutable_sessions();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.NetworkConfig.sessions)
+  return _msg;
+}
+inline void NetworkConfig::set_allocated_sessions(::viam::app::v1::SessionsConfig* sessions) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete sessions_;
+  }
+  if (sessions) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(sessions);
+    if (message_arena != submessage_arena) {
+      sessions = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, sessions, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  sessions_ = sessions;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.NetworkConfig.sessions)
+}
+
+// -------------------------------------------------------------------
+
+// SessionsConfig
+
+// .google.protobuf.Duration heartbeat_window = 1 [json_name = "heartbeatWindow"];
+inline bool SessionsConfig::_internal_has_heartbeat_window() const {
+  return this != internal_default_instance() && heartbeat_window_ != nullptr;
+}
+inline bool SessionsConfig::has_heartbeat_window() const {
+  return _internal_has_heartbeat_window();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& SessionsConfig::_internal_heartbeat_window() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = heartbeat_window_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& SessionsConfig::heartbeat_window() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SessionsConfig.heartbeat_window)
+  return _internal_heartbeat_window();
+}
+inline void SessionsConfig::unsafe_arena_set_allocated_heartbeat_window(
+    ::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(heartbeat_window_);
+  }
+  heartbeat_window_ = heartbeat_window;
+  if (heartbeat_window) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.SessionsConfig.heartbeat_window)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SessionsConfig::release_heartbeat_window() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = heartbeat_window_;
+  heartbeat_window_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SessionsConfig::unsafe_arena_release_heartbeat_window() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SessionsConfig.heartbeat_window)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = heartbeat_window_;
+  heartbeat_window_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SessionsConfig::_internal_mutable_heartbeat_window() {
+  
+  if (heartbeat_window_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    heartbeat_window_ = p;
+  }
+  return heartbeat_window_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* SessionsConfig::mutable_heartbeat_window() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_heartbeat_window();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SessionsConfig.heartbeat_window)
+  return _msg;
+}
+inline void SessionsConfig::set_allocated_heartbeat_window(::PROTOBUF_NAMESPACE_ID::Duration* heartbeat_window) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(heartbeat_window_);
+  }
+  if (heartbeat_window) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(heartbeat_window));
+    if (message_arena != submessage_arena) {
+      heartbeat_window = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, heartbeat_window, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  heartbeat_window_ = heartbeat_window;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SessionsConfig.heartbeat_window)
 }
 
 // -------------------------------------------------------------------
@@ -12606,6 +12998,74 @@ inline void AgentInfo::set_allocated_git_revision(std::string* git_revision) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AgentInfo.git_revision)
 }
 
+// optional string platform = 6 [json_name = "platform"];
+inline bool AgentInfo::_internal_has_platform() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool AgentInfo::has_platform() const {
+  return _internal_has_platform();
+}
+inline void AgentInfo::clear_platform() {
+  platform_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& AgentInfo::platform() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AgentInfo.platform)
+  return _internal_platform();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AgentInfo::set_platform(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ platform_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AgentInfo.platform)
+}
+inline std::string* AgentInfo::mutable_platform() {
+  std::string* _s = _internal_mutable_platform();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AgentInfo.platform)
+  return _s;
+}
+inline const std::string& AgentInfo::_internal_platform() const {
+  return platform_.Get();
+}
+inline void AgentInfo::_internal_set_platform(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  platform_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AgentInfo::_internal_mutable_platform() {
+  _has_bits_[0] |= 0x00000001u;
+  return platform_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AgentInfo::release_platform() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AgentInfo.platform)
+  if (!_internal_has_platform()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = platform_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (platform_.IsDefault()) {
+    platform_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void AgentInfo::set_allocated_platform(std::string* platform) {
+  if (platform != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  platform_.SetAllocated(platform, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (platform_.IsDefault()) {
+    platform_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AgentInfo.platform)
+}
+
 // -------------------------------------------------------------------
 
 // ConfigRequest
@@ -13668,9 +14128,61 @@ inline void PackageConfig::set_allocated_version(std::string* version) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PackageConfig.version)
 }
 
+// string type = 4 [json_name = "type"];
+inline void PackageConfig::clear_type() {
+  type_.ClearToEmpty();
+}
+inline const std::string& PackageConfig::type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PackageConfig.type)
+  return _internal_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PackageConfig::set_type(ArgT0&& arg0, ArgT... args) {
+ 
+ type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PackageConfig.type)
+}
+inline std::string* PackageConfig::mutable_type() {
+  std::string* _s = _internal_mutable_type();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PackageConfig.type)
+  return _s;
+}
+inline const std::string& PackageConfig::_internal_type() const {
+  return type_.Get();
+}
+inline void PackageConfig::_internal_set_type(const std::string& value) {
+  
+  type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PackageConfig::_internal_mutable_type() {
+  
+  return type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PackageConfig::release_type() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PackageConfig.type)
+  return type_.Release();
+}
+inline void PackageConfig::set_allocated_type(std::string* type) {
+  if (type != nullptr) {
+    
+  } else {
+    
+  }
+  type_.SetAllocated(type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (type_.IsDefault()) {
+    type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PackageConfig.type)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -33,6 +33,7 @@ static const char* BaseService_method_names[] = {
   "/viam.component.base.v1.BaseService/IsMoving",
   "/viam.component.base.v1.BaseService/DoCommand",
   "/viam.component.base.v1.BaseService/GetGeometries",
+  "/viam.component.base.v1.BaseService/GetProperties",
 };
 
 std::unique_ptr< BaseService::Stub> BaseService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -50,6 +51,7 @@ BaseService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_IsMoving_(BaseService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(BaseService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetGeometries_(BaseService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(BaseService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BaseService::Stub::MoveStraight(::grpc::ClientContext* context, const ::viam::component::base::v1::MoveStraightRequest& request, ::viam::component::base::v1::MoveStraightResponse* response) {
@@ -236,6 +238,29 @@ void BaseService::Stub::async::GetGeometries(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status BaseService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::viam::component::base::v1::GetPropertiesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProperties_, context, request, response);
+}
+
+void BaseService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
+}
+
+void BaseService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* BaseService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::base::v1::GetPropertiesResponse, ::viam::component::base::v1::GetPropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProperties_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::base::v1::GetPropertiesResponse>* BaseService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::base::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPropertiesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 BaseService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BaseService_method_names[0],
@@ -317,6 +342,16 @@ BaseService::Service::Service() {
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BaseService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BaseService::Service, ::viam::component::base::v1::GetPropertiesRequest, ::viam::component::base::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BaseService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::base::v1::GetPropertiesRequest* req,
+             ::viam::component::base::v1::GetPropertiesResponse* resp) {
+               return service->GetProperties(ctx, req, resp);
+             }, this)));
 }
 
 BaseService::Service::~Service() {
@@ -372,6 +407,13 @@ BaseService::Service::~Service() {
 }
 
 ::grpc::Status BaseService::Service::GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BaseService::Service::GetProperties(::grpc::ServerContext* context, const ::viam::component::base::v1::GetPropertiesRequest* request, ::viam::component::base::v1::GetPropertiesResponse* response) {
   (void) context;
   (void) request;
   (void) response;

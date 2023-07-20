@@ -64,6 +64,12 @@ extern GetPositionRequestDefaultTypeInternal _GetPositionRequest_default_instanc
 class GetPositionResponse;
 struct GetPositionResponseDefaultTypeInternal;
 extern GetPositionResponseDefaultTypeInternal _GetPositionResponse_default_instance_;
+class HomeRequest;
+struct HomeRequestDefaultTypeInternal;
+extern HomeRequestDefaultTypeInternal _HomeRequest_default_instance_;
+class HomeResponse;
+struct HomeResponseDefaultTypeInternal;
+extern HomeResponseDefaultTypeInternal _HomeResponse_default_instance_;
 class IsMovingRequest;
 struct IsMovingRequestDefaultTypeInternal;
 extern IsMovingRequestDefaultTypeInternal _IsMovingRequest_default_instance_;
@@ -94,6 +100,8 @@ template<> ::viam::component::gantry::v1::GetLengthsRequest* Arena::CreateMaybeM
 template<> ::viam::component::gantry::v1::GetLengthsResponse* Arena::CreateMaybeMessage<::viam::component::gantry::v1::GetLengthsResponse>(Arena*);
 template<> ::viam::component::gantry::v1::GetPositionRequest* Arena::CreateMaybeMessage<::viam::component::gantry::v1::GetPositionRequest>(Arena*);
 template<> ::viam::component::gantry::v1::GetPositionResponse* Arena::CreateMaybeMessage<::viam::component::gantry::v1::GetPositionResponse>(Arena*);
+template<> ::viam::component::gantry::v1::HomeRequest* Arena::CreateMaybeMessage<::viam::component::gantry::v1::HomeRequest>(Arena*);
+template<> ::viam::component::gantry::v1::HomeResponse* Arena::CreateMaybeMessage<::viam::component::gantry::v1::HomeResponse>(Arena*);
 template<> ::viam::component::gantry::v1::IsMovingRequest* Arena::CreateMaybeMessage<::viam::component::gantry::v1::IsMovingRequest>(Arena*);
 template<> ::viam::component::gantry::v1::IsMovingResponse* Arena::CreateMaybeMessage<::viam::component::gantry::v1::IsMovingResponse>(Arena*);
 template<> ::viam::component::gantry::v1::MoveToPositionRequest* Arena::CreateMaybeMessage<::viam::component::gantry::v1::MoveToPositionRequest>(Arena*);
@@ -553,6 +561,7 @@ class MoveToPositionRequest final :
 
   enum : int {
     kPositionsMmFieldNumber = 2,
+    kSpeedsMmPerSecFieldNumber = 3,
     kNameFieldNumber = 1,
     kExtraFieldNumber = 99,
   };
@@ -577,6 +586,28 @@ class MoveToPositionRequest final :
       positions_mm() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
       mutable_positions_mm();
+
+  // repeated double speeds_mm_per_sec = 3 [json_name = "speedsMmPerSec"];
+  int speeds_mm_per_sec_size() const;
+  private:
+  int _internal_speeds_mm_per_sec_size() const;
+  public:
+  void clear_speeds_mm_per_sec();
+  private:
+  double _internal_speeds_mm_per_sec(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_speeds_mm_per_sec() const;
+  void _internal_add_speeds_mm_per_sec(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_speeds_mm_per_sec();
+  public:
+  double speeds_mm_per_sec(int index) const;
+  void set_speeds_mm_per_sec(int index, double value);
+  void add_speeds_mm_per_sec(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      speeds_mm_per_sec() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_speeds_mm_per_sec();
 
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -618,6 +649,7 @@ class MoveToPositionRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > positions_mm_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > speeds_mm_per_sec_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -741,6 +773,317 @@ class MoveToPositionResponse final :
 };
 // -------------------------------------------------------------------
 
+class HomeRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gantry.v1.HomeRequest) */ {
+ public:
+  inline HomeRequest() : HomeRequest(nullptr) {}
+  ~HomeRequest() override;
+  explicit PROTOBUF_CONSTEXPR HomeRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  HomeRequest(const HomeRequest& from);
+  HomeRequest(HomeRequest&& from) noexcept
+    : HomeRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline HomeRequest& operator=(const HomeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HomeRequest& operator=(HomeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HomeRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HomeRequest* internal_default_instance() {
+    return reinterpret_cast<const HomeRequest*>(
+               &_HomeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(HomeRequest& a, HomeRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(HomeRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HomeRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HomeRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<HomeRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const HomeRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const HomeRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(HomeRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gantry.v1.HomeRequest";
+  }
+  protected:
+  explicit HomeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.gantry.v1.HomeRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgantry_2fv1_2fgantry_2eproto;
+};
+// -------------------------------------------------------------------
+
+class HomeResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gantry.v1.HomeResponse) */ {
+ public:
+  inline HomeResponse() : HomeResponse(nullptr) {}
+  ~HomeResponse() override;
+  explicit PROTOBUF_CONSTEXPR HomeResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  HomeResponse(const HomeResponse& from);
+  HomeResponse(HomeResponse&& from) noexcept
+    : HomeResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline HomeResponse& operator=(const HomeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HomeResponse& operator=(HomeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HomeResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HomeResponse* internal_default_instance() {
+    return reinterpret_cast<const HomeResponse*>(
+               &_HomeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(HomeResponse& a, HomeResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(HomeResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HomeResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HomeResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<HomeResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const HomeResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const HomeResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(HomeResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gantry.v1.HomeResponse";
+  }
+  protected:
+  explicit HomeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHomedFieldNumber = 1,
+  };
+  // bool homed = 1 [json_name = "homed"];
+  void clear_homed();
+  bool homed() const;
+  void set_homed(bool value);
+  private:
+  bool _internal_homed() const;
+  void _internal_set_homed(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.gantry.v1.HomeResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  bool homed_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgantry_2fv1_2fgantry_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetLengthsRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gantry.v1.GetLengthsRequest) */ {
  public:
@@ -789,7 +1132,7 @@ class GetLengthsRequest final :
                &_GetLengthsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(GetLengthsRequest& a, GetLengthsRequest& b) {
     a.Swap(&b);
@@ -957,7 +1300,7 @@ class GetLengthsResponse final :
                &_GetLengthsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(GetLengthsResponse& a, GetLengthsResponse& b) {
     a.Swap(&b);
@@ -1113,7 +1456,7 @@ class StopRequest final :
                &_StopRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(StopRequest& a, StopRequest& b) {
     a.Swap(&b);
@@ -1280,7 +1623,7 @@ class StopResponse final :
                &_StopResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(StopResponse& a, StopResponse& b) {
     a.Swap(&b);
@@ -1397,7 +1740,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -1588,7 +1931,7 @@ class IsMovingRequest final :
                &_IsMovingRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(IsMovingRequest& a, IsMovingRequest& b) {
     a.Swap(&b);
@@ -1736,7 +2079,7 @@ class IsMovingResponse final :
                &_IsMovingResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(IsMovingResponse& a, IsMovingResponse& b) {
     a.Swap(&b);
@@ -2127,6 +2470,53 @@ MoveToPositionRequest::mutable_positions_mm() {
   return _internal_mutable_positions_mm();
 }
 
+// repeated double speeds_mm_per_sec = 3 [json_name = "speedsMmPerSec"];
+inline int MoveToPositionRequest::_internal_speeds_mm_per_sec_size() const {
+  return speeds_mm_per_sec_.size();
+}
+inline int MoveToPositionRequest::speeds_mm_per_sec_size() const {
+  return _internal_speeds_mm_per_sec_size();
+}
+inline void MoveToPositionRequest::clear_speeds_mm_per_sec() {
+  speeds_mm_per_sec_.Clear();
+}
+inline double MoveToPositionRequest::_internal_speeds_mm_per_sec(int index) const {
+  return speeds_mm_per_sec_.Get(index);
+}
+inline double MoveToPositionRequest::speeds_mm_per_sec(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.gantry.v1.MoveToPositionRequest.speeds_mm_per_sec)
+  return _internal_speeds_mm_per_sec(index);
+}
+inline void MoveToPositionRequest::set_speeds_mm_per_sec(int index, double value) {
+  speeds_mm_per_sec_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.component.gantry.v1.MoveToPositionRequest.speeds_mm_per_sec)
+}
+inline void MoveToPositionRequest::_internal_add_speeds_mm_per_sec(double value) {
+  speeds_mm_per_sec_.Add(value);
+}
+inline void MoveToPositionRequest::add_speeds_mm_per_sec(double value) {
+  _internal_add_speeds_mm_per_sec(value);
+  // @@protoc_insertion_point(field_add:viam.component.gantry.v1.MoveToPositionRequest.speeds_mm_per_sec)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+MoveToPositionRequest::_internal_speeds_mm_per_sec() const {
+  return speeds_mm_per_sec_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+MoveToPositionRequest::speeds_mm_per_sec() const {
+  // @@protoc_insertion_point(field_list:viam.component.gantry.v1.MoveToPositionRequest.speeds_mm_per_sec)
+  return _internal_speeds_mm_per_sec();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+MoveToPositionRequest::_internal_mutable_speeds_mm_per_sec() {
+  return &speeds_mm_per_sec_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+MoveToPositionRequest::mutable_speeds_mm_per_sec() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.gantry.v1.MoveToPositionRequest.speeds_mm_per_sec)
+  return _internal_mutable_speeds_mm_per_sec();
+}
+
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
 inline bool MoveToPositionRequest::_internal_has_extra() const {
   return this != internal_default_instance() && extra_ != nullptr;
@@ -2215,6 +2605,169 @@ inline void MoveToPositionRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::
 // -------------------------------------------------------------------
 
 // MoveToPositionResponse
+
+// -------------------------------------------------------------------
+
+// HomeRequest
+
+// string name = 1 [json_name = "name"];
+inline void HomeRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& HomeRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.gantry.v1.HomeRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void HomeRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gantry.v1.HomeRequest.name)
+}
+inline std::string* HomeRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gantry.v1.HomeRequest.name)
+  return _s;
+}
+inline const std::string& HomeRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void HomeRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* HomeRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* HomeRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.gantry.v1.HomeRequest.name)
+  return name_.Release();
+}
+inline void HomeRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gantry.v1.HomeRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool HomeRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool HomeRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& HomeRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& HomeRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.gantry.v1.HomeRequest.extra)
+  return _internal_extra();
+}
+inline void HomeRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gantry.v1.HomeRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* HomeRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* HomeRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.gantry.v1.HomeRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* HomeRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* HomeRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.gantry.v1.HomeRequest.extra)
+  return _msg;
+}
+inline void HomeRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gantry.v1.HomeRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// HomeResponse
+
+// bool homed = 1 [json_name = "homed"];
+inline void HomeResponse::clear_homed() {
+  homed_ = false;
+}
+inline bool HomeResponse::_internal_homed() const {
+  return homed_;
+}
+inline bool HomeResponse::homed() const {
+  // @@protoc_insertion_point(field_get:viam.component.gantry.v1.HomeResponse.homed)
+  return _internal_homed();
+}
+inline void HomeResponse::_internal_set_homed(bool value) {
+  
+  homed_ = value;
+}
+inline void HomeResponse::set_homed(bool value) {
+  _internal_set_homed(value);
+  // @@protoc_insertion_point(field_set:viam.component.gantry.v1.HomeResponse.homed)
+}
 
 // -------------------------------------------------------------------
 
@@ -2748,6 +3301,10 @@ inline void IsMovingResponse::set_is_moving(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

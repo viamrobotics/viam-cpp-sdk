@@ -4211,6 +4211,7 @@ class GetInvoicePdfRequest final :
 
   enum : int {
     kIdFieldNumber = 1,
+    kOrgIdFieldNumber = 2,
   };
   // string id = 1 [json_name = "id"];
   void clear_id();
@@ -4226,6 +4227,20 @@ class GetInvoicePdfRequest final :
   std::string* _internal_mutable_id();
   public:
 
+  // string org_id = 2 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetInvoicePdfRequest)
  private:
   class _Internal;
@@ -4234,6 +4249,7 @@ class GetInvoicePdfRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
@@ -7778,6 +7794,56 @@ inline void GetInvoicePdfRequest::set_allocated_id(std::string* id) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetInvoicePdfRequest.id)
+}
+
+// string org_id = 2 [json_name = "orgId"];
+inline void GetInvoicePdfRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& GetInvoicePdfRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetInvoicePdfRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetInvoicePdfRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetInvoicePdfRequest.org_id)
+}
+inline std::string* GetInvoicePdfRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetInvoicePdfRequest.org_id)
+  return _s;
+}
+inline const std::string& GetInvoicePdfRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void GetInvoicePdfRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetInvoicePdfRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetInvoicePdfRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetInvoicePdfRequest.org_id)
+  return org_id_.Release();
+}
+inline void GetInvoicePdfRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetInvoicePdfRequest.org_id)
 }
 
 // -------------------------------------------------------------------

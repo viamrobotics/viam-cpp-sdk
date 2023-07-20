@@ -30,9 +30,9 @@ int main() {
         // If you want to connect to a remote robot, this should be the url of the robot
         // Ex: xxx.xxx.viam.cloud
         std::string robot_address("localhost:8080");
-        // If you want to connect to a remote robot, you need the robot location secret (not
-        // the part secret) You can find this on app.viam.com
-        vs::Credentials credentials("");
+        // If you want to connect to a remote robot, you need some authentication secret
+        // You can find this on app.viam.com
+        vs::Credentials credentials("", "");
 
         vs::DialOptions dial_options;
 
@@ -40,7 +40,8 @@ int main() {
         // dial_options.credentials = credentials;
 
         // This is for an example. Care should be taken before exercising this option in production.
-        dial_options.set_allow_insecure_downgrade(credentials.payload().empty());
+        dial_options.set_allow_insecure_downgrade(
+            (credentials.type().empty() && credentials.payload().empty()));
 
         // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial
         // options

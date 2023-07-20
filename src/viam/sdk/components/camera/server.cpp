@@ -1,5 +1,8 @@
 #include <viam/sdk/components/camera/server.hpp>
 
+#include <google/protobuf/util/time_util.h>
+#include <grpcpp/support/status.h>
+
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -54,6 +57,37 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     *response->mutable_mime_type() = image.mime_type;
     *response->mutable_image() = img_string;
+
+    return ::grpc::Status();
+}
+
+::grpc::Status CameraServer::GetImages(
+    ::grpc::ServerContext* context,
+    const ::viam::component::camera::v1::GetImagesRequest* request,
+    ::viam::component::camera::v1::GetImagesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetImages] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
+
+    const Camera::image_collection image_coll = camera->get_images();
+    for (const auto& img : image_coll.images) {
+        ::viam::component::camera::v1::Image proto_image;
+        const std::string img_string = bytes_to_string(img.bytes);
+        proto_image.set_source_name(img.source_name);
+        proto_image.set_format(
+            Camera::MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
+        proto_image.set_image(img_string);
+        *response->mutable_images()->Add() = std::move(proto_image);
+    }
+    *response->mutable_response_metadata() = response_metadata::to_proto(image_coll.metadata);
 
     return ::grpc::Status();
 }

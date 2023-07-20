@@ -91,6 +91,12 @@ extern CreateLocationSecretRequestDefaultTypeInternal _CreateLocationSecretReque
 class CreateLocationSecretResponse;
 struct CreateLocationSecretResponseDefaultTypeInternal;
 extern CreateLocationSecretResponseDefaultTypeInternal _CreateLocationSecretResponse_default_instance_;
+class CreateModuleRequest;
+struct CreateModuleRequestDefaultTypeInternal;
+extern CreateModuleRequestDefaultTypeInternal _CreateModuleRequest_default_instance_;
+class CreateModuleResponse;
+struct CreateModuleResponseDefaultTypeInternal;
+extern CreateModuleResponseDefaultTypeInternal _CreateModuleResponse_default_instance_;
 class CreateOrganizationInviteRequest;
 struct CreateOrganizationInviteRequestDefaultTypeInternal;
 extern CreateOrganizationInviteRequestDefaultTypeInternal _CreateOrganizationInviteRequest_default_instance_;
@@ -178,6 +184,12 @@ extern GetLocationRequestDefaultTypeInternal _GetLocationRequest_default_instanc
 class GetLocationResponse;
 struct GetLocationResponseDefaultTypeInternal;
 extern GetLocationResponseDefaultTypeInternal _GetLocationResponse_default_instance_;
+class GetModuleRequest;
+struct GetModuleRequestDefaultTypeInternal;
+extern GetModuleRequestDefaultTypeInternal _GetModuleRequest_default_instance_;
+class GetModuleResponse;
+struct GetModuleResponseDefaultTypeInternal;
+extern GetModuleResponseDefaultTypeInternal _GetModuleResponse_default_instance_;
 class GetOrganizationRequest;
 struct GetOrganizationRequestDefaultTypeInternal;
 extern GetOrganizationRequestDefaultTypeInternal _GetOrganizationRequest_default_instance_;
@@ -220,6 +232,12 @@ extern GetRoverRentalRobotsRequestDefaultTypeInternal _GetRoverRentalRobotsReque
 class GetRoverRentalRobotsResponse;
 struct GetRoverRentalRobotsResponseDefaultTypeInternal;
 extern GetRoverRentalRobotsResponseDefaultTypeInternal _GetRoverRentalRobotsResponse_default_instance_;
+class GetUserIDByEmailRequest;
+struct GetUserIDByEmailRequestDefaultTypeInternal;
+extern GetUserIDByEmailRequestDefaultTypeInternal _GetUserIDByEmailRequest_default_instance_;
+class GetUserIDByEmailResponse;
+struct GetUserIDByEmailResponseDefaultTypeInternal;
+extern GetUserIDByEmailResponseDefaultTypeInternal _GetUserIDByEmailResponse_default_instance_;
 class ListAuthorizationsRequest;
 struct ListAuthorizationsRequestDefaultTypeInternal;
 extern ListAuthorizationsRequestDefaultTypeInternal _ListAuthorizationsRequest_default_instance_;
@@ -238,12 +256,24 @@ extern ListLocationsRequestDefaultTypeInternal _ListLocationsRequest_default_ins
 class ListLocationsResponse;
 struct ListLocationsResponseDefaultTypeInternal;
 extern ListLocationsResponseDefaultTypeInternal _ListLocationsResponse_default_instance_;
+class ListModulesRequest;
+struct ListModulesRequestDefaultTypeInternal;
+extern ListModulesRequestDefaultTypeInternal _ListModulesRequest_default_instance_;
+class ListModulesResponse;
+struct ListModulesResponseDefaultTypeInternal;
+extern ListModulesResponseDefaultTypeInternal _ListModulesResponse_default_instance_;
 class ListOrganizationMembersRequest;
 struct ListOrganizationMembersRequestDefaultTypeInternal;
 extern ListOrganizationMembersRequestDefaultTypeInternal _ListOrganizationMembersRequest_default_instance_;
 class ListOrganizationMembersResponse;
 struct ListOrganizationMembersResponseDefaultTypeInternal;
 extern ListOrganizationMembersResponseDefaultTypeInternal _ListOrganizationMembersResponse_default_instance_;
+class ListOrganizationsByUserRequest;
+struct ListOrganizationsByUserRequestDefaultTypeInternal;
+extern ListOrganizationsByUserRequestDefaultTypeInternal _ListOrganizationsByUserRequest_default_instance_;
+class ListOrganizationsByUserResponse;
+struct ListOrganizationsByUserResponseDefaultTypeInternal;
+extern ListOrganizationsByUserResponseDefaultTypeInternal _ListOrganizationsByUserResponse_default_instance_;
 class ListOrganizationsRequest;
 struct ListOrganizationsRequestDefaultTypeInternal;
 extern ListOrganizationsRequestDefaultTypeInternal _ListOrganizationsRequest_default_instance_;
@@ -286,6 +316,15 @@ extern MarkPartForRestartRequestDefaultTypeInternal _MarkPartForRestartRequest_d
 class MarkPartForRestartResponse;
 struct MarkPartForRestartResponseDefaultTypeInternal;
 extern MarkPartForRestartResponseDefaultTypeInternal _MarkPartForRestartResponse_default_instance_;
+class Model;
+struct ModelDefaultTypeInternal;
+extern ModelDefaultTypeInternal _Model_default_instance_;
+class Module;
+struct ModuleDefaultTypeInternal;
+extern ModuleDefaultTypeInternal _Module_default_instance_;
+class ModuleFileInfo;
+struct ModuleFileInfoDefaultTypeInternal;
+extern ModuleFileInfoDefaultTypeInternal _ModuleFileInfo_default_instance_;
 class NewRobotPartRequest;
 struct NewRobotPartRequestDefaultTypeInternal;
 extern NewRobotPartRequestDefaultTypeInternal _NewRobotPartRequest_default_instance_;
@@ -298,6 +337,9 @@ extern NewRobotRequestDefaultTypeInternal _NewRobotRequest_default_instance_;
 class NewRobotResponse;
 struct NewRobotResponseDefaultTypeInternal;
 extern NewRobotResponseDefaultTypeInternal _NewRobotResponse_default_instance_;
+class OrgDetails;
+struct OrgDetailsDefaultTypeInternal;
+extern OrgDetailsDefaultTypeInternal _OrgDetails_default_instance_;
 class Organization;
 struct OrganizationDefaultTypeInternal;
 extern OrganizationDefaultTypeInternal _Organization_default_instance_;
@@ -364,6 +406,12 @@ extern UpdateLocationRequestDefaultTypeInternal _UpdateLocationRequest_default_i
 class UpdateLocationResponse;
 struct UpdateLocationResponseDefaultTypeInternal;
 extern UpdateLocationResponseDefaultTypeInternal _UpdateLocationResponse_default_instance_;
+class UpdateModuleRequest;
+struct UpdateModuleRequestDefaultTypeInternal;
+extern UpdateModuleRequestDefaultTypeInternal _UpdateModuleRequest_default_instance_;
+class UpdateModuleResponse;
+struct UpdateModuleResponseDefaultTypeInternal;
+extern UpdateModuleResponseDefaultTypeInternal _UpdateModuleResponse_default_instance_;
 class UpdateOrganizationRequest;
 struct UpdateOrganizationRequestDefaultTypeInternal;
 extern UpdateOrganizationRequestDefaultTypeInternal _UpdateOrganizationRequest_default_instance_;
@@ -382,6 +430,18 @@ extern UpdateRobotRequestDefaultTypeInternal _UpdateRobotRequest_default_instanc
 class UpdateRobotResponse;
 struct UpdateRobotResponseDefaultTypeInternal;
 extern UpdateRobotResponseDefaultTypeInternal _UpdateRobotResponse_default_instance_;
+class UploadModuleFileRequest;
+struct UploadModuleFileRequestDefaultTypeInternal;
+extern UploadModuleFileRequestDefaultTypeInternal _UploadModuleFileRequest_default_instance_;
+class UploadModuleFileResponse;
+struct UploadModuleFileResponseDefaultTypeInternal;
+extern UploadModuleFileResponseDefaultTypeInternal _UploadModuleFileResponse_default_instance_;
+class Uploads;
+struct UploadsDefaultTypeInternal;
+extern UploadsDefaultTypeInternal _Uploads_default_instance_;
+class VersionHistory;
+struct VersionHistoryDefaultTypeInternal;
+extern VersionHistoryDefaultTypeInternal _VersionHistory_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
@@ -399,6 +459,8 @@ template<> ::viam::app::v1::CreateLocationRequest* Arena::CreateMaybeMessage<::v
 template<> ::viam::app::v1::CreateLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationResponse>(Arena*);
 template<> ::viam::app::v1::CreateLocationSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationSecretRequest>(Arena*);
 template<> ::viam::app::v1::CreateLocationSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationSecretResponse>(Arena*);
+template<> ::viam::app::v1::CreateModuleRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateModuleRequest>(Arena*);
+template<> ::viam::app::v1::CreateModuleResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateModuleResponse>(Arena*);
 template<> ::viam::app::v1::CreateOrganizationInviteRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationInviteRequest>(Arena*);
 template<> ::viam::app::v1::CreateOrganizationInviteResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationInviteResponse>(Arena*);
 template<> ::viam::app::v1::CreateOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationRequest>(Arena*);
@@ -428,6 +490,8 @@ template<> ::viam::app::v1::GetFragmentRequest* Arena::CreateMaybeMessage<::viam
 template<> ::viam::app::v1::GetFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentResponse>(Arena*);
 template<> ::viam::app::v1::GetLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationRequest>(Arena*);
 template<> ::viam::app::v1::GetLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetLocationResponse>(Arena*);
+template<> ::viam::app::v1::GetModuleRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetModuleRequest>(Arena*);
+template<> ::viam::app::v1::GetModuleResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetModuleResponse>(Arena*);
 template<> ::viam::app::v1::GetOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationRequest>(Arena*);
 template<> ::viam::app::v1::GetOrganizationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetOrganizationResponse>(Arena*);
 template<> ::viam::app::v1::GetRobotPartHistoryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotPartHistoryRequest>(Arena*);
@@ -442,14 +506,20 @@ template<> ::viam::app::v1::GetRobotRequest* Arena::CreateMaybeMessage<::viam::a
 template<> ::viam::app::v1::GetRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRobotResponse>(Arena*);
 template<> ::viam::app::v1::GetRoverRentalRobotsRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetRoverRentalRobotsRequest>(Arena*);
 template<> ::viam::app::v1::GetRoverRentalRobotsResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetRoverRentalRobotsResponse>(Arena*);
+template<> ::viam::app::v1::GetUserIDByEmailRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetUserIDByEmailRequest>(Arena*);
+template<> ::viam::app::v1::GetUserIDByEmailResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetUserIDByEmailResponse>(Arena*);
 template<> ::viam::app::v1::ListAuthorizationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListAuthorizationsRequest>(Arena*);
 template<> ::viam::app::v1::ListAuthorizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListAuthorizationsResponse>(Arena*);
 template<> ::viam::app::v1::ListFragmentsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListFragmentsRequest>(Arena*);
 template<> ::viam::app::v1::ListFragmentsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListFragmentsResponse>(Arena*);
 template<> ::viam::app::v1::ListLocationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsRequest>(Arena*);
 template<> ::viam::app::v1::ListLocationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsResponse>(Arena*);
+template<> ::viam::app::v1::ListModulesRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListModulesRequest>(Arena*);
+template<> ::viam::app::v1::ListModulesResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListModulesResponse>(Arena*);
 template<> ::viam::app::v1::ListOrganizationMembersRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationMembersRequest>(Arena*);
 template<> ::viam::app::v1::ListOrganizationMembersResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationMembersResponse>(Arena*);
+template<> ::viam::app::v1::ListOrganizationsByUserRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationsByUserRequest>(Arena*);
+template<> ::viam::app::v1::ListOrganizationsByUserResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationsByUserResponse>(Arena*);
 template<> ::viam::app::v1::ListOrganizationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationsRequest>(Arena*);
 template<> ::viam::app::v1::ListOrganizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListOrganizationsResponse>(Arena*);
 template<> ::viam::app::v1::ListRobotsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListRobotsRequest>(Arena*);
@@ -464,10 +534,14 @@ template<> ::viam::app::v1::MarkPartAsMainRequest* Arena::CreateMaybeMessage<::v
 template<> ::viam::app::v1::MarkPartAsMainResponse* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartAsMainResponse>(Arena*);
 template<> ::viam::app::v1::MarkPartForRestartRequest* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartForRestartRequest>(Arena*);
 template<> ::viam::app::v1::MarkPartForRestartResponse* Arena::CreateMaybeMessage<::viam::app::v1::MarkPartForRestartResponse>(Arena*);
+template<> ::viam::app::v1::Model* Arena::CreateMaybeMessage<::viam::app::v1::Model>(Arena*);
+template<> ::viam::app::v1::Module* Arena::CreateMaybeMessage<::viam::app::v1::Module>(Arena*);
+template<> ::viam::app::v1::ModuleFileInfo* Arena::CreateMaybeMessage<::viam::app::v1::ModuleFileInfo>(Arena*);
 template<> ::viam::app::v1::NewRobotPartRequest* Arena::CreateMaybeMessage<::viam::app::v1::NewRobotPartRequest>(Arena*);
 template<> ::viam::app::v1::NewRobotPartResponse* Arena::CreateMaybeMessage<::viam::app::v1::NewRobotPartResponse>(Arena*);
 template<> ::viam::app::v1::NewRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::NewRobotRequest>(Arena*);
 template<> ::viam::app::v1::NewRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::NewRobotResponse>(Arena*);
+template<> ::viam::app::v1::OrgDetails* Arena::CreateMaybeMessage<::viam::app::v1::OrgDetails>(Arena*);
 template<> ::viam::app::v1::Organization* Arena::CreateMaybeMessage<::viam::app::v1::Organization>(Arena*);
 template<> ::viam::app::v1::OrganizationInvite* Arena::CreateMaybeMessage<::viam::app::v1::OrganizationInvite>(Arena*);
 template<> ::viam::app::v1::OrganizationMember* Arena::CreateMaybeMessage<::viam::app::v1::OrganizationMember>(Arena*);
@@ -490,12 +564,18 @@ template<> ::viam::app::v1::UpdateFragmentRequest* Arena::CreateMaybeMessage<::v
 template<> ::viam::app::v1::UpdateFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateFragmentResponse>(Arena*);
 template<> ::viam::app::v1::UpdateLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationRequest>(Arena*);
 template<> ::viam::app::v1::UpdateLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateLocationResponse>(Arena*);
+template<> ::viam::app::v1::UpdateModuleRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateModuleRequest>(Arena*);
+template<> ::viam::app::v1::UpdateModuleResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateModuleResponse>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationRequest>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartRequest>(Arena*);
 template<> ::viam::app::v1::UpdateRobotPartResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotRequest>(Arena*);
 template<> ::viam::app::v1::UpdateRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotResponse>(Arena*);
+template<> ::viam::app::v1::UploadModuleFileRequest* Arena::CreateMaybeMessage<::viam::app::v1::UploadModuleFileRequest>(Arena*);
+template<> ::viam::app::v1::UploadModuleFileResponse* Arena::CreateMaybeMessage<::viam::app::v1::UploadModuleFileResponse>(Arena*);
+template<> ::viam::app::v1::Uploads* Arena::CreateMaybeMessage<::viam::app::v1::Uploads>(Arena*);
+template<> ::viam::app::v1::VersionHistory* Arena::CreateMaybeMessage<::viam::app::v1::VersionHistory>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace app {
@@ -526,6 +606,32 @@ inline bool SharedSecret_State_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, SharedSecret_State* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SharedSecret_State>(
     SharedSecret_State_descriptor(), name, value);
+}
+enum Visibility : int {
+  VISIBILITY_UNSPECIFIED = 0,
+  VISIBILITY_PRIVATE = 1,
+  VISIBILITY_PUBLIC = 2,
+  Visibility_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  Visibility_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool Visibility_IsValid(int value);
+constexpr Visibility Visibility_MIN = VISIBILITY_UNSPECIFIED;
+constexpr Visibility Visibility_MAX = VISIBILITY_PUBLIC;
+constexpr int Visibility_ARRAYSIZE = Visibility_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Visibility_descriptor();
+template<typename T>
+inline const std::string& Visibility_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Visibility>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Visibility_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Visibility_descriptor(), enum_t_value);
+}
+inline bool Visibility_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Visibility* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Visibility>(
+    Visibility_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -1561,6 +1667,7 @@ class Organization final :
   enum : int {
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
+    kPublicNamespaceFieldNumber = 4,
     kCreatedOnFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
@@ -1591,6 +1698,20 @@ class Organization final :
   std::string* _internal_mutable_name();
   public:
 
+  // string public_namespace = 4 [json_name = "publicNamespace"];
+  void clear_public_namespace();
+  const std::string& public_namespace() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_public_namespace(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_public_namespace();
+  PROTOBUF_NODISCARD std::string* release_public_namespace();
+  void set_allocated_public_namespace(std::string* public_namespace);
+  private:
+  const std::string& _internal_public_namespace() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_public_namespace(const std::string& value);
+  std::string* _internal_mutable_public_namespace();
+  public:
+
   // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
   bool has_created_on() const;
   private:
@@ -1618,6 +1739,7 @@ class Organization final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -2886,6 +3008,7 @@ class UpdateOrganizationRequest final :
   enum : int {
     kOrganizationIdFieldNumber = 1,
     kNameFieldNumber = 2,
+    kPublicNamespaceFieldNumber = 3,
   };
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
@@ -2915,6 +3038,24 @@ class UpdateOrganizationRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // optional string public_namespace = 3 [json_name = "publicNamespace"];
+  bool has_public_namespace() const;
+  private:
+  bool _internal_has_public_namespace() const;
+  public:
+  void clear_public_namespace();
+  const std::string& public_namespace() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_public_namespace(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_public_namespace();
+  PROTOBUF_NODISCARD std::string* release_public_namespace();
+  void set_allocated_public_namespace(std::string* public_namespace);
+  private:
+  const std::string& _internal_public_namespace() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_public_namespace(const std::string& value);
+  std::string* _internal_mutable_public_namespace();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateOrganizationRequest)
  private:
   class _Internal;
@@ -2922,9 +3063,11 @@ class UpdateOrganizationRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -18326,6 +18469,3378 @@ class CheckPermissionsResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
+// -------------------------------------------------------------------
+
+class CreateModuleRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateModuleRequest) */ {
+ public:
+  inline CreateModuleRequest() : CreateModuleRequest(nullptr) {}
+  ~CreateModuleRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateModuleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateModuleRequest(const CreateModuleRequest& from);
+  CreateModuleRequest(CreateModuleRequest&& from) noexcept
+    : CreateModuleRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateModuleRequest& operator=(const CreateModuleRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateModuleRequest& operator=(CreateModuleRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateModuleRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateModuleRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateModuleRequest*>(
+               &_CreateModuleRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    110;
+
+  friend void swap(CreateModuleRequest& a, CreateModuleRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateModuleRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateModuleRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateModuleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateModuleRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateModuleRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateModuleRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateModuleRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateModuleRequest";
+  }
+  protected:
+  explicit CreateModuleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPublicNamespaceFieldNumber = 1,
+    kNameFieldNumber = 2,
+  };
+  // string public_namespace = 1 [json_name = "publicNamespace"];
+  void clear_public_namespace();
+  const std::string& public_namespace() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_public_namespace(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_public_namespace();
+  PROTOBUF_NODISCARD std::string* release_public_namespace();
+  void set_allocated_public_namespace(std::string* public_namespace);
+  private:
+  const std::string& _internal_public_namespace() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_public_namespace(const std::string& value);
+  std::string* _internal_mutable_public_namespace();
+  public:
+
+  // string name = 2 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateModuleRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateModuleResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateModuleResponse) */ {
+ public:
+  inline CreateModuleResponse() : CreateModuleResponse(nullptr) {}
+  ~CreateModuleResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateModuleResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateModuleResponse(const CreateModuleResponse& from);
+  CreateModuleResponse(CreateModuleResponse&& from) noexcept
+    : CreateModuleResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateModuleResponse& operator=(const CreateModuleResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateModuleResponse& operator=(CreateModuleResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateModuleResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateModuleResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateModuleResponse*>(
+               &_CreateModuleResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    111;
+
+  friend void swap(CreateModuleResponse& a, CreateModuleResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateModuleResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateModuleResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateModuleResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateModuleResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateModuleResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateModuleResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateModuleResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateModuleResponse";
+  }
+  protected:
+  explicit CreateModuleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleIdFieldNumber = 1,
+    kUrlFieldNumber = 2,
+  };
+  // string module_id = 1 [json_name = "moduleId"];
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // string url = 2 [json_name = "url"];
+  void clear_url();
+  const std::string& url() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_url(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* url);
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
+  std::string* _internal_mutable_url();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateModuleResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateModuleRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateModuleRequest) */ {
+ public:
+  inline UpdateModuleRequest() : UpdateModuleRequest(nullptr) {}
+  ~UpdateModuleRequest() override;
+  explicit PROTOBUF_CONSTEXPR UpdateModuleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateModuleRequest(const UpdateModuleRequest& from);
+  UpdateModuleRequest(UpdateModuleRequest&& from) noexcept
+    : UpdateModuleRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateModuleRequest& operator=(const UpdateModuleRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateModuleRequest& operator=(UpdateModuleRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateModuleRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateModuleRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateModuleRequest*>(
+               &_UpdateModuleRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    112;
+
+  friend void swap(UpdateModuleRequest& a, UpdateModuleRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateModuleRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateModuleRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateModuleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateModuleRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateModuleRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateModuleRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateModuleRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateModuleRequest";
+  }
+  protected:
+  explicit UpdateModuleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModelsFieldNumber = 5,
+    kModuleIdFieldNumber = 1,
+    kUrlFieldNumber = 3,
+    kDescriptionFieldNumber = 4,
+    kEntrypointFieldNumber = 6,
+    kVisibilityFieldNumber = 2,
+  };
+  // repeated .viam.app.v1.Model models = 5 [json_name = "models"];
+  int models_size() const;
+  private:
+  int _internal_models_size() const;
+  public:
+  void clear_models();
+  ::viam::app::v1::Model* mutable_models(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >*
+      mutable_models();
+  private:
+  const ::viam::app::v1::Model& _internal_models(int index) const;
+  ::viam::app::v1::Model* _internal_add_models();
+  public:
+  const ::viam::app::v1::Model& models(int index) const;
+  ::viam::app::v1::Model* add_models();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
+      models() const;
+
+  // string module_id = 1 [json_name = "moduleId"];
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // string url = 3 [json_name = "url"];
+  void clear_url();
+  const std::string& url() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_url(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* url);
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
+  std::string* _internal_mutable_url();
+  public:
+
+  // string description = 4 [json_name = "description"];
+  void clear_description();
+  const std::string& description() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_description(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // string entrypoint = 6 [json_name = "entrypoint"];
+  void clear_entrypoint();
+  const std::string& entrypoint() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_entrypoint(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_entrypoint();
+  PROTOBUF_NODISCARD std::string* release_entrypoint();
+  void set_allocated_entrypoint(std::string* entrypoint);
+  private:
+  const std::string& _internal_entrypoint() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_entrypoint(const std::string& value);
+  std::string* _internal_mutable_entrypoint();
+  public:
+
+  // .viam.app.v1.Visibility visibility = 2 [json_name = "visibility"];
+  void clear_visibility();
+  ::viam::app::v1::Visibility visibility() const;
+  void set_visibility(::viam::app::v1::Visibility value);
+  private:
+  ::viam::app::v1::Visibility _internal_visibility() const;
+  void _internal_set_visibility(::viam::app::v1::Visibility value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateModuleRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
+  int visibility_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateModuleResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateModuleResponse) */ {
+ public:
+  inline UpdateModuleResponse() : UpdateModuleResponse(nullptr) {}
+  ~UpdateModuleResponse() override;
+  explicit PROTOBUF_CONSTEXPR UpdateModuleResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateModuleResponse(const UpdateModuleResponse& from);
+  UpdateModuleResponse(UpdateModuleResponse&& from) noexcept
+    : UpdateModuleResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateModuleResponse& operator=(const UpdateModuleResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateModuleResponse& operator=(UpdateModuleResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateModuleResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateModuleResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateModuleResponse*>(
+               &_UpdateModuleResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    113;
+
+  friend void swap(UpdateModuleResponse& a, UpdateModuleResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateModuleResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateModuleResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateModuleResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateModuleResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateModuleResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateModuleResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateModuleResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateModuleResponse";
+  }
+  protected:
+  explicit UpdateModuleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUrlFieldNumber = 1,
+  };
+  // string url = 1 [json_name = "url"];
+  void clear_url();
+  const std::string& url() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_url(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* url);
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
+  std::string* _internal_mutable_url();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateModuleResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Model final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Model) */ {
+ public:
+  inline Model() : Model(nullptr) {}
+  ~Model() override;
+  explicit PROTOBUF_CONSTEXPR Model(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Model(const Model& from);
+  Model(Model&& from) noexcept
+    : Model() {
+    *this = ::std::move(from);
+  }
+
+  inline Model& operator=(const Model& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Model& operator=(Model&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Model& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Model* internal_default_instance() {
+    return reinterpret_cast<const Model*>(
+               &_Model_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    114;
+
+  friend void swap(Model& a, Model& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Model* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Model* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Model* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Model>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Model& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Model& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Model* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.Model";
+  }
+  protected:
+  explicit Model(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kApiFieldNumber = 1,
+    kModelFieldNumber = 2,
+  };
+  // string api = 1 [json_name = "api"];
+  void clear_api();
+  const std::string& api() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_api(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_api();
+  PROTOBUF_NODISCARD std::string* release_api();
+  void set_allocated_api(std::string* api);
+  private:
+  const std::string& _internal_api() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_api(const std::string& value);
+  std::string* _internal_mutable_api();
+  public:
+
+  // string model = 2 [json_name = "model"];
+  void clear_model();
+  const std::string& model() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_model(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_model();
+  PROTOBUF_NODISCARD std::string* release_model();
+  void set_allocated_model(std::string* model);
+  private:
+  const std::string& _internal_model() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model(const std::string& value);
+  std::string* _internal_mutable_model();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.Model)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ModuleFileInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ModuleFileInfo) */ {
+ public:
+  inline ModuleFileInfo() : ModuleFileInfo(nullptr) {}
+  ~ModuleFileInfo() override;
+  explicit PROTOBUF_CONSTEXPR ModuleFileInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ModuleFileInfo(const ModuleFileInfo& from);
+  ModuleFileInfo(ModuleFileInfo&& from) noexcept
+    : ModuleFileInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ModuleFileInfo& operator=(const ModuleFileInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleFileInfo& operator=(ModuleFileInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleFileInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModuleFileInfo* internal_default_instance() {
+    return reinterpret_cast<const ModuleFileInfo*>(
+               &_ModuleFileInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    115;
+
+  friend void swap(ModuleFileInfo& a, ModuleFileInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModuleFileInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleFileInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleFileInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModuleFileInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ModuleFileInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ModuleFileInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModuleFileInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ModuleFileInfo";
+  }
+  protected:
+  explicit ModuleFileInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleIdFieldNumber = 1,
+    kVersionFieldNumber = 2,
+    kPlatformFieldNumber = 3,
+  };
+  // string module_id = 1 [json_name = "moduleId"];
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // string version = 2 [json_name = "version"];
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
+  public:
+
+  // string platform = 3 [json_name = "platform"];
+  void clear_platform();
+  const std::string& platform() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_platform(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_platform();
+  PROTOBUF_NODISCARD std::string* release_platform();
+  void set_allocated_platform(std::string* platform);
+  private:
+  const std::string& _internal_platform() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_platform(const std::string& value);
+  std::string* _internal_mutable_platform();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleFileInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr platform_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadModuleFileRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UploadModuleFileRequest) */ {
+ public:
+  inline UploadModuleFileRequest() : UploadModuleFileRequest(nullptr) {}
+  ~UploadModuleFileRequest() override;
+  explicit PROTOBUF_CONSTEXPR UploadModuleFileRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadModuleFileRequest(const UploadModuleFileRequest& from);
+  UploadModuleFileRequest(UploadModuleFileRequest&& from) noexcept
+    : UploadModuleFileRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadModuleFileRequest& operator=(const UploadModuleFileRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadModuleFileRequest& operator=(UploadModuleFileRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadModuleFileRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ModuleFileCase {
+    kModuleFileInfo = 1,
+    kFile = 2,
+    MODULE_FILE_NOT_SET = 0,
+  };
+
+  static inline const UploadModuleFileRequest* internal_default_instance() {
+    return reinterpret_cast<const UploadModuleFileRequest*>(
+               &_UploadModuleFileRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    116;
+
+  friend void swap(UploadModuleFileRequest& a, UploadModuleFileRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadModuleFileRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadModuleFileRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadModuleFileRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadModuleFileRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadModuleFileRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UploadModuleFileRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadModuleFileRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UploadModuleFileRequest";
+  }
+  protected:
+  explicit UploadModuleFileRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleFileInfoFieldNumber = 1,
+    kFileFieldNumber = 2,
+  };
+  // .viam.app.v1.ModuleFileInfo module_file_info = 1 [json_name = "moduleFileInfo"];
+  bool has_module_file_info() const;
+  private:
+  bool _internal_has_module_file_info() const;
+  public:
+  void clear_module_file_info();
+  const ::viam::app::v1::ModuleFileInfo& module_file_info() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::ModuleFileInfo* release_module_file_info();
+  ::viam::app::v1::ModuleFileInfo* mutable_module_file_info();
+  void set_allocated_module_file_info(::viam::app::v1::ModuleFileInfo* module_file_info);
+  private:
+  const ::viam::app::v1::ModuleFileInfo& _internal_module_file_info() const;
+  ::viam::app::v1::ModuleFileInfo* _internal_mutable_module_file_info();
+  public:
+  void unsafe_arena_set_allocated_module_file_info(
+      ::viam::app::v1::ModuleFileInfo* module_file_info);
+  ::viam::app::v1::ModuleFileInfo* unsafe_arena_release_module_file_info();
+
+  // bytes file = 2 [json_name = "file"];
+  bool has_file() const;
+  private:
+  bool _internal_has_file() const;
+  public:
+  void clear_file();
+  const std::string& file() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_file(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_file();
+  PROTOBUF_NODISCARD std::string* release_file();
+  void set_allocated_file(std::string* file);
+  private:
+  const std::string& _internal_file() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file(const std::string& value);
+  std::string* _internal_mutable_file();
+  public:
+
+  void clear_module_file();
+  ModuleFileCase module_file_case() const;
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UploadModuleFileRequest)
+ private:
+  class _Internal;
+  void set_has_module_file_info();
+  void set_has_file();
+
+  inline bool has_module_file() const;
+  inline void clear_has_module_file();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  union ModuleFileUnion {
+    constexpr ModuleFileUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    ::viam::app::v1::ModuleFileInfo* module_file_info_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr file_;
+  } module_file_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  uint32_t _oneof_case_[1];
+
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadModuleFileResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UploadModuleFileResponse) */ {
+ public:
+  inline UploadModuleFileResponse() : UploadModuleFileResponse(nullptr) {}
+  ~UploadModuleFileResponse() override;
+  explicit PROTOBUF_CONSTEXPR UploadModuleFileResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadModuleFileResponse(const UploadModuleFileResponse& from);
+  UploadModuleFileResponse(UploadModuleFileResponse&& from) noexcept
+    : UploadModuleFileResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadModuleFileResponse& operator=(const UploadModuleFileResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadModuleFileResponse& operator=(UploadModuleFileResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadModuleFileResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadModuleFileResponse* internal_default_instance() {
+    return reinterpret_cast<const UploadModuleFileResponse*>(
+               &_UploadModuleFileResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    117;
+
+  friend void swap(UploadModuleFileResponse& a, UploadModuleFileResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadModuleFileResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadModuleFileResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadModuleFileResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadModuleFileResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadModuleFileResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UploadModuleFileResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadModuleFileResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UploadModuleFileResponse";
+  }
+  protected:
+  explicit UploadModuleFileResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUrlFieldNumber = 1,
+  };
+  // string url = 1 [json_name = "url"];
+  void clear_url();
+  const std::string& url() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_url(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* url);
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
+  std::string* _internal_mutable_url();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UploadModuleFileResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetModuleRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetModuleRequest) */ {
+ public:
+  inline GetModuleRequest() : GetModuleRequest(nullptr) {}
+  ~GetModuleRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetModuleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetModuleRequest(const GetModuleRequest& from);
+  GetModuleRequest(GetModuleRequest&& from) noexcept
+    : GetModuleRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetModuleRequest& operator=(const GetModuleRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetModuleRequest& operator=(GetModuleRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetModuleRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetModuleRequest* internal_default_instance() {
+    return reinterpret_cast<const GetModuleRequest*>(
+               &_GetModuleRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    118;
+
+  friend void swap(GetModuleRequest& a, GetModuleRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetModuleRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetModuleRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetModuleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetModuleRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetModuleRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetModuleRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetModuleRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetModuleRequest";
+  }
+  protected:
+  explicit GetModuleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleIdFieldNumber = 1,
+  };
+  // string module_id = 1 [json_name = "moduleId"];
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetModuleRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetModuleResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetModuleResponse) */ {
+ public:
+  inline GetModuleResponse() : GetModuleResponse(nullptr) {}
+  ~GetModuleResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetModuleResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetModuleResponse(const GetModuleResponse& from);
+  GetModuleResponse(GetModuleResponse&& from) noexcept
+    : GetModuleResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetModuleResponse& operator=(const GetModuleResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetModuleResponse& operator=(GetModuleResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetModuleResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetModuleResponse* internal_default_instance() {
+    return reinterpret_cast<const GetModuleResponse*>(
+               &_GetModuleResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    119;
+
+  friend void swap(GetModuleResponse& a, GetModuleResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetModuleResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetModuleResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetModuleResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetModuleResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetModuleResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetModuleResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetModuleResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetModuleResponse";
+  }
+  protected:
+  explicit GetModuleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleFieldNumber = 1,
+  };
+  // .viam.app.v1.Module module = 1 [json_name = "module"];
+  bool has_module() const;
+  private:
+  bool _internal_has_module() const;
+  public:
+  void clear_module();
+  const ::viam::app::v1::Module& module() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::Module* release_module();
+  ::viam::app::v1::Module* mutable_module();
+  void set_allocated_module(::viam::app::v1::Module* module);
+  private:
+  const ::viam::app::v1::Module& _internal_module() const;
+  ::viam::app::v1::Module* _internal_mutable_module();
+  public:
+  void unsafe_arena_set_allocated_module(
+      ::viam::app::v1::Module* module);
+  ::viam::app::v1::Module* unsafe_arena_release_module();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetModuleResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::v1::Module* module_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Module final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Module) */ {
+ public:
+  inline Module() : Module(nullptr) {}
+  ~Module() override;
+  explicit PROTOBUF_CONSTEXPR Module(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Module(const Module& from);
+  Module(Module&& from) noexcept
+    : Module() {
+    *this = ::std::move(from);
+  }
+
+  inline Module& operator=(const Module& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Module& operator=(Module&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Module& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Module* internal_default_instance() {
+    return reinterpret_cast<const Module*>(
+               &_Module_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    120;
+
+  friend void swap(Module& a, Module& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Module* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Module* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Module* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Module>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Module& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Module& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Module* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.Module";
+  }
+  protected:
+  explicit Module(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVersionsFieldNumber = 4,
+    kModelsFieldNumber = 7,
+    kModuleIdFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kUrlFieldNumber = 5,
+    kDescriptionFieldNumber = 6,
+    kOrganizationIdFieldNumber = 10,
+    kTotalRobotUsageFieldNumber = 8,
+    kTotalOrganizationUsageFieldNumber = 9,
+    kVisibilityFieldNumber = 3,
+  };
+  // repeated .viam.app.v1.VersionHistory versions = 4 [json_name = "versions"];
+  int versions_size() const;
+  private:
+  int _internal_versions_size() const;
+  public:
+  void clear_versions();
+  ::viam::app::v1::VersionHistory* mutable_versions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::VersionHistory >*
+      mutable_versions();
+  private:
+  const ::viam::app::v1::VersionHistory& _internal_versions(int index) const;
+  ::viam::app::v1::VersionHistory* _internal_add_versions();
+  public:
+  const ::viam::app::v1::VersionHistory& versions(int index) const;
+  ::viam::app::v1::VersionHistory* add_versions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::VersionHistory >&
+      versions() const;
+
+  // repeated .viam.app.v1.Model models = 7 [json_name = "models"];
+  int models_size() const;
+  private:
+  int _internal_models_size() const;
+  public:
+  void clear_models();
+  ::viam::app::v1::Model* mutable_models(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >*
+      mutable_models();
+  private:
+  const ::viam::app::v1::Model& _internal_models(int index) const;
+  ::viam::app::v1::Model* _internal_add_models();
+  public:
+  const ::viam::app::v1::Model& models(int index) const;
+  ::viam::app::v1::Model* add_models();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
+      models() const;
+
+  // string module_id = 1 [json_name = "moduleId"];
+  void clear_module_id();
+  const std::string& module_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_id();
+  PROTOBUF_NODISCARD std::string* release_module_id();
+  void set_allocated_module_id(std::string* module_id);
+  private:
+  const std::string& _internal_module_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_id(const std::string& value);
+  std::string* _internal_mutable_module_id();
+  public:
+
+  // string name = 2 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string url = 5 [json_name = "url"];
+  void clear_url();
+  const std::string& url() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_url(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_url();
+  PROTOBUF_NODISCARD std::string* release_url();
+  void set_allocated_url(std::string* url);
+  private:
+  const std::string& _internal_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
+  std::string* _internal_mutable_url();
+  public:
+
+  // string description = 6 [json_name = "description"];
+  void clear_description();
+  const std::string& description() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_description(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // string organization_id = 10 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
+  void clear_total_robot_usage();
+  int64_t total_robot_usage() const;
+  void set_total_robot_usage(int64_t value);
+  private:
+  int64_t _internal_total_robot_usage() const;
+  void _internal_set_total_robot_usage(int64_t value);
+  public:
+
+  // int64 total_organization_usage = 9 [json_name = "totalOrganizationUsage"];
+  void clear_total_organization_usage();
+  int64_t total_organization_usage() const;
+  void set_total_organization_usage(int64_t value);
+  private:
+  int64_t _internal_total_organization_usage() const;
+  void _internal_set_total_organization_usage(int64_t value);
+  public:
+
+  // .viam.app.v1.Visibility visibility = 3 [json_name = "visibility"];
+  void clear_visibility();
+  ::viam::app::v1::Visibility visibility() const;
+  void set_visibility(::viam::app::v1::Visibility value);
+  private:
+  ::viam::app::v1::Visibility _internal_visibility() const;
+  void _internal_set_visibility(::viam::app::v1::Visibility value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.Module)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::VersionHistory > versions_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  int64_t total_robot_usage_;
+  int64_t total_organization_usage_;
+  int visibility_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class VersionHistory final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.VersionHistory) */ {
+ public:
+  inline VersionHistory() : VersionHistory(nullptr) {}
+  ~VersionHistory() override;
+  explicit PROTOBUF_CONSTEXPR VersionHistory(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  VersionHistory(const VersionHistory& from);
+  VersionHistory(VersionHistory&& from) noexcept
+    : VersionHistory() {
+    *this = ::std::move(from);
+  }
+
+  inline VersionHistory& operator=(const VersionHistory& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline VersionHistory& operator=(VersionHistory&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const VersionHistory& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const VersionHistory* internal_default_instance() {
+    return reinterpret_cast<const VersionHistory*>(
+               &_VersionHistory_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    121;
+
+  friend void swap(VersionHistory& a, VersionHistory& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(VersionHistory* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(VersionHistory* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  VersionHistory* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<VersionHistory>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const VersionHistory& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const VersionHistory& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(VersionHistory* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.VersionHistory";
+  }
+  protected:
+  explicit VersionHistory(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFilesFieldNumber = 2,
+    kVersionFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
+  int files_size() const;
+  private:
+  int _internal_files_size() const;
+  public:
+  void clear_files();
+  ::viam::app::v1::Uploads* mutable_files(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads >*
+      mutable_files();
+  private:
+  const ::viam::app::v1::Uploads& _internal_files(int index) const;
+  ::viam::app::v1::Uploads* _internal_add_files();
+  public:
+  const ::viam::app::v1::Uploads& files(int index) const;
+  ::viam::app::v1::Uploads* add_files();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads >&
+      files() const;
+
+  // string version = 1 [json_name = "version"];
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.VersionHistory)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads > files_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Uploads final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.Uploads) */ {
+ public:
+  inline Uploads() : Uploads(nullptr) {}
+  ~Uploads() override;
+  explicit PROTOBUF_CONSTEXPR Uploads(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Uploads(const Uploads& from);
+  Uploads(Uploads&& from) noexcept
+    : Uploads() {
+    *this = ::std::move(from);
+  }
+
+  inline Uploads& operator=(const Uploads& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Uploads& operator=(Uploads&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Uploads& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Uploads* internal_default_instance() {
+    return reinterpret_cast<const Uploads*>(
+               &_Uploads_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    122;
+
+  friend void swap(Uploads& a, Uploads& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Uploads* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Uploads* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Uploads* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Uploads>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Uploads& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Uploads& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Uploads* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.Uploads";
+  }
+  protected:
+  explicit Uploads(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlatformFieldNumber = 1,
+    kUploadedAtFieldNumber = 2,
+  };
+  // string platform = 1 [json_name = "platform"];
+  void clear_platform();
+  const std::string& platform() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_platform(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_platform();
+  PROTOBUF_NODISCARD std::string* release_platform();
+  void set_allocated_platform(std::string* platform);
+  private:
+  const std::string& _internal_platform() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_platform(const std::string& value);
+  std::string* _internal_mutable_platform();
+  public:
+
+  // .google.protobuf.Timestamp uploaded_at = 2 [json_name = "uploadedAt"];
+  bool has_uploaded_at() const;
+  private:
+  bool _internal_has_uploaded_at() const;
+  public:
+  void clear_uploaded_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& uploaded_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_uploaded_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_uploaded_at();
+  void set_allocated_uploaded_at(::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_uploaded_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_uploaded_at();
+  public:
+  void unsafe_arena_set_allocated_uploaded_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_uploaded_at();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.Uploads)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr platform_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListModulesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListModulesRequest) */ {
+ public:
+  inline ListModulesRequest() : ListModulesRequest(nullptr) {}
+  ~ListModulesRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListModulesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListModulesRequest(const ListModulesRequest& from);
+  ListModulesRequest(ListModulesRequest&& from) noexcept
+    : ListModulesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListModulesRequest& operator=(const ListModulesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListModulesRequest& operator=(ListModulesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListModulesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListModulesRequest* internal_default_instance() {
+    return reinterpret_cast<const ListModulesRequest*>(
+               &_ListModulesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    123;
+
+  friend void swap(ListModulesRequest& a, ListModulesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListModulesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListModulesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListModulesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListModulesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListModulesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListModulesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListModulesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListModulesRequest";
+  }
+  protected:
+  explicit ListModulesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationIdFieldNumber = 1,
+  };
+  // optional string organization_id = 1 [json_name = "organizationId"];
+  bool has_organization_id() const;
+  private:
+  bool _internal_has_organization_id() const;
+  public:
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListModulesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListModulesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListModulesResponse) */ {
+ public:
+  inline ListModulesResponse() : ListModulesResponse(nullptr) {}
+  ~ListModulesResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListModulesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListModulesResponse(const ListModulesResponse& from);
+  ListModulesResponse(ListModulesResponse&& from) noexcept
+    : ListModulesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListModulesResponse& operator=(const ListModulesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListModulesResponse& operator=(ListModulesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListModulesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListModulesResponse* internal_default_instance() {
+    return reinterpret_cast<const ListModulesResponse*>(
+               &_ListModulesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    124;
+
+  friend void swap(ListModulesResponse& a, ListModulesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListModulesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListModulesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListModulesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListModulesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListModulesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListModulesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListModulesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListModulesResponse";
+  }
+  protected:
+  explicit ListModulesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModulesFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.Module modules = 1 [json_name = "modules"];
+  int modules_size() const;
+  private:
+  int _internal_modules_size() const;
+  public:
+  void clear_modules();
+  ::viam::app::v1::Module* mutable_modules(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Module >*
+      mutable_modules();
+  private:
+  const ::viam::app::v1::Module& _internal_modules(int index) const;
+  ::viam::app::v1::Module* _internal_add_modules();
+  public:
+  const ::viam::app::v1::Module& modules(int index) const;
+  ::viam::app::v1::Module* add_modules();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Module >&
+      modules() const;
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListModulesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Module > modules_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetUserIDByEmailRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetUserIDByEmailRequest) */ {
+ public:
+  inline GetUserIDByEmailRequest() : GetUserIDByEmailRequest(nullptr) {}
+  ~GetUserIDByEmailRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetUserIDByEmailRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetUserIDByEmailRequest(const GetUserIDByEmailRequest& from);
+  GetUserIDByEmailRequest(GetUserIDByEmailRequest&& from) noexcept
+    : GetUserIDByEmailRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetUserIDByEmailRequest& operator=(const GetUserIDByEmailRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetUserIDByEmailRequest& operator=(GetUserIDByEmailRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetUserIDByEmailRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetUserIDByEmailRequest* internal_default_instance() {
+    return reinterpret_cast<const GetUserIDByEmailRequest*>(
+               &_GetUserIDByEmailRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    125;
+
+  friend void swap(GetUserIDByEmailRequest& a, GetUserIDByEmailRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetUserIDByEmailRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetUserIDByEmailRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetUserIDByEmailRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetUserIDByEmailRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetUserIDByEmailRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetUserIDByEmailRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetUserIDByEmailRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetUserIDByEmailRequest";
+  }
+  protected:
+  explicit GetUserIDByEmailRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEmailFieldNumber = 1,
+  };
+  // string email = 1 [json_name = "email"];
+  void clear_email();
+  const std::string& email() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_email(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_email();
+  PROTOBUF_NODISCARD std::string* release_email();
+  void set_allocated_email(std::string* email);
+  private:
+  const std::string& _internal_email() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(const std::string& value);
+  std::string* _internal_mutable_email();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetUserIDByEmailRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetUserIDByEmailResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetUserIDByEmailResponse) */ {
+ public:
+  inline GetUserIDByEmailResponse() : GetUserIDByEmailResponse(nullptr) {}
+  ~GetUserIDByEmailResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetUserIDByEmailResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetUserIDByEmailResponse(const GetUserIDByEmailResponse& from);
+  GetUserIDByEmailResponse(GetUserIDByEmailResponse&& from) noexcept
+    : GetUserIDByEmailResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetUserIDByEmailResponse& operator=(const GetUserIDByEmailResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetUserIDByEmailResponse& operator=(GetUserIDByEmailResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetUserIDByEmailResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetUserIDByEmailResponse* internal_default_instance() {
+    return reinterpret_cast<const GetUserIDByEmailResponse*>(
+               &_GetUserIDByEmailResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    126;
+
+  friend void swap(GetUserIDByEmailResponse& a, GetUserIDByEmailResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetUserIDByEmailResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetUserIDByEmailResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetUserIDByEmailResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetUserIDByEmailResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetUserIDByEmailResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetUserIDByEmailResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetUserIDByEmailResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetUserIDByEmailResponse";
+  }
+  protected:
+  explicit GetUserIDByEmailResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIdFieldNumber = 1,
+  };
+  // string user_id = 1 [json_name = "userId"];
+  void clear_user_id();
+  const std::string& user_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user_id();
+  PROTOBUF_NODISCARD std::string* release_user_id();
+  void set_allocated_user_id(std::string* user_id);
+  private:
+  const std::string& _internal_user_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_id(const std::string& value);
+  std::string* _internal_mutable_user_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetUserIDByEmailResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListOrganizationsByUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListOrganizationsByUserRequest) */ {
+ public:
+  inline ListOrganizationsByUserRequest() : ListOrganizationsByUserRequest(nullptr) {}
+  ~ListOrganizationsByUserRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListOrganizationsByUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListOrganizationsByUserRequest(const ListOrganizationsByUserRequest& from);
+  ListOrganizationsByUserRequest(ListOrganizationsByUserRequest&& from) noexcept
+    : ListOrganizationsByUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListOrganizationsByUserRequest& operator=(const ListOrganizationsByUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListOrganizationsByUserRequest& operator=(ListOrganizationsByUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListOrganizationsByUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListOrganizationsByUserRequest* internal_default_instance() {
+    return reinterpret_cast<const ListOrganizationsByUserRequest*>(
+               &_ListOrganizationsByUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    127;
+
+  friend void swap(ListOrganizationsByUserRequest& a, ListOrganizationsByUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListOrganizationsByUserRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListOrganizationsByUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListOrganizationsByUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListOrganizationsByUserRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListOrganizationsByUserRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListOrganizationsByUserRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListOrganizationsByUserRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListOrganizationsByUserRequest";
+  }
+  protected:
+  explicit ListOrganizationsByUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIdFieldNumber = 1,
+  };
+  // string user_id = 1 [json_name = "userId"];
+  void clear_user_id();
+  const std::string& user_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user_id();
+  PROTOBUF_NODISCARD std::string* release_user_id();
+  void set_allocated_user_id(std::string* user_id);
+  private:
+  const std::string& _internal_user_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_id(const std::string& value);
+  std::string* _internal_mutable_user_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListOrganizationsByUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class OrgDetails final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.OrgDetails) */ {
+ public:
+  inline OrgDetails() : OrgDetails(nullptr) {}
+  ~OrgDetails() override;
+  explicit PROTOBUF_CONSTEXPR OrgDetails(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  OrgDetails(const OrgDetails& from);
+  OrgDetails(OrgDetails&& from) noexcept
+    : OrgDetails() {
+    *this = ::std::move(from);
+  }
+
+  inline OrgDetails& operator=(const OrgDetails& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OrgDetails& operator=(OrgDetails&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const OrgDetails& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const OrgDetails* internal_default_instance() {
+    return reinterpret_cast<const OrgDetails*>(
+               &_OrgDetails_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    128;
+
+  friend void swap(OrgDetails& a, OrgDetails& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OrgDetails* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OrgDetails* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  OrgDetails* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<OrgDetails>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const OrgDetails& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const OrgDetails& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(OrgDetails* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.OrgDetails";
+  }
+  protected:
+  explicit OrgDetails(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+    kOrgNameFieldNumber = 2,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // string org_name = 2 [json_name = "orgName"];
+  void clear_org_name();
+  const std::string& org_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_name();
+  PROTOBUF_NODISCARD std::string* release_org_name();
+  void set_allocated_org_name(std::string* org_name);
+  private:
+  const std::string& _internal_org_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_name(const std::string& value);
+  std::string* _internal_mutable_org_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.OrgDetails)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListOrganizationsByUserResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListOrganizationsByUserResponse) */ {
+ public:
+  inline ListOrganizationsByUserResponse() : ListOrganizationsByUserResponse(nullptr) {}
+  ~ListOrganizationsByUserResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListOrganizationsByUserResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListOrganizationsByUserResponse(const ListOrganizationsByUserResponse& from);
+  ListOrganizationsByUserResponse(ListOrganizationsByUserResponse&& from) noexcept
+    : ListOrganizationsByUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListOrganizationsByUserResponse& operator=(const ListOrganizationsByUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListOrganizationsByUserResponse& operator=(ListOrganizationsByUserResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListOrganizationsByUserResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListOrganizationsByUserResponse* internal_default_instance() {
+    return reinterpret_cast<const ListOrganizationsByUserResponse*>(
+               &_ListOrganizationsByUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    129;
+
+  friend void swap(ListOrganizationsByUserResponse& a, ListOrganizationsByUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListOrganizationsByUserResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListOrganizationsByUserResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListOrganizationsByUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListOrganizationsByUserResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListOrganizationsByUserResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListOrganizationsByUserResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListOrganizationsByUserResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListOrganizationsByUserResponse";
+  }
+  protected:
+  explicit ListOrganizationsByUserResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgsFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.OrgDetails orgs = 1 [json_name = "orgs"];
+  int orgs_size() const;
+  private:
+  int _internal_orgs_size() const;
+  public:
+  void clear_orgs();
+  ::viam::app::v1::OrgDetails* mutable_orgs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::OrgDetails >*
+      mutable_orgs();
+  private:
+  const ::viam::app::v1::OrgDetails& _internal_orgs(int index) const;
+  ::viam::app::v1::OrgDetails* _internal_add_orgs();
+  public:
+  const ::viam::app::v1::OrgDetails& orgs(int index) const;
+  ::viam::app::v1::OrgDetails* add_orgs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::OrgDetails >&
+      orgs() const;
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListOrganizationsByUserResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::OrgDetails > orgs_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
 // ===================================================================
 
 
@@ -19933,6 +23448,56 @@ inline void Organization::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Time
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Organization.created_on)
 }
 
+// string public_namespace = 4 [json_name = "publicNamespace"];
+inline void Organization::clear_public_namespace() {
+  public_namespace_.ClearToEmpty();
+}
+inline const std::string& Organization::public_namespace() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Organization.public_namespace)
+  return _internal_public_namespace();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Organization::set_public_namespace(ArgT0&& arg0, ArgT... args) {
+ 
+ public_namespace_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Organization.public_namespace)
+}
+inline std::string* Organization::mutable_public_namespace() {
+  std::string* _s = _internal_mutable_public_namespace();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Organization.public_namespace)
+  return _s;
+}
+inline const std::string& Organization::_internal_public_namespace() const {
+  return public_namespace_.Get();
+}
+inline void Organization::_internal_set_public_namespace(const std::string& value) {
+  
+  public_namespace_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Organization::_internal_mutable_public_namespace() {
+  
+  return public_namespace_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Organization::release_public_namespace() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Organization.public_namespace)
+  return public_namespace_.Release();
+}
+inline void Organization::set_allocated_public_namespace(std::string* public_namespace) {
+  if (public_namespace != nullptr) {
+    
+  } else {
+    
+  }
+  public_namespace_.SetAllocated(public_namespace, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (public_namespace_.IsDefault()) {
+    public_namespace_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Organization.public_namespace)
+}
+
 // -------------------------------------------------------------------
 
 // OrganizationMember
@@ -20798,6 +24363,74 @@ inline void UpdateOrganizationRequest::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.name)
+}
+
+// optional string public_namespace = 3 [json_name = "publicNamespace"];
+inline bool UpdateOrganizationRequest::_internal_has_public_namespace() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateOrganizationRequest::has_public_namespace() const {
+  return _internal_has_public_namespace();
+}
+inline void UpdateOrganizationRequest::clear_public_namespace() {
+  public_namespace_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UpdateOrganizationRequest::public_namespace() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationRequest.public_namespace)
+  return _internal_public_namespace();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateOrganizationRequest::set_public_namespace(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ public_namespace_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateOrganizationRequest.public_namespace)
+}
+inline std::string* UpdateOrganizationRequest::mutable_public_namespace() {
+  std::string* _s = _internal_mutable_public_namespace();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationRequest.public_namespace)
+  return _s;
+}
+inline const std::string& UpdateOrganizationRequest::_internal_public_namespace() const {
+  return public_namespace_.Get();
+}
+inline void UpdateOrganizationRequest::_internal_set_public_namespace(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  public_namespace_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationRequest::_internal_mutable_public_namespace() {
+  _has_bits_[0] |= 0x00000001u;
+  return public_namespace_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationRequest::release_public_namespace() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationRequest.public_namespace)
+  if (!_internal_has_public_namespace()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = public_namespace_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (public_namespace_.IsDefault()) {
+    public_namespace_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void UpdateOrganizationRequest::set_allocated_public_namespace(std::string* public_namespace) {
+  if (public_namespace != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  public_namespace_.SetAllocated(public_namespace, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (public_namespace_.IsDefault()) {
+    public_namespace_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.public_namespace)
 }
 
 // -------------------------------------------------------------------
@@ -30021,9 +33654,2252 @@ CheckPermissionsResponse::authorized_permissions() const {
   return authorized_permissions_;
 }
 
+// -------------------------------------------------------------------
+
+// CreateModuleRequest
+
+// string public_namespace = 1 [json_name = "publicNamespace"];
+inline void CreateModuleRequest::clear_public_namespace() {
+  public_namespace_.ClearToEmpty();
+}
+inline const std::string& CreateModuleRequest::public_namespace() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateModuleRequest.public_namespace)
+  return _internal_public_namespace();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateModuleRequest::set_public_namespace(ArgT0&& arg0, ArgT... args) {
+ 
+ public_namespace_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateModuleRequest.public_namespace)
+}
+inline std::string* CreateModuleRequest::mutable_public_namespace() {
+  std::string* _s = _internal_mutable_public_namespace();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateModuleRequest.public_namespace)
+  return _s;
+}
+inline const std::string& CreateModuleRequest::_internal_public_namespace() const {
+  return public_namespace_.Get();
+}
+inline void CreateModuleRequest::_internal_set_public_namespace(const std::string& value) {
+  
+  public_namespace_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateModuleRequest::_internal_mutable_public_namespace() {
+  
+  return public_namespace_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateModuleRequest::release_public_namespace() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateModuleRequest.public_namespace)
+  return public_namespace_.Release();
+}
+inline void CreateModuleRequest::set_allocated_public_namespace(std::string* public_namespace) {
+  if (public_namespace != nullptr) {
+    
+  } else {
+    
+  }
+  public_namespace_.SetAllocated(public_namespace, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (public_namespace_.IsDefault()) {
+    public_namespace_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateModuleRequest.public_namespace)
+}
+
+// string name = 2 [json_name = "name"];
+inline void CreateModuleRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& CreateModuleRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateModuleRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateModuleRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateModuleRequest.name)
+}
+inline std::string* CreateModuleRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateModuleRequest.name)
+  return _s;
+}
+inline const std::string& CreateModuleRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void CreateModuleRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateModuleRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateModuleRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateModuleRequest.name)
+  return name_.Release();
+}
+inline void CreateModuleRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateModuleRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// CreateModuleResponse
+
+// string module_id = 1 [json_name = "moduleId"];
+inline void CreateModuleResponse::clear_module_id() {
+  module_id_.ClearToEmpty();
+}
+inline const std::string& CreateModuleResponse::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateModuleResponse.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateModuleResponse::set_module_id(ArgT0&& arg0, ArgT... args) {
+ 
+ module_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateModuleResponse.module_id)
+}
+inline std::string* CreateModuleResponse::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateModuleResponse.module_id)
+  return _s;
+}
+inline const std::string& CreateModuleResponse::_internal_module_id() const {
+  return module_id_.Get();
+}
+inline void CreateModuleResponse::_internal_set_module_id(const std::string& value) {
+  
+  module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateModuleResponse::_internal_mutable_module_id() {
+  
+  return module_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateModuleResponse::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateModuleResponse.module_id)
+  return module_id_.Release();
+}
+inline void CreateModuleResponse::set_allocated_module_id(std::string* module_id) {
+  if (module_id != nullptr) {
+    
+  } else {
+    
+  }
+  module_id_.SetAllocated(module_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_id_.IsDefault()) {
+    module_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateModuleResponse.module_id)
+}
+
+// string url = 2 [json_name = "url"];
+inline void CreateModuleResponse::clear_url() {
+  url_.ClearToEmpty();
+}
+inline const std::string& CreateModuleResponse::url() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateModuleResponse.url)
+  return _internal_url();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateModuleResponse::set_url(ArgT0&& arg0, ArgT... args) {
+ 
+ url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateModuleResponse.url)
+}
+inline std::string* CreateModuleResponse::mutable_url() {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateModuleResponse.url)
+  return _s;
+}
+inline const std::string& CreateModuleResponse::_internal_url() const {
+  return url_.Get();
+}
+inline void CreateModuleResponse::_internal_set_url(const std::string& value) {
+  
+  url_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateModuleResponse::_internal_mutable_url() {
+  
+  return url_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateModuleResponse::release_url() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateModuleResponse.url)
+  return url_.Release();
+}
+inline void CreateModuleResponse::set_allocated_url(std::string* url) {
+  if (url != nullptr) {
+    
+  } else {
+    
+  }
+  url_.SetAllocated(url, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (url_.IsDefault()) {
+    url_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateModuleResponse.url)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateModuleRequest
+
+// string module_id = 1 [json_name = "moduleId"];
+inline void UpdateModuleRequest::clear_module_id() {
+  module_id_.ClearToEmpty();
+}
+inline const std::string& UpdateModuleRequest::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateModuleRequest::set_module_id(ArgT0&& arg0, ArgT... args) {
+ 
+ module_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleRequest.module_id)
+}
+inline std::string* UpdateModuleRequest::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleRequest.module_id)
+  return _s;
+}
+inline const std::string& UpdateModuleRequest::_internal_module_id() const {
+  return module_id_.Get();
+}
+inline void UpdateModuleRequest::_internal_set_module_id(const std::string& value) {
+  
+  module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::_internal_mutable_module_id() {
+  
+  return module_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleRequest.module_id)
+  return module_id_.Release();
+}
+inline void UpdateModuleRequest::set_allocated_module_id(std::string* module_id) {
+  if (module_id != nullptr) {
+    
+  } else {
+    
+  }
+  module_id_.SetAllocated(module_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_id_.IsDefault()) {
+    module_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleRequest.module_id)
+}
+
+// .viam.app.v1.Visibility visibility = 2 [json_name = "visibility"];
+inline void UpdateModuleRequest::clear_visibility() {
+  visibility_ = 0;
+}
+inline ::viam::app::v1::Visibility UpdateModuleRequest::_internal_visibility() const {
+  return static_cast< ::viam::app::v1::Visibility >(visibility_);
+}
+inline ::viam::app::v1::Visibility UpdateModuleRequest::visibility() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.visibility)
+  return _internal_visibility();
+}
+inline void UpdateModuleRequest::_internal_set_visibility(::viam::app::v1::Visibility value) {
+  
+  visibility_ = value;
+}
+inline void UpdateModuleRequest::set_visibility(::viam::app::v1::Visibility value) {
+  _internal_set_visibility(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleRequest.visibility)
+}
+
+// string url = 3 [json_name = "url"];
+inline void UpdateModuleRequest::clear_url() {
+  url_.ClearToEmpty();
+}
+inline const std::string& UpdateModuleRequest::url() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.url)
+  return _internal_url();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateModuleRequest::set_url(ArgT0&& arg0, ArgT... args) {
+ 
+ url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleRequest.url)
+}
+inline std::string* UpdateModuleRequest::mutable_url() {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleRequest.url)
+  return _s;
+}
+inline const std::string& UpdateModuleRequest::_internal_url() const {
+  return url_.Get();
+}
+inline void UpdateModuleRequest::_internal_set_url(const std::string& value) {
+  
+  url_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::_internal_mutable_url() {
+  
+  return url_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::release_url() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleRequest.url)
+  return url_.Release();
+}
+inline void UpdateModuleRequest::set_allocated_url(std::string* url) {
+  if (url != nullptr) {
+    
+  } else {
+    
+  }
+  url_.SetAllocated(url, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (url_.IsDefault()) {
+    url_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleRequest.url)
+}
+
+// string description = 4 [json_name = "description"];
+inline void UpdateModuleRequest::clear_description() {
+  description_.ClearToEmpty();
+}
+inline const std::string& UpdateModuleRequest::description() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.description)
+  return _internal_description();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateModuleRequest::set_description(ArgT0&& arg0, ArgT... args) {
+ 
+ description_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleRequest.description)
+}
+inline std::string* UpdateModuleRequest::mutable_description() {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleRequest.description)
+  return _s;
+}
+inline const std::string& UpdateModuleRequest::_internal_description() const {
+  return description_.Get();
+}
+inline void UpdateModuleRequest::_internal_set_description(const std::string& value) {
+  
+  description_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::_internal_mutable_description() {
+  
+  return description_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::release_description() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleRequest.description)
+  return description_.Release();
+}
+inline void UpdateModuleRequest::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocated(description, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleRequest.description)
+}
+
+// repeated .viam.app.v1.Model models = 5 [json_name = "models"];
+inline int UpdateModuleRequest::_internal_models_size() const {
+  return models_.size();
+}
+inline int UpdateModuleRequest::models_size() const {
+  return _internal_models_size();
+}
+inline void UpdateModuleRequest::clear_models() {
+  models_.Clear();
+}
+inline ::viam::app::v1::Model* UpdateModuleRequest::mutable_models(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleRequest.models)
+  return models_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >*
+UpdateModuleRequest::mutable_models() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UpdateModuleRequest.models)
+  return &models_;
+}
+inline const ::viam::app::v1::Model& UpdateModuleRequest::_internal_models(int index) const {
+  return models_.Get(index);
+}
+inline const ::viam::app::v1::Model& UpdateModuleRequest::models(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.models)
+  return _internal_models(index);
+}
+inline ::viam::app::v1::Model* UpdateModuleRequest::_internal_add_models() {
+  return models_.Add();
+}
+inline ::viam::app::v1::Model* UpdateModuleRequest::add_models() {
+  ::viam::app::v1::Model* _add = _internal_add_models();
+  // @@protoc_insertion_point(field_add:viam.app.v1.UpdateModuleRequest.models)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
+UpdateModuleRequest::models() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.UpdateModuleRequest.models)
+  return models_;
+}
+
+// string entrypoint = 6 [json_name = "entrypoint"];
+inline void UpdateModuleRequest::clear_entrypoint() {
+  entrypoint_.ClearToEmpty();
+}
+inline const std::string& UpdateModuleRequest::entrypoint() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleRequest.entrypoint)
+  return _internal_entrypoint();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateModuleRequest::set_entrypoint(ArgT0&& arg0, ArgT... args) {
+ 
+ entrypoint_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleRequest.entrypoint)
+}
+inline std::string* UpdateModuleRequest::mutable_entrypoint() {
+  std::string* _s = _internal_mutable_entrypoint();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleRequest.entrypoint)
+  return _s;
+}
+inline const std::string& UpdateModuleRequest::_internal_entrypoint() const {
+  return entrypoint_.Get();
+}
+inline void UpdateModuleRequest::_internal_set_entrypoint(const std::string& value) {
+  
+  entrypoint_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::_internal_mutable_entrypoint() {
+  
+  return entrypoint_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateModuleRequest::release_entrypoint() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleRequest.entrypoint)
+  return entrypoint_.Release();
+}
+inline void UpdateModuleRequest::set_allocated_entrypoint(std::string* entrypoint) {
+  if (entrypoint != nullptr) {
+    
+  } else {
+    
+  }
+  entrypoint_.SetAllocated(entrypoint, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (entrypoint_.IsDefault()) {
+    entrypoint_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleRequest.entrypoint)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateModuleResponse
+
+// string url = 1 [json_name = "url"];
+inline void UpdateModuleResponse::clear_url() {
+  url_.ClearToEmpty();
+}
+inline const std::string& UpdateModuleResponse::url() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleResponse.url)
+  return _internal_url();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateModuleResponse::set_url(ArgT0&& arg0, ArgT... args) {
+ 
+ url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleResponse.url)
+}
+inline std::string* UpdateModuleResponse::mutable_url() {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleResponse.url)
+  return _s;
+}
+inline const std::string& UpdateModuleResponse::_internal_url() const {
+  return url_.Get();
+}
+inline void UpdateModuleResponse::_internal_set_url(const std::string& value) {
+  
+  url_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateModuleResponse::_internal_mutable_url() {
+  
+  return url_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateModuleResponse::release_url() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateModuleResponse.url)
+  return url_.Release();
+}
+inline void UpdateModuleResponse::set_allocated_url(std::string* url) {
+  if (url != nullptr) {
+    
+  } else {
+    
+  }
+  url_.SetAllocated(url, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (url_.IsDefault()) {
+    url_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleResponse.url)
+}
+
+// -------------------------------------------------------------------
+
+// Model
+
+// string api = 1 [json_name = "api"];
+inline void Model::clear_api() {
+  api_.ClearToEmpty();
+}
+inline const std::string& Model::api() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Model.api)
+  return _internal_api();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Model::set_api(ArgT0&& arg0, ArgT... args) {
+ 
+ api_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Model.api)
+}
+inline std::string* Model::mutable_api() {
+  std::string* _s = _internal_mutable_api();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Model.api)
+  return _s;
+}
+inline const std::string& Model::_internal_api() const {
+  return api_.Get();
+}
+inline void Model::_internal_set_api(const std::string& value) {
+  
+  api_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Model::_internal_mutable_api() {
+  
+  return api_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Model::release_api() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Model.api)
+  return api_.Release();
+}
+inline void Model::set_allocated_api(std::string* api) {
+  if (api != nullptr) {
+    
+  } else {
+    
+  }
+  api_.SetAllocated(api, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (api_.IsDefault()) {
+    api_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Model.api)
+}
+
+// string model = 2 [json_name = "model"];
+inline void Model::clear_model() {
+  model_.ClearToEmpty();
+}
+inline const std::string& Model::model() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Model.model)
+  return _internal_model();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Model::set_model(ArgT0&& arg0, ArgT... args) {
+ 
+ model_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Model.model)
+}
+inline std::string* Model::mutable_model() {
+  std::string* _s = _internal_mutable_model();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Model.model)
+  return _s;
+}
+inline const std::string& Model::_internal_model() const {
+  return model_.Get();
+}
+inline void Model::_internal_set_model(const std::string& value) {
+  
+  model_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Model::_internal_mutable_model() {
+  
+  return model_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Model::release_model() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Model.model)
+  return model_.Release();
+}
+inline void Model::set_allocated_model(std::string* model) {
+  if (model != nullptr) {
+    
+  } else {
+    
+  }
+  model_.SetAllocated(model, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (model_.IsDefault()) {
+    model_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Model.model)
+}
+
+// -------------------------------------------------------------------
+
+// ModuleFileInfo
+
+// string module_id = 1 [json_name = "moduleId"];
+inline void ModuleFileInfo::clear_module_id() {
+  module_id_.ClearToEmpty();
+}
+inline const std::string& ModuleFileInfo::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleFileInfo.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleFileInfo::set_module_id(ArgT0&& arg0, ArgT... args) {
+ 
+ module_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleFileInfo.module_id)
+}
+inline std::string* ModuleFileInfo::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleFileInfo.module_id)
+  return _s;
+}
+inline const std::string& ModuleFileInfo::_internal_module_id() const {
+  return module_id_.Get();
+}
+inline void ModuleFileInfo::_internal_set_module_id(const std::string& value) {
+  
+  module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleFileInfo::_internal_mutable_module_id() {
+  
+  return module_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleFileInfo::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleFileInfo.module_id)
+  return module_id_.Release();
+}
+inline void ModuleFileInfo::set_allocated_module_id(std::string* module_id) {
+  if (module_id != nullptr) {
+    
+  } else {
+    
+  }
+  module_id_.SetAllocated(module_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_id_.IsDefault()) {
+    module_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleFileInfo.module_id)
+}
+
+// string version = 2 [json_name = "version"];
+inline void ModuleFileInfo::clear_version() {
+  version_.ClearToEmpty();
+}
+inline const std::string& ModuleFileInfo::version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleFileInfo.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleFileInfo::set_version(ArgT0&& arg0, ArgT... args) {
+ 
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleFileInfo.version)
+}
+inline std::string* ModuleFileInfo::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleFileInfo.version)
+  return _s;
+}
+inline const std::string& ModuleFileInfo::_internal_version() const {
+  return version_.Get();
+}
+inline void ModuleFileInfo::_internal_set_version(const std::string& value) {
+  
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleFileInfo::_internal_mutable_version() {
+  
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleFileInfo::release_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleFileInfo.version)
+  return version_.Release();
+}
+inline void ModuleFileInfo::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    
+  } else {
+    
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleFileInfo.version)
+}
+
+// string platform = 3 [json_name = "platform"];
+inline void ModuleFileInfo::clear_platform() {
+  platform_.ClearToEmpty();
+}
+inline const std::string& ModuleFileInfo::platform() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleFileInfo.platform)
+  return _internal_platform();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleFileInfo::set_platform(ArgT0&& arg0, ArgT... args) {
+ 
+ platform_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleFileInfo.platform)
+}
+inline std::string* ModuleFileInfo::mutable_platform() {
+  std::string* _s = _internal_mutable_platform();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleFileInfo.platform)
+  return _s;
+}
+inline const std::string& ModuleFileInfo::_internal_platform() const {
+  return platform_.Get();
+}
+inline void ModuleFileInfo::_internal_set_platform(const std::string& value) {
+  
+  platform_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleFileInfo::_internal_mutable_platform() {
+  
+  return platform_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleFileInfo::release_platform() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleFileInfo.platform)
+  return platform_.Release();
+}
+inline void ModuleFileInfo::set_allocated_platform(std::string* platform) {
+  if (platform != nullptr) {
+    
+  } else {
+    
+  }
+  platform_.SetAllocated(platform, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (platform_.IsDefault()) {
+    platform_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleFileInfo.platform)
+}
+
+// -------------------------------------------------------------------
+
+// UploadModuleFileRequest
+
+// .viam.app.v1.ModuleFileInfo module_file_info = 1 [json_name = "moduleFileInfo"];
+inline bool UploadModuleFileRequest::_internal_has_module_file_info() const {
+  return module_file_case() == kModuleFileInfo;
+}
+inline bool UploadModuleFileRequest::has_module_file_info() const {
+  return _internal_has_module_file_info();
+}
+inline void UploadModuleFileRequest::set_has_module_file_info() {
+  _oneof_case_[0] = kModuleFileInfo;
+}
+inline void UploadModuleFileRequest::clear_module_file_info() {
+  if (_internal_has_module_file_info()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete module_file_.module_file_info_;
+    }
+    clear_has_module_file();
+  }
+}
+inline ::viam::app::v1::ModuleFileInfo* UploadModuleFileRequest::release_module_file_info() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UploadModuleFileRequest.module_file_info)
+  if (_internal_has_module_file_info()) {
+    clear_has_module_file();
+    ::viam::app::v1::ModuleFileInfo* temp = module_file_.module_file_info_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    module_file_.module_file_info_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::app::v1::ModuleFileInfo& UploadModuleFileRequest::_internal_module_file_info() const {
+  return _internal_has_module_file_info()
+      ? *module_file_.module_file_info_
+      : reinterpret_cast< ::viam::app::v1::ModuleFileInfo&>(::viam::app::v1::_ModuleFileInfo_default_instance_);
+}
+inline const ::viam::app::v1::ModuleFileInfo& UploadModuleFileRequest::module_file_info() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UploadModuleFileRequest.module_file_info)
+  return _internal_module_file_info();
+}
+inline ::viam::app::v1::ModuleFileInfo* UploadModuleFileRequest::unsafe_arena_release_module_file_info() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.app.v1.UploadModuleFileRequest.module_file_info)
+  if (_internal_has_module_file_info()) {
+    clear_has_module_file();
+    ::viam::app::v1::ModuleFileInfo* temp = module_file_.module_file_info_;
+    module_file_.module_file_info_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void UploadModuleFileRequest::unsafe_arena_set_allocated_module_file_info(::viam::app::v1::ModuleFileInfo* module_file_info) {
+  clear_module_file();
+  if (module_file_info) {
+    set_has_module_file_info();
+    module_file_.module_file_info_ = module_file_info;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UploadModuleFileRequest.module_file_info)
+}
+inline ::viam::app::v1::ModuleFileInfo* UploadModuleFileRequest::_internal_mutable_module_file_info() {
+  if (!_internal_has_module_file_info()) {
+    clear_module_file();
+    set_has_module_file_info();
+    module_file_.module_file_info_ = CreateMaybeMessage< ::viam::app::v1::ModuleFileInfo >(GetArenaForAllocation());
+  }
+  return module_file_.module_file_info_;
+}
+inline ::viam::app::v1::ModuleFileInfo* UploadModuleFileRequest::mutable_module_file_info() {
+  ::viam::app::v1::ModuleFileInfo* _msg = _internal_mutable_module_file_info();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UploadModuleFileRequest.module_file_info)
+  return _msg;
+}
+
+// bytes file = 2 [json_name = "file"];
+inline bool UploadModuleFileRequest::_internal_has_file() const {
+  return module_file_case() == kFile;
+}
+inline bool UploadModuleFileRequest::has_file() const {
+  return _internal_has_file();
+}
+inline void UploadModuleFileRequest::set_has_file() {
+  _oneof_case_[0] = kFile;
+}
+inline void UploadModuleFileRequest::clear_file() {
+  if (_internal_has_file()) {
+    module_file_.file_.Destroy();
+    clear_has_module_file();
+  }
+}
+inline const std::string& UploadModuleFileRequest::file() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UploadModuleFileRequest.file)
+  return _internal_file();
+}
+template <typename ArgT0, typename... ArgT>
+inline void UploadModuleFileRequest::set_file(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_file()) {
+    clear_module_file();
+    set_has_file();
+    module_file_.file_.InitDefault();
+  }
+  module_file_.file_.SetBytes( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UploadModuleFileRequest.file)
+}
+inline std::string* UploadModuleFileRequest::mutable_file() {
+  std::string* _s = _internal_mutable_file();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UploadModuleFileRequest.file)
+  return _s;
+}
+inline const std::string& UploadModuleFileRequest::_internal_file() const {
+  if (_internal_has_file()) {
+    return module_file_.file_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void UploadModuleFileRequest::_internal_set_file(const std::string& value) {
+  if (!_internal_has_file()) {
+    clear_module_file();
+    set_has_file();
+    module_file_.file_.InitDefault();
+  }
+  module_file_.file_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadModuleFileRequest::_internal_mutable_file() {
+  if (!_internal_has_file()) {
+    clear_module_file();
+    set_has_file();
+    module_file_.file_.InitDefault();
+  }
+  return module_file_.file_.Mutable(      GetArenaForAllocation());
+}
+inline std::string* UploadModuleFileRequest::release_file() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UploadModuleFileRequest.file)
+  if (_internal_has_file()) {
+    clear_has_module_file();
+    return module_file_.file_.Release();
+  } else {
+    return nullptr;
+  }
+}
+inline void UploadModuleFileRequest::set_allocated_file(std::string* file) {
+  if (has_module_file()) {
+    clear_module_file();
+  }
+  if (file != nullptr) {
+    set_has_file();
+    module_file_.file_.InitAllocated(file, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UploadModuleFileRequest.file)
+}
+
+inline bool UploadModuleFileRequest::has_module_file() const {
+  return module_file_case() != MODULE_FILE_NOT_SET;
+}
+inline void UploadModuleFileRequest::clear_has_module_file() {
+  _oneof_case_[0] = MODULE_FILE_NOT_SET;
+}
+inline UploadModuleFileRequest::ModuleFileCase UploadModuleFileRequest::module_file_case() const {
+  return UploadModuleFileRequest::ModuleFileCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// UploadModuleFileResponse
+
+// string url = 1 [json_name = "url"];
+inline void UploadModuleFileResponse::clear_url() {
+  url_.ClearToEmpty();
+}
+inline const std::string& UploadModuleFileResponse::url() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UploadModuleFileResponse.url)
+  return _internal_url();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadModuleFileResponse::set_url(ArgT0&& arg0, ArgT... args) {
+ 
+ url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UploadModuleFileResponse.url)
+}
+inline std::string* UploadModuleFileResponse::mutable_url() {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UploadModuleFileResponse.url)
+  return _s;
+}
+inline const std::string& UploadModuleFileResponse::_internal_url() const {
+  return url_.Get();
+}
+inline void UploadModuleFileResponse::_internal_set_url(const std::string& value) {
+  
+  url_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadModuleFileResponse::_internal_mutable_url() {
+  
+  return url_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadModuleFileResponse::release_url() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UploadModuleFileResponse.url)
+  return url_.Release();
+}
+inline void UploadModuleFileResponse::set_allocated_url(std::string* url) {
+  if (url != nullptr) {
+    
+  } else {
+    
+  }
+  url_.SetAllocated(url, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (url_.IsDefault()) {
+    url_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UploadModuleFileResponse.url)
+}
+
+// -------------------------------------------------------------------
+
+// GetModuleRequest
+
+// string module_id = 1 [json_name = "moduleId"];
+inline void GetModuleRequest::clear_module_id() {
+  module_id_.ClearToEmpty();
+}
+inline const std::string& GetModuleRequest::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetModuleRequest.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetModuleRequest::set_module_id(ArgT0&& arg0, ArgT... args) {
+ 
+ module_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetModuleRequest.module_id)
+}
+inline std::string* GetModuleRequest::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetModuleRequest.module_id)
+  return _s;
+}
+inline const std::string& GetModuleRequest::_internal_module_id() const {
+  return module_id_.Get();
+}
+inline void GetModuleRequest::_internal_set_module_id(const std::string& value) {
+  
+  module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetModuleRequest::_internal_mutable_module_id() {
+  
+  return module_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetModuleRequest::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetModuleRequest.module_id)
+  return module_id_.Release();
+}
+inline void GetModuleRequest::set_allocated_module_id(std::string* module_id) {
+  if (module_id != nullptr) {
+    
+  } else {
+    
+  }
+  module_id_.SetAllocated(module_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_id_.IsDefault()) {
+    module_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetModuleRequest.module_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetModuleResponse
+
+// .viam.app.v1.Module module = 1 [json_name = "module"];
+inline bool GetModuleResponse::_internal_has_module() const {
+  return this != internal_default_instance() && module_ != nullptr;
+}
+inline bool GetModuleResponse::has_module() const {
+  return _internal_has_module();
+}
+inline void GetModuleResponse::clear_module() {
+  if (GetArenaForAllocation() == nullptr && module_ != nullptr) {
+    delete module_;
+  }
+  module_ = nullptr;
+}
+inline const ::viam::app::v1::Module& GetModuleResponse::_internal_module() const {
+  const ::viam::app::v1::Module* p = module_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::Module&>(
+      ::viam::app::v1::_Module_default_instance_);
+}
+inline const ::viam::app::v1::Module& GetModuleResponse::module() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetModuleResponse.module)
+  return _internal_module();
+}
+inline void GetModuleResponse::unsafe_arena_set_allocated_module(
+    ::viam::app::v1::Module* module) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(module_);
+  }
+  module_ = module;
+  if (module) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetModuleResponse.module)
+}
+inline ::viam::app::v1::Module* GetModuleResponse::release_module() {
+  
+  ::viam::app::v1::Module* temp = module_;
+  module_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::Module* GetModuleResponse::unsafe_arena_release_module() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetModuleResponse.module)
+  
+  ::viam::app::v1::Module* temp = module_;
+  module_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::Module* GetModuleResponse::_internal_mutable_module() {
+  
+  if (module_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::Module>(GetArenaForAllocation());
+    module_ = p;
+  }
+  return module_;
+}
+inline ::viam::app::v1::Module* GetModuleResponse::mutable_module() {
+  ::viam::app::v1::Module* _msg = _internal_mutable_module();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetModuleResponse.module)
+  return _msg;
+}
+inline void GetModuleResponse::set_allocated_module(::viam::app::v1::Module* module) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete module_;
+  }
+  if (module) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(module);
+    if (message_arena != submessage_arena) {
+      module = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, module, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  module_ = module;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetModuleResponse.module)
+}
+
+// -------------------------------------------------------------------
+
+// Module
+
+// string module_id = 1 [json_name = "moduleId"];
+inline void Module::clear_module_id() {
+  module_id_.ClearToEmpty();
+}
+inline const std::string& Module::module_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.module_id)
+  return _internal_module_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_module_id(ArgT0&& arg0, ArgT... args) {
+ 
+ module_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.module_id)
+}
+inline std::string* Module::mutable_module_id() {
+  std::string* _s = _internal_mutable_module_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.module_id)
+  return _s;
+}
+inline const std::string& Module::_internal_module_id() const {
+  return module_id_.Get();
+}
+inline void Module::_internal_set_module_id(const std::string& value) {
+  
+  module_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Module::_internal_mutable_module_id() {
+  
+  return module_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Module::release_module_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.module_id)
+  return module_id_.Release();
+}
+inline void Module::set_allocated_module_id(std::string* module_id) {
+  if (module_id != nullptr) {
+    
+  } else {
+    
+  }
+  module_id_.SetAllocated(module_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_id_.IsDefault()) {
+    module_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.module_id)
+}
+
+// string organization_id = 10 [json_name = "organizationId"];
+inline void Module::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& Module::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.organization_id)
+}
+inline std::string* Module::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.organization_id)
+  return _s;
+}
+inline const std::string& Module::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void Module::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Module::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Module::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.organization_id)
+  return organization_id_.Release();
+}
+inline void Module::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.organization_id)
+}
+
+// string name = 2 [json_name = "name"];
+inline void Module::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& Module::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.name)
+}
+inline std::string* Module::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.name)
+  return _s;
+}
+inline const std::string& Module::_internal_name() const {
+  return name_.Get();
+}
+inline void Module::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Module::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Module::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.name)
+  return name_.Release();
+}
+inline void Module::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.name)
+}
+
+// .viam.app.v1.Visibility visibility = 3 [json_name = "visibility"];
+inline void Module::clear_visibility() {
+  visibility_ = 0;
+}
+inline ::viam::app::v1::Visibility Module::_internal_visibility() const {
+  return static_cast< ::viam::app::v1::Visibility >(visibility_);
+}
+inline ::viam::app::v1::Visibility Module::visibility() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.visibility)
+  return _internal_visibility();
+}
+inline void Module::_internal_set_visibility(::viam::app::v1::Visibility value) {
+  
+  visibility_ = value;
+}
+inline void Module::set_visibility(::viam::app::v1::Visibility value) {
+  _internal_set_visibility(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.visibility)
+}
+
+// repeated .viam.app.v1.VersionHistory versions = 4 [json_name = "versions"];
+inline int Module::_internal_versions_size() const {
+  return versions_.size();
+}
+inline int Module::versions_size() const {
+  return _internal_versions_size();
+}
+inline void Module::clear_versions() {
+  versions_.Clear();
+}
+inline ::viam::app::v1::VersionHistory* Module::mutable_versions(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.versions)
+  return versions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::VersionHistory >*
+Module::mutable_versions() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Module.versions)
+  return &versions_;
+}
+inline const ::viam::app::v1::VersionHistory& Module::_internal_versions(int index) const {
+  return versions_.Get(index);
+}
+inline const ::viam::app::v1::VersionHistory& Module::versions(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.versions)
+  return _internal_versions(index);
+}
+inline ::viam::app::v1::VersionHistory* Module::_internal_add_versions() {
+  return versions_.Add();
+}
+inline ::viam::app::v1::VersionHistory* Module::add_versions() {
+  ::viam::app::v1::VersionHistory* _add = _internal_add_versions();
+  // @@protoc_insertion_point(field_add:viam.app.v1.Module.versions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::VersionHistory >&
+Module::versions() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.Module.versions)
+  return versions_;
+}
+
+// string url = 5 [json_name = "url"];
+inline void Module::clear_url() {
+  url_.ClearToEmpty();
+}
+inline const std::string& Module::url() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.url)
+  return _internal_url();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_url(ArgT0&& arg0, ArgT... args) {
+ 
+ url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.url)
+}
+inline std::string* Module::mutable_url() {
+  std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.url)
+  return _s;
+}
+inline const std::string& Module::_internal_url() const {
+  return url_.Get();
+}
+inline void Module::_internal_set_url(const std::string& value) {
+  
+  url_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Module::_internal_mutable_url() {
+  
+  return url_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Module::release_url() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.url)
+  return url_.Release();
+}
+inline void Module::set_allocated_url(std::string* url) {
+  if (url != nullptr) {
+    
+  } else {
+    
+  }
+  url_.SetAllocated(url, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (url_.IsDefault()) {
+    url_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.url)
+}
+
+// string description = 6 [json_name = "description"];
+inline void Module::clear_description() {
+  description_.ClearToEmpty();
+}
+inline const std::string& Module::description() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.description)
+  return _internal_description();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_description(ArgT0&& arg0, ArgT... args) {
+ 
+ description_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.description)
+}
+inline std::string* Module::mutable_description() {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.description)
+  return _s;
+}
+inline const std::string& Module::_internal_description() const {
+  return description_.Get();
+}
+inline void Module::_internal_set_description(const std::string& value) {
+  
+  description_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Module::_internal_mutable_description() {
+  
+  return description_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Module::release_description() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.description)
+  return description_.Release();
+}
+inline void Module::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocated(description, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.description)
+}
+
+// repeated .viam.app.v1.Model models = 7 [json_name = "models"];
+inline int Module::_internal_models_size() const {
+  return models_.size();
+}
+inline int Module::models_size() const {
+  return _internal_models_size();
+}
+inline void Module::clear_models() {
+  models_.Clear();
+}
+inline ::viam::app::v1::Model* Module::mutable_models(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.models)
+  return models_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >*
+Module::mutable_models() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Module.models)
+  return &models_;
+}
+inline const ::viam::app::v1::Model& Module::_internal_models(int index) const {
+  return models_.Get(index);
+}
+inline const ::viam::app::v1::Model& Module::models(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.models)
+  return _internal_models(index);
+}
+inline ::viam::app::v1::Model* Module::_internal_add_models() {
+  return models_.Add();
+}
+inline ::viam::app::v1::Model* Module::add_models() {
+  ::viam::app::v1::Model* _add = _internal_add_models();
+  // @@protoc_insertion_point(field_add:viam.app.v1.Module.models)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
+Module::models() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.Module.models)
+  return models_;
+}
+
+// int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
+inline void Module::clear_total_robot_usage() {
+  total_robot_usage_ = int64_t{0};
+}
+inline int64_t Module::_internal_total_robot_usage() const {
+  return total_robot_usage_;
+}
+inline int64_t Module::total_robot_usage() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.total_robot_usage)
+  return _internal_total_robot_usage();
+}
+inline void Module::_internal_set_total_robot_usage(int64_t value) {
+  
+  total_robot_usage_ = value;
+}
+inline void Module::set_total_robot_usage(int64_t value) {
+  _internal_set_total_robot_usage(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.total_robot_usage)
+}
+
+// int64 total_organization_usage = 9 [json_name = "totalOrganizationUsage"];
+inline void Module::clear_total_organization_usage() {
+  total_organization_usage_ = int64_t{0};
+}
+inline int64_t Module::_internal_total_organization_usage() const {
+  return total_organization_usage_;
+}
+inline int64_t Module::total_organization_usage() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.total_organization_usage)
+  return _internal_total_organization_usage();
+}
+inline void Module::_internal_set_total_organization_usage(int64_t value) {
+  
+  total_organization_usage_ = value;
+}
+inline void Module::set_total_organization_usage(int64_t value) {
+  _internal_set_total_organization_usage(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.total_organization_usage)
+}
+
+// -------------------------------------------------------------------
+
+// VersionHistory
+
+// string version = 1 [json_name = "version"];
+inline void VersionHistory::clear_version() {
+  version_.ClearToEmpty();
+}
+inline const std::string& VersionHistory::version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VersionHistory.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void VersionHistory::set_version(ArgT0&& arg0, ArgT... args) {
+ 
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.VersionHistory.version)
+}
+inline std::string* VersionHistory::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.VersionHistory.version)
+  return _s;
+}
+inline const std::string& VersionHistory::_internal_version() const {
+  return version_.Get();
+}
+inline void VersionHistory::_internal_set_version(const std::string& value) {
+  
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* VersionHistory::_internal_mutable_version() {
+  
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* VersionHistory::release_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.VersionHistory.version)
+  return version_.Release();
+}
+inline void VersionHistory::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    
+  } else {
+    
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.VersionHistory.version)
+}
+
+// repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
+inline int VersionHistory::_internal_files_size() const {
+  return files_.size();
+}
+inline int VersionHistory::files_size() const {
+  return _internal_files_size();
+}
+inline void VersionHistory::clear_files() {
+  files_.Clear();
+}
+inline ::viam::app::v1::Uploads* VersionHistory::mutable_files(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.VersionHistory.files)
+  return files_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads >*
+VersionHistory::mutable_files() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.VersionHistory.files)
+  return &files_;
+}
+inline const ::viam::app::v1::Uploads& VersionHistory::_internal_files(int index) const {
+  return files_.Get(index);
+}
+inline const ::viam::app::v1::Uploads& VersionHistory::files(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VersionHistory.files)
+  return _internal_files(index);
+}
+inline ::viam::app::v1::Uploads* VersionHistory::_internal_add_files() {
+  return files_.Add();
+}
+inline ::viam::app::v1::Uploads* VersionHistory::add_files() {
+  ::viam::app::v1::Uploads* _add = _internal_add_files();
+  // @@protoc_insertion_point(field_add:viam.app.v1.VersionHistory.files)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads >&
+VersionHistory::files() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.VersionHistory.files)
+  return files_;
+}
+
+// -------------------------------------------------------------------
+
+// Uploads
+
+// string platform = 1 [json_name = "platform"];
+inline void Uploads::clear_platform() {
+  platform_.ClearToEmpty();
+}
+inline const std::string& Uploads::platform() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Uploads.platform)
+  return _internal_platform();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Uploads::set_platform(ArgT0&& arg0, ArgT... args) {
+ 
+ platform_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Uploads.platform)
+}
+inline std::string* Uploads::mutable_platform() {
+  std::string* _s = _internal_mutable_platform();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Uploads.platform)
+  return _s;
+}
+inline const std::string& Uploads::_internal_platform() const {
+  return platform_.Get();
+}
+inline void Uploads::_internal_set_platform(const std::string& value) {
+  
+  platform_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Uploads::_internal_mutable_platform() {
+  
+  return platform_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Uploads::release_platform() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Uploads.platform)
+  return platform_.Release();
+}
+inline void Uploads::set_allocated_platform(std::string* platform) {
+  if (platform != nullptr) {
+    
+  } else {
+    
+  }
+  platform_.SetAllocated(platform, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (platform_.IsDefault()) {
+    platform_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Uploads.platform)
+}
+
+// .google.protobuf.Timestamp uploaded_at = 2 [json_name = "uploadedAt"];
+inline bool Uploads::_internal_has_uploaded_at() const {
+  return this != internal_default_instance() && uploaded_at_ != nullptr;
+}
+inline bool Uploads::has_uploaded_at() const {
+  return _internal_has_uploaded_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Uploads::_internal_uploaded_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = uploaded_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Uploads::uploaded_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Uploads.uploaded_at)
+  return _internal_uploaded_at();
+}
+inline void Uploads::unsafe_arena_set_allocated_uploaded_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(uploaded_at_);
+  }
+  uploaded_at_ = uploaded_at;
+  if (uploaded_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Uploads.uploaded_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Uploads::release_uploaded_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = uploaded_at_;
+  uploaded_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Uploads::unsafe_arena_release_uploaded_at() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Uploads.uploaded_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = uploaded_at_;
+  uploaded_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Uploads::_internal_mutable_uploaded_at() {
+  
+  if (uploaded_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    uploaded_at_ = p;
+  }
+  return uploaded_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Uploads::mutable_uploaded_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_uploaded_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Uploads.uploaded_at)
+  return _msg;
+}
+inline void Uploads::set_allocated_uploaded_at(::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(uploaded_at_);
+  }
+  if (uploaded_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(uploaded_at));
+    if (message_arena != submessage_arena) {
+      uploaded_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, uploaded_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  uploaded_at_ = uploaded_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Uploads.uploaded_at)
+}
+
+// -------------------------------------------------------------------
+
+// ListModulesRequest
+
+// optional string organization_id = 1 [json_name = "organizationId"];
+inline bool ListModulesRequest::_internal_has_organization_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ListModulesRequest::has_organization_id() const {
+  return _internal_has_organization_id();
+}
+inline void ListModulesRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ListModulesRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListModulesRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListModulesRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListModulesRequest.organization_id)
+}
+inline std::string* ListModulesRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListModulesRequest.organization_id)
+  return _s;
+}
+inline const std::string& ListModulesRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void ListModulesRequest::_internal_set_organization_id(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListModulesRequest::_internal_mutable_organization_id() {
+  _has_bits_[0] |= 0x00000001u;
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListModulesRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ListModulesRequest.organization_id)
+  if (!_internal_has_organization_id()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = organization_id_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void ListModulesRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListModulesRequest.organization_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListModulesResponse
+
+// repeated .viam.app.v1.Module modules = 1 [json_name = "modules"];
+inline int ListModulesResponse::_internal_modules_size() const {
+  return modules_.size();
+}
+inline int ListModulesResponse::modules_size() const {
+  return _internal_modules_size();
+}
+inline void ListModulesResponse::clear_modules() {
+  modules_.Clear();
+}
+inline ::viam::app::v1::Module* ListModulesResponse::mutable_modules(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListModulesResponse.modules)
+  return modules_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Module >*
+ListModulesResponse::mutable_modules() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListModulesResponse.modules)
+  return &modules_;
+}
+inline const ::viam::app::v1::Module& ListModulesResponse::_internal_modules(int index) const {
+  return modules_.Get(index);
+}
+inline const ::viam::app::v1::Module& ListModulesResponse::modules(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListModulesResponse.modules)
+  return _internal_modules(index);
+}
+inline ::viam::app::v1::Module* ListModulesResponse::_internal_add_modules() {
+  return modules_.Add();
+}
+inline ::viam::app::v1::Module* ListModulesResponse::add_modules() {
+  ::viam::app::v1::Module* _add = _internal_add_modules();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListModulesResponse.modules)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Module >&
+ListModulesResponse::modules() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListModulesResponse.modules)
+  return modules_;
+}
+
+// -------------------------------------------------------------------
+
+// GetUserIDByEmailRequest
+
+// string email = 1 [json_name = "email"];
+inline void GetUserIDByEmailRequest::clear_email() {
+  email_.ClearToEmpty();
+}
+inline const std::string& GetUserIDByEmailRequest::email() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetUserIDByEmailRequest.email)
+  return _internal_email();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetUserIDByEmailRequest::set_email(ArgT0&& arg0, ArgT... args) {
+ 
+ email_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetUserIDByEmailRequest.email)
+}
+inline std::string* GetUserIDByEmailRequest::mutable_email() {
+  std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetUserIDByEmailRequest.email)
+  return _s;
+}
+inline const std::string& GetUserIDByEmailRequest::_internal_email() const {
+  return email_.Get();
+}
+inline void GetUserIDByEmailRequest::_internal_set_email(const std::string& value) {
+  
+  email_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetUserIDByEmailRequest::_internal_mutable_email() {
+  
+  return email_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetUserIDByEmailRequest::release_email() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetUserIDByEmailRequest.email)
+  return email_.Release();
+}
+inline void GetUserIDByEmailRequest::set_allocated_email(std::string* email) {
+  if (email != nullptr) {
+    
+  } else {
+    
+  }
+  email_.SetAllocated(email, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (email_.IsDefault()) {
+    email_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetUserIDByEmailRequest.email)
+}
+
+// -------------------------------------------------------------------
+
+// GetUserIDByEmailResponse
+
+// string user_id = 1 [json_name = "userId"];
+inline void GetUserIDByEmailResponse::clear_user_id() {
+  user_id_.ClearToEmpty();
+}
+inline const std::string& GetUserIDByEmailResponse::user_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetUserIDByEmailResponse.user_id)
+  return _internal_user_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetUserIDByEmailResponse::set_user_id(ArgT0&& arg0, ArgT... args) {
+ 
+ user_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetUserIDByEmailResponse.user_id)
+}
+inline std::string* GetUserIDByEmailResponse::mutable_user_id() {
+  std::string* _s = _internal_mutable_user_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetUserIDByEmailResponse.user_id)
+  return _s;
+}
+inline const std::string& GetUserIDByEmailResponse::_internal_user_id() const {
+  return user_id_.Get();
+}
+inline void GetUserIDByEmailResponse::_internal_set_user_id(const std::string& value) {
+  
+  user_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetUserIDByEmailResponse::_internal_mutable_user_id() {
+  
+  return user_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetUserIDByEmailResponse::release_user_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetUserIDByEmailResponse.user_id)
+  return user_id_.Release();
+}
+inline void GetUserIDByEmailResponse::set_allocated_user_id(std::string* user_id) {
+  if (user_id != nullptr) {
+    
+  } else {
+    
+  }
+  user_id_.SetAllocated(user_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (user_id_.IsDefault()) {
+    user_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetUserIDByEmailResponse.user_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListOrganizationsByUserRequest
+
+// string user_id = 1 [json_name = "userId"];
+inline void ListOrganizationsByUserRequest::clear_user_id() {
+  user_id_.ClearToEmpty();
+}
+inline const std::string& ListOrganizationsByUserRequest::user_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListOrganizationsByUserRequest.user_id)
+  return _internal_user_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListOrganizationsByUserRequest::set_user_id(ArgT0&& arg0, ArgT... args) {
+ 
+ user_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListOrganizationsByUserRequest.user_id)
+}
+inline std::string* ListOrganizationsByUserRequest::mutable_user_id() {
+  std::string* _s = _internal_mutable_user_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListOrganizationsByUserRequest.user_id)
+  return _s;
+}
+inline const std::string& ListOrganizationsByUserRequest::_internal_user_id() const {
+  return user_id_.Get();
+}
+inline void ListOrganizationsByUserRequest::_internal_set_user_id(const std::string& value) {
+  
+  user_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListOrganizationsByUserRequest::_internal_mutable_user_id() {
+  
+  return user_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListOrganizationsByUserRequest::release_user_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ListOrganizationsByUserRequest.user_id)
+  return user_id_.Release();
+}
+inline void ListOrganizationsByUserRequest::set_allocated_user_id(std::string* user_id) {
+  if (user_id != nullptr) {
+    
+  } else {
+    
+  }
+  user_id_.SetAllocated(user_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (user_id_.IsDefault()) {
+    user_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListOrganizationsByUserRequest.user_id)
+}
+
+// -------------------------------------------------------------------
+
+// OrgDetails
+
+// string org_id = 1 [json_name = "orgId"];
+inline void OrgDetails::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& OrgDetails::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.OrgDetails.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrgDetails::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.OrgDetails.org_id)
+}
+inline std::string* OrgDetails::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.OrgDetails.org_id)
+  return _s;
+}
+inline const std::string& OrgDetails::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void OrgDetails::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* OrgDetails::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* OrgDetails::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.OrgDetails.org_id)
+  return org_id_.Release();
+}
+inline void OrgDetails::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrgDetails.org_id)
+}
+
+// string org_name = 2 [json_name = "orgName"];
+inline void OrgDetails::clear_org_name() {
+  org_name_.ClearToEmpty();
+}
+inline const std::string& OrgDetails::org_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.OrgDetails.org_name)
+  return _internal_org_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrgDetails::set_org_name(ArgT0&& arg0, ArgT... args) {
+ 
+ org_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.OrgDetails.org_name)
+}
+inline std::string* OrgDetails::mutable_org_name() {
+  std::string* _s = _internal_mutable_org_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.OrgDetails.org_name)
+  return _s;
+}
+inline const std::string& OrgDetails::_internal_org_name() const {
+  return org_name_.Get();
+}
+inline void OrgDetails::_internal_set_org_name(const std::string& value) {
+  
+  org_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* OrgDetails::_internal_mutable_org_name() {
+  
+  return org_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* OrgDetails::release_org_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.OrgDetails.org_name)
+  return org_name_.Release();
+}
+inline void OrgDetails::set_allocated_org_name(std::string* org_name) {
+  if (org_name != nullptr) {
+    
+  } else {
+    
+  }
+  org_name_.SetAllocated(org_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_name_.IsDefault()) {
+    org_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrgDetails.org_name)
+}
+
+// -------------------------------------------------------------------
+
+// ListOrganizationsByUserResponse
+
+// repeated .viam.app.v1.OrgDetails orgs = 1 [json_name = "orgs"];
+inline int ListOrganizationsByUserResponse::_internal_orgs_size() const {
+  return orgs_.size();
+}
+inline int ListOrganizationsByUserResponse::orgs_size() const {
+  return _internal_orgs_size();
+}
+inline void ListOrganizationsByUserResponse::clear_orgs() {
+  orgs_.Clear();
+}
+inline ::viam::app::v1::OrgDetails* ListOrganizationsByUserResponse::mutable_orgs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListOrganizationsByUserResponse.orgs)
+  return orgs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::OrgDetails >*
+ListOrganizationsByUserResponse::mutable_orgs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListOrganizationsByUserResponse.orgs)
+  return &orgs_;
+}
+inline const ::viam::app::v1::OrgDetails& ListOrganizationsByUserResponse::_internal_orgs(int index) const {
+  return orgs_.Get(index);
+}
+inline const ::viam::app::v1::OrgDetails& ListOrganizationsByUserResponse::orgs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListOrganizationsByUserResponse.orgs)
+  return _internal_orgs(index);
+}
+inline ::viam::app::v1::OrgDetails* ListOrganizationsByUserResponse::_internal_add_orgs() {
+  return orgs_.Add();
+}
+inline ::viam::app::v1::OrgDetails* ListOrganizationsByUserResponse::add_orgs() {
+  ::viam::app::v1::OrgDetails* _add = _internal_add_orgs();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListOrganizationsByUserResponse.orgs)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::OrgDetails >&
+ListOrganizationsByUserResponse::orgs() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListOrganizationsByUserResponse.orgs)
+  return orgs_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -30255,6 +36131,11 @@ template <> struct is_proto_enum< ::viam::app::v1::SharedSecret_State> : ::std::
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::SharedSecret_State>() {
   return ::viam::app::v1::SharedSecret_State_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::Visibility> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::Visibility>() {
+  return ::viam::app::v1::Visibility_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

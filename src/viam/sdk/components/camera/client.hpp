@@ -24,6 +24,7 @@ class CameraClient : public Camera {
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
+    image_collection get_images() override;
     point_cloud get_point_cloud(std::string mime_type) override;
     properties get_properties() override;
     std::vector<GeometryConfig> get_geometries() override;
