@@ -20,5 +20,5 @@ plugins:
     # with the `-1` bit if so? Or should this be a fixed value, rather
     # than being derived from the version of gRPC against which we are
     # building?
-  - remote: buf.build/grpc/plugins/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@-1
+  - plugin: buf.build/grpc/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@-1
     out: gen/viam/api
