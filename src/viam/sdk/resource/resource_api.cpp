@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <viam/sdk/resource/resource_api.hpp>
 
+#include <numeric>
 #include <regex>
 #include <sstream>
 #include <string>
@@ -117,6 +118,17 @@ viam::common::v1::ResourceName Name::to_proto() const {
     *rn.mutable_subtype() = this->api().resource_subtype();
     return rn;
 }
+
+Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
+    API api(proto.namespace_(), proto.type(), proto.subtype());
+    std::vector<std::string> name_parts;
+    boost::split(name_parts, proto.name(), boost::is_any_of(":"));
+    auto name = name_parts.back();
+    name_parts.pop_back();
+    auto remote_name = std::accumulate(name_parts.begin(), name_parts.end(), std::string(":"));
+
+    return Name({proto.namespace_(), proto.type(), proto.subtype()}, remote_name, name);
+};
 
 Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {

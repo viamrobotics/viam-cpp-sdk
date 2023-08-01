@@ -1,4 +1,6 @@
 #include "service/motion/v1/motion.pb.h"
+#include "viam/api/service/motion/v1/motion.grpc.pb.h"
+#include "viam/sdk/common/utils.hpp"
 #include <viam/sdk/services/motion/motion.hpp>
 
 #include <common/v1/common.pb.h>
@@ -6,13 +8,87 @@
 namespace viam {
 namespace sdk {
 
-PoseInFrame Motion::get_pose(const Name& name) {
-    viam::common::v1::PoseInFrame pif;
-    service::motion::v1::GetPoseRequest req;
-    auto foo = req.mutable_supplemental_transforms();
-    pif.mutable_pose();
-    pif.mutable
+MotionRegistration::MotionRegistration(
+    const google::protobuf::ServiceDescriptor* service_descriptor)
+    : ResourceRegistration(service_descriptor){};
+
+std::shared_ptr<ResourceServer> MotionRegistration::create_resource_server(
+    std::shared_ptr<ResourceManager> manager) {
+    return std::make_shared<MotionServer>(manager);
+};
+
+std::shared_ptr<Resource> MotionRegistration::create_rpc_client(
+    std::string name, std::shared_ptr<grpc::Channel> chan) {
+    return std::make_shared<MotionClient>(std::move(name), std::move(chan));
+};
+
+Motion::Motion(std::string name) : Service(std::move(name)){};
+
+Motion::constraints Motion::constraints::from_proto(const service::motion::v1::Constraints& proto) {
+    std::vector<Motion::linear_constraint> lcs;
+    for (const auto& proto_lc : proto.linear_constraint()) {
+        Motion::linear_constraint lc;
+        lc.orientation_tolerance_degs = proto_lc.orientation_tolerance_degs();
+        lc.line_tolerance_mm = proto_lc.line_tolerance_mm();
+        lcs.push_back(lc);
+    }
+
+    std::vector<Motion::orientation_constraint> ocs;
+    for (const auto& proto_oc : proto.orientation_constraint()) {
+        Motion::orientation_constraint oc;
+        oc.orientation_tolerance_degs = proto_oc.orientation_tolerance_degs();
+        ocs.push_back(oc);
+    }
+
+    std::vector<Motion::collision_specification> css;
+    for (const auto& proto_cs : proto.collision_specification()) {
+        std::vector<Motion::collision_specification::allowed_frame_collisions> allows;
+        for (const auto& proto_allow : proto_cs.allows()) {
+            Motion::collision_specification::allowed_frame_collisions allow;
+            allow.frame1 = proto_allow.frame1();
+            allow.frame2 = proto_allow.frame2();
+            allows.push_back(allow);
+        }
+        Motion::collision_specification cs;
+        cs.allows = allows;
+        css.push_back(cs);
+    }
+
+    Motion::constraints constraints;
+    constraints.linear_constraints = lcs;
+    constraints.orientation_constraints = ocs;
+    constraints.collision_specifications = css;
+
+    return constraints;
 }
+
+API Motion::static_api() {
+    return {kRDK, kService, "motion"};
+}
+
+API Motion::dynamic_api() const {
+    return static_api();
+}
+
+std::shared_ptr<ResourceRegistration> Motion::resource_registration() {
+    const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
+    const google::protobuf::ServiceDescriptor* sd =
+        p->FindServiceByName(service::motion::v1::MotionService::service_full_name());
+    if (!sd) {
+        throw std::runtime_error("Unable to get service descriptor for the motion service");
+    }
+    return std::make_shared<MotionRegistration>(sd);
+}
+
+namespace {
+bool init() {
+    Registry::register_resource(Motion::static_api(), Motion::resource_registration());
+    return true;
+}
+
+// NOLINTNEXTLINE
+const bool inited = init();
+}  // namespace
 
 }  // namespace sdk
 }  // namespace viam

@@ -56,6 +56,7 @@ class Name {
     std::string short_name() const;
     std::string to_string() const;
     viam::common::v1::ResourceName to_proto() const;
+    static Name from_proto(const viam::common::v1::ResourceName& proto);
     static Name from_string(std::string name);
     Name(API api, std::string remote_name, std::string name);
     Name();
