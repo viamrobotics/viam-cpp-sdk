@@ -145,6 +145,8 @@ class MLModelService : public Service {
 
         static boost::optional<data_types> string_to_data_type(const std::string& str);
         static const char* data_type_to_string(data_types data_type);
+
+        static data_types tensor_views_to_data_type(const tensor_views& view);
     };
 
     struct metadata {
