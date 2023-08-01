@@ -553,14 +553,14 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
         // TODO: be deswizzle
         return make_sdk_tensor_from_api_tensor_t(
             reinterpret_cast<const std::int16_t*>(api_tensor.int16_tensor().data().data()),
-            2 * api_tensor.int16_tensor().data().size(),
+            std::size_t{2} * api_tensor.int16_tensor().data().size(),
             std::move(shape),
             storage);
     } else if (api_tensor.has_uint16_tensor()) {
         // TODO: be deswizzle
         return make_sdk_tensor_from_api_tensor_t(
             reinterpret_cast<const std::uint16_t*>(api_tensor.uint16_tensor().data().data()),
-            2 * api_tensor.uint16_tensor().data().size(),
+            std::size_t{2} * api_tensor.uint16_tensor().data().size(),
             std::move(shape),
             storage);
     } else if (api_tensor.has_int32_tensor()) {
