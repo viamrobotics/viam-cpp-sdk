@@ -82,7 +82,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   # TODO: Should we have an option to always do local generation so
   # offline development always works?
   #
-  if ((NOT VIAMCPPSDK_OFFLINE_PROTO_GENERATION) AND (VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.41.1))
+  if ((NOT VIAMCPPSDK_OFFLINE_PROTO_GENERATION) AND (VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1))
     configure_file(
       config/buf.gen.remote.plugin.yaml.in
       buf.gen.yaml
