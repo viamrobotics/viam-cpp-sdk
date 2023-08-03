@@ -70,7 +70,7 @@ option(VIAMCPPSDK_ENFORCE_COMPILER_MINIMA "Control whether we validate the selec
 # Do not use buf.builds remote definitions or services and use the
 # local proto compiler plugins to do generation.
 #
-option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" OFF)
+option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation" ON)
 
 
 # - `VIAMCPPSDK_USE_DYNAMIC_PROTOS`
@@ -87,7 +87,7 @@ option(VIAMCPPSDK_OFFLINE_PROTO_GENERATION "Use local tools for proto generation
 # ```
 # Remember to check-in the results after regenerating!
 #
-option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (network access may be required)" OFF)
+option(VIAMCPPSDK_USE_DYNAMIC_PROTOS "Regenerate protos as part of building (network access may be required)" ON)
 
 
 # - `VIAMCPPSDK_USE_LOCAL_PROTOS`
