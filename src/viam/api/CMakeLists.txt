@@ -87,11 +87,6 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
       config/buf.gen.remote.plugin.yaml.in
       buf.gen.yaml
     )
-  elseif ((NOT VIAMCPPSDK_OFFLINE_PROTO_GENERATION) AND (VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER_EQUAL 1.41.1))
-    configure_file(
-      config/buf.gen.custom.remote.yaml.in
-      buf.gen.yaml
-    )
   else()
     configure_file(
       config/buf.gen.local.yaml.in
