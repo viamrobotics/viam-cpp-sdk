@@ -36,6 +36,7 @@
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/struct.pb.h>
+#include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_common_2fv1_2fcommon_2eproto
@@ -122,6 +123,9 @@ extern RectangularPrismDefaultTypeInternal _RectangularPrism_default_instance_;
 class ResourceName;
 struct ResourceNameDefaultTypeInternal;
 extern ResourceNameDefaultTypeInternal _ResourceName_default_instance_;
+class ResponseMetadata;
+struct ResponseMetadataDefaultTypeInternal;
+extern ResponseMetadataDefaultTypeInternal _ResponseMetadata_default_instance_;
 class Sphere;
 struct SphereDefaultTypeInternal;
 extern SphereDefaultTypeInternal _Sphere_default_instance_;
@@ -161,6 +165,7 @@ template<> ::viam::common::v1::Pose* Arena::CreateMaybeMessage<::viam::common::v
 template<> ::viam::common::v1::PoseInFrame* Arena::CreateMaybeMessage<::viam::common::v1::PoseInFrame>(Arena*);
 template<> ::viam::common::v1::RectangularPrism* Arena::CreateMaybeMessage<::viam::common::v1::RectangularPrism>(Arena*);
 template<> ::viam::common::v1::ResourceName* Arena::CreateMaybeMessage<::viam::common::v1::ResourceName>(Arena*);
+template<> ::viam::common::v1::ResponseMetadata* Arena::CreateMaybeMessage<::viam::common::v1::ResponseMetadata>(Arena*);
 template<> ::viam::common::v1::Sphere* Arena::CreateMaybeMessage<::viam::common::v1::Sphere>(Arena*);
 template<> ::viam::common::v1::Transform* Arena::CreateMaybeMessage<::viam::common::v1::Transform>(Arena*);
 template<> ::viam::common::v1::Vector3* Arena::CreateMaybeMessage<::viam::common::v1::Vector3>(Arena*);
@@ -3495,6 +3500,159 @@ class ActuatorStatus final :
 };
 // -------------------------------------------------------------------
 
+class ResponseMetadata final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.ResponseMetadata) */ {
+ public:
+  inline ResponseMetadata() : ResponseMetadata(nullptr) {}
+  ~ResponseMetadata() override;
+  explicit PROTOBUF_CONSTEXPR ResponseMetadata(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ResponseMetadata(const ResponseMetadata& from);
+  ResponseMetadata(ResponseMetadata&& from) noexcept
+    : ResponseMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline ResponseMetadata& operator=(const ResponseMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ResponseMetadata& operator=(ResponseMetadata&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ResponseMetadata& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ResponseMetadata* internal_default_instance() {
+    return reinterpret_cast<const ResponseMetadata*>(
+               &_ResponseMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(ResponseMetadata& a, ResponseMetadata& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ResponseMetadata* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ResponseMetadata* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ResponseMetadata* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResponseMetadata>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ResponseMetadata& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ResponseMetadata& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ResponseMetadata* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.ResponseMetadata";
+  }
+  protected:
+  explicit ResponseMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCapturedAtFieldNumber = 1,
+  };
+  // optional .google.protobuf.Timestamp captured_at = 1 [json_name = "capturedAt"];
+  bool has_captured_at() const;
+  private:
+  bool _internal_has_captured_at() const;
+  public:
+  void clear_captured_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& captured_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_captured_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_captured_at();
+  void set_allocated_captured_at(::PROTOBUF_NAMESPACE_ID::Timestamp* captured_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_captured_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_captured_at();
+  public:
+  void unsafe_arena_set_allocated_captured_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* captured_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_captured_at();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.ResponseMetadata)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* captured_at_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class DoCommandRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.DoCommandRequest) */ {
  public:
@@ -3543,7 +3701,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -3711,7 +3869,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -3863,7 +4021,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -3935,6 +4093,7 @@ class GetKinematicsRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -3950,6 +4109,24 @@ class GetKinematicsRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.GetKinematicsRequest)
  private:
   class _Internal;
@@ -3958,6 +4135,7 @@ class GetKinematicsRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
@@ -4011,7 +4189,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -4170,7 +4348,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -4242,6 +4420,7 @@ class GetGeometriesRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -4257,6 +4436,24 @@ class GetGeometriesRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.GetGeometriesRequest)
  private:
   class _Internal;
@@ -4265,6 +4462,7 @@ class GetGeometriesRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
@@ -4318,7 +4516,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -6482,6 +6680,97 @@ inline void ActuatorStatus::set_is_moving(bool value) {
 
 // -------------------------------------------------------------------
 
+// ResponseMetadata
+
+// optional .google.protobuf.Timestamp captured_at = 1 [json_name = "capturedAt"];
+inline bool ResponseMetadata::_internal_has_captured_at() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || captured_at_ != nullptr);
+  return value;
+}
+inline bool ResponseMetadata::has_captured_at() const {
+  return _internal_has_captured_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& ResponseMetadata::_internal_captured_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = captured_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& ResponseMetadata::captured_at() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.ResponseMetadata.captured_at)
+  return _internal_captured_at();
+}
+inline void ResponseMetadata::unsafe_arena_set_allocated_captured_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* captured_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(captured_at_);
+  }
+  captured_at_ = captured_at;
+  if (captured_at) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.ResponseMetadata.captured_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ResponseMetadata::release_captured_at() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = captured_at_;
+  captured_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ResponseMetadata::unsafe_arena_release_captured_at() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.ResponseMetadata.captured_at)
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = captured_at_;
+  captured_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ResponseMetadata::_internal_mutable_captured_at() {
+  _has_bits_[0] |= 0x00000001u;
+  if (captured_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    captured_at_ = p;
+  }
+  return captured_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ResponseMetadata::mutable_captured_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_captured_at();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResponseMetadata.captured_at)
+  return _msg;
+}
+inline void ResponseMetadata::set_allocated_captured_at(::PROTOBUF_NAMESPACE_ID::Timestamp* captured_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(captured_at_);
+  }
+  if (captured_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(captured_at));
+    if (message_arena != submessage_arena) {
+      captured_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, captured_at, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  captured_at_ = captured_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResponseMetadata.captured_at)
+}
+
+// -------------------------------------------------------------------
+
 // DoCommandRequest
 
 // string name = 1 [json_name = "name"];
@@ -6762,6 +7051,91 @@ inline void GetKinematicsRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsRequest.name)
 }
 
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetKinematicsRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetKinematicsRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetKinematicsRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetKinematicsRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetKinematicsRequest.extra)
+  return _internal_extra();
+}
+inline void GetKinematicsRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GetKinematicsRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetKinematicsRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetKinematicsRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetKinematicsRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetKinematicsRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetKinematicsRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetKinematicsRequest.extra)
+  return _msg;
+}
+inline void GetKinematicsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetKinematicsRequest.extra)
+}
+
 // -------------------------------------------------------------------
 
 // GetKinematicsResponse
@@ -6890,6 +7264,91 @@ inline void GetGeometriesRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetGeometriesRequest.name)
 }
 
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetGeometriesRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetGeometriesRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetGeometriesRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetGeometriesRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetGeometriesRequest.extra)
+  return _internal_extra();
+}
+inline void GetGeometriesRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GetGeometriesRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetGeometriesRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetGeometriesRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetGeometriesRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetGeometriesRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetGeometriesRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetGeometriesRequest.extra)
+  return _msg;
+}
+inline void GetGeometriesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetGeometriesRequest.extra)
+}
+
 // -------------------------------------------------------------------
 
 // GetGeometriesResponse
@@ -6937,6 +7396,8 @@ GetGeometriesResponse::geometries() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
