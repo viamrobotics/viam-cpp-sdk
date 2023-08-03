@@ -48,6 +48,13 @@ class CameraService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImageResponse>> PrepareAsyncGetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImageResponse>>(PrepareAsyncGetImageRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::viam::component::camera::v1::GetImagesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImagesResponse>> AsyncGetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImagesResponse>>(AsyncGetImagesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImagesResponse>> PrepareAsyncGetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImagesResponse>>(PrepareAsyncGetImagesRaw(context, request, cq));
+    }
     // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
     // can be requested but may not necessarily be the same one returned.
     virtual ::grpc::Status RenderFrame(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::google::api::HttpBody* response) = 0;
@@ -97,6 +104,8 @@ class CameraService final {
       // can be requested but may not necessarily be the same one returned.
       virtual void GetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest* request, ::viam::component::camera::v1::GetImageResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest* request, ::viam::component::camera::v1::GetImageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest* request, ::viam::component::camera::v1::GetImagesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest* request, ::viam::component::camera::v1::GetImagesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
       // can be requested but may not necessarily be the same one returned.
       virtual void RenderFrame(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest* request, ::google::api::HttpBody* response, std::function<void(::grpc::Status)>) = 0;
@@ -121,6 +130,8 @@ class CameraService final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImageResponse>* AsyncGetImageRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImageResponse>* PrepareAsyncGetImageRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImagesResponse>* AsyncGetImagesRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetImagesResponse>* PrepareAsyncGetImagesRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::api::HttpBody>* AsyncRenderFrameRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::api::HttpBody>* PrepareAsyncRenderFrameRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetPointCloudResponse>* AsyncGetPointCloudRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPointCloudRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -141,6 +152,13 @@ class CameraService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImageResponse>> PrepareAsyncGetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImageResponse>>(PrepareAsyncGetImageRaw(context, request, cq));
+    }
+    ::grpc::Status GetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::viam::component::camera::v1::GetImagesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImagesResponse>> AsyncGetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImagesResponse>>(AsyncGetImagesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImagesResponse>> PrepareAsyncGetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImagesResponse>>(PrepareAsyncGetImagesRaw(context, request, cq));
     }
     ::grpc::Status RenderFrame(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::google::api::HttpBody* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::api::HttpBody>> AsyncRenderFrame(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::grpc::CompletionQueue* cq) {
@@ -182,6 +200,8 @@ class CameraService final {
      public:
       void GetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest* request, ::viam::component::camera::v1::GetImageResponse* response, std::function<void(::grpc::Status)>) override;
       void GetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest* request, ::viam::component::camera::v1::GetImageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest* request, ::viam::component::camera::v1::GetImagesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetImages(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest* request, ::viam::component::camera::v1::GetImagesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void RenderFrame(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest* request, ::google::api::HttpBody* response, std::function<void(::grpc::Status)>) override;
       void RenderFrame(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest* request, ::google::api::HttpBody* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPointCloud(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPointCloudRequest* request, ::viam::component::camera::v1::GetPointCloudResponse* response, std::function<void(::grpc::Status)>) override;
@@ -205,6 +225,8 @@ class CameraService final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImageResponse>* AsyncGetImageRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImageResponse>* PrepareAsyncGetImageRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImagesResponse>* AsyncGetImagesRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetImagesResponse>* PrepareAsyncGetImagesRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImagesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::api::HttpBody>* AsyncRenderFrameRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::api::HttpBody>* PrepareAsyncRenderFrameRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::RenderFrameRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::camera::v1::GetPointCloudResponse>* AsyncGetPointCloudRaw(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPointCloudRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -216,6 +238,7 @@ class CameraService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetImage_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetImages_;
     const ::grpc::internal::RpcMethod rpcmethod_RenderFrame_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPointCloud_;
     const ::grpc::internal::RpcMethod rpcmethod_GetProperties_;
@@ -231,6 +254,7 @@ class CameraService final {
     // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
     // can be requested but may not necessarily be the same one returned.
     virtual ::grpc::Status GetImage(::grpc::ServerContext* context, const ::viam::component::camera::v1::GetImageRequest* request, ::viam::component::camera::v1::GetImageResponse* response);
+    virtual ::grpc::Status GetImages(::grpc::ServerContext* context, const ::viam::component::camera::v1::GetImagesRequest* request, ::viam::component::camera::v1::GetImagesResponse* response);
     // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
     // can be requested but may not necessarily be the same one returned.
     virtual ::grpc::Status RenderFrame(::grpc::ServerContext* context, const ::viam::component::camera::v1::RenderFrameRequest* request, ::google::api::HttpBody* response);
@@ -265,12 +289,32 @@ class CameraService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetImages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetImages() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_GetImages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetImages(::grpc::ServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetImages(::grpc::ServerContext* context, ::viam::component::camera::v1::GetImagesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::camera::v1::GetImagesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_RenderFrame : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RenderFrame() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_RenderFrame() override {
       BaseClassMustBeDerivedFromService(this);
@@ -281,7 +325,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRenderFrame(::grpc::ServerContext* context, ::viam::component::camera::v1::RenderFrameRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::api::HttpBody>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -290,7 +334,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPointCloud() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetPointCloud() override {
       BaseClassMustBeDerivedFromService(this);
@@ -301,7 +345,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPointCloud(::grpc::ServerContext* context, ::viam::component::camera::v1::GetPointCloudRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::camera::v1::GetPointCloudResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -310,7 +354,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetProperties() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -321,7 +365,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProperties(::grpc::ServerContext* context, ::viam::component::camera::v1::GetPropertiesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::camera::v1::GetPropertiesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -330,7 +374,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -341,7 +385,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -350,7 +394,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -361,10 +405,10 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetImage<WithAsyncMethod_RenderFrame<WithAsyncMethod_GetPointCloud<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetImage<WithAsyncMethod_GetImages<WithAsyncMethod_RenderFrame<WithAsyncMethod_GetPointCloud<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetImage : public BaseClass {
    private:
@@ -393,18 +437,45 @@ class CameraService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::camera::v1::GetImageRequest* /*request*/, ::viam::component::camera::v1::GetImageResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetImages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetImages() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::GetImagesRequest, ::viam::component::camera::v1::GetImagesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::camera::v1::GetImagesRequest* request, ::viam::component::camera::v1::GetImagesResponse* response) { return this->GetImages(context, request, response); }));}
+    void SetMessageAllocatorFor_GetImages(
+        ::grpc::MessageAllocator< ::viam::component::camera::v1::GetImagesRequest, ::viam::component::camera::v1::GetImagesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::GetImagesRequest, ::viam::component::camera::v1::GetImagesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetImages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetImages(::grpc::ServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetImages(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_RenderFrame : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RenderFrame() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::RenderFrameRequest, ::google::api::HttpBody>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::camera::v1::RenderFrameRequest* request, ::google::api::HttpBody* response) { return this->RenderFrame(context, request, response); }));}
     void SetMessageAllocatorFor_RenderFrame(
         ::grpc::MessageAllocator< ::viam::component::camera::v1::RenderFrameRequest, ::google::api::HttpBody>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::RenderFrameRequest, ::google::api::HttpBody>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -425,13 +496,13 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPointCloud() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::GetPointCloudRequest, ::viam::component::camera::v1::GetPointCloudResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::camera::v1::GetPointCloudRequest* request, ::viam::component::camera::v1::GetPointCloudResponse* response) { return this->GetPointCloud(context, request, response); }));}
     void SetMessageAllocatorFor_GetPointCloud(
         ::grpc::MessageAllocator< ::viam::component::camera::v1::GetPointCloudRequest, ::viam::component::camera::v1::GetPointCloudResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::GetPointCloudRequest, ::viam::component::camera::v1::GetPointCloudResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -452,13 +523,13 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodCallback(3,
+      ::grpc::Service::MarkMethodCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::GetPropertiesRequest, ::viam::component::camera::v1::GetPropertiesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::camera::v1::GetPropertiesRequest* request, ::viam::component::camera::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
         ::grpc::MessageAllocator< ::viam::component::camera::v1::GetPropertiesRequest, ::viam::component::camera::v1::GetPropertiesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::camera::v1::GetPropertiesRequest, ::viam::component::camera::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -479,13 +550,13 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -506,13 +577,13 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -527,7 +598,7 @@ class CameraService final {
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetImage<WithCallbackMethod_RenderFrame<WithCallbackMethod_GetPointCloud<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetImage<WithCallbackMethod_GetImages<WithCallbackMethod_RenderFrame<WithCallbackMethod_GetPointCloud<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetImage : public BaseClass {
@@ -547,12 +618,29 @@ class CameraService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetImages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetImages() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_GetImages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetImages(::grpc::ServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_RenderFrame : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RenderFrame() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_RenderFrame() override {
       BaseClassMustBeDerivedFromService(this);
@@ -569,7 +657,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPointCloud() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetPointCloud() override {
       BaseClassMustBeDerivedFromService(this);
@@ -586,7 +674,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetProperties() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -603,7 +691,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -620,7 +708,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -652,12 +740,32 @@ class CameraService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetImages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetImages() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_GetImages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetImages(::grpc::ServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetImages(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_RenderFrame : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RenderFrame() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_RenderFrame() override {
       BaseClassMustBeDerivedFromService(this);
@@ -668,7 +776,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRenderFrame(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -677,7 +785,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPointCloud() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetPointCloud() override {
       BaseClassMustBeDerivedFromService(this);
@@ -688,7 +796,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPointCloud(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -697,7 +805,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRaw(3);
+      ::grpc::Service::MarkMethodRaw(4);
     }
     ~WithRawMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
@@ -708,7 +816,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProperties(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -717,7 +825,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -728,7 +836,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -737,7 +845,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -748,7 +856,7 @@ class CameraService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -774,12 +882,34 @@ class CameraService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetImages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetImages() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetImages(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetImages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetImages(::grpc::ServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetImages(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_RenderFrame : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RenderFrame() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RenderFrame(context, request, response); }));
@@ -801,7 +931,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPointCloud() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPointCloud(context, request, response); }));
@@ -823,7 +953,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetProperties() {
-      ::grpc::Service::MarkMethodRawCallback(3,
+      ::grpc::Service::MarkMethodRawCallback(4,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
@@ -845,7 +975,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -867,7 +997,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(6,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -911,12 +1041,39 @@ class CameraService final {
     virtual ::grpc::Status StreamedGetImage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::camera::v1::GetImageRequest,::viam::component::camera::v1::GetImageResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetImages : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetImages() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::camera::v1::GetImagesRequest, ::viam::component::camera::v1::GetImagesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::camera::v1::GetImagesRequest, ::viam::component::camera::v1::GetImagesResponse>* streamer) {
+                       return this->StreamedGetImages(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetImages() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetImages(::grpc::ServerContext* /*context*/, const ::viam::component::camera::v1::GetImagesRequest* /*request*/, ::viam::component::camera::v1::GetImagesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetImages(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::camera::v1::GetImagesRequest,::viam::component::camera::v1::GetImagesResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_RenderFrame : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RenderFrame() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::camera::v1::RenderFrameRequest, ::google::api::HttpBody>(
             [this](::grpc::ServerContext* context,
@@ -943,7 +1100,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPointCloud() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::camera::v1::GetPointCloudRequest, ::viam::component::camera::v1::GetPointCloudResponse>(
             [this](::grpc::ServerContext* context,
@@ -970,7 +1127,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetProperties() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::camera::v1::GetPropertiesRequest, ::viam::component::camera::v1::GetPropertiesResponse>(
             [this](::grpc::ServerContext* context,
@@ -997,7 +1154,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1024,7 +1181,7 @@ class CameraService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1045,9 +1202,9 @@ class CameraService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetImage<WithStreamedUnaryMethod_RenderFrame<WithStreamedUnaryMethod_GetPointCloud<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetImage<WithStreamedUnaryMethod_GetImages<WithStreamedUnaryMethod_RenderFrame<WithStreamedUnaryMethod_GetPointCloud<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetImage<WithStreamedUnaryMethod_RenderFrame<WithStreamedUnaryMethod_GetPointCloud<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetImage<WithStreamedUnaryMethod_GetImages<WithStreamedUnaryMethod_RenderFrame<WithStreamedUnaryMethod_GetPointCloud<WithStreamedUnaryMethod_GetProperties<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > StreamedService;
 };
 
 }  // namespace v1

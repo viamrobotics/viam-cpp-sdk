@@ -189,11 +189,36 @@ struct RemoveWaypointResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveWaypointResponseDefaultTypeInternal _RemoveWaypointResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetObstaclesRequest::GetObstaclesRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct GetObstaclesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetObstaclesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetObstaclesRequestDefaultTypeInternal() {}
+  union {
+    GetObstaclesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetObstaclesRequestDefaultTypeInternal _GetObstaclesRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetObstaclesResponse::GetObstaclesResponse(
+    ::_pbi::ConstantInitialized)
+  : obstacles_(){}
+struct GetObstaclesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetObstaclesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetObstaclesResponseDefaultTypeInternal() {}
+  union {
+    GetObstaclesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetObstaclesResponseDefaultTypeInternal _GetObstaclesResponse_default_instance_;
 }  // namespace v1
 }  // namespace navigation
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[13];
+static ::_pb::Metadata file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[15];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto = nullptr;
 
@@ -296,6 +321,21 @@ const uint32_t TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offse
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetObstaclesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetObstaclesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetObstaclesRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetObstaclesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetObstaclesResponse, obstacles_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::navigation::v1::GetModeRequest)},
@@ -311,6 +351,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 77, -1, -1, sizeof(::viam::service::navigation::v1::AddWaypointResponse)},
   { 83, -1, -1, sizeof(::viam::service::navigation::v1::RemoveWaypointRequest)},
   { 92, -1, -1, sizeof(::viam::service::navigation::v1::RemoveWaypointResponse)},
+  { 98, -1, -1, sizeof(::viam::service::navigation::v1::GetObstaclesRequest)},
+  { 106, -1, -1, sizeof(::viam::service::navigation::v1::GetObstaclesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -327,6 +369,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::navigation::v1::_AddWaypointResponse_default_instance_._instance,
   &::viam::service::navigation::v1::_RemoveWaypointRequest_default_instance_._instance,
   &::viam::service::navigation::v1::_RemoveWaypointResponse_default_instance_._instance,
+  &::viam::service::navigation::v1::_GetObstaclesRequest_default_instance_._instance,
+  &::viam::service::navigation::v1::_GetObstaclesResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -360,39 +404,48 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "ointRequest\022\022\n\004name\030\001 \001(\tR\004name\022\016\n\002id\030\002 "
   "\001(\tR\002id\022-\n\005extra\030c \001(\0132\027.google.protobuf"
   ".StructR\005extra\"\030\n\026RemoveWaypointResponse"
-  "*@\n\004Mode\022\024\n\020MODE_UNSPECIFIED\020\000\022\017\n\013MODE_M"
-  "ANUAL\020\001\022\021\n\rMODE_WAYPOINT\020\0022\221\t\n\021Navigatio"
-  "nService\022\227\001\n\007GetMode\022*.viam.service.navi"
-  "gation.v1.GetModeRequest\032+.viam.service."
-  "navigation.v1.GetModeResponse\"3\202\323\344\223\002-\022+/"
-  "viam/api/v1/service/navigation/{name}/mo"
-  "de\022\227\001\n\007SetMode\022*.viam.service.navigation"
-  ".v1.SetModeRequest\032+.viam.service.naviga"
-  "tion.v1.SetModeResponse\"3\202\323\344\223\002-\032+/viam/a"
-  "pi/v1/service/navigation/{name}/mode\022\247\001\n"
-  "\013GetLocation\022..viam.service.navigation.v"
-  "1.GetLocationRequest\032/.viam.service.navi"
-  "gation.v1.GetLocationResponse\"7\202\323\344\223\0021\022//"
-  "viam/api/v1/service/navigation/{name}/lo"
-  "cation\022\253\001\n\014GetWaypoints\022/.viam.service.n"
-  "avigation.v1.GetWaypointsRequest\0320.viam."
-  "service.navigation.v1.GetWaypointsRespon"
-  "se\"8\202\323\344\223\0022\0220/viam/api/v1/service/navigat"
-  "ion/{name}/waypoints\022\250\001\n\013AddWaypoint\022..v"
-  "iam.service.navigation.v1.AddWaypointReq"
-  "uest\032/.viam.service.navigation.v1.AddWay"
-  "pointResponse\"8\202\323\344\223\0022\"0/viam/api/v1/serv"
-  "ice/navigation/{name}/waypoints\022\266\001\n\016Remo"
-  "veWaypoint\0221.viam.service.navigation.v1."
-  "RemoveWaypointRequest\0322.viam.service.nav"
-  "igation.v1.RemoveWaypointResponse\"=\202\323\344\223\002"
-  "7*5/viam/api/v1/service/navigation/{name"
-  "}/waypoints/{id}\022\213\001\n\tDoCommand\022 .viam.co"
-  "mmon.v1.DoCommandRequest\032!.viam.common.v"
-  "1.DoCommandResponse\"9\202\323\344\223\0023\"1/viam/api/v"
-  "1/service/navigation/{name}/do_commandBG"
-  "\n\036com.viam.service.navigation.v1Z%go.via"
-  "m.com/api/service/navigation/v1b\006proto3"
+  "\"X\n\023GetObstaclesRequest\022\022\n\004name\030\001 \001(\tR\004n"
+  "ame\022-\n\005extra\030c \001(\0132\027.google.protobuf.Str"
+  "uctR\005extra\"Q\n\024GetObstaclesResponse\0229\n\tob"
+  "stacles\030\001 \003(\0132\033.viam.common.v1.GeoObstac"
+  "leR\tobstacles*@\n\004Mode\022\024\n\020MODE_UNSPECIFIE"
+  "D\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_WAYPOINT\020\0022"
+  "\303\n\n\021NavigationService\022\227\001\n\007GetMode\022*.viam"
+  ".service.navigation.v1.GetModeRequest\032+."
+  "viam.service.navigation.v1.GetModeRespon"
+  "se\"3\202\323\344\223\002-\022+/viam/api/v1/service/navigat"
+  "ion/{name}/mode\022\227\001\n\007SetMode\022*.viam.servi"
+  "ce.navigation.v1.SetModeRequest\032+.viam.s"
+  "ervice.navigation.v1.SetModeResponse\"3\202\323"
+  "\344\223\002-\032+/viam/api/v1/service/navigation/{n"
+  "ame}/mode\022\247\001\n\013GetLocation\022..viam.service"
+  ".navigation.v1.GetLocationRequest\032/.viam"
+  ".service.navigation.v1.GetLocationRespon"
+  "se\"7\202\323\344\223\0021\022//viam/api/v1/service/navigat"
+  "ion/{name}/location\022\253\001\n\014GetWaypoints\022/.v"
+  "iam.service.navigation.v1.GetWaypointsRe"
+  "quest\0320.viam.service.navigation.v1.GetWa"
+  "ypointsResponse\"8\202\323\344\223\0022\0220/viam/api/v1/se"
+  "rvice/navigation/{name}/waypoints\022\250\001\n\013Ad"
+  "dWaypoint\022..viam.service.navigation.v1.A"
+  "ddWaypointRequest\032/.viam.service.navigat"
+  "ion.v1.AddWaypointResponse\"8\202\323\344\223\0022\"0/via"
+  "m/api/v1/service/navigation/{name}/waypo"
+  "ints\022\266\001\n\016RemoveWaypoint\0221.viam.service.n"
+  "avigation.v1.RemoveWaypointRequest\0322.via"
+  "m.service.navigation.v1.RemoveWaypointRe"
+  "sponse\"=\202\323\344\223\0027*5/viam/api/v1/service/nav"
+  "igation/{name}/waypoints/{id}\022\257\001\n\014GetObs"
+  "tacles\022/.viam.service.navigation.v1.GetO"
+  "bstaclesRequest\0320.viam.service.navigatio"
+  "n.v1.GetObstaclesResponse\"<\202\323\344\223\0026\0224/viam"
+  "/api/v1/service/navigation/{name}/get_ob"
+  "stacles\022\213\001\n\tDoCommand\022 .viam.common.v1.D"
+  "oCommandRequest\032!.viam.common.v1.DoComma"
+  "ndResponse\"9\202\323\344\223\0023\"1/viam/api/v1/service"
+  "/navigation/{name}/do_commandBG\n\036com.via"
+  "m.service.navigation.v1Z%go.viam.com/api"
+  "/service/navigation/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -401,9 +454,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigatio
 };
 static ::_pbi::once_flag descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto = {
-    false, false, 2519, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
+    false, false, 2870, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
     "service/navigation/v1/navigation.proto",
-    &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 13,
+    &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 15,
     schemas, file_default_instances, TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offsets,
     file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto, file_level_enum_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto,
     file_level_service_descriptors_service_2fnavigation_2fv1_2fnavigation_2eproto,
@@ -2934,6 +2987,430 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveWaypointResponse::GetCla
       file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[12]);
 }
 
+// ===================================================================
+
+class GetObstaclesRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetObstaclesRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetObstaclesRequest::_Internal::extra(const GetObstaclesRequest* msg) {
+  return *msg->extra_;
+}
+void GetObstaclesRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+GetObstaclesRequest::GetObstaclesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.navigation.v1.GetObstaclesRequest)
+}
+GetObstaclesRequest::GetObstaclesRequest(const GetObstaclesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.service.navigation.v1.GetObstaclesRequest)
+}
+
+inline void GetObstaclesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+GetObstaclesRequest::~GetObstaclesRequest() {
+  // @@protoc_insertion_point(destructor:viam.service.navigation.v1.GetObstaclesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetObstaclesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void GetObstaclesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetObstaclesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.navigation.v1.GetObstaclesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetObstaclesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.navigation.v1.GetObstaclesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetObstaclesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.navigation.v1.GetObstaclesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.navigation.v1.GetObstaclesRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.navigation.v1.GetObstaclesRequest)
+  return target;
+}
+
+size_t GetObstaclesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.navigation.v1.GetObstaclesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetObstaclesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetObstaclesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetObstaclesRequest::GetClassData() const { return &_class_data_; }
+
+void GetObstaclesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetObstaclesRequest *>(to)->MergeFrom(
+      static_cast<const GetObstaclesRequest &>(from));
+}
+
+
+void GetObstaclesRequest::MergeFrom(const GetObstaclesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.navigation.v1.GetObstaclesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetObstaclesRequest::CopyFrom(const GetObstaclesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.navigation.v1.GetObstaclesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetObstaclesRequest::IsInitialized() const {
+  return true;
+}
+
+void GetObstaclesRequest::InternalSwap(GetObstaclesRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetObstaclesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_getter, &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once,
+      file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[13]);
+}
+
+// ===================================================================
+
+class GetObstaclesResponse::_Internal {
+ public:
+};
+
+void GetObstaclesResponse::clear_obstacles() {
+  obstacles_.Clear();
+}
+GetObstaclesResponse::GetObstaclesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  obstacles_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.navigation.v1.GetObstaclesResponse)
+}
+GetObstaclesResponse::GetObstaclesResponse(const GetObstaclesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      obstacles_(from.obstacles_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.service.navigation.v1.GetObstaclesResponse)
+}
+
+inline void GetObstaclesResponse::SharedCtor() {
+}
+
+GetObstaclesResponse::~GetObstaclesResponse() {
+  // @@protoc_insertion_point(destructor:viam.service.navigation.v1.GetObstaclesResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetObstaclesResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetObstaclesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetObstaclesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.navigation.v1.GetObstaclesResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  obstacles_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetObstaclesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_obstacles(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetObstaclesResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.navigation.v1.GetObstaclesResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_obstacles_size()); i < n; i++) {
+    const auto& repfield = this->_internal_obstacles(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.navigation.v1.GetObstaclesResponse)
+  return target;
+}
+
+size_t GetObstaclesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.navigation.v1.GetObstaclesResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.common.v1.GeoObstacle obstacles = 1 [json_name = "obstacles"];
+  total_size += 1UL * this->_internal_obstacles_size();
+  for (const auto& msg : this->obstacles_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetObstaclesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetObstaclesResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetObstaclesResponse::GetClassData() const { return &_class_data_; }
+
+void GetObstaclesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetObstaclesResponse *>(to)->MergeFrom(
+      static_cast<const GetObstaclesResponse &>(from));
+}
+
+
+void GetObstaclesResponse::MergeFrom(const GetObstaclesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.navigation.v1.GetObstaclesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  obstacles_.MergeFrom(from.obstacles_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetObstaclesResponse::CopyFrom(const GetObstaclesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.navigation.v1.GetObstaclesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetObstaclesResponse::IsInitialized() const {
+  return true;
+}
+
+void GetObstaclesResponse::InternalSwap(GetObstaclesResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  obstacles_.InternalSwap(&other->obstacles_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetObstaclesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_getter, &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once,
+      file_level_metadata_service_2fnavigation_2fv1_2fnavigation_2eproto[14]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace navigation
@@ -2991,6 +3468,14 @@ Arena::CreateMaybeMessage< ::viam::service::navigation::v1::RemoveWaypointReques
 template<> PROTOBUF_NOINLINE ::viam::service::navigation::v1::RemoveWaypointResponse*
 Arena::CreateMaybeMessage< ::viam::service::navigation::v1::RemoveWaypointResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::navigation::v1::RemoveWaypointResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::navigation::v1::GetObstaclesRequest*
+Arena::CreateMaybeMessage< ::viam::service::navigation::v1::GetObstaclesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::navigation::v1::GetObstaclesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::navigation::v1::GetObstaclesResponse*
+Arena::CreateMaybeMessage< ::viam::service::navigation::v1::GetObstaclesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::navigation::v1::GetObstaclesResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

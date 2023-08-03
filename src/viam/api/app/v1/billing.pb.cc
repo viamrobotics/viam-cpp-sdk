@@ -266,6 +266,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR GetOrgBillingInformationResponse::GetOrgBillingInformationResponse(
     ::_pbi::ConstantInitialized)
   : billing_email_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , billing_tier_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , method_(nullptr)
   , type_(0)
 {}
@@ -536,8 +537,10 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, type_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, billing_email_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, method_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, billing_tier_),
   ~0u,
   ~0u,
+  1,
   0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetInvoicesSummaryRequest, _internal_metadata_),
@@ -608,13 +611,13 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 139, -1, -1, sizeof(::viam::app::v1::GetItemizedInvoiceRequest)},
   { 146, -1, -1, sizeof(::viam::app::v1::GetItemizedInvoiceResponse)},
   { 153, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
-  { 160, 169, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
-  { 172, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
-  { 179, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
-  { 187, -1, -1, sizeof(::viam::app::v1::GetBillingSummaryRequest)},
-  { 194, -1, -1, sizeof(::viam::app::v1::GetBillingSummaryResponse)},
-  { 208, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
-  { 216, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+  { 160, 170, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
+  { 174, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
+  { 181, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
+  { 189, -1, -1, sizeof(::viam::app::v1::GetBillingSummaryRequest)},
+  { 196, -1, -1, sizeof(::viam::app::v1::GetBillingSummaryResponse)},
+  { 210, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
+  { 218, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -733,67 +736,68 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "mizedInvoiceResponse\022.\n\007invoice\030\001 \001(\0132\024."
   "viam.app.v1.InvoiceR\007invoice\"8\n\037GetOrgBi"
   "llingInformationRequest\022\025\n\006org_id\030\001 \001(\tR"
-  "\005orgId\"\303\001\n GetOrgBillingInformationRespo"
+  "\005orgId\"\374\001\n GetOrgBillingInformationRespo"
   "nse\0222\n\004type\030\001 \001(\0162\036.viam.app.v1.PaymentM"
   "ethodTypeR\004type\022#\n\rbilling_email\030\002 \001(\tR\014"
   "billingEmail\022;\n\006method\030\003 \001(\0132\036.viam.app."
-  "v1.PaymentMethodCardH\000R\006method\210\001\001B\t\n\007_me"
-  "thod\"2\n\031GetInvoicesSummaryRequest\022\025\n\006org"
-  "_id\030\001 \001(\tR\005orgId\"\206\001\n\032GetInvoicesSummaryR"
-  "esponse\022/\n\023outstanding_balance\030\001 \001(\001R\022ou"
-  "tstandingBalance\0227\n\010invoices\030\002 \003(\0132\033.via"
-  "m.app.v1.InvoiceSummaryR\010invoices\"1\n\030Get"
-  "BillingSummaryRequest\022\025\n\006org_id\030\001 \001(\tR\005o"
-  "rgId\"\347\003\n\031GetBillingSummaryResponse\022J\n\rus"
-  "age_summary\030\001 \001(\0132%.viam.app.v1.CurrentM"
-  "onthUsageSummaryR\014usageSummary\0227\n\010invoic"
-  "es\030\002 \003(\0132\033.viam.app.v1.InvoiceSummaryR\010i"
-  "nvoices\022+\n\021statement_balance\030\003 \001(\001R\020stat"
-  "ementBalance\022\'\n\017current_balance\030\004 \001(\001R\016c"
-  "urrentBalance\0222\n\025current_month_balance\030\005"
-  " \001(\001R\023currentMonthBalance\022O\n\026current_mon"
-  "th_due_date\030\007 \001(\0132\032.google.protobuf.Time"
-  "stampR\023currentMonthDueDate\022#\n\rinvoice_em"
-  "ail\030\010 \001(\tR\014invoiceEmail\022E\n\016payment_metho"
-  "d\030\t \001(\0132\036.viam.app.v1.PaymentMethodCardR"
-  "\rpaymentMethod\"=\n\024GetInvoicePdfRequest\022\016"
-  "\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 \001(\tR\005orgId\"-\n"
-  "\025GetInvoicePdfResponse\022\024\n\005chunk\030\001 \001(\014R\005c"
-  "hunk*V\n\021PaymentMethodType\022#\n\037PAYMENT_MET"
-  "HOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PAYMENT_METHOD"
-  "_TYPE_CARD\020\0012\312\007\n\016BillingService\022\200\001\n\033GetC"
-  "urrentMonthUsageSummary\022/.viam.app.v1.Ge"
-  "tCurrentMonthUsageSummaryRequest\0320.viam."
-  "app.v1.GetCurrentMonthUsageSummaryRespon"
-  "se\022_\n\020GetUnpaidBalance\022$.viam.app.v1.Get"
-  "UnpaidBalanceRequest\032%.viam.app.v1.GetUn"
-  "paidBalanceResponse\022b\n\021GetInvoiceHistory"
-  "\022%.viam.app.v1.GetInvoiceHistoryRequest\032"
-  "&.viam.app.v1.GetInvoiceHistoryResponse\022"
-  "e\n\022GetItemizedInvoice\022&.viam.app.v1.GetI"
-  "temizedInvoiceRequest\032\'.viam.app.v1.GetI"
-  "temizedInvoiceResponse\022b\n\021GetBillingSumm"
-  "ary\022%.viam.app.v1.GetBillingSummaryReque"
-  "st\032&.viam.app.v1.GetBillingSummaryRespon"
-  "se\022k\n\024GetCurrentMonthUsage\022(.viam.app.v1"
-  ".GetCurrentMonthUsageRequest\032).viam.app."
-  "v1.GetCurrentMonthUsageResponse\022w\n\030GetOr"
-  "gBillingInformation\022,.viam.app.v1.GetOrg"
-  "BillingInformationRequest\032-.viam.app.v1."
-  "GetOrgBillingInformationResponse\022e\n\022GetI"
-  "nvoicesSummary\022&.viam.app.v1.GetInvoices"
-  "SummaryRequest\032\'.viam.app.v1.GetInvoices"
-  "SummaryResponse\022X\n\rGetInvoicePdf\022!.viam."
-  "app.v1.GetInvoicePdfRequest\032\".viam.app.v"
-  "1.GetInvoicePdfResponse0\001B\030Z\026go.viam.com"
-  "/api/app/v1b\006proto3"
+  "v1.PaymentMethodCardH\000R\006method\210\001\001\022&\n\014bil"
+  "ling_tier\030\004 \001(\tH\001R\013billingTier\210\001\001B\t\n\007_me"
+  "thodB\017\n\r_billing_tier\"2\n\031GetInvoicesSumm"
+  "aryRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\206\001\n\032Ge"
+  "tInvoicesSummaryResponse\022/\n\023outstanding_"
+  "balance\030\001 \001(\001R\022outstandingBalance\0227\n\010inv"
+  "oices\030\002 \003(\0132\033.viam.app.v1.InvoiceSummary"
+  "R\010invoices\"1\n\030GetBillingSummaryRequest\022\025"
+  "\n\006org_id\030\001 \001(\tR\005orgId\"\347\003\n\031GetBillingSumm"
+  "aryResponse\022J\n\rusage_summary\030\001 \001(\0132%.via"
+  "m.app.v1.CurrentMonthUsageSummaryR\014usage"
+  "Summary\0227\n\010invoices\030\002 \003(\0132\033.viam.app.v1."
+  "InvoiceSummaryR\010invoices\022+\n\021statement_ba"
+  "lance\030\003 \001(\001R\020statementBalance\022\'\n\017current"
+  "_balance\030\004 \001(\001R\016currentBalance\0222\n\025curren"
+  "t_month_balance\030\005 \001(\001R\023currentMonthBalan"
+  "ce\022O\n\026current_month_due_date\030\007 \001(\0132\032.goo"
+  "gle.protobuf.TimestampR\023currentMonthDueD"
+  "ate\022#\n\rinvoice_email\030\010 \001(\tR\014invoiceEmail"
+  "\022E\n\016payment_method\030\t \001(\0132\036.viam.app.v1.P"
+  "aymentMethodCardR\rpaymentMethod\"=\n\024GetIn"
+  "voicePdfRequest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_i"
+  "d\030\002 \001(\tR\005orgId\"-\n\025GetInvoicePdfResponse\022"
+  "\024\n\005chunk\030\001 \001(\014R\005chunk*V\n\021PaymentMethodTy"
+  "pe\022#\n\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022"
+  "\034\n\030PAYMENT_METHOD_TYPE_CARD\020\0012\312\007\n\016Billin"
+  "gService\022\200\001\n\033GetCurrentMonthUsageSummary"
+  "\022/.viam.app.v1.GetCurrentMonthUsageSumma"
+  "ryRequest\0320.viam.app.v1.GetCurrentMonthU"
+  "sageSummaryResponse\022_\n\020GetUnpaidBalance\022"
+  "$.viam.app.v1.GetUnpaidBalanceRequest\032%."
+  "viam.app.v1.GetUnpaidBalanceResponse\022b\n\021"
+  "GetInvoiceHistory\022%.viam.app.v1.GetInvoi"
+  "ceHistoryRequest\032&.viam.app.v1.GetInvoic"
+  "eHistoryResponse\022e\n\022GetItemizedInvoice\022&"
+  ".viam.app.v1.GetItemizedInvoiceRequest\032\'"
+  ".viam.app.v1.GetItemizedInvoiceResponse\022"
+  "b\n\021GetBillingSummary\022%.viam.app.v1.GetBi"
+  "llingSummaryRequest\032&.viam.app.v1.GetBil"
+  "lingSummaryResponse\022k\n\024GetCurrentMonthUs"
+  "age\022(.viam.app.v1.GetCurrentMonthUsageRe"
+  "quest\032).viam.app.v1.GetCurrentMonthUsage"
+  "Response\022w\n\030GetOrgBillingInformation\022,.v"
+  "iam.app.v1.GetOrgBillingInformationReque"
+  "st\032-.viam.app.v1.GetOrgBillingInformatio"
+  "nResponse\022e\n\022GetInvoicesSummary\022&.viam.a"
+  "pp.v1.GetInvoicesSummaryRequest\032\'.viam.a"
+  "pp.v1.GetInvoicesSummaryResponse\022X\n\rGetI"
+  "nvoicePdf\022!.viam.app.v1.GetInvoicePdfReq"
+  "uest\032\".viam.app.v1.GetInvoicePdfResponse"
+  "0\001B\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 5699, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 5756, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 23,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -5809,6 +5813,9 @@ class GetOrgBillingInformationResponse::_Internal {
   using HasBits = decltype(std::declval<GetOrgBillingInformationResponse>()._has_bits_);
   static const ::viam::app::v1::PaymentMethodCard& method(const GetOrgBillingInformationResponse* msg);
   static void set_has_method(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_billing_tier(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
@@ -5835,6 +5842,14 @@ GetOrgBillingInformationResponse::GetOrgBillingInformationResponse(const GetOrgB
     billing_email_.Set(from._internal_billing_email(), 
       GetArenaForAllocation());
   }
+  billing_tier_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    billing_tier_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_billing_tier()) {
+    billing_tier_.Set(from._internal_billing_tier(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_method()) {
     method_ = new ::viam::app::v1::PaymentMethodCard(*from.method_);
   } else {
@@ -5848,6 +5863,10 @@ inline void GetOrgBillingInformationResponse::SharedCtor() {
 billing_email_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   billing_email_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+billing_tier_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  billing_tier_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&method_) - reinterpret_cast<char*>(this)),
@@ -5867,6 +5886,7 @@ GetOrgBillingInformationResponse::~GetOrgBillingInformationResponse() {
 inline void GetOrgBillingInformationResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   billing_email_.Destroy();
+  billing_tier_.Destroy();
   if (this != internal_default_instance()) delete method_;
 }
 
@@ -5882,9 +5902,14 @@ void GetOrgBillingInformationResponse::Clear() {
 
   billing_email_.ClearToEmpty();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(method_ != nullptr);
-    method_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      billing_tier_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(method_ != nullptr);
+      method_->Clear();
+    }
   }
   type_ = 0;
   _has_bits_.Clear();
@@ -5922,6 +5947,16 @@ const char* GetOrgBillingInformationResponse::_InternalParse(const char* ptr, ::
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_method(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string billing_tier = 4 [json_name = "billingTier"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_billing_tier();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetOrgBillingInformationResponse.billing_tier"));
         } else
           goto handle_unusual;
         continue;
@@ -5979,6 +6014,16 @@ uint8_t* GetOrgBillingInformationResponse::_InternalSerialize(
         _Internal::method(this).GetCachedSize(), target, stream);
   }
 
+  // optional string billing_tier = 4 [json_name = "billingTier"];
+  if (_internal_has_billing_tier()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_billing_tier().data(), static_cast<int>(this->_internal_billing_tier().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetOrgBillingInformationResponse.billing_tier");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_billing_tier(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -6002,14 +6047,23 @@ size_t GetOrgBillingInformationResponse::ByteSizeLong() const {
         this->_internal_billing_email());
   }
 
-  // optional .viam.app.v1.PaymentMethodCard method = 3 [json_name = "method"];
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *method_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional string billing_tier = 4 [json_name = "billingTier"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_billing_tier());
+    }
 
+    // optional .viam.app.v1.PaymentMethodCard method = 3 [json_name = "method"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *method_);
+    }
+
+  }
   // .viam.app.v1.PaymentMethodType type = 1 [json_name = "type"];
   if (this->_internal_type() != 0) {
     total_size += 1 +
@@ -6041,8 +6095,14 @@ void GetOrgBillingInformationResponse::MergeFrom(const GetOrgBillingInformationR
   if (!from._internal_billing_email().empty()) {
     _internal_set_billing_email(from._internal_billing_email());
   }
-  if (from._internal_has_method()) {
-    _internal_mutable_method()->::viam::app::v1::PaymentMethodCard::MergeFrom(from._internal_method());
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _internal_set_billing_tier(from._internal_billing_tier());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _internal_mutable_method()->::viam::app::v1::PaymentMethodCard::MergeFrom(from._internal_method());
+    }
   }
   if (from._internal_type() != 0) {
     _internal_set_type(from._internal_type());
@@ -6070,6 +6130,10 @@ void GetOrgBillingInformationResponse::InternalSwap(GetOrgBillingInformationResp
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &billing_email_, lhs_arena,
       &other->billing_email_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &billing_tier_, lhs_arena,
+      &other->billing_tier_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetOrgBillingInformationResponse, type_)

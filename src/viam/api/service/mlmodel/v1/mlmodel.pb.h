@@ -29,6 +29,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "google/api/annotations.pb.h"
@@ -54,6 +57,45 @@ namespace v1 {
 class File;
 struct FileDefaultTypeInternal;
 extern FileDefaultTypeInternal _File_default_instance_;
+class FlatTensor;
+struct FlatTensorDefaultTypeInternal;
+extern FlatTensorDefaultTypeInternal _FlatTensor_default_instance_;
+class FlatTensorDataDouble;
+struct FlatTensorDataDoubleDefaultTypeInternal;
+extern FlatTensorDataDoubleDefaultTypeInternal _FlatTensorDataDouble_default_instance_;
+class FlatTensorDataFloat;
+struct FlatTensorDataFloatDefaultTypeInternal;
+extern FlatTensorDataFloatDefaultTypeInternal _FlatTensorDataFloat_default_instance_;
+class FlatTensorDataInt16;
+struct FlatTensorDataInt16DefaultTypeInternal;
+extern FlatTensorDataInt16DefaultTypeInternal _FlatTensorDataInt16_default_instance_;
+class FlatTensorDataInt32;
+struct FlatTensorDataInt32DefaultTypeInternal;
+extern FlatTensorDataInt32DefaultTypeInternal _FlatTensorDataInt32_default_instance_;
+class FlatTensorDataInt64;
+struct FlatTensorDataInt64DefaultTypeInternal;
+extern FlatTensorDataInt64DefaultTypeInternal _FlatTensorDataInt64_default_instance_;
+class FlatTensorDataInt8;
+struct FlatTensorDataInt8DefaultTypeInternal;
+extern FlatTensorDataInt8DefaultTypeInternal _FlatTensorDataInt8_default_instance_;
+class FlatTensorDataUInt16;
+struct FlatTensorDataUInt16DefaultTypeInternal;
+extern FlatTensorDataUInt16DefaultTypeInternal _FlatTensorDataUInt16_default_instance_;
+class FlatTensorDataUInt32;
+struct FlatTensorDataUInt32DefaultTypeInternal;
+extern FlatTensorDataUInt32DefaultTypeInternal _FlatTensorDataUInt32_default_instance_;
+class FlatTensorDataUInt64;
+struct FlatTensorDataUInt64DefaultTypeInternal;
+extern FlatTensorDataUInt64DefaultTypeInternal _FlatTensorDataUInt64_default_instance_;
+class FlatTensorDataUInt8;
+struct FlatTensorDataUInt8DefaultTypeInternal;
+extern FlatTensorDataUInt8DefaultTypeInternal _FlatTensorDataUInt8_default_instance_;
+class FlatTensors;
+struct FlatTensorsDefaultTypeInternal;
+extern FlatTensorsDefaultTypeInternal _FlatTensors_default_instance_;
+class FlatTensors_TensorsEntry_DoNotUse;
+struct FlatTensors_TensorsEntry_DoNotUseDefaultTypeInternal;
+extern FlatTensors_TensorsEntry_DoNotUseDefaultTypeInternal _FlatTensors_TensorsEntry_DoNotUse_default_instance_;
 class InferRequest;
 struct InferRequestDefaultTypeInternal;
 extern InferRequestDefaultTypeInternal _InferRequest_default_instance_;
@@ -78,6 +120,19 @@ extern TensorInfoDefaultTypeInternal _TensorInfo_default_instance_;
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::service::mlmodel::v1::File* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::File>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensor* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensor>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataDouble* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataDouble>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataFloat* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataFloat>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataInt16* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataInt16>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataInt32* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataInt32>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataInt64* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataInt64>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataInt8* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataInt8>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataUInt16* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataUInt16>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataUInt32* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataUInt32>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataUInt64* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataUInt64>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensorDataUInt8* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensorDataUInt8>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensors* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensors>(Arena*);
+template<> ::viam::service::mlmodel::v1::FlatTensors_TensorsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensors_TensorsEntry_DoNotUse>(Arena*);
 template<> ::viam::service::mlmodel::v1::InferRequest* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::InferRequest>(Arena*);
 template<> ::viam::service::mlmodel::v1::InferResponse* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::InferResponse>(Arena*);
 template<> ::viam::service::mlmodel::v1::Metadata* Arena::CreateMaybeMessage<::viam::service::mlmodel::v1::Metadata>(Arena*);
@@ -239,6 +294,8 @@ class InferRequest final :
   enum : int {
     kNameFieldNumber = 1,
     kInputDataFieldNumber = 2,
+    kInputTensorsFieldNumber = 3,
+    kExtraFieldNumber = 99,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -272,6 +329,42 @@ class InferRequest final :
       ::PROTOBUF_NAMESPACE_ID::Struct* input_data);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_input_data();
 
+  // .viam.service.mlmodel.v1.FlatTensors input_tensors = 3 [json_name = "inputTensors"];
+  bool has_input_tensors() const;
+  private:
+  bool _internal_has_input_tensors() const;
+  public:
+  void clear_input_tensors();
+  const ::viam::service::mlmodel::v1::FlatTensors& input_tensors() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensors* release_input_tensors();
+  ::viam::service::mlmodel::v1::FlatTensors* mutable_input_tensors();
+  void set_allocated_input_tensors(::viam::service::mlmodel::v1::FlatTensors* input_tensors);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensors& _internal_input_tensors() const;
+  ::viam::service::mlmodel::v1::FlatTensors* _internal_mutable_input_tensors();
+  public:
+  void unsafe_arena_set_allocated_input_tensors(
+      ::viam::service::mlmodel::v1::FlatTensors* input_tensors);
+  ::viam::service::mlmodel::v1::FlatTensors* unsafe_arena_release_input_tensors();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
   // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.InferRequest)
  private:
   class _Internal;
@@ -281,6 +374,8 @@ class InferRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::Struct* input_data_;
+  ::viam::service::mlmodel::v1::FlatTensors* input_tensors_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
 };
@@ -406,6 +501,7 @@ class InferResponse final :
 
   enum : int {
     kOutputDataFieldNumber = 2,
+    kOutputTensorsFieldNumber = 3,
   };
   // .google.protobuf.Struct output_data = 2 [json_name = "outputData"];
   bool has_output_data() const;
@@ -425,6 +521,24 @@ class InferResponse final :
       ::PROTOBUF_NAMESPACE_ID::Struct* output_data);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_output_data();
 
+  // .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
+  bool has_output_tensors() const;
+  private:
+  bool _internal_has_output_tensors() const;
+  public:
+  void clear_output_tensors();
+  const ::viam::service::mlmodel::v1::FlatTensors& output_tensors() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensors* release_output_tensors();
+  ::viam::service::mlmodel::v1::FlatTensors* mutable_output_tensors();
+  void set_allocated_output_tensors(::viam::service::mlmodel::v1::FlatTensors* output_tensors);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensors& _internal_output_tensors() const;
+  ::viam::service::mlmodel::v1::FlatTensors* _internal_mutable_output_tensors();
+  public:
+  void unsafe_arena_set_allocated_output_tensors(
+      ::viam::service::mlmodel::v1::FlatTensors* output_tensors);
+  ::viam::service::mlmodel::v1::FlatTensors* unsafe_arena_release_output_tensors();
+
   // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.InferResponse)
  private:
   class _Internal;
@@ -433,6 +547,7 @@ class InferResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::Struct* output_data_;
+  ::viam::service::mlmodel::v1::FlatTensors* output_tensors_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
 };
@@ -558,6 +673,7 @@ class MetadataRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -573,6 +689,24 @@ class MetadataRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
   // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.MetadataRequest)
  private:
   class _Internal;
@@ -581,6 +715,7 @@ class MetadataRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
 };
@@ -1376,6 +1511,2125 @@ class File final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
 };
+// -------------------------------------------------------------------
+
+class FlatTensorDataInt8 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataInt8) */ {
+ public:
+  inline FlatTensorDataInt8() : FlatTensorDataInt8(nullptr) {}
+  ~FlatTensorDataInt8() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataInt8(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataInt8(const FlatTensorDataInt8& from);
+  FlatTensorDataInt8(FlatTensorDataInt8&& from) noexcept
+    : FlatTensorDataInt8() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataInt8& operator=(const FlatTensorDataInt8& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataInt8& operator=(FlatTensorDataInt8&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataInt8& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataInt8* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataInt8*>(
+               &_FlatTensorDataInt8_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(FlatTensorDataInt8& a, FlatTensorDataInt8& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataInt8* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataInt8* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataInt8* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataInt8>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataInt8& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataInt8& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataInt8* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataInt8";
+  }
+  protected:
+  explicit FlatTensorDataInt8(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // bytes data = 1 [json_name = "data"];
+  void clear_data();
+  const std::string& data() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_data(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* data);
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(const std::string& value);
+  std::string* _internal_mutable_data();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataInt8)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataUInt8 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataUInt8) */ {
+ public:
+  inline FlatTensorDataUInt8() : FlatTensorDataUInt8(nullptr) {}
+  ~FlatTensorDataUInt8() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataUInt8(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataUInt8(const FlatTensorDataUInt8& from);
+  FlatTensorDataUInt8(FlatTensorDataUInt8&& from) noexcept
+    : FlatTensorDataUInt8() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataUInt8& operator=(const FlatTensorDataUInt8& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataUInt8& operator=(FlatTensorDataUInt8&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataUInt8& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataUInt8* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataUInt8*>(
+               &_FlatTensorDataUInt8_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(FlatTensorDataUInt8& a, FlatTensorDataUInt8& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataUInt8* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataUInt8* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataUInt8* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataUInt8>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataUInt8& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataUInt8& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataUInt8* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataUInt8";
+  }
+  protected:
+  explicit FlatTensorDataUInt8(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // bytes data = 1 [json_name = "data"];
+  void clear_data();
+  const std::string& data() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_data(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* data);
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(const std::string& value);
+  std::string* _internal_mutable_data();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataUInt8)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataInt16 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataInt16) */ {
+ public:
+  inline FlatTensorDataInt16() : FlatTensorDataInt16(nullptr) {}
+  ~FlatTensorDataInt16() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataInt16(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataInt16(const FlatTensorDataInt16& from);
+  FlatTensorDataInt16(FlatTensorDataInt16&& from) noexcept
+    : FlatTensorDataInt16() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataInt16& operator=(const FlatTensorDataInt16& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataInt16& operator=(FlatTensorDataInt16&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataInt16& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataInt16* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataInt16*>(
+               &_FlatTensorDataInt16_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(FlatTensorDataInt16& a, FlatTensorDataInt16& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataInt16* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataInt16* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataInt16* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataInt16>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataInt16& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataInt16& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataInt16* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataInt16";
+  }
+  protected:
+  explicit FlatTensorDataInt16(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated fixed32 data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  uint32_t _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_data() const;
+  void _internal_add_data(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_data();
+  public:
+  uint32_t data(int index) const;
+  void set_data(int index, uint32_t value);
+  void add_data(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataInt16)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataUInt16 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataUInt16) */ {
+ public:
+  inline FlatTensorDataUInt16() : FlatTensorDataUInt16(nullptr) {}
+  ~FlatTensorDataUInt16() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataUInt16(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataUInt16(const FlatTensorDataUInt16& from);
+  FlatTensorDataUInt16(FlatTensorDataUInt16&& from) noexcept
+    : FlatTensorDataUInt16() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataUInt16& operator=(const FlatTensorDataUInt16& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataUInt16& operator=(FlatTensorDataUInt16&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataUInt16& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataUInt16* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataUInt16*>(
+               &_FlatTensorDataUInt16_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(FlatTensorDataUInt16& a, FlatTensorDataUInt16& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataUInt16* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataUInt16* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataUInt16* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataUInt16>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataUInt16& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataUInt16& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataUInt16* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataUInt16";
+  }
+  protected:
+  explicit FlatTensorDataUInt16(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated fixed32 data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  uint32_t _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_data() const;
+  void _internal_add_data(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_data();
+  public:
+  uint32_t data(int index) const;
+  void set_data(int index, uint32_t value);
+  void add_data(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataUInt16)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataInt32 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataInt32) */ {
+ public:
+  inline FlatTensorDataInt32() : FlatTensorDataInt32(nullptr) {}
+  ~FlatTensorDataInt32() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataInt32(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataInt32(const FlatTensorDataInt32& from);
+  FlatTensorDataInt32(FlatTensorDataInt32&& from) noexcept
+    : FlatTensorDataInt32() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataInt32& operator=(const FlatTensorDataInt32& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataInt32& operator=(FlatTensorDataInt32&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataInt32& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataInt32* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataInt32*>(
+               &_FlatTensorDataInt32_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(FlatTensorDataInt32& a, FlatTensorDataInt32& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataInt32* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataInt32* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataInt32* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataInt32>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataInt32& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataInt32& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataInt32* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataInt32";
+  }
+  protected:
+  explicit FlatTensorDataInt32(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated sfixed32 data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  int32_t _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_data() const;
+  void _internal_add_data(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_data();
+  public:
+  int32_t data(int index) const;
+  void set_data(int index, int32_t value);
+  void add_data(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataInt32)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataUInt32 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataUInt32) */ {
+ public:
+  inline FlatTensorDataUInt32() : FlatTensorDataUInt32(nullptr) {}
+  ~FlatTensorDataUInt32() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataUInt32(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataUInt32(const FlatTensorDataUInt32& from);
+  FlatTensorDataUInt32(FlatTensorDataUInt32&& from) noexcept
+    : FlatTensorDataUInt32() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataUInt32& operator=(const FlatTensorDataUInt32& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataUInt32& operator=(FlatTensorDataUInt32&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataUInt32& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataUInt32* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataUInt32*>(
+               &_FlatTensorDataUInt32_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(FlatTensorDataUInt32& a, FlatTensorDataUInt32& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataUInt32* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataUInt32* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataUInt32* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataUInt32>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataUInt32& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataUInt32& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataUInt32* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataUInt32";
+  }
+  protected:
+  explicit FlatTensorDataUInt32(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated fixed32 data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  uint32_t _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_data() const;
+  void _internal_add_data(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_data();
+  public:
+  uint32_t data(int index) const;
+  void set_data(int index, uint32_t value);
+  void add_data(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataUInt32)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataInt64 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataInt64) */ {
+ public:
+  inline FlatTensorDataInt64() : FlatTensorDataInt64(nullptr) {}
+  ~FlatTensorDataInt64() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataInt64(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataInt64(const FlatTensorDataInt64& from);
+  FlatTensorDataInt64(FlatTensorDataInt64&& from) noexcept
+    : FlatTensorDataInt64() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataInt64& operator=(const FlatTensorDataInt64& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataInt64& operator=(FlatTensorDataInt64&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataInt64& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataInt64* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataInt64*>(
+               &_FlatTensorDataInt64_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(FlatTensorDataInt64& a, FlatTensorDataInt64& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataInt64* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataInt64* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataInt64* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataInt64>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataInt64& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataInt64& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataInt64* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataInt64";
+  }
+  protected:
+  explicit FlatTensorDataInt64(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated sfixed64 data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  int64_t _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      _internal_data() const;
+  void _internal_add_data(int64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      _internal_mutable_data();
+  public:
+  int64_t data(int index) const;
+  void set_data(int index, int64_t value);
+  void add_data(int64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataInt64)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataUInt64 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataUInt64) */ {
+ public:
+  inline FlatTensorDataUInt64() : FlatTensorDataUInt64(nullptr) {}
+  ~FlatTensorDataUInt64() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataUInt64(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataUInt64(const FlatTensorDataUInt64& from);
+  FlatTensorDataUInt64(FlatTensorDataUInt64&& from) noexcept
+    : FlatTensorDataUInt64() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataUInt64& operator=(const FlatTensorDataUInt64& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataUInt64& operator=(FlatTensorDataUInt64&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataUInt64& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataUInt64* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataUInt64*>(
+               &_FlatTensorDataUInt64_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(FlatTensorDataUInt64& a, FlatTensorDataUInt64& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataUInt64* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataUInt64* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataUInt64* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataUInt64>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataUInt64& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataUInt64& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataUInt64* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataUInt64";
+  }
+  protected:
+  explicit FlatTensorDataUInt64(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated fixed64 data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  uint64_t _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+      _internal_data() const;
+  void _internal_add_data(uint64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+      _internal_mutable_data();
+  public:
+  uint64_t data(int index) const;
+  void set_data(int index, uint64_t value);
+  void add_data(uint64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataUInt64)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataFloat final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataFloat) */ {
+ public:
+  inline FlatTensorDataFloat() : FlatTensorDataFloat(nullptr) {}
+  ~FlatTensorDataFloat() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataFloat(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataFloat(const FlatTensorDataFloat& from);
+  FlatTensorDataFloat(FlatTensorDataFloat&& from) noexcept
+    : FlatTensorDataFloat() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataFloat& operator=(const FlatTensorDataFloat& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataFloat& operator=(FlatTensorDataFloat&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataFloat& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataFloat* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataFloat*>(
+               &_FlatTensorDataFloat_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(FlatTensorDataFloat& a, FlatTensorDataFloat& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataFloat* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataFloat* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataFloat* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataFloat>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataFloat& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataFloat& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataFloat* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataFloat";
+  }
+  protected:
+  explicit FlatTensorDataFloat(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated float data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  float _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      _internal_data() const;
+  void _internal_add_data(float value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      _internal_mutable_data();
+  public:
+  float data(int index) const;
+  void set_data(int index, float value);
+  void add_data(float value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataFloat)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensorDataDouble final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensorDataDouble) */ {
+ public:
+  inline FlatTensorDataDouble() : FlatTensorDataDouble(nullptr) {}
+  ~FlatTensorDataDouble() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensorDataDouble(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensorDataDouble(const FlatTensorDataDouble& from);
+  FlatTensorDataDouble(FlatTensorDataDouble&& from) noexcept
+    : FlatTensorDataDouble() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensorDataDouble& operator=(const FlatTensorDataDouble& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensorDataDouble& operator=(FlatTensorDataDouble&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensorDataDouble& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensorDataDouble* internal_default_instance() {
+    return reinterpret_cast<const FlatTensorDataDouble*>(
+               &_FlatTensorDataDouble_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(FlatTensorDataDouble& a, FlatTensorDataDouble& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensorDataDouble* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensorDataDouble* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensorDataDouble* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensorDataDouble>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensorDataDouble& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensorDataDouble& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensorDataDouble* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensorDataDouble";
+  }
+  protected:
+  explicit FlatTensorDataDouble(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // repeated double data = 1 [json_name = "data", packed = true];
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  private:
+  double _internal_data(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_data() const;
+  void _internal_add_data(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_data();
+  public:
+  double data(int index) const;
+  void set_data(int index, double value);
+  void add_data(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      data() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensorDataDouble)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensor final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensor) */ {
+ public:
+  inline FlatTensor() : FlatTensor(nullptr) {}
+  ~FlatTensor() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensor(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensor(const FlatTensor& from);
+  FlatTensor(FlatTensor&& from) noexcept
+    : FlatTensor() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensor& operator=(const FlatTensor& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensor& operator=(FlatTensor&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensor& default_instance() {
+    return *internal_default_instance();
+  }
+  enum TensorCase {
+    kInt8Tensor = 2,
+    kUint8Tensor = 3,
+    kInt16Tensor = 4,
+    kUint16Tensor = 5,
+    kInt32Tensor = 6,
+    kUint32Tensor = 7,
+    kInt64Tensor = 8,
+    kUint64Tensor = 9,
+    kFloatTensor = 10,
+    kDoubleTensor = 11,
+    TENSOR_NOT_SET = 0,
+  };
+
+  static inline const FlatTensor* internal_default_instance() {
+    return reinterpret_cast<const FlatTensor*>(
+               &_FlatTensor_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(FlatTensor& a, FlatTensor& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensor* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensor* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensor* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensor>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensor& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensor& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensor* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensor";
+  }
+  protected:
+  explicit FlatTensor(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kShapeFieldNumber = 1,
+    kInt8TensorFieldNumber = 2,
+    kUint8TensorFieldNumber = 3,
+    kInt16TensorFieldNumber = 4,
+    kUint16TensorFieldNumber = 5,
+    kInt32TensorFieldNumber = 6,
+    kUint32TensorFieldNumber = 7,
+    kInt64TensorFieldNumber = 8,
+    kUint64TensorFieldNumber = 9,
+    kFloatTensorFieldNumber = 10,
+    kDoubleTensorFieldNumber = 11,
+  };
+  // repeated fixed64 shape = 1 [json_name = "shape"];
+  int shape_size() const;
+  private:
+  int _internal_shape_size() const;
+  public:
+  void clear_shape();
+  private:
+  uint64_t _internal_shape(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+      _internal_shape() const;
+  void _internal_add_shape(uint64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+      _internal_mutable_shape();
+  public:
+  uint64_t shape(int index) const;
+  void set_shape(int index, uint64_t value);
+  void add_shape(uint64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+      shape() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+      mutable_shape();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataInt8 int8_tensor = 2 [json_name = "int8Tensor"];
+  bool has_int8_tensor() const;
+  private:
+  bool _internal_has_int8_tensor() const;
+  public:
+  void clear_int8_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt8& int8_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataInt8* release_int8_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataInt8* mutable_int8_tensor();
+  void set_allocated_int8_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt8* int8_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt8& _internal_int8_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataInt8* _internal_mutable_int8_tensor();
+  public:
+  void unsafe_arena_set_allocated_int8_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataInt8* int8_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataInt8* unsafe_arena_release_int8_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataUInt8 uint8_tensor = 3 [json_name = "uint8Tensor"];
+  bool has_uint8_tensor() const;
+  private:
+  bool _internal_has_uint8_tensor() const;
+  public:
+  void clear_uint8_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt8& uint8_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataUInt8* release_uint8_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt8* mutable_uint8_tensor();
+  void set_allocated_uint8_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt8* uint8_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt8& _internal_uint8_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt8* _internal_mutable_uint8_tensor();
+  public:
+  void unsafe_arena_set_allocated_uint8_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataUInt8* uint8_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt8* unsafe_arena_release_uint8_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataInt16 int16_tensor = 4 [json_name = "int16Tensor"];
+  bool has_int16_tensor() const;
+  private:
+  bool _internal_has_int16_tensor() const;
+  public:
+  void clear_int16_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt16& int16_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataInt16* release_int16_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataInt16* mutable_int16_tensor();
+  void set_allocated_int16_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt16* int16_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt16& _internal_int16_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataInt16* _internal_mutable_int16_tensor();
+  public:
+  void unsafe_arena_set_allocated_int16_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataInt16* int16_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataInt16* unsafe_arena_release_int16_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataUInt16 uint16_tensor = 5 [json_name = "uint16Tensor"];
+  bool has_uint16_tensor() const;
+  private:
+  bool _internal_has_uint16_tensor() const;
+  public:
+  void clear_uint16_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt16& uint16_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataUInt16* release_uint16_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt16* mutable_uint16_tensor();
+  void set_allocated_uint16_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt16* uint16_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt16& _internal_uint16_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt16* _internal_mutable_uint16_tensor();
+  public:
+  void unsafe_arena_set_allocated_uint16_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataUInt16* uint16_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt16* unsafe_arena_release_uint16_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataInt32 int32_tensor = 6 [json_name = "int32Tensor"];
+  bool has_int32_tensor() const;
+  private:
+  bool _internal_has_int32_tensor() const;
+  public:
+  void clear_int32_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt32& int32_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataInt32* release_int32_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataInt32* mutable_int32_tensor();
+  void set_allocated_int32_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt32* int32_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt32& _internal_int32_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataInt32* _internal_mutable_int32_tensor();
+  public:
+  void unsafe_arena_set_allocated_int32_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataInt32* int32_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataInt32* unsafe_arena_release_int32_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataUInt32 uint32_tensor = 7 [json_name = "uint32Tensor"];
+  bool has_uint32_tensor() const;
+  private:
+  bool _internal_has_uint32_tensor() const;
+  public:
+  void clear_uint32_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt32& uint32_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataUInt32* release_uint32_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt32* mutable_uint32_tensor();
+  void set_allocated_uint32_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt32* uint32_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt32& _internal_uint32_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt32* _internal_mutable_uint32_tensor();
+  public:
+  void unsafe_arena_set_allocated_uint32_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataUInt32* uint32_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt32* unsafe_arena_release_uint32_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataInt64 int64_tensor = 8 [json_name = "int64Tensor"];
+  bool has_int64_tensor() const;
+  private:
+  bool _internal_has_int64_tensor() const;
+  public:
+  void clear_int64_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt64& int64_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataInt64* release_int64_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataInt64* mutable_int64_tensor();
+  void set_allocated_int64_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt64* int64_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataInt64& _internal_int64_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataInt64* _internal_mutable_int64_tensor();
+  public:
+  void unsafe_arena_set_allocated_int64_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataInt64* int64_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataInt64* unsafe_arena_release_int64_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataUInt64 uint64_tensor = 9 [json_name = "uint64Tensor"];
+  bool has_uint64_tensor() const;
+  private:
+  bool _internal_has_uint64_tensor() const;
+  public:
+  void clear_uint64_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt64& uint64_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataUInt64* release_uint64_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt64* mutable_uint64_tensor();
+  void set_allocated_uint64_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt64* uint64_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataUInt64& _internal_uint64_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt64* _internal_mutable_uint64_tensor();
+  public:
+  void unsafe_arena_set_allocated_uint64_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataUInt64* uint64_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt64* unsafe_arena_release_uint64_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataFloat float_tensor = 10 [json_name = "floatTensor"];
+  bool has_float_tensor() const;
+  private:
+  bool _internal_has_float_tensor() const;
+  public:
+  void clear_float_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataFloat& float_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataFloat* release_float_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataFloat* mutable_float_tensor();
+  void set_allocated_float_tensor(::viam::service::mlmodel::v1::FlatTensorDataFloat* float_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataFloat& _internal_float_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataFloat* _internal_mutable_float_tensor();
+  public:
+  void unsafe_arena_set_allocated_float_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataFloat* float_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataFloat* unsafe_arena_release_float_tensor();
+
+  // .viam.service.mlmodel.v1.FlatTensorDataDouble double_tensor = 11 [json_name = "doubleTensor"];
+  bool has_double_tensor() const;
+  private:
+  bool _internal_has_double_tensor() const;
+  public:
+  void clear_double_tensor();
+  const ::viam::service::mlmodel::v1::FlatTensorDataDouble& double_tensor() const;
+  PROTOBUF_NODISCARD ::viam::service::mlmodel::v1::FlatTensorDataDouble* release_double_tensor();
+  ::viam::service::mlmodel::v1::FlatTensorDataDouble* mutable_double_tensor();
+  void set_allocated_double_tensor(::viam::service::mlmodel::v1::FlatTensorDataDouble* double_tensor);
+  private:
+  const ::viam::service::mlmodel::v1::FlatTensorDataDouble& _internal_double_tensor() const;
+  ::viam::service::mlmodel::v1::FlatTensorDataDouble* _internal_mutable_double_tensor();
+  public:
+  void unsafe_arena_set_allocated_double_tensor(
+      ::viam::service::mlmodel::v1::FlatTensorDataDouble* double_tensor);
+  ::viam::service::mlmodel::v1::FlatTensorDataDouble* unsafe_arena_release_double_tensor();
+
+  void clear_tensor();
+  TensorCase tensor_case() const;
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensor)
+ private:
+  class _Internal;
+  void set_has_int8_tensor();
+  void set_has_uint8_tensor();
+  void set_has_int16_tensor();
+  void set_has_uint16_tensor();
+  void set_has_int32_tensor();
+  void set_has_uint32_tensor();
+  void set_has_int64_tensor();
+  void set_has_uint64_tensor();
+  void set_has_float_tensor();
+  void set_has_double_tensor();
+
+  inline bool has_tensor() const;
+  inline void clear_has_tensor();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t > shape_;
+  union TensorUnion {
+    constexpr TensorUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    ::viam::service::mlmodel::v1::FlatTensorDataInt8* int8_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt8* uint8_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataInt16* int16_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt16* uint16_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataInt32* int32_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt32* uint32_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataInt64* int64_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt64* uint64_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataFloat* float_tensor_;
+    ::viam::service::mlmodel::v1::FlatTensorDataDouble* double_tensor_;
+  } tensor_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  uint32_t _oneof_case_[1];
+
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FlatTensors_TensorsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<FlatTensors_TensorsEntry_DoNotUse, 
+    std::string, ::viam::service::mlmodel::v1::FlatTensor,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<FlatTensors_TensorsEntry_DoNotUse, 
+    std::string, ::viam::service::mlmodel::v1::FlatTensor,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  FlatTensors_TensorsEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR FlatTensors_TensorsEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit FlatTensors_TensorsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const FlatTensors_TensorsEntry_DoNotUse& other);
+  static const FlatTensors_TensorsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const FlatTensors_TensorsEntry_DoNotUse*>(&_FlatTensors_TensorsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.service.mlmodel.v1.FlatTensors.TensorsEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class FlatTensors final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.mlmodel.v1.FlatTensors) */ {
+ public:
+  inline FlatTensors() : FlatTensors(nullptr) {}
+  ~FlatTensors() override;
+  explicit PROTOBUF_CONSTEXPR FlatTensors(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FlatTensors(const FlatTensors& from);
+  FlatTensors(FlatTensors&& from) noexcept
+    : FlatTensors() {
+    *this = ::std::move(from);
+  }
+
+  inline FlatTensors& operator=(const FlatTensors& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FlatTensors& operator=(FlatTensors&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FlatTensors& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FlatTensors* internal_default_instance() {
+    return reinterpret_cast<const FlatTensors*>(
+               &_FlatTensors_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(FlatTensors& a, FlatTensors& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FlatTensors* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FlatTensors* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FlatTensors* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FlatTensors>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FlatTensors& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FlatTensors& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FlatTensors* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.mlmodel.v1.FlatTensors";
+  }
+  protected:
+  explicit FlatTensors(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTensorsFieldNumber = 1,
+  };
+  // map<string, .viam.service.mlmodel.v1.FlatTensor> tensors = 1 [json_name = "tensors"];
+  int tensors_size() const;
+  private:
+  int _internal_tensors_size() const;
+  public:
+  void clear_tensors();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >&
+      _internal_tensors() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >*
+      _internal_mutable_tensors();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >&
+      tensors() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >*
+      mutable_tensors();
+
+  // @@protoc_insertion_point(class_scope:viam.service.mlmodel.v1.FlatTensors)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      FlatTensors_TensorsEntry_DoNotUse,
+      std::string, ::viam::service::mlmodel::v1::FlatTensor,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> tensors_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
+};
 // ===================================================================
 
 
@@ -1522,6 +3776,181 @@ inline void InferRequest::set_allocated_input_data(::PROTOBUF_NAMESPACE_ID::Stru
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferRequest.input_data)
 }
 
+// .viam.service.mlmodel.v1.FlatTensors input_tensors = 3 [json_name = "inputTensors"];
+inline bool InferRequest::_internal_has_input_tensors() const {
+  return this != internal_default_instance() && input_tensors_ != nullptr;
+}
+inline bool InferRequest::has_input_tensors() const {
+  return _internal_has_input_tensors();
+}
+inline void InferRequest::clear_input_tensors() {
+  if (GetArenaForAllocation() == nullptr && input_tensors_ != nullptr) {
+    delete input_tensors_;
+  }
+  input_tensors_ = nullptr;
+}
+inline const ::viam::service::mlmodel::v1::FlatTensors& InferRequest::_internal_input_tensors() const {
+  const ::viam::service::mlmodel::v1::FlatTensors* p = input_tensors_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::mlmodel::v1::FlatTensors&>(
+      ::viam::service::mlmodel::v1::_FlatTensors_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensors& InferRequest::input_tensors() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.InferRequest.input_tensors)
+  return _internal_input_tensors();
+}
+inline void InferRequest::unsafe_arena_set_allocated_input_tensors(
+    ::viam::service::mlmodel::v1::FlatTensors* input_tensors) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(input_tensors_);
+  }
+  input_tensors_ = input_tensors;
+  if (input_tensors) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.InferRequest.input_tensors)
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferRequest::release_input_tensors() {
+  
+  ::viam::service::mlmodel::v1::FlatTensors* temp = input_tensors_;
+  input_tensors_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferRequest::unsafe_arena_release_input_tensors() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.InferRequest.input_tensors)
+  
+  ::viam::service::mlmodel::v1::FlatTensors* temp = input_tensors_;
+  input_tensors_ = nullptr;
+  return temp;
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferRequest::_internal_mutable_input_tensors() {
+  
+  if (input_tensors_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensors>(GetArenaForAllocation());
+    input_tensors_ = p;
+  }
+  return input_tensors_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferRequest::mutable_input_tensors() {
+  ::viam::service::mlmodel::v1::FlatTensors* _msg = _internal_mutable_input_tensors();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.InferRequest.input_tensors)
+  return _msg;
+}
+inline void InferRequest::set_allocated_input_tensors(::viam::service::mlmodel::v1::FlatTensors* input_tensors) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete input_tensors_;
+  }
+  if (input_tensors) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(input_tensors);
+    if (message_arena != submessage_arena) {
+      input_tensors = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, input_tensors, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  input_tensors_ = input_tensors;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferRequest.input_tensors)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool InferRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool InferRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& InferRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& InferRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.InferRequest.extra)
+  return _internal_extra();
+}
+inline void InferRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.InferRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.InferRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.InferRequest.extra)
+  return _msg;
+}
+inline void InferRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferRequest.extra)
+}
+
 // -------------------------------------------------------------------
 
 // InferResponse
@@ -1611,6 +4040,96 @@ inline void InferResponse::set_allocated_output_data(::PROTOBUF_NAMESPACE_ID::St
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferResponse.output_data)
 }
 
+// .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
+inline bool InferResponse::_internal_has_output_tensors() const {
+  return this != internal_default_instance() && output_tensors_ != nullptr;
+}
+inline bool InferResponse::has_output_tensors() const {
+  return _internal_has_output_tensors();
+}
+inline void InferResponse::clear_output_tensors() {
+  if (GetArenaForAllocation() == nullptr && output_tensors_ != nullptr) {
+    delete output_tensors_;
+  }
+  output_tensors_ = nullptr;
+}
+inline const ::viam::service::mlmodel::v1::FlatTensors& InferResponse::_internal_output_tensors() const {
+  const ::viam::service::mlmodel::v1::FlatTensors* p = output_tensors_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::mlmodel::v1::FlatTensors&>(
+      ::viam::service::mlmodel::v1::_FlatTensors_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensors& InferResponse::output_tensors() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.InferResponse.output_tensors)
+  return _internal_output_tensors();
+}
+inline void InferResponse::unsafe_arena_set_allocated_output_tensors(
+    ::viam::service::mlmodel::v1::FlatTensors* output_tensors) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(output_tensors_);
+  }
+  output_tensors_ = output_tensors;
+  if (output_tensors) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.InferResponse.output_tensors)
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferResponse::release_output_tensors() {
+  
+  ::viam::service::mlmodel::v1::FlatTensors* temp = output_tensors_;
+  output_tensors_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferResponse::unsafe_arena_release_output_tensors() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.InferResponse.output_tensors)
+  
+  ::viam::service::mlmodel::v1::FlatTensors* temp = output_tensors_;
+  output_tensors_ = nullptr;
+  return temp;
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferResponse::_internal_mutable_output_tensors() {
+  
+  if (output_tensors_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::mlmodel::v1::FlatTensors>(GetArenaForAllocation());
+    output_tensors_ = p;
+  }
+  return output_tensors_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensors* InferResponse::mutable_output_tensors() {
+  ::viam::service::mlmodel::v1::FlatTensors* _msg = _internal_mutable_output_tensors();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.InferResponse.output_tensors)
+  return _msg;
+}
+inline void InferResponse::set_allocated_output_tensors(::viam::service::mlmodel::v1::FlatTensors* output_tensors) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete output_tensors_;
+  }
+  if (output_tensors) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(output_tensors);
+    if (message_arena != submessage_arena) {
+      output_tensors = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, output_tensors, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  output_tensors_ = output_tensors;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferResponse.output_tensors)
+}
+
 // -------------------------------------------------------------------
 
 // MetadataRequest
@@ -1663,6 +4182,91 @@ inline void MetadataRequest::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.MetadataRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool MetadataRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool MetadataRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& MetadataRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& MetadataRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.MetadataRequest.extra)
+  return _internal_extra();
+}
+inline void MetadataRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.MetadataRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MetadataRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MetadataRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.MetadataRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MetadataRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MetadataRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.MetadataRequest.extra)
+  return _msg;
+}
+inline void MetadataRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.MetadataRequest.extra)
 }
 
 // -------------------------------------------------------------------
@@ -2443,9 +5047,1386 @@ inline void File::set_label_type(::viam::service::mlmodel::v1::LabelType value) 
   // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.File.label_type)
 }
 
+// -------------------------------------------------------------------
+
+// FlatTensorDataInt8
+
+// bytes data = 1 [json_name = "data"];
+inline void FlatTensorDataInt8::clear_data() {
+  data_.ClearToEmpty();
+}
+inline const std::string& FlatTensorDataInt8::data() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataInt8.data)
+  return _internal_data();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FlatTensorDataInt8::set_data(ArgT0&& arg0, ArgT... args) {
+ 
+ data_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataInt8.data)
+}
+inline std::string* FlatTensorDataInt8::mutable_data() {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensorDataInt8.data)
+  return _s;
+}
+inline const std::string& FlatTensorDataInt8::_internal_data() const {
+  return data_.Get();
+}
+inline void FlatTensorDataInt8::_internal_set_data(const std::string& value) {
+  
+  data_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FlatTensorDataInt8::_internal_mutable_data() {
+  
+  return data_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FlatTensorDataInt8::release_data() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensorDataInt8.data)
+  return data_.Release();
+}
+inline void FlatTensorDataInt8::set_allocated_data(std::string* data) {
+  if (data != nullptr) {
+    
+  } else {
+    
+  }
+  data_.SetAllocated(data, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (data_.IsDefault()) {
+    data_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensorDataInt8.data)
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataUInt8
+
+// bytes data = 1 [json_name = "data"];
+inline void FlatTensorDataUInt8::clear_data() {
+  data_.ClearToEmpty();
+}
+inline const std::string& FlatTensorDataUInt8::data() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataUInt8.data)
+  return _internal_data();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void FlatTensorDataUInt8::set_data(ArgT0&& arg0, ArgT... args) {
+ 
+ data_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataUInt8.data)
+}
+inline std::string* FlatTensorDataUInt8::mutable_data() {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensorDataUInt8.data)
+  return _s;
+}
+inline const std::string& FlatTensorDataUInt8::_internal_data() const {
+  return data_.Get();
+}
+inline void FlatTensorDataUInt8::_internal_set_data(const std::string& value) {
+  
+  data_.Set(value, GetArenaForAllocation());
+}
+inline std::string* FlatTensorDataUInt8::_internal_mutable_data() {
+  
+  return data_.Mutable(GetArenaForAllocation());
+}
+inline std::string* FlatTensorDataUInt8::release_data() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensorDataUInt8.data)
+  return data_.Release();
+}
+inline void FlatTensorDataUInt8::set_allocated_data(std::string* data) {
+  if (data != nullptr) {
+    
+  } else {
+    
+  }
+  data_.SetAllocated(data, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (data_.IsDefault()) {
+    data_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensorDataUInt8.data)
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataInt16
+
+// repeated fixed32 data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataInt16::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataInt16::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataInt16::clear_data() {
+  data_.Clear();
+}
+inline uint32_t FlatTensorDataInt16::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline uint32_t FlatTensorDataInt16::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataInt16.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataInt16::set_data(int index, uint32_t value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataInt16.data)
+}
+inline void FlatTensorDataInt16::_internal_add_data(uint32_t value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataInt16::add_data(uint32_t value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataInt16.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+FlatTensorDataInt16::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+FlatTensorDataInt16::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataInt16.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+FlatTensorDataInt16::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+FlatTensorDataInt16::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataInt16.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataUInt16
+
+// repeated fixed32 data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataUInt16::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataUInt16::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataUInt16::clear_data() {
+  data_.Clear();
+}
+inline uint32_t FlatTensorDataUInt16::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline uint32_t FlatTensorDataUInt16::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataUInt16.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataUInt16::set_data(int index, uint32_t value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataUInt16.data)
+}
+inline void FlatTensorDataUInt16::_internal_add_data(uint32_t value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataUInt16::add_data(uint32_t value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataUInt16.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+FlatTensorDataUInt16::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+FlatTensorDataUInt16::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataUInt16.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+FlatTensorDataUInt16::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+FlatTensorDataUInt16::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataUInt16.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataInt32
+
+// repeated sfixed32 data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataInt32::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataInt32::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataInt32::clear_data() {
+  data_.Clear();
+}
+inline int32_t FlatTensorDataInt32::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline int32_t FlatTensorDataInt32::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataInt32.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataInt32::set_data(int index, int32_t value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataInt32.data)
+}
+inline void FlatTensorDataInt32::_internal_add_data(int32_t value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataInt32::add_data(int32_t value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataInt32.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+FlatTensorDataInt32::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+FlatTensorDataInt32::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataInt32.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+FlatTensorDataInt32::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+FlatTensorDataInt32::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataInt32.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataUInt32
+
+// repeated fixed32 data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataUInt32::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataUInt32::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataUInt32::clear_data() {
+  data_.Clear();
+}
+inline uint32_t FlatTensorDataUInt32::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline uint32_t FlatTensorDataUInt32::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataUInt32.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataUInt32::set_data(int index, uint32_t value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataUInt32.data)
+}
+inline void FlatTensorDataUInt32::_internal_add_data(uint32_t value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataUInt32::add_data(uint32_t value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataUInt32.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+FlatTensorDataUInt32::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+FlatTensorDataUInt32::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataUInt32.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+FlatTensorDataUInt32::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+FlatTensorDataUInt32::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataUInt32.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataInt64
+
+// repeated sfixed64 data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataInt64::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataInt64::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataInt64::clear_data() {
+  data_.Clear();
+}
+inline int64_t FlatTensorDataInt64::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline int64_t FlatTensorDataInt64::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataInt64.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataInt64::set_data(int index, int64_t value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataInt64.data)
+}
+inline void FlatTensorDataInt64::_internal_add_data(int64_t value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataInt64::add_data(int64_t value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataInt64.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+FlatTensorDataInt64::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+FlatTensorDataInt64::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataInt64.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+FlatTensorDataInt64::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+FlatTensorDataInt64::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataInt64.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataUInt64
+
+// repeated fixed64 data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataUInt64::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataUInt64::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataUInt64::clear_data() {
+  data_.Clear();
+}
+inline uint64_t FlatTensorDataUInt64::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline uint64_t FlatTensorDataUInt64::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataUInt64.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataUInt64::set_data(int index, uint64_t value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataUInt64.data)
+}
+inline void FlatTensorDataUInt64::_internal_add_data(uint64_t value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataUInt64::add_data(uint64_t value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataUInt64.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+FlatTensorDataUInt64::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+FlatTensorDataUInt64::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataUInt64.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+FlatTensorDataUInt64::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+FlatTensorDataUInt64::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataUInt64.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataFloat
+
+// repeated float data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataFloat::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataFloat::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataFloat::clear_data() {
+  data_.Clear();
+}
+inline float FlatTensorDataFloat::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline float FlatTensorDataFloat::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataFloat.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataFloat::set_data(int index, float value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataFloat.data)
+}
+inline void FlatTensorDataFloat::_internal_add_data(float value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataFloat::add_data(float value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataFloat.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+FlatTensorDataFloat::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+FlatTensorDataFloat::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataFloat.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+FlatTensorDataFloat::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+FlatTensorDataFloat::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataFloat.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensorDataDouble
+
+// repeated double data = 1 [json_name = "data", packed = true];
+inline int FlatTensorDataDouble::_internal_data_size() const {
+  return data_.size();
+}
+inline int FlatTensorDataDouble::data_size() const {
+  return _internal_data_size();
+}
+inline void FlatTensorDataDouble::clear_data() {
+  data_.Clear();
+}
+inline double FlatTensorDataDouble::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline double FlatTensorDataDouble::data(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensorDataDouble.data)
+  return _internal_data(index);
+}
+inline void FlatTensorDataDouble::set_data(int index, double value) {
+  data_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensorDataDouble.data)
+}
+inline void FlatTensorDataDouble::_internal_add_data(double value) {
+  data_.Add(value);
+}
+inline void FlatTensorDataDouble::add_data(double value) {
+  _internal_add_data(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensorDataDouble.data)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+FlatTensorDataDouble::_internal_data() const {
+  return data_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+FlatTensorDataDouble::data() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensorDataDouble.data)
+  return _internal_data();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+FlatTensorDataDouble::_internal_mutable_data() {
+  return &data_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+FlatTensorDataDouble::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensorDataDouble.data)
+  return _internal_mutable_data();
+}
+
+// -------------------------------------------------------------------
+
+// FlatTensor
+
+// repeated fixed64 shape = 1 [json_name = "shape"];
+inline int FlatTensor::_internal_shape_size() const {
+  return shape_.size();
+}
+inline int FlatTensor::shape_size() const {
+  return _internal_shape_size();
+}
+inline void FlatTensor::clear_shape() {
+  shape_.Clear();
+}
+inline uint64_t FlatTensor::_internal_shape(int index) const {
+  return shape_.Get(index);
+}
+inline uint64_t FlatTensor::shape(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.shape)
+  return _internal_shape(index);
+}
+inline void FlatTensor::set_shape(int index, uint64_t value) {
+  shape_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.service.mlmodel.v1.FlatTensor.shape)
+}
+inline void FlatTensor::_internal_add_shape(uint64_t value) {
+  shape_.Add(value);
+}
+inline void FlatTensor::add_shape(uint64_t value) {
+  _internal_add_shape(value);
+  // @@protoc_insertion_point(field_add:viam.service.mlmodel.v1.FlatTensor.shape)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+FlatTensor::_internal_shape() const {
+  return shape_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+FlatTensor::shape() const {
+  // @@protoc_insertion_point(field_list:viam.service.mlmodel.v1.FlatTensor.shape)
+  return _internal_shape();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+FlatTensor::_internal_mutable_shape() {
+  return &shape_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+FlatTensor::mutable_shape() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.mlmodel.v1.FlatTensor.shape)
+  return _internal_mutable_shape();
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataInt8 int8_tensor = 2 [json_name = "int8Tensor"];
+inline bool FlatTensor::_internal_has_int8_tensor() const {
+  return tensor_case() == kInt8Tensor;
+}
+inline bool FlatTensor::has_int8_tensor() const {
+  return _internal_has_int8_tensor();
+}
+inline void FlatTensor::set_has_int8_tensor() {
+  _oneof_case_[0] = kInt8Tensor;
+}
+inline void FlatTensor::clear_int8_tensor() {
+  if (_internal_has_int8_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.int8_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt8* FlatTensor::release_int8_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.int8_tensor)
+  if (_internal_has_int8_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt8* temp = tensor_.int8_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.int8_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt8& FlatTensor::_internal_int8_tensor() const {
+  return _internal_has_int8_tensor()
+      ? *tensor_.int8_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataInt8&>(::viam::service::mlmodel::v1::_FlatTensorDataInt8_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt8& FlatTensor::int8_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.int8_tensor)
+  return _internal_int8_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt8* FlatTensor::unsafe_arena_release_int8_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.int8_tensor)
+  if (_internal_has_int8_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt8* temp = tensor_.int8_tensor_;
+    tensor_.int8_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_int8_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt8* int8_tensor) {
+  clear_tensor();
+  if (int8_tensor) {
+    set_has_int8_tensor();
+    tensor_.int8_tensor_ = int8_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.int8_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt8* FlatTensor::_internal_mutable_int8_tensor() {
+  if (!_internal_has_int8_tensor()) {
+    clear_tensor();
+    set_has_int8_tensor();
+    tensor_.int8_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataInt8 >(GetArenaForAllocation());
+  }
+  return tensor_.int8_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt8* FlatTensor::mutable_int8_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataInt8* _msg = _internal_mutable_int8_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.int8_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataUInt8 uint8_tensor = 3 [json_name = "uint8Tensor"];
+inline bool FlatTensor::_internal_has_uint8_tensor() const {
+  return tensor_case() == kUint8Tensor;
+}
+inline bool FlatTensor::has_uint8_tensor() const {
+  return _internal_has_uint8_tensor();
+}
+inline void FlatTensor::set_has_uint8_tensor() {
+  _oneof_case_[0] = kUint8Tensor;
+}
+inline void FlatTensor::clear_uint8_tensor() {
+  if (_internal_has_uint8_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.uint8_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt8* FlatTensor::release_uint8_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.uint8_tensor)
+  if (_internal_has_uint8_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt8* temp = tensor_.uint8_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.uint8_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt8& FlatTensor::_internal_uint8_tensor() const {
+  return _internal_has_uint8_tensor()
+      ? *tensor_.uint8_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataUInt8&>(::viam::service::mlmodel::v1::_FlatTensorDataUInt8_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt8& FlatTensor::uint8_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.uint8_tensor)
+  return _internal_uint8_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt8* FlatTensor::unsafe_arena_release_uint8_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.uint8_tensor)
+  if (_internal_has_uint8_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt8* temp = tensor_.uint8_tensor_;
+    tensor_.uint8_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_uint8_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt8* uint8_tensor) {
+  clear_tensor();
+  if (uint8_tensor) {
+    set_has_uint8_tensor();
+    tensor_.uint8_tensor_ = uint8_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint8_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt8* FlatTensor::_internal_mutable_uint8_tensor() {
+  if (!_internal_has_uint8_tensor()) {
+    clear_tensor();
+    set_has_uint8_tensor();
+    tensor_.uint8_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataUInt8 >(GetArenaForAllocation());
+  }
+  return tensor_.uint8_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt8* FlatTensor::mutable_uint8_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt8* _msg = _internal_mutable_uint8_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.uint8_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataInt16 int16_tensor = 4 [json_name = "int16Tensor"];
+inline bool FlatTensor::_internal_has_int16_tensor() const {
+  return tensor_case() == kInt16Tensor;
+}
+inline bool FlatTensor::has_int16_tensor() const {
+  return _internal_has_int16_tensor();
+}
+inline void FlatTensor::set_has_int16_tensor() {
+  _oneof_case_[0] = kInt16Tensor;
+}
+inline void FlatTensor::clear_int16_tensor() {
+  if (_internal_has_int16_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.int16_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt16* FlatTensor::release_int16_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.int16_tensor)
+  if (_internal_has_int16_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt16* temp = tensor_.int16_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.int16_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt16& FlatTensor::_internal_int16_tensor() const {
+  return _internal_has_int16_tensor()
+      ? *tensor_.int16_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataInt16&>(::viam::service::mlmodel::v1::_FlatTensorDataInt16_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt16& FlatTensor::int16_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.int16_tensor)
+  return _internal_int16_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt16* FlatTensor::unsafe_arena_release_int16_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.int16_tensor)
+  if (_internal_has_int16_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt16* temp = tensor_.int16_tensor_;
+    tensor_.int16_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_int16_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt16* int16_tensor) {
+  clear_tensor();
+  if (int16_tensor) {
+    set_has_int16_tensor();
+    tensor_.int16_tensor_ = int16_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.int16_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt16* FlatTensor::_internal_mutable_int16_tensor() {
+  if (!_internal_has_int16_tensor()) {
+    clear_tensor();
+    set_has_int16_tensor();
+    tensor_.int16_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataInt16 >(GetArenaForAllocation());
+  }
+  return tensor_.int16_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt16* FlatTensor::mutable_int16_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataInt16* _msg = _internal_mutable_int16_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.int16_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataUInt16 uint16_tensor = 5 [json_name = "uint16Tensor"];
+inline bool FlatTensor::_internal_has_uint16_tensor() const {
+  return tensor_case() == kUint16Tensor;
+}
+inline bool FlatTensor::has_uint16_tensor() const {
+  return _internal_has_uint16_tensor();
+}
+inline void FlatTensor::set_has_uint16_tensor() {
+  _oneof_case_[0] = kUint16Tensor;
+}
+inline void FlatTensor::clear_uint16_tensor() {
+  if (_internal_has_uint16_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.uint16_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt16* FlatTensor::release_uint16_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.uint16_tensor)
+  if (_internal_has_uint16_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt16* temp = tensor_.uint16_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.uint16_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt16& FlatTensor::_internal_uint16_tensor() const {
+  return _internal_has_uint16_tensor()
+      ? *tensor_.uint16_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataUInt16&>(::viam::service::mlmodel::v1::_FlatTensorDataUInt16_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt16& FlatTensor::uint16_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.uint16_tensor)
+  return _internal_uint16_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt16* FlatTensor::unsafe_arena_release_uint16_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.uint16_tensor)
+  if (_internal_has_uint16_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt16* temp = tensor_.uint16_tensor_;
+    tensor_.uint16_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_uint16_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt16* uint16_tensor) {
+  clear_tensor();
+  if (uint16_tensor) {
+    set_has_uint16_tensor();
+    tensor_.uint16_tensor_ = uint16_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint16_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt16* FlatTensor::_internal_mutable_uint16_tensor() {
+  if (!_internal_has_uint16_tensor()) {
+    clear_tensor();
+    set_has_uint16_tensor();
+    tensor_.uint16_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataUInt16 >(GetArenaForAllocation());
+  }
+  return tensor_.uint16_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt16* FlatTensor::mutable_uint16_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt16* _msg = _internal_mutable_uint16_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.uint16_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataInt32 int32_tensor = 6 [json_name = "int32Tensor"];
+inline bool FlatTensor::_internal_has_int32_tensor() const {
+  return tensor_case() == kInt32Tensor;
+}
+inline bool FlatTensor::has_int32_tensor() const {
+  return _internal_has_int32_tensor();
+}
+inline void FlatTensor::set_has_int32_tensor() {
+  _oneof_case_[0] = kInt32Tensor;
+}
+inline void FlatTensor::clear_int32_tensor() {
+  if (_internal_has_int32_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.int32_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt32* FlatTensor::release_int32_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.int32_tensor)
+  if (_internal_has_int32_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt32* temp = tensor_.int32_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.int32_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt32& FlatTensor::_internal_int32_tensor() const {
+  return _internal_has_int32_tensor()
+      ? *tensor_.int32_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataInt32&>(::viam::service::mlmodel::v1::_FlatTensorDataInt32_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt32& FlatTensor::int32_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.int32_tensor)
+  return _internal_int32_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt32* FlatTensor::unsafe_arena_release_int32_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.int32_tensor)
+  if (_internal_has_int32_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt32* temp = tensor_.int32_tensor_;
+    tensor_.int32_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_int32_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt32* int32_tensor) {
+  clear_tensor();
+  if (int32_tensor) {
+    set_has_int32_tensor();
+    tensor_.int32_tensor_ = int32_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.int32_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt32* FlatTensor::_internal_mutable_int32_tensor() {
+  if (!_internal_has_int32_tensor()) {
+    clear_tensor();
+    set_has_int32_tensor();
+    tensor_.int32_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataInt32 >(GetArenaForAllocation());
+  }
+  return tensor_.int32_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt32* FlatTensor::mutable_int32_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataInt32* _msg = _internal_mutable_int32_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.int32_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataUInt32 uint32_tensor = 7 [json_name = "uint32Tensor"];
+inline bool FlatTensor::_internal_has_uint32_tensor() const {
+  return tensor_case() == kUint32Tensor;
+}
+inline bool FlatTensor::has_uint32_tensor() const {
+  return _internal_has_uint32_tensor();
+}
+inline void FlatTensor::set_has_uint32_tensor() {
+  _oneof_case_[0] = kUint32Tensor;
+}
+inline void FlatTensor::clear_uint32_tensor() {
+  if (_internal_has_uint32_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.uint32_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt32* FlatTensor::release_uint32_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.uint32_tensor)
+  if (_internal_has_uint32_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt32* temp = tensor_.uint32_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.uint32_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt32& FlatTensor::_internal_uint32_tensor() const {
+  return _internal_has_uint32_tensor()
+      ? *tensor_.uint32_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataUInt32&>(::viam::service::mlmodel::v1::_FlatTensorDataUInt32_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt32& FlatTensor::uint32_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.uint32_tensor)
+  return _internal_uint32_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt32* FlatTensor::unsafe_arena_release_uint32_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.uint32_tensor)
+  if (_internal_has_uint32_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt32* temp = tensor_.uint32_tensor_;
+    tensor_.uint32_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_uint32_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt32* uint32_tensor) {
+  clear_tensor();
+  if (uint32_tensor) {
+    set_has_uint32_tensor();
+    tensor_.uint32_tensor_ = uint32_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint32_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt32* FlatTensor::_internal_mutable_uint32_tensor() {
+  if (!_internal_has_uint32_tensor()) {
+    clear_tensor();
+    set_has_uint32_tensor();
+    tensor_.uint32_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataUInt32 >(GetArenaForAllocation());
+  }
+  return tensor_.uint32_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt32* FlatTensor::mutable_uint32_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt32* _msg = _internal_mutable_uint32_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.uint32_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataInt64 int64_tensor = 8 [json_name = "int64Tensor"];
+inline bool FlatTensor::_internal_has_int64_tensor() const {
+  return tensor_case() == kInt64Tensor;
+}
+inline bool FlatTensor::has_int64_tensor() const {
+  return _internal_has_int64_tensor();
+}
+inline void FlatTensor::set_has_int64_tensor() {
+  _oneof_case_[0] = kInt64Tensor;
+}
+inline void FlatTensor::clear_int64_tensor() {
+  if (_internal_has_int64_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.int64_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt64* FlatTensor::release_int64_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.int64_tensor)
+  if (_internal_has_int64_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt64* temp = tensor_.int64_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.int64_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt64& FlatTensor::_internal_int64_tensor() const {
+  return _internal_has_int64_tensor()
+      ? *tensor_.int64_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataInt64&>(::viam::service::mlmodel::v1::_FlatTensorDataInt64_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataInt64& FlatTensor::int64_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.int64_tensor)
+  return _internal_int64_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt64* FlatTensor::unsafe_arena_release_int64_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.int64_tensor)
+  if (_internal_has_int64_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataInt64* temp = tensor_.int64_tensor_;
+    tensor_.int64_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_int64_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt64* int64_tensor) {
+  clear_tensor();
+  if (int64_tensor) {
+    set_has_int64_tensor();
+    tensor_.int64_tensor_ = int64_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.int64_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt64* FlatTensor::_internal_mutable_int64_tensor() {
+  if (!_internal_has_int64_tensor()) {
+    clear_tensor();
+    set_has_int64_tensor();
+    tensor_.int64_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataInt64 >(GetArenaForAllocation());
+  }
+  return tensor_.int64_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataInt64* FlatTensor::mutable_int64_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataInt64* _msg = _internal_mutable_int64_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.int64_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataUInt64 uint64_tensor = 9 [json_name = "uint64Tensor"];
+inline bool FlatTensor::_internal_has_uint64_tensor() const {
+  return tensor_case() == kUint64Tensor;
+}
+inline bool FlatTensor::has_uint64_tensor() const {
+  return _internal_has_uint64_tensor();
+}
+inline void FlatTensor::set_has_uint64_tensor() {
+  _oneof_case_[0] = kUint64Tensor;
+}
+inline void FlatTensor::clear_uint64_tensor() {
+  if (_internal_has_uint64_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.uint64_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt64* FlatTensor::release_uint64_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.uint64_tensor)
+  if (_internal_has_uint64_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt64* temp = tensor_.uint64_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.uint64_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt64& FlatTensor::_internal_uint64_tensor() const {
+  return _internal_has_uint64_tensor()
+      ? *tensor_.uint64_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataUInt64&>(::viam::service::mlmodel::v1::_FlatTensorDataUInt64_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataUInt64& FlatTensor::uint64_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.uint64_tensor)
+  return _internal_uint64_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt64* FlatTensor::unsafe_arena_release_uint64_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.uint64_tensor)
+  if (_internal_has_uint64_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataUInt64* temp = tensor_.uint64_tensor_;
+    tensor_.uint64_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_uint64_tensor(::viam::service::mlmodel::v1::FlatTensorDataUInt64* uint64_tensor) {
+  clear_tensor();
+  if (uint64_tensor) {
+    set_has_uint64_tensor();
+    tensor_.uint64_tensor_ = uint64_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint64_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt64* FlatTensor::_internal_mutable_uint64_tensor() {
+  if (!_internal_has_uint64_tensor()) {
+    clear_tensor();
+    set_has_uint64_tensor();
+    tensor_.uint64_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataUInt64 >(GetArenaForAllocation());
+  }
+  return tensor_.uint64_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataUInt64* FlatTensor::mutable_uint64_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataUInt64* _msg = _internal_mutable_uint64_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.uint64_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataFloat float_tensor = 10 [json_name = "floatTensor"];
+inline bool FlatTensor::_internal_has_float_tensor() const {
+  return tensor_case() == kFloatTensor;
+}
+inline bool FlatTensor::has_float_tensor() const {
+  return _internal_has_float_tensor();
+}
+inline void FlatTensor::set_has_float_tensor() {
+  _oneof_case_[0] = kFloatTensor;
+}
+inline void FlatTensor::clear_float_tensor() {
+  if (_internal_has_float_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.float_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataFloat* FlatTensor::release_float_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.float_tensor)
+  if (_internal_has_float_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataFloat* temp = tensor_.float_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.float_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataFloat& FlatTensor::_internal_float_tensor() const {
+  return _internal_has_float_tensor()
+      ? *tensor_.float_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataFloat&>(::viam::service::mlmodel::v1::_FlatTensorDataFloat_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataFloat& FlatTensor::float_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.float_tensor)
+  return _internal_float_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataFloat* FlatTensor::unsafe_arena_release_float_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.float_tensor)
+  if (_internal_has_float_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataFloat* temp = tensor_.float_tensor_;
+    tensor_.float_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_float_tensor(::viam::service::mlmodel::v1::FlatTensorDataFloat* float_tensor) {
+  clear_tensor();
+  if (float_tensor) {
+    set_has_float_tensor();
+    tensor_.float_tensor_ = float_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.float_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataFloat* FlatTensor::_internal_mutable_float_tensor() {
+  if (!_internal_has_float_tensor()) {
+    clear_tensor();
+    set_has_float_tensor();
+    tensor_.float_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataFloat >(GetArenaForAllocation());
+  }
+  return tensor_.float_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataFloat* FlatTensor::mutable_float_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataFloat* _msg = _internal_mutable_float_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.float_tensor)
+  return _msg;
+}
+
+// .viam.service.mlmodel.v1.FlatTensorDataDouble double_tensor = 11 [json_name = "doubleTensor"];
+inline bool FlatTensor::_internal_has_double_tensor() const {
+  return tensor_case() == kDoubleTensor;
+}
+inline bool FlatTensor::has_double_tensor() const {
+  return _internal_has_double_tensor();
+}
+inline void FlatTensor::set_has_double_tensor() {
+  _oneof_case_[0] = kDoubleTensor;
+}
+inline void FlatTensor::clear_double_tensor() {
+  if (_internal_has_double_tensor()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete tensor_.double_tensor_;
+    }
+    clear_has_tensor();
+  }
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataDouble* FlatTensor::release_double_tensor() {
+  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.FlatTensor.double_tensor)
+  if (_internal_has_double_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataDouble* temp = tensor_.double_tensor_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    tensor_.double_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataDouble& FlatTensor::_internal_double_tensor() const {
+  return _internal_has_double_tensor()
+      ? *tensor_.double_tensor_
+      : reinterpret_cast< ::viam::service::mlmodel::v1::FlatTensorDataDouble&>(::viam::service::mlmodel::v1::_FlatTensorDataDouble_default_instance_);
+}
+inline const ::viam::service::mlmodel::v1::FlatTensorDataDouble& FlatTensor::double_tensor() const {
+  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.FlatTensor.double_tensor)
+  return _internal_double_tensor();
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataDouble* FlatTensor::unsafe_arena_release_double_tensor() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.service.mlmodel.v1.FlatTensor.double_tensor)
+  if (_internal_has_double_tensor()) {
+    clear_has_tensor();
+    ::viam::service::mlmodel::v1::FlatTensorDataDouble* temp = tensor_.double_tensor_;
+    tensor_.double_tensor_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void FlatTensor::unsafe_arena_set_allocated_double_tensor(::viam::service::mlmodel::v1::FlatTensorDataDouble* double_tensor) {
+  clear_tensor();
+  if (double_tensor) {
+    set_has_double_tensor();
+    tensor_.double_tensor_ = double_tensor;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.FlatTensor.double_tensor)
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataDouble* FlatTensor::_internal_mutable_double_tensor() {
+  if (!_internal_has_double_tensor()) {
+    clear_tensor();
+    set_has_double_tensor();
+    tensor_.double_tensor_ = CreateMaybeMessage< ::viam::service::mlmodel::v1::FlatTensorDataDouble >(GetArenaForAllocation());
+  }
+  return tensor_.double_tensor_;
+}
+inline ::viam::service::mlmodel::v1::FlatTensorDataDouble* FlatTensor::mutable_double_tensor() {
+  ::viam::service::mlmodel::v1::FlatTensorDataDouble* _msg = _internal_mutable_double_tensor();
+  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.FlatTensor.double_tensor)
+  return _msg;
+}
+
+inline bool FlatTensor::has_tensor() const {
+  return tensor_case() != TENSOR_NOT_SET;
+}
+inline void FlatTensor::clear_has_tensor() {
+  _oneof_case_[0] = TENSOR_NOT_SET;
+}
+inline FlatTensor::TensorCase FlatTensor::tensor_case() const {
+  return FlatTensor::TensorCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// FlatTensors
+
+// map<string, .viam.service.mlmodel.v1.FlatTensor> tensors = 1 [json_name = "tensors"];
+inline int FlatTensors::_internal_tensors_size() const {
+  return tensors_.size();
+}
+inline int FlatTensors::tensors_size() const {
+  return _internal_tensors_size();
+}
+inline void FlatTensors::clear_tensors() {
+  tensors_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >&
+FlatTensors::_internal_tensors() const {
+  return tensors_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >&
+FlatTensors::tensors() const {
+  // @@protoc_insertion_point(field_map:viam.service.mlmodel.v1.FlatTensors.tensors)
+  return _internal_tensors();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >*
+FlatTensors::_internal_mutable_tensors() {
+  return tensors_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::mlmodel::v1::FlatTensor >*
+FlatTensors::mutable_tensors() {
+  // @@protoc_insertion_point(field_mutable_map:viam.service.mlmodel.v1.FlatTensors.tensors)
+  return _internal_mutable_tensors();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
