@@ -20945,6 +20945,7 @@ class Module final :
     kDescriptionFieldNumber = 6,
     kOrganizationIdFieldNumber = 10,
     kEntrypointFieldNumber = 11,
+    kPublicNamespaceFieldNumber = 12,
     kTotalRobotUsageFieldNumber = 8,
     kTotalOrganizationUsageFieldNumber = 9,
     kVisibilityFieldNumber = 3,
@@ -21069,6 +21070,20 @@ class Module final :
   std::string* _internal_mutable_entrypoint();
   public:
 
+  // string public_namespace = 12 [json_name = "publicNamespace"];
+  void clear_public_namespace();
+  const std::string& public_namespace() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_public_namespace(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_public_namespace();
+  PROTOBUF_NODISCARD std::string* release_public_namespace();
+  void set_allocated_public_namespace(std::string* public_namespace);
+  private:
+  const std::string& _internal_public_namespace() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_public_namespace(const std::string& value);
+  std::string* _internal_mutable_public_namespace();
+  public:
+
   // int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
   void clear_total_robot_usage();
   int64_t total_robot_usage() const;
@@ -21111,6 +21126,7 @@ class Module final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   int64_t total_robot_usage_;
   int64_t total_organization_usage_;
   int visibility_;
@@ -36044,56 +36060,6 @@ inline void Module::set_allocated_module_id(std::string* module_id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.module_id)
 }
 
-// string organization_id = 10 [json_name = "organizationId"];
-inline void Module::clear_organization_id() {
-  organization_id_.ClearToEmpty();
-}
-inline const std::string& Module::organization_id() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Module.organization_id)
-  return _internal_organization_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Module::set_organization_id(ArgT0&& arg0, ArgT... args) {
- 
- organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.app.v1.Module.organization_id)
-}
-inline std::string* Module::mutable_organization_id() {
-  std::string* _s = _internal_mutable_organization_id();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.organization_id)
-  return _s;
-}
-inline const std::string& Module::_internal_organization_id() const {
-  return organization_id_.Get();
-}
-inline void Module::_internal_set_organization_id(const std::string& value) {
-  
-  organization_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Module::_internal_mutable_organization_id() {
-  
-  return organization_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* Module::release_organization_id() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.Module.organization_id)
-  return organization_id_.Release();
-}
-inline void Module::set_allocated_organization_id(std::string* organization_id) {
-  if (organization_id != nullptr) {
-    
-  } else {
-    
-  }
-  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (organization_id_.IsDefault()) {
-    organization_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.organization_id)
-}
-
 // string name = 2 [json_name = "name"];
 inline void Module::clear_name() {
   name_.ClearToEmpty();
@@ -36344,6 +36310,96 @@ Module::models() const {
   return models_;
 }
 
+// int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
+inline void Module::clear_total_robot_usage() {
+  total_robot_usage_ = int64_t{0};
+}
+inline int64_t Module::_internal_total_robot_usage() const {
+  return total_robot_usage_;
+}
+inline int64_t Module::total_robot_usage() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.total_robot_usage)
+  return _internal_total_robot_usage();
+}
+inline void Module::_internal_set_total_robot_usage(int64_t value) {
+  
+  total_robot_usage_ = value;
+}
+inline void Module::set_total_robot_usage(int64_t value) {
+  _internal_set_total_robot_usage(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.total_robot_usage)
+}
+
+// int64 total_organization_usage = 9 [json_name = "totalOrganizationUsage"];
+inline void Module::clear_total_organization_usage() {
+  total_organization_usage_ = int64_t{0};
+}
+inline int64_t Module::_internal_total_organization_usage() const {
+  return total_organization_usage_;
+}
+inline int64_t Module::total_organization_usage() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.total_organization_usage)
+  return _internal_total_organization_usage();
+}
+inline void Module::_internal_set_total_organization_usage(int64_t value) {
+  
+  total_organization_usage_ = value;
+}
+inline void Module::set_total_organization_usage(int64_t value) {
+  _internal_set_total_organization_usage(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.total_organization_usage)
+}
+
+// string organization_id = 10 [json_name = "organizationId"];
+inline void Module::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& Module::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.organization_id)
+}
+inline std::string* Module::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.organization_id)
+  return _s;
+}
+inline const std::string& Module::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void Module::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Module::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Module::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.organization_id)
+  return organization_id_.Release();
+}
+inline void Module::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.organization_id)
+}
+
 // string entrypoint = 11 [json_name = "entrypoint"];
 inline void Module::clear_entrypoint() {
   entrypoint_.ClearToEmpty();
@@ -36394,44 +36450,54 @@ inline void Module::set_allocated_entrypoint(std::string* entrypoint) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.entrypoint)
 }
 
-// int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
-inline void Module::clear_total_robot_usage() {
-  total_robot_usage_ = int64_t{0};
+// string public_namespace = 12 [json_name = "publicNamespace"];
+inline void Module::clear_public_namespace() {
+  public_namespace_.ClearToEmpty();
 }
-inline int64_t Module::_internal_total_robot_usage() const {
-  return total_robot_usage_;
+inline const std::string& Module::public_namespace() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.public_namespace)
+  return _internal_public_namespace();
 }
-inline int64_t Module::total_robot_usage() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Module.total_robot_usage)
-  return _internal_total_robot_usage();
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Module::set_public_namespace(ArgT0&& arg0, ArgT... args) {
+ 
+ public_namespace_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Module.public_namespace)
 }
-inline void Module::_internal_set_total_robot_usage(int64_t value) {
+inline std::string* Module::mutable_public_namespace() {
+  std::string* _s = _internal_mutable_public_namespace();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.public_namespace)
+  return _s;
+}
+inline const std::string& Module::_internal_public_namespace() const {
+  return public_namespace_.Get();
+}
+inline void Module::_internal_set_public_namespace(const std::string& value) {
   
-  total_robot_usage_ = value;
+  public_namespace_.Set(value, GetArenaForAllocation());
 }
-inline void Module::set_total_robot_usage(int64_t value) {
-  _internal_set_total_robot_usage(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.Module.total_robot_usage)
-}
-
-// int64 total_organization_usage = 9 [json_name = "totalOrganizationUsage"];
-inline void Module::clear_total_organization_usage() {
-  total_organization_usage_ = int64_t{0};
-}
-inline int64_t Module::_internal_total_organization_usage() const {
-  return total_organization_usage_;
-}
-inline int64_t Module::total_organization_usage() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.Module.total_organization_usage)
-  return _internal_total_organization_usage();
-}
-inline void Module::_internal_set_total_organization_usage(int64_t value) {
+inline std::string* Module::_internal_mutable_public_namespace() {
   
-  total_organization_usage_ = value;
+  return public_namespace_.Mutable(GetArenaForAllocation());
 }
-inline void Module::set_total_organization_usage(int64_t value) {
-  _internal_set_total_organization_usage(value);
-  // @@protoc_insertion_point(field_set:viam.app.v1.Module.total_organization_usage)
+inline std::string* Module::release_public_namespace() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.public_namespace)
+  return public_namespace_.Release();
+}
+inline void Module::set_allocated_public_namespace(std::string* public_namespace) {
+  if (public_namespace != nullptr) {
+    
+  } else {
+    
+  }
+  public_namespace_.SetAllocated(public_namespace, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (public_namespace_.IsDefault()) {
+    public_namespace_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.public_namespace)
 }
 
 // -------------------------------------------------------------------
