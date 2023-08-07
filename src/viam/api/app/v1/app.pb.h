@@ -1685,6 +1685,7 @@ class Organization final :
     kNameFieldNumber = 2,
     kPublicNamespaceFieldNumber = 4,
     kDefaultRegionFieldNumber = 5,
+    kCidFieldNumber = 6,
     kCreatedOnFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
@@ -1743,6 +1744,24 @@ class Organization final :
   std::string* _internal_mutable_default_region();
   public:
 
+  // optional string cid = 6 [json_name = "cid"];
+  bool has_cid() const;
+  private:
+  bool _internal_has_cid() const;
+  public:
+  void clear_cid();
+  const std::string& cid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_cid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_cid();
+  PROTOBUF_NODISCARD std::string* release_cid();
+  void set_allocated_cid(std::string* cid);
+  private:
+  const std::string& _internal_cid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_cid(const std::string& value);
+  std::string* _internal_mutable_cid();
+  public:
+
   // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn"];
   bool has_created_on() const;
   private:
@@ -1768,12 +1787,14 @@ class Organization final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr default_region_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr cid_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -3333,6 +3354,7 @@ class UpdateOrganizationRequest final :
     kNameFieldNumber = 2,
     kPublicNamespaceFieldNumber = 3,
     kRegionFieldNumber = 4,
+    kCidFieldNumber = 5,
   };
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
@@ -3402,6 +3424,24 @@ class UpdateOrganizationRequest final :
   std::string* _internal_mutable_region();
   public:
 
+  // optional string cid = 5 [json_name = "cid"];
+  bool has_cid() const;
+  private:
+  bool _internal_has_cid() const;
+  public:
+  void clear_cid();
+  const std::string& cid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_cid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_cid();
+  PROTOBUF_NODISCARD std::string* release_cid();
+  void set_allocated_cid(std::string* cid);
+  private:
+  const std::string& _internal_cid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_cid(const std::string& value);
+  std::string* _internal_mutable_cid();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateOrganizationRequest)
  private:
   class _Internal;
@@ -3415,6 +3455,7 @@ class UpdateOrganizationRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr region_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr cid_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -24241,6 +24282,74 @@ inline void Organization::set_allocated_default_region(std::string* default_regi
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Organization.default_region)
 }
 
+// optional string cid = 6 [json_name = "cid"];
+inline bool Organization::_internal_has_cid() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Organization::has_cid() const {
+  return _internal_has_cid();
+}
+inline void Organization::clear_cid() {
+  cid_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& Organization::cid() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Organization.cid)
+  return _internal_cid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Organization::set_cid(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ cid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.Organization.cid)
+}
+inline std::string* Organization::mutable_cid() {
+  std::string* _s = _internal_mutable_cid();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Organization.cid)
+  return _s;
+}
+inline const std::string& Organization::_internal_cid() const {
+  return cid_.Get();
+}
+inline void Organization::_internal_set_cid(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  cid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Organization::_internal_mutable_cid() {
+  _has_bits_[0] |= 0x00000001u;
+  return cid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Organization::release_cid() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Organization.cid)
+  if (!_internal_has_cid()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = cid_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (cid_.IsDefault()) {
+    cid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void Organization::set_allocated_cid(std::string* cid) {
+  if (cid != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  cid_.SetAllocated(cid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (cid_.IsDefault()) {
+    cid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Organization.cid)
+}
+
 // -------------------------------------------------------------------
 
 // OrganizationMember
@@ -25338,6 +25447,74 @@ inline void UpdateOrganizationRequest::set_allocated_region(std::string* region)
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.region)
+}
+
+// optional string cid = 5 [json_name = "cid"];
+inline bool UpdateOrganizationRequest::_internal_has_cid() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool UpdateOrganizationRequest::has_cid() const {
+  return _internal_has_cid();
+}
+inline void UpdateOrganizationRequest::clear_cid() {
+  cid_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const std::string& UpdateOrganizationRequest::cid() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationRequest.cid)
+  return _internal_cid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateOrganizationRequest::set_cid(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000008u;
+ cid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateOrganizationRequest.cid)
+}
+inline std::string* UpdateOrganizationRequest::mutable_cid() {
+  std::string* _s = _internal_mutable_cid();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationRequest.cid)
+  return _s;
+}
+inline const std::string& UpdateOrganizationRequest::_internal_cid() const {
+  return cid_.Get();
+}
+inline void UpdateOrganizationRequest::_internal_set_cid(const std::string& value) {
+  _has_bits_[0] |= 0x00000008u;
+  cid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationRequest::_internal_mutable_cid() {
+  _has_bits_[0] |= 0x00000008u;
+  return cid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationRequest::release_cid() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationRequest.cid)
+  if (!_internal_has_cid()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000008u;
+  auto* p = cid_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (cid_.IsDefault()) {
+    cid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void UpdateOrganizationRequest::set_allocated_cid(std::string* cid) {
+  if (cid != nullptr) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  cid_.SetAllocated(cid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (cid_.IsDefault()) {
+    cid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.cid)
 }
 
 // -------------------------------------------------------------------
