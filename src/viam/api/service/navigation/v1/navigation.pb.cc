@@ -104,7 +104,8 @@ struct GetLocationRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLocationRequestDefaultTypeInternal _GetLocationRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetLocationResponse::GetLocationResponse(
     ::_pbi::ConstantInitialized)
-  : location_(nullptr){}
+  : location_(nullptr)
+  , compass_heading_(0){}
 struct GetLocationResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetLocationResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -276,6 +277,7 @@ const uint32_t TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offse
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetLocationResponse, location_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetLocationResponse, compass_heading_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::navigation::v1::GetWaypointsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -345,14 +347,14 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 30, -1, -1, sizeof(::viam::service::navigation::v1::Waypoint)},
   { 38, -1, -1, sizeof(::viam::service::navigation::v1::GetLocationRequest)},
   { 46, -1, -1, sizeof(::viam::service::navigation::v1::GetLocationResponse)},
-  { 53, -1, -1, sizeof(::viam::service::navigation::v1::GetWaypointsRequest)},
-  { 61, -1, -1, sizeof(::viam::service::navigation::v1::GetWaypointsResponse)},
-  { 68, -1, -1, sizeof(::viam::service::navigation::v1::AddWaypointRequest)},
-  { 77, -1, -1, sizeof(::viam::service::navigation::v1::AddWaypointResponse)},
-  { 83, -1, -1, sizeof(::viam::service::navigation::v1::RemoveWaypointRequest)},
-  { 92, -1, -1, sizeof(::viam::service::navigation::v1::RemoveWaypointResponse)},
-  { 98, -1, -1, sizeof(::viam::service::navigation::v1::GetObstaclesRequest)},
-  { 106, -1, -1, sizeof(::viam::service::navigation::v1::GetObstaclesResponse)},
+  { 54, -1, -1, sizeof(::viam::service::navigation::v1::GetWaypointsRequest)},
+  { 62, -1, -1, sizeof(::viam::service::navigation::v1::GetWaypointsResponse)},
+  { 69, -1, -1, sizeof(::viam::service::navigation::v1::AddWaypointRequest)},
+  { 78, -1, -1, sizeof(::viam::service::navigation::v1::AddWaypointResponse)},
+  { 84, -1, -1, sizeof(::viam::service::navigation::v1::RemoveWaypointRequest)},
+  { 93, -1, -1, sizeof(::viam::service::navigation::v1::RemoveWaypointResponse)},
+  { 99, -1, -1, sizeof(::viam::service::navigation::v1::GetObstaclesRequest)},
+  { 107, -1, -1, sizeof(::viam::service::navigation::v1::GetObstaclesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -390,62 +392,63 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "am.common.v1.GeoPointR\010location\"W\n\022GetLo"
   "cationRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005ext"
   "ra\030c \001(\0132\027.google.protobuf.StructR\005extra"
-  "\"K\n\023GetLocationResponse\0224\n\010location\030\001 \001("
-  "\0132\030.viam.common.v1.GeoPointR\010location\"X\n"
-  "\023GetWaypointsRequest\022\022\n\004name\030\001 \001(\tR\004name"
-  "\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struct"
-  "R\005extra\"Z\n\024GetWaypointsResponse\022B\n\twaypo"
-  "ints\030\001 \003(\0132$.viam.service.navigation.v1."
-  "WaypointR\twaypoints\"\215\001\n\022AddWaypointReque"
-  "st\022\022\n\004name\030\001 \001(\tR\004name\0224\n\010location\030\002 \001(\013"
-  "2\030.viam.common.v1.GeoPointR\010location\022-\n\005"
-  "extra\030c \001(\0132\027.google.protobuf.StructR\005ex"
-  "tra\"\025\n\023AddWaypointResponse\"j\n\025RemoveWayp"
-  "ointRequest\022\022\n\004name\030\001 \001(\tR\004name\022\016\n\002id\030\002 "
-  "\001(\tR\002id\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extra\"\030\n\026RemoveWaypointResponse"
-  "\"X\n\023GetObstaclesRequest\022\022\n\004name\030\001 \001(\tR\004n"
-  "ame\022-\n\005extra\030c \001(\0132\027.google.protobuf.Str"
-  "uctR\005extra\"Q\n\024GetObstaclesResponse\0229\n\tob"
-  "stacles\030\001 \003(\0132\033.viam.common.v1.GeoObstac"
-  "leR\tobstacles*@\n\004Mode\022\024\n\020MODE_UNSPECIFIE"
-  "D\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_WAYPOINT\020\0022"
-  "\303\n\n\021NavigationService\022\227\001\n\007GetMode\022*.viam"
-  ".service.navigation.v1.GetModeRequest\032+."
-  "viam.service.navigation.v1.GetModeRespon"
-  "se\"3\202\323\344\223\002-\022+/viam/api/v1/service/navigat"
-  "ion/{name}/mode\022\227\001\n\007SetMode\022*.viam.servi"
-  "ce.navigation.v1.SetModeRequest\032+.viam.s"
-  "ervice.navigation.v1.SetModeResponse\"3\202\323"
-  "\344\223\002-\032+/viam/api/v1/service/navigation/{n"
-  "ame}/mode\022\247\001\n\013GetLocation\022..viam.service"
-  ".navigation.v1.GetLocationRequest\032/.viam"
-  ".service.navigation.v1.GetLocationRespon"
-  "se\"7\202\323\344\223\0021\022//viam/api/v1/service/navigat"
-  "ion/{name}/location\022\253\001\n\014GetWaypoints\022/.v"
-  "iam.service.navigation.v1.GetWaypointsRe"
-  "quest\0320.viam.service.navigation.v1.GetWa"
-  "ypointsResponse\"8\202\323\344\223\0022\0220/viam/api/v1/se"
-  "rvice/navigation/{name}/waypoints\022\250\001\n\013Ad"
-  "dWaypoint\022..viam.service.navigation.v1.A"
-  "ddWaypointRequest\032/.viam.service.navigat"
-  "ion.v1.AddWaypointResponse\"8\202\323\344\223\0022\"0/via"
-  "m/api/v1/service/navigation/{name}/waypo"
-  "ints\022\266\001\n\016RemoveWaypoint\0221.viam.service.n"
-  "avigation.v1.RemoveWaypointRequest\0322.via"
-  "m.service.navigation.v1.RemoveWaypointRe"
-  "sponse\"=\202\323\344\223\0027*5/viam/api/v1/service/nav"
-  "igation/{name}/waypoints/{id}\022\257\001\n\014GetObs"
-  "tacles\022/.viam.service.navigation.v1.GetO"
-  "bstaclesRequest\0320.viam.service.navigatio"
-  "n.v1.GetObstaclesResponse\"<\202\323\344\223\0026\0224/viam"
-  "/api/v1/service/navigation/{name}/get_ob"
-  "stacles\022\213\001\n\tDoCommand\022 .viam.common.v1.D"
-  "oCommandRequest\032!.viam.common.v1.DoComma"
-  "ndResponse\"9\202\323\344\223\0023\"1/viam/api/v1/service"
-  "/navigation/{name}/do_commandBG\n\036com.via"
-  "m.service.navigation.v1Z%go.viam.com/api"
-  "/service/navigation/v1b\006proto3"
+  "\"t\n\023GetLocationResponse\0224\n\010location\030\001 \001("
+  "\0132\030.viam.common.v1.GeoPointR\010location\022\'\n"
+  "\017compass_heading\030\002 \001(\001R\016compassHeading\"X"
+  "\n\023GetWaypointsRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
+  "tR\005extra\"Z\n\024GetWaypointsResponse\022B\n\twayp"
+  "oints\030\001 \003(\0132$.viam.service.navigation.v1"
+  ".WaypointR\twaypoints\"\215\001\n\022AddWaypointRequ"
+  "est\022\022\n\004name\030\001 \001(\tR\004name\0224\n\010location\030\002 \001("
+  "\0132\030.viam.common.v1.GeoPointR\010location\022-\n"
+  "\005extra\030c \001(\0132\027.google.protobuf.StructR\005e"
+  "xtra\"\025\n\023AddWaypointResponse\"j\n\025RemoveWay"
+  "pointRequest\022\022\n\004name\030\001 \001(\tR\004name\022\016\n\002id\030\002"
+  " \001(\tR\002id\022-\n\005extra\030c \001(\0132\027.google.protobu"
+  "f.StructR\005extra\"\030\n\026RemoveWaypointRespons"
+  "e\"X\n\023GetObstaclesRequest\022\022\n\004name\030\001 \001(\tR\004"
+  "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
+  "ructR\005extra\"Q\n\024GetObstaclesResponse\0229\n\to"
+  "bstacles\030\001 \003(\0132\033.viam.common.v1.GeoObsta"
+  "cleR\tobstacles*@\n\004Mode\022\024\n\020MODE_UNSPECIFI"
+  "ED\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_WAYPOINT\020\002"
+  "2\303\n\n\021NavigationService\022\227\001\n\007GetMode\022*.via"
+  "m.service.navigation.v1.GetModeRequest\032+"
+  ".viam.service.navigation.v1.GetModeRespo"
+  "nse\"3\202\323\344\223\002-\022+/viam/api/v1/service/naviga"
+  "tion/{name}/mode\022\227\001\n\007SetMode\022*.viam.serv"
+  "ice.navigation.v1.SetModeRequest\032+.viam."
+  "service.navigation.v1.SetModeResponse\"3\202"
+  "\323\344\223\002-\032+/viam/api/v1/service/navigation/{"
+  "name}/mode\022\247\001\n\013GetLocation\022..viam.servic"
+  "e.navigation.v1.GetLocationRequest\032/.via"
+  "m.service.navigation.v1.GetLocationRespo"
+  "nse\"7\202\323\344\223\0021\022//viam/api/v1/service/naviga"
+  "tion/{name}/location\022\253\001\n\014GetWaypoints\022/."
+  "viam.service.navigation.v1.GetWaypointsR"
+  "equest\0320.viam.service.navigation.v1.GetW"
+  "aypointsResponse\"8\202\323\344\223\0022\0220/viam/api/v1/s"
+  "ervice/navigation/{name}/waypoints\022\250\001\n\013A"
+  "ddWaypoint\022..viam.service.navigation.v1."
+  "AddWaypointRequest\032/.viam.service.naviga"
+  "tion.v1.AddWaypointResponse\"8\202\323\344\223\0022\"0/vi"
+  "am/api/v1/service/navigation/{name}/wayp"
+  "oints\022\266\001\n\016RemoveWaypoint\0221.viam.service."
+  "navigation.v1.RemoveWaypointRequest\0322.vi"
+  "am.service.navigation.v1.RemoveWaypointR"
+  "esponse\"=\202\323\344\223\0027*5/viam/api/v1/service/na"
+  "vigation/{name}/waypoints/{id}\022\257\001\n\014GetOb"
+  "stacles\022/.viam.service.navigation.v1.Get"
+  "ObstaclesRequest\0320.viam.service.navigati"
+  "on.v1.GetObstaclesResponse\"<\202\323\344\223\0026\0224/via"
+  "m/api/v1/service/navigation/{name}/get_o"
+  "bstacles\022\213\001\n\tDoCommand\022 .viam.common.v1."
+  "DoCommandRequest\032!.viam.common.v1.DoComm"
+  "andResponse\"9\202\323\344\223\0023\"1/viam/api/v1/servic"
+  "e/navigation/{name}/do_commandBG\n\036com.vi"
+  "am.service.navigation.v1Z%go.viam.com/ap"
+  "i/service/navigation/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -454,7 +457,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigatio
 };
 static ::_pbi::once_flag descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto = {
-    false, false, 2870, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
+    false, false, 2911, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
     "service/navigation/v1/navigation.proto",
     &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 15,
     schemas, file_default_instances, TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offsets,
@@ -1738,11 +1741,15 @@ GetLocationResponse::GetLocationResponse(const GetLocationResponse& from)
   } else {
     location_ = nullptr;
   }
+  compass_heading_ = from.compass_heading_;
   // @@protoc_insertion_point(copy_constructor:viam.service.navigation.v1.GetLocationResponse)
 }
 
 inline void GetLocationResponse::SharedCtor() {
-location_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&location_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&compass_heading_) -
+    reinterpret_cast<char*>(&location_)) + sizeof(compass_heading_));
 }
 
 GetLocationResponse::~GetLocationResponse() {
@@ -1773,6 +1780,7 @@ void GetLocationResponse::Clear() {
     delete location_;
   }
   location_ = nullptr;
+  compass_heading_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1787,6 +1795,14 @@ const char* GetLocationResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_location(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // double compass_heading = 2 [json_name = "compassHeading"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          compass_heading_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
@@ -1826,6 +1842,16 @@ uint8_t* GetLocationResponse::_InternalSerialize(
         _Internal::location(this).GetCachedSize(), target, stream);
   }
 
+  // double compass_heading = 2 [json_name = "compassHeading"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_compass_heading = this->_internal_compass_heading();
+  uint64_t raw_compass_heading;
+  memcpy(&raw_compass_heading, &tmp_compass_heading, sizeof(tmp_compass_heading));
+  if (raw_compass_heading != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_compass_heading(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1847,6 +1873,15 @@ size_t GetLocationResponse::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *location_);
+  }
+
+  // double compass_heading = 2 [json_name = "compassHeading"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_compass_heading = this->_internal_compass_heading();
+  uint64_t raw_compass_heading;
+  memcpy(&raw_compass_heading, &tmp_compass_heading, sizeof(tmp_compass_heading));
+  if (raw_compass_heading != 0) {
+    total_size += 1 + 8;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1874,6 +1909,13 @@ void GetLocationResponse::MergeFrom(const GetLocationResponse& from) {
   if (from._internal_has_location()) {
     _internal_mutable_location()->::viam::common::v1::GeoPoint::MergeFrom(from._internal_location());
   }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_compass_heading = from._internal_compass_heading();
+  uint64_t raw_compass_heading;
+  memcpy(&raw_compass_heading, &tmp_compass_heading, sizeof(tmp_compass_heading));
+  if (raw_compass_heading != 0) {
+    _internal_set_compass_heading(from._internal_compass_heading());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1891,7 +1933,12 @@ bool GetLocationResponse::IsInitialized() const {
 void GetLocationResponse::InternalSwap(GetLocationResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(location_, other->location_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetLocationResponse, compass_heading_)
+      + sizeof(GetLocationResponse::compass_heading_)
+      - PROTOBUF_FIELD_OFFSET(GetLocationResponse, location_)>(
+          reinterpret_cast<char*>(&location_),
+          reinterpret_cast<char*>(&other->location_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetLocationResponse::GetMetadata() const {
