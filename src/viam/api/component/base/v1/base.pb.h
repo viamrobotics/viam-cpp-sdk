@@ -2245,6 +2245,7 @@ class GetPropertiesResponse final :
   enum : int {
     kWidthMetersFieldNumber = 1,
     kTurningRadiusMetersFieldNumber = 2,
+    kWheelCircumferenceMetersFieldNumber = 3,
   };
   // double width_meters = 1 [json_name = "widthMeters"];
   void clear_width_meters();
@@ -2264,6 +2265,15 @@ class GetPropertiesResponse final :
   void _internal_set_turning_radius_meters(double value);
   public:
 
+  // double wheel_circumference_meters = 3 [json_name = "wheelCircumferenceMeters"];
+  void clear_wheel_circumference_meters();
+  double wheel_circumference_meters() const;
+  void set_wheel_circumference_meters(double value);
+  private:
+  double _internal_wheel_circumference_meters() const;
+  void _internal_set_wheel_circumference_meters(double value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.component.base.v1.GetPropertiesResponse)
  private:
   class _Internal;
@@ -2273,6 +2283,7 @@ class GetPropertiesResponse final :
   typedef void DestructorSkippable_;
   double width_meters_;
   double turning_radius_meters_;
+  double wheel_circumference_meters_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fbase_2fv1_2fbase_2eproto;
 };
@@ -3677,6 +3688,26 @@ inline void GetPropertiesResponse::_internal_set_turning_radius_meters(double va
 inline void GetPropertiesResponse::set_turning_radius_meters(double value) {
   _internal_set_turning_radius_meters(value);
   // @@protoc_insertion_point(field_set:viam.component.base.v1.GetPropertiesResponse.turning_radius_meters)
+}
+
+// double wheel_circumference_meters = 3 [json_name = "wheelCircumferenceMeters"];
+inline void GetPropertiesResponse::clear_wheel_circumference_meters() {
+  wheel_circumference_meters_ = 0;
+}
+inline double GetPropertiesResponse::_internal_wheel_circumference_meters() const {
+  return wheel_circumference_meters_;
+}
+inline double GetPropertiesResponse::wheel_circumference_meters() const {
+  // @@protoc_insertion_point(field_get:viam.component.base.v1.GetPropertiesResponse.wheel_circumference_meters)
+  return _internal_wheel_circumference_meters();
+}
+inline void GetPropertiesResponse::_internal_set_wheel_circumference_meters(double value) {
+  
+  wheel_circumference_meters_ = value;
+}
+inline void GetPropertiesResponse::set_wheel_circumference_meters(double value) {
+  _internal_set_wheel_circumference_meters(value);
+  // @@protoc_insertion_point(field_set:viam.component.base.v1.GetPropertiesResponse.wheel_circumference_meters)
 }
 
 #ifdef __GNUC__
