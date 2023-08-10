@@ -1214,6 +1214,7 @@ class GetLocationResponse final :
 
   enum : int {
     kLocationFieldNumber = 1,
+    kCompassHeadingFieldNumber = 2,
   };
   // .viam.common.v1.GeoPoint location = 1 [json_name = "location"];
   bool has_location() const;
@@ -1233,6 +1234,15 @@ class GetLocationResponse final :
       ::viam::common::v1::GeoPoint* location);
   ::viam::common::v1::GeoPoint* unsafe_arena_release_location();
 
+  // double compass_heading = 2 [json_name = "compassHeading"];
+  void clear_compass_heading();
+  double compass_heading() const;
+  void set_compass_heading(double value);
+  private:
+  double _internal_compass_heading() const;
+  void _internal_set_compass_heading(double value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.GetLocationResponse)
  private:
   class _Internal;
@@ -1241,6 +1251,7 @@ class GetLocationResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::viam::common::v1::GeoPoint* location_;
+  double compass_heading_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
 };
@@ -3186,6 +3197,26 @@ inline void GetLocationResponse::set_allocated_location(::viam::common::v1::GeoP
   }
   location_ = location;
   // @@protoc_insertion_point(field_set_allocated:viam.service.navigation.v1.GetLocationResponse.location)
+}
+
+// double compass_heading = 2 [json_name = "compassHeading"];
+inline void GetLocationResponse::clear_compass_heading() {
+  compass_heading_ = 0;
+}
+inline double GetLocationResponse::_internal_compass_heading() const {
+  return compass_heading_;
+}
+inline double GetLocationResponse::compass_heading() const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetLocationResponse.compass_heading)
+  return _internal_compass_heading();
+}
+inline void GetLocationResponse::_internal_set_compass_heading(double value) {
+  
+  compass_heading_ = value;
+}
+inline void GetLocationResponse::set_compass_heading(double value) {
+  _internal_set_compass_heading(value);
+  // @@protoc_insertion_point(field_set:viam.service.navigation.v1.GetLocationResponse.compass_heading)
 }
 
 // -------------------------------------------------------------------

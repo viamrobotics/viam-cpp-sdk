@@ -27,7 +27,8 @@ namespace v1 {
 PROTOBUF_CONSTEXPR GetImageRequest::GetImageRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetImageRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetImageRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -93,7 +94,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RenderFrameRequest::RenderFrameRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct RenderFrameRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RenderFrameRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -106,7 +108,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR GetPointCloudRequest::GetPointCloudRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetPointCloudRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPointCloudRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -245,6 +248,7 @@ const uint32_t TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets[] P
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetImageRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetImageRequest, mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetImageRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetImageResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -285,6 +289,7 @@ const uint32_t TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets[] P
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::RenderFrameRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::RenderFrameRequest, mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::RenderFrameRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPointCloudRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -293,6 +298,7 @@ const uint32_t TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets[] P
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPointCloudRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPointCloudRequest, mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPointCloudRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::camera::v1::GetPointCloudResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -368,20 +374,20 @@ const uint32_t TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets[] P
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::camera::v1::GetImageRequest)},
-  { 8, -1, -1, sizeof(::viam::component::camera::v1::GetImageResponse)},
-  { 16, -1, -1, sizeof(::viam::component::camera::v1::GetImagesRequest)},
-  { 23, -1, -1, sizeof(::viam::component::camera::v1::GetImagesResponse)},
-  { 31, -1, -1, sizeof(::viam::component::camera::v1::Image)},
-  { 40, -1, -1, sizeof(::viam::component::camera::v1::RenderFrameRequest)},
-  { 48, -1, -1, sizeof(::viam::component::camera::v1::GetPointCloudRequest)},
-  { 56, -1, -1, sizeof(::viam::component::camera::v1::GetPointCloudResponse)},
-  { 64, -1, -1, sizeof(::viam::component::camera::v1::GetPropertiesRequest)},
-  { 71, -1, -1, sizeof(::viam::component::camera::v1::GetPropertiesResponse)},
-  { 80, -1, -1, sizeof(::viam::component::camera::v1::Webcams)},
-  { 87, -1, -1, sizeof(::viam::component::camera::v1::Webcam)},
-  { 98, -1, -1, sizeof(::viam::component::camera::v1::Property)},
-  { 108, -1, -1, sizeof(::viam::component::camera::v1::IntrinsicParameters)},
-  { 120, -1, -1, sizeof(::viam::component::camera::v1::DistortionParameters)},
+  { 9, -1, -1, sizeof(::viam::component::camera::v1::GetImageResponse)},
+  { 17, -1, -1, sizeof(::viam::component::camera::v1::GetImagesRequest)},
+  { 24, -1, -1, sizeof(::viam::component::camera::v1::GetImagesResponse)},
+  { 32, -1, -1, sizeof(::viam::component::camera::v1::Image)},
+  { 41, -1, -1, sizeof(::viam::component::camera::v1::RenderFrameRequest)},
+  { 50, -1, -1, sizeof(::viam::component::camera::v1::GetPointCloudRequest)},
+  { 59, -1, -1, sizeof(::viam::component::camera::v1::GetPointCloudResponse)},
+  { 67, -1, -1, sizeof(::viam::component::camera::v1::GetPropertiesRequest)},
+  { 74, -1, -1, sizeof(::viam::component::camera::v1::GetPropertiesResponse)},
+  { 83, -1, -1, sizeof(::viam::component::camera::v1::Webcams)},
+  { 90, -1, -1, sizeof(::viam::component::camera::v1::Webcam)},
+  { 101, -1, -1, sizeof(::viam::component::camera::v1::Property)},
+  { 111, -1, -1, sizeof(::viam::component::camera::v1::IntrinsicParameters)},
+  { 123, -1, -1, sizeof(::viam::component::camera::v1::DistortionParameters)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -406,91 +412,97 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "\n component/camera/v1/camera.proto\022\030viam"
   ".component.camera.v1\032\026common/v1/common.p"
   "roto\032\034google/api/annotations.proto\032\031goog"
-  "le/api/httpbody.proto\"B\n\017GetImageRequest"
-  "\022\022\n\004name\030\001 \001(\tR\004name\022\033\n\tmime_type\030\002 \001(\tR"
-  "\010mimeType\"E\n\020GetImageResponse\022\033\n\tmime_ty"
-  "pe\030\001 \001(\tR\010mimeType\022\024\n\005image\030\002 \001(\014R\005image"
-  "\"&\n\020GetImagesRequest\022\022\n\004name\030\001 \001(\tR\004name"
-  "\"\235\001\n\021GetImagesResponse\0227\n\006images\030\001 \003(\0132\037"
-  ".viam.component.camera.v1.ImageR\006images\022"
-  "O\n\021response_metadata\030\244\222\005 \001(\0132 .viam.comm"
-  "on.v1.ResponseMetadataR\020responseMetadata"
-  "\"x\n\005Image\022\037\n\013source_name\030\001 \001(\tR\nsourceNa"
-  "me\0228\n\006format\030\002 \001(\0162 .viam.component.came"
-  "ra.v1.FormatR\006format\022\024\n\005image\030\003 \001(\014R\005ima"
-  "ge\"E\n\022RenderFrameRequest\022\022\n\004name\030\001 \001(\tR\004"
-  "name\022\033\n\tmime_type\030\002 \001(\tR\010mimeType\"G\n\024Get"
-  "PointCloudRequest\022\022\n\004name\030\001 \001(\tR\004name\022\033\n"
-  "\tmime_type\030\002 \001(\tR\010mimeType\"U\n\025GetPointCl"
-  "oudResponse\022\033\n\tmime_type\030\001 \001(\tR\010mimeType"
-  "\022\037\n\013point_cloud\030\002 \001(\014R\npointCloud\"*\n\024Get"
-  "PropertiesRequest\022\022\n\004name\030\001 \001(\tR\004name\"\201\002"
-  "\n\025GetPropertiesResponse\022!\n\014supports_pcd\030"
-  "\001 \001(\010R\013supportsPcd\022`\n\024intrinsic_paramete"
-  "rs\030\002 \001(\0132-.viam.component.camera.v1.Intr"
-  "insicParametersR\023intrinsicParameters\022c\n\025"
-  "distortion_parameters\030\003 \001(\0132..viam.compo"
-  "nent.camera.v1.DistortionParametersR\024dis"
-  "tortionParameters\"E\n\007Webcams\022:\n\007webcams\030"
-  "\001 \003(\0132 .viam.component.camera.v1.WebcamR"
-  "\007webcams\"\236\001\n\006Webcam\022\024\n\005label\030\001 \001(\tR\005labe"
-  "l\022\026\n\006status\030\002 \001(\tR\006status\022B\n\nproperties\030"
-  "\003 \003(\0132\".viam.component.camera.v1.Propert"
-  "yR\nproperties\022\022\n\004name\030\004 \001(\tR\004name\022\016\n\002id\030"
-  "\005 \001(\tR\002id\"\204\001\n\010Property\022\031\n\010width_px\030\001 \001(\005"
-  "R\007widthPx\022\033\n\theight_px\030\002 \001(\005R\010heightPx\022!"
-  "\n\014frame_format\030\003 \001(\tR\013frameFormat\022\035\n\nfra"
-  "me_rate\030\004 \001(\002R\tframeRate\"\311\001\n\023IntrinsicPa"
-  "rameters\022\031\n\010width_px\030\001 \001(\rR\007widthPx\022\033\n\th"
-  "eight_px\030\002 \001(\rR\010heightPx\022\034\n\nfocal_x_px\030\003"
-  " \001(\001R\010focalXPx\022\034\n\nfocal_y_px\030\004 \001(\001R\010foca"
-  "lYPx\022\036\n\013center_x_px\030\005 \001(\001R\tcenterXPx\022\036\n\013"
-  "center_y_px\030\006 \001(\001R\tcenterYPx\"L\n\024Distorti"
-  "onParameters\022\024\n\005model\030\001 \001(\tR\005model\022\036\n\npa"
-  "rameters\030\002 \003(\001R\nparameters*l\n\006Format\022\026\n\022"
-  "FORMAT_UNSPECIFIED\020\000\022\023\n\017FORMAT_RAW_RGBA\020"
-  "\001\022\024\n\020FORMAT_RAW_DEPTH\020\002\022\017\n\013FORMAT_JPEG\020\003"
-  "\022\016\n\nFORMAT_PNG\020\0042\317\010\n\rCameraService\022\225\001\n\010G"
-  "etImage\022).viam.component.camera.v1.GetIm"
-  "ageRequest\032*.viam.component.camera.v1.Ge"
-  "tImageResponse\"2\202\323\344\223\002,\022*/viam/api/v1/com"
-  "ponent/camera/{name}/image\022\231\001\n\tGetImages"
-  "\022*.viam.component.camera.v1.GetImagesReq"
-  "uest\032+.viam.component.camera.v1.GetImage"
-  "sResponse\"3\202\323\344\223\002-\022+/viam/api/v1/componen"
-  "t/camera/{name}/images\022\214\001\n\013RenderFrame\022,"
-  ".viam.component.camera.v1.RenderFrameReq"
-  "uest\032\024.google.api.HttpBody\"9\202\323\344\223\0023\0221/via"
-  "m/api/v1/component/camera/{name}/render_"
-  "frame\022\252\001\n\rGetPointCloud\022..viam.component"
-  ".camera.v1.GetPointCloudRequest\032/.viam.c"
-  "omponent.camera.v1.GetPointCloudResponse"
-  "\"8\202\323\344\223\0022\0220/viam/api/v1/component/camera/"
-  "{name}/point_cloud\022\251\001\n\rGetProperties\022..v"
-  "iam.component.camera.v1.GetPropertiesReq"
-  "uest\032/.viam.component.camera.v1.GetPrope"
-  "rtiesResponse\"7\202\323\344\223\0021\022//viam/api/v1/comp"
-  "onent/camera/{name}/properties\022\211\001\n\tDoCom"
-  "mand\022 .viam.common.v1.DoCommandRequest\032!"
-  ".viam.common.v1.DoCommandResponse\"7\202\323\344\223\002"
-  "1\"//viam/api/v1/component/camera/{name}/"
-  "do_command\022\225\001\n\rGetGeometries\022$.viam.comm"
-  "on.v1.GetGeometriesRequest\032%.viam.common"
-  ".v1.GetGeometriesResponse\"7\202\323\344\223\0021\022//viam"
-  "/api/v1/component/camera/{name}/geometri"
-  "esBC\n\034com.viam.component.camera.v1Z#go.v"
-  "iam.com/api/component/camera/v1b\006proto3"
+  "le/api/httpbody.proto\032\034google/protobuf/s"
+  "truct.proto\"q\n\017GetImageRequest\022\022\n\004name\030\001"
+  " \001(\tR\004name\022\033\n\tmime_type\030\002 \001(\tR\010mimeType\022"
+  "-\n\005extra\030c \001(\0132\027.google.protobuf.StructR"
+  "\005extra\"E\n\020GetImageResponse\022\033\n\tmime_type\030"
+  "\001 \001(\tR\010mimeType\022\024\n\005image\030\002 \001(\014R\005image\"&\n"
+  "\020GetImagesRequest\022\022\n\004name\030\001 \001(\tR\004name\"\235\001"
+  "\n\021GetImagesResponse\0227\n\006images\030\001 \003(\0132\037.vi"
+  "am.component.camera.v1.ImageR\006images\022O\n\021"
+  "response_metadata\030\244\222\005 \001(\0132 .viam.common."
+  "v1.ResponseMetadataR\020responseMetadata\"x\n"
+  "\005Image\022\037\n\013source_name\030\001 \001(\tR\nsourceName\022"
+  "8\n\006format\030\002 \001(\0162 .viam.component.camera."
+  "v1.FormatR\006format\022\024\n\005image\030\003 \001(\014R\005image\""
+  "t\n\022RenderFrameRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022\033\n\tmime_type\030\002 \001(\tR\010mimeType\022-\n\005extra\030"
+  "c \001(\0132\027.google.protobuf.StructR\005extra\"v\n"
+  "\024GetPointCloudRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022\033\n\tmime_type\030\002 \001(\tR\010mimeType\022-\n\005extra\030"
+  "c \001(\0132\027.google.protobuf.StructR\005extra\"U\n"
+  "\025GetPointCloudResponse\022\033\n\tmime_type\030\001 \001("
+  "\tR\010mimeType\022\037\n\013point_cloud\030\002 \001(\014R\npointC"
+  "loud\"*\n\024GetPropertiesRequest\022\022\n\004name\030\001 \001"
+  "(\tR\004name\"\201\002\n\025GetPropertiesResponse\022!\n\014su"
+  "pports_pcd\030\001 \001(\010R\013supportsPcd\022`\n\024intrins"
+  "ic_parameters\030\002 \001(\0132-.viam.component.cam"
+  "era.v1.IntrinsicParametersR\023intrinsicPar"
+  "ameters\022c\n\025distortion_parameters\030\003 \001(\0132."
+  ".viam.component.camera.v1.DistortionPara"
+  "metersR\024distortionParameters\"E\n\007Webcams\022"
+  ":\n\007webcams\030\001 \003(\0132 .viam.component.camera"
+  ".v1.WebcamR\007webcams\"\236\001\n\006Webcam\022\024\n\005label\030"
+  "\001 \001(\tR\005label\022\026\n\006status\030\002 \001(\tR\006status\022B\n\n"
+  "properties\030\003 \003(\0132\".viam.component.camera"
+  ".v1.PropertyR\nproperties\022\022\n\004name\030\004 \001(\tR\004"
+  "name\022\016\n\002id\030\005 \001(\tR\002id\"\204\001\n\010Property\022\031\n\010wid"
+  "th_px\030\001 \001(\005R\007widthPx\022\033\n\theight_px\030\002 \001(\005R"
+  "\010heightPx\022!\n\014frame_format\030\003 \001(\tR\013frameFo"
+  "rmat\022\035\n\nframe_rate\030\004 \001(\002R\tframeRate\"\311\001\n\023"
+  "IntrinsicParameters\022\031\n\010width_px\030\001 \001(\rR\007w"
+  "idthPx\022\033\n\theight_px\030\002 \001(\rR\010heightPx\022\034\n\nf"
+  "ocal_x_px\030\003 \001(\001R\010focalXPx\022\034\n\nfocal_y_px\030"
+  "\004 \001(\001R\010focalYPx\022\036\n\013center_x_px\030\005 \001(\001R\tce"
+  "nterXPx\022\036\n\013center_y_px\030\006 \001(\001R\tcenterYPx\""
+  "L\n\024DistortionParameters\022\024\n\005model\030\001 \001(\tR\005"
+  "model\022\036\n\nparameters\030\002 \003(\001R\nparameters*l\n"
+  "\006Format\022\026\n\022FORMAT_UNSPECIFIED\020\000\022\023\n\017FORMA"
+  "T_RAW_RGBA\020\001\022\024\n\020FORMAT_RAW_DEPTH\020\002\022\017\n\013FO"
+  "RMAT_JPEG\020\003\022\016\n\nFORMAT_PNG\020\0042\317\010\n\rCameraSe"
+  "rvice\022\225\001\n\010GetImage\022).viam.component.came"
+  "ra.v1.GetImageRequest\032*.viam.component.c"
+  "amera.v1.GetImageResponse\"2\202\323\344\223\002,\022*/viam"
+  "/api/v1/component/camera/{name}/image\022\231\001"
+  "\n\tGetImages\022*.viam.component.camera.v1.G"
+  "etImagesRequest\032+.viam.component.camera."
+  "v1.GetImagesResponse\"3\202\323\344\223\002-\022+/viam/api/"
+  "v1/component/camera/{name}/images\022\214\001\n\013Re"
+  "nderFrame\022,.viam.component.camera.v1.Ren"
+  "derFrameRequest\032\024.google.api.HttpBody\"9\202"
+  "\323\344\223\0023\0221/viam/api/v1/component/camera/{na"
+  "me}/render_frame\022\252\001\n\rGetPointCloud\022..via"
+  "m.component.camera.v1.GetPointCloudReque"
+  "st\032/.viam.component.camera.v1.GetPointCl"
+  "oudResponse\"8\202\323\344\223\0022\0220/viam/api/v1/compon"
+  "ent/camera/{name}/point_cloud\022\251\001\n\rGetPro"
+  "perties\022..viam.component.camera.v1.GetPr"
+  "opertiesRequest\032/.viam.component.camera."
+  "v1.GetPropertiesResponse\"7\202\323\344\223\0021\022//viam/"
+  "api/v1/component/camera/{name}/propertie"
+  "s\022\211\001\n\tDoCommand\022 .viam.common.v1.DoComma"
+  "ndRequest\032!.viam.common.v1.DoCommandResp"
+  "onse\"7\202\323\344\223\0021\"//viam/api/v1/component/cam"
+  "era/{name}/do_command\022\225\001\n\rGetGeometries\022"
+  "$.viam.common.v1.GetGeometriesRequest\032%."
+  "viam.common.v1.GetGeometriesResponse\"7\202\323"
+  "\344\223\0021\022//viam/api/v1/component/camera/{nam"
+  "e}/geometriesBC\n\034com.viam.component.came"
+  "ra.v1Z#go.viam.com/api/component/camera/"
+  "v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fapi_2fhttpbody_2eproto,
+  &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto = {
-    false, false, 3079, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
+    false, false, 3250, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
     "component/camera/v1/camera.proto",
-    &descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once, descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps, 3, 15,
+    &descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once, descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps, 4, 15,
     schemas, file_default_instances, TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets,
     file_level_metadata_component_2fcamera_2fv1_2fcamera_2eproto, file_level_enum_descriptors_component_2fcamera_2fv1_2fcamera_2eproto,
     file_level_service_descriptors_component_2fcamera_2fv1_2fcamera_2eproto,
@@ -527,8 +539,19 @@ bool Format_IsValid(int value) {
 
 class GetImageRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetImageRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetImageRequest::_Internal::extra(const GetImageRequest* msg) {
+  return *msg->extra_;
+}
+void GetImageRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 GetImageRequest::GetImageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -554,6 +577,11 @@ GetImageRequest::GetImageRequest(const GetImageRequest& from)
     mime_type_.Set(from._internal_mime_type(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.component.camera.v1.GetImageRequest)
 }
 
@@ -566,6 +594,7 @@ mime_type_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   mime_type_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GetImageRequest::~GetImageRequest() {
@@ -581,6 +610,7 @@ inline void GetImageRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   mime_type_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetImageRequest::SetCachedSize(int size) const {
@@ -595,6 +625,10 @@ void GetImageRequest::Clear() {
 
   name_.ClearToEmpty();
   mime_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -621,6 +655,14 @@ const char* GetImageRequest::_InternalParse(const char* ptr, ::_pbi::ParseContex
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.component.camera.v1.GetImageRequest.mime_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -673,6 +715,13 @@ uint8_t* GetImageRequest::_InternalSerialize(
         2, this->_internal_mime_type(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -703,6 +752,13 @@ size_t GetImageRequest::ByteSizeLong() const {
         this->_internal_mime_type());
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -731,6 +787,9 @@ void GetImageRequest::MergeFrom(const GetImageRequest& from) {
   if (!from._internal_mime_type().empty()) {
     _internal_set_mime_type(from._internal_mime_type());
   }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -758,6 +817,7 @@ void GetImageRequest::InternalSwap(GetImageRequest* other) {
       &mime_type_, lhs_arena,
       &other->mime_type_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetImageRequest::GetMetadata() const {
@@ -1696,8 +1756,19 @@ void Image::InternalSwap(Image* other) {
 
 class RenderFrameRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const RenderFrameRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+RenderFrameRequest::_Internal::extra(const RenderFrameRequest* msg) {
+  return *msg->extra_;
+}
+void RenderFrameRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 RenderFrameRequest::RenderFrameRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1723,6 +1794,11 @@ RenderFrameRequest::RenderFrameRequest(const RenderFrameRequest& from)
     mime_type_.Set(from._internal_mime_type(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.component.camera.v1.RenderFrameRequest)
 }
 
@@ -1735,6 +1811,7 @@ mime_type_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   mime_type_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 RenderFrameRequest::~RenderFrameRequest() {
@@ -1750,6 +1827,7 @@ inline void RenderFrameRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   mime_type_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void RenderFrameRequest::SetCachedSize(int size) const {
@@ -1764,6 +1842,10 @@ void RenderFrameRequest::Clear() {
 
   name_.ClearToEmpty();
   mime_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1790,6 +1872,14 @@ const char* RenderFrameRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.component.camera.v1.RenderFrameRequest.mime_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1842,6 +1932,13 @@ uint8_t* RenderFrameRequest::_InternalSerialize(
         2, this->_internal_mime_type(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1872,6 +1969,13 @@ size_t RenderFrameRequest::ByteSizeLong() const {
         this->_internal_mime_type());
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -1900,6 +2004,9 @@ void RenderFrameRequest::MergeFrom(const RenderFrameRequest& from) {
   if (!from._internal_mime_type().empty()) {
     _internal_set_mime_type(from._internal_mime_type());
   }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1927,6 +2034,7 @@ void RenderFrameRequest::InternalSwap(RenderFrameRequest* other) {
       &mime_type_, lhs_arena,
       &other->mime_type_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RenderFrameRequest::GetMetadata() const {
@@ -1939,8 +2047,19 @@ void RenderFrameRequest::InternalSwap(RenderFrameRequest* other) {
 
 class GetPointCloudRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPointCloudRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetPointCloudRequest::_Internal::extra(const GetPointCloudRequest* msg) {
+  return *msg->extra_;
+}
+void GetPointCloudRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 GetPointCloudRequest::GetPointCloudRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1966,6 +2085,11 @@ GetPointCloudRequest::GetPointCloudRequest(const GetPointCloudRequest& from)
     mime_type_.Set(from._internal_mime_type(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.component.camera.v1.GetPointCloudRequest)
 }
 
@@ -1978,6 +2102,7 @@ mime_type_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   mime_type_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GetPointCloudRequest::~GetPointCloudRequest() {
@@ -1993,6 +2118,7 @@ inline void GetPointCloudRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   mime_type_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetPointCloudRequest::SetCachedSize(int size) const {
@@ -2007,6 +2133,10 @@ void GetPointCloudRequest::Clear() {
 
   name_.ClearToEmpty();
   mime_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2033,6 +2163,14 @@ const char* GetPointCloudRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.component.camera.v1.GetPointCloudRequest.mime_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -2085,6 +2223,13 @@ uint8_t* GetPointCloudRequest::_InternalSerialize(
         2, this->_internal_mime_type(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2115,6 +2260,13 @@ size_t GetPointCloudRequest::ByteSizeLong() const {
         this->_internal_mime_type());
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -2143,6 +2295,9 @@ void GetPointCloudRequest::MergeFrom(const GetPointCloudRequest& from) {
   if (!from._internal_mime_type().empty()) {
     _internal_set_mime_type(from._internal_mime_type());
   }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2170,6 +2325,7 @@ void GetPointCloudRequest::InternalSwap(GetPointCloudRequest* other) {
       &mime_type_, lhs_arena,
       &other->mime_type_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPointCloudRequest::GetMetadata() const {
