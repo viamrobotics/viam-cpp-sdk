@@ -10,6 +10,7 @@
 # performance-move-const-arg: TODO(RSDK-3019)
 # misc-unused-parameters: TODO(RSDK-3008) remove this and fix all lints.
 # readability-function-cognitive-complexity: No, complexity is subjective and sometimes necessary.
+# readability-else-after-return: No, this causes code complexification
 Checks: >
   -*,
   bugprone-*,
@@ -30,6 +31,7 @@ Checks: >
   -performance-move-const-arg,
   -misc-unused-parameters,
   -readability-function-cognitive-complexity,
+  -readability-else-after-return,
 WarningsAsErrors: '*'
 FormatStyle: none
 CheckOptions:

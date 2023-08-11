@@ -113,34 +113,6 @@ struct MoveOnGlobeResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveOnGlobeResponseDefaultTypeInternal _MoveOnGlobeResponse_default_instance_;
-PROTOBUF_CONSTEXPR MoveSingleComponentRequest::MoveSingleComponentRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , destination_(nullptr)
-  , component_name_(nullptr)
-  , world_state_(nullptr)
-  , extra_(nullptr){}
-struct MoveSingleComponentRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MoveSingleComponentRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MoveSingleComponentRequestDefaultTypeInternal() {}
-  union {
-    MoveSingleComponentRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveSingleComponentRequestDefaultTypeInternal _MoveSingleComponentRequest_default_instance_;
-PROTOBUF_CONSTEXPR MoveSingleComponentResponse::MoveSingleComponentResponse(
-    ::_pbi::ConstantInitialized)
-  : success_(false){}
-struct MoveSingleComponentResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MoveSingleComponentResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MoveSingleComponentResponseDefaultTypeInternal() {}
-  union {
-    MoveSingleComponentResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveSingleComponentResponseDefaultTypeInternal _MoveSingleComponentResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetPoseRequest::GetPoseRequest(
     ::_pbi::ConstantInitialized)
   : supplemental_transforms_()
@@ -237,7 +209,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace motion
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[15];
+static ::_pb::Metadata file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[13];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_service_2fmotion_2fv1_2fmotion_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fmotion_2fv1_2fmotion_2eproto = nullptr;
 
@@ -316,29 +288,6 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeResponse, success_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, destination_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, world_state_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentRequest, extra_),
-  ~0u,
-  ~0u,
-  ~0u,
-  0,
-  ~0u,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveSingleComponentResponse, success_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -407,15 +356,13 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 36, -1, -1, sizeof(::viam::service::motion::v1::MoveOnMapResponse)},
   { 43, 58, -1, sizeof(::viam::service::motion::v1::MoveOnGlobeRequest)},
   { 67, -1, -1, sizeof(::viam::service::motion::v1::MoveOnGlobeResponse)},
-  { 74, 85, -1, sizeof(::viam::service::motion::v1::MoveSingleComponentRequest)},
-  { 90, -1, -1, sizeof(::viam::service::motion::v1::MoveSingleComponentResponse)},
-  { 97, -1, -1, sizeof(::viam::service::motion::v1::GetPoseRequest)},
-  { 108, -1, -1, sizeof(::viam::service::motion::v1::GetPoseResponse)},
-  { 115, -1, -1, sizeof(::viam::service::motion::v1::Constraints)},
-  { 124, 132, -1, sizeof(::viam::service::motion::v1::LinearConstraint)},
-  { 134, 141, -1, sizeof(::viam::service::motion::v1::OrientationConstraint)},
-  { 142, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions)},
-  { 150, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification)},
+  { 74, -1, -1, sizeof(::viam::service::motion::v1::GetPoseRequest)},
+  { 85, -1, -1, sizeof(::viam::service::motion::v1::GetPoseResponse)},
+  { 92, -1, -1, sizeof(::viam::service::motion::v1::Constraints)},
+  { 101, 109, -1, sizeof(::viam::service::motion::v1::LinearConstraint)},
+  { 111, 118, -1, sizeof(::viam::service::motion::v1::OrientationConstraint)},
+  { 119, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions)},
+  { 127, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -425,8 +372,6 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::motion::v1::_MoveOnMapResponse_default_instance_._instance,
   &::viam::service::motion::v1::_MoveOnGlobeRequest_default_instance_._instance,
   &::viam::service::motion::v1::_MoveOnGlobeResponse_default_instance_._instance,
-  &::viam::service::motion::v1::_MoveSingleComponentRequest_default_instance_._instance,
-  &::viam::service::motion::v1::_MoveSingleComponentResponse_default_instance_._instance,
   &::viam::service::motion::v1::_GetPoseRequest_default_instance_._instance,
   &::viam::service::motion::v1::_GetPoseResponse_default_instance_._instance,
   &::viam::service::motion::v1::_Constraints_default_instance_._instance,
@@ -474,71 +419,57 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
   "raB\n\n\010_headingB\030\n\026_linear_meters_per_sec"
   "B\026\n\024_angular_deg_per_sec\"/\n\023MoveOnGlobeR"
-  "esponse\022\030\n\007success\030\001 \001(\010R\007success\"\265\002\n\032Mo"
-  "veSingleComponentRequest\022\022\n\004name\030\001 \001(\tR\004"
-  "name\022=\n\013destination\030\002 \001(\0132\033.viam.common."
-  "v1.PoseInFrameR\013destination\022C\n\016component"
-  "_name\030\003 \001(\0132\034.viam.common.v1.ResourceNam"
-  "eR\rcomponentName\022@\n\013world_state\030\004 \001(\0132\032."
-  "viam.common.v1.WorldStateH\000R\nworldState\210"
-  "\001\001\022-\n\005extra\030c \001(\0132\027.google.protobuf.Stru"
-  "ctR\005extraB\016\n\014_world_state\"7\n\033MoveSingleC"
-  "omponentResponse\022\030\n\007success\030\001 \001(\010R\007succe"
-  "ss\"\231\002\n\016GetPoseRequest\022\022\n\004name\030\001 \001(\tR\004nam"
-  "e\022C\n\016component_name\030\002 \001(\0132\034.viam.common."
-  "v1.ResourceNameR\rcomponentName\022+\n\021destin"
-  "ation_frame\030\003 \001(\tR\020destinationFrame\022R\n\027s"
-  "upplemental_transforms\030\004 \003(\0132\031.viam.comm"
-  "on.v1.TransformR\026supplementalTransforms\022"
-  "-\n\005extra\030c \001(\0132\027.google.protobuf.StructR"
-  "\005extra\"B\n\017GetPoseResponse\022/\n\004pose\030\001 \001(\0132"
-  "\033.viam.common.v1.PoseInFrameR\004pose\"\263\002\n\013C"
-  "onstraints\022U\n\021linear_constraint\030\001 \003(\0132(."
-  "viam.service.motion.v1.LinearConstraintR"
-  "\020linearConstraint\022d\n\026orientation_constra"
-  "int\030\002 \003(\0132-.viam.service.motion.v1.Orien"
-  "tationConstraintR\025orientationConstraint\022"
-  "g\n\027collision_specification\030\003 \003(\0132..viam."
-  "service.motion.v1.CollisionSpecification"
-  "R\026collisionSpecification\"\273\001\n\020LinearConst"
-  "raint\022/\n\021line_tolerance_mm\030\001 \001(\002H\000R\017line"
-  "ToleranceMm\210\001\001\022A\n\032orientation_tolerance_"
-  "degs\030\002 \001(\002H\001R\030orientationToleranceDegs\210\001"
-  "\001B\024\n\022_line_tolerance_mmB\035\n\033_orientation_"
-  "tolerance_degs\"y\n\025OrientationConstraint\022"
-  "A\n\032orientation_tolerance_degs\030\001 \001(\002H\000R\030o"
-  "rientationToleranceDegs\210\001\001B\035\n\033_orientati"
-  "on_tolerance_degs\"\301\001\n\026CollisionSpecifica"
-  "tion\022]\n\006allows\030\001 \003(\0132E.viam.service.moti"
-  "on.v1.CollisionSpecification.AllowedFram"
-  "eCollisionsR\006allows\032H\n\026AllowedFrameColli"
-  "sions\022\026\n\006frame1\030\001 \001(\tR\006frame1\022\026\n\006frame2\030"
-  "\002 \001(\tR\006frame22\255\007\n\rMotionService\022\202\001\n\004Move"
-  "\022#.viam.service.motion.v1.MoveRequest\032$."
-  "viam.service.motion.v1.MoveResponse\"/\202\323\344"
-  "\223\002)\"\'/viam/api/v1/service/motion/{name}/"
-  "move\022\230\001\n\tMoveOnMap\022(.viam.service.motion"
-  ".v1.MoveOnMapRequest\032).viam.service.moti"
-  "on.v1.MoveOnMapResponse\"6\202\323\344\223\0020\"./viam/a"
-  "pi/v1/service/motion/{name}/move_on_map\022"
-  "\240\001\n\013MoveOnGlobe\022*.viam.service.motion.v1"
-  ".MoveOnGlobeRequest\032+.viam.service.motio"
-  "n.v1.MoveOnGlobeResponse\"8\202\323\344\223\0022\"0/viam/"
-  "api/v1/service/motion/{name}/move_on_glo"
-  "be\022\300\001\n\023MoveSingleComponent\0222.viam.servic"
-  "e.motion.v1.MoveSingleComponentRequest\0323"
-  ".viam.service.motion.v1.MoveSingleCompon"
-  "entResponse\"@\202\323\344\223\002:\"8/viam/api/v1/servic"
-  "e/motion/{name}/move_single_component\022\213\001"
-  "\n\007GetPose\022&.viam.service.motion.v1.GetPo"
-  "seRequest\032\'.viam.service.motion.v1.GetPo"
-  "seResponse\"/\202\323\344\223\002)\022\'/viam/api/v1/service"
-  "/motion/{name}/pose\022\207\001\n\tDoCommand\022 .viam"
-  ".common.v1.DoCommandRequest\032!.viam.commo"
-  "n.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam/ap"
-  "i/v1/service/motion/{name}/do_commandB\?\n"
-  "\032com.viam.service.motion.v1Z!go.viam.com"
-  "/api/service/motion/v1b\006proto3"
+  "esponse\022\030\n\007success\030\001 \001(\010R\007success\"\231\002\n\016Ge"
+  "tPoseRequest\022\022\n\004name\030\001 \001(\tR\004name\022C\n\016comp"
+  "onent_name\030\002 \001(\0132\034.viam.common.v1.Resour"
+  "ceNameR\rcomponentName\022+\n\021destination_fra"
+  "me\030\003 \001(\tR\020destinationFrame\022R\n\027supplement"
+  "al_transforms\030\004 \003(\0132\031.viam.common.v1.Tra"
+  "nsformR\026supplementalTransforms\022-\n\005extra\030"
+  "c \001(\0132\027.google.protobuf.StructR\005extra\"B\n"
+  "\017GetPoseResponse\022/\n\004pose\030\001 \001(\0132\033.viam.co"
+  "mmon.v1.PoseInFrameR\004pose\"\263\002\n\013Constraint"
+  "s\022U\n\021linear_constraint\030\001 \003(\0132(.viam.serv"
+  "ice.motion.v1.LinearConstraintR\020linearCo"
+  "nstraint\022d\n\026orientation_constraint\030\002 \003(\013"
+  "2-.viam.service.motion.v1.OrientationCon"
+  "straintR\025orientationConstraint\022g\n\027collis"
+  "ion_specification\030\003 \003(\0132..viam.service.m"
+  "otion.v1.CollisionSpecificationR\026collisi"
+  "onSpecification\"\273\001\n\020LinearConstraint\022/\n\021"
+  "line_tolerance_mm\030\001 \001(\002H\000R\017lineTolerance"
+  "Mm\210\001\001\022A\n\032orientation_tolerance_degs\030\002 \001("
+  "\002H\001R\030orientationToleranceDegs\210\001\001B\024\n\022_lin"
+  "e_tolerance_mmB\035\n\033_orientation_tolerance"
+  "_degs\"y\n\025OrientationConstraint\022A\n\032orient"
+  "ation_tolerance_degs\030\001 \001(\002H\000R\030orientatio"
+  "nToleranceDegs\210\001\001B\035\n\033_orientation_tolera"
+  "nce_degs\"\301\001\n\026CollisionSpecification\022]\n\006a"
+  "llows\030\001 \003(\0132E.viam.service.motion.v1.Col"
+  "lisionSpecification.AllowedFrameCollisio"
+  "nsR\006allows\032H\n\026AllowedFrameCollisions\022\026\n\006"
+  "frame1\030\001 \001(\tR\006frame1\022\026\n\006frame2\030\002 \001(\tR\006fr"
+  "ame22\352\005\n\rMotionService\022\202\001\n\004Move\022#.viam.s"
+  "ervice.motion.v1.MoveRequest\032$.viam.serv"
+  "ice.motion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/via"
+  "m/api/v1/service/motion/{name}/move\022\230\001\n\t"
+  "MoveOnMap\022(.viam.service.motion.v1.MoveO"
+  "nMapRequest\032).viam.service.motion.v1.Mov"
+  "eOnMapResponse\"6\202\323\344\223\0020\"./viam/api/v1/ser"
+  "vice/motion/{name}/move_on_map\022\240\001\n\013MoveO"
+  "nGlobe\022*.viam.service.motion.v1.MoveOnGl"
+  "obeRequest\032+.viam.service.motion.v1.Move"
+  "OnGlobeResponse\"8\202\323\344\223\0022\"0/viam/api/v1/se"
+  "rvice/motion/{name}/move_on_globe\022\213\001\n\007Ge"
+  "tPose\022&.viam.service.motion.v1.GetPoseRe"
+  "quest\032\'.viam.service.motion.v1.GetPoseRe"
+  "sponse\"/\202\323\344\223\002)\022\'/viam/api/v1/service/mot"
+  "ion/{name}/pose\022\207\001\n\tDoCommand\022 .viam.com"
+  "mon.v1.DoCommandRequest\032!.viam.common.v1"
+  ".DoCommandResponse\"5\202\323\344\223\002/\"-/viam/api/v1"
+  "/service/motion/{name}/do_commandB\?\n\032com"
+  ".viam.service.motion.v1Z!go.viam.com/api"
+  "/service/motion/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -547,9 +478,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto = {
-    false, false, 4070, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
+    false, false, 3506, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
     "service/motion/v1/motion.proto",
-    &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 3, 15,
+    &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets,
     file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto, file_level_enum_descriptors_service_2fmotion_2fv1_2fmotion_2eproto,
     file_level_service_descriptors_service_2fmotion_2fv1_2fmotion_2eproto,
@@ -2442,575 +2373,6 @@ void MoveOnGlobeResponse::InternalSwap(MoveOnGlobeResponse* other) {
 
 // ===================================================================
 
-class MoveSingleComponentRequest::_Internal {
- public:
-  using HasBits = decltype(std::declval<MoveSingleComponentRequest>()._has_bits_);
-  static const ::viam::common::v1::PoseInFrame& destination(const MoveSingleComponentRequest* msg);
-  static const ::viam::common::v1::ResourceName& component_name(const MoveSingleComponentRequest* msg);
-  static const ::viam::common::v1::WorldState& world_state(const MoveSingleComponentRequest* msg);
-  static void set_has_world_state(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const MoveSingleComponentRequest* msg);
-};
-
-const ::viam::common::v1::PoseInFrame&
-MoveSingleComponentRequest::_Internal::destination(const MoveSingleComponentRequest* msg) {
-  return *msg->destination_;
-}
-const ::viam::common::v1::ResourceName&
-MoveSingleComponentRequest::_Internal::component_name(const MoveSingleComponentRequest* msg) {
-  return *msg->component_name_;
-}
-const ::viam::common::v1::WorldState&
-MoveSingleComponentRequest::_Internal::world_state(const MoveSingleComponentRequest* msg) {
-  return *msg->world_state_;
-}
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-MoveSingleComponentRequest::_Internal::extra(const MoveSingleComponentRequest* msg) {
-  return *msg->extra_;
-}
-void MoveSingleComponentRequest::clear_destination() {
-  if (GetArenaForAllocation() == nullptr && destination_ != nullptr) {
-    delete destination_;
-  }
-  destination_ = nullptr;
-}
-void MoveSingleComponentRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
-  }
-  component_name_ = nullptr;
-}
-void MoveSingleComponentRequest::clear_world_state() {
-  if (world_state_ != nullptr) world_state_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
-}
-void MoveSingleComponentRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
-}
-MoveSingleComponentRequest::MoveSingleComponentRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.MoveSingleComponentRequest)
-}
-MoveSingleComponentRequest::MoveSingleComponentRequest(const MoveSingleComponentRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  if (from._internal_has_destination()) {
-    destination_ = new ::viam::common::v1::PoseInFrame(*from.destination_);
-  } else {
-    destination_ = nullptr;
-  }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
-  } else {
-    component_name_ = nullptr;
-  }
-  if (from._internal_has_world_state()) {
-    world_state_ = new ::viam::common::v1::WorldState(*from.world_state_);
-  } else {
-    world_state_ = nullptr;
-  }
-  if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
-  }
-  // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.MoveSingleComponentRequest)
-}
-
-inline void MoveSingleComponentRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&destination_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&destination_)) + sizeof(extra_));
-}
-
-MoveSingleComponentRequest::~MoveSingleComponentRequest() {
-  // @@protoc_insertion_point(destructor:viam.service.motion.v1.MoveSingleComponentRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void MoveSingleComponentRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete destination_;
-  if (this != internal_default_instance()) delete component_name_;
-  if (this != internal_default_instance()) delete world_state_;
-  if (this != internal_default_instance()) delete extra_;
-}
-
-void MoveSingleComponentRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void MoveSingleComponentRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.service.motion.v1.MoveSingleComponentRequest)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && destination_ != nullptr) {
-    delete destination_;
-  }
-  destination_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
-  }
-  component_name_ = nullptr;
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(world_state_ != nullptr);
-    world_state_->Clear();
-  }
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
-  }
-  extra_ = nullptr;
-  _has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* MoveSingleComponentRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1 [json_name = "name"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.MoveSingleComponentRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .viam.common.v1.PoseInFrame destination = 2 [json_name = "destination"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_destination(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional .viam.common.v1.WorldState world_state = 4 [json_name = "worldState"];
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_world_state(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _has_bits_.Or(has_bits);
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* MoveSingleComponentRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.service.motion.v1.MoveSingleComponentRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string name = 1 [json_name = "name"];
-  if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.service.motion.v1.MoveSingleComponentRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
-  }
-
-  // .viam.common.v1.PoseInFrame destination = 2 [json_name = "destination"];
-  if (this->_internal_has_destination()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::destination(this),
-        _Internal::destination(this).GetCachedSize(), target, stream);
-  }
-
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
-  }
-
-  // optional .viam.common.v1.WorldState world_state = 4 [json_name = "worldState"];
-  if (_internal_has_world_state()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::world_state(this),
-        _Internal::world_state(this).GetCachedSize(), target, stream);
-  }
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(99, _Internal::extra(this),
-        _Internal::extra(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.service.motion.v1.MoveSingleComponentRequest)
-  return target;
-}
-
-size_t MoveSingleComponentRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.service.motion.v1.MoveSingleComponentRequest)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string name = 1 [json_name = "name"];
-  if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
-  }
-
-  // .viam.common.v1.PoseInFrame destination = 2 [json_name = "destination"];
-  if (this->_internal_has_destination()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *destination_);
-  }
-
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
-  }
-
-  // optional .viam.common.v1.WorldState world_state = 4 [json_name = "worldState"];
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *world_state_);
-  }
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  if (this->_internal_has_extra()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MoveSingleComponentRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    MoveSingleComponentRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MoveSingleComponentRequest::GetClassData() const { return &_class_data_; }
-
-void MoveSingleComponentRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MoveSingleComponentRequest *>(to)->MergeFrom(
-      static_cast<const MoveSingleComponentRequest &>(from));
-}
-
-
-void MoveSingleComponentRequest::MergeFrom(const MoveSingleComponentRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.motion.v1.MoveSingleComponentRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
-  }
-  if (from._internal_has_destination()) {
-    _internal_mutable_destination()->::viam::common::v1::PoseInFrame::MergeFrom(from._internal_destination());
-  }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
-  }
-  if (from._internal_has_world_state()) {
-    _internal_mutable_world_state()->::viam::common::v1::WorldState::MergeFrom(from._internal_world_state());
-  }
-  if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void MoveSingleComponentRequest::CopyFrom(const MoveSingleComponentRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.motion.v1.MoveSingleComponentRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MoveSingleComponentRequest::IsInitialized() const {
-  return true;
-}
-
-void MoveSingleComponentRequest::InternalSwap(MoveSingleComponentRequest* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MoveSingleComponentRequest, extra_)
-      + sizeof(MoveSingleComponentRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(MoveSingleComponentRequest, destination_)>(
-          reinterpret_cast<char*>(&destination_),
-          reinterpret_cast<char*>(&other->destination_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata MoveSingleComponentRequest::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[6]);
-}
-
-// ===================================================================
-
-class MoveSingleComponentResponse::_Internal {
- public:
-};
-
-MoveSingleComponentResponse::MoveSingleComponentResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.MoveSingleComponentResponse)
-}
-MoveSingleComponentResponse::MoveSingleComponentResponse(const MoveSingleComponentResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  success_ = from.success_;
-  // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.MoveSingleComponentResponse)
-}
-
-inline void MoveSingleComponentResponse::SharedCtor() {
-success_ = false;
-}
-
-MoveSingleComponentResponse::~MoveSingleComponentResponse() {
-  // @@protoc_insertion_point(destructor:viam.service.motion.v1.MoveSingleComponentResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void MoveSingleComponentResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void MoveSingleComponentResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void MoveSingleComponentResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.service.motion.v1.MoveSingleComponentResponse)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  success_ = false;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* MoveSingleComponentResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // bool success = 1 [json_name = "success"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* MoveSingleComponentResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.service.motion.v1.MoveSingleComponentResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // bool success = 1 [json_name = "success"];
-  if (this->_internal_success() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.service.motion.v1.MoveSingleComponentResponse)
-  return target;
-}
-
-size_t MoveSingleComponentResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.service.motion.v1.MoveSingleComponentResponse)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // bool success = 1 [json_name = "success"];
-  if (this->_internal_success() != 0) {
-    total_size += 1 + 1;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MoveSingleComponentResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    MoveSingleComponentResponse::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MoveSingleComponentResponse::GetClassData() const { return &_class_data_; }
-
-void MoveSingleComponentResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MoveSingleComponentResponse *>(to)->MergeFrom(
-      static_cast<const MoveSingleComponentResponse &>(from));
-}
-
-
-void MoveSingleComponentResponse::MergeFrom(const MoveSingleComponentResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.motion.v1.MoveSingleComponentResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_success() != 0) {
-    _internal_set_success(from._internal_success());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void MoveSingleComponentResponse::CopyFrom(const MoveSingleComponentResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.motion.v1.MoveSingleComponentResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MoveSingleComponentResponse::IsInitialized() const {
-  return true;
-}
-
-void MoveSingleComponentResponse::InternalSwap(MoveSingleComponentResponse* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(success_, other->success_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata MoveSingleComponentResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[7]);
-}
-
-// ===================================================================
-
 class GetPoseRequest::_Internal {
  public:
   static const ::viam::common::v1::ResourceName& component_name(const GetPoseRequest* msg);
@@ -3387,7 +2749,7 @@ void GetPoseRequest::InternalSwap(GetPoseRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[8]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[6]);
 }
 
 // ===================================================================
@@ -3580,7 +2942,7 @@ void GetPoseResponse::InternalSwap(GetPoseResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[9]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[7]);
 }
 
 // ===================================================================
@@ -3824,7 +3186,7 @@ void Constraints::InternalSwap(Constraints* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Constraints::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[10]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[8]);
 }
 
 // ===================================================================
@@ -4053,7 +3415,7 @@ void LinearConstraint::InternalSwap(LinearConstraint* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LinearConstraint::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[11]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[9]);
 }
 
 // ===================================================================
@@ -4235,7 +3597,7 @@ void OrientationConstraint::InternalSwap(OrientationConstraint* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata OrientationConstraint::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[12]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[10]);
 }
 
 // ===================================================================
@@ -4478,7 +3840,7 @@ void CollisionSpecification_AllowedFrameCollisions::InternalSwap(CollisionSpecif
 ::PROTOBUF_NAMESPACE_ID::Metadata CollisionSpecification_AllowedFrameCollisions::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[13]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[11]);
 }
 
 // ===================================================================
@@ -4656,7 +4018,7 @@ void CollisionSpecification::InternalSwap(CollisionSpecification* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CollisionSpecification::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[14]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[12]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4688,14 +4050,6 @@ Arena::CreateMaybeMessage< ::viam::service::motion::v1::MoveOnGlobeRequest >(Are
 template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::MoveOnGlobeResponse*
 Arena::CreateMaybeMessage< ::viam::service::motion::v1::MoveOnGlobeResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::motion::v1::MoveOnGlobeResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::MoveSingleComponentRequest*
-Arena::CreateMaybeMessage< ::viam::service::motion::v1::MoveSingleComponentRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::service::motion::v1::MoveSingleComponentRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::MoveSingleComponentResponse*
-Arena::CreateMaybeMessage< ::viam::service::motion::v1::MoveSingleComponentResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::service::motion::v1::MoveSingleComponentResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::GetPoseRequest*
 Arena::CreateMaybeMessage< ::viam::service::motion::v1::GetPoseRequest >(Arena* arena) {

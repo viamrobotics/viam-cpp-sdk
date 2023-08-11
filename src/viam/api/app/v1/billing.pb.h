@@ -3311,6 +3311,7 @@ class GetOrgBillingInformationResponse final :
 
   enum : int {
     kBillingEmailFieldNumber = 2,
+    kBillingTierFieldNumber = 4,
     kMethodFieldNumber = 3,
     kTypeFieldNumber = 1,
   };
@@ -3326,6 +3327,24 @@ class GetOrgBillingInformationResponse final :
   const std::string& _internal_billing_email() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_billing_email(const std::string& value);
   std::string* _internal_mutable_billing_email();
+  public:
+
+  // optional string billing_tier = 4 [json_name = "billingTier"];
+  bool has_billing_tier() const;
+  private:
+  bool _internal_has_billing_tier() const;
+  public:
+  void clear_billing_tier();
+  const std::string& billing_tier() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_billing_tier(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_billing_tier();
+  PROTOBUF_NODISCARD std::string* release_billing_tier();
+  void set_allocated_billing_tier(std::string* billing_tier);
+  private:
+  const std::string& _internal_billing_tier() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_billing_tier(const std::string& value);
+  std::string* _internal_mutable_billing_tier();
   public:
 
   // optional .viam.app.v1.PaymentMethodCard method = 3 [json_name = "method"];
@@ -3365,6 +3384,7 @@ class GetOrgBillingInformationResponse final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_email_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_tier_;
   ::viam::app::v1::PaymentMethodCard* method_;
   int type_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
@@ -7063,7 +7083,7 @@ inline void GetOrgBillingInformationResponse::set_allocated_billing_email(std::s
 
 // optional .viam.app.v1.PaymentMethodCard method = 3 [json_name = "method"];
 inline bool GetOrgBillingInformationResponse::_internal_has_method() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || method_ != nullptr);
   return value;
 }
@@ -7072,7 +7092,7 @@ inline bool GetOrgBillingInformationResponse::has_method() const {
 }
 inline void GetOrgBillingInformationResponse::clear_method() {
   if (method_ != nullptr) method_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline const ::viam::app::v1::PaymentMethodCard& GetOrgBillingInformationResponse::_internal_method() const {
   const ::viam::app::v1::PaymentMethodCard* p = method_;
@@ -7090,14 +7110,14 @@ inline void GetOrgBillingInformationResponse::unsafe_arena_set_allocated_method(
   }
   method_ = method;
   if (method) {
-    _has_bits_[0] |= 0x00000001u;
+    _has_bits_[0] |= 0x00000002u;
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    _has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method)
 }
 inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::release_method() {
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
   ::viam::app::v1::PaymentMethodCard* temp = method_;
   method_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -7113,13 +7133,13 @@ inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::rel
 }
 inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::unsafe_arena_release_method() {
   // @@protoc_insertion_point(field_release:viam.app.v1.GetOrgBillingInformationResponse.method)
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
   ::viam::app::v1::PaymentMethodCard* temp = method_;
   method_ = nullptr;
   return temp;
 }
 inline ::viam::app::v1::PaymentMethodCard* GetOrgBillingInformationResponse::_internal_mutable_method() {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   if (method_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::app::v1::PaymentMethodCard>(GetArenaForAllocation());
     method_ = p;
@@ -7143,12 +7163,80 @@ inline void GetOrgBillingInformationResponse::set_allocated_method(::viam::app::
       method = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, method, submessage_arena);
     }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  method_ = method;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method)
+}
+
+// optional string billing_tier = 4 [json_name = "billingTier"];
+inline bool GetOrgBillingInformationResponse::_internal_has_billing_tier() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetOrgBillingInformationResponse::has_billing_tier() const {
+  return _internal_has_billing_tier();
+}
+inline void GetOrgBillingInformationResponse::clear_billing_tier() {
+  billing_tier_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetOrgBillingInformationResponse::billing_tier() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrgBillingInformationResponse.billing_tier)
+  return _internal_billing_tier();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetOrgBillingInformationResponse::set_billing_tier(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ billing_tier_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetOrgBillingInformationResponse.billing_tier)
+}
+inline std::string* GetOrgBillingInformationResponse::mutable_billing_tier() {
+  std::string* _s = _internal_mutable_billing_tier();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrgBillingInformationResponse.billing_tier)
+  return _s;
+}
+inline const std::string& GetOrgBillingInformationResponse::_internal_billing_tier() const {
+  return billing_tier_.Get();
+}
+inline void GetOrgBillingInformationResponse::_internal_set_billing_tier(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  billing_tier_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetOrgBillingInformationResponse::_internal_mutable_billing_tier() {
+  _has_bits_[0] |= 0x00000001u;
+  return billing_tier_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetOrgBillingInformationResponse::release_billing_tier() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrgBillingInformationResponse.billing_tier)
+  if (!_internal_has_billing_tier()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = billing_tier_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (billing_tier_.IsDefault()) {
+    billing_tier_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetOrgBillingInformationResponse::set_allocated_billing_tier(std::string* billing_tier) {
+  if (billing_tier != nullptr) {
     _has_bits_[0] |= 0x00000001u;
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  method_ = method;
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method)
+  billing_tier_.SetAllocated(billing_tier, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (billing_tier_.IsDefault()) {
+    billing_tier_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.billing_tier)
 }
 
 // -------------------------------------------------------------------

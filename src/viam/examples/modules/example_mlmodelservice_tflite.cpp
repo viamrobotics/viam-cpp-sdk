@@ -382,7 +382,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         if (!in) {
             std::ostringstream buffer;
             buffer << service_name << ": Failed to open file for `model_path` "
-                   << model_path_string;
+                   << *model_path_string;
             throw std::invalid_argument(buffer.str());
         }
         std::ostringstream model_path_contents_stream;

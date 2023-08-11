@@ -299,6 +299,18 @@ struct ActuatorStatusDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ActuatorStatusDefaultTypeInternal _ActuatorStatus_default_instance_;
+PROTOBUF_CONSTEXPR ResponseMetadata::ResponseMetadata(
+    ::_pbi::ConstantInitialized)
+  : captured_at_(nullptr){}
+struct ResponseMetadataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResponseMetadataDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResponseMetadataDefaultTypeInternal() {}
+  union {
+    ResponseMetadata _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseMetadataDefaultTypeInternal _ResponseMetadata_default_instance_;
 PROTOBUF_CONSTEXPR DoCommandRequest::DoCommandRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -326,7 +338,8 @@ struct DoCommandResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DoCommandResponseDefaultTypeInternal _DoCommandResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetKinematicsRequest::GetKinematicsRequest(
     ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetKinematicsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetKinematicsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -352,7 +365,8 @@ struct GetKinematicsResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetKinematicsResponseDefaultTypeInternal _GetKinematicsResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetGeometriesRequest::GetGeometriesRequest(
     ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct GetGeometriesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetGeometriesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -377,7 +391,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[27];
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[28];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
@@ -567,6 +581,14 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::ActuatorStatus, is_moving_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResponseMetadata, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResponseMetadata, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::ResponseMetadata, captured_at_),
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::DoCommandRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -589,6 +611,7 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetKinematicsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -604,6 +627,7 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::GetGeometriesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -634,12 +658,13 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 158, 167, -1, sizeof(::viam::common::v1::Transform)},
   { 170, -1, -1, sizeof(::viam::common::v1::WorldState)},
   { 178, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-  { 185, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-  { 193, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
-  { 200, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
-  { 207, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
-  { 215, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
-  { 222, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
+  { 185, 192, -1, sizeof(::viam::common::v1::ResponseMetadata)},
+  { 193, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 201, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 208, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
+  { 216, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
+  { 224, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
+  { 232, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -664,6 +689,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_Transform_default_instance_._instance,
   &::viam::common::v1::_WorldState_default_instance_._instance,
   &::viam::common::v1::_ActuatorStatus_default_instance_._instance,
+  &::viam::common::v1::_ResponseMetadata_default_instance_._instance,
   &::viam::common::v1::_DoCommandRequest_default_instance_._instance,
   &::viam::common::v1::_DoCommandResponse_default_instance_._instance,
   &::viam::common::v1::_GetKinematicsRequest_default_instance_._instance,
@@ -675,91 +701,98 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\026common/v1/common.proto\022\016viam.common.v1"
   "\032 google/protobuf/descriptor.proto\032\034goog"
-  "le/protobuf/struct.proto\"n\n\014ResourceName"
-  "\022\034\n\tnamespace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002"
-  " \001(\tR\004type\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004"
-  "name\030\004 \001(\tR\004name\"\374\002\n\013BoardStatus\022B\n\007anal"
-  "ogs\030\001 \003(\0132(.viam.common.v1.BoardStatus.A"
-  "nalogsEntryR\007analogs\022a\n\022digital_interrup"
-  "ts\030\002 \003(\01322.viam.common.v1.BoardStatus.Di"
-  "gitalInterruptsEntryR\021digitalInterrupts\032"
-  "X\n\014AnalogsEntry\022\020\n\003key\030\001 \001(\tR\003key\0222\n\005val"
-  "ue\030\002 \001(\0132\034.viam.common.v1.AnalogStatusR\005"
-  "value:\0028\001\032l\n\026DigitalInterruptsEntry\022\020\n\003k"
-  "ey\030\001 \001(\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.comm"
-  "on.v1.DigitalInterruptStatusR\005value:\0028\001\""
-  "$\n\014AnalogStatus\022\024\n\005value\030\001 \001(\005R\005value\".\n"
-  "\026DigitalInterruptStatus\022\024\n\005value\030\001 \001(\003R\005"
-  "value\"y\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001"
-  "y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002oX\022\017\n\003o_y\030"
-  "\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030\007 \001("
-  "\001R\005theta\"V\n\013Orientation\022\017\n\003o_x\030\001 \001(\001R\002oX"
-  "\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024\n\005th"
-  "eta\030\004 \001(\001R\005theta\"`\n\013PoseInFrame\022\'\n\017refer"
-  "ence_frame\030\001 \001(\tR\016referenceFrame\022(\n\004pose"
-  "\030\002 \001(\0132\024.viam.common.v1.PoseR\004pose\"3\n\007Ve"
-  "ctor3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003"
-  " \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_mm\030\001 \001(\001R\010ra"
-  "diusMm\"C\n\007Capsule\022\033\n\tradius_mm\030\001 \001(\001R\010ra"
-  "diusMm\022\033\n\tlength_mm\030\002 \001(\001R\010lengthMm\"D\n\020R"
-  "ectangularPrism\0220\n\007dims_mm\030\001 \001(\0132\027.viam."
-  "common.v1.Vector3R\006dimsMm\"\374\001\n\010Geometry\022,"
-  "\n\006center\030\001 \001(\0132\024.viam.common.v1.PoseR\006ce"
-  "nter\0220\n\006sphere\030\002 \001(\0132\026.viam.common.v1.Sp"
-  "hereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 .viam.commo"
-  "n.v1.RectangularPrismH\000R\003box\0223\n\007capsule\030"
-  "\005 \001(\0132\027.viam.common.v1.CapsuleH\000R\007capsul"
-  "e\022\024\n\005label\030\004 \001(\tR\005labelB\017\n\rgeometry_type"
-  "\"v\n\021GeometriesInFrame\022\'\n\017reference_frame"
-  "\030\001 \001(\tR\016referenceFrame\0228\n\ngeometries\030\002 \003"
-  "(\0132\030.viam.common.v1.GeometryR\ngeometries"
-  "\"v\n\020PointCloudObject\022\037\n\013point_cloud\030\001 \001("
-  "\014R\npointCloud\022A\n\ngeometries\030\002 \001(\0132!.viam"
-  ".common.v1.GeometriesInFrameR\ngeometries"
-  "\"D\n\010GeoPoint\022\032\n\010latitude\030\001 \001(\001R\010latitude"
-  "\022\034\n\tlongitude\030\002 \001(\001R\tlongitude\"}\n\013GeoObs"
-  "tacle\0224\n\010location\030\001 \001(\0132\030.viam.common.v1"
-  ".GeoPointR\010location\0228\n\ngeometries\030\002 \003(\0132"
-  "\030.viam.common.v1.GeometryR\ngeometries\"\342\001"
-  "\n\tTransform\022\'\n\017reference_frame\030\001 \001(\tR\016re"
-  "ferenceFrame\022P\n\026pose_in_observer_frame\030\002"
-  " \001(\0132\033.viam.common.v1.PoseInFrameR\023poseI"
-  "nObserverFrame\022F\n\017physical_object\030\003 \001(\0132"
-  "\030.viam.common.v1.GeometryH\000R\016physicalObj"
-  "ect\210\001\001B\022\n\020_physical_object\"\210\001\n\nWorldStat"
-  "e\022\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1.Ge"
-  "ometriesInFrameR\tobstacles\0229\n\ntransforms"
-  "\030\003 \003(\0132\031.viam.common.v1.TransformR\ntrans"
-  "forms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001"
-  "(\010R\010isMoving\"Y\n\020DoCommandRequest\022\022\n\004name"
-  "\030\001 \001(\tR\004name\0221\n\007command\030\002 \001(\0132\027.google.p"
-  "rotobuf.StructR\007command\"D\n\021DoCommandResp"
-  "onse\022/\n\006result\030\001 \001(\0132\027.google.protobuf.S"
-  "tructR\006result\"*\n\024GetKinematicsRequest\022\022\n"
-  "\004name\030\001 \001(\tR\004name\"~\n\025GetKinematicsRespon"
-  "se\022<\n\006format\030\001 \001(\0162$.viam.common.v1.Kine"
-  "maticsFileFormatR\006format\022\'\n\017kinematics_d"
-  "ata\030\002 \001(\014R\016kinematicsData\"*\n\024GetGeometri"
-  "esRequest\022\022\n\004name\030\001 \001(\tR\004name\"Q\n\025GetGeom"
-  "etriesResponse\0228\n\ngeometries\030\001 \003(\0132\030.via"
-  "m.common.v1.GeometryR\ngeometries*\177\n\024Kine"
-  "maticsFileFormat\022&\n\"KINEMATICS_FILE_FORM"
-  "AT_UNSPECIFIED\020\000\022\036\n\032KINEMATICS_FILE_FORM"
-  "AT_SVA\020\001\022\037\n\033KINEMATICS_FILE_FORMAT_URDF\020"
-  "\002:a\n\032safety_heartbeat_monitored\022\036.google"
-  ".protobuf.MethodOptions\030\244\222\005 \001(\010R\030safetyH"
-  "eartbeatMonitored\210\001\001B/\n\022com.viam.common."
-  "v1Z\031go.viam.com/api/common/v1b\006proto3"
+  "le/protobuf/struct.proto\032\037google/protobu"
+  "f/timestamp.proto\"n\n\014ResourceName\022\034\n\tnam"
+  "espace\030\001 \001(\tR\tnamespace\022\022\n\004type\030\002 \001(\tR\004t"
+  "ype\022\030\n\007subtype\030\003 \001(\tR\007subtype\022\022\n\004name\030\004 "
+  "\001(\tR\004name\"\374\002\n\013BoardStatus\022B\n\007analogs\030\001 \003"
+  "(\0132(.viam.common.v1.BoardStatus.AnalogsE"
+  "ntryR\007analogs\022a\n\022digital_interrupts\030\002 \003("
+  "\01322.viam.common.v1.BoardStatus.DigitalIn"
+  "terruptsEntryR\021digitalInterrupts\032X\n\014Anal"
+  "ogsEntry\022\020\n\003key\030\001 \001(\tR\003key\0222\n\005value\030\002 \001("
+  "\0132\034.viam.common.v1.AnalogStatusR\005value:\002"
+  "8\001\032l\n\026DigitalInterruptsEntry\022\020\n\003key\030\001 \001("
+  "\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.common.v1.D"
+  "igitalInterruptStatusR\005value:\0028\001\"$\n\014Anal"
+  "ogStatus\022\024\n\005value\030\001 \001(\005R\005value\".\n\026Digita"
+  "lInterruptStatus\022\024\n\005value\030\001 \001(\003R\005value\"y"
+  "\n\004Pose\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030"
+  "\003 \001(\001R\001z\022\017\n\003o_x\030\004 \001(\001R\002oX\022\017\n\003o_y\030\005 \001(\001R\002"
+  "oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030\007 \001(\001R\005thet"
+  "a\"V\n\013Orientation\022\017\n\003o_x\030\001 \001(\001R\002oX\022\017\n\003o_y"
+  "\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024\n\005theta\030\004 \001"
+  "(\001R\005theta\"`\n\013PoseInFrame\022\'\n\017reference_fr"
+  "ame\030\001 \001(\tR\016referenceFrame\022(\n\004pose\030\002 \001(\0132"
+  "\024.viam.common.v1.PoseR\004pose\"3\n\007Vector3\022\014"
+  "\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z"
+  "\"%\n\006Sphere\022\033\n\tradius_mm\030\001 \001(\001R\010radiusMm\""
+  "C\n\007Capsule\022\033\n\tradius_mm\030\001 \001(\001R\010radiusMm\022"
+  "\033\n\tlength_mm\030\002 \001(\001R\010lengthMm\"D\n\020Rectangu"
+  "larPrism\0220\n\007dims_mm\030\001 \001(\0132\027.viam.common."
+  "v1.Vector3R\006dimsMm\"\374\001\n\010Geometry\022,\n\006cente"
+  "r\030\001 \001(\0132\024.viam.common.v1.PoseR\006center\0220\n"
+  "\006sphere\030\002 \001(\0132\026.viam.common.v1.SphereH\000R"
+  "\006sphere\0224\n\003box\030\003 \001(\0132 .viam.common.v1.Re"
+  "ctangularPrismH\000R\003box\0223\n\007capsule\030\005 \001(\0132\027"
+  ".viam.common.v1.CapsuleH\000R\007capsule\022\024\n\005la"
+  "bel\030\004 \001(\tR\005labelB\017\n\rgeometry_type\"v\n\021Geo"
+  "metriesInFrame\022\'\n\017reference_frame\030\001 \001(\tR"
+  "\016referenceFrame\0228\n\ngeometries\030\002 \003(\0132\030.vi"
+  "am.common.v1.GeometryR\ngeometries\"v\n\020Poi"
+  "ntCloudObject\022\037\n\013point_cloud\030\001 \001(\014R\npoin"
+  "tCloud\022A\n\ngeometries\030\002 \001(\0132!.viam.common"
+  ".v1.GeometriesInFrameR\ngeometries\"D\n\010Geo"
+  "Point\022\032\n\010latitude\030\001 \001(\001R\010latitude\022\034\n\tlon"
+  "gitude\030\002 \001(\001R\tlongitude\"}\n\013GeoObstacle\0224"
+  "\n\010location\030\001 \001(\0132\030.viam.common.v1.GeoPoi"
+  "ntR\010location\0228\n\ngeometries\030\002 \003(\0132\030.viam."
+  "common.v1.GeometryR\ngeometries\"\342\001\n\tTrans"
+  "form\022\'\n\017reference_frame\030\001 \001(\tR\016reference"
+  "Frame\022P\n\026pose_in_observer_frame\030\002 \001(\0132\033."
+  "viam.common.v1.PoseInFrameR\023poseInObserv"
+  "erFrame\022F\n\017physical_object\030\003 \001(\0132\030.viam."
+  "common.v1.GeometryH\000R\016physicalObject\210\001\001B"
+  "\022\n\020_physical_object\"\210\001\n\nWorldState\022\?\n\tob"
+  "stacles\030\001 \003(\0132!.viam.common.v1.Geometrie"
+  "sInFrameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132"
+  "\031.viam.common.v1.TransformR\ntransforms\"-"
+  "\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isM"
+  "oving\"d\n\020ResponseMetadata\022@\n\013captured_at"
+  "\030\001 \001(\0132\032.google.protobuf.TimestampH\000R\nca"
+  "pturedAt\210\001\001B\016\n\014_captured_at\"Y\n\020DoCommand"
+  "Request\022\022\n\004name\030\001 \001(\tR\004name\0221\n\007command\030\002"
+  " \001(\0132\027.google.protobuf.StructR\007command\"D"
+  "\n\021DoCommandResponse\022/\n\006result\030\001 \001(\0132\027.go"
+  "ogle.protobuf.StructR\006result\"Y\n\024GetKinem"
+  "aticsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extr"
+  "a\030c \001(\0132\027.google.protobuf.StructR\005extra\""
+  "~\n\025GetKinematicsResponse\022<\n\006format\030\001 \001(\016"
+  "2$.viam.common.v1.KinematicsFileFormatR\006"
+  "format\022\'\n\017kinematics_data\030\002 \001(\014R\016kinemat"
+  "icsData\"Y\n\024GetGeometriesRequest\022\022\n\004name\030"
+  "\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.prot"
+  "obuf.StructR\005extra\"Q\n\025GetGeometriesRespo"
+  "nse\0228\n\ngeometries\030\001 \003(\0132\030.viam.common.v1"
+  ".GeometryR\ngeometries*\177\n\024KinematicsFileF"
+  "ormat\022&\n\"KINEMATICS_FILE_FORMAT_UNSPECIF"
+  "IED\020\000\022\036\n\032KINEMATICS_FILE_FORMAT_SVA\020\001\022\037\n"
+  "\033KINEMATICS_FILE_FORMAT_URDF\020\002:a\n\032safety"
+  "_heartbeat_monitored\022\036.google.protobuf.M"
+  "ethodOptions\030\244\222\005 \001(\010R\030safetyHeartbeatMon"
+  "itored\210\001\001B/\n\022com.viam.common.v1Z\031go.viam"
+  ".com/api/common/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[2] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
+  &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 3077, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 3306, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 2, 27,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 28,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -5583,6 +5616,208 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
 
 // ===================================================================
 
+class ResponseMetadata::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ResponseMetadata>()._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& captured_at(const ResponseMetadata* msg);
+  static void set_has_captured_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+ResponseMetadata::_Internal::captured_at(const ResponseMetadata* msg) {
+  return *msg->captured_at_;
+}
+void ResponseMetadata::clear_captured_at() {
+  if (captured_at_ != nullptr) captured_at_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+ResponseMetadata::ResponseMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.ResponseMetadata)
+}
+ResponseMetadata::ResponseMetadata(const ResponseMetadata& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_captured_at()) {
+    captured_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.captured_at_);
+  } else {
+    captured_at_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.ResponseMetadata)
+}
+
+inline void ResponseMetadata::SharedCtor() {
+captured_at_ = nullptr;
+}
+
+ResponseMetadata::~ResponseMetadata() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.ResponseMetadata)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ResponseMetadata::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete captured_at_;
+}
+
+void ResponseMetadata::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ResponseMetadata::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.ResponseMetadata)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(captured_at_ != nullptr);
+    captured_at_->Clear();
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ResponseMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .google.protobuf.Timestamp captured_at = 1 [json_name = "capturedAt"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_captured_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ResponseMetadata::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.ResponseMetadata)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .google.protobuf.Timestamp captured_at = 1 [json_name = "capturedAt"];
+  if (_internal_has_captured_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::captured_at(this),
+        _Internal::captured_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.ResponseMetadata)
+  return target;
+}
+
+size_t ResponseMetadata::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.ResponseMetadata)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .google.protobuf.Timestamp captured_at = 1 [json_name = "capturedAt"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *captured_at_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResponseMetadata::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ResponseMetadata::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResponseMetadata::GetClassData() const { return &_class_data_; }
+
+void ResponseMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ResponseMetadata *>(to)->MergeFrom(
+      static_cast<const ResponseMetadata &>(from));
+}
+
+
+void ResponseMetadata::MergeFrom(const ResponseMetadata& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.ResponseMetadata)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_captured_at()) {
+    _internal_mutable_captured_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_captured_at());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ResponseMetadata::CopyFrom(const ResponseMetadata& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.ResponseMetadata)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ResponseMetadata::IsInitialized() const {
+  return true;
+}
+
+void ResponseMetadata::InternalSwap(ResponseMetadata* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(captured_at_, other->captured_at_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ResponseMetadata::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+}
+
+// ===================================================================
+
 class DoCommandRequest::_Internal {
  public:
   static const ::PROTOBUF_NAMESPACE_ID::Struct& command(const DoCommandRequest* msg);
@@ -5821,7 +6056,7 @@ void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
 }
 
 // ===================================================================
@@ -6014,15 +6249,26 @@ void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
 }
 
 // ===================================================================
 
 class GetKinematicsRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetKinematicsRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetKinematicsRequest::_Internal::extra(const GetKinematicsRequest* msg) {
+  return *msg->extra_;
+}
+void GetKinematicsRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 GetKinematicsRequest::GetKinematicsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -6040,6 +6286,11 @@ GetKinematicsRequest::GetKinematicsRequest(const GetKinematicsRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetKinematicsRequest)
 }
 
@@ -6048,6 +6299,7 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GetKinematicsRequest::~GetKinematicsRequest() {
@@ -6062,6 +6314,7 @@ GetKinematicsRequest::~GetKinematicsRequest() {
 inline void GetKinematicsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetKinematicsRequest::SetCachedSize(int size) const {
@@ -6075,6 +6328,10 @@ void GetKinematicsRequest::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6091,6 +6348,14 @@ const char* GetKinematicsRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.GetKinematicsRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -6133,6 +6398,13 @@ uint8_t* GetKinematicsRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -6154,6 +6426,13 @@ size_t GetKinematicsRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -6181,6 +6460,9 @@ void GetKinematicsRequest::MergeFrom(const GetKinematicsRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6204,12 +6486,13 @@ void GetKinematicsRequest::InternalSwap(GetKinematicsRequest* other) {
       &name_, lhs_arena,
       &other->name_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
 }
 
 // ===================================================================
@@ -6428,15 +6711,26 @@ void GetKinematicsResponse::InternalSwap(GetKinematicsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
 }
 
 // ===================================================================
 
 class GetGeometriesRequest::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetGeometriesRequest* msg);
 };
 
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+GetGeometriesRequest::_Internal::extra(const GetGeometriesRequest* msg) {
+  return *msg->extra_;
+}
+void GetGeometriesRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
 GetGeometriesRequest::GetGeometriesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -6454,6 +6748,11 @@ GetGeometriesRequest::GetGeometriesRequest(const GetGeometriesRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.GetGeometriesRequest)
 }
 
@@ -6462,6 +6761,7 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 GetGeometriesRequest::~GetGeometriesRequest() {
@@ -6476,6 +6776,7 @@ GetGeometriesRequest::~GetGeometriesRequest() {
 inline void GetGeometriesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void GetGeometriesRequest::SetCachedSize(int size) const {
@@ -6489,6 +6790,10 @@ void GetGeometriesRequest::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6505,6 +6810,14 @@ const char* GetGeometriesRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.common.v1.GetGeometriesRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -6547,6 +6860,13 @@ uint8_t* GetGeometriesRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -6568,6 +6888,13 @@ size_t GetGeometriesRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -6595,6 +6922,9 @@ void GetGeometriesRequest::MergeFrom(const GetGeometriesRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6618,12 +6948,13 @@ void GetGeometriesRequest::InternalSwap(GetGeometriesRequest* other) {
       &name_, lhs_arena,
       &other->name_, rhs_arena
   );
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
 }
 
 // ===================================================================
@@ -6801,7 +7132,7 @@ void GetGeometriesResponse::InternalSwap(GetGeometriesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[27]);
 }
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
@@ -6895,6 +7226,10 @@ Arena::CreateMaybeMessage< ::viam::common::v1::WorldState >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::common::v1::ActuatorStatus*
 Arena::CreateMaybeMessage< ::viam::common::v1::ActuatorStatus >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::ActuatorStatus >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::ResponseMetadata*
+Arena::CreateMaybeMessage< ::viam::common::v1::ResponseMetadata >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::ResponseMetadata >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::common::v1::DoCommandRequest*
 Arena::CreateMaybeMessage< ::viam::common::v1::DoCommandRequest >(Arena* arena) {

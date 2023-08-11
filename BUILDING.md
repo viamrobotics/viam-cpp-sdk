@@ -215,24 +215,24 @@ cmake -DVIAMCPPSDK_ENFORCE_COMPILER_MINIMA=OFF ...
 
 #### `VIAMCPPSDK_USE_DYNAMIC_PROTOS`
 
-By default, the SDK build will use checked-in copies of generated
-sources. However, these sources only work with a narrow range of gRPC
-versions. If the checked-in copies do not work, or if you would prefer
-to always work against regenerated code, you can request that proto
-generation happen as part of the build by enabling this flag:
+Because the checked-in copies of generated sources only work with a
+narrow range of gRPC versions, the SDK by default will dynamically
+regenerate proto code. If you wish to test against the checked-in
+copies or cannot regenerate for any reason, you can do so by disabling
+this flag:
 
 ``` shell
-cmake -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON ...
+cmake -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=OFF ...
 ```
 
 #### `VIAMCPPSDK_OFFLINE_PROTO_GENERATION`
 
-By default, the SDK will use buf.build services and definitions to
-generate code, which requires online access. If you wish to do
-entirely local proto generation, you may request this:
+By default, the SDK will use local buf services and definitions to
+generate code. It is possible to instead rely on buf.build services to
+do code generation (note that this requies online access):
 
 ```shell
-cmake -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON ...
+cmake -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=OFF ...
 ```
 
 Note that this option only has an effect when
