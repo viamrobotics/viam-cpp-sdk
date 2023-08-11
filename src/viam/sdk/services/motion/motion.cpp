@@ -1,7 +1,9 @@
-#include "service/motion/v1/motion.pb.h"
 #include "viam/api/service/motion/v1/motion.grpc.pb.h"
+#include "viam/api/service/motion/v1/motion.pb.h"
 #include "viam/sdk/common/utils.hpp"
+#include <viam/sdk/services/motion/client.hpp>
 #include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/services/motion/server.hpp>
 
 #include <common/v1/common.pb.h>
 
@@ -23,6 +25,35 @@ std::shared_ptr<Resource> MotionRegistration::create_rpc_client(
 };
 
 Motion::Motion(std::string name) : Service(std::move(name)){};
+
+service::motion::v1::Constraints Motion::constraints::to_proto() const {
+    service::motion::v1::Constraints proto;
+    for (const auto& lc : linear_constraints) {
+        service::motion::v1::LinearConstraint proto_lc;
+        proto_lc.set_line_tolerance_mm(lc.line_tolerance_mm);
+        proto_lc.set_orientation_tolerance_degs(lc.orientation_tolerance_degs);
+        *proto.mutable_linear_constraint()->Add() = std::move(proto_lc);
+    }
+
+    for (const auto& oc : orientation_constraints) {
+        service::motion::v1::OrientationConstraint proto_oc;
+        proto_oc.set_orientation_tolerance_degs(oc.orientation_tolerance_degs);
+        *proto.mutable_orientation_constraint()->Add() = std::move(proto_oc);
+    }
+
+    for (const auto& cs : collision_specifications) {
+        service::motion::v1::CollisionSpecification proto_cs;
+        for (const auto& allow : cs.allows) {
+            service::motion::v1::CollisionSpecification::AllowedFrameCollisions proto_allow;
+            *proto_allow.mutable_frame1() = allow.frame1;
+            *proto_allow.mutable_frame2() = allow.frame2;
+            *proto_cs.mutable_allows()->Add() = std::move(proto_allow);
+        }
+        *proto.mutable_collision_specification()->Add() = std::move(proto_cs);
+    }
+
+    return proto;
+}
 
 Motion::constraints Motion::constraints::from_proto(const service::motion::v1::Constraints& proto) {
     std::vector<Motion::linear_constraint> lcs;

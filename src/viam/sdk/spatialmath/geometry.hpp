@@ -89,6 +89,7 @@ class GeometryConfig {
     std::string label_;
 };
 
+// CR erodkin: do we need this at all? same with geo_obstacle.
 struct geo_point {
     double longitude, latitude;
 

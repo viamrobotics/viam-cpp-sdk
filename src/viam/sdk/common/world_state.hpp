@@ -25,9 +25,10 @@ class WorldState {
         static transform from_proto(const common::v1::Transform& proto);
     };
 
-    common::v1::WorldState to_proto();
+    common::v1::WorldState to_proto() const;
     static WorldState from_proto(const common::v1::WorldState& ws);
 
+    WorldState() {}
     WorldState(std::vector<geometries_in_frame> obstacles, std::vector<transform> transforms)
         : obstacles_(obstacles), transforms_(transforms) {}
 

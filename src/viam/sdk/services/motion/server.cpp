@@ -3,6 +3,7 @@
 #include "viam/sdk/common/utils.hpp"
 #include "viam/sdk/services/motion/motion.hpp"
 #include "viam/sdk/spatialmath/geometry.hpp"
+#include <grpcpp/support/status.h>
 #include <memory>
 #include <viam/sdk/services/motion/server.hpp>
 
@@ -84,90 +85,23 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     return ::grpc::Status();
 };
 
+// TODO: the `MoveOnGlobe` api is being changed, we're holding off on implementing it
+// until it's stable. Once the change goes through, we should implement.
+// CR erodkin: make ticket for these todos.
 ::grpc::Status MotionServer::MoveOnGlobe(
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MoveOnGlobe] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
-
-    const auto& destination = geo_point::from_proto(request->destination());
-    const auto& component_name = Name::from_proto(request->component_name());
-    const auto& movement_sensor_name = Name::from_proto(request->movement_sensor_name());
-    std::vector<geo_obstacle> obstacles;
-    for (const auto& proto_obstacle : request->obstacles()) {
-        const auto& obstacle = geo_obstacle::from_proto(proto_obstacle);
-        obstacles.push_back(obstacle);
-    }
-    double* linear_meters_per_sec;
-    if (request->has_linear_meters_per_sec()) {
-        *linear_meters_per_sec = request->linear_meters_per_sec();
-    }
-    double* angular_deg_per_sec;
-    if (request->has_angular_deg_per_sec()) {
-        *angular_deg_per_sec = request->angular_deg_per_sec();
-    }
-    double* heading;
-    if (request->has_heading()) {
-        *heading = request->heading();
-    }
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    bool success = motion->move_on_globe(destination,
-                                         component_name,
-                                         movement_sensor_name,
-                                         obstacles,
-                                         heading,
-                                         linear_meters_per_sec,
-                                         angular_deg_per_sec,
-                                         extra);
-
-    response->set_success(success);
-
-    return ::grpc::Status();
+    return ::grpc::Status(grpc::UNIMPLEMENTED, "");
 };
 
+// TODO: this method is being removed from proto. Once that happens, we should get rid
+// of this entirely.
 ::grpc::Status MotionServer::MoveSingleComponent(
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::MoveSingleComponentRequest* request,
     ::viam::service::motion::v1::MoveSingleComponentResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MoveSingleComponent] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
-
-    const auto& destination = PoseInFrame::from_proto(request->destination());
-    const auto& component_name = Name::from_proto(request->component_name());
-    const auto& world_state = WorldState::from_proto(request->world_state());
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    bool success = motion->move_single_component(destination, component_name, world_state, extra);
-
-    response->set_success(success);
-
-    return ::grpc::Status();
+    return ::grpc::Status(grpc::UNIMPLEMENTED, "");
 };
 
 ::grpc::Status MotionServer::GetPose(::grpc::ServerContext* context,

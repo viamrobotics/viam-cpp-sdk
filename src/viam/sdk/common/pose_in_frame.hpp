@@ -10,7 +10,7 @@ namespace sdk {
 // CR erodkin: this should be a struct and probably we should move `pose` in here as well
 class PoseInFrame {
    public:
-    viam::common::v1::PoseInFrame to_proto();
+    viam::common::v1::PoseInFrame to_proto() const;
     static PoseInFrame from_proto(const viam::common::v1::PoseInFrame& proto);
 
    private:

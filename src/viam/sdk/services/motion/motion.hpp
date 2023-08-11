@@ -64,6 +64,7 @@ class Motion : public Service {
         std::vector<collision_specification> collision_specifications;
 
         static constraints from_proto(const service::motion::v1::Constraints& proto);
+        service::motion::v1::Constraints to_proto() const;
     };
 
     static API static_api();
@@ -84,20 +85,6 @@ class Motion : public Service {
                              const Name& component_name,
                              const Name& slam_name,
                              const AttributeMap& extra) = 0;
-
-    virtual bool move_on_globe(const geo_point& destination,
-                               const Name& component_name,
-                               const Name& movement_sensor_name,
-                               std::vector<geo_obstacle> obstacles,
-                               double* heading,
-                               double* linear_meters_per_sec,
-                               double* angular_deg_per_sec,
-                               AttributeMap extra) = 0;
-
-    virtual bool move_single_component(const PoseInFrame& destination,
-                                       const Name& component_name,
-                                       const WorldState& world_state,
-                                       AttributeMap extra) = 0;
 
     virtual PoseInFrame get_pose(const Name& component_name,
                                  const std::string& destination_frame,
