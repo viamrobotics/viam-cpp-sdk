@@ -69,6 +69,9 @@ extern GetPoseResponseDefaultTypeInternal _GetPoseResponse_default_instance_;
 class LinearConstraint;
 struct LinearConstraintDefaultTypeInternal;
 extern LinearConstraintDefaultTypeInternal _LinearConstraint_default_instance_;
+class MotionConfiguration;
+struct MotionConfigurationDefaultTypeInternal;
+extern MotionConfigurationDefaultTypeInternal _MotionConfiguration_default_instance_;
 class MoveOnGlobeRequest;
 struct MoveOnGlobeRequestDefaultTypeInternal;
 extern MoveOnGlobeRequestDefaultTypeInternal _MoveOnGlobeRequest_default_instance_;
@@ -101,6 +104,7 @@ template<> ::viam::service::motion::v1::Constraints* Arena::CreateMaybeMessage<:
 template<> ::viam::service::motion::v1::GetPoseRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseRequest>(Arena*);
 template<> ::viam::service::motion::v1::GetPoseResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseResponse>(Arena*);
 template<> ::viam::service::motion::v1::LinearConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::LinearConstraint>(Arena*);
+template<> ::viam::service::motion::v1::MotionConfiguration* Arena::CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnGlobeRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnGlobeResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnMapRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapRequest>(Arena*);
@@ -879,6 +883,234 @@ class MoveOnMapResponse final :
 };
 // -------------------------------------------------------------------
 
+class MotionConfiguration final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MotionConfiguration) */ {
+ public:
+  inline MotionConfiguration() : MotionConfiguration(nullptr) {}
+  ~MotionConfiguration() override;
+  explicit PROTOBUF_CONSTEXPR MotionConfiguration(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MotionConfiguration(const MotionConfiguration& from);
+  MotionConfiguration(MotionConfiguration&& from) noexcept
+    : MotionConfiguration() {
+    *this = ::std::move(from);
+  }
+
+  inline MotionConfiguration& operator=(const MotionConfiguration& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MotionConfiguration& operator=(MotionConfiguration&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MotionConfiguration& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MotionConfiguration* internal_default_instance() {
+    return reinterpret_cast<const MotionConfiguration*>(
+               &_MotionConfiguration_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(MotionConfiguration& a, MotionConfiguration& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MotionConfiguration* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MotionConfiguration* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MotionConfiguration* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MotionConfiguration>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MotionConfiguration& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MotionConfiguration& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MotionConfiguration* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.MotionConfiguration";
+  }
+  protected:
+  explicit MotionConfiguration(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVisionServicesFieldNumber = 1,
+    kPositionPollingFrequencyHzFieldNumber = 2,
+    kObstaclePollingFrequencyHzFieldNumber = 3,
+    kPlanDeviationMFieldNumber = 4,
+    kLinearMPerSecFieldNumber = 5,
+    kAngularDegsPerSecFieldNumber = 6,
+  };
+  // repeated .viam.common.v1.ResourceName vision_services = 1 [json_name = "visionServices"];
+  int vision_services_size() const;
+  private:
+  int _internal_vision_services_size() const;
+  public:
+  void clear_vision_services();
+  ::viam::common::v1::ResourceName* mutable_vision_services(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
+      mutable_vision_services();
+  private:
+  const ::viam::common::v1::ResourceName& _internal_vision_services(int index) const;
+  ::viam::common::v1::ResourceName* _internal_add_vision_services();
+  public:
+  const ::viam::common::v1::ResourceName& vision_services(int index) const;
+  ::viam::common::v1::ResourceName* add_vision_services();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
+      vision_services() const;
+
+  // optional double position_polling_frequency_hz = 2 [json_name = "positionPollingFrequencyHz"];
+  bool has_position_polling_frequency_hz() const;
+  private:
+  bool _internal_has_position_polling_frequency_hz() const;
+  public:
+  void clear_position_polling_frequency_hz();
+  double position_polling_frequency_hz() const;
+  void set_position_polling_frequency_hz(double value);
+  private:
+  double _internal_position_polling_frequency_hz() const;
+  void _internal_set_position_polling_frequency_hz(double value);
+  public:
+
+  // optional double obstacle_polling_frequency_hz = 3 [json_name = "obstaclePollingFrequencyHz"];
+  bool has_obstacle_polling_frequency_hz() const;
+  private:
+  bool _internal_has_obstacle_polling_frequency_hz() const;
+  public:
+  void clear_obstacle_polling_frequency_hz();
+  double obstacle_polling_frequency_hz() const;
+  void set_obstacle_polling_frequency_hz(double value);
+  private:
+  double _internal_obstacle_polling_frequency_hz() const;
+  void _internal_set_obstacle_polling_frequency_hz(double value);
+  public:
+
+  // optional double plan_deviation_m = 4 [json_name = "planDeviationM"];
+  bool has_plan_deviation_m() const;
+  private:
+  bool _internal_has_plan_deviation_m() const;
+  public:
+  void clear_plan_deviation_m();
+  double plan_deviation_m() const;
+  void set_plan_deviation_m(double value);
+  private:
+  double _internal_plan_deviation_m() const;
+  void _internal_set_plan_deviation_m(double value);
+  public:
+
+  // optional double linear_m_per_sec = 5 [json_name = "linearMPerSec"];
+  bool has_linear_m_per_sec() const;
+  private:
+  bool _internal_has_linear_m_per_sec() const;
+  public:
+  void clear_linear_m_per_sec();
+  double linear_m_per_sec() const;
+  void set_linear_m_per_sec(double value);
+  private:
+  double _internal_linear_m_per_sec() const;
+  void _internal_set_linear_m_per_sec(double value);
+  public:
+
+  // optional double angular_degs_per_sec = 6 [json_name = "angularDegsPerSec"];
+  bool has_angular_degs_per_sec() const;
+  private:
+  bool _internal_has_angular_degs_per_sec() const;
+  public:
+  void clear_angular_degs_per_sec();
+  double angular_degs_per_sec() const;
+  void set_angular_degs_per_sec(double value);
+  private:
+  double _internal_angular_degs_per_sec() const;
+  void _internal_set_angular_degs_per_sec(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MotionConfiguration)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName > vision_services_;
+  double position_polling_frequency_hz_;
+  double obstacle_polling_frequency_hz_;
+  double plan_deviation_m_;
+  double linear_m_per_sec_;
+  double angular_degs_per_sec_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MoveOnGlobeRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnGlobeRequest) */ {
  public:
@@ -927,7 +1159,7 @@ class MoveOnGlobeRequest final :
                &_MoveOnGlobeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(MoveOnGlobeRequest& a, MoveOnGlobeRequest& b) {
     a.Swap(&b);
@@ -1003,10 +1235,9 @@ class MoveOnGlobeRequest final :
     kDestinationFieldNumber = 2,
     kComponentNameFieldNumber = 4,
     kMovementSensorNameFieldNumber = 5,
+    kMotionConfigurationFieldNumber = 7,
     kExtraFieldNumber = 99,
     kHeadingFieldNumber = 3,
-    kLinearMetersPerSecFieldNumber = 7,
-    kAngularDegPerSecFieldNumber = 8,
   };
   // repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
   int obstacles_size() const;
@@ -1094,6 +1325,24 @@ class MoveOnGlobeRequest final :
       ::viam::common::v1::ResourceName* movement_sensor_name);
   ::viam::common::v1::ResourceName* unsafe_arena_release_movement_sensor_name();
 
+  // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 7 [json_name = "motionConfiguration"];
+  bool has_motion_configuration() const;
+  private:
+  bool _internal_has_motion_configuration() const;
+  public:
+  void clear_motion_configuration();
+  const ::viam::service::motion::v1::MotionConfiguration& motion_configuration() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::MotionConfiguration* release_motion_configuration();
+  ::viam::service::motion::v1::MotionConfiguration* mutable_motion_configuration();
+  void set_allocated_motion_configuration(::viam::service::motion::v1::MotionConfiguration* motion_configuration);
+  private:
+  const ::viam::service::motion::v1::MotionConfiguration& _internal_motion_configuration() const;
+  ::viam::service::motion::v1::MotionConfiguration* _internal_mutable_motion_configuration();
+  public:
+  void unsafe_arena_set_allocated_motion_configuration(
+      ::viam::service::motion::v1::MotionConfiguration* motion_configuration);
+  ::viam::service::motion::v1::MotionConfiguration* unsafe_arena_release_motion_configuration();
+
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   bool has_extra() const;
   private:
@@ -1125,32 +1374,6 @@ class MoveOnGlobeRequest final :
   void _internal_set_heading(double value);
   public:
 
-  // optional float linear_meters_per_sec = 7 [json_name = "linearMetersPerSec"];
-  bool has_linear_meters_per_sec() const;
-  private:
-  bool _internal_has_linear_meters_per_sec() const;
-  public:
-  void clear_linear_meters_per_sec();
-  float linear_meters_per_sec() const;
-  void set_linear_meters_per_sec(float value);
-  private:
-  float _internal_linear_meters_per_sec() const;
-  void _internal_set_linear_meters_per_sec(float value);
-  public:
-
-  // optional float angular_deg_per_sec = 8 [json_name = "angularDegPerSec"];
-  bool has_angular_deg_per_sec() const;
-  private:
-  bool _internal_has_angular_deg_per_sec() const;
-  public:
-  void clear_angular_deg_per_sec();
-  float angular_deg_per_sec() const;
-  void set_angular_deg_per_sec(float value);
-  private:
-  float _internal_angular_deg_per_sec() const;
-  void _internal_set_angular_deg_per_sec(float value);
-  public:
-
   // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnGlobeRequest)
  private:
   class _Internal;
@@ -1165,10 +1388,9 @@ class MoveOnGlobeRequest final :
   ::viam::common::v1::GeoPoint* destination_;
   ::viam::common::v1::ResourceName* component_name_;
   ::viam::common::v1::ResourceName* movement_sensor_name_;
+  ::viam::service::motion::v1::MotionConfiguration* motion_configuration_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   double heading_;
-  float linear_meters_per_sec_;
-  float angular_deg_per_sec_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1221,7 +1443,7 @@ class MoveOnGlobeResponse final :
                &_MoveOnGlobeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(MoveOnGlobeResponse& a, MoveOnGlobeResponse& b) {
     a.Swap(&b);
@@ -1364,7 +1586,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -1588,7 +1810,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -1740,7 +1962,7 @@ class Constraints final :
                &_Constraints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(Constraints& a, Constraints& b) {
     a.Swap(&b);
@@ -1932,7 +2154,7 @@ class LinearConstraint final :
                &_LinearConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(LinearConstraint& a, LinearConstraint& b) {
     a.Swap(&b);
@@ -2095,7 +2317,7 @@ class OrientationConstraint final :
                &_OrientationConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
     a.Swap(&b);
@@ -2243,7 +2465,7 @@ class CollisionSpecification_AllowedFrameCollisions final :
                &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
     a.Swap(&b);
@@ -2407,7 +2629,7 @@ class CollisionSpecification final :
                &_CollisionSpecification_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
     a.Swap(&b);
@@ -3448,6 +3670,187 @@ inline void MoveOnMapResponse::set_success(bool value) {
 
 // -------------------------------------------------------------------
 
+// MotionConfiguration
+
+// repeated .viam.common.v1.ResourceName vision_services = 1 [json_name = "visionServices"];
+inline int MotionConfiguration::_internal_vision_services_size() const {
+  return vision_services_.size();
+}
+inline int MotionConfiguration::vision_services_size() const {
+  return _internal_vision_services_size();
+}
+inline ::viam::common::v1::ResourceName* MotionConfiguration::mutable_vision_services(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MotionConfiguration.vision_services)
+  return vision_services_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
+MotionConfiguration::mutable_vision_services() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MotionConfiguration.vision_services)
+  return &vision_services_;
+}
+inline const ::viam::common::v1::ResourceName& MotionConfiguration::_internal_vision_services(int index) const {
+  return vision_services_.Get(index);
+}
+inline const ::viam::common::v1::ResourceName& MotionConfiguration::vision_services(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.vision_services)
+  return _internal_vision_services(index);
+}
+inline ::viam::common::v1::ResourceName* MotionConfiguration::_internal_add_vision_services() {
+  return vision_services_.Add();
+}
+inline ::viam::common::v1::ResourceName* MotionConfiguration::add_vision_services() {
+  ::viam::common::v1::ResourceName* _add = _internal_add_vision_services();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MotionConfiguration.vision_services)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
+MotionConfiguration::vision_services() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MotionConfiguration.vision_services)
+  return vision_services_;
+}
+
+// optional double position_polling_frequency_hz = 2 [json_name = "positionPollingFrequencyHz"];
+inline bool MotionConfiguration::_internal_has_position_polling_frequency_hz() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool MotionConfiguration::has_position_polling_frequency_hz() const {
+  return _internal_has_position_polling_frequency_hz();
+}
+inline void MotionConfiguration::clear_position_polling_frequency_hz() {
+  position_polling_frequency_hz_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline double MotionConfiguration::_internal_position_polling_frequency_hz() const {
+  return position_polling_frequency_hz_;
+}
+inline double MotionConfiguration::position_polling_frequency_hz() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.position_polling_frequency_hz)
+  return _internal_position_polling_frequency_hz();
+}
+inline void MotionConfiguration::_internal_set_position_polling_frequency_hz(double value) {
+  _has_bits_[0] |= 0x00000001u;
+  position_polling_frequency_hz_ = value;
+}
+inline void MotionConfiguration::set_position_polling_frequency_hz(double value) {
+  _internal_set_position_polling_frequency_hz(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MotionConfiguration.position_polling_frequency_hz)
+}
+
+// optional double obstacle_polling_frequency_hz = 3 [json_name = "obstaclePollingFrequencyHz"];
+inline bool MotionConfiguration::_internal_has_obstacle_polling_frequency_hz() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool MotionConfiguration::has_obstacle_polling_frequency_hz() const {
+  return _internal_has_obstacle_polling_frequency_hz();
+}
+inline void MotionConfiguration::clear_obstacle_polling_frequency_hz() {
+  obstacle_polling_frequency_hz_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline double MotionConfiguration::_internal_obstacle_polling_frequency_hz() const {
+  return obstacle_polling_frequency_hz_;
+}
+inline double MotionConfiguration::obstacle_polling_frequency_hz() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.obstacle_polling_frequency_hz)
+  return _internal_obstacle_polling_frequency_hz();
+}
+inline void MotionConfiguration::_internal_set_obstacle_polling_frequency_hz(double value) {
+  _has_bits_[0] |= 0x00000002u;
+  obstacle_polling_frequency_hz_ = value;
+}
+inline void MotionConfiguration::set_obstacle_polling_frequency_hz(double value) {
+  _internal_set_obstacle_polling_frequency_hz(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MotionConfiguration.obstacle_polling_frequency_hz)
+}
+
+// optional double plan_deviation_m = 4 [json_name = "planDeviationM"];
+inline bool MotionConfiguration::_internal_has_plan_deviation_m() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool MotionConfiguration::has_plan_deviation_m() const {
+  return _internal_has_plan_deviation_m();
+}
+inline void MotionConfiguration::clear_plan_deviation_m() {
+  plan_deviation_m_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline double MotionConfiguration::_internal_plan_deviation_m() const {
+  return plan_deviation_m_;
+}
+inline double MotionConfiguration::plan_deviation_m() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.plan_deviation_m)
+  return _internal_plan_deviation_m();
+}
+inline void MotionConfiguration::_internal_set_plan_deviation_m(double value) {
+  _has_bits_[0] |= 0x00000004u;
+  plan_deviation_m_ = value;
+}
+inline void MotionConfiguration::set_plan_deviation_m(double value) {
+  _internal_set_plan_deviation_m(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MotionConfiguration.plan_deviation_m)
+}
+
+// optional double linear_m_per_sec = 5 [json_name = "linearMPerSec"];
+inline bool MotionConfiguration::_internal_has_linear_m_per_sec() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool MotionConfiguration::has_linear_m_per_sec() const {
+  return _internal_has_linear_m_per_sec();
+}
+inline void MotionConfiguration::clear_linear_m_per_sec() {
+  linear_m_per_sec_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline double MotionConfiguration::_internal_linear_m_per_sec() const {
+  return linear_m_per_sec_;
+}
+inline double MotionConfiguration::linear_m_per_sec() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.linear_m_per_sec)
+  return _internal_linear_m_per_sec();
+}
+inline void MotionConfiguration::_internal_set_linear_m_per_sec(double value) {
+  _has_bits_[0] |= 0x00000008u;
+  linear_m_per_sec_ = value;
+}
+inline void MotionConfiguration::set_linear_m_per_sec(double value) {
+  _internal_set_linear_m_per_sec(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MotionConfiguration.linear_m_per_sec)
+}
+
+// optional double angular_degs_per_sec = 6 [json_name = "angularDegsPerSec"];
+inline bool MotionConfiguration::_internal_has_angular_degs_per_sec() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool MotionConfiguration::has_angular_degs_per_sec() const {
+  return _internal_has_angular_degs_per_sec();
+}
+inline void MotionConfiguration::clear_angular_degs_per_sec() {
+  angular_degs_per_sec_ = 0;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline double MotionConfiguration::_internal_angular_degs_per_sec() const {
+  return angular_degs_per_sec_;
+}
+inline double MotionConfiguration::angular_degs_per_sec() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.angular_degs_per_sec)
+  return _internal_angular_degs_per_sec();
+}
+inline void MotionConfiguration::_internal_set_angular_degs_per_sec(double value) {
+  _has_bits_[0] |= 0x00000010u;
+  angular_degs_per_sec_ = value;
+}
+inline void MotionConfiguration::set_angular_degs_per_sec(double value) {
+  _internal_set_angular_degs_per_sec(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MotionConfiguration.angular_degs_per_sec)
+}
+
+// -------------------------------------------------------------------
+
 // MoveOnGlobeRequest
 
 // string name = 1 [json_name = "name"];
@@ -3587,7 +3990,7 @@ inline void MoveOnGlobeRequest::set_allocated_destination(::viam::common::v1::Ge
 
 // optional double heading = 3 [json_name = "heading"];
 inline bool MoveOnGlobeRequest::_internal_has_heading() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
 inline bool MoveOnGlobeRequest::has_heading() const {
@@ -3595,7 +3998,7 @@ inline bool MoveOnGlobeRequest::has_heading() const {
 }
 inline void MoveOnGlobeRequest::clear_heading() {
   heading_ = 0;
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline double MoveOnGlobeRequest::_internal_heading() const {
   return heading_;
@@ -3605,7 +4008,7 @@ inline double MoveOnGlobeRequest::heading() const {
   return _internal_heading();
 }
 inline void MoveOnGlobeRequest::_internal_set_heading(double value) {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   heading_ = value;
 }
 inline void MoveOnGlobeRequest::set_heading(double value) {
@@ -3820,60 +4223,94 @@ MoveOnGlobeRequest::obstacles() const {
   return obstacles_;
 }
 
-// optional float linear_meters_per_sec = 7 [json_name = "linearMetersPerSec"];
-inline bool MoveOnGlobeRequest::_internal_has_linear_meters_per_sec() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+// optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 7 [json_name = "motionConfiguration"];
+inline bool MoveOnGlobeRequest::_internal_has_motion_configuration() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || motion_configuration_ != nullptr);
   return value;
 }
-inline bool MoveOnGlobeRequest::has_linear_meters_per_sec() const {
-  return _internal_has_linear_meters_per_sec();
+inline bool MoveOnGlobeRequest::has_motion_configuration() const {
+  return _internal_has_motion_configuration();
 }
-inline void MoveOnGlobeRequest::clear_linear_meters_per_sec() {
-  linear_meters_per_sec_ = 0;
-  _has_bits_[0] &= ~0x00000002u;
+inline void MoveOnGlobeRequest::clear_motion_configuration() {
+  if (motion_configuration_ != nullptr) motion_configuration_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline float MoveOnGlobeRequest::_internal_linear_meters_per_sec() const {
-  return linear_meters_per_sec_;
+inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnGlobeRequest::_internal_motion_configuration() const {
+  const ::viam::service::motion::v1::MotionConfiguration* p = motion_configuration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::MotionConfiguration&>(
+      ::viam::service::motion::v1::_MotionConfiguration_default_instance_);
 }
-inline float MoveOnGlobeRequest::linear_meters_per_sec() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.linear_meters_per_sec)
-  return _internal_linear_meters_per_sec();
+inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnGlobeRequest::motion_configuration() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.motion_configuration)
+  return _internal_motion_configuration();
 }
-inline void MoveOnGlobeRequest::_internal_set_linear_meters_per_sec(float value) {
-  _has_bits_[0] |= 0x00000002u;
-  linear_meters_per_sec_ = value;
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_motion_configuration(
+    ::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(motion_configuration_);
+  }
+  motion_configuration_ = motion_configuration;
+  if (motion_configuration) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.motion_configuration)
 }
-inline void MoveOnGlobeRequest::set_linear_meters_per_sec(float value) {
-  _internal_set_linear_meters_per_sec(value);
-  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.linear_meters_per_sec)
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeRequest::release_motion_configuration() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
+  motion_configuration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-
-// optional float angular_deg_per_sec = 8 [json_name = "angularDegPerSec"];
-inline bool MoveOnGlobeRequest::_internal_has_angular_deg_per_sec() const {
-  bool value = (_has_bits_[0] & 0x00000004u) != 0;
-  return value;
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeRequest::unsafe_arena_release_motion_configuration() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.motion_configuration)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
+  motion_configuration_ = nullptr;
+  return temp;
 }
-inline bool MoveOnGlobeRequest::has_angular_deg_per_sec() const {
-  return _internal_has_angular_deg_per_sec();
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeRequest::_internal_mutable_motion_configuration() {
+  _has_bits_[0] |= 0x00000001u;
+  if (motion_configuration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(GetArenaForAllocation());
+    motion_configuration_ = p;
+  }
+  return motion_configuration_;
 }
-inline void MoveOnGlobeRequest::clear_angular_deg_per_sec() {
-  angular_deg_per_sec_ = 0;
-  _has_bits_[0] &= ~0x00000004u;
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeRequest::mutable_motion_configuration() {
+  ::viam::service::motion::v1::MotionConfiguration* _msg = _internal_mutable_motion_configuration();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.motion_configuration)
+  return _msg;
 }
-inline float MoveOnGlobeRequest::_internal_angular_deg_per_sec() const {
-  return angular_deg_per_sec_;
-}
-inline float MoveOnGlobeRequest::angular_deg_per_sec() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.angular_deg_per_sec)
-  return _internal_angular_deg_per_sec();
-}
-inline void MoveOnGlobeRequest::_internal_set_angular_deg_per_sec(float value) {
-  _has_bits_[0] |= 0x00000004u;
-  angular_deg_per_sec_ = value;
-}
-inline void MoveOnGlobeRequest::set_angular_deg_per_sec(float value) {
-  _internal_set_angular_deg_per_sec(value);
-  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.angular_deg_per_sec)
+inline void MoveOnGlobeRequest::set_allocated_motion_configuration(::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete motion_configuration_;
+  }
+  if (motion_configuration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(motion_configuration);
+    if (message_arena != submessage_arena) {
+      motion_configuration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, motion_configuration, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  motion_configuration_ = motion_configuration;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.motion_configuration)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -4752,6 +5189,8 @@ CollisionSpecification::allows() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
