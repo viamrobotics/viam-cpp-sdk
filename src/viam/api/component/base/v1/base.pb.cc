@@ -192,7 +192,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
     ::_pbi::ConstantInitialized)
   : width_meters_(0)
-  , turning_radius_meters_(0){}
+  , turning_radius_meters_(0)
+  , wheel_circumference_meters_(0){}
 struct GetPropertiesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -319,6 +320,7 @@ const uint32_t TableStruct_component_2fbase_2fv1_2fbase_2eproto::offsets[] PROTO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::base::v1::GetPropertiesResponse, width_meters_),
   PROTOBUF_FIELD_OFFSET(::viam::component::base::v1::GetPropertiesResponse, turning_radius_meters_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::base::v1::GetPropertiesResponse, wheel_circumference_meters_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::base::v1::MoveStraightRequest)},
@@ -384,46 +386,48 @@ const char descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto[] PROT
   "sMovingResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMo"
   "ving\"Y\n\024GetPropertiesRequest\022\022\n\004name\030\001 \001"
   "(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.protobu"
-  "f.StructR\005extra\"n\n\025GetPropertiesResponse"
-  "\022!\n\014width_meters\030\001 \001(\001R\013widthMeters\0222\n\025t"
-  "urning_radius_meters\030\002 \001(\001R\023turningRadiu"
-  "sMeters2\341\n\n\013BaseService\022\247\001\n\014MoveStraight"
-  "\022+.viam.component.base.v1.MoveStraightRe"
-  "quest\032,.viam.component.base.v1.MoveStrai"
-  "ghtResponse\"<\240\222)\001\202\323\344\223\0022\"0/viam/api/v1/co"
-  "mponent/base/{name}/move_straight\022\206\001\n\004Sp"
-  "in\022#.viam.component.base.v1.SpinRequest\032"
-  "$.viam.component.base.v1.SpinResponse\"3\240"
-  "\222)\001\202\323\344\223\002)\"\'/viam/api/v1/component/base/{"
-  "name}/spin\022\227\001\n\010SetPower\022\'.viam.component"
-  ".base.v1.SetPowerRequest\032(.viam.componen"
-  "t.base.v1.SetPowerResponse\"8\240\222)\001\202\323\344\223\002.\","
-  "/viam/api/v1/component/base/{name}/set_p"
-  "ower\022\243\001\n\013SetVelocity\022*.viam.component.ba"
-  "se.v1.SetVelocityRequest\032+.viam.componen"
-  "t.base.v1.SetVelocityResponse\";\240\222)\001\202\323\344\223\002"
-  "1\"//viam/api/v1/component/base/{name}/se"
-  "t_velocity\022\202\001\n\004Stop\022#.viam.component.bas"
-  "e.v1.StopRequest\032$.viam.component.base.v"
-  "1.StopResponse\"/\202\323\344\223\002)\"\'/viam/api/v1/com"
-  "ponent/base/{name}/stop\022\223\001\n\010IsMoving\022\'.v"
-  "iam.component.base.v1.IsMovingRequest\032(."
-  "viam.component.base.v1.IsMovingResponse\""
-  "4\202\323\344\223\002.\022,/viam/api/v1/component/base/{na"
-  "me}/is_moving\022\207\001\n\tDoCommand\022 .viam.commo"
-  "n.v1.DoCommandRequest\032!.viam.common.v1.D"
-  "oCommandResponse\"5\202\323\344\223\002/\"-/viam/api/v1/c"
-  "omponent/base/{name}/do_command\022\223\001\n\rGetG"
-  "eometries\022$.viam.common.v1.GetGeometries"
-  "Request\032%.viam.common.v1.GetGeometriesRe"
-  "sponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/b"
-  "ase/{name}/geometries\022\243\001\n\rGetProperties\022"
-  ",.viam.component.base.v1.GetPropertiesRe"
-  "quest\032-.viam.component.base.v1.GetProper"
-  "tiesResponse\"5\202\323\344\223\002/\022-/viam/api/v1/compo"
-  "nent/base/{name}/propertiesB\?\n\032com.viam."
-  "component.base.v1Z!go.viam.com/api/compo"
-  "nent/base/v1b\006proto3"
+  "f.StructR\005extra\"\254\001\n\025GetPropertiesRespons"
+  "e\022!\n\014width_meters\030\001 \001(\001R\013widthMeters\0222\n\025"
+  "turning_radius_meters\030\002 \001(\001R\023turningRadi"
+  "usMeters\022<\n\032wheel_circumference_meters\030\003"
+  " \001(\001R\030wheelCircumferenceMeters2\341\n\n\013BaseS"
+  "ervice\022\247\001\n\014MoveStraight\022+.viam.component"
+  ".base.v1.MoveStraightRequest\032,.viam.comp"
+  "onent.base.v1.MoveStraightResponse\"<\240\222)\001"
+  "\202\323\344\223\0022\"0/viam/api/v1/component/base/{nam"
+  "e}/move_straight\022\206\001\n\004Spin\022#.viam.compone"
+  "nt.base.v1.SpinRequest\032$.viam.component."
+  "base.v1.SpinResponse\"3\240\222)\001\202\323\344\223\002)\"\'/viam/"
+  "api/v1/component/base/{name}/spin\022\227\001\n\010Se"
+  "tPower\022\'.viam.component.base.v1.SetPower"
+  "Request\032(.viam.component.base.v1.SetPowe"
+  "rResponse\"8\240\222)\001\202\323\344\223\002.\",/viam/api/v1/comp"
+  "onent/base/{name}/set_power\022\243\001\n\013SetVeloc"
+  "ity\022*.viam.component.base.v1.SetVelocity"
+  "Request\032+.viam.component.base.v1.SetVelo"
+  "cityResponse\";\240\222)\001\202\323\344\223\0021\"//viam/api/v1/c"
+  "omponent/base/{name}/set_velocity\022\202\001\n\004St"
+  "op\022#.viam.component.base.v1.StopRequest\032"
+  "$.viam.component.base.v1.StopResponse\"/\202"
+  "\323\344\223\002)\"\'/viam/api/v1/component/base/{name"
+  "}/stop\022\223\001\n\010IsMoving\022\'.viam.component.bas"
+  "e.v1.IsMovingRequest\032(.viam.component.ba"
+  "se.v1.IsMovingResponse\"4\202\323\344\223\002.\022,/viam/ap"
+  "i/v1/component/base/{name}/is_moving\022\207\001\n"
+  "\tDoCommand\022 .viam.common.v1.DoCommandReq"
+  "uest\032!.viam.common.v1.DoCommandResponse\""
+  "5\202\323\344\223\002/\"-/viam/api/v1/component/base/{na"
+  "me}/do_command\022\223\001\n\rGetGeometries\022$.viam."
+  "common.v1.GetGeometriesRequest\032%.viam.co"
+  "mmon.v1.GetGeometriesResponse\"5\202\323\344\223\002/\022-/"
+  "viam/api/v1/component/base/{name}/geomet"
+  "ries\022\243\001\n\rGetProperties\022,.viam.component."
+  "base.v1.GetPropertiesRequest\032-.viam.comp"
+  "onent.base.v1.GetPropertiesResponse\"5\202\323\344"
+  "\223\002/\022-/viam/api/v1/component/base/{name}/"
+  "propertiesB\?\n\032com.viam.component.base.v1"
+  "Z!go.viam.com/api/component/base/v1b\006pro"
+  "to3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -432,7 +436,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2f
 };
 static ::_pbi::once_flag descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fbase_2fv1_2fbase_2eproto = {
-    false, false, 2740, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
+    false, false, 2803, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
     "component/base/v1/base.proto",
     &descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once, descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_component_2fbase_2fv1_2fbase_2eproto::offsets,
@@ -2837,16 +2841,16 @@ GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&width_meters_, &from.width_meters_,
-    static_cast<size_t>(reinterpret_cast<char*>(&turning_radius_meters_) -
-    reinterpret_cast<char*>(&width_meters_)) + sizeof(turning_radius_meters_));
+    static_cast<size_t>(reinterpret_cast<char*>(&wheel_circumference_meters_) -
+    reinterpret_cast<char*>(&width_meters_)) + sizeof(wheel_circumference_meters_));
   // @@protoc_insertion_point(copy_constructor:viam.component.base.v1.GetPropertiesResponse)
 }
 
 inline void GetPropertiesResponse::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&width_meters_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&turning_radius_meters_) -
-    reinterpret_cast<char*>(&width_meters_)) + sizeof(turning_radius_meters_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&wheel_circumference_meters_) -
+    reinterpret_cast<char*>(&width_meters_)) + sizeof(wheel_circumference_meters_));
 }
 
 GetPropertiesResponse::~GetPropertiesResponse() {
@@ -2873,8 +2877,8 @@ void GetPropertiesResponse::Clear() {
   (void) cached_has_bits;
 
   ::memset(&width_meters_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&turning_radius_meters_) -
-      reinterpret_cast<char*>(&width_meters_)) + sizeof(turning_radius_meters_));
+      reinterpret_cast<char*>(&wheel_circumference_meters_) -
+      reinterpret_cast<char*>(&width_meters_)) + sizeof(wheel_circumference_meters_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2896,6 +2900,14 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
           turning_radius_meters_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double wheel_circumference_meters = 3 [json_name = "wheelCircumferenceMeters"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          wheel_circumference_meters_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -2949,6 +2961,16 @@ uint8_t* GetPropertiesResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_turning_radius_meters(), target);
   }
 
+  // double wheel_circumference_meters = 3 [json_name = "wheelCircumferenceMeters"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_wheel_circumference_meters = this->_internal_wheel_circumference_meters();
+  uint64_t raw_wheel_circumference_meters;
+  memcpy(&raw_wheel_circumference_meters, &tmp_wheel_circumference_meters, sizeof(tmp_wheel_circumference_meters));
+  if (raw_wheel_circumference_meters != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_wheel_circumference_meters(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2980,6 +3002,15 @@ size_t GetPropertiesResponse::ByteSizeLong() const {
   uint64_t raw_turning_radius_meters;
   memcpy(&raw_turning_radius_meters, &tmp_turning_radius_meters, sizeof(tmp_turning_radius_meters));
   if (raw_turning_radius_meters != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double wheel_circumference_meters = 3 [json_name = "wheelCircumferenceMeters"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_wheel_circumference_meters = this->_internal_wheel_circumference_meters();
+  uint64_t raw_wheel_circumference_meters;
+  memcpy(&raw_wheel_circumference_meters, &tmp_wheel_circumference_meters, sizeof(tmp_wheel_circumference_meters));
+  if (raw_wheel_circumference_meters != 0) {
     total_size += 1 + 8;
   }
 
@@ -3019,6 +3050,13 @@ void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
   if (raw_turning_radius_meters != 0) {
     _internal_set_turning_radius_meters(from._internal_turning_radius_meters());
   }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_wheel_circumference_meters = from._internal_wheel_circumference_meters();
+  uint64_t raw_wheel_circumference_meters;
+  memcpy(&raw_wheel_circumference_meters, &tmp_wheel_circumference_meters, sizeof(tmp_wheel_circumference_meters));
+  if (raw_wheel_circumference_meters != 0) {
+    _internal_set_wheel_circumference_meters(from._internal_wheel_circumference_meters());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3037,8 +3075,8 @@ void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, turning_radius_meters_)
-      + sizeof(GetPropertiesResponse::turning_radius_meters_)
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, wheel_circumference_meters_)
+      + sizeof(GetPropertiesResponse::wheel_circumference_meters_)
       - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, width_meters_)>(
           reinterpret_cast<char*>(&width_meters_),
           reinterpret_cast<char*>(&other->width_meters_));
