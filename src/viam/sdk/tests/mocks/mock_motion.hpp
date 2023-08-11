@@ -1,5 +1,6 @@
 #pragma once
 
+#include "viam/sdk/common/pose_in_frame.hpp"
 #include "viam/sdk/resource/resource_api.hpp"
 #include "viam/sdk/spatialmath/geometry.hpp"
 #include <viam/sdk/services/motion/motion.hpp>
@@ -7,6 +8,9 @@
 namespace viam {
 namespace sdktests {
 namespace motion {
+
+sdk::PoseInFrame init_fake_pose();
+sdk::PoseInFrame fake_pose();
 
 class MockMotion : public sdk::Motion {
    public:
@@ -31,16 +35,20 @@ class MockMotion : public sdk::Motion {
 
     // These variables allow the testing infra to `peek` into the mock
     // and ensure that the correct values were passed
+    // CR erodkin: should we make this private and not do the peek thing?
     sdk::PoseInFrame current_location;
     sdk::pose peek_current_pose;
     sdk::Name peek_component_name;
     sdk::Name peek_movement_sensor_name;
     sdk::Name peek_slam_name;
+    std::string peek_destination_frame;
+    std::vector<sdk::WorldState::transform> peek_supplemental_transforms;
     constraints peek_constraints;
     sdk::WorldState peek_world_state;
-    sdk::AttributeMap peek_extra;
+    sdk::AttributeMap peek_map;
 
-    MockMotion(std::string name) : Motion(std::move(name)){};
+    MockMotion(std::string name)
+        : sdk::Motion(std::move(name)), current_location(init_fake_pose()){};
 };
 
 }  // namespace motion

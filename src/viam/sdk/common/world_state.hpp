@@ -23,6 +23,7 @@ class WorldState {
 
         common::v1::Transform to_proto() const;
         static transform from_proto(const common::v1::Transform& proto);
+        transform() {}
     };
 
     common::v1::WorldState to_proto() const;
