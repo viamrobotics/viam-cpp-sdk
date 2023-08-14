@@ -1921,6 +1921,7 @@ class OrganizationMember final :
     kEmailsFieldNumber = 2,
     kUserIdFieldNumber = 1,
     kDateAddedFieldNumber = 3,
+    kLastLoginFieldNumber = 4,
   };
   // repeated string emails = 2 [json_name = "emails"];
   int emails_size() const;
@@ -1978,6 +1979,24 @@ class OrganizationMember final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* date_added);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_date_added();
 
+  // optional .google.protobuf.Timestamp last_login = 4 [json_name = "lastLogin"];
+  bool has_last_login() const;
+  private:
+  bool _internal_has_last_login() const;
+  public:
+  void clear_last_login();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_login() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_login();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_login();
+  void set_allocated_last_login(::PROTOBUF_NAMESPACE_ID::Timestamp* last_login);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_login() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_login();
+  public:
+  void unsafe_arena_set_allocated_last_login(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_login();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.OrganizationMember)
  private:
   class _Internal;
@@ -1985,10 +2004,12 @@ class OrganizationMember final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> emails_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* date_added_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -24562,6 +24583,93 @@ inline void OrganizationMember::set_allocated_date_added(::PROTOBUF_NAMESPACE_ID
   }
   date_added_ = date_added;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrganizationMember.date_added)
+}
+
+// optional .google.protobuf.Timestamp last_login = 4 [json_name = "lastLogin"];
+inline bool OrganizationMember::_internal_has_last_login() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || last_login_ != nullptr);
+  return value;
+}
+inline bool OrganizationMember::has_last_login() const {
+  return _internal_has_last_login();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& OrganizationMember::_internal_last_login() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_login_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& OrganizationMember::last_login() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.OrganizationMember.last_login)
+  return _internal_last_login();
+}
+inline void OrganizationMember::unsafe_arena_set_allocated_last_login(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_login_);
+  }
+  last_login_ = last_login;
+  if (last_login) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.OrganizationMember.last_login)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::release_last_login() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_login_;
+  last_login_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::unsafe_arena_release_last_login() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.OrganizationMember.last_login)
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_login_;
+  last_login_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::_internal_mutable_last_login() {
+  _has_bits_[0] |= 0x00000001u;
+  if (last_login_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_login_ = p;
+  }
+  return last_login_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::mutable_last_login() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_login();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.OrganizationMember.last_login)
+  return _msg;
+}
+inline void OrganizationMember::set_allocated_last_login(::PROTOBUF_NAMESPACE_ID::Timestamp* last_login) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_login_);
+  }
+  if (last_login) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_login));
+    if (message_arena != submessage_arena) {
+      last_login = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_login, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  last_login_ = last_login;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrganizationMember.last_login)
 }
 
 // -------------------------------------------------------------------
