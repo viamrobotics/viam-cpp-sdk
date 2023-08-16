@@ -5,7 +5,7 @@
 namespace viam {
 namespace sdk {
 
-common::v1::PoseInFrame PoseInFrame::to_proto() const {
+common::v1::PoseInFrame pose_in_frame::to_proto() const {
     common::v1::PoseInFrame pif;
     *pif.mutable_reference_frame() = reference_frame;
     common::v1::Pose proto_pose;
@@ -20,8 +20,8 @@ common::v1::PoseInFrame PoseInFrame::to_proto() const {
     return pif;
 };
 
-PoseInFrame PoseInFrame::from_proto(const common::v1::PoseInFrame& proto) {
-    PoseInFrame pif;
+pose_in_frame pose_in_frame::from_proto(const common::v1::PoseInFrame& proto) {
+    pose_in_frame pif;
     pif.reference_frame = proto.reference_frame();
     const auto& proto_pose = proto.pose();
     pif.pose.orientation.o_x = proto_pose.o_x();
@@ -35,11 +35,10 @@ PoseInFrame PoseInFrame::from_proto(const common::v1::PoseInFrame& proto) {
     return pif;
 }
 
-// CR erodkin: maybe we can get rid of this.
-bool operator==(const PoseInFrame& lhs, const PoseInFrame& rhs) {
+bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs) {
     return lhs.pose == rhs.pose && lhs.reference_frame == rhs.reference_frame;
 }
-std::ostream& operator<<(std::ostream& os, const PoseInFrame& v) {
+std::ostream& operator<<(std::ostream& os, const pose_in_frame& v) {
     os << "{ pose: " << v.pose << ",\n"
        << "  reference_frame: " << v.reference_frame << "}";
     return os;

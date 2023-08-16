@@ -111,6 +111,67 @@ std::shared_ptr<ResourceRegistration> Motion::resource_registration() {
     return std::make_shared<MotionRegistration>(sd);
 }
 
+service::motion::v1::MotionConfiguration motion_configuration::to_proto() const {
+    service::motion::v1::MotionConfiguration proto;
+
+    for (const auto& name : vision_services) {
+        *proto.mutable_vision_services()->Add() = name.to_proto();
+    }
+
+    if (position_polling_frequency_hz) {
+        proto.set_position_polling_frequency_hz(*position_polling_frequency_hz);
+    }
+
+    if (obstacle_polling_frequency_hz) {
+        proto.set_obstacle_polling_frequency_hz(*obstacle_polling_frequency_hz);
+    }
+
+    if (plan_deviation_m) {
+        proto.set_plan_deviation_m(*plan_deviation_m);
+    }
+
+    if (linear_m_per_sec) {
+        proto.set_linear_m_per_sec(*linear_m_per_sec);
+    }
+
+    if (angular_degs_per_sec) {
+        proto.set_angular_degs_per_sec(*angular_degs_per_sec);
+    }
+
+    return proto;
+}
+
+motion_configuration motion_configuration::from_proto(
+    const service::motion::v1::MotionConfiguration& proto) {
+    motion_configuration mc;
+
+    for (const auto& proto_name : proto.vision_services()) {
+        mc.vision_services.push_back(Name::from_proto(proto_name));
+    }
+
+    if (proto.has_position_polling_frequency_hz()) {
+        *mc.position_polling_frequency_hz = proto.position_polling_frequency_hz();
+    }
+
+    if (proto.has_obstacle_polling_frequency_hz()) {
+        *mc.obstacle_polling_frequency_hz = proto.obstacle_polling_frequency_hz();
+    }
+
+    if (proto.has_plan_deviation_m()) {
+        *mc.plan_deviation_m = proto.plan_deviation_m();
+    }
+
+    if (proto.has_linear_m_per_sec()) {
+        *mc.linear_m_per_sec = proto.linear_m_per_sec();
+    }
+
+    if (proto.has_angular_degs_per_sec()) {
+        *mc.angular_degs_per_sec = proto.angular_degs_per_sec();
+    }
+
+    return mc;
+}
+
 namespace {
 bool init() {
     Registry::register_resource(Motion::static_api(), Motion::resource_registration());

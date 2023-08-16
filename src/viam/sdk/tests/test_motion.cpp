@@ -1,17 +1,18 @@
 #define BOOST_TEST_MODULE test module test_motion
 
-#include "viam/sdk/common/pose_in_frame.hpp"
-#include "viam/sdk/services/motion/client.hpp"
-#include "viam/sdk/services/motion/server.hpp"
-#include "viam/sdk/spatialmath/geometry.hpp"
-
 #include <boost/test/included/unit_test.hpp>
 
-#include "viam/sdk/common/world_state.hpp"
-#include "viam/sdk/tests/test_utils.hpp"
+#include <viam/sdk/common/pose_in_frame.hpp>
+#include <viam/sdk/common/world_state.hpp>
+#include <viam/sdk/services/motion/client.hpp>
+#include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/services/motion/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::WorldState)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::geo_obstacle>)
 
 namespace viam {
 namespace sdktests {
@@ -22,7 +23,7 @@ using namespace viam::sdk;
 WorldState mock_world_state() {
     WorldState::transform transform;
     transform.reference_frame = "fake-reference-frame";
-    transform.pose_in_observer_frame = PoseInFrame("fake", {{2, 3, 4}, {5, 6, 7}, 8});
+    transform.pose_in_observer_frame = pose_in_frame("fake", {{2, 3, 4}, {5, 6, 7}, 8});
     WorldState::geometries_in_frame obstacle;
     obstacle.reference_frame = "ref";
 
@@ -34,7 +35,7 @@ BOOST_AUTO_TEST_SUITE(test_mock)
 BOOST_AUTO_TEST_CASE(mock_move_and_get_pose) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
 
-    BOOST_CHECK_EQUAL(motion->current_location, init_fake_pose());
+    BOOST_CHECK_EQUAL(motion->current_location, std::move(init_fake_pose()));
 
     Name fake_name({"acme", "service", "motion"}, "fake-remote", "fake-motion");
     auto ws = std::make_shared<WorldState>(mock_world_state());
@@ -53,15 +54,39 @@ BOOST_AUTO_TEST_CASE(mock_move_on_map) {
     BOOST_CHECK_EQUAL(motion->current_location, std::move(init_fake_pose()));
 
     pose new_destination({{3, 4, 5}, {6, 7, 8}, 9});
-    Name fake_component({"acme", "component", "fake"}, "", "fake-component");
-    Name fake_slam({"acme", "service", "slam"}, "", "fake-slam");
 
-    bool success = motion->move_on_map(new_destination, fake_component, fake_slam, fake_map());
+    bool success =
+        motion->move_on_map(new_destination, fake_component_name(), fake_slam_name(), fake_map());
 
     BOOST_TEST(success);
     BOOST_CHECK_EQUAL(motion->peek_current_pose, std::move(new_destination));
-    BOOST_CHECK_EQUAL(motion->peek_component_name, std::move(fake_component));
-    BOOST_CHECK_EQUAL(motion->peek_slam_name, std::move(fake_slam));
+    BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
+    BOOST_CHECK_EQUAL(motion->peek_slam_name, fake_slam_name());
+}
+
+BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
+    BOOST_TEST(true);
+    // std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
+
+    // double* heading;
+    //*heading = 15;
+
+    // bool success = motion->move_on_globe(fake_geo_point(),
+    // heading,
+    // fake_component_name(),
+    // fake_movement_sensor_name(),
+    // fake_obstacles(),
+    // fake_motion_configuration(),
+    // fake_map());
+
+    // BOOST_TEST(success);
+
+    // BOOST_CHECK_EQUAL(motion->peek_destination, fake_geo_point());
+    // BOOST_CHECK_EQUAL(motion->peek_heading, *heading);
+    // BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
+    // BOOST_CHECK_EQUAL(motion->peek_movement_sensor_name, fake_movement_sensor_name());
+    // BOOST_CHECK_EQUAL(motion->peek_obstacles, fake_obstacles());
+    // BOOST_CHECK_EQUAL(motion->peek_motion_configuration, fake_motion_configuration());
 }
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {
@@ -122,19 +147,17 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
     server_to_mock_pipeline([](Motion& client) -> void {
-        Name component_name({"rdk", "service", "motion"}, "", "mock_motion");
         std::string destination_frame("destination");
         std::vector<WorldState::transform> transforms;
         AttributeMap extra = fake_map();
-        PoseInFrame pose = client.get_pose(component_name, destination_frame, {}, extra);
-        PoseInFrame fake_pose_ = init_fake_pose();
-        BOOST_CHECK_EQUAL(pose, fake_pose_);
+        pose_in_frame pose = client.get_pose(fake_component_name(), destination_frame, {}, extra);
+        BOOST_CHECK_EQUAL(pose, init_fake_pose());
 
         auto ws = std::make_shared<WorldState>(mock_world_state());
-        bool success = client.move(fake_pose(), std::move(component_name), ws, nullptr, fake_map());
+        bool success = client.move(fake_pose(), fake_component_name(), ws, nullptr, fake_map());
         BOOST_TEST(success);
 
-        pose = client.get_pose(component_name, destination_frame, transforms, extra);
+        pose = client.get_pose(fake_component_name(), destination_frame, transforms, extra);
         BOOST_CHECK_EQUAL(pose, fake_pose());
     });
 }
@@ -142,14 +165,28 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
 BOOST_AUTO_TEST_CASE(test_move_on_map) {
     server_to_mock_pipeline([](Motion& client) -> void {
         pose destination({{1, 2, 3}, {4, 5, 6}, 7});
-        Name component_name({"rdk", "service", "motion"}, "", "fake-motion");
-        Name slam_name({"rdk", "service", "slam"}, "", "fake-slam");
-        bool success = client.move_on_map(destination, component_name, slam_name, fake_map());
+        bool success =
+            client.move_on_map(destination, fake_component_name(), fake_slam_name(), fake_map());
 
         BOOST_TEST(success);
 
-        PoseInFrame pose = client.get_pose(component_name, "", {}, fake_map());
+        pose_in_frame pose = client.get_pose(fake_component_name(), "", {}, fake_map());
         BOOST_CHECK_EQUAL(pose.pose, destination);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_move_on_globe) {
+    BOOST_TEST(true);
+    server_to_mock_pipeline([](Motion& client) -> void {
+        bool success = client.move_on_globe(fake_geo_point(),
+                                            15,
+                                            fake_component_name(),
+                                            fake_movement_sensor_name(),
+                                            fake_obstacles(),
+                                            fake_motion_configuration(),
+                                            fake_map());
+
+        BOOST_TEST(success);
     });
 }
 

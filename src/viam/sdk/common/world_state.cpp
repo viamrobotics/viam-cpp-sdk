@@ -1,6 +1,8 @@
-#include "common/v1/common.pb.h"
-#include "viam/sdk/common/pose_in_frame.hpp"
 #include <viam/sdk/common/world_state.hpp>
+
+#include <common/v1/common.pb.h>
+
+#include <viam/sdk/common/pose_in_frame.hpp>
 
 namespace viam {
 namespace sdk {
@@ -58,7 +60,7 @@ common::v1::WorldState WorldState::to_proto() const {
 WorldState::transform WorldState::transform::from_proto(const common::v1::Transform& proto) {
     WorldState::transform transform;
     transform.reference_frame = proto.reference_frame();
-    transform.pose_in_observer_frame = PoseInFrame::from_proto(proto.pose_in_observer_frame());
+    transform.pose_in_observer_frame = pose_in_frame::from_proto(proto.pose_in_observer_frame());
     if (proto.has_physical_object()) {
         transform.physical_object =
             std::make_shared<GeometryConfig>(GeometryConfig::from_proto(proto.physical_object()));

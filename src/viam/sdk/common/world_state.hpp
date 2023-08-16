@@ -1,13 +1,14 @@
 #pragma once
 
-#include "viam/sdk/common/pose_in_frame.hpp"
 #include <common/v1/common.pb.h>
 
+#include <viam/sdk/common/pose_in_frame.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {
 
+// TODO(RSDK-4553) Add documentation for these types
 class WorldState {
    public:
     struct geometries_in_frame {
@@ -17,10 +18,9 @@ class WorldState {
         static geometries_in_frame from_proto(const common::v1::GeometriesInFrame& proto);
     };
 
-    // CR erodkin: this should probably not live in `WorldState`
     struct transform {
         std::string reference_frame;
-        PoseInFrame pose_in_observer_frame;
+        pose_in_frame pose_in_observer_frame;
         std::shared_ptr<GeometryConfig> physical_object;
 
         common::v1::Transform to_proto() const;
@@ -39,7 +39,6 @@ class WorldState {
     friend bool operator==(const geometries_in_frame& lhs, const geometries_in_frame& rhs);
     friend bool operator==(const transform& lhs, const transform& rhs);
 
-    // CR erodkin: docstring comment all this. maybe a separate ticket?
    private:
     std::vector<geometries_in_frame> obstacles_;
     std::vector<transform> transforms_;

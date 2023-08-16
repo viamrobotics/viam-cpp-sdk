@@ -176,6 +176,9 @@ void GeometryConfig::set_pose(pose pose) {
 void GeometryConfig::set_geometry_specifics(geometry_specifics gs) {
     geometry_specifics_ = std::move(gs);
 }
+void GeometryConfig::set_pose_orientation(pose_orientation orientation) {
+    pose_.orientation = std::move(orientation);
+}
 void GeometryConfig::set_theta(double theta) {
     pose_.theta = std::move(theta);
 }
@@ -220,6 +223,11 @@ std::ostream& operator<<(std::ostream& os, const pose& v) {
     return os;
 }
 
+std::ostream& operator<<(std::ostream& os, const geo_point& v) {
+    os << "{ latitude: " << v.latitude << ", longitude: " << v.longitude << "}\n";
+    return os;
+}
+
 bool operator==(const coordinates& lhs, const coordinates& rhs) {
     return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
 }
@@ -256,6 +264,14 @@ bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {
            lhs_orientation.o_z == rhs_orientation.o_z && lhs.label_ == rhs.label_ &&
            lhs.geometry_type_ == rhs.geometry_type_ &&
            lhs.geometry_specifics_ == rhs.geometry_specifics_;
+}
+
+bool operator==(const geo_point& lhs, const geo_point& rhs) {
+    return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude;
+}
+
+bool operator==(const geo_obstacle& lhs, const geo_obstacle& rhs) {
+    return lhs.location == rhs.location && lhs.geometries == rhs.geometries;
 }
 
 common::v1::GeoPoint geo_point::to_proto() const {

@@ -28,7 +28,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
 
-    PoseInFrame destination = PoseInFrame::from_proto(request->destination());
+    pose_in_frame destination = pose_in_frame::from_proto(request->destination());
     Name name = Name::from_proto(request->component_name());
     std::shared_ptr<WorldState> ws;
     if (request->has_world_state()) {
@@ -85,14 +85,53 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     return ::grpc::Status();
 };
 
-// TODO: the `MoveOnGlobe` api is being changed, we're holding off on implementing it
-// until it's stable. Once the change goes through, we should implement.
-// CR erodkin: make ticket for these todos.
 ::grpc::Status MotionServer::MoveOnGlobe(
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) {
-    return ::grpc::Status(grpc::UNIMPLEMENTED, "");
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [MoveOnGlobe] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
+
+    const auto& destination = geo_point::from_proto(request->destination());
+    const auto& component_name = Name::from_proto(request->component_name());
+    const auto& movement_sensor_name = Name::from_proto(request->movement_sensor_name());
+    std::vector<geo_obstacle> obstacles;
+
+    for (const auto& obstacle : request->obstacles()) {
+        obstacles.push_back(geo_obstacle::from_proto(obstacle));
+    }
+
+    boost::optional<double> heading;
+    if (request->has_heading()) {
+        heading = request->heading();
+    }
+
+    std::shared_ptr<motion_configuration> mc;
+    if (request->has_motion_configuration()) {
+        mc = std::make_shared<motion_configuration>(
+            motion_configuration::from_proto(request->motion_configuration()));
+    }
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    bool success = motion->move_on_globe(
+        destination, heading, component_name, movement_sensor_name, obstacles, mc, extra);
+
+    response->set_success(success);
+
+    return ::grpc::Status();
 };
 
 ::grpc::Status MotionServer::GetPose(::grpc::ServerContext* context,
@@ -121,7 +160,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    PoseInFrame pose =
+    pose_in_frame pose =
         motion->get_pose(component_name, destination_frame, supplemental_transforms, extra);
 
     *response->mutable_pose() = pose.to_proto();

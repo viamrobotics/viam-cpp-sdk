@@ -8,6 +8,8 @@
 
 #include <viam/api/common/v1/common.pb.h>
 
+#include <viam/sdk/common/pose_in_frame.hpp>
+
 namespace viam {
 namespace sdk {
 
@@ -18,28 +20,6 @@ enum GeometryType {
     capsule,
     point,
     unknown,
-};
-
-struct coordinates {
-    double x, y, z;
-    friend bool operator==(const coordinates& lhs, const coordinates& rhs);
-};
-
-struct pose_orientation {
-    double o_x, o_y, o_z;
-    friend bool operator==(const pose_orientation& lhs, const pose_orientation& rhs);
-};
-
-struct pose {
-    struct coordinates coordinates;
-    pose_orientation orientation;
-    double theta;
-
-    static pose from_proto(const viam::common::v1::Pose& proto);
-    viam::common::v1::Pose to_proto() const;
-
-    friend bool operator==(const pose& lhs, const pose& rhs);
-    friend std::ostream& operator<<(std::ostream& os, const pose& v);
 };
 
 struct box {
@@ -97,12 +77,13 @@ class GeometryConfig {
     std::string label_;
 };
 
-// CR erodkin: do we need this at all? same with geo_obstacle.
 struct geo_point {
     double longitude, latitude;
 
     common::v1::GeoPoint to_proto() const;
     static geo_point from_proto(const common::v1::GeoPoint& proto);
+    friend bool operator==(const geo_point& lhs, const geo_point& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const geo_point& v);
 };
 
 struct geo_obstacle {
@@ -111,6 +92,7 @@ struct geo_obstacle {
 
     common::v1::GeoObstacle to_proto() const;
     static geo_obstacle from_proto(const common::v1::GeoObstacle& proto);
+    friend bool operator==(const geo_obstacle& lhs, const geo_obstacle& rhs);
 };
 
 }  // namespace sdk

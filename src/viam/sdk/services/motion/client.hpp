@@ -14,9 +14,9 @@ namespace sdk {
 class MotionClient : public Motion {
    public:
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    bool move(const PoseInFrame& destination,
+    bool move(const pose_in_frame& destination,
               const Name& component_name,
-              std::shared_ptr<WorldState> ws,
+              std::shared_ptr<WorldState> world_state,
               std::shared_ptr<constraints> constraints,
               const AttributeMap& extra) override;
 
@@ -25,10 +25,18 @@ class MotionClient : public Motion {
                      const Name& slam_name,
                      const AttributeMap& extra) override;
 
-    PoseInFrame get_pose(const Name& component_name,
-                         const std::string& destination_frame,
-                         const std::vector<WorldState::transform>& supplemental_transforms,
-                         AttributeMap extra) override;
+    bool move_on_globe(const geo_point& destination,
+                       const boost::optional<double>& heading,
+                       const Name& component_name,
+                       const Name& movement_sensor_name,
+                       const std::vector<geo_obstacle>& obstacles,
+                       std::shared_ptr<motion_configuration> motion_configuration,
+                       const AttributeMap& extra) override;
+
+    pose_in_frame get_pose(const Name& component_name,
+                           const std::string& destination_frame,
+                           const std::vector<WorldState::transform>& supplemental_transforms,
+                           AttributeMap extra) override;
 
     AttributeMap do_command(const AttributeMap& command) override;
 

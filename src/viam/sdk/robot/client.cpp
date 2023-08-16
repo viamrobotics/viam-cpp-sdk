@@ -37,6 +37,8 @@
 namespace viam {
 namespace sdk {
 
+// TODO(RSDK-4573) Having all these proto types exposed here in the APIs is sad. Let's fix that.
+
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
 using viam::common::v1::PoseInFrame;
