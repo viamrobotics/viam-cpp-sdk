@@ -1,14 +1,13 @@
 #pragma once
 
-#include <viam/sdk/spatialmath/orientation.hpp>
-
 #include <array>
 #include <string>
 #include <tuple>
 
 #include <viam/api/common/v1/common.pb.h>
 
-#include <viam/sdk/common/pose_in_frame.hpp>
+#include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
 namespace sdk {

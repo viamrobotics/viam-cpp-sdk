@@ -1,7 +1,8 @@
-#include "viam/sdk/spatialmath/geometry.hpp"
-#include "viam/sdk/spatialmath/orientation_types.hpp"
-#include "viam/sdk/tests/test_utils.hpp"
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
+
+#include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/sdk/spatialmath/orientation_types.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {

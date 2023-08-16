@@ -1,4 +1,4 @@
-#include <viam/sdk/common/pose_in_frame.hpp>
+#include <viam/sdk/common/pose.hpp>
 
 #include <common/v1/common.pb.h>
 

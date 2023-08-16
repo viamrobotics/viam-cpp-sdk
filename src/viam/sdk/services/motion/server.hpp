@@ -3,11 +3,14 @@
 /// @brief Implements a gRPC server for the `Motion` service.
 #pragma once
 
-#include "viam/api/service/motion/v1/motion.grpc.pb.h"
-#include "viam/sdk/resource/resource_manager.hpp"
-#include "viam/sdk/resource/resource_server_base.hpp"
-#include "viam/sdk/rpc/server.hpp"
 #include <memory>
+
+#include <viam/api/service/motion/v1/motion.grpc.pb.h>
+
+#include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/resource_server_base.hpp>
+#include <viam/sdk/rpc/server.hpp>
+
 namespace viam {
 namespace sdk {
 

@@ -7,7 +7,7 @@
 
 #include <viam/api/service/motion/v1/motion.pb.h>
 
-#include <viam/sdk/common/pose_in_frame.hpp>
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/registry/registry.hpp>

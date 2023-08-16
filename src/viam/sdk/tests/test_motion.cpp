@@ -2,7 +2,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/pose_in_frame.hpp>
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/services/motion/client.hpp>
 #include <viam/sdk/services/motion/motion.hpp>

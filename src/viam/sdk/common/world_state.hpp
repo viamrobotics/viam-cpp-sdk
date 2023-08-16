@@ -2,7 +2,7 @@
 
 #include <common/v1/common.pb.h>
 
-#include <viam/sdk/common/pose_in_frame.hpp>
+#include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {

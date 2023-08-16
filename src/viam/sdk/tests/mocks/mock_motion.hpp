@@ -1,9 +1,9 @@
 #pragma once
 
-#include "viam/sdk/common/pose_in_frame.hpp"
-#include "viam/sdk/resource/resource_api.hpp"
-#include "viam/sdk/spatialmath/geometry.hpp"
+#include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/motion/motion.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdktests {

@@ -1,10 +1,10 @@
-#include "viam/sdk/spatialmath/geometry.hpp"
 #include <viam/sdk/tests/test_utils.hpp>
 
 #include <unordered_map>
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 

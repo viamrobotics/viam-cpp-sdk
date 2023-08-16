@@ -1,9 +1,9 @@
-#include <stdexcept>
 #include <viam/sdk/resource/resource_api.hpp>
 
 #include <numeric>
 #include <regex>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include <boost/algorithm/string.hpp>

@@ -1,11 +1,12 @@
-#include "viam/api/service/motion/v1/motion.grpc.pb.h"
-#include "viam/api/service/motion/v1/motion.pb.h"
-#include "viam/sdk/common/utils.hpp"
-#include <viam/sdk/services/motion/client.hpp>
 #include <viam/sdk/services/motion/motion.hpp>
-#include <viam/sdk/services/motion/server.hpp>
 
-#include <common/v1/common.pb.h>
+#include <viam/api/common/v1/common.pb.h>
+#include <viam/api/service/motion/v1/motion.grpc.pb.h>
+#include <viam/api/service/motion/v1/motion.pb.h>
+
+#include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/services/motion/client.hpp>
+#include <viam/sdk/services/motion/server.hpp>
 
 namespace viam {
 namespace sdk {

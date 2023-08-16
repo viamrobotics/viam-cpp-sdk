@@ -3,8 +3,10 @@
 /// @brief Implements a gRPC client for the `Motion` service.
 #pragma once
 
-#include "service/motion/v1/motion.grpc.pb.h"
-#include "viam/sdk/services/motion/motion.hpp"
+#include <viam/api/service/motion/v1/motion.grpc.pb.h>
+
+#include <viam/sdk/services/motion/motion.hpp>
+
 namespace viam {
 namespace sdk {
 

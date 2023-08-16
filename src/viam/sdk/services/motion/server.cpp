@@ -1,11 +1,13 @@
-#include "viam/sdk/common/pose_in_frame.hpp"
-#include "viam/sdk/common/proto_type.hpp"
-#include "viam/sdk/common/utils.hpp"
-#include "viam/sdk/services/motion/motion.hpp"
-#include "viam/sdk/spatialmath/geometry.hpp"
-#include <grpcpp/support/status.h>
 #include <memory>
+
+#include <grpcpp/support/status.h>
+
+#include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/services/motion/motion.hpp>
 #include <viam/sdk/services/motion/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {

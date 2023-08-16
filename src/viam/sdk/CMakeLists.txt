@@ -44,7 +44,7 @@ target_sources(viamsdk
     # be initialized within main before anything else happens?
     registry/registry.cpp
     common/linear_algebra.cpp
-    common/pose_in_frame.cpp
+    common/pose.cpp
     common/proto_type.cpp
     common/utils.cpp
     common/world_state.cpp
@@ -97,7 +97,7 @@ target_sources(viamsdk
       ../..
     FILES
       ../../viam/sdk/common/linear_algebra.hpp
-      ../../viam/sdk/common/pose_in_frame.hpp
+      ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
