@@ -29,10 +29,6 @@ class MotionServer : public ResourceServer,
     ::grpc::Status MoveOnGlobe(::grpc::ServerContext* context,
                                const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
                                ::viam::service::motion::v1::MoveOnGlobeResponse* response) override;
-    ::grpc::Status MoveSingleComponent(
-        ::grpc::ServerContext* context,
-        const ::viam::service::motion::v1::MoveSingleComponentRequest* request,
-        ::viam::service::motion::v1::MoveSingleComponentResponse* response) override;
     ::grpc::Status GetPose(::grpc::ServerContext* context,
                            const ::viam::service::motion::v1::GetPoseRequest* request,
                            ::viam::service::motion::v1::GetPoseResponse* response) override;

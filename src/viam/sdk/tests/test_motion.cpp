@@ -1,14 +1,17 @@
+#define BOOST_TEST_MODULE test module test_motion
+
 #include "viam/sdk/common/pose_in_frame.hpp"
 #include "viam/sdk/services/motion/client.hpp"
 #include "viam/sdk/services/motion/server.hpp"
 #include "viam/sdk/spatialmath/geometry.hpp"
-#define BOOST_TEST_MODULE test module test_motion
 
 #include <boost/test/included/unit_test.hpp>
 
 #include "viam/sdk/common/world_state.hpp"
 #include "viam/sdk/tests/test_utils.hpp"
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
+
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::WorldState)
 
 namespace viam {
 namespace sdktests {
@@ -30,25 +33,22 @@ BOOST_AUTO_TEST_SUITE(test_mock)
 
 BOOST_AUTO_TEST_CASE(mock_move_and_get_pose) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
-    BOOST_CHECK_EQUAL(motion->peek_map, 0);
 
-    BOOST_CHECK_EQUAL(motion->current_location, std::move(init_fake_pose()));
+    BOOST_CHECK_EQUAL(motion->current_location, init_fake_pose());
 
     Name fake_name({"acme", "service", "motion"}, "fake-remote", "fake-motion");
-    auto ws = std::make_unique<WorldState>(mock_world_state());
+    auto ws = std::make_shared<WorldState>(mock_world_state());
 
-    bool success = motion->move(fake_pose(), fake_name, std::move(ws), 0, fake_map());
+    bool success = motion->move(fake_pose(), fake_name, ws, 0, fake_map());
 
     BOOST_TEST(success);
     BOOST_CHECK_EQUAL(motion->current_location, fake_pose());
     BOOST_CHECK_EQUAL(motion->peek_component_name, std::move(fake_name));
-    BOOST_CHECK_EQUAL(motion->peek_map, fake_map());
-    BOOST_CHECK_EQUAL(motion->peek_world_state, std::move(ws));
+    BOOST_CHECK_EQUAL(*(motion->peek_world_state), *ws);
 }
 
 BOOST_AUTO_TEST_CASE(mock_move_on_map) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
-    BOOST_CHECK_EQUAL(motion->peek_map, 0);
 
     BOOST_CHECK_EQUAL(motion->current_location, std::move(init_fake_pose()));
 
@@ -62,7 +62,6 @@ BOOST_AUTO_TEST_CASE(mock_move_on_map) {
     BOOST_CHECK_EQUAL(motion->peek_current_pose, std::move(new_destination));
     BOOST_CHECK_EQUAL(motion->peek_component_name, std::move(fake_component));
     BOOST_CHECK_EQUAL(motion->peek_slam_name, std::move(fake_slam));
-    BOOST_CHECK_EQUAL(motion->peek_map, fake_map());
 }
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {
@@ -112,7 +111,8 @@ void server_to_mock_pipeline(Lambda&& func) {
 
     std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
 
-    auto grpc_channel = server->InProcessChannel(grpc::ChannelArguments());
+    grpc::ChannelArguments args;
+    auto grpc_channel = server->InProcessChannel(args);
     MotionClient client("mock_motion", grpc_channel);
     // Run the passed test on the created stack
     std::forward<Lambda>(func)(client);
@@ -122,16 +122,16 @@ void server_to_mock_pipeline(Lambda&& func) {
 
 BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
     server_to_mock_pipeline([](Motion& client) -> void {
-        Name component_name({"rdk", "service", "motion"}, "", "fake-motion");
+        Name component_name({"rdk", "service", "motion"}, "", "mock_motion");
         std::string destination_frame("destination");
         std::vector<WorldState::transform> transforms;
         AttributeMap extra = fake_map();
-        PoseInFrame pose = client.get_pose(component_name, destination_frame, transforms, extra);
-        BOOST_CHECK_EQUAL(pose, init_fake_pose());
+        PoseInFrame pose = client.get_pose(component_name, destination_frame, {}, extra);
+        PoseInFrame fake_pose_ = init_fake_pose();
+        BOOST_CHECK_EQUAL(pose, fake_pose_);
 
-        auto ws = std::make_unique<WorldState>(mock_world_state());
-        bool success =
-            client.move(fake_pose(), std::move(component_name), std::move(ws), 0, fake_map());
+        auto ws = std::make_shared<WorldState>(mock_world_state());
+        bool success = client.move(fake_pose(), std::move(component_name), ws, nullptr, fake_map());
         BOOST_TEST(success);
 
         pose = client.get_pose(component_name, destination_frame, transforms, extra);

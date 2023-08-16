@@ -13,6 +13,8 @@ class WorldState {
     struct geometries_in_frame {
         std::vector<GeometryConfig> geometries;
         std::string reference_frame;
+        common::v1::GeometriesInFrame to_proto() const;
+        static geometries_in_frame from_proto(const common::v1::GeometriesInFrame& proto);
     };
 
     // CR erodkin: this should probably not live in `WorldState`
@@ -32,6 +34,10 @@ class WorldState {
     WorldState() {}
     WorldState(std::vector<geometries_in_frame> obstacles, std::vector<transform> transforms)
         : obstacles_(obstacles), transforms_(transforms) {}
+
+    friend bool operator==(const WorldState& lhs, const WorldState& rhs);
+    friend bool operator==(const geometries_in_frame& lhs, const geometries_in_frame& rhs);
+    friend bool operator==(const transform& lhs, const transform& rhs);
 
     // CR erodkin: docstring comment all this. maybe a separate ticket?
    private:

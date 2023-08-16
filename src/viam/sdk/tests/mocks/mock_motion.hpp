@@ -16,8 +16,8 @@ class MockMotion : public sdk::Motion {
    public:
     bool move(const sdk::PoseInFrame& destination,
               const sdk::Name& component_name,
-              std::unique_ptr<sdk::WorldState> ws,
-              std::unique_ptr<constraints> constraints,
+              std::shared_ptr<sdk::WorldState> ws,
+              std::shared_ptr<constraints> constraints,
               const sdk::AttributeMap& extra) override;
 
     bool move_on_map(const sdk::pose& destination,
@@ -25,10 +25,11 @@ class MockMotion : public sdk::Motion {
                      const sdk::Name& slam_name,
                      const sdk::AttributeMap& extra) override;
 
-    sdk::PoseInFrame get_pose(const sdk::Name& component_name,
-                              const std::string& destination_frame,
-                              std::vector<sdk::WorldState::transform> supplemental_transforms,
-                              sdk::AttributeMap extra) override;
+    sdk::PoseInFrame get_pose(
+        const sdk::Name& component_name,
+        const std::string& destination_frame,
+        const std::vector<sdk::WorldState::transform>& supplemental_transforms,
+        sdk::AttributeMap extra) override;
 
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
     static std::shared_ptr<MockMotion> get_mock_motion();
@@ -43,8 +44,8 @@ class MockMotion : public sdk::Motion {
     sdk::Name peek_slam_name;
     std::string peek_destination_frame;
     std::vector<sdk::WorldState::transform> peek_supplemental_transforms;
-    constraints peek_constraints;
-    sdk::WorldState peek_world_state;
+    std::shared_ptr<constraints> peek_constraints;
+    std::shared_ptr<sdk::WorldState> peek_world_state;
     sdk::AttributeMap peek_map;
 
     MockMotion(std::string name)

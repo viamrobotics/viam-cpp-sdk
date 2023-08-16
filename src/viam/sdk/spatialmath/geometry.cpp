@@ -87,11 +87,12 @@ GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& prot
     GeometryConfig cfg;
     const auto& pose = proto.center();
     cfg.pose_ = pose::from_proto(pose);
+    cfg.label_ = proto.label();
 
     switch (proto.geometry_type_case()) {
         case viam::common::v1::Geometry::GeometryTypeCase::kBox: {
             cfg.geometry_type_ = GeometryType::box;
-            box box;
+            struct box box;
             box.x = proto.box().dims_mm().x();
             box.y = proto.box().dims_mm().y();
             box.z = proto.box().dims_mm().z();
@@ -100,22 +101,18 @@ GeometryConfig GeometryConfig::from_proto(const viam::common::v1::Geometry& prot
         }
         case viam::common::v1::Geometry::GeometryTypeCase::kSphere: {
             auto r = proto.sphere().radius_mm();
-            geometry_specifics gs;
             if (r == 0) {
-                cfg.geometry_type_ = point;
-                gs = boost::blank();
+                cfg.geometry_type_ = GeometryType::point;
             } else {
                 cfg.geometry_type_ = GeometryType::sphere;
-                sphere sphere;
-                sphere.radius = r;
-                gs = sphere;
             }
-            cfg.set_geometry_specifics(gs);
+            struct sphere sphere({r});
+            cfg.set_geometry_specifics(sphere);
             return cfg;
         }
         case viam::common::v1::Geometry::GeometryTypeCase::kCapsule: {
             cfg.geometry_type_ = GeometryType::capsule;
-            capsule capsule;
+            struct capsule capsule;
             capsule.radius = proto.capsule().radius_mm();
             capsule.length = proto.capsule().length_mm();
             cfg.set_geometry_specifics(capsule);
@@ -155,6 +152,10 @@ viam::common::v1::Geometry GeometryConfig::to_proto() const {
             *geometry_.mutable_sphere() = sphere;
             return geometry_;
         }
+        case capsule: {
+            *geometry_.mutable_capsule() = capsule_proto();
+            return geometry_;
+        }
         case unknown:
         default: {
             if (pose_.coordinates.x == 0 && pose_.coordinates.y == 0 && pose_.coordinates.z == 0) {
@@ -187,7 +188,7 @@ void GeometryConfig::set_orientation_config(OrientationConfig config) {
 void GeometryConfig::set_label(std::string label) {
     label_ = std::move(label);
 }
-GeometryConfig::geometry_specifics GeometryConfig::get_geometry_specifics() const {
+geometry_specifics GeometryConfig::get_geometry_specifics() const {
     return geometry_specifics_;
 }
 double GeometryConfig::get_theta() const {
@@ -208,6 +209,40 @@ OrientationConfig GeometryConfig::get_orientation_config() const {
 
 std::string GeometryConfig::get_label() const {
     return label_;
+}
+
+std::ostream& operator<<(std::ostream& os, const pose& v) {
+    os << "{ coordinates: "
+       << "{ x: " << v.coordinates.x << ", y: " << v.coordinates.y << ", z: " << v.coordinates.z
+       << "},\norientation: "
+       << "{ o_x: " << v.orientation.o_x << ", o_y: " << v.orientation.o_y
+       << ", o_z: " << v.orientation.o_z << "},\ntheta: " << v.theta << "}";
+    return os;
+}
+
+bool operator==(const coordinates& lhs, const coordinates& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
+}
+
+bool operator==(const pose_orientation& lhs, const pose_orientation& rhs) {
+    return lhs.o_x == rhs.o_x && lhs.o_y == rhs.o_y && lhs.o_z == rhs.o_z;
+}
+
+bool operator==(const pose& lhs, const pose& rhs) {
+    return lhs.coordinates == rhs.coordinates && lhs.orientation == rhs.orientation &&
+           lhs.theta == rhs.theta;
+}
+
+bool operator==(const struct box& lhs, const struct box& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
+}
+
+bool operator==(const struct sphere& lhs, const struct sphere& rhs) {
+    return lhs.radius == rhs.radius;
+}
+
+bool operator==(const struct capsule& lhs, const struct capsule& rhs) {
+    return lhs.radius == rhs.radius && lhs.length == rhs.length;
 }
 
 bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs) {

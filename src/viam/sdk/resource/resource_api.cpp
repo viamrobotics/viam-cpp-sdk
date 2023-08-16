@@ -41,11 +41,11 @@ const std::string& APIType::type_namespace() const {
     return namespace_;
 }
 
-void APIType::set_namespace(const std::string type_namespace) {
+void APIType::set_namespace(const std::string& type_namespace) {
     this->namespace_ = type_namespace;
 }
 
-void APIType::set_resource_type(const std::string resource_type) {
+void APIType::set_resource_type(const std::string& resource_type) {
     this->resource_type_ = resource_type;
 }
 
@@ -57,7 +57,7 @@ const std::string& API::resource_subtype() const {
     return resource_subtype_;
 }
 
-void API::set_resource_subtype(const std::string subtype) {
+void API::set_resource_subtype(const std::string& subtype) {
     this->resource_subtype_ = subtype;
 }
 
@@ -164,6 +164,11 @@ bool operator<(const API& lhs, const API& rhs) {
 
 bool operator==(const Name& lhs, const Name& rhs) {
     return lhs.to_string() == rhs.to_string();
+}
+
+std::ostream& operator<<(std::ostream& os, const Name& v) {
+    os << v.to_string();
+    return os;
 }
 
 bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {

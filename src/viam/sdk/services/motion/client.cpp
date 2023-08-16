@@ -16,19 +16,23 @@ MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> chan
 
 bool MotionClient::move(const PoseInFrame& destination,
                         const Name& component_name,
-                        std::unique_ptr<WorldState> ws,
-                        std::unique_ptr<Motion::constraints> constraints,
+                        std::shared_ptr<WorldState> ws,
+                        std::shared_ptr<Motion::constraints> constraints,
                         const AttributeMap& extra) {
     service::motion::v1::MoveRequest request;
     service::motion::v1::MoveResponse response;
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
-    *request.mutable_constraints() = constraints->to_proto();
     *request.mutable_component_name() = component_name.to_proto();
     *request.mutable_destination() = destination.to_proto();
     *request.mutable_extra() = map_to_struct(extra);
-    *request.mutable_world_state() = ws->to_proto();
+    if (constraints) {
+        *request.mutable_constraints() = constraints->to_proto();
+    }
+    if (ws) {
+        *request.mutable_world_state() = ws->to_proto();
+    }
 
     const grpc::Status status = stub_->Move(&ctx, request, &response);
     if (!status.ok()) {
@@ -60,10 +64,11 @@ bool MotionClient::move_on_map(const pose& destination,
     return response.success();
 }
 
-PoseInFrame MotionClient::get_pose(const Name& component_name,
-                                   const std::string& destination_frame,
-                                   std::vector<WorldState::transform> supplemental_transforms,
-                                   AttributeMap extra) {
+PoseInFrame MotionClient::get_pose(
+    const Name& component_name,
+    const std::string& destination_frame,
+    const std::vector<WorldState::transform>& supplemental_transforms,
+    AttributeMap extra) {
     service::motion::v1::GetPoseRequest request;
     service::motion::v1::GetPoseResponse response;
     grpc::ClientContext ctx;

@@ -17,6 +17,8 @@ struct PoseInFrame {
 
     std::string reference_frame;
     pose pose;
+    friend bool operator==(const PoseInFrame& lhs, const PoseInFrame& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const PoseInFrame& v);
 };
 
 }  // namespace sdk

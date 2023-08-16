@@ -77,8 +77,8 @@ class Motion : public Service {
     // only smart ptrs!
     virtual bool move(const PoseInFrame& destination,
                       const Name& name,
-                      std::unique_ptr<WorldState> ws,
-                      std::unique_ptr<constraints> constraints,
+                      std::shared_ptr<WorldState> ws,
+                      std::shared_ptr<constraints> constraints,
                       const AttributeMap& extra) = 0;
 
     virtual bool move_on_map(const pose& destination,
@@ -86,9 +86,10 @@ class Motion : public Service {
                              const Name& slam_name,
                              const AttributeMap& extra) = 0;
 
+    // CR erodkin: why is transforms not a const ref?
     virtual PoseInFrame get_pose(const Name& component_name,
                                  const std::string& destination_frame,
-                                 std::vector<WorldState::transform> supplemental_transforms,
+                                 const std::vector<WorldState::transform>& supplemental_transforms,
                                  AttributeMap extra) = 0;
 
     virtual AttributeMap do_command(const AttributeMap& command) = 0;

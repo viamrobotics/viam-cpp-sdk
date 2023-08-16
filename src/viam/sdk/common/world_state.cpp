@@ -5,25 +5,54 @@
 namespace viam {
 namespace sdk {
 
+WorldState::geometries_in_frame WorldState::geometries_in_frame::from_proto(
+    const common::v1::GeometriesInFrame& proto) {
+    geometries_in_frame gif;
+    for (const auto& geo : proto.geometries()) {
+        gif.geometries.push_back(GeometryConfig::from_proto(geo));
+    }
+    gif.reference_frame = proto.reference_frame();
+
+    return gif;
+}
+
+common::v1::GeometriesInFrame WorldState::geometries_in_frame::to_proto() const {
+    common::v1::GeometriesInFrame proto;
+
+    *proto.mutable_reference_frame() = reference_frame;
+    for (const auto& geometry : geometries) {
+        *proto.mutable_geometries()->Add() = geometry.to_proto();
+    }
+
+    return proto;
+}
+
 WorldState WorldState::from_proto(const common::v1::WorldState& ws) {
     const auto& proto_obstacles = ws.obstacles();
     std::vector<geometries_in_frame> obstacles;
     for (const auto& po : proto_obstacles) {
-        geometries_in_frame obstacle;
-        for (const auto& geo : po.geometries()) {
-            obstacle.geometries.push_back(GeometryConfig::from_proto(geo));
-        }
-        obstacles.push_back(obstacle);
+        obstacles.push_back(geometries_in_frame::from_proto(po));
     }
 
     const auto& proto_transforms = ws.transforms();
     std::vector<transform> transforms;
     for (const auto& pt : proto_transforms) {
-        transform t = WorldState::transform::from_proto(pt);
-        transforms.push_back(std::move(t));
+        transforms.push_back(WorldState::transform::from_proto(pt));
     }
 
     return {obstacles, transforms};
+}
+
+common::v1::WorldState WorldState::to_proto() const {
+    common::v1::WorldState proto_ws;
+    for (const auto& obstacle : obstacles_) {
+        *proto_ws.mutable_obstacles()->Add() = obstacle.to_proto();
+    }
+    for (const auto& transform : transforms_) {
+        *proto_ws.mutable_transforms()->Add() = transform.to_proto();
+    }
+
+    return proto_ws;
 }
 
 WorldState::transform WorldState::transform::from_proto(const common::v1::Transform& proto) {
@@ -47,6 +76,20 @@ common::v1::Transform WorldState::transform::to_proto() const {
     }
 
     return proto;
+}
+bool operator==(const WorldState::geometries_in_frame& lhs,
+                const WorldState::geometries_in_frame& rhs) {
+    return lhs.reference_frame == rhs.reference_frame && lhs.geometries == rhs.geometries;
+}
+bool operator==(const WorldState::transform& lhs, const WorldState::transform& rhs) {
+    return lhs.reference_frame == rhs.reference_frame &&
+           (lhs.physical_object == rhs.physical_object ||
+            *lhs.physical_object == *rhs.physical_object) &&
+           lhs.pose_in_observer_frame == rhs.pose_in_observer_frame;
+}
+
+bool operator==(const WorldState& lhs, const WorldState& rhs) {
+    return lhs.obstacles_ == rhs.obstacles_ && lhs.transforms_ == rhs.transforms_;
 }
 
 }  // namespace sdk

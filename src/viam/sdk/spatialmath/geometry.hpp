@@ -11,6 +11,7 @@
 namespace viam {
 namespace sdk {
 
+// TODO(RSDK-4553): add thorough documentation to this whole file.
 enum GeometryType {
     box,
     sphere,
@@ -21,10 +22,12 @@ enum GeometryType {
 
 struct coordinates {
     double x, y, z;
+    friend bool operator==(const coordinates& lhs, const coordinates& rhs);
 };
 
 struct pose_orientation {
     double o_x, o_y, o_z;
+    friend bool operator==(const pose_orientation& lhs, const pose_orientation& rhs);
 };
 
 struct pose {
@@ -34,25 +37,31 @@ struct pose {
 
     static pose from_proto(const viam::common::v1::Pose& proto);
     viam::common::v1::Pose to_proto() const;
+
+    friend bool operator==(const pose& lhs, const pose& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const pose& v);
 };
 
-// CR erodkin: this really needs good documentation.
+struct box {
+    double x;
+    double y;
+    double z;
+    friend bool operator==(const box& lhs, const box& rhs);
+};
+struct sphere {
+    double radius;
+    friend bool operator==(const sphere& lhs, const sphere& rhs);
+};
+struct capsule {
+    double radius;
+    double length;
+    friend bool operator==(const capsule& lhs, const capsule& rhs);
+};
+
+typedef boost::variant<struct box, struct sphere, struct capsule, boost::blank> geometry_specifics;
+
 class GeometryConfig {
    public:
-    struct box {
-        double x;
-        double y;
-        double z;
-    };
-    struct sphere {
-        double radius;
-    };
-    struct capsule {
-        double radius;
-        double length;
-    };
-    typedef boost::variant<struct box, struct sphere, struct capsule, boost::blank>
-        geometry_specifics;
     viam::common::v1::Geometry to_proto() const;
     viam::common::v1::RectangularPrism box_proto() const;
     viam::common::v1::Sphere sphere_proto() const;
@@ -82,7 +91,6 @@ class GeometryConfig {
     GeometryType geometry_type_;
     pose pose_;
     geometry_specifics geometry_specifics_;
-    // CR erodkin: flyby adding theta
     // TODO: if and when RDK makes more explicit use of ox/oy/oz, we should
     // do the same here
     OrientationConfig orientation_config_;

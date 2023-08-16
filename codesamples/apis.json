@@ -15,6 +15,12 @@
         "func": "get_properties",
 		"args": []
     },
+	"motion": {
+        "client": "MotionClient",
+        "func": "get_pose",
+        "args": ["{{\"rdk\", \"component\", \"fake\"}, \"\", \"component\"}", "<destination-frame>", "{}", "nullptr"]
+        "comment": "Update with correct component name, destination frame, supplemental transforms, and extra params"
+	}
     "motor": {
         "client": "MotorClient",
         "func": "is_moving",

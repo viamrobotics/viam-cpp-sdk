@@ -30,14 +30,14 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     PoseInFrame destination = PoseInFrame::from_proto(request->destination());
     Name name = Name::from_proto(request->component_name());
-    std::unique_ptr<WorldState> ws;
+    std::shared_ptr<WorldState> ws;
     if (request->has_world_state()) {
-        ws = std::make_unique<WorldState>(WorldState::from_proto(request->world_state()));
+        ws = std::make_shared<WorldState>(WorldState::from_proto(request->world_state()));
     }
 
-    std::unique_ptr<Motion::constraints> constraints;
+    std::shared_ptr<Motion::constraints> constraints;
     if (request->has_constraints()) {
-        constraints = std::make_unique<Motion::constraints>(
+        constraints = std::make_shared<Motion::constraints>(
             Motion::constraints::from_proto(request->constraints()));
     }
 
@@ -92,15 +92,6 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     ::grpc::ServerContext* context,
     const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) {
-    return ::grpc::Status(grpc::UNIMPLEMENTED, "");
-};
-
-// TODO: this method is being removed from proto. Once that happens, we should get rid
-// of this entirely.
-::grpc::Status MotionServer::MoveSingleComponent(
-    ::grpc::ServerContext* context,
-    const ::viam::service::motion::v1::MoveSingleComponentRequest* request,
-    ::viam::service::motion::v1::MoveSingleComponentResponse* response) {
     return ::grpc::Status(grpc::UNIMPLEMENTED, "");
 };
 

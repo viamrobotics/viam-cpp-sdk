@@ -16,8 +16,8 @@ class MotionClient : public Motion {
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     bool move(const PoseInFrame& destination,
               const Name& component_name,
-              std::unique_ptr<WorldState> ws,
-              std::unique_ptr<constraints> constraints,
+              std::shared_ptr<WorldState> ws,
+              std::shared_ptr<constraints> constraints,
               const AttributeMap& extra) override;
 
     bool move_on_map(const pose& destination,
@@ -27,7 +27,7 @@ class MotionClient : public Motion {
 
     PoseInFrame get_pose(const Name& component_name,
                          const std::string& destination_frame,
-                         std::vector<WorldState::transform> supplemental_transforms,
+                         const std::vector<WorldState::transform>& supplemental_transforms,
                          AttributeMap extra) override;
 
     AttributeMap do_command(const AttributeMap& command) override;
