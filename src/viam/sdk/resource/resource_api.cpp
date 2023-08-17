@@ -120,7 +120,7 @@ viam::common::v1::ResourceName Name::to_proto() const {
 }
 
 Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
-    API api(proto.namespace_(), proto.type(), proto.subtype());
+    const API api(proto.namespace_(), proto.type(), proto.subtype());
     std::vector<std::string> name_parts;
     boost::split(name_parts, proto.name(), boost::is_any_of(":"));
     auto name = name_parts.back();
