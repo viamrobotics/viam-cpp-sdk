@@ -1,5 +1,7 @@
 #include <viam/sdk/services/motion/client.hpp>
 
+#include <math.h>
+
 #include <grpcpp/support/status.h>
 
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
