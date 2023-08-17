@@ -44,4 +44,3 @@ class MotionServer : public ResourceServer,
 
 }  // namespace sdk
 }  // namespace viam
-

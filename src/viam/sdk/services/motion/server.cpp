@@ -30,8 +30,8 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
 
-    pose_in_frame destination = pose_in_frame::from_proto(request->destination());
-    Name name = Name::from_proto(request->component_name());
+    const pose_in_frame destination = pose_in_frame::from_proto(request->destination());
+    const Name name = Name::from_proto(request->component_name());
     std::shared_ptr<WorldState> ws;
     if (request->has_world_state()) {
         ws = std::make_shared<WorldState>(WorldState::from_proto(request->world_state()));
@@ -80,7 +80,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     if (request->has_extra()) {
         extra = struct_to_map(request->extra());
     }
-    bool success = motion->move_on_map(destination, component_name, slam_name, extra);
+    const bool success = motion->move_on_map(destination, component_name, slam_name, extra);
 
     response->set_success(success);
 
@@ -128,7 +128,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    bool success = motion->move_on_globe(
+    const bool success = motion->move_on_globe(
         destination, heading, component_name, movement_sensor_name, obstacles, mc, extra);
 
     response->set_success(success);
@@ -162,7 +162,7 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    pose_in_frame pose =
+    const pose_in_frame pose =
         motion->get_pose(component_name, destination_frame, supplemental_transforms, extra);
 
     *response->mutable_pose() = pose.to_proto();

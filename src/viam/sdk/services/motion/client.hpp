@@ -49,4 +49,3 @@ class MotionClient : public Motion {
 
 }  // namespace sdk
 }  // namespace viam
-

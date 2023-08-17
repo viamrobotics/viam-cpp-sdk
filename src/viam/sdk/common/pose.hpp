@@ -35,7 +35,7 @@ struct pose_in_frame {
     pose_in_frame() {}
 
     std::string reference_frame;
-    pose pose;
+    struct pose pose;
     friend bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs);
     friend std::ostream& operator<<(std::ostream& os, const pose_in_frame& v);
 };
