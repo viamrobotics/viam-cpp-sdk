@@ -65,28 +65,24 @@ BOOST_AUTO_TEST_CASE(mock_move_on_map) {
 }
 
 BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
-    BOOST_TEST(true);
-    // std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
+    std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
 
-    // double* heading;
-    //*heading = 15;
+    bool success = motion->move_on_globe(fake_geo_point(),
+                                         15,
+                                         fake_component_name(),
+                                         fake_movement_sensor_name(),
+                                         fake_obstacles(),
+                                         fake_motion_configuration(),
+                                         fake_map());
 
-    // bool success = motion->move_on_globe(fake_geo_point(),
-    // heading,
-    // fake_component_name(),
-    // fake_movement_sensor_name(),
-    // fake_obstacles(),
-    // fake_motion_configuration(),
-    // fake_map());
+    BOOST_TEST(success);
 
-    // BOOST_TEST(success);
-
-    // BOOST_CHECK_EQUAL(motion->peek_destination, fake_geo_point());
-    // BOOST_CHECK_EQUAL(motion->peek_heading, *heading);
-    // BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
-    // BOOST_CHECK_EQUAL(motion->peek_movement_sensor_name, fake_movement_sensor_name());
-    // BOOST_CHECK_EQUAL(motion->peek_obstacles, fake_obstacles());
-    // BOOST_CHECK_EQUAL(motion->peek_motion_configuration, fake_motion_configuration());
+    BOOST_CHECK_EQUAL(motion->peek_destination, fake_geo_point());
+    BOOST_CHECK_EQUAL(motion->peek_heading, 15);
+    BOOST_CHECK_EQUAL(motion->peek_component_name, fake_component_name());
+    BOOST_CHECK_EQUAL(motion->peek_movement_sensor_name, fake_movement_sensor_name());
+    BOOST_CHECK_EQUAL(motion->peek_obstacles, fake_obstacles());
+    BOOST_CHECK_EQUAL(*(motion->peek_motion_configuration), *(fake_motion_configuration()));
 }
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {

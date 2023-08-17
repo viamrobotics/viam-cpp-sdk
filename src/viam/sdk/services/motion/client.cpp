@@ -82,7 +82,7 @@ bool MotionClient::move_on_globe(const geo_point& destination,
     *request.mutable_component_name() = component_name.to_proto();
     *request.mutable_movement_sensor_name() = movement_sensor_name.to_proto();
 
-    if (heading) {
+    if (heading && !isnan(*heading)) {
         request.set_heading(*heading);
     }
 

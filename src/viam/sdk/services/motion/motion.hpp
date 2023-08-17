@@ -56,6 +56,8 @@ struct motion_configuration {
 
     service::motion::v1::MotionConfiguration to_proto() const;
     static motion_configuration from_proto(const service::motion::v1::MotionConfiguration& proto);
+    friend bool operator==(const motion_configuration& lhs, const motion_configuration& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const motion_configuration& v);
 };
 
 /// @class Motion motion.hpp "services/motion/motion.hpp"
@@ -70,14 +72,14 @@ struct motion_configuration {
 class Motion : public Service {
    public:
     /// @struct linear_constraint
-    /// @brief Specifiec that the component being moved should move linearly to its goal.
+    /// @brief Specifies that the component being moved should move linearly to its goal.
     struct linear_constraint {
         float line_tolerance_mm;
         float orientation_tolerance_degs;
     };
 
     /// @struct orientation_constraint
-    /// @brief Specifiec that the component being moved will not deviate its orientation beyond the
+    /// @brief Specifies that the component being moved will not deviate its orientation beyond the
     /// specified threshold.
     struct orientation_constraint {
         float orientation_tolerance_degs;
@@ -94,7 +96,7 @@ class Motion : public Service {
     };
 
     /// @struct constraints
-    /// @brief Specifies all enumerates constraints to be passed to Viam's motion planning, along
+    /// @brief Specifies all constraints to be passed to Viam's motion planning, along
     /// with any optional parameters.
     struct constraints {
         std::vector<linear_constraint> linear_constraints;
@@ -114,7 +116,7 @@ class Motion : public Service {
     /// @brief Moves any compononent on the robot to a specified destination.
     /// @param destination Where to move the component to.
     /// @param name Name of the component to be moved.
-    /// @param world_state Obstacles to avoid and transforms to add to the robot for the durtaion of
+    /// @param world_state Obstacles to avoid and transforms to add to the robot for the duration of
     /// the move.
     /// @param constraints Constraints to apply to how the robot will move.
     /// @extra Any additional arguments to the method.

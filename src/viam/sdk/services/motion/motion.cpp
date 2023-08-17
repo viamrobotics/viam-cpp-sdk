@@ -173,6 +173,44 @@ motion_configuration motion_configuration::from_proto(
     return mc;
 }
 
+bool operator==(const motion_configuration& lhs, const motion_configuration& rhs) {
+    return lhs.angular_degs_per_sec == rhs.angular_degs_per_sec &&
+           lhs.vision_services == rhs.vision_services &&
+           lhs.linear_m_per_sec == rhs.linear_m_per_sec &&
+           lhs.plan_deviation_m == rhs.plan_deviation_m &&
+           lhs.obstacle_polling_frequency_hz == rhs.obstacle_polling_frequency_hz &&
+           lhs.position_polling_frequency_hz == rhs.position_polling_frequency_hz;
+}
+
+std::ostream& operator<<(std::ostream& os, const motion_configuration& v) {
+    os << "{ ";
+    if (!v.vision_services.empty()) {
+        os << "\tvision_services: [\n";
+        for (const auto& name : v.vision_services) {
+            os << "\t\t" << name.to_string() << ",\n";
+        }
+        os << "\t],\n";
+    }
+    if (v.angular_degs_per_sec.has_value()) {
+        os << "\tangular_degs_per_sec: " << v.angular_degs_per_sec.get() << ",\n";
+    }
+    if (v.linear_m_per_sec.has_value()) {
+        os << "\tlinear_m_per_sec: " << v.linear_m_per_sec.get() << ",\n";
+    }
+    if (v.obstacle_polling_frequency_hz.has_value()) {
+        os << "\tobstacle_polling_frequency_hz: " << v.obstacle_polling_frequency_hz.get() << ",\n";
+    }
+    if (v.plan_deviation_m.has_value()) {
+        os << "\tplan_deviation_m: " << v.plan_deviation_m.get() << ",\n";
+    }
+    if (v.position_polling_frequency_hz.has_value()) {
+        os << "\tposition_polling_frequency_hz: " << v.position_polling_frequency_hz.get() << ",\n";
+    }
+    os << "}";
+
+    return os;
+}
+
 namespace {
 bool init() {
     Registry::register_resource(Motion::static_api(), Motion::resource_registration());
