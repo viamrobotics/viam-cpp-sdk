@@ -29,7 +29,7 @@ class Resource {
 
     /// @brief Stops a resource from running.
     /// @param extra Extra arguments to pass to the resource's `stop` method.
-    virtual grpc::StatusCode stop(AttributeMap extra);
+    virtual grpc::StatusCode stop(const AttributeMap& extra);
 
     /// @brief Stops a resource from running.
     virtual grpc::StatusCode stop();

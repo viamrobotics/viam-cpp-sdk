@@ -47,35 +47,51 @@ class Base : public Component {
     /// until completed or cancelled
     /// @param distance_mm Desired travel distance in millimeters
     /// @param mm_per_sec Desired travel velocity in millimeters/second
-    virtual void move_straight(int64_t distance_mm, double mm_per_sec) = 0;
+    /// @param extra Any additional arguments to the method
+    virtual void move_straight(int64_t distance_mm,
+                               double mm_per_sec,
+                               const AttributeMap& extra) = 0;
 
     /// @brief Spins a robot's base by an given angle, expressed in degrees. This method blocks
     /// until completed or cancelled
     /// @param angle_deg Desired angle
     /// @param degs_per_sec Desired angular velocity
-    virtual void spin(double angle_deg, double degs_per_sec) = 0;
+    /// @param extra Any additional arguments to the method
+    virtual void spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) = 0;
 
     /// @brief Sets the linear and angular power of a base -1 -> 1 in terms of power for
     /// each direction
     /// @param linear Desired linear power percentage (-1 <= % <= 1) for each direction
     /// @param angular Desired angular power percentage (-1 <= % <= 1) for each direction
-    virtual void set_power(const Vector3& linear, const Vector3& angular) = 0;
+    /// @param extra Any additional arguments to the method
+    virtual void set_power(const Vector3& linear,
+                           const Vector3& angular,
+                           const AttributeMap& extra) = 0;
 
     /// @brief Set the linear and angular velocity of a base
     /// @param linear Desired linear velocity in mm per second for each direction
     /// @param angular Desired angular velocity in degrees per second for each direction
-    virtual void set_velocity(const Vector3& linear, const Vector3& angular) = 0;
+    /// @param extra Any additional arguments to the method
+    virtual void set_velocity(const Vector3& linear,
+                              const Vector3& angular,
+                              const AttributeMap& extra) = 0;
 
     /// @brief Stops a robot's base
     virtual grpc::StatusCode stop() override = 0;
 
+    /// @brief Stops a robot's base
+    /// @param extra Any additional arguments to the method
+    virtual grpc::StatusCode stop(const AttributeMap& extra) override = 0;
+
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;
+
+    // CR erodkin: add get_properties
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(AttributeMap command) = 0;
+    virtual AttributeMap do_command(const AttributeMap& command) = 0;
 
     API dynamic_api() const override;
 

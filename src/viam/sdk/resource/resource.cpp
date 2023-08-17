@@ -13,7 +13,7 @@ namespace sdk {
 
 Resource::~Resource() = default;
 
-grpc::StatusCode Resource::stop(AttributeMap extra) {
+grpc::StatusCode Resource::stop(const AttributeMap& extra) {
     return stop();
 }
 

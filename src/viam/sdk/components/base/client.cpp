@@ -23,7 +23,7 @@ BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
       stub_(viam::component::base::v1::BaseService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
+void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) {
     viam::component::base::v1::MoveStraightRequest request;
     viam::component::base::v1::MoveStraightResponse response;
 
@@ -39,7 +39,7 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
     }
 }
 
-void BaseClient::spin(double angle_deg, double degs_per_sec) {
+void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) {
     viam::component::base::v1::SpinRequest request;
     viam::component::base::v1::SpinResponse response;
 
@@ -55,7 +55,9 @@ void BaseClient::spin(double angle_deg, double degs_per_sec) {
     }
 }
 
-void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
+void BaseClient::set_power(const Vector3& linear,
+                           const Vector3& angular,
+                           const AttributeMap& extra) {
     viam::component::base::v1::SetPowerRequest request;
     viam::component::base::v1::SetPowerResponse response;
 
@@ -71,7 +73,9 @@ void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
     }
 }
 
-void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
+void BaseClient::set_velocity(const Vector3& linear,
+                              const Vector3& angular,
+                              const AttributeMap& extra) {
     viam::component::base::v1::SetVelocityRequest request;
     viam::component::base::v1::SetVelocityResponse response;
 
@@ -87,7 +91,7 @@ void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
     }
 }
 
-grpc::StatusCode BaseClient::stop(AttributeMap extra) {
+grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
     return this->stop();
 }
 
@@ -121,7 +125,7 @@ bool BaseClient::is_moving() {
     return response.is_moving();
 }
 
-AttributeMap BaseClient::do_command(AttributeMap command) {
+AttributeMap BaseClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandRequest request;
     viam::common::v1::DoCommandResponse response;
 

@@ -28,7 +28,12 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
 
     const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    base->move_straight(request->distance_mm(), request->mm_per_sec());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    base->move_straight(request->distance_mm(), request->mm_per_sec(), extra);
 
     return ::grpc::Status();
 }
@@ -48,7 +53,12 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
 
     const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    base->spin(request->angle_deg(), request->degs_per_sec());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    base->spin(request->angle_deg(), request->degs_per_sec(), extra);
 
     return ::grpc::Status();
 }
@@ -70,8 +80,12 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
 
     auto linear = Vector3::from_proto(request->linear());
     auto angular = Vector3::from_proto(request->angular());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    base->set_power(linear, angular);
+    base->set_power(linear, angular, extra);
 
     return ::grpc::Status();
 }
@@ -94,8 +108,12 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
 
     auto linear = Vector3::from_proto(request->linear());
     auto angular = Vector3::from_proto(request->angular());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    base->set_velocity(linear, angular);
+    base->set_velocity(linear, angular, extra);
 
     return ::grpc::Status();
 }
@@ -115,7 +133,12 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
 
     const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
 
-    base->stop();
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    base->stop(extra);
 
     return ::grpc::Status();
 }
