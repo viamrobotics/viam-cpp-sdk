@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['linkconfig_0',['LinkConfig',['../classviam_1_1sdk_1_1LinkConfig.html',1,'viam::sdk']]]
+  ['linear_5fconstraint_0',['linear_constraint',['../structviam_1_1sdk_1_1Motion_1_1linear__constraint.html',1,'viam::sdk::Motion']]],
+  ['linkconfig_1',['LinkConfig',['../classviam_1_1sdk_1_1LinkConfig.html',1,'viam::sdk']]]
 ];

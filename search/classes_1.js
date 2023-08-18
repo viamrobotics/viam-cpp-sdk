@@ -7,5 +7,6 @@ var searchData=
   ['board_4',['Board',['../classviam_1_1sdk_1_1Board.html',1,'viam::sdk']]],
   ['boardclient_5',['BoardClient',['../classviam_1_1sdk_1_1BoardClient.html',1,'viam::sdk']]],
   ['boardregistration_6',['BoardRegistration',['../classviam_1_1sdk_1_1BoardRegistration.html',1,'viam::sdk']]],
-  ['boardserver_7',['BoardServer',['../classviam_1_1sdk_1_1BoardServer.html',1,'viam::sdk']]]
+  ['boardserver_7',['BoardServer',['../classviam_1_1sdk_1_1BoardServer.html',1,'viam::sdk']]],
+  ['box_8',['box',['../structviam_1_1sdk_1_1box.html',1,'viam::sdk']]]
 ];

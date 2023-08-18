@@ -10,8 +10,13 @@ var searchData=
   ['modelregistration_7',['ModelRegistration',['../classviam_1_1sdk_1_1ModelRegistration.html',1,'viam::sdk']]],
   ['module_8',['Module',['../classviam_1_1sdk_1_1Module.html',1,'viam::sdk']]],
   ['moduleservice_5f_9',['ModuleService_',['../classviam_1_1sdk_1_1ModuleService__.html',1,'viam::sdk']]],
-  ['motor_10',['Motor',['../classviam_1_1sdk_1_1Motor.html',1,'viam::sdk']]],
-  ['motorclient_11',['MotorClient',['../classviam_1_1sdk_1_1MotorClient.html',1,'viam::sdk']]],
-  ['motorregistration_12',['MotorRegistration',['../classviam_1_1sdk_1_1MotorRegistration.html',1,'viam::sdk']]],
-  ['motorserver_13',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]]
+  ['motion_10',['Motion',['../classviam_1_1sdk_1_1Motion.html',1,'viam::sdk']]],
+  ['motion_5fconfiguration_11',['motion_configuration',['../structviam_1_1sdk_1_1motion__configuration.html',1,'viam::sdk']]],
+  ['motionclient_12',['MotionClient',['../classviam_1_1sdk_1_1MotionClient.html',1,'viam::sdk']]],
+  ['motionregistration_13',['MotionRegistration',['../classviam_1_1sdk_1_1MotionRegistration.html',1,'viam::sdk']]],
+  ['motionserver_14',['MotionServer',['../classviam_1_1sdk_1_1MotionServer.html',1,'viam::sdk']]],
+  ['motor_15',['Motor',['../classviam_1_1sdk_1_1Motor.html',1,'viam::sdk']]],
+  ['motorclient_16',['MotorClient',['../classviam_1_1sdk_1_1MotorClient.html',1,'viam::sdk']]],
+  ['motorregistration_17',['MotorRegistration',['../classviam_1_1sdk_1_1MotorRegistration.html',1,'viam::sdk']]],
+  ['motorserver_18',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]]
 ];

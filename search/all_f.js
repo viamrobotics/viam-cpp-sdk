@@ -19,7 +19,7 @@ var searchData=
   ['resource_16',['Resource',['../classviam_1_1sdk_1_1Resource.html',1,'viam::sdk']]],
   ['resource_5fby_5fname_17',['resource_by_name',['../classviam_1_1sdk_1_1RobotClient.html#a6f04ae183a30f21e666a74f7ab172413',1,'viam::sdk::RobotClient::resource_by_name(std::string name)'],['../classviam_1_1sdk_1_1RobotClient.html#a05bbdc1535b4a9f672b2f980b7010e6c',1,'viam::sdk::RobotClient::resource_by_name(const ResourceName &amp;name)']]],
   ['resource_5fmanager_2ehpp_18',['resource_manager.hpp',['../resource__manager_8hpp.html',1,'']]],
-  ['resource_5fregistration_19',['resource_registration',['../classviam_1_1sdk_1_1Generic.html#a1fde24215476864a8c521ef7a01425f0',1,'viam::sdk::Generic::resource_registration()'],['../classviam_1_1sdk_1_1Camera.html#a7b43684aec6d8d3901ce9227a2630513',1,'viam::sdk::Camera::resource_registration()']]],
+  ['resource_5fregistration_19',['resource_registration',['../classviam_1_1sdk_1_1Motion.html#a9dcb7d5742621dd8d9290534b0e174c8',1,'viam::sdk::Motion::resource_registration()'],['../classviam_1_1sdk_1_1Camera.html#a7b43684aec6d8d3901ce9227a2630513',1,'viam::sdk::Camera::resource_registration()'],['../classviam_1_1sdk_1_1Generic.html#a1fde24215476864a8c521ef7a01425f0',1,'viam::sdk::Generic::resource_registration()']]],
   ['resourceconfig_20',['ResourceConfig',['../classviam_1_1sdk_1_1ResourceConfig.html',1,'viam::sdk']]],
   ['resourcelevelserviceconfig_21',['ResourceLevelServiceConfig',['../classviam_1_1sdk_1_1ResourceLevelServiceConfig.html',1,'viam::sdk']]],
   ['resourcemanager_22',['ResourceManager',['../classviam_1_1sdk_1_1ResourceManager.html',1,'viam::sdk']]],

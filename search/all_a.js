@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['metadata_0',['metadata',['../classviam_1_1sdk_1_1MLModelService.html#a4a5babaacac656242d1740326b493e27',1,'viam::sdk::MLModelService::metadata()'],['../classviam_1_1sdk_1_1MLModelServiceClient.html#a7f157a70858e33b95e64216aea0e2a56',1,'viam::sdk::MLModelServiceClient::metadata()'],['../structviam_1_1sdk_1_1MLModelService_1_1metadata.html',1,'viam::sdk::MLModelService::metadata']]],
+  ['metadata_0',['metadata',['../classviam_1_1sdk_1_1MLModelServiceClient.html#a7f157a70858e33b95e64216aea0e2a56',1,'viam::sdk::MLModelServiceClient::metadata()'],['../classviam_1_1sdk_1_1MLModelService.html#a4a5babaacac656242d1740326b493e27',1,'viam::sdk::MLModelService::metadata()=0'],['../structviam_1_1sdk_1_1MLModelService_1_1metadata.html',1,'viam::sdk::MLModelService::metadata']]],
   ['mime_5fstring_5fto_5fformat_1',['MIME_string_to_format',['../classviam_1_1sdk_1_1Camera.html#a393d46f2920e7461f7ea0a25825f3c0b',1,'viam::sdk::Camera']]],
   ['mlmodelservice_2',['MLModelService',['../classviam_1_1sdk_1_1MLModelService.html',1,'viam::sdk']]],
   ['mlmodelserviceclient_3',['MLModelServiceClient',['../classviam_1_1sdk_1_1MLModelServiceClient.html',1,'viam::sdk']]],
@@ -11,10 +11,19 @@ var searchData=
   ['modelregistration_8',['ModelRegistration',['../classviam_1_1sdk_1_1ModelRegistration.html',1,'viam::sdk']]],
   ['module_9',['Module',['../classviam_1_1sdk_1_1Module.html',1,'viam::sdk']]],
   ['moduleservice_5f_10',['ModuleService_',['../classviam_1_1sdk_1_1ModuleService__.html',1,'viam::sdk']]],
-  ['motor_11',['Motor',['../classviam_1_1sdk_1_1Motor.html',1,'viam::sdk']]],
-  ['motor_2ehpp_12',['motor.hpp',['../motor_8hpp.html',1,'']]],
-  ['motorclient_13',['MotorClient',['../classviam_1_1sdk_1_1MotorClient.html',1,'viam::sdk']]],
-  ['motorregistration_14',['MotorRegistration',['../classviam_1_1sdk_1_1MotorRegistration.html',1,'viam::sdk']]],
-  ['motorserver_15',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]],
-  ['move_5fstraight_16',['move_straight',['../classviam_1_1sdk_1_1Base.html#af1e9a0882e06a1ee6e328d65afeb51ec',1,'viam::sdk::Base::move_straight()'],['../classviam_1_1sdk_1_1BaseClient.html#a62d49b8fb31ab2025ded48309a0e90d6',1,'viam::sdk::BaseClient::move_straight()']]]
+  ['motion_11',['Motion',['../classviam_1_1sdk_1_1Motion.html',1,'viam::sdk']]],
+  ['motion_2ehpp_12',['motion.hpp',['../motion_8hpp.html',1,'']]],
+  ['motion_5fconfiguration_13',['motion_configuration',['../structviam_1_1sdk_1_1motion__configuration.html',1,'viam::sdk']]],
+  ['motionclient_14',['MotionClient',['../classviam_1_1sdk_1_1MotionClient.html',1,'viam::sdk']]],
+  ['motionregistration_15',['MotionRegistration',['../classviam_1_1sdk_1_1MotionRegistration.html',1,'viam::sdk']]],
+  ['motionserver_16',['MotionServer',['../classviam_1_1sdk_1_1MotionServer.html',1,'viam::sdk']]],
+  ['motor_17',['Motor',['../classviam_1_1sdk_1_1Motor.html',1,'viam::sdk']]],
+  ['motor_2ehpp_18',['motor.hpp',['../motor_8hpp.html',1,'']]],
+  ['motorclient_19',['MotorClient',['../classviam_1_1sdk_1_1MotorClient.html',1,'viam::sdk']]],
+  ['motorregistration_20',['MotorRegistration',['../classviam_1_1sdk_1_1MotorRegistration.html',1,'viam::sdk']]],
+  ['motorserver_21',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]],
+  ['move_22',['move',['../classviam_1_1sdk_1_1MotionClient.html#ac2e54cab1c7eab82fe05c5bbd844f27d',1,'viam::sdk::MotionClient::move()'],['../classviam_1_1sdk_1_1Motion.html#a034cdf0ccaaecafb8ba6ccc8211f2616',1,'viam::sdk::Motion::move()']]],
+  ['move_5fon_5fglobe_23',['move_on_globe',['../classviam_1_1sdk_1_1MotionClient.html#aa11893750e944c93906c186acb8deb91',1,'viam::sdk::MotionClient::move_on_globe()'],['../classviam_1_1sdk_1_1Motion.html#a66fd79c759f01f467dccff23c0c4f754',1,'viam::sdk::Motion::move_on_globe()']]],
+  ['move_5fon_5fmap_24',['move_on_map',['../classviam_1_1sdk_1_1MotionClient.html#a8df727a8495ef7d037fa197260ad237b',1,'viam::sdk::MotionClient::move_on_map()'],['../classviam_1_1sdk_1_1Motion.html#ab779c0c47eed544832cb112dcd97b09f',1,'viam::sdk::Motion::move_on_map()']]],
+  ['move_5fstraight_25',['move_straight',['../classviam_1_1sdk_1_1Base.html#af1e9a0882e06a1ee6e328d65afeb51ec',1,'viam::sdk::Base::move_straight()'],['../classviam_1_1sdk_1_1BaseClient.html#a62d49b8fb31ab2025ded48309a0e90d6',1,'viam::sdk::BaseClient::move_straight()']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: viam::sdk::GeometryConfig::pose Struct Reference</title>
+<title>Viam C++ SDK: viam::sdk::WorldState::geometries_in_frame Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,31 +69,42 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1GeometryConfig_1_1pose.html">pose</a></li>  </ul>
+<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structviam_1_1sdk_1_1GeometryConfig_1_1pose-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">viam::sdk::GeometryConfig::pose Struct Reference</div></div>
+<a href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">viam::sdk::WorldState::geometries_in_frame Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aacf226298cf9af9ce4f17f481897377a"><td class="memItemLeft" align="right" valign="top"><a id="aacf226298cf9af9ce4f17f481897377a" name="aacf226298cf9af9ce4f17f481897377a"></a>
+common::v1::GeometriesInFrame&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> () const</td></tr>
+<tr class="separator:aacf226298cf9af9ce4f17f481897377a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a572a346afaf36f0756903fa72907a412"><td class="memItemLeft" align="right" valign="top"><a id="a572a346afaf36f0756903fa72907a412" name="a572a346afaf36f0756903fa72907a412"></a>
+static <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (const common::v1::GeometriesInFrame &amp;proto)</td></tr>
+<tr class="separator:a572a346afaf36f0756903fa72907a412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a82ca8dae950dafed9bd8982bb653de5d"><td class="memItemLeft" align="right" valign="top"><a id="a82ca8dae950dafed9bd8982bb653de5d" name="a82ca8dae950dafed9bd8982bb653de5d"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>o_x</b></td></tr>
-<tr class="separator:a82ca8dae950dafed9bd8982bb653de5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0aec41932de6cd66b3dec0b0a086d49"><td class="memItemLeft" align="right" valign="top"><a id="ab0aec41932de6cd66b3dec0b0a086d49" name="ab0aec41932de6cd66b3dec0b0a086d49"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>o_y</b></td></tr>
-<tr class="separator:ab0aec41932de6cd66b3dec0b0a086d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3078ddc847d299f516d21dc42640c99"><td class="memItemLeft" align="right" valign="top"><a id="ad3078ddc847d299f516d21dc42640c99" name="ad3078ddc847d299f516d21dc42640c99"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>o_z</b></td></tr>
-<tr class="separator:ad3078ddc847d299f516d21dc42640c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d97775808b4ebaa4c466723e481aa3e"><td class="memItemLeft" align="right" valign="top"><a id="a3d97775808b4ebaa4c466723e481aa3e" name="a3d97775808b4ebaa4c466723e481aa3e"></a>
+std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>geometries</b></td></tr>
+<tr class="separator:a3d97775808b4ebaa4c466723e481aa3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb0f00f07ccde842adf56cdf2d5d4737"><td class="memItemLeft" align="right" valign="top"><a id="abb0f00f07ccde842adf56cdf2d5d4737" name="abb0f00f07ccde842adf56cdf2d5d4737"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>reference_frame</b></td></tr>
+<tr class="separator:abb0f00f07ccde842adf56cdf2d5d4737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/viam/sdk/spatialmath/<a class="el" href="geometry_8hpp_source.html">geometry.hpp</a></li>
+<li>src/viam/sdk/common/<a class="el" href="world__state_8hpp_source.html">world_state.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
