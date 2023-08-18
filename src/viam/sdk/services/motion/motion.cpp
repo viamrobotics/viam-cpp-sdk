@@ -1,5 +1,7 @@
 #include <viam/sdk/services/motion/motion.hpp>
 
+#include <math.h>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 #include <viam/api/service/motion/v1/motion.pb.h>
@@ -119,23 +121,23 @@ service::motion::v1::MotionConfiguration motion_configuration::to_proto() const 
         *proto.mutable_vision_services()->Add() = name.to_proto();
     }
 
-    if (position_polling_frequency_hz) {
+    if (position_polling_frequency_hz && !isnan(*position_polling_frequency_hz)) {
         proto.set_position_polling_frequency_hz(*position_polling_frequency_hz);
     }
 
-    if (obstacle_polling_frequency_hz) {
+    if (obstacle_polling_frequency_hz && !isnan(*obstacle_polling_frequency_hz)) {
         proto.set_obstacle_polling_frequency_hz(*obstacle_polling_frequency_hz);
     }
 
-    if (plan_deviation_m) {
+    if (plan_deviation_m && !isnan(*plan_deviation_m)) {
         proto.set_plan_deviation_m(*plan_deviation_m);
     }
 
-    if (linear_m_per_sec) {
+    if (linear_m_per_sec && !isnan(*linear_m_per_sec)) {
         proto.set_linear_m_per_sec(*linear_m_per_sec);
     }
 
-    if (angular_degs_per_sec) {
+    if (angular_degs_per_sec && !isnan(*angular_degs_per_sec)) {
         proto.set_angular_degs_per_sec(*angular_degs_per_sec);
     }
 
