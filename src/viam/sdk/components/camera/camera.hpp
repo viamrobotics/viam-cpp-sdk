@@ -148,6 +148,12 @@ class Camera : public Component {
     /// @return The frame as a `raw_image`.
     virtual raw_image get_image(std::string mime_type) = 0;
 
+    /// @brief Get the next image from the camera as a raw image.
+    /// @param mime_type the desired mime_type of the image (does not guarantee output type).
+    /// @param extra any additional arguments to the method.
+    /// @return The frame as a `raw_image`.
+    virtual raw_image get_image(std::string mime_type, const AttributeMap& extra) = 0;
+
     /// @brief Get the next images from the camera as a vector of raw images with names and
     /// metadata.
     /// @return a vector of raw_images and associated response metadata.

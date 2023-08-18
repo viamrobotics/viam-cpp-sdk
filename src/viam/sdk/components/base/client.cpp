@@ -23,6 +23,9 @@ BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
       stub_(viam::component::base::v1::BaseService::NewStub(channel)),
       channel_(std::move(channel)){};
 
+void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
+    return move_straight(distance_mm, mm_per_sec, nullptr);
+}
 void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) {
     viam::component::base::v1::MoveStraightRequest request;
     viam::component::base::v1::MoveStraightResponse response;
@@ -32,6 +35,7 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const Att
     *request.mutable_name() = this->name();
     request.set_distance_mm(distance_mm);
     request.set_mm_per_sec(mm_per_sec);
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->MoveStraight(&ctx, request, &response);
     if (!status.ok()) {
@@ -39,6 +43,9 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const Att
     }
 }
 
+void BaseClient::spin(double angle_deg, double degs_per_sec) {
+    return spin(angle_deg, degs_per_sec, nullptr);
+}
 void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) {
     viam::component::base::v1::SpinRequest request;
     viam::component::base::v1::SpinResponse response;
@@ -48,6 +55,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap&
     *request.mutable_name() = this->name();
     request.set_angle_deg(angle_deg);
     request.set_degs_per_sec(degs_per_sec);
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->Spin(&ctx, request, &response);
     if (!status.ok()) {
@@ -55,6 +63,9 @@ void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap&
     }
 }
 
+void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
+    return set_power(linear, angular, nullptr);
+}
 void BaseClient::set_power(const Vector3& linear,
                            const Vector3& angular,
                            const AttributeMap& extra) {
@@ -66,6 +77,7 @@ void BaseClient::set_power(const Vector3& linear,
     *request.mutable_name() = this->name();
     *request.mutable_linear() = Vector3::to_proto(linear);
     *request.mutable_angular() = Vector3::to_proto(angular);
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->SetPower(&ctx, request, &response);
     if (!status.ok()) {
@@ -73,6 +85,9 @@ void BaseClient::set_power(const Vector3& linear,
     }
 }
 
+void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
+    return set_velocity(linear, angular, nullptr);
+}
 void BaseClient::set_velocity(const Vector3& linear,
                               const Vector3& angular,
                               const AttributeMap& extra) {
@@ -84,6 +99,7 @@ void BaseClient::set_velocity(const Vector3& linear,
     *request.mutable_name() = this->name();
     *request.mutable_linear() = Vector3::to_proto(linear);
     *request.mutable_angular() = Vector3::to_proto(angular);
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->SetVelocity(&ctx, request, &response);
     if (!status.ok()) {
@@ -91,17 +107,18 @@ void BaseClient::set_velocity(const Vector3& linear,
     }
 }
 
-grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
-    return this->stop();
+grpc::StatusCode BaseClient::stop() {
+    return this->stop(nullptr);
 }
 
-grpc::StatusCode BaseClient::stop() {
+grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
     viam::component::base::v1::StopRequest request;
     viam::component::base::v1::StopResponse response;
 
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->Stop(&ctx, request, &response);
     if (!status.ok()) {

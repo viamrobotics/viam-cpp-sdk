@@ -97,6 +97,10 @@ class Board : public Component {
     /// @brief Get the status of all of the registered analog readers and digital interrupt readers
     virtual status get_status() = 0;
 
+    /// @brief Get the status of all of the registered analog readers and digital interrupt readers
+    /// @param extra Any additional arguments to the method
+    virtual status get_status(const AttributeMap& extra) = 0;
+
     /// @brief Get the names of the defined analog readers defined for this board
     /// This information comes from calling `get_status()`
     std::vector<std::string> get_analog_reader_names();
@@ -118,23 +122,53 @@ class Board : public Component {
     /// @return high/low state of the given pin. High = on, low = off
     virtual bool get_gpio(const std::string& pin) = 0;
 
+    /// @brief Gets the high/low state of the given pin on a board.
+    /// @param pin board pin name
+    /// @param extra Any additional arguments to the method
+    /// @return high/low state of the given pin. High = on, low = off
+    virtual bool get_gpio(const std::string& pin, const AttributeMap& extra) = 0;
+
     /// @brief Set the gpio high/low state of the given pin on a board
     /// @param high true if the pin should be set to high (on) or false if it should be low (off)
     virtual void set_gpio(const std::string& pin, bool high) = 0;
+
+    /// @brief Set the gpio high/low state of the given pin on a board
+    /// @param high true if the pin should be set to high (on) or false if it should be low (off)
+    /// @param extra Any additional arguments to the method
+    virtual void set_gpio(const std::string& pin, bool high, const AttributeMap& extra) = 0;
 
     /// @brief Gets the duty cycle of the given pin on a board.
     /// @param pin board pin name
     /// @return duty cycle percentage (0 to 1)
     virtual double get_pwm_duty_cycle(const std::string& pin) = 0;
 
+    /// @brief Gets the duty cycle of the given pin on a board.
+    /// @param pin board pin name
+    /// @param extra Any additional arguments to the method
+    /// @return duty cycle percentage (0 to 1)
+    virtual double get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) = 0;
+
     /// @brief Sets the given pin of a board to the given duty cycle.
     /// @param pin board pin name
     /// @param duty_cycle_pct duty cycle percentage 0 to 1
     virtual void set_pwm_duty_cycle(const std::string& pin, double duty_cycle_pct) = 0;
 
+    /// @brief Sets the given pin of a board to the given duty cycle.
+    /// @param pin board pin name
+    /// @param duty_cycle_pct duty cycle percentage 0 to 1
+    /// @param extra Any additional arguments to the method
+    virtual void set_pwm_duty_cycle(const std::string& pin,
+                                    double duty_cycle_pct,
+                                    const AttributeMap& extra) = 0;
+
     /// @brief Gets the PWM frequency of the given pin on a board.
     /// @param pin board pin name
     virtual uint64_t get_pwm_frequency(const std::string& pin) = 0;
+
+    /// @brief Gets the PWM frequency of the given pin on a board.
+    /// @param pin board pin name
+    /// @param extra Any additional arguments to the method
+    virtual uint64_t get_pwm_frequency(const std::string& pin, const AttributeMap& extra) = 0;
 
     /// @brief Sets the given pin on a board to the given PWM frequency. 0 will use the board's
     /// default PWM frequency.
@@ -142,15 +176,38 @@ class Board : public Component {
     /// @param frequency_hz frequency in hz (0 = use board default frequency)
     virtual void set_pwm_frequency(const std::string& pin, uint64_t frequency_hz) = 0;
 
+    /// @brief Sets the given pin on a board to the given PWM frequency. 0 will use the board's
+    /// default PWM frequency.
+    /// @param pin board pin name
+    /// @param frequency_hz frequency in hz (0 = use board default frequency)
+    /// @param extra Any additional arguments to the method
+    virtual void set_pwm_frequency(const std::string& pin,
+                                   uint64_t frequency_hz,
+                                   const AttributeMap& extra) = 0;
+
     /// @brief Reads off the current value of an analog reader on a board. Consult your ADC's docs
     /// or Viam's `Board` docs for more information.
     /// @param analog_reader_name analog reader to read from
     virtual analog_value read_analog(const std::string& analog_reader_name) = 0;
 
+    /// @brief Reads off the current value of an analog reader on a board. Consult your ADC's docs
+    /// or Viam's `Board` docs for more information.
+    /// @param analog_reader_name analog reader to read from
+    /// @param extra Any additional arguments to the method
+    virtual analog_value read_analog(const std::string& analog_reader_name,
+                                     const AttributeMap& extra) = 0;
+
     /// @brief Returns the current value of the interrupt which is based on the type of interrupt.
     /// Consult Viam's `Board` docs for more information.
     /// @param digital_interrupt_name digital interrupt to check
     virtual digital_value read_digital_interrupt(const std::string& digital_interrupt_name) = 0;
+
+    /// @brief Returns the current value of the interrupt which is based on the type of interrupt.
+    /// Consult Viam's `Board` docs for more information.
+    /// @param digital_interrupt_name digital interrupt to check
+    /// @param extra Any additional arguments to the method
+    virtual digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
+                                                 const AttributeMap& extra) = 0;
 
     /// @brief Sets the power consumption mode of the board to the requested setting for the given
     /// duration.
@@ -158,6 +215,16 @@ class Board : public Component {
     /// @param duration Requested duration to stay in `power_mode` (in microseconds)
     virtual void set_power_mode(
         power_mode power_mode, const boost::optional<std::chrono::microseconds>& duration = {}) = 0;
+
+    /// @brief Sets the power consumption mode of the board to the requested setting for the given
+    /// duration.
+    /// @param power_mode Requested power mode
+    /// @param extra Any additional arguments to the method
+    /// @param duration Requested duration to stay in `power_mode` (in microseconds)
+    virtual void set_power_mode(
+        power_mode power_mode,
+        const AttributeMap& extra,
+        const boost::optional<std::chrono::microseconds>& duration = {}) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

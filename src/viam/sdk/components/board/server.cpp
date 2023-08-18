@@ -27,7 +27,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    const viam::common::v1::BoardStatus status = Board::to_proto(board->get_status());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const viam::common::v1::BoardStatus status = Board::to_proto(board->get_status(extra));
 
     *response->mutable_status() = status;
 
@@ -49,7 +54,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    board->set_gpio(request->pin(), request->high());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    board->set_gpio(request->pin(), request->high(), extra);
 
     return ::grpc::Status();
 }
@@ -69,7 +79,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    response->set_high(board->get_gpio(request->pin()));
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    response->set_high(board->get_gpio(request->pin(), extra));
 
     return ::grpc::Status();
 }
@@ -89,7 +104,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    response->set_duty_cycle_pct(board->get_pwm_duty_cycle(request->pin()));
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    response->set_duty_cycle_pct(board->get_pwm_duty_cycle(request->pin(), extra));
 
     return ::grpc::Status();
 }
@@ -109,7 +129,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    board->set_pwm_duty_cycle(request->pin(), request->duty_cycle_pct());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    board->set_pwm_duty_cycle(request->pin(), request->duty_cycle_pct(), extra);
 
     return ::grpc::Status();
 }
@@ -130,7 +155,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    const uint64_t result = board->get_pwm_frequency(request->pin());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const uint64_t result = board->get_pwm_frequency(request->pin(), extra);
     response->set_frequency_hz(result);
 
     return ::grpc::Status();
@@ -152,7 +182,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    board->set_pwm_frequency(request->pin(), request->frequency_hz());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    board->set_pwm_frequency(request->pin(), request->frequency_hz(), extra);
 
     return ::grpc::Status();
 }
@@ -194,7 +229,12 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
-    const Board::analog_value result = board->read_analog(request->analog_reader_name());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Board::analog_value result = board->read_analog(request->analog_reader_name(), extra);
     response->set_value(result);
 
     return ::grpc::Status();
@@ -216,8 +256,13 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
     const Board::digital_value result =
-        board->read_digital_interrupt(request->digital_interrupt_name());
+        board->read_digital_interrupt(request->digital_interrupt_name(), extra);
     response->set_value(result);
 
     return ::grpc::Status();
@@ -239,11 +284,16 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
 
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
     if (request->has_duration()) {
         auto duration = ::viam::sdk::from_proto(request->duration());
-        board->set_power_mode(Board::from_proto(request->power_mode()), duration);
+        board->set_power_mode(Board::from_proto(request->power_mode()), extra, duration);
     } else {
-        board->set_power_mode(Board::from_proto(request->power_mode()));
+        board->set_power_mode(Board::from_proto(request->power_mode()), extra);
     }
 
     return ::grpc::Status();
