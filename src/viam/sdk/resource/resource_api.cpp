@@ -1,8 +1,9 @@
-#include <stdexcept>
 #include <viam/sdk/resource/resource_api.hpp>
 
+#include <numeric>
 #include <regex>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include <boost/algorithm/string.hpp>
@@ -40,11 +41,11 @@ const std::string& APIType::type_namespace() const {
     return namespace_;
 }
 
-void APIType::set_namespace(const std::string type_namespace) {
+void APIType::set_namespace(const std::string& type_namespace) {
     this->namespace_ = type_namespace;
 }
 
-void APIType::set_resource_type(const std::string resource_type) {
+void APIType::set_resource_type(const std::string& resource_type) {
     this->resource_type_ = resource_type;
 }
 
@@ -56,7 +57,7 @@ const std::string& API::resource_subtype() const {
     return resource_subtype_;
 }
 
-void API::set_resource_subtype(const std::string subtype) {
+void API::set_resource_subtype(const std::string& subtype) {
     this->resource_subtype_ = subtype;
 }
 
@@ -118,6 +119,17 @@ viam::common::v1::ResourceName Name::to_proto() const {
     return rn;
 }
 
+Name Name::from_proto(const viam::common::v1::ResourceName& proto) {
+    const API api(proto.namespace_(), proto.type(), proto.subtype());
+    std::vector<std::string> name_parts;
+    boost::split(name_parts, proto.name(), boost::is_any_of(":"));
+    auto name = name_parts.back();
+    name_parts.pop_back();
+    auto remote_name = std::accumulate(name_parts.begin(), name_parts.end(), std::string(":"));
+
+    return Name({proto.namespace_(), proto.type(), proto.subtype()}, remote_name, name);
+};
+
 Name Name::from_string(std::string name) {
     if (!std::regex_match(name, NAME_REGEX)) {
         throw "Received invalid Name string: " + name;
@@ -152,6 +164,11 @@ bool operator<(const API& lhs, const API& rhs) {
 
 bool operator==(const Name& lhs, const Name& rhs) {
     return lhs.to_string() == rhs.to_string();
+}
+
+std::ostream& operator<<(std::ostream& os, const Name& v) {
+    os << v.to_string();
+    return os;
 }
 
 bool operator==(const RPCSubtype& lhs, const RPCSubtype& rhs) {

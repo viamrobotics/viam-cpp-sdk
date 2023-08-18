@@ -21,6 +21,10 @@ using google::protobuf::Value;
 // NOLINTNEXTLINE(misc-no-recursion)
 Struct map_to_struct(AttributeMap dict) {
     Struct s;
+    if (!dict) {
+        return s;
+    }
+
     for (const auto& key_and_value : *dict) {
         const std::string key = key_and_value.first;
         const Value value = key_and_value.second->proto_value();

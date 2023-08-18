@@ -4,6 +4,7 @@
 
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 
@@ -25,26 +26,38 @@ std::vector<GeometryConfig> fake_geometries() {
     sphere_config.set_geometry_type(GeometryType::sphere);
     sphere_config.set_coordinates({1, 2, 3});
     sphere_config.set_pose({1, 2, 3});
-    sphere_config.set_radius(1);
+    struct sphere sphere({1});
+    sphere_config.set_geometry_specifics(std::move(sphere));
     sphere_config.set_label("sphere");
 
     GeometryConfig box_config;
     box_config.set_geometry_type(GeometryType::box);
     box_config.set_coordinates({1, 2, 3});
     box_config.set_pose({1, 2, 3});
-    box_config.set_radius(1);
+    struct box box({1, 2, 3});
+    box_config.set_geometry_specifics(std::move(box));
     box_config.set_label("box");
 
     GeometryConfig point_config;
     point_config.set_geometry_type(GeometryType::point);
     point_config.set_coordinates({1, 2, 3});
     point_config.set_pose({1, 2, 3});
-    point_config.set_radius(0);
+    struct sphere point({0});
+    point_config.set_geometry_specifics(std::move(point));
     point_config.set_label("point");
 
-    std::vector<GeometryConfig> geometries = {
-        std::move(sphere_config), std::move(box_config), std::move(point_config)};
-    return geometries;
+    GeometryConfig capsule_config;
+    capsule_config.set_geometry_type(GeometryType::capsule);
+    capsule_config.set_coordinates({1, 2, 3});
+    capsule_config.set_pose({1, 2, 3});
+    struct capsule capsule({2, 4});
+    capsule_config.set_geometry_specifics(std::move(capsule));
+    capsule_config.set_label("capsule");
+
+    return {std::move(sphere_config),
+            std::move(box_config),
+            std::move(point_config),
+            std::move(capsule_config)};
 }
 
 }  // namespace sdktests

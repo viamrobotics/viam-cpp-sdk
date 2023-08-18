@@ -44,8 +44,10 @@ target_sources(viamsdk
     # be initialized within main before anything else happens?
     registry/registry.cpp
     common/linear_algebra.cpp
+    common/pose.cpp
     common/proto_type.cpp
     common/utils.cpp
+    common/world_state.cpp
     components/base/base.cpp
     components/base/client.cpp
     components/base/server.cpp
@@ -83,6 +85,9 @@ target_sources(viamsdk
     services/mlmodel/mlmodel.cpp
     services/mlmodel/private/proto.cpp
     services/mlmodel/server.cpp
+    services/motion/client.cpp
+    services/motion/motion.cpp
+    services/motion/server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation_types.cpp
@@ -92,8 +97,10 @@ target_sources(viamsdk
       ../..
     FILES
       ../../viam/sdk/common/linear_algebra.hpp
+      ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_type.hpp
       ../../viam/sdk/common/utils.hpp
+      ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/base/base.hpp
       ../../viam/sdk/components/base/client.hpp
       ../../viam/sdk/components/base/server.hpp
@@ -131,6 +138,9 @@ target_sources(viamsdk
       ../../viam/sdk/services/mlmodel/client.hpp
       ../../viam/sdk/services/mlmodel/mlmodel.hpp
       ../../viam/sdk/services/mlmodel/server.hpp
+      ../../viam/sdk/services/motion/client.hpp
+      ../../viam/sdk/services/motion/motion.hpp
+      ../../viam/sdk/services/motion/server.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp

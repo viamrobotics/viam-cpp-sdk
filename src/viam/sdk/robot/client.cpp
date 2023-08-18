@@ -37,6 +37,8 @@
 namespace viam {
 namespace sdk {
 
+// TODO(RSDK-4573) Having all these proto types exposed here in the APIs is sad. Let's fix that.
+
 using google::protobuf::RepeatedPtrField;
 using grpc::ClientContext;
 using viam::common::v1::PoseInFrame;
@@ -298,6 +300,7 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
 
     return fs_configs;
 }
+
 PoseInFrame RobotClient::transform_pose(PoseInFrame query,
                                         std::string destination,
                                         std::vector<Transform> additional_transforms) {
