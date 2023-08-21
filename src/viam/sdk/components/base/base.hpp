@@ -48,6 +48,8 @@ class Base : public Component {
 
         static properties from_proto(const component::base::v1::GetPropertiesResponse& proto);
     };
+    friend std::ostream& operator<<(std::ostream& os, const properties& v);
+    friend bool operator==(const properties& lhs, const properties& rhs);
 
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();

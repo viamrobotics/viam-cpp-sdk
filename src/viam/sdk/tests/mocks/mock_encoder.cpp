@@ -1,3 +1,4 @@
+#include "viam/sdk/common/proto_type.hpp"
 #include <viam/sdk/tests/mocks/mock_encoder.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -15,17 +16,34 @@ namespace encoder {
 using namespace viam::sdk;
 
 Encoder::position MockEncoder::get_position(position_type position_type) {
+    return get_position(nullptr, position_type);
+}
+Encoder::position MockEncoder::get_position(const AttributeMap& extra,
+                                            position_type position_type) {
     this->peek_get_position_position_type = position_type;
     return this->peek_get_position_ret;
 };
 
 void MockEncoder::reset_position() {
+    return reset_position(nullptr);
+};
+void MockEncoder::reset_position(const AttributeMap& extra) {
     this->peek_reset_position_called = true;
 };
 
 Encoder::properties MockEncoder::get_properties() {
+    return get_properties(nullptr);
+};
+Encoder::properties MockEncoder::get_properties(const AttributeMap& extra) {
     return this->peek_get_properties_ret;
 };
+
+std::vector<GeometryConfig> MockEncoder::get_geometries() {
+    return get_geometries(nullptr);
+}
+std::vector<GeometryConfig> MockEncoder::get_geometries(const sdk::AttributeMap& extra) {
+    return fake_geometries();
+}
 
 AttributeMap MockEncoder::do_command(AttributeMap command) {
     return command;

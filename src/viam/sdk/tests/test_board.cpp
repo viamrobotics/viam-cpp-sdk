@@ -19,6 +19,8 @@
 #include <viam/sdk/tests/mocks/mock_board.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
+
 namespace viam {
 namespace sdktests {
 
@@ -181,6 +183,13 @@ BOOST_AUTO_TEST_CASE(test_get_digital_interrupt_names) {
         std::sort(ret.begin(), ret.end());
         BOOST_CHECK_EQUAL(ret[0], "digital1");
         BOOST_CHECK_EQUAL(ret[1], "digital2");
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        const auto& geometries = client.get_geometries();
+        BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
 }
 

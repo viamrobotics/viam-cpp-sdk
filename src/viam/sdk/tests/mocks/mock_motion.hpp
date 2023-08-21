@@ -24,13 +24,29 @@ class MockMotion : public sdk::Motion {
     bool move(const sdk::pose_in_frame& destination,
               const sdk::Name& component_name,
               std::shared_ptr<sdk::WorldState> world_state,
+              std::shared_ptr<constraints> constraints) override;
+
+    bool move(const sdk::pose_in_frame& destination,
+              const sdk::Name& component_name,
+              std::shared_ptr<sdk::WorldState> world_state,
               std::shared_ptr<constraints> constraints,
               const sdk::AttributeMap& extra) override;
 
     bool move_on_map(const sdk::pose& destination,
                      const sdk::Name& component_name,
+                     const sdk::Name& slam_name) override;
+
+    bool move_on_map(const sdk::pose& destination,
+                     const sdk::Name& component_name,
                      const sdk::Name& slam_name,
                      const sdk::AttributeMap& extra) override;
+
+    bool move_on_globe(const sdk::geo_point& destination,
+                       const boost::optional<double>& heading,
+                       const sdk::Name& component_name,
+                       const sdk::Name& movement_sensor_name,
+                       const std::vector<sdk::geo_obstacle>& obstacles,
+                       std::shared_ptr<sdk::motion_configuration> motion_configuration) override;
 
     bool move_on_globe(const sdk::geo_point& destination,
                        const boost::optional<double>& heading,
@@ -43,8 +59,13 @@ class MockMotion : public sdk::Motion {
     sdk::pose_in_frame get_pose(
         const sdk::Name& component_name,
         const std::string& destination_frame,
+        const std::vector<sdk::WorldState::transform>& supplemental_transforms) override;
+
+    sdk::pose_in_frame get_pose(
+        const sdk::Name& component_name,
+        const std::string& destination_frame,
         const std::vector<sdk::WorldState::transform>& supplemental_transforms,
-        sdk::AttributeMap extra) override;
+        const sdk::AttributeMap& extra) override;
 
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
     static std::shared_ptr<MockMotion> get_mock_motion();

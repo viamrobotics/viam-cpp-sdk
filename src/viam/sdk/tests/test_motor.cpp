@@ -18,6 +18,8 @@
 #include <viam/sdk/tests/mocks/mock_motor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
+
 namespace viam {
 namespace sdktests {
 namespace motor {
@@ -68,6 +70,14 @@ BOOST_AUTO_TEST_CASE(mock_stop) {
     motor->stop(std::move(extra_map));
     BOOST_CHECK(motor->get_power_status().power_pct == 0.0);
     BOOST_CHECK(!motor->is_moving());
+}
+
+BOOST_AUTO_TEST_CASE(mock_get_geometries) {
+    std::shared_ptr<MockMotor> motor = MockMotor::get_mock_motor();
+    std::vector<GeometryConfig> expected_geometries = fake_geometries();
+    std::vector<GeometryConfig> result_geometries = motor->get_geometries();
+
+    BOOST_CHECK_EQUAL(result_geometries, expected_geometries);
 }
 
 BOOST_AUTO_TEST_CASE(mock_do_command) {
@@ -189,6 +199,13 @@ BOOST_AUTO_TEST_CASE(test_stop) {
         // This test is a no-op for now because is_moving will always
         // return false
         BOOST_CHECK(!client.is_moving());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    server_to_mock_pipeline([](Motor& client) -> void {
+        const auto& geometries = client.get_geometries();
+        BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
 }
 

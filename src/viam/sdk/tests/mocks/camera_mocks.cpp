@@ -1,3 +1,4 @@
+#include "viam/sdk/common/proto_type.hpp"
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -17,17 +18,26 @@ using namespace viam::sdk;
 AttributeMap MockCamera::do_command(AttributeMap command) {
     return map_;
 }
-Camera::raw_image MockCamera::get_image(std::string mime_type) {
+Camera::raw_image MockCamera::get_image(std::string mime_type, const AttributeMap& extra) {
     return image_;
+}
+Camera::raw_image MockCamera::get_image(std::string mime_type) {
+    return get_image(mime_type, nullptr);
 }
 Camera::image_collection MockCamera::get_images() {
     return images_;
 }
-Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
+Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type, const AttributeMap& extra) {
     return pc_;
 }
-std::vector<GeometryConfig> MockCamera::get_geometries() {
+Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
+    return get_point_cloud(mime_type, nullptr);
+}
+std::vector<GeometryConfig> MockCamera::get_geometries(const AttributeMap& extra) {
     return geometries_;
+}
+std::vector<GeometryConfig> MockCamera::get_geometries() {
+    return get_geometries(nullptr);
 }
 Camera::properties MockCamera::get_properties() {
     return camera_properties_;
