@@ -1,10 +1,10 @@
 #pragma once
 
-#include "viam/sdk/common/proto_type.hpp"
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 #include <viam/api/component/motor/v1/motor.pb.h>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/motor/client.hpp>
 #include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/components/motor/server.hpp>

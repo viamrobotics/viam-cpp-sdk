@@ -1,5 +1,6 @@
-#include "component/base/v1/base.pb.h"
 #include <viam/sdk/components/base/server.hpp>
+
+#include <viam/api/component/base/v1/base.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/utils.hpp>

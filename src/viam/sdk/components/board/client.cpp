@@ -193,6 +193,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
 
     request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->ReadAnalogReader(&ctx, request, &response);
     if (!status.ok()) {
@@ -214,6 +215,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 
     request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->GetDigitalInterruptValue(&ctx, request, &response);
     if (!status.ok()) {

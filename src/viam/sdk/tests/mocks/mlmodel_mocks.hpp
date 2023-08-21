@@ -14,9 +14,9 @@
 
 #pragma once
 
-#include "viam/sdk/common/proto_type.hpp"
 #include <functional>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
 namespace viam {

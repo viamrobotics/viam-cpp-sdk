@@ -3,9 +3,9 @@
 /// @brief Implements a gRPC server for the `Base` component.
 #pragma once
 
-#include "component/base/v1/base.pb.h"
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/base/v1/base.grpc.pb.h>
+#include <viam/api/component/base/v1/base.pb.h>
 
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>

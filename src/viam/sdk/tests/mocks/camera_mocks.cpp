@@ -1,10 +1,10 @@
-#include "viam/sdk/common/proto_type.hpp"
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
