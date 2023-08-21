@@ -119,6 +119,18 @@ class Motion : public Service {
     /// @param world_state Obstacles to avoid and transforms to add to the robot for the duration of
     /// the move.
     /// @param constraints Constraints to apply to how the robot will move.
+    /// @return Whether or not the move was successful.
+    virtual bool move(const pose_in_frame& destination,
+                      const Name& name,
+                      std::shared_ptr<WorldState> world_state,
+                      std::shared_ptr<constraints> constraints) = 0;
+
+    /// @brief Moves any compononent on the robot to a specified destination.
+    /// @param destination Where to move the component to.
+    /// @param name Name of the component to be moved.
+    /// @param world_state Obstacles to avoid and transforms to add to the robot for the duration of
+    /// the move.
+    /// @param constraints Constraints to apply to how the robot will move.
     /// @extra Any additional arguments to the method.
     /// @return Whether or not the move was successful.
     virtual bool move(const pose_in_frame& destination,
@@ -131,12 +143,36 @@ class Motion : public Service {
     /// @param destination The destination to move to.
     /// @param component_name The component to move.
     /// @param slam_name The name of the slam service from which the SLAM map is requested.
+    /// @return Whether or not the move was successful.
+    virtual bool move_on_map(const pose& destination,
+                             const Name& component_name,
+                             const Name& slam_name) = 0;
+
+    /// @brief Moves any component on the robot to a specific destination on a SLAM map.
+    /// @param destination The destination to move to.
+    /// @param component_name The component to move.
+    /// @param slam_name The name of the slam service from which the SLAM map is requested.
     /// @param extra Any additional arguments to the method.
     /// @return Whether or not the move was successful.
     virtual bool move_on_map(const pose& destination,
                              const Name& component_name,
                              const Name& slam_name,
                              const AttributeMap& extra) = 0;
+
+    /// @brief Moves any component on the robot to a specific destination on a globe.
+    /// @param destination The destination to move to.
+    /// @param heading Optional compass heading to achieve at the destination in degrees [0-360).
+    /// @param component_name The name of the component to move.
+    /// @param movement_sensor_name The name of the movement sensor used to check robot location.
+    /// @param obstacles Obstacles to be considered for motion planning.
+    /// @param motion_configuration Optional set of motion configuration options.
+    /// @return Whether or not the move was successful.
+    virtual bool move_on_globe(const geo_point& destination,
+                               const boost::optional<double>& heading,
+                               const Name& component_name,
+                               const Name& movement_sensor_name,
+                               const std::vector<geo_obstacle>& obstacles,
+                               std::shared_ptr<motion_configuration> motion_configuration) = 0;
 
     /// @brief Moves any component on the robot to a specific destination on a globe.
     /// @param destination The destination to move to.
@@ -161,13 +197,25 @@ class Motion : public Service {
     /// provided.
     /// @param supplemental_transforms Pose information on any additional reference frames that are
     /// needed to compute the component's pose.
+    /// @return The pose of the component.
+    virtual pose_in_frame get_pose(
+        const Name& component_name,
+        const std::string& destination_frame,
+        const std::vector<WorldState::transform>& supplemental_transforms) = 0;
+
+    /// @brief Get the pose of any component on the robot.
+    /// @param component_name The component whose pose is being requested.
+    /// @param destination_frame The reference frame in which the component's pose should be
+    /// provided.
+    /// @param supplemental_transforms Pose information on any additional reference frames that are
+    /// needed to compute the component's pose.
     /// @param extra Any additional arguments to the method.
     /// @return The pose of the component.
     virtual pose_in_frame get_pose(
         const Name& component_name,
         const std::string& destination_frame,
         const std::vector<WorldState::transform>& supplemental_transforms,
-        AttributeMap extra) = 0;
+        const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

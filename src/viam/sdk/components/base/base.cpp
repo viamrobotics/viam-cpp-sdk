@@ -45,6 +45,12 @@ API Base::dynamic_api() const {
     return static_api();
 }
 
+Base::properties Base::properties::from_proto(
+    const component::base::v1::GetPropertiesResponse& proto) {
+    return {
+        proto.width_meters(), proto.turning_radius_meters(), proto.wheel_circumference_meters()};
+}
+
 Base::Base(std::string name) : Component(std::move(name)){};
 
 namespace {

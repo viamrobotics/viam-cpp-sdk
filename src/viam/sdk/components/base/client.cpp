@@ -1,3 +1,5 @@
+#include "component/base/v1/base.pb.h"
+#include "viam/sdk/common/proto_type.hpp"
 #include <viam/sdk/components/base/client.hpp>
 
 #include <algorithm>
@@ -140,6 +142,36 @@ bool BaseClient::is_moving() {
         throw std::runtime_error(status.error_message());
     }
     return response.is_moving();
+}
+
+std::vector<GeometryConfig> BaseClient::get_geometries() {
+    return get_geometries(nullptr);
+}
+std::vector<GeometryConfig> BaseClient::get_geometries(const AttributeMap& extra) {
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    grpc::ClientContext ctx;
+
+    *req.mutable_name() = this->name();
+    *req.mutable_extra() = map_to_struct(extra);
+
+    stub_->GetGeometries(&ctx, req, &resp);
+    return GeometryConfig::from_proto(resp);
+};
+
+Base::properties BaseClient::get_properties() {
+    return get_properties(nullptr);
+}
+Base::properties BaseClient::get_properties(const AttributeMap& extra) {
+    component::base::v1::GetPropertiesRequest req;
+    component::base::v1::GetPropertiesResponse resp;
+    grpc::ClientContext ctx;
+
+    *req.mutable_name() = this->name();
+    *req.mutable_extra() = map_to_struct(extra);
+    stub_->GetProperties(&ctx, req, &resp);
+
+    return Base::properties::from_proto(resp);
 }
 
 AttributeMap BaseClient::do_command(const AttributeMap& command) {

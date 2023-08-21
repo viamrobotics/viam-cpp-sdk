@@ -24,10 +24,13 @@ class CameraClient : public Camera {
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
     raw_image get_image(std::string mime_type) override;
+    raw_image get_image(std::string mime_type, const AttributeMap& extra) override;
     image_collection get_images() override;
     point_cloud get_point_cloud(std::string mime_type) override;
+    point_cloud get_point_cloud(std::string mime_type, const AttributeMap& extra) override;
     properties get_properties() override;
     std::vector<GeometryConfig> get_geometries() override;
+    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

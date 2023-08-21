@@ -19,8 +19,17 @@ class MotionClient : public Motion {
     bool move(const pose_in_frame& destination,
               const Name& component_name,
               std::shared_ptr<WorldState> world_state,
+              std::shared_ptr<constraints> constraints) override;
+
+    bool move(const pose_in_frame& destination,
+              const Name& component_name,
+              std::shared_ptr<WorldState> world_state,
               std::shared_ptr<constraints> constraints,
               const AttributeMap& extra) override;
+
+    bool move_on_map(const pose& destination,
+                     const Name& component_name,
+                     const Name& slam_name) override;
 
     bool move_on_map(const pose& destination,
                      const Name& component_name,
@@ -32,13 +41,25 @@ class MotionClient : public Motion {
                        const Name& component_name,
                        const Name& movement_sensor_name,
                        const std::vector<geo_obstacle>& obstacles,
+                       std::shared_ptr<motion_configuration> motion_configuration) override;
+
+    bool move_on_globe(const geo_point& destination,
+                       const boost::optional<double>& heading,
+                       const Name& component_name,
+                       const Name& movement_sensor_name,
+                       const std::vector<geo_obstacle>& obstacles,
                        std::shared_ptr<motion_configuration> motion_configuration,
                        const AttributeMap& extra) override;
+
+    pose_in_frame get_pose(
+        const Name& component_name,
+        const std::string& destination_frame,
+        const std::vector<WorldState::transform>& supplemental_transforms) override;
 
     pose_in_frame get_pose(const Name& component_name,
                            const std::string& destination_frame,
                            const std::vector<WorldState::transform>& supplemental_transforms,
-                           AttributeMap extra) override;
+                           const AttributeMap& extra) override;
 
     AttributeMap do_command(const AttributeMap& command) override;
 

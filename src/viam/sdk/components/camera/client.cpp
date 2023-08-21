@@ -34,6 +34,9 @@ AttributeMap CameraClient::do_command(AttributeMap command) {
 };
 
 Camera::raw_image CameraClient::get_image(std::string mime_type) {
+    return get_image(mime_type, nullptr);
+}
+Camera::raw_image CameraClient::get_image(std::string mime_type, const AttributeMap& extra) {
     viam::component::camera::v1::GetImageRequest req;
     viam::component::camera::v1::GetImageResponse resp;
     grpc::ClientContext ctx;
@@ -42,6 +45,7 @@ Camera::raw_image CameraClient::get_image(std::string mime_type) {
 
     *req.mutable_mime_type() = mime_type;
     *req.mutable_name() = this->name();
+    *req.mutable_extra() = map_to_struct(extra);
 
     stub_->GetImage(&ctx, req, &resp);
     return from_proto(resp);
@@ -59,23 +63,32 @@ Camera::image_collection CameraClient::get_images() {
 };
 
 Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
+    return get_point_cloud(mime_type, nullptr);
+}
+Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type,
+                                                  const AttributeMap& extra) {
     viam::component::camera::v1::GetPointCloudRequest req;
     viam::component::camera::v1::GetPointCloudResponse resp;
     grpc::ClientContext ctx;
 
     *req.mutable_name() = this->name();
     *req.mutable_mime_type() = mime_type;
+    *req.mutable_extra() = map_to_struct(extra);
 
     stub_->GetPointCloud(&ctx, req, &resp);
     return from_proto(resp);
 };
 
 std::vector<GeometryConfig> CameraClient::get_geometries() {
+    return get_geometries(nullptr);
+}
+std::vector<GeometryConfig> CameraClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
 
     *req.mutable_name() = this->name();
+    *req.mutable_extra() = map_to_struct(extra);
 
     stub_->GetGeometries(&ctx, req, &resp);
     return GeometryConfig::from_proto(resp);

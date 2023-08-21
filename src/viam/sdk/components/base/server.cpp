@@ -1,3 +1,4 @@
+#include "component/base/v1/base.pb.h"
 #include <viam/sdk/components/base/server.hpp>
 
 #include <viam/sdk/common/linear_algebra.hpp>
@@ -164,6 +165,62 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
     return ::grpc::Status();
 }
 
+::grpc::Status BaseServer::GetGeometries(::grpc::ServerContext* context,
+                                         const ::viam::common::v1::GetGeometriesRequest* request,
+                                         ::viam::common::v1::GetGeometriesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetGeometries] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const std::vector<GeometryConfig> geometries = base->get_geometries(extra);
+    for (const auto& geometry : geometries) {
+        *response->mutable_geometries()->Add() = geometry.to_proto();
+    }
+
+    return ::grpc::Status();
+}
+
+::grpc::Status BaseServer::GetProperties(
+    grpc::ServerContext* context,
+    const viam::component::base::v1::GetPropertiesRequest* request,
+    viam::component::base::v1::GetPropertiesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Encoder::GetProperties] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Base::properties result = base->get_properties(extra);
+    response->set_width_meters(result.width_meters);
+    response->set_turning_radius_meters(result.turning_radius_meters);
+    response->set_wheel_circumference_meters(result.wheel_circumference_meters);
+
+    return ::grpc::Status();
+}
+
 ::grpc::Status BaseServer::DoCommand(grpc::ServerContext* context,
                                      const viam::common::v1::DoCommandRequest* request,
                                      viam::common::v1::DoCommandResponse* response) {
@@ -177,8 +234,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager) : ResourceServe
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
-    const std::shared_ptr<Base> motor = std::dynamic_pointer_cast<Base>(rb);
-    const AttributeMap result = motor->do_command(struct_to_map(request->command()));
+    const std::shared_ptr<Base> base = std::dynamic_pointer_cast<Base>(rb);
+    const AttributeMap result = base->do_command(struct_to_map(request->command()));
 
     *response->mutable_result() = map_to_struct(result);
 

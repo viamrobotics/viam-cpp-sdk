@@ -70,6 +70,10 @@ class BoardServer : public ResourceServer,
         const ::viam::component::board::v1::SetPowerModeRequest* request,
         ::viam::component::board::v1::SetPowerModeResponse* response) override;
 
+    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
+                                 const ::viam::common::v1::GetGeometriesRequest* request,
+                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+
     void register_server(std::shared_ptr<Server> server) override;
 };
 

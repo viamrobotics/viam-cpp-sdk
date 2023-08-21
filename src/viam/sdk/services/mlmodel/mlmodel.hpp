@@ -111,6 +111,17 @@ class MLModelService : public Service {
     /// viewed by the views is only valid for the lifetime of the returned shared_ptr.
     virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) = 0;
 
+    /// @brief Runs the model against the input tensors and returns inference results as tensors.
+    ///
+    /// @param `inputs`: The input tensors on which to run inference.
+    ///
+    /// @param `extra`: Any additional arguments to the method.
+    ///
+    /// @returns The results of the inference as a shared pointer to `named_tensor_views`. The data
+    /// viewed by the views is only valid for the lifetime of the returned shared_ptr.
+    virtual std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
+                                                      const AttributeMap& extra) = 0;
+
     struct tensor_info {
         struct file {
             std::string name;
@@ -159,6 +170,11 @@ class MLModelService : public Service {
 
     /// @brief Returns metadata describing the inputs and outputs of the model
     virtual struct metadata metadata() = 0;
+
+    /// @brief Returns metadata describing the inputs and outputs of the model
+    ///
+    /// @param `extra`: Any additional arguments to the method.
+    virtual struct metadata metadata(const AttributeMap& extra) = 0;
 
    protected:
     explicit MLModelService(std::string name);

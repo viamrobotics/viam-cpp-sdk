@@ -39,6 +39,16 @@ class BaseRegistration : public ResourceRegistration {
 /// specific base implementations. This class cannot be used on its own.
 class Base : public Component {
    public:
+    /// @struct properties
+    /// @brief Information about the physical base
+    struct properties {
+        double width_meters;
+        double turning_radius_meters;
+        double wheel_circumference_meters;
+
+        static properties from_proto(const component::base::v1::GetPropertiesResponse& proto);
+    };
+
     // functions shared across all components
     static std::shared_ptr<ResourceRegistration> resource_registration();
     static API static_api();
@@ -109,12 +119,26 @@ class Base : public Component {
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;
 
-    // CR erodkin: add get_properties
+    /// @brief Returns physical properties of the base (width, turning radius, wheel circumference)
+    virtual properties get_properties() = 0;
+
+    /// @brief Returns physical properties of the base (width, turning radius, wheel circumference)
+    /// @param extra Any additional arguments to the method
+    virtual properties get_properties(const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(const AttributeMap& command) = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling base.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries() = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling base.
+    /// @param extra Any additional arguments to the method.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
     API dynamic_api() const override;
 

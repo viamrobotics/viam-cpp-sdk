@@ -1,5 +1,6 @@
 #include <viam/sdk/components/motor/server.hpp>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/motor/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -25,8 +26,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    motor->set_power(request->power_pct());
+    motor->set_power(request->power_pct(), extra);
 
     return ::grpc::Status();
 }
@@ -45,8 +50,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    motor->go_for(request->rpm(), request->revolutions());
+    motor->go_for(request->rpm(), request->revolutions(), extra);
 
     return ::grpc::Status();
 }
@@ -65,8 +74,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    motor->go_to(request->rpm(), request->position_revolutions());
+    motor->go_to(request->rpm(), request->position_revolutions(), extra);
 
     return ::grpc::Status();
 }
@@ -86,8 +99,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    motor->reset_zero_position(request->offset());
+    motor->reset_zero_position(request->offset(), extra);
 
     return ::grpc::Status();
 }
@@ -107,8 +124,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    const Motor::position result = motor->get_position();
+    const Motor::position result = motor->get_position(extra);
     response->set_position(result);
 
     return ::grpc::Status();
@@ -129,8 +150,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    const Motor::properties result = motor->get_properties();
+    const Motor::properties result = motor->get_properties(extra);
     response->set_position_reporting(result.position_reporting);
 
     return ::grpc::Status();
@@ -150,8 +175,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    motor->stop(AttributeMap());
+    motor->stop(extra);
 
     return ::grpc::Status();
 }
@@ -170,8 +199,12 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     }
 
     const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
 
-    const Motor::power_status result = motor->get_power_status();
+    const Motor::power_status result = motor->get_power_status(extra);
     response->set_is_on(result.is_on);
     response->set_power_pct(result.power_pct);
 
@@ -195,6 +228,33 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 
     const bool result = motor->is_moving();
     response->set_is_moving(result);
+
+    return ::grpc::Status();
+}
+
+::grpc::Status MotorServer::GetGeometries(::grpc::ServerContext* context,
+                                          const ::viam::common::v1::GetGeometriesRequest* request,
+                                          ::viam::common::v1::GetGeometriesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetGeometries] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const std::shared_ptr<Motor> motor = std::dynamic_pointer_cast<Motor>(rb);
+    const std::vector<GeometryConfig> geometries = motor->get_geometries(extra);
+    for (const auto& geometry : geometries) {
+        *response->mutable_geometries()->Add() = geometry.to_proto();
+    }
 
     return ::grpc::Status();
 }

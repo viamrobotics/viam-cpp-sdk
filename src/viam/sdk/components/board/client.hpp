@@ -21,7 +21,7 @@ namespace sdk {
 class BoardClient : public Board {
    public:
     BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(AttributeMap command) override;
+    AttributeMap do_command(const AttributeMap& command) override;
     status get_status() override;
     status get_status(const AttributeMap& extra) override;
     void set_gpio(const std::string& pin, bool high) override;
@@ -51,6 +51,8 @@ class BoardClient : public Board {
     void set_power_mode(power_mode power_mode,
                         const AttributeMap& extra,
                         const boost::optional<std::chrono::microseconds>& duration) override;
+    std::vector<GeometryConfig> get_geometries() override;
+    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
    private:
     std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;

@@ -91,16 +91,42 @@ class Encoder : public Component {
     /// `unspecified`, the response will return a default according to the driver.
     virtual position get_position(position_type position_type = position_type::unspecified) = 0;
 
+    /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
+    /// incremental encoder or degrees for an absolute encoder.
+    /// @param extra Any additional arguments to the method.
+    /// @param position_type The type of position you are requesting. If  the driver does not
+    /// implement the requested type, this call will return an error. If position type is
+    /// `unspecified`, the response will return a default according to the driver.
+    virtual position get_position(const AttributeMap& extra,
+                                  position_type position_type = position_type::unspecified) = 0;
+
     /// @brief Reset the value of the position
     virtual void reset_position() = 0;
 
+    /// @brief Reset the value of the position
+    /// @param extra Any additional arguments to the method.
+    virtual void reset_position(const AttributeMap& extra) = 0;
+
     /// @brief Returns a list of all the position_types that are supported by the encoder.
     virtual properties get_properties() = 0;
+
+    /// @brief Returns a list of all the position_types that are supported by the encoder.
+    /// @param extra Any additional arguments to the method.
+    virtual properties get_properties(const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
     virtual AttributeMap do_command(AttributeMap command) = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling encoder.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries() = 0;
+
+    /// @brief Returns `GeometryConfig`s associated with the calling encoder.
+    /// @param extra Any additional arguments to the method.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
     API dynamic_api() const override;
 

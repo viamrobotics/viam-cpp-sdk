@@ -164,7 +164,7 @@ void BoardClient::set_pwm_frequency(const std::string& pin,
     }
 }
 
-AttributeMap BoardClient::do_command(AttributeMap command) {
+AttributeMap BoardClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandRequest request;
     viam::common::v1::DoCommandResponse response;
 
@@ -246,6 +246,21 @@ void BoardClient::set_power_mode(power_mode power_mode,
         throw std::runtime_error(status.error_message());
     }
 }
+
+std::vector<GeometryConfig> BoardClient::get_geometries() {
+    return get_geometries(nullptr);
+}
+std::vector<GeometryConfig> BoardClient::get_geometries(const AttributeMap& extra) {
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    grpc::ClientContext ctx;
+
+    *req.mutable_name() = this->name();
+    *req.mutable_extra() = map_to_struct(extra);
+
+    stub_->GetGeometries(&ctx, req, &resp);
+    return GeometryConfig::from_proto(resp);
+};
 
 }  // namespace sdk
 }  // namespace viam
