@@ -59,7 +59,9 @@ class Base : public Component {
     /// until completed or cancelled
     /// @param distance_mm Desired travel distance in millimeters
     /// @param mm_per_sec Desired travel velocity in millimeters/second
-    virtual void move_straight(int64_t distance_mm, double mm_per_sec) = 0;
+    inline void move_straight(int64_t distance_mm, double mm_per_sec) {
+        return move_straight(distance_mm, mm_per_sec, {});
+    }
 
     /// @brief Move a robot's base in a straight line by a given distance. This method blocks
     /// until completed or cancelled
@@ -74,7 +76,9 @@ class Base : public Component {
     /// until completed or cancelled
     /// @param angle_deg Desired angle
     /// @param degs_per_sec Desired angular velocity
-    virtual void spin(double angle_deg, double degs_per_sec) = 0;
+    inline void spin(double angle_deg, double degs_per_sec) {
+        return spin(angle_deg, degs_per_sec, {});
+    }
 
     /// @brief Spins a robot's base by an given angle, expressed in degrees. This method blocks
     /// until completed or cancelled
@@ -87,7 +91,9 @@ class Base : public Component {
     /// each direction
     /// @param linear Desired linear power percentage (-1 <= % <= 1) for each direction
     /// @param angular Desired angular power percentage (-1 <= % <= 1) for each direction
-    virtual void set_power(const Vector3& linear, const Vector3& angular) = 0;
+    inline void set_power(const Vector3& linear, const Vector3& angular) {
+        return set_power(linear, angular, {});
+    }
 
     /// @brief Sets the linear and angular power of a base -1 -> 1 in terms of power for
     /// each direction
@@ -101,7 +107,9 @@ class Base : public Component {
     /// @brief Set the linear and angular velocity of a base
     /// @param linear Desired linear velocity in mm per second for each direction
     /// @param angular Desired angular velocity in degrees per second for each direction
-    virtual void set_velocity(const Vector3& linear, const Vector3& angular) = 0;
+    inline void set_velocity(const Vector3& linear, const Vector3& angular) {
+        return set_velocity(linear, angular, {});
+    }
 
     /// @brief Set the linear and angular velocity of a base
     /// @param linear Desired linear velocity in mm per second for each direction
@@ -112,7 +120,9 @@ class Base : public Component {
                               const AttributeMap& extra) = 0;
 
     /// @brief Stops a robot's base
-    virtual grpc::StatusCode stop() override = 0;
+    inline grpc::StatusCode stop() {
+        return stop({});
+    }
 
     /// @brief Stops a robot's base
     /// @param extra Any additional arguments to the method
@@ -122,7 +132,9 @@ class Base : public Component {
     virtual bool is_moving() = 0;
 
     /// @brief Returns physical properties of the base (width, turning radius, wheel circumference)
-    virtual properties get_properties() = 0;
+    inline properties get_properties() {
+        return get_properties({});
+    }
 
     /// @brief Returns physical properties of the base (width, turning radius, wheel circumference)
     /// @param extra Any additional arguments to the method
@@ -135,7 +147,9 @@ class Base : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling base.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries() = 0;
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
 
     /// @brief Returns `GeometryConfig`s associated with the calling base.
     /// @param extra Any additional arguments to the method.

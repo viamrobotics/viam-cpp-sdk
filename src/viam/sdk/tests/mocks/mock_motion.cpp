@@ -13,12 +13,6 @@ using namespace viam::sdk;
 bool MockMotion::move(const pose_in_frame& destination,
                       const Name& component_name,
                       std::shared_ptr<WorldState> world_state,
-                      std::shared_ptr<constraints> constraints) {
-    return move(destination, component_name, world_state, constraints, nullptr);
-}
-bool MockMotion::move(const pose_in_frame& destination,
-                      const Name& component_name,
-                      std::shared_ptr<WorldState> world_state,
                       std::shared_ptr<constraints> constraints,
                       const AttributeMap& extra) {
     this->current_location = destination;
@@ -26,13 +20,8 @@ bool MockMotion::move(const pose_in_frame& destination,
     this->peek_world_state = world_state;
     this->peek_constraints = constraints;
     return true;
-};
-
-bool MockMotion::move_on_map(const pose& destination,
-                             const Name& component_name,
-                             const Name& slam_name) {
-    return move_on_map(destination, component_name, slam_name, nullptr);
 }
+
 bool MockMotion::move_on_map(const pose& destination,
                              const Name& component_name,
                              const Name& slam_name,
@@ -43,22 +32,8 @@ bool MockMotion::move_on_map(const pose& destination,
     this->current_location.pose = std::move(destination);
 
     return true;
-};
-
-bool MockMotion::move_on_globe(const geo_point& destination,
-                               const boost::optional<double>& heading,
-                               const Name& component_name,
-                               const Name& movement_sensor_name,
-                               const std::vector<geo_obstacle>& obstacles,
-                               std::shared_ptr<motion_configuration> motion_configuration) {
-    return move_on_globe(destination,
-                         heading,
-                         component_name,
-                         movement_sensor_name,
-                         obstacles,
-                         motion_configuration,
-                         nullptr);
 }
+
 bool MockMotion::move_on_globe(const geo_point& destination,
                                const boost::optional<double>& heading,
                                const Name& component_name,
@@ -79,16 +54,10 @@ bool MockMotion::move_on_globe(const geo_point& destination,
 pose_in_frame MockMotion::get_pose(
     const Name& component_name,
     const std::string& destination_frame,
-    const std::vector<WorldState::transform>& supplemental_transforms) {
-    return get_pose(component_name, destination_frame, supplemental_transforms, nullptr);
-};
-pose_in_frame MockMotion::get_pose(
-    const Name& component_name,
-    const std::string& destination_frame,
     const std::vector<WorldState::transform>& supplemental_transforms,
     const AttributeMap& extra) {
     return current_location;
-};
+}
 
 AttributeMap MockMotion::do_command(const AttributeMap& _command) {
     return peek_map;

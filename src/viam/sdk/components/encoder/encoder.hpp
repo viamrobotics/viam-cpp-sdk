@@ -89,7 +89,9 @@ class Encoder : public Component {
     /// @param position_type The type of position you are requesting. If  the driver does not
     /// implement the requested type, this call will return an error. If position type is
     /// `unspecified`, the response will return a default according to the driver.
-    virtual position get_position(position_type position_type = position_type::unspecified) = 0;
+    inline position get_position(position_type position_type = position_type::unspecified) {
+        return get_position({}, position_type);
+    }
 
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
     /// incremental encoder or degrees for an absolute encoder.
@@ -101,14 +103,18 @@ class Encoder : public Component {
                                   position_type position_type = position_type::unspecified) = 0;
 
     /// @brief Reset the value of the position
-    virtual void reset_position() = 0;
+    inline void reset_position() {
+        return reset_position({});
+    }
 
     /// @brief Reset the value of the position
     /// @param extra Any additional arguments to the method.
     virtual void reset_position(const AttributeMap& extra) = 0;
 
     /// @brief Returns a list of all the position_types that are supported by the encoder.
-    virtual properties get_properties() = 0;
+    inline properties get_properties() {
+        return get_properties({});
+    }
 
     /// @brief Returns a list of all the position_types that are supported by the encoder.
     /// @param extra Any additional arguments to the method.
@@ -121,7 +127,9 @@ class Encoder : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling encoder.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries() = 0;
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
 
     /// @brief Returns `GeometryConfig`s associated with the calling encoder.
     /// @param extra Any additional arguments to the method.

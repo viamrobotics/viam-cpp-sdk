@@ -120,10 +120,12 @@ class Motion : public Service {
     /// the move.
     /// @param constraints Constraints to apply to how the robot will move.
     /// @return Whether or not the move was successful.
-    virtual bool move(const pose_in_frame& destination,
-                      const Name& name,
-                      std::shared_ptr<WorldState> world_state,
-                      std::shared_ptr<constraints> constraints) = 0;
+    inline bool move(const pose_in_frame& destination,
+                     const Name& name,
+                     std::shared_ptr<WorldState> world_state,
+                     std::shared_ptr<constraints> constraints) {
+        return move(destination, name, world_state, constraints, {});
+    }
 
     /// @brief Moves any compononent on the robot to a specified destination.
     /// @param destination Where to move the component to.
@@ -144,9 +146,11 @@ class Motion : public Service {
     /// @param component_name The component to move.
     /// @param slam_name The name of the slam service from which the SLAM map is requested.
     /// @return Whether or not the move was successful.
-    virtual bool move_on_map(const pose& destination,
-                             const Name& component_name,
-                             const Name& slam_name) = 0;
+    inline bool move_on_map(const pose& destination,
+                            const Name& component_name,
+                            const Name& slam_name) {
+        return move_on_map(destination, component_name, slam_name, {});
+    }
 
     /// @brief Moves any component on the robot to a specific destination on a SLAM map.
     /// @param destination The destination to move to.
@@ -167,12 +171,20 @@ class Motion : public Service {
     /// @param obstacles Obstacles to be considered for motion planning.
     /// @param motion_configuration Optional set of motion configuration options.
     /// @return Whether or not the move was successful.
-    virtual bool move_on_globe(const geo_point& destination,
-                               const boost::optional<double>& heading,
-                               const Name& component_name,
-                               const Name& movement_sensor_name,
-                               const std::vector<geo_obstacle>& obstacles,
-                               std::shared_ptr<motion_configuration> motion_configuration) = 0;
+    inline bool move_on_globe(const geo_point& destination,
+                              const boost::optional<double>& heading,
+                              const Name& component_name,
+                              const Name& movement_sensor_name,
+                              const std::vector<geo_obstacle>& obstacles,
+                              std::shared_ptr<motion_configuration> motion_configuration) {
+        return move_on_globe(destination,
+                             heading,
+                             component_name,
+                             movement_sensor_name,
+                             obstacles,
+                             motion_configuration,
+                             {});
+    }
 
     /// @brief Moves any component on the robot to a specific destination on a globe.
     /// @param destination The destination to move to.
@@ -198,10 +210,12 @@ class Motion : public Service {
     /// @param supplemental_transforms Pose information on any additional reference frames that are
     /// needed to compute the component's pose.
     /// @return The pose of the component.
-    virtual pose_in_frame get_pose(
+    inline pose_in_frame get_pose(
         const Name& component_name,
         const std::string& destination_frame,
-        const std::vector<WorldState::transform>& supplemental_transforms) = 0;
+        const std::vector<WorldState::transform>& supplemental_transforms) {
+        return get_pose(component_name, destination_frame, supplemental_transforms, {});
+    }
 
     /// @brief Get the pose of any component on the robot.
     /// @param component_name The component whose pose is being requested.

@@ -22,9 +22,6 @@ void MockMotor::set_power(double power_pct, const AttributeMap& extra) {
     power_status_.is_on = power_pct != 0.0;
     power_status_.power_pct = power_pct;
 }
-void MockMotor::set_power(double power_pct) {
-    return set_power(power_pct, nullptr);
-}
 
 void MockMotor::go_for(double rpm, double revolutions, const AttributeMap& extra) {
     // This is the actual behavior from rdk:builtin:fake_motor
@@ -33,41 +30,23 @@ void MockMotor::go_for(double rpm, double revolutions, const AttributeMap& extra
     }
     position_ += revolutions;
 }
-void MockMotor::go_for(double rpm, double revolutions) {
-    return go_for(rpm, revolutions, nullptr);
-}
 
 void MockMotor::go_to(double rpm, double position_revolutions, const AttributeMap& extra) {
     position_ = position_revolutions;
-}
-void MockMotor::go_to(double rpm, double position_revolutions) {
-    return go_to(rpm, position_revolutions, nullptr);
 }
 
 void MockMotor::reset_zero_position(double offset, const AttributeMap& extra) {
     position_ -= offset;
 }
-void MockMotor::reset_zero_position(double offset) {
-    return reset_zero_position(offset, nullptr);
-}
 
 Motor::position MockMotor::get_position(const AttributeMap& extra) {
     return position_;
-}
-Motor::position MockMotor::get_position() {
-    return get_position(nullptr);
 }
 
 Motor::properties MockMotor::get_properties(const AttributeMap& extra) {
     return properties_;
 }
-Motor::properties MockMotor::get_properties() {
-    return get_properties(nullptr);
-}
 
-grpc::StatusCode MockMotor::stop() {
-    return stop(nullptr);
-}
 grpc::StatusCode MockMotor::stop(const AttributeMap& extra) {
     // None of these functions are async and this mock is not
     // thread-safe (Send, not Sync). The mock motor should never be
@@ -79,13 +58,7 @@ grpc::StatusCode MockMotor::stop(const AttributeMap& extra) {
 Motor::power_status MockMotor::get_power_status(const AttributeMap& extra) {
     return power_status_;
 }
-Motor::power_status MockMotor::get_power_status() {
-    return get_power_status(nullptr);
-}
 
-std::vector<GeometryConfig> MockMotor::get_geometries() {
-    return get_geometries(nullptr);
-}
 std::vector<GeometryConfig> MockMotor::get_geometries(const sdk::AttributeMap& extra) {
     return fake_geometries();
 }

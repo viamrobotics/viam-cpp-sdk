@@ -146,7 +146,9 @@ class Camera : public Component {
     /// @brief Get the next image from the camera as a raw image.
     /// @param mime_type the desired mime_type of the image (does not guarantee output type).
     /// @return The frame as a `raw_image`.
-    virtual raw_image get_image(std::string mime_type) = 0;
+    inline raw_image get_image(std::string mime_type) {
+        return get_image(mime_type, {});
+    }
 
     /// @brief Get the next image from the camera as a raw image.
     /// @param mime_type the desired mime_type of the image (does not guarantee output type).
@@ -162,7 +164,9 @@ class Camera : public Component {
     /// @brief Get the next `point_cloud` from the camera.
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
     /// @return The requested `point_cloud`.
-    virtual point_cloud get_point_cloud(std::string mime_type) = 0;
+    inline point_cloud get_point_cloud(std::string mime_type) {
+        return get_point_cloud(mime_type, {});
+    }
 
     /// @brief Get the next `point_cloud` from the camera.
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
@@ -172,7 +176,9 @@ class Camera : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries() = 0;
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @param extra Any additional arguments to the method.

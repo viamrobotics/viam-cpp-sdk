@@ -22,9 +22,6 @@ EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> ch
       stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-Encoder::position EncoderClient::get_position(position_type position_type) {
-    return get_position(nullptr, position_type);
-}
 Encoder::position EncoderClient::get_position(const AttributeMap& extra,
                                               position_type position_type) {
     viam::component::encoder::v1::GetPositionRequest request;
@@ -43,9 +40,6 @@ Encoder::position EncoderClient::get_position(const AttributeMap& extra,
     return from_proto(response);
 }
 
-void EncoderClient::reset_position() {
-    return reset_position(nullptr);
-}
 void EncoderClient::reset_position(const AttributeMap& extra) {
     viam::component::encoder::v1::ResetPositionRequest request;
     viam::component::encoder::v1::ResetPositionResponse response;
@@ -61,9 +55,6 @@ void EncoderClient::reset_position(const AttributeMap& extra) {
     }
 }
 
-Encoder::properties EncoderClient::get_properties() {
-    return get_properties(nullptr);
-}
 Encoder::properties EncoderClient::get_properties(const AttributeMap& extra) {
     viam::component::encoder::v1::GetPropertiesRequest request;
     viam::component::encoder::v1::GetPropertiesResponse response;
@@ -80,9 +71,6 @@ Encoder::properties EncoderClient::get_properties(const AttributeMap& extra) {
     return from_proto(response);
 }
 
-std::vector<GeometryConfig> EncoderClient::get_geometries() {
-    return get_geometries(nullptr);
-}
 std::vector<GeometryConfig> EncoderClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;

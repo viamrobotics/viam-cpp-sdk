@@ -18,25 +18,18 @@ namespace base {
 sdk::Base::properties fake_properties();
 class MockBase : public sdk::Base {
    public:
-    void move_straight(int64_t distance_mm, double mm_per_sec) override;
     void move_straight(int64_t distance_mm,
                        double mm_per_sec,
                        const sdk::AttributeMap& extra) override;
-    void spin(double angle_deg, double degs_per_sec) override;
     void spin(double angle_deg, double degs_per_sec, const sdk::AttributeMap& extra) override;
-    properties get_properties() override;
     properties get_properties(const sdk::AttributeMap& extra) override;
-    std::vector<sdk::GeometryConfig> get_geometries() override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
-    void set_power(const sdk::Vector3& linear, const sdk::Vector3& angular) override;
     void set_power(const sdk::Vector3& linear,
                    const sdk::Vector3& angular,
                    const sdk::AttributeMap& extra) override;
-    void set_velocity(const sdk::Vector3& linear, const sdk::Vector3& angular) override;
     void set_velocity(const sdk::Vector3& linear,
                       const sdk::Vector3& angular,
                       const sdk::AttributeMap& extra) override;
-    grpc::StatusCode stop() override;
     grpc::StatusCode stop(const sdk::AttributeMap& extra) override;
     bool is_moving() override;
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;

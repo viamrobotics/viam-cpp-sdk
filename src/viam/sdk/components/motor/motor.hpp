@@ -85,7 +85,9 @@ class Motor : public Component {
     /// @brief Sets the percentage of the motor's total power that should be employed.
     /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values
     /// indicate a backwards direction and positive values, a forward direction.
-    virtual void set_power(double power_pct) = 0;
+    inline void set_power(double power_pct) {
+        return set_power(power_pct, {});
+    }
 
     /// @brief Sets the percentage of the motor's total power that should be employed.
     /// @param power_pct Percentage of motor's power, between -1 and 1, where negative values
@@ -101,7 +103,9 @@ class Motor : public Component {
     /// this will block until the number of revolutions has been completed or another operation
     /// comes in.
     /// @throws runtime_error if position reporting is not supported
-    virtual void go_for(double rpm, double revolutions) = 0;
+    inline void go_for(double rpm, double revolutions) {
+        return go_for(rpm, revolutions, {});
+    }
 
     /// @brief Instructs the motor to turn at a specified speed, which is expressed in RPM, for a
     /// specified number of rotations relative to its starting position.
@@ -119,7 +123,9 @@ class Motor : public Component {
     /// @param rpm Speed of motor travel in rotations per minute
     /// @param position_revolutions Number of revolutions relative to motor's home home/zero
     /// @throws runtime_error if position reporting is not supported
-    virtual void go_to(double rpm, double position_revolutions) = 0;
+    inline void go_to(double rpm, double position_revolutions) {
+        return go_to(rpm, position_revolutions, {});
+    }
 
     /// @brief Move the motor to a specific position that is relative to its
     /// home position at a specified speed which is expressed in RPM.
@@ -132,7 +138,9 @@ class Motor : public Component {
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
     /// @throws runtime_error if position reporting is not supported
-    virtual void reset_zero_position(double offset) = 0;
+    inline void reset_zero_position(double offset) {
+        return reset_zero_position(offset, {});
+    }
 
     /// @brief Sets the current position of the motor as the new zero position.
     /// @param offset Motor position
@@ -142,7 +150,9 @@ class Motor : public Component {
 
     /// @brief Reports the position of the robot's motor relative to its zero position.
     /// @throws runtime_error if position reporting is not supported
-    virtual position get_position() = 0;
+    inline position get_position() {
+        return get_position({});
+    }
 
     /// @brief Reports the position of the robot's motor relative to its zero position.
     /// @param extra Any additional arguments to the method
@@ -151,7 +161,9 @@ class Motor : public Component {
 
     /// @brief Returns the properties of the motor which comprises the booleans indicating
     /// which optional features the robot's motor supports
-    virtual properties get_properties() = 0;
+    inline properties get_properties() {
+        return get_properties({});
+    }
 
     /// @brief Returns the properties of the motor which comprises the booleans indicating
     /// @param extra Any additional arguments to the method
@@ -159,7 +171,9 @@ class Motor : public Component {
     virtual properties get_properties(const AttributeMap& extra) = 0;
 
     /// @return The motor's current power_status
-    virtual power_status get_power_status() = 0;
+    inline power_status get_power_status() {
+        return get_power_status({});
+    }
 
     /// @return The motor's current power_status
     /// @param extra Any additional arguments to the method
@@ -169,7 +183,9 @@ class Motor : public Component {
     virtual bool is_moving() = 0;
 
     /// @brief Stops a resource from running.
-    grpc::StatusCode stop() override = 0;
+    inline grpc::StatusCode stop() {
+        return stop({});
+    }
 
     /// @brief Stops a resource from running.
     /// @param extra Extra arguments to pass to the resource's `stop` method.
@@ -182,7 +198,9 @@ class Motor : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling motor.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries() = 0;
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
 
     /// @brief Returns `GeometryConfig`s associated with the calling motor.
     /// @param extra Any additional arguments to the method.

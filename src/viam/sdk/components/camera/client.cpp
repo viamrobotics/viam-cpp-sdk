@@ -33,9 +33,6 @@ AttributeMap CameraClient::do_command(AttributeMap command) {
     return struct_to_map(resp.result());
 };
 
-Camera::raw_image CameraClient::get_image(std::string mime_type) {
-    return get_image(mime_type, nullptr);
-}
 Camera::raw_image CameraClient::get_image(std::string mime_type, const AttributeMap& extra) {
     viam::component::camera::v1::GetImageRequest req;
     viam::component::camera::v1::GetImageResponse resp;
@@ -62,9 +59,6 @@ Camera::image_collection CameraClient::get_images() {
     return from_proto(resp);
 };
 
-Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type) {
-    return get_point_cloud(mime_type, nullptr);
-}
 Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type,
                                                   const AttributeMap& extra) {
     viam::component::camera::v1::GetPointCloudRequest req;
@@ -79,9 +73,6 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type,
     return from_proto(resp);
 };
 
-std::vector<GeometryConfig> CameraClient::get_geometries() {
-    return get_geometries(nullptr);
-}
 std::vector<GeometryConfig> CameraClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;

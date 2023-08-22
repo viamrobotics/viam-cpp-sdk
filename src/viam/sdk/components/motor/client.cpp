@@ -22,9 +22,6 @@ MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channe
       stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-void MotorClient::set_power(double power_pct) {
-    return set_power(power_pct, nullptr);
-}
 void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
     viam::component::motor::v1::SetPowerRequest request;
     viam::component::motor::v1::SetPowerResponse response;
@@ -41,9 +38,6 @@ void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
     }
 }
 
-void MotorClient::go_for(double rpm, double revolutions) {
-    return go_for(rpm, revolutions, nullptr);
-}
 void MotorClient::go_for(double rpm, double revolutions, const AttributeMap& extra) {
     viam::component::motor::v1::GoForRequest request;
     viam::component::motor::v1::GoForResponse response;
@@ -61,9 +55,6 @@ void MotorClient::go_for(double rpm, double revolutions, const AttributeMap& ext
     }
 }
 
-void MotorClient::go_to(double rpm, double position_revolutions) {
-    return go_to(rpm, position_revolutions, nullptr);
-}
 void MotorClient::go_to(double rpm, double position_revolutions, const AttributeMap& extra) {
     viam::component::motor::v1::GoToRequest request;
     viam::component::motor::v1::GoToResponse response;
@@ -81,9 +72,6 @@ void MotorClient::go_to(double rpm, double position_revolutions, const Attribute
     }
 }
 
-void MotorClient::reset_zero_position(double offset) {
-    return reset_zero_position(offset, nullptr);
-}
 void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) {
     viam::component::motor::v1::ResetZeroPositionRequest request;
     viam::component::motor::v1::ResetZeroPositionResponse response;
@@ -100,9 +88,6 @@ void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) 
     }
 }
 
-Motor::position MotorClient::get_position() {
-    return get_position(nullptr);
-}
 Motor::position MotorClient::get_position(const AttributeMap& extra) {
     viam::component::motor::v1::GetPositionRequest request;
     viam::component::motor::v1::GetPositionResponse response;
@@ -119,9 +104,6 @@ Motor::position MotorClient::get_position(const AttributeMap& extra) {
     return from_proto(response);
 }
 
-Motor::properties MotorClient::get_properties() {
-    return get_properties(nullptr);
-}
 Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
     viam::component::motor::v1::GetPropertiesRequest request;
     viam::component::motor::v1::GetPropertiesResponse response;
@@ -138,9 +120,6 @@ Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
     return from_proto(response);
 }
 
-grpc::StatusCode MotorClient::stop() {
-    return stop(nullptr);
-}
 grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
     viam::component::motor::v1::StopRequest request;
     viam::component::motor::v1::StopResponse response;
@@ -154,9 +133,6 @@ grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
     return status.error_code();
 }
 
-Motor::power_status MotorClient::get_power_status() {
-    return get_power_status(nullptr);
-}
 Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {
     viam::component::motor::v1::IsPoweredRequest request;
     viam::component::motor::v1::IsPoweredResponse response;
@@ -173,9 +149,6 @@ Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {
     return from_proto(response);
 }
 
-std::vector<GeometryConfig> MotorClient::get_geometries() {
-    return get_geometries(nullptr);
-}
 std::vector<GeometryConfig> MotorClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;

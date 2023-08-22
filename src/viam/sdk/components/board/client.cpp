@@ -22,9 +22,6 @@ BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channe
       stub_(viam::component::board::v1::BoardService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-Board::status BoardClient::get_status() {
-    return get_status(nullptr);
-}
 Board::status BoardClient::get_status(const AttributeMap& extra) {
     viam::component::board::v1::StatusRequest request;
     viam::component::board::v1::StatusResponse response;
@@ -41,9 +38,6 @@ Board::status BoardClient::get_status(const AttributeMap& extra) {
     return from_proto(response.status());
 }
 
-void BoardClient::set_gpio(const std::string& pin, bool high) {
-    return set_gpio(pin, high, nullptr);
-}
 void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap& extra) {
     viam::component::board::v1::SetGPIORequest request;
     viam::component::board::v1::SetGPIOResponse response;
@@ -60,9 +54,6 @@ void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap
     }
 }
 
-bool BoardClient::get_gpio(const std::string& pin) {
-    return get_gpio(pin, nullptr);
-}
 bool BoardClient::get_gpio(const std::string& pin, const AttributeMap& extra) {
     viam::component::board::v1::GetGPIORequest request;
     viam::component::board::v1::GetGPIOResponse response;
@@ -80,9 +71,6 @@ bool BoardClient::get_gpio(const std::string& pin, const AttributeMap& extra) {
     return response.high();
 }
 
-double BoardClient::get_pwm_duty_cycle(const std::string& pin) {
-    return get_pwm_duty_cycle(pin, nullptr);
-}
 double BoardClient::get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) {
     viam::component::board::v1::PWMRequest request;
     viam::component::board::v1::PWMResponse response;
@@ -100,9 +88,6 @@ double BoardClient::get_pwm_duty_cycle(const std::string& pin, const AttributeMa
     return response.duty_cycle_pct();
 }
 
-void BoardClient::set_pwm_duty_cycle(const std::string& pin, double duty_cycle_pct) {
-    return set_pwm_duty_cycle(pin, duty_cycle_pct, nullptr);
-}
 void BoardClient::set_pwm_duty_cycle(const std::string& pin,
                                      double duty_cycle_pct,
                                      const AttributeMap& extra) {
@@ -122,9 +107,6 @@ void BoardClient::set_pwm_duty_cycle(const std::string& pin,
     }
 }
 
-uint64_t BoardClient::get_pwm_frequency(const std::string& pin) {
-    return get_pwm_frequency(pin, nullptr);
-}
 uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const AttributeMap& extra) {
     viam::component::board::v1::PWMFrequencyRequest request;
     viam::component::board::v1::PWMFrequencyResponse response;
@@ -142,9 +124,6 @@ uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const AttributeM
     return response.frequency_hz();
 }
 
-void BoardClient::set_pwm_frequency(const std::string& pin, uint64_t frequency_hz) {
-    return set_pwm_frequency(pin, frequency_hz, nullptr);
-}
 void BoardClient::set_pwm_frequency(const std::string& pin,
                                     uint64_t frequency_hz,
                                     const AttributeMap& extra) {
@@ -181,9 +160,6 @@ AttributeMap BoardClient::do_command(const AttributeMap& command) {
     return struct_to_map(response.result());
 }
 
-Board::analog_value BoardClient::read_analog(const std::string& analog_reader_name) {
-    return read_analog(analog_reader_name, nullptr);
-}
 Board::analog_value BoardClient::read_analog(const std::string& analog_reader_name,
                                              const AttributeMap& extra) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
@@ -202,10 +178,6 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     return response.value();
 }
 
-Board::digital_value BoardClient::read_digital_interrupt(
-    const std::string& digital_interrupt_name) {
-    return read_digital_interrupt(digital_interrupt_name, nullptr);
-}
 Board::digital_value BoardClient::read_digital_interrupt(const std::string& digital_interrupt_name,
                                                          const AttributeMap& extra) {
     viam::component::board::v1::GetDigitalInterruptValueRequest request;
@@ -224,10 +196,6 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
     return response.value();
 }
 
-void BoardClient::set_power_mode(power_mode power_mode,
-                                 const boost::optional<std::chrono::microseconds>& duration) {
-    return set_power_mode(power_mode, nullptr, duration);
-}
 void BoardClient::set_power_mode(power_mode power_mode,
                                  const AttributeMap& extra,
                                  const boost::optional<std::chrono::microseconds>& duration) {
@@ -249,9 +217,6 @@ void BoardClient::set_power_mode(power_mode power_mode,
     }
 }
 
-std::vector<GeometryConfig> BoardClient::get_geometries() {
-    return get_geometries(nullptr);
-}
 std::vector<GeometryConfig> BoardClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;

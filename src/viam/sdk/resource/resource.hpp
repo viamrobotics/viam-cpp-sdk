@@ -32,7 +32,9 @@ class Resource {
     virtual grpc::StatusCode stop(const AttributeMap& extra);
 
     /// @brief Stops a resource from running.
-    virtual grpc::StatusCode stop();
+    inline grpc::StatusCode stop() {
+        return stop({});
+    }
 
     /// @brief Reconfigures a resource.
     /// @param deps Dependencies of the resource.

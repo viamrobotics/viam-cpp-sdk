@@ -25,9 +25,6 @@ BaseClient::BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel)
       stub_(viam::component::base::v1::BaseService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec) {
-    return move_straight(distance_mm, mm_per_sec, nullptr);
-}
 void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const AttributeMap& extra) {
     viam::component::base::v1::MoveStraightRequest request;
     viam::component::base::v1::MoveStraightResponse response;
@@ -45,9 +42,6 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const Att
     }
 }
 
-void BaseClient::spin(double angle_deg, double degs_per_sec) {
-    return spin(angle_deg, degs_per_sec, nullptr);
-}
 void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) {
     viam::component::base::v1::SpinRequest request;
     viam::component::base::v1::SpinResponse response;
@@ -65,9 +59,6 @@ void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap&
     }
 }
 
-void BaseClient::set_power(const Vector3& linear, const Vector3& angular) {
-    return set_power(linear, angular, nullptr);
-}
 void BaseClient::set_power(const Vector3& linear,
                            const Vector3& angular,
                            const AttributeMap& extra) {
@@ -87,9 +78,6 @@ void BaseClient::set_power(const Vector3& linear,
     }
 }
 
-void BaseClient::set_velocity(const Vector3& linear, const Vector3& angular) {
-    return set_velocity(linear, angular, nullptr);
-}
 void BaseClient::set_velocity(const Vector3& linear,
                               const Vector3& angular,
                               const AttributeMap& extra) {
@@ -107,10 +95,6 @@ void BaseClient::set_velocity(const Vector3& linear,
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-}
-
-grpc::StatusCode BaseClient::stop() {
-    return this->stop(nullptr);
 }
 
 grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
@@ -144,9 +128,6 @@ bool BaseClient::is_moving() {
     return response.is_moving();
 }
 
-std::vector<GeometryConfig> BaseClient::get_geometries() {
-    return get_geometries(nullptr);
-}
 std::vector<GeometryConfig> BaseClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
@@ -157,11 +138,8 @@ std::vector<GeometryConfig> BaseClient::get_geometries(const AttributeMap& extra
 
     stub_->GetGeometries(&ctx, req, &resp);
     return GeometryConfig::from_proto(resp);
-};
-
-Base::properties BaseClient::get_properties() {
-    return get_properties(nullptr);
 }
+
 Base::properties BaseClient::get_properties(const AttributeMap& extra) {
     component::base::v1::GetPropertiesRequest req;
     component::base::v1::GetPropertiesResponse resp;

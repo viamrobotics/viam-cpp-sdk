@@ -21,12 +21,6 @@ MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> chan
 bool MotionClient::move(const pose_in_frame& destination,
                         const Name& component_name,
                         std::shared_ptr<WorldState> world_state,
-                        std::shared_ptr<Motion::constraints> constraints) {
-    return move(destination, component_name, world_state, constraints, nullptr);
-}
-bool MotionClient::move(const pose_in_frame& destination,
-                        const Name& component_name,
-                        std::shared_ptr<WorldState> world_state,
                         std::shared_ptr<Motion::constraints> constraints,
                         const AttributeMap& extra) {
     service::motion::v1::MoveRequest request;
@@ -54,11 +48,6 @@ bool MotionClient::move(const pose_in_frame& destination,
 
 bool MotionClient::move_on_map(const pose& destination,
                                const Name& component_name,
-                               const Name& slam_name) {
-    return move_on_map(destination, component_name, slam_name, nullptr);
-}
-bool MotionClient::move_on_map(const pose& destination,
-                               const Name& component_name,
                                const Name& slam_name,
                                const AttributeMap& extra) {
     service::motion::v1::MoveOnMapRequest request;
@@ -79,20 +68,6 @@ bool MotionClient::move_on_map(const pose& destination,
     return response.success();
 }
 
-bool MotionClient::move_on_globe(const geo_point& destination,
-                                 const boost::optional<double>& heading,
-                                 const Name& component_name,
-                                 const Name& movement_sensor_name,
-                                 const std::vector<geo_obstacle>& obstacles,
-                                 std::shared_ptr<motion_configuration> motion_configuration) {
-    return move_on_globe(destination,
-                         heading,
-                         component_name,
-                         movement_sensor_name,
-                         obstacles,
-                         motion_configuration,
-                         nullptr);
-}
 bool MotionClient::move_on_globe(const geo_point& destination,
                                  const boost::optional<double>& heading,
                                  const Name& component_name,
@@ -130,12 +105,6 @@ bool MotionClient::move_on_globe(const geo_point& destination,
     return response.success();
 }
 
-pose_in_frame MotionClient::get_pose(
-    const Name& component_name,
-    const std::string& destination_frame,
-    const std::vector<WorldState::transform>& supplemental_transforms) {
-    return get_pose(component_name, destination_frame, supplemental_transforms, nullptr);
-}
 pose_in_frame MotionClient::get_pose(
     const Name& component_name,
     const std::string& destination_frame,

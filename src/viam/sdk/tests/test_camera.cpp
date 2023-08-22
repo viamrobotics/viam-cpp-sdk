@@ -32,7 +32,7 @@ std::shared_ptr<MockCamera> camera = MockCamera::get_mock_camera();
 
 BOOST_AUTO_TEST_CASE(test_get_image) {
     Camera::raw_image expected_image = fake_raw_image();
-    Camera::raw_image image = camera->get_image("JPEG");
+    Camera::raw_image image = camera->get_image("JPEG", {});
 
     BOOST_CHECK(expected_image == image);
 }
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_get_images) {
 
 BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
     Camera::point_cloud expected_pc = fake_point_cloud();
-    Camera::point_cloud pc = camera->get_point_cloud("pointcloud/pcd");
+    Camera::point_cloud pc = camera->get_point_cloud("pointcloud/pcd", {});
 
     BOOST_CHECK(expected_pc == pc);
 }
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_do) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
-    std::vector<GeometryConfig> result_geometries = camera->get_geometries();
+    std::vector<GeometryConfig> result_geometries = camera->get_geometries({});
 
     BOOST_CHECK(result_geometries == expected_geometries);
 }

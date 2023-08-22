@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(mock_construction) {
 BOOST_AUTO_TEST_CASE(mock_metadata_roundtrip) {
     MockMLModelService mock_mlms;
     mock_mlms.set_metadata(test_metadata);
-    BOOST_TEST(mock_mlms.metadata() == test_metadata);
+    BOOST_TEST(mock_mlms.metadata({}) == test_metadata);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
