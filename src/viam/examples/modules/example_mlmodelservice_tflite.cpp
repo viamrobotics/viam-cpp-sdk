@@ -138,7 +138,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         throw;
     }
 
-    std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) final {
+    std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
+                                              const vsdk::AttributeMap& extra) final {
         const auto state = lease_state_();
 
         // We serialize access to the interpreter. We use a
@@ -246,7 +247,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         return {std::move(inference_result), views};
     }
 
-    struct metadata metadata() final {
+    struct metadata metadata(const vsdk::AttributeMap& extra) final {
         // Just return a copy of our metadata from leased state.
         return lease_state_()->metadata;
     }
