@@ -15,8 +15,11 @@
 #include <viam/sdk/components/encoder/client.hpp>
 #include <viam/sdk/components/encoder/encoder.hpp>
 #include <viam/sdk/components/encoder/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_encoder.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
+
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 
 namespace viam {
 namespace sdktests {
@@ -92,6 +95,14 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
         BOOST_CHECK(returned_properties == mock->peek_get_properties_ret);
     });
 }
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    server_to_mock_pipeline([](Encoder& client, std::shared_ptr<MockEncoder> mock) -> void {
+        const auto& geometries = client.get_geometries();
+        BOOST_CHECK_EQUAL(geometries, fake_geometries());
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_do_command) {
     server_to_mock_pipeline([](Encoder& client, std::shared_ptr<MockEncoder> mock) -> void {
         AttributeMap expected = fake_map();

@@ -51,7 +51,12 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
-    const Camera::raw_image image = camera->get_image(request->mime_type());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Camera::raw_image image = camera->get_image(request->mime_type(), extra);
 
     const std::string img_string = bytes_to_string(image.bytes);
 
@@ -108,7 +113,12 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
 
-    const Camera::raw_image image = camera->get_image(request->mime_type());
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Camera::raw_image image = camera->get_image(request->mime_type(), extra);
 
     response->set_data(bytes_to_string(image.bytes));
     response->set_content_type(image.mime_type);
@@ -154,8 +164,13 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
     const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-    const std::vector<GeometryConfig> geometries = camera->get_geometries();
+    const std::vector<GeometryConfig> geometries = camera->get_geometries(extra);
     for (const auto& geometry : geometries) {
         *response->mutable_geometries()->Add() = geometry.to_proto();
     }

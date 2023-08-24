@@ -4,6 +4,7 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 #include <viam/api/component/camera/v1/camera.pb.h>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/components/camera/server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -17,16 +18,16 @@ using namespace viam::sdk;
 AttributeMap MockCamera::do_command(AttributeMap command) {
     return map_;
 }
-Camera::raw_image MockCamera::get_image(std::string mime_type) {
+Camera::raw_image MockCamera::get_image(std::string mime_type, const AttributeMap& extra) {
     return image_;
 }
 Camera::image_collection MockCamera::get_images() {
     return images_;
 }
-Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type) {
+Camera::point_cloud MockCamera::get_point_cloud(std::string mime_type, const AttributeMap& extra) {
     return pc_;
 }
-std::vector<GeometryConfig> MockCamera::get_geometries() {
+std::vector<GeometryConfig> MockCamera::get_geometries(const AttributeMap& extra) {
     return geometries_;
 }
 Camera::properties MockCamera::get_properties() {

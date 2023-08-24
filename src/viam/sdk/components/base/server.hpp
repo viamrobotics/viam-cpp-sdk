@@ -5,6 +5,7 @@
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/base/v1/base.grpc.pb.h>
+#include <viam/api/component/base/v1/base.pb.h>
 
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
@@ -44,6 +45,15 @@ class BaseServer : public ResourceServer, public viam::component::base::v1::Base
     ::grpc::Status IsMoving(::grpc::ServerContext* context,
                             const ::viam::component::base::v1::IsMovingRequest* request,
                             ::viam::component::base::v1::IsMovingResponse* response) override;
+
+    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
+                                 const ::viam::common::v1::GetGeometriesRequest* request,
+                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+
+    ::grpc::Status GetProperties(
+        ::grpc::ServerContext* context,
+        const ::viam::component::base::v1::GetPropertiesRequest* request,
+        ::viam::component::base::v1::GetPropertiesResponse* response) override;
 
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,

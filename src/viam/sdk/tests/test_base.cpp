@@ -19,6 +19,8 @@
 #include <viam/sdk/tests/mocks/mock_base.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
+
 namespace viam {
 namespace sdktests {
 
@@ -114,6 +116,20 @@ BOOST_AUTO_TEST_CASE(test_stop) {
         mock->peek_stop_called = false;
         client.stop();
         BOOST_CHECK(mock->peek_stop_called);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_properties) {
+    server_to_mock_pipeline([](Base& client, std::shared_ptr<MockBase> mock) -> void {
+        const auto& properties = client.get_properties();
+        BOOST_CHECK_EQUAL(properties, fake_properties());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    server_to_mock_pipeline([](Base& client, std::shared_ptr<MockBase> mock) -> void {
+        const auto& geometries = client.get_geometries();
+        BOOST_CHECK_EQUAL(geometries, fake_geometries());
     });
 }
 

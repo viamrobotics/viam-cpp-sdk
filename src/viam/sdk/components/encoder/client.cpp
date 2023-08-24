@@ -22,7 +22,8 @@ EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> ch
       stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-Encoder::position EncoderClient::get_position(position_type position_type) {
+Encoder::position EncoderClient::get_position(const AttributeMap& extra,
+                                              position_type position_type) {
     viam::component::encoder::v1::GetPositionRequest request;
     viam::component::encoder::v1::GetPositionResponse response;
 
@@ -30,6 +31,7 @@ Encoder::position EncoderClient::get_position(position_type position_type) {
 
     *request.mutable_name() = this->name();
     request.set_position_type(to_proto(position_type));
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->GetPosition(&ctx, request, &response);
     if (!status.ok()) {
@@ -38,13 +40,14 @@ Encoder::position EncoderClient::get_position(position_type position_type) {
     return from_proto(response);
 }
 
-void EncoderClient::reset_position() {
+void EncoderClient::reset_position(const AttributeMap& extra) {
     viam::component::encoder::v1::ResetPositionRequest request;
     viam::component::encoder::v1::ResetPositionResponse response;
 
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->ResetPosition(&ctx, request, &response);
     if (!status.ok()) {
@@ -52,13 +55,14 @@ void EncoderClient::reset_position() {
     }
 }
 
-Encoder::properties EncoderClient::get_properties() {
+Encoder::properties EncoderClient::get_properties(const AttributeMap& extra) {
     viam::component::encoder::v1::GetPropertiesRequest request;
     viam::component::encoder::v1::GetPropertiesResponse response;
 
     grpc::ClientContext ctx;
 
     *request.mutable_name() = this->name();
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->GetProperties(&ctx, request, &response);
     if (!status.ok()) {
@@ -66,6 +70,18 @@ Encoder::properties EncoderClient::get_properties() {
     }
     return from_proto(response);
 }
+
+std::vector<GeometryConfig> EncoderClient::get_geometries(const AttributeMap& extra) {
+    viam::common::v1::GetGeometriesRequest req;
+    viam::common::v1::GetGeometriesResponse resp;
+    grpc::ClientContext ctx;
+
+    *req.mutable_name() = this->name();
+    *req.mutable_extra() = map_to_struct(extra);
+
+    stub_->GetGeometries(&ctx, req, &resp);
+    return GeometryConfig::from_proto(resp);
+};
 
 AttributeMap EncoderClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest request;

@@ -20,7 +20,7 @@ bool MockMotion::move(const pose_in_frame& destination,
     this->peek_world_state = world_state;
     this->peek_constraints = constraints;
     return true;
-};
+}
 
 bool MockMotion::move_on_map(const pose& destination,
                              const Name& component_name,
@@ -32,7 +32,7 @@ bool MockMotion::move_on_map(const pose& destination,
     this->current_location.pose = std::move(destination);
 
     return true;
-};
+}
 
 bool MockMotion::move_on_globe(const geo_point& destination,
                                const boost::optional<double>& heading,
@@ -55,9 +55,9 @@ pose_in_frame MockMotion::get_pose(
     const Name& component_name,
     const std::string& destination_frame,
     const std::vector<WorldState::transform>& supplemental_transforms,
-    AttributeMap extra) {
+    const AttributeMap& extra) {
     return current_location;
-};
+}
 
 AttributeMap MockMotion::do_command(const AttributeMap& _command) {
     return peek_map;

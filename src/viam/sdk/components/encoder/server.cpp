@@ -27,8 +27,13 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
 
     const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
 
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
     const Encoder::position result =
-        encoder->get_position(Encoder::from_proto(request->position_type()));
+        encoder->get_position(extra, Encoder::from_proto(request->position_type()));
     response->set_value(result.value);
     response->set_position_type(Encoder::to_proto(result.type));
 
@@ -51,7 +56,12 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
 
     const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
 
-    encoder->reset_position();
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    encoder->reset_position(extra);
 
     return ::grpc::Status();
 }
@@ -72,9 +82,41 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
 
     const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
 
-    const Encoder::properties result = encoder->get_properties();
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Encoder::properties result = encoder->get_properties(extra);
     response->set_ticks_count_supported(result.ticks_count_supported);
     response->set_angle_degrees_supported(result.angle_degrees_supported);
+
+    return ::grpc::Status();
+}
+
+::grpc::Status EncoderServer::GetGeometries(::grpc::ServerContext* context,
+                                            const ::viam::common::v1::GetGeometriesRequest* request,
+                                            ::viam::common::v1::GetGeometriesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [GetGeometries] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const std::shared_ptr<Encoder> encoder = std::dynamic_pointer_cast<Encoder>(rb);
+    const std::vector<GeometryConfig> geometries = encoder->get_geometries(extra);
+    for (const auto& geometry : geometries) {
+        *response->mutable_geometries()->Add() = geometry.to_proto();
+    }
 
     return ::grpc::Status();
 }

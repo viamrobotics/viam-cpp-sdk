@@ -33,7 +33,7 @@ MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grp
       stub_(service_type::NewStub(channel_)) {}
 
 std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
-    const named_tensor_views& inputs) {
+    const named_tensor_views& inputs, const AttributeMap& extra) {
     namespace pb = ::google::protobuf;
     namespace mlpb = ::viam::service::mlmodel::v1;
 
@@ -41,6 +41,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto* const req = pb::Arena::CreateMessage<mlpb::InferRequest>(arena.get());
 
     req->set_name(this->name());
+    *req->mutable_extra() = map_to_struct(extra);
     auto* const resp = pb::Arena::CreateMessage<mlpb::InferResponse>(arena.get());
     grpc::ClientContext ctx;
 
@@ -117,10 +118,11 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     }
 }
 
-struct MLModelService::metadata MLModelServiceClient::metadata() {
+struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMap& extra) {
     // Encode metadata args into a `MetadataRequest`
     viam::service::mlmodel::v1::MetadataRequest req;
     *req.mutable_name() = name();
+    *req.mutable_extra() = map_to_struct(extra);
 
     // Invoke the stub
     grpc::ClientContext ctx;

@@ -83,6 +83,7 @@ bool MotionClient::move_on_globe(const geo_point& destination,
     *request.mutable_destination() = destination.to_proto();
     *request.mutable_component_name() = component_name.to_proto();
     *request.mutable_movement_sensor_name() = movement_sensor_name.to_proto();
+    *request.mutable_extra() = map_to_struct(extra);
 
     if (heading && !isnan(*heading)) {
         request.set_heading(*heading);
@@ -96,8 +97,6 @@ bool MotionClient::move_on_globe(const geo_point& destination,
         *request.mutable_motion_configuration() = motion_configuration->to_proto();
     }
 
-    *request.mutable_extra() = map_to_struct(extra);
-
     const grpc::Status status = stub_->MoveOnGlobe(&ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
@@ -110,7 +109,7 @@ pose_in_frame MotionClient::get_pose(
     const Name& component_name,
     const std::string& destination_frame,
     const std::vector<WorldState::transform>& supplemental_transforms,
-    AttributeMap extra) {
+    const AttributeMap& extra) {
     service::motion::v1::GetPoseRequest request;
     service::motion::v1::GetPoseResponse response;
     grpc::ClientContext ctx;

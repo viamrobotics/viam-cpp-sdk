@@ -80,7 +80,8 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     if (request->has_extra()) {
         extra = struct_to_map(request->extra());
     }
-    const bool success = motion->move_on_map(destination, component_name, slam_name, extra);
+    const bool success = motion->move_on_map(
+        std::move(destination), std::move(component_name), std::move(slam_name), std::move(extra));
 
     response->set_success(success);
 
@@ -128,8 +129,13 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    const bool success = motion->move_on_globe(
-        destination, heading, component_name, movement_sensor_name, obstacles, mc, extra);
+    const bool success = motion->move_on_globe(std::move(destination),
+                                               std::move(heading),
+                                               std::move(component_name),
+                                               std::move(movement_sensor_name),
+                                               std::move(obstacles),
+                                               std::move(mc),
+                                               std::move(extra));
 
     response->set_success(success);
 
@@ -162,8 +168,10 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    const pose_in_frame pose =
-        motion->get_pose(component_name, destination_frame, supplemental_transforms, extra);
+    const pose_in_frame pose = motion->get_pose(std::move(component_name),
+                                                std::move(destination_frame),
+                                                std::move(supplemental_transforms),
+                                                std::move(extra));
 
     *response->mutable_pose() = pose.to_proto();
 

@@ -16,6 +16,7 @@
 
 #include <functional>
 
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 
 namespace viam {
@@ -29,10 +30,11 @@ class MockMLModelService : public sdk::MLModelService {
     using infer_handler =
         std::function<std::shared_ptr<named_tensor_views>(const named_tensor_views&)>;
     MockMLModelService& set_infer_handler(infer_handler handler);
-    std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs) override;
+    std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
+                                              const sdk::AttributeMap& extra) override;
 
     MockMLModelService& set_metadata(struct metadata metadata);
-    struct metadata metadata() override;
+    struct metadata metadata(const sdk::AttributeMap& extra) override;
 
    private:
     infer_handler infer_handler_;

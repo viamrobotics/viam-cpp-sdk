@@ -44,7 +44,7 @@ class MockMotion : public sdk::Motion {
         const sdk::Name& component_name,
         const std::string& destination_frame,
         const std::vector<sdk::WorldState::transform>& supplemental_transforms,
-        sdk::AttributeMap extra) override;
+        const sdk::AttributeMap& extra) override;
 
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
     static std::shared_ptr<MockMotion> get_mock_motion();

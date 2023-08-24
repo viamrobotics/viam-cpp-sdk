@@ -59,13 +59,18 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no inputs"};
     }
 
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
     if (request->has_input_data()) {
         // TODO: We need shape and type information from the metadata to
         // be able to unpack input tensors. It would be nice to find some
         // way to cache this information. This isn't exactly the same
         // issue as the client side (see RSDK-3298), but is closely
         // related.
-        const auto md = mlms->metadata();
+        const auto md = mlms->metadata(extra);
 
         mlmodel_details::tensor_storage input_storage;
         MLModelService::named_tensor_views inputs;
@@ -90,7 +95,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             }
         }
 
-        const auto outputs = mlms->infer(inputs);
+        const auto outputs = mlms->infer(inputs, extra);
 
         auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
         for (const auto& kv : *outputs) {
@@ -111,7 +116,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 
         return ::grpc::Status();
     } else {
-        const auto md = mlms->metadata();
+        const auto md = mlms->metadata(extra);
         MLModelService::named_tensor_views inputs;
         for (const auto& input : md.inputs) {
             const auto where = request->input_tensors().tensors().find(input.name);
@@ -136,7 +141,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
             inputs.emplace(std::move(input.name), std::move(tensor));
         }
 
-        const auto outputs = mlms->infer(inputs);
+        const auto outputs = mlms->infer(inputs, extra);
 
         auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
         for (const auto& kv : *outputs) {
@@ -178,7 +183,11 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     }
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
-    auto md = mlms->metadata();
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+    auto md = mlms->metadata(extra);
 
     auto& metadata_pb = *response->mutable_metadata();
     *metadata_pb.mutable_name() = std::move(md.name);

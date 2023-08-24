@@ -60,6 +60,10 @@ class MotorServer : public ResourceServer,
                             const ::viam::component::motor::v1::IsMovingRequest* request,
                             ::viam::component::motor::v1::IsMovingResponse* response) override;
 
+    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
+                                 const ::viam::common::v1::GetGeometriesRequest* request,
+                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) override;
