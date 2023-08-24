@@ -121,18 +121,35 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a03f2db162658f3d0a539e7faa386ff32"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1position.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#a03f2db162658f3d0a539e7faa386ff32">get_position</a> (position_type position_type=position_type::unspecified)=0</td></tr>
-<tr class="memdesc:a03f2db162658f3d0a539e7faa386ff32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns position of the encoder which can either be ticks since last zeroing for an incremental encoder or degrees for an absolute encoder.  <br /></td></tr>
-<tr class="separator:a03f2db162658f3d0a539e7faa386ff32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aef08ddaedd94deb10db44ccdac265b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#a1aef08ddaedd94deb10db44ccdac265b">reset_position</a> ()=0</td></tr>
-<tr class="memdesc:a1aef08ddaedd94deb10db44ccdac265b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the value of the position.  <br /></td></tr>
-<tr class="separator:a1aef08ddaedd94deb10db44ccdac265b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6dbb3a966c3d0e453e3f22f639e1089"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#ad6dbb3a966c3d0e453e3f22f639e1089">get_properties</a> ()=0</td></tr>
-<tr class="memdesc:ad6dbb3a966c3d0e453e3f22f639e1089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the position_types that are supported by the encoder.  <br /></td></tr>
-<tr class="separator:ad6dbb3a966c3d0e453e3f22f639e1089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f7cb0d644f080737dabc9ac3adc94a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Encoder_1_1position.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#a4f7cb0d644f080737dabc9ac3adc94a1">get_position</a> (position_type position_type=position_type::unspecified)</td></tr>
+<tr class="memdesc:a4f7cb0d644f080737dabc9ac3adc94a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns position of the encoder which can either be ticks since last zeroing for an incremental encoder or degrees for an absolute encoder.  <br /></td></tr>
+<tr class="separator:a4f7cb0d644f080737dabc9ac3adc94a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9357536cf888f966a4179ce790ed5a28"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1position.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#a9357536cf888f966a4179ce790ed5a28">get_position</a> (const AttributeMap &amp;extra, position_type position_type=position_type::unspecified)=0</td></tr>
+<tr class="memdesc:a9357536cf888f966a4179ce790ed5a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns position of the encoder which can either be ticks since last zeroing for an incremental encoder or degrees for an absolute encoder.  <br /></td></tr>
+<tr class="separator:a9357536cf888f966a4179ce790ed5a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafe7eb2b51b29af70c60cabcd2443aca"><td class="memItemLeft" align="right" valign="top"><a id="aafe7eb2b51b29af70c60cabcd2443aca" name="aafe7eb2b51b29af70c60cabcd2443aca"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reset_position</b> ()</td></tr>
+<tr class="memdesc:aafe7eb2b51b29af70c60cabcd2443aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the value of the position. <br /></td></tr>
+<tr class="separator:aafe7eb2b51b29af70c60cabcd2443aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8574f14d78ab3f14aa673e063bff3ebe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#a8574f14d78ab3f14aa673e063bff3ebe">reset_position</a> (const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a8574f14d78ab3f14aa673e063bff3ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the value of the position.  <br /></td></tr>
+<tr class="separator:a8574f14d78ab3f14aa673e063bff3ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a3768883f83b60e9ac5c708b72bbcb8"><td class="memItemLeft" align="right" valign="top"><a id="a3a3768883f83b60e9ac5c708b72bbcb8" name="a3a3768883f83b60e9ac5c708b72bbcb8"></a>
+<a class="el" href="structviam_1_1sdk_1_1Encoder_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_properties</b> ()</td></tr>
+<tr class="memdesc:a3a3768883f83b60e9ac5c708b72bbcb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the position_types that are supported by the encoder. <br /></td></tr>
+<tr class="separator:a3a3768883f83b60e9ac5c708b72bbcb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab167d6406c03489dc80481cd32551966"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#ab167d6406c03489dc80481cd32551966">get_properties</a> (const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:ab167d6406c03489dc80481cd32551966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the position_types that are supported by the encoder.  <br /></td></tr>
+<tr class="separator:ab167d6406c03489dc80481cd32551966"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef72396cfd7e8455be1829e5c06e8e67"><td class="memItemLeft" align="right" valign="top">virtual AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#aef72396cfd7e8455be1829e5c06e8e67">do_command</a> (AttributeMap command)=0</td></tr>
 <tr class="memdesc:aef72396cfd7e8455be1829e5c06e8e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:aef72396cfd7e8455be1829e5c06e8e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#af2bce43f1fd5975d5583cf44e3a6b6ca">get_geometries</a> ()</td></tr>
+<tr class="memdesc:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling encoder.  <br /></td></tr>
+<tr class="separator:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedaf71a46e9e1fb8a0cf881fd5d742e3"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#aedaf71a46e9e1fb8a0cf881fd5d742e3">get_geometries</a> (const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:aedaf71a46e9e1fb8a0cf881fd5d742e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling encoder.  <br /></td></tr>
+<tr class="separator:aedaf71a46e9e1fb8a0cf881fd5d742e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20d32c2be8569d4d22f05cad3db157c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Encoder.html#a20d32c2be8569d4d22f05cad3db157c2">dynamic_api</a> () const override</td></tr>
 <tr class="memdesc:a20d32c2be8569d4d22f05cad3db157c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a20d32c2be8569d4d22f05cad3db157c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,12 +170,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af50e9df63d6e7c4358867e07d3810617 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#af50e9df63d6e7c4358867e07d3810617">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="memdesc:af50e9df63d6e7c4358867e07d3810617 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:af50e9df63d6e7c4358867e07d3810617 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56fd7d11a256f642d5548e7d9f37c01c inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a56fd7d11a256f642d5548e7d9f37c01c">stop</a> (AttributeMap extra)</td></tr>
-<tr class="memdesc:a56fd7d11a256f642d5548e7d9f37c01c inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:a56fd7d11a256f642d5548e7d9f37c01c inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8ee2641abb334e575269d6f54074d43 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#ae8ee2641abb334e575269d6f54074d43">stop</a> ()</td></tr>
-<tr class="memdesc:ae8ee2641abb334e575269d6f54074d43 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:ae8ee2641abb334e575269d6f54074d43 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a1acc213c14ada21ccce3b38a3c2da788">stop</a> (const AttributeMap &amp;extra)</td></tr>
+<tr class="memdesc:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
+<tr class="separator:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">
+grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+<tr class="memdesc:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
+<tr class="separator:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a491cf8741f92ce5712cc3866eee412c0">reconfigure</a> (Dependencies deps, <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> cfg)</td></tr>
 <tr class="memdesc:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
 <tr class="separator:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -287,8 +305,73 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a03f2db162658f3d0a539e7faa386ff32" name="a03f2db162658f3d0a539e7faa386ff32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03f2db162658f3d0a539e7faa386ff32">&#9670;&#160;</a></span>get_position()</h2>
+<a id="af2bce43f1fd5975d5583cf44e3a6b6ca" name="af2bce43f1fd5975d5583cf44e3a6b6ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2bce43f1fd5975d5583cf44e3a6b6ca">&#9670;&#160;</a></span>get_geometries() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Encoder::get_geometries </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling encoder. </p>
+<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
+
+</div>
+</div>
+<a id="aedaf71a46e9e1fb8a0cf881fd5d742e3" name="aedaf71a46e9e1fb8a0cf881fd5d742e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedaf71a46e9e1fb8a0cf881fd5d742e3">&#9670;&#160;</a></span>get_geometries() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt; viam::sdk::Encoder::get_geometries </td>
+          <td>(</td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling encoder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a2fc0cb4dabac7c51c77ed35db7492e17">viam::sdk::EncoderClient</a>, and <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#aedaf71a46e9e1fb8a0cf881fd5d742e3">viam::sdk::EncoderClient</a>.</p>
+
+</div>
+</div>
+<a id="a9357536cf888f966a4179ce790ed5a28" name="a9357536cf888f966a4179ce790ed5a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9357536cf888f966a4179ce790ed5a28">&#9670;&#160;</a></span>get_position() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -299,9 +382,19 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1position.html">position</a> viam::sdk::Encoder::get_position </td>
           <td>(</td>
-          <td class="paramtype">position_type&#160;</td>
-          <td class="paramname"><em>position_type</em> = <code>position_type::unspecified</code></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">position_type&#160;</td>
+          <td class="paramname"><em>position_type</em> = <code>position_type::unspecified</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -314,17 +407,52 @@ Protected Member Functions</h2></td></tr>
 <p>Returns position of the encoder which can either be ticks since last zeroing for an incremental encoder or degrees for an absolute encoder. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
     <tr><td class="paramname">position_type</td><td>The type of position you are requesting. If the driver does not implement the requested type, this call will return an error. If position type is <code>unspecified</code>, the response will return a default according to the driver. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a1cd7014a9c7cc6312406b9f6f82da906">viam::sdk::EncoderClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#af41b9d3bf4a7a7a27e947eac09cc22db">viam::sdk::EncoderClient</a>, and <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a9357536cf888f966a4179ce790ed5a28">viam::sdk::EncoderClient</a>.</p>
 
 </div>
 </div>
-<a id="ad6dbb3a966c3d0e453e3f22f639e1089" name="ad6dbb3a966c3d0e453e3f22f639e1089"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6dbb3a966c3d0e453e3f22f639e1089">&#9670;&#160;</a></span>get_properties()</h2>
+<a id="a4f7cb0d644f080737dabc9ac3adc94a1" name="a4f7cb0d644f080737dabc9ac3adc94a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f7cb0d644f080737dabc9ac3adc94a1">&#9670;&#160;</a></span>get_position() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Encoder_1_1position.html">position</a> viam::sdk::Encoder::get_position </td>
+          <td>(</td>
+          <td class="paramtype">position_type&#160;</td>
+          <td class="paramname"><em>position_type</em> = <code>position_type::unspecified</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns position of the encoder which can either be ticks since last zeroing for an incremental encoder or degrees for an absolute encoder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position_type</td><td>The type of position you are requesting. If the driver does not implement the requested type, this call will return an error. If position type is <code>unspecified</code>, the response will return a default according to the driver. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab167d6406c03489dc80481cd32551966" name="ab167d6406c03489dc80481cd32551966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab167d6406c03489dc80481cd32551966">&#9670;&#160;</a></span>get_properties()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,7 +463,8 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Encoder_1_1properties.html">properties</a> viam::sdk::Encoder::get_properties </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -347,13 +476,19 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a list of all the position_types that are supported by the encoder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a2637b3913a760422c88bf40e95829e8d">viam::sdk::EncoderClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a62d504a7824b3e3e8d4c22c7df924418">viam::sdk::EncoderClient</a>, and <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#ab167d6406c03489dc80481cd32551966">viam::sdk::EncoderClient</a>.</p>
 
 </div>
 </div>
-<a id="a1aef08ddaedd94deb10db44ccdac265b" name="a1aef08ddaedd94deb10db44ccdac265b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1aef08ddaedd94deb10db44ccdac265b">&#9670;&#160;</a></span>reset_position()</h2>
+<a id="a8574f14d78ab3f14aa673e063bff3ebe" name="a8574f14d78ab3f14aa673e063bff3ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8574f14d78ab3f14aa673e063bff3ebe">&#9670;&#160;</a></span>reset_position()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,7 +499,8 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void viam::sdk::Encoder::reset_position </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -376,8 +512,14 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reset the value of the position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a437947cf25458a9d676ebf4b50150ce5">viam::sdk::EncoderClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#ac68d87c125a42cff6858a1add0a631a8">viam::sdk::EncoderClient</a>, and <a class="el" href="classviam_1_1sdk_1_1EncoderClient.html#a8574f14d78ab3f14aa673e063bff3ebe">viam::sdk::EncoderClient</a>.</p>
 
 </div>
 </div>

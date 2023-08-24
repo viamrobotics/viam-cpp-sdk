@@ -133,15 +133,19 @@ $(function() {
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                            const ::viam::component::motor::v1::IsMovingRequest* request,</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                            ::viam::component::motor::v1::IsMovingResponse* response) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    ::grpc::Status DoCommand(grpc::ServerContext* context,</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                             <span class="keyword">const</span> viam::common::v1::DoCommandRequest* request,</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                             viam::common::v1::DoCommandResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    ::grpc::Status GetGeometries(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                 const ::viam::common::v1::GetGeometriesRequest* request,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                                 ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    ::grpc::Status DoCommand(grpc::ServerContext* context,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                             <span class="keyword">const</span> viam::common::v1::DoCommandRequest* request,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                             viam::common::v1::DoCommandResponse* response) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> register_server(std::shared_ptr&lt;Server&gt; server) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MotorServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1MotorServer.html">viam::sdk::MotorServer</a></div><div class="ttdoc">gRPC server implementation of a Motor component.</div><div class="ttdef"><b>Definition</b> server.hpp:19</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:9</div></div>
 <div class="ttc" id="aresource__manager_8hpp_html"><div class="ttname"><a href="resource__manager_8hpp.html">resource_manager.hpp</a></div><div class="ttdoc">Defines a general-purpose resource manager.</div></div>

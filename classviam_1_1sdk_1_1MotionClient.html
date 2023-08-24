@@ -112,28 +112,64 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa11893750e944c93906c186acb8deb91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#aa11893750e944c93906c186acb8deb91">move_on_globe</a> (const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;destination, const boost::optional&lt; double &gt; &amp;heading, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;movement_sensor_name, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;obstacles, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, const AttributeMap &amp;extra) override</td></tr>
 <tr class="memdesc:aa11893750e944c93906c186acb8deb91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
 <tr class="separator:aa11893750e944c93906c186acb8deb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f048b07f51260b2a86d271d0f5b387c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a8f048b07f51260b2a86d271d0f5b387c">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms, AttributeMap extra) override</td></tr>
-<tr class="memdesc:a8f048b07f51260b2a86d271d0f5b387c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
-<tr class="separator:a8f048b07f51260b2a86d271d0f5b387c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1100ba41d06773094fa49fc7c55b737"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#ab1100ba41d06773094fa49fc7c55b737">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms, const AttributeMap &amp;extra) override</td></tr>
+<tr class="memdesc:ab1100ba41d06773094fa49fc7c55b737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
+<tr class="separator:ab1100ba41d06773094fa49fc7c55b737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7da9d84e23a6125bf90deea264b1dbd6"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a7da9d84e23a6125bf90deea264b1dbd6">do_command</a> (const AttributeMap &amp;command) override</td></tr>
 <tr class="memdesc:a7da9d84e23a6125bf90deea264b1dbd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a7da9d84e23a6125bf90deea264b1dbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eb1325754e7e93e066111a87a8b659e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a0eb1325754e7e93e066111a87a8b659e">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms)</td></tr>
+<tr class="memdesc:a0eb1325754e7e93e066111a87a8b659e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
+<tr class="separator:a0eb1325754e7e93e066111a87a8b659e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms, const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
+<tr class="separator:a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa76f7cb0071b096bdb9d319d4dfcc35f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#aa76f7cb0071b096bdb9d319d4dfcc35f">move</a> (const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt; world_state, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a>)</td></tr>
+<tr class="memdesc:aa76f7cb0071b096bdb9d319d4dfcc35f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any compononent on the robot to a specified destination.  <br /></td></tr>
+<tr class="separator:aa76f7cb0071b096bdb9d319d4dfcc35f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034cdf0ccaaecafb8ba6ccc8211f2616"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a034cdf0ccaaecafb8ba6ccc8211f2616">move</a> (const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt; world_state, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a>, const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a034cdf0ccaaecafb8ba6ccc8211f2616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any compononent on the robot to a specified destination.  <br /></td></tr>
+<tr class="separator:a034cdf0ccaaecafb8ba6ccc8211f2616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94effa56cc3bc979a69e5e0593692fa3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a94effa56cc3bc979a69e5e0593692fa3">move_on_globe</a> (const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;destination, const boost::optional&lt; double &gt; &amp;heading, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;movement_sensor_name, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;obstacles, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>)</td></tr>
+<tr class="memdesc:a94effa56cc3bc979a69e5e0593692fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
+<tr class="separator:a94effa56cc3bc979a69e5e0593692fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66fd79c759f01f467dccff23c0c4f754"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a66fd79c759f01f467dccff23c0c4f754">move_on_globe</a> (const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;destination, const boost::optional&lt; double &gt; &amp;heading, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;movement_sensor_name, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;obstacles, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a66fd79c759f01f467dccff23c0c4f754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
+<tr class="separator:a66fd79c759f01f467dccff23c0c4f754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08209bbd27801c1789bd062ccb823e8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a08209bbd27801c1789bd062ccb823e8f">move_on_map</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;slam_name)</td></tr>
+<tr class="memdesc:a08209bbd27801c1789bd062ccb823e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
+<tr class="separator:a08209bbd27801c1789bd062ccb823e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab779c0c47eed544832cb112dcd97b09f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MotionClient.html#ab779c0c47eed544832cb112dcd97b09f">move_on_map</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;slam_name, const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:ab779c0c47eed544832cb112dcd97b09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
+<tr class="separator:ab779c0c47eed544832cb112dcd97b09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Motion"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classviam_1_1sdk_1_1Motion')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Motion.html">viam::sdk::Motion</a></td></tr>
 <tr class="memitem:a488b8df7d7b2df543b0f550533f6c7c6 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a488b8df7d7b2df543b0f550533f6c7c6">dynamic_api</a> () const override</td></tr>
 <tr class="memdesc:a488b8df7d7b2df543b0f550533f6c7c6 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a488b8df7d7b2df543b0f550533f6c7c6 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa76f7cb0071b096bdb9d319d4dfcc35f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#aa76f7cb0071b096bdb9d319d4dfcc35f">move</a> (const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt; world_state, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a>)</td></tr>
+<tr class="memdesc:aa76f7cb0071b096bdb9d319d4dfcc35f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any compononent on the robot to a specified destination.  <br /></td></tr>
+<tr class="separator:aa76f7cb0071b096bdb9d319d4dfcc35f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a034cdf0ccaaecafb8ba6ccc8211f2616 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a034cdf0ccaaecafb8ba6ccc8211f2616">move</a> (const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt; world_state, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a>, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a034cdf0ccaaecafb8ba6ccc8211f2616 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any compononent on the robot to a specified destination.  <br /></td></tr>
 <tr class="separator:a034cdf0ccaaecafb8ba6ccc8211f2616 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08209bbd27801c1789bd062ccb823e8f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a08209bbd27801c1789bd062ccb823e8f">move_on_map</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;slam_name)</td></tr>
+<tr class="memdesc:a08209bbd27801c1789bd062ccb823e8f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
+<tr class="separator:a08209bbd27801c1789bd062ccb823e8f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab779c0c47eed544832cb112dcd97b09f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#ab779c0c47eed544832cb112dcd97b09f">move_on_map</a> (const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;destination, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;slam_name, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:ab779c0c47eed544832cb112dcd97b09f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
 <tr class="separator:ab779c0c47eed544832cb112dcd97b09f inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94effa56cc3bc979a69e5e0593692fa3 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a94effa56cc3bc979a69e5e0593692fa3">move_on_globe</a> (const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;destination, const boost::optional&lt; double &gt; &amp;heading, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;movement_sensor_name, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;obstacles, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>)</td></tr>
+<tr class="memdesc:a94effa56cc3bc979a69e5e0593692fa3 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
+<tr class="separator:a94effa56cc3bc979a69e5e0593692fa3 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66fd79c759f01f467dccff23c0c4f754 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a66fd79c759f01f467dccff23c0c4f754">move_on_globe</a> (const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;destination, const boost::optional&lt; double &gt; &amp;heading, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;movement_sensor_name, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;obstacles, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, const AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a66fd79c759f01f467dccff23c0c4f754 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
 <tr class="separator:a66fd79c759f01f467dccff23c0c4f754 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e3a201a2bcd3cd135ce4192a32e72e5 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a6e3a201a2bcd3cd135ce4192a32e72e5">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms, AttributeMap extra)=0</td></tr>
-<tr class="memdesc:a6e3a201a2bcd3cd135ce4192a32e72e5 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
-<tr class="separator:a6e3a201a2bcd3cd135ce4192a32e72e5 inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eb1325754e7e93e066111a87a8b659e inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a0eb1325754e7e93e066111a87a8b659e">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms)</td></tr>
+<tr class="memdesc:a0eb1325754e7e93e066111a87a8b659e inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
+<tr class="separator:a0eb1325754e7e93e066111a87a8b659e inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02d7bd0342c7b08bf0e6ddb29c8290dd inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">get_pose</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;supplemental_transforms, const AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a02d7bd0342c7b08bf0e6ddb29c8290dd inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
+<tr class="separator:a02d7bd0342c7b08bf0e6ddb29c8290dd inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab918f87868389425971f7f74d8fc62e inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memItemLeft" align="right" valign="top">virtual AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#aab918f87868389425971f7f74d8fc62e">do_command</a> (const AttributeMap &amp;command)=0</td></tr>
 <tr class="memdesc:aab918f87868389425971f7f74d8fc62e inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:aab918f87868389425971f7f74d8fc62e inherit pub_methods_classviam_1_1sdk_1_1Motion"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,12 +190,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af50e9df63d6e7c4358867e07d3810617 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#af50e9df63d6e7c4358867e07d3810617">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="memdesc:af50e9df63d6e7c4358867e07d3810617 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:af50e9df63d6e7c4358867e07d3810617 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56fd7d11a256f642d5548e7d9f37c01c inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a56fd7d11a256f642d5548e7d9f37c01c">stop</a> (AttributeMap extra)</td></tr>
-<tr class="memdesc:a56fd7d11a256f642d5548e7d9f37c01c inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:a56fd7d11a256f642d5548e7d9f37c01c inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8ee2641abb334e575269d6f54074d43 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#ae8ee2641abb334e575269d6f54074d43">stop</a> ()</td></tr>
-<tr class="memdesc:ae8ee2641abb334e575269d6f54074d43 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:ae8ee2641abb334e575269d6f54074d43 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a1acc213c14ada21ccce3b38a3c2da788">stop</a> (const AttributeMap &amp;extra)</td></tr>
+<tr class="memdesc:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
+<tr class="separator:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">
+grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+<tr class="memdesc:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
+<tr class="separator:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a491cf8741f92ce5712cc3866eee412c0">reconfigure</a> (Dependencies deps, <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> cfg)</td></tr>
 <tr class="memdesc:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
 <tr class="separator:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,8 +271,61 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
 
 </div>
 </div>
-<a id="a8f048b07f51260b2a86d271d0f5b387c" name="a8f048b07f51260b2a86d271d0f5b387c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f048b07f51260b2a86d271d0f5b387c">&#9670;&#160;</a></span>get_pose()</h2>
+<a id="a0eb1325754e7e93e066111a87a8b659e" name="a0eb1325754e7e93e066111a87a8b659e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eb1325754e7e93e066111a87a8b659e">&#9670;&#160;</a></span>get_pose() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> viam::sdk::Motion::get_pose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>destination_frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>supplemental_transforms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the pose of any component on the robot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The component whose pose is being requested. </td></tr>
+    <tr><td class="paramname">destination_frame</td><td>The reference frame in which the component's pose should be provided. </td></tr>
+    <tr><td class="paramname">supplemental_transforms</td><td>Pose information on any additional reference frames that are needed to compute the component's pose. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The pose of the component. </dd></dl>
+
+</div>
+</div>
+<a id="ab1100ba41d06773094fa49fc7c55b737" name="ab1100ba41d06773094fa49fc7c55b737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1100ba41d06773094fa49fc7c55b737">&#9670;&#160;</a></span>get_pose() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +354,7 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AttributeMap&#160;</td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
           <td class="paramname"><em>extra</em>&#160;</td>
         </tr>
         <tr>
@@ -292,12 +382,74 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The pose of the component. </dd></dl>
 
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#a6e3a201a2bcd3cd135ce4192a32e72e5">viam::sdk::Motion</a>.</p>
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">viam::sdk::Motion</a>.</p>
+
+</div>
+</div>
+<a id="a02d7bd0342c7b08bf0e6ddb29c8290dd" name="a02d7bd0342c7b08bf0e6ddb29c8290dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02d7bd0342c7b08bf0e6ddb29c8290dd">&#9670;&#160;</a></span>get_pose() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> viam::sdk::Motion::get_pose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>destination_frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>supplemental_transforms</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the pose of any component on the robot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The component whose pose is being requested. </td></tr>
+    <tr><td class="paramname">destination_frame</td><td>The reference frame in which the component's pose should be provided. </td></tr>
+    <tr><td class="paramname">supplemental_transforms</td><td>Pose information on any additional reference frames that are needed to compute the component's pose. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The pose of the component. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">viam::sdk::Motion</a>.</p>
 
 </div>
 </div>
 <a id="ac2e54cab1c7eab82fe05c5bbd844f27d" name="ac2e54cab1c7eab82fe05c5bbd844f27d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2e54cab1c7eab82fe05c5bbd844f27d">&#9670;&#160;</a></span>move()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e54cab1c7eab82fe05c5bbd844f27d">&#9670;&#160;</a></span>move() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,8 +516,210 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
 
 </div>
 </div>
+<a id="aa76f7cb0071b096bdb9d319d4dfcc35f" name="aa76f7cb0071b096bdb9d319d4dfcc35f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa76f7cb0071b096bdb9d319d4dfcc35f">&#9670;&#160;</a></span>move() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool viam::sdk::Motion::move </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt;&#160;</td>
+          <td class="paramname"><em>world_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt;&#160;</td>
+          <td class="paramname"><em>constraints</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves any compononent on the robot to a specified destination. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>Where to move the component to. </td></tr>
+    <tr><td class="paramname">name</td><td><a class="el" href="classviam_1_1sdk_1_1Name.html" title="A name for specific instances of resources.">Name</a> of the component to be moved. </td></tr>
+    <tr><td class="paramname">world_state</td><td>Obstacles to avoid and transforms to add to the robot for the duration of the move. </td></tr>
+    <tr><td class="paramname">constraints</td><td>Constraints to apply to how the robot will move. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
+
+</div>
+</div>
+<a id="a034cdf0ccaaecafb8ba6ccc8211f2616" name="a034cdf0ccaaecafb8ba6ccc8211f2616"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a034cdf0ccaaecafb8ba6ccc8211f2616">&#9670;&#160;</a></span>move() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool viam::sdk::Motion::move </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt;&#160;</td>
+          <td class="paramname"><em>world_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt;&#160;</td>
+          <td class="paramname"><em>constraints</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves any compononent on the robot to a specified destination. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>Where to move the component to. </td></tr>
+    <tr><td class="paramname">name</td><td><a class="el" href="classviam_1_1sdk_1_1Name.html" title="A name for specific instances of resources.">Name</a> of the component to be moved. </td></tr>
+    <tr><td class="paramname">world_state</td><td>Obstacles to avoid and transforms to add to the robot for the duration of the move. </td></tr>
+    <tr><td class="paramname">constraints</td><td>Constraints to apply to how the robot will move. @extra Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#a034cdf0ccaaecafb8ba6ccc8211f2616">viam::sdk::Motion</a>.</p>
+
+</div>
+</div>
+<a id="a94effa56cc3bc979a69e5e0593692fa3" name="a94effa56cc3bc979a69e5e0593692fa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94effa56cc3bc979a69e5e0593692fa3">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool viam::sdk::Motion::move_on_globe </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const boost::optional&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>heading</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>movement_sensor_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>obstacles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt;&#160;</td>
+          <td class="paramname"><em>motion_configuration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves any component on the robot to a specific destination on a globe. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>The destination to move to. </td></tr>
+    <tr><td class="paramname">heading</td><td>Optional compass heading to achieve at the destination in degrees [0-360). </td></tr>
+    <tr><td class="paramname">component_name</td><td>The name of the component to move. </td></tr>
+    <tr><td class="paramname">movement_sensor_name</td><td>The name of the movement sensor used to check robot location. </td></tr>
+    <tr><td class="paramname">obstacles</td><td>Obstacles to be considered for motion planning. </td></tr>
+    <tr><td class="paramname"><a class="el" href="structviam_1_1sdk_1_1motion__configuration.html" title="Defines configuration options for certain Motion APIs.">motion_configuration</a></td><td>Optional set of motion configuration options. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
+
+</div>
+</div>
 <a id="aa11893750e944c93906c186acb8deb91" name="aa11893750e944c93906c186acb8deb91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa11893750e944c93906c186acb8deb91">&#9670;&#160;</a></span>move_on_globe()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa11893750e944c93906c186acb8deb91">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -447,8 +801,144 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
 
 </div>
 </div>
+<a id="a66fd79c759f01f467dccff23c0c4f754" name="a66fd79c759f01f467dccff23c0c4f754"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66fd79c759f01f467dccff23c0c4f754">&#9670;&#160;</a></span>move_on_globe() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool viam::sdk::Motion::move_on_globe </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const boost::optional&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>heading</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>movement_sensor_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>obstacles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt;&#160;</td>
+          <td class="paramname"><em>motion_configuration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves any component on the robot to a specific destination on a globe. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>The destination to move to. </td></tr>
+    <tr><td class="paramname">heading</td><td>Optional compass heading to achieve at the destination in degrees [0-360). </td></tr>
+    <tr><td class="paramname">component_name</td><td>The name of the component to move. </td></tr>
+    <tr><td class="paramname">movement_sensor_name</td><td>The name of the movement sensor used to check robot location. </td></tr>
+    <tr><td class="paramname">obstacles</td><td>Obstacles to be considered for motion planning. </td></tr>
+    <tr><td class="paramname"><a class="el" href="structviam_1_1sdk_1_1motion__configuration.html" title="Defines configuration options for certain Motion APIs.">motion_configuration</a></td><td>Optional set of motion configuration options. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#a66fd79c759f01f467dccff23c0c4f754">viam::sdk::Motion</a>.</p>
+
+</div>
+</div>
+<a id="a08209bbd27801c1789bd062ccb823e8f" name="a08209bbd27801c1789bd062ccb823e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08209bbd27801c1789bd062ccb823e8f">&#9670;&#160;</a></span>move_on_map() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool viam::sdk::Motion::move_on_map </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>slam_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves any component on the robot to a specific destination on a SLAM map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>The destination to move to. </td></tr>
+    <tr><td class="paramname">component_name</td><td>The component to move. </td></tr>
+    <tr><td class="paramname">slam_name</td><td>The name of the slam service from which the SLAM map is requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
+
+</div>
+</div>
 <a id="a8df727a8495ef7d037fa197260ad237b" name="a8df727a8495ef7d037fa197260ad237b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8df727a8495ef7d037fa197260ad237b">&#9670;&#160;</a></span>move_on_map()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df727a8495ef7d037fa197260ad237b">&#9670;&#160;</a></span>move_on_map() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -489,6 +979,68 @@ static <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td c
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves any component on the robot to a specific destination on a SLAM map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>The destination to move to. </td></tr>
+    <tr><td class="paramname">component_name</td><td>The component to move. </td></tr>
+    <tr><td class="paramname">slam_name</td><td>The name of the slam service from which the SLAM map is requested. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#ab779c0c47eed544832cb112dcd97b09f">viam::sdk::Motion</a>.</p>
+
+</div>
+</div>
+<a id="ab779c0c47eed544832cb112dcd97b09f" name="ab779c0c47eed544832cb112dcd97b09f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab779c0c47eed544832cb112dcd97b09f">&#9670;&#160;</a></span>move_on_map() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool viam::sdk::Motion::move_on_map </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>slam_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
