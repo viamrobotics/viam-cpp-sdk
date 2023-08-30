@@ -127,6 +127,9 @@ option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less pe
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 
+option(VIAMCPPSDK_STATIC_RUST "Build viam_rust_utils statically")
+
+
 # Enforce known toolchains and toolchain minima unless asked not to.
 if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")

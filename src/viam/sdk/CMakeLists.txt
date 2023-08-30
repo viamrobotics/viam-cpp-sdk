@@ -187,6 +187,12 @@ target_link_directories(viamsdk
     "$<INSTALL_INTERFACE:${VIAMCPPSDK_PROTOBUF_LIBRARY_DIRS}>"
 )
 
+if (VIAMCPPSDK_STATIC_RUST)
+  add_dependencies(viamsdk cargo-build_viam-rust-utils)
+  # todo: can I get this from corrosion?
+  target_link_directories(viamsdk PRIVATE ${RUST_OUTPUT})
+endif()
+
 target_link_libraries(viamsdk
   PUBLIC viam-cpp-sdk::viamapi
   PUBLIC ${VIAMCPPSDK_GRPCXX_LIBRARIES}
