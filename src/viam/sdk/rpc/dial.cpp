@@ -16,7 +16,7 @@ extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
 extern "C" void free_string(const char* s);
 extern "C" char* dial(
-    const char* uri, const char* type, const char* payload, bool allow_insecure, void* ptr);
+    const char* uri, const char* entity, const char* type, const char* payload, bool allow_insecure, void* ptr);
 namespace viam {
 namespace sdk {
 
@@ -46,6 +46,10 @@ ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* pat
 
 void DialOptions::set_credentials(boost::optional<Credentials> creds) {
     credentials_ = creds;
+}
+
+void DialOptions::set_entity(boost::optional<std::string> entity) {
+    auth_entity_ = entity;
 }
 
 const boost::optional<Credentials>& DialOptions::credentials() const {
