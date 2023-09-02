@@ -44,6 +44,7 @@ class DialOptions {
         : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false) {}
 
     const boost::optional<Credentials>& credentials() const;
+    const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
 
     void set_entity(boost::optional<std::string> entity);

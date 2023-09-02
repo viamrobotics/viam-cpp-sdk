@@ -12,9 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(dial)
-add_subdirectory(dial_api_key)
-add_subdirectory(modules)
-add_subdirectory(mlmodel)
-add_subdirectory(motor)
-add_subdirectory(camera)
+add_executable(example_dial_api_key
+  example_dial_api_key.cpp
+)
+
+target_link_libraries(example_dial_api_key
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS example_dial_api_key
+  COMPONENT viam-cpp-sdk_examples
+)
