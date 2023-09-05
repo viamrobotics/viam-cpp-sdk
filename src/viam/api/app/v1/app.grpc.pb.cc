@@ -73,6 +73,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/DeleteFragment",
   "/viam.app.v1.AppService/AddRole",
   "/viam.app.v1.AppService/RemoveRole",
+  "/viam.app.v1.AppService/ChangeRole",
   "/viam.app.v1.AppService/ListAuthorizations",
   "/viam.app.v1.AppService/CheckPermissions",
   "/viam.app.v1.AppService/CreateModule",
@@ -80,6 +81,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/UploadModuleFile",
   "/viam.app.v1.AppService/GetModule",
   "/viam.app.v1.AppService/ListModules",
+  "/viam.app.v1.AppService/CreateKey",
 };
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -138,13 +140,15 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_DeleteFragment_(AppService_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_AddRole_(AppService_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveRole_(AppService_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAuthorizations_(AppService_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckPermissions_(AppService_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateModule_(AppService_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateModule_(AppService_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UploadModuleFile_(AppService_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
-  , rpcmethod_GetModule_(AppService_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModules_(AppService_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ChangeRole_(AppService_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAuthorizations_(AppService_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckPermissions_(AppService_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateModule_(AppService_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateModule_(AppService_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadModuleFile_(AppService_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_GetModule_(AppService_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModules_(AppService_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKey_(AppService_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -1267,6 +1271,29 @@ void AppService::Stub::async::RemoveRole(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::Status AppService::Stub::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::viam::app::v1::ChangeRoleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ChangeRole_, context, request, response);
+}
+
+void AppService::Stub::async::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::ChangeRole(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChangeRole_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChangeRoleResponse>* AppService::Stub::PrepareAsyncChangeRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ChangeRoleResponse, ::viam::app::v1::ChangeRoleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ChangeRole_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChangeRoleResponse>* AppService::Stub::AsyncChangeRoleRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChangeRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncChangeRoleRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status AppService::Stub::ListAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::ListAuthorizationsRequest& request, ::viam::app::v1::ListAuthorizationsResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListAuthorizations_, context, request, response);
 }
@@ -1417,6 +1444,29 @@ void AppService::Stub::async::ListModules(::grpc::ClientContext* context, const 
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListModulesResponse>* AppService::Stub::AsyncListModulesRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListModulesRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncListModulesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::viam::app::v1::CreateKeyResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateKey_, context, request, response);
+}
+
+void AppService::Stub::async::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::CreateKey(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKey_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyResponse>* AppService::Stub::PrepareAsyncCreateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateKeyResponse, ::viam::app::v1::CreateKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateKey_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyResponse>* AppService::Stub::AsyncCreateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateKeyRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -1915,6 +1965,16 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::ChangeRoleRequest* req,
+             ::viam::app::v1::ChangeRoleResponse* resp) {
+               return service->ChangeRole(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[50],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1923,7 +1983,7 @@ AppService::Service::Service() {
                return service->ListAuthorizations(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[50],
+      AppService_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1933,7 +1993,7 @@ AppService::Service::Service() {
                return service->CheckPermissions(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[51],
+      AppService_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1943,7 +2003,7 @@ AppService::Service::Service() {
                return service->CreateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[52],
+      AppService_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1953,7 +2013,7 @@ AppService::Service::Service() {
                return service->UpdateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[53],
+      AppService_method_names[54],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< AppService::Service, ::viam::app::v1::UploadModuleFileRequest, ::viam::app::v1::UploadModuleFileResponse>(
           [](AppService::Service* service,
@@ -1963,7 +2023,7 @@ AppService::Service::Service() {
                return service->UploadModuleFile(ctx, reader, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[54],
+      AppService_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1973,7 +2033,7 @@ AppService::Service::Service() {
                return service->GetModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[55],
+      AppService_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1981,6 +2041,16 @@ AppService::Service::Service() {
              const ::viam::app::v1::ListModulesRequest* req,
              ::viam::app::v1::ListModulesResponse* resp) {
                return service->ListModules(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[57],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::CreateKeyRequest* req,
+             ::viam::app::v1::CreateKeyResponse* resp) {
+               return service->CreateKey(ctx, req, resp);
              }, this)));
 }
 
@@ -2330,6 +2400,13 @@ AppService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status AppService::Service::ChangeRole(::grpc::ServerContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status AppService::Service::ListAuthorizations(::grpc::ServerContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response) {
   (void) context;
   (void) request;
@@ -2373,6 +2450,13 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::ListModules(::grpc::ServerContext* context, const ::viam::app::v1::ListModulesRequest* request, ::viam::app::v1::ListModulesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::CreateKey(::grpc::ServerContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response) {
   (void) context;
   (void) request;
   (void) response;
