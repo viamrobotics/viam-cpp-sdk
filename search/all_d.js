@@ -11,6 +11,6 @@ var searchData=
   ['power_5fmode_8',['power_mode',['../classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88',1,'viam::sdk::Board']]],
   ['power_5fpct_9',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]],
   ['power_5fstatus_10',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
-  ['properties_11',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties']]],
+  ['properties_11',['properties',['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties']]],
   ['prototype_12',['ProtoType',['../classviam_1_1sdk_1_1ProtoType.html',1,'viam::sdk']]]
 ];
