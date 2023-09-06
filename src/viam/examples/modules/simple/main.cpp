@@ -24,41 +24,46 @@
 using viam::component::generic::v1::GenericService;
 using namespace viam::sdk;
 
-class MyModule : public GenericService::Service, public Component {
+// Printer is a modular resource that can print its own ID upon receiving a
+// DoCommand request or reconfiguring. Printer IDs increase by 1 for each
+// Printer constructed.
+class Printer : public GenericService::Service, public Component {
    public:
     void reconfigure(Dependencies deps, ResourceConfig cfg) override {
-        std::cout << "Calling reconfigure on MyModule" << std::endl;
+        std::cout << "Calling reconfigure on Printer with id " << id_ << " and name " << name_
+                  << std::endl;
         for (auto& dep : deps) {
             std::cout << "dependency: " << dep.first.to_string() << std::endl;
         }
 
-        std::cout << "config in reconfigure: " << cfg.name() << std::endl;
+        std::cout << "attributes in reconfigure cfg: " << cfg.attributes() << std::endl;
     }
 
     API dynamic_api() const override {
         return Generic::static_api();
     }
 
-    MyModule() {
-        inner_which_ = which_;
-        which_ += 1;
+    Printer() {
+        id_ = next_id_;
+        next_id_ += 1;
     };
 
-    MyModule(ResourceConfig cfg) {
+    Printer(ResourceConfig cfg) {
         name_ = cfg.name();
-        std::cout << "Creating module with name " + name_ << std::endl;
-        inner_which_ = which_;
-        which_ += 1;
+        std::cout << "Creating Printer with name " + name_ << std::endl;
+
+        id_ = next_id_;
+        next_id_ += 1;
     }
 
-    MyModule(const MyModule&) = delete;
-    MyModule& operator=(const MyModule&) = delete;
+    Printer(const Printer&) = delete;
+    Printer& operator=(const Printer&) = delete;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) override {
-        std::cout << "Received DoCommand request for MyModule number " << inner_which_
-                  << " and name " << name_ << std::endl;
+        std::cout << "Received DoCommand request for Printer with id " << id_ << " and name "
+                  << name_ << std::endl;
         for (const auto& req : request->command().fields()) {
             std::cout << "request key: " << req.first.c_str()
                       << "\trequest value: " << req.second.SerializeAsString();
@@ -70,11 +75,11 @@ class MyModule : public GenericService::Service, public Component {
 
    private:
     std::string name_;
-    static int which_;
-    int inner_which_;
+    static int next_id_;
+    int id_;
 };
 
-int MyModule::which_ = 0;
+int Printer::next_id_ = 0;
 
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -100,10 +105,10 @@ int main(int argc, char** argv) {
     Model m("acme", "demo", "printer");
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
-        ResourceType("MyModule"),
+        ResourceType("Printer"),
         generic,
         m,
-        [](Dependencies, ResourceConfig cfg) { return std::make_unique<MyModule>(cfg); },
+        [](Dependencies, ResourceConfig cfg) { return std::make_unique<Printer>(cfg); },
         // Custom validation can be done by specifying a validate function like
         // this one. Validate functions can `throw` exceptions that will be
         // returned to the parent through gRPC. Validate functions can also return
