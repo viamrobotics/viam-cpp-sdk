@@ -1864,6 +1864,7 @@ class ServiceConfig final :
 
   enum : int {
     kDependsOnFieldNumber = 5,
+    kServiceConfigsFieldNumber = 10,
     kNameFieldNumber = 1,
     kNamespaceFieldNumber = 2,
     kTypeFieldNumber = 3,
@@ -1894,6 +1895,24 @@ class ServiceConfig final :
   const std::string& _internal_depends_on(int index) const;
   std::string* _internal_add_depends_on();
   public:
+
+  // repeated .viam.app.v1.ResourceLevelServiceConfig service_configs = 10 [json_name = "serviceConfigs", (.tagger.v1.tags) = "json:\"service_config\""];
+  int service_configs_size() const;
+  private:
+  int _internal_service_configs_size() const;
+  public:
+  void clear_service_configs();
+  ::viam::app::v1::ResourceLevelServiceConfig* mutable_service_configs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ResourceLevelServiceConfig >*
+      mutable_service_configs();
+  private:
+  const ::viam::app::v1::ResourceLevelServiceConfig& _internal_service_configs(int index) const;
+  ::viam::app::v1::ResourceLevelServiceConfig* _internal_add_service_configs();
+  public:
+  const ::viam::app::v1::ResourceLevelServiceConfig& service_configs(int index) const;
+  ::viam::app::v1::ResourceLevelServiceConfig* add_service_configs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ResourceLevelServiceConfig >&
+      service_configs() const;
 
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -1991,6 +2010,7 @@ class ServiceConfig final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> depends_on_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ResourceLevelServiceConfig > service_configs_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
@@ -9757,6 +9777,46 @@ inline void ServiceConfig::set_allocated_api(std::string* api) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ServiceConfig.api)
+}
+
+// repeated .viam.app.v1.ResourceLevelServiceConfig service_configs = 10 [json_name = "serviceConfigs", (.tagger.v1.tags) = "json:\"service_config\""];
+inline int ServiceConfig::_internal_service_configs_size() const {
+  return service_configs_.size();
+}
+inline int ServiceConfig::service_configs_size() const {
+  return _internal_service_configs_size();
+}
+inline void ServiceConfig::clear_service_configs() {
+  service_configs_.Clear();
+}
+inline ::viam::app::v1::ResourceLevelServiceConfig* ServiceConfig::mutable_service_configs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ServiceConfig.service_configs)
+  return service_configs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ResourceLevelServiceConfig >*
+ServiceConfig::mutable_service_configs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ServiceConfig.service_configs)
+  return &service_configs_;
+}
+inline const ::viam::app::v1::ResourceLevelServiceConfig& ServiceConfig::_internal_service_configs(int index) const {
+  return service_configs_.Get(index);
+}
+inline const ::viam::app::v1::ResourceLevelServiceConfig& ServiceConfig::service_configs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ServiceConfig.service_configs)
+  return _internal_service_configs(index);
+}
+inline ::viam::app::v1::ResourceLevelServiceConfig* ServiceConfig::_internal_add_service_configs() {
+  return service_configs_.Add();
+}
+inline ::viam::app::v1::ResourceLevelServiceConfig* ServiceConfig::add_service_configs() {
+  ::viam::app::v1::ResourceLevelServiceConfig* _add = _internal_add_service_configs();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ServiceConfig.service_configs)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ResourceLevelServiceConfig >&
+ServiceConfig::service_configs() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ServiceConfig.service_configs)
+  return service_configs_;
 }
 
 // -------------------------------------------------------------------

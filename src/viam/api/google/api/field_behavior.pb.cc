@@ -33,23 +33,24 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_google_2fapi_2ffield_5fbehavior_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\037google/api/field_behavior.proto\022\ngoogl"
   "e.api\032 google/protobuf/descriptor.proto*"
-  "\246\001\n\rFieldBehavior\022\036\n\032FIELD_BEHAVIOR_UNSP"
+  "\266\001\n\rFieldBehavior\022\036\n\032FIELD_BEHAVIOR_UNSP"
   "ECIFIED\020\000\022\014\n\010OPTIONAL\020\001\022\014\n\010REQUIRED\020\002\022\017\n"
   "\013OUTPUT_ONLY\020\003\022\016\n\nINPUT_ONLY\020\004\022\r\n\tIMMUTA"
   "BLE\020\005\022\022\n\016UNORDERED_LIST\020\006\022\025\n\021NON_EMPTY_D"
-  "EFAULT\020\007:`\n\016field_behavior\022\035.google.prot"
-  "obuf.FieldOptions\030\234\010 \003(\0162\031.google.api.Fi"
-  "eldBehaviorR\rfieldBehaviorBp\n\016com.google"
-  ".apiB\022FieldBehaviorProtoP\001ZAgoogle.golan"
-  "g.org/genproto/googleapis/api/annotation"
-  "s;annotations\242\002\004GAPIb\006proto3"
+  "EFAULT\020\007\022\016\n\nIDENTIFIER\020\010:`\n\016field_behavi"
+  "or\022\035.google.protobuf.FieldOptions\030\234\010 \003(\016"
+  "2\031.google.api.FieldBehaviorR\rfieldBehavi"
+  "orBp\n\016com.google.apiB\022FieldBehaviorProto"
+  "P\001ZAgoogle.golang.org/genproto/googleapi"
+  "s/api/annotations;annotations\242\002\004GAPIb\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto = {
-    false, false, 468, descriptor_table_protodef_google_2fapi_2ffield_5fbehavior_2eproto,
+    false, false, 484, descriptor_table_protodef_google_2fapi_2ffield_5fbehavior_2eproto,
     "google/api/field_behavior.proto",
     &descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_once, descriptor_table_google_2fapi_2ffield_5fbehavior_2eproto_deps, 1, 0,
     schemas, file_default_instances, TableStruct_google_2fapi_2ffield_5fbehavior_2eproto::offsets,
@@ -78,6 +79,7 @@ bool FieldBehavior_IsValid(int value) {
     case 5:
     case 6:
     case 7:
+    case 8:
       return true;
     default:
       return false;
