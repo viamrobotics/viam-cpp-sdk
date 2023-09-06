@@ -15,8 +15,12 @@
 extern "C" void* init_rust_runtime();
 extern "C" int free_rust_runtime(void* ptr);
 extern "C" void free_string(const char* s);
-extern "C" char* dial(
-    const char* uri, const char* type, const char* payload, bool allow_insecure, void* ptr);
+extern "C" char* dial(const char* uri,
+                      const char* entity,
+                      const char* type,
+                      const char* payload,
+                      bool allow_insecure,
+                      void* ptr);
 namespace viam {
 namespace sdk {
 
@@ -48,6 +52,14 @@ void DialOptions::set_credentials(boost::optional<Credentials> creds) {
     credentials_ = creds;
 }
 
+void DialOptions::set_entity(boost::optional<std::string> entity) {
+    auth_entity_ = entity;
+}
+
+const boost::optional<std::string>& DialOptions::entity() const {
+    return auth_entity_;
+}
+
 const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
@@ -65,13 +77,17 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
     const char* type = nullptr;
+    const char* entity = nullptr;
     const char* payload = nullptr;
 
     if (opts.credentials()) {
         type = opts.credentials()->type().c_str();
         payload = opts.credentials()->payload().c_str();
     }
-    char* socket_path = ::dial(uri, type, payload, opts.allows_insecure_downgrade(), ptr);
+    if (opts.entity()) {
+        entity = opts.entity()->c_str();
+    }
+    char* socket_path = ::dial(uri, entity, type, payload, opts.allows_insecure_downgrade(), ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         // TODO(RSDK-1742) Replace throwing of strings with throwing of
