@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <pthread.h>
 #include <signal.h>
 
 #include <boost/log/trivial.hpp>
@@ -97,23 +96,18 @@ class Printer : public GenericService::Service, public Component {
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        throw "need socket path as command line argument";
+        throw std::invalid_argument("Need socket path as command line argument");
     }
+    std::string socket_addr = argv[1];
 
     // Use set_logger_severity_from_args to set the boost trivial logger's
     // severity depending on commandline arguments.
     set_logger_severity_from_args(argc, argv);
     BOOST_LOG_TRIVIAL(debug) << "Starting module with debug level logging";
 
-    // C++ modules must handle SIGINT and SIGTERM. Make sure to create a sigset
-    // for SIGINT and SIGTERM that can be later awaited in a thread that cleanly
-    // shuts down your module. pthread_sigmask should be called near the start
-    // of main so that later threads inherit the mask.
-    sigset_t sigset;
-    sigemptyset(&sigset);
-    sigaddset(&sigset, SIGINT);
-    sigaddset(&sigset, SIGTERM);
-    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
+    // C++ modules must handle SIGINT and SIGTERM. You can use the SignalManager
+    // class and its wait method to handle the correct signals.
+    SignalManager signals;
 
     API generic = Generic::static_api();
     Model m("acme", "demo", "printer");
@@ -138,21 +132,17 @@ int main(int argc, char** argv) {
 
     // The `ModuleService_` must outlive the Server, so the declaration order
     // here matters.
-    auto my_mod = std::make_shared<ModuleService_>(argv[1]);
+    auto my_mod = std::make_shared<ModuleService_>(socket_addr);
     auto server = std::make_shared<Server>();
 
     my_mod->add_model_from_registry(server, generic, m);
     my_mod->start(server);
+    BOOST_LOG_TRIVIAL(info) << "Module serving model " << m.to_string() << ", listening on "
+                            << socket_addr;
 
-    std::thread server_thread([&server, &sigset]() {
-        server->start();
-        int sig = 0;
-        auto result = sigwait(&sigset, &sig);
-        server->shutdown();
-    });
-
-    server->wait();
-    server_thread.join();
-
+    server->start();
+    int sig = 0;
+    auto result = signals.wait(&sig);
+    server->shutdown();
     return 0;
 };
