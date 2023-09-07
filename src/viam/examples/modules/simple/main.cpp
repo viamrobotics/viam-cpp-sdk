@@ -24,19 +24,18 @@
 using viam::component::generic::v1::GenericService;
 using namespace viam::sdk;
 
-// Printer is a modular resource that can print its own ID upon receiving a
-// DoCommand request or reconfiguring. Printer IDs increase by 1 for each
-// Printer constructed.
+// Printer is a modular resource that can print a to_print value to STDOUT when
+// a DoCommand request is received or when reconfiguring. The to_print value
+// must be provided as an attribute in the config.
 class Printer : public GenericService::Service, public Component {
    public:
     void reconfigure(Dependencies deps, ResourceConfig cfg) override {
-        std::cout << "Calling reconfigure on Printer with id " << id_ << " and name " << name_
-                  << std::endl;
+        std::cout << "Printer " << name_ << " is reconfiguring" << std::endl;
         for (auto& dep : deps) {
             std::cout << "dependency: " << dep.first.to_string() << std::endl;
         }
-
-        std::cout << "attributes in reconfigure cfg: " << cfg.attributes() << std::endl;
+        to_print_ = find_to_print(cfg);
+        std::cout << "Printer " << name_ << " will now print " << to_print_ << std::endl;
     }
 
     API dynamic_api() const override {
@@ -44,16 +43,15 @@ class Printer : public GenericService::Service, public Component {
     }
 
     Printer() {
-        id_ = next_id_;
-        next_id_ += 1;
+        name_ = "";
+        to_print_ = "";
     };
 
     Printer(ResourceConfig cfg) {
         name_ = cfg.name();
-        std::cout << "Creating Printer with name " + name_ << std::endl;
-
-        id_ = next_id_;
-        next_id_ += 1;
+        std::cout << "Creating Printer " + name_ << std::endl;
+        to_print_ = find_to_print(cfg);
+        std::cout << "Printer " << name_ << " will print " << to_print_ << std::endl;
     }
 
     Printer(const Printer&) = delete;
@@ -62,24 +60,40 @@ class Printer : public GenericService::Service, public Component {
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) override {
-        std::cout << "Received DoCommand request for Printer with id " << id_ << " and name "
-                  << name_ << std::endl;
+        std::cout << "Received DoCommand request for Printer " << name_ << std::endl;
         for (const auto& req : request->command().fields()) {
             std::cout << "request key: " << req.first.c_str()
                       << "\trequest value: " << req.second.SerializeAsString();
         }
         *response->mutable_result() = request->command();
 
+        std::cout << "Printer " << name_ << " has printed " << to_print_ << std::endl;
         return grpc::Status();
+    }
+
+    static std::string find_to_print(ResourceConfig cfg) {
+        auto printer_name = cfg.name();
+        auto to_print = cfg.attributes()->find("to_print");
+        if (to_print == cfg.attributes()->end()) {
+            std::ostringstream buffer;
+            buffer << printer_name << ": Required parameter `to_print` not found in configuration";
+            throw std::invalid_argument(buffer.str());
+        }
+        const auto* const to_print_string = to_print->second->get<std::string>();
+        if (!to_print_string || to_print_string->empty()) {
+            std::ostringstream buffer;
+            buffer << printer_name
+                   << ": Required non-empty string parameter `to_print` is either not a string "
+                      "or is an empty string";
+            throw std::invalid_argument(buffer.str());
+        }
+        return *to_print_string;
     }
 
    private:
     std::string name_;
-    static int next_id_;
-    int id_;
+    std::string to_print_;
 };
-
-int Printer::next_id_ = 0;
 
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -114,12 +128,10 @@ int main(int argc, char** argv) {
         // returned to the parent through gRPC. Validate functions can also return
         // a vector of strings representing the implicit dependencies of the resource.
         [](ResourceConfig cfg) -> std::vector<std::string> {
-            if (cfg.attributes()->find("invalidattribute") != cfg.attributes()->end()) {
-                throw std::runtime_error(
-                    "'invalidattribute' attribute not allowed for model 'acme:demo:printer'");
-            }
-
-            return {"component1"};
+            // find_to_print will throw an error if the `to_print` attribute
+            // is missing, is not a string or is an empty string.
+            Printer::find_to_print(cfg);
+            return {};
         });
 
     Registry::register_model(mr);
