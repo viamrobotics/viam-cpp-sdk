@@ -37,9 +37,9 @@ An example configuration for a printer could look like this:
 			"type": "generic",
 			"name": "printer1",
 			"model": "acme:demo:printer",
-      "attributes": {
-        "to_print": "foo"
-      }
+			"attributes": {
+				"to_print": "foo"
+			}
 		}
 	]
 }

@@ -26,48 +26,31 @@ using namespace viam::sdk;
 // Printer is a modular resource that can print a to_print value to STDOUT when
 // a DoCommand request is received or when reconfiguring. The to_print value
 // must be provided as an attribute in the config.
-class Printer : public GenericService::Service, public Component {
+class Printer : public Generic {
    public:
-    void reconfigure(Dependencies deps, ResourceConfig cfg) override {
-        std::cout << "Printer " << name_ << " is reconfiguring" << std::endl;
+    void reconfigure(Dependencies deps, ResourceConfig cfg) {
+        std::cout << "Printer " << Resource::name() << " is reconfiguring" << std::endl;
         for (auto& dep : deps) {
             std::cout << "dependency: " << dep.first.to_string() << std::endl;
         }
         to_print_ = find_to_print(cfg);
-        std::cout << "Printer " << name_ << " will now print " << to_print_ << std::endl;
+        std::cout << "Printer " << Resource::name() << " will now print " << to_print_ << std::endl;
     }
 
-    API dynamic_api() const override {
-        return Generic::static_api();
-    }
-
-    Printer() {
-        name_ = "";
-        to_print_ = "";
-    };
-
-    Printer(ResourceConfig cfg) {
-        name_ = cfg.name();
-        std::cout << "Creating Printer " + name_ << std::endl;
+    Printer(Dependencies deps, ResourceConfig cfg) : Generic(cfg.name()) {
+        std::cout << "Creating Printer " + Resource::name() << std::endl;
         to_print_ = find_to_print(cfg);
-        std::cout << "Printer " << name_ << " will print " << to_print_ << std::endl;
+        std::cout << "Printer " << Resource::name() << " will print " << to_print_ << std::endl;
     }
 
-    Printer(const Printer&) = delete;
-    Printer& operator=(const Printer&) = delete;
+    AttributeMap do_command(AttributeMap command) {
+        std::cout << "Received DoCommand request for Printer " << Resource::name() << std::endl;
+        std::cout << "Printer " << Resource::name() << " has printed " << to_print_ << std::endl;
+        return command;
+    }
 
-    ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                             const ::viam::common::v1::DoCommandRequest* request,
-                             ::viam::common::v1::DoCommandResponse* response) override {
-        std::cout << "Received DoCommand request for Printer " << name_ << std::endl;
-        for (const auto& req : request->command().fields()) {
-            std::cout << "request key: " << req.first.c_str()
-                      << "\trequest value: " << req.second.SerializeAsString();
-        }
-        *response->mutable_result() = request->command();
-
-        std::cout << "Printer " << name_ << " has printed " << to_print_ << std::endl;
-        return grpc::Status();
+    std::vector<GeometryConfig> get_geometries() {
+        return std::vector<GeometryConfig>();
     }
 
     static std::string find_to_print(ResourceConfig cfg) {
@@ -90,7 +73,6 @@ class Printer : public GenericService::Service, public Component {
     }
 
    private:
-    std::string name_;
     std::string to_print_;
 };
 
@@ -116,7 +98,7 @@ int main(int argc, char** argv) {
         ResourceType("Printer"),
         generic,
         m,
-        [](Dependencies, ResourceConfig cfg) { return std::make_unique<Printer>(cfg); },
+        [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<Printer>(deps, cfg); },
         // Custom validation can be done by specifying a validate function like
         // this one. Validate functions can `throw` exceptions that will be
         // returned to the parent through gRPC. Validate functions can also return
