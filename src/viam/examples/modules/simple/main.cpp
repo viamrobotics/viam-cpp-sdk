@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
     SignalManager signals;
 
     API generic = Generic::static_api();
-    Model m("acme", "demo", "printer");
+    Model m("viam", "generic", "printer");
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
         ResourceType("Printer"),

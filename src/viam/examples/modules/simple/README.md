@@ -36,7 +36,7 @@ An example configuration for a printer could look like this:
 			"namespace": "rdk",
 			"type": "generic",
 			"name": "printer1",
-			"model": "acme:demo:printer",
+			"model": "viam:generic:printer",
 			"attributes": {
 				"to_print": "foo"
 			}
