@@ -20,7 +20,7 @@ When simple_module is run, the main function creates and starts the module. Read
 ## Configuring and using the module
 The `simple_module` binary generated after building is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, this could be `/home/viam-cpp-sdk/build/install/bin/simple_module`. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
 
-Once the module has been added to your robot, you will then need to add a component that uses the `acme:demo:printer` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. 
+Once the module has been added to your robot, you will then need to add a component that uses the `viam:generic:printer` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details.
 
 An example configuration for a printer could look like this:
 ```json
