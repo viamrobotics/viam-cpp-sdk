@@ -21,15 +21,18 @@ Then run:
 viam-cpp-sdk/build/viam/examples/[component name]/example_[component name]
 ```
 
+# Module examples
+Examples:
+  - simple
+  - complex
+  - tflite
 
+These examples go through how to create custom modular resources using Viam's C++ SDK, and how to connect them to a Robot. Refer to each directory's README file for more information.
 
 # Generic Examples
 
 ## Project example
 This example shows how to setup a simple CMake-based project that uses Viam's C++ SDK. 
-
-## Module example
-This example goes through how to create custom modular resources using Viam's C++ SDK, and how to connect it to a Robot.
 
 ## Dial Example
 

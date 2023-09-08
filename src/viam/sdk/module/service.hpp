@@ -1,5 +1,7 @@
 #pragma once
 
+#include <signal.h>
+
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/module/v1/module.grpc.pb.h>
 
@@ -54,6 +56,21 @@ class ModuleService_ : public viam::module::v1::ModuleService::Service {
     std::shared_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
+};
+
+// C++ modules must handle SIGINT and SIGTERM. Make sure to create a sigset
+// for SIGINT and SIGTERM that can be later awaited in a thread that cleanly
+// shuts down your module. pthread_sigmask should be called near the start of
+// main so that later threads inherit the mask. SignalManager can handle the
+// boilerplate of this functionality.
+class SignalManager {
+   public:
+    SignalManager();
+    // wait on sigset
+    int wait(int* sig);
+
+   private:
+    sigset_t sigset;
 };
 
 }  // namespace sdk

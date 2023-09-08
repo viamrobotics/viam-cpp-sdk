@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 #include <memory>
+#include <pthread.h>
 #include <stdexcept>
 #include <string>
 #include <sys/socket.h>
@@ -275,6 +276,17 @@ void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, API a
 void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server, API api, Model model) {
     const std::lock_guard<std::mutex> lock(lock_);
     return add_model_from_registry_inlock_(server, api, model, lock);
+}
+
+SignalManager::SignalManager() {
+    sigemptyset(&sigset);
+    sigaddset(&sigset, SIGINT);
+    sigaddset(&sigset, SIGTERM);
+    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
+}
+
+int SignalManager::wait(int* sig) {
+    return sigwait(&sigset, sig);
 }
 
 }  // namespace sdk

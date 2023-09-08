@@ -12,5 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(tflite)
-add_subdirectory(simple)
+add_executable(simple_module
+  main.cpp
+)
+
+target_link_libraries(simple_module
+  PRIVATE Threads::Threads
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS simple_module
+  COMPONENT examples
+)
