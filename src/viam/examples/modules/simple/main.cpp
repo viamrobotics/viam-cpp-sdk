@@ -1,7 +1,7 @@
 #include <iostream>
-#include <sstream>
 #include <memory>
 #include <signal.h>
+#include <sstream>
 
 #include <boost/log/trivial.hpp>
 #include <grpcpp/grpcpp.h>
