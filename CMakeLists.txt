@@ -225,15 +225,9 @@ find_package(Threads REQUIRED)
 # TODO: When this is removed, also remove the
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
-if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-  # note: we use shared on osx because system-security fails to link with static
-  set(viam_rust_suffix ${CMAKE_SHARED_LIBRARY_SUFFIX})
-else()
-  set(viam_rust_suffix ${CMAKE_STATIC_LIBRARY_SUFFIX})
-endif()
-set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${viam_rust_suffix})
+set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
-file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${viam_rust_suffix})
+file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 if (viam_rust_utils_files)
   list(LENGTH viam_rust_utils_files num_viam_rust_utils_files)
@@ -252,7 +246,7 @@ else()
   endif()
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${viam_rust_suffix}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )

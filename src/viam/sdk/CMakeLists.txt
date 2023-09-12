@@ -202,6 +202,11 @@ target_link_libraries(viamsdk
 )
 
 
+if (APPLE)
+  target_link_libraries(viamsdk PUBLIC "-framework Security")
+endif()
+
+
 install(
   TARGETS viamsdk
   EXPORT viamsdk
