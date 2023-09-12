@@ -60,7 +60,7 @@ An example configuration for a gizmo component, a summation service, and a base 
       "name": "motor2",
       "type": "motor",
       "model": "fake"
-    },
+    }
   ],
   "services": [
     {

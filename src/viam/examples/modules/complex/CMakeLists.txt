@@ -16,6 +16,12 @@ add_executable(complex_module
   main.cpp
 )
 
+target_sources(complex_module
+  PRIVATE
+    base/impl.cpp
+    base/impl.hpp
+)
+
 target_link_libraries(complex_module
   PRIVATE Threads::Threads
   viam-cpp-sdk::viamsdk
@@ -25,8 +31,3 @@ install(
   TARGETS complex_module
   COMPONENT examples
 )
-
-add_subdirectory(base)
-add_subdirectory(gizmo)
-add_subdirectory(proto)
-add_subdirectory(summation)
