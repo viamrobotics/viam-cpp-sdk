@@ -26,5 +26,6 @@ jobs:
           if [ -n "$GEN_DIFF" ]; then
               echo 'linting resulted in changes not in git' 1>&2
               git status
+              git diff
               exit 1
           fi
