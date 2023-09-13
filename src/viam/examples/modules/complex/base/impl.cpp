@@ -67,7 +67,7 @@ grpc::StatusCode MyBase::stop(const AttributeMap& extra) {
     if (left_stop != grpc::StatusCode::OK) {
         return left_stop;
     }
-    auto right_stop = this->left_->stop(extra);
+    auto right_stop = this->right_->stop(extra);
     if (right_stop != grpc::StatusCode::OK) {
         return right_stop;
     }
@@ -84,7 +84,7 @@ void MyBase::set_power(const Vector3& linear, const Vector3& angular, const Attr
 
     // Use linear and angular velocity to calculate percentage of max power to
     // pass to set_power for left & right motors
-    auto sum = abs(linear.x()) + abs(angular.z());
+    auto sum = abs(linear.y()) + abs(angular.z());
     this->left_->set_power(((linear.y() - angular.z()) / sum), extra);
     this->right_->set_power(((linear.y() + angular.z()) / sum), extra);
 }
