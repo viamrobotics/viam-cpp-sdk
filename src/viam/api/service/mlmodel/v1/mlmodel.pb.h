@@ -293,7 +293,6 @@ class InferRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
-    kInputDataFieldNumber = 2,
     kInputTensorsFieldNumber = 3,
     kExtraFieldNumber = 99,
   };
@@ -310,24 +309,6 @@ class InferRequest final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
   std::string* _internal_mutable_name();
   public:
-
-  // .google.protobuf.Struct input_data = 2 [json_name = "inputData"];
-  bool has_input_data() const;
-  private:
-  bool _internal_has_input_data() const;
-  public:
-  void clear_input_data();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& input_data() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_input_data();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_input_data();
-  void set_allocated_input_data(::PROTOBUF_NAMESPACE_ID::Struct* input_data);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_input_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_input_data();
-  public:
-  void unsafe_arena_set_allocated_input_data(
-      ::PROTOBUF_NAMESPACE_ID::Struct* input_data);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_input_data();
 
   // .viam.service.mlmodel.v1.FlatTensors input_tensors = 3 [json_name = "inputTensors"];
   bool has_input_tensors() const;
@@ -373,7 +354,6 @@ class InferRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* input_data_;
   ::viam::service::mlmodel::v1::FlatTensors* input_tensors_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -500,27 +480,8 @@ class InferResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kOutputDataFieldNumber = 2,
     kOutputTensorsFieldNumber = 3,
   };
-  // .google.protobuf.Struct output_data = 2 [json_name = "outputData"];
-  bool has_output_data() const;
-  private:
-  bool _internal_has_output_data() const;
-  public:
-  void clear_output_data();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& output_data() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_output_data();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_output_data();
-  void set_allocated_output_data(::PROTOBUF_NAMESPACE_ID::Struct* output_data);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_output_data() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_output_data();
-  public:
-  void unsafe_arena_set_allocated_output_data(
-      ::PROTOBUF_NAMESPACE_ID::Struct* output_data);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_output_data();
-
   // .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
   bool has_output_tensors() const;
   private:
@@ -546,7 +507,6 @@ class InferResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* output_data_;
   ::viam::service::mlmodel::v1::FlatTensors* output_tensors_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto;
@@ -3691,91 +3651,6 @@ inline void InferRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferRequest.name)
 }
 
-// .google.protobuf.Struct input_data = 2 [json_name = "inputData"];
-inline bool InferRequest::_internal_has_input_data() const {
-  return this != internal_default_instance() && input_data_ != nullptr;
-}
-inline bool InferRequest::has_input_data() const {
-  return _internal_has_input_data();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& InferRequest::_internal_input_data() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = input_data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& InferRequest::input_data() const {
-  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.InferRequest.input_data)
-  return _internal_input_data();
-}
-inline void InferRequest::unsafe_arena_set_allocated_input_data(
-    ::PROTOBUF_NAMESPACE_ID::Struct* input_data) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(input_data_);
-  }
-  input_data_ = input_data;
-  if (input_data) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.InferRequest.input_data)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::release_input_data() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = input_data_;
-  input_data_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::unsafe_arena_release_input_data() {
-  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.InferRequest.input_data)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = input_data_;
-  input_data_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::_internal_mutable_input_data() {
-  
-  if (input_data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    input_data_ = p;
-  }
-  return input_data_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferRequest::mutable_input_data() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_input_data();
-  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.InferRequest.input_data)
-  return _msg;
-}
-inline void InferRequest::set_allocated_input_data(::PROTOBUF_NAMESPACE_ID::Struct* input_data) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(input_data_);
-  }
-  if (input_data) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(input_data));
-    if (message_arena != submessage_arena) {
-      input_data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, input_data, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  input_data_ = input_data;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferRequest.input_data)
-}
-
 // .viam.service.mlmodel.v1.FlatTensors input_tensors = 3 [json_name = "inputTensors"];
 inline bool InferRequest::_internal_has_input_tensors() const {
   return this != internal_default_instance() && input_tensors_ != nullptr;
@@ -3954,91 +3829,6 @@ inline void InferRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* e
 // -------------------------------------------------------------------
 
 // InferResponse
-
-// .google.protobuf.Struct output_data = 2 [json_name = "outputData"];
-inline bool InferResponse::_internal_has_output_data() const {
-  return this != internal_default_instance() && output_data_ != nullptr;
-}
-inline bool InferResponse::has_output_data() const {
-  return _internal_has_output_data();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& InferResponse::_internal_output_data() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = output_data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& InferResponse::output_data() const {
-  // @@protoc_insertion_point(field_get:viam.service.mlmodel.v1.InferResponse.output_data)
-  return _internal_output_data();
-}
-inline void InferResponse::unsafe_arena_set_allocated_output_data(
-    ::PROTOBUF_NAMESPACE_ID::Struct* output_data) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(output_data_);
-  }
-  output_data_ = output_data;
-  if (output_data) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.mlmodel.v1.InferResponse.output_data)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferResponse::release_output_data() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = output_data_;
-  output_data_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferResponse::unsafe_arena_release_output_data() {
-  // @@protoc_insertion_point(field_release:viam.service.mlmodel.v1.InferResponse.output_data)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = output_data_;
-  output_data_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferResponse::_internal_mutable_output_data() {
-  
-  if (output_data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    output_data_ = p;
-  }
-  return output_data_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* InferResponse::mutable_output_data() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_output_data();
-  // @@protoc_insertion_point(field_mutable:viam.service.mlmodel.v1.InferResponse.output_data)
-  return _msg;
-}
-inline void InferResponse::set_allocated_output_data(::PROTOBUF_NAMESPACE_ID::Struct* output_data) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(output_data_);
-  }
-  if (output_data) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(output_data));
-    if (message_arena != submessage_arena) {
-      output_data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, output_data, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  output_data_ = output_data;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.InferResponse.output_data)
-}
 
 // .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
 inline bool InferResponse::_internal_has_output_tensors() const {
