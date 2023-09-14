@@ -58,6 +58,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/UpdateRobotPart",
   "/viam.app.v1.AppService/NewRobotPart",
   "/viam.app.v1.AppService/DeleteRobotPart",
+  "/viam.app.v1.AppService/GetRobotAPIKeys",
   "/viam.app.v1.AppService/MarkPartAsMain",
   "/viam.app.v1.AppService/MarkPartForRestart",
   "/viam.app.v1.AppService/CreateRobotPartSecret",
@@ -125,30 +126,31 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_UpdateRobotPart_(AppService_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_NewRobotPart_(AppService_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteRobotPart_(AppService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MarkPartAsMain_(AppService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MarkPartForRestart_(AppService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateRobotPartSecret_(AppService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRobotPartSecret_(AppService_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListRobots_(AppService_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_NewRobot_(AppService_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateRobot_(AppService_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteRobot_(AppService_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListFragments_(AppService_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFragment_(AppService_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateFragment_(AppService_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateFragment_(AppService_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteFragment_(AppService_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddRole_(AppService_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RemoveRole_(AppService_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ChangeRole_(AppService_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListAuthorizations_(AppService_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckPermissions_(AppService_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateModule_(AppService_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateModule_(AppService_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UploadModuleFile_(AppService_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
-  , rpcmethod_GetModule_(AppService_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListModules_(AppService_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateKey_(AppService_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotAPIKeys_(AppService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MarkPartAsMain_(AppService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MarkPartForRestart_(AppService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateRobotPartSecret_(AppService_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRobotPartSecret_(AppService_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListRobots_(AppService_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NewRobot_(AppService_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateRobot_(AppService_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteRobot_(AppService_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListFragments_(AppService_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFragment_(AppService_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateFragment_(AppService_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateFragment_(AppService_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteFragment_(AppService_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddRole_(AppService_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveRole_(AppService_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ChangeRole_(AppService_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListAuthorizations_(AppService_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckPermissions_(AppService_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateModule_(AppService_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateModule_(AppService_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadModuleFile_(AppService_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_GetModule_(AppService_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListModules_(AppService_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKey_(AppService_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -922,6 +924,29 @@ void AppService::Stub::async::DeleteRobotPart(::grpc::ClientContext* context, co
 ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteRobotPartResponse>* AppService::Stub::AsyncDeleteRobotPartRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteRobotPartRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDeleteRobotPartRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::viam::app::v1::GetRobotAPIKeysResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotAPIKeys_, context, request, response);
+}
+
+void AppService::Stub::async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::GetRobotAPIKeys(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotAPIKeys_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotAPIKeysResponse>* AppService::Stub::PrepareAsyncGetRobotAPIKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetRobotAPIKeysResponse, ::viam::app::v1::GetRobotAPIKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotAPIKeys_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetRobotAPIKeysResponse>* AppService::Stub::AsyncGetRobotAPIKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRobotAPIKeysRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -1815,6 +1840,16 @@ AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::GetRobotAPIKeysRequest* req,
+             ::viam::app::v1::GetRobotAPIKeysResponse* resp) {
+               return service->GetRobotAPIKeys(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[35],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1823,7 +1858,7 @@ AppService::Service::Service() {
                return service->MarkPartAsMain(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[35],
+      AppService_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1833,7 +1868,7 @@ AppService::Service::Service() {
                return service->MarkPartForRestart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[36],
+      AppService_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1843,7 +1878,7 @@ AppService::Service::Service() {
                return service->CreateRobotPartSecret(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[37],
+      AppService_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1853,7 +1888,7 @@ AppService::Service::Service() {
                return service->DeleteRobotPartSecret(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[38],
+      AppService_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1863,7 +1898,7 @@ AppService::Service::Service() {
                return service->ListRobots(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[39],
+      AppService_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1873,7 +1908,7 @@ AppService::Service::Service() {
                return service->NewRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[40],
+      AppService_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1883,7 +1918,7 @@ AppService::Service::Service() {
                return service->UpdateRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[41],
+      AppService_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1893,7 +1928,7 @@ AppService::Service::Service() {
                return service->DeleteRobot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[42],
+      AppService_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1903,7 +1938,7 @@ AppService::Service::Service() {
                return service->ListFragments(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[43],
+      AppService_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1913,7 +1948,7 @@ AppService::Service::Service() {
                return service->GetFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[44],
+      AppService_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1923,7 +1958,7 @@ AppService::Service::Service() {
                return service->CreateFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[45],
+      AppService_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1933,7 +1968,7 @@ AppService::Service::Service() {
                return service->UpdateFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[46],
+      AppService_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1943,7 +1978,7 @@ AppService::Service::Service() {
                return service->DeleteFragment(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[47],
+      AppService_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1953,7 +1988,7 @@ AppService::Service::Service() {
                return service->AddRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[48],
+      AppService_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1963,7 +1998,7 @@ AppService::Service::Service() {
                return service->RemoveRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[49],
+      AppService_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1973,7 +2008,7 @@ AppService::Service::Service() {
                return service->ChangeRole(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[50],
+      AppService_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1983,7 +2018,7 @@ AppService::Service::Service() {
                return service->ListAuthorizations(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[51],
+      AppService_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -1993,7 +2028,7 @@ AppService::Service::Service() {
                return service->CheckPermissions(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[52],
+      AppService_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -2003,7 +2038,7 @@ AppService::Service::Service() {
                return service->CreateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[53],
+      AppService_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -2013,7 +2048,7 @@ AppService::Service::Service() {
                return service->UpdateModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[54],
+      AppService_method_names[55],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< AppService::Service, ::viam::app::v1::UploadModuleFileRequest, ::viam::app::v1::UploadModuleFileResponse>(
           [](AppService::Service* service,
@@ -2023,7 +2058,7 @@ AppService::Service::Service() {
                return service->UploadModuleFile(ctx, reader, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[55],
+      AppService_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -2033,7 +2068,7 @@ AppService::Service::Service() {
                return service->GetModule(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[56],
+      AppService_method_names[57],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -2043,7 +2078,7 @@ AppService::Service::Service() {
                return service->ListModules(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AppService_method_names[57],
+      AppService_method_names[58],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AppService::Service* service,
@@ -2289,6 +2324,13 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::DeleteRobotPart(::grpc::ServerContext* context, const ::viam::app::v1::DeleteRobotPartRequest* request, ::viam::app::v1::DeleteRobotPartResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetRobotAPIKeys(::grpc::ServerContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response) {
   (void) context;
   (void) request;
   (void) response;
