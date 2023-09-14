@@ -29,22 +29,10 @@ std::string find_motor(ResourceConfig cfg, std::string motor_name) {
 }
 
 void MyBase::reconfigure(Dependencies deps, ResourceConfig cfg) {
-    // Validate that our dependencies exist and downcast `left` and `right`
-    // dependencies to motors.
-    //
-    // TODO(RSDK-3601): Validating that dependencies are present should be
-    // handled by the ModuleService automatically, rather than requiring each
-    // component to validate the presence of dependencies.
+    // Downcast `left` and `right` dependencies to motors.
     auto left = find_motor(cfg, "left");
     auto right = find_motor(cfg, "right");
     for (const auto& kv : deps) {
-        if (!kv.second) {
-            std::ostringstream buffer;
-            buffer << cfg.name() << ": Dependency "
-                   << "`" << kv.first.to_string() << "` was not found during (re)configuration";
-            throw std::invalid_argument(buffer.str());
-        }
-
         if (kv.first.short_name() == left) {
             left_ = std::dynamic_pointer_cast<Motor>(kv.second);
         }

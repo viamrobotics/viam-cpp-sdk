@@ -44,12 +44,19 @@ namespace sdk {
 
 namespace {
 Dependencies get_dependencies(ModuleService_* m,
-                              google::protobuf::RepeatedPtrField<std::string> proto) {
+                              google::protobuf::RepeatedPtrField<std::string> proto,
+                              std::string resource_name) {
     Dependencies deps;
     for (auto& dep : proto) {
-        auto name = Name::from_string(dep);
-        const std::shared_ptr<Resource> resource = m->get_parent_resource(name);
-        deps.emplace(name, resource);
+        auto dep_name = Name::from_string(dep);
+        const std::shared_ptr<Resource> dep_resource = m->get_parent_resource(dep_name);
+        if (!dep_resource) {
+            std::ostringstream buffer;
+            buffer << resource_name << ": Dependency "
+                   << "`" << dep_name << "` was not found during (re)configuration";
+            throw std::invalid_argument(buffer.str());
+        }
+        deps.emplace(dep_name, dep_resource);
     }
     return deps;
 }
@@ -72,7 +79,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
-    const Dependencies deps = get_dependencies(this, request->dependencies());
+    const Dependencies deps = get_dependencies(this, request->dependencies(), cfg.name());
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
         try {
@@ -100,7 +107,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     const std::shared_ptr<Module> module = this->module_;
 
-    const Dependencies deps = get_dependencies(this, request->dependencies());
+    const Dependencies deps = get_dependencies(this, request->dependencies(), cfg.name());
 
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
