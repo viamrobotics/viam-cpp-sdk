@@ -1,0 +1,70 @@
+#include <vector>
+
+#include <grpcpp/support/status.h>
+#include <viam/sdk/components/component.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/resource/resource.hpp>
+
+#include "impl.hpp"
+
+using namespace viam::sdk;
+
+std::string find_arg1(ResourceConfig cfg) {
+    auto gizmo_name = cfg.name();
+    auto arg1 = cfg.attributes()->find("arg1");
+    if (arg1 == cfg.attributes()->end()) {
+        std::ostringstream buffer;
+        buffer << gizmo_name << ": Required parameter `arg1` not found in configuration";
+        throw std::invalid_argument(buffer.str());
+    }
+    const auto* const arg1_string = arg1->second->get<std::string>();
+    if (!arg1_string || arg1_string->empty()) {
+        std::ostringstream buffer;
+        buffer << gizmo_name << ": Required non-empty string parameter `arg1`"
+               << "` is either not a string or is an empty string";
+        throw std::invalid_argument(buffer.str());
+    }
+    return *arg1_string;
+}
+
+void MyGizmo::reconfigure(Dependencies deps, ResourceConfig cfg) {
+    arg1_ = find_arg1(cfg);
+}
+
+std::vector<std::string> MyGizmo::validate(ResourceConfig cfg) {
+    // find_arg1 will throw an error if the `arg1` attribute is missing, is not
+    // a string or is an empty string.
+    find_arg1(cfg);
+    return {};
+}
+
+bool MyGizmo::do_one(std::string arg1) {
+    return arg1_ == arg1;
+}
+
+bool MyGizmo::do_one_client_stream(std::vector<std::string> arg1) {
+    if (arg1.empty()) {
+        return false;
+    }
+    bool resp = true;
+    for (const std::string& arg : arg1) {
+        resp = resp && arg1_ == arg;
+    }
+    return resp;
+}
+
+std::vector<bool> MyGizmo::do_one_server_stream(std::string arg1) {
+    return {arg1_ == arg1, false, true, false};
+}
+
+std::vector<bool> MyGizmo::do_one_bidi_stream(std::vector<std::string> arg1) {
+    std::vector<bool> resp = {};
+    for (const std::string& arg : arg1) {
+        resp.push_back(arg1_ == arg);
+    }
+    return resp;
+}
+std::string do_two(bool arg1) {
+    std::string arg1_string = arg1 ? "true" : "false";
+    return "arg1=" + arg1_string;
+}
