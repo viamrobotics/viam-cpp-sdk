@@ -21,10 +21,6 @@
 namespace viam {
 namespace sdk {
 
-namespace {
-namespace gp = ::google::protobuf;
-}  // namespace
-
 MLModelServiceServer::MLModelServiceServer()
     : MLModelServiceServer(std::make_shared<ResourceManager>()) {}
 
@@ -51,11 +47,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
 
-    if (request->has_input_data() && request->has_input_tensors()) {
-        return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with both forms of input"};
-    }
-
-    if (!request->has_input_data() && !request->has_input_tensors()) {
+    if (!request->has_input_tensors()) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no inputs"};
     }
 
@@ -64,92 +56,39 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
         extra = struct_to_map(request->extra());
     }
 
-    if (request->has_input_data()) {
-        // TODO: We need shape and type information from the metadata to
-        // be able to unpack input tensors. It would be nice to find some
-        // way to cache this information. This isn't exactly the same
-        // issue as the client side (see RSDK-3298), but is closely
-        // related.
-        const auto md = mlms->metadata(extra);
-
-        mlmodel_details::tensor_storage input_storage;
-        MLModelService::named_tensor_views inputs;
-
-        const auto& input_fields = request->input_data().fields();
-        for (const auto& input : md.inputs) {
-            const auto where = input_fields.find(input.name);
-
+    const auto md = mlms->metadata(extra);
+    MLModelService::named_tensor_views inputs;
+    for (const auto& input : md.inputs) {
+        const auto where = request->input_tensors().tensors().find(input.name);
+        if (where == request->input_tensors().tensors().end()) {
             // Ignore any inputs for which we don't have metadata, since
-            // we can't know what type they should decode to.
+            // we can't validate the type info.
             //
             // TODO: Should this be an error? For now we just don't decode
             // those tensors.
-            if (where == input_fields.end()) {
-                continue;
-            }
-
-            auto status =
-                mlmodel_details::pb_value_to_tensor(input, where->second, &input_storage, &inputs);
-            if (!status.ok()) {
-                return status;
-            }
+            continue;
         }
-
-        const auto outputs = mlms->infer(inputs, extra);
-
-        auto& pb_output_data_fields = *(response->mutable_output_data()->mutable_fields());
-        for (const auto& kv : *outputs) {
-            // TODO: Can't use try_emplace with older protobuf, downgrade this.
-            auto insert_result = pb_output_data_fields.insert({kv.first, gp::Value{}});
-            // This assert should be impossible: `outputs` is a map and we
-            // are iterating its unique keys, and our `InferResponse`
-            // should have empty output data fields.
-            //
-            // TODO(RDSK-3285): Use `invariant` or something similar for this instead.
-            assert(insert_result.second);
-            auto status =
-                mlmodel_details::tensor_to_pb_value(kv.second, &insert_result.first->second);
-            if (!status.ok()) {
-                return status;
-            }
+        auto tensor = mlmodel_details::make_sdk_tensor_from_api_tensor(where->second);
+        const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
+        if (tensor_type != input.data_type) {
+            std::ostringstream message;
+            using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
+            message << "Tensor input `" << input.name << "` was the wrong type; expected type "
+                    << static_cast<ut>(input.data_type) << " but got type "
+                    << static_cast<ut>(tensor_type);
+            return ::grpc::Status(grpc::INVALID_ARGUMENT, message.str());
         }
-
-        return ::grpc::Status();
-    } else {
-        const auto md = mlms->metadata(extra);
-        MLModelService::named_tensor_views inputs;
-        for (const auto& input : md.inputs) {
-            const auto where = request->input_tensors().tensors().find(input.name);
-            if (where == request->input_tensors().tensors().end()) {
-                // Ignore any inputs for which we don't have metadata, since
-                // we can't validate the type info.
-                //
-                // TODO: Should this be an error? For now we just don't decode
-                // those tensors.
-                continue;
-            }
-            auto tensor = mlmodel_details::make_sdk_tensor_from_api_tensor(where->second);
-            const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
-            if (tensor_type != input.data_type) {
-                std::ostringstream message;
-                using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
-                message << "Tensor input `" << input.name << "` was the wrong type; expected type "
-                        << static_cast<ut>(input.data_type) << " but got type "
-                        << static_cast<ut>(tensor_type);
-                return ::grpc::Status(grpc::INVALID_ARGUMENT, message.str());
-            }
-            inputs.emplace(std::move(input.name), std::move(tensor));
-        }
-
-        const auto outputs = mlms->infer(inputs, extra);
-
-        auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
-        for (const auto& kv : *outputs) {
-            auto& emplaced = (*output_tensors)[kv.first];
-            mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
-        }
-        return ::grpc::Status();
+        inputs.emplace(std::move(input.name), std::move(tensor));
     }
+
+    const auto outputs = mlms->infer(inputs, extra);
+
+    auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
+    for (const auto& kv : *outputs) {
+        auto& emplaced = (*output_tensors)[kv.first];
+        mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
+    }
+    return ::grpc::Status();
 } catch (...) {
     // TODO(RSDK-3556): This is pretty bad. Investigate ways to
     // simplify this, or decide against having clang-tidy enforce

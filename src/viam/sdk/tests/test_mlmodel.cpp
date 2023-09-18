@@ -509,51 +509,21 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_scalar, T, MLModelService::base_types) {
         MLModelService::make_tensor_view(data.data(), data.size(), {data.size()});
     ::viam::service::mlmodel::v1::InferRequest request;
 
-    // Try it with pb value
-    {
-        ::google::protobuf::Struct* input_data = request.mutable_input_data();
-        auto insert_result =
-            input_data->mutable_fields()->insert({"foo", ::google::protobuf::Value{}});
-        ::google::protobuf::Value& pb_value = insert_result.first->second;
-        BOOST_TEST(mlmodel_details::tensor_to_pb_value(scalar_tv, &pb_value).ok());
+    auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
+    auto& input_tensor = input_tensors[""];
+    mlmodel_details::copy_sdk_tensor_to_api_tensor(scalar_tv, &input_tensor);
 
-        const MLModelService::tensor_info ti{
-            "foo",
-            "foobar",
-            data_type_for<base_type>::value,
-            {data.size()},
-        };
-
-        mlmodel_details::tensor_storage ts;
-        MLModelService::named_tensor_views ntvs;
-        BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-        BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
-        const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
-        const auto* const foo_view_as_base_type =
-            boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-        BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
-        BOOST_TEST(foo_view_as_base_type->shape() == scalar_tv.shape());
-        BOOST_TEST(*foo_view_as_base_type == scalar_tv);
-    }
-
-    // Try it with flat tensors
-    {
-        auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
-        auto& input_tensor = input_tensors[""];
-        mlmodel_details::copy_sdk_tensor_to_api_tensor(scalar_tv, &input_tensor);
-
-        // Try once with tensor storage, and once without
-        auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
-        for (int i = 0; i != 2; ++i) {
-            auto output_tensor =
-                mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
-            const auto* const output_tensor_as_base_type =
-                boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
-            BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
-            BOOST_TEST(output_tensor_as_base_type->shape() == scalar_tv.shape());
-            BOOST_TEST(*output_tensor_as_base_type == scalar_tv);
-            tsav = nullptr;
-        }
+    // Try once with tensor storage, and once without
+    auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
+    for (int i = 0; i != 2; ++i) {
+        auto output_tensor =
+            mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
+        const auto* const output_tensor_as_base_type =
+            boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
+        BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
+        BOOST_TEST(output_tensor_as_base_type->shape() == scalar_tv.shape());
+        BOOST_TEST(*output_tensor_as_base_type == scalar_tv);
+        tsav = nullptr;
     }
 }
 
@@ -589,55 +559,21 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(rt_tensor_shapes, T, MLModelService::base_types) {
         const auto array_tv = MLModelService::make_tensor_view(data.data(), data.size(), shape);
         ::viam::service::mlmodel::v1::InferRequest request;
 
-        // Try it with pb value
-        {
-            ::google::protobuf::Struct* input_data = request.mutable_input_data();
-            auto insert_result =
-                input_data->mutable_fields()->insert({"foo", ::google::protobuf::Value{}});
-            ::google::protobuf::Value& pb_value = insert_result.first->second;
-            BOOST_TEST_REQUIRE(mlmodel_details::tensor_to_pb_value(array_tv, &pb_value).ok());
+        auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
+        auto& input_tensor = input_tensors[""];
+        mlmodel_details::copy_sdk_tensor_to_api_tensor(array_tv, &input_tensor);
 
-            std::vector<int> signed_shape;
-            for (auto val : shape) {
-                signed_shape.push_back(static_cast<int>(val));
-            }
-            const MLModelService::tensor_info ti{
-                "foo",
-                "foobar",
-                data_type_for<base_type>::value,
-                std::move(signed_shape),
-            };
-
-            mlmodel_details::tensor_storage ts;
-            MLModelService::named_tensor_views ntvs;
-            BOOST_TEST_REQUIRE(mlmodel_details::pb_value_to_tensor(ti, pb_value, &ts, &ntvs).ok());
-            BOOST_TEST_REQUIRE(ntvs.count("foo") == 1);
-            const MLModelService::tensor_views& foo_view = ntvs.find("foo")->second;
-            const auto* const foo_view_as_base_type =
-                boost::get<MLModelService::tensor_view<base_type>>(&foo_view);
-            BOOST_TEST_REQUIRE(foo_view_as_base_type != nullptr);
-            BOOST_TEST(foo_view_as_base_type->shape() == array_tv.shape());
-            BOOST_TEST(*foo_view_as_base_type == array_tv);
-        }
-
-        // Try it with flat tensors
-        {
-            auto& input_tensors = *request.mutable_input_tensors()->mutable_tensors();
-            auto& input_tensor = input_tensors[""];
-            mlmodel_details::copy_sdk_tensor_to_api_tensor(array_tv, &input_tensor);
-
-            // Try once with tensor storage, once without
-            auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
-            for (int i = 0; i != 2; ++i) {
-                auto output_tensor =
-                    mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
-                const auto* const output_tensor_as_base_type =
-                    boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
-                BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
-                BOOST_TEST(output_tensor_as_base_type->shape() == array_tv.shape());
-                BOOST_TEST(*output_tensor_as_base_type == array_tv);
-                tsav = nullptr;
-            }
+        // Try once with tensor storage, once without
+        auto tsav = std::make_shared<mlmodel_details::tensor_storage>();
+        for (int i = 0; i != 2; ++i) {
+            auto output_tensor =
+                mlmodel_details::make_sdk_tensor_from_api_tensor(input_tensor, tsav.get());
+            const auto* const output_tensor_as_base_type =
+                boost::get<MLModelService::tensor_view<base_type>>(&output_tensor);
+            BOOST_TEST_REQUIRE(output_tensor_as_base_type != nullptr);
+            BOOST_TEST(output_tensor_as_base_type->shape() == array_tv.shape());
+            BOOST_TEST(*output_tensor_as_base_type == array_tv);
+            tsav = nullptr;
         }
     }
 }
