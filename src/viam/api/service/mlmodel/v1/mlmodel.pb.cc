@@ -27,7 +27,6 @@ namespace v1 {
 PROTOBUF_CONSTEXPR InferRequest::InferRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , input_data_(nullptr)
   , input_tensors_(nullptr)
   , extra_(nullptr){}
 struct InferRequestDefaultTypeInternal {
@@ -41,8 +40,7 @@ struct InferRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InferRequestDefaultTypeInternal _InferRequest_default_instance_;
 PROTOBUF_CONSTEXPR InferResponse::InferResponse(
     ::_pbi::ConstantInitialized)
-  : output_data_(nullptr)
-  , output_tensors_(nullptr){}
+  : output_tensors_(nullptr){}
 struct InferResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR InferResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -298,7 +296,6 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, input_data_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, input_tensors_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, extra_),
   ~0u,  // no _has_bits_
@@ -307,7 +304,6 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferResponse, output_data_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferResponse, output_tensors_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataRequest, _internal_metadata_),
@@ -464,25 +460,25 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::mlmodel::v1::InferRequest)},
-  { 10, -1, -1, sizeof(::viam::service::mlmodel::v1::InferResponse)},
-  { 18, -1, -1, sizeof(::viam::service::mlmodel::v1::MetadataRequest)},
-  { 26, -1, -1, sizeof(::viam::service::mlmodel::v1::MetadataResponse)},
-  { 33, -1, -1, sizeof(::viam::service::mlmodel::v1::Metadata)},
-  { 44, -1, -1, sizeof(::viam::service::mlmodel::v1::TensorInfo)},
-  { 56, -1, -1, sizeof(::viam::service::mlmodel::v1::File)},
-  { 65, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt8)},
-  { 72, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt8)},
-  { 79, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt16)},
-  { 86, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt16)},
-  { 93, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt32)},
-  { 100, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt32)},
-  { 107, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt64)},
-  { 114, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt64)},
-  { 121, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataFloat)},
-  { 128, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataDouble)},
-  { 135, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensor)},
-  { 153, 161, -1, sizeof(::viam::service::mlmodel::v1::FlatTensors_TensorsEntry_DoNotUse)},
-  { 163, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensors)},
+  { 9, -1, -1, sizeof(::viam::service::mlmodel::v1::InferResponse)},
+  { 16, -1, -1, sizeof(::viam::service::mlmodel::v1::MetadataRequest)},
+  { 24, -1, -1, sizeof(::viam::service::mlmodel::v1::MetadataResponse)},
+  { 31, -1, -1, sizeof(::viam::service::mlmodel::v1::Metadata)},
+  { 42, -1, -1, sizeof(::viam::service::mlmodel::v1::TensorInfo)},
+  { 54, -1, -1, sizeof(::viam::service::mlmodel::v1::File)},
+  { 63, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt8)},
+  { 70, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt8)},
+  { 77, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt16)},
+  { 84, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt16)},
+  { 91, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt32)},
+  { 98, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt32)},
+  { 105, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataInt64)},
+  { 112, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataUInt64)},
+  { 119, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataFloat)},
+  { 126, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensorDataDouble)},
+  { 133, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensor)},
+  { 151, 159, -1, sizeof(::viam::service::mlmodel::v1::FlatTensors_TensorsEntry_DoNotUse)},
+  { 161, -1, -1, sizeof(::viam::service::mlmodel::v1::FlatTensors)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -512,85 +508,84 @@ const char descriptor_table_protodef_service_2fmlmodel_2fv1_2fmlmodel_2eproto[] 
   "\n service/mlmodel/v1/mlmodel.proto\022\027viam"
   ".service.mlmodel.v1\032\034google/api/annotati"
   "ons.proto\032\034google/protobuf/struct.proto\""
-  "\324\001\n\014InferRequest\022\022\n\004name\030\001 \001(\tR\004name\0226\n\n"
-  "input_data\030\002 \001(\0132\027.google.protobuf.Struc"
-  "tR\tinputData\022I\n\rinput_tensors\030\003 \001(\0132$.vi"
-  "am.service.mlmodel.v1.FlatTensorsR\014input"
-  "Tensors\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extra\"\226\001\n\rInferResponse\0228\n\013outp"
-  "ut_data\030\002 \001(\0132\027.google.protobuf.StructR\n"
-  "outputData\022K\n\016output_tensors\030\003 \001(\0132$.via"
-  "m.service.mlmodel.v1.FlatTensorsR\routput"
-  "Tensors\"T\n\017MetadataRequest\022\022\n\004name\030\001 \001(\t"
-  "R\004name\022-\n\005extra\030c \001(\0132\027.google.protobuf."
-  "StructR\005extra\"Q\n\020MetadataResponse\022=\n\010met"
-  "adata\030\001 \001(\0132!.viam.service.mlmodel.v1.Me"
-  "tadataR\010metadata\"\336\001\n\010Metadata\022\022\n\004name\030\001 "
-  "\001(\tR\004name\022\022\n\004type\030\002 \001(\tR\004type\022 \n\013descrip"
-  "tion\030\003 \001(\tR\013description\022B\n\ninput_info\030\004 "
-  "\003(\0132#.viam.service.mlmodel.v1.TensorInfo"
-  "R\tinputInfo\022D\n\013output_info\030\005 \003(\0132#.viam."
-  "service.mlmodel.v1.TensorInfoR\noutputInf"
-  "o\"\356\001\n\nTensorInfo\022\022\n\004name\030\001 \001(\tR\004name\022 \n\013"
-  "description\030\002 \001(\tR\013description\022\033\n\tdata_t"
-  "ype\030\003 \001(\tR\010dataType\022\024\n\005shape\030\004 \003(\005R\005shap"
-  "e\022H\n\020associated_files\030\005 \003(\0132\035.viam.servi"
-  "ce.mlmodel.v1.FileR\017associatedFiles\022-\n\005e"
-  "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
-  "ra\"\177\n\004File\022\022\n\004name\030\001 \001(\tR\004name\022 \n\013descri"
-  "ption\030\002 \001(\tR\013description\022A\n\nlabel_type\030\003"
-  " \001(\0162\".viam.service.mlmodel.v1.LabelType"
-  "R\tlabelType\"(\n\022FlatTensorDataInt8\022\022\n\004dat"
-  "a\030\001 \001(\014R\004data\")\n\023FlatTensorDataUInt8\022\022\n\004"
-  "data\030\001 \001(\014R\004data\"-\n\023FlatTensorDataInt16\022"
-  "\026\n\004data\030\001 \003(\007B\002\020\001R\004data\".\n\024FlatTensorDat"
-  "aUInt16\022\026\n\004data\030\001 \003(\007B\002\020\001R\004data\"-\n\023FlatT"
-  "ensorDataInt32\022\026\n\004data\030\001 \003(\017B\002\020\001R\004data\"."
-  "\n\024FlatTensorDataUInt32\022\026\n\004data\030\001 \003(\007B\002\020\001"
-  "R\004data\"-\n\023FlatTensorDataInt64\022\026\n\004data\030\001 "
-  "\003(\020B\002\020\001R\004data\".\n\024FlatTensorDataUInt64\022\026\n"
-  "\004data\030\001 \003(\006B\002\020\001R\004data\"-\n\023FlatTensorDataF"
-  "loat\022\026\n\004data\030\001 \003(\002B\002\020\001R\004data\".\n\024FlatTens"
-  "orDataDouble\022\026\n\004data\030\001 \003(\001B\002\020\001R\004data\"\363\006\n"
-  "\nFlatTensor\022\024\n\005shape\030\001 \003(\006R\005shape\022N\n\013int"
-  "8_tensor\030\002 \001(\0132+.viam.service.mlmodel.v1"
-  ".FlatTensorDataInt8H\000R\nint8Tensor\022Q\n\014uin"
-  "t8_tensor\030\003 \001(\0132,.viam.service.mlmodel.v"
-  "1.FlatTensorDataUInt8H\000R\013uint8Tensor\022Q\n\014"
-  "int16_tensor\030\004 \001(\0132,.viam.service.mlmode"
-  "l.v1.FlatTensorDataInt16H\000R\013int16Tensor\022"
-  "T\n\ruint16_tensor\030\005 \001(\0132-.viam.service.ml"
-  "model.v1.FlatTensorDataUInt16H\000R\014uint16T"
-  "ensor\022Q\n\014int32_tensor\030\006 \001(\0132,.viam.servi"
-  "ce.mlmodel.v1.FlatTensorDataInt32H\000R\013int"
-  "32Tensor\022T\n\ruint32_tensor\030\007 \001(\0132-.viam.s"
-  "ervice.mlmodel.v1.FlatTensorDataUInt32H\000"
-  "R\014uint32Tensor\022Q\n\014int64_tensor\030\010 \001(\0132,.v"
-  "iam.service.mlmodel.v1.FlatTensorDataInt"
-  "64H\000R\013int64Tensor\022T\n\ruint64_tensor\030\t \001(\013"
-  "2-.viam.service.mlmodel.v1.FlatTensorDat"
-  "aUInt64H\000R\014uint64Tensor\022Q\n\014float_tensor\030"
-  "\n \001(\0132,.viam.service.mlmodel.v1.FlatTens"
-  "orDataFloatH\000R\013floatTensor\022T\n\rdouble_ten"
-  "sor\030\013 \001(\0132-.viam.service.mlmodel.v1.Flat"
-  "TensorDataDoubleH\000R\014doubleTensorB\010\n\006tens"
-  "or\"\273\001\n\013FlatTensors\022K\n\007tensors\030\001 \003(\01321.vi"
-  "am.service.mlmodel.v1.FlatTensors.Tensor"
-  "sEntryR\007tensors\032_\n\014TensorsEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\0229\n\005value\030\002 \001(\0132#.viam.service."
-  "mlmodel.v1.FlatTensorR\005value:\0028\001*`\n\tLabe"
-  "lType\022\032\n\026LABEL_TYPE_UNSPECIFIED\020\000\022\033\n\027LAB"
-  "EL_TYPE_TENSOR_VALUE\020\001\022\032\n\026LABEL_TYPE_TEN"
-  "SOR_AXIS\020\0022\264\002\n\016MLModelService\022\211\001\n\005Infer\022"
-  "%.viam.service.mlmodel.v1.InferRequest\032&"
-  ".viam.service.mlmodel.v1.InferResponse\"1"
-  "\202\323\344\223\002+\")/viam/api/v1/service/mlmodel/{na"
-  "me}/infer\022\225\001\n\010Metadata\022(.viam.service.ml"
-  "model.v1.MetadataRequest\032).viam.service."
-  "mlmodel.v1.MetadataResponse\"4\202\323\344\223\002.\022,/vi"
-  "am/api/v1/service/mlmodel/{name}/metadat"
-  "aBA\n\033com.viam.service.mlmodel.v1Z\"go.via"
-  "m.com/api/service/mlmodel/v1b\006proto3"
+  "\256\001\n\014InferRequest\022\022\n\004name\030\001 \001(\tR\004name\022I\n\r"
+  "input_tensors\030\003 \001(\0132$.viam.service.mlmod"
+  "el.v1.FlatTensorsR\014inputTensors\022-\n\005extra"
+  "\030c \001(\0132\027.google.protobuf.StructR\005extraJ\004"
+  "\010\002\020\003R\ninput_data\"{\n\rInferResponse\022K\n\016out"
+  "put_tensors\030\003 \001(\0132$.viam.service.mlmodel"
+  ".v1.FlatTensorsR\routputTensorsJ\004\010\001\020\002J\004\010\002"
+  "\020\003R\004nameR\013output_data\"T\n\017MetadataRequest"
+  "\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.go"
+  "ogle.protobuf.StructR\005extra\"Q\n\020MetadataR"
+  "esponse\022=\n\010metadata\030\001 \001(\0132!.viam.service"
+  ".mlmodel.v1.MetadataR\010metadata\"\336\001\n\010Metad"
+  "ata\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004type\030\002 \001(\tR\004t"
+  "ype\022 \n\013description\030\003 \001(\tR\013description\022B\n"
+  "\ninput_info\030\004 \003(\0132#.viam.service.mlmodel"
+  ".v1.TensorInfoR\tinputInfo\022D\n\013output_info"
+  "\030\005 \003(\0132#.viam.service.mlmodel.v1.TensorI"
+  "nfoR\noutputInfo\"\356\001\n\nTensorInfo\022\022\n\004name\030\001"
+  " \001(\tR\004name\022 \n\013description\030\002 \001(\tR\013descrip"
+  "tion\022\033\n\tdata_type\030\003 \001(\tR\010dataType\022\024\n\005sha"
+  "pe\030\004 \003(\005R\005shape\022H\n\020associated_files\030\005 \003("
+  "\0132\035.viam.service.mlmodel.v1.FileR\017associ"
+  "atedFiles\022-\n\005extra\030c \001(\0132\027.google.protob"
+  "uf.StructR\005extra\"\177\n\004File\022\022\n\004name\030\001 \001(\tR\004"
+  "name\022 \n\013description\030\002 \001(\tR\013description\022A"
+  "\n\nlabel_type\030\003 \001(\0162\".viam.service.mlmode"
+  "l.v1.LabelTypeR\tlabelType\"(\n\022FlatTensorD"
+  "ataInt8\022\022\n\004data\030\001 \001(\014R\004data\")\n\023FlatTenso"
+  "rDataUInt8\022\022\n\004data\030\001 \001(\014R\004data\"-\n\023FlatTe"
+  "nsorDataInt16\022\026\n\004data\030\001 \003(\007B\002\020\001R\004data\".\n"
+  "\024FlatTensorDataUInt16\022\026\n\004data\030\001 \003(\007B\002\020\001R"
+  "\004data\"-\n\023FlatTensorDataInt32\022\026\n\004data\030\001 \003"
+  "(\017B\002\020\001R\004data\".\n\024FlatTensorDataUInt32\022\026\n\004"
+  "data\030\001 \003(\007B\002\020\001R\004data\"-\n\023FlatTensorDataIn"
+  "t64\022\026\n\004data\030\001 \003(\020B\002\020\001R\004data\".\n\024FlatTenso"
+  "rDataUInt64\022\026\n\004data\030\001 \003(\006B\002\020\001R\004data\"-\n\023F"
+  "latTensorDataFloat\022\026\n\004data\030\001 \003(\002B\002\020\001R\004da"
+  "ta\".\n\024FlatTensorDataDouble\022\026\n\004data\030\001 \003(\001"
+  "B\002\020\001R\004data\"\363\006\n\nFlatTensor\022\024\n\005shape\030\001 \003(\006"
+  "R\005shape\022N\n\013int8_tensor\030\002 \001(\0132+.viam.serv"
+  "ice.mlmodel.v1.FlatTensorDataInt8H\000R\nint"
+  "8Tensor\022Q\n\014uint8_tensor\030\003 \001(\0132,.viam.ser"
+  "vice.mlmodel.v1.FlatTensorDataUInt8H\000R\013u"
+  "int8Tensor\022Q\n\014int16_tensor\030\004 \001(\0132,.viam."
+  "service.mlmodel.v1.FlatTensorDataInt16H\000"
+  "R\013int16Tensor\022T\n\ruint16_tensor\030\005 \001(\0132-.v"
+  "iam.service.mlmodel.v1.FlatTensorDataUIn"
+  "t16H\000R\014uint16Tensor\022Q\n\014int32_tensor\030\006 \001("
+  "\0132,.viam.service.mlmodel.v1.FlatTensorDa"
+  "taInt32H\000R\013int32Tensor\022T\n\ruint32_tensor\030"
+  "\007 \001(\0132-.viam.service.mlmodel.v1.FlatTens"
+  "orDataUInt32H\000R\014uint32Tensor\022Q\n\014int64_te"
+  "nsor\030\010 \001(\0132,.viam.service.mlmodel.v1.Fla"
+  "tTensorDataInt64H\000R\013int64Tensor\022T\n\ruint6"
+  "4_tensor\030\t \001(\0132-.viam.service.mlmodel.v1"
+  ".FlatTensorDataUInt64H\000R\014uint64Tensor\022Q\n"
+  "\014float_tensor\030\n \001(\0132,.viam.service.mlmod"
+  "el.v1.FlatTensorDataFloatH\000R\013floatTensor"
+  "\022T\n\rdouble_tensor\030\013 \001(\0132-.viam.service.m"
+  "lmodel.v1.FlatTensorDataDoubleH\000R\014double"
+  "TensorB\010\n\006tensor\"\273\001\n\013FlatTensors\022K\n\007tens"
+  "ors\030\001 \003(\01321.viam.service.mlmodel.v1.Flat"
+  "Tensors.TensorsEntryR\007tensors\032_\n\014Tensors"
+  "Entry\022\020\n\003key\030\001 \001(\tR\003key\0229\n\005value\030\002 \001(\0132#"
+  ".viam.service.mlmodel.v1.FlatTensorR\005val"
+  "ue:\0028\001*`\n\tLabelType\022\032\n\026LABEL_TYPE_UNSPEC"
+  "IFIED\020\000\022\033\n\027LABEL_TYPE_TENSOR_VALUE\020\001\022\032\n\026"
+  "LABEL_TYPE_TENSOR_AXIS\020\0022\264\002\n\016MLModelServ"
+  "ice\022\211\001\n\005Infer\022%.viam.service.mlmodel.v1."
+  "InferRequest\032&.viam.service.mlmodel.v1.I"
+  "nferResponse\"1\202\323\344\223\002+\")/viam/api/v1/servi"
+  "ce/mlmodel/{name}/infer\022\225\001\n\010Metadata\022(.v"
+  "iam.service.mlmodel.v1.MetadataRequest\032)"
+  ".viam.service.mlmodel.v1.MetadataRespons"
+  "e\"4\202\323\344\223\002.\022,/viam/api/v1/service/mlmodel/"
+  "{name}/metadataBA\n\033com.viam.service.mlmo"
+  "del.v1Z\"go.viam.com/api/service/mlmodel/"
+  "v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_deps[2] = {
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
@@ -598,7 +593,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmlmodel_2
 };
 static ::_pbi::once_flag descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto = {
-    false, false, 3276, descriptor_table_protodef_service_2fmlmodel_2fv1_2fmlmodel_2eproto,
+    false, false, 3210, descriptor_table_protodef_service_2fmlmodel_2fv1_2fmlmodel_2eproto,
     "service/mlmodel/v1/mlmodel.proto",
     &descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_once, descriptor_table_service_2fmlmodel_2fv1_2fmlmodel_2eproto_deps, 2, 20,
     schemas, file_default_instances, TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets,
@@ -635,15 +630,10 @@ bool LabelType_IsValid(int value) {
 
 class InferRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& input_data(const InferRequest* msg);
   static const ::viam::service::mlmodel::v1::FlatTensors& input_tensors(const InferRequest* msg);
   static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const InferRequest* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-InferRequest::_Internal::input_data(const InferRequest* msg) {
-  return *msg->input_data_;
-}
 const ::viam::service::mlmodel::v1::FlatTensors&
 InferRequest::_Internal::input_tensors(const InferRequest* msg) {
   return *msg->input_tensors_;
@@ -651,12 +641,6 @@ InferRequest::_Internal::input_tensors(const InferRequest* msg) {
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 InferRequest::_Internal::extra(const InferRequest* msg) {
   return *msg->extra_;
-}
-void InferRequest::clear_input_data() {
-  if (GetArenaForAllocation() == nullptr && input_data_ != nullptr) {
-    delete input_data_;
-  }
-  input_data_ = nullptr;
 }
 void InferRequest::clear_extra() {
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
@@ -681,11 +665,6 @@ InferRequest::InferRequest(const InferRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_input_data()) {
-    input_data_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.input_data_);
-  } else {
-    input_data_ = nullptr;
-  }
   if (from._internal_has_input_tensors()) {
     input_tensors_ = new ::viam::service::mlmodel::v1::FlatTensors(*from.input_tensors_);
   } else {
@@ -705,9 +684,9 @@ name_.InitDefault();
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&input_data_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&input_tensors_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&input_data_)) + sizeof(extra_));
+    reinterpret_cast<char*>(&input_tensors_)) + sizeof(extra_));
 }
 
 InferRequest::~InferRequest() {
@@ -722,7 +701,6 @@ InferRequest::~InferRequest() {
 inline void InferRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
-  if (this != internal_default_instance()) delete input_data_;
   if (this != internal_default_instance()) delete input_tensors_;
   if (this != internal_default_instance()) delete extra_;
 }
@@ -738,10 +716,6 @@ void InferRequest::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && input_data_ != nullptr) {
-    delete input_data_;
-  }
-  input_data_ = nullptr;
   if (GetArenaForAllocation() == nullptr && input_tensors_ != nullptr) {
     delete input_tensors_;
   }
@@ -766,14 +740,6 @@ const char* InferRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.service.mlmodel.v1.InferRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Struct input_data = 2 [json_name = "inputData"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_input_data(), ptr);
-          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -832,13 +798,6 @@ uint8_t* InferRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
-  // .google.protobuf.Struct input_data = 2 [json_name = "inputData"];
-  if (this->_internal_has_input_data()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::input_data(this),
-        _Internal::input_data(this).GetCachedSize(), target, stream);
-  }
-
   // .viam.service.mlmodel.v1.FlatTensors input_tensors = 3 [json_name = "inputTensors"];
   if (this->_internal_has_input_tensors()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -874,13 +833,6 @@ size_t InferRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
-  }
-
-  // .google.protobuf.Struct input_data = 2 [json_name = "inputData"];
-  if (this->_internal_has_input_data()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *input_data_);
   }
 
   // .viam.service.mlmodel.v1.FlatTensors input_tensors = 3 [json_name = "inputTensors"];
@@ -922,9 +874,6 @@ void InferRequest::MergeFrom(const InferRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
-  if (from._internal_has_input_data()) {
-    _internal_mutable_input_data()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_input_data());
-  }
   if (from._internal_has_input_tensors()) {
     _internal_mutable_input_tensors()->::viam::service::mlmodel::v1::FlatTensors::MergeFrom(from._internal_input_tensors());
   }
@@ -957,9 +906,9 @@ void InferRequest::InternalSwap(InferRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(InferRequest, extra_)
       + sizeof(InferRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(InferRequest, input_data_)>(
-          reinterpret_cast<char*>(&input_data_),
-          reinterpret_cast<char*>(&other->input_data_));
+      - PROTOBUF_FIELD_OFFSET(InferRequest, input_tensors_)>(
+          reinterpret_cast<char*>(&input_tensors_),
+          reinterpret_cast<char*>(&other->input_tensors_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata InferRequest::GetMetadata() const {
@@ -972,23 +921,12 @@ void InferRequest::InternalSwap(InferRequest* other) {
 
 class InferResponse::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Struct& output_data(const InferResponse* msg);
   static const ::viam::service::mlmodel::v1::FlatTensors& output_tensors(const InferResponse* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Struct&
-InferResponse::_Internal::output_data(const InferResponse* msg) {
-  return *msg->output_data_;
-}
 const ::viam::service::mlmodel::v1::FlatTensors&
 InferResponse::_Internal::output_tensors(const InferResponse* msg) {
   return *msg->output_tensors_;
-}
-void InferResponse::clear_output_data() {
-  if (GetArenaForAllocation() == nullptr && output_data_ != nullptr) {
-    delete output_data_;
-  }
-  output_data_ = nullptr;
 }
 InferResponse::InferResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -999,11 +937,6 @@ InferResponse::InferResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 InferResponse::InferResponse(const InferResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_output_data()) {
-    output_data_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.output_data_);
-  } else {
-    output_data_ = nullptr;
-  }
   if (from._internal_has_output_tensors()) {
     output_tensors_ = new ::viam::service::mlmodel::v1::FlatTensors(*from.output_tensors_);
   } else {
@@ -1013,10 +946,7 @@ InferResponse::InferResponse(const InferResponse& from)
 }
 
 inline void InferResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&output_data_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&output_tensors_) -
-    reinterpret_cast<char*>(&output_data_)) + sizeof(output_tensors_));
+output_tensors_ = nullptr;
 }
 
 InferResponse::~InferResponse() {
@@ -1030,7 +960,6 @@ InferResponse::~InferResponse() {
 
 inline void InferResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete output_data_;
   if (this != internal_default_instance()) delete output_tensors_;
 }
 
@@ -1044,10 +973,6 @@ void InferResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && output_data_ != nullptr) {
-    delete output_data_;
-  }
-  output_data_ = nullptr;
   if (GetArenaForAllocation() == nullptr && output_tensors_ != nullptr) {
     delete output_tensors_;
   }
@@ -1061,14 +986,6 @@ const char* InferResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .google.protobuf.Struct output_data = 2 [json_name = "outputData"];
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_output_data(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
       // .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
@@ -1106,13 +1023,6 @@ uint8_t* InferResponse::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .google.protobuf.Struct output_data = 2 [json_name = "outputData"];
-  if (this->_internal_has_output_data()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::output_data(this),
-        _Internal::output_data(this).GetCachedSize(), target, stream);
-  }
-
   // .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
   if (this->_internal_has_output_tensors()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1135,13 +1045,6 @@ size_t InferResponse::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // .google.protobuf.Struct output_data = 2 [json_name = "outputData"];
-  if (this->_internal_has_output_data()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *output_data_);
-  }
 
   // .viam.service.mlmodel.v1.FlatTensors output_tensors = 3 [json_name = "outputTensors"];
   if (this->_internal_has_output_tensors()) {
@@ -1172,9 +1075,6 @@ void InferResponse::MergeFrom(const InferResponse& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_output_data()) {
-    _internal_mutable_output_data()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_output_data());
-  }
   if (from._internal_has_output_tensors()) {
     _internal_mutable_output_tensors()->::viam::service::mlmodel::v1::FlatTensors::MergeFrom(from._internal_output_tensors());
   }
@@ -1195,12 +1095,7 @@ bool InferResponse::IsInitialized() const {
 void InferResponse::InternalSwap(InferResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(InferResponse, output_tensors_)
-      + sizeof(InferResponse::output_tensors_)
-      - PROTOBUF_FIELD_OFFSET(InferResponse, output_data_)>(
-          reinterpret_cast<char*>(&output_data_),
-          reinterpret_cast<char*>(&other->output_data_));
+  swap(output_tensors_, other->output_tensors_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata InferResponse::GetMetadata() const {
