@@ -14,6 +14,7 @@
 #include <viam/sdk/resource/resource_manager.hpp>
 
 #include "../proto/gizmo.grpc.pb.h"
+#include "../proto/gizmo.pb.h"
 
 using namespace viam::sdk;
 

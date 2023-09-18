@@ -111,7 +111,11 @@ const char descriptor_table_protodef_summation_2eproto[] PROTOBUF_SECTION_VARIAB
     "iam.service.summation.v1.SumRequest\032&.vi"
     "am.service.summation.v1.SumResponse\"1\202\323\344"
     "\223\002+\")/viam/api/v1/service/summation/{nam"
-    "e}/sumb\006proto3"
+    "e}/sumB\266\001\n\035com.viam.service.summation.v1"
+    "B\016SummationProtoP\001\242\002\003VSS\252\002\031Viam.Service."
+    "Summation.V1\312\002\031Viam\\Service\\Summation\\V1"
+    "\342\002%Viam\\Service\\Summation\\V1\\GPBMetadata"
+    "\352\002\034Viam::Service::Summation::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_summation_2eproto_deps[1] =
     {
@@ -121,7 +125,7 @@ static ::absl::once_flag descriptor_table_summation_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_summation_2eproto = {
     false,
     false,
-    334,
+    519,
     descriptor_table_protodef_summation_2eproto,
     "summation.proto",
     &descriptor_table_summation_2eproto_once,

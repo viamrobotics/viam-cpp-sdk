@@ -385,8 +385,12 @@ const char descriptor_table_protodef_gizmo_2eproto[] PROTOBUF_SECTION_VARIABLE(p
     "mResponse(\0010\001\022\212\001\n\005DoTwo\022%.viam.component"
     ".gizmo.v1.DoTwoRequest\032&.viam.component."
     "gizmo.v1.DoTwoResponse\"2\202\323\344\223\002,\"*/viam/ap"
-    "i/v1/component/gizmo/{name}/do_twob\006prot"
-    "o3"
+    "i/v1/component/gizmo/{name}/do_twoB\250\001\n\033c"
+    "om.viam.component.gizmo.v1B\nGizmoProtoP\001"
+    "\242\002\003VCG\252\002\027Viam.Component.Gizmo.V1\312\002\027Viam\\"
+    "Component\\Gizmo\\V1\342\002#Viam\\Component\\Gizm"
+    "o\\V1\\GPBMetadata\352\002\032Viam::Component::Gizm"
+    "o::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_gizmo_2eproto_deps[1] =
     {
@@ -396,7 +400,7 @@ static ::absl::once_flag descriptor_table_gizmo_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_gizmo_2eproto = {
     false,
     false,
-    1282,
+    1453,
     descriptor_table_protodef_gizmo_2eproto,
     "gizmo.proto",
     &descriptor_table_gizmo_2eproto_once,

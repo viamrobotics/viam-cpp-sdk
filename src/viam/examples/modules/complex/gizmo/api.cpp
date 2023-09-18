@@ -6,6 +6,8 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
+#include "../proto/gizmo.grpc.pb.h"
+#include "../proto/gizmo.pb.h"
 #include "api.hpp"
 
 using namespace viam::sdk;
@@ -30,7 +32,6 @@ std::shared_ptr<Resource> GizmoRegistration::create_rpc_client(
 
 std::shared_ptr<ResourceRegistration> Gizmo::resource_registration() {
     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-    std::cout << "service full name is" << GizmoService::service_full_name() << std::endl;
     const google::protobuf::ServiceDescriptor* sd =
         p->FindServiceByName(GizmoService::service_full_name());
     if (!sd) {
