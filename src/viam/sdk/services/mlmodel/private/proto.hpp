@@ -27,14 +27,6 @@ using tensor_storage_types = boost::mpl::transform_view<MLModelService::base_typ
 
 using tensor_storage = std::vector<boost::make_variant_over<tensor_storage_types>::type>;
 
-::grpc::Status pb_value_to_tensor(const MLModelService::tensor_info& tensor_info,
-                                  const ::google::protobuf::Value& pb,
-                                  tensor_storage* ts,
-                                  MLModelService::named_tensor_views* ntvs);
-
-::grpc::Status tensor_to_pb_value(const MLModelService::tensor_views& tensor,
-                                  ::google::protobuf::Value* value);
-
 void copy_sdk_tensor_to_api_tensor(const MLModelService::tensor_views& source,
                                    ::viam::service::mlmodel::v1::FlatTensor* target);
 

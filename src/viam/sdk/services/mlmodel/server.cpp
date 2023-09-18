@@ -51,7 +51,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 
     std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
 
-    if (!!request->has_input_tensors()) {
+    if (!request->has_input_tensors()) {
         return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no inputs"};
     }
 
