@@ -29,8 +29,6 @@ namespace mlmodel_details {
 
 namespace {
 
-namespace gp = ::google::protobuf;
-
 class copy_sdk_tensor_to_api_tensor_visitor : public boost::static_visitor<void> {
    public:
     explicit copy_sdk_tensor_to_api_tensor_visitor(::viam::service::mlmodel::v1::FlatTensor* target)
