@@ -21,10 +21,6 @@
 namespace viam {
 namespace sdk {
 
-namespace {
-namespace gp = ::google::protobuf;
-}  // namespace
-
 MLModelServiceServer::MLModelServiceServer()
     : MLModelServiceServer(std::make_shared<ResourceManager>()) {}
 
