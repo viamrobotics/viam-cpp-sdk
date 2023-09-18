@@ -7,20 +7,20 @@
 #include "gizmo.pb.h"
 
 #include <functional>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
 #include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/server_context.h>
 #include <grpcpp/support/async_stream.h>
 #include <grpcpp/support/async_unary_call.h>
 #include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
 #include <grpcpp/support/message_allocator.h>
 #include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/proto_utils.h>
+#include <grpcpp/impl/rpc_method.h>
 #include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/status.h>
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
@@ -31,1424 +31,789 @@ namespace gizmo {
 namespace v1 {
 
 class GizmoService final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "viam.component.gizmo.v1.GizmoService";
+  }
+  class StubInterface {
    public:
-    static constexpr char const* service_full_name() {
-        return "viam.component.gizmo.v1.GizmoService";
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status DoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::viam::component::gizmo::v1::DoOneResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoOneResponse>> AsyncDoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoOneResponse>>(AsyncDoOneRaw(context, request, cq));
     }
-    class StubInterface {
-       public:
-        virtual ~StubInterface() {}
-        virtual ::grpc::Status DoOne(::grpc::ClientContext* context,
-                                     const ::viam::component::gizmo::v1::DoOneRequest& request,
-                                     ::viam::component::gizmo::v1::DoOneResponse* response) = 0;
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReaderInterface<::viam::component::gizmo::v1::DoOneResponse>>
-        AsyncDoOne(::grpc::ClientContext* context,
-                   const ::viam::component::gizmo::v1::DoOneRequest& request,
-                   ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncResponseReaderInterface<
-                ::viam::component::gizmo::v1::DoOneResponse>>(AsyncDoOneRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReaderInterface<::viam::component::gizmo::v1::DoOneResponse>>
-        PrepareAsyncDoOne(::grpc::ClientContext* context,
-                          const ::viam::component::gizmo::v1::DoOneRequest& request,
-                          ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncResponseReaderInterface<
-                ::viam::component::gizmo::v1::DoOneResponse>>(
-                PrepareAsyncDoOneRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientWriterInterface<::viam::component::gizmo::v1::DoOneClientStreamRequest>>
-        DoOneClientStream(::grpc::ClientContext* context,
-                          ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) {
-            return std::unique_ptr<::grpc::ClientWriterInterface<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(
-                DoOneClientStreamRaw(context, response));
-        }
-        std::unique_ptr<::grpc::ClientAsyncWriterInterface<
-            ::viam::component::gizmo::v1::DoOneClientStreamRequest>>
-        AsyncDoOneClientStream(::grpc::ClientContext* context,
-                               ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-                               ::grpc::CompletionQueue* cq,
-                               void* tag) {
-            return std::unique_ptr<::grpc::ClientAsyncWriterInterface<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(
-                AsyncDoOneClientStreamRaw(context, response, cq, tag));
-        }
-        std::unique_ptr<::grpc::ClientAsyncWriterInterface<
-            ::viam::component::gizmo::v1::DoOneClientStreamRequest>>
-        PrepareAsyncDoOneClientStream(
-            ::grpc::ClientContext* context,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-            ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncWriterInterface<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(
-                PrepareAsyncDoOneClientStreamRaw(context, response, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientReaderInterface<::viam::component::gizmo::v1::DoOneServerStreamResponse>>
-        DoOneServerStream(::grpc::ClientContext* context,
-                          const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) {
-            return std::unique_ptr<::grpc::ClientReaderInterface<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(
-                DoOneServerStreamRaw(context, request));
-        }
-        std::unique_ptr<::grpc::ClientAsyncReaderInterface<
-            ::viam::component::gizmo::v1::DoOneServerStreamResponse>>
-        AsyncDoOneServerStream(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq,
-            void* tag) {
-            return std::unique_ptr<::grpc::ClientAsyncReaderInterface<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(
-                AsyncDoOneServerStreamRaw(context, request, cq, tag));
-        }
-        std::unique_ptr<::grpc::ClientAsyncReaderInterface<
-            ::viam::component::gizmo::v1::DoOneServerStreamResponse>>
-        PrepareAsyncDoOneServerStream(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncReaderInterface<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(
-                PrepareAsyncDoOneServerStreamRaw(context, request, cq));
-        }
-        std::unique_ptr<::grpc::ClientReaderWriterInterface<
-            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>
-        DoOneBiDiStream(::grpc::ClientContext* context) {
-            return std::unique_ptr<::grpc::ClientReaderWriterInterface<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(
-                DoOneBiDiStreamRaw(context));
-        }
-        std::unique_ptr<::grpc::ClientAsyncReaderWriterInterface<
-            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>
-        AsyncDoOneBiDiStream(::grpc::ClientContext* context,
-                             ::grpc::CompletionQueue* cq,
-                             void* tag) {
-            return std::unique_ptr<::grpc::ClientAsyncReaderWriterInterface<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(
-                AsyncDoOneBiDiStreamRaw(context, cq, tag));
-        }
-        std::unique_ptr<::grpc::ClientAsyncReaderWriterInterface<
-            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>
-        PrepareAsyncDoOneBiDiStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncReaderWriterInterface<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(
-                PrepareAsyncDoOneBiDiStreamRaw(context, cq));
-        }
-        virtual ::grpc::Status DoTwo(::grpc::ClientContext* context,
-                                     const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                                     ::viam::component::gizmo::v1::DoTwoResponse* response) = 0;
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReaderInterface<::viam::component::gizmo::v1::DoTwoResponse>>
-        AsyncDoTwo(::grpc::ClientContext* context,
-                   const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                   ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncResponseReaderInterface<
-                ::viam::component::gizmo::v1::DoTwoResponse>>(AsyncDoTwoRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReaderInterface<::viam::component::gizmo::v1::DoTwoResponse>>
-        PrepareAsyncDoTwo(::grpc::ClientContext* context,
-                          const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                          ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncResponseReaderInterface<
-                ::viam::component::gizmo::v1::DoTwoResponse>>(
-                PrepareAsyncDoTwoRaw(context, request, cq));
-        }
-        class async_interface {
-           public:
-            virtual ~async_interface() {}
-            virtual void DoOne(::grpc::ClientContext* context,
-                               const ::viam::component::gizmo::v1::DoOneRequest* request,
-                               ::viam::component::gizmo::v1::DoOneResponse* response,
-                               std::function<void(::grpc::Status)>) = 0;
-            virtual void DoOne(::grpc::ClientContext* context,
-                               const ::viam::component::gizmo::v1::DoOneRequest* request,
-                               ::viam::component::gizmo::v1::DoOneResponse* response,
-                               ::grpc::ClientUnaryReactor* reactor) = 0;
-            virtual void DoOneClientStream(
-                ::grpc::ClientContext* context,
-                ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-                ::grpc::ClientWriteReactor<::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-                    reactor) = 0;
-            virtual void DoOneServerStream(
-                ::grpc::ClientContext* context,
-                const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request,
-                ::grpc::ClientReadReactor<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-                    reactor) = 0;
-            virtual void DoOneBiDiStream(
-                ::grpc::ClientContext* context,
-                ::grpc::ClientBidiReactor<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                          ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-                    reactor) = 0;
-            virtual void DoTwo(::grpc::ClientContext* context,
-                               const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                               ::viam::component::gizmo::v1::DoTwoResponse* response,
-                               std::function<void(::grpc::Status)>) = 0;
-            virtual void DoTwo(::grpc::ClientContext* context,
-                               const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                               ::viam::component::gizmo::v1::DoTwoResponse* response,
-                               ::grpc::ClientUnaryReactor* reactor) = 0;
-        };
-        typedef class async_interface experimental_async_interface;
-        virtual class async_interface* async() {
-            return nullptr;
-        }
-        class async_interface* experimental_async() {
-            return async();
-        }
-
-       private:
-        virtual ::grpc::ClientAsyncResponseReaderInterface<
-            ::viam::component::gizmo::v1::DoOneResponse>*
-        AsyncDoOneRaw(::grpc::ClientContext* context,
-                      const ::viam::component::gizmo::v1::DoOneRequest& request,
-                      ::grpc::CompletionQueue* cq) = 0;
-        virtual ::grpc::ClientAsyncResponseReaderInterface<
-            ::viam::component::gizmo::v1::DoOneResponse>*
-        PrepareAsyncDoOneRaw(::grpc::ClientContext* context,
-                             const ::viam::component::gizmo::v1::DoOneRequest& request,
-                             ::grpc::CompletionQueue* cq) = 0;
-        virtual ::grpc::ClientWriterInterface<
-            ::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        DoOneClientStreamRaw(::grpc::ClientContext* context,
-                             ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) = 0;
-        virtual ::grpc::ClientAsyncWriterInterface<
-            ::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        AsyncDoOneClientStreamRaw(::grpc::ClientContext* context,
-                                  ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-                                  ::grpc::CompletionQueue* cq,
-                                  void* tag) = 0;
-        virtual ::grpc::ClientAsyncWriterInterface<
-            ::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        PrepareAsyncDoOneClientStreamRaw(
-            ::grpc::ClientContext* context,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-            ::grpc::CompletionQueue* cq) = 0;
-        virtual ::grpc::ClientReaderInterface<
-            ::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        DoOneServerStreamRaw(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) = 0;
-        virtual ::grpc::ClientAsyncReaderInterface<
-            ::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        AsyncDoOneServerStreamRaw(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq,
-            void* tag) = 0;
-        virtual ::grpc::ClientAsyncReaderInterface<
-            ::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        PrepareAsyncDoOneServerStreamRaw(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq) = 0;
-        virtual ::grpc::ClientReaderWriterInterface<
-            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        DoOneBiDiStreamRaw(::grpc::ClientContext* context) = 0;
-        virtual ::grpc::ClientAsyncReaderWriterInterface<
-            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        AsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context,
-                                ::grpc::CompletionQueue* cq,
-                                void* tag) = 0;
-        virtual ::grpc::ClientAsyncReaderWriterInterface<
-            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        PrepareAsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context,
-                                       ::grpc::CompletionQueue* cq) = 0;
-        virtual ::grpc::ClientAsyncResponseReaderInterface<
-            ::viam::component::gizmo::v1::DoTwoResponse>*
-        AsyncDoTwoRaw(::grpc::ClientContext* context,
-                      const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                      ::grpc::CompletionQueue* cq) = 0;
-        virtual ::grpc::ClientAsyncResponseReaderInterface<
-            ::viam::component::gizmo::v1::DoTwoResponse>*
-        PrepareAsyncDoTwoRaw(::grpc::ClientContext* context,
-                             const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                             ::grpc::CompletionQueue* cq) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoOneResponse>> PrepareAsyncDoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoOneResponse>>(PrepareAsyncDoOneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>> DoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) {
+      return std::unique_ptr< ::grpc::ClientWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(DoOneClientStreamRaw(context, response));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>> AsyncDoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(AsyncDoOneClientStreamRaw(context, response, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>> PrepareAsyncDoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(PrepareAsyncDoOneClientStreamRaw(context, response, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>> DoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(DoOneServerStreamRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>> AsyncDoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(AsyncDoOneServerStreamRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>> PrepareAsyncDoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(PrepareAsyncDoOneServerStreamRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>> DoOneBiDiStream(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(DoOneBiDiStreamRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>> AsyncDoOneBiDiStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(AsyncDoOneBiDiStreamRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>> PrepareAsyncDoOneBiDiStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(PrepareAsyncDoOneBiDiStreamRaw(context, cq));
+    }
+    virtual ::grpc::Status DoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::viam::component::gizmo::v1::DoTwoResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoTwoResponse>> AsyncDoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoTwoResponse>>(AsyncDoTwoRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoTwoResponse>> PrepareAsyncDoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoTwoResponse>>(PrepareAsyncDoTwoRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void DoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest* request, ::viam::component::gizmo::v1::DoOneResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest* request, ::viam::component::gizmo::v1::DoOneResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void DoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::ClientWriteReactor< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* reactor) = 0;
+      virtual void DoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request, ::grpc::ClientReadReactor< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* reactor) = 0;
+      virtual void DoOneBiDiStream(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* reactor) = 0;
+      virtual void DoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest* request, ::viam::component::gizmo::v1::DoTwoResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest* request, ::viam::component::gizmo::v1::DoTwoResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
-    class Stub final : public StubInterface {
-       public:
-        Stub(const std::shared_ptr<::grpc::ChannelInterface>& channel,
-             const ::grpc::StubOptions& options = ::grpc::StubOptions());
-        ::grpc::Status DoOne(::grpc::ClientContext* context,
-                             const ::viam::component::gizmo::v1::DoOneRequest& request,
-                             ::viam::component::gizmo::v1::DoOneResponse* response) override;
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoOneResponse>>
-        AsyncDoOne(::grpc::ClientContext* context,
-                   const ::viam::component::gizmo::v1::DoOneRequest& request,
-                   ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoOneResponse>>(
-                AsyncDoOneRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoOneResponse>>
-        PrepareAsyncDoOne(::grpc::ClientContext* context,
-                          const ::viam::component::gizmo::v1::DoOneRequest& request,
-                          ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoOneResponse>>(
-                PrepareAsyncDoOneRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>>
-        DoOneClientStream(::grpc::ClientContext* context,
-                          ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) {
-            return std::unique_ptr<
-                ::grpc::ClientWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>>(
-                DoOneClientStreamRaw(context, response));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>>
-        AsyncDoOneClientStream(::grpc::ClientContext* context,
-                               ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-                               ::grpc::CompletionQueue* cq,
-                               void* tag) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>>(
-                AsyncDoOneClientStreamRaw(context, response, cq, tag));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>>
-        PrepareAsyncDoOneClientStream(
-            ::grpc::ClientContext* context,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-            ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>>(
-                PrepareAsyncDoOneClientStreamRaw(context, response, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>>
-        DoOneServerStream(::grpc::ClientContext* context,
-                          const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) {
-            return std::unique_ptr<
-                ::grpc::ClientReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>>(
-                DoOneServerStreamRaw(context, request));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>>
-        AsyncDoOneServerStream(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq,
-            void* tag) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>>(
-                AsyncDoOneServerStreamRaw(context, request, cq, tag));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>>
-        PrepareAsyncDoOneServerStream(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>>(
-                PrepareAsyncDoOneServerStreamRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                       ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>
-        DoOneBiDiStream(::grpc::ClientContext* context) {
-            return std::unique_ptr<
-                ::grpc::ClientReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                           ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(
-                DoOneBiDiStreamRaw(context));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>
-        AsyncDoOneBiDiStream(::grpc::ClientContext* context,
-                             ::grpc::CompletionQueue* cq,
-                             void* tag) {
-            return std::unique_ptr<::grpc::ClientAsyncReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(
-                AsyncDoOneBiDiStreamRaw(context, cq, tag));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                            ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>
-        PrepareAsyncDoOneBiDiStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<::grpc::ClientAsyncReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(
-                PrepareAsyncDoOneBiDiStreamRaw(context, cq));
-        }
-        ::grpc::Status DoTwo(::grpc::ClientContext* context,
-                             const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                             ::viam::component::gizmo::v1::DoTwoResponse* response) override;
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoTwoResponse>>
-        AsyncDoTwo(::grpc::ClientContext* context,
-                   const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                   ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoTwoResponse>>(
-                AsyncDoTwoRaw(context, request, cq));
-        }
-        std::unique_ptr<
-            ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoTwoResponse>>
-        PrepareAsyncDoTwo(::grpc::ClientContext* context,
-                          const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                          ::grpc::CompletionQueue* cq) {
-            return std::unique_ptr<
-                ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoTwoResponse>>(
-                PrepareAsyncDoTwoRaw(context, request, cq));
-        }
-        class async final : public StubInterface::async_interface {
-           public:
-            void DoOne(::grpc::ClientContext* context,
-                       const ::viam::component::gizmo::v1::DoOneRequest* request,
-                       ::viam::component::gizmo::v1::DoOneResponse* response,
-                       std::function<void(::grpc::Status)>) override;
-            void DoOne(::grpc::ClientContext* context,
-                       const ::viam::component::gizmo::v1::DoOneRequest* request,
-                       ::viam::component::gizmo::v1::DoOneResponse* response,
-                       ::grpc::ClientUnaryReactor* reactor) override;
-            void DoOneClientStream(
-                ::grpc::ClientContext* context,
-                ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-                ::grpc::ClientWriteReactor<::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-                    reactor) override;
-            void DoOneServerStream(
-                ::grpc::ClientContext* context,
-                const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request,
-                ::grpc::ClientReadReactor<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-                    reactor) override;
-            void DoOneBiDiStream(
-                ::grpc::ClientContext* context,
-                ::grpc::ClientBidiReactor<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                          ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-                    reactor) override;
-            void DoTwo(::grpc::ClientContext* context,
-                       const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                       ::viam::component::gizmo::v1::DoTwoResponse* response,
-                       std::function<void(::grpc::Status)>) override;
-            void DoTwo(::grpc::ClientContext* context,
-                       const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                       ::viam::component::gizmo::v1::DoTwoResponse* response,
-                       ::grpc::ClientUnaryReactor* reactor) override;
-
-           private:
-            friend class Stub;
-            explicit async(Stub* stub) : stub_(stub) {}
-            Stub* stub() {
-                return stub_;
-            }
-            Stub* stub_;
-        };
-        class async* async() override {
-            return &async_stub_;
-        }
-
-       private:
-        std::shared_ptr<::grpc::ChannelInterface> channel_;
-        class async async_stub_ {
-            this
-        };
-        ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoOneResponse>*
-        AsyncDoOneRaw(::grpc::ClientContext* context,
-                      const ::viam::component::gizmo::v1::DoOneRequest& request,
-                      ::grpc::CompletionQueue* cq) override;
-        ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoOneResponse>*
-        PrepareAsyncDoOneRaw(::grpc::ClientContext* context,
-                             const ::viam::component::gizmo::v1::DoOneRequest& request,
-                             ::grpc::CompletionQueue* cq) override;
-        ::grpc::ClientWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        DoOneClientStreamRaw(
-            ::grpc::ClientContext* context,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) override;
-        ::grpc::ClientAsyncWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        AsyncDoOneClientStreamRaw(::grpc::ClientContext* context,
-                                  ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-                                  ::grpc::CompletionQueue* cq,
-                                  void* tag) override;
-        ::grpc::ClientAsyncWriter<::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        PrepareAsyncDoOneClientStreamRaw(
-            ::grpc::ClientContext* context,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* response,
-            ::grpc::CompletionQueue* cq) override;
-        ::grpc::ClientReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        DoOneServerStreamRaw(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) override;
-        ::grpc::ClientAsyncReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        AsyncDoOneServerStreamRaw(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq,
-            void* tag) override;
-        ::grpc::ClientAsyncReader<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        PrepareAsyncDoOneServerStreamRaw(
-            ::grpc::ClientContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request,
-            ::grpc::CompletionQueue* cq) override;
-        ::grpc::ClientReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                   ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        DoOneBiDiStreamRaw(::grpc::ClientContext* context) override;
-        ::grpc::ClientAsyncReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                        ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        AsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context,
-                                ::grpc::CompletionQueue* cq,
-                                void* tag) override;
-        ::grpc::ClientAsyncReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                        ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        PrepareAsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context,
-                                       ::grpc::CompletionQueue* cq) override;
-        ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoTwoResponse>*
-        AsyncDoTwoRaw(::grpc::ClientContext* context,
-                      const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                      ::grpc::CompletionQueue* cq) override;
-        ::grpc::ClientAsyncResponseReader<::viam::component::gizmo::v1::DoTwoResponse>*
-        PrepareAsyncDoTwoRaw(::grpc::ClientContext* context,
-                             const ::viam::component::gizmo::v1::DoTwoRequest& request,
-                             ::grpc::CompletionQueue* cq) override;
-        const ::grpc::internal::RpcMethod rpcmethod_DoOne_;
-        const ::grpc::internal::RpcMethod rpcmethod_DoOneClientStream_;
-        const ::grpc::internal::RpcMethod rpcmethod_DoOneServerStream_;
-        const ::grpc::internal::RpcMethod rpcmethod_DoOneBiDiStream_;
-        const ::grpc::internal::RpcMethod rpcmethod_DoTwo_;
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoOneResponse>* AsyncDoOneRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoOneResponse>* PrepareAsyncDoOneRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* DoOneClientStreamRaw(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* AsyncDoOneClientStreamRaw(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* PrepareAsyncDoOneClientStreamRaw(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* DoOneServerStreamRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* AsyncDoOneServerStreamRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* PrepareAsyncDoOneServerStreamRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* DoOneBiDiStreamRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* AsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* PrepareAsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoTwoResponse>* AsyncDoTwoRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gizmo::v1::DoTwoResponse>* PrepareAsyncDoTwoRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status DoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::viam::component::gizmo::v1::DoOneResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoOneResponse>> AsyncDoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoOneResponse>>(AsyncDoOneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoOneResponse>> PrepareAsyncDoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoOneResponse>>(PrepareAsyncDoOneRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>> DoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) {
+      return std::unique_ptr< ::grpc::ClientWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(DoOneClientStreamRaw(context, response));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>> AsyncDoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(AsyncDoOneClientStreamRaw(context, response, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>> PrepareAsyncDoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>>(PrepareAsyncDoOneClientStreamRaw(context, response, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>> DoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(DoOneServerStreamRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>> AsyncDoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(AsyncDoOneServerStreamRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>> PrepareAsyncDoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>>(PrepareAsyncDoOneServerStreamRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>> DoOneBiDiStream(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(DoOneBiDiStreamRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>> AsyncDoOneBiDiStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(AsyncDoOneBiDiStreamRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>> PrepareAsyncDoOneBiDiStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>>(PrepareAsyncDoOneBiDiStreamRaw(context, cq));
+    }
+    ::grpc::Status DoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::viam::component::gizmo::v1::DoTwoResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoTwoResponse>> AsyncDoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoTwoResponse>>(AsyncDoTwoRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoTwoResponse>> PrepareAsyncDoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoTwoResponse>>(PrepareAsyncDoTwoRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void DoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest* request, ::viam::component::gizmo::v1::DoOneResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoOne(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest* request, ::viam::component::gizmo::v1::DoOneResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DoOneClientStream(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::ClientWriteReactor< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* reactor) override;
+      void DoOneServerStream(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request, ::grpc::ClientReadReactor< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* reactor) override;
+      void DoOneBiDiStream(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* reactor) override;
+      void DoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest* request, ::viam::component::gizmo::v1::DoTwoResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoTwo(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest* request, ::viam::component::gizmo::v1::DoTwoResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
     };
-    static std::unique_ptr<Stub> NewStub(
-        const std::shared_ptr<::grpc::ChannelInterface>& channel,
-        const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    class async* async() override { return &async_stub_; }
 
-    class Service : public ::grpc::Service {
-       public:
-        Service();
-        virtual ~Service();
-        virtual ::grpc::Status DoOne(::grpc::ServerContext* context,
-                                     const ::viam::component::gizmo::v1::DoOneRequest* request,
-                                     ::viam::component::gizmo::v1::DoOneResponse* response);
-        virtual ::grpc::Status DoOneClientStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerReader<::viam::component::gizmo::v1::DoOneClientStreamRequest>* reader,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* response);
-        virtual ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* context,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request,
-            ::grpc::ServerWriter<::viam::component::gizmo::v1::DoOneServerStreamResponse>* writer);
-        virtual ::grpc::Status DoOneBiDiStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                                       ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>*
-                stream);
-        virtual ::grpc::Status DoTwo(::grpc::ServerContext* context,
-                                     const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                                     ::viam::component::gizmo::v1::DoTwoResponse* response);
-    };
-    template <class BaseClass>
-    class WithAsyncMethod_DoOne : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoOneResponse>* AsyncDoOneRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoOneResponse>* PrepareAsyncDoOneRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* DoOneClientStreamRaw(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) override;
+    ::grpc::ClientAsyncWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* AsyncDoOneClientStreamRaw(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncWriter< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* PrepareAsyncDoOneClientStreamRaw(::grpc::ClientContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* DoOneServerStreamRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request) override;
+    ::grpc::ClientAsyncReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* AsyncDoOneServerStreamRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* PrepareAsyncDoOneServerStreamRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* DoOneBiDiStreamRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* AsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* PrepareAsyncDoOneBiDiStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoTwoResponse>* AsyncDoTwoRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gizmo::v1::DoTwoResponse>* PrepareAsyncDoTwoRaw(::grpc::ClientContext* context, const ::viam::component::gizmo::v1::DoTwoRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_DoOne_;
+    const ::grpc::internal::RpcMethod rpcmethod_DoOneClientStream_;
+    const ::grpc::internal::RpcMethod rpcmethod_DoOneServerStream_;
+    const ::grpc::internal::RpcMethod rpcmethod_DoOneBiDiStream_;
+    const ::grpc::internal::RpcMethod rpcmethod_DoTwo_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
-       public:
-        WithAsyncMethod_DoOne() {
-            ::grpc::Service::MarkMethodAsync(0);
-        }
-        ~WithAsyncMethod_DoOne() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOne(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOne(
-            ::grpc::ServerContext* context,
-            ::viam::component::gizmo::v1::DoOneRequest* request,
-            ::grpc::ServerAsyncResponseWriter<::viam::component::gizmo::v1::DoOneResponse>*
-                response,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncUnary(
-                0, context, request, response, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithAsyncMethod_DoOneClientStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithAsyncMethod_DoOneClientStream() {
-            ::grpc::Service::MarkMethodAsync(1);
-        }
-        ~WithAsyncMethod_DoOneClientStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneClientStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReader<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOneClientStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerAsyncReader<::viam::component::gizmo::v1::DoOneClientStreamResponse,
-                                      ::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-                reader,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncClientStreaming(
-                1, context, reader, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithAsyncMethod_DoOneServerStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithAsyncMethod_DoOneServerStream() {
-            ::grpc::Service::MarkMethodAsync(2);
-        }
-        ~WithAsyncMethod_DoOneServerStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/,
-            ::grpc::ServerWriter<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOneServerStream(
-            ::grpc::ServerContext* context,
-            ::viam::component::gizmo::v1::DoOneServerStreamRequest* request,
-            ::grpc::ServerAsyncWriter<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-                writer,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncServerStreaming(
-                2, context, request, writer, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithAsyncMethod_DoOneBiDiStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithAsyncMethod_DoOneBiDiStream() {
-            ::grpc::Service::MarkMethodAsync(3);
-        }
-        ~WithAsyncMethod_DoOneBiDiStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneBiDiStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOneBiDiStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerAsyncReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                                            ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>*
-                stream,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncBidiStreaming(
-                3, context, stream, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithAsyncMethod_DoTwo : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithAsyncMethod_DoTwo() {
-            ::grpc::Service::MarkMethodAsync(4);
-        }
-        ~WithAsyncMethod_DoTwo() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoTwo(
-            ::grpc::ServerContext* context,
-            ::viam::component::gizmo::v1::DoTwoRequest* request,
-            ::grpc::ServerAsyncResponseWriter<::viam::component::gizmo::v1::DoTwoResponse>*
-                response,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncUnary(
-                4, context, request, response, new_call_cq, notification_cq, tag);
-        }
-    };
-    typedef WithAsyncMethod_DoOne<
-        WithAsyncMethod_DoOneClientStream<WithAsyncMethod_DoOneServerStream<
-            WithAsyncMethod_DoOneBiDiStream<WithAsyncMethod_DoTwo<Service>>>>>
-        AsyncService;
-    template <class BaseClass>
-    class WithCallbackMethod_DoOne : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithCallbackMethod_DoOne() {
-            ::grpc::Service::MarkMethodCallback(
-                0,
-                new ::grpc::internal::CallbackUnaryHandler<
-                    ::viam::component::gizmo::v1::DoOneRequest,
-                    ::viam::component::gizmo::v1::DoOneResponse>(
-                    [this](::grpc::CallbackServerContext* context,
-                           const ::viam::component::gizmo::v1::DoOneRequest* request,
-                           ::viam::component::gizmo::v1::DoOneResponse* response) {
-                        return this->DoOne(context, request, response);
-                    }));
-        }
-        void SetMessageAllocatorFor_DoOne(
-            ::grpc::MessageAllocator<::viam::component::gizmo::v1::DoOneRequest,
-                                     ::viam::component::gizmo::v1::DoOneResponse>* allocator) {
-            ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-            static_cast<::grpc::internal::CallbackUnaryHandler<
-                ::viam::component::gizmo::v1::DoOneRequest,
-                ::viam::component::gizmo::v1::DoOneResponse>*>(handler)
-                ->SetMessageAllocator(allocator);
-        }
-        ~WithCallbackMethod_DoOne() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOne(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerUnaryReactor* DoOne(
-            ::grpc::CallbackServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-            ::viam::component::gizmo::v1::DoOneResponse* /*response*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithCallbackMethod_DoOneClientStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithCallbackMethod_DoOneClientStream() {
-            ::grpc::Service::MarkMethodCallback(
-                1,
-                new ::grpc::internal::CallbackClientStreamingHandler<
-                    ::viam::component::gizmo::v1::DoOneClientStreamRequest,
-                    ::viam::component::gizmo::v1::DoOneClientStreamResponse>(
-                    [this](::grpc::CallbackServerContext* context,
-                           ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) {
-                        return this->DoOneClientStream(context, response);
-                    }));
-        }
-        ~WithCallbackMethod_DoOneClientStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneClientStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReader<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerReadReactor<::viam::component::gizmo::v1::DoOneClientStreamRequest>*
-        DoOneClientStream(::grpc::CallbackServerContext* /*context*/,
-                          ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithCallbackMethod_DoOneServerStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithCallbackMethod_DoOneServerStream() {
-            ::grpc::Service::MarkMethodCallback(
-                2,
-                new ::grpc::internal::CallbackServerStreamingHandler<
-                    ::viam::component::gizmo::v1::DoOneServerStreamRequest,
-                    ::viam::component::gizmo::v1::DoOneServerStreamResponse>(
-                    [this](::grpc::CallbackServerContext* context,
-                           const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request) {
-                        return this->DoOneServerStream(context, request);
-                    }));
-        }
-        ~WithCallbackMethod_DoOneServerStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/,
-            ::grpc::ServerWriter<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerWriteReactor<::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-        DoOneServerStream(
-            ::grpc::CallbackServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithCallbackMethod_DoOneBiDiStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithCallbackMethod_DoOneBiDiStream() {
-            ::grpc::Service::MarkMethodCallback(
-                3,
-                new ::grpc::internal::CallbackBidiHandler<
-                    ::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                    ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>(
-                    [this](::grpc::CallbackServerContext* context) {
-                        return this->DoOneBiDiStream(context);
-                    }));
-        }
-        ~WithCallbackMethod_DoOneBiDiStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneBiDiStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerBidiReactor<::viam::component::gizmo::v1::DoOneBiDiStreamRequest,
-                                          ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>*
-        DoOneBiDiStream(::grpc::CallbackServerContext* /*context*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithCallbackMethod_DoTwo : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithCallbackMethod_DoTwo() {
-            ::grpc::Service::MarkMethodCallback(
-                4,
-                new ::grpc::internal::CallbackUnaryHandler<
-                    ::viam::component::gizmo::v1::DoTwoRequest,
-                    ::viam::component::gizmo::v1::DoTwoResponse>(
-                    [this](::grpc::CallbackServerContext* context,
-                           const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                           ::viam::component::gizmo::v1::DoTwoResponse* response) {
-                        return this->DoTwo(context, request, response);
-                    }));
-        }
-        void SetMessageAllocatorFor_DoTwo(
-            ::grpc::MessageAllocator<::viam::component::gizmo::v1::DoTwoRequest,
-                                     ::viam::component::gizmo::v1::DoTwoResponse>* allocator) {
-            ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-            static_cast<::grpc::internal::CallbackUnaryHandler<
-                ::viam::component::gizmo::v1::DoTwoRequest,
-                ::viam::component::gizmo::v1::DoTwoResponse>*>(handler)
-                ->SetMessageAllocator(allocator);
-        }
-        ~WithCallbackMethod_DoTwo() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerUnaryReactor* DoTwo(
-            ::grpc::CallbackServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-            ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) {
-            return nullptr;
-        }
-    };
-    typedef WithCallbackMethod_DoOne<
-        WithCallbackMethod_DoOneClientStream<WithCallbackMethod_DoOneServerStream<
-            WithCallbackMethod_DoOneBiDiStream<WithCallbackMethod_DoTwo<Service>>>>>
-        CallbackService;
-    typedef CallbackService ExperimentalCallbackService;
-    template <class BaseClass>
-    class WithGenericMethod_DoOne : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithGenericMethod_DoOne() {
-            ::grpc::Service::MarkMethodGeneric(0);
-        }
-        ~WithGenericMethod_DoOne() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOne(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-    };
-    template <class BaseClass>
-    class WithGenericMethod_DoOneClientStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithGenericMethod_DoOneClientStream() {
-            ::grpc::Service::MarkMethodGeneric(1);
-        }
-        ~WithGenericMethod_DoOneClientStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneClientStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReader<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-    };
-    template <class BaseClass>
-    class WithGenericMethod_DoOneServerStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithGenericMethod_DoOneServerStream() {
-            ::grpc::Service::MarkMethodGeneric(2);
-        }
-        ~WithGenericMethod_DoOneServerStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/,
-            ::grpc::ServerWriter<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-    };
-    template <class BaseClass>
-    class WithGenericMethod_DoOneBiDiStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithGenericMethod_DoOneBiDiStream() {
-            ::grpc::Service::MarkMethodGeneric(3);
-        }
-        ~WithGenericMethod_DoOneBiDiStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneBiDiStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-    };
-    template <class BaseClass>
-    class WithGenericMethod_DoTwo : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithGenericMethod_DoTwo() {
-            ::grpc::Service::MarkMethodGeneric(4);
-        }
-        ~WithGenericMethod_DoTwo() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-    };
-    template <class BaseClass>
-    class WithRawMethod_DoOne : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawMethod_DoOne() {
-            ::grpc::Service::MarkMethodRaw(0);
-        }
-        ~WithRawMethod_DoOne() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOne(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOne(::grpc::ServerContext* context,
-                          ::grpc::ByteBuffer* request,
-                          ::grpc::ServerAsyncResponseWriter<::grpc::ByteBuffer>* response,
-                          ::grpc::CompletionQueue* new_call_cq,
-                          ::grpc::ServerCompletionQueue* notification_cq,
-                          void* tag) {
-            ::grpc::Service::RequestAsyncUnary(
-                0, context, request, response, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithRawMethod_DoOneClientStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawMethod_DoOneClientStream() {
-            ::grpc::Service::MarkMethodRaw(1);
-        }
-        ~WithRawMethod_DoOneClientStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneClientStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReader<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOneClientStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerAsyncReader<::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncClientStreaming(
-                1, context, reader, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithRawMethod_DoOneServerStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawMethod_DoOneServerStream() {
-            ::grpc::Service::MarkMethodRaw(2);
-        }
-        ~WithRawMethod_DoOneServerStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/,
-            ::grpc::ServerWriter<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOneServerStream(::grpc::ServerContext* context,
-                                      ::grpc::ByteBuffer* request,
-                                      ::grpc::ServerAsyncWriter<::grpc::ByteBuffer>* writer,
-                                      ::grpc::CompletionQueue* new_call_cq,
-                                      ::grpc::ServerCompletionQueue* notification_cq,
-                                      void* tag) {
-            ::grpc::Service::RequestAsyncServerStreaming(
-                2, context, request, writer, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithRawMethod_DoOneBiDiStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawMethod_DoOneBiDiStream() {
-            ::grpc::Service::MarkMethodRaw(3);
-        }
-        ~WithRawMethod_DoOneBiDiStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneBiDiStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoOneBiDiStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerAsyncReaderWriter<::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream,
-            ::grpc::CompletionQueue* new_call_cq,
-            ::grpc::ServerCompletionQueue* notification_cq,
-            void* tag) {
-            ::grpc::Service::RequestAsyncBidiStreaming(
-                3, context, stream, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithRawMethod_DoTwo : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawMethod_DoTwo() {
-            ::grpc::Service::MarkMethodRaw(4);
-        }
-        ~WithRawMethod_DoTwo() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        void RequestDoTwo(::grpc::ServerContext* context,
-                          ::grpc::ByteBuffer* request,
-                          ::grpc::ServerAsyncResponseWriter<::grpc::ByteBuffer>* response,
-                          ::grpc::CompletionQueue* new_call_cq,
-                          ::grpc::ServerCompletionQueue* notification_cq,
-                          void* tag) {
-            ::grpc::Service::RequestAsyncUnary(
-                4, context, request, response, new_call_cq, notification_cq, tag);
-        }
-    };
-    template <class BaseClass>
-    class WithRawCallbackMethod_DoOne : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawCallbackMethod_DoOne() {
-            ::grpc::Service::MarkMethodRawCallback(
-                0,
-                new ::grpc::internal::CallbackUnaryHandler<::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-                    [this](::grpc::CallbackServerContext* context,
-                           const ::grpc::ByteBuffer* request,
-                           ::grpc::ByteBuffer* response) {
-                        return this->DoOne(context, request, response);
-                    }));
-        }
-        ~WithRawCallbackMethod_DoOne() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOne(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerUnaryReactor* DoOne(::grpc::CallbackServerContext* /*context*/,
-                                                  const ::grpc::ByteBuffer* /*request*/,
-                                                  ::grpc::ByteBuffer* /*response*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithRawCallbackMethod_DoOneClientStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawCallbackMethod_DoOneClientStream() {
-            ::grpc::Service::MarkMethodRawCallback(
-                1,
-                new ::grpc::internal::CallbackClientStreamingHandler<::grpc::ByteBuffer,
-                                                                     ::grpc::ByteBuffer>(
-                    [this](::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) {
-                        return this->DoOneClientStream(context, response);
-                    }));
-        }
-        ~WithRawCallbackMethod_DoOneClientStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneClientStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReader<
-                ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/,
-            ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerReadReactor<::grpc::ByteBuffer>* DoOneClientStream(
-            ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithRawCallbackMethod_DoOneServerStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawCallbackMethod_DoOneServerStream() {
-            ::grpc::Service::MarkMethodRawCallback(
-                2,
-                new ::grpc::internal::CallbackServerStreamingHandler<::grpc::ByteBuffer,
-                                                                     ::grpc::ByteBuffer>(
-                    [this](::grpc::CallbackServerContext* context,
-                           const ::grpc::ByteBuffer* request) {
-                        return this->DoOneServerStream(context, request);
-                    }));
-        }
-        ~WithRawCallbackMethod_DoOneServerStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/,
-            ::grpc::ServerWriter<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerWriteReactor<::grpc::ByteBuffer>* DoOneServerStream(
-            ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithRawCallbackMethod_DoOneBiDiStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawCallbackMethod_DoOneBiDiStream() {
-            ::grpc::Service::MarkMethodRawCallback(
-                3,
-                new ::grpc::internal::CallbackBidiHandler<::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-                    [this](::grpc::CallbackServerContext* context) {
-                        return this->DoOneBiDiStream(context);
-                    }));
-        }
-        ~WithRawCallbackMethod_DoOneBiDiStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoOneBiDiStream(
-            ::grpc::ServerContext* /*context*/,
-            ::grpc::ServerReaderWriter<
-                ::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerBidiReactor<::grpc::ByteBuffer, ::grpc::ByteBuffer>* DoOneBiDiStream(
-            ::grpc::CallbackServerContext* /*context*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithRawCallbackMethod_DoTwo : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithRawCallbackMethod_DoTwo() {
-            ::grpc::Service::MarkMethodRawCallback(
-                4,
-                new ::grpc::internal::CallbackUnaryHandler<::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-                    [this](::grpc::CallbackServerContext* context,
-                           const ::grpc::ByteBuffer* request,
-                           ::grpc::ByteBuffer* response) {
-                        return this->DoTwo(context, request, response);
-                    }));
-        }
-        ~WithRawCallbackMethod_DoTwo() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable synchronous version of this method
-        ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        virtual ::grpc::ServerUnaryReactor* DoTwo(::grpc::CallbackServerContext* /*context*/,
-                                                  const ::grpc::ByteBuffer* /*request*/,
-                                                  ::grpc::ByteBuffer* /*response*/) {
-            return nullptr;
-        }
-    };
-    template <class BaseClass>
-    class WithStreamedUnaryMethod_DoOne : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithStreamedUnaryMethod_DoOne() {
-            ::grpc::Service::MarkMethodStreamed(
-                0,
-                new ::grpc::internal::StreamedUnaryHandler<
-                    ::viam::component::gizmo::v1::DoOneRequest,
-                    ::viam::component::gizmo::v1::DoOneResponse>(
-                    [this](::grpc::ServerContext* context,
-                           ::grpc::ServerUnaryStreamer<::viam::component::gizmo::v1::DoOneRequest,
-                                                       ::viam::component::gizmo::v1::DoOneResponse>*
-                               streamer) { return this->StreamedDoOne(context, streamer); }));
-        }
-        ~WithStreamedUnaryMethod_DoOne() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable regular version of this method
-        ::grpc::Status DoOne(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoOneRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        // replace default version of method with streamed unary
-        virtual ::grpc::Status StreamedDoOne(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerUnaryStreamer<::viam::component::gizmo::v1::DoOneRequest,
-                                        ::viam::component::gizmo::v1::DoOneResponse>*
-                server_unary_streamer) = 0;
-    };
-    template <class BaseClass>
-    class WithStreamedUnaryMethod_DoTwo : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithStreamedUnaryMethod_DoTwo() {
-            ::grpc::Service::MarkMethodStreamed(
-                4,
-                new ::grpc::internal::StreamedUnaryHandler<
-                    ::viam::component::gizmo::v1::DoTwoRequest,
-                    ::viam::component::gizmo::v1::DoTwoResponse>(
-                    [this](::grpc::ServerContext* context,
-                           ::grpc::ServerUnaryStreamer<::viam::component::gizmo::v1::DoTwoRequest,
-                                                       ::viam::component::gizmo::v1::DoTwoResponse>*
-                               streamer) { return this->StreamedDoTwo(context, streamer); }));
-        }
-        ~WithStreamedUnaryMethod_DoTwo() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable regular version of this method
-        ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/,
-                             const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/,
-                             ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        // replace default version of method with streamed unary
-        virtual ::grpc::Status StreamedDoTwo(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerUnaryStreamer<::viam::component::gizmo::v1::DoTwoRequest,
-                                        ::viam::component::gizmo::v1::DoTwoResponse>*
-                server_unary_streamer) = 0;
-    };
-    typedef WithStreamedUnaryMethod_DoOne<WithStreamedUnaryMethod_DoTwo<Service>>
-        StreamedUnaryService;
-    template <class BaseClass>
-    class WithSplitStreamingMethod_DoOneServerStream : public BaseClass {
-       private:
-        void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-
-       public:
-        WithSplitStreamingMethod_DoOneServerStream() {
-            ::grpc::Service::MarkMethodStreamed(
-                2,
-                new ::grpc::internal::SplitServerStreamingHandler<
-                    ::viam::component::gizmo::v1::DoOneServerStreamRequest,
-                    ::viam::component::gizmo::v1::DoOneServerStreamResponse>(
-                    [this](::grpc::ServerContext* context,
-                           ::grpc::ServerSplitStreamer<
-                               ::viam::component::gizmo::v1::DoOneServerStreamRequest,
-                               ::viam::component::gizmo::v1::DoOneServerStreamResponse>* streamer) {
-                        return this->StreamedDoOneServerStream(context, streamer);
-                    }));
-        }
-        ~WithSplitStreamingMethod_DoOneServerStream() override {
-            BaseClassMustBeDerivedFromService(this);
-        }
-        // disable regular version of this method
-        ::grpc::Status DoOneServerStream(
-            ::grpc::ServerContext* /*context*/,
-            const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/,
-            ::grpc::ServerWriter<
-                ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
-            abort();
-            return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-        }
-        // replace default version of method with split streamed
-        virtual ::grpc::Status StreamedDoOneServerStream(
-            ::grpc::ServerContext* context,
-            ::grpc::ServerSplitStreamer<::viam::component::gizmo::v1::DoOneServerStreamRequest,
-                                        ::viam::component::gizmo::v1::DoOneServerStreamResponse>*
-                server_split_streamer) = 0;
-    };
-    typedef WithSplitStreamingMethod_DoOneServerStream<Service> SplitStreamedService;
-    typedef WithStreamedUnaryMethod_DoOne<
-        WithSplitStreamingMethod_DoOneServerStream<WithStreamedUnaryMethod_DoTwo<Service>>>
-        StreamedService;
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status DoOne(::grpc::ServerContext* context, const ::viam::component::gizmo::v1::DoOneRequest* request, ::viam::component::gizmo::v1::DoOneResponse* response);
+    virtual ::grpc::Status DoOneClientStream(::grpc::ServerContext* context, ::grpc::ServerReader< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* reader, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response);
+    virtual ::grpc::Status DoOneServerStream(::grpc::ServerContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* writer);
+    virtual ::grpc::Status DoOneBiDiStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* stream);
+    virtual ::grpc::Status DoTwo(::grpc::ServerContext* context, const ::viam::component::gizmo::v1::DoTwoRequest* request, ::viam::component::gizmo::v1::DoTwoResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DoOne : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoOne() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_DoOne() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOne(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOne(::grpc::ServerContext* context, ::viam::component::gizmo::v1::DoOneRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gizmo::v1::DoOneResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DoOneClientStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoOneClientStream() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_DoOneClientStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneClientStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/, ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOneClientStream(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::viam::component::gizmo::v1::DoOneClientStreamResponse, ::viam::component::gizmo::v1::DoOneClientStreamRequest>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(1, context, reader, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DoOneServerStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoOneServerStream() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_DoOneServerStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneServerStream(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOneServerStream(::grpc::ServerContext* context, ::viam::component::gizmo::v1::DoOneServerStreamRequest* request, ::grpc::ServerAsyncWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(2, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DoOneBiDiStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoOneBiDiStream() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_DoOneBiDiStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneBiDiStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOneBiDiStream(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(3, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DoTwo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DoTwo() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_DoTwo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoTwo(::grpc::ServerContext* context, ::viam::component::gizmo::v1::DoTwoRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gizmo::v1::DoTwoResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_DoOne<WithAsyncMethod_DoOneClientStream<WithAsyncMethod_DoOneServerStream<WithAsyncMethod_DoOneBiDiStream<WithAsyncMethod_DoTwo<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_DoOne : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoOne() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gizmo::v1::DoOneRequest, ::viam::component::gizmo::v1::DoOneResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gizmo::v1::DoOneRequest* request, ::viam::component::gizmo::v1::DoOneResponse* response) { return this->DoOne(context, request, response); }));}
+    void SetMessageAllocatorFor_DoOne(
+        ::grpc::MessageAllocator< ::viam::component::gizmo::v1::DoOneRequest, ::viam::component::gizmo::v1::DoOneResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gizmo::v1::DoOneRequest, ::viam::component::gizmo::v1::DoOneResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DoOne() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOne(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoOne(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DoOneClientStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoOneClientStream() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackClientStreamingHandler< ::viam::component::gizmo::v1::DoOneClientStreamRequest, ::viam::component::gizmo::v1::DoOneClientStreamResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) { return this->DoOneClientStream(context, response); }));
+    }
+    ~WithCallbackMethod_DoOneClientStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneClientStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/, ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerReadReactor< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* DoOneClientStream(
+      ::grpc::CallbackServerContext* /*context*/, ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DoOneServerStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoOneServerStream() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::component::gizmo::v1::DoOneServerStreamRequest, ::viam::component::gizmo::v1::DoOneServerStreamResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request) { return this->DoOneServerStream(context, request); }));
+    }
+    ~WithCallbackMethod_DoOneServerStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneServerStream(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* DoOneServerStream(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DoOneBiDiStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoOneBiDiStream() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackBidiHandler< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->DoOneBiDiStream(context); }));
+    }
+    ~WithCallbackMethod_DoOneBiDiStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneBiDiStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::viam::component::gizmo::v1::DoOneBiDiStreamRequest, ::viam::component::gizmo::v1::DoOneBiDiStreamResponse>* DoOneBiDiStream(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DoTwo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DoTwo() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gizmo::v1::DoTwoRequest, ::viam::component::gizmo::v1::DoTwoResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gizmo::v1::DoTwoRequest* request, ::viam::component::gizmo::v1::DoTwoResponse* response) { return this->DoTwo(context, request, response); }));}
+    void SetMessageAllocatorFor_DoTwo(
+        ::grpc::MessageAllocator< ::viam::component::gizmo::v1::DoTwoRequest, ::viam::component::gizmo::v1::DoTwoResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gizmo::v1::DoTwoRequest, ::viam::component::gizmo::v1::DoTwoResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DoTwo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoTwo(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_DoOne<WithCallbackMethod_DoOneClientStream<WithCallbackMethod_DoOneServerStream<WithCallbackMethod_DoOneBiDiStream<WithCallbackMethod_DoTwo<Service > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_DoOne : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoOne() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_DoOne() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOne(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DoOneClientStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoOneClientStream() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_DoOneClientStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneClientStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/, ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DoOneServerStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoOneServerStream() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_DoOneServerStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneServerStream(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DoOneBiDiStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoOneBiDiStream() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_DoOneBiDiStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneBiDiStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DoTwo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DoTwo() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_DoTwo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoOne : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoOne() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_DoOne() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOne(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOne(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoOneClientStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoOneClientStream() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_DoOneClientStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneClientStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/, ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOneClientStream(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(1, context, reader, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoOneServerStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoOneServerStream() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_DoOneServerStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneServerStream(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOneServerStream(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(2, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoOneBiDiStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoOneBiDiStream() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_DoOneBiDiStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneBiDiStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoOneBiDiStream(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(3, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DoTwo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DoTwo() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_DoTwo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDoTwo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DoOne : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoOne() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoOne(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DoOne() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOne(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoOne(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DoOneClientStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoOneClientStream() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) { return this->DoOneClientStream(context, response); }));
+    }
+    ~WithRawCallbackMethod_DoOneClientStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneClientStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::viam::component::gizmo::v1::DoOneClientStreamRequest>* /*reader*/, ::viam::component::gizmo::v1::DoOneClientStreamResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerReadReactor< ::grpc::ByteBuffer>* DoOneClientStream(
+      ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DoOneServerStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoOneServerStream() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->DoOneServerStream(context, request); }));
+    }
+    ~WithRawCallbackMethod_DoOneServerStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneServerStream(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* DoOneServerStream(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DoOneBiDiStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoOneBiDiStream() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context) { return this->DoOneBiDiStream(context); }));
+    }
+    ~WithRawCallbackMethod_DoOneBiDiStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoOneBiDiStream(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::component::gizmo::v1::DoOneBiDiStreamResponse, ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* DoOneBiDiStream(
+      ::grpc::CallbackServerContext* /*context*/)
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DoTwo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DoTwo() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoTwo(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DoTwo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DoTwo(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DoOne : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DoOne() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gizmo::v1::DoOneRequest, ::viam::component::gizmo::v1::DoOneResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gizmo::v1::DoOneRequest, ::viam::component::gizmo::v1::DoOneResponse>* streamer) {
+                       return this->StreamedDoOne(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DoOne() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DoOne(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneRequest* /*request*/, ::viam::component::gizmo::v1::DoOneResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDoOne(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gizmo::v1::DoOneRequest,::viam::component::gizmo::v1::DoOneResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DoTwo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DoTwo() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gizmo::v1::DoTwoRequest, ::viam::component::gizmo::v1::DoTwoResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gizmo::v1::DoTwoRequest, ::viam::component::gizmo::v1::DoTwoResponse>* streamer) {
+                       return this->StreamedDoTwo(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DoTwo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DoTwo(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoTwoRequest* /*request*/, ::viam::component::gizmo::v1::DoTwoResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDoTwo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gizmo::v1::DoTwoRequest,::viam::component::gizmo::v1::DoTwoResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_DoOne<WithStreamedUnaryMethod_DoTwo<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithSplitStreamingMethod_DoOneServerStream : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_DoOneServerStream() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::viam::component::gizmo::v1::DoOneServerStreamRequest, ::viam::component::gizmo::v1::DoOneServerStreamResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::viam::component::gizmo::v1::DoOneServerStreamRequest, ::viam::component::gizmo::v1::DoOneServerStreamResponse>* streamer) {
+                       return this->StreamedDoOneServerStream(context,
+                         streamer);
+                  }));
+    }
+    ~WithSplitStreamingMethod_DoOneServerStream() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DoOneServerStream(::grpc::ServerContext* /*context*/, const ::viam::component::gizmo::v1::DoOneServerStreamRequest* /*request*/, ::grpc::ServerWriter< ::viam::component::gizmo::v1::DoOneServerStreamResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedDoOneServerStream(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::component::gizmo::v1::DoOneServerStreamRequest,::viam::component::gizmo::v1::DoOneServerStreamResponse>* server_split_streamer) = 0;
+  };
+  typedef WithSplitStreamingMethod_DoOneServerStream<Service > SplitStreamedService;
+  typedef WithStreamedUnaryMethod_DoOne<WithSplitStreamingMethod_DoOneServerStream<WithStreamedUnaryMethod_DoTwo<Service > > > StreamedService;
 };
 
 }  // namespace v1
 }  // namespace gizmo
 }  // namespace component
 }  // namespace viam
+
 
 #endif  // GRPC_gizmo_2eproto__INCLUDED

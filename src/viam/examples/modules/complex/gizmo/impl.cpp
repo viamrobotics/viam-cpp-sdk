@@ -64,7 +64,8 @@ std::vector<bool> MyGizmo::do_one_bidi_stream(std::vector<std::string> arg1) {
     }
     return resp;
 }
-std::string do_two(bool arg1) {
+
+std::string MyGizmo::do_two(bool arg1) {
     std::string arg1_string = arg1 ? "true" : "false";
     return "arg1=" + arg1_string;
 }

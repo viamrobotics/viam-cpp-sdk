@@ -20,19 +20,19 @@
 #error "incompatible with your Protocol Buffer headers. Please"
 #error "regenerate this file with a newer version of protoc."
 #endif  // PROTOBUF_MIN_PROTOC_VERSION
-#include "google/api/annotations.pb.h"
+#include "google/protobuf/port_undef.inc"
+#include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/generated_message_reflection.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/message.h"
 #include "google/protobuf/metadata_lite.h"
-#include "google/protobuf/port_undef.inc"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
+#include "google/protobuf/extension_set.h"  // IWYU pragma: export
 #include "google/protobuf/unknown_field_set.h"
+#include "google/api/annotations.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -50,9 +50,10 @@ class AnyMetadata;
 
 // Internal implementation detail -- do not use these members.
 struct TableStruct_gizmo_2eproto {
-    static const ::uint32_t offsets[];
+  static const ::uint32_t offsets[];
 };
-extern const ::google::protobuf::internal::DescriptorTable descriptor_table_gizmo_2eproto;
+extern const ::google::protobuf::internal::DescriptorTable
+    descriptor_table_gizmo_2eproto;
 namespace viam {
 namespace component {
 namespace gizmo {
@@ -92,7 +93,8 @@ extern DoTwoResponseDefaultTypeInternal _DoTwoResponse_default_instance_;
 }  // namespace component
 }  // namespace viam
 namespace google {
-namespace protobuf {}  // namespace protobuf
+namespace protobuf {
+}  // namespace protobuf
 }  // namespace google
 
 namespace viam {
@@ -102,1827 +104,1716 @@ namespace v1 {
 
 // ===================================================================
 
+
 // -------------------------------------------------------------------
 
-class DoOneRequest final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneRequest)
-                                                               */
-{
-   public:
-    inline DoOneRequest() : DoOneRequest(nullptr) {}
-    ~DoOneRequest() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneRequest(::google::protobuf::internal::ConstantInitialized);
-
-    DoOneRequest(const DoOneRequest& from);
-    DoOneRequest(DoOneRequest&& from) noexcept : DoOneRequest() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneRequest& operator=(const DoOneRequest& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneRequest& operator=(DoOneRequest&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneRequest& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneRequest* internal_default_instance() {
-        return reinterpret_cast<const DoOneRequest*>(&_DoOneRequest_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 0;
-
-    friend void swap(DoOneRequest& a, DoOneRequest& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneRequest* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneRequest* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneRequest>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneRequest& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneRequest& from) {
-        DoOneRequest::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneRequest* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneRequest";
-    }
-
-   protected:
-    explicit DoOneRequest(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kNameFieldNumber = 1,
-        kArg1FieldNumber = 2,
-    };
-    // string name = 1 [json_name = "name"];
-    void clear_name();
-    const std::string& name() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_name(Arg_&& arg, Args_... args);
-    std::string* mutable_name();
-    PROTOBUF_NODISCARD std::string* release_name();
-    void set_allocated_name(std::string* ptr);
-
-   private:
-    const std::string& _internal_name() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-    std::string* _internal_mutable_name();
-
-   public:
-    // string arg1 = 2 [json_name = "arg1"];
-    void clear_arg1();
-    const std::string& arg1() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_arg1(Arg_&& arg, Args_... args);
-    std::string* mutable_arg1();
-    PROTOBUF_NODISCARD std::string* release_arg1();
-    void set_allocated_arg1(std::string* ptr);
-
-   private:
-    const std::string& _internal_arg1() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(const std::string& value);
-    std::string* _internal_mutable_arg1();
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneRequest)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 53, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        ::google::protobuf::internal::ArenaStringPtr name_;
-        ::google::protobuf::internal::ArenaStringPtr arg1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneResponse final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneResponse)
-                                                                */
-{
-   public:
-    inline DoOneResponse() : DoOneResponse(nullptr) {}
-    ~DoOneResponse() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneResponse(::google::protobuf::internal::ConstantInitialized);
-
-    DoOneResponse(const DoOneResponse& from);
-    DoOneResponse(DoOneResponse&& from) noexcept : DoOneResponse() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneResponse& operator=(const DoOneResponse& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneResponse& operator=(DoOneResponse&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneResponse& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneResponse* internal_default_instance() {
-        return reinterpret_cast<const DoOneResponse*>(&_DoOneResponse_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 1;
-
-    friend void swap(DoOneResponse& a, DoOneResponse& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneResponse* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneResponse* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneResponse>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneResponse& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneResponse& from) {
-        DoOneResponse::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneResponse* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneResponse";
-    }
-
-   protected:
-    explicit DoOneResponse(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kRet1FieldNumber = 1,
-    };
-    // bool ret1 = 1 [json_name = "ret1"];
-    void clear_ret1();
-    bool ret1() const;
-    void set_ret1(bool value);
-
-   private:
-    bool _internal_ret1() const;
-    void _internal_set_ret1(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneResponse)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        bool ret1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneServerStreamRequest final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneServerStreamRequest)
-                                                                           */
-{
-   public:
-    inline DoOneServerStreamRequest() : DoOneServerStreamRequest(nullptr) {}
-    ~DoOneServerStreamRequest() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneServerStreamRequest(
-        ::google::protobuf::internal::ConstantInitialized);
-
-    DoOneServerStreamRequest(const DoOneServerStreamRequest& from);
-    DoOneServerStreamRequest(DoOneServerStreamRequest&& from) noexcept
-        : DoOneServerStreamRequest() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneServerStreamRequest& operator=(const DoOneServerStreamRequest& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneServerStreamRequest& operator=(DoOneServerStreamRequest&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneServerStreamRequest& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneServerStreamRequest* internal_default_instance() {
-        return reinterpret_cast<const DoOneServerStreamRequest*>(
-            &_DoOneServerStreamRequest_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 2;
-
-    friend void swap(DoOneServerStreamRequest& a, DoOneServerStreamRequest& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneServerStreamRequest* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneServerStreamRequest* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneServerStreamRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneServerStreamRequest>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneServerStreamRequest& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneServerStreamRequest& from) {
-        DoOneServerStreamRequest::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneServerStreamRequest* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneServerStreamRequest";
-    }
-
-   protected:
-    explicit DoOneServerStreamRequest(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kNameFieldNumber = 1,
-        kArg1FieldNumber = 2,
-    };
-    // string name = 1 [json_name = "name"];
-    void clear_name();
-    const std::string& name() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_name(Arg_&& arg, Args_... args);
-    std::string* mutable_name();
-    PROTOBUF_NODISCARD std::string* release_name();
-    void set_allocated_name(std::string* ptr);
-
-   private:
-    const std::string& _internal_name() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-    std::string* _internal_mutable_name();
-
-   public:
-    // string arg1 = 2 [json_name = "arg1"];
-    void clear_arg1();
-    const std::string& arg1() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_arg1(Arg_&& arg, Args_... args);
-    std::string* mutable_arg1();
-    PROTOBUF_NODISCARD std::string* release_arg1();
-    void set_allocated_arg1(std::string* ptr);
-
-   private:
-    const std::string& _internal_arg1() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(const std::string& value);
-    std::string* _internal_mutable_arg1();
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneServerStreamRequest)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 65, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        ::google::protobuf::internal::ArenaStringPtr name_;
-        ::google::protobuf::internal::ArenaStringPtr arg1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneServerStreamResponse final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneServerStreamResponse)
-                                                                            */
-{
-   public:
-    inline DoOneServerStreamResponse() : DoOneServerStreamResponse(nullptr) {}
-    ~DoOneServerStreamResponse() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneServerStreamResponse(
-        ::google::protobuf::internal::ConstantInitialized);
-
-    DoOneServerStreamResponse(const DoOneServerStreamResponse& from);
-    DoOneServerStreamResponse(DoOneServerStreamResponse&& from) noexcept
-        : DoOneServerStreamResponse() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneServerStreamResponse& operator=(const DoOneServerStreamResponse& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneServerStreamResponse& operator=(DoOneServerStreamResponse&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneServerStreamResponse& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneServerStreamResponse* internal_default_instance() {
-        return reinterpret_cast<const DoOneServerStreamResponse*>(
-            &_DoOneServerStreamResponse_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 3;
-
-    friend void swap(DoOneServerStreamResponse& a, DoOneServerStreamResponse& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneServerStreamResponse* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneServerStreamResponse* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneServerStreamResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneServerStreamResponse>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneServerStreamResponse& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneServerStreamResponse& from) {
-        DoOneServerStreamResponse::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneServerStreamResponse* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneServerStreamResponse";
-    }
-
-   protected:
-    explicit DoOneServerStreamResponse(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kRet1FieldNumber = 1,
-    };
-    // bool ret1 = 1 [json_name = "ret1"];
-    void clear_ret1();
-    bool ret1() const;
-    void set_ret1(bool value);
-
-   private:
-    bool _internal_ret1() const;
-    void _internal_set_ret1(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneServerStreamResponse)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        bool ret1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneClientStreamRequest final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneClientStreamRequest)
-                                                                           */
-{
-   public:
-    inline DoOneClientStreamRequest() : DoOneClientStreamRequest(nullptr) {}
-    ~DoOneClientStreamRequest() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneClientStreamRequest(
-        ::google::protobuf::internal::ConstantInitialized);
-
-    DoOneClientStreamRequest(const DoOneClientStreamRequest& from);
-    DoOneClientStreamRequest(DoOneClientStreamRequest&& from) noexcept
-        : DoOneClientStreamRequest() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneClientStreamRequest& operator=(const DoOneClientStreamRequest& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneClientStreamRequest& operator=(DoOneClientStreamRequest&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneClientStreamRequest& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneClientStreamRequest* internal_default_instance() {
-        return reinterpret_cast<const DoOneClientStreamRequest*>(
-            &_DoOneClientStreamRequest_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 4;
-
-    friend void swap(DoOneClientStreamRequest& a, DoOneClientStreamRequest& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneClientStreamRequest* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneClientStreamRequest* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneClientStreamRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneClientStreamRequest>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneClientStreamRequest& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneClientStreamRequest& from) {
-        DoOneClientStreamRequest::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneClientStreamRequest* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneClientStreamRequest";
-    }
-
-   protected:
-    explicit DoOneClientStreamRequest(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kNameFieldNumber = 1,
-        kArg1FieldNumber = 2,
-    };
-    // string name = 1 [json_name = "name"];
-    void clear_name();
-    const std::string& name() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_name(Arg_&& arg, Args_... args);
-    std::string* mutable_name();
-    PROTOBUF_NODISCARD std::string* release_name();
-    void set_allocated_name(std::string* ptr);
-
-   private:
-    const std::string& _internal_name() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-    std::string* _internal_mutable_name();
-
-   public:
-    // string arg1 = 2 [json_name = "arg1"];
-    void clear_arg1();
-    const std::string& arg1() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_arg1(Arg_&& arg, Args_... args);
-    std::string* mutable_arg1();
-    PROTOBUF_NODISCARD std::string* release_arg1();
-    void set_allocated_arg1(std::string* ptr);
-
-   private:
-    const std::string& _internal_arg1() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(const std::string& value);
-    std::string* _internal_mutable_arg1();
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneClientStreamRequest)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 65, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        ::google::protobuf::internal::ArenaStringPtr name_;
-        ::google::protobuf::internal::ArenaStringPtr arg1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneClientStreamResponse final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneClientStreamResponse)
-                                                                            */
-{
-   public:
-    inline DoOneClientStreamResponse() : DoOneClientStreamResponse(nullptr) {}
-    ~DoOneClientStreamResponse() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneClientStreamResponse(
-        ::google::protobuf::internal::ConstantInitialized);
-
-    DoOneClientStreamResponse(const DoOneClientStreamResponse& from);
-    DoOneClientStreamResponse(DoOneClientStreamResponse&& from) noexcept
-        : DoOneClientStreamResponse() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneClientStreamResponse& operator=(const DoOneClientStreamResponse& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneClientStreamResponse& operator=(DoOneClientStreamResponse&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneClientStreamResponse& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneClientStreamResponse* internal_default_instance() {
-        return reinterpret_cast<const DoOneClientStreamResponse*>(
-            &_DoOneClientStreamResponse_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 5;
-
-    friend void swap(DoOneClientStreamResponse& a, DoOneClientStreamResponse& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneClientStreamResponse* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneClientStreamResponse* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneClientStreamResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneClientStreamResponse>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneClientStreamResponse& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneClientStreamResponse& from) {
-        DoOneClientStreamResponse::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneClientStreamResponse* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneClientStreamResponse";
-    }
-
-   protected:
-    explicit DoOneClientStreamResponse(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kRet1FieldNumber = 1,
-    };
-    // bool ret1 = 1 [json_name = "ret1"];
-    void clear_ret1();
-    bool ret1() const;
-    void set_ret1(bool value);
-
-   private:
-    bool _internal_ret1() const;
-    void _internal_set_ret1(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneClientStreamResponse)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        bool ret1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneBiDiStreamRequest final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneBiDiStreamRequest)
-                                                                         */
-{
-   public:
-    inline DoOneBiDiStreamRequest() : DoOneBiDiStreamRequest(nullptr) {}
-    ~DoOneBiDiStreamRequest() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneBiDiStreamRequest(
-        ::google::protobuf::internal::ConstantInitialized);
-
-    DoOneBiDiStreamRequest(const DoOneBiDiStreamRequest& from);
-    DoOneBiDiStreamRequest(DoOneBiDiStreamRequest&& from) noexcept : DoOneBiDiStreamRequest() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneBiDiStreamRequest& operator=(const DoOneBiDiStreamRequest& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneBiDiStreamRequest& operator=(DoOneBiDiStreamRequest&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneBiDiStreamRequest& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneBiDiStreamRequest* internal_default_instance() {
-        return reinterpret_cast<const DoOneBiDiStreamRequest*>(
-            &_DoOneBiDiStreamRequest_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 6;
-
-    friend void swap(DoOneBiDiStreamRequest& a, DoOneBiDiStreamRequest& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneBiDiStreamRequest* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneBiDiStreamRequest* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneBiDiStreamRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneBiDiStreamRequest>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneBiDiStreamRequest& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneBiDiStreamRequest& from) {
-        DoOneBiDiStreamRequest::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneBiDiStreamRequest* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneBiDiStreamRequest";
-    }
-
-   protected:
-    explicit DoOneBiDiStreamRequest(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kNameFieldNumber = 1,
-        kArg1FieldNumber = 2,
-    };
-    // string name = 1 [json_name = "name"];
-    void clear_name();
-    const std::string& name() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_name(Arg_&& arg, Args_... args);
-    std::string* mutable_name();
-    PROTOBUF_NODISCARD std::string* release_name();
-    void set_allocated_name(std::string* ptr);
-
-   private:
-    const std::string& _internal_name() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-    std::string* _internal_mutable_name();
-
-   public:
-    // string arg1 = 2 [json_name = "arg1"];
-    void clear_arg1();
-    const std::string& arg1() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_arg1(Arg_&& arg, Args_... args);
-    std::string* mutable_arg1();
-    PROTOBUF_NODISCARD std::string* release_arg1();
-    void set_allocated_arg1(std::string* ptr);
-
-   private:
-    const std::string& _internal_arg1() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(const std::string& value);
-    std::string* _internal_mutable_arg1();
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneBiDiStreamRequest)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 63, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        ::google::protobuf::internal::ArenaStringPtr name_;
-        ::google::protobuf::internal::ArenaStringPtr arg1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoOneBiDiStreamResponse final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneBiDiStreamResponse)
-                                                                          */
-{
-   public:
-    inline DoOneBiDiStreamResponse() : DoOneBiDiStreamResponse(nullptr) {}
-    ~DoOneBiDiStreamResponse() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoOneBiDiStreamResponse(
-        ::google::protobuf::internal::ConstantInitialized);
-
-    DoOneBiDiStreamResponse(const DoOneBiDiStreamResponse& from);
-    DoOneBiDiStreamResponse(DoOneBiDiStreamResponse&& from) noexcept : DoOneBiDiStreamResponse() {
-        *this = ::std::move(from);
-    }
-
-    inline DoOneBiDiStreamResponse& operator=(const DoOneBiDiStreamResponse& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoOneBiDiStreamResponse& operator=(DoOneBiDiStreamResponse&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoOneBiDiStreamResponse& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoOneBiDiStreamResponse* internal_default_instance() {
-        return reinterpret_cast<const DoOneBiDiStreamResponse*>(
-            &_DoOneBiDiStreamResponse_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 7;
-
-    friend void swap(DoOneBiDiStreamResponse& a, DoOneBiDiStreamResponse& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoOneBiDiStreamResponse* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoOneBiDiStreamResponse* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoOneBiDiStreamResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoOneBiDiStreamResponse>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoOneBiDiStreamResponse& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoOneBiDiStreamResponse& from) {
-        DoOneBiDiStreamResponse::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoOneBiDiStreamResponse* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoOneBiDiStreamResponse";
-    }
-
-   protected:
-    explicit DoOneBiDiStreamResponse(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kRet1FieldNumber = 1,
-    };
-    // bool ret1 = 1 [json_name = "ret1"];
-    void clear_ret1();
-    bool ret1() const;
-    void set_ret1(bool value);
-
-   private:
-    bool _internal_ret1() const;
-    void _internal_set_ret1(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneBiDiStreamResponse)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        bool ret1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoTwoRequest final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoTwoRequest)
-                                                               */
-{
-   public:
-    inline DoTwoRequest() : DoTwoRequest(nullptr) {}
-    ~DoTwoRequest() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoTwoRequest(::google::protobuf::internal::ConstantInitialized);
-
-    DoTwoRequest(const DoTwoRequest& from);
-    DoTwoRequest(DoTwoRequest&& from) noexcept : DoTwoRequest() {
-        *this = ::std::move(from);
-    }
-
-    inline DoTwoRequest& operator=(const DoTwoRequest& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoTwoRequest& operator=(DoTwoRequest&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoTwoRequest& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoTwoRequest* internal_default_instance() {
-        return reinterpret_cast<const DoTwoRequest*>(&_DoTwoRequest_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 8;
-
-    friend void swap(DoTwoRequest& a, DoTwoRequest& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoTwoRequest* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoTwoRequest* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoTwoRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoTwoRequest>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoTwoRequest& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoTwoRequest& from) {
-        DoTwoRequest::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoTwoRequest* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoTwoRequest";
-    }
-
-   protected:
-    explicit DoTwoRequest(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kNameFieldNumber = 1,
-        kArg1FieldNumber = 2,
-    };
-    // string name = 1 [json_name = "name"];
-    void clear_name();
-    const std::string& name() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_name(Arg_&& arg, Args_... args);
-    std::string* mutable_name();
-    PROTOBUF_NODISCARD std::string* release_name();
-    void set_allocated_name(std::string* ptr);
-
-   private:
-    const std::string& _internal_name() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-    std::string* _internal_mutable_name();
-
-   public:
-    // bool arg1 = 2 [json_name = "arg1"];
-    void clear_arg1();
-    bool arg1() const;
-    void set_arg1(bool value);
-
-   private:
-    bool _internal_arg1() const;
-    void _internal_set_arg1(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoTwoRequest)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 49, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        ::google::protobuf::internal::ArenaStringPtr name_;
-        bool arg1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
-};  // -------------------------------------------------------------------
-
-class DoTwoResponse final : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoTwoResponse)
-                                                                */
-{
-   public:
-    inline DoTwoResponse() : DoTwoResponse(nullptr) {}
-    ~DoTwoResponse() override;
-    template <typename = void>
-    explicit PROTOBUF_CONSTEXPR DoTwoResponse(::google::protobuf::internal::ConstantInitialized);
-
-    DoTwoResponse(const DoTwoResponse& from);
-    DoTwoResponse(DoTwoResponse&& from) noexcept : DoTwoResponse() {
-        *this = ::std::move(from);
-    }
-
-    inline DoTwoResponse& operator=(const DoTwoResponse& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline DoTwoResponse& operator=(DoTwoResponse&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-        return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(
-            ::google::protobuf::UnknownFieldSet::default_instance);
-    }
-    inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-    }
-
-    static const ::google::protobuf::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::google::protobuf::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::google::protobuf::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const DoTwoResponse& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const DoTwoResponse* internal_default_instance() {
-        return reinterpret_cast<const DoTwoResponse*>(&_DoTwoResponse_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 9;
-
-    friend void swap(DoTwoResponse& a, DoTwoResponse& b) {
-        a.Swap(&b);
-    }
-    inline void Swap(DoTwoResponse* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr && GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::google::protobuf::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(DoTwoResponse* other) {
-        if (other == this)
-            return;
-        ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    DoTwoResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<DoTwoResponse>(arena);
-    }
-    using ::google::protobuf::Message::CopyFrom;
-    void CopyFrom(const DoTwoResponse& from);
-    using ::google::protobuf::Message::MergeFrom;
-    void MergeFrom(const DoTwoResponse& from) {
-        DoTwoResponse::MergeImpl(*this, from);
-    }
-
-   private:
-    static void MergeImpl(::google::protobuf::Message& to_msg,
-                          const ::google::protobuf::Message& from_msg);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    ::size_t ByteSizeLong() const final;
-    const char* _InternalParse(const char* ptr,
-                               ::google::protobuf::internal::ParseContext* ctx) final;
-    ::uint8_t* _InternalSerialize(::uint8_t* target,
-                                  ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final {
-        return _impl_._cached_size_.Get();
-    }
-
-   private:
-    void SharedCtor(::google::protobuf::Arena* arena);
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(DoTwoResponse* other);
-
-   private:
-    friend class ::google::protobuf::internal::AnyMetadata;
-    static ::absl::string_view FullMessageName() {
-        return "viam.component.gizmo.v1.DoTwoResponse";
-    }
-
-   protected:
-    explicit DoTwoResponse(::google::protobuf::Arena* arena);
-
-   public:
-    static const ClassData _class_data_;
-    const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
-    ::google::protobuf::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kRet1FieldNumber = 1,
-    };
-    // string ret1 = 1 [json_name = "ret1"];
-    void clear_ret1();
-    const std::string& ret1() const;
-    template <typename Arg_ = const std::string&, typename... Args_>
-    void set_ret1(Arg_&& arg, Args_... args);
-    std::string* mutable_ret1();
-    PROTOBUF_NODISCARD std::string* release_ret1();
-    void set_allocated_ret1(std::string* ptr);
-
-   private:
-    const std::string& _internal_ret1() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_ret1(const std::string& value);
-    std::string* _internal_mutable_ret1();
-
-   public:
-    // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoTwoResponse)
-   private:
-    class _Internal;
-
-    friend class ::google::protobuf::internal::TcParser;
-    static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 50, 2> _table_;
-    template <typename T>
-    friend class ::google::protobuf::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    struct Impl_ {
-        ::google::protobuf::internal::ArenaStringPtr ret1_;
-        mutable ::google::protobuf::internal::CachedSize _cached_size_;
-        PROTOBUF_TSAN_DECLARE_MEMBER;
-    };
-    union {
-        Impl_ _impl_;
-    };
-    friend struct ::TableStruct_gizmo_2eproto;
+class DoOneRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneRequest) */ {
+ public:
+  inline DoOneRequest() : DoOneRequest(nullptr) {}
+  ~DoOneRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneRequest(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneRequest(const DoOneRequest& from);
+  DoOneRequest(DoOneRequest&& from) noexcept
+    : DoOneRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneRequest& operator=(const DoOneRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneRequest& operator=(DoOneRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneRequest* internal_default_instance() {
+    return reinterpret_cast<const DoOneRequest*>(
+               &_DoOneRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(DoOneRequest& a, DoOneRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneRequest& from) {
+    DoOneRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneRequest";
+  }
+  protected:
+  explicit DoOneRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kArg1FieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string arg1 = 2 [json_name = "arg1"];
+  void clear_arg1() ;
+  const std::string& arg1() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_arg1(Arg_&& arg, Args_... args);
+  std::string* mutable_arg1();
+  PROTOBUF_NODISCARD std::string* release_arg1();
+  void set_allocated_arg1(std::string* ptr);
+
+  private:
+  const std::string& _internal_arg1() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(
+      const std::string& value);
+  std::string* _internal_mutable_arg1();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 53, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr arg1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneResponse) */ {
+ public:
+  inline DoOneResponse() : DoOneResponse(nullptr) {}
+  ~DoOneResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneResponse(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneResponse(const DoOneResponse& from);
+  DoOneResponse(DoOneResponse&& from) noexcept
+    : DoOneResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneResponse& operator=(const DoOneResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneResponse& operator=(DoOneResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneResponse* internal_default_instance() {
+    return reinterpret_cast<const DoOneResponse*>(
+               &_DoOneResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(DoOneResponse& a, DoOneResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneResponse& from) {
+    DoOneResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneResponse";
+  }
+  protected:
+  explicit DoOneResponse(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRet1FieldNumber = 1,
+  };
+  // bool ret1 = 1 [json_name = "ret1"];
+  void clear_ret1() ;
+  bool ret1() const;
+  void set_ret1(bool value);
+
+  private:
+  bool _internal_ret1() const;
+  void _internal_set_ret1(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    bool ret1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneServerStreamRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneServerStreamRequest) */ {
+ public:
+  inline DoOneServerStreamRequest() : DoOneServerStreamRequest(nullptr) {}
+  ~DoOneServerStreamRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneServerStreamRequest(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneServerStreamRequest(const DoOneServerStreamRequest& from);
+  DoOneServerStreamRequest(DoOneServerStreamRequest&& from) noexcept
+    : DoOneServerStreamRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneServerStreamRequest& operator=(const DoOneServerStreamRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneServerStreamRequest& operator=(DoOneServerStreamRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneServerStreamRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneServerStreamRequest* internal_default_instance() {
+    return reinterpret_cast<const DoOneServerStreamRequest*>(
+               &_DoOneServerStreamRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(DoOneServerStreamRequest& a, DoOneServerStreamRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneServerStreamRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneServerStreamRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneServerStreamRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneServerStreamRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneServerStreamRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneServerStreamRequest& from) {
+    DoOneServerStreamRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneServerStreamRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneServerStreamRequest";
+  }
+  protected:
+  explicit DoOneServerStreamRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kArg1FieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string arg1 = 2 [json_name = "arg1"];
+  void clear_arg1() ;
+  const std::string& arg1() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_arg1(Arg_&& arg, Args_... args);
+  std::string* mutable_arg1();
+  PROTOBUF_NODISCARD std::string* release_arg1();
+  void set_allocated_arg1(std::string* ptr);
+
+  private:
+  const std::string& _internal_arg1() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(
+      const std::string& value);
+  std::string* _internal_mutable_arg1();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneServerStreamRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 65, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr arg1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneServerStreamResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneServerStreamResponse) */ {
+ public:
+  inline DoOneServerStreamResponse() : DoOneServerStreamResponse(nullptr) {}
+  ~DoOneServerStreamResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneServerStreamResponse(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneServerStreamResponse(const DoOneServerStreamResponse& from);
+  DoOneServerStreamResponse(DoOneServerStreamResponse&& from) noexcept
+    : DoOneServerStreamResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneServerStreamResponse& operator=(const DoOneServerStreamResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneServerStreamResponse& operator=(DoOneServerStreamResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneServerStreamResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneServerStreamResponse* internal_default_instance() {
+    return reinterpret_cast<const DoOneServerStreamResponse*>(
+               &_DoOneServerStreamResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(DoOneServerStreamResponse& a, DoOneServerStreamResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneServerStreamResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneServerStreamResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneServerStreamResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneServerStreamResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneServerStreamResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneServerStreamResponse& from) {
+    DoOneServerStreamResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneServerStreamResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneServerStreamResponse";
+  }
+  protected:
+  explicit DoOneServerStreamResponse(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRet1FieldNumber = 1,
+  };
+  // bool ret1 = 1 [json_name = "ret1"];
+  void clear_ret1() ;
+  bool ret1() const;
+  void set_ret1(bool value);
+
+  private:
+  bool _internal_ret1() const;
+  void _internal_set_ret1(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneServerStreamResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    bool ret1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneClientStreamRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneClientStreamRequest) */ {
+ public:
+  inline DoOneClientStreamRequest() : DoOneClientStreamRequest(nullptr) {}
+  ~DoOneClientStreamRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneClientStreamRequest(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneClientStreamRequest(const DoOneClientStreamRequest& from);
+  DoOneClientStreamRequest(DoOneClientStreamRequest&& from) noexcept
+    : DoOneClientStreamRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneClientStreamRequest& operator=(const DoOneClientStreamRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneClientStreamRequest& operator=(DoOneClientStreamRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneClientStreamRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneClientStreamRequest* internal_default_instance() {
+    return reinterpret_cast<const DoOneClientStreamRequest*>(
+               &_DoOneClientStreamRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(DoOneClientStreamRequest& a, DoOneClientStreamRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneClientStreamRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneClientStreamRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneClientStreamRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneClientStreamRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneClientStreamRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneClientStreamRequest& from) {
+    DoOneClientStreamRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneClientStreamRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneClientStreamRequest";
+  }
+  protected:
+  explicit DoOneClientStreamRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kArg1FieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string arg1 = 2 [json_name = "arg1"];
+  void clear_arg1() ;
+  const std::string& arg1() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_arg1(Arg_&& arg, Args_... args);
+  std::string* mutable_arg1();
+  PROTOBUF_NODISCARD std::string* release_arg1();
+  void set_allocated_arg1(std::string* ptr);
+
+  private:
+  const std::string& _internal_arg1() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(
+      const std::string& value);
+  std::string* _internal_mutable_arg1();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneClientStreamRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 65, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr arg1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneClientStreamResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneClientStreamResponse) */ {
+ public:
+  inline DoOneClientStreamResponse() : DoOneClientStreamResponse(nullptr) {}
+  ~DoOneClientStreamResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneClientStreamResponse(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneClientStreamResponse(const DoOneClientStreamResponse& from);
+  DoOneClientStreamResponse(DoOneClientStreamResponse&& from) noexcept
+    : DoOneClientStreamResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneClientStreamResponse& operator=(const DoOneClientStreamResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneClientStreamResponse& operator=(DoOneClientStreamResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneClientStreamResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneClientStreamResponse* internal_default_instance() {
+    return reinterpret_cast<const DoOneClientStreamResponse*>(
+               &_DoOneClientStreamResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(DoOneClientStreamResponse& a, DoOneClientStreamResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneClientStreamResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneClientStreamResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneClientStreamResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneClientStreamResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneClientStreamResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneClientStreamResponse& from) {
+    DoOneClientStreamResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneClientStreamResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneClientStreamResponse";
+  }
+  protected:
+  explicit DoOneClientStreamResponse(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRet1FieldNumber = 1,
+  };
+  // bool ret1 = 1 [json_name = "ret1"];
+  void clear_ret1() ;
+  bool ret1() const;
+  void set_ret1(bool value);
+
+  private:
+  bool _internal_ret1() const;
+  void _internal_set_ret1(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneClientStreamResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    bool ret1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneBiDiStreamRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneBiDiStreamRequest) */ {
+ public:
+  inline DoOneBiDiStreamRequest() : DoOneBiDiStreamRequest(nullptr) {}
+  ~DoOneBiDiStreamRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneBiDiStreamRequest(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneBiDiStreamRequest(const DoOneBiDiStreamRequest& from);
+  DoOneBiDiStreamRequest(DoOneBiDiStreamRequest&& from) noexcept
+    : DoOneBiDiStreamRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneBiDiStreamRequest& operator=(const DoOneBiDiStreamRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneBiDiStreamRequest& operator=(DoOneBiDiStreamRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneBiDiStreamRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneBiDiStreamRequest* internal_default_instance() {
+    return reinterpret_cast<const DoOneBiDiStreamRequest*>(
+               &_DoOneBiDiStreamRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(DoOneBiDiStreamRequest& a, DoOneBiDiStreamRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneBiDiStreamRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneBiDiStreamRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneBiDiStreamRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneBiDiStreamRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneBiDiStreamRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneBiDiStreamRequest& from) {
+    DoOneBiDiStreamRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneBiDiStreamRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneBiDiStreamRequest";
+  }
+  protected:
+  explicit DoOneBiDiStreamRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kArg1FieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string arg1 = 2 [json_name = "arg1"];
+  void clear_arg1() ;
+  const std::string& arg1() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_arg1(Arg_&& arg, Args_... args);
+  std::string* mutable_arg1();
+  PROTOBUF_NODISCARD std::string* release_arg1();
+  void set_allocated_arg1(std::string* ptr);
+
+  private:
+  const std::string& _internal_arg1() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_arg1(
+      const std::string& value);
+  std::string* _internal_mutable_arg1();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneBiDiStreamRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 63, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr arg1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoOneBiDiStreamResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoOneBiDiStreamResponse) */ {
+ public:
+  inline DoOneBiDiStreamResponse() : DoOneBiDiStreamResponse(nullptr) {}
+  ~DoOneBiDiStreamResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoOneBiDiStreamResponse(::google::protobuf::internal::ConstantInitialized);
+
+  DoOneBiDiStreamResponse(const DoOneBiDiStreamResponse& from);
+  DoOneBiDiStreamResponse(DoOneBiDiStreamResponse&& from) noexcept
+    : DoOneBiDiStreamResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DoOneBiDiStreamResponse& operator=(const DoOneBiDiStreamResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoOneBiDiStreamResponse& operator=(DoOneBiDiStreamResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoOneBiDiStreamResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoOneBiDiStreamResponse* internal_default_instance() {
+    return reinterpret_cast<const DoOneBiDiStreamResponse*>(
+               &_DoOneBiDiStreamResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(DoOneBiDiStreamResponse& a, DoOneBiDiStreamResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoOneBiDiStreamResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoOneBiDiStreamResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoOneBiDiStreamResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoOneBiDiStreamResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoOneBiDiStreamResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoOneBiDiStreamResponse& from) {
+    DoOneBiDiStreamResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoOneBiDiStreamResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoOneBiDiStreamResponse";
+  }
+  protected:
+  explicit DoOneBiDiStreamResponse(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRet1FieldNumber = 1,
+  };
+  // bool ret1 = 1 [json_name = "ret1"];
+  void clear_ret1() ;
+  bool ret1() const;
+  void set_ret1(bool value);
+
+  private:
+  bool _internal_ret1() const;
+  void _internal_set_ret1(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoOneBiDiStreamResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    bool ret1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoTwoRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoTwoRequest) */ {
+ public:
+  inline DoTwoRequest() : DoTwoRequest(nullptr) {}
+  ~DoTwoRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoTwoRequest(::google::protobuf::internal::ConstantInitialized);
+
+  DoTwoRequest(const DoTwoRequest& from);
+  DoTwoRequest(DoTwoRequest&& from) noexcept
+    : DoTwoRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DoTwoRequest& operator=(const DoTwoRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoTwoRequest& operator=(DoTwoRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoTwoRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoTwoRequest* internal_default_instance() {
+    return reinterpret_cast<const DoTwoRequest*>(
+               &_DoTwoRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(DoTwoRequest& a, DoTwoRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoTwoRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoTwoRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoTwoRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoTwoRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoTwoRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoTwoRequest& from) {
+    DoTwoRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoTwoRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoTwoRequest";
+  }
+  protected:
+  explicit DoTwoRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kArg1FieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // bool arg1 = 2 [json_name = "arg1"];
+  void clear_arg1() ;
+  bool arg1() const;
+  void set_arg1(bool value);
+
+  private:
+  bool _internal_arg1() const;
+  void _internal_set_arg1(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoTwoRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 49, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    bool arg1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
+};// -------------------------------------------------------------------
+
+class DoTwoResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:viam.component.gizmo.v1.DoTwoResponse) */ {
+ public:
+  inline DoTwoResponse() : DoTwoResponse(nullptr) {}
+  ~DoTwoResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR DoTwoResponse(::google::protobuf::internal::ConstantInitialized);
+
+  DoTwoResponse(const DoTwoResponse& from);
+  DoTwoResponse(DoTwoResponse&& from) noexcept
+    : DoTwoResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DoTwoResponse& operator=(const DoTwoResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DoTwoResponse& operator=(DoTwoResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DoTwoResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DoTwoResponse* internal_default_instance() {
+    return reinterpret_cast<const DoTwoResponse*>(
+               &_DoTwoResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(DoTwoResponse& a, DoTwoResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DoTwoResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DoTwoResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DoTwoResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DoTwoResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DoTwoResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const DoTwoResponse& from) {
+    DoTwoResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DoTwoResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "viam.component.gizmo.v1.DoTwoResponse";
+  }
+  protected:
+  explicit DoTwoResponse(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRet1FieldNumber = 1,
+  };
+  // string ret1 = 1 [json_name = "ret1"];
+  void clear_ret1() ;
+  const std::string& ret1() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ret1(Arg_&& arg, Args_... args);
+  std::string* mutable_ret1();
+  PROTOBUF_NODISCARD std::string* release_ret1();
+  void set_allocated_ret1(std::string* ptr);
+
+  private:
+  const std::string& _internal_ret1() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ret1(
+      const std::string& value);
+  std::string* _internal_mutable_ret1();
+
+  public:
+  // @@protoc_insertion_point(class_scope:viam.component.gizmo.v1.DoTwoResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 50, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr ret1_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_gizmo_2eproto;
 };
 
 // ===================================================================
 
+
+
+
 // ===================================================================
+
 
 #ifdef __GNUC__
 #pragma GCC diagnostic push
@@ -1934,102 +1825,104 @@ class DoTwoResponse final : public ::google::protobuf::Message /* @@protoc_inser
 
 // string name = 1 [json_name = "name"];
 inline void DoOneRequest::clear_name() {
-    _impl_.name_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
 }
 inline const std::string& DoOneRequest::name() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneRequest.name)
-    return _internal_name();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneRequest.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneRequest::set_name(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneRequest.name)
+inline PROTOBUF_ALWAYS_INLINE void DoOneRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneRequest.name)
 }
 inline std::string* DoOneRequest::mutable_name() {
-    std::string* _s = _internal_mutable_name();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneRequest.name)
-    return _s;
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneRequest.name)
+  return _s;
 }
 inline const std::string& DoOneRequest::_internal_name() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.name_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
 }
 inline void DoOneRequest::_internal_set_name(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneRequest::_internal_mutable_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.name_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneRequest::release_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneRequest.name)
-    return _impl_.name_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneRequest.name)
+  return _impl_.name_.Release();
 }
 inline void DoOneRequest::set_allocated_name(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.name_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.name_.IsDefault()) {
-        _impl_.name_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneRequest.name)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneRequest.name)
 }
 
 // string arg1 = 2 [json_name = "arg1"];
 inline void DoOneRequest::clear_arg1() {
-    _impl_.arg1_.ClearToEmpty();
+  _impl_.arg1_.ClearToEmpty();
 }
 inline const std::string& DoOneRequest::arg1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneRequest.arg1)
-    return _internal_arg1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneRequest.arg1)
+  return _internal_arg1();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneRequest::set_arg1(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneRequest.arg1)
+inline PROTOBUF_ALWAYS_INLINE void DoOneRequest::set_arg1(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneRequest.arg1)
 }
 inline std::string* DoOneRequest::mutable_arg1() {
-    std::string* _s = _internal_mutable_arg1();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneRequest.arg1)
-    return _s;
+  std::string* _s = _internal_mutable_arg1();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneRequest.arg1)
+  return _s;
 }
 inline const std::string& DoOneRequest::_internal_arg1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.arg1_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arg1_.Get();
 }
 inline void DoOneRequest::_internal_set_arg1(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneRequest::_internal_mutable_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.arg1_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.arg1_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneRequest::release_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneRequest.arg1)
-    return _impl_.arg1_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneRequest.arg1)
+  return _impl_.arg1_.Release();
 }
 inline void DoOneRequest::set_allocated_arg1(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.arg1_.IsDefault()) {
-        _impl_.arg1_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneRequest.arg1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.arg1_.IsDefault()) {
+          _impl_.arg1_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneRequest.arg1)
 }
 
 // -------------------------------------------------------------------
@@ -2038,24 +1931,24 @@ inline void DoOneRequest::set_allocated_arg1(std::string* value) {
 
 // bool ret1 = 1 [json_name = "ret1"];
 inline void DoOneResponse::clear_ret1() {
-    _impl_.ret1_ = false;
+  _impl_.ret1_ = false;
 }
 inline bool DoOneResponse::ret1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneResponse.ret1)
-    return _internal_ret1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneResponse.ret1)
+  return _internal_ret1();
 }
 inline void DoOneResponse::set_ret1(bool value) {
-    _internal_set_ret1(value);
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneResponse.ret1)
+  _internal_set_ret1(value);
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneResponse.ret1)
 }
 inline bool DoOneResponse::_internal_ret1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.ret1_;
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ret1_;
 }
 inline void DoOneResponse::_internal_set_ret1(bool value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.ret1_ = value;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ret1_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2064,102 +1957,104 @@ inline void DoOneResponse::_internal_set_ret1(bool value) {
 
 // string name = 1 [json_name = "name"];
 inline void DoOneServerStreamRequest::clear_name() {
-    _impl_.name_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
 }
 inline const std::string& DoOneServerStreamRequest::name() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
-    return _internal_name();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneServerStreamRequest::set_name(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
+inline PROTOBUF_ALWAYS_INLINE void DoOneServerStreamRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
 }
 inline std::string* DoOneServerStreamRequest::mutable_name() {
-    std::string* _s = _internal_mutable_name();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
-    return _s;
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
+  return _s;
 }
 inline const std::string& DoOneServerStreamRequest::_internal_name() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.name_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
 }
 inline void DoOneServerStreamRequest::_internal_set_name(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneServerStreamRequest::_internal_mutable_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.name_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneServerStreamRequest::release_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
-    return _impl_.name_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
+  return _impl_.name_.Release();
 }
 inline void DoOneServerStreamRequest::set_allocated_name(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.name_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.name_.IsDefault()) {
-        _impl_.name_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneServerStreamRequest.name)
 }
 
 // string arg1 = 2 [json_name = "arg1"];
 inline void DoOneServerStreamRequest::clear_arg1() {
-    _impl_.arg1_.ClearToEmpty();
+  _impl_.arg1_.ClearToEmpty();
 }
 inline const std::string& DoOneServerStreamRequest::arg1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
-    return _internal_arg1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
+  return _internal_arg1();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneServerStreamRequest::set_arg1(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
+inline PROTOBUF_ALWAYS_INLINE void DoOneServerStreamRequest::set_arg1(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
 }
 inline std::string* DoOneServerStreamRequest::mutable_arg1() {
-    std::string* _s = _internal_mutable_arg1();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
-    return _s;
+  std::string* _s = _internal_mutable_arg1();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
+  return _s;
 }
 inline const std::string& DoOneServerStreamRequest::_internal_arg1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.arg1_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arg1_.Get();
 }
 inline void DoOneServerStreamRequest::_internal_set_arg1(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneServerStreamRequest::_internal_mutable_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.arg1_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.arg1_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneServerStreamRequest::release_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
-    return _impl_.arg1_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
+  return _impl_.arg1_.Release();
 }
 inline void DoOneServerStreamRequest::set_allocated_arg1(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.arg1_.IsDefault()) {
-        _impl_.arg1_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.arg1_.IsDefault()) {
+          _impl_.arg1_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneServerStreamRequest.arg1)
 }
 
 // -------------------------------------------------------------------
@@ -2168,24 +2063,24 @@ inline void DoOneServerStreamRequest::set_allocated_arg1(std::string* value) {
 
 // bool ret1 = 1 [json_name = "ret1"];
 inline void DoOneServerStreamResponse::clear_ret1() {
-    _impl_.ret1_ = false;
+  _impl_.ret1_ = false;
 }
 inline bool DoOneServerStreamResponse::ret1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneServerStreamResponse.ret1)
-    return _internal_ret1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneServerStreamResponse.ret1)
+  return _internal_ret1();
 }
 inline void DoOneServerStreamResponse::set_ret1(bool value) {
-    _internal_set_ret1(value);
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneServerStreamResponse.ret1)
+  _internal_set_ret1(value);
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneServerStreamResponse.ret1)
 }
 inline bool DoOneServerStreamResponse::_internal_ret1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.ret1_;
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ret1_;
 }
 inline void DoOneServerStreamResponse::_internal_set_ret1(bool value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.ret1_ = value;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ret1_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2194,102 +2089,104 @@ inline void DoOneServerStreamResponse::_internal_set_ret1(bool value) {
 
 // string name = 1 [json_name = "name"];
 inline void DoOneClientStreamRequest::clear_name() {
-    _impl_.name_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
 }
 inline const std::string& DoOneClientStreamRequest::name() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
-    return _internal_name();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneClientStreamRequest::set_name(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
+inline PROTOBUF_ALWAYS_INLINE void DoOneClientStreamRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
 }
 inline std::string* DoOneClientStreamRequest::mutable_name() {
-    std::string* _s = _internal_mutable_name();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
-    return _s;
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
+  return _s;
 }
 inline const std::string& DoOneClientStreamRequest::_internal_name() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.name_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
 }
 inline void DoOneClientStreamRequest::_internal_set_name(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneClientStreamRequest::_internal_mutable_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.name_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneClientStreamRequest::release_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
-    return _impl_.name_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
+  return _impl_.name_.Release();
 }
 inline void DoOneClientStreamRequest::set_allocated_name(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.name_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.name_.IsDefault()) {
-        _impl_.name_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneClientStreamRequest.name)
 }
 
 // string arg1 = 2 [json_name = "arg1"];
 inline void DoOneClientStreamRequest::clear_arg1() {
-    _impl_.arg1_.ClearToEmpty();
+  _impl_.arg1_.ClearToEmpty();
 }
 inline const std::string& DoOneClientStreamRequest::arg1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
-    return _internal_arg1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
+  return _internal_arg1();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneClientStreamRequest::set_arg1(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
+inline PROTOBUF_ALWAYS_INLINE void DoOneClientStreamRequest::set_arg1(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
 }
 inline std::string* DoOneClientStreamRequest::mutable_arg1() {
-    std::string* _s = _internal_mutable_arg1();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
-    return _s;
+  std::string* _s = _internal_mutable_arg1();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
+  return _s;
 }
 inline const std::string& DoOneClientStreamRequest::_internal_arg1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.arg1_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arg1_.Get();
 }
 inline void DoOneClientStreamRequest::_internal_set_arg1(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneClientStreamRequest::_internal_mutable_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.arg1_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.arg1_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneClientStreamRequest::release_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
-    return _impl_.arg1_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
+  return _impl_.arg1_.Release();
 }
 inline void DoOneClientStreamRequest::set_allocated_arg1(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.arg1_.IsDefault()) {
-        _impl_.arg1_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.arg1_.IsDefault()) {
+          _impl_.arg1_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneClientStreamRequest.arg1)
 }
 
 // -------------------------------------------------------------------
@@ -2298,24 +2195,24 @@ inline void DoOneClientStreamRequest::set_allocated_arg1(std::string* value) {
 
 // bool ret1 = 1 [json_name = "ret1"];
 inline void DoOneClientStreamResponse::clear_ret1() {
-    _impl_.ret1_ = false;
+  _impl_.ret1_ = false;
 }
 inline bool DoOneClientStreamResponse::ret1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneClientStreamResponse.ret1)
-    return _internal_ret1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneClientStreamResponse.ret1)
+  return _internal_ret1();
 }
 inline void DoOneClientStreamResponse::set_ret1(bool value) {
-    _internal_set_ret1(value);
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneClientStreamResponse.ret1)
+  _internal_set_ret1(value);
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneClientStreamResponse.ret1)
 }
 inline bool DoOneClientStreamResponse::_internal_ret1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.ret1_;
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ret1_;
 }
 inline void DoOneClientStreamResponse::_internal_set_ret1(bool value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.ret1_ = value;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ret1_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2324,102 +2221,104 @@ inline void DoOneClientStreamResponse::_internal_set_ret1(bool value) {
 
 // string name = 1 [json_name = "name"];
 inline void DoOneBiDiStreamRequest::clear_name() {
-    _impl_.name_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
 }
 inline const std::string& DoOneBiDiStreamRequest::name() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
-    return _internal_name();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneBiDiStreamRequest::set_name(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
+inline PROTOBUF_ALWAYS_INLINE void DoOneBiDiStreamRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
 }
 inline std::string* DoOneBiDiStreamRequest::mutable_name() {
-    std::string* _s = _internal_mutable_name();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
-    return _s;
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
+  return _s;
 }
 inline const std::string& DoOneBiDiStreamRequest::_internal_name() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.name_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
 }
 inline void DoOneBiDiStreamRequest::_internal_set_name(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneBiDiStreamRequest::_internal_mutable_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.name_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneBiDiStreamRequest::release_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
-    return _impl_.name_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
+  return _impl_.name_.Release();
 }
 inline void DoOneBiDiStreamRequest::set_allocated_name(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.name_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.name_.IsDefault()) {
-        _impl_.name_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneBiDiStreamRequest.name)
 }
 
 // string arg1 = 2 [json_name = "arg1"];
 inline void DoOneBiDiStreamRequest::clear_arg1() {
-    _impl_.arg1_.ClearToEmpty();
+  _impl_.arg1_.ClearToEmpty();
 }
 inline const std::string& DoOneBiDiStreamRequest::arg1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
-    return _internal_arg1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
+  return _internal_arg1();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoOneBiDiStreamRequest::set_arg1(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
+inline PROTOBUF_ALWAYS_INLINE void DoOneBiDiStreamRequest::set_arg1(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
 }
 inline std::string* DoOneBiDiStreamRequest::mutable_arg1() {
-    std::string* _s = _internal_mutable_arg1();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
-    return _s;
+  std::string* _s = _internal_mutable_arg1();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
+  return _s;
 }
 inline const std::string& DoOneBiDiStreamRequest::_internal_arg1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.arg1_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arg1_.Get();
 }
 inline void DoOneBiDiStreamRequest::_internal_set_arg1(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoOneBiDiStreamRequest::_internal_mutable_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.arg1_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.arg1_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoOneBiDiStreamRequest::release_arg1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
-    return _impl_.arg1_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
+  return _impl_.arg1_.Release();
 }
 inline void DoOneBiDiStreamRequest::set_allocated_arg1(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.arg1_.IsDefault()) {
-        _impl_.arg1_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.arg1_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.arg1_.IsDefault()) {
+          _impl_.arg1_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoOneBiDiStreamRequest.arg1)
 }
 
 // -------------------------------------------------------------------
@@ -2428,24 +2327,24 @@ inline void DoOneBiDiStreamRequest::set_allocated_arg1(std::string* value) {
 
 // bool ret1 = 1 [json_name = "ret1"];
 inline void DoOneBiDiStreamResponse::clear_ret1() {
-    _impl_.ret1_ = false;
+  _impl_.ret1_ = false;
 }
 inline bool DoOneBiDiStreamResponse::ret1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneBiDiStreamResponse.ret1)
-    return _internal_ret1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoOneBiDiStreamResponse.ret1)
+  return _internal_ret1();
 }
 inline void DoOneBiDiStreamResponse::set_ret1(bool value) {
-    _internal_set_ret1(value);
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneBiDiStreamResponse.ret1)
+  _internal_set_ret1(value);
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoOneBiDiStreamResponse.ret1)
 }
 inline bool DoOneBiDiStreamResponse::_internal_ret1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.ret1_;
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ret1_;
 }
 inline void DoOneBiDiStreamResponse::_internal_set_ret1(bool value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.ret1_ = value;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ret1_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2454,74 +2353,75 @@ inline void DoOneBiDiStreamResponse::_internal_set_ret1(bool value) {
 
 // string name = 1 [json_name = "name"];
 inline void DoTwoRequest::clear_name() {
-    _impl_.name_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
 }
 inline const std::string& DoTwoRequest::name() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoTwoRequest.name)
-    return _internal_name();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoTwoRequest.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoTwoRequest::set_name(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoTwoRequest.name)
+inline PROTOBUF_ALWAYS_INLINE void DoTwoRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoTwoRequest.name)
 }
 inline std::string* DoTwoRequest::mutable_name() {
-    std::string* _s = _internal_mutable_name();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoTwoRequest.name)
-    return _s;
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoTwoRequest.name)
+  return _s;
 }
 inline const std::string& DoTwoRequest::_internal_name() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.name_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
 }
 inline void DoTwoRequest::_internal_set_name(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.name_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoTwoRequest::_internal_mutable_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.name_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoTwoRequest::release_name() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoTwoRequest.name)
-    return _impl_.name_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoTwoRequest.name)
+  return _impl_.name_.Release();
 }
 inline void DoTwoRequest::set_allocated_name(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.name_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.name_.IsDefault()) {
-        _impl_.name_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoTwoRequest.name)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoTwoRequest.name)
 }
 
 // bool arg1 = 2 [json_name = "arg1"];
 inline void DoTwoRequest::clear_arg1() {
-    _impl_.arg1_ = false;
+  _impl_.arg1_ = false;
 }
 inline bool DoTwoRequest::arg1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoTwoRequest.arg1)
-    return _internal_arg1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoTwoRequest.arg1)
+  return _internal_arg1();
 }
 inline void DoTwoRequest::set_arg1(bool value) {
-    _internal_set_arg1(value);
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoTwoRequest.arg1)
+  _internal_set_arg1(value);
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoTwoRequest.arg1)
 }
 inline bool DoTwoRequest::_internal_arg1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.arg1_;
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arg1_;
 }
 inline void DoTwoRequest::_internal_set_arg1(bool value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.arg1_ = value;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arg1_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2530,52 +2430,53 @@ inline void DoTwoRequest::_internal_set_arg1(bool value) {
 
 // string ret1 = 1 [json_name = "ret1"];
 inline void DoTwoResponse::clear_ret1() {
-    _impl_.ret1_.ClearToEmpty();
+  _impl_.ret1_.ClearToEmpty();
 }
 inline const std::string& DoTwoResponse::ret1() const {
-    // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoTwoResponse.ret1)
-    return _internal_ret1();
+  // @@protoc_insertion_point(field_get:viam.component.gizmo.v1.DoTwoResponse.ret1)
+  return _internal_ret1();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DoTwoResponse::set_ret1(Arg_&& arg, Args_... args) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.ret1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoTwoResponse.ret1)
+inline PROTOBUF_ALWAYS_INLINE void DoTwoResponse::set_ret1(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ret1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gizmo.v1.DoTwoResponse.ret1)
 }
 inline std::string* DoTwoResponse::mutable_ret1() {
-    std::string* _s = _internal_mutable_ret1();
-    // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoTwoResponse.ret1)
-    return _s;
+  std::string* _s = _internal_mutable_ret1();
+  // @@protoc_insertion_point(field_mutable:viam.component.gizmo.v1.DoTwoResponse.ret1)
+  return _s;
 }
 inline const std::string& DoTwoResponse::_internal_ret1() const {
-    PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-    return _impl_.ret1_.Get();
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ret1_.Get();
 }
 inline void DoTwoResponse::_internal_set_ret1(const std::string& value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    _impl_.ret1_.Set(value, GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ret1_.Set(value, GetArenaForAllocation());
 }
 inline std::string* DoTwoResponse::_internal_mutable_ret1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    ;
-    return _impl_.ret1_.Mutable(GetArenaForAllocation());
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.ret1_.Mutable( GetArenaForAllocation());
 }
 inline std::string* DoTwoResponse::release_ret1() {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoTwoResponse.ret1)
-    return _impl_.ret1_.Release();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:viam.component.gizmo.v1.DoTwoResponse.ret1)
+  return _impl_.ret1_.Release();
 }
 inline void DoTwoResponse::set_allocated_ret1(std::string* value) {
-    PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-    _impl_.ret1_.SetAllocated(value, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (_impl_.ret1_.IsDefault()) {
-        _impl_.ret1_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoTwoResponse.ret1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ret1_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.ret1_.IsDefault()) {
+          _impl_.ret1_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gizmo.v1.DoTwoResponse.ret1)
 }
 
 #ifdef __GNUC__
@@ -2587,6 +2488,7 @@ inline void DoTwoResponse::set_allocated_ret1(std::string* value) {
 }  // namespace gizmo
 }  // namespace component
 }  // namespace viam
+
 
 // @@protoc_insertion_point(global_scope)
 

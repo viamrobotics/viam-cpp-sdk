@@ -14,6 +14,8 @@
 
 
 version: v1
+managed:
+  enabled: true
 plugins:
   - name: cpp
     out: ./
