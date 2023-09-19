@@ -21,6 +21,8 @@ The `base` directory contains all the necessary definitions for creating a custo
 
 In the main directory, there is also a `main.cpp` file, which creates a module, registers the above resources, and starts the module. It also handles SIGTERM and SIGINT OS signals using the `SignalManager` class. Read further to learn how to connect this module to your robot.
 
+Finally, the `client.cpp` file can be used to test the module once you have connected to your robot and configured it. You will have to update the credentials and robot address in that file before building. After building, the `build/install/bin/complex_module_client` generated binary can be called to run the client.
+
 ## Configuring and using the module
 
 The `complex_module` binary generated after building is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-cpp-sdk/build/install/bin/complex_module` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.

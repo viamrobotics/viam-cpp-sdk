@@ -16,6 +16,10 @@ add_executable(complex_module
   main.cpp
 )
 
+add_executable(complex_module_client
+  client.cpp
+)
+
 target_sources(complex_module
   PRIVATE
     base/impl.cpp
@@ -39,12 +43,38 @@ target_sources(complex_module
     proto/summation.pb.h
 )
 
+target_sources(complex_module_client
+  PRIVATE
+    gizmo/api.hpp
+    gizmo/api.cpp
+    summation/api.hpp
+    summation/api.cpp
+
+    proto/gizmo.grpc.pb.cc
+    proto/gizmo.grpc.pb.h
+    proto/gizmo.pb.cc
+    proto/gizmo.pb.h
+    proto/summation.grpc.pb.cc
+    proto/summation.grpc.pb.h
+    proto/summation.pb.cc
+    proto/summation.pb.h
+)
+
 target_link_libraries(complex_module
   PRIVATE Threads::Threads
   viam-cpp-sdk::viamsdk
 )
 
+target_link_libraries(complex_module_client
+  viam-cpp-sdk::viamsdk
+)
+
 install(
   TARGETS complex_module
+  COMPONENT examples
+)
+
+install(
+  TARGETS complex_module_client
   COMPONENT examples
 )
