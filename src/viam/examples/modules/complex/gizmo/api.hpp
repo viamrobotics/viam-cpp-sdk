@@ -79,7 +79,7 @@ class GizmoServer : public ResourceServer, public GizmoService::Service {
     GizmoServer();
     explicit GizmoServer(std::shared_ptr<ResourceManager> manager);
 
-    grpc::Status DoOne(::grpc::ServerContext* context,
+    grpc::Status DoOne(grpc::ServerContext* context,
                        const DoOneRequest* request,
                        DoOneResponse* response) override;
 
@@ -95,9 +95,9 @@ class GizmoServer : public ResourceServer, public GizmoService::Service {
         grpc::ServerContext* context,
         grpc::ServerReaderWriter<DoOneBiDiStreamResponse, DoOneBiDiStreamRequest>* stream) override;
 
-    ::grpc::Status DoTwo(grpc::ServerContext* context,
-                         const DoTwoRequest* request,
-                         DoTwoResponse* response) override;
+    grpc::Status DoTwo(grpc::ServerContext* context,
+                       const DoTwoRequest* request,
+                       DoTwoResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };

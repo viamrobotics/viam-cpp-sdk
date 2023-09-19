@@ -47,15 +47,15 @@ std::vector<std::string> MyBase::validate(ResourceConfig cfg) {
 }
 
 bool MyBase::is_moving() {
-    return this->left_->is_moving() || this->right_->is_moving();
+    return left_->is_moving() || right_->is_moving();
 }
 
 grpc::StatusCode MyBase::stop(const AttributeMap& extra) {
-    auto left_stop = this->left_->stop(extra);
+    auto left_stop = left_->stop(extra);
     if (left_stop != grpc::StatusCode::OK) {
         return left_stop;
     }
-    auto right_stop = this->right_->stop(extra);
+    auto right_stop = right_->stop(extra);
     if (right_stop != grpc::StatusCode::OK) {
         return right_stop;
     }
@@ -66,15 +66,15 @@ void MyBase::set_power(const Vector3& linear, const Vector3& angular, const Attr
     // Stop the base if absolute value of linear and angular velocity is less
     // than 0.01.
     if (abs(linear.y()) < 0.01 && abs(angular.z()) < 0.01) {
-        this->stop(extra);  // ignore returned status code from stop
+        stop(extra);  // ignore returned status code from stop
         return;
     }
 
     // Use linear and angular velocity to calculate percentage of max power to
     // pass to set_power for left & right motors
     auto sum = abs(linear.y()) + abs(angular.z());
-    this->left_->set_power(((linear.y() - angular.z()) / sum), extra);
-    this->right_->set_power(((linear.y() + angular.z()) / sum), extra);
+    left_->set_power(((linear.y() - angular.z()) / sum), extra);
+    right_->set_power(((linear.y() + angular.z()) / sum), extra);
 }
 
 AttributeMap MyBase::do_command(const AttributeMap& command) {
@@ -83,8 +83,8 @@ AttributeMap MyBase::do_command(const AttributeMap& command) {
 }
 
 std::vector<GeometryConfig> MyBase::get_geometries(const AttributeMap& extra) {
-    auto left_geometries = this->left_->get_geometries(extra);
-    auto right_geometries = this->right_->get_geometries(extra);
+    auto left_geometries = left_->get_geometries(extra);
+    auto right_geometries = right_->get_geometries(extra);
     std::vector<GeometryConfig> geometries(left_geometries);
     geometries.insert(geometries.end(), right_geometries.begin(), right_geometries.end());
     return geometries;

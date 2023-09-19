@@ -1,3 +1,12 @@
+/// @file complex/base/impl.hpp
+///
+/// @brief Implements a `Base` component `MyBase`.
+///
+/// `MyBase` inherits from the `Base` class defined in the viam C++ SDK and
+/// implements some of the relevant methods along with `reconfigure`. It also
+/// specifies a static `validate` method that checks config validity.
+#pragma once
+
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/components/motor/motor.hpp>
@@ -6,13 +15,6 @@
 
 using namespace viam::sdk;
 
-// MyBase implements a base that only supports set_power (basic forward, back
-// and turn controls), is_moving (check if in motion), and stop (stop all
-// motion).
-//
-// It inherits from the built-in resource subtype Base and implements
-// `reconfigure`. It also specifies a static `validate` method that checks
-// config validity and returns implicit dependencies for the model.
 class MyBase : public Base {
    public:
     MyBase(Dependencies deps, ResourceConfig cfg) : Base(cfg.name()) {

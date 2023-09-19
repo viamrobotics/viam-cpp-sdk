@@ -40,7 +40,6 @@ int main() {
 
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
-
     // Print resources.
     std::cout << "Resources" << std::endl;
     std::vector<ResourceName>* resource_names = robot->resource_names();

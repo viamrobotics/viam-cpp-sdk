@@ -55,12 +55,12 @@ Gizmo::Gizmo(std::string name) : Component(std::move(name)){};
 GizmoServer::GizmoServer() : ResourceServer(std::make_shared<ResourceManager>()){};
 GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 
-::grpc::Status GizmoServer::DoOne(::grpc::ServerContext* context,
-                                  const DoOneRequest* request,
-                                  DoOneResponse* response) {
+grpc::Status GizmoServer::DoOne(grpc::ServerContext* context,
+                                const DoOneRequest* request,
+                                DoOneResponse* response) {
     if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Gizmo::DoOne] without a request");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
+                            "Called [Gizmo::DoOne] without a request");
     };
 
     auto rg = ResourceServer::resource_manager()->resource(request->name());
@@ -68,20 +68,20 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
+    // Downcast resource to Gizmo.
     const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rg);
 
     response->set_ret1(gizmo->do_one(request->arg1()));
 
-    return ::grpc::Status();
+    return grpc::Status();
 }
 
-::grpc::Status GizmoServer::DoOneClientStream(
-    ::grpc::ServerContext* context,
-    ::grpc::ServerReader<DoOneClientStreamRequest>* reader,
-    ::DoOneClientStreamResponse* response) {
+grpc::Status GizmoServer::DoOneClientStream(grpc::ServerContext* context,
+                                            grpc::ServerReader<DoOneClientStreamRequest>* reader,
+                                            DoOneClientStreamResponse* response) {
     if (!reader) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Gizmo::DoOneClientStream] without a reader");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
+                            "Called [Gizmo::DoOneClientStream] without a reader");
     };
 
     std::vector<std::string> args = {};
@@ -90,8 +90,8 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     while (reader->Read(&curr_req)) {
         args.push_back(curr_req.arg1());
         if (!gizmo_name.empty() && curr_req.name() != gizmo_name) {
-            return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                                  "[Gizmo::DoOneClientStream] cannot reference multiple Gizmos");
+            return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
+                                "[Gizmo::DoOneClientStream] cannot reference multiple Gizmos");
         }
         gizmo_name = curr_req.name();
     }
@@ -101,20 +101,20 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + gizmo_name);
     }
 
+    // Downcast resource to Gizmo.
     const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rg);
 
     response->set_ret1(gizmo->do_one_client_stream(args));
 
-    return ::grpc::Status();
+    return grpc::Status();
 }
 
-::grpc::Status GizmoServer::DoOneServerStream(
-    ::grpc::ServerContext* context,
-    const DoOneServerStreamRequest* request,
-    ::grpc::ServerWriter<DoOneServerStreamResponse>* writer) {
+grpc::Status GizmoServer::DoOneServerStream(grpc::ServerContext* context,
+                                            const DoOneServerStreamRequest* request,
+                                            grpc::ServerWriter<DoOneServerStreamResponse>* writer) {
     if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Gizmo::DoOneServerStream] without a request");
+        return grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                            "Called [Gizmo::DoOneServerStream] without a request");
     };
 
     auto rg = ResourceServer::resource_manager()->resource(request->name());
@@ -122,6 +122,7 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
+    // Downcast resource to Gizmo.
     const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rg);
 
     for (bool ret1 : gizmo->do_one_server_stream(request->arg1())) {
@@ -130,15 +131,15 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         writer->Write(curr_resp);
     }
 
-    return ::grpc::Status();
+    return grpc::Status();
 }
 
-::grpc::Status GizmoServer::DoOneBiDiStream(
-    ::grpc::ServerContext* context,
-    ::grpc::ServerReaderWriter<DoOneBiDiStreamResponse, DoOneBiDiStreamRequest>* stream) {
+grpc::Status GizmoServer::DoOneBiDiStream(
+    grpc::ServerContext* context,
+    grpc::ServerReaderWriter<DoOneBiDiStreamResponse, DoOneBiDiStreamRequest>* stream) {
     if (!stream) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Gizmo::DoOneBiDiStream] without a stream");
+        return grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                            "Called [Gizmo::DoOneBiDiStream] without a stream");
     };
 
     std::vector<std::string> args = {};
@@ -147,8 +148,8 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     while (stream->Read(&curr_req)) {
         args.push_back(curr_req.arg1());
         if (!gizmo_name.empty() && curr_req.name() != gizmo_name) {
-            return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                                  "[Gizmo::DoOneBiDiStream] cannot reference multiple Gizmos");
+            return grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                "[Gizmo::DoOneBiDiStream] cannot reference multiple Gizmos");
         }
         gizmo_name = curr_req.name();
     }
@@ -158,6 +159,7 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + gizmo_name);
     }
 
+    // Downcast resource to Gizmo.
     const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rg);
 
     for (bool ret1 : gizmo->do_one_bidi_stream(args)) {
@@ -165,15 +167,15 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         curr_resp.set_ret1(ret1);
         stream->Write(curr_resp);
     }
-    return ::grpc::Status();
+    return grpc::Status();
 }
 
-::grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
-                                  const DoTwoRequest* request,
-                                  DoTwoResponse* response) {
+grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
+                                const DoTwoRequest* request,
+                                DoTwoResponse* response) {
     if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Gizmo::DoTwo] without a request");
+        return grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                            "Called [Gizmo::DoTwo] without a request");
     };
 
     auto rb = ResourceServer::resource_manager()->resource(request->name());
@@ -181,11 +183,12 @@ GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
+    // Downcast resource to Gizmo.
     const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rb);
 
     response->set_ret1(gizmo->do_two(request->arg1()));
 
-    return ::grpc::Status();
+    return grpc::Status();
 }
 
 void GizmoServer::register_server(std::shared_ptr<Server> server) {
@@ -223,7 +226,7 @@ bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
         DoOneClientStreamRequest curr_req = {};
         curr_req.set_arg1(arg);
         if (!writer->Write(curr_req)) {
-            // Broken stream.
+            // Stream is broken; stop writing.
             break;
         }
     }
@@ -262,7 +265,7 @@ std::vector<bool> GizmoClient::do_one_bidi_stream(std::vector<std::string> arg1)
         DoOneBiDiStreamRequest curr_req = {};
         curr_req.set_arg1(arg);
         if (!stream->Write(curr_req)) {
-            // Broken stream.
+            // Stream is broken; stop writing.
             break;
         }
     }

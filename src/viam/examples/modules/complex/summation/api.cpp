@@ -75,6 +75,7 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
+    // Downcast resource to Summation.
     const std::shared_ptr<Summation> summation = std::dynamic_pointer_cast<Summation>(rs);
 
     auto numbers_vec = repeated_field_to_vector(request->numbers());
