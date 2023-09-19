@@ -24,6 +24,10 @@ target_sources(complex_module
     gizmo/impl.hpp
     gizmo/api.cpp
     gizmo/api.hpp
+    summation/impl.cpp
+    summation/impl.hpp
+    summation/api.cpp
+    summation/api.hpp
 
     proto/gizmo.grpc.pb.cc
     proto/gizmo.grpc.pb.h

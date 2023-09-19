@@ -11,15 +11,15 @@ For more information, see the [documentation](https://docs.viam.com/program/exte
 ## Project structure
 The complex module example defines three new resources: a Gizmo component, a Summation service, and a custom Base component.
 
-The `proto` directory contains the `gizmo.proto` and `summation.proto` definitions of all the message types and calls that can be made to the Gizmo component and Summation service. It also has the compiled C++ output of the protobuf definition.
+The `proto` directory contains the `gizmo.proto` and `summation.proto` definitions of all the message types and calls that can be made to the Gizmo component and Summation service. It also has the compiled C++ output of the protobuf definitions.
 
-The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. `api.cpp` and `api.hpp` define what a `Gizmo` can do (mirroring the `proto` definition), implement the gRPC `GizmoService` for receiving calls, and implement the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/program/extend/modular-resources/#apis) for more info. `impl.cpp` and `impl.hpp` contain the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/program/extend/modular-resources/#models) for more info. This implementation uses the `validator` function to specify an implicit dependency on a `motor` and throws an error if there is an `invalid` attribute.
+The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. `api.cpp` and `api.hpp` define what a `Gizmo` can do (mirroring the `proto` definition), implement the gRPC `GizmoServer` for receiving calls, and implement the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/program/extend/modular-resources/#apis) for more info. `impl.cpp` and `impl.hpp` contain the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/program/extend/modular-resources/#models) for more info.
 
 Similarly, the `summation` directory contains the analogous definitions for the `Summation` service type. The files in this directory mirror the files in the `gizmo` directory.
 
-The `base` directory contains all the necessary definitions for creating a custom modular `Base` component type. Since it is subclassing an already existing component supported by the Viam SDK, there is no need for `api` files. 
+The `base` directory contains all the necessary definitions for creating a custom modular `Base` component type. Since it is inheriting an already existing component supported by the Viam SDK, there is no need for `api` files.
 
-In the main directory, there is also a `main.cpp` file, which creates a module, registers the above resources, and starts the module. It also handles SIGTERM and SIGINT OS signals using the SignalManager class. Read further to learn how to connect this module to your robot.
+In the main directory, there is also a `main.cpp` file, which creates a module, registers the above resources, and starts the module. It also handles SIGTERM and SIGINT OS signals using the `SignalManager` class. Read further to learn how to connect this module to your robot.
 
 ## Configuring and using the module
 

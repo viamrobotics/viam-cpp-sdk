@@ -52,6 +52,7 @@ Gizmo::Gizmo(std::string name) : Component(std::move(name)){};
 
 /* Gizmo server methods */
 
+GizmoServer::GizmoServer() : ResourceServer(std::make_shared<ResourceManager>()){};
 GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
 
 ::grpc::Status GizmoServer::DoOne(::grpc::ServerContext* context,
@@ -298,13 +299,13 @@ std::string GizmoClient::do_two(bool arg1) {
     return response.ret1();
 }
 
-/* Gizmo registration logic. Automatically registers the Gizmo API upon including
- * this header file. */
+/* Gizmo registration logic. Automatically registers the Gizmo API upon compiling
+ * this file. */
 
-bool init() {
+bool gizmo_init() {
     Registry::register_resource(Gizmo::static_api(), Gizmo::resource_registration());
     return true;
 };
 
 // NOLINTNEXTLINE
-const bool inited = init();
+const bool gizmo_inited = gizmo_init();

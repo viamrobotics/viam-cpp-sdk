@@ -17,6 +17,7 @@
 #include "../proto/gizmo.pb.h"
 
 using namespace viam::sdk;
+using namespace viam::component::gizmo::v1;
 
 /// @defgroup Gizmo Classes related to the Gizmo component.
 
@@ -66,43 +67,37 @@ class GizmoClient : public Gizmo {
     std::string do_two(bool arg1) override;
 
    private:
-    std::unique_ptr<viam::component::gizmo::v1::GizmoService::StubInterface> stub_;
+    std::unique_ptr<GizmoService::StubInterface> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 
 /// @class GizmoServer
 /// @brief gRPC server implementation of a `Gizmo` component.
 /// @ingroup Gizmo
-class GizmoServer : public ResourceServer,
-                    public viam::component::gizmo::v1::GizmoService::Service {
+class GizmoServer : public ResourceServer, public GizmoService::Service {
    public:
     GizmoServer();
     explicit GizmoServer(std::shared_ptr<ResourceManager> manager);
 
-    ::grpc::Status DoOne(::grpc::ServerContext* context,
-                         const ::viam::component::gizmo::v1::DoOneRequest* request,
-                         ::viam::component::gizmo::v1::DoOneResponse* response) override;
+    grpc::Status DoOne(::grpc::ServerContext* context,
+                       const DoOneRequest* request,
+                       DoOneResponse* response) override;
 
-    ::grpc::Status DoOneClientStream(
-        ::grpc::ServerContext* context,
-        ::grpc::ServerReader<::viam::component::gizmo::v1::DoOneClientStreamRequest>* reader,
-        ::viam::component::gizmo::v1::DoOneClientStreamResponse* response) override;
+    grpc::Status DoOneClientStream(grpc::ServerContext* context,
+                                   grpc::ServerReader<DoOneClientStreamRequest>* reader,
+                                   DoOneClientStreamResponse* response) override;
 
-    ::grpc::Status DoOneServerStream(
-        ::grpc::ServerContext* context,
-        const ::viam::component::gizmo::v1::DoOneServerStreamRequest* request,
-        ::grpc::ServerWriter<::viam::component::gizmo::v1::DoOneServerStreamResponse>* writer)
-        override;
+    grpc::Status DoOneServerStream(grpc::ServerContext* context,
+                                   const DoOneServerStreamRequest* request,
+                                   grpc::ServerWriter<DoOneServerStreamResponse>* writer) override;
 
-    ::grpc::Status DoOneBiDiStream(
-        ::grpc::ServerContext* context,
-        ::grpc::ServerReaderWriter<::viam::component::gizmo::v1::DoOneBiDiStreamResponse,
-                                   ::viam::component::gizmo::v1::DoOneBiDiStreamRequest>* stream)
-        override;
+    grpc::Status DoOneBiDiStream(
+        grpc::ServerContext* context,
+        grpc::ServerReaderWriter<DoOneBiDiStreamResponse, DoOneBiDiStreamRequest>* stream) override;
 
-    ::grpc::Status DoTwo(::grpc::ServerContext* context,
-                         const ::viam::component::gizmo::v1::DoTwoRequest* request,
-                         ::viam::component::gizmo::v1::DoTwoResponse* response) override;
+    ::grpc::Status DoTwo(grpc::ServerContext* context,
+                         const DoTwoRequest* request,
+                         DoTwoResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };

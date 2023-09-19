@@ -66,6 +66,19 @@ int main(int argc, char** argv) {
 
     Registry::register_model(mygizmo_mr);
 
+    API summation_api = Gizmo::static_api();
+    Model mysummation_model("viam", "summation", "mysummation");
+
+    std::shared_ptr<ModelRegistration> mysummation_mr =
+        std::make_shared<ModelRegistration>(ResourceType("Summation"),
+                                            summation_api,
+                                            mysummation_model,
+                                            [](Dependencies deps, ResourceConfig cfg) {
+                                                return std::make_unique<MySummation>(deps, cfg);
+                                            });
+
+    Registry::register_model(mysummation_mr);
+
     // The `ModuleService_` must outlive the Server, so the declaration order
     // here matters.
     auto my_mod = std::make_shared<ModuleService_>(socket_addr);
@@ -73,6 +86,7 @@ int main(int argc, char** argv) {
 
     my_mod->add_model_from_registry(server, base_api, mybase_model);
     my_mod->add_model_from_registry(server, gizmo_api, mygizmo_model);
+    my_mod->add_model_from_registry(server, summation_api, mysummation_model);
     my_mod->start(server);
     BOOST_LOG_TRIVIAL(info) << "Complex example module listening on " << socket_addr;
 
