@@ -75,7 +75,11 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     const Dependencies deps = get_dependencies(this, request->dependencies());
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
-        res = reg->construct_resource(deps, cfg);
+        try {
+            res = reg->construct_resource(deps, cfg);
+        } catch (const std::exception& exc) {
+            return grpc::Status(::grpc::INTERNAL, exc.what());
+        }
     };
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
