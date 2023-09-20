@@ -29,7 +29,8 @@ using namespace viam::sdk;
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        throw std::invalid_argument("Need socket path as command line argument");
+        std::cerr << "Need socket path as command line argument" << std::endl;
+        return EXIT_FAILURE;
     }
     std::string socket_addr = argv[1];
 
@@ -94,5 +95,5 @@ int main(int argc, char** argv) {
     int sig = 0;
     auto result = signals.wait(&sig);
     server->shutdown();
-    return 0;
+    return EXIT_SUCCESS;
 };

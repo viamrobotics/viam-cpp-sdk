@@ -178,13 +178,13 @@ grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
                             "Called [Gizmo::DoTwo] without a request");
     };
 
-    auto rb = ResourceServer::resource_manager()->resource(request->name());
-    if (!rb) {
+    auto rg = ResourceServer::resource_manager()->resource(request->name());
+    if (!rg) {
         return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
     }
 
     // Downcast resource to Gizmo.
-    const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rb);
+    const std::shared_ptr<Gizmo> gizmo = std::dynamic_pointer_cast<Gizmo>(rg);
 
     response->set_ret1(gizmo->do_two(request->arg1()));
 

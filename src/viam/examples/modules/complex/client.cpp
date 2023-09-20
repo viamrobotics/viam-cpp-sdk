@@ -60,10 +60,6 @@ int main() {
     std::cout << "gizmo1 do_one_client_stream returned: " << do_one_ret;
     std::string do_two_ret = gc->do_two(false);
     std::cout << "gizmo1 do_two returned: " << do_two_ret;
-
-    // Certain types of streams are not currently supported by the
-    // viam-rust-utils library thatthe C++ SDK uses internally. If you are not
-    // using WebRTC, you can uncomment the following lines.
     std::vector<bool> do_one_server_stream_ret = gc->do_one_server_stream("arg1");
     std::cout << "gizmo1 do_one_server_stream returned: ";
     for (bool ret : do_one_server_stream_ret) {
