@@ -8,7 +8,7 @@ Modular resources allow you to define custom components and services and add the
 
 For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a more complex example, take a look at the [complex module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/complex), which contains multiple new APIs and custom resource models.
 
-For a fully fleshed-out example of a C++ module that uses Github CI to upload to the Viam Registry, take a look at [module-example-cpp](https://github.com/viamrobotics/module-example-cpp).
+For a fully fleshed-out example of a C++ module that uses Github CI to upload to the Viam Registry, take a look at [module-example-cpp](https://github.com/viamrobotics/module-example-cpp). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
 ## Project structure
 The `main.cpp` file contains the definition of a new generic model and code to register it. It also has the optional validator function and implements reconfigure. The validator function is defined upon resource registration, and the reconfigure method is implemented on the resource class.
