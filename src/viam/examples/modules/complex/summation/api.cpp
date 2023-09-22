@@ -57,11 +57,6 @@ SummationServer::SummationServer() : ResourceServer(std::make_shared<ResourceMan
 SummationServer::SummationServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(manager){};
 
-std::vector<double> repeated_field_to_vector(const google::protobuf::RepeatedField<double>& f) {
-    std::vector<double> v(f.begin(), f.end());
-    return v;
-}
-
 grpc::Status SummationServer::Sum(grpc::ServerContext* context,
                                   const SumRequest* request,
                                   SumResponse* response) {
@@ -78,7 +73,7 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
     // Downcast resource to Summation.
     const std::shared_ptr<Summation> summation = std::dynamic_pointer_cast<Summation>(rs);
 
-    auto numbers_vec = repeated_field_to_vector(request->numbers());
+    auto numbers_vec = repeated_double_field_to_vector(request->numbers());
     response->set_sum(summation->sum(numbers_vec));
 
     return ::grpc::Status();
@@ -117,10 +112,12 @@ double SummationClient::sum(std::vector<double> numbers) {
 /* Summation registration logic. Automatically registers the Summation API upon compiling
  * this file. */
 
-bool summation_init() {
+namespace {
+bool init() {
     Registry::register_resource(Summation::static_api(), Summation::resource_registration());
     return true;
 };
 
 // NOLINTNEXTLINE
-const bool summation_inited = summation_init();
+const bool summation_inited = init();
+}  // namespace

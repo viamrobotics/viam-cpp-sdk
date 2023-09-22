@@ -1,10 +1,11 @@
+#include "impl.hpp"
+
 #include <grpcpp/support/status.h>
+
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
-
-#include "impl.hpp"
 
 using namespace viam::sdk;
 
@@ -43,6 +44,14 @@ void MyBase::reconfigure(Dependencies deps, ResourceConfig cfg) {
 }
 
 std::vector<std::string> MyBase::validate(ResourceConfig cfg) {
+    // Custom validation can be done by specifying a validate function at the
+    // time of resource registration (see complex/main.cpp) like this one.
+    // Validate functions can `throw` exceptions that will be returned to the
+    // parent through gRPC. Validate functions can also return a vector of
+    // strings representing the implicit dependencies of the resource.
+    //
+    // Here, we return the names of the "left" and "right" motors as found in
+    // the attributes as implicit dependencies of the base.
     return {find_motor(cfg, "left"), find_motor(cfg, "right")};
 }
 
@@ -52,10 +61,12 @@ bool MyBase::is_moving() {
 
 grpc::StatusCode MyBase::stop(const AttributeMap& extra) {
     auto left_stop = left_->stop(extra);
+    auto right_stop = right_->stop(extra);
+
+    // Return first of any non-ok error code received from motors.
     if (left_stop != grpc::StatusCode::OK) {
         return left_stop;
     }
-    auto right_stop = right_->stop(extra);
     if (right_stop != grpc::StatusCode::OK) {
         return right_stop;
     }

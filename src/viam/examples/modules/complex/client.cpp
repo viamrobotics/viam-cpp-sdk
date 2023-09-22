@@ -63,12 +63,12 @@ int main() {
     std::vector<bool> do_one_server_stream_ret = gc->do_one_server_stream("arg1");
     std::cout << "gizmo1 do_one_server_stream returned: ";
     for (bool ret : do_one_server_stream_ret) {
-        std::cout << '\t' << ret;
+        std::cout << '\t' << ret << std::endl;
     }
     std::vector<bool> do_one_bidi_stream_ret = gc->do_one_bidi_stream({"arg1", "arg2", "arg3"});
     std::cout << "gizmo1 do_one_bidi_stream returned: ";
     for (bool ret : do_one_bidi_stream_ret) {
-        std::cout << '\t' << ret;
+        std::cout << '\t' << ret << std::endl;
     }
 
     // Exercise Summation methods.

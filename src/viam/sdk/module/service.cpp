@@ -44,8 +44,8 @@ namespace sdk {
 
 namespace {
 Dependencies get_dependencies(ModuleService_* m,
-                              google::protobuf::RepeatedPtrField<std::string> proto,
-                              std::string resource_name) {
+                              google::protobuf::RepeatedPtrField<std::string> const& proto,
+                              std::string const& resource_name) {
     Dependencies deps;
     for (auto& dep : proto) {
         auto dep_name = Name::from_string(dep);

@@ -1,3 +1,5 @@
+#include "api.hpp"
+
 #include <vector>
 
 #include <google/protobuf/descriptor.h>
@@ -8,7 +10,6 @@
 
 #include "../proto/gizmo.grpc.pb.h"
 #include "../proto/gizmo.pb.h"
-#include "api.hpp"
 
 using namespace viam::sdk;
 using namespace viam::component::gizmo::v1;
@@ -305,10 +306,12 @@ std::string GizmoClient::do_two(bool arg1) {
 /* Gizmo registration logic. Automatically registers the Gizmo API upon compiling
  * this file. */
 
-bool gizmo_init() {
+namespace {
+bool init() {
     Registry::register_resource(Gizmo::static_api(), Gizmo::resource_registration());
     return true;
 };
 
 // NOLINTNEXTLINE
-const bool gizmo_inited = gizmo_init();
+const bool inited = init();
+}  // namespace

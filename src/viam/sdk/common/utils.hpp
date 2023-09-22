@@ -60,6 +60,15 @@ std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_p
 google::protobuf::Timestamp time_pt_to_timestamp(
     const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt);
 
+/// @brief convert a std::vector<double> to a google::protobuf::RepeatedField<double>.
+google::protobuf::RepeatedField<double> vector_to_repeated_double_field(
+    const std::vector<double>& v);
+
+/// @brief convert a google::protobuf::RepeatedField<double> to a
+/// std::vector<double>.
+std::vector<double> repeated_double_field_to_vector(
+    const google::protobuf::RepeatedField<double>& f);
+
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);
 

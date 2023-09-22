@@ -5,8 +5,9 @@
 /// Note that `Summation` is implemented with `MySummation` in impl.hpp and impl.cpp.
 #pragma once
 
-#include <grpcpp/channel.h>
 #include <vector>
+
+#include <grpcpp/channel.h>
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>

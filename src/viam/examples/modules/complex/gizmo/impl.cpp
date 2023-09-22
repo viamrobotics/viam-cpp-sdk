@@ -1,11 +1,12 @@
+#include "impl.hpp"
+
 #include <vector>
 
 #include <grpcpp/support/status.h>
+
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
-
-#include "impl.hpp"
 
 using namespace viam::sdk;
 
@@ -32,8 +33,15 @@ void MyGizmo::reconfigure(Dependencies deps, ResourceConfig cfg) {
 }
 
 std::vector<std::string> MyGizmo::validate(ResourceConfig cfg) {
-    // find_arg1 will throw an error if the `arg1` attribute is missing, is not
-    // a string or is an empty string.
+    // Custom validation can be done by specifying a validate function at the
+    // time of resource registration (see complex/main.cpp) like this one.
+    // Validate functions can `throw` exceptions that will be returned to the
+    // parent through gRPC. Validate functions can also return a vector of
+    // strings representing the implicit dependencies of the resource.
+    //
+    // Here, we return no implicit dependencies ({}). find_arg1 will `throw` an
+    // exception if the `arg1` attribute is missing, is not a string or is an
+    // empty string.
     find_arg1(cfg);
     return {};
 }

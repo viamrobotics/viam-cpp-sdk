@@ -76,6 +76,18 @@ google::protobuf::Timestamp time_pt_to_timestamp(
     return timestamp;
 }
 
+google::protobuf::RepeatedField<double> vector_to_repeated_double_field(
+    const std::vector<double>& v) {
+    google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
+    return rf;
+}
+
+std::vector<double> repeated_double_field_to_vector(
+    const google::protobuf::RepeatedField<double>& f) {
+    std::vector<double> v(f.begin(), f.end());
+    return v;
+}
+
 response_metadata response_metadata::from_proto(const viam::common::v1::ResponseMetadata& proto) {
     response_metadata metadata;
     metadata.captured_at = timestamp_to_time_pt(proto.captured_at());

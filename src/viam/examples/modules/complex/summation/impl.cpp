@@ -1,11 +1,12 @@
+#include "impl.hpp"
+
 #include <vector>
 
 #include <grpcpp/support/status.h>
+
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource.hpp>
-
-#include "impl.hpp"
 
 using namespace viam::sdk;
 

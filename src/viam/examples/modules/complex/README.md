@@ -1,5 +1,5 @@
 # VIAM Complex Module Example
-This example goes through how to create custom modular resources using Viam's C++ SDK, and how to connect it to a Robot.
+This example goes through how to create custom modular resources using Viam's C++ SDK and how to connect them to a Robot.
 
 This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
 
