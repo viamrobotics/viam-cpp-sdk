@@ -12,16 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_executable(complex_module
-  main.cpp
-)
-
-add_executable(complex_module_client
-  client.cpp
-)
-
+add_executable(complex_module)
 target_sources(complex_module
   PRIVATE
+    main.cpp
     base/impl.cpp
     base/impl.hpp
     gizmo/impl.cpp
@@ -43,8 +37,10 @@ target_sources(complex_module
     proto/summation.pb.h
 )
 
+add_executable(complex_module_client)
 target_sources(complex_module_client
   PRIVATE
+    client.cpp
     gizmo/api.hpp
     gizmo/api.cpp
     summation/api.hpp
