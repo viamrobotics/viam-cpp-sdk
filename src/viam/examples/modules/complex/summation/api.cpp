@@ -1,3 +1,5 @@
+#include "api.hpp"
+
 #include <vector>
 
 #include <google/protobuf/descriptor.h>
@@ -8,7 +10,6 @@
 
 #include "../proto/summation.grpc.pb.h"
 #include "../proto/summation.pb.h"
-#include "api.hpp"
 
 using namespace viam::sdk;
 using namespace viam::service::summation::v1;
