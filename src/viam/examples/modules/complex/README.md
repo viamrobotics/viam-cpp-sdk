@@ -8,6 +8,8 @@ Modular resources allow you to define custom components and services, and add th
 
 For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/simple), which only contains one custom resource model in one file.
 
+For a fully fleshed-out example of a C++ module that uses Github CI to upload to the Viam Registry, take a look at [module-example-cpp](https://github.com/viamrobotics/module-example-cpp). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
+
 ## Project structure
 The complex module example defines three new resources: a Gizmo component, a Summation service, and a custom Base component.
 
