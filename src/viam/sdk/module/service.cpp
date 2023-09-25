@@ -131,8 +131,12 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.name());
     if (reg) {
-        const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
-        manager->replace_one(cfg.resource_name(), res);
+        try {
+            const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
+            manager->replace_one(cfg.resource_name(), res);
+        } catch (const std::exception& exc) {
+            return grpc::Status(::grpc::INTERNAL, exc.what());
+        }
     }
 
     return grpc::Status();
