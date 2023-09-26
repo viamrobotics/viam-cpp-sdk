@@ -41,11 +41,12 @@ class Credentials {
 class DialOptions {
    public:
     DialOptions()
-        : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false) {}
+        : auth_entity_(boost::none), credentials_(boost::none), allow_insecure_downgrade_(false), timeout_(20.0f) {}
 
     const boost::optional<Credentials>& credentials() const;
     const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
+    const float timeout() const;
 
     void set_entity(boost::optional<std::string> entity);
     void set_credentials(boost::optional<Credentials> creds);

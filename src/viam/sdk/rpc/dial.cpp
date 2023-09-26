@@ -20,6 +20,7 @@ extern "C" char* dial(const char* uri,
                       const char* type,
                       const char* payload,
                       bool allow_insecure,
+                      float timeout,
                       void* ptr);
 namespace viam {
 namespace sdk {
@@ -56,6 +57,10 @@ void DialOptions::set_entity(boost::optional<std::string> entity) {
     auth_entity_ = entity;
 }
 
+void DialOptions::set_timeout(float timeout) {
+    timeout_ = timeout;
+}
+
 const boost::optional<std::string>& DialOptions::entity() const {
     return auth_entity_;
 }
@@ -64,12 +69,12 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 
-void DialOptions::set_allow_insecure_downgrade(bool allow) {
-    allow_insecure_downgrade_ = allow;
+const float DialOptions::timeout() const {
+    return timeout_;
 }
 
-void DialOptions::set_timeout(float timeout) {
-    timeout_ = timeout;
+void DialOptions::set_allow_insecure_downgrade(bool allow) {
+    allow_insecure_downgrade_ = allow;
 }
 
 bool DialOptions::allows_insecure_downgrade() const {
@@ -80,7 +85,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
-    const float timeout = options.get_value_or(20.0);
+    const float timeout = opts.timeout();
     const char* type = nullptr;
     const char* entity = nullptr;
     const char* payload = nullptr;
