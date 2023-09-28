@@ -73,9 +73,6 @@ add_custom_command(
   # We must run `buf mod update` before generating to download google APIs.
   COMMAND ${BUF_COMMAND} mod update ${MODULE_PROTO_DIR}
   COMMAND ${BUF_COMMAND} generate ${MODULE_PROTO_DIR} --template buf.gen.yaml
-  # Copy generated `gen` directory into current source directory for #include
-  # purposes.
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${MODULE_PROTO_GEN_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/gen
   MAIN_DEPENDENCY buf.gen.yaml
 )
 
@@ -88,6 +85,11 @@ add_custom_target(
 )
 
 add_executable(complex_module)
+# We have to include the generated proto files in order to #include the files.
+target_include_directories(complex_module
+  PUBLIC
+    ${MODULE_PROTO_GEN_DIR}
+)
 target_sources(complex_module
   PRIVATE
     main.cpp
@@ -106,6 +108,11 @@ target_sources(complex_module
 )
 
 add_executable(complex_module_client)
+# We have to include the generated proto files in order to #include the files.
+target_include_directories(complex_module_client
+  PUBLIC
+    ${MODULE_PROTO_GEN_DIR}
+)
 target_sources(complex_module_client
   PRIVATE
     client.cpp
