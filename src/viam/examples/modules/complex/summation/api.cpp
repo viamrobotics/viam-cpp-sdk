@@ -8,8 +8,8 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
-#include "../proto/summation.grpc.pb.h"
-#include "../proto/summation.pb.h"
+#include "../gen/summation.grpc.pb.h"
+#include "../gen/summation.pb.h"
 
 using namespace viam::sdk;
 using namespace viam::service::summation::v1;

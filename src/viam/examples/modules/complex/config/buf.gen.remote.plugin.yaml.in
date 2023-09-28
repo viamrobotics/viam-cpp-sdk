@@ -12,13 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 version: v1
 managed:
   enabled: true
 plugins:
-  - name: cpp
-    out: ./
-  - name: cpp-grpc
-    out: ./
-    path: /opt/homebrew/bin/grpc_cpp_plugin
+  - plugin: buf.build/grpc/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@
+    out: gen
+  - plugin: buf.build/protocolbuffers/cpp
+    out: gen

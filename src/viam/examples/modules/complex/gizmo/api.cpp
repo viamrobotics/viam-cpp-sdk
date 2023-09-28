@@ -8,8 +8,8 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
-#include "../proto/gizmo.grpc.pb.h"
-#include "../proto/gizmo.pb.h"
+#include "../gen/gizmo.grpc.pb.h"
+#include "../gen/gizmo.pb.h"
 
 using namespace viam::sdk;
 using namespace viam::component::gizmo::v1;
