@@ -109,16 +109,3 @@ double SummationClient::sum(std::vector<double> numbers) {
 
     return response.sum();
 }
-
-/* Summation registration logic. Automatically registers the Summation API upon compiling
- * this file. */
-
-namespace {
-bool init() {
-    Registry::register_resource(Summation::static_api(), Summation::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool summation_inited = init();
-}  // namespace

@@ -302,16 +302,3 @@ std::string GizmoClient::do_two(bool arg1) {
 
     return response.ret1();
 }
-
-/* Gizmo registration logic. Automatically registers the Gizmo API upon compiling
- * this file. */
-
-namespace {
-bool init() {
-    Registry::register_resource(Gizmo::static_api(), Gizmo::resource_registration());
-    return true;
-};
-
-// NOLINTNEXTLINE
-const bool inited = init();
-}  // namespace

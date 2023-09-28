@@ -57,6 +57,10 @@ int main(int argc, char** argv) {
 
     API gizmo_api = Gizmo::static_api();
     Model mygizmo_model("viam", "gizmo", "mygizmo");
+    // Make sure to explicity register resources with custom APIs. Note that
+    // this must be done in `main` and not in resource implementation files due
+    // to order of static initialization.
+    Registry::register_resource(gizmo_api, Gizmo::resource_registration());
 
     std::shared_ptr<ModelRegistration> mygizmo_mr = std::make_shared<ModelRegistration>(
         ResourceType("Gizmo"),
@@ -67,8 +71,12 @@ int main(int argc, char** argv) {
 
     Registry::register_model(mygizmo_mr);
 
-    API summation_api = Gizmo::static_api();
+    API summation_api = Summation::static_api();
     Model mysummation_model("viam", "summation", "mysummation");
+    // Make sure to explicity register resources with custom APIs. Note that
+    // this must be done in `main` and not in resource implementation files due
+    // to order of static initialization.
+    Registry::register_resource(summation_api, Summation::resource_registration());
 
     std::shared_ptr<ModelRegistration> mysummation_mr =
         std::make_shared<ModelRegistration>(ResourceType("Summation"),
