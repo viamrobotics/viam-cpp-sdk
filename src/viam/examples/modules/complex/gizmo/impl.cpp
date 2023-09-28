@@ -1,5 +1,6 @@
 #include "impl.hpp"
 
+#include <iostream>
 #include <vector>
 
 #include <grpcpp/support/status.h>

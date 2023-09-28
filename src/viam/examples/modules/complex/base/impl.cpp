@@ -1,5 +1,7 @@
 #include "impl.hpp"
 
+#include <iostream>
+
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/components/base/base.hpp>

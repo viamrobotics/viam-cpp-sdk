@@ -47,7 +47,7 @@ Dependencies get_dependencies(ModuleService_* m,
                               google::protobuf::RepeatedPtrField<std::string> const& proto,
                               std::string const& resource_name) {
     Dependencies deps;
-    for (auto& dep : proto) {
+    for (const auto& dep : proto) {
         auto dep_name = Name::from_string(dep);
         const std::shared_ptr<Resource> dep_resource = m->get_parent_resource(dep_name);
         if (!dep_resource) {
