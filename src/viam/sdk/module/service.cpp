@@ -2,9 +2,11 @@
 
 #include <csignal>
 #include <exception>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <pthread.h>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <sys/socket.h>
