@@ -147,7 +147,7 @@ Camera::distortion_parameters Camera::from_proto(
     viam::component::camera::v1::DistortionParameters proto) {
     Camera::distortion_parameters params;
     params.model = proto.model();
-    params.parameters = repeated_double_field_to_vector(proto.parameters());
+    params.parameters = {proto.parameters().begin(), proto.parameters().end()};
     return params;
 }
 
@@ -186,7 +186,7 @@ viam::component::camera::v1::DistortionParameters Camera::to_proto(
     Camera::distortion_parameters params) {
     viam::component::camera::v1::DistortionParameters proto;
     *proto.mutable_model() = params.model;
-    *proto.mutable_parameters() = vector_to_repeated_double_field(params.parameters);
+    *proto.mutable_parameters() = {params.parameters.begin(), params.parameters.end()};
     return proto;
 }
 

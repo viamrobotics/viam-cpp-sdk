@@ -74,7 +74,7 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
     // Downcast resource to Summation.
     const std::shared_ptr<Summation> summation = std::dynamic_pointer_cast<Summation>(rs);
 
-    auto numbers_vec = repeated_double_field_to_vector(request->numbers());
+    std::vector<double> numbers_vec = {request->numbers().begin(), request->numbers().end()};
     response->set_sum(summation->sum(numbers_vec));
 
     return ::grpc::Status();
