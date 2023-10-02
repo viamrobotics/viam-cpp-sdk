@@ -411,44 +411,45 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
   "ructR\005extra\"Q\n\024GetObstaclesResponse\0229\n\to"
   "bstacles\030\001 \003(\0132\033.viam.common.v1.GeoObsta"
-  "cleR\tobstacles*@\n\004Mode\022\024\n\020MODE_UNSPECIFI"
+  "cleR\tobstacles*R\n\004Mode\022\024\n\020MODE_UNSPECIFI"
   "ED\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_WAYPOINT\020\002"
-  "2\303\n\n\021NavigationService\022\227\001\n\007GetMode\022*.via"
-  "m.service.navigation.v1.GetModeRequest\032+"
-  ".viam.service.navigation.v1.GetModeRespo"
-  "nse\"3\202\323\344\223\002-\022+/viam/api/v1/service/naviga"
-  "tion/{name}/mode\022\227\001\n\007SetMode\022*.viam.serv"
-  "ice.navigation.v1.SetModeRequest\032+.viam."
-  "service.navigation.v1.SetModeResponse\"3\202"
-  "\323\344\223\002-\032+/viam/api/v1/service/navigation/{"
-  "name}/mode\022\247\001\n\013GetLocation\022..viam.servic"
-  "e.navigation.v1.GetLocationRequest\032/.via"
-  "m.service.navigation.v1.GetLocationRespo"
-  "nse\"7\202\323\344\223\0021\022//viam/api/v1/service/naviga"
-  "tion/{name}/location\022\253\001\n\014GetWaypoints\022/."
-  "viam.service.navigation.v1.GetWaypointsR"
-  "equest\0320.viam.service.navigation.v1.GetW"
-  "aypointsResponse\"8\202\323\344\223\0022\0220/viam/api/v1/s"
-  "ervice/navigation/{name}/waypoints\022\250\001\n\013A"
-  "ddWaypoint\022..viam.service.navigation.v1."
-  "AddWaypointRequest\032/.viam.service.naviga"
-  "tion.v1.AddWaypointResponse\"8\202\323\344\223\0022\"0/vi"
-  "am/api/v1/service/navigation/{name}/wayp"
-  "oints\022\266\001\n\016RemoveWaypoint\0221.viam.service."
-  "navigation.v1.RemoveWaypointRequest\0322.vi"
-  "am.service.navigation.v1.RemoveWaypointR"
-  "esponse\"=\202\323\344\223\0027*5/viam/api/v1/service/na"
-  "vigation/{name}/waypoints/{id}\022\257\001\n\014GetOb"
-  "stacles\022/.viam.service.navigation.v1.Get"
-  "ObstaclesRequest\0320.viam.service.navigati"
-  "on.v1.GetObstaclesResponse\"<\202\323\344\223\0026\0224/via"
-  "m/api/v1/service/navigation/{name}/get_o"
-  "bstacles\022\213\001\n\tDoCommand\022 .viam.common.v1."
-  "DoCommandRequest\032!.viam.common.v1.DoComm"
-  "andResponse\"9\202\323\344\223\0023\"1/viam/api/v1/servic"
-  "e/navigation/{name}/do_commandBG\n\036com.vi"
-  "am.service.navigation.v1Z%go.viam.com/ap"
-  "i/service/navigation/v1b\006proto3"
+  "\022\020\n\014MODE_EXPLORE\020\0032\303\n\n\021NavigationService"
+  "\022\227\001\n\007GetMode\022*.viam.service.navigation.v"
+  "1.GetModeRequest\032+.viam.service.navigati"
+  "on.v1.GetModeResponse\"3\202\323\344\223\002-\022+/viam/api"
+  "/v1/service/navigation/{name}/mode\022\227\001\n\007S"
+  "etMode\022*.viam.service.navigation.v1.SetM"
+  "odeRequest\032+.viam.service.navigation.v1."
+  "SetModeResponse\"3\202\323\344\223\002-\032+/viam/api/v1/se"
+  "rvice/navigation/{name}/mode\022\247\001\n\013GetLoca"
+  "tion\022..viam.service.navigation.v1.GetLoc"
+  "ationRequest\032/.viam.service.navigation.v"
+  "1.GetLocationResponse\"7\202\323\344\223\0021\022//viam/api"
+  "/v1/service/navigation/{name}/location\022\253"
+  "\001\n\014GetWaypoints\022/.viam.service.navigatio"
+  "n.v1.GetWaypointsRequest\0320.viam.service."
+  "navigation.v1.GetWaypointsResponse\"8\202\323\344\223"
+  "\0022\0220/viam/api/v1/service/navigation/{nam"
+  "e}/waypoints\022\250\001\n\013AddWaypoint\022..viam.serv"
+  "ice.navigation.v1.AddWaypointRequest\032/.v"
+  "iam.service.navigation.v1.AddWaypointRes"
+  "ponse\"8\202\323\344\223\0022\"0/viam/api/v1/service/navi"
+  "gation/{name}/waypoints\022\266\001\n\016RemoveWaypoi"
+  "nt\0221.viam.service.navigation.v1.RemoveWa"
+  "ypointRequest\0322.viam.service.navigation."
+  "v1.RemoveWaypointResponse\"=\202\323\344\223\0027*5/viam"
+  "/api/v1/service/navigation/{name}/waypoi"
+  "nts/{id}\022\257\001\n\014GetObstacles\022/.viam.service"
+  ".navigation.v1.GetObstaclesRequest\0320.via"
+  "m.service.navigation.v1.GetObstaclesResp"
+  "onse\"<\202\323\344\223\0026\0224/viam/api/v1/service/navig"
+  "ation/{name}/get_obstacles\022\213\001\n\tDoCommand"
+  "\022 .viam.common.v1.DoCommandRequest\032!.via"
+  "m.common.v1.DoCommandResponse\"9\202\323\344\223\0023\"1/"
+  "viam/api/v1/service/navigation/{name}/do"
+  "_commandBG\n\036com.viam.service.navigation."
+  "v1Z%go.viam.com/api/service/navigation/v"
+  "1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -457,7 +458,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigatio
 };
 static ::_pbi::once_flag descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto = {
-    false, false, 2911, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
+    false, false, 2929, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
     "service/navigation/v1/navigation.proto",
     &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 15,
     schemas, file_default_instances, TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offsets,
@@ -483,6 +484,7 @@ bool Mode_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+    case 3:
       return true;
     default:
       return false;

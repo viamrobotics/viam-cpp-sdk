@@ -23,16 +23,22 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
+#include <google/protobuf/generated_message_bases.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata_lite.h>
 #include <google/protobuf/generated_message_reflection.h>
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
 #include <google/protobuf/struct.pb.h>
+#include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_service_2fmotion_2fv1_2fmotion_2eproto
@@ -57,9 +63,18 @@ extern CollisionSpecificationDefaultTypeInternal _CollisionSpecification_default
 class CollisionSpecification_AllowedFrameCollisions;
 struct CollisionSpecification_AllowedFrameCollisionsDefaultTypeInternal;
 extern CollisionSpecification_AllowedFrameCollisionsDefaultTypeInternal _CollisionSpecification_AllowedFrameCollisions_default_instance_;
+class ComponentState;
+struct ComponentStateDefaultTypeInternal;
+extern ComponentStateDefaultTypeInternal _ComponentState_default_instance_;
 class Constraints;
 struct ConstraintsDefaultTypeInternal;
 extern ConstraintsDefaultTypeInternal _Constraints_default_instance_;
+class GetPlanRequest;
+struct GetPlanRequestDefaultTypeInternal;
+extern GetPlanRequestDefaultTypeInternal _GetPlanRequest_default_instance_;
+class GetPlanResponse;
+struct GetPlanResponseDefaultTypeInternal;
+extern GetPlanResponseDefaultTypeInternal _GetPlanResponse_default_instance_;
 class GetPoseRequest;
 struct GetPoseRequestDefaultTypeInternal;
 extern GetPoseRequestDefaultTypeInternal _GetPoseRequest_default_instance_;
@@ -69,9 +84,21 @@ extern GetPoseResponseDefaultTypeInternal _GetPoseResponse_default_instance_;
 class LinearConstraint;
 struct LinearConstraintDefaultTypeInternal;
 extern LinearConstraintDefaultTypeInternal _LinearConstraint_default_instance_;
+class ListPlanStatusesRequest;
+struct ListPlanStatusesRequestDefaultTypeInternal;
+extern ListPlanStatusesRequestDefaultTypeInternal _ListPlanStatusesRequest_default_instance_;
+class ListPlanStatusesResponse;
+struct ListPlanStatusesResponseDefaultTypeInternal;
+extern ListPlanStatusesResponseDefaultTypeInternal _ListPlanStatusesResponse_default_instance_;
 class MotionConfiguration;
 struct MotionConfigurationDefaultTypeInternal;
 extern MotionConfigurationDefaultTypeInternal _MotionConfiguration_default_instance_;
+class MoveOnGlobeNewRequest;
+struct MoveOnGlobeNewRequestDefaultTypeInternal;
+extern MoveOnGlobeNewRequestDefaultTypeInternal _MoveOnGlobeNewRequest_default_instance_;
+class MoveOnGlobeNewResponse;
+struct MoveOnGlobeNewResponseDefaultTypeInternal;
+extern MoveOnGlobeNewResponseDefaultTypeInternal _MoveOnGlobeNewResponse_default_instance_;
 class MoveOnGlobeRequest;
 struct MoveOnGlobeRequestDefaultTypeInternal;
 extern MoveOnGlobeRequestDefaultTypeInternal _MoveOnGlobeRequest_default_instance_;
@@ -93,6 +120,30 @@ extern MoveResponseDefaultTypeInternal _MoveResponse_default_instance_;
 class OrientationConstraint;
 struct OrientationConstraintDefaultTypeInternal;
 extern OrientationConstraintDefaultTypeInternal _OrientationConstraint_default_instance_;
+class Plan;
+struct PlanDefaultTypeInternal;
+extern PlanDefaultTypeInternal _Plan_default_instance_;
+class PlanStatus;
+struct PlanStatusDefaultTypeInternal;
+extern PlanStatusDefaultTypeInternal _PlanStatus_default_instance_;
+class PlanStatusWithID;
+struct PlanStatusWithIDDefaultTypeInternal;
+extern PlanStatusWithIDDefaultTypeInternal _PlanStatusWithID_default_instance_;
+class PlanStep;
+struct PlanStepDefaultTypeInternal;
+extern PlanStepDefaultTypeInternal _PlanStep_default_instance_;
+class PlanStep_StepEntry_DoNotUse;
+struct PlanStep_StepEntry_DoNotUseDefaultTypeInternal;
+extern PlanStep_StepEntry_DoNotUseDefaultTypeInternal _PlanStep_StepEntry_DoNotUse_default_instance_;
+class PlanWithStatus;
+struct PlanWithStatusDefaultTypeInternal;
+extern PlanWithStatusDefaultTypeInternal _PlanWithStatus_default_instance_;
+class StopPlanRequest;
+struct StopPlanRequestDefaultTypeInternal;
+extern StopPlanRequestDefaultTypeInternal _StopPlanRequest_default_instance_;
+class StopPlanResponse;
+struct StopPlanResponseDefaultTypeInternal;
+extern StopPlanResponseDefaultTypeInternal _StopPlanResponse_default_instance_;
 }  // namespace v1
 }  // namespace motion
 }  // namespace service
@@ -100,11 +151,18 @@ extern OrientationConstraintDefaultTypeInternal _OrientationConstraint_default_i
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::service::motion::v1::CollisionSpecification* Arena::CreateMaybeMessage<::viam::service::motion::v1::CollisionSpecification>(Arena*);
 template<> ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions* Arena::CreateMaybeMessage<::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions>(Arena*);
+template<> ::viam::service::motion::v1::ComponentState* Arena::CreateMaybeMessage<::viam::service::motion::v1::ComponentState>(Arena*);
 template<> ::viam::service::motion::v1::Constraints* Arena::CreateMaybeMessage<::viam::service::motion::v1::Constraints>(Arena*);
+template<> ::viam::service::motion::v1::GetPlanRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPlanRequest>(Arena*);
+template<> ::viam::service::motion::v1::GetPlanResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPlanResponse>(Arena*);
 template<> ::viam::service::motion::v1::GetPoseRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseRequest>(Arena*);
 template<> ::viam::service::motion::v1::GetPoseResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::GetPoseResponse>(Arena*);
 template<> ::viam::service::motion::v1::LinearConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::LinearConstraint>(Arena*);
+template<> ::viam::service::motion::v1::ListPlanStatusesRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::ListPlanStatusesRequest>(Arena*);
+template<> ::viam::service::motion::v1::ListPlanStatusesResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::ListPlanStatusesResponse>(Arena*);
 template<> ::viam::service::motion::v1::MotionConfiguration* Arena::CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(Arena*);
+template<> ::viam::service::motion::v1::MoveOnGlobeNewRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeNewRequest>(Arena*);
+template<> ::viam::service::motion::v1::MoveOnGlobeNewResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeNewResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnGlobeRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnGlobeResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnGlobeResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveOnMapRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapRequest>(Arena*);
@@ -112,12 +170,48 @@ template<> ::viam::service::motion::v1::MoveOnMapResponse* Arena::CreateMaybeMes
 template<> ::viam::service::motion::v1::MoveRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveResponse>(Arena*);
 template<> ::viam::service::motion::v1::OrientationConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::OrientationConstraint>(Arena*);
+template<> ::viam::service::motion::v1::Plan* Arena::CreateMaybeMessage<::viam::service::motion::v1::Plan>(Arena*);
+template<> ::viam::service::motion::v1::PlanStatus* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStatus>(Arena*);
+template<> ::viam::service::motion::v1::PlanStatusWithID* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStatusWithID>(Arena*);
+template<> ::viam::service::motion::v1::PlanStep* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStep>(Arena*);
+template<> ::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse>(Arena*);
+template<> ::viam::service::motion::v1::PlanWithStatus* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanWithStatus>(Arena*);
+template<> ::viam::service::motion::v1::StopPlanRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::StopPlanRequest>(Arena*);
+template<> ::viam::service::motion::v1::StopPlanResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::StopPlanResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace service {
 namespace motion {
 namespace v1 {
 
+enum PlanState : int {
+  PLAN_STATE_UNSPECIFIED = 0,
+  PLAN_STATE_IN_PROGRESS = 1,
+  PLAN_STATE_STOPPED = 2,
+  PLAN_STATE_SUCCEEDED = 3,
+  PLAN_STATE_FAILED = 4,
+  PlanState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PlanState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool PlanState_IsValid(int value);
+constexpr PlanState PlanState_MIN = PLAN_STATE_UNSPECIFIED;
+constexpr PlanState PlanState_MAX = PLAN_STATE_FAILED;
+constexpr int PlanState_ARRAYSIZE = PlanState_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlanState_descriptor();
+template<typename T>
+inline const std::string& PlanState_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PlanState>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PlanState_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PlanState_descriptor(), enum_t_value);
+}
+inline bool PlanState_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PlanState* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PlanState>(
+    PlanState_descriptor(), name, value);
+}
 // ===================================================================
 
 class MoveRequest final :
@@ -1538,6 +1632,438 @@ class MoveOnGlobeResponse final :
 };
 // -------------------------------------------------------------------
 
+class MoveOnGlobeNewRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnGlobeNewRequest) */ {
+ public:
+  inline MoveOnGlobeNewRequest() : MoveOnGlobeNewRequest(nullptr) {}
+  ~MoveOnGlobeNewRequest() override;
+  explicit PROTOBUF_CONSTEXPR MoveOnGlobeNewRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MoveOnGlobeNewRequest(const MoveOnGlobeNewRequest& from);
+  MoveOnGlobeNewRequest(MoveOnGlobeNewRequest&& from) noexcept
+    : MoveOnGlobeNewRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveOnGlobeNewRequest& operator=(const MoveOnGlobeNewRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveOnGlobeNewRequest& operator=(MoveOnGlobeNewRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveOnGlobeNewRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveOnGlobeNewRequest* internal_default_instance() {
+    return reinterpret_cast<const MoveOnGlobeNewRequest*>(
+               &_MoveOnGlobeNewRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(MoveOnGlobeNewRequest& a, MoveOnGlobeNewRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveOnGlobeNewRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveOnGlobeNewRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveOnGlobeNewRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveOnGlobeNewRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MoveOnGlobeNewRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MoveOnGlobeNewRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MoveOnGlobeNewRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.MoveOnGlobeNewRequest";
+  }
+  protected:
+  explicit MoveOnGlobeNewRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObstaclesFieldNumber = 6,
+    kNameFieldNumber = 1,
+    kDestinationFieldNumber = 2,
+    kComponentNameFieldNumber = 4,
+    kMovementSensorNameFieldNumber = 5,
+    kMotionConfigurationFieldNumber = 7,
+    kExtraFieldNumber = 99,
+    kHeadingFieldNumber = 3,
+  };
+  // repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
+  int obstacles_size() const;
+  private:
+  int _internal_obstacles_size() const;
+  public:
+  void clear_obstacles();
+  ::viam::common::v1::GeoObstacle* mutable_obstacles(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+      mutable_obstacles();
+  private:
+  const ::viam::common::v1::GeoObstacle& _internal_obstacles(int index) const;
+  ::viam::common::v1::GeoObstacle* _internal_add_obstacles();
+  public:
+  const ::viam::common::v1::GeoObstacle& obstacles(int index) const;
+  ::viam::common::v1::GeoObstacle* add_obstacles();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+      obstacles() const;
+
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .viam.common.v1.GeoPoint destination = 2 [json_name = "destination"];
+  bool has_destination() const;
+  private:
+  bool _internal_has_destination() const;
+  public:
+  void clear_destination();
+  const ::viam::common::v1::GeoPoint& destination() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::GeoPoint* release_destination();
+  ::viam::common::v1::GeoPoint* mutable_destination();
+  void set_allocated_destination(::viam::common::v1::GeoPoint* destination);
+  private:
+  const ::viam::common::v1::GeoPoint& _internal_destination() const;
+  ::viam::common::v1::GeoPoint* _internal_mutable_destination();
+  public:
+  void unsafe_arena_set_allocated_destination(
+      ::viam::common::v1::GeoPoint* destination);
+  ::viam::common::v1::GeoPoint* unsafe_arena_release_destination();
+
+  // .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
+  bool has_component_name() const;
+  private:
+  bool _internal_has_component_name() const;
+  public:
+  void clear_component_name();
+  const ::viam::common::v1::ResourceName& component_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
+  ::viam::common::v1::ResourceName* mutable_component_name();
+  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  public:
+  void unsafe_arena_set_allocated_component_name(
+      ::viam::common::v1::ResourceName* component_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
+  bool has_movement_sensor_name() const;
+  private:
+  bool _internal_has_movement_sensor_name() const;
+  public:
+  void clear_movement_sensor_name();
+  const ::viam::common::v1::ResourceName& movement_sensor_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_movement_sensor_name();
+  ::viam::common::v1::ResourceName* mutable_movement_sensor_name();
+  void set_allocated_movement_sensor_name(::viam::common::v1::ResourceName* movement_sensor_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_movement_sensor_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_movement_sensor_name();
+  public:
+  void unsafe_arena_set_allocated_movement_sensor_name(
+      ::viam::common::v1::ResourceName* movement_sensor_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_movement_sensor_name();
+
+  // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 7 [json_name = "motionConfiguration"];
+  bool has_motion_configuration() const;
+  private:
+  bool _internal_has_motion_configuration() const;
+  public:
+  void clear_motion_configuration();
+  const ::viam::service::motion::v1::MotionConfiguration& motion_configuration() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::MotionConfiguration* release_motion_configuration();
+  ::viam::service::motion::v1::MotionConfiguration* mutable_motion_configuration();
+  void set_allocated_motion_configuration(::viam::service::motion::v1::MotionConfiguration* motion_configuration);
+  private:
+  const ::viam::service::motion::v1::MotionConfiguration& _internal_motion_configuration() const;
+  ::viam::service::motion::v1::MotionConfiguration* _internal_mutable_motion_configuration();
+  public:
+  void unsafe_arena_set_allocated_motion_configuration(
+      ::viam::service::motion::v1::MotionConfiguration* motion_configuration);
+  ::viam::service::motion::v1::MotionConfiguration* unsafe_arena_release_motion_configuration();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // optional double heading = 3 [json_name = "heading"];
+  bool has_heading() const;
+  private:
+  bool _internal_has_heading() const;
+  public:
+  void clear_heading();
+  double heading() const;
+  void set_heading(double value);
+  private:
+  double _internal_heading() const;
+  void _internal_set_heading(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnGlobeNewRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle > obstacles_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::viam::common::v1::GeoPoint* destination_;
+  ::viam::common::v1::ResourceName* component_name_;
+  ::viam::common::v1::ResourceName* movement_sensor_name_;
+  ::viam::service::motion::v1::MotionConfiguration* motion_configuration_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  double heading_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MoveOnGlobeNewResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MoveOnGlobeNewResponse) */ {
+ public:
+  inline MoveOnGlobeNewResponse() : MoveOnGlobeNewResponse(nullptr) {}
+  ~MoveOnGlobeNewResponse() override;
+  explicit PROTOBUF_CONSTEXPR MoveOnGlobeNewResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MoveOnGlobeNewResponse(const MoveOnGlobeNewResponse& from);
+  MoveOnGlobeNewResponse(MoveOnGlobeNewResponse&& from) noexcept
+    : MoveOnGlobeNewResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline MoveOnGlobeNewResponse& operator=(const MoveOnGlobeNewResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveOnGlobeNewResponse& operator=(MoveOnGlobeNewResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveOnGlobeNewResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveOnGlobeNewResponse* internal_default_instance() {
+    return reinterpret_cast<const MoveOnGlobeNewResponse*>(
+               &_MoveOnGlobeNewResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(MoveOnGlobeNewResponse& a, MoveOnGlobeNewResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MoveOnGlobeNewResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveOnGlobeNewResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveOnGlobeNewResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MoveOnGlobeNewResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MoveOnGlobeNewResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MoveOnGlobeNewResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MoveOnGlobeNewResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.MoveOnGlobeNewResponse";
+  }
+  protected:
+  explicit MoveOnGlobeNewResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kExecutionIdFieldNumber = 1,
+  };
+  // string execution_id = 1 [json_name = "executionId"];
+  void clear_execution_id();
+  const std::string& execution_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_execution_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_execution_id();
+  PROTOBUF_NODISCARD std::string* release_execution_id();
+  void set_allocated_execution_id(std::string* execution_id);
+  private:
+  const std::string& _internal_execution_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_execution_id(const std::string& value);
+  std::string* _internal_mutable_execution_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.MoveOnGlobeNewResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetPoseRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.GetPoseRequest) */ {
  public:
@@ -1586,7 +2112,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -1810,7 +2336,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -1914,6 +2440,1033 @@ class GetPoseResponse final :
 };
 // -------------------------------------------------------------------
 
+class StopPlanRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.StopPlanRequest) */ {
+ public:
+  inline StopPlanRequest() : StopPlanRequest(nullptr) {}
+  ~StopPlanRequest() override;
+  explicit PROTOBUF_CONSTEXPR StopPlanRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StopPlanRequest(const StopPlanRequest& from);
+  StopPlanRequest(StopPlanRequest&& from) noexcept
+    : StopPlanRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline StopPlanRequest& operator=(const StopPlanRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StopPlanRequest& operator=(StopPlanRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StopPlanRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StopPlanRequest* internal_default_instance() {
+    return reinterpret_cast<const StopPlanRequest*>(
+               &_StopPlanRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(StopPlanRequest& a, StopPlanRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StopPlanRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StopPlanRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StopPlanRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StopPlanRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const StopPlanRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const StopPlanRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StopPlanRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.StopPlanRequest";
+  }
+  protected:
+  explicit StopPlanRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kComponentNameFieldNumber = 2,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+  bool has_component_name() const;
+  private:
+  bool _internal_has_component_name() const;
+  public:
+  void clear_component_name();
+  const ::viam::common::v1::ResourceName& component_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
+  ::viam::common::v1::ResourceName* mutable_component_name();
+  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  public:
+  void unsafe_arena_set_allocated_component_name(
+      ::viam::common::v1::ResourceName* component_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.StopPlanRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StopPlanResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.StopPlanResponse) */ {
+ public:
+  inline StopPlanResponse() : StopPlanResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR StopPlanResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StopPlanResponse(const StopPlanResponse& from);
+  StopPlanResponse(StopPlanResponse&& from) noexcept
+    : StopPlanResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline StopPlanResponse& operator=(const StopPlanResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StopPlanResponse& operator=(StopPlanResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StopPlanResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StopPlanResponse* internal_default_instance() {
+    return reinterpret_cast<const StopPlanResponse*>(
+               &_StopPlanResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(StopPlanResponse& a, StopPlanResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StopPlanResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StopPlanResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StopPlanResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StopPlanResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const StopPlanResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const StopPlanResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.StopPlanResponse";
+  }
+  protected:
+  explicit StopPlanResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.StopPlanResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListPlanStatusesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.ListPlanStatusesRequest) */ {
+ public:
+  inline ListPlanStatusesRequest() : ListPlanStatusesRequest(nullptr) {}
+  ~ListPlanStatusesRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListPlanStatusesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListPlanStatusesRequest(const ListPlanStatusesRequest& from);
+  ListPlanStatusesRequest(ListPlanStatusesRequest&& from) noexcept
+    : ListPlanStatusesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListPlanStatusesRequest& operator=(const ListPlanStatusesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListPlanStatusesRequest& operator=(ListPlanStatusesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListPlanStatusesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListPlanStatusesRequest* internal_default_instance() {
+    return reinterpret_cast<const ListPlanStatusesRequest*>(
+               &_ListPlanStatusesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(ListPlanStatusesRequest& a, ListPlanStatusesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListPlanStatusesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListPlanStatusesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListPlanStatusesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListPlanStatusesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListPlanStatusesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListPlanStatusesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListPlanStatusesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.ListPlanStatusesRequest";
+  }
+  protected:
+  explicit ListPlanStatusesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+    kOnlyActivePlansFieldNumber = 2,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // bool only_active_plans = 2 [json_name = "onlyActivePlans"];
+  void clear_only_active_plans();
+  bool only_active_plans() const;
+  void set_only_active_plans(bool value);
+  private:
+  bool _internal_only_active_plans() const;
+  void _internal_set_only_active_plans(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.ListPlanStatusesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  bool only_active_plans_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListPlanStatusesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.ListPlanStatusesResponse) */ {
+ public:
+  inline ListPlanStatusesResponse() : ListPlanStatusesResponse(nullptr) {}
+  ~ListPlanStatusesResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListPlanStatusesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListPlanStatusesResponse(const ListPlanStatusesResponse& from);
+  ListPlanStatusesResponse(ListPlanStatusesResponse&& from) noexcept
+    : ListPlanStatusesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListPlanStatusesResponse& operator=(const ListPlanStatusesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListPlanStatusesResponse& operator=(ListPlanStatusesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListPlanStatusesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListPlanStatusesResponse* internal_default_instance() {
+    return reinterpret_cast<const ListPlanStatusesResponse*>(
+               &_ListPlanStatusesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(ListPlanStatusesResponse& a, ListPlanStatusesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListPlanStatusesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListPlanStatusesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListPlanStatusesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListPlanStatusesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListPlanStatusesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListPlanStatusesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListPlanStatusesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.ListPlanStatusesResponse";
+  }
+  protected:
+  explicit ListPlanStatusesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlanStatusesWithIdsFieldNumber = 1,
+  };
+  // repeated .viam.service.motion.v1.PlanStatusWithID plan_statuses_with_ids = 1 [json_name = "planStatusesWithIds"];
+  int plan_statuses_with_ids_size() const;
+  private:
+  int _internal_plan_statuses_with_ids_size() const;
+  public:
+  void clear_plan_statuses_with_ids();
+  ::viam::service::motion::v1::PlanStatusWithID* mutable_plan_statuses_with_ids(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatusWithID >*
+      mutable_plan_statuses_with_ids();
+  private:
+  const ::viam::service::motion::v1::PlanStatusWithID& _internal_plan_statuses_with_ids(int index) const;
+  ::viam::service::motion::v1::PlanStatusWithID* _internal_add_plan_statuses_with_ids();
+  public:
+  const ::viam::service::motion::v1::PlanStatusWithID& plan_statuses_with_ids(int index) const;
+  ::viam::service::motion::v1::PlanStatusWithID* add_plan_statuses_with_ids();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatusWithID >&
+      plan_statuses_with_ids() const;
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.ListPlanStatusesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatusWithID > plan_statuses_with_ids_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPlanRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.GetPlanRequest) */ {
+ public:
+  inline GetPlanRequest() : GetPlanRequest(nullptr) {}
+  ~GetPlanRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPlanRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPlanRequest(const GetPlanRequest& from);
+  GetPlanRequest(GetPlanRequest&& from) noexcept
+    : GetPlanRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPlanRequest& operator=(const GetPlanRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPlanRequest& operator=(GetPlanRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPlanRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPlanRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPlanRequest*>(
+               &_GetPlanRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(GetPlanRequest& a, GetPlanRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPlanRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPlanRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPlanRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPlanRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPlanRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPlanRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPlanRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.GetPlanRequest";
+  }
+  protected:
+  explicit GetPlanRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExecutionIdFieldNumber = 4,
+    kComponentNameFieldNumber = 2,
+    kExtraFieldNumber = 99,
+    kLastPlanOnlyFieldNumber = 3,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional string execution_id = 4 [json_name = "executionId"];
+  bool has_execution_id() const;
+  private:
+  bool _internal_has_execution_id() const;
+  public:
+  void clear_execution_id();
+  const std::string& execution_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_execution_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_execution_id();
+  PROTOBUF_NODISCARD std::string* release_execution_id();
+  void set_allocated_execution_id(std::string* execution_id);
+  private:
+  const std::string& _internal_execution_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_execution_id(const std::string& value);
+  std::string* _internal_mutable_execution_id();
+  public:
+
+  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+  bool has_component_name() const;
+  private:
+  bool _internal_has_component_name() const;
+  public:
+  void clear_component_name();
+  const ::viam::common::v1::ResourceName& component_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
+  ::viam::common::v1::ResourceName* mutable_component_name();
+  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  public:
+  void unsafe_arena_set_allocated_component_name(
+      ::viam::common::v1::ResourceName* component_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // bool last_plan_only = 3 [json_name = "lastPlanOnly"];
+  void clear_last_plan_only();
+  bool last_plan_only() const;
+  void set_last_plan_only(bool value);
+  private:
+  bool _internal_last_plan_only() const;
+  void _internal_set_last_plan_only(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.GetPlanRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
+  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  bool last_plan_only_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPlanResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.GetPlanResponse) */ {
+ public:
+  inline GetPlanResponse() : GetPlanResponse(nullptr) {}
+  ~GetPlanResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPlanResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPlanResponse(const GetPlanResponse& from);
+  GetPlanResponse(GetPlanResponse&& from) noexcept
+    : GetPlanResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPlanResponse& operator=(const GetPlanResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPlanResponse& operator=(GetPlanResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPlanResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPlanResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPlanResponse*>(
+               &_GetPlanResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(GetPlanResponse& a, GetPlanResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPlanResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPlanResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPlanResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPlanResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPlanResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPlanResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPlanResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.GetPlanResponse";
+  }
+  protected:
+  explicit GetPlanResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kReplanHistoryFieldNumber = 2,
+    kCurrentPlanWithStatusFieldNumber = 1,
+  };
+  // repeated .viam.service.motion.v1.PlanWithStatus replan_history = 2 [json_name = "replanHistory"];
+  int replan_history_size() const;
+  private:
+  int _internal_replan_history_size() const;
+  public:
+  void clear_replan_history();
+  ::viam::service::motion::v1::PlanWithStatus* mutable_replan_history(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanWithStatus >*
+      mutable_replan_history();
+  private:
+  const ::viam::service::motion::v1::PlanWithStatus& _internal_replan_history(int index) const;
+  ::viam::service::motion::v1::PlanWithStatus* _internal_add_replan_history();
+  public:
+  const ::viam::service::motion::v1::PlanWithStatus& replan_history(int index) const;
+  ::viam::service::motion::v1::PlanWithStatus* add_replan_history();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanWithStatus >&
+      replan_history() const;
+
+  // .viam.service.motion.v1.PlanWithStatus current_plan_with_status = 1 [json_name = "currentPlanWithStatus"];
+  bool has_current_plan_with_status() const;
+  private:
+  bool _internal_has_current_plan_with_status() const;
+  public:
+  void clear_current_plan_with_status();
+  const ::viam::service::motion::v1::PlanWithStatus& current_plan_with_status() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::PlanWithStatus* release_current_plan_with_status();
+  ::viam::service::motion::v1::PlanWithStatus* mutable_current_plan_with_status();
+  void set_allocated_current_plan_with_status(::viam::service::motion::v1::PlanWithStatus* current_plan_with_status);
+  private:
+  const ::viam::service::motion::v1::PlanWithStatus& _internal_current_plan_with_status() const;
+  ::viam::service::motion::v1::PlanWithStatus* _internal_mutable_current_plan_with_status();
+  public:
+  void unsafe_arena_set_allocated_current_plan_with_status(
+      ::viam::service::motion::v1::PlanWithStatus* current_plan_with_status);
+  ::viam::service::motion::v1::PlanWithStatus* unsafe_arena_release_current_plan_with_status();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.GetPlanResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanWithStatus > replan_history_;
+  ::viam::service::motion::v1::PlanWithStatus* current_plan_with_status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Constraints final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.Constraints) */ {
  public:
@@ -1962,7 +3515,7 @@ class Constraints final :
                &_Constraints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    17;
 
   friend void swap(Constraints& a, Constraints& b) {
     a.Swap(&b);
@@ -2154,7 +3707,7 @@ class LinearConstraint final :
                &_LinearConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    18;
 
   friend void swap(LinearConstraint& a, LinearConstraint& b) {
     a.Swap(&b);
@@ -2317,7 +3870,7 @@ class OrientationConstraint final :
                &_OrientationConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    19;
 
   friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
     a.Swap(&b);
@@ -2465,7 +4018,7 @@ class CollisionSpecification_AllowedFrameCollisions final :
                &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    20;
 
   friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
     a.Swap(&b);
@@ -2629,7 +4182,7 @@ class CollisionSpecification final :
                &_CollisionSpecification_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    21;
 
   friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
     a.Swap(&b);
@@ -2730,6 +4283,1126 @@ class CollisionSpecification final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions > allows_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PlanWithStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.PlanWithStatus) */ {
+ public:
+  inline PlanWithStatus() : PlanWithStatus(nullptr) {}
+  ~PlanWithStatus() override;
+  explicit PROTOBUF_CONSTEXPR PlanWithStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PlanWithStatus(const PlanWithStatus& from);
+  PlanWithStatus(PlanWithStatus&& from) noexcept
+    : PlanWithStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline PlanWithStatus& operator=(const PlanWithStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlanWithStatus& operator=(PlanWithStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlanWithStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlanWithStatus* internal_default_instance() {
+    return reinterpret_cast<const PlanWithStatus*>(
+               &_PlanWithStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(PlanWithStatus& a, PlanWithStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PlanWithStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlanWithStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlanWithStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlanWithStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PlanWithStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PlanWithStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PlanWithStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.PlanWithStatus";
+  }
+  protected:
+  explicit PlanWithStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStatusHistoryFieldNumber = 3,
+    kPlanFieldNumber = 1,
+    kStatusFieldNumber = 2,
+  };
+  // repeated .viam.service.motion.v1.PlanStatus status_history = 3 [json_name = "statusHistory"];
+  int status_history_size() const;
+  private:
+  int _internal_status_history_size() const;
+  public:
+  void clear_status_history();
+  ::viam::service::motion::v1::PlanStatus* mutable_status_history(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatus >*
+      mutable_status_history();
+  private:
+  const ::viam::service::motion::v1::PlanStatus& _internal_status_history(int index) const;
+  ::viam::service::motion::v1::PlanStatus* _internal_add_status_history();
+  public:
+  const ::viam::service::motion::v1::PlanStatus& status_history(int index) const;
+  ::viam::service::motion::v1::PlanStatus* add_status_history();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatus >&
+      status_history() const;
+
+  // .viam.service.motion.v1.Plan plan = 1 [json_name = "plan"];
+  bool has_plan() const;
+  private:
+  bool _internal_has_plan() const;
+  public:
+  void clear_plan();
+  const ::viam::service::motion::v1::Plan& plan() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::Plan* release_plan();
+  ::viam::service::motion::v1::Plan* mutable_plan();
+  void set_allocated_plan(::viam::service::motion::v1::Plan* plan);
+  private:
+  const ::viam::service::motion::v1::Plan& _internal_plan() const;
+  ::viam::service::motion::v1::Plan* _internal_mutable_plan();
+  public:
+  void unsafe_arena_set_allocated_plan(
+      ::viam::service::motion::v1::Plan* plan);
+  ::viam::service::motion::v1::Plan* unsafe_arena_release_plan();
+
+  // .viam.service.motion.v1.PlanStatus status = 2 [json_name = "status"];
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::viam::service::motion::v1::PlanStatus& status() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::PlanStatus* release_status();
+  ::viam::service::motion::v1::PlanStatus* mutable_status();
+  void set_allocated_status(::viam::service::motion::v1::PlanStatus* status);
+  private:
+  const ::viam::service::motion::v1::PlanStatus& _internal_status() const;
+  ::viam::service::motion::v1::PlanStatus* _internal_mutable_status();
+  public:
+  void unsafe_arena_set_allocated_status(
+      ::viam::service::motion::v1::PlanStatus* status);
+  ::viam::service::motion::v1::PlanStatus* unsafe_arena_release_status();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.PlanWithStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatus > status_history_;
+  ::viam::service::motion::v1::Plan* plan_;
+  ::viam::service::motion::v1::PlanStatus* status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PlanStatusWithID final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.PlanStatusWithID) */ {
+ public:
+  inline PlanStatusWithID() : PlanStatusWithID(nullptr) {}
+  ~PlanStatusWithID() override;
+  explicit PROTOBUF_CONSTEXPR PlanStatusWithID(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PlanStatusWithID(const PlanStatusWithID& from);
+  PlanStatusWithID(PlanStatusWithID&& from) noexcept
+    : PlanStatusWithID() {
+    *this = ::std::move(from);
+  }
+
+  inline PlanStatusWithID& operator=(const PlanStatusWithID& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlanStatusWithID& operator=(PlanStatusWithID&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlanStatusWithID& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlanStatusWithID* internal_default_instance() {
+    return reinterpret_cast<const PlanStatusWithID*>(
+               &_PlanStatusWithID_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(PlanStatusWithID& a, PlanStatusWithID& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PlanStatusWithID* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlanStatusWithID* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlanStatusWithID* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlanStatusWithID>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PlanStatusWithID& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PlanStatusWithID& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PlanStatusWithID* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.PlanStatusWithID";
+  }
+  protected:
+  explicit PlanStatusWithID(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlanIdFieldNumber = 1,
+    kExecutionIdFieldNumber = 3,
+    kComponentNameFieldNumber = 2,
+    kStatusFieldNumber = 4,
+  };
+  // string plan_id = 1 [json_name = "planId"];
+  void clear_plan_id();
+  const std::string& plan_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_plan_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_plan_id();
+  PROTOBUF_NODISCARD std::string* release_plan_id();
+  void set_allocated_plan_id(std::string* plan_id);
+  private:
+  const std::string& _internal_plan_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_plan_id(const std::string& value);
+  std::string* _internal_mutable_plan_id();
+  public:
+
+  // string execution_id = 3 [json_name = "executionId"];
+  void clear_execution_id();
+  const std::string& execution_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_execution_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_execution_id();
+  PROTOBUF_NODISCARD std::string* release_execution_id();
+  void set_allocated_execution_id(std::string* execution_id);
+  private:
+  const std::string& _internal_execution_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_execution_id(const std::string& value);
+  std::string* _internal_mutable_execution_id();
+  public:
+
+  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+  bool has_component_name() const;
+  private:
+  bool _internal_has_component_name() const;
+  public:
+  void clear_component_name();
+  const ::viam::common::v1::ResourceName& component_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
+  ::viam::common::v1::ResourceName* mutable_component_name();
+  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  public:
+  void unsafe_arena_set_allocated_component_name(
+      ::viam::common::v1::ResourceName* component_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.service.motion.v1.PlanStatus status = 4 [json_name = "status"];
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::viam::service::motion::v1::PlanStatus& status() const;
+  PROTOBUF_NODISCARD ::viam::service::motion::v1::PlanStatus* release_status();
+  ::viam::service::motion::v1::PlanStatus* mutable_status();
+  void set_allocated_status(::viam::service::motion::v1::PlanStatus* status);
+  private:
+  const ::viam::service::motion::v1::PlanStatus& _internal_status() const;
+  ::viam::service::motion::v1::PlanStatus* _internal_mutable_status();
+  public:
+  void unsafe_arena_set_allocated_status(
+      ::viam::service::motion::v1::PlanStatus* status);
+  ::viam::service::motion::v1::PlanStatus* unsafe_arena_release_status();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.PlanStatusWithID)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr plan_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
+  ::viam::common::v1::ResourceName* component_name_;
+  ::viam::service::motion::v1::PlanStatus* status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PlanStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.PlanStatus) */ {
+ public:
+  inline PlanStatus() : PlanStatus(nullptr) {}
+  ~PlanStatus() override;
+  explicit PROTOBUF_CONSTEXPR PlanStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PlanStatus(const PlanStatus& from);
+  PlanStatus(PlanStatus&& from) noexcept
+    : PlanStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline PlanStatus& operator=(const PlanStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlanStatus& operator=(PlanStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlanStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlanStatus* internal_default_instance() {
+    return reinterpret_cast<const PlanStatus*>(
+               &_PlanStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  friend void swap(PlanStatus& a, PlanStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PlanStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlanStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlanStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlanStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PlanStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PlanStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PlanStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.PlanStatus";
+  }
+  protected:
+  explicit PlanStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kReasonFieldNumber = 3,
+    kTimestampFieldNumber = 2,
+    kStateFieldNumber = 1,
+  };
+  // optional string reason = 3 [json_name = "reason"];
+  bool has_reason() const;
+  private:
+  bool _internal_has_reason() const;
+  public:
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
+  public:
+
+  // .google.protobuf.Timestamp timestamp = 2 [json_name = "timestamp"];
+  bool has_timestamp() const;
+  private:
+  bool _internal_has_timestamp() const;
+  public:
+  void clear_timestamp();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& timestamp() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_timestamp();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_timestamp();
+  void set_allocated_timestamp(::PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_timestamp() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_timestamp();
+  public:
+  void unsafe_arena_set_allocated_timestamp(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_timestamp();
+
+  // .viam.service.motion.v1.PlanState state = 1 [json_name = "state"];
+  void clear_state();
+  ::viam::service::motion::v1::PlanState state() const;
+  void set_state(::viam::service::motion::v1::PlanState value);
+  private:
+  ::viam::service::motion::v1::PlanState _internal_state() const;
+  void _internal_set_state(::viam::service::motion::v1::PlanState value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.PlanStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* timestamp_;
+  int state_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Plan final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.Plan) */ {
+ public:
+  inline Plan() : Plan(nullptr) {}
+  ~Plan() override;
+  explicit PROTOBUF_CONSTEXPR Plan(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Plan(const Plan& from);
+  Plan(Plan&& from) noexcept
+    : Plan() {
+    *this = ::std::move(from);
+  }
+
+  inline Plan& operator=(const Plan& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Plan& operator=(Plan&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Plan& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Plan* internal_default_instance() {
+    return reinterpret_cast<const Plan*>(
+               &_Plan_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(Plan& a, Plan& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Plan* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Plan* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Plan* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Plan>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Plan& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Plan& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Plan* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.Plan";
+  }
+  protected:
+  explicit Plan(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStepsFieldNumber = 4,
+    kIdFieldNumber = 1,
+    kExecutionIdFieldNumber = 3,
+    kComponentNameFieldNumber = 2,
+  };
+  // repeated .viam.service.motion.v1.PlanStep steps = 4 [json_name = "steps"];
+  int steps_size() const;
+  private:
+  int _internal_steps_size() const;
+  public:
+  void clear_steps();
+  ::viam::service::motion::v1::PlanStep* mutable_steps(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStep >*
+      mutable_steps();
+  private:
+  const ::viam::service::motion::v1::PlanStep& _internal_steps(int index) const;
+  ::viam::service::motion::v1::PlanStep* _internal_add_steps();
+  public:
+  const ::viam::service::motion::v1::PlanStep& steps(int index) const;
+  ::viam::service::motion::v1::PlanStep* add_steps();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStep >&
+      steps() const;
+
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string execution_id = 3 [json_name = "executionId"];
+  void clear_execution_id();
+  const std::string& execution_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_execution_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_execution_id();
+  PROTOBUF_NODISCARD std::string* release_execution_id();
+  void set_allocated_execution_id(std::string* execution_id);
+  private:
+  const std::string& _internal_execution_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_execution_id(const std::string& value);
+  std::string* _internal_mutable_execution_id();
+  public:
+
+  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+  bool has_component_name() const;
+  private:
+  bool _internal_has_component_name() const;
+  public:
+  void clear_component_name();
+  const ::viam::common::v1::ResourceName& component_name() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
+  ::viam::common::v1::ResourceName* mutable_component_name();
+  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  public:
+  void unsafe_arena_set_allocated_component_name(
+      ::viam::common::v1::ResourceName* component_name);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.Plan)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStep > steps_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
+  ::viam::common::v1::ResourceName* component_name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PlanStep_StepEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<PlanStep_StepEntry_DoNotUse, 
+    std::string, ::viam::service::motion::v1::ComponentState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<PlanStep_StepEntry_DoNotUse, 
+    std::string, ::viam::service::motion::v1::ComponentState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  PlanStep_StepEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR PlanStep_StepEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit PlanStep_StepEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const PlanStep_StepEntry_DoNotUse& other);
+  static const PlanStep_StepEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const PlanStep_StepEntry_DoNotUse*>(&_PlanStep_StepEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.service.motion.v1.PlanStep.StepEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class PlanStep final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.PlanStep) */ {
+ public:
+  inline PlanStep() : PlanStep(nullptr) {}
+  ~PlanStep() override;
+  explicit PROTOBUF_CONSTEXPR PlanStep(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PlanStep(const PlanStep& from);
+  PlanStep(PlanStep&& from) noexcept
+    : PlanStep() {
+    *this = ::std::move(from);
+  }
+
+  inline PlanStep& operator=(const PlanStep& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlanStep& operator=(PlanStep&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlanStep& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlanStep* internal_default_instance() {
+    return reinterpret_cast<const PlanStep*>(
+               &_PlanStep_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(PlanStep& a, PlanStep& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PlanStep* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlanStep* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlanStep* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlanStep>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PlanStep& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PlanStep& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PlanStep* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.PlanStep";
+  }
+  protected:
+  explicit PlanStep(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStepFieldNumber = 1,
+  };
+  // map<string, .viam.service.motion.v1.ComponentState> step = 1 [json_name = "step"];
+  int step_size() const;
+  private:
+  int _internal_step_size() const;
+  public:
+  void clear_step();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >&
+      _internal_step() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >*
+      _internal_mutable_step();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >&
+      step() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >*
+      mutable_step();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.PlanStep)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      PlanStep_StepEntry_DoNotUse,
+      std::string, ::viam::service::motion::v1::ComponentState,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> step_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ComponentState final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.ComponentState) */ {
+ public:
+  inline ComponentState() : ComponentState(nullptr) {}
+  ~ComponentState() override;
+  explicit PROTOBUF_CONSTEXPR ComponentState(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ComponentState(const ComponentState& from);
+  ComponentState(ComponentState&& from) noexcept
+    : ComponentState() {
+    *this = ::std::move(from);
+  }
+
+  inline ComponentState& operator=(const ComponentState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ComponentState& operator=(ComponentState&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ComponentState& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ComponentState* internal_default_instance() {
+    return reinterpret_cast<const ComponentState*>(
+               &_ComponentState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(ComponentState& a, ComponentState& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ComponentState* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ComponentState* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ComponentState* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ComponentState>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ComponentState& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ComponentState& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ComponentState* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.ComponentState";
+  }
+  protected:
+  explicit ComponentState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPoseFieldNumber = 1,
+  };
+  // .viam.common.v1.Pose pose = 1 [json_name = "pose"];
+  bool has_pose() const;
+  private:
+  bool _internal_has_pose() const;
+  public:
+  void clear_pose();
+  const ::viam::common::v1::Pose& pose() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Pose* release_pose();
+  ::viam::common::v1::Pose* mutable_pose();
+  void set_allocated_pose(::viam::common::v1::Pose* pose);
+  private:
+  const ::viam::common::v1::Pose& _internal_pose() const;
+  ::viam::common::v1::Pose* _internal_mutable_pose();
+  public:
+  void unsafe_arena_set_allocated_pose(
+      ::viam::common::v1::Pose* pose);
+  ::viam::common::v1::Pose* unsafe_arena_release_pose();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.ComponentState)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::common::v1::Pose* pose_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
@@ -4424,6 +7097,609 @@ inline void MoveOnGlobeResponse::set_success(bool value) {
 
 // -------------------------------------------------------------------
 
+// MoveOnGlobeNewRequest
+
+// string name = 1 [json_name = "name"];
+inline void MoveOnGlobeNewRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& MoveOnGlobeNewRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnGlobeNewRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeNewRequest.name)
+}
+inline std::string* MoveOnGlobeNewRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.name)
+  return _s;
+}
+inline const std::string& MoveOnGlobeNewRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void MoveOnGlobeNewRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeNewRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeNewRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewRequest.name)
+  return name_.Release();
+}
+inline void MoveOnGlobeNewRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.name)
+}
+
+// .viam.common.v1.GeoPoint destination = 2 [json_name = "destination"];
+inline bool MoveOnGlobeNewRequest::_internal_has_destination() const {
+  return this != internal_default_instance() && destination_ != nullptr;
+}
+inline bool MoveOnGlobeNewRequest::has_destination() const {
+  return _internal_has_destination();
+}
+inline const ::viam::common::v1::GeoPoint& MoveOnGlobeNewRequest::_internal_destination() const {
+  const ::viam::common::v1::GeoPoint* p = destination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::GeoPoint&>(
+      ::viam::common::v1::_GeoPoint_default_instance_);
+}
+inline const ::viam::common::v1::GeoPoint& MoveOnGlobeNewRequest::destination() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.destination)
+  return _internal_destination();
+}
+inline void MoveOnGlobeNewRequest::unsafe_arena_set_allocated_destination(
+    ::viam::common::v1::GeoPoint* destination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
+  }
+  destination_ = destination;
+  if (destination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.destination)
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeNewRequest::release_destination() {
+  
+  ::viam::common::v1::GeoPoint* temp = destination_;
+  destination_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeNewRequest::unsafe_arena_release_destination() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewRequest.destination)
+  
+  ::viam::common::v1::GeoPoint* temp = destination_;
+  destination_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeNewRequest::_internal_mutable_destination() {
+  
+  if (destination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::GeoPoint>(GetArenaForAllocation());
+    destination_ = p;
+  }
+  return destination_;
+}
+inline ::viam::common::v1::GeoPoint* MoveOnGlobeNewRequest::mutable_destination() {
+  ::viam::common::v1::GeoPoint* _msg = _internal_mutable_destination();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.destination)
+  return _msg;
+}
+inline void MoveOnGlobeNewRequest::set_allocated_destination(::viam::common::v1::GeoPoint* destination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
+  }
+  if (destination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination));
+    if (message_arena != submessage_arena) {
+      destination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, destination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  destination_ = destination;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.destination)
+}
+
+// optional double heading = 3 [json_name = "heading"];
+inline bool MoveOnGlobeNewRequest::_internal_has_heading() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool MoveOnGlobeNewRequest::has_heading() const {
+  return _internal_has_heading();
+}
+inline void MoveOnGlobeNewRequest::clear_heading() {
+  heading_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline double MoveOnGlobeNewRequest::_internal_heading() const {
+  return heading_;
+}
+inline double MoveOnGlobeNewRequest::heading() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.heading)
+  return _internal_heading();
+}
+inline void MoveOnGlobeNewRequest::_internal_set_heading(double value) {
+  _has_bits_[0] |= 0x00000002u;
+  heading_ = value;
+}
+inline void MoveOnGlobeNewRequest::set_heading(double value) {
+  _internal_set_heading(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeNewRequest.heading)
+}
+
+// .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
+inline bool MoveOnGlobeNewRequest::_internal_has_component_name() const {
+  return this != internal_default_instance() && component_name_ != nullptr;
+}
+inline bool MoveOnGlobeNewRequest::has_component_name() const {
+  return _internal_has_component_name();
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeNewRequest::_internal_component_name() const {
+  const ::viam::common::v1::ResourceName* p = component_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeNewRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.component_name)
+  return _internal_component_name();
+}
+inline void MoveOnGlobeNewRequest::unsafe_arena_set_allocated_component_name(
+    ::viam::common::v1::ResourceName* component_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  component_name_ = component_name;
+  if (component_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.component_name)
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::release_component_name() {
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::unsafe_arena_release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewRequest.component_name)
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::_internal_mutable_component_name() {
+  
+  if (component_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    component_name_ = p;
+  }
+  return component_name_;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::mutable_component_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.component_name)
+  return _msg;
+}
+inline void MoveOnGlobeNewRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  if (component_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+    if (message_arena != submessage_arena) {
+      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  component_name_ = component_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.component_name)
+}
+
+// .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
+inline bool MoveOnGlobeNewRequest::_internal_has_movement_sensor_name() const {
+  return this != internal_default_instance() && movement_sensor_name_ != nullptr;
+}
+inline bool MoveOnGlobeNewRequest::has_movement_sensor_name() const {
+  return _internal_has_movement_sensor_name();
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeNewRequest::_internal_movement_sensor_name() const {
+  const ::viam::common::v1::ResourceName* p = movement_sensor_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeNewRequest::movement_sensor_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.movement_sensor_name)
+  return _internal_movement_sensor_name();
+}
+inline void MoveOnGlobeNewRequest::unsafe_arena_set_allocated_movement_sensor_name(
+    ::viam::common::v1::ResourceName* movement_sensor_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_);
+  }
+  movement_sensor_name_ = movement_sensor_name;
+  if (movement_sensor_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.movement_sensor_name)
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::release_movement_sensor_name() {
+  
+  ::viam::common::v1::ResourceName* temp = movement_sensor_name_;
+  movement_sensor_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::unsafe_arena_release_movement_sensor_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewRequest.movement_sensor_name)
+  
+  ::viam::common::v1::ResourceName* temp = movement_sensor_name_;
+  movement_sensor_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::_internal_mutable_movement_sensor_name() {
+  
+  if (movement_sensor_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    movement_sensor_name_ = p;
+  }
+  return movement_sensor_name_;
+}
+inline ::viam::common::v1::ResourceName* MoveOnGlobeNewRequest::mutable_movement_sensor_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_movement_sensor_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.movement_sensor_name)
+  return _msg;
+}
+inline void MoveOnGlobeNewRequest::set_allocated_movement_sensor_name(::viam::common::v1::ResourceName* movement_sensor_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_);
+  }
+  if (movement_sensor_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name));
+    if (message_arena != submessage_arena) {
+      movement_sensor_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, movement_sensor_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  movement_sensor_name_ = movement_sensor_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.movement_sensor_name)
+}
+
+// repeated .viam.common.v1.GeoObstacle obstacles = 6 [json_name = "obstacles"];
+inline int MoveOnGlobeNewRequest::_internal_obstacles_size() const {
+  return obstacles_.size();
+}
+inline int MoveOnGlobeNewRequest::obstacles_size() const {
+  return _internal_obstacles_size();
+}
+inline ::viam::common::v1::GeoObstacle* MoveOnGlobeNewRequest::mutable_obstacles(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.obstacles)
+  return obstacles_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >*
+MoveOnGlobeNewRequest::mutable_obstacles() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MoveOnGlobeNewRequest.obstacles)
+  return &obstacles_;
+}
+inline const ::viam::common::v1::GeoObstacle& MoveOnGlobeNewRequest::_internal_obstacles(int index) const {
+  return obstacles_.Get(index);
+}
+inline const ::viam::common::v1::GeoObstacle& MoveOnGlobeNewRequest::obstacles(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.obstacles)
+  return _internal_obstacles(index);
+}
+inline ::viam::common::v1::GeoObstacle* MoveOnGlobeNewRequest::_internal_add_obstacles() {
+  return obstacles_.Add();
+}
+inline ::viam::common::v1::GeoObstacle* MoveOnGlobeNewRequest::add_obstacles() {
+  ::viam::common::v1::GeoObstacle* _add = _internal_add_obstacles();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MoveOnGlobeNewRequest.obstacles)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoObstacle >&
+MoveOnGlobeNewRequest::obstacles() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnGlobeNewRequest.obstacles)
+  return obstacles_;
+}
+
+// optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 7 [json_name = "motionConfiguration"];
+inline bool MoveOnGlobeNewRequest::_internal_has_motion_configuration() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || motion_configuration_ != nullptr);
+  return value;
+}
+inline bool MoveOnGlobeNewRequest::has_motion_configuration() const {
+  return _internal_has_motion_configuration();
+}
+inline void MoveOnGlobeNewRequest::clear_motion_configuration() {
+  if (motion_configuration_ != nullptr) motion_configuration_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnGlobeNewRequest::_internal_motion_configuration() const {
+  const ::viam::service::motion::v1::MotionConfiguration* p = motion_configuration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::MotionConfiguration&>(
+      ::viam::service::motion::v1::_MotionConfiguration_default_instance_);
+}
+inline const ::viam::service::motion::v1::MotionConfiguration& MoveOnGlobeNewRequest::motion_configuration() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.motion_configuration)
+  return _internal_motion_configuration();
+}
+inline void MoveOnGlobeNewRequest::unsafe_arena_set_allocated_motion_configuration(
+    ::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(motion_configuration_);
+  }
+  motion_configuration_ = motion_configuration;
+  if (motion_configuration) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.motion_configuration)
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeNewRequest::release_motion_configuration() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
+  motion_configuration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeNewRequest::unsafe_arena_release_motion_configuration() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewRequest.motion_configuration)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::service::motion::v1::MotionConfiguration* temp = motion_configuration_;
+  motion_configuration_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeNewRequest::_internal_mutable_motion_configuration() {
+  _has_bits_[0] |= 0x00000001u;
+  if (motion_configuration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::MotionConfiguration>(GetArenaForAllocation());
+    motion_configuration_ = p;
+  }
+  return motion_configuration_;
+}
+inline ::viam::service::motion::v1::MotionConfiguration* MoveOnGlobeNewRequest::mutable_motion_configuration() {
+  ::viam::service::motion::v1::MotionConfiguration* _msg = _internal_mutable_motion_configuration();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.motion_configuration)
+  return _msg;
+}
+inline void MoveOnGlobeNewRequest::set_allocated_motion_configuration(::viam::service::motion::v1::MotionConfiguration* motion_configuration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete motion_configuration_;
+  }
+  if (motion_configuration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(motion_configuration);
+    if (message_arena != submessage_arena) {
+      motion_configuration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, motion_configuration, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  motion_configuration_ = motion_configuration;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.motion_configuration)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool MoveOnGlobeNewRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool MoveOnGlobeNewRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& MoveOnGlobeNewRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& MoveOnGlobeNewRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewRequest.extra)
+  return _internal_extra();
+}
+inline void MoveOnGlobeNewRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeNewRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeNewRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeNewRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* MoveOnGlobeNewRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewRequest.extra)
+  return _msg;
+}
+inline void MoveOnGlobeNewRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// MoveOnGlobeNewResponse
+
+// string execution_id = 1 [json_name = "executionId"];
+inline void MoveOnGlobeNewResponse::clear_execution_id() {
+  execution_id_.ClearToEmpty();
+}
+inline const std::string& MoveOnGlobeNewResponse::execution_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeNewResponse.execution_id)
+  return _internal_execution_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnGlobeNewResponse::set_execution_id(ArgT0&& arg0, ArgT... args) {
+ 
+ execution_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeNewResponse.execution_id)
+}
+inline std::string* MoveOnGlobeNewResponse::mutable_execution_id() {
+  std::string* _s = _internal_mutable_execution_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeNewResponse.execution_id)
+  return _s;
+}
+inline const std::string& MoveOnGlobeNewResponse::_internal_execution_id() const {
+  return execution_id_.Get();
+}
+inline void MoveOnGlobeNewResponse::_internal_set_execution_id(const std::string& value) {
+  
+  execution_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeNewResponse::_internal_mutable_execution_id() {
+  
+  return execution_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeNewResponse::release_execution_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeNewResponse.execution_id)
+  return execution_id_.Release();
+}
+inline void MoveOnGlobeNewResponse::set_allocated_execution_id(std::string* execution_id) {
+  if (execution_id != nullptr) {
+    
+  } else {
+    
+  }
+  execution_id_.SetAllocated(execution_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (execution_id_.IsDefault()) {
+    execution_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeNewResponse.execution_id)
+}
+
+// -------------------------------------------------------------------
+
 // GetPoseRequest
 
 // string name = 1 [json_name = "name"];
@@ -4824,6 +8100,883 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 
 // -------------------------------------------------------------------
 
+// StopPlanRequest
+
+// string name = 1 [json_name = "name"];
+inline void StopPlanRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& StopPlanRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.StopPlanRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StopPlanRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.StopPlanRequest.name)
+}
+inline std::string* StopPlanRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.StopPlanRequest.name)
+  return _s;
+}
+inline const std::string& StopPlanRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void StopPlanRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StopPlanRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StopPlanRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.StopPlanRequest.name)
+  return name_.Release();
+}
+inline void StopPlanRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.StopPlanRequest.name)
+}
+
+// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+inline bool StopPlanRequest::_internal_has_component_name() const {
+  return this != internal_default_instance() && component_name_ != nullptr;
+}
+inline bool StopPlanRequest::has_component_name() const {
+  return _internal_has_component_name();
+}
+inline const ::viam::common::v1::ResourceName& StopPlanRequest::_internal_component_name() const {
+  const ::viam::common::v1::ResourceName* p = component_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& StopPlanRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.StopPlanRequest.component_name)
+  return _internal_component_name();
+}
+inline void StopPlanRequest::unsafe_arena_set_allocated_component_name(
+    ::viam::common::v1::ResourceName* component_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  component_name_ = component_name;
+  if (component_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.StopPlanRequest.component_name)
+}
+inline ::viam::common::v1::ResourceName* StopPlanRequest::release_component_name() {
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* StopPlanRequest::unsafe_arena_release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.StopPlanRequest.component_name)
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* StopPlanRequest::_internal_mutable_component_name() {
+  
+  if (component_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    component_name_ = p;
+  }
+  return component_name_;
+}
+inline ::viam::common::v1::ResourceName* StopPlanRequest::mutable_component_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.StopPlanRequest.component_name)
+  return _msg;
+}
+inline void StopPlanRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  if (component_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+    if (message_arena != submessage_arena) {
+      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  component_name_ = component_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.StopPlanRequest.component_name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool StopPlanRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool StopPlanRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& StopPlanRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& StopPlanRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.StopPlanRequest.extra)
+  return _internal_extra();
+}
+inline void StopPlanRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.StopPlanRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StopPlanRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StopPlanRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.StopPlanRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StopPlanRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* StopPlanRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.StopPlanRequest.extra)
+  return _msg;
+}
+inline void StopPlanRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.StopPlanRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// StopPlanResponse
+
+// -------------------------------------------------------------------
+
+// ListPlanStatusesRequest
+
+// string name = 1 [json_name = "name"];
+inline void ListPlanStatusesRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& ListPlanStatusesRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ListPlanStatusesRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListPlanStatusesRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.ListPlanStatusesRequest.name)
+}
+inline std::string* ListPlanStatusesRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ListPlanStatusesRequest.name)
+  return _s;
+}
+inline const std::string& ListPlanStatusesRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void ListPlanStatusesRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListPlanStatusesRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListPlanStatusesRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ListPlanStatusesRequest.name)
+  return name_.Release();
+}
+inline void ListPlanStatusesRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ListPlanStatusesRequest.name)
+}
+
+// bool only_active_plans = 2 [json_name = "onlyActivePlans"];
+inline void ListPlanStatusesRequest::clear_only_active_plans() {
+  only_active_plans_ = false;
+}
+inline bool ListPlanStatusesRequest::_internal_only_active_plans() const {
+  return only_active_plans_;
+}
+inline bool ListPlanStatusesRequest::only_active_plans() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ListPlanStatusesRequest.only_active_plans)
+  return _internal_only_active_plans();
+}
+inline void ListPlanStatusesRequest::_internal_set_only_active_plans(bool value) {
+  
+  only_active_plans_ = value;
+}
+inline void ListPlanStatusesRequest::set_only_active_plans(bool value) {
+  _internal_set_only_active_plans(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.ListPlanStatusesRequest.only_active_plans)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool ListPlanStatusesRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool ListPlanStatusesRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& ListPlanStatusesRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& ListPlanStatusesRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ListPlanStatusesRequest.extra)
+  return _internal_extra();
+}
+inline void ListPlanStatusesRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ListPlanStatusesRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* ListPlanStatusesRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* ListPlanStatusesRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ListPlanStatusesRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* ListPlanStatusesRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* ListPlanStatusesRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ListPlanStatusesRequest.extra)
+  return _msg;
+}
+inline void ListPlanStatusesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ListPlanStatusesRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// ListPlanStatusesResponse
+
+// repeated .viam.service.motion.v1.PlanStatusWithID plan_statuses_with_ids = 1 [json_name = "planStatusesWithIds"];
+inline int ListPlanStatusesResponse::_internal_plan_statuses_with_ids_size() const {
+  return plan_statuses_with_ids_.size();
+}
+inline int ListPlanStatusesResponse::plan_statuses_with_ids_size() const {
+  return _internal_plan_statuses_with_ids_size();
+}
+inline void ListPlanStatusesResponse::clear_plan_statuses_with_ids() {
+  plan_statuses_with_ids_.Clear();
+}
+inline ::viam::service::motion::v1::PlanStatusWithID* ListPlanStatusesResponse::mutable_plan_statuses_with_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ListPlanStatusesResponse.plan_statuses_with_ids)
+  return plan_statuses_with_ids_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatusWithID >*
+ListPlanStatusesResponse::mutable_plan_statuses_with_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.ListPlanStatusesResponse.plan_statuses_with_ids)
+  return &plan_statuses_with_ids_;
+}
+inline const ::viam::service::motion::v1::PlanStatusWithID& ListPlanStatusesResponse::_internal_plan_statuses_with_ids(int index) const {
+  return plan_statuses_with_ids_.Get(index);
+}
+inline const ::viam::service::motion::v1::PlanStatusWithID& ListPlanStatusesResponse::plan_statuses_with_ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ListPlanStatusesResponse.plan_statuses_with_ids)
+  return _internal_plan_statuses_with_ids(index);
+}
+inline ::viam::service::motion::v1::PlanStatusWithID* ListPlanStatusesResponse::_internal_add_plan_statuses_with_ids() {
+  return plan_statuses_with_ids_.Add();
+}
+inline ::viam::service::motion::v1::PlanStatusWithID* ListPlanStatusesResponse::add_plan_statuses_with_ids() {
+  ::viam::service::motion::v1::PlanStatusWithID* _add = _internal_add_plan_statuses_with_ids();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.ListPlanStatusesResponse.plan_statuses_with_ids)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatusWithID >&
+ListPlanStatusesResponse::plan_statuses_with_ids() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.ListPlanStatusesResponse.plan_statuses_with_ids)
+  return plan_statuses_with_ids_;
+}
+
+// -------------------------------------------------------------------
+
+// GetPlanRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPlanRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPlanRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPlanRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.GetPlanRequest.name)
+}
+inline std::string* GetPlanRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.name)
+  return _s;
+}
+inline const std::string& GetPlanRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPlanRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPlanRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPlanRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.name)
+  return name_.Release();
+}
+inline void GetPlanRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.name)
+}
+
+// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+inline bool GetPlanRequest::_internal_has_component_name() const {
+  return this != internal_default_instance() && component_name_ != nullptr;
+}
+inline bool GetPlanRequest::has_component_name() const {
+  return _internal_has_component_name();
+}
+inline const ::viam::common::v1::ResourceName& GetPlanRequest::_internal_component_name() const {
+  const ::viam::common::v1::ResourceName* p = component_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& GetPlanRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.component_name)
+  return _internal_component_name();
+}
+inline void GetPlanRequest::unsafe_arena_set_allocated_component_name(
+    ::viam::common::v1::ResourceName* component_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  component_name_ = component_name;
+  if (component_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name)
+}
+inline ::viam::common::v1::ResourceName* GetPlanRequest::release_component_name() {
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* GetPlanRequest::unsafe_arena_release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.component_name)
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* GetPlanRequest::_internal_mutable_component_name() {
+  
+  if (component_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    component_name_ = p;
+  }
+  return component_name_;
+}
+inline ::viam::common::v1::ResourceName* GetPlanRequest::mutable_component_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.component_name)
+  return _msg;
+}
+inline void GetPlanRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  if (component_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+    if (message_arena != submessage_arena) {
+      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  component_name_ = component_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name)
+}
+
+// bool last_plan_only = 3 [json_name = "lastPlanOnly"];
+inline void GetPlanRequest::clear_last_plan_only() {
+  last_plan_only_ = false;
+}
+inline bool GetPlanRequest::_internal_last_plan_only() const {
+  return last_plan_only_;
+}
+inline bool GetPlanRequest::last_plan_only() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.last_plan_only)
+  return _internal_last_plan_only();
+}
+inline void GetPlanRequest::_internal_set_last_plan_only(bool value) {
+  
+  last_plan_only_ = value;
+}
+inline void GetPlanRequest::set_last_plan_only(bool value) {
+  _internal_set_last_plan_only(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.GetPlanRequest.last_plan_only)
+}
+
+// optional string execution_id = 4 [json_name = "executionId"];
+inline bool GetPlanRequest::_internal_has_execution_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetPlanRequest::has_execution_id() const {
+  return _internal_has_execution_id();
+}
+inline void GetPlanRequest::clear_execution_id() {
+  execution_id_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetPlanRequest::execution_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.execution_id)
+  return _internal_execution_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPlanRequest::set_execution_id(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ execution_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.GetPlanRequest.execution_id)
+}
+inline std::string* GetPlanRequest::mutable_execution_id() {
+  std::string* _s = _internal_mutable_execution_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.execution_id)
+  return _s;
+}
+inline const std::string& GetPlanRequest::_internal_execution_id() const {
+  return execution_id_.Get();
+}
+inline void GetPlanRequest::_internal_set_execution_id(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  execution_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPlanRequest::_internal_mutable_execution_id() {
+  _has_bits_[0] |= 0x00000001u;
+  return execution_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPlanRequest::release_execution_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.execution_id)
+  if (!_internal_has_execution_id()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = execution_id_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (execution_id_.IsDefault()) {
+    execution_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetPlanRequest::set_allocated_execution_id(std::string* execution_id) {
+  if (execution_id != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  execution_id_.SetAllocated(execution_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (execution_id_.IsDefault()) {
+    execution_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.execution_id)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPlanRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPlanRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPlanRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPlanRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.extra)
+  return _internal_extra();
+}
+inline void GetPlanRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPlanRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPlanRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPlanRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPlanRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPlanRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.extra)
+  return _msg;
+}
+inline void GetPlanRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPlanResponse
+
+// .viam.service.motion.v1.PlanWithStatus current_plan_with_status = 1 [json_name = "currentPlanWithStatus"];
+inline bool GetPlanResponse::_internal_has_current_plan_with_status() const {
+  return this != internal_default_instance() && current_plan_with_status_ != nullptr;
+}
+inline bool GetPlanResponse::has_current_plan_with_status() const {
+  return _internal_has_current_plan_with_status();
+}
+inline void GetPlanResponse::clear_current_plan_with_status() {
+  if (GetArenaForAllocation() == nullptr && current_plan_with_status_ != nullptr) {
+    delete current_plan_with_status_;
+  }
+  current_plan_with_status_ = nullptr;
+}
+inline const ::viam::service::motion::v1::PlanWithStatus& GetPlanResponse::_internal_current_plan_with_status() const {
+  const ::viam::service::motion::v1::PlanWithStatus* p = current_plan_with_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::PlanWithStatus&>(
+      ::viam::service::motion::v1::_PlanWithStatus_default_instance_);
+}
+inline const ::viam::service::motion::v1::PlanWithStatus& GetPlanResponse::current_plan_with_status() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanResponse.current_plan_with_status)
+  return _internal_current_plan_with_status();
+}
+inline void GetPlanResponse::unsafe_arena_set_allocated_current_plan_with_status(
+    ::viam::service::motion::v1::PlanWithStatus* current_plan_with_status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(current_plan_with_status_);
+  }
+  current_plan_with_status_ = current_plan_with_status;
+  if (current_plan_with_status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPlanResponse.current_plan_with_status)
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::release_current_plan_with_status() {
+  
+  ::viam::service::motion::v1::PlanWithStatus* temp = current_plan_with_status_;
+  current_plan_with_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::unsafe_arena_release_current_plan_with_status() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanResponse.current_plan_with_status)
+  
+  ::viam::service::motion::v1::PlanWithStatus* temp = current_plan_with_status_;
+  current_plan_with_status_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::_internal_mutable_current_plan_with_status() {
+  
+  if (current_plan_with_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::PlanWithStatus>(GetArenaForAllocation());
+    current_plan_with_status_ = p;
+  }
+  return current_plan_with_status_;
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::mutable_current_plan_with_status() {
+  ::viam::service::motion::v1::PlanWithStatus* _msg = _internal_mutable_current_plan_with_status();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanResponse.current_plan_with_status)
+  return _msg;
+}
+inline void GetPlanResponse::set_allocated_current_plan_with_status(::viam::service::motion::v1::PlanWithStatus* current_plan_with_status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete current_plan_with_status_;
+  }
+  if (current_plan_with_status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(current_plan_with_status);
+    if (message_arena != submessage_arena) {
+      current_plan_with_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, current_plan_with_status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  current_plan_with_status_ = current_plan_with_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanResponse.current_plan_with_status)
+}
+
+// repeated .viam.service.motion.v1.PlanWithStatus replan_history = 2 [json_name = "replanHistory"];
+inline int GetPlanResponse::_internal_replan_history_size() const {
+  return replan_history_.size();
+}
+inline int GetPlanResponse::replan_history_size() const {
+  return _internal_replan_history_size();
+}
+inline void GetPlanResponse::clear_replan_history() {
+  replan_history_.Clear();
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::mutable_replan_history(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanResponse.replan_history)
+  return replan_history_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanWithStatus >*
+GetPlanResponse::mutable_replan_history() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.GetPlanResponse.replan_history)
+  return &replan_history_;
+}
+inline const ::viam::service::motion::v1::PlanWithStatus& GetPlanResponse::_internal_replan_history(int index) const {
+  return replan_history_.Get(index);
+}
+inline const ::viam::service::motion::v1::PlanWithStatus& GetPlanResponse::replan_history(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanResponse.replan_history)
+  return _internal_replan_history(index);
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::_internal_add_replan_history() {
+  return replan_history_.Add();
+}
+inline ::viam::service::motion::v1::PlanWithStatus* GetPlanResponse::add_replan_history() {
+  ::viam::service::motion::v1::PlanWithStatus* _add = _internal_add_replan_history();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.GetPlanResponse.replan_history)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanWithStatus >&
+GetPlanResponse::replan_history() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.GetPlanResponse.replan_history)
+  return replan_history_;
+}
+
+// -------------------------------------------------------------------
+
 // Constraints
 
 // repeated .viam.service.motion.v1.LinearConstraint linear_constraint = 1 [json_name = "linearConstraint"];
@@ -5186,9 +9339,1072 @@ CollisionSpecification::allows() const {
   return allows_;
 }
 
+// -------------------------------------------------------------------
+
+// PlanWithStatus
+
+// .viam.service.motion.v1.Plan plan = 1 [json_name = "plan"];
+inline bool PlanWithStatus::_internal_has_plan() const {
+  return this != internal_default_instance() && plan_ != nullptr;
+}
+inline bool PlanWithStatus::has_plan() const {
+  return _internal_has_plan();
+}
+inline void PlanWithStatus::clear_plan() {
+  if (GetArenaForAllocation() == nullptr && plan_ != nullptr) {
+    delete plan_;
+  }
+  plan_ = nullptr;
+}
+inline const ::viam::service::motion::v1::Plan& PlanWithStatus::_internal_plan() const {
+  const ::viam::service::motion::v1::Plan* p = plan_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::Plan&>(
+      ::viam::service::motion::v1::_Plan_default_instance_);
+}
+inline const ::viam::service::motion::v1::Plan& PlanWithStatus::plan() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanWithStatus.plan)
+  return _internal_plan();
+}
+inline void PlanWithStatus::unsafe_arena_set_allocated_plan(
+    ::viam::service::motion::v1::Plan* plan) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(plan_);
+  }
+  plan_ = plan;
+  if (plan) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanWithStatus.plan)
+}
+inline ::viam::service::motion::v1::Plan* PlanWithStatus::release_plan() {
+  
+  ::viam::service::motion::v1::Plan* temp = plan_;
+  plan_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::Plan* PlanWithStatus::unsafe_arena_release_plan() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanWithStatus.plan)
+  
+  ::viam::service::motion::v1::Plan* temp = plan_;
+  plan_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::Plan* PlanWithStatus::_internal_mutable_plan() {
+  
+  if (plan_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::Plan>(GetArenaForAllocation());
+    plan_ = p;
+  }
+  return plan_;
+}
+inline ::viam::service::motion::v1::Plan* PlanWithStatus::mutable_plan() {
+  ::viam::service::motion::v1::Plan* _msg = _internal_mutable_plan();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanWithStatus.plan)
+  return _msg;
+}
+inline void PlanWithStatus::set_allocated_plan(::viam::service::motion::v1::Plan* plan) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete plan_;
+  }
+  if (plan) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(plan);
+    if (message_arena != submessage_arena) {
+      plan = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, plan, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  plan_ = plan;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanWithStatus.plan)
+}
+
+// .viam.service.motion.v1.PlanStatus status = 2 [json_name = "status"];
+inline bool PlanWithStatus::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool PlanWithStatus::has_status() const {
+  return _internal_has_status();
+}
+inline void PlanWithStatus::clear_status() {
+  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
+    delete status_;
+  }
+  status_ = nullptr;
+}
+inline const ::viam::service::motion::v1::PlanStatus& PlanWithStatus::_internal_status() const {
+  const ::viam::service::motion::v1::PlanStatus* p = status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::PlanStatus&>(
+      ::viam::service::motion::v1::_PlanStatus_default_instance_);
+}
+inline const ::viam::service::motion::v1::PlanStatus& PlanWithStatus::status() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanWithStatus.status)
+  return _internal_status();
+}
+inline void PlanWithStatus::unsafe_arena_set_allocated_status(
+    ::viam::service::motion::v1::PlanStatus* status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanWithStatus.status)
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::release_status() {
+  
+  ::viam::service::motion::v1::PlanStatus* temp = status_;
+  status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::unsafe_arena_release_status() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanWithStatus.status)
+  
+  ::viam::service::motion::v1::PlanStatus* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::PlanStatus>(GetArenaForAllocation());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::mutable_status() {
+  ::viam::service::motion::v1::PlanStatus* _msg = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanWithStatus.status)
+  return _msg;
+}
+inline void PlanWithStatus::set_allocated_status(::viam::service::motion::v1::PlanStatus* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete status_;
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(status);
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanWithStatus.status)
+}
+
+// repeated .viam.service.motion.v1.PlanStatus status_history = 3 [json_name = "statusHistory"];
+inline int PlanWithStatus::_internal_status_history_size() const {
+  return status_history_.size();
+}
+inline int PlanWithStatus::status_history_size() const {
+  return _internal_status_history_size();
+}
+inline void PlanWithStatus::clear_status_history() {
+  status_history_.Clear();
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::mutable_status_history(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanWithStatus.status_history)
+  return status_history_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatus >*
+PlanWithStatus::mutable_status_history() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.PlanWithStatus.status_history)
+  return &status_history_;
+}
+inline const ::viam::service::motion::v1::PlanStatus& PlanWithStatus::_internal_status_history(int index) const {
+  return status_history_.Get(index);
+}
+inline const ::viam::service::motion::v1::PlanStatus& PlanWithStatus::status_history(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanWithStatus.status_history)
+  return _internal_status_history(index);
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::_internal_add_status_history() {
+  return status_history_.Add();
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanWithStatus::add_status_history() {
+  ::viam::service::motion::v1::PlanStatus* _add = _internal_add_status_history();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.PlanWithStatus.status_history)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStatus >&
+PlanWithStatus::status_history() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.PlanWithStatus.status_history)
+  return status_history_;
+}
+
+// -------------------------------------------------------------------
+
+// PlanStatusWithID
+
+// string plan_id = 1 [json_name = "planId"];
+inline void PlanStatusWithID::clear_plan_id() {
+  plan_id_.ClearToEmpty();
+}
+inline const std::string& PlanStatusWithID::plan_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.plan_id)
+  return _internal_plan_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PlanStatusWithID::set_plan_id(ArgT0&& arg0, ArgT... args) {
+ 
+ plan_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PlanStatusWithID.plan_id)
+}
+inline std::string* PlanStatusWithID::mutable_plan_id() {
+  std::string* _s = _internal_mutable_plan_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.plan_id)
+  return _s;
+}
+inline const std::string& PlanStatusWithID::_internal_plan_id() const {
+  return plan_id_.Get();
+}
+inline void PlanStatusWithID::_internal_set_plan_id(const std::string& value) {
+  
+  plan_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PlanStatusWithID::_internal_mutable_plan_id() {
+  
+  return plan_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PlanStatusWithID::release_plan_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.plan_id)
+  return plan_id_.Release();
+}
+inline void PlanStatusWithID::set_allocated_plan_id(std::string* plan_id) {
+  if (plan_id != nullptr) {
+    
+  } else {
+    
+  }
+  plan_id_.SetAllocated(plan_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (plan_id_.IsDefault()) {
+    plan_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.plan_id)
+}
+
+// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+inline bool PlanStatusWithID::_internal_has_component_name() const {
+  return this != internal_default_instance() && component_name_ != nullptr;
+}
+inline bool PlanStatusWithID::has_component_name() const {
+  return _internal_has_component_name();
+}
+inline const ::viam::common::v1::ResourceName& PlanStatusWithID::_internal_component_name() const {
+  const ::viam::common::v1::ResourceName* p = component_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& PlanStatusWithID::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.component_name)
+  return _internal_component_name();
+}
+inline void PlanStatusWithID::unsafe_arena_set_allocated_component_name(
+    ::viam::common::v1::ResourceName* component_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  component_name_ = component_name;
+  if (component_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name)
+}
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::release_component_name() {
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::unsafe_arena_release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.component_name)
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::_internal_mutable_component_name() {
+  
+  if (component_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    component_name_ = p;
+  }
+  return component_name_;
+}
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::mutable_component_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.component_name)
+  return _msg;
+}
+inline void PlanStatusWithID::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  if (component_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+    if (message_arena != submessage_arena) {
+      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  component_name_ = component_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name)
+}
+
+// string execution_id = 3 [json_name = "executionId"];
+inline void PlanStatusWithID::clear_execution_id() {
+  execution_id_.ClearToEmpty();
+}
+inline const std::string& PlanStatusWithID::execution_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.execution_id)
+  return _internal_execution_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PlanStatusWithID::set_execution_id(ArgT0&& arg0, ArgT... args) {
+ 
+ execution_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PlanStatusWithID.execution_id)
+}
+inline std::string* PlanStatusWithID::mutable_execution_id() {
+  std::string* _s = _internal_mutable_execution_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.execution_id)
+  return _s;
+}
+inline const std::string& PlanStatusWithID::_internal_execution_id() const {
+  return execution_id_.Get();
+}
+inline void PlanStatusWithID::_internal_set_execution_id(const std::string& value) {
+  
+  execution_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PlanStatusWithID::_internal_mutable_execution_id() {
+  
+  return execution_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PlanStatusWithID::release_execution_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.execution_id)
+  return execution_id_.Release();
+}
+inline void PlanStatusWithID::set_allocated_execution_id(std::string* execution_id) {
+  if (execution_id != nullptr) {
+    
+  } else {
+    
+  }
+  execution_id_.SetAllocated(execution_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (execution_id_.IsDefault()) {
+    execution_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.execution_id)
+}
+
+// .viam.service.motion.v1.PlanStatus status = 4 [json_name = "status"];
+inline bool PlanStatusWithID::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool PlanStatusWithID::has_status() const {
+  return _internal_has_status();
+}
+inline void PlanStatusWithID::clear_status() {
+  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
+    delete status_;
+  }
+  status_ = nullptr;
+}
+inline const ::viam::service::motion::v1::PlanStatus& PlanStatusWithID::_internal_status() const {
+  const ::viam::service::motion::v1::PlanStatus* p = status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::service::motion::v1::PlanStatus&>(
+      ::viam::service::motion::v1::_PlanStatus_default_instance_);
+}
+inline const ::viam::service::motion::v1::PlanStatus& PlanStatusWithID::status() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.status)
+  return _internal_status();
+}
+inline void PlanStatusWithID::unsafe_arena_set_allocated_status(
+    ::viam::service::motion::v1::PlanStatus* status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanStatusWithID.status)
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanStatusWithID::release_status() {
+  
+  ::viam::service::motion::v1::PlanStatus* temp = status_;
+  status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanStatusWithID::unsafe_arena_release_status() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.status)
+  
+  ::viam::service::motion::v1::PlanStatus* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanStatusWithID::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::service::motion::v1::PlanStatus>(GetArenaForAllocation());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::viam::service::motion::v1::PlanStatus* PlanStatusWithID::mutable_status() {
+  ::viam::service::motion::v1::PlanStatus* _msg = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.status)
+  return _msg;
+}
+inline void PlanStatusWithID::set_allocated_status(::viam::service::motion::v1::PlanStatus* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete status_;
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(status);
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.status)
+}
+
+// -------------------------------------------------------------------
+
+// PlanStatus
+
+// .viam.service.motion.v1.PlanState state = 1 [json_name = "state"];
+inline void PlanStatus::clear_state() {
+  state_ = 0;
+}
+inline ::viam::service::motion::v1::PlanState PlanStatus::_internal_state() const {
+  return static_cast< ::viam::service::motion::v1::PlanState >(state_);
+}
+inline ::viam::service::motion::v1::PlanState PlanStatus::state() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatus.state)
+  return _internal_state();
+}
+inline void PlanStatus::_internal_set_state(::viam::service::motion::v1::PlanState value) {
+  
+  state_ = value;
+}
+inline void PlanStatus::set_state(::viam::service::motion::v1::PlanState value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PlanStatus.state)
+}
+
+// .google.protobuf.Timestamp timestamp = 2 [json_name = "timestamp"];
+inline bool PlanStatus::_internal_has_timestamp() const {
+  return this != internal_default_instance() && timestamp_ != nullptr;
+}
+inline bool PlanStatus::has_timestamp() const {
+  return _internal_has_timestamp();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& PlanStatus::_internal_timestamp() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = timestamp_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& PlanStatus::timestamp() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatus.timestamp)
+  return _internal_timestamp();
+}
+inline void PlanStatus::unsafe_arena_set_allocated_timestamp(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  timestamp_ = timestamp;
+  if (timestamp) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanStatus.timestamp)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PlanStatus::release_timestamp() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PlanStatus::unsafe_arena_release_timestamp() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatus.timestamp)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PlanStatus::_internal_mutable_timestamp() {
+  
+  if (timestamp_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    timestamp_ = p;
+  }
+  return timestamp_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PlanStatus::mutable_timestamp() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_timestamp();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatus.timestamp)
+  return _msg;
+}
+inline void PlanStatus::set_allocated_timestamp(::PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  if (timestamp) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp));
+    if (message_arena != submessage_arena) {
+      timestamp = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, timestamp, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  timestamp_ = timestamp;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatus.timestamp)
+}
+
+// optional string reason = 3 [json_name = "reason"];
+inline bool PlanStatus::_internal_has_reason() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool PlanStatus::has_reason() const {
+  return _internal_has_reason();
+}
+inline void PlanStatus::clear_reason() {
+  reason_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& PlanStatus::reason() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatus.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PlanStatus::set_reason(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PlanStatus.reason)
+}
+inline std::string* PlanStatus::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatus.reason)
+  return _s;
+}
+inline const std::string& PlanStatus::_internal_reason() const {
+  return reason_.Get();
+}
+inline void PlanStatus::_internal_set_reason(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PlanStatus::_internal_mutable_reason() {
+  _has_bits_[0] |= 0x00000001u;
+  return reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PlanStatus::release_reason() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatus.reason)
+  if (!_internal_has_reason()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = reason_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (reason_.IsDefault()) {
+    reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void PlanStatus::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (reason_.IsDefault()) {
+    reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatus.reason)
+}
+
+// -------------------------------------------------------------------
+
+// Plan
+
+// string id = 1 [json_name = "id"];
+inline void Plan::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& Plan::id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Plan::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.Plan.id)
+}
+inline std::string* Plan::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.id)
+  return _s;
+}
+inline const std::string& Plan::_internal_id() const {
+  return id_.Get();
+}
+inline void Plan::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Plan::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Plan::release_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.Plan.id)
+  return id_.Release();
+}
+inline void Plan::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.id)
+}
+
+// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+inline bool Plan::_internal_has_component_name() const {
+  return this != internal_default_instance() && component_name_ != nullptr;
+}
+inline bool Plan::has_component_name() const {
+  return _internal_has_component_name();
+}
+inline const ::viam::common::v1::ResourceName& Plan::_internal_component_name() const {
+  const ::viam::common::v1::ResourceName* p = component_name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& Plan::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.component_name)
+  return _internal_component_name();
+}
+inline void Plan::unsafe_arena_set_allocated_component_name(
+    ::viam::common::v1::ResourceName* component_name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  component_name_ = component_name;
+  if (component_name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.Plan.component_name)
+}
+inline ::viam::common::v1::ResourceName* Plan::release_component_name() {
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* Plan::unsafe_arena_release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.Plan.component_name)
+  
+  ::viam::common::v1::ResourceName* temp = component_name_;
+  component_name_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* Plan::_internal_mutable_component_name() {
+  
+  if (component_name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    component_name_ = p;
+  }
+  return component_name_;
+}
+inline ::viam::common::v1::ResourceName* Plan::mutable_component_name() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.component_name)
+  return _msg;
+}
+inline void Plan::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+  }
+  if (component_name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+    if (message_arena != submessage_arena) {
+      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  component_name_ = component_name;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.component_name)
+}
+
+// string execution_id = 3 [json_name = "executionId"];
+inline void Plan::clear_execution_id() {
+  execution_id_.ClearToEmpty();
+}
+inline const std::string& Plan::execution_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.execution_id)
+  return _internal_execution_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Plan::set_execution_id(ArgT0&& arg0, ArgT... args) {
+ 
+ execution_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.Plan.execution_id)
+}
+inline std::string* Plan::mutable_execution_id() {
+  std::string* _s = _internal_mutable_execution_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.execution_id)
+  return _s;
+}
+inline const std::string& Plan::_internal_execution_id() const {
+  return execution_id_.Get();
+}
+inline void Plan::_internal_set_execution_id(const std::string& value) {
+  
+  execution_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Plan::_internal_mutable_execution_id() {
+  
+  return execution_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Plan::release_execution_id() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.Plan.execution_id)
+  return execution_id_.Release();
+}
+inline void Plan::set_allocated_execution_id(std::string* execution_id) {
+  if (execution_id != nullptr) {
+    
+  } else {
+    
+  }
+  execution_id_.SetAllocated(execution_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (execution_id_.IsDefault()) {
+    execution_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.execution_id)
+}
+
+// repeated .viam.service.motion.v1.PlanStep steps = 4 [json_name = "steps"];
+inline int Plan::_internal_steps_size() const {
+  return steps_.size();
+}
+inline int Plan::steps_size() const {
+  return _internal_steps_size();
+}
+inline void Plan::clear_steps() {
+  steps_.Clear();
+}
+inline ::viam::service::motion::v1::PlanStep* Plan::mutable_steps(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.steps)
+  return steps_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStep >*
+Plan::mutable_steps() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.Plan.steps)
+  return &steps_;
+}
+inline const ::viam::service::motion::v1::PlanStep& Plan::_internal_steps(int index) const {
+  return steps_.Get(index);
+}
+inline const ::viam::service::motion::v1::PlanStep& Plan::steps(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.steps)
+  return _internal_steps(index);
+}
+inline ::viam::service::motion::v1::PlanStep* Plan::_internal_add_steps() {
+  return steps_.Add();
+}
+inline ::viam::service::motion::v1::PlanStep* Plan::add_steps() {
+  ::viam::service::motion::v1::PlanStep* _add = _internal_add_steps();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.Plan.steps)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStep >&
+Plan::steps() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.Plan.steps)
+  return steps_;
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// PlanStep
+
+// map<string, .viam.service.motion.v1.ComponentState> step = 1 [json_name = "step"];
+inline int PlanStep::_internal_step_size() const {
+  return step_.size();
+}
+inline int PlanStep::step_size() const {
+  return _internal_step_size();
+}
+inline void PlanStep::clear_step() {
+  step_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >&
+PlanStep::_internal_step() const {
+  return step_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >&
+PlanStep::step() const {
+  // @@protoc_insertion_point(field_map:viam.service.motion.v1.PlanStep.step)
+  return _internal_step();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >*
+PlanStep::_internal_mutable_step() {
+  return step_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::service::motion::v1::ComponentState >*
+PlanStep::mutable_step() {
+  // @@protoc_insertion_point(field_mutable_map:viam.service.motion.v1.PlanStep.step)
+  return _internal_mutable_step();
+}
+
+// -------------------------------------------------------------------
+
+// ComponentState
+
+// .viam.common.v1.Pose pose = 1 [json_name = "pose"];
+inline bool ComponentState::_internal_has_pose() const {
+  return this != internal_default_instance() && pose_ != nullptr;
+}
+inline bool ComponentState::has_pose() const {
+  return _internal_has_pose();
+}
+inline const ::viam::common::v1::Pose& ComponentState::_internal_pose() const {
+  const ::viam::common::v1::Pose* p = pose_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Pose&>(
+      ::viam::common::v1::_Pose_default_instance_);
+}
+inline const ::viam::common::v1::Pose& ComponentState::pose() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ComponentState.pose)
+  return _internal_pose();
+}
+inline void ComponentState::unsafe_arena_set_allocated_pose(
+    ::viam::common::v1::Pose* pose) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_);
+  }
+  pose_ = pose;
+  if (pose) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ComponentState.pose)
+}
+inline ::viam::common::v1::Pose* ComponentState::release_pose() {
+  
+  ::viam::common::v1::Pose* temp = pose_;
+  pose_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Pose* ComponentState::unsafe_arena_release_pose() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ComponentState.pose)
+  
+  ::viam::common::v1::Pose* temp = pose_;
+  pose_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Pose* ComponentState::_internal_mutable_pose() {
+  
+  if (pose_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Pose>(GetArenaForAllocation());
+    pose_ = p;
+  }
+  return pose_;
+}
+inline ::viam::common::v1::Pose* ComponentState::mutable_pose() {
+  ::viam::common::v1::Pose* _msg = _internal_mutable_pose();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ComponentState.pose)
+  return _msg;
+}
+inline void ComponentState::set_allocated_pose(::viam::common::v1::Pose* pose) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_);
+  }
+  if (pose) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose));
+    if (message_arena != submessage_arena) {
+      pose = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pose, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pose_ = pose;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ComponentState.pose)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5222,6 +10438,16 @@ CollisionSpecification::allows() const {
 }  // namespace motion
 }  // namespace service
 }  // namespace viam
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::viam::service::motion::v1::PlanState> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::service::motion::v1::PlanState>() {
+  return ::viam::service::motion::v1::PlanState_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 
