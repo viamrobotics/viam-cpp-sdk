@@ -12,6 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(tflite)
-add_subdirectory(simple)
-add_subdirectory(complex)
+
+version: v1
+deps:
+  - buf.build/googleapis/googleapis
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT

@@ -284,27 +284,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         auto state =
             std::make_shared<struct state>(std::move(dependencies), std::move(configuration));
 
-        // Validate that our dependencies (if any - we don't actually
-        // expect any for this service) exist. If we did have
-        // Dependencies this is where we would have an opportunity to
-        // downcast them to the right thing and store them in our
-        // state so we could use them as needed.
-        //
-        // TODO(RSDK-3601): Validating that dependencies are present
-        // should be handled by the ModuleService automatically,
-        // rather than requiring each component to validate the
-        // presence of dependencies.
-        for (const auto& kv : state->dependencies) {
-            if (!kv.second) {
-                std::ostringstream buffer;
-                buffer << service_name << ": Dependency "
-                       << "`" << kv.first.to_string() << "` was not found during (re)configuration";
-                throw std::invalid_argument(buffer.str());
-            }
-        }
-
         // Now we can begin parsing and validating the provided `configuration`.
-
         // Pull the model path out of the configuration.
         const auto& attributes = state->configuration.attributes();
         auto model_path = attributes->find("model_path");

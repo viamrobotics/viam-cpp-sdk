@@ -30,7 +30,7 @@ An example configuration for a printer could look like this:
 	"modules": [
 		{
 			"name": "MyModule",
-			"executable_path": "/home/viam-cpp-sdk/build/install/bin/example_module"
+			"executable_path": "/home/viam-cpp-sdk/build/install/bin/simple_module"
 		}
 	],
 	"components": [
