@@ -24,8 +24,7 @@ namespace viam {
 namespace app {
 namespace v1 {
 PROTOBUF_CONSTEXPR IsLegalAcceptedRequest::IsLegalAcceptedRequest(
-    ::_pbi::ConstantInitialized)
-  : user_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized){}
 struct IsLegalAcceptedRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR IsLegalAcceptedRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -48,8 +47,7 @@ struct IsLegalAcceptedResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsLegalAcceptedResponseDefaultTypeInternal _IsLegalAcceptedResponse_default_instance_;
 PROTOBUF_CONSTEXPR AcceptLegalRequest::AcceptLegalRequest(
-    ::_pbi::ConstantInitialized)
-  : user_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized){}
 struct AcceptLegalRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AcceptLegalRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -84,7 +82,6 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::v1::IsLegalAcceptedRequest, user_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::IsLegalAcceptedResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -98,7 +95,6 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AcceptLegalRequest, user_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::AcceptLegalResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -108,9 +104,9 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::IsLegalAcceptedRequest)},
-  { 7, -1, -1, sizeof(::viam::app::v1::IsLegalAcceptedResponse)},
-  { 14, -1, -1, sizeof(::viam::app::v1::AcceptLegalRequest)},
-  { 21, -1, -1, sizeof(::viam::app::v1::AcceptLegalResponse)},
+  { 6, -1, -1, sizeof(::viam::app::v1::IsLegalAcceptedResponse)},
+  { 13, -1, -1, sizeof(::viam::app::v1::AcceptLegalRequest)},
+  { 19, -1, -1, sizeof(::viam::app::v1::AcceptLegalResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -121,22 +117,21 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\025app/v1/end_user.proto\022\013viam.app.v1\"1\n\026"
-  "IsLegalAcceptedRequest\022\027\n\007user_id\030\001 \001(\tR"
-  "\006userId\"@\n\027IsLegalAcceptedResponse\022%\n\016ac"
-  "cepted_legal\030\001 \001(\010R\racceptedLegal\"-\n\022Acc"
-  "eptLegalRequest\022\027\n\007user_id\030\001 \001(\tR\006userId"
-  "\"\025\n\023AcceptLegalResponse2\300\001\n\016EndUserServi"
-  "ce\022\\\n\017IsLegalAccepted\022#.viam.app.v1.IsLe"
-  "galAcceptedRequest\032$.viam.app.v1.IsLegal"
-  "AcceptedResponse\022P\n\013AcceptLegal\022\037.viam.a"
-  "pp.v1.AcceptLegalRequest\032 .viam.app.v1.A"
-  "cceptLegalResponseB\030Z\026go.viam.com/api/ap"
-  "p/v1b\006proto3"
+  "\n\025app/v1/end_user.proto\022\013viam.app.v1\"\'\n\026"
+  "IsLegalAcceptedRequestJ\004\010\001\020\002R\007user_id\"@\n"
+  "\027IsLegalAcceptedResponse\022%\n\016accepted_leg"
+  "al\030\001 \001(\010R\racceptedLegal\"#\n\022AcceptLegalRe"
+  "questJ\004\010\001\020\002R\007user_id\"\025\n\023AcceptLegalRespo"
+  "nse2\300\001\n\016EndUserService\022\\\n\017IsLegalAccepte"
+  "d\022#.viam.app.v1.IsLegalAcceptedRequest\032$"
+  ".viam.app.v1.IsLegalAcceptedResponse\022P\n\013"
+  "AcceptLegal\022\037.viam.app.v1.AcceptLegalReq"
+  "uest\032 .viam.app.v1.AcceptLegalResponseB\030"
+  "Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fend_5fuser_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fend_5fuser_2eproto = {
-    false, false, 452, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
+    false, false, 432, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
     "app/v1/end_user.proto",
     &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once, nullptr, 0, 4,
     schemas, file_default_instances, TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets,
@@ -161,186 +156,30 @@ class IsLegalAcceptedRequest::_Internal {
 
 IsLegalAcceptedRequest::IsLegalAcceptedRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.IsLegalAcceptedRequest)
 }
 IsLegalAcceptedRequest::IsLegalAcceptedRequest(const IsLegalAcceptedRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  user_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    user_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_user_id().empty()) {
-    user_id_.Set(from._internal_user_id(), 
-      GetArenaForAllocation());
-  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.IsLegalAcceptedRequest)
 }
 
-inline void IsLegalAcceptedRequest::SharedCtor() {
-user_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  user_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
 
-IsLegalAcceptedRequest::~IsLegalAcceptedRequest() {
-  // @@protoc_insertion_point(destructor:viam.app.v1.IsLegalAcceptedRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
 
-inline void IsLegalAcceptedRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  user_id_.Destroy();
-}
 
-void IsLegalAcceptedRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void IsLegalAcceptedRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.app.v1.IsLegalAcceptedRequest)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  user_id_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* IsLegalAcceptedRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string user_id = 1 [json_name = "userId"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_user_id();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.IsLegalAcceptedRequest.user_id"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* IsLegalAcceptedRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.IsLegalAcceptedRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string user_id = 1 [json_name = "userId"];
-  if (!this->_internal_user_id().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.app.v1.IsLegalAcceptedRequest.user_id");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_user_id(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.IsLegalAcceptedRequest)
-  return target;
-}
-
-size_t IsLegalAcceptedRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.IsLegalAcceptedRequest)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string user_id = 1 [json_name = "userId"];
-  if (!this->_internal_user_id().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_user_id());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsLegalAcceptedRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    IsLegalAcceptedRequest::MergeImpl
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsLegalAcceptedRequest::GetClassData() const { return &_class_data_; }
 
-void IsLegalAcceptedRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<IsLegalAcceptedRequest *>(to)->MergeFrom(
-      static_cast<const IsLegalAcceptedRequest &>(from));
-}
 
 
-void IsLegalAcceptedRequest::MergeFrom(const IsLegalAcceptedRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.IsLegalAcceptedRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
-  if (!from._internal_user_id().empty()) {
-    _internal_set_user_id(from._internal_user_id());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
 
-void IsLegalAcceptedRequest::CopyFrom(const IsLegalAcceptedRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.IsLegalAcceptedRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
 
-bool IsLegalAcceptedRequest::IsInitialized() const {
-  return true;
-}
-
-void IsLegalAcceptedRequest::InternalSwap(IsLegalAcceptedRequest* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &user_id_, lhs_arena,
-      &other->user_id_, rhs_arena
-  );
-}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata IsLegalAcceptedRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
@@ -527,186 +366,30 @@ class AcceptLegalRequest::_Internal {
 
 AcceptLegalRequest::AcceptLegalRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.AcceptLegalRequest)
 }
 AcceptLegalRequest::AcceptLegalRequest(const AcceptLegalRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  user_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    user_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_user_id().empty()) {
-    user_id_.Set(from._internal_user_id(), 
-      GetArenaForAllocation());
-  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.AcceptLegalRequest)
 }
 
-inline void AcceptLegalRequest::SharedCtor() {
-user_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  user_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
 
-AcceptLegalRequest::~AcceptLegalRequest() {
-  // @@protoc_insertion_point(destructor:viam.app.v1.AcceptLegalRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
 
-inline void AcceptLegalRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  user_id_.Destroy();
-}
 
-void AcceptLegalRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void AcceptLegalRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:viam.app.v1.AcceptLegalRequest)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  user_id_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* AcceptLegalRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string user_id = 1 [json_name = "userId"];
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_user_id();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AcceptLegalRequest.user_id"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* AcceptLegalRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.AcceptLegalRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string user_id = 1 [json_name = "userId"];
-  if (!this->_internal_user_id().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "viam.app.v1.AcceptLegalRequest.user_id");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_user_id(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.AcceptLegalRequest)
-  return target;
-}
-
-size_t AcceptLegalRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.AcceptLegalRequest)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string user_id = 1 [json_name = "userId"];
-  if (!this->_internal_user_id().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_user_id());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AcceptLegalRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    AcceptLegalRequest::MergeImpl
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AcceptLegalRequest::GetClassData() const { return &_class_data_; }
 
-void AcceptLegalRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<AcceptLegalRequest *>(to)->MergeFrom(
-      static_cast<const AcceptLegalRequest &>(from));
-}
 
 
-void AcceptLegalRequest::MergeFrom(const AcceptLegalRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.AcceptLegalRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
-  if (!from._internal_user_id().empty()) {
-    _internal_set_user_id(from._internal_user_id());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
 
-void AcceptLegalRequest::CopyFrom(const AcceptLegalRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.AcceptLegalRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
 
-bool AcceptLegalRequest::IsInitialized() const {
-  return true;
-}
-
-void AcceptLegalRequest::InternalSwap(AcceptLegalRequest* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &user_id_, lhs_arena,
-      &other->user_id_, rhs_arena
-  );
-}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AcceptLegalRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
