@@ -83,6 +83,10 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/GetModule",
   "/viam.app.v1.AppService/ListModules",
   "/viam.app.v1.AppService/CreateKey",
+  "/viam.app.v1.AppService/DeleteKey",
+  "/viam.app.v1.AppService/ListKeys",
+  "/viam.app.v1.AppService/RotateKey",
+  "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations",
 };
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -151,6 +155,10 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_GetModule_(AppService_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListModules_(AppService_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_CreateKey_(AppService_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteKey_(AppService_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListKeys_(AppService_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RotateKey_(AppService_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -1496,6 +1504,98 @@ void AppService::Stub::async::CreateKey(::grpc::ClientContext* context, const ::
   return result;
 }
 
+::grpc::Status AppService::Stub::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::viam::app::v1::DeleteKeyResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteKey_, context, request, response);
+}
+
+void AppService::Stub::async::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::DeleteKey(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteKey_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteKeyResponse>* AppService::Stub::PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteKeyResponse, ::viam::app::v1::DeleteKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteKey_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteKeyResponse>* AppService::Stub::AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteKeyRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::viam::app::v1::ListKeysResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListKeys_, context, request, response);
+}
+
+void AppService::Stub::async::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::ListKeys(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListKeys_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListKeysResponse>* AppService::Stub::PrepareAsyncListKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ListKeysResponse, ::viam::app::v1::ListKeysRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListKeys_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListKeysResponse>* AppService::Stub::AsyncListKeysRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListKeysRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListKeysRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::viam::app::v1::RotateKeyResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RotateKey_, context, request, response);
+}
+
+void AppService::Stub::async::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::RotateKey(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RotateKey_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RotateKeyResponse>* AppService::Stub::PrepareAsyncRotateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::RotateKeyResponse, ::viam::app::v1::RotateKeyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RotateKey_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::RotateKeyResponse>* AppService::Stub::AsyncRotateKeyRaw(::grpc::ClientContext* context, const ::viam::app::v1::RotateKeyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRotateKeyRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response);
+}
+
+void AppService::Stub::async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::CreateKeyFromExistingKeyAuthorizations(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* AppService::Stub::PrepareAsyncCreateKeyFromExistingKeyAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateKeyFromExistingKeyAuthorizations_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* AppService::Stub::AsyncCreateKeyFromExistingKeyAuthorizationsRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateKeyFromExistingKeyAuthorizationsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[0],
@@ -2087,6 +2187,46 @@ AppService::Service::Service() {
              ::viam::app::v1::CreateKeyResponse* resp) {
                return service->CreateKey(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[59],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::DeleteKeyRequest* req,
+             ::viam::app::v1::DeleteKeyResponse* resp) {
+               return service->DeleteKey(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[60],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::ListKeysRequest* req,
+             ::viam::app::v1::ListKeysResponse* resp) {
+               return service->ListKeys(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[61],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::RotateKeyRequest* req,
+             ::viam::app::v1::RotateKeyResponse* resp) {
+               return service->RotateKey(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[62],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* req,
+             ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* resp) {
+               return service->CreateKeyFromExistingKeyAuthorizations(ctx, req, resp);
+             }, this)));
 }
 
 AppService::Service::~Service() {
@@ -2499,6 +2639,34 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::CreateKey(::grpc::ServerContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DeleteKey(::grpc::ServerContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::ListKeys(::grpc::ServerContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::RotateKey(::grpc::ServerContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::CreateKeyFromExistingKeyAuthorizations(::grpc::ServerContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

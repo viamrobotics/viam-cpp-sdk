@@ -55,6 +55,9 @@ namespace v1 {
 class APIKey;
 struct APIKeyDefaultTypeInternal;
 extern APIKeyDefaultTypeInternal _APIKey_default_instance_;
+class APIKeyWithAuthorizations;
+struct APIKeyWithAuthorizationsDefaultTypeInternal;
+extern APIKeyWithAuthorizationsDefaultTypeInternal _APIKeyWithAuthorizations_default_instance_;
 class AddRoleRequest;
 struct AddRoleRequestDefaultTypeInternal;
 extern AddRoleRequestDefaultTypeInternal _AddRoleRequest_default_instance_;
@@ -64,6 +67,9 @@ extern AddRoleResponseDefaultTypeInternal _AddRoleResponse_default_instance_;
 class Authorization;
 struct AuthorizationDefaultTypeInternal;
 extern AuthorizationDefaultTypeInternal _Authorization_default_instance_;
+class AuthorizationDetails;
+struct AuthorizationDetailsDefaultTypeInternal;
+extern AuthorizationDetailsDefaultTypeInternal _AuthorizationDetails_default_instance_;
 class AuthorizedPermissions;
 struct AuthorizedPermissionsDefaultTypeInternal;
 extern AuthorizedPermissionsDefaultTypeInternal _AuthorizedPermissions_default_instance_;
@@ -85,6 +91,12 @@ extern CreateFragmentRequestDefaultTypeInternal _CreateFragmentRequest_default_i
 class CreateFragmentResponse;
 struct CreateFragmentResponseDefaultTypeInternal;
 extern CreateFragmentResponseDefaultTypeInternal _CreateFragmentResponse_default_instance_;
+class CreateKeyFromExistingKeyAuthorizationsRequest;
+struct CreateKeyFromExistingKeyAuthorizationsRequestDefaultTypeInternal;
+extern CreateKeyFromExistingKeyAuthorizationsRequestDefaultTypeInternal _CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_;
+class CreateKeyFromExistingKeyAuthorizationsResponse;
+struct CreateKeyFromExistingKeyAuthorizationsResponseDefaultTypeInternal;
+extern CreateKeyFromExistingKeyAuthorizationsResponseDefaultTypeInternal _CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_;
 class CreateKeyRequest;
 struct CreateKeyRequestDefaultTypeInternal;
 extern CreateKeyRequestDefaultTypeInternal _CreateKeyRequest_default_instance_;
@@ -133,6 +145,12 @@ extern DeleteFragmentRequestDefaultTypeInternal _DeleteFragmentRequest_default_i
 class DeleteFragmentResponse;
 struct DeleteFragmentResponseDefaultTypeInternal;
 extern DeleteFragmentResponseDefaultTypeInternal _DeleteFragmentResponse_default_instance_;
+class DeleteKeyRequest;
+struct DeleteKeyRequestDefaultTypeInternal;
+extern DeleteKeyRequestDefaultTypeInternal _DeleteKeyRequest_default_instance_;
+class DeleteKeyResponse;
+struct DeleteKeyResponseDefaultTypeInternal;
+extern DeleteKeyResponseDefaultTypeInternal _DeleteKeyResponse_default_instance_;
 class DeleteLocationRequest;
 struct DeleteLocationRequestDefaultTypeInternal;
 extern DeleteLocationRequestDefaultTypeInternal _DeleteLocationRequest_default_instance_;
@@ -274,6 +292,12 @@ extern ListFragmentsRequestDefaultTypeInternal _ListFragmentsRequest_default_ins
 class ListFragmentsResponse;
 struct ListFragmentsResponseDefaultTypeInternal;
 extern ListFragmentsResponseDefaultTypeInternal _ListFragmentsResponse_default_instance_;
+class ListKeysRequest;
+struct ListKeysRequestDefaultTypeInternal;
+extern ListKeysRequestDefaultTypeInternal _ListKeysRequest_default_instance_;
+class ListKeysResponse;
+struct ListKeysResponseDefaultTypeInternal;
+extern ListKeysResponseDefaultTypeInternal _ListKeysResponse_default_instance_;
 class ListLocationsRequest;
 struct ListLocationsRequestDefaultTypeInternal;
 extern ListLocationsRequestDefaultTypeInternal _ListLocationsRequest_default_instance_;
@@ -394,6 +418,12 @@ extern RobotPartDefaultTypeInternal _RobotPart_default_instance_;
 class RobotPartHistoryEntry;
 struct RobotPartHistoryEntryDefaultTypeInternal;
 extern RobotPartHistoryEntryDefaultTypeInternal _RobotPartHistoryEntry_default_instance_;
+class RotateKeyRequest;
+struct RotateKeyRequestDefaultTypeInternal;
+extern RotateKeyRequestDefaultTypeInternal _RotateKeyRequest_default_instance_;
+class RotateKeyResponse;
+struct RotateKeyResponseDefaultTypeInternal;
+extern RotateKeyResponseDefaultTypeInternal _RotateKeyResponse_default_instance_;
 class RoverRentalRobot;
 struct RoverRentalRobotDefaultTypeInternal;
 extern RoverRentalRobotDefaultTypeInternal _RoverRentalRobot_default_instance_;
@@ -480,9 +510,11 @@ extern VersionHistoryDefaultTypeInternal _VersionHistory_default_instance_;
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::app::v1::APIKey* Arena::CreateMaybeMessage<::viam::app::v1::APIKey>(Arena*);
+template<> ::viam::app::v1::APIKeyWithAuthorizations* Arena::CreateMaybeMessage<::viam::app::v1::APIKeyWithAuthorizations>(Arena*);
 template<> ::viam::app::v1::AddRoleRequest* Arena::CreateMaybeMessage<::viam::app::v1::AddRoleRequest>(Arena*);
 template<> ::viam::app::v1::AddRoleResponse* Arena::CreateMaybeMessage<::viam::app::v1::AddRoleResponse>(Arena*);
 template<> ::viam::app::v1::Authorization* Arena::CreateMaybeMessage<::viam::app::v1::Authorization>(Arena*);
+template<> ::viam::app::v1::AuthorizationDetails* Arena::CreateMaybeMessage<::viam::app::v1::AuthorizationDetails>(Arena*);
 template<> ::viam::app::v1::AuthorizedPermissions* Arena::CreateMaybeMessage<::viam::app::v1::AuthorizedPermissions>(Arena*);
 template<> ::viam::app::v1::ChangeRoleRequest* Arena::CreateMaybeMessage<::viam::app::v1::ChangeRoleRequest>(Arena*);
 template<> ::viam::app::v1::ChangeRoleResponse* Arena::CreateMaybeMessage<::viam::app::v1::ChangeRoleResponse>(Arena*);
@@ -490,6 +522,8 @@ template<> ::viam::app::v1::CheckPermissionsRequest* Arena::CreateMaybeMessage<:
 template<> ::viam::app::v1::CheckPermissionsResponse* Arena::CreateMaybeMessage<::viam::app::v1::CheckPermissionsResponse>(Arena*);
 template<> ::viam::app::v1::CreateFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateFragmentRequest>(Arena*);
 template<> ::viam::app::v1::CreateFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateFragmentResponse>(Arena*);
+template<> ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest>(Arena*);
+template<> ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>(Arena*);
 template<> ::viam::app::v1::CreateKeyRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateKeyRequest>(Arena*);
 template<> ::viam::app::v1::CreateKeyResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateKeyResponse>(Arena*);
 template<> ::viam::app::v1::CreateLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateLocationRequest>(Arena*);
@@ -506,6 +540,8 @@ template<> ::viam::app::v1::CreateRobotPartSecretRequest* Arena::CreateMaybeMess
 template<> ::viam::app::v1::CreateRobotPartSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretResponse>(Arena*);
 template<> ::viam::app::v1::DeleteFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentRequest>(Arena*);
 template<> ::viam::app::v1::DeleteFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentResponse>(Arena*);
+template<> ::viam::app::v1::DeleteKeyRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteKeyRequest>(Arena*);
+template<> ::viam::app::v1::DeleteKeyResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteKeyResponse>(Arena*);
 template<> ::viam::app::v1::DeleteLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationRequest>(Arena*);
 template<> ::viam::app::v1::DeleteLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationResponse>(Arena*);
 template<> ::viam::app::v1::DeleteLocationSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteLocationSecretRequest>(Arena*);
@@ -553,6 +589,8 @@ template<> ::viam::app::v1::ListAuthorizationsRequest* Arena::CreateMaybeMessage
 template<> ::viam::app::v1::ListAuthorizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListAuthorizationsResponse>(Arena*);
 template<> ::viam::app::v1::ListFragmentsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListFragmentsRequest>(Arena*);
 template<> ::viam::app::v1::ListFragmentsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListFragmentsResponse>(Arena*);
+template<> ::viam::app::v1::ListKeysRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListKeysRequest>(Arena*);
+template<> ::viam::app::v1::ListKeysResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListKeysResponse>(Arena*);
 template<> ::viam::app::v1::ListLocationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsRequest>(Arena*);
 template<> ::viam::app::v1::ListLocationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::ListLocationsResponse>(Arena*);
 template<> ::viam::app::v1::ListModulesRequest* Arena::CreateMaybeMessage<::viam::app::v1::ListModulesRequest>(Arena*);
@@ -593,6 +631,8 @@ template<> ::viam::app::v1::ResendOrganizationInviteResponse* Arena::CreateMaybe
 template<> ::viam::app::v1::Robot* Arena::CreateMaybeMessage<::viam::app::v1::Robot>(Arena*);
 template<> ::viam::app::v1::RobotPart* Arena::CreateMaybeMessage<::viam::app::v1::RobotPart>(Arena*);
 template<> ::viam::app::v1::RobotPartHistoryEntry* Arena::CreateMaybeMessage<::viam::app::v1::RobotPartHistoryEntry>(Arena*);
+template<> ::viam::app::v1::RotateKeyRequest* Arena::CreateMaybeMessage<::viam::app::v1::RotateKeyRequest>(Arena*);
+template<> ::viam::app::v1::RotateKeyResponse* Arena::CreateMaybeMessage<::viam::app::v1::RotateKeyResponse>(Arena*);
 template<> ::viam::app::v1::RoverRentalRobot* Arena::CreateMaybeMessage<::viam::app::v1::RoverRentalRobot>(Arena*);
 template<> ::viam::app::v1::ShareLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::ShareLocationRequest>(Arena*);
 template<> ::viam::app::v1::ShareLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::ShareLocationResponse>(Arena*);
@@ -23742,6 +23782,1578 @@ class CreateKeyResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
+// -------------------------------------------------------------------
+
+class DeleteKeyRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteKeyRequest) */ {
+ public:
+  inline DeleteKeyRequest() : DeleteKeyRequest(nullptr) {}
+  ~DeleteKeyRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteKeyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteKeyRequest(const DeleteKeyRequest& from);
+  DeleteKeyRequest(DeleteKeyRequest&& from) noexcept
+    : DeleteKeyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteKeyRequest& operator=(const DeleteKeyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteKeyRequest& operator=(DeleteKeyRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteKeyRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteKeyRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteKeyRequest*>(
+               &_DeleteKeyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    141;
+
+  friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteKeyRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteKeyRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteKeyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteKeyRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteKeyRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteKeyRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteKeyRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteKeyRequest";
+  }
+  protected:
+  explicit DeleteKeyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteKeyRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteKeyResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteKeyResponse) */ {
+ public:
+  inline DeleteKeyResponse() : DeleteKeyResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteKeyResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteKeyResponse(const DeleteKeyResponse& from);
+  DeleteKeyResponse(DeleteKeyResponse&& from) noexcept
+    : DeleteKeyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteKeyResponse& operator=(const DeleteKeyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteKeyResponse& operator=(DeleteKeyResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteKeyResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteKeyResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteKeyResponse*>(
+               &_DeleteKeyResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    142;
+
+  friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteKeyResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteKeyResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteKeyResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteKeyResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteKeyResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteKeyResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteKeyResponse";
+  }
+  protected:
+  explicit DeleteKeyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteKeyResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AuthorizationDetails final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.AuthorizationDetails) */ {
+ public:
+  inline AuthorizationDetails() : AuthorizationDetails(nullptr) {}
+  ~AuthorizationDetails() override;
+  explicit PROTOBUF_CONSTEXPR AuthorizationDetails(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AuthorizationDetails(const AuthorizationDetails& from);
+  AuthorizationDetails(AuthorizationDetails&& from) noexcept
+    : AuthorizationDetails() {
+    *this = ::std::move(from);
+  }
+
+  inline AuthorizationDetails& operator=(const AuthorizationDetails& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AuthorizationDetails& operator=(AuthorizationDetails&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AuthorizationDetails& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AuthorizationDetails* internal_default_instance() {
+    return reinterpret_cast<const AuthorizationDetails*>(
+               &_AuthorizationDetails_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    143;
+
+  friend void swap(AuthorizationDetails& a, AuthorizationDetails& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AuthorizationDetails* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AuthorizationDetails* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AuthorizationDetails* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AuthorizationDetails>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AuthorizationDetails& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AuthorizationDetails& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AuthorizationDetails* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.AuthorizationDetails";
+  }
+  protected:
+  explicit AuthorizationDetails(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAuthorizationTypeFieldNumber = 1,
+    kAuthorizationIdFieldNumber = 2,
+    kResourceTypeFieldNumber = 3,
+    kResourceIdFieldNumber = 4,
+    kOrgIdFieldNumber = 5,
+  };
+  // string authorization_type = 1 [json_name = "authorizationType"];
+  void clear_authorization_type();
+  const std::string& authorization_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_authorization_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_authorization_type();
+  PROTOBUF_NODISCARD std::string* release_authorization_type();
+  void set_allocated_authorization_type(std::string* authorization_type);
+  private:
+  const std::string& _internal_authorization_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_authorization_type(const std::string& value);
+  std::string* _internal_mutable_authorization_type();
+  public:
+
+  // string authorization_id = 2 [json_name = "authorizationId"];
+  void clear_authorization_id();
+  const std::string& authorization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_authorization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_authorization_id();
+  PROTOBUF_NODISCARD std::string* release_authorization_id();
+  void set_allocated_authorization_id(std::string* authorization_id);
+  private:
+  const std::string& _internal_authorization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_authorization_id(const std::string& value);
+  std::string* _internal_mutable_authorization_id();
+  public:
+
+  // string resource_type = 3 [json_name = "resourceType"];
+  void clear_resource_type();
+  const std::string& resource_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource_type();
+  PROTOBUF_NODISCARD std::string* release_resource_type();
+  void set_allocated_resource_type(std::string* resource_type);
+  private:
+  const std::string& _internal_resource_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource_type(const std::string& value);
+  std::string* _internal_mutable_resource_type();
+  public:
+
+  // string resource_id = 4 [json_name = "resourceId"];
+  void clear_resource_id();
+  const std::string& resource_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource_id();
+  PROTOBUF_NODISCARD std::string* release_resource_id();
+  void set_allocated_resource_id(std::string* resource_id);
+  private:
+  const std::string& _internal_resource_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource_id(const std::string& value);
+  std::string* _internal_mutable_resource_id();
+  public:
+
+  // string org_id = 5 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.AuthorizationDetails)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr authorization_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr authorization_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class APIKeyWithAuthorizations final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.APIKeyWithAuthorizations) */ {
+ public:
+  inline APIKeyWithAuthorizations() : APIKeyWithAuthorizations(nullptr) {}
+  ~APIKeyWithAuthorizations() override;
+  explicit PROTOBUF_CONSTEXPR APIKeyWithAuthorizations(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  APIKeyWithAuthorizations(const APIKeyWithAuthorizations& from);
+  APIKeyWithAuthorizations(APIKeyWithAuthorizations&& from) noexcept
+    : APIKeyWithAuthorizations() {
+    *this = ::std::move(from);
+  }
+
+  inline APIKeyWithAuthorizations& operator=(const APIKeyWithAuthorizations& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline APIKeyWithAuthorizations& operator=(APIKeyWithAuthorizations&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const APIKeyWithAuthorizations& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const APIKeyWithAuthorizations* internal_default_instance() {
+    return reinterpret_cast<const APIKeyWithAuthorizations*>(
+               &_APIKeyWithAuthorizations_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    144;
+
+  friend void swap(APIKeyWithAuthorizations& a, APIKeyWithAuthorizations& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(APIKeyWithAuthorizations* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(APIKeyWithAuthorizations* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  APIKeyWithAuthorizations* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<APIKeyWithAuthorizations>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const APIKeyWithAuthorizations& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const APIKeyWithAuthorizations& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(APIKeyWithAuthorizations* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.APIKeyWithAuthorizations";
+  }
+  protected:
+  explicit APIKeyWithAuthorizations(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAuthorizationsFieldNumber = 2,
+    kApiKeyFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.AuthorizationDetails authorizations = 2 [json_name = "authorizations"];
+  int authorizations_size() const;
+  private:
+  int _internal_authorizations_size() const;
+  public:
+  void clear_authorizations();
+  ::viam::app::v1::AuthorizationDetails* mutable_authorizations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizationDetails >*
+      mutable_authorizations();
+  private:
+  const ::viam::app::v1::AuthorizationDetails& _internal_authorizations(int index) const;
+  ::viam::app::v1::AuthorizationDetails* _internal_add_authorizations();
+  public:
+  const ::viam::app::v1::AuthorizationDetails& authorizations(int index) const;
+  ::viam::app::v1::AuthorizationDetails* add_authorizations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizationDetails >&
+      authorizations() const;
+
+  // .viam.app.v1.APIKey api_key = 1 [json_name = "apiKey"];
+  bool has_api_key() const;
+  private:
+  bool _internal_has_api_key() const;
+  public:
+  void clear_api_key();
+  const ::viam::app::v1::APIKey& api_key() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::APIKey* release_api_key();
+  ::viam::app::v1::APIKey* mutable_api_key();
+  void set_allocated_api_key(::viam::app::v1::APIKey* api_key);
+  private:
+  const ::viam::app::v1::APIKey& _internal_api_key() const;
+  ::viam::app::v1::APIKey* _internal_mutable_api_key();
+  public:
+  void unsafe_arena_set_allocated_api_key(
+      ::viam::app::v1::APIKey* api_key);
+  ::viam::app::v1::APIKey* unsafe_arena_release_api_key();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.APIKeyWithAuthorizations)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizationDetails > authorizations_;
+  ::viam::app::v1::APIKey* api_key_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListKeysRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListKeysRequest) */ {
+ public:
+  inline ListKeysRequest() : ListKeysRequest(nullptr) {}
+  ~ListKeysRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListKeysRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListKeysRequest(const ListKeysRequest& from);
+  ListKeysRequest(ListKeysRequest&& from) noexcept
+    : ListKeysRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListKeysRequest& operator=(const ListKeysRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListKeysRequest& operator=(ListKeysRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListKeysRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListKeysRequest* internal_default_instance() {
+    return reinterpret_cast<const ListKeysRequest*>(
+               &_ListKeysRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    145;
+
+  friend void swap(ListKeysRequest& a, ListKeysRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListKeysRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListKeysRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListKeysRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListKeysRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListKeysRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListKeysRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListKeysRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListKeysRequest";
+  }
+  protected:
+  explicit ListKeysRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListKeysRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListKeysResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.ListKeysResponse) */ {
+ public:
+  inline ListKeysResponse() : ListKeysResponse(nullptr) {}
+  ~ListKeysResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListKeysResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListKeysResponse(const ListKeysResponse& from);
+  ListKeysResponse(ListKeysResponse&& from) noexcept
+    : ListKeysResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListKeysResponse& operator=(const ListKeysResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListKeysResponse& operator=(ListKeysResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListKeysResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListKeysResponse* internal_default_instance() {
+    return reinterpret_cast<const ListKeysResponse*>(
+               &_ListKeysResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    146;
+
+  friend void swap(ListKeysResponse& a, ListKeysResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListKeysResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListKeysResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListKeysResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListKeysResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListKeysResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListKeysResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListKeysResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.ListKeysResponse";
+  }
+  protected:
+  explicit ListKeysResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kApiKeysFieldNumber = 1,
+  };
+  // repeated .viam.app.v1.APIKeyWithAuthorizations api_keys = 1 [json_name = "apiKeys"];
+  int api_keys_size() const;
+  private:
+  int _internal_api_keys_size() const;
+  public:
+  void clear_api_keys();
+  ::viam::app::v1::APIKeyWithAuthorizations* mutable_api_keys(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::APIKeyWithAuthorizations >*
+      mutable_api_keys();
+  private:
+  const ::viam::app::v1::APIKeyWithAuthorizations& _internal_api_keys(int index) const;
+  ::viam::app::v1::APIKeyWithAuthorizations* _internal_add_api_keys();
+  public:
+  const ::viam::app::v1::APIKeyWithAuthorizations& api_keys(int index) const;
+  ::viam::app::v1::APIKeyWithAuthorizations* add_api_keys();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::APIKeyWithAuthorizations >&
+      api_keys() const;
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.ListKeysResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::APIKeyWithAuthorizations > api_keys_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RotateKeyRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RotateKeyRequest) */ {
+ public:
+  inline RotateKeyRequest() : RotateKeyRequest(nullptr) {}
+  ~RotateKeyRequest() override;
+  explicit PROTOBUF_CONSTEXPR RotateKeyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RotateKeyRequest(const RotateKeyRequest& from);
+  RotateKeyRequest(RotateKeyRequest&& from) noexcept
+    : RotateKeyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RotateKeyRequest& operator=(const RotateKeyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RotateKeyRequest& operator=(RotateKeyRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RotateKeyRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RotateKeyRequest* internal_default_instance() {
+    return reinterpret_cast<const RotateKeyRequest*>(
+               &_RotateKeyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    147;
+
+  friend void swap(RotateKeyRequest& a, RotateKeyRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RotateKeyRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RotateKeyRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RotateKeyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RotateKeyRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RotateKeyRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RotateKeyRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RotateKeyRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.RotateKeyRequest";
+  }
+  protected:
+  explicit RotateKeyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.RotateKeyRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RotateKeyResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RotateKeyResponse) */ {
+ public:
+  inline RotateKeyResponse() : RotateKeyResponse(nullptr) {}
+  ~RotateKeyResponse() override;
+  explicit PROTOBUF_CONSTEXPR RotateKeyResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RotateKeyResponse(const RotateKeyResponse& from);
+  RotateKeyResponse(RotateKeyResponse&& from) noexcept
+    : RotateKeyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline RotateKeyResponse& operator=(const RotateKeyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RotateKeyResponse& operator=(RotateKeyResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RotateKeyResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RotateKeyResponse* internal_default_instance() {
+    return reinterpret_cast<const RotateKeyResponse*>(
+               &_RotateKeyResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    148;
+
+  friend void swap(RotateKeyResponse& a, RotateKeyResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RotateKeyResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RotateKeyResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RotateKeyResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RotateKeyResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RotateKeyResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RotateKeyResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RotateKeyResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.RotateKeyResponse";
+  }
+  protected:
+  explicit RotateKeyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kKeyFieldNumber = 2,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string key = 2 [json_name = "key"];
+  void clear_key();
+  const std::string& key() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_key(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_key();
+  PROTOBUF_NODISCARD std::string* release_key();
+  void set_allocated_key(std::string* key);
+  private:
+  const std::string& _internal_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_key(const std::string& value);
+  std::string* _internal_mutable_key();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.RotateKeyResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateKeyFromExistingKeyAuthorizationsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest) */ {
+ public:
+  inline CreateKeyFromExistingKeyAuthorizationsRequest() : CreateKeyFromExistingKeyAuthorizationsRequest(nullptr) {}
+  ~CreateKeyFromExistingKeyAuthorizationsRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateKeyFromExistingKeyAuthorizationsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateKeyFromExistingKeyAuthorizationsRequest(const CreateKeyFromExistingKeyAuthorizationsRequest& from);
+  CreateKeyFromExistingKeyAuthorizationsRequest(CreateKeyFromExistingKeyAuthorizationsRequest&& from) noexcept
+    : CreateKeyFromExistingKeyAuthorizationsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateKeyFromExistingKeyAuthorizationsRequest& operator=(const CreateKeyFromExistingKeyAuthorizationsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateKeyFromExistingKeyAuthorizationsRequest& operator=(CreateKeyFromExistingKeyAuthorizationsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateKeyFromExistingKeyAuthorizationsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateKeyFromExistingKeyAuthorizationsRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateKeyFromExistingKeyAuthorizationsRequest*>(
+               &_CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    149;
+
+  friend void swap(CreateKeyFromExistingKeyAuthorizationsRequest& a, CreateKeyFromExistingKeyAuthorizationsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateKeyFromExistingKeyAuthorizationsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateKeyFromExistingKeyAuthorizationsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateKeyFromExistingKeyAuthorizationsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateKeyFromExistingKeyAuthorizationsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateKeyFromExistingKeyAuthorizationsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateKeyFromExistingKeyAuthorizationsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateKeyFromExistingKeyAuthorizationsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest";
+  }
+  protected:
+  explicit CreateKeyFromExistingKeyAuthorizationsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateKeyFromExistingKeyAuthorizationsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse) */ {
+ public:
+  inline CreateKeyFromExistingKeyAuthorizationsResponse() : CreateKeyFromExistingKeyAuthorizationsResponse(nullptr) {}
+  ~CreateKeyFromExistingKeyAuthorizationsResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateKeyFromExistingKeyAuthorizationsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateKeyFromExistingKeyAuthorizationsResponse(const CreateKeyFromExistingKeyAuthorizationsResponse& from);
+  CreateKeyFromExistingKeyAuthorizationsResponse(CreateKeyFromExistingKeyAuthorizationsResponse&& from) noexcept
+    : CreateKeyFromExistingKeyAuthorizationsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateKeyFromExistingKeyAuthorizationsResponse& operator=(const CreateKeyFromExistingKeyAuthorizationsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateKeyFromExistingKeyAuthorizationsResponse& operator=(CreateKeyFromExistingKeyAuthorizationsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateKeyFromExistingKeyAuthorizationsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateKeyFromExistingKeyAuthorizationsResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateKeyFromExistingKeyAuthorizationsResponse*>(
+               &_CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    150;
+
+  friend void swap(CreateKeyFromExistingKeyAuthorizationsResponse& a, CreateKeyFromExistingKeyAuthorizationsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateKeyFromExistingKeyAuthorizationsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateKeyFromExistingKeyAuthorizationsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateKeyFromExistingKeyAuthorizationsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateKeyFromExistingKeyAuthorizationsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateKeyFromExistingKeyAuthorizationsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateKeyFromExistingKeyAuthorizationsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateKeyFromExistingKeyAuthorizationsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse";
+  }
+  protected:
+  explicit CreateKeyFromExistingKeyAuthorizationsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kKeyFieldNumber = 2,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string key = 2 [json_name = "key"];
+  void clear_key();
+  const std::string& key() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_key(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_key();
+  PROTOBUF_NODISCARD std::string* release_key();
+  void set_allocated_key(std::string* key);
+  private:
+  const std::string& _internal_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_key(const std::string& value);
+  std::string* _internal_mutable_key();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
 // ===================================================================
 
 
@@ -39269,9 +40881,889 @@ inline void CreateKeyResponse::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateKeyResponse.id)
 }
 
+// -------------------------------------------------------------------
+
+// DeleteKeyRequest
+
+// string id = 1 [json_name = "id"];
+inline void DeleteKeyRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& DeleteKeyRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteKeyRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteKeyRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteKeyRequest.id)
+}
+inline std::string* DeleteKeyRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteKeyRequest.id)
+  return _s;
+}
+inline const std::string& DeleteKeyRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void DeleteKeyRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteKeyRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteKeyRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteKeyRequest.id)
+  return id_.Release();
+}
+inline void DeleteKeyRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteKeyRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteKeyResponse
+
+// -------------------------------------------------------------------
+
+// AuthorizationDetails
+
+// string authorization_type = 1 [json_name = "authorizationType"];
+inline void AuthorizationDetails::clear_authorization_type() {
+  authorization_type_.ClearToEmpty();
+}
+inline const std::string& AuthorizationDetails::authorization_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthorizationDetails.authorization_type)
+  return _internal_authorization_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthorizationDetails::set_authorization_type(ArgT0&& arg0, ArgT... args) {
+ 
+ authorization_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthorizationDetails.authorization_type)
+}
+inline std::string* AuthorizationDetails::mutable_authorization_type() {
+  std::string* _s = _internal_mutable_authorization_type();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthorizationDetails.authorization_type)
+  return _s;
+}
+inline const std::string& AuthorizationDetails::_internal_authorization_type() const {
+  return authorization_type_.Get();
+}
+inline void AuthorizationDetails::_internal_set_authorization_type(const std::string& value) {
+  
+  authorization_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::_internal_mutable_authorization_type() {
+  
+  return authorization_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::release_authorization_type() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthorizationDetails.authorization_type)
+  return authorization_type_.Release();
+}
+inline void AuthorizationDetails::set_allocated_authorization_type(std::string* authorization_type) {
+  if (authorization_type != nullptr) {
+    
+  } else {
+    
+  }
+  authorization_type_.SetAllocated(authorization_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (authorization_type_.IsDefault()) {
+    authorization_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizationDetails.authorization_type)
+}
+
+// string authorization_id = 2 [json_name = "authorizationId"];
+inline void AuthorizationDetails::clear_authorization_id() {
+  authorization_id_.ClearToEmpty();
+}
+inline const std::string& AuthorizationDetails::authorization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthorizationDetails.authorization_id)
+  return _internal_authorization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthorizationDetails::set_authorization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ authorization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthorizationDetails.authorization_id)
+}
+inline std::string* AuthorizationDetails::mutable_authorization_id() {
+  std::string* _s = _internal_mutable_authorization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthorizationDetails.authorization_id)
+  return _s;
+}
+inline const std::string& AuthorizationDetails::_internal_authorization_id() const {
+  return authorization_id_.Get();
+}
+inline void AuthorizationDetails::_internal_set_authorization_id(const std::string& value) {
+  
+  authorization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::_internal_mutable_authorization_id() {
+  
+  return authorization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::release_authorization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthorizationDetails.authorization_id)
+  return authorization_id_.Release();
+}
+inline void AuthorizationDetails::set_allocated_authorization_id(std::string* authorization_id) {
+  if (authorization_id != nullptr) {
+    
+  } else {
+    
+  }
+  authorization_id_.SetAllocated(authorization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (authorization_id_.IsDefault()) {
+    authorization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizationDetails.authorization_id)
+}
+
+// string resource_type = 3 [json_name = "resourceType"];
+inline void AuthorizationDetails::clear_resource_type() {
+  resource_type_.ClearToEmpty();
+}
+inline const std::string& AuthorizationDetails::resource_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthorizationDetails.resource_type)
+  return _internal_resource_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthorizationDetails::set_resource_type(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthorizationDetails.resource_type)
+}
+inline std::string* AuthorizationDetails::mutable_resource_type() {
+  std::string* _s = _internal_mutable_resource_type();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthorizationDetails.resource_type)
+  return _s;
+}
+inline const std::string& AuthorizationDetails::_internal_resource_type() const {
+  return resource_type_.Get();
+}
+inline void AuthorizationDetails::_internal_set_resource_type(const std::string& value) {
+  
+  resource_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::_internal_mutable_resource_type() {
+  
+  return resource_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::release_resource_type() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthorizationDetails.resource_type)
+  return resource_type_.Release();
+}
+inline void AuthorizationDetails::set_allocated_resource_type(std::string* resource_type) {
+  if (resource_type != nullptr) {
+    
+  } else {
+    
+  }
+  resource_type_.SetAllocated(resource_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (resource_type_.IsDefault()) {
+    resource_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizationDetails.resource_type)
+}
+
+// string resource_id = 4 [json_name = "resourceId"];
+inline void AuthorizationDetails::clear_resource_id() {
+  resource_id_.ClearToEmpty();
+}
+inline const std::string& AuthorizationDetails::resource_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthorizationDetails.resource_id)
+  return _internal_resource_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthorizationDetails::set_resource_id(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthorizationDetails.resource_id)
+}
+inline std::string* AuthorizationDetails::mutable_resource_id() {
+  std::string* _s = _internal_mutable_resource_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthorizationDetails.resource_id)
+  return _s;
+}
+inline const std::string& AuthorizationDetails::_internal_resource_id() const {
+  return resource_id_.Get();
+}
+inline void AuthorizationDetails::_internal_set_resource_id(const std::string& value) {
+  
+  resource_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::_internal_mutable_resource_id() {
+  
+  return resource_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::release_resource_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthorizationDetails.resource_id)
+  return resource_id_.Release();
+}
+inline void AuthorizationDetails::set_allocated_resource_id(std::string* resource_id) {
+  if (resource_id != nullptr) {
+    
+  } else {
+    
+  }
+  resource_id_.SetAllocated(resource_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (resource_id_.IsDefault()) {
+    resource_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizationDetails.resource_id)
+}
+
+// string org_id = 5 [json_name = "orgId"];
+inline void AuthorizationDetails::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& AuthorizationDetails::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.AuthorizationDetails.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthorizationDetails::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.AuthorizationDetails.org_id)
+}
+inline std::string* AuthorizationDetails::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.AuthorizationDetails.org_id)
+  return _s;
+}
+inline const std::string& AuthorizationDetails::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void AuthorizationDetails::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthorizationDetails::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.AuthorizationDetails.org_id)
+  return org_id_.Release();
+}
+inline void AuthorizationDetails::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.AuthorizationDetails.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// APIKeyWithAuthorizations
+
+// .viam.app.v1.APIKey api_key = 1 [json_name = "apiKey"];
+inline bool APIKeyWithAuthorizations::_internal_has_api_key() const {
+  return this != internal_default_instance() && api_key_ != nullptr;
+}
+inline bool APIKeyWithAuthorizations::has_api_key() const {
+  return _internal_has_api_key();
+}
+inline void APIKeyWithAuthorizations::clear_api_key() {
+  if (GetArenaForAllocation() == nullptr && api_key_ != nullptr) {
+    delete api_key_;
+  }
+  api_key_ = nullptr;
+}
+inline const ::viam::app::v1::APIKey& APIKeyWithAuthorizations::_internal_api_key() const {
+  const ::viam::app::v1::APIKey* p = api_key_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::APIKey&>(
+      ::viam::app::v1::_APIKey_default_instance_);
+}
+inline const ::viam::app::v1::APIKey& APIKeyWithAuthorizations::api_key() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.APIKeyWithAuthorizations.api_key)
+  return _internal_api_key();
+}
+inline void APIKeyWithAuthorizations::unsafe_arena_set_allocated_api_key(
+    ::viam::app::v1::APIKey* api_key) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(api_key_);
+  }
+  api_key_ = api_key;
+  if (api_key) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.APIKeyWithAuthorizations.api_key)
+}
+inline ::viam::app::v1::APIKey* APIKeyWithAuthorizations::release_api_key() {
+  
+  ::viam::app::v1::APIKey* temp = api_key_;
+  api_key_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::APIKey* APIKeyWithAuthorizations::unsafe_arena_release_api_key() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.APIKeyWithAuthorizations.api_key)
+  
+  ::viam::app::v1::APIKey* temp = api_key_;
+  api_key_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::APIKey* APIKeyWithAuthorizations::_internal_mutable_api_key() {
+  
+  if (api_key_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::APIKey>(GetArenaForAllocation());
+    api_key_ = p;
+  }
+  return api_key_;
+}
+inline ::viam::app::v1::APIKey* APIKeyWithAuthorizations::mutable_api_key() {
+  ::viam::app::v1::APIKey* _msg = _internal_mutable_api_key();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.APIKeyWithAuthorizations.api_key)
+  return _msg;
+}
+inline void APIKeyWithAuthorizations::set_allocated_api_key(::viam::app::v1::APIKey* api_key) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete api_key_;
+  }
+  if (api_key) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(api_key);
+    if (message_arena != submessage_arena) {
+      api_key = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, api_key, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  api_key_ = api_key;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.APIKeyWithAuthorizations.api_key)
+}
+
+// repeated .viam.app.v1.AuthorizationDetails authorizations = 2 [json_name = "authorizations"];
+inline int APIKeyWithAuthorizations::_internal_authorizations_size() const {
+  return authorizations_.size();
+}
+inline int APIKeyWithAuthorizations::authorizations_size() const {
+  return _internal_authorizations_size();
+}
+inline void APIKeyWithAuthorizations::clear_authorizations() {
+  authorizations_.Clear();
+}
+inline ::viam::app::v1::AuthorizationDetails* APIKeyWithAuthorizations::mutable_authorizations(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.APIKeyWithAuthorizations.authorizations)
+  return authorizations_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizationDetails >*
+APIKeyWithAuthorizations::mutable_authorizations() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.APIKeyWithAuthorizations.authorizations)
+  return &authorizations_;
+}
+inline const ::viam::app::v1::AuthorizationDetails& APIKeyWithAuthorizations::_internal_authorizations(int index) const {
+  return authorizations_.Get(index);
+}
+inline const ::viam::app::v1::AuthorizationDetails& APIKeyWithAuthorizations::authorizations(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.APIKeyWithAuthorizations.authorizations)
+  return _internal_authorizations(index);
+}
+inline ::viam::app::v1::AuthorizationDetails* APIKeyWithAuthorizations::_internal_add_authorizations() {
+  return authorizations_.Add();
+}
+inline ::viam::app::v1::AuthorizationDetails* APIKeyWithAuthorizations::add_authorizations() {
+  ::viam::app::v1::AuthorizationDetails* _add = _internal_add_authorizations();
+  // @@protoc_insertion_point(field_add:viam.app.v1.APIKeyWithAuthorizations.authorizations)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AuthorizationDetails >&
+APIKeyWithAuthorizations::authorizations() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.APIKeyWithAuthorizations.authorizations)
+  return authorizations_;
+}
+
+// -------------------------------------------------------------------
+
+// ListKeysRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void ListKeysRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& ListKeysRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListKeysRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListKeysRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListKeysRequest.org_id)
+}
+inline std::string* ListKeysRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListKeysRequest.org_id)
+  return _s;
+}
+inline const std::string& ListKeysRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void ListKeysRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListKeysRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListKeysRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ListKeysRequest.org_id)
+  return org_id_.Release();
+}
+inline void ListKeysRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ListKeysRequest.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListKeysResponse
+
+// repeated .viam.app.v1.APIKeyWithAuthorizations api_keys = 1 [json_name = "apiKeys"];
+inline int ListKeysResponse::_internal_api_keys_size() const {
+  return api_keys_.size();
+}
+inline int ListKeysResponse::api_keys_size() const {
+  return _internal_api_keys_size();
+}
+inline void ListKeysResponse::clear_api_keys() {
+  api_keys_.Clear();
+}
+inline ::viam::app::v1::APIKeyWithAuthorizations* ListKeysResponse::mutable_api_keys(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ListKeysResponse.api_keys)
+  return api_keys_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::APIKeyWithAuthorizations >*
+ListKeysResponse::mutable_api_keys() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListKeysResponse.api_keys)
+  return &api_keys_;
+}
+inline const ::viam::app::v1::APIKeyWithAuthorizations& ListKeysResponse::_internal_api_keys(int index) const {
+  return api_keys_.Get(index);
+}
+inline const ::viam::app::v1::APIKeyWithAuthorizations& ListKeysResponse::api_keys(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListKeysResponse.api_keys)
+  return _internal_api_keys(index);
+}
+inline ::viam::app::v1::APIKeyWithAuthorizations* ListKeysResponse::_internal_add_api_keys() {
+  return api_keys_.Add();
+}
+inline ::viam::app::v1::APIKeyWithAuthorizations* ListKeysResponse::add_api_keys() {
+  ::viam::app::v1::APIKeyWithAuthorizations* _add = _internal_add_api_keys();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListKeysResponse.api_keys)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::APIKeyWithAuthorizations >&
+ListKeysResponse::api_keys() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListKeysResponse.api_keys)
+  return api_keys_;
+}
+
+// -------------------------------------------------------------------
+
+// RotateKeyRequest
+
+// string id = 1 [json_name = "id"];
+inline void RotateKeyRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& RotateKeyRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RotateKeyRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RotateKeyRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RotateKeyRequest.id)
+}
+inline std::string* RotateKeyRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RotateKeyRequest.id)
+  return _s;
+}
+inline const std::string& RotateKeyRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void RotateKeyRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RotateKeyRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RotateKeyRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RotateKeyRequest.id)
+  return id_.Release();
+}
+inline void RotateKeyRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RotateKeyRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// RotateKeyResponse
+
+// string id = 1 [json_name = "id"];
+inline void RotateKeyResponse::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& RotateKeyResponse::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RotateKeyResponse.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RotateKeyResponse::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RotateKeyResponse.id)
+}
+inline std::string* RotateKeyResponse::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RotateKeyResponse.id)
+  return _s;
+}
+inline const std::string& RotateKeyResponse::_internal_id() const {
+  return id_.Get();
+}
+inline void RotateKeyResponse::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RotateKeyResponse::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RotateKeyResponse::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RotateKeyResponse.id)
+  return id_.Release();
+}
+inline void RotateKeyResponse::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RotateKeyResponse.id)
+}
+
+// string key = 2 [json_name = "key"];
+inline void RotateKeyResponse::clear_key() {
+  key_.ClearToEmpty();
+}
+inline const std::string& RotateKeyResponse::key() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RotateKeyResponse.key)
+  return _internal_key();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RotateKeyResponse::set_key(ArgT0&& arg0, ArgT... args) {
+ 
+ key_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RotateKeyResponse.key)
+}
+inline std::string* RotateKeyResponse::mutable_key() {
+  std::string* _s = _internal_mutable_key();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RotateKeyResponse.key)
+  return _s;
+}
+inline const std::string& RotateKeyResponse::_internal_key() const {
+  return key_.Get();
+}
+inline void RotateKeyResponse::_internal_set_key(const std::string& value) {
+  
+  key_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RotateKeyResponse::_internal_mutable_key() {
+  
+  return key_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RotateKeyResponse::release_key() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RotateKeyResponse.key)
+  return key_.Release();
+}
+inline void RotateKeyResponse::set_allocated_key(std::string* key) {
+  if (key != nullptr) {
+    
+  } else {
+    
+  }
+  key_.SetAllocated(key, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (key_.IsDefault()) {
+    key_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RotateKeyResponse.key)
+}
+
+// -------------------------------------------------------------------
+
+// CreateKeyFromExistingKeyAuthorizationsRequest
+
+// string id = 1 [json_name = "id"];
+inline void CreateKeyFromExistingKeyAuthorizationsRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& CreateKeyFromExistingKeyAuthorizationsRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateKeyFromExistingKeyAuthorizationsRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.id)
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.id)
+  return _s;
+}
+inline const std::string& CreateKeyFromExistingKeyAuthorizationsRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void CreateKeyFromExistingKeyAuthorizationsRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.id)
+  return id_.Release();
+}
+inline void CreateKeyFromExistingKeyAuthorizationsRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// CreateKeyFromExistingKeyAuthorizationsResponse
+
+// string id = 1 [json_name = "id"];
+inline void CreateKeyFromExistingKeyAuthorizationsResponse::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& CreateKeyFromExistingKeyAuthorizationsResponse::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateKeyFromExistingKeyAuthorizationsResponse::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.id)
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsResponse::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.id)
+  return _s;
+}
+inline const std::string& CreateKeyFromExistingKeyAuthorizationsResponse::_internal_id() const {
+  return id_.Get();
+}
+inline void CreateKeyFromExistingKeyAuthorizationsResponse::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsResponse::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsResponse::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.id)
+  return id_.Release();
+}
+inline void CreateKeyFromExistingKeyAuthorizationsResponse::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.id)
+}
+
+// string key = 2 [json_name = "key"];
+inline void CreateKeyFromExistingKeyAuthorizationsResponse::clear_key() {
+  key_.ClearToEmpty();
+}
+inline const std::string& CreateKeyFromExistingKeyAuthorizationsResponse::key() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.key)
+  return _internal_key();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateKeyFromExistingKeyAuthorizationsResponse::set_key(ArgT0&& arg0, ArgT... args) {
+ 
+ key_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.key)
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsResponse::mutable_key() {
+  std::string* _s = _internal_mutable_key();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.key)
+  return _s;
+}
+inline const std::string& CreateKeyFromExistingKeyAuthorizationsResponse::_internal_key() const {
+  return key_.Get();
+}
+inline void CreateKeyFromExistingKeyAuthorizationsResponse::_internal_set_key(const std::string& value) {
+  
+  key_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsResponse::_internal_mutable_key() {
+  
+  return key_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateKeyFromExistingKeyAuthorizationsResponse::release_key() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.key)
+  return key_.Release();
+}
+inline void CreateKeyFromExistingKeyAuthorizationsResponse::set_allocated_key(std::string* key) {
+  if (key != nullptr) {
+    
+  } else {
+    
+  }
+  key_.SetAllocated(key, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (key_.IsDefault()) {
+    key_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse.key)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

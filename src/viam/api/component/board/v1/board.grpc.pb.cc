@@ -34,6 +34,7 @@ static const char* BoardService_method_names[] = {
   "/viam.component.board.v1.BoardService/SetPWMFrequency",
   "/viam.component.board.v1.BoardService/DoCommand",
   "/viam.component.board.v1.BoardService/ReadAnalogReader",
+  "/viam.component.board.v1.BoardService/WriteAnalog",
   "/viam.component.board.v1.BoardService/GetDigitalInterruptValue",
   "/viam.component.board.v1.BoardService/SetPowerMode",
   "/viam.component.board.v1.BoardService/GetGeometries",
@@ -55,9 +56,10 @@ BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_SetPWMFrequency_(BoardService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ReadAnalogReader_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPowerMode_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_WriteAnalog_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPowerMode_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BoardService::Stub::Status(::grpc::ClientContext* context, const ::viam::component::board::v1::StatusRequest& request, ::viam::component::board::v1::StatusResponse* response) {
@@ -267,6 +269,29 @@ void BoardService::Stub::async::ReadAnalogReader(::grpc::ClientContext* context,
   return result;
 }
 
+::grpc::Status BoardService::Stub::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::viam::component::board::v1::WriteAnalogResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_WriteAnalog_, context, request, response);
+}
+
+void BoardService::Stub::async::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, std::move(f));
+}
+
+void BoardService::Stub::async::WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_WriteAnalog_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* BoardService::Stub::PrepareAsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::board::v1::WriteAnalogResponse, ::viam::component::board::v1::WriteAnalogRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_WriteAnalog_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* BoardService::Stub::AsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncWriteAnalogRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status BoardService::Stub::GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDigitalInterruptValue_, context, request, response);
 }
@@ -430,6 +455,16 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BoardService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::board::v1::WriteAnalogRequest* req,
+             ::viam::component::board::v1::WriteAnalogResponse* resp) {
+               return service->WriteAnalog(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BoardService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -438,7 +473,7 @@ BoardService::Service::Service() {
                return service->GetDigitalInterruptValue(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[10],
+      BoardService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -448,7 +483,7 @@ BoardService::Service::Service() {
                return service->SetPowerMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[11],
+      BoardService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -519,6 +554,13 @@ BoardService::Service::~Service() {
 }
 
 ::grpc::Status BoardService::Service::ReadAnalogReader(::grpc::ServerContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BoardService::Service::WriteAnalog(::grpc::ServerContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response) {
   (void) context;
   (void) request;
   (void) response;
