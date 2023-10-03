@@ -13,7 +13,9 @@ For a fully fleshed-out example of a C++ module that uses Github CI to upload to
 ## Project structure
 The complex module example defines three new resources: a Gizmo component, a Summation service, and a custom Base component.
 
-The `proto` directory contains the `gizmo.proto` and `summation.proto` definitions of all the message types and calls that can be made to the Gizmo component and Summation service. It also has the compiled C++ output of the protobuf definitions.
+The `proto` directory contains the `gizmo.proto` and `summation.proto` definitions of all the message types and calls that can be made to the Gizmo component and Summation service. These proto files are compiled automatically with `buf` through our cmake build system generation. See the `CMakeLists.txt` file in this directory for more information.
+
+The `config` directory contains two buf.gen.yaml files that are used for compiling the files in `proto` to C++. `config/buf.gen.local.yaml.in` is used when offline generation is enabled and `config/buf.gen.remote.plugin.yaml.in` is used when offline proto generation is disabled. Offline proto generation is enabled by default and can be set with `VIAMCPPSDK_OFFLINE_PROTO_GENERATION`.
 
 The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. `api.cpp` and `api.hpp` define what a `Gizmo` can do (mirroring the `proto` definition), implement the gRPC `GizmoServer` for receiving calls, and implement the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/program/extend/modular-resources/#apis) for more info. `impl.cpp` and `impl.hpp` contain the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/program/extend/modular-resources/#models) for more info.
 

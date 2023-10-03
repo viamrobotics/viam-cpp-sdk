@@ -12,6 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Much of this `CMakeLists.txt` file is dedicated to generating the correct C++
+# files from `proto/gizmo.proto` and  proto/summation.proto`. We use `buf
+# generate` with a custom `buf.gen.yaml` (there are two versions in the config
+# directory depending on whether you've opted for offline or online proto
+# generation), add the generated files as sources for our executables, and
+# `target_include` the directory to get `#include` statements to work.
+#
+# Note that this `CMakeLists.txt` file is part of the larger cmake system for
+# the Viam C++ SDK and you'll have to adjust the logic below based on your
+# local build system setup.
+
 set(MODULE_PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 set(MODULE_PROTO_GEN_DIR ${CMAKE_CURRENT_BINARY_DIR}/gen)
 set(MODULE_PROTO_OUTPUT_FILES
