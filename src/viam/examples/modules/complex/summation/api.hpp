@@ -1,8 +1,4 @@
-/// @file complex/summation/api.hpp
-///
-/// @brief Defines a `Summation` service.
-///
-/// Note that `Summation` is implemented with `MySummation` in impl.hpp and impl.cpp.
+// Note that `Summation` is implemented with `MySummation` in impl.hpp and impl.cpp.
 #pragma once
 
 #include <vector>
@@ -21,11 +17,8 @@
 using namespace viam::sdk;
 using namespace viam::service::summation::v1;
 
-/// @defgroup Summation Classes related to the Summation service.
-
-/// @class SummationRegistration
-/// @brief Defines a `ResourceRegistration` for the `Summation` service.
-/// @ingroup Summation
+// `SummationRegistration` defines a `ResourceRegistration` for the `Summation`
+// service.
 class SummationRegistration : public ResourceRegistration {
    public:
     explicit SummationRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
@@ -35,9 +28,7 @@ class SummationRegistration : public ResourceRegistration {
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
 
-/// @class Summation api.hpp "complex/summation/api.hpp"
-/// @brief A `Summation` is a custom modular service.
-/// @ingroup Summation
+// A `Summation` is a custom modular service.
 class Summation : public Service {
    public:
     // methods shared across all services
@@ -51,9 +42,8 @@ class Summation : public Service {
     explicit Summation(std::string name);
 };
 
-/// @class SummationClient
-/// @brief gRPC client implementation of a `Summation` service.
-/// @ingroup Summation
+// `SummationClient` is the gRPC client implementation of a `Summation`
+// service.
 class SummationClient : public Summation {
    public:
     SummationClient(std::string name, std::shared_ptr<grpc::Channel> channel);
@@ -65,9 +55,8 @@ class SummationClient : public Summation {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-/// @class SummationServer
-/// @brief gRPC server implementation of a `Summation` service.
-/// @ingroup Summation
+// `SummationServer` is the gRPC server implementation of a `Summation`
+// service.
 class SummationServer : public ResourceServer, public SummationService::Service {
    public:
     SummationServer();

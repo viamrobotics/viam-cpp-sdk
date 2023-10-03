@@ -46,11 +46,6 @@ if (NOT BUF_COMMAND)
   file(CHMOD ${BUF_COMMAND} PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
 endif()
 
-# Buf only goes back to 1.41.1 for generation against their "custom remote"
-# registry (see https://buf.build/grpc/plugins/cpp), and we need a differently
-# shaped file to do local generation if we must handle versions older than
-# that. For versions newer than 1.51, "remote plugins" seem to be the thing to
-# use for now.
 if ((NOT VIAMCPPSDK_OFFLINE_PROTO_GENERATION) AND (VIAMCPPSDK_GRPCXX_VERSION VERSION_GREATER 1.51.1))
   configure_file(
     config/buf.gen.remote.plugin.yaml.in

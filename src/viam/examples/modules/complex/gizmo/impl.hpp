@@ -1,10 +1,3 @@
-/// @file complex/gizmo/impl.hpp
-///
-/// @brief Implements a `Gizmo` component `MyGizmo`.
-///
-/// MyGizmo inherits from the `Gizmo` class defined in `api.hpp` and implements
-/// all relevant methods along with `reconfigure`. It also specifies a static
-/// `validate` method that checks config validity.
 #pragma once
 
 #include <vector>
@@ -13,6 +6,9 @@
 
 using namespace viam::sdk;
 
+// MyGizmo inherits from the `Gizmo` class defined in `api.hpp` and implements
+// all relevant methods along with `reconfigure`. It also specifies a static
+// `validate` method that checks config validity.
 class MyGizmo : public Gizmo {
    public:
     MyGizmo(Dependencies deps, ResourceConfig cfg) : Gizmo(cfg.name()) {

@@ -1,8 +1,4 @@
-/// @file complex/gizmo/api.hpp
-///
-/// @brief Defines a `Gizmo` component.
-///
-/// Note that `Gizmo` is implemented with `MyGizmo` in impl.hpp and impl.cpp.
+// Note that a `Gizmo` is implemented with `MyGizmo` in impl.hpp and impl.cpp.
 #pragma once
 
 #include <grpcpp/channel.h>
@@ -19,11 +15,8 @@
 using namespace viam::sdk;
 using namespace viam::component::gizmo::v1;
 
-/// @defgroup Gizmo Classes related to the Gizmo component.
-
-/// @class GizmoRegistration
-/// @brief Defines a `ResourceRegistration` for the `Gizmo` component.
-/// @ingroup Gizmo
+// `GizmoRegistration` Defines a `ResourceRegistration` for the `Gizmo`
+// component.
 class GizmoRegistration : public ResourceRegistration {
    public:
     explicit GizmoRegistration(const google::protobuf::ServiceDescriptor* service_descriptor);
@@ -33,9 +26,7 @@ class GizmoRegistration : public ResourceRegistration {
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
 
-/// @class Gizmo api.hpp "complex/gizmo/api.hpp"
-/// @brief A `Gizmo` is a custom modular component.
-/// @ingroup Gizmo
+// `Gizmo` is a custom modular component.
 class Gizmo : public Component {
    public:
     // methods shared across all components
@@ -53,9 +44,7 @@ class Gizmo : public Component {
     explicit Gizmo(std::string name);
 };
 
-/// @class GizmoClient
-/// @brief gRPC client implementation of a `Gizmo` component.
-/// @ingroup Gizmo
+// `GizmoClient` is the gRPC client implementation of a `Gizmo` component.
 class GizmoClient : public Gizmo {
    public:
     GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
@@ -71,9 +60,7 @@ class GizmoClient : public Gizmo {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-/// @class GizmoServer
-/// @brief gRPC server implementation of a `Gizmo` component.
-/// @ingroup Gizmo
+// `GizmoServer` is the gRPC server implementation of a `Gizmo` component.
 class GizmoServer : public ResourceServer, public GizmoService::Service {
    public:
     GizmoServer();
