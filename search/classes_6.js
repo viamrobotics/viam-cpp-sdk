@@ -9,5 +9,9 @@ var searchData=
   ['geometries_5fin_5fframe_6',['geometries_in_frame',['../structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html',1,'viam::sdk::WorldState']]],
   ['geometryconfig_7',['GeometryConfig',['../classviam_1_1sdk_1_1GeometryConfig.html',1,'viam::sdk']]],
   ['get_5fhelper_8',['get_helper',['../structviam_1_1sdk_1_1prototype__details_1_1get__helper.html',1,'viam::sdk::prototype_details']]],
-  ['get_5fhelper_3c_20attributemap_20_3e_9',['get_helper&lt; AttributeMap &gt;',['../structviam_1_1sdk_1_1prototype__details_1_1get__helper_3_01AttributeMap_01_4.html',1,'viam::sdk::prototype_details']]]
+  ['get_5fhelper_3c_20attributemap_20_3e_9',['get_helper&lt; AttributeMap &gt;',['../structviam_1_1sdk_1_1prototype__details_1_1get__helper_3_01AttributeMap_01_4.html',1,'viam::sdk::prototype_details']]],
+  ['gizmo_10',['Gizmo',['../classGizmo.html',1,'']]],
+  ['gizmoclient_11',['GizmoClient',['../classGizmoClient.html',1,'']]],
+  ['gizmoregistration_12',['GizmoRegistration',['../classGizmoRegistration.html',1,'']]],
+  ['gizmoserver_13',['GizmoServer',['../classGizmoServer.html',1,'']]]
 ];
