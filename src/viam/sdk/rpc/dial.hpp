@@ -54,7 +54,7 @@ class DialOptions {
     void set_entity(boost::optional<std::string> entity);
     void set_credentials(boost::optional<Credentials> creds);
     void set_allow_insecure_downgrade(bool allow);
-    void set_timeout(const float timeout);
+    void set_timeout(float timeout);
 
    private:
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
@@ -72,7 +72,7 @@ class DialOptions {
 
     /// @brief Number of seconds before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
-    const float timeout_;
+    float timeout_;
 };
 
 class Options {

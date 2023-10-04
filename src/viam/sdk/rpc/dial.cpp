@@ -20,7 +20,7 @@ extern "C" char* dial(const char* uri,
                       const char* type,
                       const char* payload,
                       bool allow_insecure,
-                      const float timeout,
+                      float timeout,
                       void* ptr);
 namespace viam {
 namespace sdk {
@@ -57,7 +57,7 @@ void DialOptions::set_entity(boost::optional<std::string> entity) {
     auth_entity_ = entity;
 }
 
-void DialOptions::set_timeout(const float timeout) {
+void DialOptions::set_timeout(float timeout) {
     timeout_ = timeout;
 }
 
@@ -69,7 +69,7 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 
-const float DialOptions::timeout() const {
+float DialOptions::timeout() const {
     return timeout_;
 }
 
