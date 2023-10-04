@@ -49,7 +49,7 @@ class DialOptions {
     const boost::optional<Credentials>& credentials() const;
     const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
-    const float timeout() const;
+    float timeout() const;
 
     void set_entity(boost::optional<std::string> entity);
     void set_credentials(boost::optional<Credentials> creds);
