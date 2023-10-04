@@ -117,21 +117,21 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\025app/v1/end_user.proto\022\013viam.app.v1\"\'\n\026"
-  "IsLegalAcceptedRequestJ\004\010\001\020\002R\007user_id\"@\n"
-  "\027IsLegalAcceptedResponse\022%\n\016accepted_leg"
-  "al\030\001 \001(\010R\racceptedLegal\"#\n\022AcceptLegalRe"
-  "questJ\004\010\001\020\002R\007user_id\"\025\n\023AcceptLegalRespo"
-  "nse2\300\001\n\016EndUserService\022\\\n\017IsLegalAccepte"
-  "d\022#.viam.app.v1.IsLegalAcceptedRequest\032$"
-  ".viam.app.v1.IsLegalAcceptedResponse\022P\n\013"
-  "AcceptLegal\022\037.viam.app.v1.AcceptLegalReq"
-  "uest\032 .viam.app.v1.AcceptLegalResponseB\030"
-  "Z\026go.viam.com/api/app/v1b\006proto3"
+  "\n\025app/v1/end_user.proto\022\013viam.app.v1\"\030\n\026"
+  "IsLegalAcceptedRequest\"@\n\027IsLegalAccepte"
+  "dResponse\022%\n\016accepted_legal\030\001 \001(\010R\raccep"
+  "tedLegal\"\024\n\022AcceptLegalRequest\"\025\n\023Accept"
+  "LegalResponse2\300\001\n\016EndUserService\022\\\n\017IsLe"
+  "galAccepted\022#.viam.app.v1.IsLegalAccepte"
+  "dRequest\032$.viam.app.v1.IsLegalAcceptedRe"
+  "sponse\022P\n\013AcceptLegal\022\037.viam.app.v1.Acce"
+  "ptLegalRequest\032 .viam.app.v1.AcceptLegal"
+  "ResponseB\030Z\026go.viam.com/api/app/v1b\006prot"
+  "o3"
   ;
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fend_5fuser_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fend_5fuser_2eproto = {
-    false, false, 432, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
+    false, false, 402, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
     "app/v1/end_user.proto",
     &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once, nullptr, 0, 4,
     schemas, file_default_instances, TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets,
