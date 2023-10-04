@@ -17,8 +17,9 @@
 
 ## Getting Started
 
-NOTE: Please see [BUILDING.md](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md) for instructions on how to use
-CMake-based build system for this project.
+Please see [BUILDING.md](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md) for instructions on how to use CMake-based build system for this project.
+
+NOTE: Windows is not supported. If you are using Windows, try building the project in WSL.
 
 ## Using Docker for Development
 
