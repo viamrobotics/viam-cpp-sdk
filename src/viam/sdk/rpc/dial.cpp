@@ -69,7 +69,7 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 
-float DialOptions::timeout() const {
+const float DialOptions::timeout() const {
     return timeout_;
 }
 
