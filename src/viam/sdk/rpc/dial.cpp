@@ -97,7 +97,8 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-    char* socket_path = ::dial(uri, entity, type, payload, opts.allows_insecure_downgrade(), timeout , ptr);
+    char* socket_path =
+        ::dial(uri, entity, type, payload, opts.allows_insecure_downgrade(), timeout, ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         // TODO(RSDK-1742) Replace throwing of strings with throwing of
