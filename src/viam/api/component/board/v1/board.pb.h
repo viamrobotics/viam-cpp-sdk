@@ -114,6 +114,12 @@ extern StatusRequestDefaultTypeInternal _StatusRequest_default_instance_;
 class StatusResponse;
 struct StatusResponseDefaultTypeInternal;
 extern StatusResponseDefaultTypeInternal _StatusResponse_default_instance_;
+class WriteAnalogRequest;
+struct WriteAnalogRequestDefaultTypeInternal;
+extern WriteAnalogRequestDefaultTypeInternal _WriteAnalogRequest_default_instance_;
+class WriteAnalogResponse;
+struct WriteAnalogResponseDefaultTypeInternal;
+extern WriteAnalogResponseDefaultTypeInternal _WriteAnalogResponse_default_instance_;
 }  // namespace v1
 }  // namespace board
 }  // namespace component
@@ -139,6 +145,8 @@ template<> ::viam::component::board::v1::SetPowerModeRequest* Arena::CreateMaybe
 template<> ::viam::component::board::v1::SetPowerModeResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::SetPowerModeResponse>(Arena*);
 template<> ::viam::component::board::v1::StatusRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::StatusRequest>(Arena*);
 template<> ::viam::component::board::v1::StatusResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::StatusResponse>(Arena*);
+template<> ::viam::component::board::v1::WriteAnalogRequest* Arena::CreateMaybeMessage<::viam::component::board::v1::WriteAnalogRequest>(Arena*);
+template<> ::viam::component::board::v1::WriteAnalogResponse* Arena::CreateMaybeMessage<::viam::component::board::v1::WriteAnalogResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace component {
@@ -2734,6 +2742,317 @@ class ReadAnalogReaderResponse final :
 };
 // -------------------------------------------------------------------
 
+class WriteAnalogRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.board.v1.WriteAnalogRequest) */ {
+ public:
+  inline WriteAnalogRequest() : WriteAnalogRequest(nullptr) {}
+  ~WriteAnalogRequest() override;
+  explicit PROTOBUF_CONSTEXPR WriteAnalogRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  WriteAnalogRequest(const WriteAnalogRequest& from);
+  WriteAnalogRequest(WriteAnalogRequest&& from) noexcept
+    : WriteAnalogRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline WriteAnalogRequest& operator=(const WriteAnalogRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WriteAnalogRequest& operator=(WriteAnalogRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WriteAnalogRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WriteAnalogRequest* internal_default_instance() {
+    return reinterpret_cast<const WriteAnalogRequest*>(
+               &_WriteAnalogRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(WriteAnalogRequest& a, WriteAnalogRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WriteAnalogRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WriteAnalogRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WriteAnalogRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<WriteAnalogRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const WriteAnalogRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const WriteAnalogRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WriteAnalogRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.board.v1.WriteAnalogRequest";
+  }
+  protected:
+  explicit WriteAnalogRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kPinFieldNumber = 2,
+    kExtraFieldNumber = 99,
+    kValueFieldNumber = 3,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string pin = 2 [json_name = "pin"];
+  void clear_pin();
+  const std::string& pin() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_pin(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_pin();
+  PROTOBUF_NODISCARD std::string* release_pin();
+  void set_allocated_pin(std::string* pin);
+  private:
+  const std::string& _internal_pin() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_pin(const std::string& value);
+  std::string* _internal_mutable_pin();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // int32 value = 3 [json_name = "value"];
+  void clear_value();
+  int32_t value() const;
+  void set_value(int32_t value);
+  private:
+  int32_t _internal_value() const;
+  void _internal_set_value(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.board.v1.WriteAnalogRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr pin_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  int32_t value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WriteAnalogResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.component.board.v1.WriteAnalogResponse) */ {
+ public:
+  inline WriteAnalogResponse() : WriteAnalogResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR WriteAnalogResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  WriteAnalogResponse(const WriteAnalogResponse& from);
+  WriteAnalogResponse(WriteAnalogResponse&& from) noexcept
+    : WriteAnalogResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline WriteAnalogResponse& operator=(const WriteAnalogResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WriteAnalogResponse& operator=(WriteAnalogResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WriteAnalogResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WriteAnalogResponse* internal_default_instance() {
+    return reinterpret_cast<const WriteAnalogResponse*>(
+               &_WriteAnalogResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(WriteAnalogResponse& a, WriteAnalogResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WriteAnalogResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WriteAnalogResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WriteAnalogResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<WriteAnalogResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const WriteAnalogResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const WriteAnalogResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.board.v1.WriteAnalogResponse";
+  }
+  protected:
+  explicit WriteAnalogResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.component.board.v1.WriteAnalogResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_component_2fboard_2fv1_2fboard_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetDigitalInterruptValueRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.board.v1.GetDigitalInterruptValueRequest) */ {
  public:
@@ -2782,7 +3101,7 @@ class GetDigitalInterruptValueRequest final :
                &_GetDigitalInterruptValueRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(GetDigitalInterruptValueRequest& a, GetDigitalInterruptValueRequest& b) {
     a.Swap(&b);
@@ -2966,7 +3285,7 @@ class GetDigitalInterruptValueResponse final :
                &_GetDigitalInterruptValueResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(GetDigitalInterruptValueResponse& a, GetDigitalInterruptValueResponse& b) {
     a.Swap(&b);
@@ -3109,7 +3428,7 @@ class SetPowerModeRequest final :
                &_SetPowerModeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(SetPowerModeRequest& a, SetPowerModeRequest& b) {
     a.Swap(&b);
@@ -3308,7 +3627,7 @@ class SetPowerModeResponse final :
                &_SetPowerModeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(SetPowerModeResponse& a, SetPowerModeResponse& b) {
     a.Swap(&b);
@@ -5103,6 +5422,219 @@ inline void ReadAnalogReaderResponse::set_value(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// WriteAnalogRequest
+
+// string name = 1 [json_name = "name"];
+inline void WriteAnalogRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& WriteAnalogRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.WriteAnalogRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void WriteAnalogRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.WriteAnalogRequest.name)
+}
+inline std::string* WriteAnalogRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.WriteAnalogRequest.name)
+  return _s;
+}
+inline const std::string& WriteAnalogRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void WriteAnalogRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* WriteAnalogRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* WriteAnalogRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.WriteAnalogRequest.name)
+  return name_.Release();
+}
+inline void WriteAnalogRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.WriteAnalogRequest.name)
+}
+
+// string pin = 2 [json_name = "pin"];
+inline void WriteAnalogRequest::clear_pin() {
+  pin_.ClearToEmpty();
+}
+inline const std::string& WriteAnalogRequest::pin() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.WriteAnalogRequest.pin)
+  return _internal_pin();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void WriteAnalogRequest::set_pin(ArgT0&& arg0, ArgT... args) {
+ 
+ pin_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.WriteAnalogRequest.pin)
+}
+inline std::string* WriteAnalogRequest::mutable_pin() {
+  std::string* _s = _internal_mutable_pin();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.WriteAnalogRequest.pin)
+  return _s;
+}
+inline const std::string& WriteAnalogRequest::_internal_pin() const {
+  return pin_.Get();
+}
+inline void WriteAnalogRequest::_internal_set_pin(const std::string& value) {
+  
+  pin_.Set(value, GetArenaForAllocation());
+}
+inline std::string* WriteAnalogRequest::_internal_mutable_pin() {
+  
+  return pin_.Mutable(GetArenaForAllocation());
+}
+inline std::string* WriteAnalogRequest::release_pin() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.WriteAnalogRequest.pin)
+  return pin_.Release();
+}
+inline void WriteAnalogRequest::set_allocated_pin(std::string* pin) {
+  if (pin != nullptr) {
+    
+  } else {
+    
+  }
+  pin_.SetAllocated(pin, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (pin_.IsDefault()) {
+    pin_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.WriteAnalogRequest.pin)
+}
+
+// int32 value = 3 [json_name = "value"];
+inline void WriteAnalogRequest::clear_value() {
+  value_ = 0;
+}
+inline int32_t WriteAnalogRequest::_internal_value() const {
+  return value_;
+}
+inline int32_t WriteAnalogRequest::value() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.WriteAnalogRequest.value)
+  return _internal_value();
+}
+inline void WriteAnalogRequest::_internal_set_value(int32_t value) {
+  
+  value_ = value;
+}
+inline void WriteAnalogRequest::set_value(int32_t value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:viam.component.board.v1.WriteAnalogRequest.value)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool WriteAnalogRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool WriteAnalogRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& WriteAnalogRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& WriteAnalogRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.board.v1.WriteAnalogRequest.extra)
+  return _internal_extra();
+}
+inline void WriteAnalogRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.board.v1.WriteAnalogRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* WriteAnalogRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* WriteAnalogRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.board.v1.WriteAnalogRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* WriteAnalogRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* WriteAnalogRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.board.v1.WriteAnalogRequest.extra)
+  return _msg;
+}
+inline void WriteAnalogRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.board.v1.WriteAnalogRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// WriteAnalogResponse
+
+// -------------------------------------------------------------------
+
 // GetDigitalInterruptValueRequest
 
 // string board_name = 1 [json_name = "boardName"];
@@ -5567,6 +6099,10 @@ inline void SetPowerModeRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::St
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

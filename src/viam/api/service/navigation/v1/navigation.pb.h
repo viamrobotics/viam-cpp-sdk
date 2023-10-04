@@ -128,12 +128,13 @@ enum Mode : int {
   MODE_UNSPECIFIED = 0,
   MODE_MANUAL = 1,
   MODE_WAYPOINT = 2,
+  MODE_EXPLORE = 3,
   Mode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Mode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Mode_IsValid(int value);
 constexpr Mode Mode_MIN = MODE_UNSPECIFIED;
-constexpr Mode Mode_MAX = MODE_WAYPOINT;
+constexpr Mode Mode_MAX = MODE_EXPLORE;
 constexpr int Mode_ARRAYSIZE = Mode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Mode_descriptor();

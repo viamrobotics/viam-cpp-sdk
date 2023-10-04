@@ -28,7 +28,11 @@ static const char* MotionService_method_names[] = {
   "/viam.service.motion.v1.MotionService/Move",
   "/viam.service.motion.v1.MotionService/MoveOnMap",
   "/viam.service.motion.v1.MotionService/MoveOnGlobe",
+  "/viam.service.motion.v1.MotionService/MoveOnGlobeNew",
   "/viam.service.motion.v1.MotionService/GetPose",
+  "/viam.service.motion.v1.MotionService/StopPlan",
+  "/viam.service.motion.v1.MotionService/ListPlanStatuses",
+  "/viam.service.motion.v1.MotionService/GetPlan",
   "/viam.service.motion.v1.MotionService/DoCommand",
 };
 
@@ -42,8 +46,12 @@ MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   : channel_(channel), rpcmethod_Move_(MotionService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveOnMap_(MotionService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MoveOnGlobe_(MotionService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPose_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(MotionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveOnGlobeNew_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPose_(MotionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StopPlan_(MotionService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListPlanStatuses_(MotionService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPlan_(MotionService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(MotionService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotionService::Stub::Move(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveRequest& request, ::viam::service::motion::v1::MoveResponse* response) {
@@ -115,6 +123,29 @@ void MotionService::Stub::async::MoveOnGlobe(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status MotionService::Stub::MoveOnGlobeNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeNewRequest& request, ::viam::service::motion::v1::MoveOnGlobeNewResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::MoveOnGlobeNewRequest, ::viam::service::motion::v1::MoveOnGlobeNewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveOnGlobeNew_, context, request, response);
+}
+
+void MotionService::Stub::async::MoveOnGlobeNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeNewRequest* request, ::viam::service::motion::v1::MoveOnGlobeNewResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::MoveOnGlobeNewRequest, ::viam::service::motion::v1::MoveOnGlobeNewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobeNew_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::MoveOnGlobeNew(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeNewRequest* request, ::viam::service::motion::v1::MoveOnGlobeNewResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveOnGlobeNew_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeNewResponse>* MotionService::Stub::PrepareAsyncMoveOnGlobeNewRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeNewRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::MoveOnGlobeNewResponse, ::viam::service::motion::v1::MoveOnGlobeNewRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveOnGlobeNew_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::MoveOnGlobeNewResponse>* MotionService::Stub::AsyncMoveOnGlobeNewRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::MoveOnGlobeNewRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMoveOnGlobeNewRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status MotionService::Stub::GetPose(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::viam::service::motion::v1::GetPoseResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPose_, context, request, response);
 }
@@ -134,6 +165,75 @@ void MotionService::Stub::async::GetPose(::grpc::ClientContext* context, const :
 ::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPoseResponse>* MotionService::Stub::AsyncGetPoseRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPoseRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetPoseRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MotionService::Stub::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::viam::service::motion::v1::StopPlanResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StopPlan_, context, request, response);
+}
+
+void MotionService::Stub::async::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::StopPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopPlan_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::StopPlanResponse>* MotionService::Stub::PrepareAsyncStopPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::StopPlanResponse, ::viam::service::motion::v1::StopPlanRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StopPlan_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::StopPlanResponse>* MotionService::Stub::AsyncStopPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::StopPlanRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStopPlanRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MotionService::Stub::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::viam::service::motion::v1::ListPlanStatusesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListPlanStatuses_, context, request, response);
+}
+
+void MotionService::Stub::async::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::ListPlanStatuses(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListPlanStatuses_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ListPlanStatusesResponse>* MotionService::Stub::PrepareAsyncListPlanStatusesRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::ListPlanStatusesResponse, ::viam::service::motion::v1::ListPlanStatusesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListPlanStatuses_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::ListPlanStatusesResponse>* MotionService::Stub::AsyncListPlanStatusesRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListPlanStatusesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MotionService::Stub::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::viam::service::motion::v1::GetPlanResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPlan_, context, request, response);
+}
+
+void MotionService::Stub::async::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::GetPlan(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPlan_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPlanResponse>* MotionService::Stub::PrepareAsyncGetPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::motion::v1::GetPlanResponse, ::viam::service::motion::v1::GetPlanRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPlan_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::motion::v1::GetPlanResponse>* MotionService::Stub::AsyncGetPlanRaw(::grpc::ClientContext* context, const ::viam::service::motion::v1::GetPlanRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPlanRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -195,6 +295,16 @@ MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::MoveOnGlobeNewRequest, ::viam::service::motion::v1::MoveOnGlobeNewResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::motion::v1::MoveOnGlobeNewRequest* req,
+             ::viam::service::motion::v1::MoveOnGlobeNewResponse* resp) {
+               return service->MoveOnGlobeNew(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPoseRequest, ::viam::service::motion::v1::GetPoseResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -203,7 +313,37 @@ MotionService::Service::Service() {
                return service->GetPose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MotionService_method_names[4],
+      MotionService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::StopPlanRequest, ::viam::service::motion::v1::StopPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::motion::v1::StopPlanRequest* req,
+             ::viam::service::motion::v1::StopPlanResponse* resp) {
+               return service->StopPlan(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::ListPlanStatusesRequest, ::viam::service::motion::v1::ListPlanStatusesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::motion::v1::ListPlanStatusesRequest* req,
+             ::viam::service::motion::v1::ListPlanStatusesResponse* resp) {
+               return service->ListPlanStatuses(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::service::motion::v1::GetPlanRequest, ::viam::service::motion::v1::GetPlanResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::motion::v1::GetPlanRequest* req,
+             ::viam::service::motion::v1::GetPlanResponse* resp) {
+               return service->GetPlan(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotionService::Service* service,
@@ -238,7 +378,35 @@ MotionService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status MotionService::Service::MoveOnGlobeNew(::grpc::ServerContext* context, const ::viam::service::motion::v1::MoveOnGlobeNewRequest* request, ::viam::service::motion::v1::MoveOnGlobeNewResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status MotionService::Service::GetPose(::grpc::ServerContext* context, const ::viam::service::motion::v1::GetPoseRequest* request, ::viam::service::motion::v1::GetPoseResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::StopPlan(::grpc::ServerContext* context, const ::viam::service::motion::v1::StopPlanRequest* request, ::viam::service::motion::v1::StopPlanResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::ListPlanStatuses(::grpc::ServerContext* context, const ::viam::service::motion::v1::ListPlanStatusesRequest* request, ::viam::service::motion::v1::ListPlanStatusesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::GetPlan(::grpc::ServerContext* context, const ::viam::service::motion::v1::GetPlanRequest* request, ::viam::service::motion::v1::GetPlanResponse* response) {
   (void) context;
   (void) request;
   (void) response;

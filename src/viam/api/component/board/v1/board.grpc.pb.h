@@ -111,6 +111,16 @@ class BoardService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::ReadAnalogReaderResponse>> PrepareAsyncReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::ReadAnalogReaderResponse>>(PrepareAsyncReadAnalogReaderRaw(context, request, cq));
     }
+    // Analog Writer
+    //
+    // WriteAnalog writes the value to the analog writer of the board.
+    virtual ::grpc::Status WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::viam::component::board::v1::WriteAnalogResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::WriteAnalogResponse>> AsyncWriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::WriteAnalogResponse>>(AsyncWriteAnalogRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::WriteAnalogResponse>> PrepareAsyncWriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::WriteAnalogResponse>>(PrepareAsyncWriteAnalogRaw(context, request, cq));
+    }
     // Digital Interrupt
     //
     // GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
@@ -131,7 +141,7 @@ class BoardService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::SetPowerModeResponse>> PrepareAsyncSetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::SetPowerModeResponse>>(PrepareAsyncSetPowerModeRaw(context, request, cq));
     }
-    // GetGeometries returns the geometries of the component in their current configuration
+    // GetGeometries returns the geometries of the component in their current configuration.
     virtual ::grpc::Status GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>> AsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>>(AsyncGetGeometriesRaw(context, request, cq));
@@ -169,6 +179,11 @@ class BoardService final {
       // ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
       virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Analog Writer
+      //
+      // WriteAnalog writes the value to the analog writer of the board.
+      virtual void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Digital Interrupt
       //
       // GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
@@ -179,7 +194,7 @@ class BoardService final {
       // `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
       virtual void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetGeometries returns the geometries of the component in their current configuration
+      // GetGeometries returns the geometries of the component in their current configuration.
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -205,6 +220,8 @@ class BoardService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::ReadAnalogReaderResponse>* AsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::ReadAnalogReaderResponse>* PrepareAsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::WriteAnalogResponse>* AsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::WriteAnalogResponse>* PrepareAsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* AsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* PrepareAsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::board::v1::SetPowerModeResponse>* AsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -278,6 +295,13 @@ class BoardService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>> PrepareAsyncReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>>(PrepareAsyncReadAnalogReaderRaw(context, request, cq));
     }
+    ::grpc::Status WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::viam::component::board::v1::WriteAnalogResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>> AsyncWriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>>(AsyncWriteAnalogRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>> PrepareAsyncWriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>>(PrepareAsyncWriteAnalogRaw(context, request, cq));
+    }
     ::grpc::Status GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>> AsyncGetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>>(AsyncGetDigitalInterruptValueRaw(context, request, cq));
@@ -320,6 +344,8 @@ class BoardService final {
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, std::function<void(::grpc::Status)>) override;
       void ReadAnalogReader(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, std::function<void(::grpc::Status)>) override;
+      void WriteAnalog(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, std::function<void(::grpc::Status)>) override;
       void GetDigitalInterruptValue(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetPowerMode(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response, std::function<void(::grpc::Status)>) override;
@@ -355,6 +381,8 @@ class BoardService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>* AsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::ReadAnalogReaderResponse>* PrepareAsyncReadAnalogReaderRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* AsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::WriteAnalogResponse>* PrepareAsyncWriteAnalogRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::WriteAnalogRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* AsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* PrepareAsyncGetDigitalInterruptValueRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::board::v1::SetPowerModeResponse>* AsyncSetPowerModeRaw(::grpc::ClientContext* context, const ::viam::component::board::v1::SetPowerModeRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -370,6 +398,7 @@ class BoardService final {
     const ::grpc::internal::RpcMethod rpcmethod_SetPWMFrequency_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_ReadAnalogReader_;
+    const ::grpc::internal::RpcMethod rpcmethod_WriteAnalog_;
     const ::grpc::internal::RpcMethod rpcmethod_GetDigitalInterruptValue_;
     const ::grpc::internal::RpcMethod rpcmethod_SetPowerMode_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGeometries_;
@@ -398,6 +427,10 @@ class BoardService final {
     //
     // ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
     virtual ::grpc::Status ReadAnalogReader(::grpc::ServerContext* context, const ::viam::component::board::v1::ReadAnalogReaderRequest* request, ::viam::component::board::v1::ReadAnalogReaderResponse* response);
+    // Analog Writer
+    //
+    // WriteAnalog writes the value to the analog writer of the board.
+    virtual ::grpc::Status WriteAnalog(::grpc::ServerContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response);
     // Digital Interrupt
     //
     // GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
@@ -406,7 +439,7 @@ class BoardService final {
     //
     // `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
     virtual ::grpc::Status SetPowerMode(::grpc::ServerContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response);
-    // GetGeometries returns the geometries of the component in their current configuration
+    // GetGeometries returns the geometries of the component in their current configuration.
     virtual ::grpc::Status GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response);
   };
   template <class BaseClass>
@@ -590,12 +623,32 @@ class BoardService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_WriteAnalog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_WriteAnalog() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_WriteAnalog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestWriteAnalog(::grpc::ServerContext* context, ::viam::component::board::v1::WriteAnalogRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::board::v1::WriteAnalogResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_GetDigitalInterruptValue() override {
       BaseClassMustBeDerivedFromService(this);
@@ -606,7 +659,7 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDigitalInterruptValue(::grpc::ServerContext* context, ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::board::v1::GetDigitalInterruptValueResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -615,7 +668,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_SetPowerMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -626,7 +679,7 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetPowerMode(::grpc::ServerContext* context, ::viam::component::board::v1::SetPowerModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::board::v1::SetPowerModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -635,7 +688,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(12);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -646,10 +699,10 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Status<WithAsyncMethod_SetGPIO<WithAsyncMethod_GetGPIO<WithAsyncMethod_PWM<WithAsyncMethod_SetPWM<WithAsyncMethod_PWMFrequency<WithAsyncMethod_SetPWMFrequency<WithAsyncMethod_DoCommand<WithAsyncMethod_ReadAnalogReader<WithAsyncMethod_GetDigitalInterruptValue<WithAsyncMethod_SetPowerMode<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_Status<WithAsyncMethod_SetGPIO<WithAsyncMethod_GetGPIO<WithAsyncMethod_PWM<WithAsyncMethod_SetPWM<WithAsyncMethod_PWMFrequency<WithAsyncMethod_SetPWMFrequency<WithAsyncMethod_DoCommand<WithAsyncMethod_ReadAnalogReader<WithAsyncMethod_WriteAnalog<WithAsyncMethod_GetDigitalInterruptValue<WithAsyncMethod_SetPowerMode<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Status : public BaseClass {
    private:
@@ -894,18 +947,45 @@ class BoardService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::ReadAnalogReaderRequest* /*request*/, ::viam::component::board::v1::ReadAnalogReaderResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_WriteAnalog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_WriteAnalog() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::WriteAnalogRequest* request, ::viam::component::board::v1::WriteAnalogResponse* response) { return this->WriteAnalog(context, request, response); }));}
+    void SetMessageAllocatorFor_WriteAnalog(
+        ::grpc::MessageAllocator< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_WriteAnalog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* WriteAnalog(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request, ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) { return this->GetDigitalInterruptValue(context, request, response); }));}
     void SetMessageAllocatorFor_GetDigitalInterruptValue(
         ::grpc::MessageAllocator< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -926,13 +1006,13 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::component::board::v1::SetPowerModeRequest* request, ::viam::component::board::v1::SetPowerModeResponse* response) { return this->SetPowerMode(context, request, response); }));}
     void SetMessageAllocatorFor_SetPowerMode(
         ::grpc::MessageAllocator< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -953,13 +1033,13 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(11,
+      ::grpc::Service::MarkMethodCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -974,7 +1054,7 @@ class BoardService final {
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Status<WithCallbackMethod_SetGPIO<WithCallbackMethod_GetGPIO<WithCallbackMethod_PWM<WithCallbackMethod_SetPWM<WithCallbackMethod_PWMFrequency<WithCallbackMethod_SetPWMFrequency<WithCallbackMethod_DoCommand<WithCallbackMethod_ReadAnalogReader<WithCallbackMethod_GetDigitalInterruptValue<WithCallbackMethod_SetPowerMode<WithCallbackMethod_GetGeometries<Service > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_Status<WithCallbackMethod_SetGPIO<WithCallbackMethod_GetGPIO<WithCallbackMethod_PWM<WithCallbackMethod_SetPWM<WithCallbackMethod_PWMFrequency<WithCallbackMethod_SetPWMFrequency<WithCallbackMethod_DoCommand<WithCallbackMethod_ReadAnalogReader<WithCallbackMethod_WriteAnalog<WithCallbackMethod_GetDigitalInterruptValue<WithCallbackMethod_SetPowerMode<WithCallbackMethod_GetGeometries<Service > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Status : public BaseClass {
@@ -1130,12 +1210,29 @@ class BoardService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_WriteAnalog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_WriteAnalog() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_WriteAnalog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_GetDigitalInterruptValue() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1152,7 +1249,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_SetPowerMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1169,7 +1266,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(12);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1361,12 +1458,32 @@ class BoardService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_WriteAnalog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_WriteAnalog() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_WriteAnalog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestWriteAnalog(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_GetDigitalInterruptValue() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1377,7 +1494,7 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDigitalInterruptValue(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1386,7 +1503,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_SetPowerMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1397,7 +1514,7 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetPowerMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1406,7 +1523,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(12);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1417,7 +1534,7 @@ class BoardService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1619,12 +1736,34 @@ class BoardService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_WriteAnalog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_WriteAnalog() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->WriteAnalog(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_WriteAnalog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* WriteAnalog(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDigitalInterruptValue(context, request, response); }));
@@ -1646,7 +1785,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPowerMode(context, request, response); }));
@@ -1668,7 +1807,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+      ::grpc::Service::MarkMethodRawCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -1928,12 +2067,39 @@ class BoardService final {
     virtual ::grpc::Status StreamedReadAnalogReader(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::board::v1::ReadAnalogReaderRequest,::viam::component::board::v1::ReadAnalogReaderResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_WriteAnalog : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_WriteAnalog() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse>* streamer) {
+                       return this->StreamedWriteAnalog(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_WriteAnalog() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* /*context*/, const ::viam::component::board::v1::WriteAnalogRequest* /*request*/, ::viam::component::board::v1::WriteAnalogResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedWriteAnalog(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::board::v1::WriteAnalogRequest,::viam::component::board::v1::WriteAnalogResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetDigitalInterruptValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDigitalInterruptValue() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse>(
             [this](::grpc::ServerContext* context,
@@ -1960,7 +2126,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetPowerMode() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse>(
             [this](::grpc::ServerContext* context,
@@ -1987,7 +2153,7 @@ class BoardService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -2008,9 +2174,9 @@ class BoardService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_GetDigitalInterruptValue<WithStreamedUnaryMethod_SetPowerMode<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_WriteAnalog<WithStreamedUnaryMethod_GetDigitalInterruptValue<WithStreamedUnaryMethod_SetPowerMode<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_GetDigitalInterruptValue<WithStreamedUnaryMethod_SetPowerMode<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_SetGPIO<WithStreamedUnaryMethod_GetGPIO<WithStreamedUnaryMethod_PWM<WithStreamedUnaryMethod_SetPWM<WithStreamedUnaryMethod_PWMFrequency<WithStreamedUnaryMethod_SetPWMFrequency<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_ReadAnalogReader<WithStreamedUnaryMethod_WriteAnalog<WithStreamedUnaryMethod_GetDigitalInterruptValue<WithStreamedUnaryMethod_SetPowerMode<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

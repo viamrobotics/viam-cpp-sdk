@@ -93,16 +93,6 @@ std::string Camera::format_to_MIME_string(viam::component::camera::v1::Format fo
     return viam::component::camera::v1::FORMAT_UNSPECIFIED;
 }
 
-std::vector<double> repeated_field_to_vector(const google::protobuf::RepeatedField<double>& f) {
-    std::vector<double> v(f.begin(), f.end());
-    return v;
-}
-
-google::protobuf::RepeatedField<double> vector_to_repeated_field(const std::vector<double>& v) {
-    google::protobuf::RepeatedField<double> rf = {v.begin(), v.end()};
-    return rf;
-}
-
 Camera::raw_image Camera::from_proto(viam::component::camera::v1::GetImageResponse proto) {
     Camera::raw_image raw_image;
     std::string img_string = proto.image();
@@ -157,7 +147,7 @@ Camera::distortion_parameters Camera::from_proto(
     viam::component::camera::v1::DistortionParameters proto) {
     Camera::distortion_parameters params;
     params.model = proto.model();
-    params.parameters = repeated_field_to_vector(proto.parameters());
+    params.parameters = {proto.parameters().begin(), proto.parameters().end()};
     return params;
 }
 
@@ -196,7 +186,7 @@ viam::component::camera::v1::DistortionParameters Camera::to_proto(
     Camera::distortion_parameters params) {
     viam::component::camera::v1::DistortionParameters proto;
     *proto.mutable_model() = params.model;
-    *proto.mutable_parameters() = vector_to_repeated_field(params.parameters);
+    *proto.mutable_parameters() = {params.parameters.begin(), params.parameters.end()};
     return proto;
 }
 

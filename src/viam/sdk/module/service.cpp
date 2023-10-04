@@ -2,9 +2,11 @@
 
 #include <csignal>
 #include <exception>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <pthread.h>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <sys/socket.h>
@@ -44,12 +46,19 @@ namespace sdk {
 
 namespace {
 Dependencies get_dependencies(ModuleService_* m,
-                              google::protobuf::RepeatedPtrField<std::string> proto) {
+                              google::protobuf::RepeatedPtrField<std::string> const& proto,
+                              std::string const& resource_name) {
     Dependencies deps;
-    for (auto& dep : proto) {
-        auto name = Name::from_string(dep);
-        const std::shared_ptr<Resource> resource = m->get_parent_resource(name);
-        deps.emplace(name, resource);
+    for (const auto& dep : proto) {
+        auto dep_name = Name::from_string(dep);
+        const std::shared_ptr<Resource> dep_resource = m->get_parent_resource(dep_name);
+        if (!dep_resource) {
+            std::ostringstream buffer;
+            buffer << resource_name << ": Dependency "
+                   << "`" << dep_name << "` was not found during (re)configuration";
+            throw std::invalid_argument(buffer.str());
+        }
+        deps.emplace(dep_name, dep_resource);
     }
     return deps;
 }
@@ -72,10 +81,14 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
-    const Dependencies deps = get_dependencies(this, request->dependencies());
+    const Dependencies deps = get_dependencies(this, request->dependencies(), cfg.name());
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
-        res = reg->construct_resource(deps, cfg);
+        try {
+            res = reg->construct_resource(deps, cfg);
+        } catch (const std::exception& exc) {
+            return grpc::Status(::grpc::INTERNAL, exc.what());
+        }
     };
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
@@ -96,7 +109,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     const std::shared_ptr<Module> module = this->module_;
 
-    const Dependencies deps = get_dependencies(this, request->dependencies());
+    const Dependencies deps = get_dependencies(this, request->dependencies(), cfg.name());
 
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
@@ -127,8 +140,12 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.name());
     if (reg) {
-        const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
-        manager->replace_one(cfg.resource_name(), res);
+        try {
+            const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
+            manager->replace_one(cfg.resource_name(), res);
+        } catch (const std::exception& exc) {
+            return grpc::Status(::grpc::INTERNAL, exc.what());
+        }
     }
 
     return grpc::Status();

@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(tflite)
-add_subdirectory(simple)
-add_subdirectory(complex)
+version: v1
+plugins:
+  - name: cpp
+    out: gen
+  - name: cpp-grpc
+    out: gen
+    path: ${VIAMCPPSDK_GRPC_CPP_PLUGIN}
