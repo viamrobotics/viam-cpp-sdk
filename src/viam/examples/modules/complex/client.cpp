@@ -56,7 +56,7 @@ int main() {
     }
     bool do_one_ret = gc->do_one("arg1");
     std::cout << "gizmo1 do_one returned: " << do_one_ret;
-    bool do_one_client_stream_ret = gc->do_one_client_stream({"arg1", "arg2", "arg3"});
+    bool do_one_client_stream_ret = gc->do_one_client_stream({"arg1", "arg1", "arg1"});
     std::cout << "gizmo1 do_one_client_stream returned: " << do_one_client_stream_ret;
     std::string do_two_ret = gc->do_two(false);
     std::cout << "gizmo1 do_two returned: " << do_two_ret;

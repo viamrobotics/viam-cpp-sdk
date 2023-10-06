@@ -148,3 +148,27 @@ install(
   TARGETS complex_module_client
   COMPONENT examples
 )
+
+# Testing related cmake logic; the section below is likely irrelevant for users
+# writing their own modules. We are simply integrating tests from
+# `test_complex_module.cpp` into the Viam C++ SDK testing suite.
+
+enable_testing()
+target_sources(viamsdk_test
+  PRIVATE
+    gizmo/impl.cpp
+    gizmo/impl.hpp
+    gizmo/api.cpp
+    gizmo/api.hpp
+    summation/api.cpp
+    summation/api.hpp
+    summation/impl.cpp
+    summation/impl.hpp
+
+    ${MODULE_PROTO_OUTPUT_FILES}
+)
+target_include_directories(viamsdk_test
+  PUBLIC
+    ${MODULE_PROTO_GEN_DIR}
+)
+viamcppsdk_add_boost_test(test_complex_module.cpp)

@@ -225,6 +225,7 @@ bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
     auto writer(stub_->DoOneClientStream(&ctx, &response));
     for (std::string arg : arg1) {
         DoOneClientStreamRequest curr_req = {};
+        *curr_req.mutable_name() = this->name();
         curr_req.set_arg1(arg);
         if (!writer->Write(curr_req)) {
             // Stream is broken; stop writing.
@@ -243,6 +244,9 @@ bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
 std::vector<bool> GizmoClient::do_one_server_stream(std::string arg1) {
     DoOneServerStreamRequest request;
     grpc::ClientContext ctx;
+
+    *request.mutable_name() = this->name();
+    request.set_arg1(arg1);
 
     auto reader(stub_->DoOneServerStream(&ctx, request));
     DoOneServerStreamResponse curr_resp = {};
@@ -264,6 +268,7 @@ std::vector<bool> GizmoClient::do_one_bidi_stream(std::vector<std::string> arg1)
     auto stream(stub_->DoOneBiDiStream(&ctx));
     for (std::string arg : arg1) {
         DoOneBiDiStreamRequest curr_req = {};
+        *curr_req.mutable_name() = this->name();
         curr_req.set_arg1(arg);
         if (!stream->Write(curr_req)) {
             // Stream is broken; stop writing.
