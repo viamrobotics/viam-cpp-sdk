@@ -130,5 +130,20 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
     return lhs.captured_at == rhs.captured_at;
 }
 
+bool from_dm_from_extra(const AttributeMap& extra) {
+    if (!extra) {
+        return false;
+    }
+    if (auto pos = extra->find("fromDataManagement"); pos != extra->end()) {
+        ProtoType value = *(pos->second);
+        std::cout << "result: " << value.get<bool>() << std::endl;
+        const bool* boolValue = value.get<bool>();
+        return boolValue ? *boolValue : false;
+        // return *(pos->second) == ProtoType(true);
+    } else {
+        return false;
+    };
+}
+
 }  // namespace sdk
 }  // namespace viam

@@ -76,5 +76,10 @@ google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
 /// how to start modules with a "log-level" commandline argument.
 void set_logger_severity_from_args(int argc, char** argv);
 
+/// @brief Used in modular filter components to get the 'fromDataManagement' value from an extra
+/// AttributeMap.
+/// @param extra The extra AttributeMap.
+bool from_dm_from_extra(const AttributeMap& extra);
+
 }  // namespace sdk
 }  // namespace viam
