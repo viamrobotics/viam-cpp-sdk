@@ -11,9 +11,7 @@ using namespace viam::sdk;
 // `validate` method that checks config validity.
 class MyGizmo : public Gizmo {
    public:
-    MyGizmo(std::string name, std::string arg1) : Gizmo(std::move(name)) {
-        arg1_ = std::move(arg1);
-    };
+    MyGizmo(std::string name, std::string arg1) : Gizmo(std::move(name)), arg1_(std::move(arg1)){};
     MyGizmo(Dependencies deps, ResourceConfig cfg) : Gizmo(cfg.name()) {
         this->reconfigure(deps, cfg);
     };
