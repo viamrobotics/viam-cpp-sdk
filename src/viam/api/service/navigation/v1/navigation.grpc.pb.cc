@@ -32,6 +32,7 @@ static const char* NavigationService_method_names[] = {
   "/viam.service.navigation.v1.NavigationService/AddWaypoint",
   "/viam.service.navigation.v1.NavigationService/RemoveWaypoint",
   "/viam.service.navigation.v1.NavigationService/GetObstacles",
+  "/viam.service.navigation.v1.NavigationService/GetPaths",
   "/viam.service.navigation.v1.NavigationService/DoCommand",
 };
 
@@ -49,7 +50,8 @@ NavigationService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   , rpcmethod_AddWaypoint_(NavigationService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveWaypoint_(NavigationService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetObstacles_(NavigationService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(NavigationService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPaths_(NavigationService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(NavigationService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status NavigationService::Stub::GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::viam::service::navigation::v1::GetModeResponse* response) {
@@ -213,6 +215,29 @@ void NavigationService::Stub::async::GetObstacles(::grpc::ClientContext* context
   return result;
 }
 
+::grpc::Status NavigationService::Stub::GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::viam::service::navigation::v1::GetPathsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPaths_, context, request, response);
+}
+
+void NavigationService::Stub::async::GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPaths_, context, request, response, std::move(f));
+}
+
+void NavigationService::Stub::async::GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPaths_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* NavigationService::Stub::PrepareAsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::navigation::v1::GetPathsResponse, ::viam::service::navigation::v1::GetPathsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPaths_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetPathsResponse>* NavigationService::Stub::AsyncGetPathsRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPathsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status NavigationService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
@@ -310,6 +335,16 @@ NavigationService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       NavigationService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](NavigationService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::service::navigation::v1::GetPathsRequest* req,
+             ::viam::service::navigation::v1::GetPathsResponse* resp) {
+               return service->GetPaths(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      NavigationService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< NavigationService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](NavigationService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -365,6 +400,13 @@ NavigationService::Service::~Service() {
 }
 
 ::grpc::Status NavigationService::Service::GetObstacles(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status NavigationService::Service::GetPaths(::grpc::ServerContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
