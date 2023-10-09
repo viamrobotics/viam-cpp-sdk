@@ -136,7 +136,6 @@ bool from_dm_from_extra(const AttributeMap& extra) {
     }
     if (auto pos = extra->find("fromDataManagement"); pos != extra->end()) {
         ProtoType value = *(pos->second);
-        std::cout << "result: " << value.get<bool>() << std::endl;
         const bool* boolValue = value.get<bool>();
         return boolValue ? *boolValue : false;
         // return *(pos->second) == ProtoType(true);

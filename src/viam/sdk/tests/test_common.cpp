@@ -109,6 +109,11 @@ BOOST_AUTO_TEST_CASE(test_from_dm_from_extra) {
     map->insert(
         {{std::string("fromDataManagement"), std::make_shared<ProtoType>(std::string("hello"))}});
     BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
+
+    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    map->insert(
+        {{std::string("fromDataManagement"), std::make_shared<ProtoType>(3.5)}});
+    BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
