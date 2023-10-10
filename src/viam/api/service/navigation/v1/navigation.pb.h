@@ -77,12 +77,21 @@ extern GetObstaclesRequestDefaultTypeInternal _GetObstaclesRequest_default_insta
 class GetObstaclesResponse;
 struct GetObstaclesResponseDefaultTypeInternal;
 extern GetObstaclesResponseDefaultTypeInternal _GetObstaclesResponse_default_instance_;
+class GetPathsRequest;
+struct GetPathsRequestDefaultTypeInternal;
+extern GetPathsRequestDefaultTypeInternal _GetPathsRequest_default_instance_;
+class GetPathsResponse;
+struct GetPathsResponseDefaultTypeInternal;
+extern GetPathsResponseDefaultTypeInternal _GetPathsResponse_default_instance_;
 class GetWaypointsRequest;
 struct GetWaypointsRequestDefaultTypeInternal;
 extern GetWaypointsRequestDefaultTypeInternal _GetWaypointsRequest_default_instance_;
 class GetWaypointsResponse;
 struct GetWaypointsResponseDefaultTypeInternal;
 extern GetWaypointsResponseDefaultTypeInternal _GetWaypointsResponse_default_instance_;
+class Path;
+struct PathDefaultTypeInternal;
+extern PathDefaultTypeInternal _Path_default_instance_;
 class RemoveWaypointRequest;
 struct RemoveWaypointRequestDefaultTypeInternal;
 extern RemoveWaypointRequestDefaultTypeInternal _RemoveWaypointRequest_default_instance_;
@@ -111,8 +120,11 @@ template<> ::viam::service::navigation::v1::GetModeRequest* Arena::CreateMaybeMe
 template<> ::viam::service::navigation::v1::GetModeResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetModeResponse>(Arena*);
 template<> ::viam::service::navigation::v1::GetObstaclesRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetObstaclesRequest>(Arena*);
 template<> ::viam::service::navigation::v1::GetObstaclesResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetObstaclesResponse>(Arena*);
+template<> ::viam::service::navigation::v1::GetPathsRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetPathsRequest>(Arena*);
+template<> ::viam::service::navigation::v1::GetPathsResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetPathsResponse>(Arena*);
 template<> ::viam::service::navigation::v1::GetWaypointsRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetWaypointsRequest>(Arena*);
 template<> ::viam::service::navigation::v1::GetWaypointsResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::GetWaypointsResponse>(Arena*);
+template<> ::viam::service::navigation::v1::Path* Arena::CreateMaybeMessage<::viam::service::navigation::v1::Path>(Arena*);
 template<> ::viam::service::navigation::v1::RemoveWaypointRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::RemoveWaypointRequest>(Arena*);
 template<> ::viam::service::navigation::v1::RemoveWaypointResponse* Arena::CreateMaybeMessage<::viam::service::navigation::v1::RemoveWaypointResponse>(Arena*);
 template<> ::viam::service::navigation::v1::SetModeRequest* Arena::CreateMaybeMessage<::viam::service::navigation::v1::SetModeRequest>(Arena*);
@@ -2500,6 +2512,494 @@ class GetObstaclesResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
 };
+// -------------------------------------------------------------------
+
+class Path final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.navigation.v1.Path) */ {
+ public:
+  inline Path() : Path(nullptr) {}
+  ~Path() override;
+  explicit PROTOBUF_CONSTEXPR Path(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Path(const Path& from);
+  Path(Path&& from) noexcept
+    : Path() {
+    *this = ::std::move(from);
+  }
+
+  inline Path& operator=(const Path& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Path& operator=(Path&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Path& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Path* internal_default_instance() {
+    return reinterpret_cast<const Path*>(
+               &_Path_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(Path& a, Path& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Path* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Path* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Path* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Path>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Path& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Path& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Path* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.navigation.v1.Path";
+  }
+  protected:
+  explicit Path(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGeopointsFieldNumber = 2,
+    kDestinationWaypointIdFieldNumber = 1,
+  };
+  // repeated .viam.common.v1.GeoPoint geopoints = 2 [json_name = "geopoints"];
+  int geopoints_size() const;
+  private:
+  int _internal_geopoints_size() const;
+  public:
+  void clear_geopoints();
+  ::viam::common::v1::GeoPoint* mutable_geopoints(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoPoint >*
+      mutable_geopoints();
+  private:
+  const ::viam::common::v1::GeoPoint& _internal_geopoints(int index) const;
+  ::viam::common::v1::GeoPoint* _internal_add_geopoints();
+  public:
+  const ::viam::common::v1::GeoPoint& geopoints(int index) const;
+  ::viam::common::v1::GeoPoint* add_geopoints();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoPoint >&
+      geopoints() const;
+
+  // string destination_waypoint_id = 1 [json_name = "destinationWaypointId"];
+  void clear_destination_waypoint_id();
+  const std::string& destination_waypoint_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_destination_waypoint_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_destination_waypoint_id();
+  PROTOBUF_NODISCARD std::string* release_destination_waypoint_id();
+  void set_allocated_destination_waypoint_id(std::string* destination_waypoint_id);
+  private:
+  const std::string& _internal_destination_waypoint_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination_waypoint_id(const std::string& value);
+  std::string* _internal_mutable_destination_waypoint_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.Path)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoPoint > geopoints_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr destination_waypoint_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPathsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.navigation.v1.GetPathsRequest) */ {
+ public:
+  inline GetPathsRequest() : GetPathsRequest(nullptr) {}
+  ~GetPathsRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPathsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPathsRequest(const GetPathsRequest& from);
+  GetPathsRequest(GetPathsRequest&& from) noexcept
+    : GetPathsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPathsRequest& operator=(const GetPathsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPathsRequest& operator=(GetPathsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPathsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPathsRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPathsRequest*>(
+               &_GetPathsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(GetPathsRequest& a, GetPathsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPathsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPathsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPathsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPathsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPathsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPathsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPathsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.navigation.v1.GetPathsRequest";
+  }
+  protected:
+  explicit GetPathsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.GetPathsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPathsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.navigation.v1.GetPathsResponse) */ {
+ public:
+  inline GetPathsResponse() : GetPathsResponse(nullptr) {}
+  ~GetPathsResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPathsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPathsResponse(const GetPathsResponse& from);
+  GetPathsResponse(GetPathsResponse&& from) noexcept
+    : GetPathsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPathsResponse& operator=(const GetPathsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPathsResponse& operator=(GetPathsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPathsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPathsResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPathsResponse*>(
+               &_GetPathsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(GetPathsResponse& a, GetPathsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPathsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPathsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPathsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPathsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPathsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPathsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPathsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.navigation.v1.GetPathsResponse";
+  }
+  protected:
+  explicit GetPathsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPathsFieldNumber = 1,
+  };
+  // repeated .viam.service.navigation.v1.Path paths = 1 [json_name = "paths"];
+  int paths_size() const;
+  private:
+  int _internal_paths_size() const;
+  public:
+  void clear_paths();
+  ::viam::service::navigation::v1::Path* mutable_paths(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::navigation::v1::Path >*
+      mutable_paths();
+  private:
+  const ::viam::service::navigation::v1::Path& _internal_paths(int index) const;
+  ::viam::service::navigation::v1::Path* _internal_add_paths();
+  public:
+  const ::viam::service::navigation::v1::Path& paths(int index) const;
+  ::viam::service::navigation::v1::Path* add_paths();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::navigation::v1::Path >&
+      paths() const;
+
+  // @@protoc_insertion_point(class_scope:viam.service.navigation.v1.GetPathsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::navigation::v1::Path > paths_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto;
+};
 // ===================================================================
 
 
@@ -4004,9 +4504,289 @@ GetObstaclesResponse::obstacles() const {
   return obstacles_;
 }
 
+// -------------------------------------------------------------------
+
+// Path
+
+// string destination_waypoint_id = 1 [json_name = "destinationWaypointId"];
+inline void Path::clear_destination_waypoint_id() {
+  destination_waypoint_id_.ClearToEmpty();
+}
+inline const std::string& Path::destination_waypoint_id() const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.Path.destination_waypoint_id)
+  return _internal_destination_waypoint_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Path::set_destination_waypoint_id(ArgT0&& arg0, ArgT... args) {
+ 
+ destination_waypoint_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.navigation.v1.Path.destination_waypoint_id)
+}
+inline std::string* Path::mutable_destination_waypoint_id() {
+  std::string* _s = _internal_mutable_destination_waypoint_id();
+  // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.Path.destination_waypoint_id)
+  return _s;
+}
+inline const std::string& Path::_internal_destination_waypoint_id() const {
+  return destination_waypoint_id_.Get();
+}
+inline void Path::_internal_set_destination_waypoint_id(const std::string& value) {
+  
+  destination_waypoint_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Path::_internal_mutable_destination_waypoint_id() {
+  
+  return destination_waypoint_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Path::release_destination_waypoint_id() {
+  // @@protoc_insertion_point(field_release:viam.service.navigation.v1.Path.destination_waypoint_id)
+  return destination_waypoint_id_.Release();
+}
+inline void Path::set_allocated_destination_waypoint_id(std::string* destination_waypoint_id) {
+  if (destination_waypoint_id != nullptr) {
+    
+  } else {
+    
+  }
+  destination_waypoint_id_.SetAllocated(destination_waypoint_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (destination_waypoint_id_.IsDefault()) {
+    destination_waypoint_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.navigation.v1.Path.destination_waypoint_id)
+}
+
+// repeated .viam.common.v1.GeoPoint geopoints = 2 [json_name = "geopoints"];
+inline int Path::_internal_geopoints_size() const {
+  return geopoints_.size();
+}
+inline int Path::geopoints_size() const {
+  return _internal_geopoints_size();
+}
+inline ::viam::common::v1::GeoPoint* Path::mutable_geopoints(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.Path.geopoints)
+  return geopoints_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoPoint >*
+Path::mutable_geopoints() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.navigation.v1.Path.geopoints)
+  return &geopoints_;
+}
+inline const ::viam::common::v1::GeoPoint& Path::_internal_geopoints(int index) const {
+  return geopoints_.Get(index);
+}
+inline const ::viam::common::v1::GeoPoint& Path::geopoints(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.Path.geopoints)
+  return _internal_geopoints(index);
+}
+inline ::viam::common::v1::GeoPoint* Path::_internal_add_geopoints() {
+  return geopoints_.Add();
+}
+inline ::viam::common::v1::GeoPoint* Path::add_geopoints() {
+  ::viam::common::v1::GeoPoint* _add = _internal_add_geopoints();
+  // @@protoc_insertion_point(field_add:viam.service.navigation.v1.Path.geopoints)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoPoint >&
+Path::geopoints() const {
+  // @@protoc_insertion_point(field_list:viam.service.navigation.v1.Path.geopoints)
+  return geopoints_;
+}
+
+// -------------------------------------------------------------------
+
+// GetPathsRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPathsRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPathsRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetPathsRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPathsRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.navigation.v1.GetPathsRequest.name)
+}
+inline std::string* GetPathsRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.GetPathsRequest.name)
+  return _s;
+}
+inline const std::string& GetPathsRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPathsRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPathsRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPathsRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.navigation.v1.GetPathsRequest.name)
+  return name_.Release();
+}
+inline void GetPathsRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.navigation.v1.GetPathsRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPathsRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPathsRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPathsRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPathsRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetPathsRequest.extra)
+  return _internal_extra();
+}
+inline void GetPathsRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.navigation.v1.GetPathsRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPathsRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPathsRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.navigation.v1.GetPathsRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPathsRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPathsRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.GetPathsRequest.extra)
+  return _msg;
+}
+inline void GetPathsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.navigation.v1.GetPathsRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPathsResponse
+
+// repeated .viam.service.navigation.v1.Path paths = 1 [json_name = "paths"];
+inline int GetPathsResponse::_internal_paths_size() const {
+  return paths_.size();
+}
+inline int GetPathsResponse::paths_size() const {
+  return _internal_paths_size();
+}
+inline void GetPathsResponse::clear_paths() {
+  paths_.Clear();
+}
+inline ::viam::service::navigation::v1::Path* GetPathsResponse::mutable_paths(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.navigation.v1.GetPathsResponse.paths)
+  return paths_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::navigation::v1::Path >*
+GetPathsResponse::mutable_paths() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.navigation.v1.GetPathsResponse.paths)
+  return &paths_;
+}
+inline const ::viam::service::navigation::v1::Path& GetPathsResponse::_internal_paths(int index) const {
+  return paths_.Get(index);
+}
+inline const ::viam::service::navigation::v1::Path& GetPathsResponse::paths(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.navigation.v1.GetPathsResponse.paths)
+  return _internal_paths(index);
+}
+inline ::viam::service::navigation::v1::Path* GetPathsResponse::_internal_add_paths() {
+  return paths_.Add();
+}
+inline ::viam::service::navigation::v1::Path* GetPathsResponse::add_paths() {
+  ::viam::service::navigation::v1::Path* _add = _internal_add_paths();
+  // @@protoc_insertion_point(field_add:viam.service.navigation.v1.GetPathsResponse.paths)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::navigation::v1::Path >&
+GetPathsResponse::paths() const {
+  // @@protoc_insertion_point(field_list:viam.service.navigation.v1.GetPathsResponse.paths)
+  return paths_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
