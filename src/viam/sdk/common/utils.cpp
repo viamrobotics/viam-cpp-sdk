@@ -134,13 +134,15 @@ bool from_dm_from_extra(const AttributeMap& extra) {
     if (!extra) {
         return false;
     }
-    if (auto pos = extra->find("fromDataManagement"); pos != extra->end()) {
+    auto pos = extra->find("fromDataManagement");
+    if (pos != extra->end()) {
         ProtoType value = *(pos->second);
         const bool* boolValue = value.get<bool>();
-        return boolValue ? *boolValue : false;
-    } else {
-        return false;
-    };
+        if (boolValue) {
+            return *boolValue;
+        }
+    }
+    return false;
 }
 
 }  // namespace sdk
