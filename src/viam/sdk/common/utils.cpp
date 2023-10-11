@@ -138,7 +138,6 @@ bool from_dm_from_extra(const AttributeMap& extra) {
         ProtoType value = *(pos->second);
         const bool* boolValue = value.get<bool>();
         return boolValue ? *boolValue : false;
-        // return *(pos->second) == ProtoType(true);
     } else {
         return false;
     };
