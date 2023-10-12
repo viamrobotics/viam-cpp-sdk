@@ -1,6 +1,7 @@
 set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
-set(BUF_PROTO_SOURCE buf.build/viamrobotics/api)
+# TODO (RSDK-5364): update code to comply with up-to-date proto, then stop pinning to this commit
+set(BUF_PROTO_SOURCE buf.build/viamrobotics/api:2109757288234ffc8248121f60437cdd)
 set(BUF_PROTO_COMPONENTS
   app/v1
   common
