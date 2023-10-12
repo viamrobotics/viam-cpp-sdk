@@ -5,6 +5,7 @@
 #include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -88,6 +89,30 @@ BOOST_AUTO_TEST_CASE(test_large_positive) {
     auto reconverted = to_proto(converted);
     BOOST_CHECK_EQUAL(reconverted.nanos(), 2000);
     BOOST_CHECK_EQUAL(reconverted.seconds(), max_seconds);
+}
+
+BOOST_AUTO_TEST_CASE(test_from_dm_from_extra) {
+    BOOST_CHECK_EQUAL(from_dm_from_extra(nullptr), false);
+
+    AttributeMap map = fake_map();
+    BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
+
+    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    map->insert({{std::string("fromDataManagement"), std::make_shared<ProtoType>(true)}});
+    BOOST_CHECK_EQUAL(from_dm_from_extra(map), true);
+
+    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    map->insert({{std::string("fromDataManagement"), std::make_shared<ProtoType>(false)}});
+    BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
+
+    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    map->insert(
+        {{std::string("fromDataManagement"), std::make_shared<ProtoType>(std::string("hello"))}});
+    BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
+
+    map = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
+    map->insert({{std::string("fromDataManagement"), std::make_shared<ProtoType>(3.5)}});
+    BOOST_CHECK_EQUAL(from_dm_from_extra(map), false);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
