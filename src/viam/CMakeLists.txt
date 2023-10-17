@@ -14,7 +14,6 @@
 
 add_subdirectory(api)
 add_subdirectory(sdk)
-add_subdirectory(examples)
 
 # Generate CMake configs to enable importing this project
 # into others via `find_package`.
