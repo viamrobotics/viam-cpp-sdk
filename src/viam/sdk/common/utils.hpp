@@ -66,6 +66,12 @@ std::string bytes_to_string(std::vector<unsigned char> const& b);
 
 std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
 google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
+
+// the authority is sometimes set to an invalid uri on mac, causing `rust-utils` to fail
+// to process gRPC requests. Fortunately we don't particularly care what the authority is
+// set to within the ctx once a channel is built, so we can just set a placeholder value
+// to appease rust and continue to rely on the gRPC channel to process requests correctly.
+// For more details, see https://viam.atlassian.net/browse/RSDK-5194.
 void set_client_ctx_authority(grpc::ClientContext& ctx);
 
 /// @brief Set the boost trivial logger's severity depending on args.

@@ -131,10 +131,6 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
     return lhs.captured_at == rhs.captured_at;
 }
 
-// the authority is sometimes set to an invalid uri on mac, causing `rust-utils` to fail
-// to process gRPC requests. Fortunately we don't particularly care what the authority is
-// set to within the ctx once a channel is built, so we can just set a placeholder value
-// to appease rust and continue to rely on the gRPC channel to process requests correctly.
 void set_client_ctx_authority(grpc::ClientContext& ctx) {
     ctx.set_authority("viam-placeholder");
 }
