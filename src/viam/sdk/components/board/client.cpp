@@ -27,6 +27,7 @@ Board::status BoardClient::get_status(const AttributeMap& extra) {
     viam::component::board::v1::StatusResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -43,6 +44,7 @@ void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap
     viam::component::board::v1::SetGPIOResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -59,6 +61,7 @@ bool BoardClient::get_gpio(const std::string& pin, const AttributeMap& extra) {
     viam::component::board::v1::GetGPIOResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -76,6 +79,7 @@ double BoardClient::get_pwm_duty_cycle(const std::string& pin, const AttributeMa
     viam::component::board::v1::PWMResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -95,6 +99,7 @@ void BoardClient::set_pwm_duty_cycle(const std::string& pin,
     viam::component::board::v1::SetPWMResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -112,6 +117,7 @@ uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const AttributeM
     viam::component::board::v1::PWMFrequencyResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -131,6 +137,7 @@ void BoardClient::set_pwm_frequency(const std::string& pin,
     viam::component::board::v1::SetPWMFrequencyResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -148,6 +155,7 @@ AttributeMap BoardClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;
@@ -166,6 +174,7 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     viam::component::board::v1::ReadAnalogReaderResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
@@ -184,6 +193,7 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
     viam::component::board::v1::GetDigitalInterruptValueResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
@@ -203,6 +213,7 @@ void BoardClient::set_power_mode(power_mode power_mode,
     viam::component::board::v1::SetPowerModeResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -221,6 +232,7 @@ std::vector<GeometryConfig> BoardClient::get_geometries(const AttributeMap& extr
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_extra() = map_to_struct(extra);

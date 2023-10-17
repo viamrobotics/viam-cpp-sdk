@@ -8,6 +8,7 @@
 #include <viam/api/service/motion/v1/motion.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/motion/motion.hpp>
 
 namespace viam {
@@ -26,6 +27,7 @@ bool MotionClient::move(const pose_in_frame& destination,
     service::motion::v1::MoveRequest request;
     service::motion::v1::MoveResponse response;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_component_name() = component_name.to_proto();
@@ -53,6 +55,7 @@ bool MotionClient::move_on_map(const pose& destination,
     service::motion::v1::MoveOnMapRequest request;
     service::motion::v1::MoveOnMapResponse response;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_destination() = destination.to_proto();
@@ -78,6 +81,7 @@ bool MotionClient::move_on_globe(const geo_point& destination,
     service::motion::v1::MoveOnGlobeRequest request;
     service::motion::v1::MoveOnGlobeResponse response;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_destination() = destination.to_proto();
@@ -113,6 +117,7 @@ pose_in_frame MotionClient::get_pose(
     service::motion::v1::GetPoseRequest request;
     service::motion::v1::GetPoseResponse response;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_component_name() = component_name.to_proto();
@@ -134,6 +139,7 @@ AttributeMap MotionClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandRequest request;
     viam::common::v1::DoCommandResponse response;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_command() = map_to_struct(command);
     *request.mutable_name() = this->name();

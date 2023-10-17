@@ -4,6 +4,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -96,6 +97,7 @@ double SummationClient::sum(std::vector<double> numbers) {
     SumResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     for (double number : numbers) {

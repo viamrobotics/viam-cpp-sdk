@@ -30,6 +30,7 @@ void BaseClient::move_straight(int64_t distance_mm, double mm_per_sec, const Att
     viam::component::base::v1::MoveStraightResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     request.set_distance_mm(distance_mm);
@@ -47,6 +48,7 @@ void BaseClient::spin(double angle_deg, double degs_per_sec, const AttributeMap&
     viam::component::base::v1::SpinResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     request.set_angle_deg(angle_deg);
@@ -66,6 +68,7 @@ void BaseClient::set_power(const Vector3& linear,
     viam::component::base::v1::SetPowerResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_linear() = Vector3::to_proto(linear);
@@ -85,6 +88,7 @@ void BaseClient::set_velocity(const Vector3& linear,
     viam::component::base::v1::SetVelocityResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_linear() = Vector3::to_proto(linear);
@@ -102,6 +106,7 @@ grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
     viam::component::base::v1::StopResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -118,6 +123,7 @@ bool BaseClient::is_moving() {
     viam::component::base::v1::IsMovingResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
 
@@ -132,6 +138,7 @@ std::vector<GeometryConfig> BaseClient::get_geometries(const AttributeMap& extra
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_extra() = map_to_struct(extra);
@@ -144,6 +151,7 @@ Base::properties BaseClient::get_properties(const AttributeMap& extra) {
     component::base::v1::GetPropertiesRequest req;
     component::base::v1::GetPropertiesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_extra() = map_to_struct(extra);
@@ -157,6 +165,7 @@ AttributeMap BaseClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;

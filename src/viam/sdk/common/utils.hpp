@@ -6,6 +6,7 @@
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
 
@@ -65,6 +66,7 @@ std::string bytes_to_string(std::vector<unsigned char> const& b);
 
 std::chrono::microseconds from_proto(const google::protobuf::Duration& proto);
 google::protobuf::Duration to_proto(const std::chrono::microseconds& duration);
+void set_client_ctx_authority(grpc::ClientContext& ctx);
 
 /// @brief Set the boost trivial logger's severity depending on args.
 /// @param argc The number of args.

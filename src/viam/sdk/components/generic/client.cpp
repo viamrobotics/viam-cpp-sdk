@@ -6,6 +6,7 @@
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 
@@ -21,6 +22,7 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     const google::protobuf::Struct proto_command = map_to_struct(command);
     *req.mutable_command() = proto_command;
@@ -32,6 +34,7 @@ std::vector<GeometryConfig> GenericClient::get_geometries() {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
 
