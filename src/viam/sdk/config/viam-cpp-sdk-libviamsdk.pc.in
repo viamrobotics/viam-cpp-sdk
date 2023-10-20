@@ -6,7 +6,6 @@ Name: @PROJECT_NAME@-libviamsdk
 Description: @PROJECT_DESCRIPTION@
 URL: @PROJECT_HOMEPAGE_URL@
 Version: @PROJECT_VERSION@
-Requires: grpc++ >= @VIAMCPPSDK_GRPCXX_VERSION@ protobuf >= @VIAMCPPSDK_PROTOBUF_VERSION@ @PROJECT_NAME@-libviamapi >= @PROJECT_VERSION@
 Libs: -L${libdir} -L@Boost_LIBRARY_DIRS@ -lviamsdk -lviam_rust_utils
 Libs.private: -lboost_log-mt
 Cflags: -I${includedir} -I@Boost_INCLUDE_DIR@
