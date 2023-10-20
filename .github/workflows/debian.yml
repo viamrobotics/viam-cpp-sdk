@@ -11,10 +11,10 @@ jobs:
         include:
         - container: debian:bookworm
           label: bookworm-aarch64
-          runs-on: buildjet-8vcpu-ubuntu-2204-arm
+          runs-on: buildjet-4vcpu-ubuntu-2204-arm
         - container: debian:bookworm
           label: bookworm-x86_64
-          runs-on: buildjet-8vcpu-ubuntu-2204
+          runs-on: buildjet-4vcpu-ubuntu-2204
     container: ${{ matrix.container }}
     runs-on: ${{ matrix.runs-on }}
     steps:
