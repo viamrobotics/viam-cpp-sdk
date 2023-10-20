@@ -1,0 +1,55 @@
+on:
+  push:
+
+env:
+  CMAKE_VERSION: 3.27.4
+
+jobs:
+  build-deb:
+    strategy:
+      matrix:
+        include:
+        - container: debian:bookworm
+          label: bookworm-aarch64
+          runs-on: buildjet-8vcpu-ubuntu-2204-arm
+        - container: debian:bookworm
+          label: bookworm-x86_64
+          runs-on: buildjet-8vcpu-ubuntu-2204
+    container: ${{ matrix.container }}
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: depends
+      run: |
+        apt-get update
+        apt-get install -qqy \
+                build-essential \
+                libabsl-dev \
+                libboost-all-dev \
+                libgrpc++-dev \
+                libprotobuf-dev \
+                pkg-config \
+                ninja-build \
+                protobuf-compiler-grpc \
+                git \
+                wget
+    - name: download cmake
+      run: |
+        ARCH=$(uname -m)
+        wget --quiet https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-$ARCH.sh
+        chmod +x cmake-${CMAKE_VERSION}-linux-$ARCH.sh
+        ./cmake-${CMAKE_VERSION}-linux-$ARCH.sh --skip-license --prefix=/usr
+    - name: remove examples
+      run: sed -i '/add_subdirectory.examples/d' src/viam/CMakeLists.txt
+    - name: create build
+      run: mkdir build
+    - name: cmake
+      working-directory: ./build
+      run: cmake .. -G Ninja
+    - name: build
+      working-directory: ./build
+      run: ninja libviamsdk.so && cpack
+    - uses: actions/upload-artifact@v3
+      with:
+        name: debian-${{ matrix.label }}
+        path: build/viam-cpp-sdk-*.deb
