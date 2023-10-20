@@ -1,6 +1,6 @@
-prefix=@CMAKE_INSTALL_PREFIX@
+prefix=@CPACK_PACKAGING_INSTALL_PREFIX@
 libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
-includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@/viam/sdk
 
 Name: @PROJECT_NAME@-libviamsdk
 Description: @PROJECT_DESCRIPTION@
