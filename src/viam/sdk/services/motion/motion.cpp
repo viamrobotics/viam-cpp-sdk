@@ -114,11 +114,38 @@ std::shared_ptr<ResourceRegistration> Motion::resource_registration() {
     return std::make_shared<MotionRegistration>(sd);
 }
 
+service::motion::v1::ObstacleDetector obstacle_detector::to_proto() const {
+    service::motion::v1::ObstacleDetector proto;
+    *proto.mutable_vision_service() = vision_service.to_proto();
+    *proto.mutable_camera() = camera.to_proto();
+    return proto;
+}
+
+obstacle_detector obstacle_detector::from_proto(
+    const service::motion::v1::ObstacleDetector& proto) {
+    obstacle_detector oc;
+    oc.vision_service = Name::from_proto(proto.vision_service());
+    oc.camera = Name::from_proto(proto.camera());
+    return oc;
+}
+
+bool operator==(const obstacle_detector& lhs, const obstacle_detector& rhs) {
+    return lhs.vision_service == rhs.vision_service && lhs.camera == rhs.camera;
+}
+
+std::ostream& operator<<(std::ostream& os, const obstacle_detector& v) {
+    os << "{ ";
+    os << "\tvision_service: " << v.vision_service << std::endl;
+    os << "\tcamera: " << v.camera << std::endl;
+    os << "}";
+    return os;
+}
+
 service::motion::v1::MotionConfiguration motion_configuration::to_proto() const {
     service::motion::v1::MotionConfiguration proto;
 
-    for (const auto& name : vision_services) {
-        *proto.mutable_vision_services()->Add() = name.to_proto();
+    for (const obstacle_detector& od : obstacle_detectors) {
+        *proto.mutable_obstacle_detectors()->Add() = od.to_proto();
     }
 
     if (position_polling_frequency_hz && !isnan(*position_polling_frequency_hz)) {
@@ -148,8 +175,8 @@ motion_configuration motion_configuration::from_proto(
     const service::motion::v1::MotionConfiguration& proto) {
     motion_configuration mc;
 
-    for (const auto& proto_name : proto.vision_services()) {
-        mc.vision_services.push_back(Name::from_proto(proto_name));
+    for (const service::motion::v1::ObstacleDetector& od : proto.obstacle_detectors()) {
+        mc.obstacle_detectors.push_back(obstacle_detector::from_proto(od));
     }
 
     if (proto.has_position_polling_frequency_hz()) {
@@ -177,7 +204,7 @@ motion_configuration motion_configuration::from_proto(
 
 bool operator==(const motion_configuration& lhs, const motion_configuration& rhs) {
     return lhs.angular_degs_per_sec == rhs.angular_degs_per_sec &&
-           lhs.vision_services == rhs.vision_services &&
+           lhs.obstacle_detectors == rhs.obstacle_detectors &&
            lhs.linear_m_per_sec == rhs.linear_m_per_sec &&
            lhs.plan_deviation_m == rhs.plan_deviation_m &&
            lhs.obstacle_polling_frequency_hz == rhs.obstacle_polling_frequency_hz &&
@@ -186,10 +213,10 @@ bool operator==(const motion_configuration& lhs, const motion_configuration& rhs
 
 std::ostream& operator<<(std::ostream& os, const motion_configuration& v) {
     os << "{ ";
-    if (!v.vision_services.empty()) {
-        os << "\tvision_services: [\n";
-        for (const auto& name : v.vision_services) {
-            os << "\t\t" << name.to_string() << ",\n";
+    if (!v.obstacle_detectors.empty()) {
+        os << "\tobstacle_detectors: [\n";
+        for (const obstacle_detector& od : v.obstacle_detectors) {
+            os << "\t\t" << od << ",\n";
         }
         os << "\t],\n";
     }
