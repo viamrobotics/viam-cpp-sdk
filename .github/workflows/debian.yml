@@ -40,6 +40,7 @@ jobs:
         chmod +x cmake-${CMAKE_VERSION}-linux-$ARCH.sh
         ./cmake-${CMAKE_VERSION}-linux-$ARCH.sh --skip-license --prefix=/usr
     - name: remove examples
+      # todo(RSDK-4735): no longer needed once 'all' is cleaned up
       run: sed -i '/add_subdirectory.examples/d' src/viam/CMakeLists.txt
     - name: create build
       run: mkdir build
