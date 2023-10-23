@@ -1,6 +1,7 @@
 set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
-set(BUF_PROTO_SOURCE buf.build/viamrobotics/api)
+# TODO (RSDK-5441): modify this pin through an automated process
+set(BUF_PROTO_SOURCE buf.build/viamrobotics/api:57108c60d0da8f46df147a496845bdf2160facd6)
 set(BUF_PROTO_COMPONENTS
   app/v1
   common
