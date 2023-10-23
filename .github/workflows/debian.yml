@@ -46,9 +46,10 @@ jobs:
     - name: cmake
       run: cmake -S . -B ./build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr
     - name: build
+      working-directory: build
       run: |
-        cmake --build ./build --target libviamsdk.so
-        cpack -B ./build
+        cmake --build . --target libviamsdk.so
+        cpack
     - uses: actions/upload-artifact@v3
       with:
         name: debian-${{ matrix.label }}
