@@ -1,5 +1,6 @@
 on:
   workflow_dispatch:
+  push: # DONOTMERGE
 
 env:
   CMAKE_VERSION: 3.27.4
