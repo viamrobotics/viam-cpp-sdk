@@ -1,5 +1,5 @@
 on:
-  push:
+  workflow_dispatch:
 
 env:
   CMAKE_VERSION: 3.27.4
