@@ -4,6 +4,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -206,6 +207,7 @@ bool GizmoClient::do_one(std::string arg1) {
     DoOneResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     request.set_arg1(arg1);
@@ -221,6 +223,7 @@ bool GizmoClient::do_one(std::string arg1) {
 bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
     DoOneClientStreamResponse response;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     auto writer(stub_->DoOneClientStream(&ctx, &response));
     for (std::string arg : arg1) {
@@ -244,6 +247,7 @@ bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
 std::vector<bool> GizmoClient::do_one_server_stream(std::string arg1) {
     DoOneServerStreamRequest request;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     request.set_arg1(arg1);
@@ -264,6 +268,7 @@ std::vector<bool> GizmoClient::do_one_server_stream(std::string arg1) {
 
 std::vector<bool> GizmoClient::do_one_bidi_stream(std::vector<std::string> arg1) {
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     auto stream(stub_->DoOneBiDiStream(&ctx));
     for (std::string arg : arg1) {
@@ -296,6 +301,7 @@ std::string GizmoClient::do_two(bool arg1) {
     DoTwoResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     request.set_arg1(arg1);

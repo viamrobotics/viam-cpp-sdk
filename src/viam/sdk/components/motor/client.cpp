@@ -27,6 +27,7 @@ void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
     viam::component::motor::v1::SetPowerResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -43,6 +44,7 @@ void MotorClient::go_for(double rpm, double revolutions, const AttributeMap& ext
     viam::component::motor::v1::GoForResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -60,6 +62,7 @@ void MotorClient::go_to(double rpm, double position_revolutions, const Attribute
     viam::component::motor::v1::GoToResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -77,6 +80,7 @@ void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) 
     viam::component::motor::v1::ResetZeroPositionResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -93,6 +97,7 @@ Motor::position MotorClient::get_position(const AttributeMap& extra) {
     viam::component::motor::v1::GetPositionResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -109,6 +114,7 @@ Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
     viam::component::motor::v1::GetPropertiesResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -125,6 +131,7 @@ grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
     viam::component::motor::v1::StopResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -138,6 +145,7 @@ Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {
     viam::component::motor::v1::IsPoweredResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -153,6 +161,7 @@ std::vector<GeometryConfig> MotorClient::get_geometries(const AttributeMap& extr
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_extra() = map_to_struct(extra);
@@ -166,6 +175,7 @@ bool MotorClient::is_moving() {
     viam::component::motor::v1::IsMovingResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
 
@@ -181,6 +191,7 @@ AttributeMap MotorClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_command() = map_to_struct(command);
     *request.mutable_name() = this->name();

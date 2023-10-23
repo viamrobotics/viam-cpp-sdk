@@ -25,6 +25,7 @@ AttributeMap CameraClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandRequest req;
     viam::common::v1::DoCommandResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     const google::protobuf::Struct proto_command = map_to_struct(command);
     *req.mutable_command() = proto_command;
@@ -37,6 +38,7 @@ Camera::raw_image CameraClient::get_image(std::string mime_type, const Attribute
     viam::component::camera::v1::GetImageRequest req;
     viam::component::camera::v1::GetImageResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     Camera::normalize_mime_type(mime_type);
 
@@ -52,6 +54,7 @@ Camera::image_collection CameraClient::get_images() {
     viam::component::camera::v1::GetImagesRequest req;
     viam::component::camera::v1::GetImagesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
 
@@ -64,6 +67,7 @@ Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type,
     viam::component::camera::v1::GetPointCloudRequest req;
     viam::component::camera::v1::GetPointCloudResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_mime_type() = mime_type;
@@ -77,6 +81,7 @@ std::vector<GeometryConfig> CameraClient::get_geometries(const AttributeMap& ext
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_extra() = map_to_struct(extra);
@@ -89,6 +94,7 @@ Camera::properties CameraClient::get_properties() {
     viam::component::camera::v1::GetPropertiesRequest req;
     viam::component::camera::v1::GetPropertiesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
 

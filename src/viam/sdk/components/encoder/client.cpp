@@ -28,6 +28,7 @@ Encoder::position EncoderClient::get_position(const AttributeMap& extra,
     viam::component::encoder::v1::GetPositionResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     request.set_position_type(to_proto(position_type));
@@ -45,6 +46,7 @@ void EncoderClient::reset_position(const AttributeMap& extra) {
     viam::component::encoder::v1::ResetPositionResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -60,6 +62,7 @@ Encoder::properties EncoderClient::get_properties(const AttributeMap& extra) {
     viam::component::encoder::v1::GetPropertiesResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
     *request.mutable_extra() = map_to_struct(extra);
@@ -75,6 +78,7 @@ std::vector<GeometryConfig> EncoderClient::get_geometries(const AttributeMap& ex
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     *req.mutable_name() = this->name();
     *req.mutable_extra() = map_to_struct(extra);
@@ -88,6 +92,7 @@ AttributeMap EncoderClient::do_command(AttributeMap command) {
     viam::common::v1::DoCommandResponse response;
 
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     const google::protobuf::Struct proto_command = map_to_struct(command);
     *request.mutable_command() = proto_command;

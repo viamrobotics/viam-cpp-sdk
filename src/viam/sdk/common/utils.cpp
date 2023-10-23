@@ -11,6 +11,7 @@
 #include <boost/optional/optional.hpp>
 #include <boost/variant/get.hpp>
 #include <boost/variant/variant.hpp>
+#include <grpcpp/client_context.h>
 
 #include <viam/api/common/v1/common.pb.h>
 
@@ -128,6 +129,10 @@ void set_logger_severity_from_args(int argc, char** argv) {
 
 bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
     return lhs.captured_at == rhs.captured_at;
+}
+
+void set_client_ctx_authority(grpc::ClientContext& ctx) {
+    ctx.set_authority("viam-placeholder");
 }
 
 bool from_dm_from_extra(const AttributeMap& extra) {

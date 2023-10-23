@@ -16,6 +16,7 @@
 
 #include <grpcpp/channel.h>
 
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/mlmodel/private/proto.hpp>
 
 namespace viam {
@@ -38,6 +39,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     *req->mutable_extra() = map_to_struct(extra);
     auto* const resp = pb::Arena::CreateMessage<mlpb::InferResponse>(arena.get());
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
 
     struct arena_and_views {
         // NOTE: It is not necessary to capture the `resp` pointer
@@ -79,6 +81,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
 
     // Invoke the stub
     grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
     viam::service::mlmodel::v1::MetadataResponse resp;
     const auto stub_result = stub_->Metadata(&ctx, req, &resp);
 
