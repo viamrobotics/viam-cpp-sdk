@@ -42,14 +42,12 @@ jobs:
     - name: remove examples
       # todo(RSDK-4735): no longer needed once 'all' is cleaned up
       run: sed -i '/add_subdirectory.examples/d' src/viam/CMakeLists.txt
-    - name: create build
-      run: mkdir build
     - name: cmake
-      working-directory: ./build
-      run: cmake -DCMAKE_INSTALL_PREFIX=/usr .. -G Ninja
+      run: cmake -S . -B ./build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr
     - name: build
-      working-directory: ./build
-      run: ninja libviamsdk.so && cpack
+      run: |
+        cmake --build ./build --target libviamsdk.so
+        cpack -B ./build
     - uses: actions/upload-artifact@v3
       with:
         name: debian-${{ matrix.label }}
