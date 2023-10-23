@@ -1,4 +1,4 @@
-prefix=/usr
+prefix=@CMAKE_INSTALL_PREFIX@
 libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
 base_includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
 deep_includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@/viam/api
