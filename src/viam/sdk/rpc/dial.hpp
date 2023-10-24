@@ -40,21 +40,17 @@ class Credentials {
 
 class DialOptions {
    public:
-    DialOptions()
-        : auth_entity_(boost::none),
-          credentials_(boost::none),
-          allow_insecure_downgrade_(false),
-          timeout_(20.0f) {}
+    DialOptions();
 
     const boost::optional<Credentials>& credentials() const;
     const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
-    float timeout() const;
+    std::chrono::seconds timeout() const;
 
     void set_entity(boost::optional<std::string> entity);
     void set_credentials(boost::optional<Credentials> creds);
     void set_allow_insecure_downgrade(bool allow);
-    void set_timeout(float timeout);
+    void set_timeout(std::chrono::seconds timeout);
 
    private:
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
@@ -68,11 +64,11 @@ class DialOptions {
 
     /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
     /// This is only used when credentials are not present.
-    bool allow_insecure_downgrade_;
+    bool allow_insecure_downgrade_ = false;
 
-    /// @brief Number of seconds before the dial connection times out
+    /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
-    float timeout_;
+    std::chrono::seconds timeout_ = std::chrono::seconds(20);
 };
 
 class Options {
