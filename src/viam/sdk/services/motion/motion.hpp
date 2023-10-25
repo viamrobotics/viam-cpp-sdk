@@ -32,12 +32,28 @@ class MotionRegistration : public ResourceRegistration {
                                                 std::shared_ptr<grpc::Channel> chan) override;
 };
 
+/// @struct obstacle_detector_name
+/// @brief Defines configuration for obstacle detectors by pairing a vision service name and a
+/// camera name.
+/// @ingroup Motion
+struct obstacle_detector {
+    /// @brief The name of the vision service to be used for obstacle detection.
+    Name vision_service;
+    /// @brief The name of the camera component to be used for obstacle detection.
+    Name camera;
+
+    service::motion::v1::ObstacleDetector to_proto() const;
+    static obstacle_detector from_proto(const service::motion::v1::ObstacleDetector& proto);
+    friend bool operator==(const obstacle_detector& lhs, const obstacle_detector& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const obstacle_detector& v);
+};
+
 /// @struct motion_configuration
 /// @brief Defines configuration options for certain `Motion` APIs.
 /// @ingroup Motion
 struct motion_configuration {
-    /// @brief The name of the vision service(s) that will be used for obstacle detection.
-    std::vector<Name> vision_services;
+    /// @brief The obstacle detectors to be used for the API call.
+    std::vector<obstacle_detector> obstacle_detectors;
 
     /// @brief If not null, sets the frequency to poll for the position of the robot.
     boost::optional<double> position_polling_frequency_hz;

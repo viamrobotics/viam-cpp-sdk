@@ -20,6 +20,7 @@ extern "C" char* dial(const char* uri,
                       const char* type,
                       const char* payload,
                       bool allow_insecure,
+                      float timeout,
                       void* ptr);
 namespace viam {
 namespace sdk {
@@ -48,6 +49,8 @@ const std::string& Credentials::payload() const {
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
     : channel_(channel), path_(path), closed_(false), rust_runtime_(runtime) {}
 
+DialOptions::DialOptions() = default;
+
 void DialOptions::set_credentials(boost::optional<Credentials> creds) {
     credentials_ = creds;
 }
@@ -56,12 +59,20 @@ void DialOptions::set_entity(boost::optional<std::string> entity) {
     auth_entity_ = entity;
 }
 
+void DialOptions::set_timeout(std::chrono::duration<float> timeout) {
+    timeout_ = std::move(timeout);
+}
+
 const boost::optional<std::string>& DialOptions::entity() const {
     return auth_entity_;
 }
 
 const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
+}
+
+const std::chrono::duration<float>& DialOptions::timeout() const {
+    return timeout_;
 }
 
 void DialOptions::set_allow_insecure_downgrade(bool allow) {
@@ -76,6 +87,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                boost::optional<DialOptions> options) {
     void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
+    const std::chrono::duration<float> float_timeout = opts.timeout();
     const char* type = nullptr;
     const char* entity = nullptr;
     const char* payload = nullptr;
@@ -87,7 +99,8 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-    char* socket_path = ::dial(uri, entity, type, payload, opts.allows_insecure_downgrade(), ptr);
+    char* socket_path = ::dial(
+        uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         // TODO(RSDK-1742) Replace throwing of strings with throwing of
