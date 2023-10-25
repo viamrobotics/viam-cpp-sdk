@@ -47,7 +47,7 @@ int main() {
     // Print resources.
     std::cout << "Resources" << std::endl;
     std::vector<ResourceName>* resource_names = robot->resource_names();
-    for (ResourceName& resource : *resource_names) {
+    for (const ResourceName& resource : *resource_names) {
         std::cout << "\tname: " << resource.name() << " (type:" << resource.type()
                   << " subtype:" << resource.subtype() << ")" << std::endl;
     }

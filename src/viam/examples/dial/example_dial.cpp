@@ -42,7 +42,7 @@ int main() {
     // ensure we can query resources
     std::vector<ResourceName>* resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
-    for (ResourceName& resource : *resource_names) {
+    for (const ResourceName& resource : *resource_names) {
         std::cout << "\tname: " << resource.name() << " (type:" << resource.type()
                   << " subtype:" << resource.subtype() << ")" << std::endl;
     }
@@ -50,7 +50,7 @@ int main() {
     // ensure we can query statuses
     std::vector<Status> status_plural = robot->get_status();
     std::cout << "Status plural len " << status_plural.size() << std::endl;
-    for (Status& s : status_plural) {
+    for (const Status& s : status_plural) {
         std::cout << " Status! " << s.name().subtype() << std::endl;
     }
 
@@ -58,7 +58,7 @@ int main() {
     std::vector<ResourceName> just_one = {resource_names->at(0)};
     std::vector<Status> status_singular = robot->get_status(just_one);
     std::cout << "Status singular len " << status_singular.size() << std::endl;
-    for (Status& s : status_singular) {
+    for (const Status& s : status_singular) {
         std::cout << " Status! " << s.name().subtype() << std::endl;
     }
 
