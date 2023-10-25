@@ -78,11 +78,11 @@ int main() {
     // Exercise Summation methods.
     auto sc = robot->resource_by_name<SummationClient>("mysum1");
     if (!sc) {
-        std::cerr << "could not get 'summation1' resource from robot" << std::endl;
+        std::cerr << "could not get 'mysum1' resource from robot" << std::endl;
         return EXIT_FAILURE;
     }
     double sum = sc->sum({0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
-    std::cout << "summation1 sum of numbers [0, 10) is: " << sum << std::endl;
+    std::cout << "mysum1 sum of numbers [0, 10) is: " << sum << std::endl;
 
     // Exercise a Base method.
     auto bc = robot->resource_by_name<BaseClient>("base1");
