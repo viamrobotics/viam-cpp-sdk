@@ -59,8 +59,8 @@ void DialOptions::set_entity(boost::optional<std::string> entity) {
     auth_entity_ = entity;
 }
 
-void DialOptions::set_timeout(std::chrono::seconds timeout) {
-    timeout_ = timeout;
+void DialOptions::set_timeout(std::chrono::duration<float> timeout) {
+    timeout_ = std::move(timeout);
 }
 
 const boost::optional<std::string>& DialOptions::entity() const {
@@ -71,7 +71,7 @@ const boost::optional<Credentials>& DialOptions::credentials() const {
     return credentials_;
 }
 
-std::chrono::seconds DialOptions::timeout() const {
+const std::chrono::duration<float>& DialOptions::timeout() const {
     return timeout_;
 }
 
