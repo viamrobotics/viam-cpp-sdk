@@ -1,7 +1,7 @@
 var searchData=
 [
   ['c_20sdk_0',['Viam C++ SDK',['../index.html',1,'']]],
-  ['camera_1',['Camera',['../classviam_1_1sdk_1_1Camera.html',1,'viam::sdk']]],
+  ['camera_1',['camera',['../classviam_1_1sdk_1_1Camera.html',1,'viam::sdk::Camera'],['../structviam_1_1sdk_1_1obstacle__detector.html#a6cc014d04d76cb3d2528a0e74fed8851',1,'viam::sdk::obstacle_detector::camera']]],
   ['camera_20component_2',['Classes related to the Camera component.',['../group__Camera.html',1,'']]],
   ['camera_2ehpp_3',['camera.hpp',['../camera_8hpp.html',1,'']]],
   ['cameraclient_4',['CameraClient',['../classviam_1_1sdk_1_1CameraClient.html',1,'viam::sdk']]],
@@ -17,7 +17,7 @@ var searchData=
   ['classes_20related_20to_20the_20generic_20component_14',['Classes related to the Generic component.',['../group__Generic.html',1,'']]],
   ['classes_20related_20to_20the_20motion_20service_15',['Classes related to the Motion service.',['../group__Motion.html',1,'']]],
   ['classes_20related_20to_20the_20motor_20component_16',['Classes related to the Motor component.',['../group__Motor.html',1,'']]],
-  ['client_2ehpp_17',['client.hpp',['../components_2board_2client_8hpp.html',1,'(Global Namespace)'],['../components_2base_2client_8hpp.html',1,'(Global Namespace)'],['../services_2motion_2client_8hpp.html',1,'(Global Namespace)'],['../components_2motor_2client_8hpp.html',1,'(Global Namespace)'],['../components_2generic_2client_8hpp.html',1,'(Global Namespace)'],['../components_2encoder_2client_8hpp.html',1,'(Global Namespace)'],['../components_2camera_2client_8hpp.html',1,'(Global Namespace)']]],
+  ['client_2ehpp_17',['client.hpp',['../components_2camera_2client_8hpp.html',1,'(Global Namespace)'],['../components_2board_2client_8hpp.html',1,'(Global Namespace)'],['../components_2base_2client_8hpp.html',1,'(Global Namespace)'],['../services_2motion_2client_8hpp.html',1,'(Global Namespace)'],['../components_2motor_2client_8hpp.html',1,'(Global Namespace)'],['../components_2generic_2client_8hpp.html',1,'(Global Namespace)'],['../components_2encoder_2client_8hpp.html',1,'(Global Namespace)']]],
   ['collision_5fspecification_18',['collision_specification',['../structviam_1_1sdk_1_1Motion_1_1collision__specification.html',1,'viam::sdk::Motion']]],
   ['component_19',['component',['../group__Base.html',1,'Classes related to the Base component.'],['../group__Board.html',1,'Classes related to the Board component.'],['../group__Camera.html',1,'Classes related to the Camera component.'],['../group__Encoder.html',1,'Classes related to the Encoder component.'],['../group__Generic.html',1,'Classes related to the Generic component.'],['../group__Motor.html',1,'Classes related to the Motor component.'],['../classviam_1_1sdk_1_1Component.html',1,'viam::sdk::Component']]],
   ['connectivity_20and_20webrtc_20functionality_20',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md7',1,'']]],
