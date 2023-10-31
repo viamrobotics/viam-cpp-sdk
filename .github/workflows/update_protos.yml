@@ -36,10 +36,14 @@ jobs:
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
           && cmake --build ./build --target update-buf
+        env:
+          BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: Generate buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
           && cmake --build ./build --target update-static-protos
+        env:
+          BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: cleanup
         run: rm -rf boost/ && rm -rf vcpkg/
       - name: Add + Commit + Open PR
