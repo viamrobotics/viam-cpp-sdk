@@ -1,7 +1,21 @@
 set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
-# TODO (RSDK-5441): modify this pin through an automated process
-set(BUF_PROTO_SOURCE buf.build/viamrobotics/api:v0.1.216)
+
+# reads in buf.lock and grabs the commit hashes supported by this version of C++ SDK
+if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/buf.lock)
+  message(FATAL_ERROR "No `buf.lock` file was found in the src/viam/api directory")
+endif()
+file(READ ${CMAKE_CURRENT_SOURCE_DIR}/buf.lock lockfile)
+
+string(REGEX MATCH "googleapis[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
+set(BUF_GOOGLE_API_SOURCE buf.build/googleapis/googleapis:${CMAKE_MATCH_1})
+
+string(REGEX MATCH "goutils[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
+set(BUF_VIAM_GOUTILS_SOURCE buf.build/viamrobotics/goutils:${CMAKE_MATCH_1})
+
+string(REGEX MATCH "api[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
+set(BUF_VIAM_API_SOURCE buf.build/viamrobotics/api:${CMAKE_MATCH_1})
+
 set(BUF_PROTO_COMPONENTS
   app/v1
   common
@@ -13,7 +27,7 @@ set(BUF_PROTO_COMPONENTS
 )
 
 # If we are using local proto generation, rework the
-# `BUF_PROTO_SOURCE` and `BUF_PROTO_COMPONENTS` as required to make
+# `BUF_VIAM_API_SOURCE` and `BUF_PROTO_COMPONENTS` as required to make
 # use of the API repo as positioned relative to us.
 if (VIAMCPPSDK_USE_LOCAL_PROTOS)
   if (NOT VIAMCPPSDK_USE_DYNAMIC_PROTOS)
@@ -29,7 +43,7 @@ if (VIAMCPPSDK_USE_LOCAL_PROTOS)
   endif()
 
   file(RELATIVE_PATH BUF_LOCAL_PROTO_PATH ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/..)
-  set(BUF_PROTO_SOURCE ${BUF_LOCAL_PROTO_PATH})
+  set(BUF_VIAM_API_SOURCE ${BUF_LOCAL_PROTO_PATH})
   list(TRANSFORM BUF_PROTO_COMPONENTS PREPEND ${BUF_LOCAL_PROTO_PATH}/api/proto/viam/)
 endif()
 
@@ -170,9 +184,9 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.h
 
-    COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/goutils --template buf.gen.yaml
-    COMMAND ${BUF_COMMAND} generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api
-    COMMAND ${BUF_COMMAND} generate ${BUF_PROTO_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
+    COMMAND ${BUF_COMMAND} generate ${BUF_GOOGLE_API_SOURCE} --template buf.gen.yaml --path google/rpc --path google/api
+    COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_GOUTILS_SOURCE} --template buf.gen.yaml
+    COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
@@ -197,6 +211,12 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROTO_GEN_DIR} ${CMAKE_CURRENT_SOURCE_DIR}
   )
 endif(VIAMCPPSDK_USE_DYNAMIC_PROTOS)
+
+
+add_custom_target(
+  update-buf 
+  COMMAND buf mod update ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 # Declare the viamcpp library, and attach sources,
 # headers for installation
