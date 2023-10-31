@@ -146,9 +146,10 @@ int main(int argc, char* argv[]) try {
     // In classification mode, this should be the api key id for the robot
     // where the generated configuration is currently running.
     boost::optional<std::string> opt_api_key_id;
-    options_desc.add_options()("robot-api-key-id",
-                               bpo::value(&opt_api_key_id),
-                               "API key id for accessing the robot running at `--robot-api-key-id`\n");
+    options_desc.add_options()(
+        "robot-api-key-id",
+        bpo::value(&opt_api_key_id),
+        "API key id for accessing the robot running at `--robot-api-key-id`\n");
   
     // Parse the command line, and print the options summary if the user requested `--help`.
     bpo::variables_map option_variables;
@@ -206,8 +207,7 @@ int main(int argc, char* argv[]) try {
     } else {
         // Validate that we have the right options for classification mode.
         if (opt_model_path || opt_tflite_module_path) {
-            std::cout << argv[0] 
-                      << ": Without `--generate`, do not provide `--*path*` arguments"
+            std::cout << argv[0] << ": Without `--generate`, do not provide `--*path*` arguments"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -220,12 +220,12 @@ int main(int argc, char* argv[]) try {
         }
 
         if (!opt_api_key || !opt_api_key_id)) {
-            std::cout << argv[0]
-                      << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
-                         "required when connecting to a robot"
-                      << std::endl;
-            return EXIT_FAILURE;
-        }
+                std::cout << argv[0]
+                          << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
+                             "required when connecting to a robot"
+                          << std::endl;
+                return EXIT_FAILURE;
+         }
 
         // Connect to the robot at the given URL with the provided
         // secret. Please see other examples for more details on
