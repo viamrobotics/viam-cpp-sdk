@@ -219,13 +219,13 @@ int main(int argc, char* argv[]) try {
             return EXIT_FAILURE;
         }
 
-        if (!opt_api_key || !opt_api_key_id)) {
-                std::cout << argv[0]
-                          << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
-                             "required when connecting to a robot"
-                          << std::endl;
+        if (!opt_api_key || !opt_api_key_id) {
+            std::cout << argv[0]
+                      << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
+                         "required when connecting to a robot"
+                      << std::endl;
             return EXIT_FAILURE;
-         }
+        }
 
         // Connect to the robot at the given URL with the provided
         // secret. Please see other examples for more details on
