@@ -150,7 +150,7 @@ int main(int argc, char* argv[]) try {
         "robot-api-key-id",
         bpo::value(&opt_api_key_id),
         "API key id for accessing the robot running at `--robot-api-key-id`\n");
-  
+
     // Parse the command line, and print the options summary if the user requested `--help`.
     bpo::variables_map option_variables;
     bpo::store(bpo::parse_command_line(argc, argv, options_desc), option_variables);
@@ -224,7 +224,7 @@ int main(int argc, char* argv[]) try {
                           << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
                              "required when connecting to a robot"
                           << std::endl;
-                return EXIT_FAILURE;
+            return EXIT_FAILURE;
          }
 
         // Connect to the robot at the given URL with the provided
