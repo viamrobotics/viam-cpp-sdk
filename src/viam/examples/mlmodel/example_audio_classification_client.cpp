@@ -149,7 +149,7 @@ int main(int argc, char* argv[]) try {
     options_desc.add_options()(
         "robot-api-key-id",
         bpo::value(&opt_api_key_id),
-        "API key id for accessing the robot running at `--robot-api-key-id`\n");
+        "API key id for accessing the robot running at `--robot-host`\n");
 
     // Parse the command line, and print the options summary if the user requested `--help`.
     bpo::variables_map option_variables;
