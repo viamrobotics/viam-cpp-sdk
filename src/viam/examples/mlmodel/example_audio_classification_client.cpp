@@ -136,13 +136,20 @@ int main(int argc, char* argv[]) try {
         bpo::value(&opt_robot_host),
         "Hostname of robot (e.g. foobar.zvzzzvzzvz.viam.cloud), including optional port\n");
 
-    // In classification mode, this should be the secret for the robot
+    // In classification mode, this should be the api key for the robot
     // where the generated configuration is currently running.
-    boost::optional<std::string> opt_robot_secret;
-    options_desc.add_options()("robot-secret",
-                               bpo::value(&opt_robot_secret),
-                               "Secret for accessing the robot running at `--robot-host`\n");
+    boost::optional<std::string> opt_api_key;
+    options_desc.add_options()("robot-api-key",
+                               bpo::value(&opt_api_key),
+                               "API key for accessing the robot running at `--robot-api-key`\n");
 
+    // In classification mode, this should be the api key id for the robot
+    // where the generated configuration is currently running.
+    boost::optional<std::string> opt_api_key_id;
+    options_desc.add_options()("robot-api-key-id",
+                               bpo::value(&opt_api_key_id),
+                               "API key id for accessing the robot running at `--robot-api-key-id`\n");
+  
     // Parse the command line, and print the options summary if the user requested `--help`.
     bpo::variables_map option_variables;
     bpo::store(bpo::parse_command_line(argc, argv, options_desc), option_variables);
@@ -154,8 +161,8 @@ int main(int argc, char* argv[]) try {
 
     if (opt_generating) {
         // Validate that we have the right options for generation.
-        if (opt_robot_host || opt_robot_secret) {
-            std::cout << argv[0] << ": With `--generate`, do not provide `--robot-{host,secret}`"
+        if (opt_robot_host || opt_api_key || opt_api_key_id) {
+            std::cout << argv[0] << ": With `--generate`, do not provide `--robot-{host,api-key,api-key-id}`"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -210,9 +217,9 @@ int main(int argc, char* argv[]) try {
             return EXIT_FAILURE;
         }
 
-        if (!opt_robot_secret) {
+        if (!opt_api_key || !opt_api_key_id)) {
             std::cout << argv[0]
-                      << ": The `--robot-secret` argument is required when connecting to a robot"
+                      << ": The `--robot-api-key` and the `--robot-api-key-id` argument are required when connecting to a robot"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -221,9 +228,15 @@ int main(int argc, char* argv[]) try {
         // secret. Please see other examples for more details on
         // connecting to robots with the C++ SDK.
         vsdk::DialOptions dial_opts;
-        dial_opts.set_credentials(vsdk::Credentials(opt_robot_secret.get()));
+        dial_opts.set_type("api-key");
+        dial_opts.set_entity(opt_api_key.get());
+        Credentials credentials(opt_api_key_id.get());
+        dial_opts.set_credentials(credentials);
+        boost::optional<DialOptions> opts(dial_opts);
+        Options options(0, opts);
+
         auto robot =
-            vsdk::RobotClient::at_address(opt_robot_host.get(), {0, {std::move(dial_opts)}});
+            vsdk::RobotClient::at_address(opt_robot_host.get(), options);
 
         // Obtain a handle to the MLModelService module on the robot. Note that the string
         // `yamnet_classification_tflite` is arbitrary. It just matches what was used to name the
