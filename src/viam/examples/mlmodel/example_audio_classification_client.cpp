@@ -162,7 +162,8 @@ int main(int argc, char* argv[]) try {
     if (opt_generating) {
         // Validate that we have the right options for generation.
         if (opt_robot_host || opt_api_key || opt_api_key_id) {
-            std::cout << argv[0] << ": With `--generate`, do not provide `--robot-{host,api-key,api-key-id}`"
+            std::cout << argv[0]
+                      << ": With `--generate`, do not provide `--robot-{host,api-key,api-key-id}`"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -205,7 +206,8 @@ int main(int argc, char* argv[]) try {
     } else {
         // Validate that we have the right options for classification mode.
         if (opt_model_path || opt_tflite_module_path) {
-            std::cout << argv[0] << ": Without `--generate`, do not provide `--*path*` arguments"
+            std::cout << argv[0] 
+                      << ": Without `--generate`, do not provide `--*path*` arguments"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -219,7 +221,8 @@ int main(int argc, char* argv[]) try {
 
         if (!opt_api_key || !opt_api_key_id)) {
             std::cout << argv[0]
-                      << ": The `--robot-api-key` and the `--robot-api-key-id` argument are required when connecting to a robot"
+                      << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
+                         "required when connecting to a robot"
                       << std::endl;
             return EXIT_FAILURE;
         }
@@ -235,8 +238,7 @@ int main(int argc, char* argv[]) try {
         boost::optional<DialOptions> opts(dial_opts);
         Options options(0, opts);
 
-        auto robot =
-            vsdk::RobotClient::at_address(opt_robot_host.get(), options);
+        auto robot = vsdk::RobotClient::at_address(opt_robot_host.get(), options);
 
         // Obtain a handle to the MLModelService module on the robot. Note that the string
         // `yamnet_classification_tflite` is arbitrary. It just matches what was used to name the
