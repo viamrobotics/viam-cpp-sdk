@@ -35,6 +35,7 @@ static const char* MovementSensorService_method_names[] = {
   "/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration",
   "/viam.component.movementsensor.v1.MovementSensorService/DoCommand",
   "/viam.component.movementsensor.v1.MovementSensorService/GetGeometries",
+  "/viam.component.movementsensor.v1.MovementSensorService/GetReadings",
 };
 
 std::unique_ptr< MovementSensorService::Stub> MovementSensorService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -54,6 +55,7 @@ MovementSensorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterfac
   , rpcmethod_GetLinearAcceleration_(MovementSensorService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(MovementSensorService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetGeometries_(MovementSensorService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReadings_(MovementSensorService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MovementSensorService::Stub::GetLinearVelocity(::grpc::ClientContext* context, const ::viam::component::movementsensor::v1::GetLinearVelocityRequest& request, ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) {
@@ -286,6 +288,29 @@ void MovementSensorService::Stub::async::GetGeometries(::grpc::ClientContext* co
   return result;
 }
 
+::grpc::Status MovementSensorService::Stub::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReadings_, context, request, response);
+}
+
+void MovementSensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
+}
+
+void MovementSensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* MovementSensorService::Stub::PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetReadingsResponse, ::viam::common::v1::GetReadingsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReadings_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* MovementSensorService::Stub::AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReadingsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MovementSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MovementSensorService_method_names[0],
@@ -387,6 +412,16 @@ MovementSensorService::Service::Service() {
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MovementSensorService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MovementSensorService::Service, ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MovementSensorService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetReadingsRequest* req,
+             ::viam::common::v1::GetReadingsResponse* resp) {
+               return service->GetReadings(ctx, req, resp);
+             }, this)));
 }
 
 MovementSensorService::Service::~Service() {
@@ -456,6 +491,13 @@ MovementSensorService::Service::~Service() {
 }
 
 ::grpc::Status MovementSensorService::Service::GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MovementSensorService::Service::GetReadings(::grpc::ServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

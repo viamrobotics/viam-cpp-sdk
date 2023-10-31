@@ -117,6 +117,9 @@ extern MoveRequestDefaultTypeInternal _MoveRequest_default_instance_;
 class MoveResponse;
 struct MoveResponseDefaultTypeInternal;
 extern MoveResponseDefaultTypeInternal _MoveResponse_default_instance_;
+class ObstacleDetector;
+struct ObstacleDetectorDefaultTypeInternal;
+extern ObstacleDetectorDefaultTypeInternal _ObstacleDetector_default_instance_;
 class OrientationConstraint;
 struct OrientationConstraintDefaultTypeInternal;
 extern OrientationConstraintDefaultTypeInternal _OrientationConstraint_default_instance_;
@@ -169,6 +172,7 @@ template<> ::viam::service::motion::v1::MoveOnMapRequest* Arena::CreateMaybeMess
 template<> ::viam::service::motion::v1::MoveOnMapResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveOnMapResponse>(Arena*);
 template<> ::viam::service::motion::v1::MoveRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveRequest>(Arena*);
 template<> ::viam::service::motion::v1::MoveResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::MoveResponse>(Arena*);
+template<> ::viam::service::motion::v1::ObstacleDetector* Arena::CreateMaybeMessage<::viam::service::motion::v1::ObstacleDetector>(Arena*);
 template<> ::viam::service::motion::v1::OrientationConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::OrientationConstraint>(Arena*);
 template<> ::viam::service::motion::v1::Plan* Arena::CreateMaybeMessage<::viam::service::motion::v1::Plan>(Arena*);
 template<> ::viam::service::motion::v1::PlanStatus* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStatus>(Arena*);
@@ -977,6 +981,178 @@ class MoveOnMapResponse final :
 };
 // -------------------------------------------------------------------
 
+class ObstacleDetector final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.ObstacleDetector) */ {
+ public:
+  inline ObstacleDetector() : ObstacleDetector(nullptr) {}
+  ~ObstacleDetector() override;
+  explicit PROTOBUF_CONSTEXPR ObstacleDetector(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ObstacleDetector(const ObstacleDetector& from);
+  ObstacleDetector(ObstacleDetector&& from) noexcept
+    : ObstacleDetector() {
+    *this = ::std::move(from);
+  }
+
+  inline ObstacleDetector& operator=(const ObstacleDetector& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ObstacleDetector& operator=(ObstacleDetector&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ObstacleDetector& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ObstacleDetector* internal_default_instance() {
+    return reinterpret_cast<const ObstacleDetector*>(
+               &_ObstacleDetector_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(ObstacleDetector& a, ObstacleDetector& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ObstacleDetector* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ObstacleDetector* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ObstacleDetector* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ObstacleDetector>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ObstacleDetector& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ObstacleDetector& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ObstacleDetector* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.ObstacleDetector";
+  }
+  protected:
+  explicit ObstacleDetector(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVisionServiceFieldNumber = 1,
+    kCameraFieldNumber = 2,
+  };
+  // .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
+  bool has_vision_service() const;
+  private:
+  bool _internal_has_vision_service() const;
+  public:
+  void clear_vision_service();
+  const ::viam::common::v1::ResourceName& vision_service() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_vision_service();
+  ::viam::common::v1::ResourceName* mutable_vision_service();
+  void set_allocated_vision_service(::viam::common::v1::ResourceName* vision_service);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_vision_service() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_vision_service();
+  public:
+  void unsafe_arena_set_allocated_vision_service(
+      ::viam::common::v1::ResourceName* vision_service);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_vision_service();
+
+  // .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
+  bool has_camera() const;
+  private:
+  bool _internal_has_camera() const;
+  public:
+  void clear_camera();
+  const ::viam::common::v1::ResourceName& camera() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_camera();
+  ::viam::common::v1::ResourceName* mutable_camera();
+  void set_allocated_camera(::viam::common::v1::ResourceName* camera);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_camera() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_camera();
+  public:
+  void unsafe_arena_set_allocated_camera(
+      ::viam::common::v1::ResourceName* camera);
+  ::viam::common::v1::ResourceName* unsafe_arena_release_camera();
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.ObstacleDetector)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::common::v1::ResourceName* vision_service_;
+  ::viam::common::v1::ResourceName* camera_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MotionConfiguration final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.MotionConfiguration) */ {
  public:
@@ -1025,7 +1201,7 @@ class MotionConfiguration final :
                &_MotionConfiguration_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(MotionConfiguration& a, MotionConfiguration& b) {
     a.Swap(&b);
@@ -1096,30 +1272,30 @@ class MotionConfiguration final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kVisionServicesFieldNumber = 1,
+    kObstacleDetectorsFieldNumber = 1,
     kPositionPollingFrequencyHzFieldNumber = 2,
     kObstaclePollingFrequencyHzFieldNumber = 3,
     kPlanDeviationMFieldNumber = 4,
     kLinearMPerSecFieldNumber = 5,
     kAngularDegsPerSecFieldNumber = 6,
   };
-  // repeated .viam.common.v1.ResourceName vision_services = 1 [json_name = "visionServices"];
-  int vision_services_size() const;
+  // repeated .viam.service.motion.v1.ObstacleDetector obstacle_detectors = 1 [json_name = "obstacleDetectors"];
+  int obstacle_detectors_size() const;
   private:
-  int _internal_vision_services_size() const;
+  int _internal_obstacle_detectors_size() const;
   public:
-  void clear_vision_services();
-  ::viam::common::v1::ResourceName* mutable_vision_services(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
-      mutable_vision_services();
+  void clear_obstacle_detectors();
+  ::viam::service::motion::v1::ObstacleDetector* mutable_obstacle_detectors(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::ObstacleDetector >*
+      mutable_obstacle_detectors();
   private:
-  const ::viam::common::v1::ResourceName& _internal_vision_services(int index) const;
-  ::viam::common::v1::ResourceName* _internal_add_vision_services();
+  const ::viam::service::motion::v1::ObstacleDetector& _internal_obstacle_detectors(int index) const;
+  ::viam::service::motion::v1::ObstacleDetector* _internal_add_obstacle_detectors();
   public:
-  const ::viam::common::v1::ResourceName& vision_services(int index) const;
-  ::viam::common::v1::ResourceName* add_vision_services();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
-      vision_services() const;
+  const ::viam::service::motion::v1::ObstacleDetector& obstacle_detectors(int index) const;
+  ::viam::service::motion::v1::ObstacleDetector* add_obstacle_detectors();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::ObstacleDetector >&
+      obstacle_detectors() const;
 
   // optional double position_polling_frequency_hz = 2 [json_name = "positionPollingFrequencyHz"];
   bool has_position_polling_frequency_hz() const;
@@ -1195,7 +1371,7 @@ class MotionConfiguration final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName > vision_services_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::ObstacleDetector > obstacle_detectors_;
   double position_polling_frequency_hz_;
   double obstacle_polling_frequency_hz_;
   double plan_deviation_m_;
@@ -1253,7 +1429,7 @@ class MoveOnGlobeRequest final :
                &_MoveOnGlobeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(MoveOnGlobeRequest& a, MoveOnGlobeRequest& b) {
     a.Swap(&b);
@@ -1537,7 +1713,7 @@ class MoveOnGlobeResponse final :
                &_MoveOnGlobeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(MoveOnGlobeResponse& a, MoveOnGlobeResponse& b) {
     a.Swap(&b);
@@ -1680,7 +1856,7 @@ class MoveOnGlobeNewRequest final :
                &_MoveOnGlobeNewRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(MoveOnGlobeNewRequest& a, MoveOnGlobeNewRequest& b) {
     a.Swap(&b);
@@ -1964,7 +2140,7 @@ class MoveOnGlobeNewResponse final :
                &_MoveOnGlobeNewResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(MoveOnGlobeNewResponse& a, MoveOnGlobeNewResponse& b) {
     a.Swap(&b);
@@ -2112,7 +2288,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -2336,7 +2512,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -2488,7 +2664,7 @@ class StopPlanRequest final :
                &_StopPlanRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(StopPlanRequest& a, StopPlanRequest& b) {
     a.Swap(&b);
@@ -2675,7 +2851,7 @@ class StopPlanResponse final :
                &_StopPlanResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(StopPlanResponse& a, StopPlanResponse& b) {
     a.Swap(&b);
@@ -2792,7 +2968,7 @@ class ListPlanStatusesRequest final :
                &_ListPlanStatusesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(ListPlanStatusesRequest& a, ListPlanStatusesRequest& b) {
     a.Swap(&b);
@@ -2971,7 +3147,7 @@ class ListPlanStatusesResponse final :
                &_ListPlanStatusesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(ListPlanStatusesResponse& a, ListPlanStatusesResponse& b) {
     a.Swap(&b);
@@ -3123,7 +3299,7 @@ class GetPlanRequest final :
                &_GetPlanRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(GetPlanRequest& a, GetPlanRequest& b) {
     a.Swap(&b);
@@ -3343,7 +3519,7 @@ class GetPlanResponse final :
                &_GetPlanResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(GetPlanResponse& a, GetPlanResponse& b) {
     a.Swap(&b);
@@ -3515,7 +3691,7 @@ class Constraints final :
                &_Constraints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Constraints& a, Constraints& b) {
     a.Swap(&b);
@@ -3707,7 +3883,7 @@ class LinearConstraint final :
                &_LinearConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(LinearConstraint& a, LinearConstraint& b) {
     a.Swap(&b);
@@ -3870,7 +4046,7 @@ class OrientationConstraint final :
                &_OrientationConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
     a.Swap(&b);
@@ -4018,7 +4194,7 @@ class CollisionSpecification_AllowedFrameCollisions final :
                &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
     a.Swap(&b);
@@ -4182,7 +4358,7 @@ class CollisionSpecification final :
                &_CollisionSpecification_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
     a.Swap(&b);
@@ -4336,7 +4512,7 @@ class PlanWithStatus final :
                &_PlanWithStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(PlanWithStatus& a, PlanWithStatus& b) {
     a.Swap(&b);
@@ -4528,7 +4704,7 @@ class PlanStatusWithID final :
                &_PlanStatusWithID_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(PlanStatusWithID& a, PlanStatusWithID& b) {
     a.Swap(&b);
@@ -4732,7 +4908,7 @@ class PlanStatus final :
                &_PlanStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(PlanStatus& a, PlanStatus& b) {
     a.Swap(&b);
@@ -4916,7 +5092,7 @@ class Plan final :
                &_Plan_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(Plan& a, Plan& b) {
     a.Swap(&b);
@@ -5146,7 +5322,7 @@ class PlanStep final :
                &_PlanStep_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(PlanStep& a, PlanStep& b) {
     a.Swap(&b);
@@ -5304,7 +5480,7 @@ class ComponentState final :
                &_ComponentState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(ComponentState& a, ComponentState& b) {
     a.Swap(&b);
@@ -6343,43 +6519,220 @@ inline void MoveOnMapResponse::set_success(bool value) {
 
 // -------------------------------------------------------------------
 
+// ObstacleDetector
+
+// .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
+inline bool ObstacleDetector::_internal_has_vision_service() const {
+  return this != internal_default_instance() && vision_service_ != nullptr;
+}
+inline bool ObstacleDetector::has_vision_service() const {
+  return _internal_has_vision_service();
+}
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::_internal_vision_service() const {
+  const ::viam::common::v1::ResourceName* p = vision_service_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::vision_service() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ObstacleDetector.vision_service)
+  return _internal_vision_service();
+}
+inline void ObstacleDetector::unsafe_arena_set_allocated_vision_service(
+    ::viam::common::v1::ResourceName* vision_service) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_);
+  }
+  vision_service_ = vision_service;
+  if (vision_service) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ObstacleDetector.vision_service)
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::release_vision_service() {
+  
+  ::viam::common::v1::ResourceName* temp = vision_service_;
+  vision_service_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::unsafe_arena_release_vision_service() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.vision_service)
+  
+  ::viam::common::v1::ResourceName* temp = vision_service_;
+  vision_service_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::_internal_mutable_vision_service() {
+  
+  if (vision_service_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    vision_service_ = p;
+  }
+  return vision_service_;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::mutable_vision_service() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_vision_service();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ObstacleDetector.vision_service)
+  return _msg;
+}
+inline void ObstacleDetector::set_allocated_vision_service(::viam::common::v1::ResourceName* vision_service) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_);
+  }
+  if (vision_service) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service));
+    if (message_arena != submessage_arena) {
+      vision_service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, vision_service, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  vision_service_ = vision_service;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ObstacleDetector.vision_service)
+}
+
+// .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
+inline bool ObstacleDetector::_internal_has_camera() const {
+  return this != internal_default_instance() && camera_ != nullptr;
+}
+inline bool ObstacleDetector::has_camera() const {
+  return _internal_has_camera();
+}
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::_internal_camera() const {
+  const ::viam::common::v1::ResourceName* p = camera_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::camera() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ObstacleDetector.camera)
+  return _internal_camera();
+}
+inline void ObstacleDetector::unsafe_arena_set_allocated_camera(
+    ::viam::common::v1::ResourceName* camera) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_);
+  }
+  camera_ = camera;
+  if (camera) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ObstacleDetector.camera)
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::release_camera() {
+  
+  ::viam::common::v1::ResourceName* temp = camera_;
+  camera_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::unsafe_arena_release_camera() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.camera)
+  
+  ::viam::common::v1::ResourceName* temp = camera_;
+  camera_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::_internal_mutable_camera() {
+  
+  if (camera_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    camera_ = p;
+  }
+  return camera_;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::mutable_camera() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_camera();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ObstacleDetector.camera)
+  return _msg;
+}
+inline void ObstacleDetector::set_allocated_camera(::viam::common::v1::ResourceName* camera) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_);
+  }
+  if (camera) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera));
+    if (message_arena != submessage_arena) {
+      camera = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, camera, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  camera_ = camera;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ObstacleDetector.camera)
+}
+
+// -------------------------------------------------------------------
+
 // MotionConfiguration
 
-// repeated .viam.common.v1.ResourceName vision_services = 1 [json_name = "visionServices"];
-inline int MotionConfiguration::_internal_vision_services_size() const {
-  return vision_services_.size();
+// repeated .viam.service.motion.v1.ObstacleDetector obstacle_detectors = 1 [json_name = "obstacleDetectors"];
+inline int MotionConfiguration::_internal_obstacle_detectors_size() const {
+  return obstacle_detectors_.size();
 }
-inline int MotionConfiguration::vision_services_size() const {
-  return _internal_vision_services_size();
+inline int MotionConfiguration::obstacle_detectors_size() const {
+  return _internal_obstacle_detectors_size();
 }
-inline ::viam::common::v1::ResourceName* MotionConfiguration::mutable_vision_services(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MotionConfiguration.vision_services)
-  return vision_services_.Mutable(index);
+inline void MotionConfiguration::clear_obstacle_detectors() {
+  obstacle_detectors_.Clear();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >*
-MotionConfiguration::mutable_vision_services() {
-  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MotionConfiguration.vision_services)
-  return &vision_services_;
+inline ::viam::service::motion::v1::ObstacleDetector* MotionConfiguration::mutable_obstacle_detectors(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MotionConfiguration.obstacle_detectors)
+  return obstacle_detectors_.Mutable(index);
 }
-inline const ::viam::common::v1::ResourceName& MotionConfiguration::_internal_vision_services(int index) const {
-  return vision_services_.Get(index);
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::ObstacleDetector >*
+MotionConfiguration::mutable_obstacle_detectors() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.MotionConfiguration.obstacle_detectors)
+  return &obstacle_detectors_;
 }
-inline const ::viam::common::v1::ResourceName& MotionConfiguration::vision_services(int index) const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.vision_services)
-  return _internal_vision_services(index);
+inline const ::viam::service::motion::v1::ObstacleDetector& MotionConfiguration::_internal_obstacle_detectors(int index) const {
+  return obstacle_detectors_.Get(index);
 }
-inline ::viam::common::v1::ResourceName* MotionConfiguration::_internal_add_vision_services() {
-  return vision_services_.Add();
+inline const ::viam::service::motion::v1::ObstacleDetector& MotionConfiguration::obstacle_detectors(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MotionConfiguration.obstacle_detectors)
+  return _internal_obstacle_detectors(index);
 }
-inline ::viam::common::v1::ResourceName* MotionConfiguration::add_vision_services() {
-  ::viam::common::v1::ResourceName* _add = _internal_add_vision_services();
-  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MotionConfiguration.vision_services)
+inline ::viam::service::motion::v1::ObstacleDetector* MotionConfiguration::_internal_add_obstacle_detectors() {
+  return obstacle_detectors_.Add();
+}
+inline ::viam::service::motion::v1::ObstacleDetector* MotionConfiguration::add_obstacle_detectors() {
+  ::viam::service::motion::v1::ObstacleDetector* _add = _internal_add_obstacle_detectors();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.MotionConfiguration.obstacle_detectors)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::ResourceName >&
-MotionConfiguration::vision_services() const {
-  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MotionConfiguration.vision_services)
-  return vision_services_;
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::ObstacleDetector >&
+MotionConfiguration::obstacle_detectors() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.MotionConfiguration.obstacle_detectors)
+  return obstacle_detectors_;
 }
 
 // optional double position_polling_frequency_hz = 2 [json_name = "positionPollingFrequencyHz"];
@@ -10375,6 +10728,8 @@ inline void ComponentState::set_allocated_pose(::viam::common::v1::Pose* pose) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
