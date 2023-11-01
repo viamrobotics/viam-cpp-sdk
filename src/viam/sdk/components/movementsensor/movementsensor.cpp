@@ -14,29 +14,9 @@
 namespace viam {
 namespace sdk {
 
-// MovementSensorRegistration::MovementSensorRegistration(
-//     const google::protobuf::ServiceDescriptor* service_descriptor)
-//     : ResourceRegistration(service_descriptor){};
-
-// std::shared_ptr<ResourceServer> MovementSensorRegistration::create_resource_server(
-//     std::shared_ptr<ResourceManager> manager) {
-//     return std::make_shared<MovementSensorServer>(manager);
-// };
-
-// std::shared_ptr<Resource> MovementSensorRegistration::create_rpc_client(
-//     std::string name, std::shared_ptr<grpc::Channel> chan) {
-//     return std::make_shared<MovementSensorClient>(std::move(name), std::move(chan));
-// };
-
-// std::shared_ptr<ResourceRegistration> MovementSensor::resource_registration() {
-//     const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
-//     const google::protobuf::ServiceDescriptor* sd = p->FindServiceByName(
-//         viam::component::movementsensor::v1::MovementSensorService::service_full_name());
-//     if (!sd) {
-//         throw std::runtime_error("Unable to get service descriptor for the movementsensor service");
-//     }
-//     return std::make_shared<MovementSensorRegistration>(sd);
-// }
+std::shared_ptr<ResourceRegistration> MovementSensor::resource_registration() {
+    return MovementSensorRegistration::resource_registration();
+}
 
 API MovementSensor::static_api() {
     return {kRDK, kComponent, "movementsensor"};

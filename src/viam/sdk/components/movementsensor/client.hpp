@@ -61,5 +61,10 @@ class MovementSensorClient : public MovementSensor {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
+class MovementSensorRegistration : public ResourceRegistration2<MovementSensorClient, MovementSensorServer, viam::component::movementsensor::v1::MovementSensorService, MovementSensorRegistration> {
+   public:
+    using ResourceRegistration2::ResourceRegistration2;
+};
+
 }  // namespace sdk
 }  // namespace viam

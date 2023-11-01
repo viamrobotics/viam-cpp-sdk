@@ -191,8 +191,6 @@ class MovementSensor : public Component {
     explicit MovementSensor(std::string name) : Component(std::move(name)){};
 };
 
-class MovementSensorRegistration : public ResourceRegistration2<MovementSensor, MovementSensorServer, viam::component::movementsensor::v1::MovementSensorService> {};
-
 bool operator==(const MovementSensor::compassheading& lhs,
                 const MovementSensor::compassheading& rhs);
 bool operator==(const MovementSensor::position& lhs, const MovementSensor::position& rhs);
