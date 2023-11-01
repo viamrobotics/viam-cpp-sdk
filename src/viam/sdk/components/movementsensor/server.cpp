@@ -6,6 +6,8 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
+using namespace viam::component::movementsensor::v1;
+
 namespace viam {
 namespace sdk {
 
@@ -16,27 +18,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request,
-    ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetLinearVelocity] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetLinearVelocityRequest* request,
+    GetLinearVelocityResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    Vector3 result = movementsensor->get_linear_velocity(extra);
+    Vector3 result = status.movementsensor->get_linear_velocity(status.extra);
     *response->mutable_linear_velocity() = Vector3::to_proto(result);
 
     return ::grpc::Status();
@@ -44,27 +33,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetAngularVelocity(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request,
-    ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetAngularVelocity] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetAngularVelocityRequest* request,
+    GetAngularVelocityResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    Vector3 result = movementsensor->get_angular_velocity(extra);
+    Vector3 result = status.movementsensor->get_angular_velocity(status.extra);
     *response->mutable_angular_velocity() = Vector3::to_proto(result);
 
     return ::grpc::Status();
@@ -72,27 +48,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetCompassHeading(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request,
-    ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetCompassHeading] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetCompassHeadingRequest* request,
+    GetCompassHeadingResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    MovementSensor::compassheading result = movementsensor->get_compass_heading(extra);
+    MovementSensor::compassheading result = status.movementsensor->get_compass_heading(status.extra);
     response->set_value(result.value);
 
     return ::grpc::Status();
@@ -100,27 +63,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetOrientation(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetOrientationRequest* request,
-    ::viam::component::movementsensor::v1::GetOrientationResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetOrientation] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetOrientationRequest* request,
+    GetOrientationResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    MovementSensor::orientation result = movementsensor->get_orientation(extra);
+    MovementSensor::orientation result = status.movementsensor->get_orientation(status.extra);
     *response->mutable_orientation() = MovementSensor::to_proto(result);
 
     return ::grpc::Status();
@@ -128,27 +78,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetPosition(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetPositionRequest* request,
-    ::viam::component::movementsensor::v1::GetPositionResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetPosition] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetPositionRequest* request,
+    GetPositionResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    MovementSensor::position result = movementsensor->get_position(extra);
+    MovementSensor::position result = status.movementsensor->get_position(status.extra);
     *response->mutable_coordinate() = result.coordinate.to_proto();
     response->set_altitude_m(result.altitude_m);
 
@@ -157,27 +94,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetProperties(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetPropertiesRequest* request,
-    ::viam::component::movementsensor::v1::GetPropertiesResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetProperties] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetPropertiesRequest* request,
+    GetPropertiesResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    MovementSensor::properties result = movementsensor->get_properties(extra);
+    MovementSensor::properties result = status.movementsensor->get_properties(status.extra);
     response->set_linear_velocity_supported(result.linear_velocity_supported);
     response->set_angular_velocity_supported(result.angular_velocity_supported);
     response->set_orientation_supported(result.orientation_supported);
@@ -190,27 +114,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetAccuracy(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetAccuracyRequest* request,
-    ::viam::component::movementsensor::v1::GetAccuracyResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetAccuracy] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetAccuracyRequest* request,
+    GetAccuracyResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    std::unordered_map<std::string, float> result = movementsensor->get_accuracy(extra);
+    std::unordered_map<std::string, float> result = status.movementsensor->get_accuracy(status.extra);
     response->mutable_accuracy()->empty();
     for (const auto& i : result) {
         response->mutable_accuracy()->insert({i.first, i.second});
@@ -221,27 +132,14 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 
 ::grpc::Status MovementSensorServer::GetLinearAcceleration(
     ::grpc::ServerContext* context,
-    const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request,
-    ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [MovementSensor::GetLinearAcceleration] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    const GetLinearAccelerationRequest* request,
+    GetLinearAccelerationResponse* response) {
+    const auto status = server_wrapper<MovementSensor>(request);
+    if (!status.ok()) {
+        return status.status;
     }
 
-    const std::shared_ptr<MovementSensor> movementsensor =
-        std::dynamic_pointer_cast<MovementSensor>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    Vector3 result = movementsensor->get_linear_acceleration(extra);
+    Vector3 result = status.movementsensor->get_linear_acceleration(status.extra);
     *response->mutable_linear_acceleration() = Vector3::to_proto(result);
 
     return ::grpc::Status();
