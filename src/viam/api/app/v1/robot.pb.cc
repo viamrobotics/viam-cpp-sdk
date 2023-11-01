@@ -58,6 +58,18 @@ struct LocationSecretDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocationSecretDefaultTypeInternal _LocationSecret_default_instance_;
+PROTOBUF_CONSTEXPR AppValidationStatus::AppValidationStatus(
+    ::_pbi::ConstantInitialized)
+  : error_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct AppValidationStatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AppValidationStatusDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AppValidationStatusDefaultTypeInternal() {}
+  union {
+    AppValidationStatus _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AppValidationStatusDefaultTypeInternal _AppValidationStatus_default_instance_;
 PROTOBUF_CONSTEXPR CloudConfig::CloudConfig(
     ::_pbi::ConstantInitialized)
   : location_secrets_()
@@ -111,9 +123,21 @@ struct ResourceLevelServiceConfigDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceLevelServiceConfigDefaultTypeInternal _ResourceLevelServiceConfig_default_instance_;
+PROTOBUF_CONSTEXPR ProcessConfig_EnvEntry_DoNotUse::ProcessConfig_EnvEntry_DoNotUse(
+    ::_pbi::ConstantInitialized){}
+struct ProcessConfig_EnvEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ProcessConfig_EnvEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ProcessConfig_EnvEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    ProcessConfig_EnvEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ProcessConfig_EnvEntry_DoNotUseDefaultTypeInternal _ProcessConfig_EnvEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR ProcessConfig::ProcessConfig(
     ::_pbi::ConstantInitialized)
   : args_()
+  , env_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
   , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , cwd_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -521,11 +545,26 @@ struct NeedsRestartResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NeedsRestartResponseDefaultTypeInternal _NeedsRestartResponse_default_instance_;
+PROTOBUF_CONSTEXPR ModuleConfig_EnvEntry_DoNotUse::ModuleConfig_EnvEntry_DoNotUse(
+    ::_pbi::ConstantInitialized){}
+struct ModuleConfig_EnvEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ModuleConfig_EnvEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ModuleConfig_EnvEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    ModuleConfig_EnvEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ModuleConfig_EnvEntry_DoNotUseDefaultTypeInternal _ModuleConfig_EnvEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR ModuleConfig::ModuleConfig(
     ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  : env_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , path_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , log_level_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , log_level_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , module_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , status_(nullptr){}
 struct ModuleConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ModuleConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -540,7 +579,8 @@ PROTOBUF_CONSTEXPR PackageConfig::PackageConfig(
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , package_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , status_(nullptr){}
 struct PackageConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PackageConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -553,7 +593,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[36];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2frobot_2eproto[39];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2frobot_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2frobot_2eproto = nullptr;
 
@@ -595,6 +635,13 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::LocationSecret, id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::LocationSecret, secret_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AppValidationStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::AppValidationStatus, error_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CloudConfig, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -632,6 +679,16 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceLevelServiceConfig, type_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ResourceLevelServiceConfig, attributes_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -646,6 +703,7 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig, log_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig, stop_signal_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig, stop_timeout_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ProcessConfig, env_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ServiceConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -912,6 +970,16 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NeedsRestartResponse, id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NeedsRestartResponse, must_restart_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::NeedsRestartResponse, restart_check_interval_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -921,6 +989,10 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, name_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, path_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, log_level_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, module_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, env_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -931,52 +1003,58 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, package_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, version_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, status_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 17, -1, sizeof(::viam::app::v1::RobotConfig)},
   { 28, -1, -1, sizeof(::viam::app::v1::LocationSecret)},
-  { 36, -1, -1, sizeof(::viam::app::v1::CloudConfig)},
-  { 51, -1, -1, sizeof(::viam::app::v1::ComponentConfig)},
-  { 66, -1, -1, sizeof(::viam::app::v1::ResourceLevelServiceConfig)},
-  { 74, -1, -1, sizeof(::viam::app::v1::ProcessConfig)},
-  { 88, -1, -1, sizeof(::viam::app::v1::ServiceConfig)},
-  { 102, -1, -1, sizeof(::viam::app::v1::NetworkConfig)},
-  { 113, -1, -1, sizeof(::viam::app::v1::SessionsConfig)},
-  { 120, 129, -1, sizeof(::viam::app::v1::AuthConfig)},
-  { 132, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
-  { 139, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
-  { 146, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
-  { 154, -1, -1, sizeof(::viam::app::v1::Frame)},
-  { 164, -1, -1, sizeof(::viam::app::v1::Translation)},
-  { 173, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
-  { 179, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
-  { 189, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
-  { 199, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
-  { 208, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
-  { 218, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
-  { 228, -1, -1, sizeof(::viam::app::v1::Orientation)},
-  { 241, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
-  { 257, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
-  { 265, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
-  { 273, 285, -1, sizeof(::viam::app::v1::AgentInfo)},
-  { 291, 299, -1, sizeof(::viam::app::v1::ConfigRequest)},
-  { 301, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
-  { 308, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
-  { 315, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
-  { 324, -1, -1, sizeof(::viam::app::v1::LogRequest)},
-  { 332, -1, -1, sizeof(::viam::app::v1::LogResponse)},
-  { 338, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
-  { 345, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
-  { 354, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
-  { 363, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
+  { 36, -1, -1, sizeof(::viam::app::v1::AppValidationStatus)},
+  { 43, -1, -1, sizeof(::viam::app::v1::CloudConfig)},
+  { 58, -1, -1, sizeof(::viam::app::v1::ComponentConfig)},
+  { 73, -1, -1, sizeof(::viam::app::v1::ResourceLevelServiceConfig)},
+  { 81, 89, -1, sizeof(::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse)},
+  { 91, -1, -1, sizeof(::viam::app::v1::ProcessConfig)},
+  { 106, -1, -1, sizeof(::viam::app::v1::ServiceConfig)},
+  { 120, -1, -1, sizeof(::viam::app::v1::NetworkConfig)},
+  { 131, -1, -1, sizeof(::viam::app::v1::SessionsConfig)},
+  { 138, 147, -1, sizeof(::viam::app::v1::AuthConfig)},
+  { 150, -1, -1, sizeof(::viam::app::v1::JWKSFile)},
+  { 157, -1, -1, sizeof(::viam::app::v1::ExternalAuthConfig)},
+  { 164, -1, -1, sizeof(::viam::app::v1::AuthHandlerConfig)},
+  { 172, -1, -1, sizeof(::viam::app::v1::Frame)},
+  { 182, -1, -1, sizeof(::viam::app::v1::Translation)},
+  { 191, -1, -1, sizeof(::viam::app::v1::Orientation_NoOrientation)},
+  { 197, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorRadians)},
+  { 207, -1, -1, sizeof(::viam::app::v1::Orientation_OrientationVectorDegrees)},
+  { 217, -1, -1, sizeof(::viam::app::v1::Orientation_EulerAngles)},
+  { 226, -1, -1, sizeof(::viam::app::v1::Orientation_AxisAngles)},
+  { 236, -1, -1, sizeof(::viam::app::v1::Orientation_Quaternion)},
+  { 246, -1, -1, sizeof(::viam::app::v1::Orientation)},
+  { 259, -1, -1, sizeof(::viam::app::v1::RemoteConfig)},
+  { 275, -1, -1, sizeof(::viam::app::v1::RemoteAuth_Credentials)},
+  { 283, -1, -1, sizeof(::viam::app::v1::RemoteAuth)},
+  { 291, 303, -1, sizeof(::viam::app::v1::AgentInfo)},
+  { 309, 317, -1, sizeof(::viam::app::v1::ConfigRequest)},
+  { 319, -1, -1, sizeof(::viam::app::v1::ConfigResponse)},
+  { 326, -1, -1, sizeof(::viam::app::v1::CertificateRequest)},
+  { 333, -1, -1, sizeof(::viam::app::v1::CertificateResponse)},
+  { 342, -1, -1, sizeof(::viam::app::v1::LogRequest)},
+  { 350, -1, -1, sizeof(::viam::app::v1::LogResponse)},
+  { 356, -1, -1, sizeof(::viam::app::v1::NeedsRestartRequest)},
+  { 363, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
+  { 372, 380, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
+  { 382, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
+  { 395, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_RobotConfig_default_instance_._instance,
   &::viam::app::v1::_LocationSecret_default_instance_._instance,
+  &::viam::app::v1::_AppValidationStatus_default_instance_._instance,
   &::viam::app::v1::_CloudConfig_default_instance_._instance,
   &::viam::app::v1::_ComponentConfig_default_instance_._instance,
   &::viam::app::v1::_ResourceLevelServiceConfig_default_instance_._instance,
+  &::viam::app::v1::_ProcessConfig_EnvEntry_DoNotUse_default_instance_._instance,
   &::viam::app::v1::_ProcessConfig_default_instance_._instance,
   &::viam::app::v1::_ServiceConfig_default_instance_._instance,
   &::viam::app::v1::_NetworkConfig_default_instance_._instance,
@@ -1006,6 +1084,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_LogResponse_default_instance_._instance,
   &::viam::app::v1::_NeedsRestartRequest_default_instance_._instance,
   &::viam::app::v1::_NeedsRestartResponse_default_instance_._instance,
+  &::viam::app::v1::_ModuleConfig_EnvEntry_DoNotUse_default_instance_._instance,
   &::viam::app::v1::_ModuleConfig_default_instance_._instance,
   &::viam::app::v1::_PackageConfig_default_instance_._instance,
 };
@@ -1032,148 +1111,159 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   ".viam.app.v1.PackageConfigR\010packagesB\n\n\010"
   "_networkB\007\n\005_authB\010\n\006_debugB\030\n\026_disable_"
   "partial_start\"8\n\016LocationSecret\022\016\n\002id\030\001 "
-  "\001(\tR\002id\022\026\n\006secret\030\002 \001(\tR\006secret\"\330\002\n\013Clou"
-  "dConfig\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004fqdn\030\002 \001(\tR\004f"
-  "qdn\022\035\n\nlocal_fqdn\030\003 \001(\tR\tlocalFqdn\022\035\n\nma"
-  "naged_by\030\004 \001(\tR\tmanagedBy\022+\n\021signaling_a"
-  "ddress\030\005 \001(\tR\020signalingAddress\022-\n\022signal"
-  "ing_insecure\030\006 \001(\010R\021signalingInsecure\022+\n"
-  "\017location_secret\030\007 \001(\tB\002\030\001R\016locationSecr"
-  "et\022\026\n\006secret\030\010 \001(\tR\006secret\022F\n\020location_s"
-  "ecrets\030\t \003(\0132\033.viam.app.v1.LocationSecre"
-  "tR\017locationSecrets\"\357\002\n\017ComponentConfig\022\022"
-  "\n\004name\030\001 \001(\tR\004name\022\034\n\tnamespace\030\002 \001(\tR\tn"
-  "amespace\022\022\n\004type\030\003 \001(\tR\004type\022\024\n\005model\030\004 "
-  "\001(\tR\005model\022(\n\005frame\030\005 \001(\0132\022.viam.app.v1."
-  "FrameR\005frame\022\035\n\ndepends_on\030\006 \003(\tR\tdepend"
-  "sOn\022l\n\017service_configs\030\007 \003(\0132\'.viam.app."
-  "v1.ResourceLevelServiceConfigB\032\232\204\236\003\025json"
-  ":\"service_config\"R\016serviceConfigs\0227\n\natt"
-  "ributes\030\010 \001(\0132\027.google.protobuf.StructR\n"
-  "attributes\022\020\n\003api\030\t \001(\tR\003api\"i\n\032Resource"
-  "LevelServiceConfig\022\022\n\004type\030\001 \001(\tR\004type\0227"
-  "\n\nattributes\030\002 \001(\0132\027.google.protobuf.Str"
-  "uctR\nattributes\"\345\001\n\rProcessConfig\022\016\n\002id\030"
-  "\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004name\022\022\n\004args\030\003 "
-  "\003(\tR\004args\022\020\n\003cwd\030\004 \001(\tR\003cwd\022\031\n\010one_shot\030"
-  "\005 \001(\010R\007oneShot\022\020\n\003log\030\006 \001(\010R\003log\022\037\n\013stop"
-  "_signal\030\007 \001(\005R\nstopSignal\022<\n\014stop_timeou"
-  "t\030\010 \001(\0132\031.google.protobuf.DurationR\013stop"
-  "Timeout\"\303\002\n\rServiceConfig\022\022\n\004name\030\001 \001(\tR"
-  "\004name\022\034\n\tnamespace\030\002 \001(\tR\tnamespace\022\022\n\004t"
-  "ype\030\003 \001(\tR\004type\0227\n\nattributes\030\004 \001(\0132\027.go"
-  "ogle.protobuf.StructR\nattributes\022\035\n\ndepe"
-  "nds_on\030\005 \003(\tR\tdependsOn\022\024\n\005model\030\006 \001(\tR\005"
-  "model\022\020\n\003api\030\t \001(\tR\003api\022l\n\017service_confi"
-  "gs\030\n \003(\0132\'.viam.app.v1.ResourceLevelServ"
-  "iceConfigB\032\232\204\236\003\025json:\"service_config\"R\016s"
-  "erviceConfigs\"\305\001\n\rNetworkConfig\022\022\n\004fqdn\030"
-  "\001 \001(\tR\004fqdn\022!\n\014bind_address\030\002 \001(\tR\013bindA"
-  "ddress\022\"\n\rtls_cert_file\030\003 \001(\tR\013tlsCertFi"
-  "le\022 \n\014tls_key_file\030\004 \001(\tR\ntlsKeyFile\0227\n\010"
-  "sessions\030\005 \001(\0132\033.viam.app.v1.SessionsCon"
-  "figR\010sessions\"V\n\016SessionsConfig\022D\n\020heart"
-  "beat_window\030\001 \001(\0132\031.google.protobuf.Dura"
-  "tionR\017heartbeatWindow\"\345\001\n\nAuthConfig\022:\n\010"
-  "handlers\030\001 \003(\0132\036.viam.app.v1.AuthHandler"
-  "ConfigR\010handlers\022*\n\021tls_auth_entities\030\002 "
-  "\003(\tR\017tlsAuthEntities\022V\n\024external_auth_co"
-  "nfig\030\003 \001(\0132\037.viam.app.v1.ExternalAuthCon"
-  "figH\000R\022externalAuthConfig\210\001\001B\027\n\025_externa"
-  "l_auth_config\"7\n\010JWKSFile\022+\n\004json\030\001 \001(\0132"
-  "\027.google.protobuf.StructR\004json\"\?\n\022Extern"
-  "alAuthConfig\022)\n\004jwks\030\001 \001(\0132\025.viam.app.v1"
-  ".JWKSFileR\004jwks\"v\n\021AuthHandlerConfig\0220\n\004"
-  "type\030\001 \001(\0162\034.viam.app.v1.CredentialsType"
-  "R\004type\022/\n\006config\030\005 \001(\0132\027.google.protobuf"
-  ".StructR\006config\"\315\001\n\005Frame\022\026\n\006parent\030\001 \001("
-  "\tR\006parent\022:\n\013translation\030\002 \001(\0132\030.viam.ap"
-  "p.v1.TranslationR\013translation\022:\n\013orienta"
-  "tion\030\003 \001(\0132\030.viam.app.v1.OrientationR\013or"
-  "ientation\0224\n\010geometry\030\004 \001(\0132\030.viam.commo"
-  "n.v1.GeometryR\010geometry\"7\n\013Translation\022\014"
-  "\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z"
-  "\"\320\007\n\013Orientation\022O\n\016no_orientation\030\001 \001(\013"
-  "2&.viam.app.v1.Orientation.NoOrientation"
-  "H\000R\rnoOrientation\022Z\n\016vector_radians\030\002 \001("
-  "\01321.viam.app.v1.Orientation.OrientationV"
-  "ectorRadiansH\000R\rvectorRadians\022Z\n\016vector_"
-  "degrees\030\003 \001(\01321.viam.app.v1.Orientation."
-  "OrientationVectorDegreesH\000R\rvectorDegree"
-  "s\022I\n\014euler_angles\030\004 \001(\0132$.viam.app.v1.Or"
-  "ientation.EulerAnglesH\000R\013eulerAngles\022F\n\013"
-  "axis_angles\030\005 \001(\0132#.viam.app.v1.Orientat"
-  "ion.AxisAnglesH\000R\naxisAngles\022E\n\nquaterni"
-  "on\030\006 \001(\0132#.viam.app.v1.Orientation.Quate"
-  "rnionH\000R\nquaternion\032\017\n\rNoOrientation\032j\n\030"
-  "OrientationVectorRadians\022$\n\005theta\030\001 \001(\001B"
-  "\016\232\204\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001"
-  "y\030\003 \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j\n\030OrientationV"
-  "ectorDegrees\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\""
-  "th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014"
-  "\n\001z\030\004 \001(\001R\001z\032I\n\013EulerAngles\022\022\n\004roll\030\001 \001("
-  "\001R\004roll\022\024\n\005pitch\030\002 \001(\001R\005pitch\022\020\n\003yaw\030\003 \001"
-  "(\001R\003yaw\032\\\n\nAxisAngles\022$\n\005theta\030\001 \001(\001B\016\232\204"
-  "\236\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003"
-  " \001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQuaternion\022\014\n\001w"
-  "\030\001 \001(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n"
-  "\001z\030\004 \001(\001R\001zB\006\n\004type\"\365\003\n\014RemoteConfig\022\022\n\004"
-  "name\030\001 \001(\tR\004name\022\030\n\007address\030\002 \001(\tR\007addre"
-  "ss\022(\n\005frame\030\003 \001(\0132\022.viam.app.v1.FrameR\005f"
-  "rame\022+\n\004auth\030\004 \001(\0132\027.viam.app.v1.RemoteA"
-  "uthR\004auth\022\035\n\nmanaged_by\030\005 \001(\tR\tmanagedBy"
-  "\022\032\n\010insecure\030\006 \001(\010R\010insecure\022U\n\031connecti"
-  "on_check_interval\030\007 \001(\0132\031.google.protobu"
-  "f.DurationR\027connectionCheckInterval\022H\n\022r"
-  "econnect_interval\030\010 \001(\0132\031.google.protobu"
-  "f.DurationR\021reconnectInterval\022l\n\017service"
-  "_configs\030\t \003(\0132\'.viam.app.v1.ResourceLev"
-  "elServiceConfigB\032\232\204\236\003\025json:\"service_conf"
-  "ig\"R\016serviceConfigs\022\026\n\006secret\030\n \001(\tR\006sec"
-  "ret\"\306\001\n\nRemoteAuth\022E\n\013credentials\030\001 \001(\0132"
-  "#.viam.app.v1.RemoteAuth.CredentialsR\013cr"
-  "edentials\022\026\n\006entity\030\002 \001(\tR\006entity\032Y\n\013Cre"
-  "dentials\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Cre"
-  "dentialsTypeR\004type\022\030\n\007payload\030\002 \001(\tR\007pay"
-  "load\"\254\001\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004host\022\016"
-  "\n\002os\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030\n\007vers"
-  "ion\030\004 \001(\tR\007version\022!\n\014git_revision\030\005 \001(\t"
-  "R\013gitRevision\022\037\n\010platform\030\006 \001(\tH\000R\010platf"
-  "orm\210\001\001B\013\n\t_platform\"j\n\rConfigRequest\022\016\n\002"
-  "id\030\001 \001(\tR\002id\022:\n\nagent_info\030\002 \001(\0132\026.viam."
-  "app.v1.AgentInfoH\000R\tagentInfo\210\001\001B\r\n\013_age"
-  "nt_info\"B\n\016ConfigResponse\0220\n\006config\030\001 \001("
-  "\0132\030.viam.app.v1.RobotConfigR\006config\"$\n\022C"
-  "ertificateRequest\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023Cer"
-  "tificateResponse\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_"
-  "certificate\030\002 \001(\tR\016tlsCertificate\022&\n\017tls"
-  "_private_key\030\003 \001(\tR\rtlsPrivateKey\"G\n\nLog"
-  "Request\022\016\n\002id\030\001 \001(\tR\002id\022)\n\004logs\030\002 \003(\0132\025."
-  "viam.app.v1.LogEntryR\004logs\"\r\n\013LogRespons"
-  "e\"%\n\023NeedsRestartRequest\022\016\n\002id\030\001 \001(\tR\002id"
-  "\"\232\001\n\024NeedsRestartResponse\022\016\n\002id\030\001 \001(\tR\002i"
-  "d\022!\n\014must_restart\030\002 \001(\010R\013mustRestart\022O\n\026"
-  "restart_check_interval\030\003 \001(\0132\031.google.pr"
-  "otobuf.DurationR\024restartCheckInterval\"S\n"
-  "\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004pat"
-  "h\030\002 \001(\tR\004path\022\033\n\tlog_level\030\003 \001(\tR\010logLev"
-  "el\"k\n\rPackageConfig\022\022\n\004name\030\001 \001(\tR\004name\022"
-  "\030\n\007package\030\002 \001(\tR\007package\022\030\n\007version\030\003 \001"
-  "(\tR\007version\022\022\n\004type\030\004 \001(\tR\004type*\277\001\n\017Cred"
-  "entialsType\022 \n\034CREDENTIALS_TYPE_UNSPECIF"
-  "IED\020\000\022\035\n\031CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030"
-  "CREDENTIALS_TYPE_API_KEY\020\002\022!\n\035CREDENTIAL"
-  "S_TYPE_ROBOT_SECRET\020\003\022*\n&CREDENTIALS_TYP"
-  "E_ROBOT_LOCATION_SECRET\020\0042\262\002\n\014RobotServi"
-  "ce\022A\n\006Config\022\032.viam.app.v1.ConfigRequest"
-  "\032\033.viam.app.v1.ConfigResponse\022P\n\013Certifi"
-  "cate\022\037.viam.app.v1.CertificateRequest\032 ."
-  "viam.app.v1.CertificateResponse\0228\n\003Log\022\027"
-  ".viam.app.v1.LogRequest\032\030.viam.app.v1.Lo"
-  "gResponse\022S\n\014NeedsRestart\022 .viam.app.v1."
-  "NeedsRestartRequest\032!.viam.app.v1.NeedsR"
-  "estartResponseB\030Z\026go.viam.com/api/app/v1"
-  "b\006proto3"
+  "\001(\tR\002id\022\026\n\006secret\030\002 \001(\tR\006secret\"+\n\023AppVa"
+  "lidationStatus\022\024\n\005error\030\001 \001(\tR\005error\"\330\002\n"
+  "\013CloudConfig\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004fqdn\030\002 \001"
+  "(\tR\004fqdn\022\035\n\nlocal_fqdn\030\003 \001(\tR\tlocalFqdn\022"
+  "\035\n\nmanaged_by\030\004 \001(\tR\tmanagedBy\022+\n\021signal"
+  "ing_address\030\005 \001(\tR\020signalingAddress\022-\n\022s"
+  "ignaling_insecure\030\006 \001(\010R\021signalingInsecu"
+  "re\022+\n\017location_secret\030\007 \001(\tB\002\030\001R\016locatio"
+  "nSecret\022\026\n\006secret\030\010 \001(\tR\006secret\022F\n\020locat"
+  "ion_secrets\030\t \003(\0132\033.viam.app.v1.Location"
+  "SecretR\017locationSecrets\"\357\002\n\017ComponentCon"
+  "fig\022\022\n\004name\030\001 \001(\tR\004name\022\034\n\tnamespace\030\002 \001"
+  "(\tR\tnamespace\022\022\n\004type\030\003 \001(\tR\004type\022\024\n\005mod"
+  "el\030\004 \001(\tR\005model\022(\n\005frame\030\005 \001(\0132\022.viam.ap"
+  "p.v1.FrameR\005frame\022\035\n\ndepends_on\030\006 \003(\tR\td"
+  "ependsOn\022l\n\017service_configs\030\007 \003(\0132\'.viam"
+  ".app.v1.ResourceLevelServiceConfigB\032\232\204\236\003"
+  "\025json:\"service_config\"R\016serviceConfigs\0227"
+  "\n\nattributes\030\010 \001(\0132\027.google.protobuf.Str"
+  "uctR\nattributes\022\020\n\003api\030\t \001(\tR\003api\"i\n\032Res"
+  "ourceLevelServiceConfig\022\022\n\004type\030\001 \001(\tR\004t"
+  "ype\0227\n\nattributes\030\002 \001(\0132\027.google.protobu"
+  "f.StructR\nattributes\"\324\002\n\rProcessConfig\022\016"
+  "\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004name\022\022\n\004ar"
+  "gs\030\003 \003(\tR\004args\022\020\n\003cwd\030\004 \001(\tR\003cwd\022\031\n\010one_"
+  "shot\030\005 \001(\010R\007oneShot\022\020\n\003log\030\006 \001(\010R\003log\022\037\n"
+  "\013stop_signal\030\007 \001(\005R\nstopSignal\022<\n\014stop_t"
+  "imeout\030\010 \001(\0132\031.google.protobuf.DurationR"
+  "\013stopTimeout\0225\n\003env\030\t \003(\0132#.viam.app.v1."
+  "ProcessConfig.EnvEntryR\003env\0326\n\010EnvEntry\022"
+  "\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:"
+  "\0028\001\"\303\002\n\rServiceConfig\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022\034\n\tnamespace\030\002 \001(\tR\tnamespace\022\022\n\004type\030"
+  "\003 \001(\tR\004type\0227\n\nattributes\030\004 \001(\0132\027.google"
+  ".protobuf.StructR\nattributes\022\035\n\ndepends_"
+  "on\030\005 \003(\tR\tdependsOn\022\024\n\005model\030\006 \001(\tR\005mode"
+  "l\022\020\n\003api\030\t \001(\tR\003api\022l\n\017service_configs\030\n"
+  " \003(\0132\'.viam.app.v1.ResourceLevelServiceC"
+  "onfigB\032\232\204\236\003\025json:\"service_config\"R\016servi"
+  "ceConfigs\"\305\001\n\rNetworkConfig\022\022\n\004fqdn\030\001 \001("
+  "\tR\004fqdn\022!\n\014bind_address\030\002 \001(\tR\013bindAddre"
+  "ss\022\"\n\rtls_cert_file\030\003 \001(\tR\013tlsCertFile\022 "
+  "\n\014tls_key_file\030\004 \001(\tR\ntlsKeyFile\0227\n\010sess"
+  "ions\030\005 \001(\0132\033.viam.app.v1.SessionsConfigR"
+  "\010sessions\"V\n\016SessionsConfig\022D\n\020heartbeat"
+  "_window\030\001 \001(\0132\031.google.protobuf.Duration"
+  "R\017heartbeatWindow\"\345\001\n\nAuthConfig\022:\n\010hand"
+  "lers\030\001 \003(\0132\036.viam.app.v1.AuthHandlerConf"
+  "igR\010handlers\022*\n\021tls_auth_entities\030\002 \003(\tR"
+  "\017tlsAuthEntities\022V\n\024external_auth_config"
+  "\030\003 \001(\0132\037.viam.app.v1.ExternalAuthConfigH"
+  "\000R\022externalAuthConfig\210\001\001B\027\n\025_external_au"
+  "th_config\"7\n\010JWKSFile\022+\n\004json\030\001 \001(\0132\027.go"
+  "ogle.protobuf.StructR\004json\"\?\n\022ExternalAu"
+  "thConfig\022)\n\004jwks\030\001 \001(\0132\025.viam.app.v1.JWK"
+  "SFileR\004jwks\"v\n\021AuthHandlerConfig\0220\n\004type"
+  "\030\001 \001(\0162\034.viam.app.v1.CredentialsTypeR\004ty"
+  "pe\022/\n\006config\030\005 \001(\0132\027.google.protobuf.Str"
+  "uctR\006config\"\315\001\n\005Frame\022\026\n\006parent\030\001 \001(\tR\006p"
+  "arent\022:\n\013translation\030\002 \001(\0132\030.viam.app.v1"
+  ".TranslationR\013translation\022:\n\013orientation"
+  "\030\003 \001(\0132\030.viam.app.v1.OrientationR\013orient"
+  "ation\0224\n\010geometry\030\004 \001(\0132\030.viam.common.v1"
+  ".GeometryR\010geometry\"7\n\013Translation\022\014\n\001x\030"
+  "\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"\320\007\n"
+  "\013Orientation\022O\n\016no_orientation\030\001 \001(\0132&.v"
+  "iam.app.v1.Orientation.NoOrientationH\000R\r"
+  "noOrientation\022Z\n\016vector_radians\030\002 \001(\01321."
+  "viam.app.v1.Orientation.OrientationVecto"
+  "rRadiansH\000R\rvectorRadians\022Z\n\016vector_degr"
+  "ees\030\003 \001(\01321.viam.app.v1.Orientation.Orie"
+  "ntationVectorDegreesH\000R\rvectorDegrees\022I\n"
+  "\014euler_angles\030\004 \001(\0132$.viam.app.v1.Orient"
+  "ation.EulerAnglesH\000R\013eulerAngles\022F\n\013axis"
+  "_angles\030\005 \001(\0132#.viam.app.v1.Orientation."
+  "AxisAnglesH\000R\naxisAngles\022E\n\nquaternion\030\006"
+  " \001(\0132#.viam.app.v1.Orientation.Quaternio"
+  "nH\000R\nquaternion\032\017\n\rNoOrientation\032j\n\030Orie"
+  "ntationVectorRadians\022$\n\005theta\030\001 \001(\001B\016\232\204\236"
+  "\003\tjson:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 "
+  "\001(\001R\001y\022\014\n\001z\030\004 \001(\001R\001z\032j\n\030OrientationVecto"
+  "rDegrees\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tjson:\"th\"R"
+  "\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030"
+  "\004 \001(\001R\001z\032I\n\013EulerAngles\022\022\n\004roll\030\001 \001(\001R\004r"
+  "oll\022\024\n\005pitch\030\002 \001(\001R\005pitch\022\020\n\003yaw\030\003 \001(\001R\003"
+  "yaw\032\\\n\nAxisAngles\022$\n\005theta\030\001 \001(\001B\016\232\204\236\003\tj"
+  "son:\"th\"R\005theta\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001"
+  "R\001y\022\014\n\001z\030\004 \001(\001R\001z\032D\n\nQuaternion\022\014\n\001w\030\001 \001"
+  "(\001R\001w\022\014\n\001x\030\002 \001(\001R\001x\022\014\n\001y\030\003 \001(\001R\001y\022\014\n\001z\030\004"
+  " \001(\001R\001zB\006\n\004type\"\365\003\n\014RemoteConfig\022\022\n\004name"
+  "\030\001 \001(\tR\004name\022\030\n\007address\030\002 \001(\tR\007address\022("
+  "\n\005frame\030\003 \001(\0132\022.viam.app.v1.FrameR\005frame"
+  "\022+\n\004auth\030\004 \001(\0132\027.viam.app.v1.RemoteAuthR"
+  "\004auth\022\035\n\nmanaged_by\030\005 \001(\tR\tmanagedBy\022\032\n\010"
+  "insecure\030\006 \001(\010R\010insecure\022U\n\031connection_c"
+  "heck_interval\030\007 \001(\0132\031.google.protobuf.Du"
+  "rationR\027connectionCheckInterval\022H\n\022recon"
+  "nect_interval\030\010 \001(\0132\031.google.protobuf.Du"
+  "rationR\021reconnectInterval\022l\n\017service_con"
+  "figs\030\t \003(\0132\'.viam.app.v1.ResourceLevelSe"
+  "rviceConfigB\032\232\204\236\003\025json:\"service_config\"R"
+  "\016serviceConfigs\022\026\n\006secret\030\n \001(\tR\006secret\""
+  "\306\001\n\nRemoteAuth\022E\n\013credentials\030\001 \001(\0132#.vi"
+  "am.app.v1.RemoteAuth.CredentialsR\013creden"
+  "tials\022\026\n\006entity\030\002 \001(\tR\006entity\032Y\n\013Credent"
+  "ials\0220\n\004type\030\001 \001(\0162\034.viam.app.v1.Credent"
+  "ialsTypeR\004type\022\030\n\007payload\030\002 \001(\tR\007payload"
+  "\"\254\001\n\tAgentInfo\022\022\n\004host\030\001 \001(\tR\004host\022\016\n\002os"
+  "\030\002 \001(\tR\002os\022\020\n\003ips\030\003 \003(\tR\003ips\022\030\n\007version\030"
+  "\004 \001(\tR\007version\022!\n\014git_revision\030\005 \001(\tR\013gi"
+  "tRevision\022\037\n\010platform\030\006 \001(\tH\000R\010platform\210"
+  "\001\001B\013\n\t_platform\"j\n\rConfigRequest\022\016\n\002id\030\001"
+  " \001(\tR\002id\022:\n\nagent_info\030\002 \001(\0132\026.viam.app."
+  "v1.AgentInfoH\000R\tagentInfo\210\001\001B\r\n\013_agent_i"
+  "nfo\"B\n\016ConfigResponse\0220\n\006config\030\001 \001(\0132\030."
+  "viam.app.v1.RobotConfigR\006config\"$\n\022Certi"
+  "ficateRequest\022\016\n\002id\030\001 \001(\tR\002id\"v\n\023Certifi"
+  "cateResponse\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017tls_cert"
+  "ificate\030\002 \001(\tR\016tlsCertificate\022&\n\017tls_pri"
+  "vate_key\030\003 \001(\tR\rtlsPrivateKey\"G\n\nLogRequ"
+  "est\022\016\n\002id\030\001 \001(\tR\002id\022)\n\004logs\030\002 \003(\0132\025.viam"
+  ".app.v1.LogEntryR\004logs\"\r\n\013LogResponse\"%\n"
+  "\023NeedsRestartRequest\022\016\n\002id\030\001 \001(\tR\002id\"\232\001\n"
+  "\024NeedsRestartResponse\022\016\n\002id\030\001 \001(\tR\002id\022!\n"
+  "\014must_restart\030\002 \001(\010R\013mustRestart\022O\n\026rest"
+  "art_check_interval\030\003 \001(\0132\031.google.protob"
+  "uf.DurationR\024restartCheckInterval\"\254\002\n\014Mo"
+  "duleConfig\022\022\n\004name\030\001 \001(\tR\004name\022\022\n\004path\030\002"
+  " \001(\tR\004path\022\033\n\tlog_level\030\003 \001(\tR\010logLevel\022"
+  "\022\n\004type\030\004 \001(\tR\004type\022\033\n\tmodule_id\030\005 \001(\tR\010"
+  "moduleId\0224\n\003env\030\006 \003(\0132\".viam.app.v1.Modu"
+  "leConfig.EnvEntryR\003env\0228\n\006status\030\007 \001(\0132 "
+  ".viam.app.v1.AppValidationStatusR\006status"
+  "\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030"
+  "\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageConfig\022\022\n\004na"
+  "me\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007package"
+  "\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004type\030\004 \001(\t"
+  "R\004type\0228\n\006status\030\007 \001(\0132 .viam.app.v1.App"
+  "ValidationStatusR\006status*\277\001\n\017Credentials"
+  "Type\022 \n\034CREDENTIALS_TYPE_UNSPECIFIED\020\000\022\035"
+  "\n\031CREDENTIALS_TYPE_INTERNAL\020\001\022\034\n\030CREDENT"
+  "IALS_TYPE_API_KEY\020\002\022!\n\035CREDENTIALS_TYPE_"
+  "ROBOT_SECRET\020\003\022*\n&CREDENTIALS_TYPE_ROBOT"
+  "_LOCATION_SECRET\020\0042\262\002\n\014RobotService\022A\n\006C"
+  "onfig\022\032.viam.app.v1.ConfigRequest\032\033.viam"
+  ".app.v1.ConfigResponse\022P\n\013Certificate\022\037."
+  "viam.app.v1.CertificateRequest\032 .viam.ap"
+  "p.v1.CertificateResponse\0228\n\003Log\022\027.viam.a"
+  "pp.v1.LogRequest\032\030.viam.app.v1.LogRespon"
+  "se\022S\n\014NeedsRestart\022 .viam.app.v1.NeedsRe"
+  "startRequest\032!.viam.app.v1.NeedsRestartR"
+  "esponseB\030Z\026go.viam.com/api/app/v1b\006proto"
+  "3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[5] = {
   &::descriptor_table_app_2fv1_2fapp_2eproto,
@@ -1184,9 +1274,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2e
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
-    false, false, 6488, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
+    false, false, 6921, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
-    &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 5, 36,
+    &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 5, 39,
     schemas, file_default_instances, TableStruct_app_2fv1_2frobot_2eproto::offsets,
     file_level_metadata_app_2fv1_2frobot_2eproto, file_level_enum_descriptors_app_2fv1_2frobot_2eproto,
     file_level_service_descriptors_app_2fv1_2frobot_2eproto,
@@ -2016,6 +2106,201 @@ void LocationSecret::InternalSwap(LocationSecret* other) {
 
 // ===================================================================
 
+class AppValidationStatus::_Internal {
+ public:
+};
+
+AppValidationStatus::AppValidationStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.AppValidationStatus)
+}
+AppValidationStatus::AppValidationStatus(const AppValidationStatus& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  error_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    error_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_error().empty()) {
+    error_.Set(from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.AppValidationStatus)
+}
+
+inline void AppValidationStatus::SharedCtor() {
+error_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  error_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AppValidationStatus::~AppValidationStatus() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.AppValidationStatus)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AppValidationStatus::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  error_.Destroy();
+}
+
+void AppValidationStatus::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AppValidationStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.AppValidationStatus)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  error_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AppValidationStatus::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string error = 1 [json_name = "error"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_error();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.AppValidationStatus.error"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AppValidationStatus::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.AppValidationStatus)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string error = 1 [json_name = "error"];
+  if (!this->_internal_error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.AppValidationStatus.error");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_error(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.AppValidationStatus)
+  return target;
+}
+
+size_t AppValidationStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.AppValidationStatus)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string error = 1 [json_name = "error"];
+  if (!this->_internal_error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AppValidationStatus::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AppValidationStatus::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AppValidationStatus::GetClassData() const { return &_class_data_; }
+
+void AppValidationStatus::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AppValidationStatus *>(to)->MergeFrom(
+      static_cast<const AppValidationStatus &>(from));
+}
+
+
+void AppValidationStatus::MergeFrom(const AppValidationStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.AppValidationStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AppValidationStatus::CopyFrom(const AppValidationStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.AppValidationStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AppValidationStatus::IsInitialized() const {
+  return true;
+}
+
+void AppValidationStatus::InternalSwap(AppValidationStatus* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &error_, lhs_arena,
+      &other->error_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AppValidationStatus::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
+      file_level_metadata_app_2fv1_2frobot_2eproto[2]);
+}
+
+// ===================================================================
+
 class CloudConfig::_Internal {
  public:
 };
@@ -2553,7 +2838,7 @@ void CloudConfig::InternalSwap(CloudConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CloudConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[2]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[3]);
 }
 
 // ===================================================================
@@ -3107,7 +3392,7 @@ void ComponentConfig::InternalSwap(ComponentConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ComponentConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[3]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[4]);
 }
 
 // ===================================================================
@@ -3350,7 +3635,21 @@ void ResourceLevelServiceConfig::InternalSwap(ResourceLevelServiceConfig* other)
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceLevelServiceConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[4]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[5]);
+}
+
+// ===================================================================
+
+ProcessConfig_EnvEntry_DoNotUse::ProcessConfig_EnvEntry_DoNotUse() {}
+ProcessConfig_EnvEntry_DoNotUse::ProcessConfig_EnvEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void ProcessConfig_EnvEntry_DoNotUse::MergeFrom(const ProcessConfig_EnvEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata ProcessConfig_EnvEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
+      file_level_metadata_app_2fv1_2frobot_2eproto[6]);
 }
 
 // ===================================================================
@@ -3373,14 +3672,19 @@ void ProcessConfig::clear_stop_timeout() {
 ProcessConfig::ProcessConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  args_(arena) {
+  args_(arena),
+  env_(arena) {
   SharedCtor();
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &ProcessConfig::ArenaDtor);
+  }
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.ProcessConfig)
 }
 ProcessConfig::ProcessConfig(const ProcessConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       args_(from.args_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  env_.MergeFrom(from.env_);
   id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     id_.Set("", GetArenaForAllocation());
@@ -3439,6 +3743,7 @@ ProcessConfig::~ProcessConfig() {
   // @@protoc_insertion_point(destructor:viam.app.v1.ProcessConfig)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
+    ArenaDtor(this);
     return;
   }
   SharedDtor();
@@ -3446,12 +3751,17 @@ ProcessConfig::~ProcessConfig() {
 
 inline void ProcessConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  env_.Destruct();
   id_.Destroy();
   name_.Destroy();
   cwd_.Destroy();
   if (this != internal_default_instance()) delete stop_timeout_;
 }
 
+void ProcessConfig::ArenaDtor(void* object) {
+  ProcessConfig* _this = reinterpret_cast< ProcessConfig* >(object);
+  _this->env_.Destruct();
+}
 void ProcessConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -3463,6 +3773,7 @@ void ProcessConfig::Clear() {
   (void) cached_has_bits;
 
   args_.Clear();
+  env_.Clear();
   id_.ClearToEmpty();
   name_.ClearToEmpty();
   cwd_.ClearToEmpty();
@@ -3556,6 +3867,19 @@ const char* ProcessConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_stop_timeout(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, string> env = 9 [json_name = "env"];
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&env_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<74>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -3653,6 +3977,36 @@ uint8_t* ProcessConfig::_InternalSerialize(
         _Internal::stop_timeout(this).GetCachedSize(), target, stream);
   }
 
+  // map<string, string> env = 9 [json_name = "env"];
+  if (!this->_internal_env().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = ProcessConfig_EnvEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_env();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "viam.app.v1.ProcessConfig.EnvEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "viam.app.v1.ProcessConfig.EnvEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(9, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(9, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3675,6 +4029,15 @@ size_t ProcessConfig::ByteSizeLong() const {
   for (int i = 0, n = args_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
       args_.Get(i));
+  }
+
+  // map<string, string> env = 9 [json_name = "env"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_env_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_env().begin();
+      it != this->_internal_env().end(); ++it) {
+    total_size += ProcessConfig_EnvEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
   // string id = 1 [json_name = "id"];
@@ -3743,6 +4106,7 @@ void ProcessConfig::MergeFrom(const ProcessConfig& from) {
   (void) cached_has_bits;
 
   args_.MergeFrom(from.args_);
+  env_.MergeFrom(from.env_);
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
@@ -3784,6 +4148,7 @@ void ProcessConfig::InternalSwap(ProcessConfig* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   args_.InternalSwap(&other->args_);
+  env_.InternalSwap(&other->env_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &id_, lhs_arena,
       &other->id_, rhs_arena
@@ -3807,7 +4172,7 @@ void ProcessConfig::InternalSwap(ProcessConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ProcessConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[5]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[7]);
 }
 
 // ===================================================================
@@ -4313,7 +4678,7 @@ void ServiceConfig::InternalSwap(ServiceConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ServiceConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[6]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[8]);
 }
 
 // ===================================================================
@@ -4694,7 +5059,7 @@ void NetworkConfig::InternalSwap(NetworkConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NetworkConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[7]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[9]);
 }
 
 // ===================================================================
@@ -4887,7 +5252,7 @@ void SessionsConfig::InternalSwap(SessionsConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SessionsConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[8]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[10]);
 }
 
 // ===================================================================
@@ -5156,7 +5521,7 @@ void AuthConfig::InternalSwap(AuthConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AuthConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[9]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[11]);
 }
 
 // ===================================================================
@@ -5349,7 +5714,7 @@ void JWKSFile::InternalSwap(JWKSFile* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JWKSFile::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[10]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[12]);
 }
 
 // ===================================================================
@@ -5536,7 +5901,7 @@ void ExternalAuthConfig::InternalSwap(ExternalAuthConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ExternalAuthConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[11]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[13]);
 }
 
 // ===================================================================
@@ -5764,7 +6129,7 @@ void AuthHandlerConfig::InternalSwap(AuthHandlerConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AuthHandlerConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[12]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[14]);
 }
 
 // ===================================================================
@@ -6095,7 +6460,7 @@ void Frame::InternalSwap(Frame* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Frame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[13]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[15]);
 }
 
 // ===================================================================
@@ -6358,7 +6723,7 @@ void Translation::InternalSwap(Translation* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Translation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[14]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[16]);
 }
 
 // ===================================================================
@@ -6397,7 +6762,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Orientation_NoOrientation::Get
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_NoOrientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[15]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[17]);
 }
 
 // ===================================================================
@@ -6694,7 +7059,7 @@ void Orientation_OrientationVectorRadians::InternalSwap(Orientation_OrientationV
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_OrientationVectorRadians::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[16]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[18]);
 }
 
 // ===================================================================
@@ -6991,7 +7356,7 @@ void Orientation_OrientationVectorDegrees::InternalSwap(Orientation_OrientationV
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_OrientationVectorDegrees::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[17]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[19]);
 }
 
 // ===================================================================
@@ -7254,7 +7619,7 @@ void Orientation_EulerAngles::InternalSwap(Orientation_EulerAngles* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_EulerAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[18]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[20]);
 }
 
 // ===================================================================
@@ -7551,7 +7916,7 @@ void Orientation_AxisAngles::InternalSwap(Orientation_AxisAngles* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_AxisAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[19]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[21]);
 }
 
 // ===================================================================
@@ -7848,7 +8213,7 @@ void Orientation_Quaternion::InternalSwap(Orientation_Quaternion* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation_Quaternion::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[20]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[22]);
 }
 
 // ===================================================================
@@ -8363,7 +8728,7 @@ void Orientation::InternalSwap(Orientation* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Orientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[21]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[23]);
 }
 
 // ===================================================================
@@ -8941,7 +9306,7 @@ void RemoteConfig::InternalSwap(RemoteConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoteConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[22]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[24]);
 }
 
 // ===================================================================
@@ -9165,7 +9530,7 @@ void RemoteAuth_Credentials::InternalSwap(RemoteAuth_Credentials* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoteAuth_Credentials::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[23]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[25]);
 }
 
 // ===================================================================
@@ -9402,7 +9767,7 @@ void RemoteAuth::InternalSwap(RemoteAuth* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoteAuth::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[24]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[26]);
 }
 
 // ===================================================================
@@ -9840,7 +10205,7 @@ void AgentInfo::InternalSwap(AgentInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AgentInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[25]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[27]);
 }
 
 // ===================================================================
@@ -10088,7 +10453,7 @@ void ConfigRequest::InternalSwap(ConfigRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[26]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[28]);
 }
 
 // ===================================================================
@@ -10275,7 +10640,7 @@ void ConfigResponse::InternalSwap(ConfigResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[27]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[29]);
 }
 
 // ===================================================================
@@ -10470,7 +10835,7 @@ void CertificateRequest::InternalSwap(CertificateRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CertificateRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[28]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[30]);
 }
 
 // ===================================================================
@@ -10761,7 +11126,7 @@ void CertificateResponse::InternalSwap(CertificateResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CertificateResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[29]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[31]);
 }
 
 // ===================================================================
@@ -10992,7 +11357,7 @@ void LogRequest::InternalSwap(LogRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[30]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[32]);
 }
 
 // ===================================================================
@@ -11031,7 +11396,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogResponse::GetClassData() co
 ::PROTOBUF_NAMESPACE_ID::Metadata LogResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[31]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[33]);
 }
 
 // ===================================================================
@@ -11226,7 +11591,7 @@ void NeedsRestartRequest::InternalSwap(NeedsRestartRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NeedsRestartRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[32]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[34]);
 }
 
 // ===================================================================
@@ -11501,24 +11866,48 @@ void NeedsRestartResponse::InternalSwap(NeedsRestartResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NeedsRestartResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[33]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[35]);
+}
+
+// ===================================================================
+
+ModuleConfig_EnvEntry_DoNotUse::ModuleConfig_EnvEntry_DoNotUse() {}
+ModuleConfig_EnvEntry_DoNotUse::ModuleConfig_EnvEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void ModuleConfig_EnvEntry_DoNotUse::MergeFrom(const ModuleConfig_EnvEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata ModuleConfig_EnvEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
+      file_level_metadata_app_2fv1_2frobot_2eproto[36]);
 }
 
 // ===================================================================
 
 class ModuleConfig::_Internal {
  public:
+  static const ::viam::app::v1::AppValidationStatus& status(const ModuleConfig* msg);
 };
 
+const ::viam::app::v1::AppValidationStatus&
+ModuleConfig::_Internal::status(const ModuleConfig* msg) {
+  return *msg->status_;
+}
 ModuleConfig::ModuleConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  env_(arena) {
   SharedCtor();
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &ModuleConfig::ArenaDtor);
+  }
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.ModuleConfig)
 }
 ModuleConfig::ModuleConfig(const ModuleConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  env_.MergeFrom(from.env_);
   name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     name_.Set("", GetArenaForAllocation());
@@ -11543,6 +11932,27 @@ ModuleConfig::ModuleConfig(const ModuleConfig& from)
     log_level_.Set(from._internal_log_level(), 
       GetArenaForAllocation());
   }
+  type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_type().empty()) {
+    type_.Set(from._internal_type(), 
+      GetArenaForAllocation());
+  }
+  module_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    module_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_module_id().empty()) {
+    module_id_.Set(from._internal_module_id(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_status()) {
+    status_ = new ::viam::app::v1::AppValidationStatus(*from.status_);
+  } else {
+    status_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.ModuleConfig)
 }
 
@@ -11559,12 +11969,22 @@ log_level_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   log_level_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+module_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  module_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+status_ = nullptr;
 }
 
 ModuleConfig::~ModuleConfig() {
   // @@protoc_insertion_point(destructor:viam.app.v1.ModuleConfig)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
+    ArenaDtor(this);
     return;
   }
   SharedDtor();
@@ -11572,11 +11992,19 @@ ModuleConfig::~ModuleConfig() {
 
 inline void ModuleConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  env_.Destruct();
   name_.Destroy();
   path_.Destroy();
   log_level_.Destroy();
+  type_.Destroy();
+  module_id_.Destroy();
+  if (this != internal_default_instance()) delete status_;
 }
 
+void ModuleConfig::ArenaDtor(void* object) {
+  ModuleConfig* _this = reinterpret_cast< ModuleConfig* >(object);
+  _this->env_.Destruct();
+}
 void ModuleConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -11587,9 +12015,16 @@ void ModuleConfig::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  env_.Clear();
   name_.ClearToEmpty();
   path_.ClearToEmpty();
   log_level_.ClearToEmpty();
+  type_.ClearToEmpty();
+  module_id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
+    delete status_;
+  }
+  status_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -11626,6 +12061,47 @@ const char* ModuleConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ModuleConfig.log_level"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string type = 4 [json_name = "type"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ModuleConfig.type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string module_id = 5 [json_name = "moduleId"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_module_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ModuleConfig.module_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, string> env = 6 [json_name = "env"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&env_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_status(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -11688,6 +12164,63 @@ uint8_t* ModuleConfig::_InternalSerialize(
         3, this->_internal_log_level(), target);
   }
 
+  // string type = 4 [json_name = "type"];
+  if (!this->_internal_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ModuleConfig.type");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_type(), target);
+  }
+
+  // string module_id = 5 [json_name = "moduleId"];
+  if (!this->_internal_module_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_module_id().data(), static_cast<int>(this->_internal_module_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ModuleConfig.module_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_module_id(), target);
+  }
+
+  // map<string, string> env = 6 [json_name = "env"];
+  if (!this->_internal_env().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = ModuleConfig_EnvEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_env();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "viam.app.v1.ModuleConfig.EnvEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "viam.app.v1.ModuleConfig.EnvEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(6, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(6, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
+  // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+  if (this->_internal_has_status()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::status(this),
+        _Internal::status(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -11703,6 +12236,15 @@ size_t ModuleConfig::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // map<string, string> env = 6 [json_name = "env"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_env_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_env().begin();
+      it != this->_internal_env().end(); ++it) {
+    total_size += ModuleConfig_EnvEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
 
   // string name = 1 [json_name = "name"];
   if (!this->_internal_name().empty()) {
@@ -11723,6 +12265,27 @@ size_t ModuleConfig::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_log_level());
+  }
+
+  // string type = 4 [json_name = "type"];
+  if (!this->_internal_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_type());
+  }
+
+  // string module_id = 5 [json_name = "moduleId"];
+  if (!this->_internal_module_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_module_id());
+  }
+
+  // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+  if (this->_internal_has_status()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *status_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -11747,6 +12310,7 @@ void ModuleConfig::MergeFrom(const ModuleConfig& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  env_.MergeFrom(from.env_);
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
@@ -11755,6 +12319,15 @@ void ModuleConfig::MergeFrom(const ModuleConfig& from) {
   }
   if (!from._internal_log_level().empty()) {
     _internal_set_log_level(from._internal_log_level());
+  }
+  if (!from._internal_type().empty()) {
+    _internal_set_type(from._internal_type());
+  }
+  if (!from._internal_module_id().empty()) {
+    _internal_set_module_id(from._internal_module_id());
+  }
+  if (from._internal_has_status()) {
+    _internal_mutable_status()->::viam::app::v1::AppValidationStatus::MergeFrom(from._internal_status());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -11775,6 +12348,7 @@ void ModuleConfig::InternalSwap(ModuleConfig* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  env_.InternalSwap(&other->env_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
@@ -11787,20 +12361,34 @@ void ModuleConfig::InternalSwap(ModuleConfig* other) {
       &log_level_, lhs_arena,
       &other->log_level_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &type_, lhs_arena,
+      &other->type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &module_id_, lhs_arena,
+      &other->module_id_, rhs_arena
+  );
+  swap(status_, other->status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ModuleConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[34]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[37]);
 }
 
 // ===================================================================
 
 class PackageConfig::_Internal {
  public:
+  static const ::viam::app::v1::AppValidationStatus& status(const PackageConfig* msg);
 };
 
+const ::viam::app::v1::AppValidationStatus&
+PackageConfig::_Internal::status(const PackageConfig* msg) {
+  return *msg->status_;
+}
 PackageConfig::PackageConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -11842,6 +12430,11 @@ PackageConfig::PackageConfig(const PackageConfig& from)
     type_.Set(from._internal_type(), 
       GetArenaForAllocation());
   }
+  if (from._internal_has_status()) {
+    status_ = new ::viam::app::v1::AppValidationStatus(*from.status_);
+  } else {
+    status_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.PackageConfig)
 }
 
@@ -11862,6 +12455,7 @@ type_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   type_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+status_ = nullptr;
 }
 
 PackageConfig::~PackageConfig() {
@@ -11879,6 +12473,7 @@ inline void PackageConfig::SharedDtor() {
   package_.Destroy();
   version_.Destroy();
   type_.Destroy();
+  if (this != internal_default_instance()) delete status_;
 }
 
 void PackageConfig::SetCachedSize(int size) const {
@@ -11895,6 +12490,10 @@ void PackageConfig::Clear() {
   package_.ClearToEmpty();
   version_.ClearToEmpty();
   type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
+    delete status_;
+  }
+  status_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -11941,6 +12540,14 @@ const char* PackageConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.PackageConfig.type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_status(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -12013,6 +12620,13 @@ uint8_t* PackageConfig::_InternalSerialize(
         4, this->_internal_type(), target);
   }
 
+  // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+  if (this->_internal_has_status()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::status(this),
+        _Internal::status(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -12057,6 +12671,13 @@ size_t PackageConfig::ByteSizeLong() const {
         this->_internal_type());
   }
 
+  // .viam.app.v1.AppValidationStatus status = 7 [json_name = "status"];
+  if (this->_internal_has_status()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *status_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -12090,6 +12711,9 @@ void PackageConfig::MergeFrom(const PackageConfig& from) {
   }
   if (!from._internal_type().empty()) {
     _internal_set_type(from._internal_type());
+  }
+  if (from._internal_has_status()) {
+    _internal_mutable_status()->::viam::app::v1::AppValidationStatus::MergeFrom(from._internal_status());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -12126,12 +12750,13 @@ void PackageConfig::InternalSwap(PackageConfig* other) {
       &type_, lhs_arena,
       &other->type_, rhs_arena
   );
+  swap(status_, other->status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PackageConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2frobot_2eproto_getter, &descriptor_table_app_2fv1_2frobot_2eproto_once,
-      file_level_metadata_app_2fv1_2frobot_2eproto[35]);
+      file_level_metadata_app_2fv1_2frobot_2eproto[38]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -12147,6 +12772,10 @@ template<> PROTOBUF_NOINLINE ::viam::app::v1::LocationSecret*
 Arena::CreateMaybeMessage< ::viam::app::v1::LocationSecret >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::LocationSecret >(arena);
 }
+template<> PROTOBUF_NOINLINE ::viam::app::v1::AppValidationStatus*
+Arena::CreateMaybeMessage< ::viam::app::v1::AppValidationStatus >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::AppValidationStatus >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::app::v1::CloudConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::CloudConfig >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::CloudConfig >(arena);
@@ -12158,6 +12787,10 @@ Arena::CreateMaybeMessage< ::viam::app::v1::ComponentConfig >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::app::v1::ResourceLevelServiceConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::ResourceLevelServiceConfig >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::ResourceLevelServiceConfig >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ProcessConfig_EnvEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::v1::ProcessConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::ProcessConfig >(Arena* arena) {
@@ -12274,6 +12907,10 @@ Arena::CreateMaybeMessage< ::viam::app::v1::NeedsRestartRequest >(Arena* arena) 
 template<> PROTOBUF_NOINLINE ::viam::app::v1::NeedsRestartResponse*
 Arena::CreateMaybeMessage< ::viam::app::v1::NeedsRestartResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::NeedsRestartResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::v1::ModuleConfig*
 Arena::CreateMaybeMessage< ::viam::app::v1::ModuleConfig >(Arena* arena) {
