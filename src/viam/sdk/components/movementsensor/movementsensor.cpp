@@ -19,7 +19,7 @@ std::shared_ptr<ResourceRegistration> MovementSensor::resource_registration() {
 }
 
 API MovementSensor::static_api() {
-    return {kRDK, kComponent, "movementsensor"};
+    return {kRDK, kComponent, "movement_sensor"};
 }
 
 API MovementSensor::dynamic_api() const {
