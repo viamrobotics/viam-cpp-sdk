@@ -47,10 +47,16 @@ class MovementSensorClient : public MovementSensor {
     using MovementSensor::get_properties;
 
     typedef viam::component::movementsensor::v1::MovementSensorService::StubInterface Stub;
+
    private:
     /// template to wrap a stub. todo: move to base class
     template <typename Request, typename Response, typename Cls>
-    void stub_wrapper(Cls* self, Response& resp, const AttributeMap& extra, ::grpc::Status (Cls::Stub::*method) (::grpc::ClientContext*, const Request&, Response*)) {
+    void stub_wrapper(Cls* self,
+                      Response& resp,
+                      const AttributeMap& extra,
+                      ::grpc::Status (Cls::Stub::*method)(::grpc::ClientContext*,
+                                                          const Request&,
+                                                          Response*)) {
         Request request;
         grpc::ClientContext ctx;
         *request.mutable_name() = self->name();
@@ -61,7 +67,11 @@ class MovementSensorClient : public MovementSensor {
     std::shared_ptr<grpc::Channel> channel_;
 };
 
-class MovementSensorRegistration : public ResourceRegistration2<MovementSensorClient, MovementSensorServer, viam::component::movementsensor::v1::MovementSensorService, MovementSensorRegistration> {
+class MovementSensorRegistration
+    : public ResourceRegistration2<MovementSensorClient,
+                                   MovementSensorServer,
+                                   viam::component::movementsensor::v1::MovementSensorService,
+                                   MovementSensorRegistration> {
    public:
     using ResourceRegistration2::ResourceRegistration2;
 };

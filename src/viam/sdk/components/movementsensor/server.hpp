@@ -90,7 +90,7 @@ class MovementSensorServer
     ServerWrapperResult<Cls> server_wrapper(const Req* request) {
         if (!request) {
             auto status = ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                                "Called MovementSensorServer method without a request");
+                                         "Called MovementSensorServer method without a request");
             return ServerWrapperResult<Cls>{status};
         };
         const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());

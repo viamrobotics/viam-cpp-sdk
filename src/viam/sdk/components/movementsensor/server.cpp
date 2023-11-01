@@ -16,10 +16,9 @@ MovementSensorServer::MovementSensorServer()
 MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(manager){};
 
-::grpc::Status MovementSensorServer::GetLinearVelocity(
-    ::grpc::ServerContext* context,
-    const GetLinearVelocityRequest* request,
-    GetLinearVelocityResponse* response) {
+::grpc::Status MovementSensorServer::GetLinearVelocity(::grpc::ServerContext* context,
+                                                       const GetLinearVelocityRequest* request,
+                                                       GetLinearVelocityResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
@@ -31,10 +30,9 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return ::grpc::Status();
 }
 
-::grpc::Status MovementSensorServer::GetAngularVelocity(
-    ::grpc::ServerContext* context,
-    const GetAngularVelocityRequest* request,
-    GetAngularVelocityResponse* response) {
+::grpc::Status MovementSensorServer::GetAngularVelocity(::grpc::ServerContext* context,
+                                                        const GetAngularVelocityRequest* request,
+                                                        GetAngularVelocityResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
@@ -46,25 +44,24 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return ::grpc::Status();
 }
 
-::grpc::Status MovementSensorServer::GetCompassHeading(
-    ::grpc::ServerContext* context,
-    const GetCompassHeadingRequest* request,
-    GetCompassHeadingResponse* response) {
+::grpc::Status MovementSensorServer::GetCompassHeading(::grpc::ServerContext* context,
+                                                       const GetCompassHeadingRequest* request,
+                                                       GetCompassHeadingResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
     }
 
-    MovementSensor::compassheading result = status.movementsensor->get_compass_heading(status.extra);
+    MovementSensor::compassheading result =
+        status.movementsensor->get_compass_heading(status.extra);
     response->set_value(result.value);
 
     return ::grpc::Status();
 }
 
-::grpc::Status MovementSensorServer::GetOrientation(
-    ::grpc::ServerContext* context,
-    const GetOrientationRequest* request,
-    GetOrientationResponse* response) {
+::grpc::Status MovementSensorServer::GetOrientation(::grpc::ServerContext* context,
+                                                    const GetOrientationRequest* request,
+                                                    GetOrientationResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
@@ -76,10 +73,9 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return ::grpc::Status();
 }
 
-::grpc::Status MovementSensorServer::GetPosition(
-    ::grpc::ServerContext* context,
-    const GetPositionRequest* request,
-    GetPositionResponse* response) {
+::grpc::Status MovementSensorServer::GetPosition(::grpc::ServerContext* context,
+                                                 const GetPositionRequest* request,
+                                                 GetPositionResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
@@ -92,10 +88,9 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return ::grpc::Status();
 }
 
-::grpc::Status MovementSensorServer::GetProperties(
-    ::grpc::ServerContext* context,
-    const GetPropertiesRequest* request,
-    GetPropertiesResponse* response) {
+::grpc::Status MovementSensorServer::GetProperties(::grpc::ServerContext* context,
+                                                   const GetPropertiesRequest* request,
+                                                   GetPropertiesResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
@@ -112,16 +107,16 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return ::grpc::Status();
 }
 
-::grpc::Status MovementSensorServer::GetAccuracy(
-    ::grpc::ServerContext* context,
-    const GetAccuracyRequest* request,
-    GetAccuracyResponse* response) {
+::grpc::Status MovementSensorServer::GetAccuracy(::grpc::ServerContext* context,
+                                                 const GetAccuracyRequest* request,
+                                                 GetAccuracyResponse* response) {
     const auto status = server_wrapper<MovementSensor>(request);
     if (!status.ok()) {
         return status.status;
     }
 
-    std::unordered_map<std::string, float> result = status.movementsensor->get_accuracy(status.extra);
+    std::unordered_map<std::string, float> result =
+        status.movementsensor->get_accuracy(status.extra);
     response->mutable_accuracy()->empty();
     for (const auto& i : result) {
         response->mutable_accuracy()->insert({i.first, i.second});
