@@ -9,7 +9,7 @@
 ## Resources
 * [Documentation](https://cpp.viam.dev)
 * [Examples](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples)
- 
+
 ## Repository Layout
 - `src/viam/sdk` The implementation of the C++ sdk library
 - `src/viam/api` All the google and viam api autogen files
