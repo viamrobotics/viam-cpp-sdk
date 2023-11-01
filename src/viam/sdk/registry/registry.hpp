@@ -58,6 +58,28 @@ class ResourceRegistration {
     const google::protobuf::ServiceDescriptor* service_descriptor_;
 };
 
+/// @brief subclass of ResourceRegistration with templatized defaults
+template <typename MyResource, typename MyResourceServer, typename MyProtoService> class ResourceRegistration2 : public ResourceRegistration {
+    std::shared_ptr<ResourceServer> create_resource_server(
+        std::shared_ptr<ResourceManager> manager) {
+        return std::make_shared<MyResourceServer>(manager);
+    }
+
+    std::shared_ptr<Resource> create_rpc_client(
+        std::string name, std::shared_ptr<grpc::Channel> chan) {
+        return std::make_shared<MyResource>(std::move(name), std::move(chan));
+    }
+
+    std::shared_ptr<ResourceRegistration> resource_registration() {
+        const google::protobuf::DescriptorPool* p = google::protobuf::DescriptorPool::generated_pool();
+        const google::protobuf::ServiceDescriptor* sd = p->FindServiceByName(MyProtoService::service_full_name());
+        if (!sd) {
+            throw std::runtime_error("Unable to get service descriptor");
+        }
+        return std::make_shared<ResourceRegistration>(sd);
+    }
+};
+
 /// @class ModelRegistration
 /// @brief Information about a registered model, including a constructor and config validator.
 class ModelRegistration {
