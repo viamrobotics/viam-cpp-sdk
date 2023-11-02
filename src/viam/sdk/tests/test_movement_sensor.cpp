@@ -13,10 +13,10 @@
 
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/movementsensor/client.hpp>
-#include <viam/sdk/components/movementsensor/movementsensor.hpp>
-#include <viam/sdk/components/movementsensor/server.hpp>
-#include <viam/sdk/tests/mocks/mock_movementsensor.hpp>
+#include <viam/sdk/components/movement_sensor/client.hpp>
+#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
+#include <viam/sdk/components/movement_sensor/server.hpp>
+#include <viam/sdk/tests/mocks/mock_movement_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)

@@ -5,9 +5,9 @@
 #include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
 
 #include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/components/movementsensor/client.hpp>
-#include <viam/sdk/components/movementsensor/movementsensor.hpp>
-#include <viam/sdk/components/movementsensor/server.hpp>
+#include <viam/sdk/components/movement_sensor/client.hpp>
+#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
+#include <viam/sdk/components/movement_sensor/server.hpp>
 
 namespace viam {
 namespace sdktests {

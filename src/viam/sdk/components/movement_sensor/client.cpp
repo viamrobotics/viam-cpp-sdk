@@ -1,4 +1,4 @@
-#include <viam/sdk/components/movementsensor/client.hpp>
+#include <viam/sdk/components/movement_sensor/client.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -11,7 +11,7 @@
 
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/movementsensor/movementsensor.hpp>
+#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
 

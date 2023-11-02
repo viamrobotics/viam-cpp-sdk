@@ -1,11 +1,11 @@
-#include <viam/sdk/tests/mocks/mock_movementsensor.hpp>
+#include <viam/sdk/tests/mocks/mock_movement_sensor.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
 #include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
 
-#include <viam/sdk/components/movementsensor/movementsensor.hpp>
-#include <viam/sdk/components/movementsensor/server.hpp>
+#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
+#include <viam/sdk/components/movement_sensor/server.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {

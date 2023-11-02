@@ -1,4 +1,4 @@
-#include <viam/sdk/components/movementsensor/movementsensor.hpp>
+#include <viam/sdk/components/movement_sensor/movement_sensor.hpp>
 
 #include <google/protobuf/descriptor.h>
 
@@ -6,8 +6,8 @@
 #include <viam/api/component/movementsensor/v1/movementsensor.pb.h>
 
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/movementsensor/client.hpp>
-#include <viam/sdk/components/movementsensor/server.hpp>
+#include <viam/sdk/components/movement_sensor/client.hpp>
+#include <viam/sdk/components/movement_sensor/server.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 

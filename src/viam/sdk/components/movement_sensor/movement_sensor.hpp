@@ -10,7 +10,7 @@
 #include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/components/movementsensor/server.hpp>
+#include <viam/sdk/components/movement_sensor/server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>

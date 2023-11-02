@@ -27,7 +27,7 @@ target_sources(viamsdk_test
     mocks/mock_encoder.cpp
     mocks/mock_motor.cpp
     mocks/mock_motion.cpp
-    mocks/mock_movementsensor.cpp
+    mocks/mock_movement_sensor.cpp
     mocks/mock_robot.cpp
     test_utils.cpp
 )
@@ -45,6 +45,6 @@ viamcppsdk_add_boost_test(test_generic_component.cpp)
 viamcppsdk_add_boost_test(test_mlmodel.cpp)
 viamcppsdk_add_boost_test(test_motor.cpp)
 viamcppsdk_add_boost_test(test_motion.cpp)
-viamcppsdk_add_boost_test(test_movementsensor.cpp)
+viamcppsdk_add_boost_test(test_movement_sensor.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
 viamcppsdk_add_boost_test(test_types.cpp)
