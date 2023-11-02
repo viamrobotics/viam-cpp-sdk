@@ -22,7 +22,6 @@ namespace sdk {
 /// @defgroup MovementSensor Classes related to the MovementSensor component.
 
 /// @class MovementSensor movementsensor.hpp "components/movementsensor/movementsensor.hpp"
-/// @brief TODO
 /// @ingroup MovementSensor
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
@@ -30,9 +29,6 @@ namespace sdk {
 class MovementSensor : public Component {
    public:
     /// @struct compassheading
-    /// @brief TODO.
-    /// TODO(pre-merge) I am dubious that this needs a struct... Though it could be nice to have
-    /// helper functions like compassheadings.east()..?
     struct compassheading {
         /// A number from 0-359 where 0 is North, 90 is East, 180 is South, and 270 is   West
         double value;
@@ -44,35 +40,22 @@ class MovementSensor : public Component {
     // uses).
     struct orientation {
         double o_x, o_y, o_z, theta;
-        // TODO(pre-merge) move the to/from protos in here. Nicer that way
     };
 
     /// @struct position
-    /// @brief TODO.
     struct position {
-        /// TODO
         geo_point coordinate;
-        /// TODO
         float altitude_m;
-        // TODO(pre-merge) move the to/from protos in here. Nicer that way
     };
 
     /// @struct properties
-    /// @brief TODO.
     struct properties {
-        /// TODO
         bool linear_velocity_supported;
-        /// TODO
         bool angular_velocity_supported;
-        /// TODO
         bool orientation_supported;
-        /// TODO
         bool position_supported;
-        /// TODO
         bool compass_heading_supported;
-        /// TODO
         bool linear_acceleration_supported;
-        // TODO(pre-merge) move the to/from protos in here. Nicer that way
     };
 
     static API static_api();
@@ -105,68 +88,52 @@ class MovementSensor : public Component {
     static viam::component::movementsensor::v1::GetPropertiesResponse to_proto(
         properties properties);
 
-    /// @brief TODO
     inline Vector3 get_linear_velocity() {
         return get_linear_velocity({});
     }
 
-    /// @brief TODO
     virtual Vector3 get_linear_velocity(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline Vector3 get_angular_velocity() {
         return get_angular_velocity({});
     }
 
-    /// @brief TODO
     virtual Vector3 get_angular_velocity(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline compassheading get_compass_heading() {
         return get_compass_heading({});
     }
 
-    /// @brief TODO
     virtual compassheading get_compass_heading(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline orientation get_orientation() {
         return get_orientation({});
     }
 
-    /// @brief TODO
     virtual orientation get_orientation(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline position get_position() {
         return get_position({});
     }
 
-    /// @brief TODO
     virtual position get_position(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline properties get_properties() {
         return get_properties({});
     }
 
-    /// @brief TODO
     virtual properties get_properties(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline std::unordered_map<std::string, float> get_accuracy() {
         return get_accuracy({});
     }
 
-    /// @brief TODO
     virtual std::unordered_map<std::string, float> get_accuracy(const AttributeMap& extra) = 0;
 
-    /// @brief TODO
     inline Vector3 get_linear_acceleration() {
         return get_linear_acceleration({});
     }
 
-    /// @brief TODO
     virtual Vector3 get_linear_acceleration(const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
