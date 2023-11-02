@@ -67,12 +67,12 @@ class ResourceRegistration2 : public ResourceRegistration {
    public:
     using ResourceRegistration::ResourceRegistration;
     std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) {
+        std::shared_ptr<ResourceManager> manager) override {
         return std::make_shared<ResourceServerT>(manager);
     }
 
     std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                std::shared_ptr<grpc::Channel> chan) {
+                                                std::shared_ptr<grpc::Channel> chan) override {
         return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
     }
 
