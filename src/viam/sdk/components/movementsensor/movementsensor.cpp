@@ -54,10 +54,6 @@ class MovementSensorRegistration
     using ResourceRegistration2::ResourceRegistration2;
 };
 
-std::shared_ptr<ResourceRegistration> MovementSensor::resource_registration() {
-    return MovementSensorRegistration::resource_registration();
-}
-
 API MovementSensor::static_api() {
     return {kRDK, kComponent, "movement_sensor"};
 }
@@ -151,7 +147,7 @@ bool operator==(const MovementSensor::properties& lhs, const MovementSensor::pro
 namespace {
 bool init() {
     Registry::register_resource(MovementSensor::static_api(),
-                                MovementSensor::resource_registration());
+                                MovementSensorRegistration::resource_registration());
     return true;
 };
 

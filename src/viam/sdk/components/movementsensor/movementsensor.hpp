@@ -75,8 +75,6 @@ class MovementSensor : public Component {
         // TODO(pre-merge) move the to/from protos in here. Nicer that way
     };
 
-    // functions shared across all components
-    static std::shared_ptr<ResourceRegistration> resource_registration();
     static API static_api();
     API dynamic_api() const override;
 
