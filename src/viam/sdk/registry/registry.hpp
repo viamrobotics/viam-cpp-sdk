@@ -59,32 +59,32 @@ class ResourceRegistration {
 };
 
 /// @brief subclass of ResourceRegistration with templatized defaults
-template <typename MyResourceClient,
-          typename MyResourceServer,
-          typename MyProtoService,
-          typename MyResourceReg>
+template <typename ResourceClientT,
+          typename ResourceServerT,
+          typename ProtoServiceT,
+          typename ResourceRegT>
 class ResourceRegistration2 : public ResourceRegistration {
    public:
     using ResourceRegistration::ResourceRegistration;
     std::shared_ptr<ResourceServer> create_resource_server(
         std::shared_ptr<ResourceManager> manager) {
-        return std::make_shared<MyResourceServer>(manager);
+        return std::make_shared<ResourceServerT>(manager);
     }
 
     std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                 std::shared_ptr<grpc::Channel> chan) {
-        return std::make_shared<MyResourceClient>(std::move(name), std::move(chan));
+        return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
     }
 
     static std::shared_ptr<ResourceRegistration> resource_registration() {
         const google::protobuf::DescriptorPool* p =
             google::protobuf::DescriptorPool::generated_pool();
         const google::protobuf::ServiceDescriptor* sd =
-            p->FindServiceByName(MyProtoService::service_full_name());
+            p->FindServiceByName(ProtoServiceT::service_full_name());
         if (!sd) {
             throw std::runtime_error("Unable to get service descriptor");
         }
-        return std::make_shared<MyResourceReg>(sd);
+        return std::make_shared<ResourceRegT>(sd);
     }
 };
 
