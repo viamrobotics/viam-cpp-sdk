@@ -14,6 +14,46 @@
 namespace viam {
 namespace sdk {
 
+// todo: move me somewhere central
+/// @brief subclass of ResourceRegistration with templatized defaults
+template <typename ResourceClientT,
+          typename ResourceServerT,
+          typename ProtoServiceT,
+          typename ResourceRegT>
+class ResourceRegistration2 : public ResourceRegistration {
+   public:
+    using ResourceRegistration::ResourceRegistration;
+    std::shared_ptr<ResourceServer> create_resource_server(
+        std::shared_ptr<ResourceManager> manager) override {
+        return std::make_shared<ResourceServerT>(manager);
+    }
+
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override {
+        return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
+    }
+
+    static std::shared_ptr<ResourceRegistration> resource_registration() {
+        const google::protobuf::DescriptorPool* p =
+            google::protobuf::DescriptorPool::generated_pool();
+        const google::protobuf::ServiceDescriptor* sd =
+            p->FindServiceByName(ProtoServiceT::service_full_name());
+        if (!sd) {
+            throw std::runtime_error("Unable to get service descriptor");
+        }
+        return std::make_shared<ResourceRegT>(sd);
+    }
+};
+
+class MovementSensorRegistration
+    : public ResourceRegistration2<MovementSensorClient,
+                                   MovementSensorServer,
+                                   viam::component::movementsensor::v1::MovementSensorService,
+                                   MovementSensorRegistration> {
+   public:
+    using ResourceRegistration2::ResourceRegistration2;
+};
+
 std::shared_ptr<ResourceRegistration> MovementSensor::resource_registration() {
     return MovementSensorRegistration::resource_registration();
 }
