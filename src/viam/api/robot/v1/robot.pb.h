@@ -4498,6 +4498,7 @@ class Status final :
   enum : int {
     kNameFieldNumber = 1,
     kStatusFieldNumber = 2,
+    kLastReconfiguredFieldNumber = 3,
   };
   // .viam.common.v1.ResourceName name = 1 [json_name = "name"];
   bool has_name() const;
@@ -4535,6 +4536,24 @@ class Status final :
       ::PROTOBUF_NAMESPACE_ID::Struct* status);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_status();
 
+  // .google.protobuf.Timestamp last_reconfigured = 3 [json_name = "lastReconfigured"];
+  bool has_last_reconfigured() const;
+  private:
+  bool _internal_has_last_reconfigured() const;
+  public:
+  void clear_last_reconfigured();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_reconfigured() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_reconfigured();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_reconfigured();
+  void set_allocated_last_reconfigured(::PROTOBUF_NAMESPACE_ID::Timestamp* last_reconfigured);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_reconfigured() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_reconfigured();
+  public:
+  void unsafe_arena_set_allocated_last_reconfigured(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_reconfigured);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_reconfigured();
+
   // @@protoc_insertion_point(class_scope:viam.robot.v1.Status)
  private:
   class _Internal;
@@ -4544,6 +4563,7 @@ class Status final :
   typedef void DestructorSkippable_;
   ::viam::common::v1::ResourceName* name_;
   ::PROTOBUF_NAMESPACE_ID::Struct* status_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_reconfigured_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
@@ -8567,6 +8587,91 @@ inline void Status::set_allocated_status(::PROTOBUF_NAMESPACE_ID::Struct* status
   }
   status_ = status;
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Status.status)
+}
+
+// .google.protobuf.Timestamp last_reconfigured = 3 [json_name = "lastReconfigured"];
+inline bool Status::_internal_has_last_reconfigured() const {
+  return this != internal_default_instance() && last_reconfigured_ != nullptr;
+}
+inline bool Status::has_last_reconfigured() const {
+  return _internal_has_last_reconfigured();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Status::_internal_last_reconfigured() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_reconfigured_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Status::last_reconfigured() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.Status.last_reconfigured)
+  return _internal_last_reconfigured();
+}
+inline void Status::unsafe_arena_set_allocated_last_reconfigured(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_reconfigured) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_reconfigured_);
+  }
+  last_reconfigured_ = last_reconfigured;
+  if (last_reconfigured) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.Status.last_reconfigured)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Status::release_last_reconfigured() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_reconfigured_;
+  last_reconfigured_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Status::unsafe_arena_release_last_reconfigured() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.Status.last_reconfigured)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_reconfigured_;
+  last_reconfigured_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Status::_internal_mutable_last_reconfigured() {
+  
+  if (last_reconfigured_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_reconfigured_ = p;
+  }
+  return last_reconfigured_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Status::mutable_last_reconfigured() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_reconfigured();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.Status.last_reconfigured)
+  return _msg;
+}
+inline void Status::set_allocated_last_reconfigured(::PROTOBUF_NAMESPACE_ID::Timestamp* last_reconfigured) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_reconfigured_);
+  }
+  if (last_reconfigured) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_reconfigured));
+    if (message_arena != submessage_arena) {
+      last_reconfigured = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_reconfigured, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  last_reconfigured_ = last_reconfigured;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.Status.last_reconfigured)
 }
 
 // -------------------------------------------------------------------

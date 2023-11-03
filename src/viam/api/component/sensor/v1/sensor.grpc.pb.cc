@@ -42,23 +42,23 @@ SensorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_GetGeometries_(SensorService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status SensorService::Stub::GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::viam::component::sensor::v1::GetReadingsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReadings_, context, request, response);
+::grpc::Status SensorService::Stub::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReadings_, context, request, response);
 }
 
-void SensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
+void SensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
 }
 
-void SensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void SensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>* SensorService::Stub::PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::sensor::v1::GetReadingsResponse, ::viam::component::sensor::v1::GetReadingsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReadings_, context, request);
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* SensorService::Stub::PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetReadingsResponse, ::viam::common::v1::GetReadingsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReadings_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>* SensorService::Stub::AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* SensorService::Stub::AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetReadingsRaw(context, request, cq);
   result->StartCall();
@@ -115,11 +115,11 @@ SensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SensorService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< SensorService::Service, ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< SensorService::Service, ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](SensorService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::viam::component::sensor::v1::GetReadingsRequest* req,
-             ::viam::component::sensor::v1::GetReadingsResponse* resp) {
+             const ::viam::common::v1::GetReadingsRequest* req,
+             ::viam::common::v1::GetReadingsResponse* resp) {
                return service->GetReadings(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -147,7 +147,7 @@ SensorService::Service::Service() {
 SensorService::Service::~Service() {
 }
 
-::grpc::Status SensorService::Service::GetReadings(::grpc::ServerContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response) {
+::grpc::Status SensorService::Service::GetReadings(::grpc::ServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
