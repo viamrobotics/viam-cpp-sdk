@@ -66,12 +66,7 @@ const HandlerMap_ HandlerMap_::from_proto(viam::module::v1::HandlerMap proto) {
 }
 
 void HandlerMap_::add_model(Model model, RPCSubtype subtype) {
-    std::vector<Model> models;
-    if (handles_.find(subtype) != handles_.end()) {
-        models = handles_.at(subtype);
-    }
-    models.push_back(model);
-    handles_.emplace(subtype, models);
+    handles_[subtype].push_back(model);
 }
 
 }  // namespace sdk
