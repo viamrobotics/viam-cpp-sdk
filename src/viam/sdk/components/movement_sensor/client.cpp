@@ -23,13 +23,6 @@ MovementSensorClient::MovementSensorClient(std::string name, std::shared_ptr<grp
       stub_(viam::component::movementsensor::v1::MovementSensorService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-/// helper to throw on !ok grpc status
-void throw_status(const ::grpc::Status& status) {
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-}
-
 using namespace viam::component::movementsensor::v1;
 
 Vector3 MovementSensorClient::get_linear_velocity(const AttributeMap& extra) {
@@ -105,11 +98,10 @@ AttributeMap MovementSensorClient::do_command(const AttributeMap& command) {
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    throw_status(stub_->DoCommand(&ctx, request, &response));
+    THROW_NOT_OK(stub_->DoCommand(&ctx, request, &response));
     return struct_to_map(response.result());
 }
 
-// TODO this one didn't have a throw. is that intentional?
 std::vector<GeometryConfig> MovementSensorClient::get_geometries(const AttributeMap& extra) {
     viam::common::v1::GetGeometriesResponse resp;
     stub_wrapper<viam::common::v1::GetGeometriesRequest>(

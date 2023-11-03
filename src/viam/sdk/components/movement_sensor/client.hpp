@@ -16,9 +16,6 @@
 namespace viam {
 namespace sdk {
 
-// todo move me
-void throw_status(const ::grpc::Status& status);
-
 /// @class MovementSensorClient
 /// @brief gRPC client implementation of a `MovementSensor` component.
 /// @ingroup MovementSensor
@@ -61,7 +58,7 @@ class MovementSensorClient : public MovementSensor {
         grpc::ClientContext ctx;
         *request.mutable_name() = self->name();
         *request.mutable_extra() = map_to_struct(extra);
-        throw_status((*(self->stub_).*method)(&ctx, request, &resp));
+        THROW_NOT_OK((*(self->stub_).*method)(&ctx, request, &resp));
     }
     std::unique_ptr<Stub> stub_;
     std::shared_ptr<grpc::Channel> channel_;
