@@ -34,10 +34,8 @@ class MovementSensor : public Component {
         double value;
     };
 
-    // @struct orientation
-    // @brief MovementSensor is the only user of viam::common::v1::Orientation right now.
-    // Unfortunately, that is not the same as viam::app::v1::Orientation (which is what spatialmath
-    // uses).
+    /// @struct orientation
+    /// @brief Struct version of viam::common::v1::Orientation.
     struct orientation {
         double o_x, o_y, o_z, theta;
     };
