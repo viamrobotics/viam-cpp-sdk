@@ -8,6 +8,7 @@ var searchData=
   ['related_20to_20the_20generic_20component_5',['Classes related to the Generic component.',['../group__Generic.html',1,'']]],
   ['related_20to_20the_20motion_20service_6',['Classes related to the Motion service.',['../group__Motion.html',1,'']]],
   ['related_20to_20the_20motor_20component_7',['Classes related to the Motor component.',['../group__Motor.html',1,'']]],
-  ['representation_8',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
-  ['robot_20representation_9',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]]
+  ['related_20to_20the_20movementsensor_20component_8',['Classes related to the MovementSensor component.',['../group__MovementSensor.html',1,'']]],
+  ['representation_9',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
+  ['robot_20representation_10',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]]
 ];

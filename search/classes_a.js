@@ -19,7 +19,10 @@ var searchData=
   ['motorclient_16',['MotorClient',['../classviam_1_1sdk_1_1MotorClient.html',1,'viam::sdk']]],
   ['motorregistration_17',['MotorRegistration',['../classviam_1_1sdk_1_1MotorRegistration.html',1,'viam::sdk']]],
   ['motorserver_18',['MotorServer',['../classviam_1_1sdk_1_1MotorServer.html',1,'viam::sdk']]],
-  ['mybase_19',['MyBase',['../classMyBase.html',1,'']]],
-  ['mygizmo_20',['MyGizmo',['../classMyGizmo.html',1,'']]],
-  ['mysummation_21',['MySummation',['../classMySummation.html',1,'']]]
+  ['movementsensor_19',['MovementSensor',['../classviam_1_1sdk_1_1MovementSensor.html',1,'viam::sdk']]],
+  ['movementsensorclient_20',['MovementSensorClient',['../classviam_1_1sdk_1_1MovementSensorClient.html',1,'viam::sdk']]],
+  ['movementsensorserver_21',['MovementSensorServer',['../classviam_1_1sdk_1_1MovementSensorServer.html',1,'viam::sdk']]],
+  ['mybase_22',['MyBase',['../classMyBase.html',1,'']]],
+  ['mygizmo_23',['MyGizmo',['../classMyGizmo.html',1,'']]],
+  ['mysummation_24',['MySummation',['../classMySummation.html',1,'']]]
 ];
