@@ -71,8 +71,7 @@ class MovementSensorServer
                                  ::viam::common::v1::GetGeometriesResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
-
-    // todo: move to base
+   private:
     template <typename Cls>
     struct ServerWrapperResult {
         ::grpc::Status status;
@@ -84,8 +83,7 @@ class MovementSensorServer
         }
     };
 
-    // todo: move to base
-    /// wrapper template for boilerplate
+    // wrapper template for boilerplate
     template <typename Cls, typename Req>
     ServerWrapperResult<Cls> server_wrapper(const Req* request) {
         if (!request) {

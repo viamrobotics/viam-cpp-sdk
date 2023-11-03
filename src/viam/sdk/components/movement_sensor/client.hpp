@@ -46,7 +46,7 @@ class MovementSensorClient : public MovementSensor {
     typedef viam::component::movementsensor::v1::MovementSensorService::StubInterface Stub;
 
    private:
-    /// template to wrap a stub. todo: move to base class
+    // template to wrap a stub
     template <typename Request, typename Response, typename Cls>
     void stub_wrapper(Cls* self,
                       Response& resp,
