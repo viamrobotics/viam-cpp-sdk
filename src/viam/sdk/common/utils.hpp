@@ -89,8 +89,5 @@ void set_logger_severity_from_args(int argc, char** argv);
 /// @param extra The extra AttributeMap.
 bool from_dm_from_extra(const AttributeMap& extra);
 
-/// helper to throw on !ok grpc::Status
-#define THROW_NOT_OK(status) if (!status.ok()) { throw std::runtime_error(status.error_message()); }
-
 }  // namespace sdk
 }  // namespace viam

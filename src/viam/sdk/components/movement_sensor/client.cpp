@@ -98,7 +98,10 @@ AttributeMap MovementSensorClient::do_command(const AttributeMap& command) {
     *request.mutable_command() = proto_command;
     *request.mutable_name() = this->name();
 
-    THROW_NOT_OK(stub_->DoCommand(&ctx, request, &response));
+    const auto status = stub_->DoCommand(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
     return struct_to_map(response.result());
 }
 

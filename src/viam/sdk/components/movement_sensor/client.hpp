@@ -58,7 +58,10 @@ class MovementSensorClient : public MovementSensor {
         grpc::ClientContext ctx;
         *request.mutable_name() = self->name();
         *request.mutable_extra() = map_to_struct(extra);
-        THROW_NOT_OK((*(self->stub_).*method)(&ctx, request, &resp));
+        const auto status = (*(self->stub_).*method)(&ctx, request, &resp);
+        if (!status.ok()) {
+            throw std::runtime_error(status.error_message());
+        }
     }
     std::unique_ptr<Stub> stub_;
     std::shared_ptr<grpc::Channel> channel_;

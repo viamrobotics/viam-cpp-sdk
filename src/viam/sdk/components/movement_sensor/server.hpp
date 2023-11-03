@@ -71,6 +71,7 @@ class MovementSensorServer
                                  ::viam::common::v1::GetGeometriesResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
+
    private:
     template <typename Cls>
     struct ServerWrapperResult {
