@@ -15,7 +15,6 @@ namespace viam {
 namespace sdk {
 
 // todo: move me somewhere central
-/// @brief subclass of ResourceRegistration with templatized defaults
 template <typename ResourceClientT,
           typename ResourceServerT,
           typename ProtoServiceT,
@@ -43,15 +42,6 @@ class ResourceRegistration2 : public ResourceRegistration {
         }
         return std::make_shared<ResourceRegT>(sd);
     }
-};
-
-class MovementSensorRegistration
-    : public ResourceRegistration2<MovementSensorClient,
-                                   MovementSensorServer,
-                                   viam::component::movementsensor::v1::MovementSensorService,
-                                   MovementSensorRegistration> {
-   public:
-    using ResourceRegistration2::ResourceRegistration2;
 };
 
 API MovementSensor::static_api() {
@@ -145,6 +135,15 @@ bool operator==(const MovementSensor::properties& lhs, const MovementSensor::pro
 }
 
 namespace {
+class MovementSensorRegistration final
+    : public ResourceRegistration2<MovementSensorClient,
+                                   MovementSensorServer,
+                                   viam::component::movementsensor::v1::MovementSensorService,
+                                   MovementSensorRegistration> {
+   public:
+    using ResourceRegistration2::ResourceRegistration2;
+};
+
 bool init() {
     Registry::register_resource(MovementSensor::static_api(),
                                 MovementSensorRegistration::resource_registration());
