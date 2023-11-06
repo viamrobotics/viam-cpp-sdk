@@ -27,9 +27,10 @@ AttributeMap SensorClient::get_readings(const AttributeMap& extra) {
     GetReadingsResponse response;
     stub_wrapper<GetReadingsRequest>(this, response, {}, &SensorClient::Stub::GetReadings);
 
-    AttributeMap result;
+    AttributeMap result =
+        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
     for (const auto& r : response.readings()) {
-        result->emplace(r.first, std::make_shared<ProtoType>(r.second));
+        result->emplace(std::move(r.first), std::make_shared<ProtoType>(r.second));
     }
     return result;
 }

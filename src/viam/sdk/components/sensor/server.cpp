@@ -23,7 +23,7 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
     const AttributeMap result = status.sensor->get_readings(status.extra);
     for (const auto& r : *result) {
-        response->mutable_readings()->insert({r.first, r.second->proto_value()});
+        response->mutable_readings()->insert({std::move(r.first), r.second->proto_value()});
     }
     return ::grpc::Status();
 }
