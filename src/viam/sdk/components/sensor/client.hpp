@@ -24,6 +24,9 @@ class SensorClient : public Sensor {
     AttributeMap do_command(const AttributeMap& command) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
+    using Sensor::get_geometries;
+    using Sensor::get_readings;
+
     typedef viam::component::sensor::v1::SensorService::StubInterface Stub;
 
    private:

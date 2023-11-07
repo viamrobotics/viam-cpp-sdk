@@ -21,7 +21,7 @@ AttributeMap MockSensor::do_command(const AttributeMap& command) {
     return command;
 };
 std::vector<sdk::GeometryConfig> MockSensor::get_geometries(const AttributeMap& extra) {
-    return std::vector<sdk::GeometryConfig>();
+    return fake_geometries();
 };
 
 std::shared_ptr<MockSensor> MockSensor::get_mock_sensor() {

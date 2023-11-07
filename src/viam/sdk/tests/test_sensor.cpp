@@ -11,6 +11,7 @@
 #include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
 #include <viam/api/component/sensor/v1/sensor.pb.h>
 
+#include "viam/sdk/spatialmath/geometry.hpp"
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/components/sensor/client.hpp>
 #include <viam/sdk/components/sensor/sensor.hpp>
@@ -91,6 +92,14 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
         ProtoType expected_pt = *(expected->at(std::string("test")));
         ProtoType result_pt = *(result_map->at(std::string("test")));
         BOOST_CHECK(result_pt == expected_pt);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    server_to_mock_pipeline([](Sensor& client, std::shared_ptr<MockSensor> mock) -> void {
+        std::vector<sdk::GeometryConfig> expected = fake_geometries();
+        std::vector<sdk::GeometryConfig> geometries = client.get_geometries();
+        BOOST_CHECK(expected == geometries);
     });
 }
 
