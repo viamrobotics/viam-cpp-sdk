@@ -1,4 +1,4 @@
-/// @file components/movementsensor/server.hpp
+/// @file components/movement_sensor/server.hpp
 ///
 /// @brief Implements a gRPC server for the `MovementSensor` component.
 #pragma once

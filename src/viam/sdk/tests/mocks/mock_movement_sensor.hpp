@@ -30,7 +30,6 @@ class MockMovementSensor : public sdk::MovementSensor {
 
     // These variables allow the testing infra to `peek` into the mock
     // and ensure that the correct values were passed
-    //
     sdk::Vector3 peek_return_vec;
     sdk::MovementSensor::compassheading peek_compass_heading;
     sdk::MovementSensor::orientation peek_orientation;

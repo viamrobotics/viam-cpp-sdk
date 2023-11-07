@@ -1,4 +1,4 @@
-/// @file components/movementsensor/client.hpp
+/// @file components/movement_sensor/client.hpp
 ///
 /// @brief Implements a gRPC client for the `MovementSensor` component.
 #pragma once
