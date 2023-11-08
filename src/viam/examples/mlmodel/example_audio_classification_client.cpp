@@ -146,10 +146,9 @@ int main(int argc, char* argv[]) try {
     // In classification mode, this should be the api key id for the robot
     // where the generated configuration is currently running.
     boost::optional<std::string> opt_api_key_id;
-    options_desc.add_options()(
-        "robot-api-key-id",
-        bpo::value(&opt_api_key_id),
-        "API key id for accessing the robot running at `--robot-host`\n");
+    options_desc.add_options()("robot-api-key-id",
+                               bpo::value(&opt_api_key_id),
+                               "API key id for accessing the robot running at `--robot-host`\n");
 
     // Parse the command line, and print the options summary if the user requested `--help`.
     bpo::variables_map option_variables;
