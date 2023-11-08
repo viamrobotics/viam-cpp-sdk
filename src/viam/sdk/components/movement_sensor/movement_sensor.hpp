@@ -21,7 +21,7 @@ namespace sdk {
 
 /// @defgroup MovementSensor Classes related to the MovementSensor component.
 
-/// @class MovementSensor movementsensor.hpp "components/movement_sensor/movement_sensor.hpp"
+/// @class MovementSensor movement_sensor.hpp "components/movement_sensor/movement_sensor.hpp"
 /// @ingroup MovementSensor
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
