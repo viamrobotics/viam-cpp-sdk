@@ -28,6 +28,7 @@ static const char* PowerSensorService_method_names[] = {
   "/viam.component.powersensor.v1.PowerSensorService/GetVoltage",
   "/viam.component.powersensor.v1.PowerSensorService/GetCurrent",
   "/viam.component.powersensor.v1.PowerSensorService/GetPower",
+  "/viam.component.powersensor.v1.PowerSensorService/GetReadings",
   "/viam.component.powersensor.v1.PowerSensorService/DoCommand",
 };
 
@@ -41,7 +42,8 @@ PowerSensorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>&
   : channel_(channel), rpcmethod_GetVoltage_(PowerSensorService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetCurrent_(PowerSensorService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetPower_(PowerSensorService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(PowerSensorService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReadings_(PowerSensorService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(PowerSensorService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status PowerSensorService::Stub::GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::viam::component::powersensor::v1::GetVoltageResponse* response) {
@@ -113,6 +115,29 @@ void PowerSensorService::Stub::async::GetPower(::grpc::ClientContext* context, c
   return result;
 }
 
+::grpc::Status PowerSensorService::Stub::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReadings_, context, request, response);
+}
+
+void PowerSensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
+}
+
+void PowerSensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PowerSensorService::Stub::PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetReadingsResponse, ::viam::common::v1::GetReadingsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReadings_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PowerSensorService::Stub::AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReadingsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status PowerSensorService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
@@ -170,6 +195,16 @@ PowerSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PowerSensorService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](PowerSensorService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetReadingsRequest* req,
+             ::viam::common::v1::GetReadingsResponse* resp) {
+               return service->GetReadings(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      PowerSensorService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](PowerSensorService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -197,6 +232,13 @@ PowerSensorService::Service::~Service() {
 }
 
 ::grpc::Status PowerSensorService::Service::GetPower(::grpc::ServerContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status PowerSensorService::Service::GetReadings(::grpc::ServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

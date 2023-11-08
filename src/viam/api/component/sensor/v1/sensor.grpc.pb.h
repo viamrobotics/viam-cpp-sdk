@@ -40,12 +40,12 @@ class SensorService final {
    public:
     virtual ~StubInterface() {}
     // GetReadings returns the readings of a sensor of the underlying robot.
-    virtual ::grpc::Status GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::viam::component::sensor::v1::GetReadingsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::sensor::v1::GetReadingsResponse>> AsyncGetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::sensor::v1::GetReadingsResponse>>(AsyncGetReadingsRaw(context, request, cq));
+    virtual ::grpc::Status GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>> AsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>>(AsyncGetReadingsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::sensor::v1::GetReadingsResponse>> PrepareAsyncGetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::sensor::v1::GetReadingsResponse>>(PrepareAsyncGetReadingsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>> PrepareAsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>>(PrepareAsyncGetReadingsRaw(context, request, cq));
     }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
@@ -67,8 +67,8 @@ class SensorService final {
      public:
       virtual ~async_interface() {}
       // GetReadings returns the readings of a sensor of the underlying robot.
-      virtual void GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -80,8 +80,8 @@ class SensorService final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::sensor::v1::GetReadingsResponse>* AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::sensor::v1::GetReadingsResponse>* PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>* AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetReadingsResponse>* PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -90,12 +90,12 @@ class SensorService final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::viam::component::sensor::v1::GetReadingsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>> AsyncGetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>>(AsyncGetReadingsRaw(context, request, cq));
+    ::grpc::Status GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>> AsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>>(AsyncGetReadingsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>> PrepareAsyncGetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>>(PrepareAsyncGetReadingsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>> PrepareAsyncGetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>>(PrepareAsyncGetReadingsRaw(context, request, cq));
     }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -114,8 +114,8 @@ class SensorService final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetReadings(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
@@ -131,8 +131,8 @@ class SensorService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>* AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::component::sensor::v1::GetReadingsResponse>* PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::component::sensor::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -148,7 +148,7 @@ class SensorService final {
     Service();
     virtual ~Service();
     // GetReadings returns the readings of a sensor of the underlying robot.
-    virtual ::grpc::Status GetReadings(::grpc::ServerContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response);
+    virtual ::grpc::Status GetReadings(::grpc::ServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
     // GetGeometries returns the geometries of the component in their current configuration
@@ -166,11 +166,11 @@ class SensorService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/) override {
+    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetReadings(::grpc::ServerContext* context, ::viam::component::sensor::v1::GetReadingsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::sensor::v1::GetReadingsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetReadings(::grpc::ServerContext* context, ::viam::common::v1::GetReadingsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetReadingsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -222,25 +222,25 @@ class SensorService final {
    public:
     WithCallbackMethod_GetReadings() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::sensor::v1::GetReadingsRequest* request, ::viam::component::sensor::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
     void SetMessageAllocatorFor_GetReadings(
-        ::grpc::MessageAllocator< ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse>* allocator) {
+        ::grpc::MessageAllocator< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/) override {
+    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetReadings(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
@@ -310,7 +310,7 @@ class SensorService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/) override {
+    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -361,7 +361,7 @@ class SensorService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/) override {
+    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -424,7 +424,7 @@ class SensorService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/) override {
+    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -483,10 +483,10 @@ class SensorService final {
     WithStreamedUnaryMethod_GetReadings() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse>(
+          ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::viam::component::sensor::v1::GetReadingsRequest, ::viam::component::sensor::v1::GetReadingsResponse>* streamer) {
+                     ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* streamer) {
                        return this->StreamedGetReadings(context,
                          streamer);
                   }));
@@ -495,12 +495,12 @@ class SensorService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::component::sensor::v1::GetReadingsRequest* /*request*/, ::viam::component::sensor::v1::GetReadingsResponse* /*response*/) override {
+    ::grpc::Status GetReadings(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetReadings(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::sensor::v1::GetReadingsRequest,::viam::component::sensor::v1::GetReadingsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetReadings(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetReadingsRequest,::viam::common::v1::GetReadingsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {

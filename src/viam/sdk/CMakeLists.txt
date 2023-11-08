@@ -67,6 +67,9 @@ target_sources(viamsdk
     components/motor/motor.cpp
     components/motor/client.cpp
     components/motor/server.cpp
+    components/movement_sensor/client.cpp
+    components/movement_sensor/movement_sensor.cpp
+    components/movement_sensor/server.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -120,6 +123,9 @@ target_sources(viamsdk
       ../../viam/sdk/components/motor/motor.hpp
       ../../viam/sdk/components/motor/client.hpp
       ../../viam/sdk/components/motor/server.hpp
+      ../../viam/sdk/components/movement_sensor/client.hpp
+      ../../viam/sdk/components/movement_sensor/movement_sensor.hpp
+      ../../viam/sdk/components/movement_sensor/server.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp

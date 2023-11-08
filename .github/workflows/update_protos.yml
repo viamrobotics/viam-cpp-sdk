@@ -31,25 +31,26 @@ jobs:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
       - uses: bufbuild/buf-setup-action@v1.9.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: arduino/setup-protoc@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update buf
+        run: |
+          cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
+          && cmake --build ./build --target update-buf
+        env:
+          BOOST_ROOT: ${{ github.workspace }}/boost/boost
       - name: Generate buf
         run: |
           cmake -B build -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON -DCMAKE_PREFIX_PATH=./vcpkg/installed/x64-linux/share \
           && cmake --build ./build --target update-static-protos
         env:
           BOOST_ROOT: ${{ github.workspace }}/boost/boost
-          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
       - name: cleanup
         run: rm -rf boost/ && rm -rf vcpkg/
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
-          branch: 'origin/update-protos'
+          branch: 'workflow/update-protos'
           add-paths: src/viam/api/*
           delete-branch: true
           title: Automated Protos Update

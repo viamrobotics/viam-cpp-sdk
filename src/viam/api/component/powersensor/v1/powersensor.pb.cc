@@ -191,7 +191,7 @@ const char descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_
   "\007amperes\022\023\n\005is_ac\030\002 \001(\010R\004isAc\"T\n\017GetPowe"
   "rRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c "
   "\001(\0132\027.google.protobuf.StructR\005extra\"(\n\020G"
-  "etPowerResponse\022\024\n\005watts\030\001 \001(\001R\005watts2\256\005"
+  "etPowerResponse\022\024\n\005watts\030\001 \001(\001R\005watts2\304\006"
   "\n\022PowerSensorService\022\255\001\n\nGetVoltage\0220.vi"
   "am.component.powersensor.v1.GetVoltageRe"
   "quest\0321.viam.component.powersensor.v1.Ge"
@@ -205,13 +205,17 @@ const char descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_
   "nt.powersensor.v1.GetPowerRequest\032/.viam"
   ".component.powersensor.v1.GetPowerRespon"
   "se\"8\202\323\344\223\0022\0220/viam/api/v1/component/power"
-  "_sensor/{name}/power\022\217\001\n\tDoCommand\022 .via"
-  "m.common.v1.DoCommandRequest\032!.viam.comm"
-  "on.v1.DoCommandResponse\"=\202\323\344\223\0027\"5/viam/a"
-  "pi/v1/component/power_sensor/{name}/do_c"
-  "ommandBM\n!com.viam.component.powersensor"
-  ".v1Z(go.viam.com/api/component/powersens"
-  "or/v1b\006proto3"
+  "_sensor/{name}/power\022\223\001\n\013GetReadings\022\".v"
+  "iam.common.v1.GetReadingsRequest\032#.viam."
+  "common.v1.GetReadingsResponse\";\202\323\344\223\0025\0223/"
+  "viam/api/v1/component/power_sensor/{name"
+  "}/readings\022\217\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"=\202\323\344\223\0027\"5/viam/api/v1/comp"
+  "onent/power_sensor/{name}/do_commandBM\n!"
+  "com.viam.component.powersensor.v1Z(go.vi"
+  "am.com/api/component/powersensor/v1b\006pro"
+  "to3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -220,7 +224,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fpowerse
 };
 static ::_pbi::once_flag descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto = {
-    false, false, 1373, descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
+    false, false, 1523, descriptor_table_protodef_component_2fpowersensor_2fv1_2fpowersensor_2eproto,
     "component/powersensor/v1/powersensor.proto",
     &descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_once, descriptor_table_component_2fpowersensor_2fv1_2fpowersensor_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2fpowersensor_2fv1_2fpowersensor_2eproto::offsets,
