@@ -231,12 +231,11 @@ int main(int argc, char* argv[]) try {
         // connecting to robots with the C++ SDK.
         viam::sdk::DialOptions dial_options;
         dial_options.set_entity(opt_api_key_id.get());
-        viam::sdk::Credentials credentials("api-key", opt_api_key.get());
-        dial_options.set_credentials(credentials);
-        boost::optional<viam::sdk::DialOptions> opts(dial_options);
-        viam::sdk::Options options(1, opts);
+        dial_options.set_credentials(viam::sdk::Credentials("api-key", opt_api_key.get()));
 
-        auto robot = vsdk::RobotClient::at_address(opt_robot_host.get(), options);
+        auto robot = vsdk::RobotClient::at_address(
+            opt_robot_host.get(),
+            viam::sdk::Options(1, boost::optional<viam::sdk::DialOptions>(dial_options)));
 
         // Obtain a handle to the MLModelService module on the robot. Note that the string
         // `yamnet_classification_tflite` is arbitrary. It just matches what was used to name the
