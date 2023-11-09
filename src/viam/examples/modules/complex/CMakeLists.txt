@@ -154,21 +154,31 @@ install(
 # `test_complex_module.cpp` into the Viam C++ SDK testing suite.
 
 enable_testing()
-target_sources(viamsdk_test
+add_executable(test_complex_module test_complex_module.cpp)
+target_link_libraries(test_complex_module viamsdk_test)
+target_sources(test_complex_module
   PRIVATE
     gizmo/impl.cpp
-    gizmo/impl.hpp
     gizmo/api.cpp
-    gizmo/api.hpp
     summation/api.cpp
-    summation/api.hpp
     summation/impl.cpp
-    summation/impl.hpp
 
     ${MODULE_PROTO_OUTPUT_FILES}
 )
-target_include_directories(viamsdk_test
+target_include_directories(test_complex_module
   PUBLIC
     ${MODULE_PROTO_GEN_DIR}
 )
-viamcppsdk_add_boost_test(test_complex_module.cpp)
+
+file(READ "test_complex_module.cpp" SOURCE_FILE_CONTENTS)
+string(
+  REGEX MATCHALL "BOOST_AUTO_TEST_CASE\\( *([A-Za-z_0-9]+) *\\)"
+  FOUND_TESTS ${SOURCE_FILE_CONTENTS})
+
+foreach(HIT ${FOUND_TESTS})
+  string(REGEX REPLACE ".*\\( *([A-Za-z_0-9]+) *\\).*" "\\1" TEST_NAME ${HIT})
+
+  add_test(
+    NAME "test_complex_module.${TEST_NAME}"
+    COMMAND test_complex_module --catch_system_error=yes)
+endforeach()
