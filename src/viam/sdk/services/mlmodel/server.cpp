@@ -101,11 +101,8 @@ class RequestWrapper : public RequestWrapperBase {
         return failUnknownException();
     }
 
-    AttributeMap getExtra() const {
-        if (request_->has_extra()) {
-            return struct_to_map(request_->extra());
-        }
-        return {};
+    auto getExtra() const {
+        return request_->has_extra() ? struct_to_map(request_->extra()) : AttributeMap{};
     }
 
    private:
