@@ -27,6 +27,11 @@ class ResourceManager {
     /// @throws `std::runtime_error` if the desired resource does not exist.
     std::shared_ptr<Resource> resource(const std::string& name);
 
+    template<typename T>
+    std::shared_ptr<T> resource(const std::string& name) {
+        return std::dynamic_pointer_cast<T>(resource(name));
+    }
+
     /// @brief Replaces all resources in the manager.
     /// @param resources The resources to replace with.
     void replace_all(const std::unordered_map<Name, std::shared_ptr<Resource>>& resources);

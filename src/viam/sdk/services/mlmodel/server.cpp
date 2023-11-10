@@ -31,81 +31,87 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
 }
 
+template <typename ServiceType, typename RequestType>
+class RequestWrapper {
+   public:
+    RequestWrapper(ResourceServer* rs, RequestType* request) noexcept
+        : rs_(rs), request_(request){};
+
+    template <typename Callable>
+    ::grpc::Status operator()(Callable&& callable) noexcept try {
+        if (!request_) {
+            return {::grpc::INVALID_ARGUMENT, "TODO ERROR MESSAGE"};
+        }
+        const auto resource = rs_->resource_manager()->resource<ServiceType>(request_->name());
+        if (!resource) {
+            return {::grpc::UNKNOWN, "TODO ERROR MESSAGE"};
+        }
+        AttributeMap extra;
+        if (request_->has_extra()) {
+            extra = struct_to_map(request_->extra());
+        }
+        return std::forward<Callable>(callable)(resource, extra);
+    } catch (const std::exception& xcp) {
+        return {grpc::INTERNAL, xcp.what()};
+    } catch (...) {
+        return {grpc::INTERNAL, "TODO ERROR MESSAGE"};
+    }
+
+   private:
+    ResourceServer* rs_;
+    RequestType* request_;
+};
+
+template <typename ServiceType, typename RequestType>
+auto make_request_wrapper(ResourceServer* rs, RequestType* request) {
+    return RequestWrapper<ServiceType, RequestType>{rs, request};
+}
+
 ::grpc::Status MLModelServiceServer::Infer(
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::InferRequest* request,
-    ::viam::service::mlmodel::v1::InferResponse* response) noexcept try {
-    if (!request) {
-        return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] without a request"};
-    };
-
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-
-    if (!rb) {
-        return {::grpc::UNKNOWN, "resource not found: " + request->name()};
-    }
-
-    std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
-
-    if (!request->has_input_tensors()) {
-        return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no inputs"};
-    }
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    const auto md = mlms->metadata(extra);
-    MLModelService::named_tensor_views inputs;
-    for (const auto& input : md.inputs) {
-        const auto where = request->input_tensors().tensors().find(input.name);
-        if (where == request->input_tensors().tensors().end()) {
-            // Ignore any inputs for which we don't have metadata, since
-            // we can't validate the type info.
-            //
-            // TODO: Should this be an error? For now we just don't decode
-            // those tensors.
-            continue;
+    ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
+    return make_request_wrapper<MLModelService>(
+        this, request)([&](auto mlms, const auto& extra) -> ::grpc::Status {
+        if (!request->has_input_tensors()) {
+            return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no inputs"};
         }
-        auto tensor = mlmodel_details::make_sdk_tensor_from_api_tensor(where->second);
-        const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
-        if (tensor_type != input.data_type) {
-            std::ostringstream message;
-            using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
-            message << "Tensor input `" << input.name << "` was the wrong type; expected type "
-                    << static_cast<ut>(input.data_type) << " but got type "
-                    << static_cast<ut>(tensor_type);
-            return ::grpc::Status(grpc::INVALID_ARGUMENT, message.str());
-        }
-        inputs.emplace(std::move(input.name), std::move(tensor));
-    }
 
-    const auto outputs = mlms->infer(inputs, extra);
-
-    auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
-    for (const auto& kv : *outputs) {
-        auto& emplaced = (*output_tensors)[kv.first];
-        mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
-    }
-    return ::grpc::Status();
-} catch (...) {
-    // TODO(RSDK-3556): This is pretty bad. Investigate ways to
-    // simplify this, or decide against having clang-tidy enforce
-    // noexcept, or decide that letting gRPC deal with thrown
-    // exceptions is OK.
-    try {
-        try {
-            throw;
-        } catch (const std::exception& ex) {
-            return ::grpc::Status(grpc::INTERNAL,
-                                  std::string("[Infer]: Failed with exception: ") + ex.what());
-        } catch (...) {
-            return ::grpc::Status(grpc::INTERNAL, "[Infer]: Failed with an unknown exception");
+        const auto md = mlms->metadata(extra);
+        MLModelService::named_tensor_views inputs;
+        for (const auto& input : md.inputs) {
+            const auto where = request->input_tensors().tensors().find(input.name);
+            if (where == request->input_tensors().tensors().end()) {
+                // Ignore any inputs for which we don't have metadata, since
+                // we can't validate the type info.
+                //
+                // TODO: Should this be an error? For now we just don't decode
+                // those tensors.
+                continue;
+            }
+            auto tensor = mlmodel_details::make_sdk_tensor_from_api_tensor(where->second);
+            const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
+            if (tensor_type != input.data_type) {
+                std::ostringstream message;
+                using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
+                message << "Tensor input `" << input.name << "` was the wrong type; expected type "
+                        << static_cast<ut>(input.data_type) << " but got type "
+                        << static_cast<ut>(tensor_type);
+                return ::grpc::Status(grpc::INVALID_ARGUMENT, message.str());
+            }
+            inputs.emplace(std::move(input.name), std::move(tensor));
         }
-    } catch (...) {
-        std::abort();
-    }
+
+        const auto outputs = mlms->infer(inputs, extra);
+
+        auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
+        for (const auto& kv : *outputs) {
+            auto& emplaced = (*output_tensors)[kv.first];
+            mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
+        }
+
+        return ::grpc::Status();
+    });
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
