@@ -14,6 +14,8 @@
 
 #include <viam/sdk/services/mlmodel/server.hpp>
 
+#include <type_traits>
+
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 #include <viam/sdk/services/mlmodel/private/proto.hpp>
@@ -93,8 +95,7 @@ class RequestWrapper : public RequestWrapperBase {
         if (!resource) {
             return failNoResource(request_->name());
         }
-        return std::forward<Callable>(callable)(
-            static_cast<const RequestWrapperBase&>(*this), resource);
+        return invoke_(std::forward<Callable>(callable), std::move(resource));
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
     } catch (...) {
@@ -106,6 +107,32 @@ class RequestWrapper : public RequestWrapperBase {
     }
 
    private:
+    template <typename Callable, typename... Args>
+    using is_void_result = std::is_void<std::result_of_t<Callable(Args...)>>;
+
+    // Implementation of `invoke_` for a Callable returning non-void,
+    // presumably an error return, which we return as a
+    // ::grpc::Status.
+    template <typename Callable,
+              typename ResourcePtrType,
+              std::enable_if_t<!is_void_result<Callable, RequestWrapper&, ResourcePtrType&&>::value,
+                               bool> = true>
+    ::grpc::Status invoke_(Callable&& callable, ResourcePtrType&& resource) const {
+        return std::forward<Callable>(callable)(*this, std::forward<ResourcePtrType>(resource));
+    }
+
+    // Implementation of `invoke_` for a Callable returning void,
+    // which is therefore either non-failing or communicates errors by
+    // throwing exceptions. We return an OK status automatically.
+    template <typename Callable,
+              typename ResourcePtrType,
+              std::enable_if_t<is_void_result<Callable, RequestWrapper&, ResourcePtrType&&>::value,
+                               bool> = true>
+    ::grpc::Status invoke_(Callable&& callable, ResourcePtrType&& resource) const {
+        std::forward<Callable>(callable)(*this, std::forward<ResourcePtrType>(resource));
+        return {};
+    }
+
     const char* method_;
     ResourceServer* rs_;
     RequestType* request_;
