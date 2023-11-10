@@ -37,7 +37,7 @@ class ServiceHelperBase {
    public:
     ::grpc::Status fail(::grpc::StatusCode code, const char* message) const noexcept try {
         std::ostringstream stream;
-        stream << '[' << method_ << "]: ";
+        stream << '[' << method_ << "]: " << message;
         return {code, stream.str()};
     } catch (...) {
         return {code, message};
