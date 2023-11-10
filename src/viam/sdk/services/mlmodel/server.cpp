@@ -71,6 +71,14 @@ class RequestWrapperBase {
         return fail(::grpc::INTERNAL, "Failed with an unknown exception");
     }
 
+    template<typename RequestType>
+    static AttributeMap getExtra(RequestType* request) {
+        if (request->has_extra()) {
+            return struct_to_map(request->extra());
+        }
+        return {};
+    }
+
    protected:
     explicit RequestWrapperBase(const char* method) noexcept : method_{method} {}
 
@@ -85,7 +93,7 @@ class RequestWrapper : private RequestWrapperBase {
         : RequestWrapperBase(method), rs_{rs}, request_{request} {};
 
     template <typename Callable>
-    ::grpc::Status operator()(Callable&& callable) noexcept try {
+    ::grpc::Status operator()(Callable&& callable) const noexcept try {
         if (!request_) {
             return failNoRequest();
         }
@@ -93,12 +101,8 @@ class RequestWrapper : private RequestWrapperBase {
         if (!resource) {
             return failNoResource(request_->name());
         }
-        AttributeMap extra;
-        if (request_->has_extra()) {
-            extra = struct_to_map(request_->extra());
-        }
         return std::forward<Callable>(callable)(
-            static_cast<const RequestWrapperBase&>(*this), resource, extra);
+            static_cast<const RequestWrapperBase&>(*this), resource);
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
     } catch (...) {
@@ -121,12 +125,12 @@ auto make_request_wrapper(const char* method, ResourceServer* rs, RequestType* r
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
     return make_request_wrapper<MLModelService>(
-        "MLModelServiceServer::Infer", this, request)([&](auto wb, auto mlms, const auto& extra) {
+        "MLModelServiceServer::Infer", this, request)([&](auto& wb, auto& mlms) {
         if (!request->has_input_tensors()) {
             return wb.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
         }
 
-        const auto md = mlms->metadata(extra);
+        const auto md = mlms->metadata({});
         MLModelService::named_tensor_views inputs;
         for (const auto& input : md.inputs) {
             const auto where = request->input_tensors().tensors().find(input.name);
@@ -151,7 +155,7 @@ auto make_request_wrapper(const char* method, ResourceServer* rs, RequestType* r
             inputs.emplace(std::move(input.name), std::move(tensor));
         }
 
-        const auto outputs = mlms->infer(inputs, extra);
+        const auto outputs = mlms->infer(inputs, wb.getExtra(request));
 
         auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
         for (const auto& kv : *outputs) {
