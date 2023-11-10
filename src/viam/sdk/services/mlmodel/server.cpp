@@ -31,40 +31,89 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
 }
 
-template <typename ServiceType, typename RequestType>
-class RequestWrapper {
+class RequestWrapperBase {
+   private:
+    template <typename Stream>
+    auto& attach_method_(Stream& stream) const {
+        return stream << '[' << method_ << "]: ";
+    }
+
    public:
-    RequestWrapper(ResourceServer* rs, RequestType* request) noexcept
-        : rs_(rs), request_(request){};
+    ::grpc::Status fail(::grpc::StatusCode code, const char* message) const noexcept try {
+        std::ostringstream stream;
+        attach_method_(stream) << message;
+        return {code, stream.str()};
+    } catch (...) {
+        return {code, message};
+    }
+
+    ::grpc::Status failNoRequest() const noexcept {
+        return fail(::grpc::INVALID_ARGUMENT, "Called without a `request` object");
+    }
+
+    ::grpc::Status failNoResource(const std::string& name) const noexcept try {
+        std::ostringstream stream;
+        stream << "Failed to find resource `" << name << "`";
+        return fail(::grpc::INVALID_ARGUMENT, stream.str().c_str());
+    } catch (...) {
+        return fail(::grpc::INVALID_ARGUMENT, "Failed to find resource");
+    }
+
+    ::grpc::Status failStdException(const std::exception& xcp) const noexcept try {
+        std::ostringstream stream;
+        stream << "Failed with a std::exception: " << xcp.what();
+        return fail(::grpc::INTERNAL, stream.str().c_str());
+    } catch (...) {
+        return fail(::grpc::INTERNAL, "Failed with a std::exception: <unknown>");
+    }
+
+    ::grpc::Status failUnknownException() const noexcept {
+        return fail(::grpc::INTERNAL, "Failed with an unknown exception");
+    }
+
+   protected:
+    explicit RequestWrapperBase(const char* method) noexcept : method_{method} {}
+
+   private:
+    const char* method_;
+};
+
+template <typename ServiceType, typename RequestType>
+class RequestWrapper : private RequestWrapperBase {
+   public:
+    RequestWrapper(const char* method, ResourceServer* rs, RequestType* request) noexcept
+        : RequestWrapperBase(method), rs_{rs}, request_{request} {};
 
     template <typename Callable>
     ::grpc::Status operator()(Callable&& callable) noexcept try {
         if (!request_) {
-            return {::grpc::INVALID_ARGUMENT, "TODO ERROR MESSAGE"};
+            return failNoRequest();
         }
         const auto resource = rs_->resource_manager()->resource<ServiceType>(request_->name());
         if (!resource) {
-            return {::grpc::UNKNOWN, "TODO ERROR MESSAGE"};
+            return failNoResource(request_->name());
         }
         AttributeMap extra;
         if (request_->has_extra()) {
             extra = struct_to_map(request_->extra());
         }
-        return std::forward<Callable>(callable)(resource, extra);
+        return std::forward<Callable>(callable)(
+            static_cast<const RequestWrapperBase&>(*this), resource, extra);
     } catch (const std::exception& xcp) {
-        return {grpc::INTERNAL, xcp.what()};
+        return failStdException(xcp);
     } catch (...) {
-        return {grpc::INTERNAL, "TODO ERROR MESSAGE"};
+        return failUnknownException();
     }
 
    private:
+    const char* method_;
     ResourceServer* rs_;
     RequestType* request_;
 };
 
 template <typename ServiceType, typename RequestType>
-auto make_request_wrapper(ResourceServer* rs, RequestType* request) {
-    return RequestWrapper<ServiceType, RequestType>{rs, request};
+auto make_request_wrapper(const char* method, ResourceServer* rs, RequestType* request) {
+    return RequestWrapper<ServiceType, RequestType>{method, rs, request};
 }
 
 ::grpc::Status MLModelServiceServer::Infer(
@@ -72,9 +121,9 @@ auto make_request_wrapper(ResourceServer* rs, RequestType* request) {
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
     return make_request_wrapper<MLModelService>(
-        this, request)([&](auto mlms, const auto& extra) -> ::grpc::Status {
+        "MLModelServiceServer::Infer", this, request)([&](auto wb, auto mlms, const auto& extra) {
         if (!request->has_input_tensors()) {
-            return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Infer] with no inputs"};
+            return wb.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
         }
 
         const auto md = mlms->metadata(extra);
@@ -97,7 +146,7 @@ auto make_request_wrapper(ResourceServer* rs, RequestType* request) {
                 message << "Tensor input `" << input.name << "` was the wrong type; expected type "
                         << static_cast<ut>(input.data_type) << " but got type "
                         << static_cast<ut>(tensor_type);
-                return ::grpc::Status(grpc::INVALID_ARGUMENT, message.str());
+                return wb.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
             }
             inputs.emplace(std::move(input.name), std::move(tensor));
         }
