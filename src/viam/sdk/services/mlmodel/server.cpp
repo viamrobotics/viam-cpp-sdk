@@ -33,17 +33,11 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
 }
 
-class RequestWrapperBase {
-   private:
-    template <typename Stream>
-    auto& attach_method_(Stream& stream) const {
-        return stream << '[' << method_ << "]: ";
-    }
-
+class ServiceHelperBase {
    public:
     ::grpc::Status fail(::grpc::StatusCode code, const char* message) const noexcept try {
         std::ostringstream stream;
-        attach_method_(stream) << message;
+        stream << '[' << method_ << "]: ";
         return {code, stream.str()};
     } catch (...) {
         return {code, message};
@@ -74,17 +68,17 @@ class RequestWrapperBase {
     }
 
    protected:
-    explicit RequestWrapperBase(const char* method) noexcept : method_{method} {}
+    explicit ServiceHelperBase(const char* method) noexcept : method_{method} {}
 
    private:
     const char* method_;
 };
 
 template <typename ServiceType, typename RequestType>
-class RequestWrapper : public RequestWrapperBase {
+class ServiceHelper : public ServiceHelperBase {
    public:
-    RequestWrapper(const char* method, ResourceServer* rs, RequestType* request) noexcept
-        : RequestWrapperBase(method), rs_{rs}, request_{request} {};
+    ServiceHelper(const char* method, ResourceServer* rs, RequestType* request) noexcept
+        : ServiceHelperBase(method), rs_{rs}, request_{request} {};
 
     template <typename Callable>
     ::grpc::Status operator()(Callable&& callable) const noexcept try {
@@ -115,7 +109,7 @@ class RequestWrapper : public RequestWrapperBase {
     // ::grpc::Status.
     template <typename Callable,
               typename ResourcePtrType,
-              std::enable_if_t<!is_void_result<Callable, RequestWrapper&, ResourcePtrType&&>::value,
+              std::enable_if_t<!is_void_result<Callable, ServiceHelper&, ResourcePtrType&&>::value,
                                bool> = true>
     ::grpc::Status invoke_(Callable&& callable, ResourcePtrType&& resource) const {
         return std::forward<Callable>(callable)(*this, std::forward<ResourcePtrType>(resource));
@@ -126,7 +120,7 @@ class RequestWrapper : public RequestWrapperBase {
     // throwing exceptions. We return an OK status automatically.
     template <typename Callable,
               typename ResourcePtrType,
-              std::enable_if_t<is_void_result<Callable, RequestWrapper&, ResourcePtrType&&>::value,
+              std::enable_if_t<is_void_result<Callable, ServiceHelper&, ResourcePtrType&&>::value,
                                bool> = true>
     ::grpc::Status invoke_(Callable&& callable, ResourcePtrType&& resource) const {
         std::forward<Callable>(callable)(*this, std::forward<ResourcePtrType>(resource));
@@ -139,15 +133,15 @@ class RequestWrapper : public RequestWrapperBase {
 };
 
 template <typename ServiceType, typename RequestType>
-auto make_request_wrapper(const char* method, ResourceServer* rs, RequestType* request) {
-    return RequestWrapper<ServiceType, RequestType>{method, rs, request};
+auto make_service_helper(const char* method, ResourceServer* rs, RequestType* request) {
+    return ServiceHelper<ServiceType, RequestType>{method, rs, request};
 }
 
 ::grpc::Status MLModelServiceServer::Infer(
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
-    return make_request_wrapper<MLModelService>(
+    return make_service_helper<MLModelService>(
         "MLModelServiceServer::Infer", this, request)([&](auto& wrapper, auto& mlms) {
         if (!request->has_input_tensors()) {
             return wrapper.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
