@@ -90,60 +90,47 @@ add_custom_target(
   DEPENDS ${MODULE_PROTO_GEN_DIR}/gizmo.grpc.pb.cc
 )
 
-add_executable(complex_module)
-# We have to include the generated proto files in order to #include the files.
-target_include_directories(complex_module
+# Create an OBJECT library for the generated output files. Include the whole
+# generated directory so libraries that link to complex_module_sources
+# transitively include all generated files. Also link to the viamsdk library
+# so following executables do not have to.
+add_library(complex_module_sources
+  OBJECT
+    gizmo/api.cpp
+    summation/api.cpp
+    ${MODULE_PROTO_OUTPUT_FILES}
+)
+target_include_directories(complex_module_sources
   PUBLIC
     ${MODULE_PROTO_GEN_DIR}
 )
+target_link_libraries(complex_module_sources
+  viam-cpp-sdk::viamsdk
+)
+
+add_executable(complex_module)
 target_sources(complex_module
   PRIVATE
     main.cpp
     base/impl.cpp
-    base/impl.hpp
     gizmo/impl.cpp
-    gizmo/impl.hpp
-    gizmo/api.cpp
-    gizmo/api.hpp
-    summation/api.cpp
-    summation/api.hpp
     summation/impl.cpp
-    summation/impl.hpp
-
-    ${MODULE_PROTO_OUTPUT_FILES}
 )
-
-add_executable(complex_module_client)
-# We have to include the generated proto files in order to #include the files.
-target_include_directories(complex_module_client
-  PUBLIC
-    ${MODULE_PROTO_GEN_DIR}
-)
-target_sources(complex_module_client
-  PRIVATE
-    client.cpp
-    gizmo/api.hpp
-    gizmo/api.cpp
-    summation/api.hpp
-    summation/api.cpp
-
-    ${MODULE_PROTO_OUTPUT_FILES}
-)
-
 target_link_libraries(complex_module
   PRIVATE Threads::Threads
-  viam-cpp-sdk::viamsdk
+  complex_module_sources
 )
-
-target_link_libraries(complex_module_client
-  viam-cpp-sdk::viamsdk
-)
-
 install(
   TARGETS complex_module
   COMPONENT examples
 )
 
+add_executable(complex_module_client)
+target_sources(complex_module_client
+  PRIVATE
+    client.cpp
+)
+target_link_libraries(complex_module_client complex_module_sources)
 install(
   TARGETS complex_module_client
   COMPONENT examples
@@ -154,31 +141,10 @@ install(
 # `test_complex_module.cpp` into the Viam C++ SDK testing suite.
 
 enable_testing()
-add_executable(test_complex_module test_complex_module.cpp)
-target_link_libraries(test_complex_module viamsdk_test)
+viamcppsdk_add_boost_test(test_complex_module.cpp)
 target_sources(test_complex_module
   PRIVATE
     gizmo/impl.cpp
-    gizmo/api.cpp
-    summation/api.cpp
     summation/impl.cpp
-
-    ${MODULE_PROTO_OUTPUT_FILES}
 )
-target_include_directories(test_complex_module
-  PUBLIC
-    ${MODULE_PROTO_GEN_DIR}
-)
-
-file(READ "test_complex_module.cpp" SOURCE_FILE_CONTENTS)
-string(
-  REGEX MATCHALL "BOOST_AUTO_TEST_CASE\\( *([A-Za-z_0-9]+) *\\)"
-  FOUND_TESTS ${SOURCE_FILE_CONTENTS})
-
-foreach(HIT ${FOUND_TESTS})
-  string(REGEX REPLACE ".*\\( *([A-Za-z_0-9]+) *\\).*" "\\1" TEST_NAME ${HIT})
-
-  add_test(
-    NAME "test_complex_module.${TEST_NAME}"
-    COMMAND test_complex_module --catch_system_error=yes)
-endforeach()
+target_link_libraries(test_complex_module complex_module_sources)
