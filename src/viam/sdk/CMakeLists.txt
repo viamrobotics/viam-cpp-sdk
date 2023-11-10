@@ -46,6 +46,7 @@ target_sources(viamsdk
     common/linear_algebra.cpp
     common/pose.cpp
     common/proto_type.cpp
+    common/service_helper.cpp
     common/utils.cpp
     common/world_state.cpp
     components/base/base.cpp

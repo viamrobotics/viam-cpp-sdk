@@ -14,8 +14,7 @@
 
 #include <viam/sdk/services/mlmodel/server.hpp>
 
-#include <type_traits>
-
+#include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 #include <viam/sdk/services/mlmodel/private/proto.hpp>
@@ -31,110 +30,6 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
 
 void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     server->register_service(this);
-}
-
-class ServiceHelperBase {
-   public:
-    ::grpc::Status fail(::grpc::StatusCode code, const char* message) const noexcept try {
-        std::ostringstream stream;
-        stream << '[' << method_ << "]: " << message;
-        return {code, stream.str()};
-    } catch (...) {
-        return {code, message};
-    }
-
-    ::grpc::Status failNoRequest() const noexcept {
-        return fail(::grpc::INVALID_ARGUMENT, "Called without a `request` object");
-    }
-
-    ::grpc::Status failNoResource(const std::string& name) const noexcept try {
-        std::ostringstream stream;
-        stream << "Failed to find resource `" << name << "`";
-        return fail(::grpc::INVALID_ARGUMENT, stream.str().c_str());
-    } catch (...) {
-        return fail(::grpc::INVALID_ARGUMENT, "Failed to find resource");
-    }
-
-    ::grpc::Status failStdException(const std::exception& xcp) const noexcept try {
-        std::ostringstream stream;
-        stream << "Failed with a std::exception: " << xcp.what();
-        return fail(::grpc::INTERNAL, stream.str().c_str());
-    } catch (...) {
-        return fail(::grpc::INTERNAL, "Failed with a std::exception: <unknown>");
-    }
-
-    ::grpc::Status failUnknownException() const noexcept {
-        return fail(::grpc::INTERNAL, "Failed with an unknown exception");
-    }
-
-   protected:
-    explicit ServiceHelperBase(const char* method) noexcept : method_{method} {}
-
-   private:
-    const char* method_;
-};
-
-template <typename ServiceType, typename RequestType>
-class ServiceHelper : public ServiceHelperBase {
-   public:
-    ServiceHelper(const char* method, ResourceServer* rs, RequestType* request) noexcept
-        : ServiceHelperBase(method), rs_{rs}, request_{request} {};
-
-    template <typename Callable>
-    ::grpc::Status operator()(Callable&& callable) const noexcept try {
-        if (!request_) {
-            return failNoRequest();
-        }
-        const auto resource = rs_->resource_manager()->resource<ServiceType>(request_->name());
-        if (!resource) {
-            return failNoResource(request_->name());
-        }
-        return invoke_(std::forward<Callable>(callable), std::move(resource));
-    } catch (const std::exception& xcp) {
-        return failStdException(xcp);
-    } catch (...) {
-        return failUnknownException();
-    }
-
-    auto getExtra() const {
-        return request_->has_extra() ? struct_to_map(request_->extra()) : AttributeMap{};
-    }
-
-   private:
-    template <typename Callable, typename... Args>
-    using is_void_result = std::is_void<std::result_of_t<Callable(Args...)>>;
-
-    // Implementation of `invoke_` for a Callable returning non-void,
-    // presumably an error return, which we return as a
-    // ::grpc::Status.
-    template <typename Callable,
-              typename ResourcePtrType,
-              std::enable_if_t<!is_void_result<Callable, ServiceHelper&, ResourcePtrType&&>::value,
-                               bool> = true>
-    ::grpc::Status invoke_(Callable&& callable, ResourcePtrType&& resource) const {
-        return std::forward<Callable>(callable)(*this, std::forward<ResourcePtrType>(resource));
-    }
-
-    // Implementation of `invoke_` for a Callable returning void,
-    // which is therefore either non-failing or communicates errors by
-    // throwing exceptions. We return an OK status automatically.
-    template <typename Callable,
-              typename ResourcePtrType,
-              std::enable_if_t<is_void_result<Callable, ServiceHelper&, ResourcePtrType&&>::value,
-                               bool> = true>
-    ::grpc::Status invoke_(Callable&& callable, ResourcePtrType&& resource) const {
-        std::forward<Callable>(callable)(*this, std::forward<ResourcePtrType>(resource));
-        return {};
-    }
-
-    const char* method_;
-    ResourceServer* rs_;
-    RequestType* request_;
-};
-
-template <typename ServiceType, typename RequestType>
-auto make_service_helper(const char* method, ResourceServer* rs, RequestType* request) {
-    return ServiceHelper<ServiceType, RequestType>{method, rs, request};
 }
 
 ::grpc::Status MLModelServiceServer::Infer(
