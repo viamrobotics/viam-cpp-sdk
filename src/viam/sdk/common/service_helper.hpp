@@ -79,7 +79,6 @@ class ServiceHelper : public ServiceHelperBase {
         return {};
     }
 
-    const char* method_;
     ResourceServer* rs_;
     RequestType* request_;
 };
