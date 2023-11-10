@@ -1,5 +1,7 @@
 #include <viam/sdk/common/service_helper.hpp>
 
+#include <sstream>
+
 namespace viam {
 namespace sdk {
 

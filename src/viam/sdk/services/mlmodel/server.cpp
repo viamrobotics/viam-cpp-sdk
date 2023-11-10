@@ -37,9 +37,9 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
     return make_service_helper<MLModelService>(
-        "MLModelServiceServer::Infer", this, request)([&](auto& wrapper, auto& mlms) {
+        "MLModelServiceServer::Infer", this, request)([&](auto& helper, auto& mlms) {
         if (!request->has_input_tensors()) {
-            return wrapper.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
+            return helper.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
         }
 
         const auto md = mlms->metadata({});
@@ -62,12 +62,12 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                 message << "Tensor input `" << input.name << "` was the wrong type; expected type "
                         << static_cast<ut>(input.data_type) << " but got type "
                         << static_cast<ut>(tensor_type);
-                return wrapper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
+                return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
             }
             inputs.emplace(std::move(input.name), std::move(tensor));
         }
 
-        const auto outputs = mlms->infer(inputs, wrapper.getExtra());
+        const auto outputs = mlms->infer(inputs, helper.getExtra());
 
         auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
         for (const auto& kv : *outputs) {
@@ -84,15 +84,15 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
     const ::viam::service::mlmodel::v1::MetadataRequest* request,
     ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept {
     return make_service_helper<MLModelService>(
-        "MLModelServiceServer::Metadata", this, request)([&](auto& wrapper, auto& mlms) {
-        auto md = mlms->metadata(wrapper.getExtra());
+        "MLModelServiceServer::Metadata", this, request)([&](auto& helper, auto& mlms) {
+        auto md = mlms->metadata(helper.getExtra());
 
         auto& metadata_pb = *response->mutable_metadata();
         *metadata_pb.mutable_name() = std::move(md.name);
         *metadata_pb.mutable_type() = std::move(md.type);
         *metadata_pb.mutable_description() = std::move(md.description);
 
-        const auto pack_tensor_info = [&wrapper](
+        const auto pack_tensor_info = [&helper](
                                           auto& target,
                                           const std::vector<MLModelService::tensor_info>& source) {
             target.Reserve(source.size());
@@ -111,7 +111,7 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
                                std::underlying_type<MLModelService::tensor_info::data_types>::type>(
                                s.data_type)
                         << "` in its metadata";
-                    return wrapper.fail(grpc::INTERNAL, message.str().c_str());
+                    return helper.fail(grpc::INTERNAL, message.str().c_str());
                 }
                 new_entry.set_data_type(string_for_data_type);
                 auto& shape = *new_entry.mutable_shape();
