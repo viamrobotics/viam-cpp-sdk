@@ -82,107 +82,87 @@ void MLModelServiceServer::register_server(std::shared_ptr<Server> server) {
 ::grpc::Status MLModelServiceServer::Metadata(
     ::grpc::ServerContext* context,
     const ::viam::service::mlmodel::v1::MetadataRequest* request,
-    ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept try {
-    if (!request) {
-        return {::grpc::StatusCode::INVALID_ARGUMENT, "Called [Metadata] without a request"};
-    };
+    ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept {
+    return make_service_helper<MLModelService>(
+        "MLModelServiceServer::Metadata", this, request)([&](auto& wrapper, auto& mlms) {
+        auto md = mlms->metadata(wrapper.getExtra());
 
-    std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return {grpc::UNKNOWN, "resource not found: " + request->name()};
-    }
+        auto& metadata_pb = *response->mutable_metadata();
+        *metadata_pb.mutable_name() = std::move(md.name);
+        *metadata_pb.mutable_type() = std::move(md.type);
+        *metadata_pb.mutable_description() = std::move(md.description);
 
-    std::shared_ptr<MLModelService> mlms = std::dynamic_pointer_cast<MLModelService>(rb);
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-    auto md = mlms->metadata(extra);
+        const auto pack_tensor_info = [&wrapper](
+                                          auto& target,
+                                          const std::vector<MLModelService::tensor_info>& source) {
+            target.Reserve(source.size());
+            for (auto&& s : source) {
+                auto& new_entry = *target.Add();
+                *new_entry.mutable_name() = std::move(s.name);
+                *new_entry.mutable_description() = std::move(s.description);
 
-    auto& metadata_pb = *response->mutable_metadata();
-    *metadata_pb.mutable_name() = std::move(md.name);
-    *metadata_pb.mutable_type() = std::move(md.type);
-    *metadata_pb.mutable_description() = std::move(md.description);
-
-    const auto pack_tensor_info = [](auto& target,
-                                     const std::vector<MLModelService::tensor_info>& source) {
-        target.Reserve(source.size());
-        for (auto&& s : source) {
-            auto& new_entry = *target.Add();
-            *new_entry.mutable_name() = std::move(s.name);
-            *new_entry.mutable_description() = std::move(s.description);
-
-            const auto* string_for_data_type =
-                MLModelService::tensor_info::data_type_to_string(s.data_type);
-            if (!string_for_data_type) {
-                std::ostringstream message;
-                message << "Served MLModelService returned an unknown data type with value `"
+                const auto* string_for_data_type =
+                    MLModelService::tensor_info::data_type_to_string(s.data_type);
+                if (!string_for_data_type) {
+                    std::ostringstream message;
+                    message
+                        << "Served MLModelService returned an unknown data type with value `"
                         << static_cast<
                                std::underlying_type<MLModelService::tensor_info::data_types>::type>(
                                s.data_type)
                         << "` in its metadata";
-                return ::grpc::Status{grpc::INTERNAL, message.str()};
-            }
-            new_entry.set_data_type(string_for_data_type);
-            auto& shape = *new_entry.mutable_shape();
-            // This would be nicer as `Reserve/Assign`, but older
-            // protubuf lacks Assign. The implementation of `Assign`
-            // is just `Clear/Add` though, so do that instead.
-            shape.Clear();
-            shape.Reserve(s.shape.size());
-            shape.Add(s.shape.begin(), s.shape.end());
-            auto& associated_files = *new_entry.mutable_associated_files();
-            associated_files.Reserve(s.associated_files.size());
-            for (auto&& af : s.associated_files) {
-                auto& new_af = *associated_files.Add();
-                *new_af.mutable_name() = std::move(af.name);
-                *new_af.mutable_description() = std::move(af.description);
-                switch (af.label_type) {
-                    case MLModelService::tensor_info::file::k_label_type_tensor_value:
-                        new_af.set_label_type(
-                            ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE);
-                        break;
-                    case MLModelService::tensor_info::file::k_label_type_tensor_axis:
-                        new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS);
-                        break;
-                    default:
-                        // In practice this shouldn't really happen
-                        // since we shouldn't see an MLMS instance
-                        // that we are serving return metadata
-                        // containing values not contained in the
-                        // enumeration. If it does, we just map it to
-                        // unspecified - the client is likely to
-                        // interpret it as an error.
-                        new_af.set_label_type(::viam::service::mlmodel::v1::LABEL_TYPE_UNSPECIFIED);
-                        break;
+                    return wrapper.fail(grpc::INTERNAL, message.str().c_str());
+                }
+                new_entry.set_data_type(string_for_data_type);
+                auto& shape = *new_entry.mutable_shape();
+                // This would be nicer as `Reserve/Assign`, but older
+                // protubuf lacks Assign. The implementation of `Assign`
+                // is just `Clear/Add` though, so do that instead.
+                shape.Clear();
+                shape.Reserve(s.shape.size());
+                shape.Add(s.shape.begin(), s.shape.end());
+                auto& associated_files = *new_entry.mutable_associated_files();
+                associated_files.Reserve(s.associated_files.size());
+                for (auto&& af : s.associated_files) {
+                    auto& new_af = *associated_files.Add();
+                    *new_af.mutable_name() = std::move(af.name);
+                    *new_af.mutable_description() = std::move(af.description);
+                    switch (af.label_type) {
+                        case MLModelService::tensor_info::file::k_label_type_tensor_value:
+                            new_af.set_label_type(
+                                ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_VALUE);
+                            break;
+                        case MLModelService::tensor_info::file::k_label_type_tensor_axis:
+                            new_af.set_label_type(
+                                ::viam::service::mlmodel::v1::LABEL_TYPE_TENSOR_AXIS);
+                            break;
+                        default:
+                            // In practice this shouldn't really happen
+                            // since we shouldn't see an MLMS instance
+                            // that we are serving return metadata
+                            // containing values not contained in the
+                            // enumeration. If it does, we just map it to
+                            // unspecified - the client is likely to
+                            // interpret it as an error.
+                            new_af.set_label_type(
+                                ::viam::service::mlmodel::v1::LABEL_TYPE_UNSPECIFIED);
+                            break;
+                    }
+                }
+                if (s.extra) {
+                    *new_entry.mutable_extra() = map_to_struct(s.extra);
                 }
             }
-            if (s.extra) {
-                *new_entry.mutable_extra() = map_to_struct(s.extra);
-            }
-        }
-        return ::grpc::Status();
-    };
+            return ::grpc::Status();
+        };
 
-    auto status = pack_tensor_info(*metadata_pb.mutable_input_info(), md.inputs);
-    if (!status.ok()) {
-        return status;
-    }
-
-    return pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
-} catch (...) {
-    try {
-        try {
-            throw;
-        } catch (const std::exception& ex) {
-            return ::grpc::Status(grpc::INTERNAL,
-                                  std::string("[Metadata]: Failed with exception: ") + ex.what());
-        } catch (...) {
-            return ::grpc::Status(grpc::INTERNAL, "[Metadata]: Failed with an unknown exception");
+        auto status = pack_tensor_info(*metadata_pb.mutable_input_info(), md.inputs);
+        if (!status.ok()) {
+            return status;
         }
-    } catch (...) {
-        std::abort();
-    }
+
+        return pack_tensor_info(*metadata_pb.mutable_output_info(), md.outputs);
+    });
 }
 
 }  // namespace sdk
