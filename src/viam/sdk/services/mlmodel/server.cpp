@@ -71,14 +71,6 @@ class RequestWrapperBase {
         return fail(::grpc::INTERNAL, "Failed with an unknown exception");
     }
 
-    template<typename RequestType>
-    static AttributeMap getExtra(RequestType* request) {
-        if (request->has_extra()) {
-            return struct_to_map(request->extra());
-        }
-        return {};
-    }
-
    protected:
     explicit RequestWrapperBase(const char* method) noexcept : method_{method} {}
 
@@ -87,7 +79,7 @@ class RequestWrapperBase {
 };
 
 template <typename ServiceType, typename RequestType>
-class RequestWrapper : private RequestWrapperBase {
+class RequestWrapper : public RequestWrapperBase {
    public:
     RequestWrapper(const char* method, ResourceServer* rs, RequestType* request) noexcept
         : RequestWrapperBase(method), rs_{rs}, request_{request} {};
@@ -109,6 +101,13 @@ class RequestWrapper : private RequestWrapperBase {
         return failUnknownException();
     }
 
+    AttributeMap getExtra() const {
+        if (request_->has_extra()) {
+            return struct_to_map(request_->extra());
+        }
+        return {};
+    }
+
    private:
     const char* method_;
     ResourceServer* rs_;
@@ -125,9 +124,9 @@ auto make_request_wrapper(const char* method, ResourceServer* rs, RequestType* r
     const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
     return make_request_wrapper<MLModelService>(
-        "MLModelServiceServer::Infer", this, request)([&](auto& wb, auto& mlms) {
+        "MLModelServiceServer::Infer", this, request)([&](auto& wrapper, auto& mlms) {
         if (!request->has_input_tensors()) {
-            return wb.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
+            return wrapper.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
         }
 
         const auto md = mlms->metadata({});
@@ -150,12 +149,12 @@ auto make_request_wrapper(const char* method, ResourceServer* rs, RequestType* r
                 message << "Tensor input `" << input.name << "` was the wrong type; expected type "
                         << static_cast<ut>(input.data_type) << " but got type "
                         << static_cast<ut>(tensor_type);
-                return wb.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
+                return wrapper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
             }
             inputs.emplace(std::move(input.name), std::move(tensor));
         }
 
-        const auto outputs = mlms->infer(inputs, wb.getExtra(request));
+        const auto outputs = mlms->infer(inputs, wrapper.getExtra());
 
         auto* const output_tensors = response->mutable_output_tensors()->mutable_tensors();
         for (const auto& kv : *outputs) {
