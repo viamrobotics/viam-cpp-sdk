@@ -36,9 +36,10 @@ class EncoderServer : public ResourceServer,
         const ::viam::component::encoder::v1::GetPropertiesRequest* request,
         ::viam::component::encoder::v1::GetPropertiesResponse* response) noexcept override;
 
-    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest* request,
-                                 ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
+    ::grpc::Status GetGeometries(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetGeometriesRequest* request,
+        ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
