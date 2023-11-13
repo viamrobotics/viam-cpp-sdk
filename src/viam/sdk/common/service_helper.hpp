@@ -30,7 +30,7 @@ template <typename ServiceType, typename RequestType>
 class ServiceHelper : public ServiceHelperBase {
    public:
     ServiceHelper(const char* method, ResourceServer* rs, RequestType* request) noexcept
-        : ServiceHelperBase(method), rs_{rs}, request_{request} {};
+        : ServiceHelperBase{method}, rs_{rs}, request_{request} {};
 
     template <typename Callable>
     ::grpc::Status operator()(Callable&& callable) const noexcept try {

@@ -21,9 +21,9 @@ namespace sdk {
 ::grpc::Status ServiceHelperBase::failNoResource(const std::string& name) const noexcept try {
     std::ostringstream stream;
     stream << "Failed to find resource `" << name << "`";
-    return fail(::grpc::INVALID_ARGUMENT, stream.str().c_str());
+    return fail(::grpc::NOT_FOUND, stream.str().c_str());
 } catch (...) {
-    return fail(::grpc::INVALID_ARGUMENT, "Failed to find resource");
+    return fail(::grpc::NOT_FOUND, "Failed to find resource");
 }
 
 ::grpc::Status ServiceHelperBase::failStdException(const std::exception& xcp) const noexcept try {
