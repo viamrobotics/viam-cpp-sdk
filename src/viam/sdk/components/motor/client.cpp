@@ -105,12 +105,12 @@ void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) 
 
 Motor::position MotorClient::get_position(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPosition)(
-        [](auto) {}, [](auto& response) { return from_proto(response); });
+        [](auto&) {}, [](auto& response) { return from_proto(response); });
 }
 
 Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)(
-        [](auto) {}, [](auto& response) { return from_proto(response); });
+        [](auto&) {}, [](auto& response) { return from_proto(response); });
 }
 
 grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
@@ -129,18 +129,18 @@ grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
 
 Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::IsPowered)(
-        [](auto) {}, [](auto& response) { return from_proto(response); });
+        [](auto&) {}, [](auto& response) { return from_proto(response); });
 }
 
 std::vector<GeometryConfig> MotorClient::get_geometries(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)(
-        [](auto) {},
+        [](auto&) {},
         [](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
 bool MotorClient::is_moving() {
     return make_client_helper(this, *stub_, &StubType::IsMoving)(
-        [](auto) {}, [](auto& response) { return response.is_moving(); });
+        [](auto&) {}, [](auto& response) { return response.is_moving(); });
 }
 
 AttributeMap MotorClient::do_command(const AttributeMap& command) {
