@@ -22,108 +22,95 @@ MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channe
       stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
       channel_(std::move(channel)){};
 
-void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
-    viam::component::motor::v1::SetPowerRequest request;
-    viam::component::motor::v1::SetPowerResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_power_pct(power_pct);
-
-    const grpc::Status status = stub_->SetPower(&ctx, request, &response);
-    if (!status.ok()) {
+template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
+class ClientHelper {
+    static void default_rsc(ClientHelper&, RequestType&) {}
+    static void default_rhc(ClientHelper&, const ResponseType&) {}
+    static void default_ehc(ClientHelper&, const ::grpc::Status& status) {
         throw std::runtime_error(status.error_message());
     }
+
+   public:
+    using PFn = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
+                                             const RequestType&,
+                                             ResponseType*);
+    explicit ClientHelper(ClientType* client, StubType& stub, PFn pfn)
+        : client_(client), stub_(stub), pfn_(pfn) {}
+
+    template <typename RequestSetupCallable = decltype(default_rsc),
+              typename ResponseHandlerCallable = decltype(default_rhc),
+              typename ErrorHandlerCallable = decltype(default_ehc)>
+    auto operator()(RequestSetupCallable&& rsc = default_rsc,
+                    ResponseHandlerCallable&& rhc = default_rhc,
+                    ErrorHandlerCallable&& ehc = default_ehc) {
+        RequestType request;
+        *request.mutable_name() = client_->name();
+        std::forward<RequestSetupCallable>(rsc)(*this, request);
+
+        ::grpc::ClientContext ctx;
+        set_client_ctx_authority(ctx);
+
+        ResponseType response;
+        const auto result = (stub_.*pfn_)(&ctx, request, &response);
+        if (!result.ok()) {
+            std::forward<ErrorHandlerCallable>(ehc)(*this, result);
+            default_ehc(*this, result);
+        }
+
+        return std::forward<ResponseHandlerCallable>(rhc)(
+            *this, const_cast<const ResponseType&>(response));
+    }
+
+   private:
+    ClientType* client_;
+    StubType& stub_;
+    PFn pfn_;
+};
+
+// TODO: EXTRA
+// TODO: Stop returns the status???
+
+template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
+auto make_client_helper(ClientType* client,
+                        StubType& stub,
+                        ::grpc::Status (StubType::*method)(::grpc::ClientContext*,
+                                                           const RequestType&,
+                                                           ResponseType*)) {
+    return ClientHelper<ClientType, StubType, RequestType, ResponseType>(client, stub, method);
+}
+
+void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::SetPower)(
+        [&](auto&, auto& request) { request.set_power_pct(power_pct); });
 }
 
 void MotorClient::go_for(double rpm, double revolutions, const AttributeMap& extra) {
-    viam::component::motor::v1::GoForRequest request;
-    viam::component::motor::v1::GoForResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_rpm(rpm);
-    request.set_revolutions(revolutions);
-
-    const grpc::Status status = stub_->GoFor(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::GoFor)([&](auto&, auto& request) {
+        request.set_rpm(rpm);
+        request.set_revolutions(revolutions);
+    });
 }
 
 void MotorClient::go_to(double rpm, double position_revolutions, const AttributeMap& extra) {
-    viam::component::motor::v1::GoToRequest request;
-    viam::component::motor::v1::GoToResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_rpm(rpm);
-    request.set_position_revolutions(position_revolutions);
-
-    const grpc::Status status = stub_->GoTo(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::GoTo)([&](auto&, auto& request) {
+        request.set_rpm(rpm);
+        request.set_position_revolutions(position_revolutions);
+    });
 }
 
 void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) {
-    viam::component::motor::v1::ResetZeroPositionRequest request;
-    viam::component::motor::v1::ResetZeroPositionResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_offset(offset);
-
-    const grpc::Status status = stub_->ResetZeroPosition(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::ResetZeroPosition)(
+        [&](auto&, auto& request) { request.set_offset(offset); });
 }
 
 Motor::position MotorClient::get_position(const AttributeMap& extra) {
-    viam::component::motor::v1::GetPositionRequest request;
-    viam::component::motor::v1::GetPositionResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->GetPosition(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return from_proto(response);
+    return make_client_helper(this, *stub_, &StubType::GetPosition)(
+        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return from_proto(response); });
 }
 
 Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
-    viam::component::motor::v1::GetPropertiesRequest request;
-    viam::component::motor::v1::GetPropertiesResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->GetProperties(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return from_proto(response);
+    return make_client_helper(this, *stub_, &StubType::GetProperties)(
+        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return from_proto(response); });
 }
 
 grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
@@ -141,66 +128,25 @@ grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
 }
 
 Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {
-    viam::component::motor::v1::IsPoweredRequest request;
-    viam::component::motor::v1::IsPoweredResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->IsPowered(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return from_proto(response);
+    return make_client_helper(this, *stub_, &StubType::IsPowered)(
+        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return from_proto(response); });
 }
 
 std::vector<GeometryConfig> MotorClient::get_geometries(const AttributeMap& extra) {
-    viam::common::v1::GetGeometriesRequest req;
-    viam::common::v1::GetGeometriesResponse resp;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *req.mutable_name() = this->name();
-    *req.mutable_extra() = map_to_struct(extra);
-
-    stub_->GetGeometries(&ctx, req, &resp);
-    return GeometryConfig::from_proto(resp);
-};
+    return make_client_helper(this, *stub_, &StubType::GetGeometries)(
+        [&](auto&, auto& request) {},
+        [&](auto&, auto& response) { return GeometryConfig::from_proto(response); });
+}
 
 bool MotorClient::is_moving() {
-    viam::component::motor::v1::IsMovingRequest request;
-    viam::component::motor::v1::IsMovingResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-
-    const grpc::Status status = stub_->IsMoving(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return response.is_moving();
+    return make_client_helper(this, *stub_, &StubType::IsMoving)(
+        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return response.is_moving(); });
 }
 
 AttributeMap MotorClient::do_command(const AttributeMap& command) {
-    viam::common::v1::DoCommandRequest request;
-    viam::common::v1::DoCommandResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_command() = map_to_struct(command);
-    *request.mutable_name() = this->name();
-
-    const grpc::Status status = stub_->DoCommand(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return struct_to_map(response.result());
+    return make_client_helper(this, *stub_, &StubType::DoCommand)(
+        [&](auto&, auto& request) { *request.mutable_command() = map_to_struct(command); },
+        [&](auto&, auto& response) { return struct_to_map(response.result()); });
 }
 
 }  // namespace sdk
