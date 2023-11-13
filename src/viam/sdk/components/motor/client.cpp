@@ -31,7 +31,6 @@ class ClientHelper {
     }
 
    public:
-    void foo() {}
     using PFn = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
                                              const RequestType&,
                                              ResponseType*);
