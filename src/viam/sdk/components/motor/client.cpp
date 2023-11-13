@@ -24,13 +24,14 @@ MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channe
 
 template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
 class ClientHelper {
-    static void default_rsc(ClientHelper&, RequestType&) {}
-    static void default_rhc(ClientHelper&, const ResponseType&) {}
-    static void default_ehc(ClientHelper&, const ::grpc::Status& status) {
+    static void default_rsc(RequestType&) {}
+    static void default_rhc(const ResponseType&) {}
+    static void default_ehc(const ::grpc::Status& status) {
         throw std::runtime_error(status.error_message());
     }
 
    public:
+    void foo() {}
     using PFn = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
                                              const RequestType&,
                                              ResponseType*);
@@ -45,7 +46,7 @@ class ClientHelper {
                     ErrorHandlerCallable&& ehc = default_ehc) {
         RequestType request;
         *request.mutable_name() = client_->name();
-        std::forward<RequestSetupCallable>(rsc)(*this, request);
+        std::forward<RequestSetupCallable>(rsc)(request);
 
         ::grpc::ClientContext ctx;
         set_client_ctx_authority(ctx);
@@ -53,12 +54,12 @@ class ClientHelper {
         ResponseType response;
         const auto result = (stub_.*pfn_)(&ctx, request, &response);
         if (!result.ok()) {
-            std::forward<ErrorHandlerCallable>(ehc)(*this, result);
-            default_ehc(*this, result);
+            std::forward<ErrorHandlerCallable>(ehc)(result);
+            default_ehc(result);
         }
 
         return std::forward<ResponseHandlerCallable>(rhc)(
-            *this, const_cast<const ResponseType&>(response));
+            const_cast<const ResponseType&>(response));
     }
 
    private:
@@ -81,18 +82,18 @@ auto make_client_helper(ClientType* client,
 
 void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)(
-        [&](auto&, auto& request) { request.set_power_pct(power_pct); });
+        [&](auto& request) { request.set_power_pct(power_pct); });
 }
 
 void MotorClient::go_for(double rpm, double revolutions, const AttributeMap& extra) {
-    return make_client_helper(this, *stub_, &StubType::GoFor)([&](auto&, auto& request) {
+    return make_client_helper(this, *stub_, &StubType::GoFor)([&](auto& request) {
         request.set_rpm(rpm);
         request.set_revolutions(revolutions);
     });
 }
 
 void MotorClient::go_to(double rpm, double position_revolutions, const AttributeMap& extra) {
-    return make_client_helper(this, *stub_, &StubType::GoTo)([&](auto&, auto& request) {
+    return make_client_helper(this, *stub_, &StubType::GoTo)([&](auto& request) {
         request.set_rpm(rpm);
         request.set_position_revolutions(position_revolutions);
     });
@@ -100,17 +101,17 @@ void MotorClient::go_to(double rpm, double position_revolutions, const Attribute
 
 void MotorClient::reset_zero_position(double offset, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::ResetZeroPosition)(
-        [&](auto&, auto& request) { request.set_offset(offset); });
+        [&](auto& request) { request.set_offset(offset); });
 }
 
 Motor::position MotorClient::get_position(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPosition)(
-        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return from_proto(response); });
+        [](auto) {}, [](auto& response) { return from_proto(response); });
 }
 
 Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)(
-        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return from_proto(response); });
+        [](auto) {}, [](auto& response) { return from_proto(response); });
 }
 
 grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
@@ -129,24 +130,24 @@ grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
 
 Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::IsPowered)(
-        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return from_proto(response); });
+        [](auto) {}, [](auto& response) { return from_proto(response); });
 }
 
 std::vector<GeometryConfig> MotorClient::get_geometries(const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)(
-        [&](auto&, auto& request) {},
-        [&](auto&, auto& response) { return GeometryConfig::from_proto(response); });
+        [](auto) {},
+        [](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
 bool MotorClient::is_moving() {
     return make_client_helper(this, *stub_, &StubType::IsMoving)(
-        [&](auto&, auto& request) {}, [&](auto&, auto& response) { return response.is_moving(); });
+        [](auto) {}, [](auto& response) { return response.is_moving(); });
 }
 
 AttributeMap MotorClient::do_command(const AttributeMap& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)(
-        [&](auto&, auto& request) { *request.mutable_command() = map_to_struct(command); },
-        [&](auto&, auto& response) { return struct_to_map(response.result()); });
+        [&](auto& request) { *request.mutable_command() = map_to_struct(command); },
+        [](auto& response) { return struct_to_map(response.result()); });
 }
 
 }  // namespace sdk
