@@ -1,5 +1,6 @@
 #include <viam/sdk/components/sensor/server.hpp>
 
+#include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/sensor/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -16,52 +17,35 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 ::grpc::Status SensorServer::GetReadings(::grpc::ServerContext* context,
                                          const GetReadingsRequest* request,
                                          GetReadingsResponse* response) {
-    const auto status = server_wrapper<Sensor>(request);
-    if (!status.ok()) {
-        return status.status;
-    }
-
-    const AttributeMap result = status.sensor->get_readings(status.extra);
-    for (const auto& r : *result) {
-        response->mutable_readings()->insert({std::move(r.first), r.second->proto_value()});
-    }
-    return ::grpc::Status();
+    return make_service_helper<Sensor>(
+        "SensorServer::GetReadings", this, request)([&](auto& helper, auto& sensor) {
+        const AttributeMap result = sensor->get_readings(helper.getExtra());
+        for (const auto& r : *result) {
+            response->mutable_readings()->insert({std::move(r.first), r.second->proto_value()});
+        }
+    });
 }
 
 ::grpc::Status SensorServer::DoCommand(grpc::ServerContext* context,
                                        const DoCommandRequest* request,
                                        DoCommandResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Sensor::DoCommand] without a request");
-    };
-
-    auto rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Sensor> sensor = std::dynamic_pointer_cast<Sensor>(rb);
-    const AttributeMap result = sensor->do_command(struct_to_map(request->command()));
-
-    *response->mutable_result() = map_to_struct(result);
-
-    return ::grpc::Status();
+    return make_service_helper<Sensor>(
+        "SensorServer::DoCommand", this, request)([&](auto& helper, auto& sensor) {
+        const AttributeMap result = sensor->do_command(struct_to_map(request->command()));
+        *response->mutable_result() = map_to_struct(result);
+    });
 }
 
 ::grpc::Status SensorServer::GetGeometries(::grpc::ServerContext* context,
                                            const GetGeometriesRequest* request,
                                            GetGeometriesResponse* response) {
-    const auto status = server_wrapper<Sensor>(request);
-    if (!status.ok()) {
-        return status.status;
-    }
-
-    const std::vector<GeometryConfig> geometries = status.sensor->get_geometries(status.extra);
-    for (const auto& geometry : geometries) {
-        *response->mutable_geometries()->Add() = geometry.to_proto();
-    }
-    return ::grpc::Status();
+    return make_service_helper<Sensor>(
+        "SensorServer::GetGeometries", this, request)([&](auto& helper, auto& sensor) {
+        const std::vector<GeometryConfig> geometries = sensor->get_geometries(helper.getExtra());
+        for (const auto& geometry : geometries) {
+            *response->mutable_geometries()->Add() = geometry.to_proto();
+        }
+    });
 }
 
 void SensorServer::register_server(std::shared_ptr<Server> server) {
