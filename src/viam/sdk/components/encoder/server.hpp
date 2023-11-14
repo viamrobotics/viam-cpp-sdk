@@ -24,25 +24,26 @@ class EncoderServer : public ResourceServer,
     ::grpc::Status GetPosition(
         ::grpc::ServerContext* context,
         const ::viam::component::encoder::v1::GetPositionRequest* request,
-        ::viam::component::encoder::v1::GetPositionResponse* response) override;
+        ::viam::component::encoder::v1::GetPositionResponse* response) noexcept override;
 
     ::grpc::Status ResetPosition(
         ::grpc::ServerContext* context,
         const ::viam::component::encoder::v1::ResetPositionRequest* request,
-        ::viam::component::encoder::v1::ResetPositionResponse* response) override;
+        ::viam::component::encoder::v1::ResetPositionResponse* response) noexcept override;
 
     ::grpc::Status GetProperties(
         ::grpc::ServerContext* context,
         const ::viam::component::encoder::v1::GetPropertiesRequest* request,
-        ::viam::component::encoder::v1::GetPropertiesResponse* response) override;
+        ::viam::component::encoder::v1::GetPropertiesResponse* response) noexcept override;
 
-    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest* request,
-                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+    ::grpc::Status GetGeometries(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetGeometriesRequest* request,
+        ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
-                             viam::common::v1::DoCommandResponse* response) override;
+                             viam::common::v1::DoCommandResponse* response) noexcept override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };
