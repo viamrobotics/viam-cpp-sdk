@@ -90,6 +90,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c8cf009a142cd9746012e28a30d85e8" id="r_a6c8cf009a142cd9746012e28a30d85e8"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a6c8cf009a142cd9746012e28a30d85e8">resource</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:a6c8cf009a142cd9746012e28a30d85e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a resource.  <br /></td></tr>
 <tr class="separator:a6c8cf009a142cd9746012e28a30d85e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bce977467db65a7dec331c80a97d068" id="r_a3bce977467db65a7dec331c80a97d068"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3bce977467db65a7dec331c80a97d068"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a3bce977467db65a7dec331c80a97d068">resource</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a3bce977467db65a7dec331c80a97d068"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a resource after dynamically downcasting to <code>T</code>.  <br /></td></tr>
+<tr class="separator:a3bce977467db65a7dec331c80a97d068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bb1e7d9a24531eab420de6c00755527" id="r_a9bb1e7d9a24531eab420de6c00755527"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a9bb1e7d9a24531eab420de6c00755527">replace_all</a> (const std::unordered_map&lt; <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ResourceManager.html#a3685e45eba4a51f6bb666049d3cc5c51">resources</a>)</td></tr>
 <tr class="memdesc:a9bb1e7d9a24531eab420de6c00755527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all resources in the manager.  <br /></td></tr>
 <tr class="separator:a9bb1e7d9a24531eab420de6c00755527"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -277,7 +281,7 @@ const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href
 </div>
 </div>
 <a id="a6c8cf009a142cd9746012e28a30d85e8" name="a6c8cf009a142cd9746012e28a30d85e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c8cf009a142cd9746012e28a30d85e8">&#9670;&#160;</a></span>resource()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c8cf009a142cd9746012e28a30d85e8">&#9670;&#160;</a></span>resource() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,6 +300,48 @@ const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>the name of the desired resource. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`std::runtime_error`</td><td>if the desired resource does not exist. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3bce977467db65a7dec331c80a97d068" name="a3bce977467db65a7dec331c80a97d068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bce977467db65a7dec331c80a97d068">&#9670;&#160;</a></span>resource() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; T &gt; viam::sdk::ResourceManager::resource </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a resource after dynamically downcasting to <code>T</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>of the desired resource. </td></tr>
   </table>
   </dd>
 </dl>
