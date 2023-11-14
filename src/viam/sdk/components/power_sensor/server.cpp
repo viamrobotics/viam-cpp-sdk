@@ -20,7 +20,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
                                              GetVoltageResponse* response) {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetVoltage", this, request)([&](auto& helper, auto& powersensor) {
-        PowerSensor::voltage result = powersensor->get_voltage(helper.getExtra());
+        const PowerSensor::voltage result = powersensor->get_voltage(helper.getExtra());
         *response = PowerSensor::to_proto(result);
     });
 }
@@ -30,7 +30,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
                                              GetCurrentResponse* response) {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetCurrent", this, request)([&](auto& helper, auto& powersensor) {
-        PowerSensor::current result = powersensor->get_current(helper.getExtra());
+        const PowerSensor::current result = powersensor->get_current(helper.getExtra());
         *response = PowerSensor::to_proto(result);
     });
 }
@@ -40,7 +40,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
                                            GetPowerResponse* response) {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetPower", this, request)([&](auto& helper, auto& powersensor) {
-        double watts = powersensor->get_power(helper.getExtra());
+        const double watts = powersensor->get_power(helper.getExtra());
         response->set_watts(watts);
     });
 }
