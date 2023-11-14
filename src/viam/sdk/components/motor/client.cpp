@@ -61,38 +61,10 @@ class ClientHelper {
             const_cast<const ResponseType&>(response));
     }
 
-    template<typename T>
-    class InvocationProxy {
-        friend ClientHelper;
-    public:
-    private:
-        InvocationProxy(T&& callable, ClientHelper& helper) : callable_(std::move(callable)), helper_(helper) {}
-
-        T callable_;
-        ClientHelper& helper_;
-    };
-
-    static constexpr auto drsc = [](RequestType&) {};
-
-    template<typename RequestSetupCallable = decltype(drsc)>
-    InvocationProxy<RequestSetupCallable> invoke(RequestSetupCallable rsc = drsc) {
-        *request_.mutable_name() = client_->name();
-        return InvocationProxy<RequestSetupCallable>{std::move(rsc), *this};
-    }
-
-    template <typename RequestSetupCallable = decltype(drsc)>
-    auto invoke(const AttributeMap& extra, RequestSetupCallable rsc = drsc) {
-        *request_.mutable_extra() = map_to_struct(extra);
-        return invoke(std::move(rsc));
-    }
-
    private:
     ClientType* client_;
     StubType& stub_;
     PFn pfn_;
-    RequestType request_;
-    ResponseType response_;
-    ::grpc::Status result_;
 };
 
 // TODO: EXTRA
@@ -107,30 +79,9 @@ auto make_client_helper(ClientType* client,
     return ClientHelper<ClientType, StubType, RequestType, ResponseType>(client, stub, method);
 }
 
-auto xxx() { }
-    
 void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)(
         [&](auto& request) { request.set_power_pct(power_pct); });
-#if 0
-    return make_client_helper(this, *stub_, &StubType::SetPower)
-        .invoke([&](auto& request) {
-            req.set_power_pct = power_pct;
-        })
-        .then([&](auto& resp) {
-            return resp.foo();
-        })
-        .or([&](auto& status) {
-            throw std::runtime_error(status.error_message());
-        });
-
-    return make_client_helper(this, *stub_, &StubType::SetPower)
-        .invoke()
-        .then([&](auto& resp) {
-        return resp.foo();
-    });
-#endif
-    auto ip = make_client_helper(this, *stub_, &StubType::SetPower).invoke(extra);
 }
 
 void MotorClient::go_for(double rpm, double revolutions, const AttributeMap& extra) {
