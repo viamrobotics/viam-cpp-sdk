@@ -43,39 +43,6 @@ class PowerSensorServer : public ResourceServer, public PowerSensorService::Serv
                              viam::common::v1::DoCommandResponse* response) override;
 
     void register_server(std::shared_ptr<Server> server) override;
-
-   private:
-    template <typename Cls>
-    struct ServerWrapperResult {
-        ::grpc::Status status;
-        AttributeMap extra;
-        std::shared_ptr<Cls> powersensor;
-
-        bool ok() const {
-            return status.ok();
-        }
-    };
-
-    // wrapper template for boilerplate
-    template <typename Cls, typename Req>
-    ServerWrapperResult<Cls> server_wrapper(const Req* request) {
-        if (!request) {
-            auto status = ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                                         "Called PowerSensorServer method without a request");
-            return ServerWrapperResult<Cls>{status};
-        };
-        const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-        if (!rb) {
-            auto status = grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-            return ServerWrapperResult<Cls>{status};
-        }
-        ServerWrapperResult<Cls> ret;
-        ret.powersensor = std::dynamic_pointer_cast<Cls>(rb);
-        if (request->has_extra()) {
-            ret.extra = struct_to_map(request->extra());
-        }
-        return ret;
-    }
 };
 
 }  // namespace sdk
