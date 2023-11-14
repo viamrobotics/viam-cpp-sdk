@@ -98,7 +98,8 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
                                                  GetAccuracyResponse* response) noexcept {
     return make_service_helper<MovementSensor>("MovementSensorServer::GetAccuracy", this, request)(
         [&](auto& helper, auto& movementsensor) {
-            const auto result = movementsensor->get_accuracy(helper.getExtra());
+            const std::unordered_map<std::string, float> result =
+                movementsensor->get_accuracy(helper.getExtra());
             for (const auto& i : result) {
                 response->mutable_accuracy()->insert({i.first, i.second});
             }
@@ -135,7 +136,8 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     return make_service_helper<MovementSensor>("MovementSensorServer::GetGeometries",
                                                this,
                                                request)([&](auto& helper, auto& movementsensor) {
-        const auto geometries = movementsensor->get_geometries(helper.getExtra());
+        const std::vector<GeometryConfig> geometries =
+            movementsensor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = geometry.to_proto();
         }
