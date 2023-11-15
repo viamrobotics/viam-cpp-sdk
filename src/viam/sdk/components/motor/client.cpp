@@ -35,7 +35,7 @@ class ClientHelper {
     using PFn = ::grpc::Status (StubType::*)(::grpc::ClientContext*,
                                              const RequestType&,
                                              ResponseType*);
-    explicit ClientHelper(ClientType* client, StubType& stub, PFn pfn)
+    explicit ClientHelper(ClientType* client, StubType* stub, PFn pfn)
         : client_(client), stub_(stub), pfn_(pfn) {}
 
     ClientHelper& with(const AttributeMap& extra) {
@@ -65,19 +65,19 @@ class ClientHelper {
         ::grpc::ClientContext ctx;
         set_client_ctx_authority(ctx);
 
-        const auto result = (stub_.*pfn_)(&ctx, request_, &response_);
-        if (!result.ok()) {
-            std::forward<ErrorHandlerCallable>(ehc)(result);
-            // TODO ABORT?
+        const auto result = (stub_->*pfn_)(&ctx, request_, &response_);
+        if (result.ok()) {
+            return std::forward<ResponseHandlerCallable>(rhc)(
+                const_cast<const ResponseType&>(response_));
         }
 
-        return std::forward<ResponseHandlerCallable>(rhc)(
-            const_cast<const ResponseType&>(response_));
+        std::forward<ErrorHandlerCallable>(ehc)(result);
+        std::abort();
     }
 
    private:
     ClientType* client_;
-    StubType& stub_;
+    StubType* stub_;
     PFn pfn_;
     RequestType request_;
     ResponseType response_;
@@ -91,7 +91,7 @@ auto make_client_helper(ClientType* client,
                         ::grpc::Status (StubType::*method)(::grpc::ClientContext*,
                                                            const RequestType&,
                                                            ResponseType*)) {
-    return ClientHelper<ClientType, StubType, RequestType, ResponseType>(client, stub, method);
+    return ClientHelper<ClientType, StubType, RequestType, ResponseType>(client, &stub, method);
 }
 
 void MotorClient::set_power(double power_pct, const AttributeMap& extra) {
