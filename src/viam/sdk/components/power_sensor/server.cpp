@@ -17,7 +17,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
 
 ::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext* context,
                                              const GetVoltageRequest* request,
-                                             GetVoltageResponse* response) {
+                                             GetVoltageResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetVoltage", this, request)([&](auto& helper, auto& powersensor) {
         const PowerSensor::voltage result = powersensor->get_voltage(helper.getExtra());
@@ -27,7 +27,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
 
 ::grpc::Status PowerSensorServer::GetCurrent(::grpc::ServerContext* context,
                                              const GetCurrentRequest* request,
-                                             GetCurrentResponse* response) {
+                                             GetCurrentResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetCurrent", this, request)([&](auto& helper, auto& powersensor) {
         const PowerSensor::current result = powersensor->get_current(helper.getExtra());
@@ -37,7 +37,7 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
 
 ::grpc::Status PowerSensorServer::GetPower(::grpc::ServerContext* context,
                                            const GetPowerRequest* request,
-                                           GetPowerResponse* response) {
+                                           GetPowerResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetPower", this, request)([&](auto& helper, auto& powersensor) {
         const double watts = powersensor->get_power(helper.getExtra());
@@ -45,21 +45,23 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status PowerSensorServer::GetReadings(::grpc::ServerContext* context,
-                                              const viam::common::v1::GetReadingsRequest* request,
-                                              viam::common::v1::GetReadingsResponse* response) {
+::grpc::Status PowerSensorServer::GetReadings(
+    ::grpc::ServerContext* context,
+    const viam::common::v1::GetReadingsRequest* request,
+    viam::common::v1::GetReadingsResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::GetReadings", this, request)([&](auto& helper, auto& powersensor) {
         const AttributeMap result = powersensor->get_readings(helper.getExtra());
         for (const auto& r : *result) {
-            response->mutable_readings()->insert({std::move(r.first), r.second->proto_value()});
+            response->mutable_readings()->insert({r.first, r.second->proto_value()});
         }
     });
 }
 
-::grpc::Status PowerSensorServer::DoCommand(grpc::ServerContext* context,
-                                            const viam::common::v1::DoCommandRequest* request,
-                                            viam::common::v1::DoCommandResponse* response) {
+::grpc::Status PowerSensorServer::DoCommand(
+    grpc::ServerContext* context,
+    const viam::common::v1::DoCommandRequest* request,
+    viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<PowerSensor>(
         "PowerSensorServer::DoCommand", this, request)([&](auto& helper, auto& powersensor) {
         const AttributeMap result = powersensor->do_command(struct_to_map(request->command()));

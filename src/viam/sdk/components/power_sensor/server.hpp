@@ -24,23 +24,23 @@ class PowerSensorServer : public ResourceServer, public PowerSensorService::Serv
 
     ::grpc::Status GetVoltage(::grpc::ServerContext* context,
                               const GetVoltageRequest* request,
-                              GetVoltageResponse* response) override;
+                              GetVoltageResponse* response) noexcept override;
 
     ::grpc::Status GetCurrent(::grpc::ServerContext* context,
                               const GetCurrentRequest* request,
-                              GetCurrentResponse* response) override;
+                              GetCurrentResponse* response) noexcept override;
 
     ::grpc::Status GetPower(::grpc::ServerContext* context,
                             const GetPowerRequest* request,
-                            GetPowerResponse* response) override;
+                            GetPowerResponse* response) noexcept override;
 
     ::grpc::Status GetReadings(::grpc::ServerContext* context,
                                const viam::common::v1::GetReadingsRequest* request,
-                               viam::common::v1::GetReadingsResponse* response) override;
+                               viam::common::v1::GetReadingsResponse* response) noexcept override;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
-                             viam::common::v1::DoCommandResponse* response) override;
+                             viam::common::v1::DoCommandResponse* response) noexcept override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };
