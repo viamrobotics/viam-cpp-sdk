@@ -16,19 +16,19 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
 ::grpc::Status SensorServer::GetReadings(::grpc::ServerContext* context,
                                          const GetReadingsRequest* request,
-                                         GetReadingsResponse* response) {
+                                         GetReadingsResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::GetReadings", this, request)([&](auto& helper, auto& sensor) {
         const AttributeMap result = sensor->get_readings(helper.getExtra());
         for (const auto& r : *result) {
-            response->mutable_readings()->insert({std::move(r.first), r.second->proto_value()});
+            response->mutable_readings()->insert({r.first, r.second->proto_value()});
         }
     });
 }
 
 ::grpc::Status SensorServer::DoCommand(grpc::ServerContext* context,
                                        const DoCommandRequest* request,
-                                       DoCommandResponse* response) {
+                                       DoCommandResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::DoCommand", this, request)([&](auto& helper, auto& sensor) {
         const AttributeMap result = sensor->do_command(struct_to_map(request->command()));
@@ -38,10 +38,10 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
 ::grpc::Status SensorServer::GetGeometries(::grpc::ServerContext* context,
                                            const GetGeometriesRequest* request,
-                                           GetGeometriesResponse* response) {
+                                           GetGeometriesResponse* response) noexcept {
     return make_service_helper<Sensor>(
         "SensorServer::GetGeometries", this, request)([&](auto& helper, auto& sensor) {
-        const std::vector<GeometryConfig> geometries = sensor->get_geometries(helper.getExtra());
+        const auto geometries = sensor->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = geometry.to_proto();
         }

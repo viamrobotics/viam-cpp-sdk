@@ -25,15 +25,15 @@ class SensorServer : public ResourceServer,
 
     ::grpc::Status GetReadings(::grpc::ServerContext* context,
                                const GetReadingsRequest* request,
-                               GetReadingsResponse* response) override;
+                               GetReadingsResponse* response) noexcept override;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const DoCommandRequest* request,
-                             DoCommandResponse* response) override;
+                             DoCommandResponse* response) noexcept override;
 
     ::grpc::Status GetGeometries(::grpc::ServerContext* context,
                                  const GetGeometriesRequest* request,
-                                 GetGeometriesResponse* response) override;
+                                 GetGeometriesResponse* response) noexcept override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };

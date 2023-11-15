@@ -25,50 +25,55 @@ class MovementSensorServer
     ::grpc::Status GetLinearVelocity(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetLinearVelocityRequest* request,
-        ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) override;
+        ::viam::component::movementsensor::v1::GetLinearVelocityResponse* response) noexcept
+        override;
 
     ::grpc::Status GetAngularVelocity(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetAngularVelocityRequest* request,
-        ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response) override;
+        ::viam::component::movementsensor::v1::GetAngularVelocityResponse* response) noexcept
+        override;
 
     ::grpc::Status GetCompassHeading(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetCompassHeadingRequest* request,
-        ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response) override;
+        ::viam::component::movementsensor::v1::GetCompassHeadingResponse* response) noexcept
+        override;
 
     ::grpc::Status GetOrientation(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetOrientationRequest* request,
-        ::viam::component::movementsensor::v1::GetOrientationResponse* response) override;
+        ::viam::component::movementsensor::v1::GetOrientationResponse* response) noexcept override;
 
     ::grpc::Status GetPosition(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetPositionRequest* request,
-        ::viam::component::movementsensor::v1::GetPositionResponse* response) override;
+        ::viam::component::movementsensor::v1::GetPositionResponse* response) noexcept override;
 
     ::grpc::Status GetProperties(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetPropertiesRequest* request,
-        ::viam::component::movementsensor::v1::GetPropertiesResponse* response) override;
+        ::viam::component::movementsensor::v1::GetPropertiesResponse* response) noexcept override;
 
     ::grpc::Status GetAccuracy(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetAccuracyRequest* request,
-        ::viam::component::movementsensor::v1::GetAccuracyResponse* response) override;
+        ::viam::component::movementsensor::v1::GetAccuracyResponse* response) noexcept override;
 
     ::grpc::Status GetLinearAcceleration(
         ::grpc::ServerContext* context,
         const ::viam::component::movementsensor::v1::GetLinearAccelerationRequest* request,
-        ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) override;
+        ::viam::component::movementsensor::v1::GetLinearAccelerationResponse* response) noexcept
+        override;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
-                             viam::common::v1::DoCommandResponse* response) override;
+                             viam::common::v1::DoCommandResponse* response) noexcept override;
 
-    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest* request,
-                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+    ::grpc::Status GetGeometries(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetGeometriesRequest* request,
+        ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };
