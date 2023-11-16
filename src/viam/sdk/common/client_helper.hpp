@@ -7,6 +7,10 @@
 namespace viam {
 namespace sdk {
 
+namespace client_helper_details {
+[[noreturn]] void errorHandlerReturnedUnexpectedly(const ::grpc::Status&) noexcept;
+}  // namespace client_helper_details
+
 template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
 class ClientHelper {
     static void default_rsc_(RequestType&) {}
@@ -56,7 +60,7 @@ class ClientHelper {
         }
 
         std::forward<ErrorHandlerCallable>(ehc)(result);
-        std::abort();
+        client_helper_details::errorHandlerReturnedUnexpectedly(result);
     }
 
    private:
