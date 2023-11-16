@@ -163,6 +163,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/movementsensor/v1/movementsensor.grpc.pb.h
     ${PROTO_GEN_DIR}/component/movementsensor/v1/movementsensor.pb.cc
     ${PROTO_GEN_DIR}/component/movementsensor/v1/movementsensor.pb.h
+    ${PROTO_GEN_DIR}/component/powersensor/v1/powersensor.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/powersensor/v1/powersensor.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/powersensor/v1/powersensor.pb.cc
+    ${PROTO_GEN_DIR}/component/powersensor/v1/powersensor.pb.h
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.grpc.pb.h
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.pb.cc
@@ -262,6 +266,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/motor/v1/motor.pb.cc
     ${PROTO_GEN_DIR}/component/movementsensor/v1/movementsensor.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/movementsensor/v1/movementsensor.pb.cc
+    ${PROTO_GEN_DIR}/component/powersensor/v1/powersensor.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/powersensor/v1/powersensor.pb.cc
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
@@ -301,6 +307,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/motor/v1/motor.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/movementsensor/v1/movementsensor.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/powersensor/v1/powersensor.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/powersensor/v1/powersensor.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/sensor/v1/sensor.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/sensor/v1/sensor.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/annotations.pb.h
