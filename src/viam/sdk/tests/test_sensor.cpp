@@ -15,6 +15,7 @@
 #include <viam/sdk/components/sensor/client.hpp>
 #include <viam/sdk/components/sensor/sensor.hpp>
 #include <viam/sdk/components/sensor/server.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
