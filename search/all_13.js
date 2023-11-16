@@ -5,5 +5,7 @@ var searchData=
   ['vector3_2',['Vector3',['../classviam_1_1sdk_1_1Vector3.html',1,'viam::sdk']]],
   ['viam_20c_20sdk_3',['Viam C++ SDK',['../index.html',1,'']]],
   ['viamchannel_4',['ViamChannel',['../classviam_1_1sdk_1_1ViamChannel.html',1,'viam::sdk']]],
-  ['vision_5fservice_5',['vision_service',['../structviam_1_1sdk_1_1obstacle__detector.html#a791ef33fe5e7ac449a9e0d23bd0c054d',1,'viam::sdk::obstacle_detector']]]
+  ['vision_5fservice_5',['vision_service',['../structviam_1_1sdk_1_1obstacle__detector.html#a791ef33fe5e7ac449a9e0d23bd0c054d',1,'viam::sdk::obstacle_detector']]],
+  ['voltage_6',['voltage',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html',1,'viam::sdk::PowerSensor']]],
+  ['volts_7',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
 ];

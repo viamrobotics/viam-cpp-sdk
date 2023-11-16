@@ -6,6 +6,9 @@ var searchData=
   ['pose_5forientation_3',['pose_orientation',['../structviam_1_1sdk_1_1pose__orientation.html',1,'viam::sdk']]],
   ['position_4',['position',['../structposition.html',1,'position'],['../structviam_1_1sdk_1_1Encoder_1_1position.html',1,'viam::sdk::Encoder::position'],['../structviam_1_1sdk_1_1MovementSensor_1_1position.html',1,'viam::sdk::MovementSensor::position']]],
   ['power_5fstatus_5',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
-  ['properties_6',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
-  ['prototype_7',['ProtoType',['../classviam_1_1sdk_1_1ProtoType.html',1,'viam::sdk']]]
+  ['powersensor_6',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
+  ['powersensorclient_7',['PowerSensorClient',['../classviam_1_1sdk_1_1PowerSensorClient.html',1,'viam::sdk']]],
+  ['powersensorserver_8',['PowerSensorServer',['../classviam_1_1sdk_1_1PowerSensorServer.html',1,'viam::sdk']]],
+  ['properties_9',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
+  ['prototype_10',['ProtoType',['../classviam_1_1sdk_1_1ProtoType.html',1,'viam::sdk']]]
 ];

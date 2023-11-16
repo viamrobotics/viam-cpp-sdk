@@ -10,5 +10,6 @@ var searchData=
   ['component_7',['Component',['../classviam_1_1sdk_1_1Component.html',1,'viam::sdk']]],
   ['constraints_8',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion']]],
   ['coordinates_9',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
-  ['credentials_10',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]]
+  ['credentials_10',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
+  ['current_11',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor']]]
 ];
