@@ -67,8 +67,6 @@ class ClientHelper {
     ResponseType response_;
 };
 
-// TODO: Stop returns the status???
-
 template <typename ClientType, typename StubType, typename RequestType, typename ResponseType>
 auto make_client_helper(ClientType* client,
                         StubType& stub,
