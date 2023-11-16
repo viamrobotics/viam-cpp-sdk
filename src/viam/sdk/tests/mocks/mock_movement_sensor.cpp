@@ -43,7 +43,7 @@ AttributeMap MockMovementSensor::do_command(const AttributeMap& command) {
     return command;
 };
 std::vector<sdk::GeometryConfig> MockMovementSensor::get_geometries(const AttributeMap& extra) {
-    return std::vector<sdk::GeometryConfig>();
+    return fake_geometries();
 };
 
 std::shared_ptr<MockMovementSensor> MockMovementSensor::get_mock_movementsensor() {
