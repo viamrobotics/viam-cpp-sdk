@@ -9,10 +9,11 @@ var searchData=
   ['resourcenameequal_6',['ResourceNameEqual',['../classviam_1_1sdk_1_1ResourceNameEqual.html',1,'viam::sdk']]],
   ['resourcenamehasher_7',['ResourceNameHasher',['../classviam_1_1sdk_1_1ResourceNameHasher.html',1,'viam::sdk']]],
   ['resourceregistration_8',['ResourceRegistration',['../classviam_1_1sdk_1_1ResourceRegistration.html',1,'viam::sdk']]],
-  ['resourceserver_9',['ResourceServer',['../classviam_1_1sdk_1_1ResourceServer.html',1,'viam::sdk']]],
-  ['resourcetype_10',['ResourceType',['../classviam_1_1sdk_1_1ResourceType.html',1,'viam::sdk']]],
-  ['response_5fmetadata_11',['response_metadata',['../structviam_1_1sdk_1_1response__metadata.html',1,'viam::sdk']]],
-  ['robotclient_12',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
-  ['robotservice_5f_13',['RobotService_',['../classviam_1_1sdk_1_1RobotService__.html',1,'viam::sdk']]],
-  ['rpcsubtype_14',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
+  ['resourceregistration2_9',['ResourceRegistration2',['../classviam_1_1sdk_1_1ResourceRegistration2.html',1,'viam::sdk']]],
+  ['resourceserver_10',['ResourceServer',['../classviam_1_1sdk_1_1ResourceServer.html',1,'viam::sdk']]],
+  ['resourcetype_11',['ResourceType',['../classviam_1_1sdk_1_1ResourceType.html',1,'viam::sdk']]],
+  ['response_5fmetadata_12',['response_metadata',['../structviam_1_1sdk_1_1response__metadata.html',1,'viam::sdk']]],
+  ['robotclient_13',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
+  ['robotservice_5f_14',['RobotService_',['../classviam_1_1sdk_1_1RobotService__.html',1,'viam::sdk']]],
+  ['rpcsubtype_15',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
 ];
