@@ -57,7 +57,7 @@ AttributeMap PowerSensorClient::get_readings(const AttributeMap& extra) {
 }
 
 AttributeMap PowerSensorClient::do_command(const AttributeMap& command) {
-    return make_client_helper(this, *stub_, &PowerSensorClient::DoCommand)
+    return make_client_helper(this, *stub_, &PowerSensorClient::Stub::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
