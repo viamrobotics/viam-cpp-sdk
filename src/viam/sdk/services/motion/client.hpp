@@ -40,6 +40,17 @@ class MotionClient : public Motion {
                            const std::vector<WorldState::transform>& supplemental_transforms,
                            const AttributeMap& extra) override;
 
+    void stop_plan(const Name& component_name, const AttributeMap& extra) override;
+
+    std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> get_plan(
+        const Name& component_name,
+        const AttributeMap& extra,
+        bool last_plan_only = false,
+        boost::optional<std::string> execution_id = {}) override;
+
+    std::vector<Motion::plan_status_with_id> list_plan_statuses(
+        const AttributeMap& extra, bool only_active_plans = false) override;
+
     AttributeMap do_command(const AttributeMap& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
@@ -51,10 +62,13 @@ class MotionClient : public Motion {
     // that calls the virtual method and passes a `nullptr` by default in place of the `extra`
     // param. In order to access these versions of the methods within the client code, however,
     // we need to include these `using` lines.
+    using Motion::get_plan;
     using Motion::get_pose;
+    using Motion::list_plan_statuses;
     using Motion::move;
     using Motion::move_on_globe;
     using Motion::move_on_map;
+    using Motion::stop_plan;
 
    private:
     std::unique_ptr<service::motion::v1::MotionService::StubInterface> stub_;

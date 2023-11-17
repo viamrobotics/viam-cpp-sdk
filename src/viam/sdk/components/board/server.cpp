@@ -1,3 +1,4 @@
+#include "component/board/v1/board.pb.h"
 #include <viam/sdk/components/board/server.hpp>
 
 #include <viam/sdk/common/utils.hpp>
@@ -237,6 +238,31 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     const Board::analog_value result = board->read_analog(request->analog_reader_name(), extra);
     response->set_value(result);
 
+    return ::grpc::Status();
+}
+
+::grpc::Status BoardServer::WriteAnalog(
+    ::grpc::ServerContext* context,
+    const ::viam::component::board::v1::WriteAnalogRequest* request,
+    ::viam::component::board::v1::WriteAnalogResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Board::WriteAnalog] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    board->write_analog(request->pin(), request->value(), extra);
     return ::grpc::Status();
 }
 

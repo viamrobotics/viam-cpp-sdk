@@ -1,5 +1,6 @@
 #pragma once
 
+#include "viam/sdk/common/proto_type.hpp"
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/motion/motion.hpp>
@@ -46,8 +47,22 @@ class MockMotion : public sdk::Motion {
         const std::vector<sdk::WorldState::transform>& supplemental_transforms,
         const sdk::AttributeMap& extra) override;
 
+    std::pair<plan_with_status, std::vector<plan_with_status>> get_plan(
+        const sdk::Name& component_name,
+        const sdk::AttributeMap& extra,
+        bool last_plan_only = false,
+        boost::optional<std::string> execution_id = {}) override;
+
+    std::vector<plan_status_with_id> list_plan_statuses(const sdk::AttributeMap& extra,
+                                                        bool only_active_plans = false) override;
+
+    void stop_plan(const sdk::Name& name, const sdk::AttributeMap& extra) override;
+
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
     static std::shared_ptr<MockMotion> get_mock_motion();
+    static plan_status fake_plan_status();
+    static plan_with_status fake_plan_with_status();
+    static plan_status_with_id fake_plan_status_with_id();
 
     // These variables allow the testing infra to `peek` into the mock
     // and ensure that the correct values were passed
@@ -59,11 +74,11 @@ class MockMotion : public sdk::Motion {
     sdk::geo_point peek_destination;
     std::string peek_destination_frame;
     double peek_heading;
+    bool peek_stop_plan_called = false;
     std::vector<sdk::geo_obstacle> peek_obstacles;
     std::shared_ptr<constraints> peek_constraints;
     std::shared_ptr<sdk::motion_configuration> peek_motion_configuration;
     std::shared_ptr<sdk::WorldState> peek_world_state;
-    sdk::AttributeMap peek_map;
 
     MockMotion(std::string name)
         : sdk::Motion(std::move(name)), current_location(init_fake_pose()){};

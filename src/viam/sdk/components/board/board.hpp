@@ -213,8 +213,21 @@ class Board : public Component {
     virtual analog_value read_analog(const std::string& analog_reader_name,
                                      const AttributeMap& extra) = 0;
 
-    /// @brief Returns the current value of the interrupt which is based on the type of interrupt.
-    /// Consult Viam's `Board` docs for more information.
+    /// @brief Writes the value to the analog writer of the board.
+    /// @param pin the pin to write to
+    /// @param value the value to set the pin to
+    inline void write_analog(const std::string& pin, int value) {
+        return write_analog(pin, value, {});
+    }
+
+    /// @brief Writes the value to the analog writer of the board.
+    /// @param pin the pin to write to
+    /// @param value the value to set the pin to
+    /// @param extra any additional arguments to the method
+    virtual void write_analog(const std::string& pin, int value, const AttributeMap& extra) = 0;
+
+    /// @brief Returns the current value of the interrupt which is based on the type of
+    /// interrupt. Consult Viam's `Board` docs for more information.
     /// @param digital_interrupt_name digital interrupt to check
     inline digital_value read_digital_interrupt(const std::string& digital_interrupt_name) {
         return read_digital_interrupt(digital_interrupt_name, {});

@@ -3,6 +3,7 @@
 /// @brief Implements a gRPC server for the `Board` component.
 #pragma once
 
+#include "component/board/v1/board.pb.h"
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
@@ -59,6 +60,10 @@ class BoardServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::ReadAnalogReaderRequest* request,
         ::viam::component::board::v1::ReadAnalogReaderResponse* response) override;
+
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* context,
+                               const component::board::v1::WriteAnalogRequest* request,
+                               component::board::v1::WriteAnalogResponse* response) override;
 
     ::grpc::Status GetDigitalInterruptValue(
         ::grpc::ServerContext* context,

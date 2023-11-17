@@ -1,3 +1,4 @@
+#include "component/board/v1/board.pb.h"
 #include <viam/sdk/components/board/client.hpp>
 
 #include <algorithm>
@@ -185,6 +186,24 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
         throw std::runtime_error(status.error_message());
     }
     return response.value();
+}
+
+void BoardClient::write_analog(const std::string& pin, int value, const AttributeMap& extra) {
+    component::board::v1::WriteAnalogRequest request;
+    component::board::v1::WriteAnalogResponse response;
+
+    grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
+
+    request.set_name(this->name());
+    request.set_pin(std::move(pin));
+    request.set_value(value);
+    *request.mutable_extra() = map_to_struct(extra);
+
+    const grpc::Status status = stub_->WriteAnalog(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 Board::digital_value BoardClient::read_digital_interrupt(const std::string& digital_interrupt_name,

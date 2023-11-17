@@ -135,6 +135,71 @@ pose_in_frame MotionClient::get_pose(
     return pose_in_frame::from_proto(response.pose());
 }
 
+void MotionClient::stop_plan(const Name& name, const AttributeMap& extra) {
+    service::motion::v1::StopPlanRequest request;
+    service::motion::v1::StopPlanResponse response;
+    grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
+
+    *request.mutable_name() = this->name();
+    *request.mutable_extra() = map_to_struct(std::move(extra));
+
+    const grpc::Status status = stub_->StopPlan(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
+}
+
+std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> MotionClient::get_plan(
+    const Name& name,
+    const AttributeMap& extra,
+    bool last_plan_only,
+    boost::optional<std::string> execution_id) {
+    service::motion::v1::GetPlanRequest request;
+    service::motion::v1::GetPlanResponse response;
+    grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
+
+    *request.mutable_name() = this->name();
+    *request.mutable_extra() = map_to_struct(std::move(extra));
+    request.set_last_plan_only(last_plan_only);
+    if (execution_id) {
+        *request.mutable_execution_id() = *execution_id;
+    }
+
+    const grpc::Status status = stub_->GetPlan(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
+
+    return {Motion::plan_with_status::from_proto(response.current_plan_with_status()),
+            Motion::plan_with_status::from_proto(response.replan_history())};
+}
+
+std::vector<Motion::plan_status_with_id> MotionClient::list_plan_statuses(const AttributeMap& extra,
+                                                                          bool only_active_plans) {
+    service::motion::v1::ListPlanStatusesRequest request;
+    service::motion::v1::ListPlanStatusesResponse response;
+    grpc::ClientContext ctx;
+    set_client_ctx_authority(ctx);
+
+    *request.mutable_name() = this->name();
+    *request.mutable_extra() = map_to_struct(std::move(extra));
+    request.set_only_active_plans(only_active_plans);
+
+    const grpc::Status status = stub_->ListPlanStatuses(&ctx, request, &response);
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
+
+    std::vector<Motion::plan_status_with_id> statuses;
+    for (const auto& proto : response.plan_statuses_with_ids()) {
+        statuses.push_back(Motion::plan_status_with_id::from_proto(proto));
+    }
+
+    return statuses;
+}
+
 AttributeMap MotionClient::do_command(const AttributeMap& command) {
     viam::common::v1::DoCommandRequest request;
     viam::common::v1::DoCommandResponse response;

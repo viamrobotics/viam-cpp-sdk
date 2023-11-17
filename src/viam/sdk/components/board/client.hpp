@@ -35,11 +35,12 @@ class BoardClient : public Board {
                            const AttributeMap& extra) override;
     analog_value read_analog(const std::string& analog_reader_name,
                              const AttributeMap& extra) override;
+    void write_analog(const std::string& pin, int value, const AttributeMap& extra) override;
     digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                          const AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
                         const AttributeMap& extra,
-                        const boost::optional<std::chrono::microseconds>& duration) override;
+                        const boost::optional<std::chrono::microseconds>& duration = {}) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
@@ -62,6 +63,7 @@ class BoardClient : public Board {
     using Board::set_power_mode;
     using Board::set_pwm_duty_cycle;
     using Board::set_pwm_frequency;
+    using Board::write_analog;
 
    private:
     std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;
