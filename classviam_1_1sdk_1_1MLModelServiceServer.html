@@ -96,26 +96,26 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0355a7140dbee1131227f1a213b16fdd" id="r_a0355a7140dbee1131227f1a213b16fdd"><td class="memItemLeft" align="right" valign="top"><a id="a0355a7140dbee1131227f1a213b16fdd" name="a0355a7140dbee1131227f1a213b16fdd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MLModelServiceServer</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; manager)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MLModelServiceServer</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>)</td></tr>
 <tr class="separator:a0355a7140dbee1131227f1a213b16fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad578d180ac426a7ecf099828d7113a88" id="r_ad578d180ac426a7ecf099828d7113a88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MLModelServiceServer.html#ad578d180ac426a7ecf099828d7113a88">register_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &gt; server) override</td></tr>
+<tr class="memitem:ad578d180ac426a7ecf099828d7113a88" id="r_ad578d180ac426a7ecf099828d7113a88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1MLModelServiceServer.html#ad578d180ac426a7ecf099828d7113a88">register_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">server</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="separator:ad578d180ac426a7ecf099828d7113a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d5f3754b52d2461344c8504c4dc8755" id="r_a1d5f3754b52d2461344c8504c4dc8755"><td class="memItemLeft" align="right" valign="top"><a id="a1d5f3754b52d2461344c8504c4dc8755" name="a1d5f3754b52d2461344c8504c4dc8755"></a>
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>Infer</b> (::grpc::ServerContext *context, const ::viam::service::mlmodel::v1::InferRequest *request, ::viam::service::mlmodel::v1::InferResponse *response) noexcept override</td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>Infer</b> (::grpc::ServerContext *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> ::viam::service::mlmodel::v1::InferRequest *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>, ::viam::service::mlmodel::v1::InferResponse *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="separator:a1d5f3754b52d2461344c8504c4dc8755"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b301f9af345743d01894f9453853577" id="r_a7b301f9af345743d01894f9453853577"><td class="memItemLeft" align="right" valign="top"><a id="a7b301f9af345743d01894f9453853577" name="a7b301f9af345743d01894f9453853577"></a>
-::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>Metadata</b> (::grpc::ServerContext *context, const ::viam::service::mlmodel::v1::MetadataRequest *request, ::viam::service::mlmodel::v1::MetadataResponse *response) noexcept override</td></tr>
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>Metadata</b> (::grpc::ServerContext *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">context</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> ::viam::service::mlmodel::v1::MetadataRequest *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">request</a>, ::viam::service::mlmodel::v1::MetadataResponse *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">response</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">noexcept</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="separator:a7b301f9af345743d01894f9453853577"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1ResourceServer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classviam_1_1sdk_1_1ResourceServer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></td></tr>
 <tr class="memitem:a28f38fafcb51da37e66fbfd7a7a3f3bf inherit pub_methods_classviam_1_1sdk_1_1ResourceServer" id="r_a28f38fafcb51da37e66fbfd7a7a3f3bf"><td class="memItemLeft" align="right" valign="top">
-const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resource_manager</b> () const</td></tr>
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resource_manager</b> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a></td></tr>
 <tr class="separator:a28f38fafcb51da37e66fbfd7a7a3f3bf inherit pub_methods_classviam_1_1sdk_1_1ResourceServer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classviam_1_1sdk_1_1ResourceServer"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classviam_1_1sdk_1_1ResourceServer')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></td></tr>
 <tr class="memitem:a96d0d85502f2467c9a6a11502b817b17 inherit pro_methods_classviam_1_1sdk_1_1ResourceServer" id="r_a96d0d85502f2467c9a6a11502b817b17"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceServer</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; manager)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceServer</b> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>)</td></tr>
 <tr class="separator:a96d0d85502f2467c9a6a11502b817b17 inherit pro_methods_classviam_1_1sdk_1_1ResourceServer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -131,7 +131,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void viam::sdk::MLModelServiceServer::register_server </td>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::MLModelServiceServer::register_server </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Server.html">Server</a> &gt;&#160;</td>
           <td class="paramname"><em>server</em></td><td>)</td>

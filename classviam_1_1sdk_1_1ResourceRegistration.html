@@ -109,18 +109,18 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a47baa099cee6fdb86c387c4a0094b044" id="r_a47baa099cee6fdb86c387c4a0094b044"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a47baa099cee6fdb86c387c4a0094b044">create_resource_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; manager)=0</td></tr>
+<tr class="memitem:a47baa099cee6fdb86c387c4a0094b044" id="r_a47baa099cee6fdb86c387c4a0094b044"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a47baa099cee6fdb86c387c4a0094b044">create_resource_server</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">manager</a>)=0</td></tr>
 <tr class="memdesc:a47baa099cee6fdb86c387c4a0094b044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a resource's gRPC server.  <br /></td></tr>
 <tr class="separator:a47baa099cee6fdb86c387c4a0094b044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e0ee496b1182bd2c2bd7c43c8960c19" id="r_a7e0ee496b1182bd2c2bd7c43c8960c19"><td class="memItemLeft" align="right" valign="top"><a id="a7e0ee496b1182bd2c2bd7c43c8960c19" name="a7e0ee496b1182bd2c2bd7c43c8960c19"></a>
-const google::protobuf::ServiceDescriptor *&#160;</td><td class="memItemRight" valign="bottom"><b>service_descriptor</b> ()</td></tr>
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> google::protobuf::ServiceDescriptor *&#160;</td><td class="memItemRight" valign="bottom"><b>service_descriptor</b> ()</td></tr>
 <tr class="memdesc:a7e0ee496b1182bd2c2bd7c43c8960c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the <code><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html" title="Defines registered Resource creation functionality.">ResourceRegistration</a></code>'s service descriptor. <br /></td></tr>
 <tr class="separator:a7e0ee496b1182bd2c2bd7c43c8960c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a176b7f6b27087e2f2c31ebf78c284039" id="r_a176b7f6b27087e2f2c31ebf78c284039"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a176b7f6b27087e2f2c31ebf78c284039">create_rpc_client</a> (std::string name, std::shared_ptr&lt; grpc::Channel &gt; channel)=0</td></tr>
+<tr class="memitem:a176b7f6b27087e2f2c31ebf78c284039" id="r_a176b7f6b27087e2f2c31ebf78c284039"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a176b7f6b27087e2f2c31ebf78c284039">create_rpc_client</a> (std::string name, std::shared_ptr&lt; grpc::Channel &gt; channel)=0</td></tr>
 <tr class="memdesc:a176b7f6b27087e2f2c31ebf78c284039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create gRPC client to a resource.  <br /></td></tr>
 <tr class="separator:a176b7f6b27087e2f2c31ebf78c284039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff8d8c03459af894699aec39b176bead" id="r_aff8d8c03459af894699aec39b176bead"><td class="memItemLeft" align="right" valign="top"><a id="aff8d8c03459af894699aec39b176bead" name="aff8d8c03459af894699aec39b176bead"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceRegistration</b> (const google::protobuf::ServiceDescriptor *<a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a7e0ee496b1182bd2c2bd7c43c8960c19">service_descriptor</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ResourceRegistration</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> google::protobuf::ServiceDescriptor *<a class="el" href="classviam_1_1sdk_1_1ResourceRegistration.html#a7e0ee496b1182bd2c2bd7c43c8960c19">service_descriptor</a>)</td></tr>
 <tr class="separator:aff8d8c03459af894699aec39b176bead"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -143,7 +143,7 @@ std::function&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Re
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt; viam::sdk::ResourceRegistration::create_resource_server </td>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> &gt; viam::sdk::ResourceRegistration::create_resource_server </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1ResourceManager.html">ResourceManager</a> &gt;&#160;</td>
           <td class="paramname"><em>manager</em></td><td>)</td>
@@ -180,7 +180,7 @@ std::function&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Re
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; viam::sdk::ResourceRegistration::create_rpc_client </td>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; viam::sdk::ResourceRegistration::create_rpc_client </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>name</em>, </td>

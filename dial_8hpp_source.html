@@ -97,8 +97,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1ViamChannel.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>   <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">void</span> close();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>(std::shared_ptr&lt;grpc::Channel&gt; channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">void</span>* runtime);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> std::shared_ptr&lt;ViamChannel&gt; dial(<span class="keyword">const</span> <span class="keywordtype">char</span>* uri, boost::optional&lt;DialOptions&gt; options);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>(std::shared_ptr&lt;grpc::Channel&gt; channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">path</a>, <span class="keywordtype">void</span>* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">runtime</a>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> std::shared_ptr&lt;ViamChannel&gt; dial(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">uri</a>, boost::optional&lt;DialOptions&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">options</a>);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">const</span> std::shared_ptr&lt;grpc::Channel&gt;&amp; channel() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
@@ -135,8 +135,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">const</span> std::chrono::duration&lt;float&gt;&amp; timeout() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> set_entity(boost::optional&lt;std::string&gt; entity);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> set_credentials(boost::optional&lt;Credentials&gt; creds);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> set_allow_insecure_downgrade(<span class="keywordtype">bool</span> allow);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> set_credentials(boost::optional&lt;Credentials&gt; <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">creds</a>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> set_allow_insecure_downgrade(<span class="keywordtype">bool</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">allow</a>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> set_timeout(std::chrono::duration&lt;float&gt; timeout);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>   <span class="keyword">private</span>:</div>
@@ -170,6 +170,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}  <span class="comment">// namespace sdk</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Credentials_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Credentials.html">viam::sdk::Credentials</a></div><div class="ttdef"><b>Definition</b> dial.hpp:28</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Credentials_html_a5332ea9f28be0f99df5c2dd6987c9720"><div class="ttname"><a href="classviam_1_1sdk_1_1Credentials.html#a5332ea9f28be0f99df5c2dd6987c9720">viam::sdk::Credentials::Credentials</a></div><div class="ttdeci">Credentials(std::string payload)</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1DialOptions_html"><div class="ttname"><a href="classviam_1_1sdk_1_1DialOptions.html">viam::sdk::DialOptions</a></div><div class="ttdef"><b>Definition</b> dial.hpp:41</div></div>
