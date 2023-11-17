@@ -1,6 +1,6 @@
-#include "viam/sdk/services/motion/motion.hpp"
-#include <chrono>
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
+
+#include <chrono>
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>

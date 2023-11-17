@@ -1,4 +1,3 @@
-#include "component/board/v1/board.pb.h"
 #include <viam/sdk/components/board/client.hpp>
 
 #include <algorithm>

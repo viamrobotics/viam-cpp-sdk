@@ -1,7 +1,7 @@
 #pragma once
 
-#include "viam/sdk/common/proto_type.hpp"
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/motion/motion.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
