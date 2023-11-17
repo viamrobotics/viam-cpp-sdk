@@ -53,7 +53,8 @@ class MotorClient : public Motor {
     using Motor::stop;
 
    private:
-    std::unique_ptr<viam::component::motor::v1::MotorService::StubInterface> stub_;
+    using StubType = viam::component::motor::v1::MotorService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

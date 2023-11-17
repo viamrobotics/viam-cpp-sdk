@@ -43,6 +43,7 @@ target_sources(viamsdk
     # consider making all necessary runtime values a single `context` that has to
     # be initialized within main before anything else happens?
     registry/registry.cpp
+    common/client_helper.cpp
     common/linear_algebra.cpp
     common/pose.cpp
     common/proto_type.cpp
@@ -106,9 +107,11 @@ target_sources(viamsdk
     BASE_DIRS
       ../..
     FILES
+      ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_type.hpp
+      ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/base/base.hpp
