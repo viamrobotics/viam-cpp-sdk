@@ -385,8 +385,10 @@ class Motion : public Service {
     /// returned. Defaults to false.
     /// @param execution_id Optional execution id of a previous plan, if you want to know about it.
     inline std::pair<plan_with_status, std::vector<plan_with_status>> get_plan(
-        Name component_name, bool last_plan_only, boost::optional<std::string> execution_id) {
-        return get_plan(component_name, {}, last_plan_only = false, execution_id = {});
+        Name component_name,
+        bool last_plan_only = false,
+        boost::optional<std::string> execution_id = {}) {
+        return get_plan(component_name, {}, last_plan_only, execution_id);
     }
 
     /// @brief Returns the plan and state history of the most recent execution to move a component.
