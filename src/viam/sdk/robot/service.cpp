@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <mutex>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <unordered_map>
@@ -147,13 +148,15 @@ void RobotService_::stream_status(
                                       ::viam::robot::v1::StopAllResponse* response) {
     const ResourceName r;
     std::unordered_map<std::string, AttributeMap> extra;
-    grpc::StatusCode status = grpc::StatusCode::OK;
     for (const auto& ex : request->extra()) {
         const google::protobuf::Struct& struct_ = ex.params();
         const AttributeMap value_map = struct_to_map(struct_);
         const std::string name = ex.name().SerializeAsString();
         extra.emplace(name, value_map);
     }
+
+    grpc::StatusCode status = grpc::StatusCode::OK;
+    std::string status_message;
 
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
@@ -162,11 +165,13 @@ void RobotService_::stream_status(
         if (extra.find(rn_) != extra.end()) {
             try {
                 resource->stop(extra.at(rn_));
-            } catch (...) {
+            } catch (const std::runtime_error& err) {
                 try {
+                    status_message = err.what();
                     // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
                     resource->stop();
-                } catch (...) {
+                } catch (std::runtime_error& err) {
+                    status_message = err.what();
                     status = grpc::UNKNOWN;
                 }
             }
@@ -174,13 +179,14 @@ void RobotService_::stream_status(
             try {
                 // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
                 resource->stop();
-            } catch (...) {
+            } catch (std::runtime_error& err) {
+                status_message = err.what();
                 status = grpc::UNKNOWN;
             }
         }
     }
 
-    return grpc::Status(status, "");
+    return grpc::Status(status, status_message);
 }
 
 std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
