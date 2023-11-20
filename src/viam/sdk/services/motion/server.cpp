@@ -1,4 +1,3 @@
-#include "service/motion/v1/motion.pb.h"
 #include <memory>
 
 #include <grpcpp/support/status.h>
