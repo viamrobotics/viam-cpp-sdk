@@ -1,5 +1,6 @@
 #include <viam/sdk/resource/resource.hpp>
 
+#include <stdexcept>
 #include <unordered_map>
 
 #include <grpcpp/support/status.h>
@@ -13,8 +14,8 @@ namespace sdk {
 
 Resource::~Resource() = default;
 
-grpc::StatusCode Resource::stop(const AttributeMap& extra) {
-    return grpc::StatusCode::UNIMPLEMENTED;
+void Resource::stop(const AttributeMap& extra) {
+    throw std::runtime_error("Unimplemented");
 }
 
 std::string Resource::name() const {

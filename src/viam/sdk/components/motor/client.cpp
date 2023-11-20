@@ -66,7 +66,7 @@ Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
+void MotorClient::stop(const AttributeMap& extra) {
     viam::component::motor::v1::StopRequest request;
     viam::component::motor::v1::StopResponse response;
 
@@ -77,7 +77,9 @@ grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
     *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->Stop(&ctx, request, &response);
-    return status.error_code();
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
 }
 
 Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {

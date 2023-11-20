@@ -31,7 +31,7 @@ class BaseClient : public Base {
     void set_velocity(const Vector3& linear,
                       const Vector3& angular,
                       const AttributeMap& extra) override;
-    grpc::StatusCode stop(const AttributeMap& extra) override;
+    void stop(const AttributeMap& extra) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
     properties get_properties(const AttributeMap& extra) override;
     bool is_moving() override;

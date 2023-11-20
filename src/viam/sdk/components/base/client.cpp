@@ -101,7 +101,7 @@ void BaseClient::set_velocity(const Vector3& linear,
     }
 }
 
-grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
+void BaseClient::stop(const AttributeMap& extra) {
     viam::component::base::v1::StopRequest request;
     viam::component::base::v1::StopResponse response;
 
@@ -115,7 +115,6 @@ grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
-    return status.error_code();
 }
 
 bool BaseClient::is_moving() {

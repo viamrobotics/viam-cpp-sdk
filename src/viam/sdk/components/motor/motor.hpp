@@ -183,13 +183,13 @@ class Motor : public Component {
     virtual bool is_moving() = 0;
 
     /// @brief Stops a resource from running.
-    inline grpc::StatusCode stop() {
+    inline void stop() {
         return stop({});
     }
 
     /// @brief Stops a resource from running.
     /// @param extra Extra arguments to pass to the resource's `stop` method.
-    grpc::StatusCode stop(const AttributeMap& extra) override = 0;
+    void stop(const AttributeMap& extra) override = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

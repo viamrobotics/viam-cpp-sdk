@@ -24,7 +24,7 @@ class MockMotor : public Motor {
     void reset_zero_position(double offset, const sdk::AttributeMap& extra) override;
     Motor::position get_position(const sdk::AttributeMap& extra) override;
     Motor::properties get_properties(const sdk::AttributeMap& extra) override;
-    grpc::StatusCode stop(const viam::sdk::AttributeMap& extra) override;
+    void stop(const viam::sdk::AttributeMap& extra) override;
     Motor::power_status get_power_status(const viam::sdk::AttributeMap& extra) override;
     bool is_moving() override;
     viam::sdk::AttributeMap do_command(const viam::sdk::AttributeMap& command) override;

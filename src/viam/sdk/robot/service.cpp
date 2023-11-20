@@ -160,14 +160,23 @@ void RobotService_::stream_status(
         const ResourceName rn = resource->get_resource_name(resource->name());
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
-            grpc::StatusCode status = resource->stop(extra.at(rn_));
-            if (status != grpc::StatusCode::OK) {
-                // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
-                status = resource->stop();
+            try {
+                resource->stop(extra.at(rn_));
+            } catch (...) {
+                try {
+                    // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
+                    resource->stop();
+                } catch (...) {
+                    status = grpc::UNKNOWN;
+                }
             }
         } else {
-            // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
-            status = resource->stop();
+            try {
+                // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
+                resource->stop();
+            } catch (...) {
+                status = grpc::UNKNOWN;
+            }
         }
     }
 
