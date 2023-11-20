@@ -65,24 +65,27 @@ bool MyBase::is_moving() {
 }
 
 void MyBase::stop(const AttributeMap& extra) {
-    std::exception* e;
+    std::string err_message;
+    bool throw_err = false;
 
     // make sure we try to stop both motors, even if the first fails.
     try {
         left_->stop(extra);
     } catch (const std::exception& err) {
-        *e = err;
+        throw_err = true;
+        err_message = err.what();
     }
 
     try {
         right_->stop(extra);
     } catch (const std::exception& err) {
-        *e = err;
+        throw_err = true;
+        err_message = err.what();
     }
 
     // if we received an err from either motor, throw it.
-    if (e) {
-        throw *e;
+    if (throw_err) {
+        throw std::runtime_error(err_message);
     }
 }
 
