@@ -142,7 +142,7 @@ void MotionClient::stop_plan(const Name& name, const AttributeMap& extra) {
     set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(std::move(extra));
+    *request.mutable_extra() = map_to_struct(extra);
 
     const grpc::Status status = stub_->StopPlan(&ctx, request, &response);
     if (!status.ok()) {
@@ -161,7 +161,7 @@ std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> Motio
     set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(std::move(extra));
+    *request.mutable_extra() = map_to_struct(extra);
     request.set_last_plan_only(last_plan_only);
     if (execution_id) {
         *request.mutable_execution_id() = *execution_id;
@@ -184,7 +184,7 @@ std::vector<Motion::plan_status_with_id> MotionClient::list_plan_statuses(const 
     set_client_ctx_authority(ctx);
 
     *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(std::move(extra));
+    *request.mutable_extra() = map_to_struct(extra);
     request.set_only_active_plans(only_active_plans);
 
     const grpc::Status status = stub_->ListPlanStatuses(&ctx, request, &response);
