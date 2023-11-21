@@ -51,7 +51,8 @@ class CameraClient : public Camera {
         : Camera(std::move(name)), stub_(std::move(stub)){};
 
    private:
-    std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub_;
+    using StubType = viam::component::camera::v1::CameraService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 
