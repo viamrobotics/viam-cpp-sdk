@@ -57,7 +57,8 @@ class MotionClient : public Motion {
     using Motion::move_on_map;
 
    private:
-    std::unique_ptr<service::motion::v1::MotionService::StubInterface> stub_;
+    using StubType = service::motion::v1::MotionService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

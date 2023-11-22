@@ -31,7 +31,8 @@ class GenericClient : public Generic {
         : Generic(std::move(name)), stub_(std::move(stub)){};
 
    private:
-    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
+    using StubType = viam::component::generic::v1::GenericService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

@@ -66,6 +66,7 @@ Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
         .invoke([](auto& response) { return from_proto(response); });
 }
 
+// CR erodkin: pull fixes to stop, then fix this!
 grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
     viam::component::motor::v1::StopRequest request;
     viam::component::motor::v1::StopResponse response;
