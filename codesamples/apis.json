@@ -29,16 +29,16 @@
     "movement_sensor": {
         "client": "MovementSensorClient",
         "func": "get_linear_velocity",
-        "args: []
+        "args": []
     },
     "power_sensor": {
         "client": "PowerSensorClient",
         "func": "get_voltage",
-        "args: []
+        "args": []
     },
     "sensor": {
         "client": "SensorClient",
         "func": "get_readings",
-        "args: []
+        "args": []
     }
 }
