@@ -2,28 +2,43 @@
     "base": {
         "client": "BaseClient",
         "func": "is_moving",
-		"args": []
+        "args": []
     },
     "camera": {
         "client": "CameraClient",
         "func": "get_image",
-		"args": [ "std::string(\"image/png\")" ],
-		"comment": "Note that the supplied MIME type is just a placeholder. Please update as necessary."
+        "args": [ "std::string(\"image/png\")" ],
+        "comment": "Note that the supplied MIME type is just a placeholder. Please update as necessary."
     },
     "encoder": {
         "client": "EncoderClient",
         "func": "get_properties",
-		"args": []
+        "args": []
     },
     "motion": {
         "client": "MotionClient",
         "func": "get_pose",
-        "args": ["{{\"rdk\", \"component\", \"fake\"}, \"\", \"component\"}", "<destination-frame>", "{}", "nullptr"]
+        "args": ["{{\"rdk\", \"component\", \"fake\"}, \"\", \"component\"}", "<destination-frame>", "{}", "nullptr"],
         "comment": "Update with correct component name, destination frame, supplemental transforms, and extra params"
     },
     "motor": {
         "client": "MotorClient",
         "func": "is_moving",
         "args": []
+    },
+    "movement_sensor": {
+        "client": "MovementSensorClient",
+        "func": "get_linear_velocity",
+        "args: []
+    },
+    "power_sensor": {
+        "client": "PowerSensorClient",
+        "func": "get_voltage",
+        "args: []
+    },
+    "sensor": {
+        "client": "SensorClient",
+        "func": "get_readings",
+        "args: []
     }
 }
