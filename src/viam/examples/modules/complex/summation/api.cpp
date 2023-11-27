@@ -111,3 +111,5 @@ double SummationClient::sum(std::vector<double> numbers) {
 
     return response.sum();
 }
+
+void SummationClient::stop(const AttributeMap& extra) {}

@@ -22,6 +22,7 @@ namespace sdk {
 class MovementSensorClient : public MovementSensor {
    public:
     MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    void stop(const AttributeMap& extra) override;
     Vector3 get_linear_velocity(const AttributeMap& extra) override;
     Vector3 get_angular_velocity(const AttributeMap& extra) override;
     compassheading get_compass_heading(const AttributeMap& extra) override;

@@ -56,6 +56,8 @@ void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap
     }
 }
 
+void BoardClient::stop(const AttributeMap& extra) {}
+
 bool BoardClient::get_gpio(const std::string& pin, const AttributeMap& extra) {
     viam::component::board::v1::GetGPIORequest request;
     viam::component::board::v1::GetGPIOResponse response;

@@ -14,10 +14,6 @@ namespace sdk {
 
 Resource::~Resource() = default;
 
-void Resource::stop(const AttributeMap& extra) {
-    throw std::runtime_error("Unimplemented");
-}
-
 std::string Resource::name() const {
     return name_;
 }

@@ -49,6 +49,7 @@ class SummationClient : public Summation {
     SummationClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     double sum(std::vector<double> numbers) override;
+    void stop(const AttributeMap& extra) override;
 
    private:
     std::unique_ptr<SummationService::StubInterface> stub_;

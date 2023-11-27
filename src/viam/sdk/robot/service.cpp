@@ -168,19 +168,23 @@ void RobotService_::stream_status(
             } catch (const std::runtime_error& err) {
                 try {
                     status_message = err.what();
-                    // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
                     resource->stop();
                 } catch (std::runtime_error& err) {
                     status_message = err.what();
+                    status = grpc::UNKNOWN;
+                } catch (...) {
+                    status_message = "unknown error";
                     status = grpc::UNKNOWN;
                 }
             }
         } else {
             try {
-                // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
                 resource->stop();
             } catch (std::runtime_error& err) {
                 status_message = err.what();
+                status = grpc::UNKNOWN;
+            } catch (...) {
+                status_message = "unknown error";
                 status = grpc::UNKNOWN;
             }
         }

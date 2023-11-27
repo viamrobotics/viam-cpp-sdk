@@ -29,7 +29,7 @@ class Resource {
 
     /// @brief Stops a resource from running.
     /// @param extra Extra arguments to pass to the resource's `stop` method.
-    virtual void stop(const AttributeMap& extra);
+    virtual void stop(const AttributeMap& extra) = 0;
 
     /// @brief Stops a resource from running.
     inline void stop() {

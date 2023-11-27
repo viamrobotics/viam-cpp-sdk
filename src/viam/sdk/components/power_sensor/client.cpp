@@ -62,5 +62,7 @@ AttributeMap PowerSensorClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+void PowerSensorClient::stop(const AttributeMap& extra) {}
+
 }  // namespace sdk
 }  // namespace viam
