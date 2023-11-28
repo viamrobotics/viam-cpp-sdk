@@ -54,6 +54,7 @@ class GizmoClient : public Gizmo {
     std::vector<bool> do_one_server_stream(std::string arg1) override;
     std::vector<bool> do_one_bidi_stream(std::vector<std::string> arg1) override;
     std::string do_two(bool arg1) override;
+    void stop(const AttributeMap& extra) override;
 
    private:
     std::unique_ptr<GizmoService::StubInterface> stub_;

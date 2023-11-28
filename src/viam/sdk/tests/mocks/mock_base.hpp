@@ -30,7 +30,7 @@ class MockBase : public sdk::Base {
     void set_velocity(const sdk::Vector3& linear,
                       const sdk::Vector3& angular,
                       const sdk::AttributeMap& extra) override;
-    grpc::StatusCode stop(const sdk::AttributeMap& extra) override;
+    void stop(const sdk::AttributeMap& extra) override;
     bool is_moving() override;
     sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
     static std::shared_ptr<MockBase> get_mock_base();

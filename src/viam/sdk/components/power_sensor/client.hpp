@@ -20,6 +20,7 @@ namespace sdk {
 /// @ingroup PowerSensor
 class PowerSensorClient : public PowerSensor {
    public:
+    void stop(const AttributeMap& extra) override;
     PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     voltage get_voltage(const AttributeMap& extra) override;
     current get_current(const AttributeMap& extra) override;

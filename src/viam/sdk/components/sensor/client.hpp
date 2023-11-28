@@ -19,6 +19,7 @@ namespace sdk {
 /// @ingroup Sensor
 class SensorClient : public Sensor {
    public:
+    void stop(const AttributeMap& extra) override;
     SensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap get_readings(const AttributeMap& extra) override;
     AttributeMap do_command(const AttributeMap& command) override;

@@ -73,12 +73,12 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // drain.
     }
 
-    grpc::StatusCode stop(vsdk::AttributeMap extra) noexcept final {
+    void stop(const vsdk::AttributeMap& extra) noexcept final {
         return stop();
     }
 
     /// @brief Stops a resource from running.
-    grpc::StatusCode stop() noexcept final {
+    void stop() noexcept {
         using std::swap;
         try {
             std::lock_guard<std::mutex> lock(state_lock_);
@@ -90,7 +90,6 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             }
         } catch (...) {
         }
-        return grpc::StatusCode::OK;
     }
 
     void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final

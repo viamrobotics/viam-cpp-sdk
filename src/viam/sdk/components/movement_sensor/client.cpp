@@ -94,5 +94,7 @@ std::vector<GeometryConfig> MovementSensorClient::get_geometries(const Attribute
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
+void MovementSensorClient::stop(const AttributeMap& extra) {}
+
 }  // namespace sdk
 }  // namespace viam
