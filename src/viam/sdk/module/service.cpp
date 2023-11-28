@@ -45,14 +45,13 @@
 namespace viam {
 namespace sdk {
 
-namespace {
-Dependencies get_dependencies(ModuleService_* m,
-                              google::protobuf::RepeatedPtrField<std::string> const& proto,
-                              std::string const& resource_name) {
+Dependencies ModuleService::get_dependencies(
+    google::protobuf::RepeatedPtrField<std::string> const& proto,
+    std::string const& resource_name) {
     Dependencies deps;
     for (const auto& dep : proto) {
         auto dep_name = Name::from_string(dep);
-        const std::shared_ptr<Resource> dep_resource = m->get_parent_resource(dep_name);
+        const std::shared_ptr<Resource> dep_resource = get_parent_resource(dep_name);
         if (!dep_resource) {
             std::ostringstream buffer;
             buffer << resource_name << ": Dependency "
@@ -63,9 +62,8 @@ Dependencies get_dependencies(ModuleService_* m,
     }
     return deps;
 }
-}  // namespace
-   //
-std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
+
+std::shared_ptr<Resource> ModuleService::get_parent_resource(Name name) {
     if (!parent_) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
@@ -73,16 +71,16 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     return parent_->resource_by_name(name.to_proto());
 }
 
-::grpc::Status ModuleService_::AddResource(::grpc::ServerContext* context,
-                                           const ::viam::module::v1::AddResourceRequest* request,
-                                           ::viam::module::v1::AddResourceResponse* response) {
+::grpc::Status ModuleService::AddResource(::grpc::ServerContext* context,
+                                          const ::viam::module::v1::AddResourceRequest* request,
+                                          ::viam::module::v1::AddResourceResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     auto module = this->module_;
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
-    const Dependencies deps = get_dependencies(this, request->dependencies(), cfg.name());
+    const Dependencies deps = get_dependencies(request->dependencies(), cfg.name());
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
         try {
@@ -102,7 +100,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     return grpc::Status();
 };
 
-::grpc::Status ModuleService_::ReconfigureResource(
+::grpc::Status ModuleService::ReconfigureResource(
     ::grpc::ServerContext* context,
     const ::viam::module::v1::ReconfigureResourceRequest* request,
     ::viam::module::v1::ReconfigureResourceResponse* response) {
@@ -110,7 +108,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     const std::shared_ptr<Module> module = this->module_;
 
-    const Dependencies deps = get_dependencies(this, request->dependencies(), cfg.name());
+    const Dependencies deps = get_dependencies(request->dependencies(), cfg.name());
 
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
@@ -152,7 +150,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     return grpc::Status();
 };
 
-::grpc::Status ModuleService_::ValidateConfig(
+::grpc::Status ModuleService::ValidateConfig(
     ::grpc::ServerContext* context,
     const ::viam::module::v1::ValidateConfigRequest* request,
     ::viam::module::v1::ValidateConfigResponse* response) {
@@ -177,7 +175,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     return grpc::Status();
 };
 
-::grpc::Status ModuleService_::RemoveResource(
+::grpc::Status ModuleService::RemoveResource(
     ::grpc::ServerContext* context,
     const ::viam::module::v1::RemoveResourceRequest* request,
     ::viam::module::v1::RemoveResourceResponse* response) {
@@ -204,9 +202,9 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     return grpc::Status();
 };
 
-::grpc::Status ModuleService_::Ready(::grpc::ServerContext* context,
-                                     const ::viam::module::v1::ReadyRequest* request,
-                                     ::viam::module::v1::ReadyResponse* response) {
+::grpc::Status ModuleService::Ready(::grpc::ServerContext* context,
+                                    const ::viam::module::v1::ReadyRequest* request,
+                                    ::viam::module::v1::ReadyResponse* response) {
     const std::lock_guard<std::mutex> lock(lock_);
     const viam::module::v1::HandlerMap hm = this->module_->handles().to_proto();
     *response->mutable_handlermap() = hm;
@@ -215,31 +213,53 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     return grpc::Status();
 };
 
-ModuleService_::ModuleService_(std::string addr) {
+ModuleService::ModuleService(std::string addr) {
     module_ = std::make_shared<Module>(addr);
+    server_ = std::make_shared<Server>();
+    signal_manager_ = std::make_shared<SignalManager>();
 }
 
-void ModuleService_::start(std::shared_ptr<Server> server) {
+ModuleService::ModuleService(int argc,
+                             char** argv,
+                             std::vector<std::shared_ptr<ModelRegistration>> registrations) {
+    if (argc < 2) {
+        throw std::runtime_error("Need socket path as command line argument");
+    }
+    module_ = std::make_shared<Module>(argv[1]);
+    server_ = std::make_shared<Server>();
+    signal_manager_ = std::make_shared<SignalManager>();
+    set_logger_severity_from_args(argc, argv);
+
+    for (const std::shared_ptr<ModelRegistration>& mr : registrations) {
+        Registry::register_model(mr);
+        add_model_from_registry(mr->api(), mr->model());
+    }
+}
+
+void ModuleService::serve() {
     const std::lock_guard<std::mutex> lock(lock_);
     const mode_t old_mask = umask(0077);
     const int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     listen(sockfd, 10);
     umask(old_mask);
 
-    // TODO(RSDK-1742) see if we can/want to do this in an init instead
-    server->register_service(this);
+    server_->register_service(this);
     const std::string address = "unix://" + module_->addr();
-    server->add_listening_port(address);
+    server_->add_listening_port(address);
 
     module_->set_ready();
+
+    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
+    // TODO(benji): debug log the module handler map.
+
+    int sig = 0;
+    signal_manager_->wait(&sig);
 }
 
-ModuleService_::~ModuleService_() {
-    this->close();
-}
-
-void ModuleService_::close() {
+ModuleService::~ModuleService() {
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
+    server_->shutdown();
+    // TODO(benji): custom cleanup functions
 
     if (parent_) {
         try {
@@ -250,9 +270,7 @@ void ModuleService_::close() {
     }
 }
 
-void ModuleService_::add_api_from_registry_inlock_(std::shared_ptr<Server> server,
-                                                   API api,
-                                                   const std::lock_guard<std::mutex>&) {
+void ModuleService::add_api_from_registry_inlock_(API api, const std::lock_guard<std::mutex>&) {
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(api) != services.end()) {
         return;
@@ -261,18 +279,17 @@ void ModuleService_::add_api_from_registry_inlock_(std::shared_ptr<Server> serve
 
     const std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
     const std::shared_ptr<ResourceServer> resource_server = rs->create_resource_server(new_manager);
-    resource_server->register_server(server);
+    resource_server->register_server(server_);
     module_->mutable_services().emplace(api, new_manager);
     module_->mutable_servers().push_back(resource_server);
 }
 
-void ModuleService_::add_model_from_registry_inlock_(std::shared_ptr<Server> server,
-                                                     API api,
-                                                     Model model,
-                                                     const std::lock_guard<std::mutex>& lock) {
+void ModuleService::add_model_from_registry_inlock_(API api,
+                                                    Model model,
+                                                    const std::lock_guard<std::mutex>& lock) {
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(api) == services.end()) {
-        add_api_from_registry_inlock_(server, api, lock);
+        add_api_from_registry_inlock_(api, lock);
     }
 
     const std::shared_ptr<ResourceRegistration> creator = Registry::lookup_resource(api);
@@ -286,25 +303,25 @@ void ModuleService_::add_model_from_registry_inlock_(std::shared_ptr<Server> ser
     module_->mutable_handles().add_model(model, rpc_subtype);
 };
 
-void ModuleService_::add_api_from_registry(std::shared_ptr<Server> server, API api) {
+void ModuleService::add_api_from_registry(API api) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return add_api_from_registry_inlock_(server, api, lock);
+    return add_api_from_registry_inlock_(api, lock);
 }
 
-void ModuleService_::add_model_from_registry(std::shared_ptr<Server> server, API api, Model model) {
+void ModuleService::add_model_from_registry(API api, Model model) {
     const std::lock_guard<std::mutex> lock(lock_);
-    return add_model_from_registry_inlock_(server, api, model, lock);
+    return add_model_from_registry_inlock_(api, model, lock);
 }
 
 SignalManager::SignalManager() {
-    sigemptyset(&sigset);
-    sigaddset(&sigset, SIGINT);
-    sigaddset(&sigset, SIGTERM);
-    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
+    sigemptyset(&sigset_);
+    sigaddset(&sigset_, SIGINT);
+    sigaddset(&sigset_, SIGTERM);
+    pthread_sigmask(SIG_BLOCK, &sigset_, NULL);
 }
 
 int SignalManager::wait(int* sig) {
-    return sigwait(&sigset, sig);
+    return sigwait(&sigset_, sig);
 }
 
 }  // namespace sdk
