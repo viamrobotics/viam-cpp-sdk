@@ -257,9 +257,9 @@ void ModuleService::serve() {
 }
 
 ModuleService::~ModuleService() {
+    // TODO(RSDK-5509): Run registered cleanup functions here.
     BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
     server_->shutdown();
-    // TODO(benji): custom cleanup functions
 
     if (parent_) {
         try {

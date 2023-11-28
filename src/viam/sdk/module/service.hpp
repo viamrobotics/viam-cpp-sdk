@@ -45,15 +45,15 @@ class ModuleService : public viam::module::v1::ModuleService::Service {
                            std::vector<std::shared_ptr<ModelRegistration>> registrations);
     ~ModuleService();
 
-    /// @brief Starts module. If module was constructed with a vector of ModelRegistration,
-    /// serve will return when SIGINT or SIGTERM is received (this happens when the RDK
-    /// shuts down).
+    /// @brief Starts module. serve will return when SIGINT or SIGTERM is received
+    /// (this happens when the RDK shuts down).
     void serve();
     /// @brief Adds an API to the module that has already been registered.
     /// @param api The API to add.
     void add_api_from_registry(API api);
     /// @brief Adds an API/model pair to the module; both the API and model should have
-    /// already been registered.
+    /// already been registered. If the ModuleService was constructed with a vector
+    /// of ModelRegistration, the passed in models will already be registered and added.
     /// @param api The API to add.
     /// @param model The model to add.
     void add_model_from_registry(API api, Model model);
