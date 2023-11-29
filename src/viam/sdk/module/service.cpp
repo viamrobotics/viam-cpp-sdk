@@ -133,7 +133,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     // if the type isn't reconfigurable by default, replace it
     try {
-        res->stop();
+        stop_resource_if_stoppable(res);
     } catch (const std::exception& err) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
@@ -194,7 +194,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     }
 
     try {
-        res->stop();
+        stop_resource_if_stoppable(res);
     } catch (const std::exception& err) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }

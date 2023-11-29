@@ -73,7 +73,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // drain.
     }
 
-    void stop(const vsdk::AttributeMap& extra) noexcept final {
+    void stop(const vsdk::AttributeMap& extra) noexcept final override {
         return stop();
     }
 

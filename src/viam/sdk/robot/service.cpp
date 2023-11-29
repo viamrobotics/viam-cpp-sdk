@@ -164,11 +164,11 @@ void RobotService_::stream_status(
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {
-                resource->stop(extra.at(rn_));
+                stop_resource_if_stoppable(resource);
             } catch (const std::runtime_error& err) {
                 try {
                     status_message = err.what();
-                    resource->stop();
+                    stop_resource_if_stoppable(resource);
                 } catch (std::runtime_error& err) {
                     status_message = err.what();
                     status = grpc::UNKNOWN;
@@ -179,7 +179,7 @@ void RobotService_::stream_status(
             }
         } else {
             try {
-                resource->stop();
+                stop_resource_if_stoppable(resource);
             } catch (std::runtime_error& err) {
                 status_message = err.what();
                 status = grpc::UNKNOWN;

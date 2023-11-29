@@ -37,7 +37,7 @@ class BaseRegistration : public ResourceRegistration {
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific base implementations. This class cannot be used on its own.
-class Base : public Component {
+class Base : public Component, public Stoppable {
    public:
     /// @struct properties
     /// @brief Information about the physical base

@@ -36,7 +36,7 @@ class MotorRegistration : public ResourceRegistration {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific motor implementations. This class cannot be used on its own.
-class Motor : public Component {
+class Motor : public Component, public Stoppable {
    public:
     /// @struct position
     /// @brief Current position of the motor relative to its home

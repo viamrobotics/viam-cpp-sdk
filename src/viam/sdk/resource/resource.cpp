@@ -34,5 +34,12 @@ ResourceName Resource::get_resource_name(std::string name) {
     return r;
 }
 
+void stop_resource_if_stoppable(std::shared_ptr<Resource> resource) {
+    auto stoppable_res = std::dynamic_pointer_cast<Stoppable>(resource);
+    if (stoppable_res != NULL) {
+        stoppable_res->stop();
+    }
+}
+
 }  // namespace sdk
 }  // namespace viam

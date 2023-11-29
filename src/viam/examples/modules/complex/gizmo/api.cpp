@@ -296,8 +296,6 @@ std::vector<bool> GizmoClient::do_one_bidi_stream(std::vector<std::string> arg1)
     return rets;
 }
 
-void GizmoClient::stop(const AttributeMap& extra) {}
-
 std::string GizmoClient::do_two(bool arg1) {
     DoTwoRequest request;
     DoTwoResponse response;
