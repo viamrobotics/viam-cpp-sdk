@@ -195,7 +195,7 @@ void BoardClient::write_analog(const std::string& pin, int value, const Attribut
     set_client_ctx_authority(ctx);
 
     request.set_name(this->name());
-    request.set_pin(std::move(pin));
+    request.set_pin(pin);
     request.set_value(value);
     *request.mutable_extra() = map_to_struct(extra);
 

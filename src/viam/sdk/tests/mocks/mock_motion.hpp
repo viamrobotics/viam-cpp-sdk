@@ -47,14 +47,25 @@ class MockMotion : public sdk::Motion {
         const std::vector<sdk::WorldState::transform>& supplemental_transforms,
         const sdk::AttributeMap& extra) override;
 
-    std::pair<plan_with_status, std::vector<plan_with_status>> get_plan(
-        const sdk::Name& component_name,
-        const sdk::AttributeMap& extra,
-        bool last_plan_only = false,
-        boost::optional<std::string> execution_id = {}) override;
+    plan_with_status get_plan(const sdk::Name& component_name,
+                              const std::string& execution_id,
+                              const sdk::AttributeMap& extra) override;
 
-    std::vector<plan_status_with_id> list_plan_statuses(const sdk::AttributeMap& extra,
-                                                        bool only_active_plans = false) override;
+    std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
+        const sdk::Name& component_name,
+        const std::string& execution_id,
+        const sdk::AttributeMap& extra) override;
+
+    plan_with_status get_latest_plan(const sdk::Name& component_name,
+                                     const sdk::AttributeMap& extra) override;
+
+    std::pair<plan_with_status, std::vector<plan_with_status>> get_latest_plan_with_replan_history(
+        const sdk::Name& component_name, const sdk::AttributeMap& extra) override;
+
+    std::vector<plan_status_with_id> list_plan_statuses(const sdk::AttributeMap& extra) override;
+
+    std::vector<plan_status_with_id> list_active_plan_statuses(
+        const sdk::AttributeMap& extra) override;
 
     void stop_plan(const sdk::Name& name, const sdk::AttributeMap& extra) override;
 

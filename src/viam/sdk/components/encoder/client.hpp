@@ -21,8 +21,7 @@ namespace sdk {
 class EncoderClient : public Encoder {
    public:
     EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    position get_position(const AttributeMap& extra,
-                          position_type position_type = position_type::unspecified) override;
+    position get_position(const AttributeMap& extra, position_type position_type) override;
     void reset_position(const AttributeMap& extra) override;
     properties get_properties(const AttributeMap& extra) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;

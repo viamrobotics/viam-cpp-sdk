@@ -194,7 +194,6 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     const std::shared_ptr<Motion> motion = std::dynamic_pointer_cast<Motion>(rb);
 
     const auto& component_name = Name::from_proto(request->component_name());
-    auto last_plan_only = request->last_plan_only();
     boost::optional<std::string> execution_id;
     if (request->has_execution_id()) {
         execution_id = request->execution_id();
@@ -204,9 +203,28 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    const auto& plan = motion->get_plan(component_name, extra, last_plan_only, execution_id);
-    *response->mutable_current_plan_with_status() = plan.first.to_proto();
-    for (const auto& p : plan.second) {
+    Motion::plan_with_status plan;
+    std::vector<Motion::plan_with_status> replan_history;
+    bool last_plan_only(request->last_plan_only());
+    bool has_execution_id(request->has_execution_id());
+
+    if (last_plan_only && has_execution_id) {
+        plan = motion->get_plan(component_name, request->execution_id());
+    } else if (last_plan_only) {
+        plan = motion->get_latest_plan(component_name, extra);
+    } else if (has_execution_id) {
+        const auto& res =
+            motion->get_plan_with_replan_history(component_name, request->execution_id(), extra);
+        plan = res.first;
+        replan_history = res.second;
+    } else {
+        const auto& res = motion->get_latest_plan_with_replan_history(component_name, extra);
+        plan = res.first;
+        replan_history = res.second;
+    }
+
+    *response->mutable_current_plan_with_status() = plan.to_proto();
+    for (const auto& p : replan_history) {
         *response->mutable_replan_history()->Add() = p.to_proto();
     }
 
@@ -234,7 +252,13 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         extra = struct_to_map(request->extra());
     }
 
-    const auto& statuses = motion->list_plan_statuses(extra, request->only_active_plans());
+    std::vector<Motion::plan_status_with_id> statuses;
+    if (request->only_active_plans()) {
+        statuses = motion->list_active_plan_statuses(extra);
+    } else {
+        statuses = motion->list_plan_statuses(extra);
+    }
+
     for (const auto& status : statuses) {
         *response->mutable_plan_statuses_with_ids()->Add() = status.to_proto();
     }

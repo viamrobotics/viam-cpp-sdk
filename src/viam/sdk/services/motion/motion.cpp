@@ -138,22 +138,23 @@ bool operator==(const Motion::steps& lhs, const Motion::steps& rhs) {
 }
 
 bool operator==(const Motion::plan_status& lhs, const Motion::plan_status& rhs) {
-    return lhs.reason == rhs.reason && lhs.state == rhs.state && lhs.timestamp == rhs.timestamp;
+    return std::tie(lhs.reason, lhs.state, lhs.timestamp) ==
+           std::tie(rhs.reason, rhs.state, rhs.timestamp);
 }
 
 bool operator==(const Motion::plan_status_with_id& lhs, const Motion::plan_status_with_id& rhs) {
-    return lhs.execution_id == rhs.execution_id && lhs.component_name == rhs.component_name &&
-           lhs.status == rhs.status && lhs.plan_id == rhs.plan_id;
+    return std::tie(lhs.execution_id, lhs.component_name, lhs.status, lhs.plan_id) ==
+           std::tie(rhs.execution_id, rhs.component_name, rhs.status, rhs.plan_id);
 }
 
 bool operator==(const Motion::plan& lhs, const Motion::plan& rhs) {
-    return lhs.component_name == rhs.component_name && lhs.execution_id == rhs.execution_id &&
-           lhs.steps == rhs.steps && lhs.id == rhs.id;
+    return std::tie(lhs.component_name, lhs.execution_id, lhs.steps, lhs.id) ==
+           std::tie(rhs.component_name, rhs.execution_id, rhs.steps, rhs.id);
 }
 
 bool operator==(const Motion::plan_with_status& lhs, const Motion::plan_with_status& rhs) {
-    return lhs.plan == rhs.plan && lhs.status == rhs.status &&
-           lhs.status_history == rhs.status_history;
+    return std::tie(lhs.plan, lhs.status, lhs.status_history) ==
+           std::tie(rhs.plan, rhs.status, rhs.status_history);
 }
 
 std::ostream& operator<<(std::ostream& os, const obstacle_detector& v) {
@@ -263,19 +264,19 @@ std::ostream& operator<<(std::ostream& os, const motion_configuration& v) {
     return os;
 }
 
-Motion::PlanState Motion::from_proto(const service::motion::v1::PlanState& proto) {
+Motion::plan_state Motion::from_proto(const service::motion::v1::PlanState& proto) {
     switch (proto) {
         case service::motion::v1::PLAN_STATE_FAILED: {
-            return Motion::PlanState::failed;
+            return Motion::plan_state::k_failed;
         }
         case service::motion::v1::PLAN_STATE_SUCCEEDED: {
-            return Motion::PlanState::succeeded;
+            return Motion::plan_state::k_succeeded;
         }
         case service::motion::v1::PLAN_STATE_IN_PROGRESS: {
-            return Motion::PlanState::in_progress;
+            return Motion::plan_state::k_in_progress;
         }
         case service::motion::v1::PLAN_STATE_STOPPED: {
-            return Motion::PlanState::stopped;
+            return Motion::plan_state::k_stopped;
         }
         default: {
             throw std::runtime_error("Invalid proto PlanState to encode");
@@ -283,19 +284,22 @@ Motion::PlanState Motion::from_proto(const service::motion::v1::PlanState& proto
     }
 }
 
-service::motion::v1::PlanState Motion::to_proto(const Motion::PlanState& state) {
+service::motion::v1::PlanState Motion::to_proto(const Motion::plan_state& state) {
     switch (state) {
-        case Motion::PlanState::failed: {
+        case Motion::plan_state::k_failed: {
             return service::motion::v1::PLAN_STATE_FAILED;
         }
-        case Motion::PlanState::succeeded: {
+        case Motion::plan_state::k_succeeded: {
             return service::motion::v1::PLAN_STATE_SUCCEEDED;
         }
-        case Motion::PlanState::in_progress: {
+        case Motion::plan_state::k_in_progress: {
             return service::motion::v1::PLAN_STATE_IN_PROGRESS;
         }
-        case Motion::PlanState::stopped: {
+        case Motion::plan_state::k_stopped: {
             return service::motion::v1::PLAN_STATE_STOPPED;
+        }
+        default: {
+            throw std::runtime_error("Invalid plan_state to encode to proto");
         }
     }
 }
@@ -312,7 +316,7 @@ Motion::plan_status Motion::plan_status::from_proto(const service::motion::v1::P
 }
 
 std::vector<Motion::plan_status> Motion::plan_status::from_proto(
-    const gp::RepeatedPtrField<service::motion::v1::PlanStatus>& proto) {
+    const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStatus>& proto) {
     std::vector<Motion::plan_status> pss;
     for (const auto& ps : proto) {
         pss.push_back(Motion::plan_status::from_proto(ps));
@@ -332,14 +336,14 @@ service::motion::v1::PlanStatus Motion::plan_status::to_proto() const {
 }
 
 Motion::steps Motion::steps::from_proto(
-    const gp::RepeatedPtrField<service::motion::v1::PlanStep>& proto) {
+    const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStep>& proto) {
     std::vector<step> steps;
     for (const auto& ps : proto) {
         step step;
         for (const auto& component : ps.step()) {
             step.emplace(component.first, pose::from_proto(component.second.pose()));
         }
-        steps.push_back(step);
+        steps.push_back(std::move(step));
     }
 
     return {steps};
@@ -388,7 +392,7 @@ Motion::plan_with_status Motion::plan_with_status::from_proto(
 }
 
 std::vector<Motion::plan_with_status> Motion::plan_with_status::from_proto(
-    const gp::RepeatedPtrField<service::motion::v1::PlanWithStatus>& proto) {
+    const google::protobuf::RepeatedPtrField<service::motion::v1::PlanWithStatus>& proto) {
     std::vector<Motion::plan_with_status> plans;
     for (const auto& plan : proto) {
         plans.push_back(Motion::plan_with_status::from_proto(plan));

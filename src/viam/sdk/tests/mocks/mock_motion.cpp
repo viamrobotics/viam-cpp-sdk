@@ -62,16 +62,37 @@ pose_in_frame MockMotion::get_pose(
     return current_location;
 }
 
-std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> MockMotion::get_plan(
-    const sdk::Name& component_name,
-    const sdk::AttributeMap& extra,
-    bool last_plan_only,
-    boost::optional<std::string> execution_id) {
+Motion::plan_with_status MockMotion::get_plan(const sdk::Name& component_name,
+                                              const std::string& execution_id,
+                                              const sdk::AttributeMap& extra) {
+    return fake_plan_with_status();
+}
+
+std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
+MockMotion::get_plan_with_replan_history(const sdk::Name& component_name,
+                                         const std::string& execution_id,
+                                         const sdk::AttributeMap& extra) {
     return {fake_plan_with_status(), {fake_plan_with_status()}};
 }
 
+Motion::plan_with_status MockMotion::get_latest_plan(const sdk::Name& component_name,
+                                                     const sdk::AttributeMap& extra) {
+    return fake_plan_with_status();
+}
+
+std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
+MockMotion::get_latest_plan_with_replan_history(const sdk::Name& component_name,
+                                                const sdk::AttributeMap& extra) {
+    return {fake_plan_with_status(), {fake_plan_with_status()}};
+}
+
+std::vector<Motion::plan_status_with_id> MockMotion::list_active_plan_statuses(
+    const sdk::AttributeMap& extra) {
+    return {fake_plan_status_with_id()};
+}
+
 std::vector<Motion::plan_status_with_id> MockMotion::list_plan_statuses(
-    const sdk::AttributeMap& extra, bool only_active_plans) {
+    const sdk::AttributeMap& extra) {
     return {fake_plan_status_with_id()};
 }
 
@@ -104,7 +125,9 @@ pose_in_frame fake_pose() {
 }
 
 Motion::plan_status MockMotion::fake_plan_status() {
-    return {Motion::PlanState::succeeded, time_pt::max(), boost::optional<std::string>("reason")};
+    return {Motion::plan_state::k_succeeded,
+            std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds>::max(),
+            boost::optional<std::string>("reason")};
 }
 
 Motion::plan_status_with_id MockMotion::fake_plan_status_with_id() {

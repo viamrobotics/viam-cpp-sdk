@@ -40,7 +40,7 @@ class BoardClient : public Board {
                                          const AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
                         const AttributeMap& extra,
-                        const boost::optional<std::chrono::microseconds>& duration = {}) override;
+                        const boost::optional<std::chrono::microseconds>& duration) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
