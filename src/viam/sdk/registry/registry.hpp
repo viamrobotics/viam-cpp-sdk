@@ -58,6 +58,37 @@ class ResourceRegistration {
     const google::protobuf::ServiceDescriptor* service_descriptor_;
 };
 
+// TODO(RSDK-3030): Potentially make ResourceRegistration2 the one and only
+// form of resource registration.
+template <typename ResourceClientT,
+          typename ResourceServerT,
+          typename ProtoServiceT,
+          typename ResourceRegT>
+class ResourceRegistration2 : public ResourceRegistration {
+   public:
+    using ResourceRegistration::ResourceRegistration;
+    std::shared_ptr<ResourceServer> create_resource_server(
+        std::shared_ptr<ResourceManager> manager) override {
+        return std::make_shared<ResourceServerT>(manager);
+    }
+
+    std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                std::shared_ptr<grpc::Channel> chan) override {
+        return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
+    }
+
+    static std::shared_ptr<ResourceRegistration> resource_registration() {
+        const google::protobuf::DescriptorPool* p =
+            google::protobuf::DescriptorPool::generated_pool();
+        const google::protobuf::ServiceDescriptor* sd =
+            p->FindServiceByName(ProtoServiceT::service_full_name());
+        if (!sd) {
+            throw std::runtime_error("Unable to get service descriptor");
+        }
+        return std::make_shared<ResourceRegT>(sd);
+    }
+};
+
 /// @class ModelRegistration
 /// @brief Information about a registered model, including a constructor and config validator.
 class ModelRegistration {

@@ -20,7 +20,7 @@ class MyBase : public Base {
     static std::vector<std::string> validate(ResourceConfig cfg);
 
     bool is_moving() override;
-    grpc::StatusCode stop(const AttributeMap& extra) override;
+    void stop(const AttributeMap& extra) override;
     void set_power(const Vector3& linear,
                    const Vector3& angular,
                    const AttributeMap& extra) override;

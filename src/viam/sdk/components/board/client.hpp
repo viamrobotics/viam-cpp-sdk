@@ -21,6 +21,7 @@ namespace sdk {
 class BoardClient : public Board {
    public:
     BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    void stop(const AttributeMap& extra) override;
     AttributeMap do_command(const AttributeMap& command) override;
     status get_status(const AttributeMap& extra) override;
     void set_gpio(const std::string& pin, bool high, const AttributeMap& extra) override;

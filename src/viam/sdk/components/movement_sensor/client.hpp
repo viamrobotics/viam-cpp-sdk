@@ -1,4 +1,4 @@
-/// @file components/movementsensor/client.hpp
+/// @file components/movement_sensor/client.hpp
 ///
 /// @brief Implements a gRPC client for the `MovementSensor` component.
 #pragma once
@@ -22,6 +22,7 @@ namespace sdk {
 class MovementSensorClient : public MovementSensor {
    public:
     MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    void stop(const AttributeMap& extra) override;
     Vector3 get_linear_velocity(const AttributeMap& extra) override;
     Vector3 get_angular_velocity(const AttributeMap& extra) override;
     compassheading get_compass_heading(const AttributeMap& extra) override;
@@ -46,23 +47,6 @@ class MovementSensorClient : public MovementSensor {
     typedef viam::component::movementsensor::v1::MovementSensorService::StubInterface Stub;
 
    private:
-    // template to wrap a stub
-    template <typename Request, typename Response, typename Cls>
-    void stub_wrapper(Cls* self,
-                      Response& resp,
-                      const AttributeMap& extra,
-                      ::grpc::Status (Cls::Stub::*method)(::grpc::ClientContext*,
-                                                          const Request&,
-                                                          Response*)) {
-        Request request;
-        grpc::ClientContext ctx;
-        *request.mutable_name() = self->name();
-        *request.mutable_extra() = map_to_struct(extra);
-        const auto status = (*(self->stub_).*method)(&ctx, request, &resp);
-        if (!status.ok()) {
-            throw std::runtime_error(status.error_message());
-        }
-    }
     std::unique_ptr<Stub> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };

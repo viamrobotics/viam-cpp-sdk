@@ -120,13 +120,13 @@ class Base : public Component {
                               const AttributeMap& extra) = 0;
 
     /// @brief Stops a robot's base
-    inline grpc::StatusCode stop() {
+    inline void stop() {
         return stop({});
     }
 
     /// @brief Stops a robot's base
     /// @param extra Any additional arguments to the method
-    virtual grpc::StatusCode stop(const AttributeMap& extra) override = 0;
+    virtual void stop(const AttributeMap& extra) override = 0;
 
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;

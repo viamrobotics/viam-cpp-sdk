@@ -18,6 +18,7 @@ namespace sdk {
 /// @ingroup Generic
 class GenericClient : public Generic {
    public:
+    void stop(const AttributeMap& extra) override;
     GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
     std::vector<GeometryConfig> get_geometries() override;

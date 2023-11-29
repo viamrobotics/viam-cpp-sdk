@@ -43,9 +43,11 @@ target_sources(viamsdk
     # consider making all necessary runtime values a single `context` that has to
     # be initialized within main before anything else happens?
     registry/registry.cpp
+    common/client_helper.cpp
     common/linear_algebra.cpp
     common/pose.cpp
     common/proto_type.cpp
+    common/service_helper.cpp
     common/utils.cpp
     common/world_state.cpp
     components/base/base.cpp
@@ -70,6 +72,12 @@ target_sources(viamsdk
     components/movement_sensor/client.cpp
     components/movement_sensor/movement_sensor.cpp
     components/movement_sensor/server.cpp
+    components/power_sensor/client.cpp
+    components/power_sensor/power_sensor.cpp
+    components/power_sensor/server.cpp
+    components/sensor/client.cpp
+    components/sensor/sensor.cpp
+    components/sensor/server.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -99,9 +107,11 @@ target_sources(viamsdk
     BASE_DIRS
       ../..
     FILES
+      ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_type.hpp
+      ../../viam/sdk/common/service_helper.hpp
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/base/base.hpp
@@ -126,6 +136,12 @@ target_sources(viamsdk
       ../../viam/sdk/components/movement_sensor/client.hpp
       ../../viam/sdk/components/movement_sensor/movement_sensor.hpp
       ../../viam/sdk/components/movement_sensor/server.hpp
+      ../../viam/sdk/components/power_sensor/client.hpp
+      ../../viam/sdk/components/power_sensor/power_sensor.hpp
+      ../../viam/sdk/components/power_sensor/server.hpp
+      ../../viam/sdk/components/sensor/client.hpp
+      ../../viam/sdk/components/sensor/sensor.hpp
+      ../../viam/sdk/components/sensor/server.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp

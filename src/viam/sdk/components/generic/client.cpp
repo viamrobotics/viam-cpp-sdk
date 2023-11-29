@@ -29,7 +29,10 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
     *req.mutable_name() = this->name();
     stub_->DoCommand(&ctx, req, &resp);
     return struct_to_map(resp.result());
-};
+}
+
+void GenericClient::stop(const AttributeMap& extra) {}
+
 std::vector<GeometryConfig> GenericClient::get_geometries() {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;
@@ -40,7 +43,7 @@ std::vector<GeometryConfig> GenericClient::get_geometries() {
 
     stub_->GetGeometries(&ctx, req, &resp);
     return GeometryConfig::from_proto(resp);
-};
+}
 
 }  // namespace sdk
 }  // namespace viam

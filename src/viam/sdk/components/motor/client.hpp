@@ -27,7 +27,7 @@ class MotorClient : public Motor {
     void reset_zero_position(double offset, const AttributeMap& extra) override;
     position get_position(const AttributeMap& extra) override;
     properties get_properties(const AttributeMap& extra) override;
-    grpc::StatusCode stop(const AttributeMap& extra) override;
+    void stop(const AttributeMap& extra) override;
     power_status get_power_status(const AttributeMap& extra) override;
     std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
     bool is_moving() override;
@@ -53,7 +53,8 @@ class MotorClient : public Motor {
     using Motor::stop;
 
    private:
-    std::unique_ptr<viam::component::motor::v1::MotorService::StubInterface> stub_;
+    using StubType = viam::component::motor::v1::MotorService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 
