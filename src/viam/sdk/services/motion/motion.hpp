@@ -176,7 +176,7 @@ class Motion : public Service {
         std::string execution_id;
 
         /// @brief An ordered list of plan steps.
-        steps steps;
+        struct steps steps;
 
         static plan from_proto(const service::motion::v1::Plan& proto);
         service::motion::v1::Plan to_proto() const;
@@ -189,7 +189,7 @@ class Motion : public Service {
     /// @ingroup Motion
     struct plan_with_status {
         /// @brief The plan.
-        plan plan;
+        struct plan plan;
 
         /// @brief The current status of the plan.
         plan_status status;

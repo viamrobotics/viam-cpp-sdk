@@ -24,7 +24,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    Vector3 result = status.movementsensor->get_linear_velocity(status.extra);
+    const Vector3 result = status.movementsensor->get_linear_velocity(status.extra);
     *response->mutable_linear_velocity() = Vector3::to_proto(result);
 
     return ::grpc::Status();
@@ -38,7 +38,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    Vector3 result = status.movementsensor->get_angular_velocity(status.extra);
+    const Vector3 result = status.movementsensor->get_angular_velocity(status.extra);
     *response->mutable_angular_velocity() = Vector3::to_proto(result);
 
     return ::grpc::Status();
@@ -52,7 +52,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    MovementSensor::compassheading result =
+    const MovementSensor::compassheading result =
         status.movementsensor->get_compass_heading(status.extra);
     response->set_value(result.value);
 
@@ -67,7 +67,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    MovementSensor::orientation result = status.movementsensor->get_orientation(status.extra);
+    const MovementSensor::orientation result = status.movementsensor->get_orientation(status.extra);
     *response->mutable_orientation() = MovementSensor::to_proto(result);
 
     return ::grpc::Status();
@@ -81,7 +81,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    MovementSensor::position result = status.movementsensor->get_position(status.extra);
+    const MovementSensor::position result = status.movementsensor->get_position(status.extra);
     *response->mutable_coordinate() = result.coordinate.to_proto();
     response->set_altitude_m(result.altitude_m);
 
@@ -96,7 +96,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    MovementSensor::properties result = status.movementsensor->get_properties(status.extra);
+    const MovementSensor::properties result = status.movementsensor->get_properties(status.extra);
     response->set_linear_velocity_supported(result.linear_velocity_supported);
     response->set_angular_velocity_supported(result.angular_velocity_supported);
     response->set_orientation_supported(result.orientation_supported);
@@ -115,7 +115,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    std::unordered_map<std::string, float> result =
+    const std::unordered_map<std::string, float> result =
         status.movementsensor->get_accuracy(status.extra);
     response->mutable_accuracy()->empty();
     for (const auto& i : result) {
@@ -134,7 +134,7 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         return status.status;
     }
 
-    Vector3 result = status.movementsensor->get_linear_acceleration(status.extra);
+    const Vector3 result = status.movementsensor->get_linear_acceleration(status.extra);
     *response->mutable_linear_acceleration() = Vector3::to_proto(result);
 
     return ::grpc::Status();
