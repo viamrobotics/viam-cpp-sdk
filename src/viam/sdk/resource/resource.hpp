@@ -8,7 +8,6 @@
 #include <viam/sdk/common/proto_type.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
-#include <viam/sdk/resource/resource_type.hpp>
 
 namespace viam {
 namespace sdk {
@@ -43,9 +42,6 @@ class Resource {
 
     /// @brief Return the resource's name.
     virtual std::string name() const;
-
-    /// @brief Return the resource's type.
-    virtual ResourceType type() const;
 
    private:
     std::string name_;

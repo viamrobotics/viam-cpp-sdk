@@ -24,10 +24,6 @@ API Resource::static_api() {
 
 void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
 
-ResourceType Resource::type() const {
-    return {kResource};
-}
-
 ResourceName Resource::get_resource_name(std::string name) {
     ResourceName r;
     *r.mutable_namespace_() = kRDK;

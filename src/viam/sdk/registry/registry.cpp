@@ -16,7 +16,6 @@
 #include <viam/sdk/components/generic/generic.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
-#include <viam/sdk/resource/resource_type.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -26,9 +25,6 @@ using viam::robot::v1::Status;
 
 ResourceRegistration::~ResourceRegistration() = default;
 
-const ResourceType& ModelRegistration::resource_type() const {
-    return resource_type_;
-};
 const API& ModelRegistration::api() const {
     return api_;
 };

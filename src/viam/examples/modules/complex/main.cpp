@@ -47,7 +47,6 @@ int main(int argc, char** argv) {
     Model mybase_model("viam", "base", "mybase");
 
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
-        ResourceType("Base"),
         base_api,
         mybase_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyBase>(deps, cfg); },
@@ -63,7 +62,6 @@ int main(int argc, char** argv) {
     Registry::register_resource(gizmo_api, Gizmo::resource_registration());
 
     std::shared_ptr<ModelRegistration> mygizmo_mr = std::make_shared<ModelRegistration>(
-        ResourceType("Gizmo"),
         gizmo_api,
         mygizmo_model,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<MyGizmo>(deps, cfg); },
@@ -78,13 +76,10 @@ int main(int argc, char** argv) {
     // to order of static initialization.
     Registry::register_resource(summation_api, Summation::resource_registration());
 
-    std::shared_ptr<ModelRegistration> mysummation_mr =
-        std::make_shared<ModelRegistration>(ResourceType("Summation"),
-                                            summation_api,
-                                            mysummation_model,
-                                            [](Dependencies deps, ResourceConfig cfg) {
-                                                return std::make_unique<MySummation>(deps, cfg);
-                                            });
+    std::shared_ptr<ModelRegistration> mysummation_mr = std::make_shared<ModelRegistration>(
+        summation_api, mysummation_model, [](Dependencies deps, ResourceConfig cfg) {
+            return std::make_unique<MySummation>(deps, cfg);
+        });
 
     Registry::register_model(mysummation_mr);
 
