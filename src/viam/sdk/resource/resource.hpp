@@ -17,7 +17,7 @@ using Dependencies = std::unordered_map<Name, std::shared_ptr<Resource>>;
 class Resource {
    public:
     virtual ~Resource();
-    explicit Resource(std::string name) : name_(std::move(name)){};
+    explicit Resource(std::string name);
     static API static_api();
 
     /// @brief Returns the `API` associated with a particular resource.
@@ -37,22 +37,6 @@ class Resource {
    private:
     std::string name_;
 };
-
-class Stoppable {
-   public:
-    /// @brief Stops a resource from running.
-    /// @param extra Extra arguments to pass to the resource's `stop` method.
-    virtual void stop(const AttributeMap& extra) = 0;
-
-    /// @brief Stops a resource from running.
-    inline void stop() {
-        return stop({});
-    }
-};
-
-/// @brief Stops a Resource if it is Stoppable.
-/// @param resource The Resource to stop.
-void stop_resource_if_stoppable(std::shared_ptr<Resource> resource);
 
 }  // namespace sdk
 }  // namespace viam

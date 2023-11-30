@@ -19,6 +19,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/services/service.hpp>
 
@@ -164,11 +165,11 @@ void RobotService_::stream_status(
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
             try {
-                stop_resource_if_stoppable(resource);
+                Stoppable::stop_if_stoppable(resource, extra.at(rn_));
             } catch (const std::runtime_error& err) {
                 try {
                     status_message = err.what();
-                    stop_resource_if_stoppable(resource);
+                    Stoppable::stop_if_stoppable(resource);
                 } catch (std::runtime_error& err) {
                     status_message = err.what();
                     status = grpc::UNKNOWN;
@@ -179,7 +180,7 @@ void RobotService_::stream_status(
             }
         } else {
             try {
-                stop_resource_if_stoppable(resource);
+                Stoppable::stop_if_stoppable(resource);
             } catch (std::runtime_error& err) {
                 status_message = err.what();
                 status = grpc::UNKNOWN;

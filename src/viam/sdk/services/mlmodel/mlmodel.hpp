@@ -24,6 +24,7 @@
 
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {

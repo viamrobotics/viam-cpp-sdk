@@ -13,6 +13,7 @@ namespace viam {
 namespace sdk {
 
 Resource::~Resource() = default;
+Resource::Resource(std::string name) : name_(std::move(name)) {}
 
 std::string Resource::name() const {
     return name_;
@@ -32,13 +33,6 @@ ResourceName Resource::get_resource_name(std::string name) {
     *r.mutable_name() = std::move(name);
 
     return r;
-}
-
-void stop_resource_if_stoppable(std::shared_ptr<Resource> resource) {
-    auto stoppable_res = std::dynamic_pointer_cast<Stoppable>(resource);
-    if (stoppable_res != NULL) {
-        stoppable_res->stop();
-    }
 }
 
 }  // namespace sdk
