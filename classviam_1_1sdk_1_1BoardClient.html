@@ -103,6 +103,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ae1e15c7c16ecc86cef37b528bb6397" id="r_a2ae1e15c7c16ecc86cef37b528bb6397"><td class="memItemLeft" align="right" valign="top"><a id="a2ae1e15c7c16ecc86cef37b528bb6397" name="a2ae1e15c7c16ecc86cef37b528bb6397"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BoardClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
 <tr class="separator:a2ae1e15c7c16ecc86cef37b528bb6397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62dbc9c423daf16d2f4319e983c80cbf" id="r_a62dbc9c423daf16d2f4319e983c80cbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1BoardClient.html#a62dbc9c423daf16d2f4319e983c80cbf">stop</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
+<tr class="memdesc:a62dbc9c423daf16d2f4319e983c80cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
+<tr class="separator:a62dbc9c423daf16d2f4319e983c80cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79cf178919cf9d6c02258a5a1b8c7c0c" id="r_a79cf178919cf9d6c02258a5a1b8c7c0c"><td class="memItemLeft" align="right" valign="top">AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1BoardClient.html#a79cf178919cf9d6c02258a5a1b8c7c0c">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a79cf178919cf9d6c02258a5a1b8c7c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a79cf178919cf9d6c02258a5a1b8c7c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,9 +264,6 @@ std::unordered_map&lt; std::string, <a class="el" href="classviam_1_1sdk_1_1Boar
 <tr class="memdesc:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:a2458b6edfd5e668cb79c3221b9ec1177 inherit pub_methods_classviam_1_1sdk_1_1Board"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
-<tr class="memitem:a35b9204d8b98164c57520a5e5ae95b57 inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_a35b9204d8b98164c57520a5e5ae95b57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ResourceType.html">ResourceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#a35b9204d8b98164c57520a5e5ae95b57">type</a> () <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
-<tr class="memdesc:a35b9204d8b98164c57520a5e5ae95b57 inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the resource's type.  <br /></td></tr>
-<tr class="separator:a35b9204d8b98164c57520a5e5ae95b57 inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a612a37a7818008bbb8cada250cb391ed inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_a612a37a7818008bbb8cada250cb391ed"><td class="memItemLeft" align="right" valign="top">viam::common::v1::ResourceName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#a612a37a7818008bbb8cada250cb391ed">get_resource_name</a> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>) <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">override</a></td></tr>
 <tr class="memdesc:a612a37a7818008bbb8cada250cb391ed inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <code>ResourceName</code> for a particular resource name.  <br /></td></tr>
 <tr class="separator:a612a37a7818008bbb8cada250cb391ed inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -271,13 +271,10 @@ std::unordered_map&lt; std::string, <a class="el" href="classviam_1_1sdk_1_1Boar
 <tr class="memitem:abf8ddf617ac01708fb4a8b2a868b27f0 inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_abf8ddf617ac01708fb4a8b2a868b27f0"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)</td></tr>
 <tr class="separator:abf8ddf617ac01708fb4a8b2a868b27f0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a1acc213c14ada21ccce3b38a3c2da788"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a1acc213c14ada21ccce3b38a3c2da788">stop</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)</td></tr>
-<tr class="memdesc:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running.  <br /></td></tr>
-<tr class="separator:a1acc213c14ada21ccce3b38a3c2da788 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a1bce30145a7ecb86cf82f73925559d37"><td class="memItemLeft" align="right" valign="top">
-grpc::StatusCode&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
-<tr class="memdesc:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
-<tr class="separator:a1bce30145a7ecb86cf82f73925559d37 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1815f87d250742d4f2289fbcd630afe3 inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a1815f87d250742d4f2289fbcd630afe3"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+<tr class="memdesc:a1815f87d250742d4f2289fbcd630afe3 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
+<tr class="separator:a1815f87d250742d4f2289fbcd630afe3 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource" id="r_a491cf8741f92ce5712cc3866eee412c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Resource.html#a491cf8741f92ce5712cc3866eee412c0">reconfigure</a> (Dependencies <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">deps</a>, <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">cfg</a>)</td></tr>
 <tr class="memdesc:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
 <tr class="separator:a491cf8741f92ce5712cc3866eee412c0 inherit pub_methods_classviam_1_1sdk_1_1Resource"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1820,6 +1817,42 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a94d36fb1c56ab5732f571f6819cd5c8e">viam::sdk::Board</a>.</p>
+
+</div>
+</div>
+<a id="a62dbc9c423daf16d2f4319e983c80cbf" name="a62dbc9c423daf16d2f4319e983c80cbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62dbc9c423daf16d2f4319e983c80cbf">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::BoardClient::stop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stops a resource from running. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Extra arguments to pass to the resource's <code>stop</code> method. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Resource.html#a9e7785252d149d815977565386fd41e8">viam::sdk::Resource</a>.</p>
 
 </div>
 </div>
