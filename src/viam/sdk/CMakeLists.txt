@@ -87,7 +87,6 @@ target_sources(viamsdk
     resource/resource_api.cpp
     resource/resource_manager.cpp
     resource/resource_server_base.cpp
-    resource/resource_type.cpp
     robot/client.cpp
     robot/service.cpp
     rpc/dial.cpp
@@ -152,7 +151,6 @@ target_sources(viamsdk
       ../../viam/sdk/resource/resource_api.hpp
       ../../viam/sdk/resource/resource_manager.hpp
       ../../viam/sdk/resource/resource_server_base.hpp
-      ../../viam/sdk/resource/resource_type.hpp
       ../../viam/sdk/robot/client.hpp
       ../../viam/sdk/robot/service.hpp
       ../../viam/sdk/rpc/dial.hpp

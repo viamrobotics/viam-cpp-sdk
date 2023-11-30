@@ -97,7 +97,6 @@ int main(int argc, char** argv) {
     Model m("viam", "generic", "printer");
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
-        ResourceType("Printer"),
         generic,
         m,
         [](Dependencies deps, ResourceConfig cfg) { return std::make_unique<Printer>(deps, cfg); },

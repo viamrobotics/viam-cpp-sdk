@@ -18,7 +18,6 @@
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
-#include <viam/sdk/resource/resource_type.hpp>
 
 namespace viam {
 namespace sdk {
@@ -93,22 +92,16 @@ class ResourceRegistration2 : public ResourceRegistration {
 /// @brief Information about a registered model, including a constructor and config validator.
 class ModelRegistration {
    public:
-    ModelRegistration(ResourceType rt)
-        : validate(default_validator), resource_type_(std::move(rt)){};
-
     ModelRegistration(
-        ResourceType rt,
         API api,
         Model model,
         std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor)
         : construct_resource(std::move(constructor)),
           validate(default_validator),
           model_(std::move(model)),
-          resource_type_(std::move(rt)),
           api_(std::move(api)){};
 
     ModelRegistration(
-        ResourceType rt,
         API api,
         Model model,
         std::function<std::shared_ptr<Resource>(Dependencies, ResourceConfig)> constructor,
@@ -116,10 +109,8 @@ class ModelRegistration {
         : construct_resource(std::move(constructor)),
           validate(std::move(validator)),
           model_(std::move(model)),
-          resource_type_(std::move(rt)),
           api_(std::move(api)){};
 
-    const ResourceType& resource_type() const;
     const API& api() const;
     const Model& model() const;
 
@@ -138,7 +129,6 @@ class ModelRegistration {
     // default_validator is the default validator for all models if no validator
     // is provided in construction. No dependencies are returned.
     Model model_;
-    ResourceType resource_type_;
     API api_;
     static const std::vector<std::string> default_validator(ResourceConfig cfg) {
         return {};

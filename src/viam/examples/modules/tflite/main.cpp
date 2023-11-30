@@ -731,10 +731,6 @@ int serve(const std::string& socket_path) try {
 
     // Create a new model registration for the service.
     auto module_registration = std::make_shared<vsdk::ModelRegistration>(
-        // TODO(RSDK-2417): This field is deprecated, just provide some
-        // quasi-relevant string value here for now.
-        vsdk::ResourceType{"MLModelServiceTFLiteModule"},
-
         // Identify that this resource offers the MLModelService API
         vsdk::MLModelService::static_api(),
 
