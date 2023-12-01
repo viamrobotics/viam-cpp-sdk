@@ -32,7 +32,6 @@ class MockMLModelService : public sdk::MLModelService {
     MockMLModelService& set_infer_handler(infer_handler handler);
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
                                               const sdk::AttributeMap& extra) override;
-    void stop(const sdk::AttributeMap& extra) override{};
 
     MockMLModelService& set_metadata(struct metadata metadata);
     struct metadata metadata(const sdk::AttributeMap& extra) override;

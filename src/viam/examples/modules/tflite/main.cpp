@@ -71,19 +71,16 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // here. It should be safe to tear down all state
         // automatically without needing to wait for anything more to
         // drain.
+        close();
     }
 
-    void stop(const vsdk::AttributeMap& extra) noexcept final {
-        return stop();
-    }
-
-    /// @brief Stops a resource from running.
-    void stop() noexcept {
+    /// @brief Closes the service.
+    void close() noexcept {
         using std::swap;
         try {
             std::lock_guard<std::mutex> lock(state_lock_);
-            if (!stopped_) {
-                stopped_ = true;
+            if (!closed_) {
+                closed_ = true;
                 std::shared_ptr<state> state;
                 swap(state_, state);
                 state_ready_.notify_all();
@@ -101,7 +98,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // current state while a new configuration is built, then swap
         // in the new state. State which is in use by existing
         // invocations will remain valid until the clients drain. If
-        // reconfiguration fails, the component will `stop`.
+        // reconfiguration fails, the component will `close`.
 
         // Swap out the state_ member with nullptr. Existing
         // invocations will continue to operate against the state they
@@ -115,8 +112,8 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             // reconfigurations and so other invocations wait on a new
             // state.
             std::unique_lock<std::mutex> lock(state_lock_);
-            state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
-            check_stopped_inlock_();
+            state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !closed_; });
+            check_closed_inlock_();
             swap(state_, state);
         }
 
@@ -127,13 +124,13 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // reconfiguration to complete.
         {
             std::lock_guard<std::mutex> lock(state_lock_);
-            check_stopped_inlock_();
+            check_closed_inlock_();
             swap(state_, state);
         }
         state_ready_.notify_all();
     } catch (...) {
-        // If reconfiguration fails for any reason, become stopped and rethrow.
-        stop();
+        // If reconfiguration fails for any reason, become closed and rethrow.
+        close();
         throw;
     }
 
@@ -254,24 +251,24 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
    private:
     struct state;
 
-    void check_stopped_inlock_() const {
-        if (stopped_) {
+    void check_closed_inlock_() const {
+        if (closed_) {
             std::ostringstream buffer;
-            buffer << service_name << ": service is stopped: ";
+            buffer << service_name << ": service is closed: ";
             throw std::runtime_error(buffer.str());
         }
     }
 
     std::shared_ptr<state> lease_state_() {
-        // Wait for our state to be valid or stopped and then obtain a
+        // Wait for our state to be valid or closed and then obtain a
         // shared_ptr to state if valid, incrementing the refcount, or
-        // throws if the service is stopped. We don't need to deal
+        // throws if the service is closed. We don't need to deal
         // with interruption or shutdown because the gRPC layer will
         // drain requests during shutdown, so it shouldn't be possible
         // for callers to get stuck here.
         std::unique_lock<std::mutex> lock(state_lock_);
-        state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !stopped_; });
-        check_stopped_inlock_();
+        state_ready_.wait(lock, [this]() { return (state_ != nullptr) && !closed_; });
+        check_closed_inlock_();
         return state_;
     }
 
@@ -718,7 +715,7 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
     std::mutex state_lock_;
     std::condition_variable state_ready_;
     std::shared_ptr<state> state_;
-    bool stopped_ = false;
+    bool closed_ = false;
 };
 
 int serve(const std::string& socket_path) try {

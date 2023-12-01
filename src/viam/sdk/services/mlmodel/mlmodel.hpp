@@ -24,7 +24,6 @@
 
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
-#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -48,7 +47,7 @@ class MLModelServiceRegistration : public ResourceRegistration {
 /// This class acts as an abstract base class to be used by any driver
 /// implementing an MLModel. It is also used as the base class for the
 /// gRPC client for communicating with a remote MLModel instance.
-class MLModelService : public Service, public Stoppable {
+class MLModelService : public Service {
    private:
     template <typename T>
     struct make_tensor_view_ {
@@ -180,15 +179,6 @@ class MLModelService : public Service, public Stoppable {
     ///
     /// @param `extra`: Any additional arguments to the method.
     virtual struct metadata metadata(const AttributeMap& extra) = 0;
-
-    /// @brief Stops a resource from running.
-    inline void stop() {
-        return stop({});
-    }
-
-    /// @brief Stops a resource from running.
-    /// @param extra Extra arguments to pass to the resource's `stop` method.
-    void stop(const AttributeMap& extra) override = 0;
 
    protected:
     explicit MLModelService(std::string name);
