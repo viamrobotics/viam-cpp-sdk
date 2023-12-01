@@ -14,6 +14,7 @@ class HandlerMap_ {
 
     viam::module::v1::HandlerMap to_proto() const;
     static const HandlerMap_ from_proto(viam::module::v1::HandlerMap proto);
+    friend std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm);
 
    private:
     std::unordered_map<RPCSubtype, std::vector<Model>> handles_;

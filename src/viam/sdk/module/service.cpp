@@ -237,7 +237,6 @@ ModuleService::ModuleService(int argc,
 }
 
 void ModuleService::serve() {
-    const std::lock_guard<std::mutex> lock(lock_);
     const mode_t old_mask = umask(0077);
     const int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     listen(sockfd, 10);
@@ -248,9 +247,12 @@ void ModuleService::serve() {
     server_->add_listening_port(address);
 
     module_->set_ready();
+    server_->start();
 
-    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
-    // TODO(benji): debug log the module handler map.
+    BOOST_LOG_TRIVIAL(info) << "Module " << module_->name() << " listening on " << module_->addr();
+    BOOST_LOG_TRIVIAL(info) << "Module " << module_->name()
+                            << " handles the following API/model pairs: " << std::endl
+                            << module_->handles();
 
     int sig = 0;
     signal_manager_->wait(&sig);
