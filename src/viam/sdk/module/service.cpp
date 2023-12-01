@@ -249,9 +249,8 @@ void ModuleService::serve() {
     module_->set_ready();
     server_->start();
 
-    BOOST_LOG_TRIVIAL(info) << "Module " << module_->name() << " listening on " << module_->addr();
-    BOOST_LOG_TRIVIAL(info) << "Module " << module_->name()
-                            << " handles the following API/model pairs: " << std::endl
+    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
+    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs: " << std::endl
                             << module_->handles();
 
     int sig = 0;
