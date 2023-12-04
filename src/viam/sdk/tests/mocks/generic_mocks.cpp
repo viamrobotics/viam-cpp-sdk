@@ -24,7 +24,7 @@ std::vector<GeometryConfig> MockGeneric::get_geometries() {
     return geometries_;
 }
 std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
-    auto generic = std::make_shared<MockGeneric>("mock_generic");
+    const auto& generic = std::make_shared<MockGeneric>("mock_generic");
     generic->map_ = fake_map();
     generic->geometries_ = fake_geometries();
 
