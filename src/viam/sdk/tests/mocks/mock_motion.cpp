@@ -126,7 +126,7 @@ pose_in_frame fake_pose() {
 
 Motion::plan_status MockMotion::fake_plan_status() {
     return {Motion::plan_state::k_succeeded,
-            std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds>::max(),
+            std::chrono::time_point<long long, std::chrono::nanoseconds>::max(),
             boost::optional<std::string>("reason")};
 }
 

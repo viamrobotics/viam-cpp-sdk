@@ -43,7 +43,7 @@ class ResourceNameEqual {
 };
 
 struct response_metadata {
-    std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds> captured_at;
+    std::chrono::time_point<long long, std::chrono::nanoseconds> captured_at;
 
     static response_metadata from_proto(const viam::common::v1::ResponseMetadata& proto);
     static viam::common::v1::ResponseMetadata to_proto(const response_metadata& metadata);
@@ -52,14 +52,14 @@ struct response_metadata {
 bool operator==(const response_metadata& lhs, const response_metadata& rhs);
 
 /// @brief convert a google::protobuf::Timestamp to
-/// std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds>
-std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds> timestamp_to_time_pt(
+/// std::chrono::time_point<long long, std::chrono::nanoseconds>
+std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
     const google::protobuf::Timestamp& timestamp);
 
-/// @brief convert a std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds> to
+/// @brief convert a std::chrono::time_point<long long, std::chrono::nanoseconds> to
 /// a google::protobuf::Timestamp.
 google::protobuf::Timestamp time_pt_to_timestamp(
-    const std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds>& time_pt);
+    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt);
 
 std::vector<unsigned char> string_to_bytes(std::string const& s);
 std::string bytes_to_string(std::vector<unsigned char> const& b);

@@ -22,7 +22,7 @@ namespace viam {
 namespace sdk {
 
 using viam::common::v1::ResourceName;
-using time_point = std::chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds>;
+using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
 std::vector<ResourceName> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
     std::string resource_type;
