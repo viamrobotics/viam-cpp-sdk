@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 mkdir build
 cd build
 cmake .. -G Ninja -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON \
