@@ -62,7 +62,10 @@ RobotClient::~RobotClient() {
     if (should_close_channel_) {
         try {
             this->close();
+        } catch (const std::exception& e) {
+            BOOST_LOG_TRIVIAL(error) << "Received err while closing RobotClient: " << e.what();
         } catch (...) {
+            BOOST_LOG_TRIVIAL(error) << "Received unknown err while closing RobotClient";
         }
     }
 }

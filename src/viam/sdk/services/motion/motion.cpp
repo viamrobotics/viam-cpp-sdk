@@ -135,8 +135,8 @@ bool operator==(const obstacle_detector& lhs, const obstacle_detector& rhs) {
 
 std::ostream& operator<<(std::ostream& os, const obstacle_detector& v) {
     os << "{ ";
-    os << "\tvision_service: " << v.vision_service << std::endl;
-    os << "\tcamera: " << v.camera << std::endl;
+    os << "\tvision_service: " << v.vision_service << "\n";
+    os << "\tcamera: " << v.camera << "\n";
     os << "}";
     return os;
 }
