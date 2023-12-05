@@ -1,7 +1,8 @@
 #pragma once
 
-#include "viam/sdk/common/proto_type.hpp"
 #include <vector>
+
+#include <viam/sdk/common/proto_type.hpp>
 
 #include "api.hpp"
 
