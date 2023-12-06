@@ -1,10 +1,13 @@
 #include <viam/sdk/components/base/client.hpp>
 
-#include <algorithm>
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <utility>
+
+#include <google/protobuf/struct.pb.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/impl/status.h>
 
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/base/v1/base.grpc.pb.h>
@@ -16,6 +19,7 @@
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {

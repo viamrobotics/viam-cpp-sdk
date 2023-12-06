@@ -13,6 +13,7 @@ namespace viam {
 namespace sdk {
 
 Resource::~Resource() = default;
+Resource::Resource(std::string name) : name_(std::move(name)) {}
 
 std::string Resource::name() const {
     return name_;

@@ -5,6 +5,7 @@
 namespace viam {
 namespace sdk {
 
+// NOLINTBEGIN(bugprone-exception-escape)
 ::grpc::Status ServiceHelperBase::fail(::grpc::StatusCode code, const char* message) const noexcept
     try {
     std::ostringstream stream;
@@ -37,6 +38,8 @@ namespace sdk {
 ::grpc::Status ServiceHelperBase::failUnknownException() const noexcept {
     return fail(::grpc::INTERNAL, "Failed with an unknown exception");
 }
+
+// NOLINTEND(bugprone-exception-escape)
 
 }  // namespace sdk
 }  // namespace viam

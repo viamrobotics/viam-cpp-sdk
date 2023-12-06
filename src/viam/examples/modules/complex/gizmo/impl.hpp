@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include <viam/sdk/common/proto_type.hpp>
+
 #include "api.hpp"
 
 using namespace viam::sdk;

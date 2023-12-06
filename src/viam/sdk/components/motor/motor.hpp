@@ -12,6 +12,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
@@ -36,7 +37,7 @@ class MotorRegistration : public ResourceRegistration {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific motor implementations. This class cannot be used on its own.
-class Motor : public Component {
+class Motor : public Component, public Stoppable {
    public:
     /// @struct position
     /// @brief Current position of the motor relative to its home

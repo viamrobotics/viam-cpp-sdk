@@ -210,7 +210,7 @@ void client_server_test(std::shared_ptr<MockMLModelService> mock, F&& f) {
 }
 
 BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
-    auto mock = std::make_shared<MockMLModelService>();
+    const auto mock = std::make_shared<MockMLModelService>();
     mock->set_metadata(test_metadata);
     client_server_test(mock, [](auto& client) {
         const auto returned_metadata = client.metadata();

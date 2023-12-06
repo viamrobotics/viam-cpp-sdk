@@ -13,7 +13,6 @@ using namespace viam::sdk;
 // Returns value of "subtract" in cfg.attributes() or `false` if subtract is not
 // in attributes or is not a boolean value.
 bool find_subtract(ResourceConfig cfg) {
-    auto summation_name = cfg.name();
     auto subtract = cfg.attributes()->find("subtract");
     if (subtract == cfg.attributes()->end()) {
         return false;

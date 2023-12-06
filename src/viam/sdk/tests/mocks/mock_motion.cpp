@@ -1,5 +1,8 @@
 #include <viam/sdk/tests/mocks/mock_motion.hpp>
 
+#include <chrono>
+
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -59,20 +62,76 @@ pose_in_frame MockMotion::get_pose(
     return current_location;
 }
 
-AttributeMap MockMotion::do_command(const AttributeMap& _command) {
-    return peek_map;
+Motion::plan_with_status MockMotion::get_plan(const sdk::Name& component_name,
+                                              const std::string& execution_id,
+                                              const sdk::AttributeMap& extra) {
+    return fake_plan_with_status();
+}
+
+std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
+MockMotion::get_plan_with_replan_history(const sdk::Name& component_name,
+                                         const std::string& execution_id,
+                                         const sdk::AttributeMap& extra) {
+    return {fake_plan_with_status(), {fake_plan_with_status()}};
+}
+
+Motion::plan_with_status MockMotion::get_latest_plan(const sdk::Name& component_name,
+                                                     const sdk::AttributeMap& extra) {
+    return fake_plan_with_status();
+}
+
+std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
+MockMotion::get_latest_plan_with_replan_history(const sdk::Name& component_name,
+                                                const sdk::AttributeMap& extra) {
+    return {fake_plan_with_status(), {fake_plan_with_status()}};
+}
+
+std::vector<Motion::plan_status_with_id> MockMotion::list_active_plan_statuses(
+    const sdk::AttributeMap& extra) {
+    return {fake_plan_status_with_id()};
+}
+
+std::vector<Motion::plan_status_with_id> MockMotion::list_plan_statuses(
+    const sdk::AttributeMap& extra) {
+    return {fake_plan_status_with_id()};
+}
+
+void MockMotion::stop_plan(const sdk::Name& name, const sdk::AttributeMap& extra) {
+    this->peek_stop_plan_called = true;
+}
+
+AttributeMap MockMotion::do_command(const AttributeMap& command) {
+    return command;
 };
 
 std::shared_ptr<MockMotion> MockMotion::get_mock_motion() {
     auto motion = std::make_shared<MockMotion>("mock_motion");
     motion->current_location = init_fake_pose();
-    motion->peek_map = fake_map();
 
     return motion;
 };
 
+Motion::plan_with_status MockMotion::fake_plan_with_status() {
+    plan_with_status pws;
+    pws.plan = {"id", fake_component_name(), "exec-id", {}};
+    pws.status = fake_plan_status();
+    pws.status_history = {fake_plan_status()};
+
+    return pws;
+}
+
 pose_in_frame fake_pose() {
     return pose_in_frame("fake-reference-frame", {{0, 1, 2}, {3, 4, 5}, 6});
+}
+
+Motion::plan_status MockMotion::fake_plan_status() {
+    return {Motion::plan_state::k_succeeded,
+            std::chrono::time_point<long long, std::chrono::nanoseconds>::max(),
+            boost::optional<std::string>("reason")};
+}
+
+Motion::plan_status_with_id MockMotion::fake_plan_status_with_id() {
+    return {"plan_id", fake_component_name(), "execution_id", fake_plan_status()};
 }
 
 pose_in_frame init_fake_pose() {
