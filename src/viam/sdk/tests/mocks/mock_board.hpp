@@ -38,8 +38,6 @@ class MockBoard : public viam::sdk::Board {
                         const boost::optional<std::chrono::microseconds>& duration) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
 
-    void stop(const sdk::AttributeMap& extra) override{};
-
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
     int peek_pin_value;
     Board::status peek_get_status_ret;

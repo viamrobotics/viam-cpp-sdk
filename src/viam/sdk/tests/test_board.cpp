@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_SUITE(test_board)
 template <typename Lambda>
 void server_to_mock_pipeline(Lambda&& func) {
     BoardServer board_server;
-    const std::shared_ptr<MockBoard> mock = std::make_shared<MockBoard>("mock_board");
+    const auto mock = std::make_shared<MockBoard>("mock_board");
     board_server.resource_manager()->add(std::string("mock_board"), mock);
 
     grpc::ServerBuilder builder;
