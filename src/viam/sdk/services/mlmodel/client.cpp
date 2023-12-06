@@ -148,7 +148,5 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
     return result;
 }
 
-void MLModelServiceClient::stop(const AttributeMap& extra) {}
-
 }  // namespace sdk
 }  // namespace viam

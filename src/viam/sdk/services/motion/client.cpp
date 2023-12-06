@@ -249,7 +249,5 @@ AttributeMap MotionClient::do_command(const AttributeMap& command) {
     return struct_to_map(response.result());
 }
 
-void MotionClient::stop(const AttributeMap& extra) {}
-
 }  // namespace sdk
 }  // namespace viam

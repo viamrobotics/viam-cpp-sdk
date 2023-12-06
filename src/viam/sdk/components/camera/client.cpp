@@ -102,7 +102,5 @@ Camera::properties CameraClient::get_properties() {
     return from_proto(resp);
 };
 
-void CameraClient::stop(const AttributeMap& extra) {}
-
 }  // namespace sdk
 }  // namespace viam

@@ -37,6 +37,7 @@
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -133,7 +134,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
 
     // if the type isn't reconfigurable by default, replace it
     try {
-        res->stop();
+        Stoppable::stop_if_stoppable(res);
     } catch (const std::exception& err) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
@@ -194,7 +195,7 @@ std::shared_ptr<Resource> ModuleService_::get_parent_resource(Name name) {
     }
 
     try {
-        res->stop();
+        Stoppable::stop_if_stoppable(res);
     } catch (const std::exception& err) {
         BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
     }
