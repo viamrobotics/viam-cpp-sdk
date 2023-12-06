@@ -140,7 +140,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Board>(
-        "BoardServer::GetGEometries", this, request)([&](auto& helper, auto& board) {
+        "BoardServer::GetGeometries", this, request)([&](auto& helper, auto& board) {
         const std::vector<GeometryConfig> geometries = board->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = geometry.to_proto();
