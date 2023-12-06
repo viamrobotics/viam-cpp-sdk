@@ -3,6 +3,7 @@
 #include <google/protobuf/util/time_util.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -17,113 +18,60 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 
 ::grpc::Status CameraServer::DoCommand(::grpc::ServerContext* context,
                                        const ::viam::common::v1::DoCommandRequest* request,
-                                       ::viam::common::v1::DoCommandResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [DoCommand] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-    const AttributeMap result = camera->do_command(struct_to_map(request->command()));
-
-    *response->mutable_result() = map_to_struct(result);
-
-    return ::grpc::Status();
+                                       ::viam::common::v1::DoCommandResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::DoCommand", this, request)([&](auto& helper, auto& camera) {
+        const AttributeMap result = camera->do_command(struct_to_map(request->command()));
+        *response->mutable_result() = map_to_struct(result);
+    });
 }
 
-::grpc::Status CameraServer::GetImage(::grpc::ServerContext* context,
-                                      const ::viam::component::camera::v1::GetImageRequest* request,
-                                      ::viam::component::camera::v1::GetImageResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [GetImage] without a request");
-    };
+::grpc::Status CameraServer::GetImage(
+    ::grpc::ServerContext* context,
+    const ::viam::component::camera::v1::GetImageRequest* request,
+    ::viam::component::camera::v1::GetImageResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::GetImage", this, request)([&](auto& helper, auto& camera) {
+        const Camera::raw_image image = camera->get_image(request->mime_type(), helper.getExtra());
 
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
+        const std::string img_string = bytes_to_string(image.bytes);
 
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    const Camera::raw_image image = camera->get_image(request->mime_type(), extra);
-
-    const std::string img_string = bytes_to_string(image.bytes);
-
-    *response->mutable_mime_type() = image.mime_type;
-    *response->mutable_image() = img_string;
-
-    return ::grpc::Status();
+        *response->mutable_mime_type() = image.mime_type;
+        *response->mutable_image() = img_string;
+    });
 }
 
 ::grpc::Status CameraServer::GetImages(
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImagesRequest* request,
-    ::viam::component::camera::v1::GetImagesResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [GetImages] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-
-    const Camera::image_collection image_coll = camera->get_images();
-    for (const auto& img : image_coll.images) {
-        ::viam::component::camera::v1::Image proto_image;
-        const std::string img_string = bytes_to_string(img.bytes);
-        proto_image.set_source_name(img.source_name);
-        proto_image.set_format(
-            Camera::MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
-        proto_image.set_image(img_string);
-        *response->mutable_images()->Add() = std::move(proto_image);
-    }
-    *response->mutable_response_metadata() = response_metadata::to_proto(image_coll.metadata);
-
-    return ::grpc::Status();
+    ::viam::component::camera::v1::GetImagesResponse* response) noexcept {
+    // CR erodkin: removed helper because it wasn't doing anything but will this compile/work?
+    return make_service_helper<Camera>("CameraServer::GetImages", this, request)([&](auto& camera) {
+        const Camera::image_collection image_coll = camera->get_images();
+        for (const auto& img : image_coll.images) {
+            ::viam::component::camera::v1::Image proto_image;
+            const std::string img_string = bytes_to_string(img.bytes);
+            proto_image.set_source_name(img.source_name);
+            proto_image.set_format(
+                Camera::MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
+            proto_image.set_image(img_string);
+            *response->mutable_images()->Add() = std::move(proto_image);
+        }
+        *response->mutable_response_metadata() = response_metadata::to_proto(image_coll.metadata);
+    });
 }
 
 ::grpc::Status CameraServer::RenderFrame(
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest* request,
-    ::google::api::HttpBody* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [RenderFrame] without a request");
-    };
+    ::google::api::HttpBody* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::RenderFrame", this, request)([&](auto& helper, auto& camera) {
+        const Camera::raw_image image = camera->get_image(request->mime_type(), helper.getExtra());
 
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    const Camera::raw_image image = camera->get_image(request->mime_type(), extra);
-
-    response->set_data(bytes_to_string(image.bytes));
-    response->set_content_type(image.mime_type);
-
-    return ::grpc::Status();
+        response->set_data(bytes_to_string(image.bytes));
+        response->set_content_type(image.mime_type);
+    });
 }
 
 ::grpc::Status CameraServer::GetPointCloud(

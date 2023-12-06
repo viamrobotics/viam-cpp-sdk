@@ -23,27 +23,30 @@ class CameraServer : public ResourceServer,
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
-                             ::viam::common::v1::DoCommandResponse* response) override;
-    ::grpc::Status GetImage(::grpc::ServerContext* context,
-                            const ::viam::component::camera::v1::GetImageRequest* request,
-                            ::viam::component::camera::v1::GetImageResponse* response) override;
-    ::grpc::Status GetImages(::grpc::ServerContext* context,
-                             const ::viam::component::camera::v1::GetImagesRequest* request,
-                             ::viam::component::camera::v1::GetImagesResponse* response) override;
+                             ::viam::common::v1::DoCommandResponse* response) noexcept override;
+    ::grpc::Status GetImage(
+        ::grpc::ServerContext* context,
+        const ::viam::component::camera::v1::GetImageRequest* request,
+        ::viam::component::camera::v1::GetImageResponse* response) noexcept override;
+    ::grpc::Status GetImages(
+        ::grpc::ServerContext* context,
+        const ::viam::component::camera::v1::GetImagesRequest* request,
+        ::viam::component::camera::v1::GetImagesResponse* response) noexcept override;
     ::grpc::Status RenderFrame(::grpc::ServerContext* context,
                                const ::viam::component::camera::v1::RenderFrameRequest* request,
-                               ::google::api::HttpBody* response) override;
+                               ::google::api::HttpBody* response) noexcept override;
     ::grpc::Status GetPointCloud(
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPointCloudRequest* request,
-        ::viam::component::camera::v1::GetPointCloudResponse* response) override;
-    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest* request,
-                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+        ::viam::component::camera::v1::GetPointCloudResponse* response) noexcept override;
+    ::grpc::Status GetGeometries(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetGeometriesRequest* request,
+        ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
     ::grpc::Status GetProperties(
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPropertiesRequest* request,
-        ::viam::component::camera::v1::GetPropertiesResponse* response) override;
+        ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };
