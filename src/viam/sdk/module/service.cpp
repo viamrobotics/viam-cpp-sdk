@@ -213,11 +213,10 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource(Name name) {
     return grpc::Status();
 };
 
-ModuleService::ModuleService(std::string addr) {
-    module_ = std::make_shared<Module>(addr);
-    server_ = std::make_shared<Server>();
-    signal_manager_ = std::make_shared<SignalManager>();
-}
+ModuleService::ModuleService(std::string addr)
+    : module_(std::make_shared<Module>(std::move(addr))),
+      server_(std::make_shared<Server>()),
+      signal_manager_(std::make_unique<SignalManager>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
@@ -227,7 +226,7 @@ ModuleService::ModuleService(int argc,
     }
     module_ = std::make_shared<Module>(argv[1]);
     server_ = std::make_shared<Server>();
-    signal_manager_ = std::make_shared<SignalManager>();
+    signal_manager_ = std::make_unique<SignalManager>();
     set_logger_severity_from_args(argc, argv);
 
     for (const std::shared_ptr<ModelRegistration>& mr : registrations) {

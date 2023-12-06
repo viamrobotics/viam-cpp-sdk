@@ -1,12 +1,12 @@
 #pragma once
 
-#include "viam/sdk/registry/registry.hpp"
 #include <signal.h>
 
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 #include <viam/api/module/v1/module.grpc.pb.h>
 
 #include <viam/sdk/module/module.hpp>
+#include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
@@ -91,7 +91,7 @@ class ModuleService : public viam::module::v1::ModuleService::Service {
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
     std::shared_ptr<Server> server_;
-    std::shared_ptr<SignalManager> signal_manager_;
+    std::unique_ptr<SignalManager> signal_manager_;
 };
 
 }  // namespace sdk
