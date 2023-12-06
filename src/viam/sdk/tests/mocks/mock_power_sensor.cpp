@@ -31,8 +31,7 @@ AttributeMap MockPowerSensor::do_command(const AttributeMap& command) {
 };
 
 std::shared_ptr<MockPowerSensor> MockPowerSensor::get_mock_powersensor() {
-    auto powersensor = std::make_shared<MockPowerSensor>("mock_powersensor");
-    return powersensor;
+    return std::make_shared<MockPowerSensor>("mock_powersensor");
 }
 
 }  // namespace powersensor

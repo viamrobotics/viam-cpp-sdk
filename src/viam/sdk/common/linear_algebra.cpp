@@ -1,5 +1,7 @@
 #include <viam/sdk/common/linear_algebra.hpp>
 
+#include <array>
+
 #include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
