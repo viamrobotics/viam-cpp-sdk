@@ -65,6 +65,11 @@ Board::analog_value MockBoard::read_analog(const std::string& analog_reader_name
     return this->peek_read_analog_ret;
 }
 
+void MockBoard::write_analog(const std::string& pin, int value, const AttributeMap& extra) {
+    this->peek_pin = pin;
+    this->peek_pin_value = value;
+}
+
 Board::digital_value MockBoard::read_digital_interrupt(const std::string& digital_interrupt_name,
                                                        const AttributeMap& extra) {
     this->peek_digital_interrupt_name = digital_interrupt_name;

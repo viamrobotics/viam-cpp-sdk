@@ -240,6 +240,31 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
     return ::grpc::Status();
 }
 
+::grpc::Status BoardServer::WriteAnalog(
+    ::grpc::ServerContext* context,
+    const ::viam::component::board::v1::WriteAnalogRequest* request,
+    ::viam::component::board::v1::WriteAnalogResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Board::WriteAnalog] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+    }
+
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    board->write_analog(request->pin(), request->value(), extra);
+    return ::grpc::Status();
+}
+
 ::grpc::Status BoardServer::GetDigitalInterruptValue(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,

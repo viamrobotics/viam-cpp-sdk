@@ -152,6 +152,16 @@ BOOST_AUTO_TEST_CASE(test_read_analog) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_write_analog) {
+    server_to_mock_pipeline([](Board& client, std::shared_ptr<MockBoard> mock) -> void {
+        std::string pin = "pin1";
+        int value = 42;
+        client.write_analog(pin, value);
+        BOOST_CHECK_EQUAL(pin, mock->peek_pin);
+        BOOST_CHECK_EQUAL(value, mock->peek_pin_value);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_read_digital_interrupt) {
     server_to_mock_pipeline([](Board& client, const std::shared_ptr<MockBoard> mock) -> void {
         mock->peek_read_digital_interrupt_ret = 515;

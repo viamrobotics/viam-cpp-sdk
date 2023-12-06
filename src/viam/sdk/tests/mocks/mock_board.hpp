@@ -30,6 +30,7 @@ class MockBoard : public viam::sdk::Board {
     viam::sdk::AttributeMap do_command(const viam::sdk::AttributeMap& command) override;
     Board::analog_value read_analog(const std::string& analog_reader_name,
                                     const sdk::AttributeMap& extra) override;
+    void write_analog(const std::string& pin, int value, const sdk::AttributeMap& extra) override;
     Board::digital_value read_digital_interrupt(const std::string& digital_interrupt_name,
                                                 const sdk::AttributeMap& extra) override;
     void set_power_mode(power_mode power_mode,
@@ -40,6 +41,7 @@ class MockBoard : public viam::sdk::Board {
     void stop(const sdk::AttributeMap& extra) override{};
 
     std::string peek_pin, peek_analog_reader_name, peek_digital_interrupt_name;
+    int peek_pin_value;
     Board::status peek_get_status_ret;
     bool peek_set_gpio_high;
     bool peek_get_gpio_ret;

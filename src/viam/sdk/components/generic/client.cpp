@@ -31,8 +31,6 @@ AttributeMap GenericClient::do_command(AttributeMap command) {
     return struct_to_map(resp.result());
 }
 
-void GenericClient::stop(const AttributeMap& extra) {}
-
 std::vector<GeometryConfig> GenericClient::get_geometries() {
     viam::common::v1::GetGeometriesRequest req;
     viam::common::v1::GetGeometriesResponse resp;

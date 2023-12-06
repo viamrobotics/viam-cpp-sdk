@@ -9,6 +9,7 @@
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
@@ -87,6 +88,122 @@ struct motion_configuration {
 /// specific motion implementations. This class cannot be used on its own.
 class Motion : public Service {
    public:
+    /// @enum plan_state
+    /// @brief Describes the possible states a plan can be in.
+    /// @ingroup Motion
+    enum class plan_state : uint8_t {
+        k_in_progress,
+        k_stopped,
+        k_succeeded,
+        k_failed,
+    };
+
+    static plan_state from_proto(const service::motion::v1::PlanState& proto);
+    static service::motion::v1::PlanState to_proto(const plan_state& state);
+
+    /// @struct plan_status
+    /// @brief Describes the state of a given plan at a point in time.
+    /// @ingroup Motion
+    struct plan_status {
+        /// @brief The state of the plan execution
+        plan_state state;
+
+        /// @brief The time the executing plan transitioned to the state.
+        std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp;
+
+        /// @brief The reason for the state change. The error message if the plan failed, or the
+        /// re-plan reason if re-planning was necessary.
+        boost::optional<std::string> reason;
+
+        static plan_status from_proto(const service::motion::v1::PlanStatus& proto);
+        static std::vector<plan_status> from_proto(
+            const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStatus>& proto);
+        service::motion::v1::PlanStatus to_proto() const;
+        friend bool operator==(const plan_status& lhs, const plan_status& rhs);
+    };
+
+    /// @struct plan_status_with_id
+    /// @brief The motion plan status, plus plan ID, component name, and execution ID.
+    /// @ingroup Motion
+    struct plan_status_with_id {
+        /// @brief The unique ID of the plan
+        std::string plan_id;
+
+        /// @brief The component to be moved. Used for tracking and stopping.
+        Name component_name;
+
+        /// @brief The unique ID which identifies the plan execution.
+        std::string execution_id;
+
+        /// @brief The plan status.
+        plan_status status;
+
+        static plan_status_with_id from_proto(const service::motion::v1::PlanStatusWithID& proto);
+        service::motion::v1::PlanStatusWithID to_proto() const;
+        friend bool operator==(const plan_status_with_id& lhs, const plan_status_with_id& rhs);
+    };
+
+    /// @struct steps
+    /// @brief An ordered list of plan steps.
+    /// @ingroup Motion
+    struct steps {
+        /// @brief An individual "step", representing the state each component (keyed as a fully
+        /// qualified component name) should reach while executing that step of the plan.
+        typedef std::unordered_map<std::string, pose> step;
+
+        /// @brief The ordered list of steps.
+        std::vector<step> steps;
+
+        static struct steps from_proto(
+            const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStep>& proto);
+
+        static service::motion::v1::PlanStep to_proto(const step& step);
+        friend bool operator==(const struct steps& lhs, const struct steps& rhs);
+    };
+
+    /// @struct plan
+    /// @brief Describes a motion plan.
+    /// @ingroup Motion
+    struct plan {
+        /// @brief The plan's unique ID.
+        std::string id;
+
+        /// @brief The component requested to be moved. Used for tracking and stopping.
+        Name component_name;
+
+        /// @brief The unique ID which identifies the execution.
+        /// Multiple plans can share the same execution_id if they were generated due to replanning.
+        std::string execution_id;
+
+        /// @brief An ordered list of plan steps.
+        struct steps steps;
+
+        static plan from_proto(const service::motion::v1::Plan& proto);
+        service::motion::v1::Plan to_proto() const;
+        friend bool operator==(const plan& lhs, const plan& rhs);
+    };
+
+    /// @struct plan_with_status
+    /// @brief Describes a plan, its current status, and all status changes that have occurred
+    /// previously on that plan.
+    /// @ingroup Motion
+    struct plan_with_status {
+        /// @brief The plan.
+        struct plan plan;
+
+        /// @brief The current status of the plan.
+        plan_status status;
+
+        /// @brief The prior status changes that have happened during plan execution.
+        std::vector<plan_status> status_history;
+
+        static plan_with_status from_proto(const service::motion::v1::PlanWithStatus& proto);
+        static std::vector<plan_with_status> from_proto(
+            const google::protobuf::RepeatedPtrField<service::motion::v1::PlanWithStatus>& proto);
+        service::motion::v1::PlanWithStatus to_proto() const;
+        friend bool operator==(const plan_with_status& lhs, const plan_with_status& rhs);
+    };
+
     /// @struct linear_constraint
     /// @brief Specifies that the component being moved should move linearly to its goal.
     struct linear_constraint {
@@ -245,6 +362,131 @@ class Motion : public Service {
         const Name& component_name,
         const std::string& destination_frame,
         const std::vector<WorldState::transform>& supplemental_transforms,
+        const AttributeMap& extra) = 0;
+
+    /// @brief Stop a currently executing motion plan.
+    /// @param component_name the component of the currently executing plan to stop.
+    inline void stop_plan(const Name& component_name) {
+        return stop_plan(component_name, {});
+    }
+
+    /// @brief Stop a currently executing motion plan.
+    /// @param component_name the component of the currently executing plan to stop.
+    /// @param extra Any additional arguments to the method.
+    virtual void stop_plan(const Name& component_name, const AttributeMap& extra) = 0;
+
+    /// @brief Returns the plan and state history of the most recent execution to move a component.
+    /// Returns a result if the last execution is still executing, or changed state within the last
+    /// 24 hours without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @return the plan and status of the most recent execution to move the requested component
+    inline plan_with_status get_latest_plan(const Name& component_name) {
+        return get_latest_plan(component_name, {});
+    }
+
+    /// @brief Returns the plan and state history of the most recent execution to move a component.
+    /// Returns a result if the last execution is still executing, or changed state within the last
+    /// 24 hours without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @param extra Any additional arguments to the method.
+    /// @return the plan and status of the most recent execution to move the requested component
+    virtual plan_with_status get_latest_plan(const Name& component_name,
+                                             const AttributeMap& extra) = 0;
+
+    /// @brief Returns the plan, state history, and replan history of the most recent execution to
+    /// move a component. Returns a result if the last execution is still executing, or changed
+    /// state within the last 24 hours without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
+    /// execution to move the requested component
+    inline std::pair<plan_with_status, std::vector<plan_with_status>>
+    get_latest_plan_with_replan_history(Name component_name) {
+        return get_latest_plan_with_replan_history(component_name, {});
+    }
+
+    /// @brief Returns the plan, state history, and replan history of the most recent execution to
+    /// move a component. Returns a result if the last execution is still executing, or changed
+    /// state within the last 24 hours without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @param extra Any additional arguments to the method.
+    /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
+    /// execution to move the requested component
+    virtual std::pair<plan_with_status, std::vector<plan_with_status>>
+    get_latest_plan_with_replan_history(const Name& component_name, const AttributeMap& extra) = 0;
+
+    /// @brief Returns the plan and state history of the requested plan. Returns a result
+    /// if the last execution is still executing, or changed state within the last 24 hours
+    /// without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @param execution_id The execution id of the requested plan.
+    /// @return the plan and status of the requested execution's move the requested component
+    inline plan_with_status get_plan(Name component_name, const std::string& execution_id) {
+        return get_plan(component_name, execution_id, {});
+    }
+
+    /// @brief Returns the plan and state history of the requested plan. Returns a result
+    /// if the last execution is still executing, or changed state within the last 24 hours
+    /// without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @param execution_id The execution id of the requested plan.
+    /// @param extra Any additional arguments to the method.
+    /// @return the plan and status of the requested execution's move the requested component
+    virtual plan_with_status get_plan(const Name& component_name,
+                                      const std::string& execution_id,
+                                      const AttributeMap& extra) = 0;
+
+    /// @brief Returns the plan, state history, and replan history of the requested plan. Returns a
+    /// result if the last execution is still executing, or changed state within the last 24 hours
+    /// without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @param execution_id The execution id of the requested plan.
+    /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
+    /// execution to move the requested component
+    inline std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
+        const Name& component_name, const std::string& execution_id) {
+        return get_plan_with_replan_history(component_name, execution_id, {});
+    }
+
+    /// @brief Returns the plan, state history, and replan history of the requested plan. Returns a
+    /// result if the last execution is still executing, or changed state within the last 24 hours
+    /// without an intervening robot reinitialization.
+    /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
+    /// @param execution_id The execution id of the requested plan.
+    /// @param extra Any additional arguments to the method.
+    /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
+    /// execution to move the requested component
+    virtual std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
+        const Name& component_name, const std::string& execution_id, const AttributeMap& extra) = 0;
+
+    /// @brief Returns the status of plans created by MoveOnGlobe requests.
+    /// Includes statuses of plans that are executing, or are part of an executing that changed
+    /// its state within the last 24 hours.
+    /// @return a vector of plan statuses.
+    inline std::vector<plan_status_with_id> list_plan_statuses() {
+        return list_plan_statuses({});
+    }
+
+    /// @brief Returns the status of plans created by MoveOnGlobe requests.
+    /// Includes statuses of plans that are executing, or are part of an execution that changed
+    /// its state within the last 24 hours.
+    /// @param extra Any additional arguments to the method.
+    /// @return a vector of plan statuses.
+    virtual std::vector<plan_status_with_id> list_plan_statuses(const AttributeMap& extra) = 0;
+
+    /// @brief Returns the status of currently active plans created by MoveOnGlobe requests.
+    /// Includes statuses of plans that are executing, or are part of an execution that changed
+    /// its state within the last 24 hours.
+    /// @return a vector of plan statuses.
+    inline std::vector<plan_status_with_id> list_active_plan_statuses() {
+        return list_plan_statuses({});
+    }
+
+    /// @brief Returns the status of currently active plans created by MoveOnGlobe requests.
+    /// Includes statuses of plans that are executing, or are part of an executing that changed
+    /// its state within the last 24 hours.
+    /// @param extra Any additional arguments to the method.
+    /// @return a vector of plan statuses.
+    virtual std::vector<plan_status_with_id> list_active_plan_statuses(
         const AttributeMap& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
