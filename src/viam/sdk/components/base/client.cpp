@@ -70,22 +70,8 @@ void BaseClient::set_velocity(const Vector3& linear,
         .invoke();
 }
 
-// CR erodkin: pull fixes to stop, then fix this!
-grpc::StatusCode BaseClient::stop(const AttributeMap& extra) {
-    viam::component::base::v1::StopRequest request;
-    viam::component::base::v1::StopResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->Stop(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return status.error_code();
+void BaseClient::stop(const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
 bool BaseClient::is_moving() {

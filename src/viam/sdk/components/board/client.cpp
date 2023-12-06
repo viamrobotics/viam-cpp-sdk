@@ -108,6 +108,16 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
     return response.value();
 }
 
+void BoardClient::write_analog(const std::string& pin, int value, const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::WriteAnalog)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_pin(pin);
+                  request.set_value(value);
+              })
+        .invoke();
+}
+
 // CR erodkin: can't really change this one smoothly because `mutable_name()` doesn't exist on the
 // request type.
 Board::digital_value BoardClient::read_digital_interrupt(const std::string& digital_interrupt_name,

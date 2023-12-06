@@ -22,27 +22,30 @@ namespace viam {
 namespace sdk {
 
 using viam::common::v1::ResourceName;
+using time_point = std::chrono::time_point<long long, std::chrono::nanoseconds>;
 
 std::vector<ResourceName> resource_names_for_resource(const std::shared_ptr<Resource>& resource) {
     std::string resource_type;
+    std::string resource_subtype;
     std::vector<ResourceName> resource_names;
     for (auto& kv : Registry::registered_models()) {
         const std::shared_ptr<ModelRegistration> reg = kv.second;
         if (reg->api().to_string() == resource->dynamic_api().to_string()) {
-            resource_type = reg->api().resource_subtype();
+            resource_type = reg->api().resource_type();
+            resource_subtype = reg->api().resource_subtype();
         } else {
             continue;
         }
 
-        if (resource_type.empty()) {
-            resource_type = resource->name();
+        if (resource_subtype.empty()) {
+            resource_subtype = resource->name();
         }
 
         ResourceName r;
         *r.mutable_namespace_() = kRDK;
-        *r.mutable_type() = resource->type().to_string();
         *r.mutable_name() = resource->name();
-        *r.mutable_subtype() = resource_type;
+        *r.mutable_type() = resource_type;
+        *r.mutable_subtype() = resource_subtype;
         resource_names.push_back(r);
     }
     return resource_names;
@@ -58,16 +61,14 @@ std::string bytes_to_string(const std::vector<unsigned char>& b) {
     return img_string;
 };
 
-std::chrono::time_point<long long, std::chrono::nanoseconds> timestamp_to_time_pt(
-    const google::protobuf::Timestamp& timestamp) {
+time_point timestamp_to_time_pt(const google::protobuf::Timestamp& timestamp) {
     const std::chrono::seconds seconds(timestamp.seconds());
     const std::chrono::nanoseconds nanos(timestamp.nanos());
-    return std::chrono::time_point<long long, std::chrono::nanoseconds>(
-        std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) + nanos);
+    return time_point(std::chrono::duration_cast<std::chrono::system_clock::duration>(seconds) +
+                      nanos);
 }
 
-google::protobuf::Timestamp time_pt_to_timestamp(
-    const std::chrono::time_point<long long, std::chrono::nanoseconds>& time_pt) {
+google::protobuf::Timestamp time_pt_to_timestamp(const time_point& time_pt) {
     const std::chrono::seconds duration_s =
         std::chrono::duration_cast<std::chrono::seconds>(time_pt.time_since_epoch());
     const std::chrono::nanoseconds duration_ns = time_pt.time_since_epoch() - duration_s;

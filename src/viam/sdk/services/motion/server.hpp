@@ -35,6 +35,16 @@ class MotionServer : public ResourceServer,
     ::grpc::Status GetPose(::grpc::ServerContext* context,
                            const ::viam::service::motion::v1::GetPoseRequest* request,
                            ::viam::service::motion::v1::GetPoseResponse* response) override;
+    ::grpc::Status GetPlan(::grpc::ServerContext* context,
+                           const ::viam::service::motion::v1::GetPlanRequest* request,
+                           ::viam::service::motion::v1::GetPlanResponse* response) override;
+    ::grpc::Status ListPlanStatuses(
+        ::grpc::ServerContext* context,
+        const ::viam::service::motion::v1::ListPlanStatusesRequest* request,
+        ::viam::service::motion::v1::ListPlanStatusesResponse* response) override;
+    ::grpc::Status StopPlan(::grpc::ServerContext* context,
+                            const ::viam::service::motion::v1::StopPlanRequest* request,
+                            ::viam::service::motion::v1::StopPlanResponse* response) override;
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) override;

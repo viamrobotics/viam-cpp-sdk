@@ -62,7 +62,6 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
     // constructors. This tests that we register correctly.
     Model camera_model("fake", "fake", "mock_camera");
     std::shared_ptr<ModelRegistration> cr = std::make_shared<ModelRegistration>(
-        ResourceType("Camera"),
         Camera::static_api(),
         camera_model,
         [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
@@ -71,7 +70,6 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
 
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
-        ResourceType("Generic"),
         Generic::static_api(),
         generic_model,
         [](Dependencies, ResourceConfig cfg) { return generic::MockGeneric::get_mock_generic(); },
@@ -80,7 +78,6 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
 
     Model motor_model("fake", "fake", "mock_motor");
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
-        ResourceType("Motor"),
         Motor::static_api(),
         motor_model,
         [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },

@@ -1,5 +1,6 @@
 #include "impl.hpp"
 
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -63,18 +64,29 @@ bool MyBase::is_moving() {
     return left_->is_moving() || right_->is_moving();
 }
 
-grpc::StatusCode MyBase::stop(const AttributeMap& extra) {
-    auto left_stop = left_->stop(extra);
-    auto right_stop = right_->stop(extra);
+void MyBase::stop(const AttributeMap& extra) {
+    std::string err_message;
+    bool throw_err = false;
 
-    // Return first of any non-ok error code received from motors.
-    if (left_stop != grpc::StatusCode::OK) {
-        return left_stop;
+    // make sure we try to stop both motors, even if the first fails.
+    try {
+        left_->stop(extra);
+    } catch (const std::exception& err) {
+        throw_err = true;
+        err_message = err.what();
     }
-    if (right_stop != grpc::StatusCode::OK) {
-        return right_stop;
+
+    try {
+        right_->stop(extra);
+    } catch (const std::exception& err) {
+        throw_err = true;
+        err_message = err.what();
     }
-    return grpc::StatusCode::OK;
+
+    // if we received an err from either motor, throw it.
+    if (throw_err) {
+        throw std::runtime_error(err_message);
+    }
 }
 
 void MyBase::set_power(const Vector3& linear, const Vector3& angular, const AttributeMap& extra) {

@@ -66,19 +66,8 @@ Motor::properties MotorClient::get_properties(const AttributeMap& extra) {
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-// CR erodkin: pull fixes to stop, then fix this!
-grpc::StatusCode MotorClient::stop(const AttributeMap& extra) {
-    viam::component::motor::v1::StopRequest request;
-    viam::component::motor::v1::StopResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->Stop(&ctx, request, &response);
-    return status.error_code();
+void MotorClient::stop(const AttributeMap& extra) {
+    return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
 Motor::power_status MotorClient::get_power_status(const AttributeMap& extra) {

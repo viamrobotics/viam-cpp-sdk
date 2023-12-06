@@ -13,6 +13,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
@@ -37,7 +38,7 @@ class BaseRegistration : public ResourceRegistration {
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific base implementations. This class cannot be used on its own.
-class Base : public Component {
+class Base : public Component, public Stoppable {
    public:
     /// @struct properties
     /// @brief Information about the physical base
@@ -120,13 +121,13 @@ class Base : public Component {
                               const AttributeMap& extra) = 0;
 
     /// @brief Stops a robot's base
-    inline grpc::StatusCode stop() {
+    inline void stop() {
         return stop({});
     }
 
     /// @brief Stops a robot's base
     /// @param extra Any additional arguments to the method
-    virtual grpc::StatusCode stop(const AttributeMap& extra) override = 0;
+    virtual void stop(const AttributeMap& extra) override = 0;
 
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;

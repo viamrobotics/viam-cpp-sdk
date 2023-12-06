@@ -13,6 +13,10 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::WorldState)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::geo_obstacle>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Motion::plan_status_with_id)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::Motion::plan_status_with_id>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Motion::plan_with_status)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::Motion::plan_with_status>)
 
 namespace viam {
 namespace sdktests {
@@ -85,6 +89,50 @@ BOOST_AUTO_TEST_CASE(mock_move_on_globe) {
     BOOST_CHECK_EQUAL(*(motion->peek_motion_configuration), *(fake_motion_configuration()));
 }
 
+BOOST_AUTO_TEST_CASE(mock_get_plan) {
+    std::shared_ptr<MockMotion> mock = MockMotion::get_mock_motion();
+
+    auto ret1 = mock->get_plan(fake_component_name(), "execution_id", fake_map());
+    BOOST_CHECK_EQUAL(ret1, mock->fake_plan_with_status());
+
+    auto ret2 = mock->get_latest_plan(fake_component_name(), fake_map());
+    BOOST_CHECK_EQUAL(ret1, ret2);
+}
+
+BOOST_AUTO_TEST_CASE(mock_get_plan_with_replan_history) {
+    std::shared_ptr<MockMotion> mock = MockMotion::get_mock_motion();
+    auto ret1 =
+        mock->get_plan_with_replan_history(fake_component_name(), "execution_id", fake_map());
+
+    BOOST_CHECK_EQUAL(ret1.first, mock->fake_plan_with_status());
+    BOOST_CHECK_EQUAL(ret1.second.size(), 1);
+    BOOST_CHECK_EQUAL(ret1.second[0], mock->fake_plan_with_status());
+
+    auto ret2 = mock->get_latest_plan_with_replan_history(fake_component_name(), fake_map());
+
+    BOOST_CHECK_EQUAL(ret1.first, ret2.first);
+    BOOST_CHECK_EQUAL(ret1.second, ret2.second);
+}
+
+BOOST_AUTO_TEST_CASE(mock_stop_plan) {
+    std::shared_ptr<MockMotion> mock = MockMotion::get_mock_motion();
+    BOOST_CHECK(!mock->peek_stop_plan_called);
+    mock->stop_plan(fake_component_name(), fake_map());
+    BOOST_CHECK(mock->peek_stop_plan_called);
+}
+
+BOOST_AUTO_TEST_CASE(mock_list_plan_statuses) {
+    std::shared_ptr<MockMotion> mock = MockMotion::get_mock_motion();
+    std::vector<Motion::plan_status_with_id> statuses1 = mock->list_plan_statuses(fake_map());
+    BOOST_CHECK_EQUAL(statuses1.size(), 1);
+    BOOST_CHECK_EQUAL(statuses1[0], mock->fake_plan_status_with_id());
+
+    std::vector<Motion::plan_status_with_id> statuses2 =
+        mock->list_active_plan_statuses(fake_map());
+
+    BOOST_CHECK_EQUAL(statuses1, statuses2);
+}
+
 BOOST_AUTO_TEST_CASE(mock_do_command) {
     std::shared_ptr<MockMotion> motion = MockMotion::get_mock_motion();
     AttributeMap expected = fake_map();
@@ -124,8 +172,8 @@ BOOST_AUTO_TEST_SUITE(test_motion_client_server)
 template <typename Lambda>
 void server_to_mock_pipeline(Lambda&& func) {
     MotionServer motion_server;
-    motion_server.resource_manager()->add(std::string("mock_motion"),
-                                          MockMotion::get_mock_motion());
+    auto mock = std::make_shared<MockMotion>("mock_motion");
+    motion_server.resource_manager()->add(std::string("mock_motion"), mock);
 
     grpc::ServerBuilder builder;
     builder.RegisterService(&motion_server);
@@ -136,13 +184,13 @@ void server_to_mock_pipeline(Lambda&& func) {
     auto grpc_channel = server->InProcessChannel(args);
     MotionClient client("mock_motion", grpc_channel);
     // Run the passed test on the created stack
-    std::forward<Lambda>(func)(client);
+    std::forward<Lambda>(func)(client, mock);
     // shutdown afterwards
     server->Shutdown();
 }
 
 BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
-    server_to_mock_pipeline([](Motion& client) -> void {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
         std::string destination_frame("destination");
         std::vector<WorldState::transform> transforms;
         AttributeMap extra = fake_map();
@@ -159,7 +207,7 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
 }
 
 BOOST_AUTO_TEST_CASE(test_move_on_map) {
-    server_to_mock_pipeline([](Motion& client) -> void {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
         pose destination({{1, 2, 3}, {4, 5, 6}, 7});
         bool success =
             client.move_on_map(destination, fake_component_name(), fake_slam_name(), fake_map());
@@ -172,8 +220,7 @@ BOOST_AUTO_TEST_CASE(test_move_on_map) {
 }
 
 BOOST_AUTO_TEST_CASE(test_move_on_globe) {
-    BOOST_TEST(true);
-    server_to_mock_pipeline([](Motion& client) -> void {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
         bool success = client.move_on_globe(fake_geo_point(),
                                             15,
                                             fake_component_name(),
@@ -186,8 +233,52 @@ BOOST_AUTO_TEST_CASE(test_move_on_globe) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_plan) {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
+        auto ret1 = client.get_plan(fake_component_name(), "execution_id", fake_map());
+        BOOST_CHECK_EQUAL(ret1, MockMotion::fake_plan_with_status());
+
+        auto ret2 = client.get_latest_plan(fake_component_name(), fake_map());
+        BOOST_CHECK_EQUAL(ret1, ret2);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_plan_with_replan_history) {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
+        auto ret1 =
+            client.get_plan_with_replan_history(fake_component_name(), "execution_id", fake_map());
+        BOOST_CHECK_EQUAL(ret1.first, MockMotion::fake_plan_with_status());
+        BOOST_CHECK_EQUAL(ret1.second.size(), 1);
+        BOOST_CHECK_EQUAL(ret1.second[0], MockMotion::fake_plan_with_status());
+
+        auto ret2 = client.get_latest_plan_with_replan_history(fake_component_name(), fake_map());
+        BOOST_CHECK_EQUAL(ret1.first, ret2.first);
+        BOOST_CHECK_EQUAL(ret1.second, ret2.second);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_list_plan_statuses) {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
+        std::vector<Motion::plan_status_with_id> statuses1 = client.list_plan_statuses(fake_map());
+        BOOST_CHECK_EQUAL(statuses1.size(), 1);
+        BOOST_CHECK_EQUAL(statuses1[0], MockMotion::fake_plan_status_with_id());
+
+        std::vector<Motion::plan_status_with_id> statuses2 =
+            client.list_active_plan_statuses(fake_map());
+
+        BOOST_CHECK_EQUAL(statuses1, statuses2);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_stop_plan) {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
+        client.stop_plan(fake_component_name());
+        BOOST_CHECK(mock->peek_stop_plan_called);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_do_command) {
-    server_to_mock_pipeline([](Motion& client) -> void {
+    server_to_mock_pipeline([](Motion& client, std::shared_ptr<MockMotion> mock) -> void {
         AttributeMap expected = fake_map();
 
         AttributeMap command = fake_map();

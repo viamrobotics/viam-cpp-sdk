@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <mutex>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <unordered_map>
@@ -18,6 +19,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/services/service.hpp>
 
@@ -147,7 +149,6 @@ void RobotService_::stream_status(
                                       ::viam::robot::v1::StopAllResponse* response) {
     const ResourceName r;
     std::unordered_map<std::string, AttributeMap> extra;
-    grpc::StatusCode status = grpc::StatusCode::OK;
     for (const auto& ex : request->extra()) {
         const google::protobuf::Struct& struct_ = ex.params();
         const AttributeMap value_map = struct_to_map(struct_);
@@ -155,23 +156,42 @@ void RobotService_::stream_status(
         extra.emplace(name, value_map);
     }
 
+    grpc::StatusCode status = grpc::StatusCode::OK;
+    std::string status_message;
+
     for (const auto& r : resource_manager()->resources()) {
         const std::shared_ptr<Resource> resource = r.second;
         const ResourceName rn = resource->get_resource_name(resource->name());
         const std::string rn_ = rn.SerializeAsString();
         if (extra.find(rn_) != extra.end()) {
-            grpc::StatusCode status = resource->stop(extra.at(rn_));
-            if (status != grpc::StatusCode::OK) {
-                // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
-                status = resource->stop();
+            try {
+                Stoppable::stop_if_stoppable(resource, extra.at(rn_));
+            } catch (const std::runtime_error& err) {
+                try {
+                    status_message = err.what();
+                    Stoppable::stop_if_stoppable(resource);
+                } catch (std::runtime_error& err) {
+                    status_message = err.what();
+                    status = grpc::UNKNOWN;
+                } catch (...) {
+                    status_message = "unknown error";
+                    status = grpc::UNKNOWN;
+                }
             }
         } else {
-            // NOLINTNEXTLINE(clang-analyzer-deadcode.DeadStores)
-            status = resource->stop();
+            try {
+                Stoppable::stop_if_stoppable(resource);
+            } catch (std::runtime_error& err) {
+                status_message = err.what();
+                status = grpc::UNKNOWN;
+            } catch (...) {
+                status_message = "unknown error";
+                status = grpc::UNKNOWN;
+            }
         }
     }
 
-    return grpc::Status(status, "");
+    return grpc::Status(status, status_message);
 }
 
 std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {

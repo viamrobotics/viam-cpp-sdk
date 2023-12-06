@@ -62,6 +62,10 @@ class BoardServer : public ResourceServer,
         const ::viam::component::board::v1::ReadAnalogReaderRequest* request,
         ::viam::component::board::v1::ReadAnalogReaderResponse* response) noexcept override;
 
+    ::grpc::Status WriteAnalog(::grpc::ServerContext* context,
+                               const component::board::v1::WriteAnalogRequest* request,
+                               component::board::v1::WriteAnalogResponse* response) override;
+
     ::grpc::Status GetDigitalInterruptValue(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,

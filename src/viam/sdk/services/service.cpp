@@ -18,9 +18,5 @@ ResourceName Service::get_resource_name(std::string name) {
 
 Service::Service() : Resource("service"){};
 
-ResourceType Service::type() const {
-    return {kService};
-}
-
 }  // namespace sdk
 }  // namespace viam

@@ -30,6 +30,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel/mlmodel.hpp>
 #include <viam/sdk/services/mlmodel/server.hpp>
@@ -57,7 +58,7 @@ constexpr char service_name[] = "example_mlmodelservice_tflite";
 //      with the model.
 //
 // Any additional configuration fields are ignored.
-class MLModelServiceTFLite : public vsdk::MLModelService {
+class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable {
     class write_to_tflite_tensor_visitor_;
 
    public:
@@ -73,12 +74,12 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
         // drain.
     }
 
-    grpc::StatusCode stop(vsdk::AttributeMap extra) noexcept final {
+    void stop(const vsdk::AttributeMap& extra) noexcept final {
         return stop();
     }
 
-    /// @brief Stops a resource from running.
-    grpc::StatusCode stop() noexcept final {
+    /// @brief Stops the MLModelServiceTFLite from running.
+    void stop() noexcept {
         using std::swap;
         try {
             std::lock_guard<std::mutex> lock(state_lock_);
@@ -90,7 +91,6 @@ class MLModelServiceTFLite : public vsdk::MLModelService {
             }
         } catch (...) {
         }
-        return grpc::StatusCode::OK;
     }
 
     void reconfigure(vsdk::Dependencies dependencies, vsdk::ResourceConfig configuration) final
@@ -732,10 +732,6 @@ int serve(const std::string& socket_path) try {
 
     // Create a new model registration for the service.
     auto module_registration = std::make_shared<vsdk::ModelRegistration>(
-        // TODO(RSDK-2417): This field is deprecated, just provide some
-        // quasi-relevant string value here for now.
-        vsdk::ResourceType{"MLModelServiceTFLiteModule"},
-
         // Identify that this resource offers the MLModelService API
         vsdk::MLModelService::static_api(),
 

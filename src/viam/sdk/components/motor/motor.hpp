@@ -12,6 +12,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
@@ -36,7 +37,7 @@ class MotorRegistration : public ResourceRegistration {
 ///
 /// This acts as an abstract base class to be inherited from by any drivers representing
 /// specific motor implementations. This class cannot be used on its own.
-class Motor : public Component {
+class Motor : public Component, public Stoppable {
    public:
     /// @struct position
     /// @brief Current position of the motor relative to its home
@@ -183,13 +184,13 @@ class Motor : public Component {
     virtual bool is_moving() = 0;
 
     /// @brief Stops a resource from running.
-    inline grpc::StatusCode stop() {
+    inline void stop() {
         return stop({});
     }
 
     /// @brief Stops a resource from running.
     /// @param extra Extra arguments to pass to the resource's `stop` method.
-    grpc::StatusCode stop(const AttributeMap& extra) override = 0;
+    void stop(const AttributeMap& extra) override = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

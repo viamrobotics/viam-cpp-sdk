@@ -38,9 +38,8 @@ void MockBase::set_velocity(const Vector3& linear,
     this->peek_set_velocity_linear = linear;
     this->peek_set_velocity_angular = angular;
 }
-grpc::StatusCode MockBase::stop(const AttributeMap& extra) {
+void MockBase::stop(const AttributeMap& extra) {
     this->peek_stop_called = true;
-    return grpc::StatusCode::OK;
 }
 bool MockBase::is_moving() {
     return false;

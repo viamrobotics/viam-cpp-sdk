@@ -1,5 +1,6 @@
 #include <viam/sdk/resource/resource.hpp>
 
+#include <stdexcept>
 #include <unordered_map>
 
 #include <grpcpp/support/status.h>
@@ -12,10 +13,7 @@ namespace viam {
 namespace sdk {
 
 Resource::~Resource() = default;
-
-grpc::StatusCode Resource::stop(const AttributeMap& extra) {
-    return grpc::StatusCode::UNIMPLEMENTED;
-}
+Resource::Resource(std::string name) : name_(std::move(name)) {}
 
 std::string Resource::name() const {
     return name_;
@@ -26,10 +24,6 @@ API Resource::static_api() {
 }
 
 void Resource::reconfigure(Dependencies deps, ResourceConfig cfg){};
-
-ResourceType Resource::type() const {
-    return {kResource};
-}
 
 ResourceName Resource::get_resource_name(std::string name) {
     ResourceName r;
