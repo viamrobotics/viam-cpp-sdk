@@ -49,7 +49,5 @@ std::vector<GeometryConfig> SensorClient::get_geometries(const AttributeMap& ext
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }
 
-void SensorClient::stop(const AttributeMap& extra) {}
-
 }  // namespace sdk
 }  // namespace viam

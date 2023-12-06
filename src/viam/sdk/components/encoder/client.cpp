@@ -105,7 +105,5 @@ AttributeMap EncoderClient::do_command(AttributeMap command) {
     return struct_to_map(response.result());
 }
 
-void EncoderClient::stop(const AttributeMap& extra) {}
-
 }  // namespace sdk
 }  // namespace viam

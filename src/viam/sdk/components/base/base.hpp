@@ -13,6 +13,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
 namespace sdk {
@@ -37,7 +38,7 @@ class BaseRegistration : public ResourceRegistration {
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific base implementations. This class cannot be used on its own.
-class Base : public Component {
+class Base : public Component, public Stoppable {
    public:
     /// @struct properties
     /// @brief Information about the physical base

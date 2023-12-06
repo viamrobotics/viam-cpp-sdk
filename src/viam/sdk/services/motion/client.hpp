@@ -16,7 +16,6 @@ namespace sdk {
 class MotionClient : public Motion {
    public:
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    void stop(const AttributeMap& extra) override;
     bool move(const pose_in_frame& destination,
               const Name& component_name,
               std::shared_ptr<WorldState> world_state,
