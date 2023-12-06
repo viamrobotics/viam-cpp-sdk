@@ -10,9 +10,10 @@ var searchData=
   ['signalmanager_7',['SignalManager',['../classviam_1_1sdk_1_1SignalManager.html',1,'viam::sdk']]],
   ['sphere_8',['sphere',['../structviam_1_1sdk_1_1sphere.html',1,'viam::sdk']]],
   ['status_9',['status',['../structviam_1_1sdk_1_1Board_1_1status.html',1,'viam::sdk::Board']]],
-  ['stoppable_10',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
-  ['summation_11',['Summation',['../classSummation.html',1,'']]],
-  ['summationclient_12',['SummationClient',['../classSummationClient.html',1,'']]],
-  ['summationregistration_13',['SummationRegistration',['../classSummationRegistration.html',1,'']]],
-  ['summationserver_14',['SummationServer',['../classSummationServer.html',1,'']]]
+  ['steps_10',['steps',['../structviam_1_1sdk_1_1Motion_1_1steps.html',1,'viam::sdk::Motion']]],
+  ['stoppable_11',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
+  ['summation_12',['Summation',['../classSummation.html',1,'']]],
+  ['summationclient_13',['SummationClient',['../classSummationClient.html',1,'']]],
+  ['summationregistration_14',['SummationRegistration',['../classSummationRegistration.html',1,'']]],
+  ['summationserver_15',['SummationServer',['../classSummationServer.html',1,'']]]
 ];

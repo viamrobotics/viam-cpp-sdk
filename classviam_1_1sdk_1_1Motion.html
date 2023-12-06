@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -115,6 +116,30 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1orientation__constraint.html">orientation_constraint</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies that the component being moved will not deviate its orientation beyond the specified threshold.  <a href="structviam_1_1sdk_1_1Motion_1_1orientation__constraint.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan.html">plan</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a motion plan.  <a href="structviam_1_1sdk_1_1Motion_1_1plan.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status.html">plan_status</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes the state of a given plan at a point in time.  <a href="structviam_1_1sdk_1_1Motion_1_1plan__status.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The motion plan status, plus plan ID, component name, and execution ID.  <a href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a plan, its current status, and all status changes that have occurred previously on that plan.  <a href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An ordered list of plan steps.  <a href="structviam_1_1sdk_1_1Motion_1_1steps.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a675019f922d19893e0891a17f8a31605" id="r_a675019f922d19893e0891a17f8a31605"><td class="memItemLeft" align="right" valign="top"><a id="a675019f922d19893e0891a17f8a31605" name="a675019f922d19893e0891a17f8a31605"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>plan_state</b> : uint8_t { <b>k_in_progress</b>
+, <b>k_stopped</b>
+, <b>k_succeeded</b>
+, <b>k_failed</b>
+ }</td></tr>
+<tr class="separator:a675019f922d19893e0891a17f8a31605"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -127,24 +152,66 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a034cdf0ccaaecafb8ba6ccc8211f2616" id="r_a034cdf0ccaaecafb8ba6ccc8211f2616"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a034cdf0ccaaecafb8ba6ccc8211f2616">move</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1WorldState.html">WorldState</a> &gt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">world_state</a>, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a> &gt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1constraints.html">constraints</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a034cdf0ccaaecafb8ba6ccc8211f2616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any compononent on the robot to a specified destination.  <br /></td></tr>
 <tr class="separator:a034cdf0ccaaecafb8ba6ccc8211f2616"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08209bbd27801c1789bd062ccb823e8f" id="r_a08209bbd27801c1789bd062ccb823e8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a08209bbd27801c1789bd062ccb823e8f">move_on_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">component_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">slam_name</a>)</td></tr>
+<tr class="memitem:a08209bbd27801c1789bd062ccb823e8f" id="r_a08209bbd27801c1789bd062ccb823e8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a08209bbd27801c1789bd062ccb823e8f">move_on_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">slam_name</a>)</td></tr>
 <tr class="memdesc:a08209bbd27801c1789bd062ccb823e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
 <tr class="separator:a08209bbd27801c1789bd062ccb823e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab779c0c47eed544832cb112dcd97b09f" id="r_ab779c0c47eed544832cb112dcd97b09f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#ab779c0c47eed544832cb112dcd97b09f">move_on_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">component_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">slam_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:ab779c0c47eed544832cb112dcd97b09f" id="r_ab779c0c47eed544832cb112dcd97b09f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#ab779c0c47eed544832cb112dcd97b09f">move_on_map</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">slam_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:ab779c0c47eed544832cb112dcd97b09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a SLAM map.  <br /></td></tr>
 <tr class="separator:ab779c0c47eed544832cb112dcd97b09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94effa56cc3bc979a69e5e0593692fa3" id="r_a94effa56cc3bc979a69e5e0593692fa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a94effa56cc3bc979a69e5e0593692fa3">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">component_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>)</td></tr>
+<tr class="memitem:a94effa56cc3bc979a69e5e0593692fa3" id="r_a94effa56cc3bc979a69e5e0593692fa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a94effa56cc3bc979a69e5e0593692fa3">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>)</td></tr>
 <tr class="memdesc:a94effa56cc3bc979a69e5e0593692fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
 <tr class="separator:a94effa56cc3bc979a69e5e0593692fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66fd79c759f01f467dccff23c0c4f754" id="r_a66fd79c759f01f467dccff23c0c4f754"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a66fd79c759f01f467dccff23c0c4f754">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">component_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a66fd79c759f01f467dccff23c0c4f754" id="r_a66fd79c759f01f467dccff23c0c4f754"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a66fd79c759f01f467dccff23c0c4f754">move_on_globe</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="structviam_1_1sdk_1_1geo__point.html">geo_point</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">double</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">heading</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">movement_sensor_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1geo__obstacle.html">geo_obstacle</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">obstacles</a>, std::shared_ptr&lt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a> &gt; <a class="el" href="structviam_1_1sdk_1_1motion__configuration.html">motion_configuration</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a66fd79c759f01f467dccff23c0c4f754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves any component on the robot to a specific destination on a globe.  <br /></td></tr>
 <tr class="separator:a66fd79c759f01f467dccff23c0c4f754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eb1325754e7e93e066111a87a8b659e" id="r_a0eb1325754e7e93e066111a87a8b659e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a0eb1325754e7e93e066111a87a8b659e">get_pose</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">component_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination_frame</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">supplemental_transforms</a>)</td></tr>
+<tr class="memitem:a0eb1325754e7e93e066111a87a8b659e" id="r_a0eb1325754e7e93e066111a87a8b659e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a0eb1325754e7e93e066111a87a8b659e">get_pose</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination_frame</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">supplemental_transforms</a>)</td></tr>
 <tr class="memdesc:a0eb1325754e7e93e066111a87a8b659e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
 <tr class="separator:a0eb1325754e7e93e066111a87a8b659e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02d7bd0342c7b08bf0e6ddb29c8290dd" id="r_a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">get_pose</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">component_name</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination_frame</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">supplemental_transforms</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memitem:a02d7bd0342c7b08bf0e6ddb29c8290dd" id="r_a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">get_pose</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">destination_frame</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">supplemental_transforms</a>, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
 <tr class="memdesc:a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of any component on the robot.  <br /></td></tr>
 <tr class="separator:a02d7bd0342c7b08bf0e6ddb29c8290dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493105829470a5bfd650360da2bd6b39" id="r_a493105829470a5bfd650360da2bd6b39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a493105829470a5bfd650360da2bd6b39">stop_plan</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name)</td></tr>
+<tr class="memdesc:a493105829470a5bfd650360da2bd6b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop a currently executing motion plan.  <br /></td></tr>
+<tr class="separator:a493105829470a5bfd650360da2bd6b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b1c49c14a7bb719166e4bcbd0a0223" id="r_a58b1c49c14a7bb719166e4bcbd0a0223"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a58b1c49c14a7bb719166e4bcbd0a0223">stop_plan</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a58b1c49c14a7bb719166e4bcbd0a0223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop a currently executing motion plan.  <br /></td></tr>
+<tr class="separator:a58b1c49c14a7bb719166e4bcbd0a0223"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1182ba23bc3ef5eb69c6016dffbad0d" id="r_aa1182ba23bc3ef5eb69c6016dffbad0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#aa1182ba23bc3ef5eb69c6016dffbad0d">get_latest_plan</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name)</td></tr>
+<tr class="memdesc:aa1182ba23bc3ef5eb69c6016dffbad0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan and state history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:aa1182ba23bc3ef5eb69c6016dffbad0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f621c63da854f3a0a5af806edf43f8e" id="r_a2f621c63da854f3a0a5af806edf43f8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a2f621c63da854f3a0a5af806edf43f8e">get_latest_plan</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a2f621c63da854f3a0a5af806edf43f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan and state history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:a2f621c63da854f3a0a5af806edf43f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b03c0fe52c3441efc2faa37e2189e14" id="r_a6b03c0fe52c3441efc2faa37e2189e14"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a6b03c0fe52c3441efc2faa37e2189e14">get_latest_plan_with_replan_history</a> (<a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> component_name)</td></tr>
+<tr class="memdesc:a6b03c0fe52c3441efc2faa37e2189e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan, state history, and replan history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:a6b03c0fe52c3441efc2faa37e2189e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7e5dd5961a48846b52607c6b3af386" id="r_aee7e5dd5961a48846b52607c6b3af386"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#aee7e5dd5961a48846b52607c6b3af386">get_latest_plan_with_replan_history</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:aee7e5dd5961a48846b52607c6b3af386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan, state history, and replan history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:aee7e5dd5961a48846b52607c6b3af386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2199a90f0f722001503ab6c3cb4c6a85" id="r_a2199a90f0f722001503ab6c3cb4c6a85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a2199a90f0f722001503ab6c3cb4c6a85">get_plan</a> (<a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;execution_id)</td></tr>
+<tr class="memdesc:a2199a90f0f722001503ab6c3cb4c6a85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan and state history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:a2199a90f0f722001503ab6c3cb4c6a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1018ec2ec51b2d034eaa2506d3ba280e" id="r_a1018ec2ec51b2d034eaa2506d3ba280e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a1018ec2ec51b2d034eaa2506d3ba280e">get_plan</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;execution_id, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a1018ec2ec51b2d034eaa2506d3ba280e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan and state history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:a1018ec2ec51b2d034eaa2506d3ba280e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73bb89f531e8bc6f92f2d1d9c62286b6" id="r_a73bb89f531e8bc6f92f2d1d9c62286b6"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a73bb89f531e8bc6f92f2d1d9c62286b6">get_plan_with_replan_history</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;execution_id)</td></tr>
+<tr class="memdesc:a73bb89f531e8bc6f92f2d1d9c62286b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan, state history, and replan history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:a73bb89f531e8bc6f92f2d1d9c62286b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71664f433b0523c202824d4d22b2d1f0" id="r_a71664f433b0523c202824d4d22b2d1f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a71664f433b0523c202824d4d22b2d1f0">get_plan_with_replan_history</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;component_name, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;execution_id, <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:a71664f433b0523c202824d4d22b2d1f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan, state history, and replan history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
+<tr class="separator:a71664f433b0523c202824d4d22b2d1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81ae1fd3066cfa2fee74b52cd11af5e1" id="r_a81ae1fd3066cfa2fee74b52cd11af5e1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#a81ae1fd3066cfa2fee74b52cd11af5e1">list_plan_statuses</a> ()</td></tr>
+<tr class="memdesc:a81ae1fd3066cfa2fee74b52cd11af5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the status of plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an executing that changed its state within the last 24 hours.  <br /></td></tr>
+<tr class="separator:a81ae1fd3066cfa2fee74b52cd11af5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af30e094a9393b8ef90e30a30f8a70f40" id="r_af30e094a9393b8ef90e30a30f8a70f40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#af30e094a9393b8ef90e30a30f8a70f40">list_plan_statuses</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:af30e094a9393b8ef90e30a30f8a70f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the status of plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an execution that changed its state within the last 24 hours.  <br /></td></tr>
+<tr class="separator:af30e094a9393b8ef90e30a30f8a70f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead6803e8494d297ad16908cb5070e3d" id="r_aead6803e8494d297ad16908cb5070e3d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#aead6803e8494d297ad16908cb5070e3d">list_active_plan_statuses</a> ()</td></tr>
+<tr class="memdesc:aead6803e8494d297ad16908cb5070e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the status of currently active plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an execution that changed its state within the last 24 hours.  <br /></td></tr>
+<tr class="separator:aead6803e8494d297ad16908cb5070e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae838f17535ae14eaa2b0e38e05851d42" id="r_ae838f17535ae14eaa2b0e38e05851d42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#ae838f17535ae14eaa2b0e38e05851d42">list_active_plan_statuses</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;extra)=0</td></tr>
+<tr class="memdesc:ae838f17535ae14eaa2b0e38e05851d42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the status of currently active plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an executing that changed its state within the last 24 hours.  <br /></td></tr>
+<tr class="separator:ae838f17535ae14eaa2b0e38e05851d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab918f87868389425971f7f74d8fc62e" id="r_aab918f87868389425971f7f74d8fc62e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> AttributeMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Motion.html#aab918f87868389425971f7f74d8fc62e">do_command</a> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">command</a>)=0</td></tr>
 <tr class="memdesc:aab918f87868389425971f7f74d8fc62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:aab918f87868389425971f7f74d8fc62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +233,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a60562f80d63ab5889b7d3db0afa13a6f" id="r_a60562f80d63ab5889b7d3db0afa13a6f"><td class="memItemLeft" align="right" valign="top"><a id="a60562f80d63ab5889b7d3db0afa13a6f" name="a60562f80d63ab5889b7d3db0afa13a6f"></a>
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> plan_state&#160;</td><td class="memItemRight" valign="bottom"><b>from_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> service::motion::v1::PlanState &amp;<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">proto</a>)</td></tr>
+<tr class="separator:a60562f80d63ab5889b7d3db0afa13a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4403befed09833ba1f29887d2948f457" id="r_a4403befed09833ba1f29887d2948f457"><td class="memItemLeft" align="right" valign="top"><a id="a4403befed09833ba1f29887d2948f457" name="a4403befed09833ba1f29887d2948f457"></a>
+<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> service::motion::v1::PlanState&#160;</td><td class="memItemRight" valign="bottom"><b>to_proto</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> plan_state &amp;state)</td></tr>
+<tr class="separator:a4403befed09833ba1f29887d2948f457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab14b99244b5dae1289fb16abefdf294" id="r_aab14b99244b5dae1289fb16abefdf294"><td class="memItemLeft" align="right" valign="top"><a id="aab14b99244b5dae1289fb16abefdf294" name="aab14b99244b5dae1289fb16abefdf294"></a>
 <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">static</a> <a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><b>static_api</b> ()</td></tr>
 <tr class="separator:aab14b99244b5dae1289fb16abefdf294"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,6 +329,374 @@ Protected Member Functions</h2></td></tr>
 <p>Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html" title="Extends APIType to additionally define a resource&#39;s subtype (e.g., camera).">API</a></code> associated with a particular resource. </p>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Resource.html#a689c2db1817335f7bef1954e3fac3c88">viam::sdk::Resource</a>.</p>
+
+</div>
+</div>
+<a id="aa1182ba23bc3ef5eb69c6016dffbad0d" name="aa1182ba23bc3ef5eb69c6016dffbad0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1182ba23bc3ef5eb69c6016dffbad0d">&#9670;&#160;</a></span>get_latest_plan() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> viam::sdk::Motion::get_latest_plan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan and state history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the plan and status of the most recent execution to move the requested component </dd></dl>
+
+</div>
+</div>
+<a id="a2f621c63da854f3a0a5af806edf43f8e" name="a2f621c63da854f3a0a5af806edf43f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f621c63da854f3a0a5af806edf43f8e">&#9670;&#160;</a></span>get_latest_plan() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> viam::sdk::Motion::get_latest_plan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan and state history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the plan and status of the most recent execution to move the requested component </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a16c05826d33525a451a59fb3f63b708e">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a2f621c63da854f3a0a5af806edf43f8e">viam::sdk::MotionClient</a>.</p>
+
+</div>
+</div>
+<a id="aee7e5dd5961a48846b52607c6b3af386" name="aee7e5dd5961a48846b52607c6b3af386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7e5dd5961a48846b52607c6b3af386">&#9670;&#160;</a></span>get_latest_plan_with_replan_history() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt; viam::sdk::Motion::get_latest_plan_with_replan_history </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan, state history, and replan history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pair of (1) the plan and status and (2) the replan history of the most recent execution to move the requested component </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a4d78e500c047538327279e74d727a8cd">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#aee7e5dd5961a48846b52607c6b3af386">viam::sdk::MotionClient</a>.</p>
+
+</div>
+</div>
+<a id="a6b03c0fe52c3441efc2faa37e2189e14" name="a6b03c0fe52c3441efc2faa37e2189e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b03c0fe52c3441efc2faa37e2189e14">&#9670;&#160;</a></span>get_latest_plan_with_replan_history() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt; viam::sdk::Motion::get_latest_plan_with_replan_history </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td>
+          <td class="paramname"><em>component_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan, state history, and replan history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pair of (1) the plan and status and (2) the replan history of the most recent execution to move the requested component </dd></dl>
+
+</div>
+</div>
+<a id="a1018ec2ec51b2d034eaa2506d3ba280e" name="a1018ec2ec51b2d034eaa2506d3ba280e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1018ec2ec51b2d034eaa2506d3ba280e">&#9670;&#160;</a></span>get_plan() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> viam::sdk::Motion::get_plan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;&#160;</td>
+          <td class="paramname"><em>execution_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan and state history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+    <tr><td class="paramname">execution_id</td><td>The execution id of the requested plan. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the plan and status of the requested execution's move the requested component </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a76be1aa2b793b41acc53d055b846732e">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a1018ec2ec51b2d034eaa2506d3ba280e">viam::sdk::MotionClient</a>.</p>
+
+</div>
+</div>
+<a id="a2199a90f0f722001503ab6c3cb4c6a85" name="a2199a90f0f722001503ab6c3cb4c6a85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2199a90f0f722001503ab6c3cb4c6a85">&#9670;&#160;</a></span>get_plan() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> viam::sdk::Motion::get_plan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;&#160;</td>
+          <td class="paramname"><em>execution_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan and state history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+    <tr><td class="paramname">execution_id</td><td>The execution id of the requested plan. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the plan and status of the requested execution's move the requested component </dd></dl>
+
+</div>
+</div>
+<a id="a73bb89f531e8bc6f92f2d1d9c62286b6" name="a73bb89f531e8bc6f92f2d1d9c62286b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73bb89f531e8bc6f92f2d1d9c62286b6">&#9670;&#160;</a></span>get_plan_with_replan_history() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt; viam::sdk::Motion::get_plan_with_replan_history </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;&#160;</td>
+          <td class="paramname"><em>execution_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan, state history, and replan history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+    <tr><td class="paramname">execution_id</td><td>The execution id of the requested plan. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pair of (1) the plan and status and (2) the replan history of the most recent execution to move the requested component </dd></dl>
+
+</div>
+</div>
+<a id="a71664f433b0523c202824d4d22b2d1f0" name="a71664f433b0523c202824d4d22b2d1f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71664f433b0523c202824d4d22b2d1f0">&#9670;&#160;</a></span>get_plan_with_replan_history() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::pair&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a> &gt; &gt; viam::sdk::Motion::get_plan_with_replan_history </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> std::string &amp;&#160;</td>
+          <td class="paramname"><em>execution_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the plan, state history, and replan history of the requested plan. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component which the MoveOnGlobe request asked to move. </td></tr>
+    <tr><td class="paramname">execution_id</td><td>The execution id of the requested plan. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pair of (1) the plan and status and (2) the replan history of the most recent execution to move the requested component </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a8debf1ab5d4e4dbc8879abf7b693a882">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a71664f433b0523c202824d4d22b2d1f0">viam::sdk::MotionClient</a>.</p>
 
 </div>
 </div>
@@ -371,6 +812,136 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The pose of the component. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#ab1100ba41d06773094fa49fc7c55b737">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a02d7bd0342c7b08bf0e6ddb29c8290dd">viam::sdk::MotionClient</a>.</p>
+
+</div>
+</div>
+<a id="aead6803e8494d297ad16908cb5070e3d" name="aead6803e8494d297ad16908cb5070e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead6803e8494d297ad16908cb5070e3d">&#9670;&#160;</a></span>list_active_plan_statuses() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt; viam::sdk::Motion::list_active_plan_statuses </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the status of currently active plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an execution that changed its state within the last 24 hours. </p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of plan statuses. </dd></dl>
+
+</div>
+</div>
+<a id="ae838f17535ae14eaa2b0e38e05851d42" name="ae838f17535ae14eaa2b0e38e05851d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae838f17535ae14eaa2b0e38e05851d42">&#9670;&#160;</a></span>list_active_plan_statuses() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt; viam::sdk::Motion::list_active_plan_statuses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the status of currently active plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an executing that changed its state within the last 24 hours. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a vector of plan statuses. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a49a45b89bd44a9026b9a679ea2cde80d">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#ae838f17535ae14eaa2b0e38e05851d42">viam::sdk::MotionClient</a>.</p>
+
+</div>
+</div>
+<a id="a81ae1fd3066cfa2fee74b52cd11af5e1" name="a81ae1fd3066cfa2fee74b52cd11af5e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81ae1fd3066cfa2fee74b52cd11af5e1">&#9670;&#160;</a></span>list_plan_statuses() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt; viam::sdk::Motion::list_plan_statuses </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the status of plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an executing that changed its state within the last 24 hours. </p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of plan statuses. </dd></dl>
+
+</div>
+</div>
+<a id="af30e094a9393b8ef90e30a30f8a70f40" name="af30e094a9393b8ef90e30a30f8a70f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af30e094a9393b8ef90e30a30f8a70f40">&#9670;&#160;</a></span>list_plan_statuses() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html">plan_status_with_id</a> &gt; viam::sdk::Motion::list_plan_statuses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the status of plans created by MoveOnGlobe requests. Includes statuses of plans that are executing, or are part of an execution that changed its state within the last 24 hours. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a vector of plan statuses. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a68a29f920a311e087af57ec8fdc96a52">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#af30e094a9393b8ef90e30a30f8a70f40">viam::sdk::MotionClient</a>.</p>
 
 </div>
 </div>
@@ -771,6 +1342,87 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Whether or not the move was successful. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a8df727a8495ef7d037fa197260ad237b">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#ab779c0c47eed544832cb112dcd97b09f">viam::sdk::MotionClient</a>.</p>
+
+</div>
+</div>
+<a id="a493105829470a5bfd650360da2bd6b39" name="a493105829470a5bfd650360da2bd6b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493105829470a5bfd650360da2bd6b39">&#9670;&#160;</a></span>stop_plan() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Motion::stop_plan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stop a currently executing motion plan. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>the component of the currently executing plan to stop. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a58b1c49c14a7bb719166e4bcbd0a0223" name="a58b1c49c14a7bb719166e4bcbd0a0223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58b1c49c14a7bb719166e4bcbd0a0223">&#9670;&#160;</a></span>stop_plan() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">virtual</a> <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">void</a> viam::sdk::Motion::stop_plan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;&#160;</td>
+          <td class="paramname"><em>component_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">const</a> AttributeMap &amp;&#160;</td>
+          <td class="paramname"><em>extra</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stop a currently executing motion plan. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>the component of the currently executing plan to stop. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#aef877b4f4985914f700f2777d3c6e691">viam::sdk::MotionClient</a>, and <a class="el" href="classviam_1_1sdk_1_1MotionClient.html#a58b1c49c14a7bb719166e4bcbd0a0223">viam::sdk::MotionClient</a>.</p>
 
 </div>
 </div>

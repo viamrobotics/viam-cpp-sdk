@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classviam_1_1sdk_1_1ModelRegistration.html#ab67562cb73b96f659378050b60f7b5cb',1,'viam::sdk::ModelRegistration']]],
-  ['value_1',['value',['../structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html#a5c037ef6b176e742a77dbc64d2c43a7c',1,'viam::sdk::MovementSensor::compassheading']]],
-  ['vision_5fservice_2',['vision_service',['../structviam_1_1sdk_1_1obstacle__detector.html#a791ef33fe5e7ac449a9e0d23bd0c054d',1,'viam::sdk::obstacle_detector']]],
-  ['volts_3',['volts',['../structviam_1_1sdk_1_1PowerSensor_1_1voltage.html#a14f378a6d53d4514a340efe1526da02e',1,'viam::sdk::PowerSensor::voltage']]]
+  ['plan_0',['plan',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#a0a236586ee8d4f758eb50a2ff9ad2a86',1,'viam::sdk::Motion::plan_with_status']]],
+  ['plan_5fdeviation_5fm_1',['plan_deviation_m',['../structviam_1_1sdk_1_1motion__configuration.html#ac8a390fb620697ac9099c9be03dc2fc4',1,'viam::sdk::motion_configuration']]],
+  ['plan_5fid_2',['plan_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#aeaea77521be70919b2a5c94ac1b73e4b',1,'viam::sdk::Motion::plan_status_with_id']]],
+  ['position_5fpolling_5ffrequency_5fhz_3',['position_polling_frequency_hz',['../structviam_1_1sdk_1_1motion__configuration.html#aba47f2fc7d5d05619681b48efc53dd65',1,'viam::sdk::motion_configuration']]],
+  ['position_5freporting_4',['position_reporting',['../structviam_1_1sdk_1_1Motor_1_1properties.html#a6cfffefae3df6f503ead3e5f8f3b9dd9',1,'viam::sdk::Motor::properties']]],
+  ['power_5fpct_5',['power_pct',['../structviam_1_1sdk_1_1Motor_1_1power__status.html#a2a0673d493b18e92e14fedd7dab50d1a',1,'viam::sdk::Motor::power_status']]]
 ];
