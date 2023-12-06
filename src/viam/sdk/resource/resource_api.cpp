@@ -97,7 +97,7 @@ const std::string& Name::remote_name() const {
 }
 
 std::string Name::to_string() const {
-    if (remote_name_.empty()) {
+    if (remote_name_.empty() || remote_name_ == ":") {
         return api_.to_string() + "/" + name_;
     }
     return api_.to_string() + "/" + remote_name_ + ":" + name_;
