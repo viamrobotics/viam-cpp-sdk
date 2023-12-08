@@ -82,6 +82,7 @@ target_sources(viamsdk
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
+    module/signal_manager.cpp
     referenceframe/frame.cpp
     resource/resource.cpp
     resource/resource_api.cpp
@@ -146,6 +147,7 @@ target_sources(viamsdk
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
       ../../viam/sdk/module/service.hpp
+      ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/resource.hpp

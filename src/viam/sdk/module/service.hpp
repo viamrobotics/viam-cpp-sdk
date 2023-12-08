@@ -6,6 +6,7 @@
 #include <viam/api/module/v1/module.grpc.pb.h>
 
 #include <viam/sdk/module/module.hpp>
+#include <viam/sdk/module/signal_manager.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -15,31 +16,23 @@ namespace sdk {
 
 /// @defgroup Module Classes related to C++ module development.
 
-/// @class SignalManager
-/// @brief Defines handling logic for SIGINT and SIGTERM required by all C++
-/// modules.
-/// @ingroup Module
-class SignalManager {
-   public:
-    explicit SignalManager();
-
-    /// @brief Wait for SignalManager to receive SIGINT or SIGTERM.
-    /// @param sig Location reference where the signal number is stored.
-    /// @return The signal number if successful, -1 if not.
-    int wait(int* sig);
-
-   private:
-    sigset_t sigset_;
-};
-
 /// @class ModuleService
 /// @brief Defines the gRPC receiving logic for a module. C++ module authors
 /// can construct a ModuleService and use its associated methods to write
 /// a working C++ module. See examples under `src/viam/examples/modules`.
 /// @ingroup Module
-class ModuleService : public viam::module::v1::ModuleService::Service {
+class ModuleService : viam::module::v1::ModuleService::Service {
    public:
+    /// @brief Creates a new ModuleService that can serve on the provided socket.
+    /// @param addr Address of socket to serve on.
     explicit ModuleService(std::string addr);
+
+    /// @brief Creates a new ModuleService. Socket path and log level will be
+    /// inferred from passed in command line arguments, and passed in model
+    /// registrations will be registered and added to module.
+    /// @param argc Number of arguments from command line.
+    /// @param argv Arguments from command line.
+    /// @param registrations Models to register and add to the module.
     explicit ModuleService(int argc,
                            char** argv,
                            std::vector<std::shared_ptr<ModelRegistration>> registrations);
@@ -48,9 +41,11 @@ class ModuleService : public viam::module::v1::ModuleService::Service {
     /// @brief Starts module. serve will return when SIGINT or SIGTERM is received
     /// (this happens when the RDK shuts down).
     void serve();
+
     /// @brief Adds an API to the module that has already been registered.
     /// @param api The API to add.
     void add_api_from_registry(API api);
+
     /// @brief Adds an API/model pair to the module; both the API and model should have
     /// already been registered. If the ModuleService was constructed with a vector
     /// of ModelRegistration, the passed in models will already be registered and added.
@@ -82,16 +77,16 @@ class ModuleService : public viam::module::v1::ModuleService::Service {
 
     void add_model_from_registry_inlock_(API api, Model model, const std::lock_guard<std::mutex>&);
     void add_api_from_registry_inlock_(API api, const std::lock_guard<std::mutex>& lock);
-    Dependencies get_dependencies(google::protobuf::RepeatedPtrField<std::string> const& proto,
-                                  std::string const& resource_name);
-    std::shared_ptr<Resource> get_parent_resource(Name name);
+    Dependencies get_dependencies_(google::protobuf::RepeatedPtrField<std::string> const& proto,
+                                   std::string const& resource_name);
+    std::shared_ptr<Resource> get_parent_resource_(Name name);
 
     std::mutex lock_;
     std::shared_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
     std::shared_ptr<Server> server_;
-    std::unique_ptr<SignalManager> signal_manager_;
+    SignalManager signal_manager_;
 };
 
 }  // namespace sdk

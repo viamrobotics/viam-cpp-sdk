@@ -1,11 +1,9 @@
 #include <viam/sdk/module/service.hpp>
 
-#include <csignal>
 #include <exception>
 #include <fstream>
 #include <iostream>
 #include <memory>
-#include <pthread.h>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -45,13 +43,13 @@
 namespace viam {
 namespace sdk {
 
-Dependencies ModuleService::get_dependencies(
+Dependencies ModuleService::get_dependencies_(
     google::protobuf::RepeatedPtrField<std::string> const& proto,
     std::string const& resource_name) {
     Dependencies deps;
     for (const auto& dep : proto) {
         auto dep_name = Name::from_string(dep);
-        const std::shared_ptr<Resource> dep_resource = get_parent_resource(dep_name);
+        const std::shared_ptr<Resource> dep_resource = get_parent_resource_(dep_name);
         if (!dep_resource) {
             std::ostringstream buffer;
             buffer << resource_name << ": Dependency "
@@ -63,7 +61,7 @@ Dependencies ModuleService::get_dependencies(
     return deps;
 }
 
-std::shared_ptr<Resource> ModuleService::get_parent_resource(Name name) {
+std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
     if (!parent_) {
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
     }
@@ -80,7 +78,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource(Name name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
-    const Dependencies deps = get_dependencies(request->dependencies(), cfg.name());
+    const Dependencies deps = get_dependencies_(request->dependencies(), cfg.name());
     const std::shared_ptr<ModelRegistration> reg = Registry::lookup_model(cfg.api(), cfg.model());
     if (reg) {
         try {
@@ -108,7 +106,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource(Name name) {
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
     const std::shared_ptr<Module> module = this->module_;
 
-    const Dependencies deps = get_dependencies(request->dependencies(), cfg.name());
+    const Dependencies deps = get_dependencies_(request->dependencies(), cfg.name());
 
     const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
     if (services.find(cfg.api()) == services.end()) {
@@ -214,9 +212,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource(Name name) {
 };
 
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_shared<Module>(std::move(addr))),
-      server_(std::make_shared<Server>()),
-      signal_manager_(std::make_unique<SignalManager>()) {}
+    : module_(std::make_shared<Module>(std::move(addr))), server_(std::make_shared<Server>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
@@ -226,10 +222,10 @@ ModuleService::ModuleService(int argc,
     }
     module_ = std::make_shared<Module>(argv[1]);
     server_ = std::make_shared<Server>();
-    signal_manager_ = std::make_unique<SignalManager>();
+    signal_manager_ = SignalManager();
     set_logger_severity_from_args(argc, argv);
 
-    for (const std::shared_ptr<ModelRegistration>& mr : registrations) {
+    for (auto&& mr : registrations) {
         Registry::register_model(mr);
         add_model_from_registry(mr->api(), mr->model());
     }
@@ -252,8 +248,7 @@ void ModuleService::serve() {
     BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs: " << std::endl
                             << module_->handles();
 
-    int sig = 0;
-    signal_manager_->wait(&sig);
+    signal_manager_.wait();
 }
 
 ModuleService::~ModuleService() {
@@ -311,17 +306,6 @@ void ModuleService::add_api_from_registry(API api) {
 void ModuleService::add_model_from_registry(API api, Model model) {
     const std::lock_guard<std::mutex> lock(lock_);
     return add_model_from_registry_inlock_(api, model, lock);
-}
-
-SignalManager::SignalManager() {
-    sigemptyset(&sigset_);
-    sigaddset(&sigset_, SIGINT);
-    sigaddset(&sigset_, SIGTERM);
-    pthread_sigmask(SIG_BLOCK, &sigset_, NULL);
-}
-
-int SignalManager::wait(int* sig) {
-    return sigwait(&sigset_, sig);
 }
 
 }  // namespace sdk

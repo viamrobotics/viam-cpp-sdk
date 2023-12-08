@@ -54,7 +54,7 @@ class Printer : public Generic {
     }
 
     static std::string find_to_print(ResourceConfig cfg) {
-        auto const& printer_name = cfg.name();
+        auto& printer_name = cfg.name();
         auto to_print = cfg.attributes()->find("to_print");
         if (to_print == cfg.attributes()->end()) {
             std::ostringstream buffer;
