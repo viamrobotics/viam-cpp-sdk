@@ -74,7 +74,6 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
                                           ::viam::module::v1::AddResourceResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
-    auto module = this->module_;
     const std::lock_guard<std::mutex> lock(lock_);
 
     std::shared_ptr<Resource> res;
@@ -87,7 +86,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
         }
     };
-    const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
+    const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "module cannot service api " + cfg.api().to_string());
     }
@@ -104,11 +103,10 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
     ::viam::module::v1::ReconfigureResourceResponse* response) {
     const viam::app::v1::ComponentConfig& proto = request->config();
     ResourceConfig cfg = ResourceConfig::from_proto(proto);
-    const std::shared_ptr<Module> module = this->module_;
 
     const Dependencies deps = get_dependencies_(request->dependencies(), cfg.name());
 
-    const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module->services();
+    const std::unordered_map<API, std::shared_ptr<ResourceManager>>& services = module_->services();
     if (services.find(cfg.api()) == services.end()) {
         return grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string());
     }
@@ -212,7 +210,7 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(Name name) {
 };
 
 ModuleService::ModuleService(std::string addr)
-    : module_(std::make_shared<Module>(std::move(addr))), server_(std::make_shared<Server>()) {}
+    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_shared<Server>()) {}
 
 ModuleService::ModuleService(int argc,
                              char** argv,
@@ -220,7 +218,7 @@ ModuleService::ModuleService(int argc,
     if (argc < 2) {
         throw std::runtime_error("Need socket path as command line argument");
     }
-    module_ = std::make_shared<Module>(argv[1]);
+    module_ = std::make_unique<Module>(argv[1]);
     server_ = std::make_shared<Server>();
     signal_manager_ = SignalManager();
     set_logger_severity_from_args(argc, argv);

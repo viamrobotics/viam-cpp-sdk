@@ -82,7 +82,7 @@ class ModuleService : viam::module::v1::ModuleService::Service {
     std::shared_ptr<Resource> get_parent_resource_(Name name);
 
     std::mutex lock_;
-    std::shared_ptr<Module> module_;
+    std::unique_ptr<Module> module_;
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
     std::shared_ptr<Server> server_;
