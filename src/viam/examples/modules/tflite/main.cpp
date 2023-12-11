@@ -723,13 +723,6 @@ class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable
 };
 
 int serve(const std::string& socket_path) try {
-    // Block the signals we intend to wait for synchronously.
-    sigset_t sigset;
-    sigemptyset(&sigset);
-    sigaddset(&sigset, SIGINT);
-    sigaddset(&sigset, SIGTERM);
-    pthread_sigmask(SIG_BLOCK, &sigset, NULL);
-
     // Create a new model registration for the service.
     auto module_registration = std::make_shared<vsdk::ModelRegistration>(
         // Identify that this resource offers the MLModelService API
@@ -747,34 +740,15 @@ int serve(const std::string& socket_path) try {
     vsdk::Registry::register_model(module_registration);
 
     // Construct the module service and tell it where to place the socket path.
-    auto module_service = std::make_shared<vsdk::ModuleService_>(socket_path);
-
-    // Construct a new Server object.
-    auto server = std::make_shared<vsdk::Server>();
+    auto module_service = std::make_shared<vsdk::ModuleService>(socket_path);
 
     // Add the server as providing the API and model declared in the
     // registration.
-    module_service->add_model_from_registry(
-        server, module_registration->api(), module_registration->model());
+    module_service->add_model_from_registry(module_registration->api(),
+                                            module_registration->model());
 
     // Start the module service.
-    module_service->start(server);
-
-    // Create a thread which will start the server, await one of the
-    // blocked signals, and then gracefully shut down the server.
-    std::thread server_thread([&server, &sigset]() {
-        server->start();
-        int sig = 0;
-        auto result = sigwait(&sigset, &sig);
-        server->shutdown();
-    });
-
-    // The main thread waits for the server thread to indicate that
-    // the server shutdown has completed.
-    server->wait();
-
-    // Wait for the server thread to exit.
-    server_thread.join();
+    module_service->serve();
 
     return EXIT_SUCCESS;
 } catch (const std::exception& ex) {

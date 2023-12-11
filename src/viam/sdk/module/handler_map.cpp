@@ -69,5 +69,15 @@ void HandlerMap_::add_model(Model model, RPCSubtype subtype) {
     handles_[subtype].push_back(model);
 }
 
+std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm) {
+    for (const auto& kv : hm.handles_) {
+        os << "API: " << kv.first.api().to_string() << '\n';
+        for (const Model& model : kv.second) {
+            os << "\tModel: " << model.to_string() << '\n';
+        }
+    }
+    return os;
+}
+
 }  // namespace sdk
 }  // namespace viam

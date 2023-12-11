@@ -21,7 +21,6 @@
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
-using viam::component::generic::v1::GenericService;
 using namespace viam::sdk;
 
 // Printer is a modular resource that can print a to_print value to STDOUT when
@@ -55,7 +54,7 @@ class Printer : public Generic {
     }
 
     static std::string find_to_print(ResourceConfig cfg) {
-        auto printer_name = cfg.name();
+        auto& printer_name = cfg.name();
         auto to_print = cfg.attributes()->find("to_print");
         if (to_print == cfg.attributes()->end()) {
             std::ostringstream buffer;
@@ -78,21 +77,6 @@ class Printer : public Generic {
 };
 
 int main(int argc, char** argv) {
-    if (argc < 2) {
-        std::cerr << "Need socket path as command line argument" << std::endl;
-        return EXIT_FAILURE;
-    }
-    std::string socket_addr = argv[1];
-
-    // Use set_logger_severity_from_args to set the boost trivial logger's
-    // severity depending on commandline arguments.
-    set_logger_severity_from_args(argc, argv);
-    BOOST_LOG_TRIVIAL(debug) << "Starting module with debug level logging";
-
-    // C++ modules must handle SIGINT and SIGTERM. You can use the SignalManager
-    // class and its wait method to handle the correct signals.
-    SignalManager signals;
-
     API generic = Generic::static_api();
     Model m("viam", "generic", "printer");
 
@@ -111,21 +95,9 @@ int main(int argc, char** argv) {
             return {};
         });
 
-    Registry::register_model(mr);
+    std::vector<std::shared_ptr<ModelRegistration>> mrs = {mr};
+    auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
+    my_mod->serve();
 
-    // The `ModuleService_` must outlive the Server, so the declaration order
-    // here matters.
-    auto my_mod = std::make_shared<ModuleService_>(socket_addr);
-    auto server = std::make_shared<Server>();
-
-    my_mod->add_model_from_registry(server, generic, m);
-    my_mod->start(server);
-    BOOST_LOG_TRIVIAL(info) << "Module serving model " << m.to_string() << ", listening on "
-                            << socket_addr;
-
-    server->start();
-    int sig = 0;
-    auto result = signals.wait(&sig);
-    server->shutdown();
     return EXIT_SUCCESS;
 };
