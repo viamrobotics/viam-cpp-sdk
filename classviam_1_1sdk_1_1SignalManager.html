@@ -76,18 +76,56 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1SignalManager-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">viam::sdk::SignalManager Class Reference</div></div>
+  <div class="headertitle"><div class="title">viam::sdk::SignalManager Class Reference<div class="ingroups"><a class="el" href="group__Module.html">Classes related to C++ module development.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines handling logic for SIGINT and SIGTERM required by all C++ modules.  
+ <a href="classviam_1_1sdk_1_1SignalManager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="signal__manager_8hpp_source.html">signal_manager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9731bb72bd58cf0681137871232fc825" id="r_a9731bb72bd58cf0681137871232fc825"><td class="memItemLeft" align="right" valign="top"><a id="a9731bb72bd58cf0681137871232fc825" name="a9731bb72bd58cf0681137871232fc825"></a>
-<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>wait</b> (<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> *<a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">sig</a>)</td></tr>
-<tr class="separator:a9731bb72bd58cf0681137871232fc825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4d2e7d5d618621039dbda6ded9d342" id="r_a1d4d2e7d5d618621039dbda6ded9d342"><td class="memItemLeft" align="right" valign="top"><a id="a1d4d2e7d5d618621039dbda6ded9d342" name="a1d4d2e7d5d618621039dbda6ded9d342"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SignalManager</b> ()</td></tr>
+<tr class="memdesc:a1d4d2e7d5d618621039dbda6ded9d342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classviam_1_1sdk_1_1SignalManager.html" title="Defines handling logic for SIGINT and SIGTERM required by all C++ modules.">SignalManager</a>. <br /></td></tr>
+<tr class="separator:a1d4d2e7d5d618621039dbda6ded9d342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35da6e5e1dd8ec4e97ba2a61feaccfd1" id="r_a35da6e5e1dd8ec4e97ba2a61feaccfd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1SignalManager.html#a35da6e5e1dd8ec4e97ba2a61feaccfd1">wait</a> ()</td></tr>
+<tr class="memdesc:a35da6e5e1dd8ec4e97ba2a61feaccfd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for <a class="el" href="classviam_1_1sdk_1_1SignalManager.html" title="Defines handling logic for SIGINT and SIGTERM required by all C++ modules.">SignalManager</a> to receive SIGINT or SIGTERM.  <br /></td></tr>
+<tr class="separator:a35da6e5e1dd8ec4e97ba2a61feaccfd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines handling logic for SIGINT and SIGTERM required by all C++ modules. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a35da6e5e1dd8ec4e97ba2a61feaccfd1" name="a35da6e5e1dd8ec4e97ba2a61feaccfd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35da6e5e1dd8ec4e97ba2a61feaccfd1">&#9670;&#160;</a></span>wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">int</a> viam::sdk::SignalManager::wait </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wait for <a class="el" href="classviam_1_1sdk_1_1SignalManager.html" title="Defines handling logic for SIGINT and SIGTERM required by all C++ modules.">SignalManager</a> to receive SIGINT or SIGTERM. </p>
+<dl class="section return"><dt>Returns</dt><dd>The signal number if successful. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">runtime_error</td><td>if the underlying sigwait call was unsuccessful. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/viam/sdk/module/<a class="el" href="module_2service_8hpp_source.html">service.hpp</a></li>
+<li>src/viam/sdk/module/<a class="el" href="signal__manager_8hpp_source.html">signal_manager.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

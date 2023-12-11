@@ -9,7 +9,7 @@ var searchData=
   ['modelfamily_6',['ModelFamily',['../classviam_1_1sdk_1_1ModelFamily.html',1,'viam::sdk']]],
   ['modelregistration_7',['ModelRegistration',['../classviam_1_1sdk_1_1ModelRegistration.html',1,'viam::sdk']]],
   ['module_8',['Module',['../classviam_1_1sdk_1_1Module.html',1,'viam::sdk']]],
-  ['moduleservice_5f_9',['ModuleService_',['../classviam_1_1sdk_1_1ModuleService__.html',1,'viam::sdk']]],
+  ['moduleservice_9',['ModuleService',['../classviam_1_1sdk_1_1ModuleService.html',1,'viam::sdk']]],
   ['motion_10',['Motion',['../classviam_1_1sdk_1_1Motion.html',1,'viam::sdk']]],
   ['motion_5fconfiguration_11',['motion_configuration',['../structviam_1_1sdk_1_1motion__configuration.html',1,'viam::sdk']]],
   ['motionclient_12',['MotionClient',['../classviam_1_1sdk_1_1MotionClient.html',1,'viam::sdk']]],
