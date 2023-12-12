@@ -45,8 +45,8 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImagesRequest* request,
     ::viam::component::camera::v1::GetImagesResponse* response) noexcept {
-    // CR erodkin: removed helper because it wasn't doing anything but will this compile/work?
-    return make_service_helper<Camera>("CameraServer::GetImages", this, request)([&](auto& camera) {
+    return make_service_helper<Camera>(
+        "CameraServer::GetImages", this, request)([&](auto& helper, auto& camera) {
         const Camera::image_collection image_coll = camera->get_images();
         for (const auto& img : image_coll.images) {
             ::viam::component::camera::v1::Image proto_image;
@@ -77,78 +77,44 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
 ::grpc::Status CameraServer::GetPointCloud(
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetPointCloudRequest* request,
-    ::viam::component::camera::v1::GetPointCloudResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [GetPointCloud] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-
-    const Camera::point_cloud point_cloud = camera->get_point_cloud(request->mime_type());
-
-    *response->mutable_mime_type() = "pointcloud/pcd";
-    *response->mutable_point_cloud() = bytes_to_string(point_cloud.pc);
-
-    return ::grpc::Status();
+    ::viam::component::camera::v1::GetPointCloudResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::GetPointCloud", this, request)([&](auto& helper, auto& camera) {
+        // CR erodkin: fly by here! we weren't passing extra correctly
+        const Camera::point_cloud point_cloud =
+            camera->get_point_cloud(request->mime_type(), helper.getExtra());
+        *response->mutable_mime_type() = "pointcloud/pcd";
+        *response->mutable_point_cloud() = bytes_to_string(point_cloud.pc);
+    });
 }
 
-::grpc::Status CameraServer::GetGeometries(::grpc::ServerContext* context,
-                                           const ::viam::common::v1::GetGeometriesRequest* request,
-                                           ::viam::common::v1::GetGeometriesResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [GetGeometries] without a request");
-    };
-
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    AttributeMap extra;
-    if (request->has_extra()) {
-        extra = struct_to_map(request->extra());
-    }
-
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-    const std::vector<GeometryConfig> geometries = camera->get_geometries(extra);
-    for (const auto& geometry : geometries) {
-        *response->mutable_geometries()->Add() = geometry.to_proto();
-    }
-
-    return ::grpc::Status();
+::grpc::Status CameraServer::GetGeometries(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetGeometriesRequest* request,
+    ::viam::common::v1::GetGeometriesResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::GetGeometries", this, request)([&](auto& helper, auto& camera) {
+        const std::vector<GeometryConfig> geometries = camera->get_geometries(helper.getExtra());
+        for (const auto& geometry : geometries) {
+            *response->mutable_geometries()->Add() = geometry.to_proto();
+        }
+    });
 }
 
 ::grpc::Status CameraServer::GetProperties(
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetPropertiesRequest* request,
-    ::viam::component::camera::v1::GetPropertiesResponse* response) {
-    if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [GetProperties] without a request");
-    };
+    ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::GetProperties", this, request)([&](auto& helper, auto& camera) {
+        const Camera::properties properties = camera->get_properties();
 
-    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
-    if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
-    }
-
-    const std::shared_ptr<Camera> camera = std::dynamic_pointer_cast<Camera>(rb);
-
-    const Camera::properties properties = camera->get_properties();
-
-    *response->mutable_distortion_parameters() = Camera::to_proto(properties.distortion_parameters);
-    *response->mutable_intrinsic_parameters() = Camera::to_proto(properties.intrinsic_parameters);
-    response->set_supports_pcd(properties.supports_pcd);
-
-    return ::grpc::Status();
+        *response->mutable_distortion_parameters() =
+            Camera::to_proto(properties.distortion_parameters);
+        *response->mutable_intrinsic_parameters() =
+            Camera::to_proto(properties.intrinsic_parameters);
+        response->set_supports_pcd(properties.supports_pcd);
+    });
 }
 
 void CameraServer::register_server(std::shared_ptr<Server> server) {
