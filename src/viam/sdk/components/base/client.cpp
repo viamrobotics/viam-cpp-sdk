@@ -1,6 +1,5 @@
 #include <viam/sdk/components/base/client.hpp>
 
-#include <algorithm>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -17,6 +16,7 @@
 #include <viam/sdk/components/base/base.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
 namespace sdk {

@@ -145,8 +145,8 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
         const auto& component_name = Name::from_proto(request->component_name());
         Motion::plan_with_status plan;
         std::vector<Motion::plan_with_status> replan_history;
-        bool last_plan_only(request->last_plan_only());
-        bool has_execution_id(request->has_execution_id());
+        const bool last_plan_only(request->last_plan_only());
+        const bool has_execution_id(request->has_execution_id());
 
         if (last_plan_only && has_execution_id) {
             plan = motion->get_plan(component_name, request->execution_id());
