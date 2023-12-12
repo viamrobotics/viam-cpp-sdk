@@ -32,7 +32,6 @@ Camera::raw_image CameraClient::get_image(std::string mime_type, const Attribute
     return make_client_helper(this, *stub_, &StubType::GetImage)
         .with(extra,
               [&](auto& request) {
-                  // CR erodkin: call attention to flyby here
                   *request.mutable_mime_type() = Camera::normalize_mime_type(mime_type);
               })
         .invoke([](auto& response) { return from_proto(response); });

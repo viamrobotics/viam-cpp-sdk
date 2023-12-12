@@ -87,8 +87,8 @@ AttributeMap BoardClient::do_command(const AttributeMap& command) {
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
-// CR erodkin: can't really change this one smoothly because `mutable_name()` doesn't exist on the
-// request type.
+// TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
+// then wrap here.
 Board::analog_value BoardClient::read_analog(const std::string& analog_reader_name,
                                              const AttributeMap& extra) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
@@ -118,8 +118,8 @@ void BoardClient::write_analog(const std::string& pin, int value, const Attribut
         .invoke();
 }
 
-// CR erodkin: can't really change this one smoothly because `mutable_name()` doesn't exist on the
-// request type.
+// TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
+// then wrap here.
 Board::digital_value BoardClient::read_digital_interrupt(const std::string& digital_interrupt_name,
                                                          const AttributeMap& extra) {
     viam::component::board::v1::GetDigitalInterruptValueRequest request;

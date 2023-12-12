@@ -25,7 +25,6 @@ GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : Resourc
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Generic>(
         "GenericServer::GetGeometries", this, request)([&](auto& helper, auto& generic) {
-        // CR erodkin: flyby adding extra
         const std::vector<GeometryConfig> geometries = generic->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = geometry.to_proto();

@@ -80,7 +80,6 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager) : ResourceS
     ::viam::component::camera::v1::GetPointCloudResponse* response) noexcept {
     return make_service_helper<Camera>(
         "CameraServer::GetPointCloud", this, request)([&](auto& helper, auto& camera) {
-        // CR erodkin: fly by here! we weren't passing extra correctly
         const Camera::point_cloud point_cloud =
             camera->get_point_cloud(request->mime_type(), helper.getExtra());
         *response->mutable_mime_type() = "pointcloud/pcd";
