@@ -49,7 +49,7 @@ class Printer : public Generic {
         return command;
     }
 
-    std::vector<GeometryConfig> get_geometries() {
+    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) {
         return std::vector<GeometryConfig>();
     }
 

@@ -100,5 +100,5 @@ double SummationClient::sum(std::vector<double> numbers) {
                 request.add_numbers(number);
             }
         })
-        .invoke([](auto& response { return response.sum(); }));
+        .invoke([](auto& response) { return response.sum(); });
 }

@@ -98,13 +98,28 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 ::grpc::Status BoardServer::ReadAnalogReader(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::ReadAnalogReaderRequest* request,
-    ::viam::component::board::v1::ReadAnalogReaderResponse* response) noexcept {
-    return make_service_helper<Board>(
-        "BoardServer::ReadAnalogReader", this, request)([&](auto& helper, auto& board) {
-        const Board::analog_value result =
-            board->read_analog(request->analog_reader_name(), helper.getExtra());
-        response->set_value(result);
-    });
+    ::viam::component::board::v1::ReadAnalogReaderResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Board::ReadAnalogReader] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
+    }
+
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Board::analog_value result = board->read_analog(request->analog_reader_name(), extra);
+    response->set_value(result);
+
+    return ::grpc::Status();
 }
 
 ::grpc::Status BoardServer::WriteAnalog(
@@ -135,13 +150,29 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
 ::grpc::Status BoardServer::GetDigitalInterruptValue(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,
-    ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) noexcept {
-    return make_service_helper<Board>(
-        "BoardServer::GetDigitalInterruptValue", this, request)([&](auto& helper, auto& board) {
-        const Board::digital_value result =
-            board->read_digital_interrupt(request->digital_interrupt_name(), helper.getExtra());
-        response->set_value(result);
-    });
+    ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [Board::GetDigitalInterruptValue] without a request");
+    };
+
+    const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
+    if (!rb) {
+        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
+    }
+
+    const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
+
+    AttributeMap extra;
+    if (request->has_extra()) {
+        extra = struct_to_map(request->extra());
+    }
+
+    const Board::digital_value result =
+        board->read_digital_interrupt(request->digital_interrupt_name(), extra);
+    response->set_value(result);
+
+    return ::grpc::Status();
 }
 
 ::grpc::Status BoardServer::SetPowerMode(

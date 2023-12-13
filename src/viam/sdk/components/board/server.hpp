@@ -60,7 +60,7 @@ class BoardServer : public ResourceServer,
     ::grpc::Status ReadAnalogReader(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::ReadAnalogReaderRequest* request,
-        ::viam::component::board::v1::ReadAnalogReaderResponse* response) noexcept override;
+        ::viam::component::board::v1::ReadAnalogReaderResponse* response) override;
 
     ::grpc::Status WriteAnalog(::grpc::ServerContext* context,
                                const component::board::v1::WriteAnalogRequest* request,
@@ -69,7 +69,7 @@ class BoardServer : public ResourceServer,
     ::grpc::Status GetDigitalInterruptValue(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,
-        ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) noexcept override;
+        ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) override;
 
     ::grpc::Status SetPowerMode(
         ::grpc::ServerContext* context,

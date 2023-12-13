@@ -20,7 +20,7 @@ MockGeneric::do_command(
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> command) {
     return map_;
 }
-std::vector<GeometryConfig> MockGeneric::get_geometries() {
+std::vector<GeometryConfig> MockGeneric::get_geometries(const AttributeMap& extra) {
     return geometries_;
 }
 std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {

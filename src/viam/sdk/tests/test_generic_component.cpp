@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(test_do_client) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries) {
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
-    std::vector<GeometryConfig> result_geometries = generic->get_geometries();
+    std::vector<GeometryConfig> result_geometries = generic->get_geometries(fake_map());
 
     BOOST_CHECK(expected_geometries == result_geometries);
 }
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries_service) {
 
 BOOST_AUTO_TEST_CASE(test_get_geometries_client) {
     MockGenericClient client("mock_generic");
-    std::vector<GeometryConfig> result_geometries = client.get_geometries();
+    std::vector<GeometryConfig> result_geometries = client.get_geometries(fake_map());
     std::vector<GeometryConfig> expected_geometries = fake_geometries();
 
     BOOST_CHECK(result_geometries == expected_geometries);
