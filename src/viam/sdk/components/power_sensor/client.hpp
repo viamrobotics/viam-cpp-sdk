@@ -32,10 +32,9 @@ class PowerSensorClient : public PowerSensor {
     using PowerSensor::get_readings;
     using PowerSensor::get_voltage;
 
-    typedef viam::component::powersensor::v1::PowerSensorService::StubInterface Stub;
-
    private:
-    std::unique_ptr<Stub> stub_;
+    using StubType = viam::component::powersensor::v1::PowerSensorService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

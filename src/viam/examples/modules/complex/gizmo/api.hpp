@@ -56,7 +56,8 @@ class GizmoClient : public Gizmo {
     std::string do_two(bool arg1) override;
 
    private:
-    std::unique_ptr<GizmoService::StubInterface> stub_;
+    using StubType = GizmoService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

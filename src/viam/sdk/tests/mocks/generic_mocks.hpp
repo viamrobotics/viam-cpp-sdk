@@ -22,7 +22,7 @@ class MockGeneric : public Generic {
         override;
 
     static std::shared_ptr<MockGeneric> get_mock_generic();
-    std::vector<GeometryConfig> get_geometries() override;
+    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
    private:
     std::shared_ptr<std::unordered_map<std::string, std::shared_ptr<ProtoType>>> map_;

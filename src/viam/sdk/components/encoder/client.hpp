@@ -42,7 +42,8 @@ class EncoderClient : public Encoder {
     using Encoder::reset_position;
 
    private:
-    std::unique_ptr<viam::component::encoder::v1::EncoderService::StubInterface> stub_;
+    using StubType = viam::component::encoder::v1::EncoderService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

@@ -4,6 +4,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -203,21 +204,9 @@ GizmoClient::GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channe
     : Gizmo(std::move(name)), stub_(GizmoService::NewStub(channel)), channel_(std::move(channel)){};
 
 bool GizmoClient::do_one(std::string arg1) {
-    DoOneRequest request;
-    DoOneResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    request.set_arg1(arg1);
-
-    const grpc::Status status = stub_->DoOne(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-
-    return response.ret1();
+    return make_client_helper(this, *stub_, &StubType::DoOne)
+        .with([&](auto& request) { request.set_arg1(arg1); })
+        .invoke([](auto& response) { return response.ret1(); });
 }
 
 bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {

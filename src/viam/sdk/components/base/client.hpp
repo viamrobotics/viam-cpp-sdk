@@ -55,7 +55,8 @@ class BaseClient : public Base {
     using Base::stop;
 
    private:
-    std::unique_ptr<viam::component::base::v1::BaseService::StubInterface> stub_;
+    using StubType = viam::component::base::v1::BaseService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

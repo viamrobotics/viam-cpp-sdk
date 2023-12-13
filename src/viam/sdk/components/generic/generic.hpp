@@ -50,7 +50,11 @@ class Generic : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries() = 0;
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
+
+    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
 
     API dynamic_api() const override;
 

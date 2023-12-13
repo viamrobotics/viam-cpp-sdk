@@ -43,10 +43,9 @@ class MovementSensorClient : public MovementSensor {
     using MovementSensor::get_position;
     using MovementSensor::get_properties;
 
-    typedef viam::component::movementsensor::v1::MovementSensorService::StubInterface Stub;
-
    private:
-    std::unique_ptr<Stub> stub_;
+    using StubType = viam::component::movementsensor::v1::MovementSensorService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

@@ -88,6 +88,7 @@ class MotionClient : public Motion {
     using Motion::stop_plan;
 
    private:
+    using StubType = service::motion::v1::MotionService::StubInterface;
     std::vector<Motion::plan_status_with_id> list_plan_statuses_(bool only_active_plans,
                                                                  const AttributeMap& extra);
     std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> get_plan_(
@@ -95,7 +96,7 @@ class MotionClient : public Motion {
         boost::optional<std::string> execution_id,
         bool last_plan_only,
         const AttributeMap& extra);
-    std::unique_ptr<service::motion::v1::MotionService::StubInterface> stub_;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

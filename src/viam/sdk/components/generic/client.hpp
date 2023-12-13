@@ -20,7 +20,7 @@ class GenericClient : public Generic {
    public:
     GenericClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     AttributeMap do_command(AttributeMap command) override;
-    std::vector<GeometryConfig> get_geometries() override;
+    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing
@@ -31,7 +31,8 @@ class GenericClient : public Generic {
         : Generic(std::move(name)), stub_(std::move(stub)){};
 
    private:
-    std::unique_ptr<viam::component::generic::v1::GenericService::StubInterface> stub_;
+    using StubType = viam::component::generic::v1::GenericService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

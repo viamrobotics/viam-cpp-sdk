@@ -4,6 +4,7 @@
 
 #include <google/protobuf/descriptor.h>
 
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -93,21 +94,11 @@ SummationClient::SummationClient(std::string name, std::shared_ptr<grpc::Channel
       channel_(std::move(channel)){};
 
 double SummationClient::sum(std::vector<double> numbers) {
-    SumRequest request;
-    SumResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    for (double number : numbers) {
-        request.add_numbers(number);
-    }
-
-    const grpc::Status status = stub_->Sum(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-
-    return response.sum();
+    return make_client_helper(this, *stub_, &StubType::Sum)
+        .with([&](auto& request) {
+            for (double number : numbers) {
+                request.add_numbers(number);
+            }
+        })
+        .invoke([](auto& response) { return response.sum(); });
 }

@@ -27,10 +27,9 @@ class SensorClient : public Sensor {
     using Sensor::get_geometries;
     using Sensor::get_readings;
 
-    typedef viam::component::sensor::v1::SensorService::StubInterface Stub;
-
    private:
-    std::unique_ptr<Stub> stub_;
+    using StubType = viam::component::sensor::v1::SensorService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;
 };
 

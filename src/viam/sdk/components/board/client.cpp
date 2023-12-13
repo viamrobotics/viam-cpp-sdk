@@ -9,6 +9,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/board/board.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -23,151 +24,71 @@ BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channe
       channel_(std::move(channel)){};
 
 Board::status BoardClient::get_status(const AttributeMap& extra) {
-    viam::component::board::v1::StatusRequest request;
-    viam::component::board::v1::StatusResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->Status(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return from_proto(response.status());
+    return make_client_helper(this, *stub_, &StubType::Status)
+        .with(extra)
+        .invoke([](auto& response) { return from_proto(response.status()); });
 }
 
 void BoardClient::set_gpio(const std::string& pin, bool high, const AttributeMap& extra) {
-    viam::component::board::v1::SetGPIORequest request;
-    viam::component::board::v1::SetGPIOResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_pin(pin);
-    request.set_high(high);
-    const grpc::Status status = stub_->SetGPIO(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::SetGPIO)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_pin(pin);
+                  request.set_high(high);
+              })
+        .invoke();
 }
 
 bool BoardClient::get_gpio(const std::string& pin, const AttributeMap& extra) {
-    viam::component::board::v1::GetGPIORequest request;
-    viam::component::board::v1::GetGPIOResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_pin(pin);
-
-    const grpc::Status status = stub_->GetGPIO(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return response.high();
+    return make_client_helper(this, *stub_, &StubType::GetGPIO)
+        .with(extra, [&](auto& request) { request.set_pin(pin); })
+        .invoke([](auto& response) { return response.high(); });
 }
 
 double BoardClient::get_pwm_duty_cycle(const std::string& pin, const AttributeMap& extra) {
-    viam::component::board::v1::PWMRequest request;
-    viam::component::board::v1::PWMResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_pin(pin);
-
-    const grpc::Status status = stub_->PWM(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return response.duty_cycle_pct();
+    return make_client_helper(this, *stub_, &StubType::PWM)
+        .with(extra, [&](auto& request) { request.set_pin(pin); })
+        .invoke([](auto& response) { return response.duty_cycle_pct(); });
 }
 
 void BoardClient::set_pwm_duty_cycle(const std::string& pin,
                                      double duty_cycle_pct,
                                      const AttributeMap& extra) {
-    viam::component::board::v1::SetPWMRequest request;
-    viam::component::board::v1::SetPWMResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_pin(pin);
-    request.set_duty_cycle_pct(duty_cycle_pct);
-
-    const grpc::Status status = stub_->SetPWM(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::SetPWM)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_pin(pin);
+                  request.set_duty_cycle_pct(duty_cycle_pct);
+              })
+        .invoke();
 }
 
 uint64_t BoardClient::get_pwm_frequency(const std::string& pin, const AttributeMap& extra) {
-    viam::component::board::v1::PWMFrequencyRequest request;
-    viam::component::board::v1::PWMFrequencyResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_pin(pin);
-
-    const grpc::Status status = stub_->PWMFrequency(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return response.frequency_hz();
+    return make_client_helper(this, *stub_, &StubType::PWMFrequency)
+        .with(extra, [&](auto& request) { request.set_pin(pin); })
+        .invoke([](auto& response) { return response.frequency_hz(); });
 }
 
 void BoardClient::set_pwm_frequency(const std::string& pin,
                                     uint64_t frequency_hz,
                                     const AttributeMap& extra) {
-    viam::component::board::v1::SetPWMFrequencyRequest request;
-    viam::component::board::v1::SetPWMFrequencyResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_pin(pin);
-    request.set_frequency_hz(frequency_hz);
-
-    const grpc::Status status = stub_->SetPWMFrequency(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::SetPWMFrequency)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_pin(pin);
+                  request.set_frequency_hz(frequency_hz);
+              })
+        .invoke();
 }
 
 AttributeMap BoardClient::do_command(const AttributeMap& command) {
-    viam::common::v1::DoCommandRequest request;
-    viam::common::v1::DoCommandResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    const google::protobuf::Struct proto_command = map_to_struct(command);
-    *request.mutable_command() = proto_command;
-    *request.mutable_name() = this->name();
-
-    const grpc::Status status = stub_->DoCommand(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-    return struct_to_map(response.result());
+    return make_client_helper(this, *stub_, &StubType::DoCommand)
+        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
+        .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
+// TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
+// then wrap here.
 Board::analog_value BoardClient::read_analog(const std::string& analog_reader_name,
                                              const AttributeMap& extra) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
@@ -188,23 +109,17 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
 }
 
 void BoardClient::write_analog(const std::string& pin, int value, const AttributeMap& extra) {
-    component::board::v1::WriteAnalogRequest request;
-    component::board::v1::WriteAnalogResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    request.set_name(this->name());
-    request.set_pin(pin);
-    request.set_value(value);
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->WriteAnalog(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::WriteAnalog)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_pin(pin);
+                  request.set_value(value);
+              })
+        .invoke();
 }
 
+// TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
+// then wrap here.
 Board::digital_value BoardClient::read_digital_interrupt(const std::string& digital_interrupt_name,
                                                          const AttributeMap& extra) {
     viam::component::board::v1::GetDigitalInterruptValueRequest request;
@@ -227,36 +142,21 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
 void BoardClient::set_power_mode(power_mode power_mode,
                                  const AttributeMap& extra,
                                  const boost::optional<std::chrono::microseconds>& duration) {
-    viam::component::board::v1::SetPowerModeRequest request;
-    viam::component::board::v1::SetPowerModeResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_power_mode(to_proto(power_mode));
-    if (duration.has_value()) {
-        *request.mutable_duration() = ::viam::sdk::to_proto(duration.get());
-    }
-
-    const grpc::Status status = stub_->SetPowerMode(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::SetPowerMode)
+        .with(extra,
+              [&](auto& request) {
+                  request.set_power_mode(to_proto(power_mode));
+                  if (duration.has_value()) {
+                      *request.mutable_duration() = ::viam::sdk::to_proto(duration.get());
+                  }
+              })
+        .invoke();
 }
 
 std::vector<GeometryConfig> BoardClient::get_geometries(const AttributeMap& extra) {
-    viam::common::v1::GetGeometriesRequest req;
-    viam::common::v1::GetGeometriesResponse resp;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *req.mutable_name() = this->name();
-    *req.mutable_extra() = map_to_struct(extra);
-
-    stub_->GetGeometries(&ctx, req, &resp);
-    return GeometryConfig::from_proto(resp);
+    return make_client_helper(this, *stub_, &StubType::GetGeometries)
+        .with(extra)
+        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 };
 
 }  // namespace sdk

@@ -25,7 +25,7 @@ SensorClient::SensorClient(std::string name, std::shared_ptr<grpc::Channel> chan
 using namespace viam::common::v1;
 
 AttributeMap SensorClient::get_readings(const AttributeMap& extra) {
-    return make_client_helper(this, *stub_, &SensorClient::Stub::GetReadings)
+    return make_client_helper(this, *stub_, &StubType::GetReadings)
         .with(extra)
         .invoke([](auto& response) {
             AttributeMap result =
@@ -38,13 +38,13 @@ AttributeMap SensorClient::get_readings(const AttributeMap& extra) {
 }
 
 AttributeMap SensorClient::do_command(const AttributeMap& command) {
-    return make_client_helper(this, *stub_, &SensorClient::Stub::DoCommand)
+    return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
         .invoke([](auto& response) { return struct_to_map(response.result()); });
 }
 
 std::vector<GeometryConfig> SensorClient::get_geometries(const AttributeMap& extra) {
-    return make_client_helper(this, *stub_, &SensorClient::Stub::GetGeometries)
+    return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
         .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
 }

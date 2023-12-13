@@ -66,7 +66,8 @@ class BoardClient : public Board {
     using Board::write_analog;
 
    private:
-    std::unique_ptr<viam::component::board::v1::BoardService::StubInterface> stub_;
+    using StubType = viam::component::board::v1::BoardService::StubInterface;
+    std::unique_ptr<StubType> stub_;
     const std::shared_ptr<grpc::Channel> channel_;
 };
 

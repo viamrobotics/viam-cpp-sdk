@@ -23,37 +23,39 @@ class BoardServer : public ResourceServer,
 
     ::grpc::Status Status(::grpc::ServerContext* context,
                           const ::viam::component::board::v1::StatusRequest* request,
-                          ::viam::component::board::v1::StatusResponse* response) override;
+                          ::viam::component::board::v1::StatusResponse* response) noexcept override;
 
-    ::grpc::Status SetGPIO(::grpc::ServerContext* context,
-                           const ::viam::component::board::v1::SetGPIORequest* request,
-                           ::viam::component::board::v1::SetGPIOResponse* response) override;
+    ::grpc::Status SetGPIO(
+        ::grpc::ServerContext* context,
+        const ::viam::component::board::v1::SetGPIORequest* request,
+        ::viam::component::board::v1::SetGPIOResponse* response) noexcept override;
 
-    ::grpc::Status GetGPIO(::grpc::ServerContext* context,
-                           const ::viam::component::board::v1::GetGPIORequest* request,
-                           ::viam::component::board::v1::GetGPIOResponse* response) override;
+    ::grpc::Status GetGPIO(
+        ::grpc::ServerContext* context,
+        const ::viam::component::board::v1::GetGPIORequest* request,
+        ::viam::component::board::v1::GetGPIOResponse* response) noexcept override;
 
     ::grpc::Status PWM(::grpc::ServerContext* context,
                        const ::viam::component::board::v1::PWMRequest* request,
-                       ::viam::component::board::v1::PWMResponse* response) override;
+                       ::viam::component::board::v1::PWMResponse* response) noexcept override;
 
     ::grpc::Status SetPWM(::grpc::ServerContext* context,
                           const ::viam::component::board::v1::SetPWMRequest* request,
-                          ::viam::component::board::v1::SetPWMResponse* response) override;
+                          ::viam::component::board::v1::SetPWMResponse* response) noexcept override;
 
     ::grpc::Status PWMFrequency(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::PWMFrequencyRequest* request,
-        ::viam::component::board::v1::PWMFrequencyResponse* response) override;
+        ::viam::component::board::v1::PWMFrequencyResponse* response) noexcept override;
 
     ::grpc::Status SetPWMFrequency(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::SetPWMFrequencyRequest* request,
-        ::viam::component::board::v1::SetPWMFrequencyResponse* response) override;
+        ::viam::component::board::v1::SetPWMFrequencyResponse* response) noexcept override;
 
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
-                             viam::common::v1::DoCommandResponse* response) override;
+                             viam::common::v1::DoCommandResponse* response) noexcept override;
 
     ::grpc::Status ReadAnalogReader(
         ::grpc::ServerContext* context,
@@ -72,11 +74,12 @@ class BoardServer : public ResourceServer,
     ::grpc::Status SetPowerMode(
         ::grpc::ServerContext* context,
         const ::viam::component::board::v1::SetPowerModeRequest* request,
-        ::viam::component::board::v1::SetPowerModeResponse* response) override;
+        ::viam::component::board::v1::SetPowerModeResponse* response) noexcept override;
 
-    ::grpc::Status GetGeometries(::grpc::ServerContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest* request,
-                                 ::viam::common::v1::GetGeometriesResponse* response) override;
+    ::grpc::Status GetGeometries(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetGeometriesRequest* request,
+        ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
 
     void register_server(std::shared_ptr<Server> server) override;
 };
