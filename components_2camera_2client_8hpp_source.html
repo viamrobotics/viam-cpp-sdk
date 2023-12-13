@@ -130,13 +130,14 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        : <a class="code hl_class" href="classviam_1_1sdk_1_1Camera.html">Camera</a>(std::move(<a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)), stub_(std::move(<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">stub</a>)){};</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    std::unique_ptr&lt;viam::component::camera::v1::CameraService::StubInterface&gt; stub_;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">using </span>StubType = viam::component::camera::v1::CameraService::StubInterface;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::unique_ptr&lt;StubType&gt; stub_;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
 </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="acamera_8hpp_html"><div class="ttname"><a href="camera_8hpp.html">camera.hpp</a></div><div class="ttdoc">Defines a Camera component.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1CameraClient_html"><div class="ttname"><a href="classviam_1_1sdk_1_1CameraClient.html">viam::sdk::CameraClient</a></div><div class="ttdoc">gRPC client implementation of a Camera component.</div><div class="ttdef"><b>Definition</b> client.hpp:22</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1CameraClient_html_a054337d613d8312d2a5ead40bd219919"><div class="ttname"><a href="classviam_1_1sdk_1_1CameraClient.html#a054337d613d8312d2a5ead40bd219919">viam::sdk::CameraClient::get_image</a></div><div class="ttdeci">raw_image get_image(std::string mime_type, const AttributeMap &amp;extra) override</div><div class="ttdoc">Get the next image from the camera as a raw image.</div></div>

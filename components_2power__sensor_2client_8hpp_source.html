@@ -111,16 +111,15 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">using </span><a class="code hl_function" href="classviam_1_1sdk_1_1PowerSensor.html#aed00657c099b15748a765d22dc473f31">PowerSensor::get_readings</a>;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">using </span><a class="code hl_function" href="classviam_1_1sdk_1_1PowerSensor.html#acf6e4cd0f94932018ee2e2574637cd2b">PowerSensor::get_voltage</a>;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">typedef</span> viam::component::powersensor::v1::PowerSensorService::StubInterface Stub;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::unique_ptr&lt;Stub&gt; stub_;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">using </span>StubType = viam::component::powersensor::v1::PowerSensorService::StubInterface;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::unique_ptr&lt;StubType&gt; stub_;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1PowerSensorClient_html"><div class="ttname"><a href="classviam_1_1sdk_1_1PowerSensorClient.html">viam::sdk::PowerSensorClient</a></div><div class="ttdoc">gRPC client implementation of a PowerSensor component.</div><div class="ttdef"><b>Definition</b> client.hpp:21</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1PowerSensorClient_html_ab29510dd3c4baee89bdcff707119f4ce"><div class="ttname"><a href="classviam_1_1sdk_1_1PowerSensorClient.html#ab29510dd3c4baee89bdcff707119f4ce">viam::sdk::PowerSensorClient::do_command</a></div><div class="ttdeci">AttributeMap do_command(const AttributeMap &amp;command) override</div><div class="ttdoc">Send/receive arbitrary commands to the resource.</div></div>

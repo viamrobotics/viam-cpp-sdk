@@ -145,13 +145,14 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">using </span><a class="code hl_function" href="classviam_1_1sdk_1_1Board.html#abc311cfbf00eff084a0984e01dccc0a7">Board::write_analog</a>;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::unique_ptr&lt;viam::component::board::v1::BoardService::StubInterface&gt; stub_;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">using </span>StubType = viam::component::board::v1::BoardService::StubInterface;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    std::unique_ptr&lt;StubType&gt; stub_;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">const</span> std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aboard_8hpp_html"><div class="ttname"><a href="board_8hpp.html">board.hpp</a></div><div class="ttdoc">Defines a Board component.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1BoardClient_html"><div class="ttname"><a href="classviam_1_1sdk_1_1BoardClient.html">viam::sdk::BoardClient</a></div><div class="ttdoc">gRPC client implementation of a Board component.</div><div class="ttdef"><b>Definition</b> client.hpp:21</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1BoardClient_html_a0aaea6e252c6cfc7609a11c83b367b6a"><div class="ttname"><a href="classviam_1_1sdk_1_1BoardClient.html#a0aaea6e252c6cfc7609a11c83b367b6a">viam::sdk::BoardClient::get_status</a></div><div class="ttdeci">status get_status(const AttributeMap &amp;extra) override</div><div class="ttdoc">Get the status of all of the registered analog readers and digital interrupt readers.</div></div>

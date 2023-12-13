@@ -122,16 +122,15 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">using </span>MovementSensor::get_position;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">using </span>MovementSensor::get_properties;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">typedef</span> viam::component::movementsensor::v1::MovementSensorService::StubInterface Stub;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::unique_ptr&lt;Stub&gt; stub_;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">using </span>StubType = viam::component::movementsensor::v1::MovementSensorService::StubInterface;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::unique_ptr&lt;StubType&gt; stub_;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::shared_ptr&lt;grpc::Channel&gt; channel_;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MovementSensorClient_html"><div class="ttname"><a href="classviam_1_1sdk_1_1MovementSensorClient.html">viam::sdk::MovementSensorClient</a></div><div class="ttdoc">gRPC client implementation of a MovementSensor component.</div><div class="ttdef"><b>Definition</b> client.hpp:22</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1MovementSensorClient_html_a135bfa1eee5adb4a076f3615064a0de1"><div class="ttname"><a href="classviam_1_1sdk_1_1MovementSensorClient.html#a135bfa1eee5adb4a076f3615064a0de1">viam::sdk::MovementSensorClient::get_geometries</a></div><div class="ttdeci">std::vector&lt; GeometryConfig &gt; get_geometries(const AttributeMap &amp;extra) override</div><div class="ttdoc">Returns GeometryConfigs associated with the calling movementsensor.</div></div>
