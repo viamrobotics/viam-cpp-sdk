@@ -19,8 +19,8 @@ EncoderRegistration::EncoderRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> EncoderRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<EncoderServer>(manager);
+    std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server) {
+    return std::make_shared<EncoderServer>(manager, server);
 };
 
 std::shared_ptr<Resource> EncoderRegistration::create_rpc_client(

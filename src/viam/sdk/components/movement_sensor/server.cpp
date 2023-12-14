@@ -12,10 +12,11 @@ using namespace viam::component::movementsensor::v1;
 namespace viam {
 namespace sdk {
 
-MovementSensorServer::MovementSensorServer()
-    : ResourceServer(std::make_shared<ResourceManager>()){};
-MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(manager){};
+MovementSensorServer::MovementSensorServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> manager,
+                                           std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
     ::grpc::ServerContext* context,
@@ -140,10 +141,6 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
             *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
-}
-
-void MovementSensorServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

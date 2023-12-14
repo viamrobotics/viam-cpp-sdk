@@ -9,8 +9,11 @@
 namespace viam {
 namespace sdk {
 
-EncoderServer::EncoderServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+EncoderServer::EncoderServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager,
+                             std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 ::grpc::Status EncoderServer::GetPosition(
     ::grpc::ServerContext* context,
@@ -66,10 +69,6 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager) : Resourc
         const AttributeMap result = encoder->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
-}
-
-void EncoderServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

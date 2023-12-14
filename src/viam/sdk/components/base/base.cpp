@@ -18,8 +18,8 @@ BaseRegistration::BaseRegistration(const google::protobuf::ServiceDescriptor* se
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> BaseRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<BaseServer>(manager);
+    std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server) {
+    return std::make_shared<BaseServer>(manager, server);
 };
 
 std::shared_ptr<Resource> BaseRegistration::create_rpc_client(std::string name,

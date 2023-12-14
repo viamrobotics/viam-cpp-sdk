@@ -7,8 +7,11 @@
 namespace viam {
 namespace sdk {
 
-GenericServer::GenericServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+GenericServer::GenericServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager,
+                             std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 ::grpc::Status GenericServer::DoCommand(::grpc::ServerContext* context,
                                         const ::viam::common::v1::DoCommandRequest* request,
@@ -30,10 +33,6 @@ GenericServer::GenericServer(std::shared_ptr<ResourceManager> manager) : Resourc
             *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
-}
-
-void GenericServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

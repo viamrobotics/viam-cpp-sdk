@@ -10,8 +10,10 @@
 namespace viam {
 namespace sdk {
 
-BoardServer::BoardServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+BoardServer::BoardServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 ::grpc::Status BoardServer::Status(
     ::grpc::ServerContext* context,
@@ -202,10 +204,6 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
             *response->mutable_geometries()->Add() = geometry.to_proto();
         }
     });
-}
-
-void BoardServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

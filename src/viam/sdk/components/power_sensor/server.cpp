@@ -11,9 +11,11 @@ using namespace viam::component::powersensor::v1;
 namespace viam {
 namespace sdk {
 
-PowerSensorServer::PowerSensorServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(manager){};
+PowerSensorServer::PowerSensorServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager,
+                                     std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 ::grpc::Status PowerSensorServer::GetVoltage(::grpc::ServerContext* context,
                                              const GetVoltageRequest* request,
@@ -67,10 +69,6 @@ PowerSensorServer::PowerSensorServer(std::shared_ptr<ResourceManager> manager)
         const AttributeMap result = powersensor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
-}
-
-void PowerSensorServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

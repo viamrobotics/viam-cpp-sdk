@@ -113,7 +113,8 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     return camera;
 }
 
-MockCameraStub::MockCameraStub() : server_(std::make_shared<CameraServer>()) {
+MockCameraStub::MockCameraStub()
+    : server_(std::make_shared<CameraServer>(std::make_shared<Server>())) {
     this->server_->resource_manager()->add(std::string("mock_camera"),
                                            MockCamera::get_mock_camera());
 };

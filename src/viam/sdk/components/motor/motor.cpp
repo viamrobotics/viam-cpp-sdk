@@ -15,8 +15,8 @@ namespace viam {
 namespace sdk {
 
 std::shared_ptr<ResourceServer> MotorRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<MotorServer>(manager);
+    std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server) {
+    return std::make_shared<MotorServer>(manager, server);
 };
 
 std::shared_ptr<Resource> MotorRegistration::create_rpc_client(

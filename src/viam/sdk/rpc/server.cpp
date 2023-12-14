@@ -55,5 +55,9 @@ void Server::shutdown() {
     }
 }
 
+std::shared_ptr<grpc::Channel> Server::grpc_in_process_channel(const grpc::ChannelArguments& args) {
+    return server_->InProcessChannel(args);
+}
+
 }  // namespace sdk
 }  // namespace viam

@@ -23,8 +23,8 @@ SummationRegistration::SummationRegistration(
     : ResourceRegistration(service_descriptor){};
 
 std::shared_ptr<ResourceServer> SummationRegistration::create_resource_server(
-    std::shared_ptr<ResourceManager> manager) {
-    return std::make_shared<SummationServer>(manager);
+    std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server) {
+    return std::make_shared<SummationServer>(manager, server);
 };
 
 std::shared_ptr<Resource> SummationRegistration::create_rpc_client(
@@ -56,9 +56,11 @@ Summation::Summation(std::string name) : Service(std::move(name)){};
 
 /* Summation server methods */
 
-SummationServer::SummationServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-SummationServer::SummationServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(manager){};
+SummationServer::SummationServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+SummationServer::SummationServer(std::shared_ptr<ResourceManager> manager,
+                                 std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 grpc::Status SummationServer::Sum(grpc::ServerContext* context,
                                   const SumRequest* request,
@@ -80,10 +82,6 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
     response->set_sum(summation->sum(numbers_vec));
 
     return ::grpc::Status();
-}
-
-void SummationServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 /* Summation client methods */

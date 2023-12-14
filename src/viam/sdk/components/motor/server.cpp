@@ -10,8 +10,10 @@
 namespace viam {
 namespace sdk {
 
-MotorServer::MotorServer() : ResourceServer(std::make_shared<ResourceManager>()){};
-MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceServer(manager){};
+MotorServer::MotorServer(std::shared_ptr<Server> server)
+    : ResourceServer(std::make_shared<ResourceManager>(), server, this){};
+MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server)
+    : ResourceServer(manager, server, this){};
 
 ::grpc::Status MotorServer::SetPower(
     ::grpc::ServerContext* context,
@@ -124,10 +126,6 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager) : ResourceSer
         const AttributeMap result = motor->do_command(struct_to_map(request->command()));
         *response->mutable_result() = map_to_struct(result);
     });
-}
-
-void MotorServer::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
 }
 
 }  // namespace sdk

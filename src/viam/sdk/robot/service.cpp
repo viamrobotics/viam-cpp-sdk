@@ -205,13 +205,5 @@ std::shared_ptr<Resource> RobotService_::resource_by_name(Name name) {
     return r;
 }
 
-void RobotService_::register_server(std::shared_ptr<Server> server) {
-    server->register_service(this);
-}
-
-std::shared_ptr<RobotService_> RobotService_::create() {
-    return std::make_shared<RobotService_>();
-};
-
 }  // namespace sdk
 }  // namespace viam

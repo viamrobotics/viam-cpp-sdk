@@ -31,7 +31,8 @@ std::shared_ptr<MockGeneric> MockGeneric::get_mock_generic() {
     return generic;
 }
 
-MockGenericStub::MockGenericStub() : server_(std::make_shared<GenericServer>()) {
+MockGenericStub::MockGenericStub()
+    : server_(std::make_shared<GenericServer>(std::make_shared<Server>())) {
     this->server_->resource_manager()->add(std::string("mock_generic"),
                                            MockGeneric::get_mock_generic());
 }

@@ -18,8 +18,9 @@ namespace sdk {
 class EncoderServer : public ResourceServer,
                       public viam::component::encoder::v1::EncoderService::Service {
    public:
-    EncoderServer();
-    explicit EncoderServer(std::shared_ptr<ResourceManager> manager);
+    EncoderServer(std::shared_ptr<Server> server);
+    explicit EncoderServer(std::shared_ptr<ResourceManager> manager,
+                           std::shared_ptr<Server> server);
 
     ::grpc::Status GetPosition(
         ::grpc::ServerContext* context,
@@ -44,8 +45,6 @@ class EncoderServer : public ResourceServer,
     ::grpc::Status DoCommand(grpc::ServerContext* context,
                              const viam::common::v1::DoCommandRequest* request,
                              viam::common::v1::DoCommandResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk

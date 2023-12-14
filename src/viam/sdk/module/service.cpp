@@ -271,8 +271,8 @@ void ModuleService::add_api_from_registry_inlock_(API api, const std::lock_guard
     auto new_manager = std::make_shared<ResourceManager>();
 
     const std::shared_ptr<ResourceRegistration> rs = Registry::lookup_resource(api);
-    const std::shared_ptr<ResourceServer> resource_server = rs->create_resource_server(new_manager);
-    resource_server->register_server(server_);
+    const std::shared_ptr<ResourceServer> resource_server =
+        rs->create_resource_server(new_manager, server_);
     module_->mutable_services().emplace(api, new_manager);
     module_->mutable_servers().push_back(resource_server);
 }

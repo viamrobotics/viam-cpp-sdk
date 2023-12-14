@@ -8,14 +8,19 @@ namespace sdk {
 
 class ResourceServer {
    public:
-    virtual void register_server(std::shared_ptr<Server> server) = 0;
     const std::shared_ptr<ResourceManager>& resource_manager() const;
 
    protected:
-    ResourceServer(std::shared_ptr<ResourceManager> manager) : manager_(manager){};
+    ResourceServer(std::shared_ptr<ResourceManager> manager,
+                   std::shared_ptr<Server> server,
+                   grpc::Service* service)
+        : manager_(manager), server_(server) {
+        server->register_service(service);
+    };
 
    private:
     std::shared_ptr<ResourceManager> manager_;
+    std::shared_ptr<Server> server_;
 };
 
 }  // namespace sdk

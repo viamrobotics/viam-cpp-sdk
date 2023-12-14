@@ -20,8 +20,8 @@ namespace sdk {
 class MotionServer : public ResourceServer,
                      public viam::service::motion::v1::MotionService::Service {
    public:
-    MotionServer();
-    explicit MotionServer(std::shared_ptr<ResourceManager> manager);
+    MotionServer(std::shared_ptr<Server> server);
+    explicit MotionServer(std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server);
 
     ::grpc::Status Move(::grpc::ServerContext* context,
                         const ::viam::service::motion::v1::MoveRequest* request,
@@ -53,8 +53,6 @@ class MotionServer : public ResourceServer,
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
-
-    void register_server(std::shared_ptr<Server> server) override;
 };
 
 }  // namespace sdk

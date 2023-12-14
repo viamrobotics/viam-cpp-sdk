@@ -38,7 +38,7 @@ class ResourceRegistration {
     /// @param manager The server's `ResourceManager`.
     /// @return a `shared_ptr` to the gRPC server.
     virtual std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) = 0;
+        std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server>) = 0;
 
     /// @brief Returns a reference to the `ResourceRegistration`'s service descriptor.
     const google::protobuf::ServiceDescriptor* service_descriptor();
@@ -67,8 +67,8 @@ class ResourceRegistration2 : public ResourceRegistration {
    public:
     using ResourceRegistration::ResourceRegistration;
     std::shared_ptr<ResourceServer> create_resource_server(
-        std::shared_ptr<ResourceManager> manager) override {
-        return std::make_shared<ResourceServerT>(manager);
+        std::shared_ptr<ResourceManager> manager, std::shared_ptr<Server> server) override {
+        return std::make_shared<ResourceServerT>(manager, server);
     }
 
     std::shared_ptr<Resource> create_rpc_client(std::string name,
