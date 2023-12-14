@@ -17,6 +17,9 @@ using namespace viam::sdk;
 // we should update the tests here accordingly.
 //
 class MockRobotService : public RobotService_ {
+   public:
+    MockRobotService(std::shared_ptr<Server> server) : RobotService_(server){};
+
     ::grpc::Status FrameSystemConfig(
         ::grpc::ServerContext* context,
         const ::viam::robot::v1::FrameSystemConfigRequest* request,
