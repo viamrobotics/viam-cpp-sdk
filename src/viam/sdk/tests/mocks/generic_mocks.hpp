@@ -29,55 +29,6 @@ class MockGeneric : public Generic {
     std::vector<GeometryConfig> geometries_;
 };
 
-class MockGenericStub : public viam::component::generic::v1::GenericService::StubInterface {
-   public:
-    MockGenericStub();
-
-    ::grpc::Status DoCommand(::grpc::ClientContext* context,
-                             const ::viam::common::v1::DoCommandRequest& request,
-                             ::viam::common::v1::DoCommandResponse* response) override;
-    ::grpc::Status GetGeometries(::grpc::ClientContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest& request,
-                                 ::viam::common::v1::GetGeometriesResponse* response) override;
-
-   private:
-    std::shared_ptr<GenericServer> server_;
-    std::shared_ptr<::grpc::ChannelInterface> channel_;
-    ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(
-        ::grpc::ClientContext* context,
-        const ::viam::common::v1::DoCommandRequest& request,
-        ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("Unimplemented");
-    };
-
-    ::grpc::ClientAsyncResponseReader<::viam::common::v1::DoCommandResponse>*
-    PrepareAsyncDoCommandRaw(::grpc::ClientContext* context,
-                             const ::viam::common::v1::DoCommandRequest& request,
-                             ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("Unimplemented");
-    };
-
-    ::grpc::ClientAsyncResponseReaderInterface<::viam::common::v1::GetGeometriesResponse>*
-    AsyncGetGeometriesRaw(::grpc::ClientContext* context,
-                          const ::viam::common::v1::GetGeometriesRequest& request,
-                          ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("Unimplemented");
-    };
-
-    ::grpc::ClientAsyncResponseReaderInterface<::viam::common::v1::GetGeometriesResponse>*
-    PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context,
-                                 const ::viam::common::v1::GetGeometriesRequest& request,
-                                 ::grpc::CompletionQueue* cq) override {
-        throw std::runtime_error("Unimplemented");
-    };
-};
-
-class MockGenericClient : public GenericClient {
-   public:
-    MockGenericClient(std::string name)
-        : GenericClient(std::move(name), std::make_unique<MockGenericStub>()){};
-};
-
 }  // namespace generic
 }  // namespace sdktests
 }  // namespace viam
