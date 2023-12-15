@@ -1,12 +1,12 @@
 # VIAM Complex Module Example
 This example goes through how to create custom modular resources using Viam's C++ SDK and how to connect them to a Robot.
 
-This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
+This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/registry/).
 
 ## Purpose
 Modular resources allow you to define custom components and services, and add them to your robot. Viam ships with many component types, but you're not limited to only using those types -- you can create your own using modules.
 
-For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/simple), which only contains one custom resource model in one file.
+For more information, see the [documentation](https://docs.viam.com/registry/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/simple), which only contains one custom resource model in one file.
 
 For a fully fleshed-out example of a C++ module that uses Github CI to upload to the Viam Registry, take a look at [module-example-cpp](https://github.com/viamrobotics/module-example-cpp). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
@@ -17,7 +17,7 @@ The `proto` directory contains the `gizmo.proto` and `summation.proto` definitio
 
 The `config` directory contains two buf.gen.yaml files that are used for compiling the files in `proto` to C++. `config/buf.gen.local.yaml.in` is used when offline generation is enabled and `config/buf.gen.remote.plugin.yaml.in` is used when offline proto generation is disabled. Offline proto generation is enabled by default and can be set with `VIAMCPPSDK_OFFLINE_PROTO_GENERATION`.
 
-The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. `api.cpp` and `api.hpp` define what a `Gizmo` can do (mirroring the `proto` definition), implement the gRPC `GizmoServer` for receiving calls, and implement the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/program/extend/modular-resources/#apis) for more info. `impl.cpp` and `impl.hpp` contain the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/program/extend/modular-resources/#models) for more info.
+The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. `api.cpp` and `api.hpp` define what a `Gizmo` can do (mirroring the `proto` definition), implement the gRPC `GizmoServer` for receiving calls, and implement the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/build/program/apis/) for more info. `impl.cpp` and `impl.hpp` contain the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/registry/create/#valid-apis-to-implement-in-your-model) for more info.
 
 Similarly, the `summation` directory contains the analogous definitions for the `Summation` service type. The files in this directory mirror the files in the `gizmo` directory.
 
@@ -31,9 +31,9 @@ Finally, the `client.cpp` file can be used to test the module once you have conn
 
 ## Configuring and using the module
 
-The `complex_module` binary generated after building is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-cpp-sdk/build/install/bin/complex_module` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
+The `complex_module` binary generated after building is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-cpp-sdk/build/install/bin/complex_module` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/registry/configure/#add-a-local-module) for more details.
 
-Once the module has been added to your robot, add a `gizmo` component that uses the `viam:gizmo:mygizmo` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. You can also add a `summation` service that uses the `viam:summation:mysummation` model and a `base` component that uses the `viam:base:mybase` model in a similar manner.
+Once the module has been added to your robot, add a `gizmo` component that uses the `viam:gizmo:mygizmo` model. See the [documentation](https://docs.viam.com/registry/configure/#add-a-local-modular-resource) for more details. You can also add a `summation` service that uses the `viam:summation:mysummation` model and a `base` component that uses the `viam:base:mybase` model in a similar manner.
 
 An example configuration for a gizmo component, a summation service, and a base component could look like this:
 ```json
