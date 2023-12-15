@@ -6,7 +6,7 @@ This is a limited document. For a more in-depth understanding of modules, see th
 ## Purpose
 Modular resources allow you to define custom components and services and add them to your robot. Viam ships with many component types, but you're not limited to only using those types -- you can create your own using modules.
 
-For more information, see the [documentation]([https://docs.viam.com/program/extend/modular-resources/](https://docs.viam.com/registry/)). For a more complex example, take a look at the [complex module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/complex), which contains multiple new APIs and custom resource models.
+For more information, see the [documentation](https://docs.viam.com/registry/). For a more complex example, take a look at the [complex module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/complex), which contains multiple new APIs and custom resource models.
 
 For a fully fleshed-out example of a C++ module that uses Github CI to upload to the Viam Registry, take a look at [module-example-cpp](https://github.com/viamrobotics/module-example-cpp). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
