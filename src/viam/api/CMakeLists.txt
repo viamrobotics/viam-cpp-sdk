@@ -21,6 +21,7 @@ endif()
 set(BUF_PROTO_COMPONENTS
   app/packages
   app/v1
+  app/packages
   common
   component
   module
@@ -130,6 +131,8 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.h
     ${PROTO_GEN_DIR}/app/v1/app.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.pb.h
+    ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
+    ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.h
     ${PROTO_GEN_DIR}/app/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/v1/robot.grpc.pb.h
     ${PROTO_GEN_DIR}/app/v1/robot.pb.cc
@@ -252,6 +255,7 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.pb.cc
+    ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/common/v1/common.grpc.pb.cc
@@ -294,6 +298,7 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/app/packages/v1/packages.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/app/packages/v1/packages.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/robot.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/common/v1/common.grpc.pb.h
