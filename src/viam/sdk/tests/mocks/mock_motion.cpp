@@ -37,13 +37,13 @@ bool MockMotion::move_on_map(const pose& destination,
     return true;
 }
 
-bool MockMotion::move_on_globe(const geo_point& destination,
-                               const boost::optional<double>& heading,
-                               const Name& component_name,
-                               const Name& movement_sensor_name,
-                               const std::vector<geo_obstacle>& obstacles,
-                               std::shared_ptr<motion_configuration> motion_configuration,
-                               const AttributeMap& extra) {
+std::string MockMotion::move_on_globe(const geo_point& destination,
+                                      const boost::optional<double>& heading,
+                                      const Name& component_name,
+                                      const Name& movement_sensor_name,
+                                      const std::vector<geo_obstacle>& obstacles,
+                                      std::shared_ptr<motion_configuration> motion_configuration,
+                                      const AttributeMap& extra) {
     this->peek_heading = *heading;
     this->peek_component_name = std::move(component_name);
     this->peek_movement_sensor_name = std::move(movement_sensor_name);
@@ -51,7 +51,7 @@ bool MockMotion::move_on_globe(const geo_point& destination,
     this->peek_obstacles = std::move(obstacles);
     this->peek_motion_configuration = std::move(motion_configuration);
 
-    return true;
+    return "execution-id";
 }
 
 pose_in_frame MockMotion::get_pose(

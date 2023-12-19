@@ -33,13 +33,13 @@ class MockMotion : public sdk::Motion {
                      const sdk::Name& slam_name,
                      const sdk::AttributeMap& extra) override;
 
-    bool move_on_globe(const sdk::geo_point& destination,
-                       const boost::optional<double>& heading,
-                       const sdk::Name& component_name,
-                       const sdk::Name& movement_sensor_name,
-                       const std::vector<sdk::geo_obstacle>& obstacles,
-                       std::shared_ptr<sdk::motion_configuration> motion_configuration,
-                       const sdk::AttributeMap& extra) override;
+    std::string move_on_globe(const sdk::geo_point& destination,
+                              const boost::optional<double>& heading,
+                              const sdk::Name& component_name,
+                              const sdk::Name& movement_sensor_name,
+                              const std::vector<sdk::geo_obstacle>& obstacles,
+                              std::shared_ptr<sdk::motion_configuration> motion_configuration,
+                              const sdk::AttributeMap& extra) override;
 
     sdk::pose_in_frame get_pose(
         const sdk::Name& component_name,

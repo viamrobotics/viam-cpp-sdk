@@ -87,15 +87,15 @@ MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager) : ResourceS
                 motion_configuration::from_proto(request->motion_configuration()));
         }
 
-        const bool success = motion->move_on_globe(std::move(destination),
-                                                   std::move(heading),
-                                                   std::move(component_name),
-                                                   std::move(movement_sensor_name),
-                                                   std::move(obstacles),
-                                                   std::move(mc),
-                                                   std::move(helper.getExtra()));
+        const std::string execution_id = motion->move_on_globe(std::move(destination),
+                                                               std::move(heading),
+                                                               std::move(component_name),
+                                                               std::move(movement_sensor_name),
+                                                               std::move(obstacles),
+                                                               std::move(mc),
+                                                               std::move(helper.getExtra()));
 
-        response->set_success(success);
+        *response->mutable_execution_id() = execution_id;
     });
 }
 
