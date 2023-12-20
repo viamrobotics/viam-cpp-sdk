@@ -420,7 +420,7 @@ class Motion : public Service {
     /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
     /// @param execution_id The execution id of the requested plan.
     /// @return the plan and status of the requested execution's move the requested component
-    inline plan_with_status get_plan(Name component_name, const std::string& execution_id) {
+    inline plan_with_status get_plan(const Name& component_name, const std::string& execution_id) {
         return get_plan(component_name, execution_id, {});
     }
 

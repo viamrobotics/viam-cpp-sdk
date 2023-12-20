@@ -132,8 +132,20 @@ bool operator==(const response_metadata& lhs, const response_metadata& rhs) {
     return lhs.captured_at == rhs.captured_at;
 }
 
-void set_client_ctx_authority(grpc::ClientContext& ctx) {
-    ctx.set_authority("viam-placeholder");
+void ClientContext::set_client_ctx_authority_() {
+    wrapped_context_.set_authority("viam-placeholder");
+}
+
+ClientContext::ClientContext() {
+    set_client_ctx_authority_();
+}
+
+ClientContext::operator const grpc::ClientContext*() const {
+    return &wrapped_context_;
+}
+
+ClientContext::operator grpc::ClientContext*() {
+    return &wrapped_context_;
 }
 
 bool from_dm_from_extra(const AttributeMap& extra) {

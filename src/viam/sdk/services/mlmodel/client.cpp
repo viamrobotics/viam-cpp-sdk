@@ -38,8 +38,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     req->set_name(this->name());
     *req->mutable_extra() = map_to_struct(extra);
     auto* const resp = pb::Arena::CreateMessage<mlpb::InferResponse>(arena.get());
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
     struct arena_and_views {
         // NOTE: It is not necessary to capture the `resp` pointer
@@ -57,7 +56,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
         mlmodel_details::copy_sdk_tensor_to_api_tensor(kv.second, &emplaced);
     }
 
-    const auto result = stub_->Infer(&ctx, *req, resp);
+    const auto result = stub_->Infer(ctx, *req, resp);
     if (!result.ok()) {
         throw std::runtime_error(result.error_message());
     }
@@ -80,10 +79,9 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
     *req.mutable_extra() = map_to_struct(extra);
 
     // Invoke the stub
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
     viam::service::mlmodel::v1::MetadataResponse resp;
-    const auto stub_result = stub_->Metadata(&ctx, req, &resp);
+    const auto stub_result = stub_->Metadata(ctx, req, &resp);
 
     struct metadata result;
     if (resp.has_metadata()) {
