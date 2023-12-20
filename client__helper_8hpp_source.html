@@ -134,39 +134,39 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ResponseHandlerCallable, <span class="keyword">typename</span> ErrorHandlerCallable&gt;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">auto</span> invoke(ResponseHandlerCallable&amp;&amp; rhc, ErrorHandlerCallable&amp;&amp; ehc) {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        *request_.mutable_name() = client_-&gt;name();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        ::grpc::ClientContext ctx;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        set_client_ctx_authority(ctx);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keyword">const</span> <span class="keyword">auto</span> result = (stub_-&gt;*pfn_)(&amp;ctx, request_, &amp;response_);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (result.ok()) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">return</span> std::forward&lt;ResponseHandlerCallable&gt;(rhc)(</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                <span class="keyword">const_cast&lt;</span><span class="keyword">const </span>ResponseType&amp;<span class="keyword">&gt;</span>(response_));</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        std::forward&lt;ErrorHandlerCallable&gt;(ehc)(result);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        client_helper_details::errorHandlerReturnedUnexpectedly(result);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    ClientType* client_;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    StubType* stub_;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    PFn pfn_;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    RequestType request_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    ResponseType response_;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_class" href="classviam_1_1sdk_1_1ClientContext.html">ClientContext</a> ctx;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">const</span> <span class="keyword">auto</span> result = (stub_-&gt;*pfn_)(ctx, request_, &amp;response_);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">if</span> (result.ok()) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">return</span> std::forward&lt;ResponseHandlerCallable&gt;(rhc)(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="keyword">const_cast&lt;</span><span class="keyword">const </span>ResponseType&amp;<span class="keyword">&gt;</span>(response_));</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        std::forward&lt;ErrorHandlerCallable&gt;(ehc)(result);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        client_helper_details::errorHandlerReturnedUnexpectedly(result);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    ClientType* client_;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    StubType* stub_;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    PFn pfn_;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    RequestType request_;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    ResponseType response_;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ClientType, <span class="keyword">typename</span> StubType, <span class="keyword">typename</span> RequestType, <span class="keyword">typename</span> ResponseType&gt;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">auto</span> make_client_helper(ClientType* client,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                        StubType&amp; stub,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                        ::grpc::Status (StubType::*method)(::grpc::ClientContext*,</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                                           const RequestType&amp;,</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                                                           ResponseType*)) {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">ClientHelper&lt;ClientType, StubType, RequestType, ResponseType&gt;</a>(<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">client</a>, &amp;<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">stub</a>, <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">method</a>);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ClientType, <span class="keyword">typename</span> StubType, <span class="keyword">typename</span> RequestType, <span class="keyword">typename</span> ResponseType&gt;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">auto</span> make_client_helper(ClientType* client,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                        StubType&amp; stub,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                        ::grpc::Status (StubType::*method)(::grpc::<a class="code hl_class" href="classviam_1_1sdk_1_1ClientContext.html">ClientContext</a>*,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                                                           const RequestType&amp;,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                                           ResponseType*)) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">ClientHelper&lt;ClientType, StubType, RequestType, ResponseType&gt;</a>(<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">client</a>, &amp;<a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">stub</a>, <a class="code hl_class" href="classviam_1_1sdk_1_1ClientHelper.html">method</a>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1ClientContext_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientContext.html">viam::sdk::ClientContext</a></div><div class="ttdef"><b>Definition</b> utils.hpp:75</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ClientHelper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ClientHelper.html">viam::sdk::ClientHelper</a></div><div class="ttdef"><b>Definition</b> client_helper.hpp:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
