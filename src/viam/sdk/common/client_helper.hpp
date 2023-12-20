@@ -50,10 +50,9 @@ class ClientHelper {
     template <typename ResponseHandlerCallable, typename ErrorHandlerCallable>
     auto invoke(ResponseHandlerCallable&& rhc, ErrorHandlerCallable&& ehc) {
         *request_.mutable_name() = client_->name();
-        ::grpc::ClientContext ctx;
-        set_client_ctx_authority(ctx);
+        ClientContext ctx;
 
-        const auto result = (stub_->*pfn_)(&ctx, request_, &response_);
+        const auto result = (stub_->*pfn_)(ctx, request_, &response_);
         if (result.ok()) {
             return std::forward<ResponseHandlerCallable>(rhc)(
                 const_cast<const ResponseType&>(response_));

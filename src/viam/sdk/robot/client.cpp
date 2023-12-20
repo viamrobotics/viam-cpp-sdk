@@ -40,7 +40,6 @@ namespace sdk {
 // TODO(RSDK-4573) Having all these proto types exposed here in the APIs is sad. Let's fix that.
 
 using google::protobuf::RepeatedPtrField;
-using grpc::ClientContext;
 using viam::common::v1::PoseInFrame;
 using viam::common::v1::ResourceName;
 using viam::common::v1::Transform;
@@ -93,12 +92,11 @@ std::vector<Status> RobotClient::get_status(std::vector<ResourceName>& component
     viam::robot::v1::GetStatusRequest req;
     viam::robot::v1::GetStatusResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
     for (const ResourceName& name : components) {
         *req.mutable_resource_names()->Add() = name;
     }
 
-    const grpc::Status response = stub_->GetStatus(&ctx, req, &resp);
+    const grpc::Status response = stub_->GetStatus(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting status: " << response.error_message()
                                  << response.error_details();
@@ -119,11 +117,10 @@ std::vector<Operation> RobotClient::get_operations() {
     const viam::robot::v1::GetOperationsRequest req;
     viam::robot::v1::GetOperationsResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     std::vector<Operation> operations;
 
-    grpc::Status const response = stub_->GetOperations(&ctx, req, &resp);
+    grpc::Status const response = stub_->GetOperations(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
     }
@@ -139,10 +136,9 @@ void RobotClient::cancel_operation(std::string id) {
     viam::robot::v1::CancelOperationRequest req;
     viam::robot::v1::CancelOperationResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     req.set_id(id);
-    const grpc::Status response = stub_->CancelOperation(&ctx, req, &resp);
+    const grpc::Status response = stub_->CancelOperation(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
     }
@@ -152,11 +148,10 @@ void RobotClient::block_for_operation(std::string id) {
     viam::robot::v1::BlockForOperationRequest req;
     viam::robot::v1::BlockForOperationResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     req.set_id(id);
 
-    const grpc::Status response = stub_->BlockForOperation(&ctx, req, &resp);
+    const grpc::Status response = stub_->BlockForOperation(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
     }
@@ -166,8 +161,8 @@ void RobotClient::refresh() {
     const viam::robot::v1::ResourceNamesRequest req;
     viam::robot::v1::ResourceNamesResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
-    const grpc::Status response = stub_->ResourceNames(&ctx, req, &resp);
+
+    const grpc::Status response = stub_->ResourceNames(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
@@ -286,14 +281,13 @@ std::vector<FrameSystemConfig> RobotClient::get_frame_system_config(
     viam::robot::v1::FrameSystemConfigRequest req;
     viam::robot::v1::FrameSystemConfigResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     RepeatedPtrField<Transform>* req_transforms = req.mutable_supplemental_transforms();
     for (const Transform& transform : additional_transforms) {
         *req_transforms->Add() = transform;
     }
 
-    const grpc::Status response = stub_->FrameSystemConfig(&ctx, req, &resp);
+    const grpc::Status response = stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
                                  << response.error_message();
@@ -316,7 +310,6 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
     viam::robot::v1::TransformPoseRequest req;
     viam::robot::v1::TransformPoseResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     *req.mutable_source() = query;
     *req.mutable_destination() = destination;
@@ -326,7 +319,7 @@ PoseInFrame RobotClient::transform_pose(PoseInFrame query,
         *req_transforms->Add() = transform;
     }
 
-    const grpc::Status response = stub_->TransformPose(&ctx, req, &resp);
+    const grpc::Status response = stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
     }
@@ -338,7 +331,6 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
     viam::robot::v1::DiscoverComponentsRequest req;
     viam::robot::v1::DiscoverComponentsResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     RepeatedPtrField<DiscoveryQuery>* req_queries = req.mutable_queries();
 
@@ -346,7 +338,7 @@ std::vector<Discovery> RobotClient::discover_components(std::vector<DiscoveryQue
         *req_queries->Add() = query;
     }
 
-    const grpc::Status response = stub_->DiscoverComponents(&ctx, req, &resp);
+    const grpc::Status response = stub_->DiscoverComponents(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error discovering components: " << response.error_message();
     }
@@ -385,7 +377,6 @@ void RobotClient::stop_all(
     viam::robot::v1::StopAllRequest req;
     viam::robot::v1::StopAllResponse resp;
     ClientContext ctx;
-    set_client_ctx_authority(ctx);
 
     RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
     for (auto& xtra : extra) {
@@ -399,7 +390,7 @@ void RobotClient::stop_all(
         *stop.mutable_params() = s;
         *ep->Add() = stop;
     }
-    const grpc::Status response = stub_->StopAll(&ctx, req, &resp);
+    const grpc::Status response = stub_->StopAll(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
                                  << response.error_details();

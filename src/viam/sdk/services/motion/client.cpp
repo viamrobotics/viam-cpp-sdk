@@ -101,44 +101,30 @@ pose_in_frame MotionClient::get_pose(
 }
 
 void MotionClient::stop_plan(const Name& name, const AttributeMap& extra) {
-    service::motion::v1::StopPlanRequest request;
-    service::motion::v1::StopPlanResponse response;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-
-    const grpc::Status status = stub_->StopPlan(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
+    return make_client_helper(this, *stub_, &StubType::StopPlan)
+        .with(extra, [&](auto& request) { *request.mutable_component_name() = name.to_proto(); })
+        .invoke();
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> MotionClient::get_plan_(
-    const Name& name,
+    const Name& component_name,
     boost::optional<std::string> execution_id,
     bool last_plan_only,
     const AttributeMap& extra) {
-    service::motion::v1::GetPlanRequest request;
-    service::motion::v1::GetPlanResponse response;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
-
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_last_plan_only(last_plan_only);
-    if (execution_id) {
-        *request.mutable_execution_id() = *execution_id;
-    }
-
-    const grpc::Status status = stub_->GetPlan(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-
-    return {Motion::plan_with_status::from_proto(response.current_plan_with_status()),
-            Motion::plan_with_status::from_proto(response.replan_history())};
+    return make_client_helper(this, *stub_, &StubType::GetPlan)
+        .with(extra,
+              [&](auto& request) {
+                  *request.mutable_component_name() = component_name.to_proto();
+                  request.set_last_plan_only(last_plan_only);
+                  if (execution_id) {
+                      *request.mutable_execution_id() = *execution_id;
+                  }
+              })
+        .invoke([](auto& response) {
+            return std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>(
+                Motion::plan_with_status::from_proto(response.current_plan_with_status()),
+                Motion::plan_with_status::from_proto(response.replan_history()));
+        });
 }
 
 Motion::plan_with_status MotionClient::get_plan(const Name& name,
@@ -166,26 +152,16 @@ MotionClient::get_latest_plan_with_replan_history(const Name& name, const Attrib
 
 std::vector<Motion::plan_status_with_id> MotionClient::list_plan_statuses_(
     bool only_active_plans, const AttributeMap& extra) {
-    service::motion::v1::ListPlanStatusesRequest request;
-    service::motion::v1::ListPlanStatusesResponse response;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    return make_client_helper(this, *stub_, &StubType::ListPlanStatuses)
+        .with(extra, [&](auto& request) { request.set_only_active_plans(only_active_plans); })
+        .invoke([](auto& response) {
+            std::vector<Motion::plan_status_with_id> statuses;
+            for (const auto& proto : response.plan_statuses_with_ids()) {
+                statuses.push_back(Motion::plan_status_with_id::from_proto(proto));
+            }
 
-    *request.mutable_name() = this->name();
-    *request.mutable_extra() = map_to_struct(extra);
-    request.set_only_active_plans(only_active_plans);
-
-    const grpc::Status status = stub_->ListPlanStatuses(&ctx, request, &response);
-    if (!status.ok()) {
-        throw std::runtime_error(status.error_message());
-    }
-
-    std::vector<Motion::plan_status_with_id> statuses;
-    for (const auto& proto : response.plan_statuses_with_ids()) {
-        statuses.push_back(Motion::plan_status_with_id::from_proto(proto));
-    }
-
-    return statuses;
+            return statuses;
+        });
 }
 
 std::vector<Motion::plan_status_with_id> MotionClient::list_plan_statuses(

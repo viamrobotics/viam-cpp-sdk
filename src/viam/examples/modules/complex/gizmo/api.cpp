@@ -211,10 +211,9 @@ bool GizmoClient::do_one(std::string arg1) {
 
 bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
     DoOneClientStreamResponse response;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
-    auto writer(stub_->DoOneClientStream(&ctx, &response));
+    auto writer(stub_->DoOneClientStream(ctx, &response));
     for (std::string arg : arg1) {
         DoOneClientStreamRequest curr_req = {};
         *curr_req.mutable_name() = this->name();
@@ -235,13 +234,12 @@ bool GizmoClient::do_one_client_stream(std::vector<std::string> arg1) {
 
 std::vector<bool> GizmoClient::do_one_server_stream(std::string arg1) {
     DoOneServerStreamRequest request;
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
     *request.mutable_name() = this->name();
     request.set_arg1(arg1);
 
-    auto reader(stub_->DoOneServerStream(&ctx, request));
+    auto reader(stub_->DoOneServerStream(ctx, request));
     DoOneServerStreamResponse curr_resp = {};
     std::vector<bool> rets = {};
     while (reader->Read(&curr_resp)) {
@@ -256,10 +254,9 @@ std::vector<bool> GizmoClient::do_one_server_stream(std::string arg1) {
 }
 
 std::vector<bool> GizmoClient::do_one_bidi_stream(std::vector<std::string> arg1) {
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
-    auto stream(stub_->DoOneBiDiStream(&ctx));
+    auto stream(stub_->DoOneBiDiStream(ctx));
     for (std::string arg : arg1) {
         DoOneBiDiStreamRequest curr_req = {};
         *curr_req.mutable_name() = this->name();
@@ -289,13 +286,12 @@ std::string GizmoClient::do_two(bool arg1) {
     DoTwoRequest request;
     DoTwoResponse response;
 
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
     *request.mutable_name() = this->name();
     request.set_arg1(arg1);
 
-    const grpc::Status status = stub_->DoTwo(&ctx, request, &response);
+    const grpc::Status status = stub_->DoTwo(ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }

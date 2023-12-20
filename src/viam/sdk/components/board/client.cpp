@@ -93,15 +93,13 @@ Board::analog_value BoardClient::read_analog(const std::string& analog_reader_na
                                              const AttributeMap& extra) {
     viam::component::board::v1::ReadAnalogReaderRequest request;
     viam::component::board::v1::ReadAnalogReaderResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
     request.set_board_name(this->name());
     request.set_analog_reader_name(analog_reader_name);
     *request.mutable_extra() = map_to_struct(extra);
 
-    const grpc::Status status = stub_->ReadAnalogReader(&ctx, request, &response);
+    const grpc::Status status = stub_->ReadAnalogReader(ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
@@ -124,15 +122,13 @@ Board::digital_value BoardClient::read_digital_interrupt(const std::string& digi
                                                          const AttributeMap& extra) {
     viam::component::board::v1::GetDigitalInterruptValueRequest request;
     viam::component::board::v1::GetDigitalInterruptValueResponse response;
-
-    grpc::ClientContext ctx;
-    set_client_ctx_authority(ctx);
+    ClientContext ctx;
 
     request.set_board_name(this->name());
     request.set_digital_interrupt_name(digital_interrupt_name);
     *request.mutable_extra() = map_to_struct(extra);
 
-    const grpc::Status status = stub_->GetDigitalInterruptValue(&ctx, request, &response);
+    const grpc::Status status = stub_->GetDigitalInterruptValue(ctx, request, &response);
     if (!status.ok()) {
         throw std::runtime_error(status.error_message());
     }
