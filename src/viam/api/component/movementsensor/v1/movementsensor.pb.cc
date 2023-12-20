@@ -206,7 +206,12 @@ struct GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetAccuracyResponse_AccuracyEntry_DoNotUseDefaultTypeInternal _GetAccuracyResponse_AccuracyEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR GetAccuracyResponse::GetAccuracyResponse(
     ::_pbi::ConstantInitialized)
-  : accuracy_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
+  : accuracy_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , position_hdop_(0)
+  , position_vdop_(0)
+  , position_nmea_gga_fix_(0)
+
+  , compass_degrees_error_(0){}
 struct GetAccuracyResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetAccuracyResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -246,7 +251,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace component
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[17];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = nullptr;
 
 const uint32_t TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -364,13 +369,22 @@ const uint32_t TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2epr
   PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse, value_),
   0,
   1,
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, accuracy_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, position_hdop_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, position_vdop_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, position_nmea_gga_fix_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetAccuracyResponse, compass_degrees_error_),
+  ~0u,
+  0,
+  1,
+  2,
+  3,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::movementsensor::v1::GetLinearAccelerationRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -402,9 +416,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 84, -1, -1, sizeof(::viam::component::movementsensor::v1::GetPropertiesResponse)},
   { 96, -1, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyRequest)},
   { 104, 112, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse_AccuracyEntry_DoNotUse)},
-  { 114, -1, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse)},
-  { 121, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationRequest)},
-  { 129, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationResponse)},
+  { 114, 125, -1, sizeof(::viam::component::movementsensor::v1::GetAccuracyResponse)},
+  { 130, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationRequest)},
+  { 138, -1, -1, sizeof(::viam::component::movementsensor::v1::GetLinearAccelerationResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -468,73 +482,88 @@ const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovements
   "B\n\035linear_acceleration_supported\030\006 \001(\010R\033"
   "linearAccelerationSupported\"W\n\022GetAccura"
   "cyRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c"
-  " \001(\0132\027.google.protobuf.StructR\005extra\"\263\001\n"
+  " \001(\0132\027.google.protobuf.StructR\005extra\"\376\003\n"
   "\023GetAccuracyResponse\022_\n\010accuracy\030\001 \003(\0132C"
   ".viam.component.movementsensor.v1.GetAcc"
-  "uracyResponse.AccuracyEntryR\010accuracy\032;\n"
-  "\rAccuracyEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005valu"
-  "e\030\002 \001(\002R\005value:\0028\001\"a\n\034GetLinearAccelerat"
-  "ionRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030"
-  "c \001(\0132\027.google.protobuf.StructR\005extra\"i\n"
-  "\035GetLinearAccelerationResponse\022H\n\023linear"
-  "_acceleration\030\001 \001(\0132\027.viam.common.v1.Vec"
-  "tor3R\022linearAcceleration2\317\020\n\025MovementSen"
-  "sorService\022\322\001\n\021GetLinearVelocity\022:.viam."
-  "component.movementsensor.v1.GetLinearVel"
-  "ocityRequest\032;.viam.component.movementse"
-  "nsor.v1.GetLinearVelocityResponse\"D\202\323\344\223\002"
-  ">\022</viam/api/v1/component/movementsensor"
-  "/{name}/linear_velocity\022\326\001\n\022GetAngularVe"
-  "locity\022;.viam.component.movementsensor.v"
-  "1.GetAngularVelocityRequest\032<.viam.compo"
-  "nent.movementsensor.v1.GetAngularVelocit"
-  "yResponse\"E\202\323\344\223\002\?\022=/viam/api/v1/componen"
-  "t/movementsensor/{name}/angular_velocity"
-  "\022\322\001\n\021GetCompassHeading\022:.viam.component."
-  "movementsensor.v1.GetCompassHeadingReque"
-  "st\032;.viam.component.movementsensor.v1.Ge"
-  "tCompassHeadingResponse\"D\202\323\344\223\002>\022</viam/a"
-  "pi/v1/component/movementsensor/{name}/co"
-  "mpass_heading\022\305\001\n\016GetOrientation\0227.viam."
-  "component.movementsensor.v1.GetOrientati"
-  "onRequest\0328.viam.component.movementsenso"
-  "r.v1.GetOrientationResponse\"@\202\323\344\223\002:\0228/vi"
-  "am/api/v1/component/movementsensor/{name"
-  "}/orientation\022\271\001\n\013GetPosition\0224.viam.com"
-  "ponent.movementsensor.v1.GetPositionRequ"
-  "est\0325.viam.component.movementsensor.v1.G"
-  "etPositionResponse\"=\202\323\344\223\0027\0225/viam/api/v1"
-  "/component/movementsensor/{name}/positio"
-  "n\022\301\001\n\rGetProperties\0226.viam.component.mov"
-  "ementsensor.v1.GetPropertiesRequest\0327.vi"
-  "am.component.movementsensor.v1.GetProper"
-  "tiesResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/compo"
-  "nent/movementsensor/{name}/properties\022\271\001"
-  "\n\013GetAccuracy\0224.viam.component.movements"
-  "ensor.v1.GetAccuracyRequest\0325.viam.compo"
-  "nent.movementsensor.v1.GetAccuracyRespon"
-  "se\"=\202\323\344\223\0027\0225/viam/api/v1/component/movem"
-  "entsensor/{name}/accuracy\022\342\001\n\025GetLinearA"
-  "cceleration\022>.viam.component.movementsen"
-  "sor.v1.GetLinearAccelerationRequest\032\?.vi"
-  "am.component.movementsensor.v1.GetLinear"
-  "AccelerationResponse\"H\202\323\344\223\002B\022@/viam/api/"
-  "v1/component/movementsensor/{name}/linea"
-  "r_acceleration\022\221\001\n\tDoCommand\022 .viam.comm"
-  "on.v1.DoCommandRequest\032!.viam.common.v1."
-  "DoCommandResponse\"\?\202\323\344\223\0029\"7/viam/api/v1/"
-  "component/movementsensor/{name}/do_comma"
-  "nd\022\235\001\n\rGetGeometries\022$.viam.common.v1.Ge"
-  "tGeometriesRequest\032%.viam.common.v1.GetG"
-  "eometriesResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/"
-  "component/movementsensor/{name}/geometri"
-  "es\022\225\001\n\013GetReadings\022\".viam.common.v1.GetR"
-  "eadingsRequest\032#.viam.common.v1.GetReadi"
-  "ngsResponse\"=\202\323\344\223\0027\0225/viam/api/v1/compon"
-  "ent/movementsensor/{name}/readingsBS\n$co"
-  "m.viam.component.movementsensor.v1Z+go.v"
-  "iam.com/api/component/movementsensor/v1b"
-  "\006proto3"
+  "uracyResponse.AccuracyEntryR\010accuracy\022(\n"
+  "\rposition_hdop\030\002 \001(\002H\000R\014positionHdop\210\001\001\022"
+  "(\n\rposition_vdop\030\003 \001(\002H\001R\014positionVdop\210\001"
+  "\001\022d\n\025position_nmea_gga_fix\030\004 \001(\0162,.viam."
+  "component.movementsensor.v1.NmeaGGAFixH\002"
+  "R\022positionNmeaGgaFix\210\001\001\0227\n\025compass_degre"
+  "es_error\030\005 \001(\002H\003R\023compassDegreesError\210\001\001"
+  "\032;\n\rAccuracyEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005v"
+  "alue\030\002 \001(\002R\005value:\0028\001B\020\n\016_position_hdopB"
+  "\020\n\016_position_vdopB\030\n\026_position_nmea_gga_"
+  "fixB\030\n\026_compass_degrees_error\"a\n\034GetLine"
+  "arAccelerationRequest\022\022\n\004name\030\001 \001(\tR\004nam"
+  "e\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
+  "tR\005extra\"i\n\035GetLinearAccelerationRespons"
+  "e\022H\n\023linear_acceleration\030\001 \001(\0132\027.viam.co"
+  "mmon.v1.Vector3R\022linearAcceleration*\205\002\n\n"
+  "NmeaGGAFix\022$\n NMEA_GGA_FIX_INVALID_UNSPE"
+  "CIFIED\020\000\022\025\n\021NMEA_GGA_FIX_GNSS\020\001\022\025\n\021NMEA_"
+  "GGA_FIX_DGPS\020\002\022\024\n\020NMEA_GGA_FIX_PPS\020\003\022\032\n\026"
+  "NMEA_GGA_FIX_RTK_FIXED\020\004\022\032\n\026NMEA_GGA_FIX"
+  "_RTK_FLOAT\020\005\022\037\n\033NMEA_GGA_FIX_DEAD_RECKON"
+  "ING\020\006\022\027\n\023NMEA_GGA_FIX_MANUAL\020\007\022\033\n\027NMEA_G"
+  "GA_FIX_SIMULATION\020\0102\317\020\n\025MovementSensorSe"
+  "rvice\022\322\001\n\021GetLinearVelocity\022:.viam.compo"
+  "nent.movementsensor.v1.GetLinearVelocity"
+  "Request\032;.viam.component.movementsensor."
+  "v1.GetLinearVelocityResponse\"D\202\323\344\223\002>\022</v"
+  "iam/api/v1/component/movementsensor/{nam"
+  "e}/linear_velocity\022\326\001\n\022GetAngularVelocit"
+  "y\022;.viam.component.movementsensor.v1.Get"
+  "AngularVelocityRequest\032<.viam.component."
+  "movementsensor.v1.GetAngularVelocityResp"
+  "onse\"E\202\323\344\223\002\?\022=/viam/api/v1/component/mov"
+  "ementsensor/{name}/angular_velocity\022\322\001\n\021"
+  "GetCompassHeading\022:.viam.component.movem"
+  "entsensor.v1.GetCompassHeadingRequest\032;."
+  "viam.component.movementsensor.v1.GetComp"
+  "assHeadingResponse\"D\202\323\344\223\002>\022</viam/api/v1"
+  "/component/movementsensor/{name}/compass"
+  "_heading\022\305\001\n\016GetOrientation\0227.viam.compo"
+  "nent.movementsensor.v1.GetOrientationReq"
+  "uest\0328.viam.component.movementsensor.v1."
+  "GetOrientationResponse\"@\202\323\344\223\002:\0228/viam/ap"
+  "i/v1/component/movementsensor/{name}/ori"
+  "entation\022\271\001\n\013GetPosition\0224.viam.componen"
+  "t.movementsensor.v1.GetPositionRequest\0325"
+  ".viam.component.movementsensor.v1.GetPos"
+  "itionResponse\"=\202\323\344\223\0027\0225/viam/api/v1/comp"
+  "onent/movementsensor/{name}/position\022\301\001\n"
+  "\rGetProperties\0226.viam.component.movement"
+  "sensor.v1.GetPropertiesRequest\0327.viam.co"
+  "mponent.movementsensor.v1.GetPropertiesR"
+  "esponse\"\?\202\323\344\223\0029\0227/viam/api/v1/component/"
+  "movementsensor/{name}/properties\022\271\001\n\013Get"
+  "Accuracy\0224.viam.component.movementsensor"
+  ".v1.GetAccuracyRequest\0325.viam.component."
+  "movementsensor.v1.GetAccuracyResponse\"=\202"
+  "\323\344\223\0027\0225/viam/api/v1/component/movementse"
+  "nsor/{name}/accuracy\022\342\001\n\025GetLinearAccele"
+  "ration\022>.viam.component.movementsensor.v"
+  "1.GetLinearAccelerationRequest\032\?.viam.co"
+  "mponent.movementsensor.v1.GetLinearAccel"
+  "erationResponse\"H\202\323\344\223\002B\022@/viam/api/v1/co"
+  "mponent/movementsensor/{name}/linear_acc"
+  "eleration\022\221\001\n\tDoCommand\022 .viam.common.v1"
+  ".DoCommandRequest\032!.viam.common.v1.DoCom"
+  "mandResponse\"\?\202\323\344\223\0029\"7/viam/api/v1/compo"
+  "nent/movementsensor/{name}/do_command\022\235\001"
+  "\n\rGetGeometries\022$.viam.common.v1.GetGeom"
+  "etriesRequest\032%.viam.common.v1.GetGeomet"
+  "riesResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/compo"
+  "nent/movementsensor/{name}/geometries\022\225\001"
+  "\n\013GetReadings\022\".viam.common.v1.GetReadin"
+  "gsRequest\032#.viam.common.v1.GetReadingsRe"
+  "sponse\"=\202\323\344\223\0027\0225/viam/api/v1/component/m"
+  "ovementsensor/{name}/readingsBS\n$com.via"
+  "m.component.movementsensor.v1Z+go.viam.c"
+  "om/api/component/movementsensor/v1b\006prot"
+  "o3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -543,7 +572,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovemen
 };
 static ::_pbi::once_flag descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = {
-    false, false, 4247, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
+    false, false, 4842, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
     "component/movementsensor/v1/movementsensor.proto",
     &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once, descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps, 3, 17,
     schemas, file_default_instances, TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets,
@@ -560,6 +589,27 @@ namespace viam {
 namespace component {
 namespace movementsensor {
 namespace v1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* NmeaGGAFix_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto);
+  return file_level_enum_descriptors_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto[0];
+}
+bool NmeaGGAFix_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -3572,6 +3622,19 @@ void GetAccuracyResponse_AccuracyEntry_DoNotUse::MergeFrom(const GetAccuracyResp
 
 class GetAccuracyResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetAccuracyResponse>()._has_bits_);
+  static void set_has_position_hdop(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_position_vdop(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_position_nmea_gga_fix(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_compass_degrees_error(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
 };
 
 GetAccuracyResponse::GetAccuracyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -3585,13 +3648,21 @@ GetAccuracyResponse::GetAccuracyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:viam.component.movementsensor.v1.GetAccuracyResponse)
 }
 GetAccuracyResponse::GetAccuracyResponse(const GetAccuracyResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   accuracy_.MergeFrom(from.accuracy_);
+  ::memcpy(&position_hdop_, &from.position_hdop_,
+    static_cast<size_t>(reinterpret_cast<char*>(&compass_degrees_error_) -
+    reinterpret_cast<char*>(&position_hdop_)) + sizeof(compass_degrees_error_));
   // @@protoc_insertion_point(copy_constructor:viam.component.movementsensor.v1.GetAccuracyResponse)
 }
 
 inline void GetAccuracyResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&position_hdop_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&compass_degrees_error_) -
+    reinterpret_cast<char*>(&position_hdop_)) + sizeof(compass_degrees_error_));
 }
 
 GetAccuracyResponse::~GetAccuracyResponse() {
@@ -3624,11 +3695,19 @@ void GetAccuracyResponse::Clear() {
   (void) cached_has_bits;
 
   accuracy_.Clear();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000000fu) {
+    ::memset(&position_hdop_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&compass_degrees_error_) -
+        reinterpret_cast<char*>(&position_hdop_)) + sizeof(compass_degrees_error_));
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GetAccuracyResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -3643,6 +3722,42 @@ const char* GetAccuracyResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional float position_hdop = 2 [json_name = "positionHdop"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          _Internal::set_has_position_hdop(&has_bits);
+          position_hdop_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional float position_vdop = 3 [json_name = "positionVdop"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          _Internal::set_has_position_vdop(&has_bits);
+          position_vdop_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .viam.component.movementsensor.v1.NmeaGGAFix position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_position_nmea_gga_fix(static_cast<::viam::component::movementsensor::v1::NmeaGGAFix>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          _Internal::set_has_compass_degrees_error(&has_bits);
+          compass_degrees_error_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
@@ -3662,6 +3777,7 @@ const char* GetAccuracyResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -3701,6 +3817,31 @@ uint8_t* GetAccuracyResponse::_InternalSerialize(
     }
   }
 
+  // optional float position_hdop = 2 [json_name = "positionHdop"];
+  if (_internal_has_position_hdop()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_position_hdop(), target);
+  }
+
+  // optional float position_vdop = 3 [json_name = "positionVdop"];
+  if (_internal_has_position_vdop()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_position_vdop(), target);
+  }
+
+  // optional .viam.component.movementsensor.v1.NmeaGGAFix position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+  if (_internal_has_position_nmea_gga_fix()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      4, this->_internal_position_nmea_gga_fix(), target);
+  }
+
+  // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+  if (_internal_has_compass_degrees_error()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_compass_degrees_error(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3726,6 +3867,30 @@ size_t GetAccuracyResponse::ByteSizeLong() const {
     total_size += GetAccuracyResponse_AccuracyEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000000fu) {
+    // optional float position_hdop = 2 [json_name = "positionHdop"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + 4;
+    }
+
+    // optional float position_vdop = 3 [json_name = "positionVdop"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + 4;
+    }
+
+    // optional .viam.component.movementsensor.v1.NmeaGGAFix position_nmea_gga_fix = 4 [json_name = "positionNmeaGgaFix"];
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::EnumSize(this->_internal_position_nmea_gga_fix());
+    }
+
+    // optional float compass_degrees_error = 5 [json_name = "compassDegreesError"];
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 + 4;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -3749,6 +3914,22 @@ void GetAccuracyResponse::MergeFrom(const GetAccuracyResponse& from) {
   (void) cached_has_bits;
 
   accuracy_.MergeFrom(from.accuracy_);
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000000fu) {
+    if (cached_has_bits & 0x00000001u) {
+      position_hdop_ = from.position_hdop_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      position_vdop_ = from.position_vdop_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      position_nmea_gga_fix_ = from.position_nmea_gga_fix_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      compass_degrees_error_ = from.compass_degrees_error_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3766,7 +3947,14 @@ bool GetAccuracyResponse::IsInitialized() const {
 void GetAccuracyResponse::InternalSwap(GetAccuracyResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   accuracy_.InternalSwap(&other->accuracy_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, compass_degrees_error_)
+      + sizeof(GetAccuracyResponse::compass_degrees_error_)
+      - PROTOBUF_FIELD_OFFSET(GetAccuracyResponse, position_hdop_)>(
+          reinterpret_cast<char*>(&position_hdop_),
+          reinterpret_cast<char*>(&other->position_hdop_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetAccuracyResponse::GetMetadata() const {
